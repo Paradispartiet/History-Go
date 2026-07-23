@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 392 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 393 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -575,6 +575,10 @@ Batch 148 (2026-07-22) løser hovedrecorden `ljanselva` som en eksplisitt multi-
 | 146 | `motestedet_tollbugata` | Møtestedet – Tollbugata | verified | `geonorge-adresser-v1:0301:17577:3` |
 
 Batch 146 (2026-07-22) etterfører Subkultur-randsonebatch 03. `brugata_storgata_rusmiljo` bruker det offisielle Geonorge-adressepunktet for Storgata 33 som semantisk områdeanker for det dokumenterte miljøet rundt Storgata/Brugata. `huset_oslo`, `nadheim_oslo` og `motestedet_tollbugata` bruker entydige Geonorge-adressepunkter på dokumenterte besøksadresser.
+
+| 149 | `ostensjovannet_nord` | Vadedammen | verified_geometry | `osm-relation:6503853` |
+
+Batch 149 (2026-07-23) erstatter den repo-syntetiske «Østensjøvannet nord»-identiteten med det konkrete navngitte våtmarksobjektet Vadedammen; place-id beholdes for kompatibilitet. Korrigert lokal research finner én eneste eksakt navngitt kandidat: OSM relation 6503853, modellert som pond-polygon. Østensjøvannets Venner dokumenterer Vadedammen som en kunstig anlagt, grunn våtmarksdam nord for Østensjøvannet og publiserer en GPS-referanse som faller innenfor samme polygon-scope. Canonical lat/lon beregnes deterministisk fra polygongeometrien som area-anchor. Hele naturreservatpolygonet, legacy-punktet og nearest/first-hit brukes ikke.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
