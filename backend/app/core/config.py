@@ -49,9 +49,7 @@ class Settings(BaseSettings):
     social_meet_retention_removed_block_days: int = Field(default=180, ge=30, le=3650)
     social_meet_retention_closed_report_days: int = Field(default=730, ge=90, le=3650)
     social_meet_retention_closed_moderation_days: int = Field(default=730, ge=90, le=3650)
-    social_meet_retention_inactive_restriction_days: int = Field(
-        default=730, ge=90, le=3650
-    )
+    social_meet_retention_inactive_restriction_days: int = Field(default=730, ge=90, le=3650)
     social_meet_retention_closed_appeal_days: int = Field(default=365, ge=90, le=3650)
     social_meet_retention_safety_audit_days: int = Field(default=1095, ge=180, le=3650)
     social_meet_retention_released_hold_days: int = Field(default=365, ge=30, le=3650)
