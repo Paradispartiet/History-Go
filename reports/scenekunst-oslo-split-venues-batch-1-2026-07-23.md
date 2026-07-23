@@ -66,3 +66,4 @@ Generert: 2026-07-23T07:21:39.228Z
 - Oslo-aggregat, fem enkeltfiler, splitmanifest, splitindeks og global place-indeks er bygget og validert.
 - SALT–Havnelageret er den eneste godkjente samlokaliseringen i batchen.
 - Builder, workflow, triggerfil og diagnostisk feillogg er fjernet fra sluttdiffen.
+- Ordinær slutt-CI kjøres mot `main` før PR-en retargetes tilbake til PR #3336.
