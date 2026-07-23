@@ -18,5 +18,10 @@ const guardedWithRebuild = `// 12. Rebuild runtime place index before checking a
 if (!source.includes(guardMarker)) throw new Error('Could not insert runtime index rebuild before batch 188 residual guards');
 source = source.replace(guardMarker, guardedWithRebuild);
 
+const oldPeopleFailure = `if (peopleCheck.status !== 0) throw new Error(\`People place-ref audit failed with \${peopleCheck.status}\`);`;
+const newPeopleFailure = `if (peopleCheck.status !== 0) throw new Error(\`People place-ref audit failed with \${peopleCheck.status}:\\n\${peopleCheck.stdout ?? ''}\\n\${peopleCheck.stderr ?? ''}\`);`;
+if (!source.includes(oldPeopleFailure)) throw new Error('Could not patch people-audit diagnostics into batch 188 source');
+source = source.replace(oldPeopleFailure, newPeopleFailure);
+
 fs.writeFileSync(TEMP_SCRIPT, source, 'utf8');
 await import(pathToFileURL(TEMP_SCRIPT).href);
