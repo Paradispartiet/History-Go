@@ -1,5 +1,5 @@
 {
-  "version": "3.0",
+  "version": "3.1",
   "status": "canonical",
   "authority_order": [
     "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
@@ -12,6 +12,7 @@
   "canonical_files": {
     "category_contract": "data/categories/category_contract.json",
     "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+    "normal_opening_policy": "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
     "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
     "package_schema": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
     "subject_manifest": "data/fag/fag_manifest.json",
@@ -21,6 +22,12 @@
     "production_context_audit": "scripts/audit-quiz-production-context.mjs",
     "progression_audit": "scripts/audit-quiz-progression.mjs",
     "theory_binding_audit": "scripts/audit-quiz-theory-binding.mjs"
+  },
+  "global_invariants": {
+    "normal_opening": {
+      "policy": "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
+      "rule": "Alle aktive quizmål skal starte med to sett à sju normale, direkte quizspørsmål før metode, teori og syntese."
+    }
   },
   "category_profiles": {
     "by": "data/fag/by/supersetQUIZMAL_by.json",
