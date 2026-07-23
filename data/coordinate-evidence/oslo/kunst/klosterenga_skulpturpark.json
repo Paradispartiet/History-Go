@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "klosterenga_skulpturpark",
+  "placeFile": "data/places/kunst/oslo/places_kunst/klosterenga_skulpturpark.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9082666,
+    "lon": 10.7761761,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 4874898 – Klosterenga; scope cross-checked with Oslo kommune",
+    "coordType": "sculpture_park_center",
+    "coordNote": "Batch 172 object-type-first: exact OSM way 4874898 resolves as the named Klosterenga park with Polygon geometry. Fresh exact-object representation point is 59.9082666, 10.7761761, 0.00 m from the locked revalidation coordinate. Oslo kommune defines Klosterenga as a sculpture park and experience park where art, water and green areas form one integrated landscape, with the reopened Hovinbekken as a central 700-metre art-and-water element. Canonical scope is the whole named park landscape, not one sculpture, water feature or creek point. No nearest/first-hit selection is used."
+  },
+  "identity": {
+    "currentName": "Klosterenga skulpturpark",
+    "resolvedIdentity": "Hele Klosterenga skulpturpark som integrert offentlig kunst-, vann- og parklandskap",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "park",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "exact locked OSM park identity",
+    "official municipal whole-site scope",
+    "canonical duplicate control against current main"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Klosterenga way 4874898",
+      "sourceUrl": "https://www.openstreetmap.org/way/4874898",
+      "sourceObjectId": "osm-way:4874898",
+      "sourceQuality": "unique_exact_named_park_polygon",
+      "finding": "Fresh exact lookup resolves way 4874898 as Klosterenga, type=park, Polygon geometry and representation point 59.9082666, 10.7761761.",
+      "canVerifyCoordinate": true,
+      "reason": "Exact named physical park geometry; no nearest or first-hit selection."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Klosterenga park",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/klosterenga-park",
+      "sourceObjectId": "oslo-kommune:park:klosterenga",
+      "sourceQuality": "official_integrated_sculpture_park_scope",
+      "finding": "Oslo kommune defines Klosterenga as a sculpture and experience park integrating art, water, green areas and the reopened Hovinbekken.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the whole-site canonical scope; exact physical area geometry comes from the locked OSM way."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4874898",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:park:klosterenga",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4874898",
+      "geometryType": "Polygon",
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9082666,
+      "lon": 10.7761761,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-way:4874898",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact Klosterenga park geometry and representation point are applied to canonical sculpture-park place."
+  },
+  "notes": [
+    "Batch 172 object-type-first: exact OSM way 4874898 resolves as the named Klosterenga park with Polygon geometry. Fresh exact-object representation point is 59.9082666, 10.7761761, 0.00 m from the locked revalidation coordinate. Oslo kommune defines Klosterenga as a sculpture park and experience park where art, water and green areas form one integrated landscape, with the reopened Hovinbekken as a central 700-metre art-and-water element. Canonical scope is the whole named park landscape, not one sculpture, water feature or creek point. No nearest/first-hit selection is used.",
+    "Fresh anchor drift from locked production coordinate: 0.00 m.",
+    "Place-id and accepted Klosterenga identity names were absent from current manifest-loaded canonical place data before production."
+  ]
+}

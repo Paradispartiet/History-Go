@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 414 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 415 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -742,6 +742,7 @@ Batch 168 (2026-07-23) oppretter Lillomarka som ett bredt navngitt Marka- og sko
 | 169 | `brekkedammen` | Brekkedammen ved Frysja | verified_geometry | `osm-relation:14334474` |
 | 170 | `grorudparken` | Grorudparken | verified_geometry | `osm-way:125848624` |
 | 171 | `aamot_bru` | Åmot bru | verified_geometry | `osm-way:791117473` |
+| 172 | `klosterenga_skulpturpark` | Klosterenga skulpturpark | verified_geometry | `osm-way:4874898` |
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
 Disse kontrollene er fullført, men teller ikke blant de 411 verifiserte canonical Oslo-stedene.
