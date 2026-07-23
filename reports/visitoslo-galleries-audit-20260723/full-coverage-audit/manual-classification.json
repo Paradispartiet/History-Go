@@ -1,0 +1,328 @@
+{
+  "version": "2026-07-23",
+  "sourceSnapshot": "reports/visitoslo-galleries-audit-20260723/api-source-discovery/gallery-source-snapshot.json",
+  "machineAudit": "reports/visitoslo-galleries-audit-20260723/full-coverage-audit/machine-coverage-audit.json",
+  "status": "manual_classification_in_progress",
+  "summary": {
+    "machineSecureExactMatches": 18,
+    "manualItems": 48,
+    "manualStatusCounts": {
+      "approved_distinct_candidate_outside_oslo": 1,
+      "requires_policy_review": 2,
+      "approved_distinct_candidate": 10,
+      "policy_deferred_private_commercial": 28,
+      "covered_name_variant": 1,
+      "covered_parent_enrichment": 3,
+      "approved_coordinate_backlog": 1,
+      "unresolved_research_needed": 2
+    },
+    "fullSourceItems": 66,
+    "finalDecisions": 44,
+    "nonFinalItems": 4
+  },
+  "scopeGuards": [
+    "Exact machine matches count as canonical coverage only where the source and canonical identity are the same physical/institutional place.",
+    "Parent enrichment avoids duplicate map markers for institutions sharing an already represented physical property.",
+    "Policy-deferred private/commercial galleries are classified, not rejected forever; reconsideration requires a dedicated consistent inclusion framework.",
+    "Approved distinct candidates still require current-main duplicate audit and coordinate-source contract before production.",
+    "Henie Onstad belongs to Bærum/Akershus production, not an Oslo coordinate batch.",
+    "SOFT galleri remains coordinate-blocked until a distinct authoritative physical anchor is resolved.",
+    "Full category closure is not claimed while Format Oslo, SKOG Art Space, Oslo Galleri and Galleri SPINN remain non-final."
+  ],
+  "manualRows": [
+    {
+      "sourceItem": "Henie Onstad Kunstsenter",
+      "status": "approved_distinct_candidate_outside_oslo",
+      "canonicalTarget": null,
+      "reason": "Stabil kunstinstitusjon, men fysisk i Bærum/Akershus; skal ikke produseres i Oslo-batch."
+    },
+    {
+      "sourceItem": "Format Oslo",
+      "status": "requires_policy_review",
+      "canonicalTarget": null,
+      "reason": "Varig kunsthåndverks-/designaktør med institusjonelle trekk, men også AS og salgs-/butikkfunksjon; krever konsekvent policyavgjørelse."
+    },
+    {
+      "sourceItem": "Edvard Munchs atelier på Ekely",
+      "status": "approved_distinct_candidate",
+      "canonicalTarget": null,
+      "reason": "Eget fysisk kultursted på Ekely, separat fra MUNCH i Bjørvika."
+    },
+    {
+      "sourceItem": "Kunstverket Galleri",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Kommersielt salgs- og formidlingsgalleri under etablert gallery-policy."
+    },
+    {
+      "sourceItem": "Purenkel",
+      "status": "covered_name_variant",
+      "canonicalTarget": "purenkel_galleri",
+      "reason": "Eksisterende canonical sted med navnevarianten Purenkel."
+    },
+    {
+      "sourceItem": "Galleri Dobloug",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Privat kommersielt galleri under etablert gallery-policy."
+    },
+    {
+      "sourceItem": "Galleri Albin Upp",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Galleri med butikk/studio-/salgsfunksjon under etablert gallery-policy."
+    },
+    {
+      "sourceItem": "Galleri Haaken",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Tidligere eksplisitt policy-deferred."
+    },
+    {
+      "sourceItem": "Tegnerforbundet - senter for tegnekunst",
+      "status": "approved_distinct_candidate",
+      "canonicalTarget": null,
+      "reason": "Varig medlems- og kunstinstitusjon med eget offentlig visningssted."
+    },
+    {
+      "sourceItem": "Galleri K",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Tidligere eksplisitt policy-deferred."
+    },
+    {
+      "sourceItem": "Unge Kunstneres Samfund",
+      "status": "approved_distinct_candidate",
+      "canonicalTarget": null,
+      "reason": "Langvarig kunstnerorganisasjon og samtidskunstinstitusjon."
+    },
+    {
+      "sourceItem": "Blomqvist Kunsthandels galleri",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Auksjons-/kunstmarkedsaktør under etablert gallery-policy."
+    },
+    {
+      "sourceItem": "Galleri Norske Grafikere",
+      "status": "approved_distinct_candidate",
+      "canonicalTarget": null,
+      "reason": "Langvarig kunstnerorganisasjon med eget galleri."
+    },
+    {
+      "sourceItem": "Galleri ROM for kunst og arkitektur",
+      "status": "approved_distinct_candidate",
+      "canonicalTarget": null,
+      "reason": "Uavhengig stiftelse og varig visnings-/møteplass."
+    },
+    {
+      "sourceItem": "The Mini Bottle Gallery",
+      "status": "approved_distinct_candidate",
+      "canonicalTarget": null,
+      "reason": "Stabil museumsattraksjon med selvstendig fysisk identitet."
+    },
+    {
+      "sourceItem": "Oslo Kunstforening",
+      "status": "covered_parent_enrichment",
+      "canonicalTarget": "radmannsgarden_og_anatomibygget",
+      "reason": "Allerede løst som institusjons-/current-use-layer på eksisterende parent."
+    },
+    {
+      "sourceItem": "Galleri LNM",
+      "status": "approved_distinct_candidate",
+      "canonicalTarget": null,
+      "reason": "Langvarig kunstnerorganisasjon og offentlig galleri."
+    },
+    {
+      "sourceItem": "RAM galleri",
+      "status": "approved_distinct_candidate",
+      "canonicalTarget": null,
+      "reason": "Ikke-kommersiell, medlemsbasert og offentlig støttet kunstinstitusjon."
+    },
+    {
+      "sourceItem": "Soft galleri: Norske tekstilkunstnere",
+      "status": "approved_coordinate_backlog",
+      "canonicalTarget": "soft_galleri",
+      "reason": "Scope-godkjent institusjon, men distinkt fysisk marker/entrance-anchor er fortsatt uløst."
+    },
+    {
+      "sourceItem": "Utopia Retro Modern",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Spesialforretning/galleri under etablert commercial/high-churn policy."
+    },
+    {
+      "sourceItem": "Peder Lund",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Tidligere eksplisitt policy-deferred."
+    },
+    {
+      "sourceItem": "Galleri Ramfjord",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Representasjons- og salgsgalleri under etablert gallery-policy."
+    },
+    {
+      "sourceItem": "Fineart Oslo",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Tidligere eksplisitt policy-deferred."
+    },
+    {
+      "sourceItem": "Galleri Brandstrup",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Tidligere eksplisitt policy-deferred."
+    },
+    {
+      "sourceItem": "Galleri Schaeffers Gate 5",
+      "status": "approved_distinct_candidate",
+      "canonicalTarget": null,
+      "reason": "Uavhengig ideelt kunst-, musikk- og performance-rom med langvarig drift."
+    },
+    {
+      "sourceItem": "Galleri Pushwagner",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Tidligere eksplisitt policy-deferred."
+    },
+    {
+      "sourceItem": "Galleri TM51",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Salgs-/representasjonsgalleri under etablert gallery-policy."
+    },
+    {
+      "sourceItem": "Galleri Semmingsen",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Salgs-/representasjonsgalleri under etablert gallery-policy."
+    },
+    {
+      "sourceItem": "QB Gallery",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Representasjons-/salgsgalleri under etablert gallery-policy."
+    },
+    {
+      "sourceItem": "WILLAS contemporary",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Galleri/advisory med samler- og salgsorientering."
+    },
+    {
+      "sourceItem": "Standard (Oslo)",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Markeds-/representasjonsgalleri under etablert gallery-policy."
+    },
+    {
+      "sourceItem": "Oslo Galleri",
+      "status": "unresolved_research_needed",
+      "canonicalTarget": null,
+      "reason": "Operatør, varighet og forretnings-/institusjonsmodell er ikke sikkert nok dokumentert."
+    },
+    {
+      "sourceItem": "Galleri Briskeby",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Salgs- og formidlingsgalleri under etablert gallery-policy."
+    },
+    {
+      "sourceItem": "Grafill",
+      "status": "approved_distinct_candidate",
+      "canonicalTarget": null,
+      "reason": "Nasjonal ideell medlemsorganisasjon med eget offentlig hus og utstillingsprogram."
+    },
+    {
+      "sourceItem": "Buer Gallery",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Tidligere eksplisitt policy-deferred."
+    },
+    {
+      "sourceItem": "ISCA Gallery",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Privat/independent contemporary gallery uten dokumentert nonprofit-institusjonsstatus som overstyrer policyen."
+    },
+    {
+      "sourceItem": "SORGENFRI",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Butikk, konseptgalleri og showroom under high-churn/commercial policy."
+    },
+    {
+      "sourceItem": "Golsa",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Representasjons- og markedsgalleri under etablert gallery-policy."
+    },
+    {
+      "sourceItem": "Galleri SPINN",
+      "status": "unresolved_research_needed",
+      "canonicalTarget": null,
+      "reason": "Eierskap, varighet og institusjonell/kommersiell modell er ikke sikkert nok dokumentert."
+    },
+    {
+      "sourceItem": "BO Billedkunstnerne i Oslo",
+      "status": "covered_parent_enrichment",
+      "canonicalTarget": "radmannsgarden_og_anatomibygget",
+      "reason": "Samme fysiske Anatomigården/Rådhusgata 19-parent; bør være institusjons-/current-use-layer, ikke ny markør."
+    },
+    {
+      "sourceItem": "M35",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Tidligere eksplisitt policy-deferred."
+    },
+    {
+      "sourceItem": "SKOG Art Space",
+      "status": "requires_policy_review",
+      "canonicalTarget": null,
+      "reason": "Har kunstnerstøttende/institusjonelle trekk, men er ung; krever eksplisitt policyvalg om nye nonprofit-lignende art spaces."
+    },
+    {
+      "sourceItem": "Atelie",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Galleri/plattform med verk til salgs under etablert gallery-policy."
+    },
+    {
+      "sourceItem": "Oslo Glass Studio",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Nytt publikumsåpent verksted/galleri/shop; ikke obligatorisk canonical gap under gjeldende high-churn art-venue policy."
+    },
+    {
+      "sourceItem": "Rivertz",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Ny galleri-/vinbar-/salgsaktør under high-churn/commercial policy."
+    },
+    {
+      "sourceItem": "Atelier Nord",
+      "status": "covered_parent_enrichment",
+      "canonicalTarget": "hauges_minde",
+      "reason": "Eksisterende parent representerer samme bygg og dokumenterer dagens atelier-/kunstbruk."
+    },
+    {
+      "sourceItem": "D142",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Svært ny uavhengig galleriaktør; high-churn-policy."
+    },
+    {
+      "sourceItem": "Grafikk Oslo",
+      "status": "policy_deferred_private_commercial",
+      "canonicalTarget": null,
+      "reason": "Salgsrettet grafikkgalleri under etablert gallery-policy."
+    }
+  ],
+  "nonFinalItems": [
+    "Format Oslo",
+    "SKOG Art Space",
+    "Oslo Galleri",
+    "Galleri SPINN"
+  ]
+}
