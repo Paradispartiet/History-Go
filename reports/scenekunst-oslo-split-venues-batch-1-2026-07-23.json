@@ -1,0 +1,175 @@
+{
+  "generatedAt": "2026-07-23T07:21:39.228Z",
+  "status": "validated",
+  "category": "scenekunst",
+  "batch": "oslo_split_venues_1",
+  "dependsOn": "agent/scenekunst-national-venues-03-rebased / PR #3336",
+  "addedPlaceIds": [
+    "teater_manu",
+    "vega_scene",
+    "rommen_scene",
+    "salt_oslo",
+    "det_andre_teatret_intimscenen"
+  ],
+  "officialInstitutionSources": {
+    "teater_manu": [
+      "https://teatermanu.no/om-teater-manu",
+      "https://teatermanu.no/"
+    ],
+    "vega_scene": [
+      "https://www.vegascene.no/nyheter/om-vega-scene",
+      "https://www.vegascene.no/teater"
+    ],
+    "rommen_scene": [
+      "https://rommenscene.no/",
+      "https://rommenscene.no/kontakt",
+      "https://rommenscene.no/omscenen"
+    ],
+    "salt_oslo": [
+      "https://www.salted.no/about/",
+      "https://www.salted.no/kontakt",
+      "https://www.salted.no/hovedscenen"
+    ],
+    "det_andre_teatret_intimscenen": [
+      "https://detandreteatret.no/kontakt",
+      "https://detandreteatret.no/program?kategori=4483",
+      "https://sparebankstiftelsen.no/tildelinger/det-andre-teatret/"
+    ]
+  },
+  "coordinateResults": [
+    {
+      "id": "teater_manu",
+      "query": "Christies gate 5 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Christies%20gate%205%20Oslo&treffPerSide=100",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11091:5",
+      "coordinate": {
+        "lat": 59.92748781553136,
+        "lon": 10.765085831638626
+      },
+      "address": {
+        "street": "Christies gate",
+        "number": "5",
+        "postcode": "0557",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [],
+      "overlapDecision": "no_overlap"
+    },
+    {
+      "id": "vega_scene",
+      "query": "Hausmanns gate 28 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Hausmanns%20gate%2028%20Oslo&treffPerSide=100",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12782:28",
+      "coordinate": {
+        "lat": 59.91895316049889,
+        "lon": 10.752326830028103
+      },
+      "address": {
+        "street": "Hausmanns gate",
+        "number": "28",
+        "postcode": "0182",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [],
+      "overlapDecision": "no_overlap"
+    },
+    {
+      "id": "rommen_scene",
+      "query": "Karen Platous vei 31 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Karen%20Platous%20vei%2031%20Oslo&treffPerSide=100",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13621:31",
+      "coordinate": {
+        "lat": 59.96736733733063,
+        "lon": 10.914417596858193
+      },
+      "address": {
+        "street": "Karen Platous vei",
+        "number": "31",
+        "postcode": "0988",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [],
+      "overlapDecision": "no_overlap"
+    },
+    {
+      "id": "salt_oslo",
+      "query": "Langkaia 1 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Langkaia%201%20Oslo&treffPerSide=100",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14150:1",
+      "coordinate": {
+        "lat": 59.90760281927637,
+        "lon": 10.746880614147818
+      },
+      "address": {
+        "street": "Langkaia",
+        "number": "1",
+        "postcode": "0150",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [
+        "havnelageret"
+      ],
+      "overlapDecision": "intentional_shared_anchor"
+    },
+    {
+      "id": "det_andre_teatret_intimscenen",
+      "query": "Ivan Bjørndals gate 28 Oslo",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Ivan%20Bj%C3%B8rndals%20gate%2028%20Oslo&treffPerSide=100",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21385:28",
+      "coordinate": {
+        "lat": 59.93829179264618,
+        "lon": 10.765140986301802
+      },
+      "address": {
+        "street": "Ivan Bjørndals gate",
+        "number": "28",
+        "postcode": "0472",
+        "city": "Oslo",
+        "country": "NO"
+      },
+      "exactOverlapIds": [],
+      "overlapDecision": "no_overlap"
+    }
+  ],
+  "physicalScopeDecisions": {
+    "teater_manu": "Teater Manus scene- og publikumsfunksjoner med besøksinngang i Christies gate 5. Postadressen Schleppegrells gate 32 gjelder samme teaterlokale; turnéspillesteder inngår ikke.",
+    "vega_scene": "Vega Scenes teatersal, kinosaler, Salongen og publikumsarealer i Hausmanns gate 28. Nærliggende kulturaktører i Hausmannskvartalet inngår ikke.",
+    "rommen_scene": "Rommen Scenes profesjonelle scene, dansesal og publikumsfunksjoner i Karen Platous vei 31. Rommen skole og flerbrukshallen behandles som andre funksjoner i samme kompleks.",
+    "salt_oslo": "SALT-områdets scener, publikumsarealer og modulære kulturkonstruksjoner ved Langkaia 1. Den øvrige havnepromenaden og nabofunksjoner inngår ikke.",
+    "det_andre_teatret_intimscenen": "Det Andre Teatrets Intimscene i Ivan Bjørndals gate 28. Hovedscene, bar og uteservering i nummer 9 inngår ikke i denne markøren."
+  },
+  "hybridCategoryDecisions": {
+    "vega_scene": [
+      "scenekunst",
+      "popkultur"
+    ],
+    "salt_oslo": [
+      "scenekunst",
+      "musikk",
+      "by"
+    ],
+    "rommen_scene": [
+      "scenekunst",
+      "musikk",
+      "by"
+    ]
+  },
+  "validation": {
+    "geonorgeExactAddressLookup": "pass",
+    "overlapAudit": "pass",
+    "splitAggregateBuild": "pass",
+    "splitManifestBuild": "pass",
+    "splitIndexBuild": "pass",
+    "placesIndexBuild": "pass",
+    "placesChecks": "pass",
+    "categoryAudit": "pass"
+  },
+  "validatedAt": "2026-07-23T07:48:08.211Z",
+  "resyncedFromPullRequest": 3343,
+  "resyncedAt": "2026-07-23T07:47:47.142Z",
+  "base": "current_main"
+}
