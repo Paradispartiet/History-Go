@@ -488,7 +488,6 @@ Disse story-lignende JSON-filene finnes i `data/stories/`, men er ikke registrer
 | `oslo_posthus` | Oslo Posthus | 1924 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `ovre_foss` | Øvre Foss – Hjula Veveri | 1855 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `lisbon_parque_das_nacoes` | Parque das Nações | 1998 | `data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json` |
-| `sagene_kvernhus` | Sagene mølle og kvernhus | 1750 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `st_halvard_bryggeri` | St. Halvard bryggeri | 1843 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `lisbon_terminal_de_cruzeiros` | Terminal de Cruzeiros de Lisboa | 2017 | `data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json` |
 | `tollbukaia` | Tollbukaia | 1890 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |

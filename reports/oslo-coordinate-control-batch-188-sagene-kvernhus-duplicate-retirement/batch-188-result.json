@@ -1,0 +1,55 @@
+{
+  "version": "2026-07-23",
+  "batch": 188,
+  "retiredPlaceId": "sagene_kvernhus",
+  "canonicalPlaceId": "glads_molle",
+  "status": "retired_duplicate",
+  "canonical": {
+    "name": "Glads mølle",
+    "sourceFile": "data/places/natur/oslo/places_oslo_natur_akerselvarute/glads_molle.json",
+    "sourceObjectId": "geonorge-adresser-v1:0301:16161:10A",
+    "coordinate": {
+      "lat": 59.931850362845985,
+      "lon": 10.757873019733754
+    },
+    "coordStatus": "verified"
+  },
+  "retiredLegacy": {
+    "name": "Sagene mølle og kvernhus",
+    "coordinate": {
+      "lat": 59.9368,
+      "lon": 10.7569
+    },
+    "evidenceStatus": "needs_research"
+  },
+  "migration": {
+    "retargetedRelationshipFiles": [
+      "data/lesespor/lesespor_oslo_batch2.json",
+      "data/natur/routes_patched_akerselva_knagger_baseline_v0_2_patched_groft.json",
+      "data/people/by/oslo/people_by_oslo.json",
+      "data/places/historie/oslo/places_historie/arbeidermuseet.json",
+      "data/routes/historical/routes_historical_oslo.json",
+      "data/routes.json"
+    ],
+    "removedCivicationMapping": "map_sagene_kvernhus",
+    "removedLocaleEntries": [
+      "data/i18n/content/places/en.json",
+      "data/i18n/content/places/es.json",
+      "data/i18n/content/places/pt.json"
+    ],
+    "removedDuplicateQuizSet": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+    "removedFlatQuizQuestionCount": 5,
+    "removedDuplicatePlace": true,
+    "removedDuplicateEvidence": true,
+    "addedAliasGuard": "sagene_kvernhus -> glads_molle",
+    "remainingLegacyDataRefs": []
+  },
+  "checks": {
+    "expectedPreviousBatch": 187,
+    "canonicalCoordinateUnchanged": true,
+    "canonicalEvidencePreserved": true,
+    "canonicalQuizPreserved": true,
+    "noActiveDataReferenceToLegacyId": true,
+    "noSecondPhysicalCoordinateCreated": true
+  }
+}
