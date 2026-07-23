@@ -219,8 +219,11 @@ function objectReferencesTarget(item, targetId) {
     "id",
     "targetId",
     "placeId",
+    "place_id",
     "personId",
+    "person_id",
     "natureId",
+    "nature_id",
     "place",
     "person",
     "from",
@@ -324,7 +327,13 @@ async function resolveStorySources({ root, targetId }) {
   const results = [];
   for (const storyPath of await listJsonFiles(root, "data/stories")) {
     const record = await readFileRecord(root, storyPath);
-    const matches = collectReferencingObjects(record.data, targetId);
+    const matches = collectReferencingObjects(record.data, targetId).filter((item) => {
+      return hasText(item.id) && (
+        hasText(item.story)
+        || hasText(item.summary)
+        || hasText(item.title)
+      );
+    });
     if (matches.length) results.push({ record, matches });
   }
   return results;
@@ -367,7 +376,13 @@ export function curriculumIndexes(records) {
   const fagkart = records.fagkart?.data || {};
   const methods = records.methods?.data || {};
 
-  const modules = asArray(pensum.modules);
+  const modules = asArray(pensum.modules).length
+    ? asArray(pensum.modules)
+    : asArray(pensum.domains).map((domain) => ({
+        ...domain,
+        module_id: domain.domain_id,
+        emner: asArray(domain.emne_ids)
+      }));
   const emneItems = Array.isArray(emner) ? emner : asArray(emner.emner);
   const methodItems = asArray(methods.methods);
   const hooks = [];
@@ -642,9 +657,8 @@ export async function buildQuizProductionContext({
     targetId,
     profile: `${profile.id}_${profile.setCount}x${profile.questionsPerSet}`,
     manifest: {
-      path: loaded.manifestRecord.path,
-      bytes: loaded.manifestRecord.bytes,
-      sha256: loaded.manifestRecord.sha256
+      ...sourceSelectionMetadata(loaded.manifestRecord, [loaded.manifestEntry]),
+      category_id: categoryId
     },
     resolved_files: loaded.resolvedFiles,
     required_inputs_loaded: loaded.requiredInputs,

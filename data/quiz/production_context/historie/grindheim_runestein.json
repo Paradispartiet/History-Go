@@ -1,0 +1,583 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "grindheim_runestein",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1083,
+    "selection_sha256": "c9ebf6a172fe6c61a1b682708c7fa5b42621c1afb33c2e39c7249235cb5a3c9e",
+    "category_id": "historie"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 16370,
+      "sha256": "f49bdb526d27d99bedcc8a79977aaec9d531bf7cdca94175e8217fa522536e44",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 323744,
+      "sha256": "455b9ca591ac33e7c5ca69912692780de99d4b7d109d362a6303613f7ef54f4d",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 64833,
+      "sha256": "fdd3eef114c6578d8fa357e4eae1bd9ed21a0208e863e9ac809a9bc92bbc3e15",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 26040,
+      "sha256": "cc7b56cd47f7faa92cfde6fe25b725f3fdbc9cd6e1b9615ba8e5303df23ca3b3",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 10420,
+      "sha256": "f64a00bd951ae44ea19d4d2fba3628bfaf16b6688c21494c90fd59bbcb91d5f1",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 3642,
+      "sha256": "a0b22f8e1091c459b700b3782b9841323c8cfc3dac1e8c92e416dc01c2d6ca04",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/grindheim_runestein.json",
+      "bytes": 11615,
+      "sha256": "3827ffa0e9cb376a75172ccf43ec7e97d58f3cd6bbb40f6c7038384af0a34815"
+    },
+    "target": {
+      "path": "data/places/historie/vestland/etne/grindheim_runestein.json",
+      "bytes": 7515,
+      "sha256": "c150c5ee26793cdac66108ca52c52433f85a79a51e66cf4a55ae8d4a623a30cb"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1061,
+      "selection_sha256": "b69342ae7184837705b75e7c6ad1b8f2c0bb75be54bd669b2b80db2314ab9832"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 2,
+        "selection_bytes": 570,
+        "selection_sha256": "f8b097f729e96b5397c39c94a87e5e742a2b4fff5782fca9df9ca52a0d395e43"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_etne_historie_rounds_batch3.json",
+        "matches": 1,
+        "selection_bytes": 1797,
+        "selection_sha256": "62f53cb8e8a46211436dc7fbab29fdfed60300e38c32609bd3d2a1eefeec7f1f"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/grindheim_runestein_sets.json",
+  "source_registry": {
+    "kringom_grindheim": {
+      "url": "https://www.kringom.no/nb/grindheim-kyrkje",
+      "source_type": "regional_cultural_history",
+      "review_status": "reviewed",
+      "review_note": "Brukt for plasseringa, innskrifta, leseretninga, krossen, dateringa, murhistoria og uvissa kring tilnamnet Svidande."
+    },
+    "norges_kirker_grindheim": {
+      "url": "https://norgeskirker.no/wiki/Grindheim_kyrkje",
+      "source_type": "scholarly_church_inventory",
+      "review_status": "reviewed",
+      "review_note": "Brukt for mål, runestorleik, innskriftsoppsett, krossdetaljar, dateringsspenn og oppattreisinga i 1905."
+    }
+  },
+  "source_review_status": "reviewed",
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 12,
+      "emner": 45,
+      "topic_hooks": 15,
+      "methods": 12
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_kildekritikk_arkiv_spor",
+        "title": "Kildekritikk, arkiv og spor",
+        "score": 100
+      },
+      {
+        "id": "em_his_kirke_kloster_middelalder",
+        "title": "Kirke, kloster og middelaldermakt",
+        "score": 100
+      },
+      {
+        "id": "em_his_kulturminner_bevaring",
+        "title": "Kulturminner og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_historiebruk_minne",
+        "title": "Historiebruk og minnekultur",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_kildekritikk",
+        "title": "Kildekritikk",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_middelalder_by_kirke",
+        "title": "Middelalderbyen og kirkemakten",
+        "category_id": "his_middelalder_kirke_kongemakt",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_middelalder_kirke_kongemakt",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_kirke_kloster_middelalder",
+      "em_his_spor_materialitet",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk",
+      "his_historiebruk_minne"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [
+      "marc_bloch",
+      "pierre_nora"
+    ],
+    "works": [
+      "The Historian's Craft",
+      "Realms of Memory"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_grindheim_runestein_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Grindheim runestein står no inntil nordveggen på skipet til Grindheim kyrkje.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Runeinnskrifta seier at Tormod reiste steinen.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kirke_kloster_middelalder"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Steinen vart reist etter faren Tormod Svidande.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kirke_kloster_middelalder"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Både sonen som reiste steinen og faren som vart minna, heitte Tormod.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Runeinnskrifta er hoggen langs den eine smale langsida av steinen.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Ein kross er hoggen inn på den eine breisida av runesteinen.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kirke_kloster_middelalder"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Innskrifta på langsida skal lesast nedanfrå og opp.",
+      "source_ids": [
+        "kringom_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Krossen har eit markert punkt ved enden av kvar krossarm.",
+      "source_ids": [
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Det siste ordet, «sin», vart hogge på framsida fordi det ikkje var plass att på langsida.",
+      "source_ids": [
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Runene i innskrifta er om lag 16 centimeter høge.",
+      "source_ids": [
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Norges Kirker oppgir steinen til om lag 330 centimeter høgd, 65 centimeter breidd og 26 centimeter tjukkleik.",
+      "source_ids": [
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Runesteinen vart reist att ved kyrkja og festa til veggen i 1905.",
+      "source_ids": [
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kjeldene plasserer innskrifta i første halvdel eller kring midten av 1000-talet, så dateringa må uttrykkjast som omtrentlig.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kirke_kloster_middelalder"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Steinen låg i kyrkjegardsmuren i fleire hundre år før han vart reist ved nordveggen.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Steinen har gått frå reist personminne til materiale i kyrkjegardsmuren og vidare til synleg kulturminne ved kyrkja.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Innskrifta dokumenterer to namn og eit far–son-forhold, men gir ikkje ein full biografi om dei to Tormodane.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Runer og kross på same minnesmerke viser at runeskrift og kristen symbolbruk fanst saman, men fortel ikkje åleine alt om trua til personane.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kirke_kloster_middelalder"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Runene på smalsida, krossen på breisida og plasseringa ved kyrkjeveggen er konkrete spor som kan lesast saman.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "guidance_basis": [
+        "data/fag/historie/methods_historie_canonical_v4_5.json",
+        "data/fag/historie/emner_historie_canonical_v4_5.json"
+      ],
+      "method_id": "met_sporlesning"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Forslaget om at Svidande viser til svirydding er usikkert og kan ikkje presenterast som ei løyst namnetolking.",
+      "source_ids": [
+        "kringom_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "guidance_basis": [
+        "data/fag/historie/methods_historie_canonical_v4_5.json",
+        "data/fag/historie/emner_historie_canonical_v4_5.json"
+      ],
+      "method_id": "met_kildekritikk"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Innskrifta oppgir namna og far–son-forholdet, medan ho ikkje gir ein full biografi eller ei sikker forklaring på tilnamnet Svidande.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "guidance_basis": [
+        "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+        "data/fag/historie/methods_historie_canonical_v4_5.json",
+        "data/fag/historie/emner_historie_canonical_v4_5.json"
+      ],
+      "method_id": "met_kildekritikk",
+      "topic_hook_id": "his_kildekritikk",
+      "thinker_id": "marc_bloch",
+      "work": "The Historian's Craft"
+    },
+    {
+      "claim_id": "claim_grindheim_runestein_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oppattreisinga i 1905 gjorde steinen synleg på nytt som offentleg minne og kulturminne etter hundreår i muren.",
+      "source_ids": [
+        "kringom_grindheim",
+        "norges_kirker_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "guidance_basis": [
+        "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+        "data/fag/historie/methods_historie_canonical_v4_5.json",
+        "data/fag/historie/emner_historie_canonical_v4_5.json"
+      ],
+      "method_id": "met_minneanalyse",
+      "topic_hook_id": "his_historiebruk_minne",
+      "thinker_id": "pierre_nora",
+      "work": "Realms of Memory"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_grindheim_runestein_tormod",
+      "source_file": "data/relations.json",
+      "summary": "Runeinnskrifta seier at Tormod reiste steinen etter far sin."
+    },
+    {
+      "type": "relation",
+      "id": "rel_grindheim_runestein_tormod_svidande",
+      "source_file": "data/relations.json",
+      "summary": "Tormod Svidande er namngjeven som faren steinen vart reist etter."
+    },
+    {
+      "type": "story",
+      "id": "st_grindheim_runestein_to_tormodar",
+      "source_file": "data/stories/stories_etne_historie_rounds_batch3.json",
+      "summary": "Ei kort runeinnskrift held fast både sonen som reiste steinen og faren han ville minnast."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_grindheim_runestein_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_grindheim_runestein_01",
+        "claim_grindheim_runestein_02",
+        "claim_grindheim_runestein_03",
+        "claim_grindheim_runestein_04",
+        "claim_grindheim_runestein_05",
+        "claim_grindheim_runestein_06",
+        "claim_grindheim_runestein_07"
+      ]
+    },
+    {
+      "set_id": "historie_grindheim_runestein_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_grindheim_runestein_08",
+        "claim_grindheim_runestein_09",
+        "claim_grindheim_runestein_10",
+        "claim_grindheim_runestein_11",
+        "claim_grindheim_runestein_12",
+        "claim_grindheim_runestein_13",
+        "claim_grindheim_runestein_14"
+      ]
+    },
+    {
+      "set_id": "historie_grindheim_runestein_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_grindheim_runestein_15",
+        "claim_grindheim_runestein_16",
+        "claim_grindheim_runestein_17",
+        "claim_grindheim_runestein_18",
+        "claim_grindheim_runestein_19",
+        "claim_grindheim_runestein_20",
+        "claim_grindheim_runestein_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
+    },
+    "ratios": {
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
+    }
+  }
+}
