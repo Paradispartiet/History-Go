@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "naeringsliv",
+  "targetId": "telegrafbygningen",
+  "profile": "rich_5x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "category_id": "naeringsliv",
+    "target_id": "telegrafbygningen"
+  },
+  "resolved_files": {
+    "pensum": {"path": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json", "format": "json"},
+    "emner": {"path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json", "format": "json"},
+    "fagkart": {"path": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json", "format": "json"},
+    "methods": {"path": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json", "format": "json"},
+    "supersetQuizMal": {"path": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json", "format": "json"},
+    "quizStandard": {"path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md", "format": "text"},
+    "quizQuestionSchema": {"path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json", "format": "json"}
+  },
+  "required_inputs_loaded": ["pensum", "emner", "fagkart", "methods", "supersetQuizMal", "quizStandard", "quizQuestionSchema"],
+  "source_files": {
+    "brief": {"path": "data/quiz/production_briefs/naeringsliv/telegrafbygningen.json"},
+    "target": {"path": "data/places/naeringsliv/oslo/places_naeringsliv.json"}
+  },
+  "planned_quiz_file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+  "source_registry": {
+    "place_record": {"url": "data/places/naeringsliv/oslo/places_naeringsliv.json", "source_type": "canonical_place_record", "review_status": "reviewed", "review_note": "Brukt som intern kontroll av stedets etablerte hovedfunksjon og kategori."},
+    "oslo_byleksikon": {"url": "https://oslobyleksikon.no/side/Telegrafbygningen", "source_type": "municipal_city_encyclopedia", "review_status": "reviewed", "review_note": "Brukt for byggeår, arkitekter, hovedfunksjon, fasade, arbeidsliv, okkupasjon, ombygging og nåbruk."},
+    "kima": {"url": "https://kimaarkitektur.no/projects/telegrafbygningen1/", "source_type": "project_architect", "review_status": "reviewed", "review_note": "Brukt for arkitektur, kvartalsstruktur, ekspedisjonshall, automatsentral og rehabiliteringsgrep."},
+    "oslo_byes_vel": {"url": "https://www.oslobyesvel.no/kalender/telegrafbygningen", "source_type": "heritage_institution", "review_status": "reviewed", "review_note": "Brukt for blå skilt, arkitektur, fasade og historiske interiørdetaljer."},
+    "telegrafen": {"url": "https://telegrafenoslo.no/", "source_type": "current_operator", "review_status": "reviewed", "review_note": "Brukt for dagens konsept, innganger og publikumsrettet bruk."},
+    "telegrafen_history": {"url": "https://telegrafenoslo.no/historien/", "source_type": "current_operator_history", "review_status": "reviewed", "review_note": "Brukt for historisk og nåværende bruk samt 1966-tilbygget."},
+    "byggalliansen": {"url": "https://www.byggalliansen.no/kunnskapssenter/byggeprosjekter/kongens-gate-21", "source_type": "green_building_project_database", "review_status": "reviewed", "review_note": "Brukt for prosjektareal, BREEAM-NOR og rehabiliteringsdata."},
+    "vedal": {"url": "https://www.vedal.no/prosjekt/telegrafen/", "source_type": "project_contractor", "review_status": "reviewed", "review_note": "Brukt for entreprenør, gateplan, publikumsfunksjoner, pris og prosjektbeskrivelse."}
+  },
+  "source_review_status": "reviewed",
+  "considered_curriculum": {"note": "Alle sju manifestfiler inngår. Synlig fagbruk er avgrenset til valgte emner og metoder."},
+  "selected_curriculum": {
+    "module_ids": [],
+    "emne_ids": ["em_naering_arbeid_verdiskaping", "em_naering_forbruk_marked", "em_naering_innovasjon_teknologisk_skift", "em_naering_kapital_finans", "em_naering_logistikk_verdikjeder", "em_naering_omstilling_kriser_skift", "em_naering_teknologi_infrastruktur"],
+    "topic_hook_ids": [],
+    "method_ids": ["met_naering_arbeidslivsanalyse", "met_naering_forbruker_og_atferdsanalyse", "met_naering_infrastrukturanalyse", "met_naering_omstillingsanalyse", "met_naering_verdiskapingsanalyse"],
+    "thinker_ids": [],
+    "works": []
+  },
+  "claim_bank": [
+    {"claim_id": "claim_telegrafbygningen_01", "order": 1, "planned_phase": "opening", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_02", "order": 2, "planned_phase": "opening", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_03", "order": 3, "planned_phase": "opening", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_04", "order": 4, "planned_phase": "opening", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_05", "order": 5, "planned_phase": "opening", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_06", "order": 6, "planned_phase": "opening", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_07", "order": 7, "planned_phase": "opening", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_08", "order": 8, "planned_phase": "middle", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_09", "order": 9, "planned_phase": "middle", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_10", "order": 10, "planned_phase": "middle", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_11", "order": 11, "planned_phase": "middle", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_12", "order": 12, "planned_phase": "middle", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_13", "order": 13, "planned_phase": "middle", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_14", "order": 14, "planned_phase": "middle", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_15", "order": 15, "planned_phase": "middle", "family": "context"},
+    {"claim_id": "claim_telegrafbygningen_16", "order": 16, "planned_phase": "middle", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_17", "order": 17, "planned_phase": "middle", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_18", "order": 18, "planned_phase": "middle", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_19", "order": 19, "planned_phase": "middle", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_20", "order": 20, "planned_phase": "middle", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_21", "order": 21, "planned_phase": "middle", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_22", "order": 22, "planned_phase": "bridge", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_23", "order": 23, "planned_phase": "bridge", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_24", "order": 24, "planned_phase": "bridge", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_25", "order": 25, "planned_phase": "bridge", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_26", "order": 26, "planned_phase": "bridge", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_27", "order": 27, "planned_phase": "bridge", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_28", "order": 28, "planned_phase": "bridge", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_29", "order": 29, "planned_phase": "final", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_30", "order": 30, "planned_phase": "final", "family": "fact"},
+    {"claim_id": "claim_telegrafbygningen_31", "order": 31, "planned_phase": "final", "family": "context"},
+    {"claim_id": "claim_telegrafbygningen_32", "order": 32, "planned_phase": "final", "family": "analysis"},
+    {"claim_id": "claim_telegrafbygningen_33", "order": 33, "planned_phase": "final", "family": "context"},
+    {"claim_id": "claim_telegrafbygningen_34", "order": 34, "planned_phase": "final", "family": "analysis"},
+    {"claim_id": "claim_telegrafbygningen_35", "order": 35, "planned_phase": "final", "family": "analysis"}
+  ],
+  "set_plan": [
+    {"set": 1, "phase": "opening", "planned_questions": 7, "claim_ids": ["claim_telegrafbygningen_01", "claim_telegrafbygningen_02", "claim_telegrafbygningen_03", "claim_telegrafbygningen_04", "claim_telegrafbygningen_05", "claim_telegrafbygningen_06", "claim_telegrafbygningen_07"]},
+    {"set": 2, "phase": "middle", "planned_questions": 7, "claim_ids": ["claim_telegrafbygningen_08", "claim_telegrafbygningen_09", "claim_telegrafbygningen_10", "claim_telegrafbygningen_11", "claim_telegrafbygningen_12", "claim_telegrafbygningen_13", "claim_telegrafbygningen_14"]},
+    {"set": 3, "phase": "middle", "planned_questions": 7, "claim_ids": ["claim_telegrafbygningen_15", "claim_telegrafbygningen_16", "claim_telegrafbygningen_17", "claim_telegrafbygningen_18", "claim_telegrafbygningen_19", "claim_telegrafbygningen_20", "claim_telegrafbygningen_21"]},
+    {"set": 4, "phase": "bridge", "planned_questions": 7, "claim_ids": ["claim_telegrafbygningen_22", "claim_telegrafbygningen_23", "claim_telegrafbygningen_24", "claim_telegrafbygningen_25", "claim_telegrafbygningen_26", "claim_telegrafbygningen_27", "claim_telegrafbygningen_28"]},
+    {"set": 5, "phase": "final", "planned_questions": 7, "claim_ids": ["claim_telegrafbygningen_29", "claim_telegrafbygningen_30", "claim_telegrafbygningen_31", "claim_telegrafbygningen_32", "claim_telegrafbygningen_33", "claim_telegrafbygningen_34", "claim_telegrafbygningen_35"]}
+  ]
+}
