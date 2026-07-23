@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 410 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 411 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -731,13 +731,16 @@ Metodegrunnlagene betyr:
 
 Batch 166 (2026-07-23) løser den repo-syntetiske identiteten «Trosterud friområde» som det konkrete Lille Wembley på Haugerud. Oslo kommune dokumenterer området som statlig sikret friluftsområde og møteplass ved inngangen til marka, mens Lovdata navngir Lille Wembley som kommunalt dressurområde for hund. Fresh OSM way 220842445 hard-gates som eksakt navngitt, lukket rekreasjonsgeometri; canonical punkt er polygoncentroid. Trosterudparken, Haugerudparken, det brede planområdet og legacy-punktet brukes ikke som proxy.
 
+| 167 | `furuset_haugerud_skogbelte` | Haugerudparken | verified_geometry | `osm-way:643537729` |
+
+Batch 167 (2026-07-23) pensjonerer den repo-syntetiske identiteten «Furuset–Haugerud skogbelte» og modellerer recorden som det dokumenterte friområdet Haugerudparken. OSM har ingen samlet eksakt navngitt parkpolygon som kan brukes som falsk yttergrense. I stedet identifiseres ett kildebeskrevet internt anker: Oslo kommune dokumenterer en ubelyst sykkelbane bygget som grusbane, og bounded live OSM-research finner nøyaktig én særskilt match, way 643537729 (leisure=track, cycling=pump_track, sport=bmx, surface=fine_gravel). Canonical lat/lon er lengdemidtpunktet langs denne fresh geometrien. Ankeret representerer et dokumentert sted inne i parken, ikke parkens fulle areal eller geometriske sentrum; legacy-punkt og nearest/first-hit brukes ikke.
+
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
-Disse kontrollene er fullført, men teller ikke blant de 408 verifiserte canonical Oslo-stedene.
+Disse kontrollene er fullført, men teller ikke blant de 411 verifiserte canonical Oslo-stedene.
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
-| `furuset_haugerud_skogbelte` – Furuset–Haugerud skogbelte | needs_review | Navnet beskriver et bredt grønt overgangsområde, men ingen eksplisitt avgrenset offisiell eller eksakt OSM-geometri ble dokumentert. | Finn plan-/naturgeometri med eksplisitt avgrensning eller erstatt med konkrete navngitte naturområder. |
 | `hellerud_gard` – Hellerud gård | needs_review | Hellerud-navnet dekker flere historiske gårdsbruk. Det entydige Haugerudtunet 1 gjelder separate Østre Haugerud gård og kan ikke brukes som automatisk erstatning for den uklare Hellerud-recorden. | Avklar hvilken Hellerud-gård recorden representerer og dokumenter fysisk hovedanker før koordinaten godkjennes. |
 | `sigrid_undset_statue` – Sigrid Undset-skulpturen | needs_review | Statuen er dokumentert i Stensparken og avduket i 1991, men ingen konkret adresse eller entydig sokkelkoordinat er dokumentert. | Finn eksakt monumentobjekt eller dokumentert sokkelpunkt før canonical koordinat kan godkjennes. |
 | `alf_proysen_statue_nittedal` – Alf Prøysen-monumentet ved Kulturverket Flammen | needs_review; moved to Akershus/Nittedal | Recorden lå feilaktig i Oslo-kilden. Kulturverket Flammen er dokumentert på Borghild Ruds vei 3 og kommunens kunstdatabase plasserer monumentet utenfor nedre inngang, men Geonorge-adressepunktet er ikke selve sokkelen. | Finn eksakt monument-/sokkelpunkt; behold Flammen-adressen kun som foreløpig host/site-anchor. |

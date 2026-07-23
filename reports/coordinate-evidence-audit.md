@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T16:52:19.576Z
+Generert: 2026-07-23T16:59:16.859Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -240,7 +240,7 @@ Generert: 2026-07-23T16:52:19.576Z
 | elvestrekning_bla_brenneriveien | data/coordinate-evidence/oslo/natur/elvestrekning_bla_brenneriveien.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | fossveien_elvestrekning | data/coordinate-evidence/oslo/natur/fossveien_elvestrekning.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | frysjadammen | data/coordinate-evidence/oslo/natur/frysjadammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| furuset_haugerud_skogbelte | data/coordinate-evidence/oslo/natur/furuset_haugerud_skogbelte.json | needs_research | needs_geometry | OK |
+| furuset_haugerud_skogbelte | data/coordinate-evidence/oslo/natur/furuset_haugerud_skogbelte.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | glads_molle | data/coordinate-evidence/oslo/natur/glads_molle.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gressholmen | data/coordinate-evidence/oslo/natur/gressholmen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | groruddammen | data/coordinate-evidence/oslo/natur/groruddammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
