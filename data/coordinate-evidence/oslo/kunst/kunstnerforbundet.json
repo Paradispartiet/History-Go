@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "kunstnerforbundet",
+  "placeFile": "data/places/kunst/oslo/places_kunst/kunstnerforbundet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.91286247033279,
+    "lon": 10.735585135946035,
+    "r": 65,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Kjeld Stubs gate 3, 0160 Oslo. Punktet brukes som display-marker for Kunstnerforbundet som egen kunstnerstyrt, ikke-kommersiell visnings- og formidlingsinstitusjon. Institusjonen eier bygården og har holdt til på adressen siden 1917."
+  },
+  "identity": {
+    "currentName": "Kunstnerforbundet",
+    "resolvedIdentity": "Kunstnerforbundet som egen kunstnerstyrt visnings- og formidlingsinstitusjon i egen bygård i Kjeld Stubs gate 3",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt nåværende besøksadresse",
+    "uavhengig canonical identitets- og nærhetskontroll",
+    "institusjonell kontinuitet og fysisk stedstilknytning",
+    "current-main duplicate gate immediately before production"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Kjeld Stubs gate 3",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kjeld%20Stubs%20gate%203%200160%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13743:3",
+      "sourceQuality": "official_address",
+      "finding": "Eksakt adressepunkt for Kunstnerforbundets nåværende og langvarige bygård.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Kjeld Stubs gate 3, 0160 Oslo. Punktet brukes som display-marker for Kunstnerforbundet som egen kunstnerstyrt, ikke-kommersiell visnings- og formidlingsinstitusjon. Institusjonen eier bygården og har holdt til på adressen siden 1917."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Kunstnerforbundet – om institusjonen",
+      "sourceUrl": "https://kunstnerforbundet.no/om-kunstnerforbundet",
+      "sourceObjectId": "kunstnerforbundet:about",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Institusjonen er kunstnerstyrt og ikke-kommersiell, etablert i 1910, har holdt til i Kjeld Stubs gate 3 siden 1917 og eier bygården.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets-, historie- og scope-kryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Kjeld Stubs gate 3, 0160 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13743:3",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13743:3",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kunstnerforbundet:about",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91286247033279,
+      "lon": 10.735585135946035,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13743:3",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kjeld Stubs gate 3 er anvendt som canonical display-marker."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Kjeld Stubs gate 3, 0160 Oslo. Punktet brukes som display-marker for Kunstnerforbundet som egen kunstnerstyrt, ikke-kommersiell visnings- og formidlingsinstitusjon. Institusjonen eier bygården og har holdt til på adressen siden 1917.",
+    "Ingen canonical Kunstnerforbundet-identitet og ingen eksisterende canonical markør innen 35 meter ble funnet i den lukkede gallery-priority scope-auditen."
+  ]
+}
