@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T02:55:56.911Z
+Generert: 2026-07-23T02:59:30.824Z
 
 ## Oppsummering
-- Aktive filer validert: **622**
-- Antall steder validert: **1239**
+- Aktive filer validert: **625**
+- Antall steder validert: **1242**
 - Harde feil: **0**
-- Varsler: **473**
-- Coordinate review candidates: **739** signaler fordelt på **610** steder
+- Varsler: **476**
+- Coordinate review candidates: **742** signaler fordelt på **613** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -640,6 +640,9 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/subkultur/trondelag/trikkestallen_skatepark_trondheim.json
 - data/places/sport/vestland/fysak_slettebakken.json
 - data/places/subkultur/akershus/arena_bekkestua.json
+- data/places/subkultur/vestland/mo_senteret_gyldenpris.json
+- data/places/subkultur/rogaland/matfellesskap_st_petri_stavanger.json
+- data/places/subkultur/troms/kafe_x_tromso.json
 
 ## Harde feil
 - Ingen
@@ -1118,16 +1121,19 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/subkultur/trondelag/trikkestallen_skatepark_trondheim.json#trikkestallen_skatepark_trondheim: coordStatus=verified uten coordPrecisionM
 - data/places/sport/vestland/fysak_slettebakken.json#fysak_slettebakken: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/akershus/arena_bekkestua.json#arena_bekkestua: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/vestland/mo_senteret_gyldenpris.json#mo_senteret_gyldenpris: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/rogaland/matfellesskap_st_petri_stavanger.json#matfellesskap_st_petri_stavanger: coordStatus=verified uten coordPrecisionM
+- data/places/subkultur/troms/kafe_x_tromso.json#kafe_x_tromso: coordStatus=verified uten coordPrecisionM
 
 ## Coordinate review candidates
 
-Totalt 739 signaler fordelt på 610 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 742 signaler fordelt på 613 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 182 |
+| coordStatus=verified uten coordPrecisionM | 185 |
 | lineært sted uten anchors | 78 |
 | lav koordinatpresisjon (<4 desimaler) | 83 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
@@ -1137,7 +1143,7 @@ Totalt 739 signaler fordelt på 610 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (182)
+### coordStatus=verified uten coordPrecisionM (185)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1323,6 +1329,9 @@ Totalt 739 signaler fordelt på 610 steder. Et sted kan ha flere signaler. Kandi
 | trikkestallen_skatepark_trondheim | Trikkestallen Skatepark | subkultur | data/places/subkultur/trondelag/trikkestallen_skatepark_trondheim.json | 63.43966117350392 | 10.431940352632845 | 90 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | fysak_slettebakken | Fysak Slettebakken | sport | data/places/sport/vestland/fysak_slettebakken.json | 60.34892315756406 | 5.361581721031116 | 110 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | arena_bekkestua | Arena Bekkestua | subkultur | data/places/subkultur/akershus/arena_bekkestua.json | 59.920536290445376 | 10.582550428755052 | 100 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| mo_senteret_gyldenpris | MO-senteret Gyldenpris | subkultur | data/places/subkultur/vestland/mo_senteret_gyldenpris.json | 60.38300262501348 | 5.314376782207994 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| matfellesskap_st_petri_stavanger | Matfellesskap St. Petri | subkultur | data/places/subkultur/rogaland/matfellesskap_st_petri_stavanger.json | 58.97006703664689 | 5.7375038082000955 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| kafe_x_tromso | Kafe X | subkultur | data/places/subkultur/troms/kafe_x_tromso.json | 69.65340838746769 | 18.95628570193868 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
 ### lineært sted uten anchors (78)
 
