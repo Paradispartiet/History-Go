@@ -2,39 +2,67 @@
   "schemaVersion": "1.0",
   "placeId": "alna_utlop_bjorvika",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9041,
-    "lon": 10.7638,
+    "lat": 59.9043598,
+    "lon": 10.7614122,
     "r": 190,
-    "coordStatus": "needs_source",
-    "coordSource": "alna_historical_outlet_multilayer_unresolved",
-    "coordType": "legacy_historical_area_anchor",
-    "coordNote": "Recorden gjelder Alnas historiske munningslandskap ved Sørenga/Middelalderparken, mens faktisk vannføring siden 1922 går i tunnel til Kongshavn. Oslo kommune dokumenterer at vannspeilet markerer det opprinnelige utløpet, men ett enkelt legacy-punkt kan ikke samtidig representere historisk elveos, rekonstruert vannspeil og dagens tunnelutløp. Krever en eksplisitt historisk area-/multi-anchor-modell."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 4258487 – Tenerife/Vannspeilet, historisk utløpsmarkør for Alna",
+    "coordType": "multi_anchor_temporal_outlet_display_anchor",
+    "coordNote": "Batch 156 løser den flerlagede utløpsrecorden med to separate, kildebelagte ankere. Canonical displayanker er OSM way 4258487, det eneste substansielle vannpolygonet innenfor den eksakte Middelalderparken-geometrien; OSM-navnet er Tenerife, og uavhengig offentlig kildebruk dokumenterer Tenerife som tilnavnet til Vannspeilet. Oslo kommune dokumenterer at Vannspeilet markerer Alnaelvas opprinnelige utløp, men dette brukes ikke som bevis for ett separat eksakt middelaldermunningspunkt. Dagens faktiske vannføring valideres separat: Alna-tunnelway 130106085 kobler via delt node 1434044641 til åpen way 131984275, som ender i node 8067892897; samme node ligger på coastline way 865225826 ved Kongshavn. Legacy-punktet og nearest/first-hit brukes ikke."
   },
   "identity": {
-    "currentName": "Alna utløp i Bjørvika",
-    "resolvedIdentity": "Alnas historiske utløpslandskap ved Sørenga/Middelalderparken, adskilt fra dagens tunnelutløp ved Kongshavn",
+    "currentName": "Alnas historiske utløp ved Vannspeilet",
+    "resolvedIdentity": "Vannspeilet som fysisk markør for Alnas historiske utløp, eksplisitt adskilt fra dagens faktiske utløp ved Kongshavn",
     "identityStatus": "resolved",
     "identityProblem": "",
-    "locatorTypeCandidate": "historic_site",
+    "locatorTypeCandidate": "natural_area",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "eksplisitt historisk area-/multi-anchor-modell som skiller opprinnelig elveos, vannspeil og dagens Kongshavn-utløp"
-  ],
+  "requiredEvidence": [],
   "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Tenerife/Vannspeilet",
+      "sourceUrl": "https://www.openstreetmap.org/way/4258487",
+      "sourceObjectId": "osm-way:4258487",
+      "sourceQuality": "unique_physical_water_marker_inside_exact_middelalderparken_scope",
+      "finding": "Way 4258487 er water=lake/natural=water med OSM-navnet Tenerife og ligger som fysisk vannpolygon innenfor den eksakte Middelalderparken-geometrien. Area-anchor er 59.9043598, 10.7614122.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt fysisk geometri for den historiske utløpsmarkøren; ingen påstand om et separat eksakt middelaldermunningspunkt."
+    },
     {
       "sourceProvider": "municipality",
       "sourceName": "Oslo kommune – Middelalderparken",
-      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/middelalderparken",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/middelalderparken/",
       "sourceObjectId": "oslo-kommune:kultureiendom:middelalderparken",
-      "sourceQuality": "official_historical_area_definition",
-      "finding": "Oslo kommune dokumenterer at vannspeilet markerer Alnaelvas opprinnelige utløp.",
+      "sourceQuality": "official_historical_outlet_marker_definition",
+      "finding": "Oslo kommune dokumenterer at vannspeilet i vest markerer Alnaelvas opprinnelige utløp.",
       "canVerifyCoordinate": false,
-      "reason": "Recorden gjelder Alnas historiske munningslandskap ved Sørenga/Middelalderparken, mens faktisk vannføring siden 1922 går i tunnel til Kongshavn. Oslo kommune dokumenterer at vannspeilet markerer det opprinnelige utløpet, men ett enkelt legacy-punkt kan ikke samtidig representere historisk elveos, rekonstruert vannspeil og dagens tunnelutløp. Krever en eksplisitt historisk area-/multi-anchor-modell."
+      "reason": "Fastsetter den historiske funksjonen til vannspeilet; eksakt fysisk markørgeometri kommer fra OSM."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Ruter – Middelalderparken",
+      "sourceUrl": "https://ruter.no/om-oss/kollektivhistorien/i-ord-og-bilder-middelalderparken",
+      "sourceObjectId": "ruter:middelalderparken:vannspeilet-tenerife",
+      "sourceQuality": "independent_name_crosscheck",
+      "finding": "Ruter dokumenterer at vannspeilet på vestsiden av Middelalderparken har tilnavnet Tenerife, som kryssjekker OSM-navnet på way 4258487.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker identiteten mellom OSM-navnet Tenerife og Vannspeilet."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – dagens Alna-utløp ved Kongshavn",
+      "sourceUrl": "https://www.openstreetmap.org/node/8067892897",
+      "sourceObjectId": "osm-node:8067892897",
+      "sourceQuality": "explicit_shared_open_river_coastline_topology_node",
+      "finding": "Alna-tunnelway 130106085 deler node 1434044641 med åpen Alna-way 131984275. Den åpne wayen ender i node 8067892897 på 59.895923, 10.7555928, og samme node ligger på coastline way 865225826.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt delt endenode mellom dagens åpne Alna-utløpsgeometri og kystlinjen."
     },
     {
       "sourceProvider": "manual_research",
@@ -44,30 +72,67 @@
       "sourceQuality": "documented_historical_and_current_outlet_layers",
       "finding": "Kilden dokumenterer opprinnelig utløp ved Sørenga og tunnelutløp ved Kongshavn siden 1922.",
       "canVerifyCoordinate": false,
-      "reason": "Recorden gjelder Alnas historiske munningslandskap ved Sørenga/Middelalderparken, mens faktisk vannføring siden 1922 går i tunnel til Kongshavn. Oslo kommune dokumenterer at vannspeilet markerer det opprinnelige utløpet, men ett enkelt legacy-punkt kan ikke samtidig representere historisk elveos, rekonstruert vannspeil og dagens tunnelutløp. Krever en eksplisitt historisk area-/multi-anchor-modell."
+      "reason": "Fastsetter tidslagene; de eksakte fysiske ankrene kommer fra OSM."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "municipality",
-      "sourceObjectId": "oslo-kommune:kultureiendom:middelalderparken",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4258487",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:8067892897",
       "canApplyToPlace": false
     },
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:kultureiendom:middelalderparken",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4258487",
+      "lat": 59.9043598,
+      "lon": 10.7614122,
+      "coordRole": "area_anchor",
+      "geometryType": "Polygon",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:8067892897",
+      "lat": 59.895923,
+      "lon": 10.7555928,
+      "coordRole": "line_anchor",
+      "geometryType": "Point",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9043598,
+      "lon": 10.7614122,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    },
+    {
+      "lat": 59.895923,
+      "lon": 10.7555928,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": false
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Recorden gjelder Alnas historiske munningslandskap ved Sørenga/Middelalderparken, mens faktisk vannføring siden 1922 går i tunnel til Kongshavn. Oslo kommune dokumenterer at vannspeilet markerer det opprinnelige utløpet, men ett enkelt legacy-punkt kan ikke samtidig representere historisk elveos, rekonstruert vannspeil og dagens tunnelutløp. Krever en eksplisitt historisk area-/multi-anchor-modell.",
-    "nextAction": "eksplisitt historisk area-/multi-anchor-modell som skiller opprinnelig elveos, vannspeil og dagens Kongshavn-utløp"
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Den tidsdelte to-ankersmodellen er anvendt: Vannspeilet som historisk displayanker og Kongshavn-noden som separat dagens utløp."
   },
   "notes": [
-    "Recorden gjelder Alnas historiske munningslandskap ved Sørenga/Middelalderparken, mens faktisk vannføring siden 1922 går i tunnel til Kongshavn. Oslo kommune dokumenterer at vannspeilet markerer det opprinnelige utløpet, men ett enkelt legacy-punkt kan ikke samtidig representere historisk elveos, rekonstruert vannspeil og dagens tunnelutløp. Krever en eksplisitt historisk area-/multi-anchor-modell."
+    "Batch 156 løser den flerlagede utløpsrecorden med to separate, kildebelagte ankere. Canonical displayanker er OSM way 4258487, det eneste substansielle vannpolygonet innenfor den eksakte Middelalderparken-geometrien; OSM-navnet er Tenerife, og uavhengig offentlig kildebruk dokumenterer Tenerife som tilnavnet til Vannspeilet. Oslo kommune dokumenterer at Vannspeilet markerer Alnaelvas opprinnelige utløp, men dette brukes ikke som bevis for ett separat eksakt middelaldermunningspunkt. Dagens faktiske vannføring valideres separat: Alna-tunnelway 130106085 kobler via delt node 1434044641 til åpen way 131984275, som ender i node 8067892897; samme node ligger på coastline way 865225826 ved Kongshavn. Legacy-punktet og nearest/first-hit brukes ikke."
   ]
 }

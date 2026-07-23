@@ -1,11 +1,11 @@
 {
   "id": "alna_utlop_bjorvika",
-  "name": "Alna utløp i Bjørvika",
-  "lat": 59.9041,
-  "lon": 10.7638,
+  "name": "Alnas historiske utløp ved Vannspeilet",
+  "lat": 59.9043598,
+  "lon": 10.7614122,
   "r": 190,
   "category": "natur",
-  "desc": "Historisk munningslandskap for Alna i Bjørvika, der middelalderens elveos, 1922-tunnelen til Kongshavn, vannspeilet fra 2000 og 28 aktive fuglearter må holdes tydelig fra hverandre.",
+  "desc": "Vannspeilet i Middelalderparken som fysisk markør for Alnas opprinnelige utløp, med separat anker for dagens tunnelutløp ved Kongshavn.",
   "tags": [
     "historisk_utlop",
     "kulvert",
@@ -16,46 +16,47 @@
     "blagronn_struktur"
   ],
   "routeId": "alnaelva_grontdrag",
-  "sourceHint": "Koordinat lagt ved Alnas utløpsområde i Bjørvika, nær fjordkant og delta-/utløpssone. Beholdt som rute-/områdepunk inntil egen utløpsrevisjon gjøres mot detaljkart.",
-  "coordType": "legacy_historical_area_anchor",
-  "coordStatus": "needs_source",
-  "coordSource": "alna_historical_outlet_multilayer_unresolved",
+  "sourceHint": "Canonical displayanker er arealsenteret for Vannspeilet/Tenerife i Middelalderparken. Et separat topologisk anker viser dagens faktiske Alna-utløp ved Kongshavn. Det historiske displayankeret er en markør for det opprinnelige utløpet, ikke et påstått eksakt middelaldermunningspunkt.",
+  "coordType": "multi_anchor_temporal_outlet_display_anchor",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 4258487 – Tenerife/Vannspeilet, historisk utløpsmarkør for Alna",
   "coordPrecisionM": 120,
-  "coordVerifiedAt": "2026-07-21",
+  "coordVerifiedAt": "2026-07-23",
   "anchors": [
     {
-      "id": "alna_utlop_innlop",
-      "name": "Alna historisk utløpslandskap – indre markør",
-      "lat": 59.9047,
-      "lon": 10.7651,
-      "r": 100,
-      "type": "route_point",
-      "note": "Foreløpig landskapsanker for historisk trase; ikke dokumentert som dagens åpne Alna-løp."
+      "id": "alna_historisk_utlop_vannspeilet",
+      "name": "Vannspeilet – markør for Alnas opprinnelige utløp",
+      "lat": 59.9043598,
+      "lon": 10.7614122,
+      "r": 120,
+      "type": "area_anchor",
+      "role": "historical_outlet_marker",
+      "coordStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4258487",
+      "sourceUrl": "https://www.openstreetmap.org/way/4258487",
+      "note": "Vannspeilet, med OSM-navnet Tenerife, er en fysisk markør for Alnaelvas opprinnelige utløp. Ankeret representerer ikke et påstått eksakt middelaldermunningspunkt."
     },
     {
-      "id": "alna_utlop_munning",
-      "name": "Alna historisk munningslandskap – representasjonsanker",
-      "lat": 59.9041,
-      "lon": 10.7638,
+      "id": "alna_dagens_utlop_kongshavn",
+      "name": "Alna – dagens utløp ved Kongshavn",
+      "lat": 59.895923,
+      "lon": 10.7555928,
       "r": 100,
-      "type": "unlock_anchor",
-      "note": "Foreløpig markør for historisk munning/vannspeil; ikke dagens tunnelutløp ved Kongshavn."
-    },
-    {
-      "id": "alna_utlop_fjord",
-      "name": "Alna historisk utløpslandskap – fjordkantmarkør",
-      "lat": 59.9036,
-      "lon": 10.7628,
-      "r": 100,
-      "type": "route_point",
-      "note": "Foreløpig historisk landskapsanker; synlig fjordvann er ikke i seg selv dokumentasjon på dagens Alna-vannføring."
+      "type": "mouth_anchor",
+      "role": "current_hydrological_outlet",
+      "coordStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:8067892897",
+      "sourceUrl": "https://www.openstreetmap.org/node/8067892897",
+      "note": "Eksakt delt endenode mellom den åpne Alna-utløpswayen 131984275 og kystlinje-way 865225826 etter tunnelstrekningen fra Kværner."
     }
   ],
-  "popupDesc": "Punktet representerer Alnas historiske utløpslandskap ved Sørenga, Loenga og Middelalderparken. Den naturlige munningen lå her da Oslo vokste fram omkring år 1000, men nedre Alna ble i 1922 lagt i tunnel fra Kværner til Kongshavn omtrent 900 meter sør for det gamle utløpet. Vannspeilet i Middelalderparken ble gjenskapt i 2000 som markering av den eldre munningen. Det er derfor feil å omtale punktet som dagens åpne Alna-utløp. History Gos aktive naturkart knytter 28 fuglearter til Bjørvika-sonen og ingen floraarter. Koordinaten beholdes med status needs_detail_check fordi munningslandskapet dekker flere historiske og moderne vannpunkter.",
+  "popupDesc": "Punktet representerer Alnas historiske utløpslandskap ved Sørenga, Loenga og Middelalderparken. Den naturlige munningen lå her da Oslo vokste fram omkring år 1000, men nedre Alna ble i 1922 lagt i tunnel fra Kværner til Kongshavn omtrent 900 meter sør for det gamle utløpet. Vannspeilet i Middelalderparken ble gjenskapt i 2000 som markering av den eldre munningen. Det er derfor feil å omtale punktet som dagens åpne Alna-utløp. History Gos aktive naturkart knytter 28 fuglearter til Bjørvika-sonen og ingen floraarter. History Go bruker derfor Vannspeilet som verifisert historisk displayanker og et separat verifisert Kongshavn-anker for dagens faktiske utløp.",
   "nature_profile": {
     "type": "historisk elveos / kulvertert byelv / fjordkant / urban fuglemosaikk",
     "title": "Alnas historiske utløpslandskap i Bjørvika",
-    "summary": "Alnas naturlige utløp lå mellom Grønlia og Sørenga på østsiden av Bjørvika. Her møtte elva fjorden da Oslo vokste fram omkring år 1000. Elveosen ga en beskyttet ankringsplass, tilgang til ferskvann og en ferdselslinje innover dalføret. Middelalderbyen, Kongsgården og Mariakirken lå i nær tilknytning til denne strand- og munningssonen. Stedet er derfor både et naturhistorisk sluttpunkt for Alna og et av grunnlagene for Oslos tidlige byutvikling.\n\nMunningen har ikke ligget på nøyaktig samme sted gjennom historien. Landheving, sedimenter, sagflis, mudder og omfattende utfyllinger flyttet strandlinjen og forlenget elveløpet utover. På 1800-tallet gikk Alna gjennom området som senere ble Loallmenningen og innerst i Lohavn. Et historisk munningspunkt må derfor forstås som et landskap i endring, ikke som ett evig koordinatpunkt. De tre eksisterende ankerpunktene i stedfila brukes som foreløpige rute- og observasjonspunkter, men koordinatstatusen needs_detail_check skal beholdes til en egen detaljrevisjon mot historiske strandlinjer, kulvertdata og dagens byrom er gjennomført.\n\nI 1922 ble nedre Alna lagt i tunnel fra Kværnerområdet gjennom Ekeberg til Kongshavn i Bunnefjorden, omtrent 900 meter sør for det naturlige utløpet. Senere ble flere nedre fosser og elvestrekninger ført inn i rør. Dagens faktiske vannføring munner derfor ikke åpent ut ved Middelalderparken eller Loallmenningen. Rundingen skal skille mellom den historiske elvetraseen, dagens tunnelutløp ved Kongshavn og synlige vannflater i Bjørvika. Et synlig basseng, kanaldrag eller sjøvann er ikke automatisk Alnavann.\n\nTil Oslos tusenårsjubileum i 2000 ble et vannspeil etablert ved Alnas middelalderske munning i Middelalderparken. Vannspeilet gjenskaper en historisk strand- og munningsidé, men ligger i dagens landskap innenfor den gamle strandlinjen. Det er et kulturhistorisk og landskapsarkitektonisk element, ikke dokumentasjon på at Alna igjen går åpen. Planer og vedtak om gjenåpning eller markering av elveløpet har eksistert, blant annet forslag om sjøvannskanal i Loallmenningen, men rundingen skal ikke omtale framtidige eller forsinkede tiltak som gjennomført.\n\nBjørvika er samtidig et aktivt fjord- og havnerom. Kaier, broer, boliger, kulturbygg, jernbane, veier, parker og åpne vannflater danner en svært sammensatt habitatmosaikk. Vannets saltholdighet, nivå og strøm påvirkes av fjorden, mens overflatevann og kulverterte vassdrag tilfører ferskvann andre steder. Spilleren skal observere bølger, vannstandsspor, flytende materiale, kaikonstruksjoner, vegeterte lommer og fuglenes bruk av sonene uten å hevde at synlige variasjoner alene beviser ferskvannsinnblanding fra Alna.\n\nHistory Gos fem aktive naturkart gir en union på 28 fuglearter og ingen floraarter for place-id-en. Vann- og fjordnære arter omfatter stokkand, knoppsvane, toppand, kvinand, gråhegre, storskarv og tjeld. Måker og gjess omfatter hettemåke, gråmåke, fiskemåke, sildemåke, grågås og hvitkinngås, mens linerle ofte bruker åpne kanter og dekker. By- og havnefugler som kråke, skjære, kaie, gråspurv, pilfink, ringdue og stær bruker tak, master, plasser, trær og søkeområder. Vegetasjons- og luftromsarter omfatter gråtrost, svarttrost, blåmeis, kjøttmeis, grønnfink, stillits og tårnseiler.\n\nDenne artslisten er stor fordi Bjørvika samler mange miljøer og fordi kartgrunnlaget har mange relevante observasjoner. Det betyr ikke at alle 28 arter kan sees samtidig eller i alle årstider. Hver registrering må bygge på faktisk fjærdrakt, lyd, kroppsform, flygemåte eller atferd. Måker og gjess kan være krevende å skille, særlig unge fugler og overgangsdrakter. En god logg kan derfor bruke artsgruppe eller usikkerhetsmarkering når kjennetegnene ikke er tydelige. Fugler skal ikke mates eller jages, og hvilende flokker ved kai eller vannkant skal få avstand.\n\nUtløpsrundingen samler hele Alna-ruten, men ikke som et enkelt synlig vannløp. Fra Alnsjøens kildeområde går reisen gjennom parker, dam, næringskorridor, foss, ravine og transformert industriområde før den historiske traseen når Bjørvika. Den faktiske tunnelen fortsetter til Kongshavn. Ved sluttpunktet lærer spilleren derfor både økologisk sammenheng og brudd: samme vassdrag kan være åpent, regulert, kulvertert, symbolsk gjenskapt og historisk markert på ulike steder.\n\nStedets viktigste feltregel er å holde nivåene fra hverandre. «Historisk elveos» beskriver middelalderens og senere strandlandskap. «Dagens tunnelutløp» beskriver vannføringen til Kongshavn. «Vannspeilet» beskriver markeringen fra 2000. «Bjørvika-fjorden» beskriver dagens synlige sjøvann og kaihabitat. Først når disse lagene skilles, blir fugleobservasjoner, byhistorie og vassdragsforståelse presise.",
+    "summary": "Alnas naturlige utløp lå mellom Grønlia og Sørenga på østsiden av Bjørvika. Her møtte elva fjorden da Oslo vokste fram omkring år 1000. Elveosen ga en beskyttet ankringsplass, tilgang til ferskvann og en ferdselslinje innover dalføret. Middelalderbyen, Kongsgården og Mariakirken lå i nær tilknytning til denne strand- og munningssonen. Stedet er derfor både et naturhistorisk sluttpunkt for Alna og et av grunnlagene for Oslos tidlige byutvikling.\n\nMunningen har ikke ligget på nøyaktig samme sted gjennom historien. Landheving, sedimenter, sagflis, mudder og omfattende utfyllinger flyttet strandlinjen og forlenget elveløpet utover. På 1800-tallet gikk Alna gjennom området som senere ble Loallmenningen og innerst i Lohavn. Et historisk munningspunkt må derfor forstås som et landskap i endring, ikke som ett evig koordinatpunkt. History Go skiller nå tidslagene eksplisitt: Vannspeilet brukes som fysisk markør for det historiske utløpet, mens et separat topologisk anker ved Kongshavn viser dagens faktiske vannføring. Det hevdes ikke et eget eksakt middelaldermunningspunkt.\n\nI 1922 ble nedre Alna lagt i tunnel fra Kværnerområdet gjennom Ekeberg til Kongshavn i Bunnefjorden, omtrent 900 meter sør for det naturlige utløpet. Senere ble flere nedre fosser og elvestrekninger ført inn i rør. Dagens faktiske vannføring munner derfor ikke åpent ut ved Middelalderparken eller Loallmenningen. Rundingen skal skille mellom den historiske elvetraseen, dagens tunnelutløp ved Kongshavn og synlige vannflater i Bjørvika. Et synlig basseng, kanaldrag eller sjøvann er ikke automatisk Alnavann.\n\nTil Oslos tusenårsjubileum i 2000 ble et vannspeil etablert ved Alnas middelalderske munning i Middelalderparken. Vannspeilet gjenskaper en historisk strand- og munningsidé, men ligger i dagens landskap innenfor den gamle strandlinjen. Det er et kulturhistorisk og landskapsarkitektonisk element, ikke dokumentasjon på at Alna igjen går åpen. Planer og vedtak om gjenåpning eller markering av elveløpet har eksistert, blant annet forslag om sjøvannskanal i Loallmenningen, men rundingen skal ikke omtale framtidige eller forsinkede tiltak som gjennomført.\n\nBjørvika er samtidig et aktivt fjord- og havnerom. Kaier, broer, boliger, kulturbygg, jernbane, veier, parker og åpne vannflater danner en svært sammensatt habitatmosaikk. Vannets saltholdighet, nivå og strøm påvirkes av fjorden, mens overflatevann og kulverterte vassdrag tilfører ferskvann andre steder. Spilleren skal observere bølger, vannstandsspor, flytende materiale, kaikonstruksjoner, vegeterte lommer og fuglenes bruk av sonene uten å hevde at synlige variasjoner alene beviser ferskvannsinnblanding fra Alna.\n\nHistory Gos fem aktive naturkart gir en union på 28 fuglearter og ingen floraarter for place-id-en. Vann- og fjordnære arter omfatter stokkand, knoppsvane, toppand, kvinand, gråhegre, storskarv og tjeld. Måker og gjess omfatter hettemåke, gråmåke, fiskemåke, sildemåke, grågås og hvitkinngås, mens linerle ofte bruker åpne kanter og dekker. By- og havnefugler som kråke, skjære, kaie, gråspurv, pilfink, ringdue og stær bruker tak, master, plasser, trær og søkeområder. Vegetasjons- og luftromsarter omfatter gråtrost, svarttrost, blåmeis, kjøttmeis, grønnfink, stillits og tårnseiler.\n\nDenne artslisten er stor fordi Bjørvika samler mange miljøer og fordi kartgrunnlaget har mange relevante observasjoner. Det betyr ikke at alle 28 arter kan sees samtidig eller i alle årstider. Hver registrering må bygge på faktisk fjærdrakt, lyd, kroppsform, flygemåte eller atferd. Måker og gjess kan være krevende å skille, særlig unge fugler og overgangsdrakter. En god logg kan derfor bruke artsgruppe eller usikkerhetsmarkering når kjennetegnene ikke er tydelige. Fugler skal ikke mates eller jages, og hvilende flokker ved kai eller vannkant skal få avstand.\n\nUtløpsrundingen samler hele Alna-ruten, men ikke som et enkelt synlig vannløp. Fra Alnsjøens kildeområde går reisen gjennom parker, dam, næringskorridor, foss, ravine og transformert industriområde før den historiske traseen når Bjørvika. Den faktiske tunnelen fortsetter til Kongshavn. Ved sluttpunktet lærer spilleren derfor både økologisk sammenheng og brudd: samme vassdrag kan være åpent, regulert, kulvertert, symbolsk gjenskapt og historisk markert på ulike steder.\n\nStedets viktigste feltregel er å holde nivåene fra hverandre. «Historisk elveos» beskriver middelalderens og senere strandlandskap. «Dagens tunnelutløp» beskriver vannføringen til Kongshavn. «Vannspeilet» beskriver markeringen fra 2000. «Bjørvika-fjorden» beskriver dagens synlige sjøvann og kaihabitat. Først når disse lagene skilles, blir fugleobservasjoner, byhistorie og vassdragsforståelse presise.",
     "themes": [
       "Alnas naturlige munning mellom Grønlia og Sørenga",
       "Oslo grunnlagt ved elveosen omkring år 1000",
@@ -68,7 +69,7 @@
       "fjord-, kai- og byhabitat i Bjørvika",
       "28 aktive fuglearter og ingen floraarter",
       "kartkobling mot faktisk feltfunn",
-      "koordinatstatus needs_detail_check beholdes"
+      "historisk markør og dagens utløp holdes som separate verifiserte ankere"
     ],
     "species_inventory": {
       "source_maps": [
@@ -695,5 +696,12 @@
       "data/natur/fauna/artsdatabanken_oslo_fauna.json"
     ]
   },
-  "coordNote": "Recorden gjelder Alnas historiske munningslandskap ved Sørenga/Middelalderparken, mens faktisk vannføring siden 1922 går i tunnel til Kongshavn. Oslo kommune dokumenterer at vannspeilet markerer det opprinnelige utløpet, men ett enkelt legacy-punkt kan ikke samtidig representere historisk elveos, rekonstruert vannspeil og dagens tunnelutløp. Krever en eksplisitt historisk area-/multi-anchor-modell."
+  "coordNote": "Batch 156 løser den flerlagede utløpsrecorden med to separate, kildebelagte ankere. Canonical displayanker er OSM way 4258487, det eneste substansielle vannpolygonet innenfor den eksakte Middelalderparken-geometrien; OSM-navnet er Tenerife, og uavhengig offentlig kildebruk dokumenterer Tenerife som tilnavnet til Vannspeilet. Oslo kommune dokumenterer at Vannspeilet markerer Alnaelvas opprinnelige utløp, men dette brukes ikke som bevis for ett separat eksakt middelaldermunningspunkt. Dagens faktiske vannføring valideres separat: Alna-tunnelway 130106085 kobler via delt node 1434044641 til åpen way 131984275, som ender i node 8067892897; samme node ligger på coastline way 865225826 ved Kongshavn. Legacy-punktet og nearest/first-hit brukes ikke.",
+  "locatorType": "natural_area",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:4258487",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "area_anchor",
+  "coordSourceId": "osm-way:4258487",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/4258487"
 }
