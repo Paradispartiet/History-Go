@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "aamot_bru",
+  "placeFile": "data/places/historie/oslo/places_historie/aamot_bru.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 60.0185966,
+    "lon": 10.615812,
+    "r": 45,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 791117473 – Åmot bru; historical identity cross-checked with Oslo byleksikon",
+    "coordType": "bridge_center",
+    "coordNote": "Batch 171 object-type-first: exact OSM way 791117473 carries the Åmot bru identity and man_made=bridge, with exact Polygon bridge geometry. Fresh exact-object representation point is 60.0185966, 10.615812, 0.00 m from the locked revalidation coordinate. Oslo byleksikon documents the iron chain suspension bridge as built in 1851 for Åmotsund, later dismantled and re-erected at Akerselva in 1957. Canonical scope is the bridge itself; no nearby Akerselva feature, road crossing or nearest/first-hit proxy is used."
+  },
+  "identity": {
+    "currentName": "Åmot bru",
+    "resolvedIdentity": "Den historiske Åmot bru fra 1851, flyttet fra Åmotsund til Akerselva i 1957",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "exact locked named bridge object",
+    "OSM bridge tag and exact bridge geometry",
+    "historical identity/source cross-check",
+    "canonical duplicate control against current main"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Åmot bru way 791117473",
+      "sourceUrl": "https://www.openstreetmap.org/way/791117473",
+      "sourceObjectId": "osm-way:791117473",
+      "sourceQuality": "unique_exact_named_bridge_way",
+      "finding": "Exact OSM way 791117473 carries the Åmot bru identity, man_made=bridge and Polygon geometry. Representation point: 60.0185966, 10.615812.",
+      "canVerifyCoordinate": true,
+      "reason": "Exact physical bridge object and geometry; no nearest or first-hit selection."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Åmot bru",
+      "sourceUrl": "https://oslobyleksikon.no/side/%C3%85mot_bru",
+      "sourceObjectId": "oslobyleksikon:aamot-bru",
+      "sourceQuality": "historical_identity_and_relocation_source",
+      "finding": "Documents the 1851 iron chain suspension bridge, original Åmotsund location and re-erection at Akerselva in 1957.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms historical identity and continuity; exact current geometry comes from the locked OSM way."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:791117473",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslobyleksikon:aamot-bru",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:791117473",
+      "geometryType": "Polygon",
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 60.0185966,
+      "lon": 10.615812,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-way:791117473",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact Åmot bru bridge identity and geometric representation point are applied to canonical place."
+  },
+  "notes": [
+    "Batch 171 object-type-first: exact OSM way 791117473 carries the Åmot bru identity and man_made=bridge, with exact Polygon bridge geometry. Fresh exact-object representation point is 60.0185966, 10.615812, 0.00 m from the locked revalidation coordinate. Oslo byleksikon documents the iron chain suspension bridge as built in 1851 for Åmotsund, later dismantled and re-erected at Akerselva in 1957. Canonical scope is the bridge itself; no nearby Akerselva feature, road crossing or nearest/first-hit proxy is used.",
+    "Fresh anchor drift from locked production coordinate: 0.00 m.",
+    "Place-id and Åmot/Aamot normalized names were absent from current manifest-loaded canonical place data before production."
+  ]
+}
