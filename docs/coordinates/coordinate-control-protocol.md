@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 405 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 407 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -628,6 +628,14 @@ Batch 162 (2026-07-23) løser den tidligere brede «Hausmannsområdet»-recorden
 
 Batch 163 (2026-07-23) løser Vøyenfallene som et eksplisitt tre-fallsystem i stedet for ett tilfeldig foss-punkt. Fresh OSM way 80915045 er den synlige Akerselva-geometrien mellom de eksakte navngitte broflatene Bentsebrua (way 381743815) og Sannerbrua (way 381749952), en strekning på ca. 1148.2 meter. Nøyaktig tre waterway=waterfall-noder (7876345836, 10820084635, 5169533163) er medlemmer av samme elveway strengt inne i intervallet og lagres som egne fossankre. Canonical lat/lon er et semantisk systemanker langs elva midt i spennvidden mellom første og siste fossanker; hele segmentet og alle tre fallene er bevart i scope-metadata.
 
+| 164 | `frysjadammen` | Oset slusebru – damanlegget ved Maridalsoset | verified_geometry | `osm-way:79506476` |
+
+Batch 164 (2026-07-23) løser identitetskonflikten i legacy-recorden `frysjadammen`. Recordens innhold og kilder beskriver damanlegget ved Maridalsoset, ikke Brekkedammen/Kjelsåsdammen ved Frysja. Oset slusebru identifiseres gjennom den kildefestede topologien som tre-gangbrua umiddelbart nedenfor Oset anleggsbru. Bounded OSM-research fant tre brede fotbru/kjørebru-par, men bare way 79506476 og den stengte servicebrua way 66159193 oppfyller den umiddelbare naborelasjonen, med 9,6 meter mellom geometrisentrene. Canonical lat/lon er geometrisk sentrum av fresh OSM way 79506476. Det stabile placeId-et beholdes for kompatibilitet; legacy-punktet, Brekkedammen som proxy og nearest/first-hit brukes ikke.
+
+| 165 | `stilla_nydalen` | Elvepartiet nedenfor Nydalsdammen | verified_geometry | `osm-way:66098212` |
+
+Batch 165 (2026-07-23) løser den siste unresolved Akerselva-routeposten med direkte utløpstopologi. Verified Nydalsdammen relation 14637129, dam way 66098763 og exact name=Akerselva way 66098212 deler node 802312309; river-wayen starter i denne noden og fortsetter 161.8 meter nedstrøms. Den andre Akerselva-wayen som møter magasinet, way 1456110817, slutter ved magasinets andre grensenode og representerer det lange oppstrøms innløpet. Canonical lat/lon er det deterministiske lengdemidtpunktet på den lokale outflow-wayen. Den tekniske ID-en `stilla_nydalen` beholdes, men historiske Stilla-badekulper lenger nord brukes ikke som identitet eller koordinatproxy; legacy-punkt og nearest/first-hit brukes ikke.
+
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
 ### Retrospektiv current-sett compliance (2026-07-21)
@@ -725,8 +733,6 @@ Disse kontrollene er fullført, men teller ikke blant de 307 verifiserte eller k
 
 | kandidat | status | dokumentert konflikt | oppfølging |
 |---|---|---|---|
-| `frysjadammen` – Frysjadammen | needs_review | Recorden blander Brekkedammen/Kjelsåsdammen ved Frysja med reguleringshistorie ved Maridalsoset. | Splitt eller velg én fysisk identitet før koordinat godkjennes. |
-| `stilla_nydalen` – Stilla ved Nydalen | needs_review | Elvestrekning uten entydig navngitt geometri eller avgrensning. | Krever rutegeometri eller eksplisitt kildebelagt anker. |
 | `alnaelva` – Alnaelva | needs_review | Elva er et langt og delvis tunnellagt vassdrag. OSM-kontrollen finner flere separate elve-way-er, men ingen samlet entydig geometri som kan verifisere ett hovedpunkt. | Modeller samlet elvegeometri eller flere kildebelagte delankre; legacy-punktet skal ikke promoteres. |
 | `alnaelvstien` – Alnaelvstien / Alnastien | needs_review | Oslo kommune dokumenterer turveien langs Alnaelva, men OSM har flere separate Alnastien-way-er og ingen samlet ruterelasjon i kontrollen. | Bygg routeSegments eller finn samlet offisiell rutetrase før canonical punkt godkjennes. |
 | `trosterud_friomrade` – Trosterud friområde | needs_review | Kontrollen fant ingen stabil offisiell eller eksakt OSM-entitet med recordens navn; kommunale planer dokumenterer bare bredere grønt- og byutviklingskontekst. | Identifiser konkret navngitt friområde eller erstatt recorden med dokumentert arealobjekt. |
