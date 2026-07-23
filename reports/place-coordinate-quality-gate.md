@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T20:49:02.591Z
+Generert: 2026-07-23T21:19:31.573Z
 
 ## Oppsummering
 - Aktive filer validert: **687**
 - Antall steder validert: **1290**
 - Harde feil: **0**
-- Varsler: **509**
-- Coordinate review candidates: **775** signaler fordelt på **647** steder
+- Varsler: **508**
+- Coordinate review candidates: **774** signaler fordelt på **647** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -712,7 +712,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 ## Varsler
 - data/places/by/oslo/places_by.json#gronland_basarene: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places_by.json#ring_3: lineært sted uten anchors
-- data/places/by/oslo/places_by.json#ring_3: coordinate_regression_risk (3366 m fra tidligere semantic_anchor)
 - data/places/by/oslo/places_by.json#vulkan_energisentral: coordStatus=verified uten coordPrecisionM
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#voienvolden: coordStatus=verified uten coordPrecisionM
@@ -1222,13 +1221,12 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 775 signaler fordelt på 647 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 774 signaler fordelt på 647 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordinate_regression_risk | 1 |
 | coordStatus=verified uten coordPrecisionM | 220 |
 | lineært sted uten anchors | 81 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
@@ -1238,12 +1236,6 @@ Totalt 775 signaler fordelt på 647 steder. Et sted kan ha flere signaler. Kandi
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
-
-### coordinate_regression_risk (1)
-
-| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.952359965835846 | 10.74918431139814 | 500 | Flyttet ~3366 m fra tidligere semantic_anchor. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. |
 
 ### coordStatus=verified uten coordPrecisionM (220)
 
