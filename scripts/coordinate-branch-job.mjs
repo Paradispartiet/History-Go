@@ -10,26 +10,28 @@ fs.mkdirSync(reportDir, { recursive: true });
 const USER_AGENT = 'History-Go-coordinate-control/1.0 (https://github.com/Paradispartiet/History-Go)';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-async function fetchText(url, attempts = 3) {
+async function fetchText(url, attempts = 3, options = {}) {
   let lastError;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     try {
       const response = await fetch(url, {
-        headers: { 'User-Agent': USER_AGENT, Accept: '*/*' },
-        signal: AbortSignal.timeout(30000),
+        headers: { 'User-Agent': USER_AGENT, Accept: '*/*', ...(options.headers || {}) },
+        method: options.method || 'GET',
+        body: options.body,
+        signal: AbortSignal.timeout(45000),
       });
       if (!response.ok) throw new Error(`${response.status} ${response.statusText} for ${url}`);
       return await response.text();
     } catch (error) {
       lastError = error;
-      if (attempt < attempts) await sleep(1500 * attempt);
+      if (attempt < attempts) await sleep(1800 * attempt);
     }
   }
   throw lastError;
 }
 
-async function fetchJson(url, attempts = 3) {
-  return JSON.parse(await fetchText(url, attempts));
+async function fetchJson(url, attempts = 3, options = {}) {
+  return JSON.parse(await fetchText(url, attempts, options));
 }
 
 function norm(value) {
@@ -57,81 +59,118 @@ for (const query of queries) {
   await sleep(1100);
 }
 
-const all = searches.flatMap(({ query, results }) => results.map((result) => ({ query, ...result })));
-const deduped = [...new Map(all.map((candidate) => [`${candidate.osm_type}:${candidate.osm_id}`, candidate])).values()];
-const exactOset = deduped.filter((candidate) => {
-  const names = [candidate.name, candidate.display_name, candidate.namedetails?.name, candidate.namedetails?.['name:no']]
-    .filter(Boolean)
-    .map(norm);
-  return names.some((name) => name === 'oset slusebru' || name.startsWith('oset slusebru,'));
-});
+const all = searches.flatMap(({ query, results }) => results.map((result) => ({ query, source: 'nominatim', ...result })));
+const nominatimCandidates = [...new Map(all.map((candidate) => [`${candidate.osm_type}:${candidate.osm_id}`, candidate])).values()];
 
-if (exactOset.length !== 1) {
-  fs.writeFileSync(path.join(reportDir, 'candidate-summary.json'), `${JSON.stringify({
-    generatedAt: new Date().toISOString(),
-    queries,
-    exactOsetCount: exactOset.length,
-    exactOset,
-    candidates: deduped,
-  }, null, 2)}\n`);
-  throw new Error(`Expected exactly one exact Oset slusebru candidate, found ${exactOset.length}`);
+const overpassQuery = `[out:json][timeout:35];\n(\n  nwr["name"="Oset slusebru"](59.975,10.755,59.99,10.795);\n  nwr["name"~"Oset|Maridals",i](59.975,10.755,59.99,10.795);\n  way["bridge"](59.975,10.755,59.99,10.795);\n  way["man_made"="bridge"](59.975,10.755,59.99,10.795);\n  way["waterway"="dam"](59.975,10.755,59.99,10.795);\n);\nout center tags geom;`;
+
+const overpassEndpoints = [
+  'https://overpass-api.de/api/interpreter',
+  'https://overpass.kumi.systems/api/interpreter',
+];
+let overpass = null;
+let overpassError = null;
+for (const endpoint of overpassEndpoints) {
+  try {
+    const body = new URLSearchParams({ data: overpassQuery }).toString();
+    overpass = await fetchJson(endpoint, 2, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body,
+    });
+    overpass.endpoint = endpoint;
+    break;
+  } catch (error) {
+    overpassError = String(error?.message || error);
+  }
 }
 
-const selected = exactOset[0];
-const typeMap = { node: 'node', way: 'way', relation: 'relation' };
-const osmType = typeMap[selected.osm_type];
-if (!osmType) throw new Error(`Unsupported OSM type ${selected.osm_type}`);
-const osmApiUrl = `https://api.openstreetmap.org/api/0.6/${osmType}/${selected.osm_id}${osmType === 'way' || osmType === 'relation' ? '/full' : ''}`;
-const osmXml = await fetchText(osmApiUrl);
-fs.writeFileSync(path.join(reportDir, `osm-${osmType}-${selected.osm_id}${osmType === 'way' || osmType === 'relation' ? '-full' : ''}.xml`), osmXml);
+const overpassCandidates = (overpass?.elements || []).map((element) => ({
+  source: 'overpass',
+  osm_type: element.type,
+  osm_id: element.id,
+  name: element.tags?.name || null,
+  display_name: element.tags?.name || null,
+  lat: element.lat ?? element.center?.lat ?? null,
+  lon: element.lon ?? element.center?.lon ?? null,
+  category: element.tags?.man_made || element.tags?.waterway || element.tags?.highway || null,
+  type: element.tags?.bridge || element.tags?.man_made || element.tags?.waterway || element.tags?.highway || null,
+  tags: element.tags || {},
+  geometry: element.geometry || null,
+}));
 
+const combined = [...nominatimCandidates, ...overpassCandidates];
+const deduped = [...new Map(combined.map((candidate) => [`${candidate.osm_type}:${candidate.osm_id}`, candidate])).values()];
+const exactOset = deduped.filter((candidate) => norm(candidate.name) === 'oset slusebru' || norm(candidate.display_name) === 'oset slusebru');
+
+for (const candidate of exactOset) {
+  const suffix = candidate.osm_type === 'way' || candidate.osm_type === 'relation' ? '/full' : '';
+  const osmApiUrl = `https://api.openstreetmap.org/api/0.6/${candidate.osm_type}/${candidate.osm_id}${suffix}`;
+  try {
+    const osmXml = await fetchText(osmApiUrl);
+    fs.writeFileSync(path.join(reportDir, `osm-${candidate.osm_type}-${candidate.osm_id}${suffix ? '-full' : ''}.xml`), osmXml);
+  } catch (error) {
+    fs.writeFileSync(path.join(reportDir, `osm-${candidate.osm_type}-${candidate.osm_id}-fetch-error.txt`), `${String(error?.message || error)}\n`);
+  }
+}
+
+const selected = exactOset.length === 1 ? exactOset[0] : null;
 const candidateSummary = {
   generatedAt: new Date().toISOString(),
   placeId: 'frysjadammen',
   currentIdentityProblem: 'Legacy name Frysjadammen conflicts with content about the regulated outlet at Maridalsoset.',
+  nominatimCandidateCount: nominatimCandidates.length,
+  overpassAvailable: Boolean(overpass),
+  overpassEndpoint: overpass?.endpoint || null,
+  overpassError,
+  overpassCandidateCount: overpassCandidates.length,
   exactOsetCount: exactOset.length,
-  selected: {
-    query: selected.query,
+  exactOset,
+  selected: selected ? {
     osmType: selected.osm_type,
     osmId: selected.osm_id,
-    displayName: selected.display_name,
-    name: selected.name || selected.namedetails?.name || null,
-    lat: Number(selected.lat),
-    lon: Number(selected.lon),
-    category: selected.category,
-    type: selected.type,
-    boundingbox: selected.boundingbox?.map(Number) || null,
-    geojson: selected.geojson || null,
+    name: selected.name,
+    lat: selected.lat === null ? null : Number(selected.lat),
+    lon: selected.lon === null ? null : Number(selected.lon),
+    tags: selected.tags || null,
+    geometry: selected.geometry || selected.geojson || null,
     sourceObjectId: `osm-${selected.osm_type}:${selected.osm_id}`,
     sourceUrl: `https://www.openstreetmap.org/${selected.osm_type}/${selected.osm_id}`,
-  },
-  allCandidates: deduped.map((candidate) => ({
-    query: candidate.query,
+  } : null,
+  candidates: deduped.map((candidate) => ({
+    source: candidate.source,
     osmType: candidate.osm_type,
     osmId: candidate.osm_id,
-    displayName: candidate.display_name,
     name: candidate.name || candidate.namedetails?.name || null,
-    lat: Number(candidate.lat),
-    lon: Number(candidate.lon),
-    category: candidate.category,
-    type: candidate.type,
+    displayName: candidate.display_name || null,
+    lat: candidate.lat === null || candidate.lat === undefined ? null : Number(candidate.lat),
+    lon: candidate.lon === null || candidate.lon === undefined ? null : Number(candidate.lon),
+    category: candidate.category || null,
+    type: candidate.type || null,
+    tags: candidate.tags || null,
   })),
   identityDecision: {
     canonicalNameCandidate: 'Oset slusebru – damanlegget ved Maridalsoset',
     retainPlaceId: 'frysjadammen',
-    rationale: 'The current record content, works, nature profile and sources all describe the regulated outlet of Maridalsvannet at Maridalsoset, while official/source material identifies Brekkedammen/Kjelsåsdammen as a different impoundment at Frysja. Oset slusebru is a concrete surviving component of the Maridalsoset dam installation and can serve as the exact physical anchor if its OSM identity is unique.',
-    nextAction: 'Production may rename the display identity and anchor the record to the unique exact Oset slusebru OSM object. Do not move the record to Brekkedammen merely because of the legacy placeId/name.',
+    externalIdentityResolution: 'The current record content describes the Maridalsoset regulated outlet, while Brekkedammen/Kjelsåsdammen is a separate impoundment at Frysja.',
+    productionReady: exactOset.length === 1,
+    nextAction: exactOset.length === 1
+      ? 'Use the unique exact Oset slusebru OSM object as the physical anchor and correct the canonical display identity on a fresh-main production branch.'
+      : 'Inspect the bounded physical bridge/dam candidate set manually; do not promote by nearest distance.',
   },
 };
 
 fs.writeFileSync(path.join(reportDir, 'candidate-summary.json'), `${JSON.stringify(candidateSummary, null, 2)}\n`);
 fs.writeFileSync(path.join(reportDir, 'nominatim-searches.json'), `${JSON.stringify(searches, null, 2)}\n`);
-fs.writeFileSync(path.join(reportDir, 'sources.md'), `# Batch 164 identity research sources\n\n- Oslo kommune: https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/frysja-33/\n- Oslo kommune: https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/badeplasser/brekkedammen-ved-frysja\n- Oslo byleksikon: https://oslobyleksikon.no/side/Oset_slusebru\n- Oslo byleksikon: https://oslobyleksikon.no/side/Akerselva\n- Nominatim search results and fresh OSM API XML are stored in this report directory.\n`);
+fs.writeFileSync(path.join(reportDir, 'overpass-query.txt'), `${overpassQuery}\n`);
+fs.writeFileSync(path.join(reportDir, 'overpass-response.json'), `${JSON.stringify(overpass || { error: overpassError }, null, 2)}\n`);
+fs.writeFileSync(path.join(reportDir, 'sources.md'), `# Batch 164 identity research sources\n\n- Oslo kommune: https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/frysja-33/\n- Oslo kommune: https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/badeplasser/brekkedammen-ved-frysja\n- Oslo byleksikon: https://oslobyleksikon.no/side/Oset_slusebru\n- Oslo byleksikon: https://oslobyleksikon.no/side/Akerselva\n- Nominatim and bounded Overpass candidate sets are stored in this report directory.\n`);
 
 console.log(JSON.stringify({
   batch: 164,
   placeId: 'frysjadammen',
   exactOsetCount: exactOset.length,
   selected: candidateSummary.selected,
-  decision: candidateSummary.identityDecision,
+  productionReady: candidateSummary.identityDecision.productionReady,
+  nextAction: candidateSummary.identityDecision.nextAction,
 }, null, 2));
