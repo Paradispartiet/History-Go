@@ -1,0 +1,171 @@
+{
+  "generatedAt": "2026-07-23T04:17:29.253Z",
+  "placeId": "alna_utlop_bjorvika",
+  "historicalMarkerResolved": {
+    "sourceObjectId": "osm-way:4258487",
+    "osmName": "Tenerife",
+    "interpretation": "Unique substantial water polygon inside exact Middelalderparken geometry; external public-source context identifies Tenerife as the nickname of Vannspeilet, while Oslo kommune documents Vannspeilet as the marker of Alnaelvas original outlet."
+  },
+  "currentOutletCorrected": {
+    "tunnelWay": {
+      "id": 130106085,
+      "tags": {
+        "alt_name": "Loelva",
+        "layer": "-2",
+        "name": "Alna",
+        "tunnel": "yes",
+        "waterway": "river"
+      }
+    },
+    "openOutletWay": {
+      "id": 131984275,
+      "tags": {
+        "alt_name": "Loelva",
+        "name": "Alna",
+        "waterway": "river"
+      },
+      "endpointNodeIds": [
+        "1434044641",
+        "8067892897"
+      ],
+      "points": [
+        {
+          "id": "1434044641",
+          "lat": 59.8960114,
+          "lon": 10.7560872
+        },
+        {
+          "id": "8067877481",
+          "lat": 59.8959696,
+          "lon": 10.7559331
+        },
+        {
+          "id": "8067892897",
+          "lat": 59.895923,
+          "lon": 10.7555928
+        }
+      ]
+    },
+    "tunnelOpenSharedNode": "1434044641",
+    "actualDownstreamNode": {
+      "id": "8067892897",
+      "lat": 59.895923,
+      "lon": 10.7555928
+    },
+    "downstreamConnectedWays": [
+      {
+        "id": 865225826,
+        "tags": {
+          "natural": "coastline",
+          "source": "Yahoo image;Bing"
+        }
+      }
+    ],
+    "coastlineWaysAtActualDownstreamNode": [
+      {
+        "id": 865225826,
+        "tags": {
+          "natural": "coastline",
+          "source": "Yahoo image;Bing"
+        }
+      }
+    ],
+    "waterwayWaysAtActualDownstreamNode": [],
+    "outletWaterArea": {
+      "id": 865565720,
+      "tags": {
+        "natural": "water",
+        "water": "river"
+      },
+      "sharedNodesWithOpenWay": [
+        "1434044641"
+      ]
+    },
+    "coastlineWaysSharingOutletWaterAreaNodes": [
+      {
+        "id": 865225826,
+        "tags": {
+          "natural": "coastline",
+          "source": "Yahoo image;Bing"
+        },
+        "nodes": [
+          23600862,
+          8067877471,
+          6780756838,
+          8067877472,
+          23600863,
+          8672834075,
+          8067877473,
+          302269209,
+          8067877474,
+          8067877475,
+          8067877476,
+          8067877477,
+          23600866,
+          8067877480,
+          8067877479,
+          6780549989,
+          6780549988,
+          8067877478,
+          6780549990,
+          6780549992,
+          6780549991,
+          23600869,
+          1452085827,
+          1452085830,
+          23600871,
+          8067892898,
+          8067892897,
+          8067892887,
+          302269211,
+          302269212,
+          10864927221,
+          23600872,
+          10864927220,
+          23600873,
+          23600874,
+          23600875,
+          35189436,
+          35189437,
+          35189438,
+          35189439,
+          23600876,
+          23600877,
+          23600878,
+          23600881,
+          23600883,
+          23600885,
+          35189441,
+          10864927224,
+          35189442,
+          8064548436,
+          8064548437,
+          10864927223,
+          10864927222,
+          8064548438,
+          8064548439,
+          8064548440,
+          8064548441,
+          10864927225,
+          10864927226,
+          35189443,
+          8064548443,
+          10864927227,
+          8064548442,
+          8064548444,
+          10864927228,
+          8064548446,
+          8064548445,
+          10864927229,
+          10864927230,
+          23600887
+        ]
+      }
+    ],
+    "coastlineBoundaryAuditUrl": "https://overpass.kumi.systems/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A30%5D%3Bway(865565720)-%3E.water%3Bnode(w.water)-%3E.nodes%3Bway(bn.nodes)%5B%22natural%22%3D%22coastline%22%5D%3Bout%20body%3B",
+    "coastlineBoundaryAuditErrors": [
+      "Error: HTTP 504: https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A30%5D%3Bway(865565720)-%3E.water%3Bnode(w.water)-%3E.nodes%3Bway(bn.nodes)%5B%22natural%22%3D%22coastline%22%5D%3Bout%20body%3B"
+    ]
+  },
+  "nextAction": "Current mouth can use the actual downstream node directly as an explicit river/coastline topology anchor."
+}
