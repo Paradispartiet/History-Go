@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-07-23T03:42:23.426Z",
+  "placeId": "ostensjovannet",
+  "canonicalCoordinateUnchanged": {
+    "lat": 59.88943337258171,
+    "lon": 10.829260727224845,
+    "coordStatus": "verified_geometry",
+    "coordType": "protected_wetland_center",
+    "coordNote": "Canonical punkt er et representativt områdeanker beregnet fra den offisielle vernegeometrien VV00000972. Punktet brukes for hele verne-/naturarealet og ikke som adresse- eller tilfeldig delpunkt.",
+    "sourceObjectId": "miljodirektoratet-naturvern:VV00000972"
+  },
+  "coordinateMetadataChanged": false,
+  "beforeAnchorIds": [
+    "ostensjovannet_nord",
+    "ostensjovannet_fugletarn",
+    "ostensjovannet_sor"
+  ],
+  "afterAnchors": [
+    {
+      "id": "ostensjovannet_nord",
+      "name": "Vadedammen",
+      "lat": 59.8977295,
+      "lon": 10.8308273,
+      "r": 120,
+      "type": "area_anchor",
+      "role": "north_wetland_anchor",
+      "coordStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:6503853",
+      "sourceUrl": "https://www.openstreetmap.org/relation/6503853",
+      "note": "Vadedammen er den verifiserte konkrete våtmarksdammen nord for Østensjøvannet."
+    },
+    {
+      "id": "ostensjovannet_fugletarn",
+      "name": "Fugleskjulet ved Østensjøvannet",
+      "lat": 59.8863482,
+      "lon": 10.8264232,
+      "r": 90,
+      "type": "building_center",
+      "role": "observation_anchor",
+      "coordStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:533351097",
+      "sourceUrl": "https://www.openstreetmap.org/way/533351097",
+      "note": "Fugleskjulet på vestsiden er verifisert som den eneste lokale leisure=bird_hide-geometrien."
+    },
+    {
+      "id": "ostensjovannet_sor",
+      "name": "Bølerbekkens utløp i Østensjøvannet",
+      "lat": 59.8833054,
+      "lon": 10.8331603,
+      "r": 120,
+      "type": "mouth_anchor",
+      "role": "tributary_mouth_anchor",
+      "coordStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1110773258",
+      "sourceUrl": "https://www.openstreetmap.org/node/1110773258",
+      "note": "Bølerbekkens utløp er verifisert som en eksplisitt delt bekk–innsjø-grensenode."
+    },
+    {
+      "id": "bogerudmyra",
+      "name": "Bogerudmyra",
+      "lat": 59.878427,
+      "lon": 10.8342964,
+      "r": 180,
+      "type": "area_anchor",
+      "role": "south_wetland_anchor",
+      "coordStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:4106652",
+      "sourceUrl": "https://www.openstreetmap.org/relation/4106652",
+      "note": "Bogerudmyra er verifisert som det konkrete natural=wetland/wetland=marsh-multipolygonet sør for vannet."
+    }
+  ],
+  "excludedAsAnchor": {
+    "id": "ostensjovannet_sivbelte",
+    "reason": "Batch 152 research found no explicit mapped reedbed geometry in the bounded Østensjøvannet scope; the record remains needs_source and is not used as a parent anchor."
+  },
+  "method": "parent anchor reconciliation from fresh verified component place records; canonical coordinate metadata and evidence unchanged; no copied legacy coordinates, no nearest/first-hit"
+}

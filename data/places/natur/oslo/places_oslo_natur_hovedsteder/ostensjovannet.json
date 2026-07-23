@@ -14,7 +14,7 @@
     "habitat",
     "biodiversitet"
   ],
-  "sourceHint": "Bygd på eksisterende hovedobjekt og delpunktfila for Østensjøvannet. Hovedobjektet representerer hele våtmarksområdet, mens nord, sør, sivbelte, fugletårn og Bogerudmyra ligger som delpunkter.",
+  "sourceHint": "Hovedpunktet representerer hele Østensjøvannet naturreservat med Miljødirektoratets offisielle vernegeometri. Delankrene bygges kun fra verifiserte konkrete komponenter: Vadedammen, fugleskjulet på vestsiden, Bølerbekkens utløp og Bogerudmyra. Det generiske sivbelte-recordet står fortsatt needs_source og brukes ikke som kartanker.",
   "coordType": "protected_wetland_center",
   "coordStatus": "verified_geometry",
   "coordSource": "Miljødirektoratet Naturvernområder – offisiell geometri for Østensjøvannet naturreservat",
@@ -23,30 +23,59 @@
   "anchors": [
     {
       "id": "ostensjovannet_nord",
-      "name": "Østensjøvannet nord",
-      "lat": 59.8913,
-      "lon": 10.8255,
+      "name": "Vadedammen",
+      "lat": 59.8977295,
+      "lon": 10.8308273,
       "r": 120,
       "type": "area_anchor",
-      "note": "Nordre våtmarkssone med gruntvann, siv og trekkfuglaktivitet."
+      "role": "north_wetland_anchor",
+      "coordStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:6503853",
+      "sourceUrl": "https://www.openstreetmap.org/relation/6503853",
+      "note": "Vadedammen er den verifiserte konkrete våtmarksdammen nord for Østensjøvannet."
     },
     {
       "id": "ostensjovannet_fugletarn",
-      "name": "Østensjøvannet fugletårn",
-      "lat": 59.8878,
-      "lon": 10.8301,
+      "name": "Fugleskjulet ved Østensjøvannet",
+      "lat": 59.8863482,
+      "lon": 10.8264232,
       "r": 90,
-      "type": "viewpoint",
-      "note": "Observasjonspunkt mot våtmark og åpent vann for fugl gjennom året."
+      "type": "building_center",
+      "role": "observation_anchor",
+      "coordStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:533351097",
+      "sourceUrl": "https://www.openstreetmap.org/way/533351097",
+      "note": "Fugleskjulet på vestsiden er verifisert som den eneste lokale leisure=bird_hide-geometrien."
     },
     {
       "id": "ostensjovannet_sor",
-      "name": "Østensjøvannet sør",
-      "lat": 59.8834,
-      "lon": 10.8272,
+      "name": "Bølerbekkens utløp i Østensjøvannet",
+      "lat": 59.8833054,
+      "lon": 10.8331603,
       "r": 120,
+      "type": "mouth_anchor",
+      "role": "tributary_mouth_anchor",
+      "coordStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1110773258",
+      "sourceUrl": "https://www.openstreetmap.org/node/1110773258",
+      "note": "Bølerbekkens utløp er verifisert som en eksplisitt delt bekk–innsjø-grensenode."
+    },
+    {
+      "id": "bogerudmyra",
+      "name": "Bogerudmyra",
+      "lat": 59.878427,
+      "lon": 10.8342964,
+      "r": 180,
       "type": "area_anchor",
-      "note": "Sørlig våtmarks- og vannkantområde med rik kantflora og vannfugl."
+      "role": "south_wetland_anchor",
+      "coordStatus": "verified_geometry",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:4106652",
+      "sourceUrl": "https://www.openstreetmap.org/relation/4106652",
+      "note": "Bogerudmyra er verifisert som det konkrete natural=wetland/wetland=marsh-multipolygonet sør for vannet."
     }
   ],
   "year": 1992,
@@ -70,7 +99,8 @@
     "nearby_place_ids": [
       "ostensjovannet_nord",
       "ostensjovannet_fugletarn",
-      "ostensjovannet_sor"
+      "ostensjovannet_sor",
+      "bogerudmyra"
     ]
   },
   "quiz_profile": {
