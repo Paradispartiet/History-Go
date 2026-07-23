@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T20:29:37.741Z
+Generert: 2026-07-23T20:49:10.501Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -51,7 +51,7 @@ Generert: 2026-07-23T20:29:37.741Z
 | olaf_ryes_plass | data/coordinate-evidence/oslo/by/olaf_ryes_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ormoya | data/coordinate-evidence/oslo/by/ormoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | radhusplassen | data/coordinate-evidence/oslo/by/radhusplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| ring_3 | data/coordinate-evidence/oslo/by/ring_3.json | needs_research | needs_geometry | OK |
+| ring_3 | data/coordinate-evidence/oslo/by/ring_3.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | rodelokka | data/coordinate-evidence/oslo/by/rodelokka.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | romsaås | data/coordinate-evidence/oslo/by/romsaås.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | rudolf_nilsens_plass | data/coordinate-evidence/oslo/by/rudolf_nilsens_plass.json | applied_to_place | do_not_change_coordinates_yet | OK |

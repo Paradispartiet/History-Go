@@ -1,20 +1,21 @@
 {
+  "schemaVersion": "1.0",
   "placeId": "ring_3",
   "placeFile": "data/places/by/oslo/places_by.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.931,
-    "lon": 10.792,
-    "r": 400,
-    "coordStatus": "semantic_anchor",
-    "coordSource": "",
-    "coordType": "route_midpoint",
-    "coordNote": "Ringvei rundt byen. Ett punkt kan ikke dekke hele traseen; punktet er et bevisst symbolsk anker for kartvisning. Lav presisjon beholdt bevisst; bør deles opp i ruteankre ved senere manuell kartrunde."
+    "lat": 59.952359965835846,
+    "lon": 10.74918431139814,
+    "r": 500,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap Ring 3 explicit mainline routeSegments: 180 ways across two unbranched carriageways; display midpoint on way 4341399",
+    "coordType": "multi_segment_route_display_anchor",
+    "coordNote": "Batch 186 route topology production: fresh OSM resolves Ring 3's explicit trunk mainline into exactly two unbranched endpoint-connected carriageway chains, with 91 and 89 ways and lengths 17970.9 m and 17888.5 m. Both chains explicitly carry Ring 3 in ref and together cover the rv. 150 and E6 overlap sections. All 180 mainline ways are stored as routeSegments. A detached 134.4 m Ring 3-tagged side component is excluded because it is not part of either complete end-to-end carriageway. The canonical lat/lon is the deterministic length midpoint of carriageway 1 and lies on OSM way 4341399, which is used as the display coordinate source. No nearest/first-hit segment and no legacy symbolic midpoint is used."
   },
   "identity": {
     "currentName": "Ring 3",
-    "resolvedIdentity": "Ring 3",
+    "resolvedIdentity": "Ring 3 – det eksplisitt Ring 3-merkede hovedløpet gjennom Oslo, modellert som to komplette kjøreretninger",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "route",
@@ -28,32 +29,77 @@
   ],
   "evidence": [
     {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Ring 3 explicit trunk mainline",
+      "sourceUrl": "https://www.openstreetmap.org/way/4341399",
+      "sourceObjectId": "osm-way:4341399",
+      "sourceQuality": "two_complete_unbranched_explicit_ring3_carriageway_chains",
+      "finding": "Fresh topology yields two complete unbranched Ring 3 mainline chains with 91 and 89 ways; 180 explicit routeSegments in total. Deterministic display midpoint lies on way 4341399.",
+      "canVerifyCoordinate": true,
+      "reason": "Batch 186 route topology production: fresh OSM resolves Ring 3's explicit trunk mainline into exactly two unbranched endpoint-connected carriageway chains, with 91 and 89 ways and lengths 17970.9 m and 17888.5 m. Both chains explicitly carry Ring 3 in ref and together cover the rv. 150 and E6 overlap sections. All 180 mainline ways are stored as routeSegments. A detached 134.4 m Ring 3-tagged side component is excluded because it is not part of either complete end-to-end carriageway. The canonical lat/lon is the deterministic length midpoint of carriageway 1 and lies on OSM way 4341399, which is used as the display coordinate source. No nearest/first-hit segment and no legacy symbolic midpoint is used."
+    },
+    {
       "sourceProvider": "official_map",
-      "sourceName": "Statens vegvesen – rv. 150 Ring 3",
+      "sourceName": "Statens vegvesen – Ring 3 / rv. 150",
       "sourceUrl": "https://www.vegvesen.no/vegprosjekter/prosjekt/sykkelvegeroslo/",
-      "sourceObjectId": "statens-vegvesen:rv150:ring-3",
+      "sourceObjectId": "statens-vegvesen:ring3-rv150",
       "sourceQuality": "official_route_identity",
-      "finding": "Statens vegvesen dokumenterer Ring 3 som rv. 150 og viser flere delstrekninger, men dagens History Go-record mangler traségeometri eller flere kildebelagte ruteankre som kan verifisere hele lineære objektet.",
+      "finding": "Statens vegvesen identifies Ring 3 and rv. 150 in the official route/project context; OSM supplies the explicit current mainline segment geometry, including the E6 overlap carrying Ring 3 in ref.",
       "canVerifyCoordinate": false,
-      "reason": "Dagens ene lavpresisjonspunkt kan ikke verifisere hele Ring 3. Repoets tidligere coordinate-anchor-audit krever en senere routeSegments-/rutemodell."
+      "reason": "Confirms route identity; exact route geometry comes from the fresh explicit Ring 3 OSM mainline topology."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4341399",
+      "canApplyToPlace": true
+    },
+    {
       "sourceProvider": "official_map",
-      "sourceObjectId": "statens-vegvesen:rv150:ring-3",
+      "sourceObjectId": "statens-vegvesen:ring3-rv150",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4341399",
+      "geometryType": "ordered_route_segments",
+      "carriageway": 1,
+      "wayCount": 91,
+      "lengthM": 17970.9,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4341399",
+      "geometryType": "ordered_route_segments",
+      "carriageway": 2,
+      "wayCount": 89,
+      "lengthM": 17888.5,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4341399",
+      "lat": 59.952359965835846,
+      "lon": 10.74918431139814,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Dagens ene lavpresisjonspunkt kan ikke verifisere hele Ring 3. Repoets tidligere coordinate-anchor-audit krever en senere routeSegments-/rutemodell.",
-    "nextAction": "Bygg routeSegments/rutegeometri før koordinaten kan godkjennes."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Ring 3 is verified as an explicit two-carriageway multi-segment route; the deterministic carriageway midpoint is applied as display anchor."
   },
   "notes": [
-    "Dagens ene lavpresisjonspunkt kan ikke verifisere hele Ring 3. Repoets tidligere coordinate-anchor-audit krever en senere routeSegments-/rutemodell."
+    "Batch 186 route topology production: fresh OSM resolves Ring 3's explicit trunk mainline into exactly two unbranched endpoint-connected carriageway chains, with 91 and 89 ways and lengths 17970.9 m and 17888.5 m. Both chains explicitly carry Ring 3 in ref and together cover the rv. 150 and E6 overlap sections. All 180 mainline ways are stored as routeSegments. A detached 134.4 m Ring 3-tagged side component is excluded because it is not part of either complete end-to-end carriageway. The canonical lat/lon is the deterministic length midpoint of carriageway 1 and lies on OSM way 4341399, which is used as the display coordinate source. No nearest/first-hit segment and no legacy symbolic midpoint is used."
   ]
 }
