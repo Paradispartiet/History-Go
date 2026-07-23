@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T22:25:58.744Z
+Generert: 2026-07-23T22:34:13.566Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -182,7 +182,6 @@ Generert: 2026-07-23T22:25:58.744Z
 | aftenposten_akersgata | data/coordinate-evidence/oslo/media/aftenposten_akersgata.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | dagbladet_akersgata | data/coordinate-evidence/oslo/media/dagbladet_akersgata.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | klassekampen_redaksjon | data/coordinate-evidence/oslo/media/klassekampen_redaksjon.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| akerselva_industri | data/coordinate-evidence/oslo/naeringsliv/akerselva_industri.json | needs_research | needs_geometry | OK |
 | akershus_slott_bakeriet | data/coordinate-evidence/oslo/naeringsliv/akershus_slott_bakeriet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bryn_industriomrade | data/coordinate-evidence/oslo/naeringsliv/bryn_industriomrade.json | needs_research | needs_geometry | OK |
 | christiania_seildugsfabrik | data/coordinate-evidence/oslo/naeringsliv/christiania_seildugsfabrik.json | applied_to_place | do_not_change_coordinates_yet | OK |
