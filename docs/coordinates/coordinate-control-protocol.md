@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 420 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 421 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -909,3 +909,7 @@ Batch 177 (2026-07-23) produserer `edvard_munchs_atelier_ekely` etter den lukked
 | 178 | `tegnerforbundet` | Tegnerforbundet – senter for tegnekunst | verified | `geonorge-adresser-v1:0301:16115:17` |
 
 Batch 178 (2026-07-23) produserer `tegnerforbundet` etter den lukkede 66-item VisitOSLO Galleries scope-auditen og kandidat-readiness-auditen. Det eksakte Geonorge-adressepunktet for Rådhusgata 17 brukes som display-marker for Tegnerforbundet som egen kunstnerorganisasjon og offentlig visningsinstitusjon.
+
+| 179 | `unge_kunstneres_samfund` | Unge Kunstneres Samfund | verified | `geonorge-adresser-v1:0301:13669:1` |
+
+Batch 179 (2026-07-23) produserer `unge_kunstneres_samfund` etter den lukkede VisitOSLO Galleries scope-auditen og kandidat-readiness-auditen. Det eksakte Geonorge-adressepunktet for Keysers gate 1 brukes som display-marker for UKS som egen kunstnerdrevet medlemsorganisasjon og samtidskunstinstitusjon.
