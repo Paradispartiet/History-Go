@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "fornebu_teknologipark",
+  "placeFile": "data/places/naeringsliv/akershus/telenor_fornebu.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.899282707028654,
+    "lon": 10.627377014318366,
+    "r": 220,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Snarøyveien 30 på Fornebu. Telenor dokumenterer adressen som konsernets hovedkontor og åpningen av det nye Fornebu-hovedkontoret i 2002. Punktet erstatter den udokumenterte brede proxyen «Fornebu Teknologipark» og flytter stedet fra feil Oslo-kilde til Bærum/Akershus."
+  },
+  "identity": {
+    "currentName": "Telenor hovedkontor – Fornebu",
+    "resolvedIdentity": "Telenors hovedkontor i Snarøyveien 30 på Fornebu, åpnet i 2002",
+    "identityStatus": "resolved",
+    "identityProblem": "Legacy-recorden beskrev hele Fornebu som en teknologipark og lå feilaktig i Oslo-kilden. Den canonical fysiske identiteten er avgrenset til Telenors dokumenterte hovedkontor i Bærum.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig fysisk teknologiarbeidssted",
+    "offisiell adressekoordinat",
+    "korrekt Bærum/Akershus-geografi",
+    "overlap-audit mot eksisterende canonical places"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Snarøyveien 30",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Snar%C3%B8yveien%2030%201360%20Fornebu",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1010:30",
+      "sourceQuality": "official_address",
+      "finding": "Ett verifisert offisielt adressepunkt for Snarøyveien 30 på Fornebu i Bærum kommune.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Snarøyveien 30 på Fornebu. Telenor dokumenterer adressen som konsernets hovedkontor og åpningen av det nye Fornebu-hovedkontoret i 2002. Punktet erstatter den udokumenterte brede proxyen «Fornebu Teknologipark» og flytter stedet fra feil Oslo-kilde til Bærum/Akershus."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Telenor Group – Headquarters: Fornebu",
+      "sourceUrl": "https://www.telenor.com/contact-us/",
+      "sourceObjectId": "telenor:headquarters-fornebu-current",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Telenor oppgir sitt hovedkontor på Fornebu med adresse Snarøyveien 30.",
+      "canVerifyCoordinate": false,
+      "reason": "Dokumenterer dagens institusjonsidentitet og adresse; Geonorge brukes som koordinatkilde."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Telenor – new headquarters opening 2002",
+      "sourceUrl": "https://www.telenor.com/media/newsroom/archive/telenors-new-headquarters-to-open-on-september-23/",
+      "sourceObjectId": "telenor:fornebu-headquarters-opening:2002-09-23",
+      "sourceQuality": "official_historical_identity",
+      "finding": "Telenor dokumenterer den offisielle åpningen av det nye hovedkontoret på Fornebu i september 2002.",
+      "canVerifyCoordinate": false,
+      "reason": "Knytter legacy-årstallet 2002 og teknologiarbeidsplass-identiteten til det konkrete hovedkontoret."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Snarøyveien 30, 1360 Fornebu",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1010:30",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1010:30",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "telenor:headquarters-fornebu-current",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.899282707028654,
+      "lon": 10.627377014318366,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1010:30",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Legacy-proxyen er flyttet til korrekt Akershus-kontekst og forankret på Telenors dokumenterte Fornebu-hovedkontor."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Snarøyveien 30 på Fornebu. Telenor dokumenterer adressen som konsernets hovedkontor og åpningen av det nye Fornebu-hovedkontoret i 2002. Punktet erstatter den udokumenterte brede proxyen «Fornebu Teknologipark» og flytter stedet fra feil Oslo-kilde til Bærum/Akershus.",
+    "Nærmeste andre canonical marker ved write-time var tjernsmyr_salamanderlokalitet på 1302.97 meter; ingen markør lå innen 3 meter."
+  ]
+}
