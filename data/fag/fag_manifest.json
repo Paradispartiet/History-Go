@@ -39,7 +39,31 @@
     "methods": "historie/methods_historie_canonical_v4_5.json",
     "supersetQuizMal": "historie/supersetQUIZMAL_historie.json",
     "quizStandard": "../quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
-    "quizQuestionSchema": "../quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    "quizQuestionSchema": "../quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "quizPackageSchema": "../quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+    "quizProduction": {
+      "status": "pilot",
+      "required_inputs": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods",
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "context_builder": "scripts/build-quiz-production-context.mjs",
+      "profile_system": "adaptive_relative_superset",
+      "package_schema": "quizPackageSchema",
+      "context_artifact_root": "data/quiz/production_context",
+      "targets": {
+        "grindheim_runestein": {
+          "source_brief": "../quiz/production_briefs/historie/grindheim_runestein.json",
+          "context_artifact": "../quiz/production_context/historie/grindheim_runestein.json",
+          "quiz_file": "../quiz/historie/grindheim_runestein_sets.json"
+        }
+      }
+    }
   },
   "kunst": {
     "pensum": "kunst/kunstpensum_canonical_v4_5.json",

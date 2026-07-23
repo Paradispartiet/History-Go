@@ -1,0 +1,958 @@
+{
+  "targetId": "grindheim_runestein",
+  "categoryId": "historie",
+  "sources": {
+    "kringom_grindheim": "https://www.kringom.no/nb/grindheim-kyrkje",
+    "norges_kirker_grindheim": "https://norgeskirker.no/wiki/Grindheim_kyrkje"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.0",
+    "source_brief": "data/quiz/production_briefs/historie/grindheim_runestein.json",
+    "context_artifact": "data/quiz/production_context/historie/grindheim_runestein.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_middelalder_kirke_kongemakt",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_kirke_kloster_middelalder",
+      "em_his_spor_materialitet",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk",
+      "his_historiebruk_minne"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [
+      "marc_bloch",
+      "pierre_nora"
+    ],
+    "works": [
+      "The Historian's Craft",
+      "Realms of Memory"
+    ],
+    "source_review_status": "reviewed",
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "historie_grindheim_runestein_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "title": "To Tormodar og eitt minne",
+      "questions": [
+        {
+          "id": "grindheim_runestein_quiz_01",
+          "quiz_id": "historie_grindheim_runestein_set_1_q1",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kvar står Grindheim runestein i dag?",
+          "options": [
+            "Inntil nordveggen på skipet til Grindheim kyrkje",
+            "På Krossbakken i den opphavlege plasseringa",
+            "Inne i våpenhuset i Grindheim kyrkje"
+          ],
+          "answer": "Inntil nordveggen på skipet til Grindheim kyrkje",
+          "answerIndex": 0,
+          "knowledge": "Steinen står ved nordveggen av kyrkja og er festa til veggen. Denne plasseringa er nyare enn sjølve innskrifta.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Grindheim runestein står no inntil nordveggen på skipet til Grindheim kyrkje.",
+          "claim_id": "claim_grindheim_runestein_01",
+          "primary_knowledge_unit_id": "ku_historie_steinen_star_ved_nordveg_f2e2a7c6c3",
+          "knowledge_unit_ids": [
+            "ku_historie_steinen_star_ved_nordveg_f2e2a7c6c3",
+            "ku_historie_denne_plasseringa_er_nya_c70d13bde3"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_02",
+          "quiz_id": "historie_grindheim_runestein_set_1_q2",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kven seier runeinnskrifta reiste steinen?",
+          "options": [
+            "Faren Tormod Svidande",
+            "Sonen Tormod",
+            "Ein ukjend prest på Grindheim"
+          ],
+          "answer": "Sonen Tormod",
+          "answerIndex": 1,
+          "knowledge": "Innskrifta namngir Tormod som den handlande personen: han reiste steinen. Faren er personen som blir minna.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_kirke_kloster_middelalder",
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Runeinnskrifta seier at Tormod reiste steinen.",
+          "claim_id": "claim_grindheim_runestein_02",
+          "primary_knowledge_unit_id": "ku_historie_innskrifta_namngir_tormo_3a5564f69d",
+          "knowledge_unit_ids": [
+            "ku_historie_innskrifta_namngir_tormo_3a5564f69d",
+            "ku_historie_faren_er_personen_som_bl_db0144beb4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_03",
+          "quiz_id": "historie_grindheim_runestein_set_1_q3",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kven vart steinen reist til minne om?",
+          "options": [
+            "Sonen Tormod",
+            "Ein ukjend kyrkjebyggjar",
+            "Faren Tormod Svidande"
+          ],
+          "answer": "Faren Tormod Svidande",
+          "answerIndex": 2,
+          "knowledge": "Minneteksten seier at steinen vart reist etter Tormod Svidande, far til reisaren. Dermed bevarer innskrifta både namn og slektskap.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_kirke_kloster_middelalder",
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Steinen vart reist etter faren Tormod Svidande.",
+          "claim_id": "claim_grindheim_runestein_03",
+          "primary_knowledge_unit_id": "ku_historie_minneteksten_seier_at_st_2fa7dc34d6",
+          "knowledge_unit_ids": [
+            "ku_historie_minneteksten_seier_at_st_2fa7dc34d6",
+            "ku_historie_dermed_bevarer_innskrift_cb217c383c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_04",
+          "quiz_id": "historie_grindheim_runestein_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kva gjer dei to personane i innskrifta lette å blande?",
+          "options": [
+            "Både far og son heitte Tormod",
+            "Begge vart kalla Svidande",
+            "Begge reiste kvar sin stein"
+          ],
+          "answer": "Både far og son heitte Tormod",
+          "answerIndex": 0,
+          "knowledge": "Den eine Tormod reiste steinen, medan den andre Tormod – Svidande – var faren han ville minnast. Rollene skil personane sjølv om førenamnet er likt.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Både sonen som reiste steinen og faren som vart minna, heitte Tormod.",
+          "claim_id": "claim_grindheim_runestein_04",
+          "primary_knowledge_unit_id": "ku_historie_den_eine_tormod_reiste_s_d229e943b9",
+          "knowledge_unit_ids": [
+            "ku_historie_den_eine_tormod_reiste_s_d229e943b9",
+            "ku_historie_rollene_skil_personane_s_6fcf91b9af"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_05",
+          "quiz_id": "historie_grindheim_runestein_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kvar på steinen er det meste av runeinnskrifta hogge?",
+          "options": [
+            "Midt på breisida under krossen",
+            "Langs den eine smale langsida",
+            "Rundt den nedste kanten"
+          ],
+          "answer": "Langs den eine smale langsida",
+          "answerIndex": 1,
+          "knowledge": "Runerekkja går langs ei smal langside. Det skil tekstflata frå breisida der krossen er hoggen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Runeinnskrifta er hoggen langs den eine smale langsida av steinen.",
+          "claim_id": "claim_grindheim_runestein_05",
+          "primary_knowledge_unit_id": "ku_historie_runerekkja_gar_langs_ei__520cb54e08",
+          "knowledge_unit_ids": [
+            "ku_historie_runerekkja_gar_langs_ei__520cb54e08",
+            "ku_historie_det_skil_tekstflata_fra__420fbb9247"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_06",
+          "quiz_id": "historie_grindheim_runestein_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kva symbol er hogge inn på ei breiside av runesteinen?",
+          "options": [
+            "Eit skip",
+            "Ein torshammar",
+            "Ein kross"
+          ],
+          "answer": "Ein kross",
+          "answerIndex": 2,
+          "knowledge": "Krossen er hoggen på ei breiside, medan runeinnskrifta hovudsakleg går langs ei smalside. Begge uttrykka finst på same monument.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_kirke_kloster_middelalder",
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ein kross er hoggen inn på den eine breisida av runesteinen.",
+          "claim_id": "claim_grindheim_runestein_06",
+          "primary_knowledge_unit_id": "ku_historie_krossen_er_hoggen_pa_ei__767b8b828e",
+          "knowledge_unit_ids": [
+            "ku_historie_krossen_er_hoggen_pa_ei__767b8b828e",
+            "ku_historie_begge_uttrykka_finst_pa__47b9b5af7c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_07",
+          "quiz_id": "historie_grindheim_runestein_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kva veg skal runeinnskrifta langs sida lesast?",
+          "options": [
+            "Nedanfrå og opp",
+            "Ovanfrå og ned",
+            "Frå midten og utover"
+          ],
+          "answer": "Nedanfrå og opp",
+          "answerIndex": 0,
+          "knowledge": "Kringom oppgir at innskrifta skal lesast nedanfrå. Leseretninga er ein konkret detalj ved korleis teksten er ordna på den høge steinen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "kringom_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Innskrifta på langsida skal lesast nedanfrå og opp.",
+          "claim_id": "claim_grindheim_runestein_07",
+          "primary_knowledge_unit_id": "ku_historie_kringom_oppgir_at_innskr_4f9df66b70",
+          "knowledge_unit_ids": [
+            "ku_historie_kringom_oppgir_at_innskr_4f9df66b70",
+            "ku_historie_leseretninga_er_ein_konk_2b3284f7ed"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_grindheim_runestein_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "xp": 70,
+      "title": "Runer, mål og flytting",
+      "questions": [
+        {
+          "id": "grindheim_runestein_quiz_08",
+          "quiz_id": "historie_grindheim_runestein_set_2_q1",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kva detalj markerer endane på armane i den innhogde krossen?",
+          "options": [
+            "Små dyrehovud",
+            "Eitt punkt ved kvar armende",
+            "Ei samanhengande ringlinje"
+          ],
+          "answer": "Eitt punkt ved kvar armende",
+          "answerIndex": 1,
+          "knowledge": "Norges Kirker skildrar eit markert punkt ved kvar av dei fire armendane. Det er ein konkret formdetalj, ikkje ei generell tolking av symbolet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Krossen har eit markert punkt ved enden av kvar krossarm.",
+          "claim_id": "claim_grindheim_runestein_08",
+          "primary_knowledge_unit_id": "ku_historie_norges_kirker_skildrar_e_54ad4dd899",
+          "knowledge_unit_ids": [
+            "ku_historie_norges_kirker_skildrar_e_54ad4dd899",
+            "ku_historie_det_er_ein_konkret_formd_d1f7d0c731"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_09",
+          "quiz_id": "historie_grindheim_runestein_set_2_q2",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kvifor vart det siste ordet «sin» hogge på framsida?",
+          "options": [
+            "Ordet vart lagt til ved ei seinare restaurering",
+            "Ordet skulle vise kva side som vende mot sør",
+            "Det var ikkje plass att på langsida"
+          ],
+          "answer": "Det var ikkje plass att på langsida",
+          "answerIndex": 2,
+          "knowledge": "Innskrifta fylte langsida, så det siste ordet vart flytta over til framsida. Oppsettet viser korleis steinflata avgrensa teksten.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det siste ordet, «sin», vart hogge på framsida fordi det ikkje var plass att på langsida.",
+          "claim_id": "claim_grindheim_runestein_09",
+          "primary_knowledge_unit_id": "ku_historie_innskrifta_fylte_langsid_4bff5747bc",
+          "knowledge_unit_ids": [
+            "ku_historie_innskrifta_fylte_langsid_4bff5747bc",
+            "ku_historie_oppsettet_viser_korleis__ddf2ec768c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_10",
+          "quiz_id": "historie_grindheim_runestein_set_2_q3",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kor høge er runene om lag?",
+          "options": [
+            "16 centimeter",
+            "2 centimeter",
+            "60 centimeter"
+          ],
+          "answer": "16 centimeter",
+          "answerIndex": 0,
+          "knowledge": "Norges Kirker oppgir runehøgda til om lag 16 centimeter. Dei store teikna gjorde teksten synleg på den høge steinen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Runene i innskrifta er om lag 16 centimeter høge.",
+          "claim_id": "claim_grindheim_runestein_10",
+          "primary_knowledge_unit_id": "ku_historie_norges_kirker_oppgir_run_d17cdd6f17",
+          "knowledge_unit_ids": [
+            "ku_historie_norges_kirker_oppgir_run_d17cdd6f17",
+            "ku_historie_dei_store_teikna_gjorde__8f93c6d96d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_11",
+          "quiz_id": "historie_grindheim_runestein_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kva mål høver med opplysningane om Grindheimsteinen?",
+          "options": [
+            "Om lag 130 cm høg, 95 cm brei og 46 cm tjukk",
+            "Om lag 330 cm høg, 65 cm brei og 26 cm tjukk",
+            "Om lag 530 cm høg, 25 cm brei og 6 cm tjukk"
+          ],
+          "answer": "Om lag 330 cm høg, 65 cm brei og 26 cm tjukk",
+          "answerIndex": 1,
+          "knowledge": "Steinen er over tre meter høg, men relativt smal og tynn. Forma forklarer kvifor innskrifta måtte fordelast mellom langsida og framsida.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Norges Kirker oppgir steinen til om lag 330 centimeter høgd, 65 centimeter breidd og 26 centimeter tjukkleik.",
+          "claim_id": "claim_grindheim_runestein_11",
+          "primary_knowledge_unit_id": "ku_historie_steinen_er_over_tre_mete_2e99720ed1",
+          "knowledge_unit_ids": [
+            "ku_historie_steinen_er_over_tre_mete_2e99720ed1",
+            "ku_historie_forma_forklarer_kvifor_i_c4648729b3"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_12",
+          "quiz_id": "historie_grindheim_runestein_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kva skjedde med runesteinen i 1905?",
+          "options": [
+            "Han vart flytta til eit museum i Bergen",
+            "Han vart lagd inn i ein ny kyrkjegardsmur",
+            "Han vart reist att ved kyrkja og festa til veggen"
+          ],
+          "answer": "Han vart reist att ved kyrkja og festa til veggen",
+          "answerIndex": 2,
+          "knowledge": "I 1905 vart steinen teken ut av murkonteksten og gjort synleg ved kyrkjeveggen. Det er denne seinare plasseringa besøkande møter i dag.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "year": 1905,
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Runesteinen vart reist att ved kyrkja og festa til veggen i 1905.",
+          "claim_id": "claim_grindheim_runestein_12",
+          "primary_knowledge_unit_id": "ku_historie_i_1905_vart_steinen_teke_c87cc7d8c4",
+          "knowledge_unit_ids": [
+            "ku_historie_i_1905_vart_steinen_teke_c87cc7d8c4",
+            "ku_historie_det_er_denne_seinare_pla_6f6cc8d97f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_13",
+          "quiz_id": "historie_grindheim_runestein_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Korleis bør innskrifta daterast når kjeldene blir lesne saman?",
+          "options": [
+            "Til første halvdel eller kring midten av 1000-talet, med atterhald",
+            "Til nøyaktig 1050, utan atterhald om usikker datering",
+            "Til slutten av 1200-talet, med støtte i begge kjeldene"
+          ],
+          "answer": "Til første halvdel eller kring midten av 1000-talet, med atterhald",
+          "answerIndex": 0,
+          "knowledge": "Kringom legg dateringa kring midten av 1000-talet, medan Norges Kirker peikar mot første halvdel. Begge kjeldene støttar ei omtrentlig datering, ikkje eitt sikkert år.",
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_his_kirke_kloster_middelalder",
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kjeldene plasserer innskrifta i første halvdel eller kring midten av 1000-talet, så dateringa må uttrykkjast som omtrentlig.",
+          "claim_id": "claim_grindheim_runestein_13",
+          "primary_knowledge_unit_id": "ku_historie_kringom_legg_dateringa_k_ace2e00b71",
+          "knowledge_unit_ids": [
+            "ku_historie_kringom_legg_dateringa_k_ace2e00b71",
+            "ku_historie_begge_kjeldene_st_ttar_e_162d362969"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_14",
+          "quiz_id": "historie_grindheim_runestein_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kvar var steinen før han vart reist ved nordveggen?",
+          "options": [
+            "Han stod heile tida fritt på same stad",
+            "Han låg i kyrkjegardsmuren i fleire hundre år",
+            "Han låg lagra i eit museumsmagasin"
+          ],
+          "answer": "Han låg i kyrkjegardsmuren i fleire hundre år",
+          "answerIndex": 1,
+          "knowledge": "Steinen vart gjenbrukt i kyrkjegardsmuren gjennom fleire hundreår. Den delen av historia viser at eit minnesmerke kan skifte funksjon utan at alle eldre spor forsvinn.",
+          "difficulty": 2,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Steinen låg i kyrkjegardsmuren i fleire hundre år før han vart reist ved nordveggen.",
+          "claim_id": "claim_grindheim_runestein_14",
+          "primary_knowledge_unit_id": "ku_historie_steinen_vart_gjenbrukt_i_01023b8c30",
+          "knowledge_unit_ids": [
+            "ku_historie_steinen_vart_gjenbrukt_i_01023b8c30",
+            "ku_historie_den_delen_av_historia_vi_0d9af36632"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_grindheim_runestein_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "xp": 90,
+      "title": "Kjelde, spor og minnebruk",
+      "questions": [
+        {
+          "id": "grindheim_runestein_quiz_15",
+          "quiz_id": "historie_grindheim_runestein_set_3_q1",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kva rekkjefølgje oppsummerer best funksjonsskifta til steinen?",
+          "options": [
+            "Kulturminne – personminne – byggjemateriale",
+            "Byggjemateriale – kulturminne – personminne",
+            "Personminne – byggjemateriale – synleg kulturminne"
+          ],
+          "answer": "Personminne – byggjemateriale – synleg kulturminne",
+          "answerIndex": 2,
+          "knowledge": "Tormod reiste først steinen som minne etter faren. Seinare vart han del av muren, før oppattreisinga gjorde han til eit synleg kulturminne.",
+          "difficulty": 3,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Steinen har gått frå reist personminne til materiale i kyrkjegardsmuren og vidare til synleg kulturminne ved kyrkja.",
+          "claim_id": "claim_grindheim_runestein_15",
+          "primary_knowledge_unit_id": "ku_historie_tormod_reiste_f_rst_stei_1830b38b15",
+          "knowledge_unit_ids": [
+            "ku_historie_tormod_reiste_f_rst_stei_1830b38b15",
+            "ku_historie_seinare_vart_han_del_av__e2f6cf1f06"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_16",
+          "quiz_id": "historie_grindheim_runestein_set_3_q2",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kva kan innskrifta dokumentere utan at vi fyller inn meir enn kjelda seier?",
+          "options": [
+            "To namn og eit far–son-forhold",
+            "Yrka og bustadene til begge Tormodane",
+            "Ei full livshistorie for Tormod Svidande"
+          ],
+          "answer": "To namn og eit far–son-forhold",
+          "answerIndex": 0,
+          "knowledge": "Runeinnskrifta er sterk dokumentasjon for namna og slektsrelasjonen ho nemner. Ho er samstundes for kort til å gi ein full biografi.",
+          "difficulty": 3,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Innskrifta dokumenterer to namn og eit far–son-forhold, men gir ikkje ein full biografi om dei to Tormodane.",
+          "claim_id": "claim_grindheim_runestein_16",
+          "primary_knowledge_unit_id": "ku_historie_runeinnskrifta_er_sterk__a19180829e",
+          "knowledge_unit_ids": [
+            "ku_historie_runeinnskrifta_er_sterk__a19180829e",
+            "ku_historie_ho_er_samstundes_for_kor_ab09dc7dfe"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_17",
+          "quiz_id": "historie_grindheim_runestein_set_3_q3",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kva kan runene og krossen på same stein tryggast brukast til å vise?",
+          "options": [
+            "At runeskrift forsvann før kristne symbol kom til Etne",
+            "At runeskrift og kristen symbolbruk fanst saman",
+            "Nøyaktig kva kvar av dei to Tormodane trudde"
+          ],
+          "answer": "At runeskrift og kristen symbolbruk fanst saman",
+          "answerIndex": 1,
+          "knowledge": "Monumentet kombinerer runeinnskrift med ein innhogd kross i same tidslag. Det viser kulturell samtid, men avgjer ikkje alle spørsmål om personleg tru.",
+          "difficulty": 3,
+          "question_type": "context",
+          "year": null,
+          "emne_id": "em_his_kirke_kloster_middelalder",
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Runer og kross på same minnesmerke viser at runeskrift og kristen symbolbruk fanst saman, men fortel ikkje åleine alt om trua til personane.",
+          "claim_id": "claim_grindheim_runestein_17",
+          "primary_knowledge_unit_id": "ku_historie_monumentet_kombinerer_ru_8411329f09",
+          "knowledge_unit_ids": [
+            "ku_historie_monumentet_kombinerer_ru_8411329f09",
+            "ku_historie_det_viser_kulturell_samt_d161560540"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_18",
+          "quiz_id": "historie_grindheim_runestein_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kva observasjon gir den beste sporlesinga av Grindheimsteinen?",
+          "options": [
+            "Å sjå berre på dei moderne boltane",
+            "Å leite etter etternamnet Svidande i ei moderne telefonliste",
+            "Å lese runene, krossen og plasseringa ved kyrkjeveggen saman"
+          ],
+          "answer": "Å lese runene, krossen og plasseringa ved kyrkjeveggen saman",
+          "answerIndex": 2,
+          "knowledge": "Sporlesing koplar fleire konkrete detaljar før ein tolkar. Her viser tekst, symbol og plassering ulike lag i historia til same stein.",
+          "difficulty": 3,
+          "question_type": "observation",
+          "year": null,
+          "emne_id": "em_his_spor_materialitet",
+          "method_id": "met_sporlesning",
+          "core_concepts": [
+            "sporlesing",
+            "materialitet",
+            "historiske lag"
+          ],
+          "concept_focus": [
+            "sporlesing"
+          ],
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Runene på smalsida, krossen på breisida og plasseringa ved kyrkjeveggen er konkrete spor som kan lesast saman.",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_grindheim_runestein_18",
+          "primary_knowledge_unit_id": "ku_historie_sporlesing_koplar_fleire_a09127c88c",
+          "knowledge_unit_ids": [
+            "ku_historie_sporlesing_koplar_fleire_a09127c88c",
+            "ku_historie_her_viser_tekst_symbol_o_4c85cc2b14"
+          ],
+          "concept_ids": [
+            "co_historie_sporlesing_1bfd36aadc",
+            "co_historie_materialitet_657cac5ea7",
+            "co_historie_historiske_lag_818ea0eff4"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_19",
+          "quiz_id": "historie_grindheim_runestein_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Korleis bør ei kjeldekritisk framstilling behandle tilnamnet Svidande?",
+          "options": [
+            "Nemne forslaget om svirydding, men halde fast at tydinga er usikker",
+            "Slå fast at namnet sikkert viser til svirydding",
+            "Fjerne tilnamnet fordi tydinga ikkje er løyst"
+          ],
+          "answer": "Nemne forslaget om svirydding, men halde fast at tydinga er usikker",
+          "answerIndex": 0,
+          "knowledge": "Kringom nemner ei mogleg kopling til svirydding, men understrekar at ho er langt frå sikker. Kjelda tillèt derfor eit forslag med atterhald, ikkje ei fastslått forklaring.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "year": null,
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "method_id": "met_kildekritikk",
+          "core_concepts": [
+            "kjeldekritikk",
+            "tolkingsvisse",
+            "namnetolking"
+          ],
+          "concept_focus": [
+            "kjeldekritikk"
+          ],
+          "source": [
+            "kringom_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Forslaget om at Svidande viser til svirydding er usikkert og kan ikkje presenterast som ei løyst namnetolking.",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_grindheim_runestein_19",
+          "primary_knowledge_unit_id": "ku_historie_kringom_nemner_ei_mogleg_c8dffe4384",
+          "knowledge_unit_ids": [
+            "ku_historie_kringom_nemner_ei_mogleg_c8dffe4384",
+            "ku_historie_kjelda_tillet_derfor_eit_d91e4c2aca"
+          ],
+          "concept_ids": [
+            "co_historie_kjeldekritikk_3383e9e245",
+            "co_historie_tolkingsvisse_ed04083643",
+            "co_historie_namnetolking_3cf09b8203"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_20",
+          "quiz_id": "historie_grindheim_runestein_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kva spørsmål ville ei Bloch-inspirert undersøking først stille til innskrifta?",
+          "options": [
+            "Kva ukjend livshistorie kan vi dikte mellom runene?",
+            "Kva kan innskrifta dokumentere, og kvar går grensene hennar?",
+            "Kva moderne tyding av Svidande er mest spennande?"
+          ],
+          "answer": "Kva kan innskrifta dokumentere, og kvar går grensene hennar?",
+          "answerIndex": 1,
+          "knowledge": "Marc Bloch la vekt på å stille presise spørsmål til kjelder. Grindheim-innskrifta dokumenterer namn og slektskap, men ber ikkje ein full biografi eller ei sikker namnetolking.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "year": null,
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "method_id": "met_kildekritikk",
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "marc_bloch",
+          "thinker_name": "Marc Bloch",
+          "work": "The Historian's Craft",
+          "theory_focus": "spørsmål til kjelda og grensene for kva ho kan dokumentere",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "marc_bloch",
+            "work": "The Historian's Craft",
+            "why_it_helps": "Blochs kjeldearbeid skil det innskrifta faktisk dokumenterer frå biografiske og språklege slutningar ho ikkje kan bere."
+          },
+          "core_concepts": [
+            "kjeldekritikk",
+            "dokumentasjon",
+            "tolkingsgrense"
+          ],
+          "concept_focus": [
+            "kjeldekritikk"
+          ],
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Innskrifta oppgir namna og far–son-forholdet, medan ho ikkje gir ein full biografi eller ei sikker forklaring på tilnamnet Svidande.",
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_grindheim_runestein_20",
+          "primary_knowledge_unit_id": "ku_historie_marc_bloch_la_vekt_pa_a__43005a2062",
+          "knowledge_unit_ids": [
+            "ku_historie_marc_bloch_la_vekt_pa_a__43005a2062",
+            "ku_historie_grindheim_innskrifta_dok_6d32e7e466"
+          ],
+          "concept_ids": [
+            "co_historie_kjeldekritikk_3383e9e245",
+            "co_historie_dokumentasjon_798499e562",
+            "co_historie_tolkingsgrense_2b50b734a9"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_runestein_quiz_21",
+          "quiz_id": "historie_grindheim_runestein_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "grindheim_runestein",
+          "targetId": "grindheim_runestein",
+          "question_scope": "place",
+          "question": "Kvifor er oppattreisinga i 1905 viktig i ei Nora-inspirert lesing?",
+          "options": [
+            "Ho beviser den opphavlege plasseringa frå 1000-talet",
+            "Ho gir ei sikker forklaring på tilnamnet Svidande",
+            "Ho gjorde eit eldre personminne synleg som offentleg kulturminne på nytt"
+          ],
+          "answer": "Ho gjorde eit eldre personminne synleg som offentleg kulturminne på nytt",
+          "answerIndex": 2,
+          "knowledge": "Pierre Nora undersøkte korleis samfunn gjer fortida nærverande gjennom minnestader. Oppattreisinga flytta steinen frå skjult murmateriale til eit synleg og formidla minne ved kyrkja.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "year": 1905,
+          "emne_id": "em_his_kulturminner_bevaring",
+          "method_id": "met_minneanalyse",
+          "topic_hook_id": "his_historiebruk_minne",
+          "thinker_id": "pierre_nora",
+          "thinker_name": "Pierre Nora",
+          "work": "Realms of Memory",
+          "theory_focus": "overgangen frå eldre personminne til offentleg kulturminne",
+          "theory_ref": {
+            "topic_hook_id": "his_historiebruk_minne",
+            "thinker_id": "pierre_nora",
+            "work": "Realms of Memory",
+            "why_it_helps": "Noras minnestadsperspektiv viser kvifor den seinare oppattreisinga er ein del av historia, ikkje berre ei praktisk flytting."
+          },
+          "core_concepts": [
+            "minnestad",
+            "historiebruk",
+            "kulturminne"
+          ],
+          "concept_focus": [
+            "minnestad"
+          ],
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oppattreisinga i 1905 gjorde steinen synleg på nytt som offentleg minne og kulturminne etter hundreår i muren.",
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "claim_id": "claim_grindheim_runestein_21",
+          "primary_knowledge_unit_id": "ku_historie_pierre_nora_unders_kte_k_bb9bda6801",
+          "knowledge_unit_ids": [
+            "ku_historie_pierre_nora_unders_kte_k_bb9bda6801",
+            "ku_historie_oppattreisinga_flytta_st_3d27a62c66"
+          ],
+          "concept_ids": [
+            "co_historie_minnestad_5e968e8d73",
+            "co_historie_historiebruk_fda8c699f4",
+            "co_historie_kulturminne_c393a1efb0"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}
