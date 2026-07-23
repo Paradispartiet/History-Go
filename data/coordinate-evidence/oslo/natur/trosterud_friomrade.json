@@ -2,57 +2,97 @@
   "schemaVersion": "1.0",
   "placeId": "trosterud_friomrade",
   "placeFile": "data/places/natur/oslo/places_oslo_alna.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9305,
-    "lon": 10.846,
-    "r": 220,
-    "coordStatus": "needs_source",
-    "coordSource": "named_area_identity_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Kommunale planer dokumenterer grøntområder, parker og forbindelser på Trosterud og Haugerud, men kontrollen fant ikke et stabilt offisielt eller eksakt OSM-objekt med navnet «Trosterud friområde». Det eksisterende punktet beholdes kun som legacy inntil recorden kan kobles til et konkret navngitt friområde eller avgrenset arealobjekt."
+    "lat": 59.91881406647298,
+    "lon": 10.864232430094178,
+    "r": 180,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 220842445 – Lille Wembley, source-identified by Oslo kommune and Lovdata",
+    "coordType": "recreation_area_anchor",
+    "coordNote": "Batch 166 pensjonerer den repo-syntetiske identiteten «Trosterud friområde» og erstatter den med det konkrete navngitte friluftsområdet Lille Wembley, mens placeId beholdes for kompatibilitet. Oslo kommune dokumenterer Lille Wembley som et statlig sikret friluftsområde og møteplass ved inngangen til marka, tilrettelagt i 2020 for lek, aktivitet, naturmiljø og sosialt opphold. Lovdata dokumenterer Lille Wembley, Haugerud som kommunalt dressurområde for hund. Fresh OSM way 220842445 er eksakt navngitt «Lille Wembley», er et lukket rekreasjonsområde og bærer leisure=dog_park. Canonical lat/lon er deterministisk polygoncentroid for denne eksakte arealgeometrien. Det gamle legacy-punktet, nearest/first-hit og de bredere Trosterud/Haugerud-planområdene brukes ikke som koordinatkilde."
   },
   "identity": {
-    "currentName": "Trosterud friområde",
-    "resolvedIdentity": "Uavklart grøntområde på Trosterud",
-    "identityStatus": "conflict",
-    "identityProblem": "Eksakt fysisk entitet med navnet «Trosterud friområde» er ikke dokumentert.",
+    "currentName": "Lille Wembley",
+    "resolvedIdentity": "Lille Wembley – konkret statlig sikret frilufts- og aktivitetsområde på Haugerud",
+    "identityStatus": "resolved",
+    "identityProblem": "",
     "locatorTypeCandidate": "natural_area",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "offisiell navngitt arealgeometri eller annet stabilt fysisk objekt"
-  ],
+  "requiredEvidence": [],
   "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Lille Wembley",
+      "sourceUrl": "https://www.openstreetmap.org/way/220842445",
+      "sourceObjectId": "osm-way:220842445",
+      "sourceQuality": "unique_exact_named_recreation_polygon",
+      "finding": "Fresh way 220842445 is exactly named Lille Wembley, is a closed recreation-area polygon and carries leisure=dog_park. The deterministic polygon centroid is 59.91881406647298, 10.864232430094178.",
+      "canVerifyCoordinate": true,
+      "reason": "Exact named physical area geometry with the documented local identity and a compatible recreation-area object type."
+    },
     {
       "sourceProvider": "municipality",
       "sourceName": "Oslo kommune – Planprogram for Trosterud og Haugerud",
       "sourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/planprogram-for-trosterud-og-haugerud",
-      "sourceObjectId": "oslo-kommune:trosterud-haugerud-planprogram",
-      "sourceQuality": "official_area_planning_context",
-      "finding": "Planprogrammet dokumenterer offentlige rom, parker og forbindelser i området, men ikke ett areal med recordens eksakte navn.",
+      "sourceObjectId": "oslo-kommune:trosterud-haugerud:lille-wembley",
+      "sourceQuality": "official_named_public_recreation_identity",
+      "finding": "Kommunen dokumenterer Lille Wembley som møteplass ved inngangen til marka, tilrettelagt i 2020 for lek, aktivitet, grilling, naturmiljø og insekter, og som statlig sikret friluftsområde.",
       "canVerifyCoordinate": false,
-      "reason": "Områdekontekst er ikke nok til å velge et konkret friområdepunkt."
+      "reason": "Fastsetter den korrekte fysiske identiteten og funksjonen; eksakt arealgeometri kommer fra OSM."
+    },
+    {
+      "sourceProvider": "lovdata",
+      "sourceName": "Forskrift om dressurområder for hund, Oslo kommune",
+      "sourceUrl": "https://lovdata.no/forskrift/2007-05-08-1002",
+      "sourceObjectId": "lovdata:FOR-2007-05-08-1002:lille-wembley-haugerud",
+      "sourceQuality": "official_legal_named_area_identity",
+      "finding": "Forskriften navngir Lille Wembley, Haugerud som ett av kommunens avgrensede dressurområder for hund.",
+      "canVerifyCoordinate": false,
+      "reason": "Uavhengig offentlig identitetskryssjekk for det navngitte området."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:220842445",
+      "canApplyToPlace": true
+    },
+    {
       "sourceProvider": "municipality",
-      "sourceObjectId": "oslo-kommune:trosterud-haugerud-planprogram",
+      "sourceObjectId": "oslo-kommune:trosterud-haugerud:lille-wembley",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:220842445",
+      "lat": 59.91881406647298,
+      "lon": 10.864232430094178,
+      "coordRole": "area_anchor",
+      "geometryType": "Polygon",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91881406647298,
+      "lon": 10.864232430094178,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Kommunale planer dokumenterer grøntområder, parker og forbindelser på Trosterud og Haugerud, men kontrollen fant ikke et stabilt offisielt eller eksakt OSM-objekt med navnet «Trosterud friområde». Det eksisterende punktet beholdes kun som legacy inntil recorden kan kobles til et konkret navngitt friområde eller avgrenset arealobjekt.",
-    "nextAction": "Identifiser konkret navngitt friområde eller erstatt recorden med et dokumentert fysisk områdeobjekt."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Lille Wembleys eksakte navngitte arealgeometri er anvendt på canonical place; den syntetiske Trosterud-friområde-identiteten er pensjonert."
   },
   "notes": [
-    "Kommunale planer dokumenterer grøntområder, parker og forbindelser på Trosterud og Haugerud, men kontrollen fant ikke et stabilt offisielt eller eksakt OSM-objekt med navnet «Trosterud friområde». Det eksisterende punktet beholdes kun som legacy inntil recorden kan kobles til et konkret navngitt friområde eller avgrenset arealobjekt."
+    "Batch 166 pensjonerer den repo-syntetiske identiteten «Trosterud friområde» og erstatter den med det konkrete navngitte friluftsområdet Lille Wembley, mens placeId beholdes for kompatibilitet. Oslo kommune dokumenterer Lille Wembley som et statlig sikret friluftsområde og møteplass ved inngangen til marka, tilrettelagt i 2020 for lek, aktivitet, naturmiljø og sosialt opphold. Lovdata dokumenterer Lille Wembley, Haugerud som kommunalt dressurområde for hund. Fresh OSM way 220842445 er eksakt navngitt «Lille Wembley», er et lukket rekreasjonsområde og bærer leisure=dog_park. Canonical lat/lon er deterministisk polygoncentroid for denne eksakte arealgeometrien. Det gamle legacy-punktet, nearest/first-hit og de bredere Trosterud/Haugerud-planområdene brukes ikke som koordinatkilde."
   ]
 }
