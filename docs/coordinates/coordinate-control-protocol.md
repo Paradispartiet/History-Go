@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 395 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 396 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -587,6 +587,10 @@ Batch 150 (2026-07-23) retter den tidligere «Østensjøvannet fugletårn»-iden
 | 151 | `bogerudmyra` | Bogerudmyra | verified_geometry | `osm-relation:4106652` |
 
 Batch 151 (2026-07-23) løser Bogerudmyra som et konkret navngitt våtmarksobjekt sør for Østensjøvannet. Eksakt-name-auditen finner flere Bogerudmyra-navnetreff, men objekttypefilteret skiller entydig ut OSM relation 4106652 som eneste fysiske våtmark; de øvrige treffene er kollektivobjekter. Relation 4106652 er tagget natural=wetland, wetland=marsh og type=multipolygon. Lovdata og Østensjøvannets Venner dokumenterer Bogerudmyra som del av Østensjøvannet naturreservat. Canonical lat/lon beregnes deterministisk som arealvektet centroid av MultiPolygon-geometrien. Legacy-punktet og nearest/first-hit brukes ikke.
+
+| 153 | `ostensjovannet_sor` | Bølerbekkens utløp i Østensjøvannet | verified_geometry | `osm-node:1110773258` |
+
+Batch 153 (2026-07-23) erstatter den repo-syntetiske «Østensjøvannet sør»-identiteten med det konkrete hydrologiske munningspunktet der Bølerbekken møter innsjøen. Fresh OSM validerer way 1456532473 som Bølerbekken/waterway=stream og relation 33561 som Østensjøvannet/water=lake. Bekkewayen ender i node 1110773258, som samtidig ligger på outer-memberway 1122249176 i innsjø-relationen. Østensjøvannets Venner dokumenterer Bølerbekken som en viktig tilløpsbekk og fremhever sørenden/Bølerbekkens utløp som fuglerikt observasjonsområde. Canonical punkt er den eksakte delte topologinoden; legacy-punktet og nearest/first-hit brukes ikke.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 

@@ -149,29 +149,29 @@
   },
   {
     "id": "ostensjovannet_sor",
-    "name": "Østensjøvannet sør",
-    "lat": 59.8834,
-    "lon": 10.8272,
+    "name": "Bølerbekkens utløp i Østensjøvannet",
+    "lat": 59.8833054,
+    "lon": 10.8331603,
     "r": 120,
     "category": "natur",
-    "desc": "Sørlig våtmarks- og vannkantområde med rik kantflora og vannfugl.",
+    "desc": "Hydrologisk munningspunkt der Bølerbekken møter Østensjøvannet i den sørlige delen av våtmarksområdet.",
     "tags": [
+      "bekk",
+      "utlop",
       "vatmark",
-      "innsjo",
-      "kantflora",
       "fugleliv"
     ],
     "routeId": "ostensjovannet_vatmark",
-    "sourceHint": "Koordinat lagt ved sørlig vannkant i naturreservatet basert på kartlagt våtmarkssone.",
-    "coordType": "legacy_unverified",
-    "coordStatus": "needs_source",
-    "coordSource": "ostensjovannet_sor_canonical_geometry_unresolved",
-    "coordVerifiedAt": "2026-07-21",
+    "sourceHint": "Canonical punkt er den eksakte delte noden mellom navngitt Bølerbekken-geometri og en outer-memberway i Østensjøvannet-relationen.",
+    "coordType": "hydrological_mouth_topology_node",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 1456532473 (Bølerbekken) + Østensjøvannet relation 33561, shared node 1110773258",
+    "coordVerifiedAt": "2026-07-23",
     "emne_ids": [
       "em_natur_vern_forvaltning_politikk",
       "em_natur_naturopplevelse_folkehelse"
     ],
-    "popupDesc": "Sørsonen ved Østensjøvannet kombinerer vannkant, stier og åpne partier med utsyn over reservatet. Terrenget her gir en annen rytme enn i de tettere sivområdene, med mer lesbare linjer mellom turvei og vannflate. Området brukes jevnlig av turgåere samtidig som naturpreget er tydelig bevart. Stedet kompletterer forståelsen av hvordan ulike deler av vannet har ulik karakter.",
+    "popupDesc": "Her møter Bølerbekken Østensjøvannet etter å ha kommet ned fra Bøler-området. Munningspunktet knytter bekkens rennende vann direkte til innsjøens våtmarkssystem og er et naturlig sted å lese hvordan tilløpsbekker tilfører vann, materiale og leveområder til en næringsrik byinnsjø. Sørenden er samtidig et godt område for å observere fuglelivet rundt åpent vann og våtmark.",
     "underbadge_ids": [
       "innsjo",
       "vatmark",
@@ -181,8 +181,27 @@
     "visual": {
       "designCode": "waterfront_miniature"
     },
-    "locatorType": "natural_area",
-    "coordNote": "Recorden beskriver en retningsbestemt sørsone uten en egen eksplisitt navngitt eller avgrenset kildegeometri. Hele reservatpolygonet kan ikke brukes som proxy for ett lokalt sørpunkt."
+    "locatorType": "route",
+    "coordNote": "Batch 153 erstatter den repo-syntetiske «Østensjøvannet sør»-identiteten med det konkrete hydrologiske munningspunktet der Bølerbekken møter innsjøen. Fresh OSM validerer way 1456532473 som name=Bølerbekken/waterway=stream og relation 33561 som Østensjøvannet natural=water/water=lake. Bekkewayen ender i node 1110773258, som samtidig ligger på outer-memberway 1122249176 i innsjø-relationen. Østensjøvannets Venner dokumenterer Bølerbekken som en viktig tilløpsbekk som renner ut i vannet og fremhever sørenden/Bølerbekkens utløp som fuglerikt observasjonsområde. Legacy-punktet og nearest/first-hit brukes ikke.",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-node:1110773258",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSourceId": "osm-node:1110773258",
+    "coordSourceUrl": "https://www.openstreetmap.org/node/1110773258",
+    "nature_profile": {
+      "type": "bekkeutløp / våtmark / innsjøkant",
+      "title": "Bølerbekken møter Østensjøvannet",
+      "summary": "Bølerbekkens utløp markerer et konkret hydrologisk møtepunkt i sørenden av Østensjøvannet. Her går rennende bekk over i innsjøens større vannflate og våtmarkssystem. Natur-rundingen viser hvordan en tilløpsbekk binder nedbørsfeltet sammen med innsjøen og skaper et lokalt overgangsmiljø som også er viktig for fugleobservasjon.",
+      "themes": [
+        "tilløpsbekk og innsjø",
+        "hydrologisk munningspunkt",
+        "vanntransport fra nedbørsfeltet",
+        "våtmark i sørenden",
+        "fugleliv ved bekkeutløpet",
+        "sammenheng i vassdraget"
+      ]
+    }
   },
   {
     "id": "bogerudmyra",

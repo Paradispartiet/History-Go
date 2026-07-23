@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T03:19:10.016Z
+Generert: 2026-07-23T03:33:11.990Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -262,7 +262,7 @@ Generert: 2026-07-23T03:19:10.016Z
 | ostensjovannet_fugletarn | data/coordinate-evidence/oslo/natur/ostensjovannet_fugletarn.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ostensjovannet_nord | data/coordinate-evidence/oslo/natur/ostensjovannet_nord.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ostensjovannet_sivbelte | data/coordinate-evidence/oslo/natur/ostensjovannet_sivbelte.json | needs_research | needs_geometry | OK |
-| ostensjovannet_sor | data/coordinate-evidence/oslo/natur/ostensjovannet_sor.json | needs_research | needs_geometry | OK |
+| ostensjovannet_sor | data/coordinate-evidence/oslo/natur/ostensjovannet_sor.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ostensjovannet | data/coordinate-evidence/oslo/natur/ostensjovannet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | rambergoya | data/coordinate-evidence/oslo/natur/rambergoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | seilduksfabrikken_nydalen | data/coordinate-evidence/oslo/natur/seilduksfabrikken_nydalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
