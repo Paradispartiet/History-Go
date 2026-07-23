@@ -1,0 +1,591 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "grindheimsveien_nord_gravfelt",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1123,
+    "selection_sha256": "d9bd403561e698b97cabaaf2887dfe6cab26e4db09ca925f92072a9b917fd458",
+    "category_id": "historie",
+    "target_id": "grindheimsveien_nord_gravfelt"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 16370,
+      "sha256": "f49bdb526d27d99bedcc8a79977aaec9d531bf7cdca94175e8217fa522536e44",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 323744,
+      "sha256": "455b9ca591ac33e7c5ca69912692780de99d4b7d109d362a6303613f7ef54f4d",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 64833,
+      "sha256": "fdd3eef114c6578d8fa357e4eae1bd9ed21a0208e863e9ac809a9bc92bbc3e15",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 26040,
+      "sha256": "cc7b56cd47f7faa92cfde6fe25b725f3fdbc9cd6e1b9615ba8e5303df23ca3b3",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 10420,
+      "sha256": "f64a00bd951ae44ea19d4d2fba3628bfaf16b6688c21494c90fd59bbcb91d5f1",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 3642,
+      "sha256": "a0b22f8e1091c459b700b3782b9841323c8cfc3dac1e8c92e416dc01c2d6ca04",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/grindheimsveien_nord_gravfelt.json",
+      "bytes": 13671,
+      "sha256": "91d393aff3683f25a2acfac37df2a2b33ca1f773a5f179e10e22c70c5aef08d6"
+    },
+    "target": {
+      "path": "data/places/historie/vestland/etne/grindheimsveien_nord_gravfelt.json",
+      "bytes": 8089,
+      "sha256": "2c34f88090372c7a46dc3a5dc196710fecf6ebaed1261825146801bef4a9248a"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1055,
+      "selection_sha256": "27b816ab50496ffc4d192e0ae3953a5f882e4358176245d57ddf6f9d64dcf720"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 1,
+        "selection_bytes": 348,
+        "selection_sha256": "9811c02cd4f835684c3b427efdd31c48e7c8340cdbddd807e58e310361481318"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_etne_historie_rounds_batch3.json",
+        "matches": 1,
+        "selection_bytes": 1900,
+        "selection_sha256": "d8efc3c3aeb362edb01f5f65b776f0bdd67786980e27efcfd393cba6c7ef475c"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+  "source_registry": {
+    "place_record_grindheimsveien": {
+      "url": "https://github.com/Paradispartiet/History-Go/blob/main/data/places/historie/vestland/etne/grindheimsveien_nord_gravfelt.json",
+      "source_type": "canonical_place_record",
+      "review_status": "reviewed",
+      "review_note": "Brukt for markøromfanget, koplinga til kulturminne-ID 90213-1 og den verifiserte avgrensinga mot heile Grindheim–Rygg-landskapet."
+    },
+    "kringom_etne": {
+      "url": "https://www.kringom.no/nb/sunnhordland/etne",
+      "source_type": "regional_cultural_history",
+      "review_status": "reviewed",
+      "review_note": "Brukt for tidsbreidda i Etne, gravminne ved dyrka mark, monumenttypane, minst 250 på Grindheim og Rygg samla og samanlikninga med Støle–Sørheim–Austrheim."
+    },
+    "kringom_grindheim": {
+      "url": "https://www.kringom.no/nb/grindheim-kyrkje",
+      "source_type": "regional_cultural_history",
+      "review_status": "reviewed",
+      "review_note": "Brukt for Grindheim som hovudgard, dei vide jordbruksterrassane og den sannsynlege dateringa av gravsamlinga vest for kyrkja."
+    },
+    "etne_archaeological_register": {
+      "url": "https://www.etne.kommune.no/_f/p1/i4eafad86-cabd-457e-966f-ded5c38a9ab0/vedlegg-1-liste-over-arkeologiske-kulturminne.pdf",
+      "source_type": "municipal_archaeological_register",
+      "review_status": "reviewed",
+      "review_note": "Brukt for klassifiseringa av 90213-1 som gravminne og for å dokumentere at Grindheim og Rygg har fleire separate registrerte gravminne."
+    },
+    "snl_gravhaug": {
+      "url": "https://snl.no/gravhaug",
+      "source_type": "scholarly_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Brukt berre for det faglege skiljet mellom gravhaug bygd av jord og gravrøys bygd av stein, med atterhald om blandingsformer."
+    }
+  },
+  "source_review_status": "reviewed",
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 12,
+      "emner": 45,
+      "topic_hooks": 15,
+      "methods": 12
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_kildekritikk_arkiv_spor",
+        "title": "Kildekritikk, arkiv og spor",
+        "score": 100
+      },
+      {
+        "id": "em_his_kilder_taushet_blindsoner",
+        "title": "Kilder, taushet og blindsoner",
+        "score": 100
+      },
+      {
+        "id": "em_his_kulturminner_bevaring",
+        "title": "Kulturminner og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_historiebruk_minne",
+        "title": "Historiebruk og minnekultur",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_kildekritikk",
+        "title": "Kildekritikk",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_tid_periodisering",
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_spor_materialitet",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_kilder_taushet_blindsoner",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk",
+      "his_historiebruk_minne"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_for_etter_historisk",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [
+      "marc_bloch",
+      "pierre_nora"
+    ],
+    "works": [
+      "The Historian's Craft",
+      "Realms of Memory"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Markøren representerer ei avgrensa bevart gravminnegruppe nord for Grindheimsvegen, ikkje heile Grindheim–Rygg-landskapet.",
+      "source_ids": [
+        "place_record_grindheimsveien",
+        "etne_archaeological_register"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den lokale gravminnegruppa høyrer til det større førhistoriske gravlandskapet på Grindheim og Rygg.",
+      "source_ids": [
+        "place_record_grindheimsveien",
+        "kringom_etne"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kringom oppgir at det historisk har vore minst 250 haugar og røysar på Grindheim og Rygg samla.",
+      "source_ids": [
+        "kringom_etne"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Store gravhaugar er framleis synlege ved den lokale markøren langs Grindheimsvegen.",
+      "source_ids": [
+        "place_record_grindheimsveien"
+      ],
+      "source_origin": "observation",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kringom daterer den store gravsamlinga vest for Grindheim kyrkje sannsynlegvis til dei første hundreåra av vår tidsrekning.",
+      "source_ids": [
+        "kringom_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Etne kommune sitt register fører Grindheim-lokaliteten 90213-1 som gravminne.",
+      "source_ids": [
+        "etne_archaeological_register"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Kringom oppgir at gravfunna i Etne samla spenner frå eldre bronsealder til slutten av vikingtida kring år 1000.",
+      "source_ids": [
+        "kringom_etne"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Dei vide terrassane på Grindheim gav gode vilkår for åkerbruk og busetnad.",
+      "source_ids": [
+        "kringom_grindheim"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Grindheim kyrkje ligg i det same gardslandskapet som dei førhistoriske gravminna, men er eit seinare historisk lag.",
+      "source_ids": [
+        "place_record_grindheimsveien",
+        "kringom_grindheim"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Kringom omtalar både haugar og røysar i det historiske Grindheim–Rygg-landskapet.",
+      "source_ids": [
+        "kringom_etne"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Gravminna, gardsterrassane, ferdselslina og kyrkjestaden viser bruk av same terreng gjennom fleire periodar utan å vere samtidige anlegg.",
+      "source_ids": [
+        "place_record_grindheimsveien",
+        "kringom_grindheim"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Talet minst 250 gjeld eit større historisk landskap og kan ikkje brukast som ei teljing av gravminna ved denne markøren i dag.",
+      "source_ids": [
+        "place_record_grindheimsveien",
+        "kringom_etne"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "I dei indre jordbruksområda i Etne ligg gravhaugar og røysar ofte ved åkerkanten eller i sjølve åkeren.",
+      "source_ids": [
+        "kringom_etne"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Det kommunale registeret har fleire separate gravminnepostar på både Grindheim og Rygg.",
+      "source_ids": [
+        "etne_archaeological_register"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Arkeologar skil vanlegvis gravhaugar bygde av jord frå gravrøyser bygde av stein, sjølv om blandingsformer finst.",
+      "source_ids": [
+        "kringom_etne",
+        "snl_gravhaug"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "guidance_basis": [
+        "data/fag/historie/methods_historie_canonical_v4_5.json",
+        "data/fag/historie/emner_historie_canonical_v4_5.json"
+      ],
+      "method_id": "met_sporlesning"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Eit fragmentert kulturmiljø er eit tidlegare større landskap som no må lesast gjennom bevarte delar og dokumenterte tap.",
+      "source_ids": [
+        "place_record_grindheimsveien",
+        "kringom_etne"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "guidance_basis": [
+        "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+        "data/fag/historie/methods_historie_canonical_v4_5.json",
+        "data/fag/historie/emner_historie_canonical_v4_5.json"
+      ],
+      "method_id": "met_minneanalyse",
+      "topic_hook_id": "his_historiebruk_minne",
+      "thinker_id": "pierre_nora",
+      "work": "Realms of Memory"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Eit områdeanker representerer ei avgrensa registrert lokalitet og må ikkje lesast som sentrum for alle gravminna i det historiske landskapet.",
+      "source_ids": [
+        "place_record_grindheimsveien",
+        "etne_archaeological_register"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "guidance_basis": [
+        "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+        "data/fag/historie/methods_historie_canonical_v4_5.json",
+        "data/fag/historie/emner_historie_canonical_v4_5.json"
+      ],
+      "method_id": "met_kildekritikk",
+      "topic_hook_id": "his_kildekritikk",
+      "thinker_id": "marc_bloch",
+      "work": "The Historian's Craft"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Det større gravlandskapet kan undersøkast ved å kombinere synlege monument, eldre registreringar, kart, foto og arkeologiske funn.",
+      "source_ids": [
+        "place_record_grindheimsveien",
+        "kringom_etne",
+        "etne_archaeological_register"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_kilder_taushet_blindsoner"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Grindheim–Rygg og Støle–Sørheim–Austrheim er to separate store gravlandskap med ulike omfangstal og geografiske avgrensingar.",
+      "source_ids": [
+        "kringom_etne",
+        "place_record_grindheimsveien"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "At gravminne, veg og kyrkje ligg i same terreng viser stadskontinuitet, men beviser ikkje at dei vart bygde eller brukte samtidig.",
+      "source_ids": [
+        "place_record_grindheimsveien",
+        "kringom_grindheim"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_grindheimsveien_nord_gravfelt_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Historisk før/etter-analyse må halde dagens bevarte gravminne skilde frå det større omfanget som eldre kjelder dokumenterer.",
+      "source_ids": [
+        "place_record_grindheimsveien",
+        "kringom_etne",
+        "etne_archaeological_register"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "guidance_basis": [
+        "data/fag/historie/methods_historie_canonical_v4_5.json",
+        "data/fag/historie/emner_historie_canonical_v4_5.json"
+      ],
+      "method_id": "met_for_etter_historisk"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_grindheim_gravfolket",
+      "source_file": "data/relations.json",
+      "summary": "Gravhaugane viser menneskeleg minnearbeid over lang tid, men gir ikkje namn på personane."
+    },
+    {
+      "type": "story",
+      "id": "st_grindheim_gravfelt_talet_og_restane",
+      "source_file": "data/stories/stories_etne_historie_rounds_batch3.json",
+      "summary": "Dei synlege haugane ved vegen er berre ei bevart kjerne i eit gravlandskap med minst 250 registrerte minne."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_grindheimsveien_nord_gravfelt_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_grindheimsveien_nord_gravfelt_01",
+        "claim_grindheimsveien_nord_gravfelt_02",
+        "claim_grindheimsveien_nord_gravfelt_03",
+        "claim_grindheimsveien_nord_gravfelt_04",
+        "claim_grindheimsveien_nord_gravfelt_05",
+        "claim_grindheimsveien_nord_gravfelt_06",
+        "claim_grindheimsveien_nord_gravfelt_07"
+      ]
+    },
+    {
+      "set_id": "historie_grindheimsveien_nord_gravfelt_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_grindheimsveien_nord_gravfelt_08",
+        "claim_grindheimsveien_nord_gravfelt_09",
+        "claim_grindheimsveien_nord_gravfelt_10",
+        "claim_grindheimsveien_nord_gravfelt_11",
+        "claim_grindheimsveien_nord_gravfelt_12",
+        "claim_grindheimsveien_nord_gravfelt_13",
+        "claim_grindheimsveien_nord_gravfelt_14"
+      ]
+    },
+    {
+      "set_id": "historie_grindheimsveien_nord_gravfelt_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_grindheimsveien_nord_gravfelt_15",
+        "claim_grindheimsveien_nord_gravfelt_16",
+        "claim_grindheimsveien_nord_gravfelt_17",
+        "claim_grindheimsveien_nord_gravfelt_18",
+        "claim_grindheimsveien_nord_gravfelt_19",
+        "claim_grindheimsveien_nord_gravfelt_20",
+        "claim_grindheimsveien_nord_gravfelt_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
+    },
+    "ratios": {
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
+    }
+  }
+}
