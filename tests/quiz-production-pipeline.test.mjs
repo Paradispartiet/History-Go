@@ -170,6 +170,52 @@ test("builds the Grindheimsvegen grave-field context before quiz writing", async
   assert.deepEqual(savedContext, context);
 });
 
+test("builds the Høyland grave-mound context before quiz writing", async () => {
+  const context = await buildQuizProductionContext({
+    categoryId: "historie",
+    targetId: "hoyland_gravhaug_etne"
+  });
+
+  assert.equal(context.profile, "narrow_3x7");
+  assert.equal(context.required_inputs_loaded.length, 7);
+  assert.equal(Object.keys(context.resolved_files).length, 7);
+  assert.ok(Object.values(context.resolved_files).every((record) => record.bytes > 0 && record.sha256.length === 64));
+  assert.equal(context.manifest.category_id, "historie");
+  assert.equal(context.manifest.target_id, "hoyland_gravhaug_etne");
+  assert.equal(context.manifest.matches, 1);
+  assert.equal(context.considered_curriculum.counts.pensum_modules, 12);
+  assert.equal(context.considered_curriculum.counts.emner, 45);
+  assert.equal(context.considered_curriculum.counts.topic_hooks, 15);
+  assert.equal(context.considered_curriculum.counts.methods, 12);
+  assert.equal(context.claim_bank.length, 21);
+  assert.equal(
+    context.source_files.brief.path,
+    "data/quiz/production_briefs/historie/hoyland_gravhaug_etne.json"
+  );
+  assert.equal(context.source_files.quiz, undefined);
+  assert.deepEqual(context.source_files.stories.map((record) => record.path), [
+    "data/stories/stories_etne_historie_rounds_batch6.json"
+  ]);
+  assert.ok(context.story_units.some((unit) => unit.id === "st_hoyland_haugen_under_koyrebrua"));
+  assert.equal(
+    context.planned_quiz_file,
+    "data/quiz/historie/hoyland_gravhaug_etne_sets.json"
+  );
+  assert.deepEqual(context.set_plan.map((set) => set.phase), [
+    "opening",
+    "bridge",
+    "final"
+  ]);
+  assert.ok(context.set_plan.every((set) => set.planned_questions === 7));
+  assert.ok(context.set_plan.every((set) => set.claim_ids.length === 7));
+
+  const savedContext = JSON.parse(await readFile(
+    "data/quiz/production_context/historie/hoyland_gravhaug_etne.json",
+    "utf8"
+  ));
+  assert.deepEqual(savedContext, context);
+});
+
 test("passes production-context, progression and theory-binding audits", async () => {
   const reports = await Promise.all([
     auditQuizProductionContext(),
@@ -179,6 +225,6 @@ test("passes production-context, progression and theory-binding audits", async (
 
   for (const report of reports) {
     assert.equal(report.status, "passed", JSON.stringify(report.failures, null, 2));
-    assert.equal(report.quizFilesChecked, 4);
+    assert.equal(report.quizFilesChecked, 5);
   }
 });
