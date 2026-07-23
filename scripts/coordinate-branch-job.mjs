@@ -21,6 +21,7 @@ let source = await response.text();
 
 source = source
   .replace(".replace('const batch = 166;', 'const batch = 167;')", ".replace('const batch = 166;', 'const batch = 174;')")
+  .replace("if (!retirementSource.includes('const batch = 167;'))", "if (!retirementSource.includes('const batch = 174;'))")
   .replaceAll('batch-167-bantjern-private-proxy-retirement', 'batch-174-bantjern-private-proxy-retirement')
   .replaceAll('batch-167-result.json', 'batch-174-result.json')
   .replace("const batch = 168;\nconst placeId = 'blindern_forskningsparken_salamanderdam';", "const batch = 175;\nconst placeId = 'blindern_forskningsparken_salamanderdam';")
@@ -36,6 +37,7 @@ source = source
   .replace("place.locatorType = 'area';", "place.locatorType = 'natural_area';");
 
 if (!source.includes(".replace('const batch = 166;', 'const batch = 174;')")) throw new Error('Could not renumber Båntjern retirement to batch 174');
+if (!source.includes("if (!retirementSource.includes('const batch = 174;'))")) throw new Error('Could not renumber Båntjern nested guard to batch 174');
 if (!source.includes("const batch = 175;\nconst placeId = 'blindern_forskningsparken_salamanderdam';")) throw new Error('Could not renumber Forskningsparken pond production to batch 175');
 if (!source.includes(".replaceAll('batch-166-result.json', 'batch-174-result.json')")) throw new Error('Could not preserve Båntjern result filename on batch 174');
 if (!source.includes("place.geocodeAccuracy = 'geometric_center';") || !source.includes("place.locatorType = 'natural_area';")) throw new Error('Could not apply validated coordinate-contract fixes for batch 175');
