@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-23T19:12:59.603Z
+Generert: 2026-07-23T19:15:35.472Z
 
 ## Hvorfor denne gaten finnes
 
