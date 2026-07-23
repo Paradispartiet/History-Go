@@ -1,0 +1,85 @@
+{
+  "version": "1.0",
+  "status": "canonical_global_invariant",
+  "title": "To normale quizsett først",
+  "scope": "Alle aktive quizproduksjonsmål med minst to sett",
+  "purpose": "De første fjorten spørsmålene skal oppleves som en vanlig, konkret quiz før faglig metode, teori og syntese introduseres.",
+  "opening_block": {
+    "sets": 2,
+    "questions_per_set": 7,
+    "total_questions": 14,
+    "allowed_question_types": [
+      "fact",
+      "context",
+      "cause",
+      "sammenheng"
+    ],
+    "preferred_openings": [
+      "Hvem",
+      "Når",
+      "Hva",
+      "Hvor",
+      "Hvilken",
+      "Hvilke",
+      "Hvorfor",
+      "Hvordan",
+      "Kven",
+      "Kva",
+      "Kvar",
+      "Kor",
+      "Kvifor",
+      "Korleis"
+    ],
+    "allowed_content": [
+      "personer og roller",
+      "år, perioder og hendelser",
+      "sted, plassering og funksjon",
+      "verk, bygninger, materialer og teknikker",
+      "direkte årsaker og dokumenterte sammenhenger",
+      "synlige eller kildebelagte detaljer"
+    ],
+    "forbidden_binding_fields": [
+      "method_id",
+      "topic_hook_id",
+      "thinker_id",
+      "theory_ref"
+    ],
+    "forbidden_question_types": [
+      "concept",
+      "theory",
+      "definition",
+      "begrep",
+      "analysis",
+      "comparison",
+      "observation"
+    ],
+    "forbidden_surface_rule_ids": [
+      "emne_prompt",
+      "place_as_example",
+      "reading_language",
+      "most_precise",
+      "concept_pick",
+      "theory_pick",
+      "curriculum_language",
+      "institutional_reading",
+      "player_instruction",
+      "question_about_question",
+      "quiz_about_quiz",
+      "more_than_place"
+    ],
+    "metadata_rule": "emne_id og andre faglige metadata kan ligge bak et normalt spørsmål, men må ikke gjøre spørsmålsflaten til en emne-, metode- eller teoritest.",
+    "knowledge_rule": "Faglig forklaring og begreper kan utdypes i knowledge etter at spilleren har svart."
+  },
+  "progression": {
+    "bridge_earliest_set": 3,
+    "method_earliest_set": 3,
+    "theory_earliest_set": 3,
+    "rule": "Sett 3 og senere kan gradvis innføre årsak, metode, begrep, teori, sammenligning og syntese."
+  },
+  "grandfathered_targets": {
+    "deichman_bjorvika": {
+      "reason": "Eldre pilotpakke produsert før denne åpningskontrakten. Skal følge policyen ved neste fullrevisjon.",
+      "temporary": true
+    }
+  }
+}
