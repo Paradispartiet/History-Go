@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T16:40:06.990Z
+Generert: 2026-07-23T16:44:30.031Z
 
 ## Oppsummering
-- Aktive filer validert: **671**
+- Aktive filer validert: **672**
 - Antall steder validert: **1290**
 - Harde feil: **0**
 - Varsler: **510**
@@ -689,6 +689,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/scenekunst/innlandet/hamar_teater.json
 - data/places/scenekunst/innlandet/radhus_teatret_kongsvinger.json
 - data/places/kunst/oslo/places_kunst/fotogalleriet.json
+- data/places/kunst/oslo/places_kunst/kunstnerforbundet.json
 
 ## Harde feil
 - Ingen

@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 409 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 410 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -881,3 +881,7 @@ Batch 137 (2026-07-21) oppretter tre fysisk avgrensede Scenekunst-steder. `centr
 | 167 | `fotogalleriet` | Fotogalleriet | verified | `geonorge-adresser-v1:0301:14943:34A` |
 
 Batch 167 (2026-07-23) produserer `fotogalleriet` etter den lukkede VisitOSLO gallery-priority scope-auditen og den separate Møllergata 34A–D-disambigueringen. Institusjonens egen kartlenke velger 34A blant de offisielle adresseobjektene; Geonorge forblir canonical koordinatkilde.
+
+| 168 | `kunstnerforbundet` | Kunstnerforbundet | verified | `geonorge-adresser-v1:0301:13743:3` |
+
+Batch 168 (2026-07-23) produserer `kunstnerforbundet` etter den lukkede VisitOSLO gallery-priority scope-auditen. Institusjonen har ingen canonical identitetsduplikat eller markør innen 35 meter og bruker det eksakte Geonorge-adressepunktet for Kjeld Stubs gate 3.

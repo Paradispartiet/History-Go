@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T16:40:14.795Z
+Generert: 2026-07-23T16:44:38.311Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -330,3 +330,4 @@ Generert: 2026-07-23T16:40:14.795Z
 | grindheim_jernvinne | data/coordinate-evidence/vestland/bomlo/grindheim_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gjerdesvagen_jernvinne | data/coordinate-evidence/vestland/kvinnherad/gjerdesvagen_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | fotogalleriet | data/coordinate-evidence/oslo/kunst/fotogalleriet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kunstnerforbundet | data/coordinate-evidence/oslo/kunst/kunstnerforbundet.json | applied_to_place | do_not_change_coordinates_yet | OK |
