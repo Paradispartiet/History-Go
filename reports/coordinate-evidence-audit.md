@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T18:36:21.764Z
+Generert: 2026-07-23T18:42:22.050Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -332,3 +332,4 @@ Generert: 2026-07-23T18:36:21.764Z
 | fotogalleriet | data/coordinate-evidence/oslo/kunst/fotogalleriet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kunstnerforbundet | data/coordinate-evidence/oslo/kunst/kunstnerforbundet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | brekkedammen | data/coordinate-evidence/oslo/natur/brekkedammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| grorudparken | data/coordinate-evidence/oslo/by/grorudparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
