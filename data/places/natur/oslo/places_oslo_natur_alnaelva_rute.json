@@ -306,12 +306,12 @@
   },
   {
     "id": "alna_utlop_bjorvika",
-    "name": "Alna utløp i Bjørvika",
-    "lat": 59.9041,
-    "lon": 10.7638,
+    "name": "Alnas historiske utløp ved Vannspeilet",
+    "lat": 59.9043598,
+    "lon": 10.7614122,
     "r": 190,
     "category": "natur",
-    "desc": "Utløpssone der Alna møter Oslofjorden i Bjørvika.",
+    "desc": "Vannspeilet i Middelalderparken som fysisk markør for Alnas opprinnelige utløp, med separat anker for dagens tunnelutløp ved Kongshavn.",
     "tags": [
       "elv",
       "utlop",
@@ -319,39 +319,40 @@
       "byokologi"
     ],
     "routeId": "alnaelva_grontdrag",
-    "sourceHint": "Koordinat lagt ved Alnas utløpsområde i Bjørvika, nær fjordkant og delta-/utløpssone. Beholdt som rute-/områdepunk inntil egen utløpsrevisjon gjøres mot detaljkart.",
-    "coordType": "legacy_historical_area_anchor",
-    "coordStatus": "needs_source",
-    "coordSource": "alna_historical_outlet_multilayer_unresolved",
+    "sourceHint": "Canonical displayanker er arealsenteret for Vannspeilet/Tenerife i Middelalderparken. Et separat topologisk anker viser dagens faktiske Alna-utløp ved Kongshavn. Det historiske displayankeret er en markør for det opprinnelige utløpet, ikke et påstått eksakt middelaldermunningspunkt.",
+    "coordType": "multi_anchor_temporal_outlet_display_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 4258487 – Tenerife/Vannspeilet, historisk utløpsmarkør for Alna",
     "coordPrecisionM": 120,
-    "coordVerifiedAt": "2026-07-21",
+    "coordVerifiedAt": "2026-07-23",
     "anchors": [
       {
-        "id": "alna_utlop_innlop",
-        "name": "Alna historisk utløpslandskap – indre markør",
-        "lat": 59.9047,
-        "lon": 10.7651,
-        "r": 100,
-        "type": "route_point",
-        "note": "Foreløpig landskapsanker for historisk trase; ikke dokumentert som dagens åpne Alna-løp."
+        "id": "alna_historisk_utlop_vannspeilet",
+        "name": "Vannspeilet – markør for Alnas opprinnelige utløp",
+        "lat": 59.9043598,
+        "lon": 10.7614122,
+        "r": 120,
+        "type": "area_anchor",
+        "role": "historical_outlet_marker",
+        "coordStatus": "verified_geometry",
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-way:4258487",
+        "sourceUrl": "https://www.openstreetmap.org/way/4258487",
+        "note": "Vannspeilet, med OSM-navnet Tenerife, er en fysisk markør for Alnaelvas opprinnelige utløp. Ankeret representerer ikke et påstått eksakt middelaldermunningspunkt."
       },
       {
-        "id": "alna_utlop_munning",
-        "name": "Alna historisk munningslandskap – representasjonsanker",
-        "lat": 59.9041,
-        "lon": 10.7638,
+        "id": "alna_dagens_utlop_kongshavn",
+        "name": "Alna – dagens utløp ved Kongshavn",
+        "lat": 59.895923,
+        "lon": 10.7555928,
         "r": 100,
-        "type": "unlock_anchor",
-        "note": "Foreløpig markør for historisk munning/vannspeil; ikke dagens tunnelutløp ved Kongshavn."
-      },
-      {
-        "id": "alna_utlop_fjord",
-        "name": "Alna historisk utløpslandskap – fjordkantmarkør",
-        "lat": 59.9036,
-        "lon": 10.7628,
-        "r": 100,
-        "type": "route_point",
-        "note": "Foreløpig historisk landskapsanker; synlig fjordvann er ikke i seg selv dokumentasjon på dagens Alna-vannføring."
+        "type": "mouth_anchor",
+        "role": "current_hydrological_outlet",
+        "coordStatus": "verified_geometry",
+        "sourceProvider": "osm",
+        "sourceObjectId": "osm-node:8067892897",
+        "sourceUrl": "https://www.openstreetmap.org/node/8067892897",
+        "note": "Eksakt delt endenode mellom den åpne Alna-utløpswayen 131984275 og kystlinje-way 865225826 etter tunnelstrekningen fra Kværner."
       }
     ],
     "popupDesc": "Dette er utløpssonen der Alna møter Oslofjorden i Bjørvika, med overgang mellom elveløp, munningsområde og fjordkant. Stedet synliggjør hvordan vannsystemet fra Groruddalen ender i et tett utviklet havne- og byrom. Her ligger blågrønne strukturer side om side med teknisk infrastruktur, kaiområder og nye byflater. Utløpet er interessant fordi det samler hele Alna-forløpet i ett konkret punkt mellom elv og fjord.",
@@ -363,6 +364,17 @@
     "visual": {
       "designCode": "waterfront_miniature"
     },
-    "coordNote": "Recorden gjelder Alnas historiske munningslandskap ved Sørenga/Middelalderparken, mens faktisk vannføring siden 1922 går i tunnel til Kongshavn. Oslo kommune dokumenterer at vannspeilet markerer det opprinnelige utløpet, men ett enkelt legacy-punkt kan ikke samtidig representere historisk elveos, rekonstruert vannspeil og dagens tunnelutløp. Krever en eksplisitt historisk area-/multi-anchor-modell."
+    "coordNote": "Batch 156 løser den flerlagede utløpsrecorden med to separate, kildebelagte ankere. Canonical displayanker er OSM way 4258487, det eneste substansielle vannpolygonet innenfor den eksakte Middelalderparken-geometrien; OSM-navnet er Tenerife, og uavhengig offentlig kildebruk dokumenterer Tenerife som tilnavnet til Vannspeilet. Oslo kommune dokumenterer at Vannspeilet markerer Alnaelvas opprinnelige utløp, men dette brukes ikke som bevis for ett separat eksakt middelaldermunningspunkt. Dagens faktiske vannføring valideres separat: Alna-tunnelway 130106085 kobler via delt node 1434044641 til åpen way 131984275, som ender i node 8067892897; samme node ligger på coastline way 865225826 ved Kongshavn. Legacy-punktet og nearest/first-hit brukes ikke.",
+    "locatorType": "natural_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:4258487",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordSourceId": "osm-way:4258487",
+    "coordSourceUrl": "https://www.openstreetmap.org/way/4258487",
+    "nature_profile": {
+      "summary": "",
+      "themes": []
+    }
   }
 ]
