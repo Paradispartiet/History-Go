@@ -31,20 +31,27 @@
     "desc": "Etnefjella er høyfjellsområdet i kommunen med merkede ruter, turisthytter og mange fiskevann. Området er en viktig del av det sammenhengende fjellandskapet sør for Åkrafjorden.",
     "popupDesc": "Etne kommune beskriver Etnefjella som Haugalandets høyfjell og et stort helårs friluftsområde. Her finnes merkede ruter og turisthytter fra Seljestad mot Olalia, mange fiskevann og flere oppganger fra E134, Skarstøl og Rus. History Go-markøren representerer selve fjellområdet som landskap og friluftssystem, ikke én bestemt tur eller topp.",
     "nature_profile": {
-      "type": "høyfjell / vannrik fjellnatur / friluftsområde",
-      "title": "Høyfjellet over Etne",
-      "summary": "Etnefjella er et stort nettverk av fjell, vann og ferdselslinjer. Natur-rundingen legger vekt på hvordan høyfjellslandskapet brukes gjennom året og hvordan vann, vær og topografi former ferdselen.",
+      "type": "høyfjell / vannrik fjellnatur / friluftssystem",
+      "title": "Haugalandets høyfjell som nettverk",
+      "summary": "Etnefjella er ikke ett enkelt fjell, men et stort høyfjells- og friluftssystem med vann, rygger, daler, ruter og hytter. Etne kommune beskriver området som Haugalandets høyfjell og framhever et merket løypenett med turisthytter fra Seljestad mot Olalia, fiskevann, jaktterreng, skiløyper, kulturminner og flere oppganger fra E134. Veger til Skarstøl og Rus gjør enkelte deler lettere tilgjengelige, og kommunen peker også på anleggsveger som egnet for sykling. Haugesund Turistforening forvalter et større hytte- og T-merket rutenett i Etne- og Saudafjella, mens Skarstølen beskrives lokalt som en sentral innfallsport til Etnefjellet. Dette gjør Etnefjella særlig egnet til å lære forskjellen mellom et områdeanker og et enkelt turmål. History Go-punktet ligger ikke på en offisiell grense, parkeringsplass eller anbefalt start. Det representerer et sammenhengende fjellandskap der brukeren må planlegge den faktiske turen separat. Naturen kan leses gjennom høyde, vær, vann og ferdselslinjer: vannene samler avrenning i fjellterreng, rutene følger pass og daldrag, og årstidene endrer både framkommelighet og risiko. Kommunens innlandsfiskeinformasjon sier at de fleste av rundt førti gode fiskevann i kommunen ligger i Etnefjella, særlig i Sørfjellet og Midtre Etnefjell, og at bilveg til Rus og Skarstøl gjør deler av området lett tilgjengelige. Rundingen skal likevel ikke fylle inn udokumenterte arter eller gjøre hele fjellområdet til én «lett» tur. Etnefjella er et stort system med svært ulike forhold. Gameplay skal derfor bygge på kartlesing, trygg eksisterende rute og observasjon av vann, vær og topografi – ikke på å følge selve områdepunktet.",
       "themes": [
         "høyfjell",
-        "fiskevann",
+        "rutenett",
         "turisthytter",
-        "merkede ruter",
-        "helårsfriluftsliv"
+        "fiskevann",
+        "innfallsporter",
+        "helårsfriluftsliv",
+        "kartkompetanse"
       ],
       "nearby_place_ids": [
         "stordalsvatnet_etne",
         "etneelva",
         "langfoss_etne"
+      ],
+      "source_boundaries": [
+        "Kartpunktet er et semantisk områdeanker og ikke en turstart eller grense for hele Etnefjella.",
+        "Opplysninger om hytter og T-merkede ruter gjelder det større Etne- og Saudafjell-systemet der Etnefjella inngår.",
+        "Ingen oppgave skal anta at en rute er trygg, preparert eller åpen uten separat aktuell turplanlegging."
       ]
     },
     "quiz_profile": {
@@ -102,6 +109,20 @@
         "url": "https://www.nve.no/vann-og-vassdrag/vassdragsforvaltning/verneplan-for-vassdrag/vestland/041-1-etnevassdraget/",
         "lang": "nb",
         "verifiedAt": "2026-07-23"
+      },
+      {
+        "type": "official",
+        "label": "Haugesund Turistforening – lokale hytter",
+        "url": "https://www.dnt.no/dnt-der-du-er/haugesund-turistforening/lokale-hytter/",
+        "lang": "nb",
+        "verifiedAt": "2026-07-23"
+      },
+      {
+        "type": "official",
+        "label": "Etnefjellet – Skarstølen som innfallsport",
+        "url": "https://www.etnefjellet.no/",
+        "lang": "nb",
+        "verifiedAt": "2026-07-23"
       }
     ],
     "emne_ids": [
@@ -112,6 +133,180 @@
       "friluftsliv",
       "tursti",
       "innsjo"
-    ]
+    ],
+    "tasks_profile": {
+      "title": "Oppgaver ved Etnefjella",
+      "summary": "Fire kildeledede, stedsspesifikke og sikkerhetsavgrensede handlinger.",
+      "tasks": [
+        {
+          "id": "etnefjella_les_rutenettet",
+          "title": "Les rutenettet",
+          "instruction": "Fra et trygt, etablert startpunkt eller på kart: finn én merket rute, én hytteforbindelse og én mulig returretning. Ikke bruk områdeankeret som turstart i seg selv.",
+          "why": "Etnefjella er et nettverk av ferdselslinjer og hytter, ikke én topp eller én tur."
+        },
+        {
+          "id": "etnefjella_finn_vannsystemet",
+          "title": "Finn vann i høyfjellet",
+          "instruction": "Bruk utsikt eller kart til å finne minst to vann eller vannløp i fjellområdet og se hvilken retning terrenget leder vannet.",
+          "why": "Kommunen beskriver mange fiskevann, og vann er et gjennomgående element i Etnefjellas topografi og bruk."
+        },
+        {
+          "id": "etnefjella_sammenlign_innfallsporter",
+          "title": "Sammenlign to innfallsporter",
+          "instruction": "Finn Skarstøl og Rus på kartet og sammenlign hvordan de gir tilgang til ulike deler av fjellområdet. Gjør oppgaven uten å kjøre eller gå til et nytt sted.",
+          "why": "Kommunen peker ut begge som veier til fjells, og flere innganger er en del av områdets identitet."
+        },
+        {
+          "id": "etnefjella_helarsblikk",
+          "title": "Se etter helårsspor",
+          "instruction": "Finn ett trekk som hører til sommerbruk og ett som hører til vinterbruk, for eksempel sti, anleggsvei, skiløypekorridor eller snøpreget terreng. Bruk bare det som faktisk er synlig eller kartlagt.",
+          "why": "Etne kommune beskriver Etnefjella som et helårs friluftsområde med både tur-, sykkel- og skimuligheter."
+        }
+      ]
+    },
+    "training_profile": {
+      "title": "Trygg fjellplanlegging i Etnefjella",
+      "summary": "Tre lavintensive øvelser som trener kart, retning og beslutning før eller under en trygg etablert tur.",
+      "safety": "Bruk bare planlagt, lovlig og egnet rute. Sjekk oppdatert vær, føre og eventuell skredfare separat før fjelltur. Områdeankeret er ikke en startplass. Snu ved dårlig sikt, usikkert underlag eller forhold som overstiger erfaring og utstyr.",
+      "exercises": [
+        {
+          "id": "etnefjella_trepunkt_kart",
+          "title": "Trepunkt på kartet",
+          "instruction": "Finn eget faktiske startpunkt, et tydelig rutepunkt og planlagt returpunkt. Kontroller at de ligger på samme planlagte ferdselslinje.",
+          "duration_minutes": 7,
+          "intensity": "svært lett",
+          "why": "Store fjellområder blir tryggere når områdekartet oversettes til en konkret turplan."
+        },
+        {
+          "id": "etnefjella_rolig_rutelesing",
+          "title": "Rolig rutelesing",
+          "instruction": "Gå rolig i opptil ti minutter på en trygg etablert rute og stopp to ganger for å kontrollere kart, retning og vær.",
+          "duration_minutes": 10,
+          "intensity": "lett",
+          "why": "Rutelesing underveis er viktigere enn å navigere mot et abstrakt områdepunkt."
+        },
+        {
+          "id": "etnefjella_vaerretur",
+          "title": "Vær- og retursjekk",
+          "instruction": "Pek ut ett værtegn som kan forverre turen og én tydelig returretning før du går videre.",
+          "duration_minutes": 4,
+          "intensity": "svært lett",
+          "why": "Høyfjellsbruk krever kontinuerlig vurdering av både vær og mulighet for å snu."
+        }
+      ]
+    },
+    "civication_store": [
+      {
+        "id": "etnefjella_rutenett_relief",
+        "title": "Rutenett-relieffet",
+        "type": "landskapsmodell",
+        "kind": "physical_object",
+        "desc": "En fysisk relieffmodell med Etnefjellas vann og hovedforbindelser markert uten å late som de danner én enkelt rute.",
+        "placeSpecificReason": "Området er definert av nettverket mellom høyfjell, vann, hytter og innfallsporter.",
+        "historicalFunction": "Gjør forskjellen mellom område og turtrasé konkret.",
+        "physicalObject": true,
+        "placeSpecific": true,
+        "storePrice": 35,
+        "currency": "PC",
+        "collection": "etne_natur",
+        "collectable": true
+      },
+      {
+        "id": "etnefjella_skarstol_rus_par",
+        "title": "Skarstøl–Rus-paret",
+        "type": "innfallsportmodell",
+        "kind": "physical_object",
+        "desc": "To fysiske brikker som viser de dokumenterte vegtilgangene Skarstøl og Rus.",
+        "placeSpecificReason": "Kommunen peker særskilt på begge som veier til fjells.",
+        "historicalFunction": "Viser at samme fjellområde kan ha flere innganger og bruksretninger.",
+        "physicalObject": true,
+        "placeSpecific": true,
+        "storePrice": 35,
+        "currency": "PC",
+        "collection": "etne_natur",
+        "collectable": true
+      },
+      {
+        "id": "etnefjella_hyttekjede",
+        "title": "Hyttekjeden",
+        "type": "friluftsmodell",
+        "kind": "physical_object",
+        "desc": "En fysisk kjede som symboliserer hytte- og rutenettet fra Seljestad-retningen mot Olalia.",
+        "placeSpecificReason": "Kommunen beskriver nettopp et merket løypenett med turisthytter gjennom området.",
+        "historicalFunction": "Dokumenterer organisert friluftsinfrastruktur uten å gjøre den til en naturgrense.",
+        "physicalObject": true,
+        "placeSpecific": true,
+        "storePrice": 35,
+        "currency": "PC",
+        "collection": "etne_natur",
+        "collectable": true
+      },
+      {
+        "id": "etnefjella_helarskort",
+        "title": "Helårskortet",
+        "type": "sesongobjekt",
+        "kind": "physical_object",
+        "desc": "Et todelt fysisk kort med sommersti/vann og vinterspor/snø.",
+        "placeSpecificReason": "Etnefjella brukes gjennom året og kommunen framhever både tur-, sykkel- og skimuligheter.",
+        "historicalFunction": "Gjør sesongskiftet til en del av hvordan samme landskap leses.",
+        "physicalObject": true,
+        "placeSpecific": true,
+        "storePrice": 35,
+        "currency": "PC",
+        "collection": "etne_natur",
+        "collectable": true
+      }
+    ],
+    "brands": [
+      {
+        "id": "etne_kommune",
+        "name": "Etne kommune",
+        "brand_kind": "public_actor",
+        "brand_type": "municipality"
+      },
+      {
+        "id": "haugesund_turistforening",
+        "name": "Haugesund Turistforening",
+        "brand_kind": "outdoor_life_actor",
+        "brand_type": "dnt_member_association"
+      },
+      {
+        "id": "dnt",
+        "name": "Den Norske Turistforening",
+        "brand_kind": "outdoor_life_actor",
+        "brand_type": "national_trail_and_cabin_network"
+      },
+      {
+        "id": "etnefjellet",
+        "name": "Etnefjellet",
+        "brand_kind": "local_access_actor",
+        "brand_type": "skarsstol_mountain_access"
+      },
+      {
+        "id": "etnefjella",
+        "name": "Etnefjella",
+        "brand_kind": "place_identity",
+        "brand_type": "mountain_region"
+      }
+    ],
+    "for_na": {
+      "title": "Fra fjellterreng til sammenhengende friluftsnett",
+      "before": "Fjell, vann og gamle ferdselslinjer fantes før dagens organiserte rutenett, hytter, vegtilganger og vinterspor gjorde deler av området enklere å planlegge og bruke.",
+      "now": "Etnefjella beskrives som et helårs friluftsområde med merkede forbindelser, turisthytter, fiskevann og flere innfallsporter, samtidig som store deler fortsatt må møtes som høyfjell og ikke som et anlegg.",
+      "change": "Organisert friluftsinfrastruktur har gjort et stort fjellandskap mer lesbart og tilgjengelig uten å gjøre det til ett ensartet eller risikofritt område.",
+      "lookFor": [
+        "merket ferdselslinje",
+        "vann og vannløp",
+        "skiftende høyde og terreng",
+        "spor etter sommer- og vinterbruk",
+        "forskjellen mellom områdekart og faktisk rute"
+      ],
+      "sources": [
+        "https://www.etne.kommune.no/naring-natur-og-miljo/natur-og-miljovern/friluftsomrade/",
+        "https://www.dnt.no/dnt-der-du-er/haugesund-turistforening/lokale-hytter/",
+        "https://www.etnefjellet.no/",
+        "https://www.etne.kommune.no/naring-natur-og-miljo/natur-og-miljovern/innlandsfiske/"
+      ]
+    }
   }
 ]
