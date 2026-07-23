@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T09:31:51.427Z
+Generert: 2026-07-23T10:06:34.991Z
 
 ## Oppsummering
-- Aktive filer validert: **657**
-- Antall steder validert: **1277**
+- Aktive filer validert: **664**
+- Antall steder validert: **1284**
 - Harde feil: **0**
-- Varsler: **503**
-- Coordinate review candidates: **769** signaler fordelt på **640** steder
+- Varsler: **507**
+- Coordinate review candidates: **773** signaler fordelt på **644** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -675,6 +675,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/vestland/etne/flateskar_stordalen.json
 - data/places/natur/vestland/etne/terrasselandskapet_etne.json
 - data/places/natur/vestland/etne/rullestadvatnet.json
+- data/places/natur/vestland/etne/vaulaelva_vassdraget.json
+- data/places/natur/vestland/etne/saltana_etne.json
+- data/places/natur/vestland/etne/krokavatnet_etneforkastningen.json
+- data/places/natur/vestland/etne/moreneryggen_skanevik.json
+- data/places/natur/vestland/etne/sandvikevatnet_etne.json
+- data/places/natur/vestland/etne/taraldsoy.json
+- data/places/natur/vestland/etne/osnes_honsvikjo.json
 
 ## Harde feil
 - Ingen
@@ -1183,17 +1190,21 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/vestland/etne/mosneselva_etne.json#mosneselva_etne: lineært sted uten anchors
 - data/places/natur/vestland/etne/flateskar_stordalen.json#flateskar_stordalen: coordStatus=verified uten coordPrecisionM
 - data/places/natur/vestland/etne/rullestadvatnet.json#rullestadvatnet: coordStatus=verified uten coordPrecisionM
+- data/places/natur/vestland/etne/vaulaelva_vassdraget.json#vaulaelva_vassdraget: lineært sted uten anchors
+- data/places/natur/vestland/etne/krokavatnet_etneforkastningen.json#krokavatnet_etneforkastningen: coordStatus=verified uten coordPrecisionM
+- data/places/natur/vestland/etne/sandvikevatnet_etne.json#sandvikevatnet_etne: coordStatus=verified uten coordPrecisionM
+- data/places/natur/vestland/etne/taraldsoy.json#taraldsoy: coordStatus=verified uten coordPrecisionM
 
 ## Coordinate review candidates
 
-Totalt 769 signaler fordelt på 640 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 773 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 212 |
-| lineært sted uten anchors | 80 |
+| coordStatus=verified uten coordPrecisionM | 215 |
+| lineært sted uten anchors | 81 |
 | lav koordinatpresisjon (<4 desimaler) | 81 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
 | park/stort område uten anchors eller coordNote | 130 |
@@ -1202,7 +1213,7 @@ Totalt 769 signaler fordelt på 640 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (212)
+### coordStatus=verified uten coordPrecisionM (215)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1418,8 +1429,11 @@ Totalt 769 signaler fordelt på 640 steder. Et sted kan ha flere signaler. Kandi
 | papirhuset_teater | Papirhuset Teater | scenekunst | data/places/scenekunst/vestfold/papirhuset_teater.json | 59.26724668104939 | 10.415907691710105 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | flateskar_stordalen | Flåteskar i Stordalen | natur | data/places/natur/vestland/etne/flateskar_stordalen.json | 59.70495 | 6.15875 | 320 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | rullestadvatnet | Rullestadvatnet | natur | data/places/natur/vestland/etne/rullestadvatnet.json | 59.8722 | 6.42074 | 720 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| krokavatnet_etneforkastningen | Krokavatnet og Etneforkastningen | natur | data/places/natur/vestland/etne/krokavatnet_etneforkastningen.json | 59.62412 | 6.0786 | 750 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| sandvikevatnet_etne | Sandvikevatnet | natur | data/places/natur/vestland/etne/sandvikevatnet_etne.json | 59.91597 | 6.36086 | 650 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| taraldsoy | Taraldsøy | natur | data/places/natur/vestland/etne/taraldsoy.json | 59.71786 | 5.84176 | 420 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
-### lineært sted uten anchors (80)
+### lineært sted uten anchors (81)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1503,6 +1517,7 @@ Totalt 769 signaler fordelt på 640 steder. Et sted kan ha flere signaler. Kandi
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | teateret_kristiansand | Teateret Kristiansand | scenekunst | data/places/scenekunst/agder/teateret_kristiansand.json | 58.14294361484816 | 7.99551802723939 | 80 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | mosneselva_etne | Mosneselva | natur | data/places/natur/vestland/etne/mosneselva_etne.json | 59.86656 | 6.32955 | 1000 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| vaulaelva_vassdraget | Vaulaelva og Vaulovassdraget | natur | data/places/natur/vestland/etne/vaulaelva_vassdraget.json | 59.81337 | 6.35371 | 1400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
 ### lav koordinatpresisjon (<4 desimaler) (81)
 
