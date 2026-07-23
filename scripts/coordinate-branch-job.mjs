@@ -1,0 +1,158 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+
+const ROOT = process.cwd();
+const readJson = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8'));
+const writeJson = (p, value) => {
+  const full = path.join(ROOT, p);
+  fs.mkdirSync(path.dirname(full), { recursive: true });
+  fs.writeFileSync(full, `${JSON.stringify(value, null, 2)}\n`);
+};
+const writeText = (p, value) => {
+  const full = path.join(ROOT, p);
+  fs.mkdirSync(path.dirname(full), { recursive: true });
+  fs.writeFileSync(full, value);
+};
+
+const storyPath = 'data/stories/stories_etne_natur_rounds_batch8.json';
+const lexPath = 'data/leksikon/places/vestland/etne/natur/leksikon_etne_natur_rounds_batch8.json';
+const testPath = 'tests/etne-natur-rounds-batch8.test.js';
+const reportDir = 'reports/etne-natur-rounds-batch8';
+
+const configFiles = {
+  taraldsoy: 'scripts/etne-natur-rounds-batch8-taraldsoy.json',
+  brattholmen_naturreservat_etne: 'scripts/etne-natur-rounds-batch8-brattholmen.json',
+  skano_naturreservat_etne: 'scripts/etne-natur-rounds-batch8-skano.json'
+};
+const configs = Object.fromEntries(Object.entries(configFiles).map(([id, p]) => [id, readJson(p)]));
+
+function buildTasks(id, cfg) {
+  return {
+    title: `Les ${id === 'taraldsoy' ? 'Taraldsøy som øylandskap' : id === 'brattholmen_naturreservat_etne' ? 'Brattholmen på avstand' : 'Skåno som vern og kulturlandskap'}`,
+    summary: 'Fire trygge, stadsspesifikke handlingar som kan gjennomførast utan å bryte tilgangs- eller vernereglar.',
+    tasks: cfg.tasks.map((x, i) => ({ id: `${id}_task_${i + 1}`, title: x[0], instruction: x[1], why: x[2] }))
+  };
+}
+
+function buildTraining(id, cfg) {
+  return {
+    title: 'Rolig naturtrening med avstand',
+    summary: 'Tre lågintensive øvingar for observasjon, orientering og trygg ferdsel.',
+    safety: id === 'taraldsoy'
+      ? 'Bruk berre lovleg og trygg ferdsel. Kartankeret er ikkje ei brygge eller tilgangsrettleiing, og privat grunn og lokal skilting skal respekterast.'
+      : 'Hald deg utanfor vernesona og følg alle sesongreglar. Ingen øving skal innebere ilandstiging, droneflyging, reirsøk eller nærgåande fotografering.',
+    exercises: cfg.training.map((x, i) => ({ id: `${id}_training_${i + 1}`, title: x[0], instruction: x[1], duration_minutes: x[2], intensity: 'lett', why: 'Øvinga trenar stadskunnskap utan å gjere sårbar natur eller uklår tilgang til ein aktivitetsarena.' }))
+  };
+}
+
+function buildCiv(id, cfg) {
+  return cfg.civ.map((x, i) => ({
+    id: `${id}_civ_${i + 1}`,
+    title: x[0],
+    type: x[1],
+    kind: 'physical_object',
+    desc: `Eit fysisk samleobjekt som visualiserer eit dokumentert trekk ved ${id === 'taraldsoy' ? 'Taraldsøy' : id === 'brattholmen_naturreservat_etne' ? 'Brattholmen' : 'Skåno'}.`,
+    placeSpecificReason: 'Objektet er direkte knytt til staden sine dokumenterte grenser, bruksmønster eller vernereglar.',
+    historicalFunction: 'Gjer naturforvaltning og stadsskilje fysisk samlbart utan inngrep på staden.',
+    physicalObject: true,
+    placeSpecific: true,
+    storePrice: x[2],
+    currency: 'PC',
+    collection: id,
+    collectable: true,
+    civicationUse: cfg.forNa.lookFor.slice(0, 3),
+    source_urls: [cfg.sourceUrl]
+  }));
+}
+
+function buildBrands(cfg) {
+  return cfg.brands.map(([id, name, kind]) => ({ id, name, brand_kind: kind, brand_type: 'place_specific_actor_or_context' }));
+}
+
+for (const [id, cfg] of Object.entries(configs)) {
+  const arr = readJson(cfg.path);
+  if (!Array.isArray(arr) || arr.length !== 1 || arr[0].id !== id) throw new Error(`Unexpected place payload for ${id}`);
+  const p = arr[0];
+  p.nature_profile = { ...p.nature_profile, summary: cfg.natureSummary };
+  p.tasks_profile = buildTasks(id, cfg);
+  p.training_profile = buildTraining(id, cfg);
+  p.civication_store = buildCiv(id, cfg);
+  p.brands = buildBrands(cfg);
+  p.for_na = { ...cfg.forNa, sources: [cfg.sourceUrl] };
+  delete p.rounds;
+  delete p.rundinger;
+  writeJson(cfg.path, [p]);
+}
+
+const stories = Object.entries(configs).map(([id, cfg]) => ({
+  id: `st_${id}_batch8`,
+  type: 'environmental',
+  title: cfg.storyTitle,
+  year: id === 'taraldsoy' ? null : 1987,
+  place_id: id,
+  person_id: null,
+  summary: cfg.storySummary,
+  story: cfg.story,
+  sources: [{ title: cfg.sourceLabel, url: cfg.sourceUrl }],
+  tags: readJson(cfg.path)[0].tags,
+  related_people: [],
+  related_places: cfg.related,
+  score: { narrative: 5, historical: 4, source: 5, play_value: 5, originality: 4, total: 23 },
+  arc: { start: cfg.storySummary, middle: cfg.forNa.change, end: readJson(cfg.path)[0].quiz_profile.notes },
+  next_scenes: cfg.related.slice(0, 2).map(place_id => ({ place_id, reason: `Neste relevante naturstad frå ${readJson(cfg.path)[0].name}.` }))
+}));
+writeJson(storyPath, stories);
+
+const lex = Object.entries(configs).map(([id, cfg]) => {
+  const p = readJson(cfg.path)[0];
+  return {
+    place_id: id,
+    visual: { designCode: cfg.designCode },
+    version: 2,
+    title: p.name,
+    popupDesc: p.desc,
+    wikiText: cfg.wiki,
+    summary: { one_liner: p.desc, themes: p.nature_profile.themes, tone: ['nøktern', 'faglig', 'stedsspesifikk', 'sikkerhetsstyrt'] },
+    facts: cfg.facts.map((label, i) => ({ id: `fact_${id}_${String(i + 1).padStart(2, '0')}`, label, desc: label, confidence: 'high', sources: [cfg.sourceLabel] })),
+    chronology: [
+      { id: `chrono_${id}_01`, year: p.year, period: p.period, desc: cfg.forNa.before, confidence: 'high', sources: [cfg.sourceLabel] },
+      { id: `chrono_${id}_02`, year: 2026, period: 'Komplett rundingsprofil', desc: 'History Go samlar trygg feltobservasjon, stadsskilje, forteljing og leksikon.', confidence: 'high', sources: ['History Go place data'] }
+    ],
+    sources: [{ id: `source_${id}_1`, label: cfg.sourceLabel, type: 'external_reference', url: cfg.sourceUrl, confidence: 'high' }],
+    interpretation: { what_to_notice: cfg.forNa.lookFor, why_it_matters: [cfg.forNa.change, p.desc], counterpoints: [p.quiz_profile.notes, p.coordNote] },
+    links: { entry_ids: [`st_${id}_batch8`], related_places: cfg.related, related_people: [] }
+  };
+});
+writeJson(lexPath, lex);
+
+const storiesManifest = readJson('data/stories/stories_manifest.json');
+for (const id of Object.keys(configs)) {
+  if (!storiesManifest.files.some(x => x.entity_id === id && x.path === storyPath)) storiesManifest.files.push({ category: 'natur', entity_id: id, path: storyPath });
+}
+writeJson('data/stories/stories_manifest.json', storiesManifest);
+
+const lexManifest = readJson('data/leksikon/manifest.json');
+if (!lexManifest.files.includes(lexPath)) lexManifest.files.push(lexPath);
+writeJson('data/leksikon/manifest.json', lexManifest);
+
+const test = `const fs=require('fs'),assert=require('assert');const paths={"taraldsoy":"data/places/natur/vestland/etne/taraldsoy.json","brattholmen_naturreservat_etne":"data/places/natur/vestland/brattholmen_naturreservat_etne.json","skano_naturreservat_etne":"data/places/natur/vestland/skano_naturreservat_etne.json"},ids=Object.keys(paths);for(const id of ids){const p=JSON.parse(fs.readFileSync(paths[id],'utf8'))[0];assert.ok(p.tasks_profile.tasks.length>=4,id+' tasks');assert.ok(p.nature_profile.summary.length>=100,id+' nature');assert.ok(p.underbadge_ids?.length>=3,id+' badges');assert.ok(p.training_profile.exercises.length>=3,id+' training');assert.ok(p.civication_store.length>=4,id+' civ');assert.ok(p.brands.length>=4,id+' brands');assert.ok(p.for_na.before&&p.for_na.now&&p.for_na.change,id+' forna');assert.ok(!p.rounds&&!p.rundinger,id+' override');}const s=JSON.parse(fs.readFileSync('${storyPath}','utf8')),l=JSON.parse(fs.readFileSync('${lexPath}','utf8'));for(const id of ids){assert.ok(s.some(x=>x.place_id===id&&x.story.length>=900),id+' story');const a=l.find(x=>x.place_id===id);assert.ok(a&&a.wikiText.length>=5&&a.facts.length>=10,id+' lex');}const t=JSON.parse(fs.readFileSync(paths.taraldsoy,'utf8'))[0];assert.ok(t.quiz_profile.avoid_angles.includes('blande_taraldsoy_og_brattholmen'),'Taraldsoy boundary');const b=JSON.parse(fs.readFileSync(paths.brattholmen_naturreservat_etne,'utf8'))[0];assert.ok(b.for_na.now.includes('15. april')&&b.for_na.now.includes('31. juli'),'Brattholmen season');assert.ok(b.tasks_profile.tasks.every(x=>!x.instruction.includes('Gå i land')),'Brattholmen no landing');const k=JSON.parse(fs.readFileSync(paths.skano_naturreservat_etne,'utf8'))[0];assert.ok(k.for_na.now.includes('beiting'),'Skano grazing');assert.ok(k.tasks_profile.tasks.some(x=>x.title.includes('vern og bruk')),'Skano distinct use boundary');console.log('Etne nature rounds batch 8 OK');\n`;
+writeText(testPath, test);
+
+writeText(`${reportDir}/README.md`, '# Etne natur – rundingsproduksjon batch 8\n\nKomplette naturprofiler for Taraldsøy, Brattholmen naturreservat og Skåno naturreservat. Taraldsøy behandles som friluftsøy, Brattholmen som liten sjøfuglholm med marint ferdselsbelte, og Skåno som større sjøfuglreservat der tradisjonell beiting er en eksplisitt del av vernebildet.\n');
+writeJson(`${reportDir}/summary.json`, {
+  batch: 8,
+  places: Object.keys(configs),
+  contract: ['tasks', 'nature', 'badges', 'training', 'civication', 'brands', 'for_na', 'fortellinger', 'leksikon'],
+  source_boundaries: {
+    taraldsoy: 'Friluftsøy og øylandskap, ikke Brattholmen naturreservat og ikke en implisitt brygge eller tilgangsrute.',
+    brattholmen_naturreservat_etne: 'Lite sjøfuglreservat med marint vernebelte og sesongforbud; skal observeres på avstand.',
+    skano_naturreservat_etne: 'Større sjøfuglreservat med egne sesongregler og tillatt tradisjonell beiting; ikke en kopi av Brattholmen.'
+  }
+});
+
+const out = execFileSync(process.execPath, [testPath], { cwd: ROOT, encoding: 'utf8' });
+writeText(`${reportDir}/validation/round-content-test.txt`, out);
+for (const p of Object.values(configFiles)) fs.rmSync(path.join(ROOT, p), { force: true });
+console.log(out.trim());
+console.log('Etne nature rounds batch 8 production complete');
