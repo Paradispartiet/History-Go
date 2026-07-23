@@ -6,6 +6,7 @@ const reportMode = process.argv.includes("--report");
 const manifestPath = "data/fag/fag_manifest.json";
 const registryPath = "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json";
 const standardPath = "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md";
+const normalOpeningPolicyPath = "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json";
 const legacyStandardPath = "data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md";
 const schemaPath = "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json";
 const packageSchemaPath = "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json";
@@ -51,12 +52,21 @@ function resolveTargetPath(value) {
 const failures = [];
 const checkedProfiles = [];
 
-for (const file of [manifestPath, registryPath, standardPath, legacyStandardPath, schemaPath, packageSchemaPath]) {
+for (const file of [
+  manifestPath,
+  registryPath,
+  standardPath,
+  normalOpeningPolicyPath,
+  legacyStandardPath,
+  schemaPath,
+  packageSchemaPath
+]) {
   if (!(await exists(file))) failures.push({ file, reason: "missing canonical governance file" });
 }
 
 let manifest = null;
 let registry = null;
+let normalOpeningPolicy = null;
 
 try {
   manifest = await readJson(manifestPath);
@@ -68,6 +78,27 @@ try {
   registry = await readJson(registryPath);
 } catch (error) {
   failures.push({ file: registryPath, reason: `invalid JSON: ${error.message}` });
+}
+
+try {
+  normalOpeningPolicy = await readJson(normalOpeningPolicyPath);
+} catch (error) {
+  failures.push({ file: normalOpeningPolicyPath, reason: `invalid JSON: ${error.message}` });
+}
+
+if (normalOpeningPolicy) {
+  if (normalOpeningPolicy.status !== "canonical_global_invariant") {
+    failures.push({ file: normalOpeningPolicyPath, reason: "normal opening policy is not canonical_global_invariant" });
+  }
+  if (normalOpeningPolicy.opening_block?.sets !== 2) {
+    failures.push({ file: normalOpeningPolicyPath, reason: "normal opening policy must require two opening sets" });
+  }
+  if (normalOpeningPolicy.opening_block?.questions_per_set !== 7) {
+    failures.push({ file: normalOpeningPolicyPath, reason: "normal opening policy must require seven questions per set" });
+  }
+  if (normalOpeningPolicy.opening_block?.total_questions !== 14) {
+    failures.push({ file: normalOpeningPolicyPath, reason: "normal opening policy must require fourteen opening questions" });
+  }
 }
 
 if (manifest && registry) {
@@ -194,6 +225,7 @@ if (manifest && registry) {
 if (registry) {
   const expectedCanonicalFiles = {
     production_standard: standardPath,
+    normal_opening_policy: normalOpeningPolicyPath,
     question_schema: schemaPath,
     package_schema: packageSchemaPath,
     subject_manifest: manifestPath,
@@ -209,6 +241,9 @@ if (registry) {
     if (!(await exists(expected))) {
       failures.push({ file: expected, reason: `registered canonical file is missing (${key})` });
     }
+  }
+  if (registry.global_invariants?.normal_opening?.policy !== normalOpeningPolicyPath) {
+    failures.push({ file: registryPath, reason: "global normal opening invariant is not registered" });
   }
 }
 
@@ -233,6 +268,7 @@ for (const file of [
 const report = {
   status: failures.length === 0 ? "passed" : "failed",
   canonicalStandard: standardPath,
+  canonicalNormalOpeningPolicy: normalOpeningPolicyPath,
   canonicalSchema: schemaPath,
   canonicalPackageSchema: packageSchemaPath,
   categoriesChecked: manifest ? Object.keys(manifest).length : 0,
