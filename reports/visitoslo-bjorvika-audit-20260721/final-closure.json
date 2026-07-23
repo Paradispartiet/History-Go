@@ -1,0 +1,81 @@
+{
+  "version": "2026-07-23",
+  "source": {
+    "name": "VisitOSLO — Bjørvika first 30 visible results",
+    "scopeDate": "2026-07-21",
+    "auditedEntries": 30
+  },
+  "status": "closed",
+  "summary": {
+    "sourceEntries": 30,
+    "sourceEntriesResolved": 30,
+    "existingOrParentResolutions": 12,
+    "newCanonicalPlacesProduced": 4,
+    "noNewPlaceRows": 14,
+    "unresolvedScopeDecisions": 0,
+    "unresolvedCoordinateDecisions": 0,
+    "remainingCanonicalGaps": 0
+  },
+  "approvedAndProduced": [
+    {
+      "placeId": "sukkerbiten_badstulandsby",
+      "category": "by",
+      "coordinateBatch": 108,
+      "coordinateStatus": "verified",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15256:28"
+    },
+    {
+      "placeId": "losaeter",
+      "category": "by",
+      "coordinateBatch": 109,
+      "coordinateStatus": "verified_geometry",
+      "sourceObjectId": "osm-way:172520783"
+    },
+    {
+      "placeId": "friluftshuset_sorenga",
+      "category": "sport",
+      "coordinateBatch": 110,
+      "coordinateStatus": "verified",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21549:124"
+    },
+    {
+      "placeId": "operastranda",
+      "category": "sport",
+      "coordinateBatch": 111,
+      "coordinateStatus": "verified_geometry",
+      "sourceObjectId": "osm-way:936040800"
+    }
+  ],
+  "knownExistingResolutions": {
+    "SALT": "salt",
+    "Deichman Bjørvika": "deichman_bjorvika",
+    "MUNCH": "munch_museet",
+    "Oslobukta shopping": "bjorvika",
+    "The Norwegian National Opera & Ballet": "operahuset",
+    "Sørenga Seawater Pool": "sorenga_sjobad",
+    "Barcode Bjørvika": "barcode",
+    "KÖSK": "kosk_oslo",
+    "Sauna at SALT": "salt",
+    "FLOP museum": "flop_museum"
+  },
+  "production": {
+    "scopePr": 3057,
+    "productionPr": 3080,
+    "productionMergeSha": "a83978cbe8d6a0beea810777c45368515b64750a",
+    "protocolCountBefore": 304,
+    "protocolCountAfter": 308
+  },
+  "representationLocks": {
+    "sukkerbiten_badstulandsby": "One stable sauna-village site at Sukkerbiten; individual sauna units and other Oslo Badstuforening locations do not create overlapping markers from this source.",
+    "losaeter": "Exact named Losæter park identity; not a generic Sørenga or Bjørvika proxy.",
+    "friluftshuset_sorenga": "The concrete DNT institution/activity centre at Sørengkaia 124, distinct from Sørenga sjøbad and the broader Sørenga area.",
+    "operastranda": "Exact named municipal beach identity; not a replacement for the broader Bjørvika area and not the same physical place as Sørenga sjøbad."
+  },
+  "closureRules": [
+    "The bounded source snapshot is the first 30 visible VisitOSLO Bjørvika results captured in the 2026-07-21 audit.",
+    "All four approved stable physical candidates were produced and passed the full coordinate validation chain before merge.",
+    "Retail, service, mobile, itinerary and seasonal source rows do not create canonical places without an independently documented stable physical identity.",
+    "Parent-area reuse is preferred over duplicate micro-markers when the source row does not define a separate persistent place identity.",
+    "The source is closed with no remaining unresolved or coordinate-blocked rows in the bounded 30-entry snapshot."
+  ]
+}
