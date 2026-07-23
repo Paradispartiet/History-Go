@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T20:22:34.563Z
+Generert: 2026-07-23T20:26:08.468Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -343,3 +343,4 @@ Generert: 2026-07-23T20:22:34.563Z
 | the_mini_bottle_gallery | data/coordinate-evidence/oslo/historie/the_mini_bottle_gallery.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | galleri_lnm | data/coordinate-evidence/oslo/kunst/galleri_lnm.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ram_galleri | data/coordinate-evidence/oslo/kunst/ram_galleri.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| galleri_schaeffers_gate_5 | data/coordinate-evidence/oslo/kunst/galleri_schaeffers_gate_5.json | applied_to_place | do_not_change_coordinates_yet | OK |

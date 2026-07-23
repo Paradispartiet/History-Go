@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 425 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 426 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -929,3 +929,7 @@ Batch 182 (2026-07-23) produserer `galleri_lnm` etter VisitOSLO Galleries scope-
 | 183 | `ram_galleri` | RAM galleri | verified | `geonorge-adresser-v1:0301:13846:15` |
 
 Batch 183 (2026-07-23) produserer `ram_galleri` etter VisitOSLO Galleries scope- og readiness-auditene. Det eksakte Geonorge-adressepunktet for Kongens gate 15 brukes som display-marker for RAM som eget ikke-kommersielt, kunstnerstyrt visningssted.
+
+| 184 | `galleri_schaeffers_gate_5` | Galleri Schaeffers Gate 5 | verified | `geonorge-adresser-v1:0301:16269:5` |
+
+Batch 184 (2026-07-23) produserer `galleri_schaeffers_gate_5` etter VisitOSLO Galleries scope- og readiness-auditene. Det eksakte Geonorge-adressepunktet for Schæffers gate 5 brukes som display-marker for det uavhengige kunst-, musikk- og performancevisningsstedet.
