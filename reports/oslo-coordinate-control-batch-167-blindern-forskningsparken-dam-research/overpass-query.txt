@@ -1,0 +1,8 @@
+[out:json][timeout:45];
+(
+  nwr["natural"="water"](59.9400,10.7130,59.9470,10.7280);
+  nwr["water"~"pond|basin|reservoir",i](59.9400,10.7130,59.9470,10.7280);
+  way["waterway"~"stream|river"](59.9400,10.7130,59.9470,10.7280);
+  nwr["name"~"Gaustadbekken|Forskningsparken|Ole-Johan Dahl|Institutt for informatikk",i](59.9400,10.7130,59.9470,10.7280);
+);
+out center tags geom;
