@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-07-23T04:07:44.449Z",
+  "placeId": "alna_utlop_bjorvika",
+  "currentIdentity": "Alnas historiske utløpslandskap ved Sørenga/Middelalderparken, adskilt fra dagens tunnelutløp ved Kongshavn",
+  "officialSourceModel": {
+    "historical": "Oslo kommune states that Vannspeilet in Middelalderparken marks Alnaelvas original outlet.",
+    "current": "Oslo municipal environmental status and Oslo byleksikon identify the current outlet at Kongshavn; Oslo byleksikon dates the tunnel diversion to 1922."
+  },
+  "exactWaterMirrorCount": 0,
+  "exactWaterMirrors": [],
+  "allWaterMirrorCandidates": [],
+  "tunnelWay": {
+    "osmId": 130106085,
+    "tags": {
+      "alt_name": "Loelva",
+      "layer": "-2",
+      "name": "Alna",
+      "tunnel": "yes",
+      "waterway": "river"
+    },
+    "firstNode": {
+      "role": "first",
+      "nodeId": "1285037282",
+      "point": {
+        "id": "1285037282",
+        "lat": 59.9043948,
+        "lon": 10.7900354
+      }
+    },
+    "lastNode": {
+      "role": "last",
+      "nodeId": "1434044641",
+      "point": {
+        "id": "1434044641",
+        "lat": 59.8960114,
+        "lon": 10.7560872
+      }
+    }
+  },
+  "endpointTopology": [
+    {
+      "role": "first",
+      "nodeId": "1285037282",
+      "point": {
+        "id": "1285037282",
+        "lat": 59.9043948,
+        "lon": 10.7900354
+      },
+      "connectedWays": [
+        {
+          "id": 113281373,
+          "tags": {
+            "alt_name": "Loelva",
+            "boat": "no",
+            "layer": "-1",
+            "name": "Alna",
+            "tunnel": "culvert",
+            "waterway": "river"
+          }
+        }
+      ],
+      "coastlineWays": [],
+      "waterwayWays": [
+        {
+          "id": 113281373,
+          "tags": {
+            "alt_name": "Loelva",
+            "boat": "no",
+            "layer": "-1",
+            "name": "Alna",
+            "tunnel": "culvert",
+            "waterway": "river"
+          }
+        }
+      ]
+    },
+    {
+      "role": "last",
+      "nodeId": "1434044641",
+      "point": {
+        "id": "1434044641",
+        "lat": 59.8960114,
+        "lon": 10.7560872
+      },
+      "connectedWays": [
+        {
+          "id": 131984275,
+          "tags": {
+            "alt_name": "Loelva",
+            "name": "Alna",
+            "waterway": "river"
+          }
+        },
+        {
+          "id": 865565720,
+          "tags": {
+            "natural": "water",
+            "water": "river"
+          }
+        }
+      ],
+      "coastlineWays": [],
+      "waterwayWays": [
+        {
+          "id": 131984275,
+          "tags": {
+            "alt_name": "Loelva",
+            "name": "Alna",
+            "waterway": "river"
+          }
+        }
+      ]
+    }
+  ],
+  "kongshavnSearches": [
+    {
+      "query": "Kongshavn, Oslo, Norway",
+      "candidates": [
+        {
+          "osmType": "node",
+          "osmId": 1881668795,
+          "name": "Kongshavn",
+          "category": "place",
+          "type": "locality",
+          "lat": 59.8940309,
+          "lon": 10.756077,
+          "displayName": "Kongshavn, Sjursøya, Nordstrand, Oslo, 0193, Norge"
+        },
+        {
+          "osmType": "node",
+          "osmId": 6373813358,
+          "name": "Kongshavn",
+          "category": "highway",
+          "type": "bus_stop",
+          "lat": 59.894063,
+          "lon": 10.758431,
+          "displayName": "Kongshavn, Mosseveien, Grønlia, Gamle Oslo, Oslo, 0193, Norge"
+        },
+        {
+          "osmType": "way",
+          "osmId": 436998874,
+          "name": "Kongshavn videregående skole",
+          "category": "amenity",
+          "type": "school",
+          "lat": 59.897393,
+          "lon": 10.7585266,
+          "displayName": "Kongshavn videregående skole, Kongsveien, Sørengutstikkeren, Grønlia, Gamle Oslo, Oslo, 0193, Norge"
+        },
+        {
+          "osmType": "way",
+          "osmId": 258334865,
+          "name": "Kongshavn videregående skole",
+          "category": "building",
+          "type": "school",
+          "lat": 59.8972505,
+          "lon": 10.7584171,
+          "displayName": "Kongshavn videregående skole, Kongsveien, Sørengutstikkeren, Grønlia, Gamle Oslo, Oslo, 0193, Norge"
+        }
+      ]
+    },
+    {
+      "query": "Alna, Kongshavn, Oslo, Norway",
+      "candidates": []
+    }
+  ],
+  "unresolvedHistoricalPoint": "The official municipal source identifies Vannspeilet as a marker of the original outlet but does not provide a separate exact historical mouth point. Do not invent one.",
+  "nextAction": "If one exact Vannspeilet geometry and one explicit current tunnel/coastline mouth topology are resolved, evaluate a two-anchor temporal model. Keep the original historical mouth as a semantic role of the water-mirror marker unless an independent exact historical point source is found."
+}
