@@ -2,57 +2,119 @@
   "schemaVersion": "1.0",
   "placeId": "blindern_forskningsparken_salamanderdam",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_salamanderdammer.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.94371,
-    "lon": 10.72085,
+    "lat": 59.943093038810886,
+    "lon": 10.718231028911767,
     "r": 260,
-    "coordStatus": "needs_source",
-    "coordSource": "blindern_forskningsparken_salamanderdam_canonical_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, men dagens koordinat er uttrykkelig et campus-/Forskningsparken-næranker og ikke et dokumentert fysisk damobjekt. Et generelt campuspunkt kan derfor ikke promoteres til verified salamanderdam."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 94984903 – unique pond in the source-defined IFI–Forskningsparken corridor",
+    "coordType": "pond_area_centroid",
+    "coordNote": "Batch 175 erstatter det generiske campus-nærankeret med selve den offentlige damgeometrien. Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, og Forskningsparken avgrenser dammen mellom UiOs Institutt for informatikk/Ole-Johan Dahls hus og Forskningsparken. Bounded research fant fire vannobjekter i den brede campus-scope-boksen, men bare OSM way 94984903 ligger i den kildefestede korridoren og innen 350 meter fra begge uavhengig identifiserte institusjonsankre. Fresh way 94984903 hard-gates som lukket natural=water/water=pond-polygon; canonical lat/lon er polygonets arealsentrum og ligger inne i polygonet. Punktet representerer den offentlige dammen som habitatsted, ikke en presis posisjon for salamanderindivider. Legacy-punktet og nearest/first-hit brukes ikke."
   },
   "identity": {
     "currentName": "Blindern/Forskningsparken salamanderdam",
-    "resolvedIdentity": "Salamanderdam ved Forskningsparken/Blindern omtalt i kommunal amfibiekartlegging",
+    "resolvedIdentity": "Den offentlige dammen mellom IFI og Forskningsparken der salamandere er dokumentert",
     "identityStatus": "resolved",
-    "identityProblem": "Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, men dagens koordinat er uttrykkelig et campus-/Forskningsparken-næranker og ikke et dokumentert fysisk damobjekt. Et generelt campuspunkt kan derfor ikke promoteres til verified salamanderdam.",
-    "locatorTypeCandidate": "thematic_locality",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "Dokumenter en offentlig og ikke-sensitiv damgeometri eller modeller lokaliteten som tematisk resultat av kommunal amfibiekartlegging uten separat presis place-markør."
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
       "sourceProvider": "oslo_kommune",
       "sourceName": "Oslo kommune – Oslos ukjente amfibiedammer kartlegges",
       "sourceUrl": "https://aktuelt.oslo.kommune.no/oslos-ukjente-amfibiedammer-kartlegges",
-      "sourceObjectId": "oslo-kommune:amfibiedammer:forskningsparken",
-      "sourceQuality": "locality_identity_without_verifiable_public_coordinate",
-      "finding": "Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, men dagens koordinat er uttrykkelig et campus-/Forskningsparken-næranker og ikke et dokumentert fysisk damobjekt. Et generelt campuspunkt kan derfor ikke promoteres til verified salamanderdam.",
-      "canVerifyCoordinate": false,
-      "reason": "Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, men dagens koordinat er uttrykkelig et campus-/Forskningsparken-næranker og ikke et dokumentert fysisk damobjekt. Et generelt campuspunkt kan derfor ikke promoteres til verified salamanderdam."
+      "sourceObjectId": "oslo-kommune:amfibiedammer-forskningsparken",
+      "sourceQuality": "official_identity_source",
+      "finding": "Oslo kommune documents salamanders in a pond at Forskningsparken on Blindern.",
+      "canVerifyCoordinate": true,
+      "reason": "The official source establishes the habitat identity in the Forskningsparken area but is combined with the independent local corridor source and exact OSM geometry for the physical coordinate."
+    },
+    {
+      "sourceProvider": "forskningsparken",
+      "sourceName": "Forskningsparken – biologisk mangfold og grøntområdet rundt Gaustadbekken",
+      "sourceUrl": "https://www.forskningsparken.no/news/la-humla-suse-slik-bidrar-forskningsparken-til-biologisk-mangfold",
+      "sourceObjectId": "forskningsparken:pond-between-ifi-and-forskningsparken",
+      "sourceQuality": "independent_local_scope_source",
+      "finding": "Forskningsparken places the pond between UiO Institute of Informatics and Forskningsparken.",
+      "canVerifyCoordinate": true,
+      "reason": "The local source defines the physical corridor that uniquely disambiguates the pond polygon."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – fresh pond polygon",
+      "sourceUrl": "https://www.openstreetmap.org/way/94984903",
+      "sourceObjectId": "osm-way:94984903",
+      "sourceQuality": "exact_physical_area_geometry",
+      "finding": "Fresh closed way 94984903 is tagged natural=water and water=pond and is the unique pond in the independently source-defined corridor.",
+      "canVerifyCoordinate": true,
+      "reason": "The exact polygon provides the physical geometry; the canonical marker is its in-polygon area centroid."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "oslo_kommune",
-      "sourceObjectId": "oslo-kommune:amfibiedammer:forskningsparken",
-      "canApplyToPlace": false
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:94984903",
+      "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:94984903",
+      "geometryRole": "source_scoped_public_pond_polygon",
+      "canApplyToPlace": true,
+      "pondScope": {
+        "method": "source_defined_institution_corridor_unique_pond_polygon",
+        "osmWayId": 94984903,
+        "sourceDefinedBetween": [
+          "Ole-Johan Dahls hus / Institutt for informatikk",
+          "Forskningsparken"
+        ],
+        "ifiAnchor": {
+          "lat": 59.9436145,
+          "lon": 10.7182883,
+          "osmType": "way",
+          "osmId": 94984893,
+          "displayName": "Ole-Johan Dahls hus, Problemveien, Gaustadbekkdalen, Blindern, Nordre Aker, Oslo, 0349, Norge"
+        },
+        "forskningsparkenAnchor": {
+          "lat": 59.9437046,
+          "lon": 10.7208514,
+          "osmType": "node",
+          "osmId": 5218231662,
+          "displayName": "Forskningsparken, Problemveien, Gaustadbekkdalen, Blindern, Nordre Aker, Oslo, 0349, Norge"
+        },
+        "researchDistanceToIfiM": 51,
+        "researchDistanceToForskningsparkenM": 155.1,
+        "candidateCountInCorridor": 1,
+        "displayAnchorMethod": "polygon_area_centroid",
+        "publicHabitatGeometry": true,
+        "individualAnimalLocationClaimed": false
+      }
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.943093038810886,
+      "lon": 10.718231028911767,
+      "geocodeAccuracy": "geometric_center",
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-way:94984903",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, men dagens koordinat er uttrykkelig et campus-/Forskningsparken-næranker og ikke et dokumentert fysisk damobjekt. Et generelt campuspunkt kan derfor ikke promoteres til verified salamanderdam.",
-    "nextAction": "Dokumenter en offentlig og ikke-sensitiv damgeometri eller modeller lokaliteten som tematisk resultat av kommunal amfibiekartlegging uten separat presis place-markør."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied to canonical place."
   },
   "notes": [
-    "Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, men dagens koordinat er uttrykkelig et campus-/Forskningsparken-næranker og ikke et dokumentert fysisk damobjekt. Et generelt campuspunkt kan derfor ikke promoteres til verified salamanderdam."
+    "Batch 175 erstatter det generiske campus-nærankeret med selve den offentlige damgeometrien. Oslo kommune dokumenterer salamandere i dam ved Forskningsparken, og Forskningsparken avgrenser dammen mellom UiOs Institutt for informatikk/Ole-Johan Dahls hus og Forskningsparken. Bounded research fant fire vannobjekter i den brede campus-scope-boksen, men bare OSM way 94984903 ligger i den kildefestede korridoren og innen 350 meter fra begge uavhengig identifiserte institusjonsankre. Fresh way 94984903 hard-gates som lukket natural=water/water=pond-polygon; canonical lat/lon er polygonets arealsentrum og ligger inne i polygonet. Punktet representerer den offentlige dammen som habitatsted, ikke en presis posisjon for salamanderindivider. Legacy-punktet og nearest/first-hit brukes ikke."
   ]
 }
