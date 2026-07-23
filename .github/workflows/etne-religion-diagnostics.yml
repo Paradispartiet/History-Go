@@ -26,27 +26,55 @@ jobs:
           const fs = require('node:fs');
           const lines = [];
           const log = (s) => { lines.push(String(s)); console.log(s); };
-          async function geo(street, number) {
+
+          async function readJson(url, options) {
+            const r = await fetch(url, options);
+            const text = await r.text();
+            log(`HTTP ${r.status} ${url}`);
+            if (!r.ok) { log(text.slice(0, 4000)); return null; }
+            try { return JSON.parse(text); } catch { log(text.slice(0, 4000)); return null; }
+          }
+
+          async function geoStreet(street) {
             const url = new URL('https://ws.geonorge.no/adresser/v1/sok');
             url.searchParams.set('adressenavn', street);
-            url.searchParams.set('nummer', String(number));
             url.searchParams.set('kommunenummer', '4611');
             url.searchParams.set('treffPerSide', '100');
-            const r = await fetch(url);
-            log(`${street} ${number}: HTTP ${r.status}`);
-            const p = await r.json();
-            log(JSON.stringify(p.adresser || [], null, 2));
+            const p = await readJson(url);
+            log(`${street} all hits:\n${JSON.stringify(p?.adresser || [], null, 2)}`);
           }
-          async function main() {
-            for (const [street, number] of [['Enge',5],['Prestavegen',11],['Tjedlavegen',38]]) {
-              try { await geo(street, number); } catch (e) { log(`${street} ${number} ERROR: ${e.stack || e}`); }
+
+          async function nominatim(query) {
+            const url = new URL('https://nominatim.openstreetmap.org/search');
+            url.searchParams.set('format', 'jsonv2');
+            url.searchParams.set('limit', '20');
+            url.searchParams.set('q', query);
+            const p = await readJson(url, { headers: { 'user-agent': 'History-Go-Etne-diagnostics/1.0' } });
+            log(`Nominatim ${query}:\n${JSON.stringify(p || [], null, 2)}`);
+          }
+
+          async function overpass(label, query) {
+            for (const base of ['https://overpass.kumi.systems/api/interpreter', 'https://overpass-api.de/api/interpreter']) {
+              const url = new URL(base);
+              url.searchParams.set('data', query);
+              const p = await readJson(url, { headers: { 'user-agent': 'History-Go-Etne-diagnostics/1.0' } });
+              if (p) {
+                log(`${label} via ${base}:\n${JSON.stringify(p, null, 2)}`);
+                return;
+              }
             }
+          }
+
+          async function main() {
+            try { await geoStreet('Tjedlavegen'); } catch (e) { log(`Geonorge street ERROR: ${e.stack || e}`); }
+            try { await nominatim('Skånevik bedehus, Etne, Norway'); } catch (e) { log(`Nominatim bedehus ERROR: ${e.stack || e}`); }
+            try { await nominatim('Tjedlavegen 38, 5593 Skånevik, Norway'); } catch (e) { log(`Nominatim address ERROR: ${e.stack || e}`); }
             try {
-              const q='[out:json];way(557505490);out center tags;';
-              const r=await fetch('https://overpass-api.de/api/interpreter',{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded'},body:new URLSearchParams({data:q})});
-              log(`Overpass: HTTP ${r.status}`);
-              log(await r.text());
-            } catch(e) { log(`Overpass ERROR: ${e.stack || e}`); }
+              await overpass('Bedehus search', '[out:json];nwr["name"~"bedehus",i](around:5000,59.73305,5.93558);out center tags;');
+            } catch (e) { log(`Overpass bedehus ERROR: ${e.stack || e}`); }
+            try {
+              await overpass('Frette way', '[out:json];way(557505490);out center tags;');
+            } catch (e) { log(`Overpass Frette ERROR: ${e.stack || e}`); }
             fs.writeFileSync('diagnostics/result.txt', lines.join('\n'));
           }
           main();
