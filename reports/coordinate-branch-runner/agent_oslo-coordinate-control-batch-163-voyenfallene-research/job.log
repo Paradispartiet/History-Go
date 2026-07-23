@@ -1,71 +1,119 @@
 {
-  "generatedAt": "2026-07-23T11:12:29.225Z",
-  "placeId": "voienfossen",
-  "river": {
-    "wayId": 80915045,
-    "name": "Akerselva",
-    "waterway": "river"
-  },
-  "upstreamBoundary": {
-    "name": "Bentsebrua",
-    "bridgePolygonWayId": 381743815,
-    "crossingCenter": {
-      "lat": 59.93662657061695,
-      "lon": 10.761312252905089
-    },
-    "measureM": 1763.9,
-    "widthAlongRiverM": 14.3
-  },
-  "downstreamBoundary": {
-    "name": "Sannerbrua",
-    "bridgePolygonWayId": 381749952,
-    "crossingCenter": {
-      "lat": 59.9282574234149,
-      "lon": 10.755116762451594
-    },
-    "measureM": 2912.1,
-    "widthAlongRiverM": 15.6
-  },
-  "waterfallAnchors": [
+  "mainWayNodes": [
+    7876345837,
+    5169532601,
+    5169533164,
+    10820084634,
+    7876345836,
+    5169533163,
+    10820084635
+  ],
+  "sideWayNodes": [],
+  "rows": [
     {
-      "order": 1,
-      "sourceObjectId": "osm-node:7876345836",
+      "nodeId": 7876345837,
+      "lat": 59.9320809,
+      "lon": 10.757421,
+      "waterway": null,
+      "parents": [
+        {
+          "id": 80915045,
+          "name": "Akerselva",
+          "waterway": "river",
+          "tunnel": null,
+          "covered": "no"
+        }
+      ]
+    },
+    {
+      "nodeId": 5169532601,
+      "lat": 59.9317117,
+      "lon": 10.757478,
+      "waterway": null,
+      "parents": [
+        {
+          "id": 80915045,
+          "name": "Akerselva",
+          "waterway": "river",
+          "tunnel": null,
+          "covered": "no"
+        }
+      ]
+    },
+    {
+      "nodeId": 5169533164,
+      "lat": 59.9314154,
+      "lon": 10.7578669,
+      "waterway": null,
+      "parents": [
+        {
+          "id": 80915045,
+          "name": "Akerselva",
+          "waterway": "river",
+          "tunnel": null,
+          "covered": "no"
+        }
+      ]
+    },
+    {
+      "nodeId": 10820084634,
+      "lat": 59.9306268,
+      "lon": 10.7570952,
+      "waterway": null,
+      "parents": [
+        {
+          "id": 80915045,
+          "name": "Akerselva",
+          "waterway": "river",
+          "tunnel": null,
+          "covered": "no"
+        }
+      ]
+    },
+    {
       "nodeId": 7876345836,
       "lat": 59.9318548,
       "lon": 10.7574458,
-      "measureM": 2460.2,
-      "distanceFromPreviousM": null
+      "waterway": "waterfall",
+      "parents": [
+        {
+          "id": 80915045,
+          "name": "Akerselva",
+          "waterway": "river",
+          "tunnel": null,
+          "covered": "no"
+        }
+      ]
     },
     {
-      "order": 2,
-      "sourceObjectId": "osm-node:10820084635",
-      "nodeId": 10820084635,
-      "lat": 59.930795,
-      "lon": 10.7571549,
-      "measureM": 2597.9,
-      "distanceFromPreviousM": 137.7
-    },
-    {
-      "order": 3,
-      "sourceObjectId": "osm-node:5169533163",
       "nodeId": 5169533163,
       "lat": 59.9304977,
       "lon": 10.7571015,
-      "measureM": 2631.4,
-      "distanceFromPreviousM": 33.4
+      "waterway": "waterfall",
+      "parents": [
+        {
+          "id": 80915045,
+          "name": "Akerselva",
+          "waterway": "river",
+          "tunnel": null,
+          "covered": "no"
+        }
+      ]
+    },
+    {
+      "nodeId": 10820084635,
+      "lat": 59.930795,
+      "lon": 10.7571549,
+      "waterway": "waterfall",
+      "parents": [
+        {
+          "id": 80915045,
+          "name": "Akerselva",
+          "waterway": "river",
+          "tunnel": null,
+          "covered": "no"
+        }
+      ]
     }
-  ],
-  "clippedSystem": {
-    "lengthM": 1148.2,
-    "midpointMeasureM": 2338,
-    "midpoint": {
-      "lat": 59.93288387482532,
-      "lon": 10.757634538968766
-    }
-  },
-  "decision": {
-    "canProduce": true,
-    "method": "bridge_bounded_river_geometry_with_three_explicit_waterfall_node_anchors",
-    "rationale": "The exact named Bentsebrua and Sannerbrua bridge polygons bracket one continuous Akerselva way, and exactly three waterway=waterfall nodes are members of that same river way strictly inside the interval. The geometry therefore matches the documented three-fall system scope without collapsing it to a single fall point."
-  }
+  ]
 }
