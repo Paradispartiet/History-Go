@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 423 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 424 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -921,3 +921,7 @@ Batch 180 (2026-07-23) produserer `norske_grafikere` etter den lukkede VisitOSLO
 | 181 | `the_mini_bottle_gallery` | The Mini Bottle Gallery | verified | `geonorge-adresser-v1:0301:13707:10` |
 
 Batch 181 (2026-07-23) produserer `the_mini_bottle_gallery` etter den lukkede VisitOSLO Galleries scope-auditen og kandidat-readiness-auditen. Stedet kategoriseres som `historie` fordi det er et spesialmuseum, og det eksakte Geonorge-adressepunktet for Kirkegata 10 brukes som display-marker.
+
+| 182 | `galleri_lnm` | Galleri LNM | verified | `geonorge-adresser-v1:0301:16115:37` |
+
+Batch 182 (2026-07-23) produserer `galleri_lnm` etter VisitOSLO Galleries scope- og readiness-auditene. Det eksakte Geonorge-adressepunktet for Rådhusgata 37 brukes som display-marker for LNM som egen fagorganisasjon og offentlig galleriinstitusjon.

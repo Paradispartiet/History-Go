@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T20:13:32.944Z
+Generert: 2026-07-23T20:17:19.913Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -341,3 +341,4 @@ Generert: 2026-07-23T20:13:32.944Z
 | unge_kunstneres_samfund | data/coordinate-evidence/oslo/kunst/unge_kunstneres_samfund.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | norske_grafikere | data/coordinate-evidence/oslo/kunst/norske_grafikere.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | the_mini_bottle_gallery | data/coordinate-evidence/oslo/historie/the_mini_bottle_gallery.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| galleri_lnm | data/coordinate-evidence/oslo/kunst/galleri_lnm.json | applied_to_place | do_not_change_coordinates_yet | OK |
