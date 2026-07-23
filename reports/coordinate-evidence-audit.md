@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T19:36:56.515Z
+Generert: 2026-07-23T19:50:34.198Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -336,3 +336,4 @@ Generert: 2026-07-23T19:36:56.515Z
 | aamot_bru | data/coordinate-evidence/oslo/historie/aamot_bru.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | klosterenga_skulpturpark | data/coordinate-evidence/oslo/kunst/klosterenga_skulpturpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | peer_gynt_parken | data/coordinate-evidence/oslo/kunst/peer_gynt_parken.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| edvard_munchs_atelier_ekely | data/coordinate-evidence/oslo/kunst/edvard_munchs_atelier_ekely.json | applied_to_place | do_not_change_coordinates_yet | OK |
