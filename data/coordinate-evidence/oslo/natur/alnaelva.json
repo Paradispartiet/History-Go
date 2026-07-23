@@ -2,72 +2,102 @@
   "schemaVersion": "1.0",
   "placeId": "alnaelva",
   "placeFile": "data/places/natur/oslo/places_oslo_alna.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9325,
-    "lon": 10.833,
+    "lat": 59.9180929,
+    "lon": 10.8322346,
     "r": 400,
-    "coordStatus": "needs_source",
-    "coordSource": "river_route_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Alna er dokumentert som et langt vassdrag fra Alnsjøen gjennom Groruddalen mot fjorden. OSM-søket finner flere separate elve-way-er, inkludert tunnellagte deler, men ingen samlet entydig river-relation som kan verifisere ett canonical punkt for hele elva. Eksisterende lat/lon beholdes kun som legacy representasjonsanker; recorden må modelleres med kildebelagt rute-/elvegeometri eller flere verifiserte delankre før koordinaten kan godkjennes."
+    "coordStatus": "verified_geometry",
+    "coordSource": "Verifisert Alna multi-anchor chain; display-anchor OpenStreetMap way 22698275 – Alna ved Smalvoll; separat current mouth osm-node:8067892897; historical outlet marker osm-way:4258487",
+    "coordType": "multi_anchor_route_display_anchor",
+    "coordNote": "Batch 157 løser hovedrecorden Alnaelva som et eksplisitt multi-anchor vassdrag i stedet for å late som ett punkt eller én OSM-way representerer hele elva. Den modellerte kjeden består av verifiserte delankre fra Alungsjøens utløpsnode via Groruddammen, Alnaparken, Smalvoll, Bryn, Svartdalen og Kværnerbyen til dagens eksplisitte elv–kyst-node ved Kongshavn. Vannspeilet/Tenerife beholdes i samme hovedmodell som separat historisk utløpsmarkør, uten at dette påstås å være et eksakt middelaldermunningspunkt. Canonical lat/lon er Smalvoll-segmentets verifiserte line-anchor fordi det fungerer som sentralt displayanker i kjeden; punktet er ikke et påstått geometrisk sentrum for hele vassdraget. Ingen legacy-koordinat, nearest/first-hit eller syntetisk enkeltgeometri brukes."
   },
   "identity": {
     "currentName": "Alnaelva",
-    "resolvedIdentity": "Alnaelva / Alna som sammenhengende vassdrag fra Alnsjøen gjennom Groruddalen",
+    "resolvedIdentity": "Alnaelva som verifisert multi-anchor vassdragskjede fra Alungsjøen til dagens utløp ved Kongshavn, med Vannspeilet som separat historisk utløpsmarkør",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "route",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "samlet kildebelagt elvegeometri eller flere verifiserte delankre"
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
-      "sourceProvider": "manual_research",
-      "sourceName": "Store norske leksikon – Alna",
-      "sourceUrl": "https://snl.no/Alna_(elv_i_Oslo)",
-      "sourceObjectId": "snl:alna-elv-oslo",
-      "sourceQuality": "documented_river_identity",
-      "finding": "Kilden dokumenterer Alna som et langt vassdrag gjennom Oslo.",
-      "canVerifyCoordinate": false,
-      "reason": "Identitet og forløp dokumenteres, men kilden gir ikke ett canonical punkt for hele elva."
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Alna ved Smalvoll, displayanker for multi-anchor-kjeden",
+      "sourceUrl": "https://www.openstreetmap.org/way/22698275",
+      "sourceObjectId": "osm-way:22698275",
+      "sourceQuality": "verified_component_display_anchor_inside_verified_multi_anchor_route_model",
+      "finding": "Canonical displayanker er den allerede verifiserte Smalvoll-wayen på 59.9180929, 10.8322346. Hovedrecordens 9 ankere er bygget direkte fra canonical verified_geometry-komponenter og det eksplisitte current-mouth-ankeret i batch 156.",
+      "canVerifyCoordinate": true,
+      "reason": "Displaykoordinaten kommer direkte fra en verifisert fysisk Alna-geometri; hele vassdraget representeres eksplisitt av flere verifiserte ankere."
     },
     {
       "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap – separate Alna waterway ways",
-      "sourceUrl": "https://www.openstreetmap.org/search?query=Alna%20Oslo",
-      "sourceObjectId": "osm:alna-multiple-waterway-ways",
-      "sourceQuality": "fragmented_river_geometry",
-      "finding": "Kontrollen fant flere separate elve-way-er, blant annet tunnellagte deler med alt_name=Loelva.",
+      "sourceName": "OpenStreetMap – dagens Alna-utløp ved Kongshavn",
+      "sourceUrl": "https://www.openstreetmap.org/node/8067892897",
+      "sourceObjectId": "osm-node:8067892897",
+      "sourceQuality": "explicit_current_hydrological_mouth_topology_anchor",
+      "finding": "Dagens vannføring ender i en eksplisitt delt node mellom den åpne Alna-utløpswayen og kystlinjen ved Kongshavn.",
       "canVerifyCoordinate": false,
-      "reason": "Ingen samlet entydig river-relation ble identifisert i kontrollen."
+      "reason": "Verifiserer kjedens nåværende endepunkt, men er ikke hovedrecordens displaykoordinat."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Vannspeilet/Tenerife",
+      "sourceUrl": "https://www.openstreetmap.org/way/4258487",
+      "sourceObjectId": "osm-way:4258487",
+      "sourceQuality": "verified_historical_outlet_marker_anchor",
+      "finding": "Vannspeilet/Tenerife inngår som separat historisk utløpsmarkør og holdes eksplisitt adskilt fra dagens hydrologiske utløp.",
+      "canVerifyCoordinate": false,
+      "reason": "Historisk markør i multi-anchor-modellen, ikke parentens displaykoordinat."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "snl:alna-elv-oslo",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:22698275",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:8067892897",
       "canApplyToPlace": false
     },
     {
       "sourceProvider": "osm",
-      "sourceObjectId": "osm:alna-multiple-waterway-ways",
+      "sourceObjectId": "osm-way:4258487",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:22698275",
+      "lat": 59.9180929,
+      "lon": 10.8322346,
+      "coordRole": "line_anchor",
+      "geometryType": "LineString",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9180929,
+      "lon": 10.8322346,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Alna er dokumentert som et langt vassdrag fra Alnsjøen gjennom Groruddalen mot fjorden. OSM-søket finner flere separate elve-way-er, inkludert tunnellagte deler, men ingen samlet entydig river-relation som kan verifisere ett canonical punkt for hele elva. Eksisterende lat/lon beholdes kun som legacy representasjonsanker; recorden må modelleres med kildebelagt rute-/elvegeometri eller flere verifiserte delankre før koordinaten kan godkjennes.",
-    "nextAction": "Modeller samlet elvegeometri eller verifiser flere routeSegments før hovedpunktet kan godkjennes."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Alnaelva er anvendt som verified multi-anchor route med Smalvoll som deklarert displayanker, dagens Kongshavn-utløp som mouth-anchor og Vannspeilet som historisk markør."
   },
   "notes": [
-    "Alna er dokumentert som et langt vassdrag fra Alnsjøen gjennom Groruddalen mot fjorden. OSM-søket finner flere separate elve-way-er, inkludert tunnellagte deler, men ingen samlet entydig river-relation som kan verifisere ett canonical punkt for hele elva. Eksisterende lat/lon beholdes kun som legacy representasjonsanker; recorden må modelleres med kildebelagt rute-/elvegeometri eller flere verifiserte delankre før koordinaten kan godkjennes."
+    "Batch 157 løser hovedrecorden Alnaelva som et eksplisitt multi-anchor vassdrag i stedet for å late som ett punkt eller én OSM-way representerer hele elva. Den modellerte kjeden består av verifiserte delankre fra Alungsjøens utløpsnode via Groruddammen, Alnaparken, Smalvoll, Bryn, Svartdalen og Kværnerbyen til dagens eksplisitte elv–kyst-node ved Kongshavn. Vannspeilet/Tenerife beholdes i samme hovedmodell som separat historisk utløpsmarkør, uten at dette påstås å være et eksakt middelaldermunningspunkt. Canonical lat/lon er Smalvoll-segmentets verifiserte line-anchor fordi det fungerer som sentralt displayanker i kjeden; punktet er ikke et påstått geometrisk sentrum for hele vassdraget. Ingen legacy-koordinat, nearest/first-hit eller syntetisk enkeltgeometri brukes."
   ]
 }
