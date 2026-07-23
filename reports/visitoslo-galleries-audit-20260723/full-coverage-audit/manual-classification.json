@@ -2,23 +2,23 @@
   "version": "2026-07-23",
   "sourceSnapshot": "reports/visitoslo-galleries-audit-20260723/api-source-discovery/gallery-source-snapshot.json",
   "machineAudit": "reports/visitoslo-galleries-audit-20260723/full-coverage-audit/machine-coverage-audit.json",
-  "status": "manual_classification_in_progress",
+  "status": "manual_classification_closed",
   "summary": {
     "machineSecureExactMatches": 18,
     "manualItems": 48,
     "manualStatusCounts": {
       "approved_distinct_candidate_outside_oslo": 1,
-      "requires_policy_review": 2,
-      "approved_distinct_candidate": 10,
-      "policy_deferred_private_commercial": 28,
+      "approved_distinct_candidate": 12,
+      "policy_deferred_private_commercial": 30,
       "covered_name_variant": 1,
       "covered_parent_enrichment": 3,
-      "approved_coordinate_backlog": 1,
-      "unresolved_research_needed": 2
+      "approved_coordinate_backlog": 1
     },
     "fullSourceItems": 66,
-    "finalDecisions": 44,
-    "nonFinalItems": 4
+    "finalDecisions": 48,
+    "nonFinalItems": 0,
+    "fullSourceClassificationClosed": true,
+    "productionCoverageClosed": false
   },
   "scopeGuards": [
     "Exact machine matches count as canonical coverage only where the source and canonical identity are the same physical/institutional place.",
@@ -27,7 +27,7 @@
     "Approved distinct candidates still require current-main duplicate audit and coordinate-source contract before production.",
     "Henie Onstad belongs to Bærum/Akershus production, not an Oslo coordinate batch.",
     "SOFT galleri remains coordinate-blocked until a distinct authoritative physical anchor is resolved.",
-    "Full category closure is not claimed while Format Oslo, SKOG Art Space, Oslo Galleri and Galleri SPINN remain non-final."
+    "Full 66-item source classification is closed, but production coverage remains open until approved distinct candidates are either produced, reused after current-main audit, or independently blocked."
   ],
   "manualRows": [
     {
@@ -38,9 +38,9 @@
     },
     {
       "sourceItem": "Format Oslo",
-      "status": "requires_policy_review",
+      "status": "approved_distinct_candidate",
       "canonicalTarget": null,
-      "reason": "Varig kunsthåndverks-/designaktør med institusjonelle trekk, men også AS og salgs-/butikkfunksjon; krever konsekvent policyavgjørelse."
+      "reason": "Varig galleri for samtidskunsthåndverk etablert i 1991 og eid av Norske Kunsthåndverkere; institusjonell eierstruktur og faglig offentlig program overstyrer ren commercial-defer."
     },
     {
       "sourceItem": "Edvard Munchs atelier på Ekely",
@@ -218,9 +218,9 @@
     },
     {
       "sourceItem": "Oslo Galleri",
-      "status": "unresolved_research_needed",
+      "status": "policy_deferred_private_commercial",
       "canonicalTarget": null,
-      "reason": "Operatør, varighet og forretnings-/institusjonsmodell er ikke sikkert nok dokumentert."
+      "reason": "Formidler og selger samtidskunst med provisjonsmodell og privat operatørtilknytning; faller under etablert gallery-policy."
     },
     {
       "sourceItem": "Galleri Briskeby",
@@ -260,9 +260,9 @@
     },
     {
       "sourceItem": "Galleri SPINN",
-      "status": "unresolved_research_needed",
+      "status": "policy_deferred_private_commercial",
       "canonicalTarget": null,
-      "reason": "Eierskap, varighet og institusjonell/kommersiell modell er ikke sikkert nok dokumentert."
+      "reason": "Privat kunstnerdrevet galleri knyttet til enkeltpersonforetaket Tore Wilhelmsen; faller under etablert gallery-policy."
     },
     {
       "sourceItem": "BO Billedkunstnerne i Oslo",
@@ -278,9 +278,9 @@
     },
     {
       "sourceItem": "SKOG Art Space",
-      "status": "requires_policy_review",
+      "status": "approved_distinct_candidate",
       "canonicalTarget": null,
-      "reason": "Har kunstnerstøttende/institusjonelle trekk, men er ung; krever eksplisitt policyvalg om nye nonprofit-lignende art spaces."
+      "reason": "Foreningsdrevet visningsrom med styre, juryert open call, utstillings-/residensprogram og aktiv drift; godkjennes som institusjonell kandidat."
     },
     {
       "sourceItem": "Atelie",
@@ -319,10 +319,5 @@
       "reason": "Salgsrettet grafikkgalleri under etablert gallery-policy."
     }
   ],
-  "nonFinalItems": [
-    "Format Oslo",
-    "SKOG Art Space",
-    "Oslo Galleri",
-    "Galleri SPINN"
-  ]
+  "nonFinalItems": []
 }
