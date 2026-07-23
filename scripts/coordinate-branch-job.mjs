@@ -23,7 +23,9 @@ function distanceMeters(lat1, lon1, lat2, lon2) {
 }
 
 function extractCoordinates(text) {
-  const decoded = decodeURIComponent(String(text ?? ""));
+  const raw = String(text ?? "");
+  let decoded = raw;
+  try { decoded = decodeURIComponent(raw); } catch {}
   const patterns = [
     { kind: "url_at", regex: /@(-?\d{1,2}\.\d+),(-?\d{1,3}\.\d+)/ },
     { kind: "google_data", regex: /!3d(-?\d{1,2}\.\d+)!4d(-?\d{1,3}\.\d+)/ },
@@ -32,7 +34,7 @@ function extractCoordinates(text) {
   ];
   const found = [];
   for (const pattern of patterns) {
-    const match = decoded.match(pattern.regex) ?? String(text ?? "").match(pattern.regex);
+    const match = decoded.match(pattern.regex) ?? raw.match(pattern.regex);
     if (!match) continue;
     const lat = Number(match[1]);
     const lon = Number(match[2]);
