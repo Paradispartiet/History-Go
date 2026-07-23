@@ -1,0 +1,9 @@
+[out:json][timeout:45];
+(
+  way["name"="Akerselva"]["waterway"~"river|stream"](59.951,10.758,59.961,10.773);
+  way["waterway"~"dam|weir"](59.951,10.758,59.961,10.773);
+  way["bridge"](59.951,10.758,59.961,10.773);
+  way["man_made"="bridge"](59.951,10.758,59.961,10.773);
+  nwr["name"~"Nydalsdammen|Nydalsfossen|Akerselva",i](59.951,10.758,59.961,10.773);
+);
+out body geom;
