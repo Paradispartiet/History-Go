@@ -113,6 +113,7 @@ function updatePlace(place, anchor, overlapRatio, sharedTunnelNode) {
     ...place,
     lat: anchor.lat,
     lon: anchor.lon,
+    locatorType: 'route',
     sourceHint: 'Canonical kartanker er lengdemidtpunktet på OSM way 22698275, den lange åpne Alna-strekningen som følger Smalvollveiens hovedspenn gjennom den dokumenterte Smalvoll-korridoren.',
     coordType: 'river_segment_anchor',
     coordStatus: 'verified_geometry',
@@ -229,7 +230,7 @@ writeJson(path.join(reportDir, 'batch-154-result.json'), {
   geometry: { type: 'LineString', nodeCount: river.points.length, lengthM: anchor.lengthM, upstreamTunnelWay: `osm-way:${UPSTREAM_TUNNEL_WAY_ID}`, sharedTunnelNode: `osm-node:${sharedTunnelNode}` },
   corridorCrosscheck: { smalvollveienWay: `osm-way:${SMALVOLLVEIEN_WAY_ID}`, riverBoundingBox: riverBox, roadBoundingBox: roadBox, roadLatSpanInsideRiverRatio: Number(overlapRatio.toFixed(4)) },
   before: { lat: oldPlace.lat, lon: oldPlace.lon, r: oldPlace.r, coordStatus: oldPlace.coordStatus, coordSource: oldPlace.coordSource, coordType: oldPlace.coordType },
-  after: { lat: child.lat, lon: child.lon, r: child.r, coordStatus: child.coordStatus, coordSource: child.coordSource, coordType: child.coordType, sourceObjectId: child.sourceObjectId, geocodeAccuracy: child.geocodeAccuracy, coordRole: child.coordRole },
+  after: { lat: child.lat, lon: child.lon, r: child.r, coordStatus: child.coordStatus, coordSource: child.coordSource, coordType: child.coordType, locatorType: child.locatorType, sourceObjectId: child.sourceObjectId, geocodeAccuracy: child.geocodeAccuracy, coordRole: child.coordRole },
   method: 'exact named long Alna segment + documented Smalvolldalen/Smalvollveien corridor + exact upstream tunnel topology + deterministic length midpoint; no legacy point, nearest or first-hit',
 });
 writeJson(path.join(reportDir, 'nearby-links-preservation.json'), { placeId: PLACE_ID, before: nearbyBefore, after: child?.nature_profile?.nearby_place_ids || [], preserved: JSON.stringify(nearbyBefore) === JSON.stringify(child?.nature_profile?.nearby_place_ids || []) });
