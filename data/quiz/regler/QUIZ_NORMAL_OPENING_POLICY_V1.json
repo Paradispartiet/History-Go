@@ -12,7 +12,9 @@
       "fact",
       "context",
       "cause",
-      "sammenheng"
+      "sammenheng",
+      "observation",
+      "comparison"
     ],
     "preferred_openings": [
       "Hvem",
@@ -36,6 +38,7 @@
       "sted, plassering og funksjon",
       "verk, bygninger, materialer og teknikker",
       "direkte årsaker og dokumenterte sammenhenger",
+      "direkte observasjoner og konkrete sammenligninger",
       "synlige eller kildebelagte detaljer"
     ],
     "forbidden_binding_fields": [
@@ -49,9 +52,7 @@
       "theory",
       "definition",
       "begrep",
-      "analysis",
-      "comparison",
-      "observation"
+      "analysis"
     ],
     "forbidden_surface_rule_ids": [
       "emne_prompt",
@@ -68,6 +69,7 @@
       "more_than_place"
     ],
     "metadata_rule": "emne_id og andre faglige metadata kan ligge bak et normalt spørsmål, men må ikke gjøre spørsmålsflaten til en emne-, metode- eller teoritest.",
+    "type_rule": "En intern etikett som observation eller comparison er tillatt når spørsmålet er direkte, konkret og kan besvares uten å kjenne produksjonsmodellen.",
     "knowledge_rule": "Faglig forklaring og begreper kan utdypes i knowledge etter at spilleren har svart."
   },
   "progression": {
