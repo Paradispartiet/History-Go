@@ -28,6 +28,20 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
+      - name: Apply official Bærum address spelling
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/add-scenekunst-venues-batch-5.mjs')
+          s = p.read_text()
+          old = "street: 'Claude Monets allé', number: 27"
+          new = "street: 'Claude Monets alle', number: 27"
+          if old not in s:
+              raise SystemExit('Bærum address fragment not found')
+          p.write_text(s.replace(old, new, 1))
+          PY
+          rm -f reports/scenekunst-new-venues-batch-5-runner-error.log
+
       - name: Build five venue packages
         id: venue_build
         shell: bash
