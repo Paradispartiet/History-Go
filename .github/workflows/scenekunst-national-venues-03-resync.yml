@@ -1,0 +1,93 @@
+name: Resync national Scenekunst venues batch 3
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  resync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out resync branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/scenekunst-national-venues-03-resync
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Copy validated venue packages and reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          OLD_REF='agent/scenekunst-national-venues-03'
+          RAW='https://raw.githubusercontent.com/Paradispartiet/History-Go'
+          files=(
+            'data/places/scenekunst/buskerud/brageteatret_union_scene.json'
+            'data/places/scenekunst/innlandet/teater_innlandet_hamar_kulturhus.json'
+            'data/places/scenekunst/ostfold/ostfold_teater.json'
+            'data/places/scenekunst/rogaland/haugesund_teater_haut_scene.json'
+            'data/places/scenekunst/trondelag/turneteatret_i_trondelag.json'
+            'reports/scenekunst-national-new-venues-batch-3-2026-07-22.json'
+            'reports/scenekunst-national-new-venues-batch-3-2026-07-22.md'
+          )
+          for file in "${files[@]}"; do
+            mkdir -p "$(dirname "$file")"
+            curl -fsSL "$RAW/$OLD_REF/$file" -o "$file"
+          done
+
+      - name: Register source files in current manifest
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = 'data/places/manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(p, 'utf8'));
+          const additions = [
+            'places/scenekunst/buskerud/brageteatret_union_scene.json',
+            'places/scenekunst/innlandet/teater_innlandet_hamar_kulturhus.json',
+            'places/scenekunst/ostfold/ostfold_teater.json',
+            'places/scenekunst/rogaland/haugesund_teater_haut_scene.json',
+            'places/scenekunst/trondelag/turneteatret_i_trondelag.json'
+          ];
+          for (const file of additions) {
+            if (!manifest.files.includes(file)) manifest.files.push(file);
+          }
+          fs.writeFileSync(p, JSON.stringify(manifest, null, 2) + '\n');
+          NODE
+
+      - name: Rebuild indexes and validate
+        run: |
+          npm run build:tools
+          npm run places:index:build
+          bash scripts/check-places.sh
+          npm run audit:categories
+
+      - name: Commit resynced production result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/manifest.json
+          git add data/places/places_index.json
+          git add data/places/scenekunst/buskerud/brageteatret_union_scene.json
+          git add data/places/scenekunst/innlandet/teater_innlandet_hamar_kulturhus.json
+          git add data/places/scenekunst/ostfold/ostfold_teater.json
+          git add data/places/scenekunst/rogaland/haugesund_teater_haut_scene.json
+          git add data/places/scenekunst/trondelag/turneteatret_i_trondelag.json
+          git add reports/scenekunst-national-new-venues-batch-3-2026-07-22.json
+          git add reports/scenekunst-national-new-venues-batch-3-2026-07-22.md
+          git diff --cached --stat
+          git diff --cached --quiet && { echo 'No resync changes produced'; exit 1; }
+          git commit -m "Resync third national Scenekunst venue batch"
+          git push origin HEAD:agent/scenekunst-national-venues-03-resync
