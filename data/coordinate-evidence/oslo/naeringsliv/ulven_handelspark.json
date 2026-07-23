@@ -1,59 +1,101 @@
 {
+  "schemaVersion": "1.0",
   "placeId": "ulven_handelspark",
   "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_identity_split",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9229,
-    "lon": 10.8215,
-    "r": 200,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "lat": 59.924017628728656,
+    "lon": 10.81017987877654,
+    "r": 180,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Standardveien 1, 0581 Oslo. Construction Citys egne sider dokumenterer navnet, adressen og åpningen på Ulven i august 2025, og Oslo kommune omtaler Construction City som næringsklyngen på Ulven. Punktet erstatter den udokumenterte generiske markøren «Ulven handelspark»."
   },
   "identity": {
-    "currentName": "Ulven handelspark",
-    "resolvedIdentity": "et påstått handels-/næringsområde på Ulven i Oslo",
-    "identityStatus": "conflict",
-    "identityProblem": "Audit fant Ulven som dokumentert transformasjons- og næringsområde, men ingen stabil offentlig eller lokalhistorisk fysisk entitet med navnet «Ulven handelspark». Dagens generiske punkt kan derfor ikke verifiseres mot et kildeobjekt.",
-    "locatorTypeCandidate": "linear_area",
+    "currentName": "Construction City",
+    "resolvedIdentity": "Construction City, det fysiske næringsbygget og klyngesenteret i Standardveien 1 på Ulven",
+    "identityStatus": "resolved",
+    "identityProblem": "Legacy-navnet «Ulven handelspark» var ikke en dokumentert fysisk entitet. Den eksisterende Ulven/Hovinbyen-konteksten er bevart, men det canonical stedet er avgrenset til Construction City.",
+    "locatorTypeCandidate": "building",
     "requiresSplit": false,
-    "splitReason": "Audit fant Ulven som dokumentert transformasjons- og næringsområde, men ingen stabil offentlig eller lokalhistorisk fysisk entitet med navnet «Ulven handelspark». Dagens generiske punkt kan derfor ikke verifiseres mot et kildeobjekt."
+    "splitReason": ""
   },
   "requiredEvidence": [
-    "entydig fysisk scope",
-    "korrekt kommune/fylke der relevant",
+    "entydig fysisk næringsbygg",
+    "offisiell adressekoordinat",
     "overlap-audit mot eksisterende canonical places"
   ],
   "evidence": [
     {
-      "sourceProvider": "manual_research",
-      "sourceName": "Oslo kommune – Hovinbyen / Ulven",
-      "sourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/hovinbyen/",
-      "sourceObjectId": "oslo-kommune:hovinbyen:ulven",
-      "sourceQuality": "identity_geography_audit",
-      "finding": "Audit fant Ulven som dokumentert transformasjons- og næringsområde, men ingen stabil offentlig eller lokalhistorisk fysisk entitet med navnet «Ulven handelspark». Dagens generiske punkt kan derfor ikke verifiseres mot et kildeobjekt.",
-      "canVerifyCoordinate": false,
-      "reason": "Audit fant Ulven som dokumentert transformasjons- og næringsområde, men ingen stabil offentlig eller lokalhistorisk fysisk entitet med navnet «Ulven handelspark». Dagens generiske punkt kan derfor ikke verifiseres mot et kildeobjekt."
-    }
-  ],
-  "addressCandidates": [],
-  "sourceObjectCandidates": [
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Standardveien 1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Standardveien%201%200581%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21534:1",
+      "sourceQuality": "official_address",
+      "finding": "Ett verifisert offisielt adressepunkt for Standardveien 1, 0581 Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Standardveien 1, 0581 Oslo. Construction Citys egne sider dokumenterer navnet, adressen og åpningen på Ulven i august 2025, og Oslo kommune omtaler Construction City som næringsklyngen på Ulven. Punktet erstatter den udokumenterte generiske markøren «Ulven handelspark»."
+    },
     {
       "sourceProvider": "manual_research",
-      "sourceObjectId": "oslo-kommune:hovinbyen:ulven",
+      "sourceName": "Construction City – offisielle sider",
+      "sourceUrl": "https://constructioncity.no/artikler/construction-city/construction-city-er-offisielt-apnet-en-viktig-milepael-for-bransjen/",
+      "sourceObjectId": "construction-city:ulven:official-2025",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Construction City identifiseres som næringsklyngen på Ulven, åpnet i august 2025; offisiell kontaktside oppgir Standardveien 1.",
+      "canVerifyCoordinate": false,
+      "reason": "Dokumenterer fysisk identitet og lokasjon; Geonorge brukes som koordinatkilde."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Hovinbyen",
+      "sourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/hovinbyen/",
+      "sourceObjectId": "oslo-kommune:hovinbyen:construction-city-ulven",
+      "sourceQuality": "municipality_identity",
+      "finding": "Oslo kommune omtaler Construction City som næringsklyngen på Ulven.",
+      "canVerifyCoordinate": false,
+      "reason": "Kommunal kryssjekk av område- og funksjonsidentitet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Standardveien 1, 0581 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21534:1",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21534:1",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "construction-city:ulven:official-2025",
       "canApplyToPlace": false
     }
   ],
   "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.924017628728656,
+      "lon": 10.81017987877654,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21534:1",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Audit fant Ulven som dokumentert transformasjons- og næringsområde, men ingen stabil offentlig eller lokalhistorisk fysisk entitet med navnet «Ulven handelspark». Dagens generiske punkt kan derfor ikke verifiseres mot et kildeobjekt.",
-    "nextAction": "Identifiser det konkrete handels-/næringsanlegget som recorden skal representere, eller erstatt recorden med et dokumentert Ulven-områdeobjekt før koordinaten godkjennes."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Construction City er canonical fysisk anker for den tidligere uløste Ulven-proxyen."
   },
   "notes": [
-    "Ingen koordinatendring i batch 23."
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Standardveien 1, 0581 Oslo. Construction Citys egne sider dokumenterer navnet, adressen og åpningen på Ulven i august 2025, og Oslo kommune omtaler Construction City som næringsklyngen på Ulven. Punktet erstatter den udokumenterte generiske markøren «Ulven handelspark».",
+    "Nærmeste andre canonical marker ved write-time var vallhall_arena på 457.46 meter; ingen markør lå innen 3 meter."
   ]
 }

@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T21:59:57.609Z
+Generert: 2026-07-23T22:08:20.516Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -205,7 +205,7 @@ Generert: 2026-07-23T21:59:57.609Z
 | st_halvard_bryggeri | data/coordinate-evidence/oslo/naeringsliv/st_halvard_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | telegrafbygningen | data/coordinate-evidence/oslo/naeringsliv/telegrafbygningen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | the_salmon_vitensenter | data/coordinate-evidence/oslo/naeringsliv/the_salmon_vitensenter.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| ulven_handelspark | data/coordinate-evidence/oslo/naeringsliv/ulven_handelspark.json | needs_research | needs_identity_split | OK |
+| ulven_handelspark | data/coordinate-evidence/oslo/naeringsliv/ulven_handelspark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vinmonopolet_lager | data/coordinate-evidence/oslo/naeringsliv/vinmonopolet_lager.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vippetangen_fisketorg | data/coordinate-evidence/oslo/naeringsliv/vippetangen_fisketorg.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akerselva_utlop_bjorvika | data/coordinate-evidence/oslo/natur/akerselva_utlop_bjorvika.json | applied_to_place | do_not_change_coordinates_yet | OK |
