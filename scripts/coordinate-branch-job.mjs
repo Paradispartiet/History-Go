@@ -6,7 +6,7 @@ import path from 'node:path';
 const root = process.cwd();
 const DATE = '2026-07-23';
 const protocolFile = 'docs/coordinates/coordinate-control-protocol.md';
-const placeManifestFile = 'data/places/manifest.json';
+const runtimeIndexFile = 'data/places/places_index.json';
 const reportDir = 'reports/oslo-coordinate-unresolved-protocol-sync-post-176';
 const abs = (file) => path.join(root, file);
 const toPlaces = (payload) => Array.isArray(payload)
@@ -17,23 +17,15 @@ const toPlaces = (payload) => Array.isArray(payload)
       ? payload.items
       : [payload];
 
-const manifest = JSON.parse(fs.readFileSync(abs(placeManifestFile), 'utf8'));
+const runtimePayload = JSON.parse(fs.readFileSync(abs(runtimeIndexFile), 'utf8'));
 const active = new Map();
-for (const entry of manifest.files || []) {
-  const file = path.join(root, 'data', entry);
-  if (!fs.existsSync(file)) continue;
-  const payload = JSON.parse(fs.readFileSync(file, 'utf8'));
-  for (const place of toPlaces(payload)) {
-    if (!place?.id) continue;
-    active.set(String(place.id), {
-      place,
-      file: path.relative(root, file).replaceAll('\\', '/'),
-    });
-  }
+for (const place of toPlaces(runtimePayload)) {
+  if (place?.id) active.set(String(place.id), place);
 }
 
 let protocol = fs.readFileSync(abs(protocolFile), 'utf8');
-const maxBatch = Math.max(...[...protocol.matchAll(/^\|\s*(\d+)\s*\|/gm)].map((match) => Number(match[1])).filter(Number.isFinite));
+const batches = [...protocol.matchAll(/^\|\s*(\d+)\s*\|/gm)].map((match) => Number(match[1])).filter(Number.isFinite);
+const maxBatch = Math.max(...batches);
 if (maxBatch !== 176) throw new Error(`Expected current Oslo coordinate max batch 176, got ${maxBatch}. Rebase before protocol sync.`);
 
 const heading = '### Dokumenterte Oslo-kontroller uten godkjent koordinat';
@@ -50,32 +42,25 @@ const removed = [];
 const kept = [];
 let updatedSection = section;
 for (const candidate of candidateRows) {
-  const record = active.get(candidate.id) ?? null;
-  const place = record?.place ?? null;
-  const status = String(place?.coordStatus ?? 'missing_from_active_manifest');
-  const retired = !place || place.disabled === true || place.hidden === true || place.active === false;
-  const resolved = place && verifiedStatuses.has(status);
-  if (retired || resolved) {
+  const place = active.get(candidate.id) ?? null;
+  const status = String(place?.coordStatus ?? 'missing_from_active_runtime');
+  if (!place || verifiedStatuses.has(status)) {
     updatedSection = updatedSection.replace(`${candidate.row}\n`, '').replace(candidate.row, '');
     removed.push({
       id: candidate.id,
-      reason: retired ? 'retired_or_not_active' : 'active_place_now_verified',
+      reason: !place ? 'not_in_active_runtime_index' : 'active_place_now_verified',
       coordStatus: status,
-      activeFile: record?.file ?? null,
       name: place?.name ?? null,
+      category: place?.category ?? null
     });
   } else {
-    kept.push({
-      id: candidate.id,
-      coordStatus: status,
-      activeFile: record?.file ?? null,
-      name: place?.name ?? null,
-    });
+    kept.push({ id: candidate.id, coordStatus: status, name: place.name ?? null, category: place.category ?? null });
   }
 }
 
-if (!removed.length) throw new Error('Protocol sync found no stale unresolved rows to remove');
-const note = `\nProtokollsynk (${DATE}, post batch 176): fjernet ${removed.length} stale unresolved-rader etter kontroll mot dagens aktive place-manifest. Fjernet: ${removed.map((row) => `\`${row.id}\``).join(', ')}. Ingen koordinater eller place-identiteter ble endret i denne synken.\n`;
+const note = removed.length
+  ? `\nProtokollsynk (${DATE}, post batch 176): fjernet ${removed.length} stale unresolved-rader etter kontroll mot dagens aktive runtime-indeks. Fjernet: ${removed.map((row) => `\`${row.id}\``).join(', ')}. Ingen koordinater eller place-identiteter ble endret i denne synken.\n`
+  : `\nProtokollsynk (${DATE}, post batch 176): kontroll mot dagens aktive runtime-indeks fant ingen stale unresolved-rader. Ingen koordinater eller place-identiteter ble endret.\n`;
 updatedSection = `${updatedSection.trimEnd()}${note}\n`;
 protocol = `${protocol.slice(0, sectionStart)}${updatedSection}${protocol.slice(sectionEnd)}`;
 fs.writeFileSync(abs(protocolFile), protocol);
@@ -83,13 +68,14 @@ fs.writeFileSync(abs(protocolFile), protocol);
 fs.mkdirSync(abs(reportDir), { recursive: true });
 fs.writeFileSync(abs(`${reportDir}/summary.json`), `${JSON.stringify({
   generatedAt: new Date().toISOString(),
+  activeAuthority: runtimeIndexFile,
   maxCoordinateBatch: maxBatch,
   unresolvedRowsBefore: candidateRows.length,
   staleRowsRemoved: removed.length,
   unresolvedRowsAfter: kept.length,
   removed,
-  kept,
+  kept
 }, null, 2)}\n`);
-fs.writeFileSync(abs(`${reportDir}/README.md`), `# Oslo unresolved coordinate protocol sync — post batch 176\n\nThis sync compares every row in the unresolved Oslo protocol table with the current active place manifest. Rows are removed only when the place is now verified or no longer active/has been retired. Truly unresolved active records remain untouched.\n\nNo coordinates or place identities are changed by this job.\n`);
+fs.writeFileSync(abs(`${reportDir}/README.md`), '# Oslo unresolved coordinate protocol sync — post batch 176\n\nThis sync compares unresolved Oslo protocol rows with the generated active runtime index. Rows are removed only when a place is now verified or absent from active runtime. Truly unresolved active records remain untouched. No coordinates or place identities are changed.\n');
 
 console.log(JSON.stringify({ removed: removed.map((row) => row.id), kept: kept.map((row) => row.id) }, null, 2));
