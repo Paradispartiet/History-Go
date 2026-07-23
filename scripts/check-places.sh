@@ -3,6 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
+# One-shot feature-branch integration runner; restores the canonical script before commit.
 BRANCH='agent/scenekunst-oslo-split-venues-01-ci-runner'
 SOURCE='agent/scenekunst-oslo-split-venues-01-final'
 REPORT_JSON='reports/scenekunst-oslo-split-venues-batch-1-2026-07-23.json'
