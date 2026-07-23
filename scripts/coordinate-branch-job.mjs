@@ -9,7 +9,7 @@ const candidates = [
   {
     placeId: "fotogalleriet",
     name: "Fotogalleriet",
-    address: "Møllergata 34 Oslo",
+    address: "Møllergata 34, 0179 Oslo",
     founded: 1977,
     institutionClass: "noncommercial_camera_based_art_institution",
     officialSource: "https://fotogalleriet.no/no/visit/"
