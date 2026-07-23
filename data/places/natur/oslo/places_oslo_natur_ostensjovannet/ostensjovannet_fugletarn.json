@@ -1,22 +1,22 @@
 {
   "id": "ostensjovannet_fugletarn",
-  "name": "Østensjøvannet fugletårn",
-  "lat": 59.8878,
-  "lon": 10.8301,
+  "name": "Fugleskjulet ved Østensjøvannet",
+  "lat": 59.8863482,
+  "lon": 10.8264232,
   "r": 90,
   "category": "natur",
-  "desc": "Observasjonspunkt mot våtmark og åpent vann for fugl gjennom året.",
+  "desc": "Fugleskjul på vestsiden av Østensjøvannet med utsyn over sentrale deler av vannet og våtmarken.",
   "nature_profile": {
-    "type": "fugleobservasjonspunkt / våtmarksutsikt / naturformidling",
-    "title": "Utsikt over fuglelivet uten å gå inn i våtmarken",
-    "summary": "Fugletårnet gir oversikt over åpne vannflater, sivbelter og våtmarkssoner uten at besøkende trenger å bevege seg inn i sårbare leveområder. Her kan fugler følges på vannet, langs kantvegetasjonen og i lufta gjennom ulike årstider. Natur-rundingen viser både artsmangfoldet rundt Østensjøvannet og hvorfor et fast observasjonspunkt er viktig for naturformidling, registrering og skånsom ferdsel i et bynært reservat.",
+    "type": "fugleskjul / observasjonspunkt / våtmark",
+    "title": "Fugleskjul med utsyn over Østensjøvannet",
+    "summary": "Fugleskjulet på vestsiden av Østensjøvannet gir et avskjermet observasjonspunkt mot sentrale deler av vannet og våtmarken. Her kan fuglelivet følges uten at besøkende trenger å gå ut i sårbare kantsoner.",
     "themes": [
-      "fugleobservasjon fra fast punkt",
-      "åpent vann og sivbelter",
-      "sesongvariasjon i fuglelivet",
-      "skånsom ferdsel i reservatet",
-      "naturregistrering og overvåking",
-      "utsyn over flere våtmarkshabitater"
+      "observasjon av vannfugl",
+      "avskjermet fugleskjul",
+      "utsyn over sentrale vannflater",
+      "våtmark og naturreservat",
+      "tilrettelegging for naturstudier",
+      "ferdsel med mindre forstyrrelse"
     ],
     "nearby_place_ids": [
       "ostensjovannet_nord",
@@ -25,22 +25,22 @@
     ]
   },
   "tags": [
-    "fugletarn",
+    "fugleskjul",
     "fugleliv",
     "vatmark",
     "naturreservat"
   ],
   "routeId": "ostensjovannet_vatmark",
-  "sourceHint": "Koordinat lagt ved etablert fugletårn/observasjonspunkt i reservatets østlige del.",
-  "coordType": "legacy_unverified",
-  "coordStatus": "needs_source",
-  "coordSource": "ostensjovannet_fugletarn_canonical_geometry_unresolved",
-  "coordVerifiedAt": "2026-07-21",
+  "sourceHint": "Koordinaten er bygningssenteret for den eneste fysiske OSM-geometrien med leisure=bird_hide rundt Østensjøvannet; objektet ligger på vestsiden slik en uavhengig oppdatert fugleguide beskriver.",
+  "coordType": "bird_hide_building_center",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 533351097 – fugleskjul ved Østensjøvannet",
+  "coordVerifiedAt": "2026-07-23",
   "emne_ids": [
     "em_natur_miljodata_overvaking",
     "em_natur_arter_habitat_mangfold"
   ],
-  "popupDesc": "Fugletårnet ved Østensjøvannet er et konkret observasjonspunkt med oversikt over vannspeil og våtmark. Plattformen gjør det mulig å følge fugleliv gjennom sesonger uten å bevege seg inn i sårbare partier. Tårnet fungerer både som læringspunkt og rolig stoppested langs turtraséene rundt vannet. Stedet gir en tydelig inngang til naturreservatets artsmangfold.",
+  "popupDesc": "På vestsiden av Østensjøvannet står et lite fugleskjul som gir utsyn mot de sentrale vannflatene og våtmarkssonene. Skjulet gjør det mulig å observere fuglelivet mer avskjermet enn fra den åpne turveien rundt vannet. Stedet viser hvordan enkel tilrettelegging kan gjøre artsobservasjon tilgjengelig samtidig som ferdselen konsentreres til et fast punkt.",
   "underbadge_ids": [
     "fugler",
     "vannfugl",
@@ -50,6 +50,12 @@
   "visual": {
     "designCode": "waterfront_miniature"
   },
-  "locatorType": "structure",
-  "coordNote": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker."
+  "locatorType": "building",
+  "coordNote": "Batch 150 retter den tidligere «Østensjøvannet fugletårn»-identiteten til det faktiske fugleskjulet på vestsiden av vannet, mens placeId beholdes for kompatibilitet. En objekt-type-first Overpass-audit fant nøyaktig ett leisure=bird_hide rundt Østensjøvannet: OSM way 533351097, tagget building=hut og leisure=bird_hide. En uavhengig oppdatert fugleguide beskriver tilsvarende ett bird hide på vestsiden med utsyn over de sentrale delene av vannet. Canonical lat/lon er deterministisk polygoncentroid for selve bygningsgeometrien og klassifiseres som building/building_center i coordinate-source-contract v1. Legacy-punktet på østsiden og nearest/first-hit brukes ikke.",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:533351097",
+  "geocodeAccuracy": "building",
+  "coordRole": "building_center",
+  "coordSourceId": "osm-way:533351097",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/533351097"
 }
