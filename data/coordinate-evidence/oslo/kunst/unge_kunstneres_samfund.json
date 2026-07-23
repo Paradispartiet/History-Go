@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "unge_kunstneres_samfund",
+  "placeFile": "data/places/kunst/oslo/places_kunst/unge_kunstneres_samfund.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.917046487498816,
+    "lon": 10.743853067869056,
+    "r": 65,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Keysers gate 1, 0165 Oslo. UKS dokumenterer selv Keysers gate 1 som sitt utstillingssted i Oslo sentrum; punktet brukes som canonical display-marker for Unge Kunstneres Samfund som egen medlemsorganisasjon og samtidskunstinstitusjon."
+  },
+  "identity": {
+    "currentName": "Unge Kunstneres Samfund",
+    "resolvedIdentity": "UKS som egen kunstnerdrevet medlemsorganisasjon og samtidskunstinstitusjon i Keysers gate 1",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt nåværende besøksadresse",
+    "canonical identitets- og nærhetskontroll",
+    "dokumentert institusjonell kontinuitet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Keysers gate 1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Keysers%20gate%201%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13669:1",
+      "sourceQuality": "official_address",
+      "finding": "Ett tydelig offisielt adressepunkt for Keysers gate 1 i Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Keysers gate 1, 0165 Oslo. UKS dokumenterer selv Keysers gate 1 som sitt utstillingssted i Oslo sentrum; punktet brukes som canonical display-marker for Unge Kunstneres Samfund som egen medlemsorganisasjon og samtidskunstinstitusjon."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "UKS – Union/About",
+      "sourceUrl": "https://www.uks.no/uks-union/",
+      "sourceObjectId": "uks:union-about",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Dokumenterer UKS som medlemsorganisasjon og utstillingssted, grunnlagt i 1921 av og for kunstnere.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og institusjonshistorisk kryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "UKS – current programme",
+      "sourceUrl": "https://www.uks.no/",
+      "sourceObjectId": "uks:current-site",
+      "sourceQuality": "official_site_address",
+      "finding": "Dokumenterer aktivt program og Keysers gate 1 som dagens fysiske UKS-sted.",
+      "canVerifyCoordinate": false,
+      "reason": "Nåværende stedstilknytning."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Keysers gate 1, 0165 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13669:1",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13669:1",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "uks:union-about",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "uks:current-site",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.917046487498816,
+      "lon": 10.743853067869056,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13669:1",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Keysers gate 1 er anvendt som canonical display-marker."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Keysers gate 1, 0165 Oslo. UKS dokumenterer selv Keysers gate 1 som sitt utstillingssted i Oslo sentrum; punktet brukes som canonical display-marker for Unge Kunstneres Samfund som egen medlemsorganisasjon og samtidskunstinstitusjon.",
+    "Nærmeste eksisterende canonical marker ved write-time var trefoldighetskirken på 61.96 meter; ingen markør lå innen 3 meter."
+  ]
+}

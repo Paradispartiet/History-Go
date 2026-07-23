@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T19:58:03.491Z
+Generert: 2026-07-23T20:02:26.282Z
 
 ## Oppsummering
-- Aktive filer validert: **680**
+- Aktive filer validert: **681**
 - Antall steder validert: **1290**
 - Harde feil: **0**
 - Varsler: **509**
@@ -698,6 +698,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/peer_gynt_parken.json
 - data/places/kunst/oslo/places_kunst/edvard_munchs_atelier_ekely.json
 - data/places/kunst/oslo/places_kunst/tegnerforbundet.json
+- data/places/kunst/oslo/places_kunst/unge_kunstneres_samfund.json
 
 ## Harde feil
 - Ingen
