@@ -1,15 +1,26 @@
 {
-  "version": "2.0",
+  "version": "3.0",
   "status": "canonical_category_profile",
   "type": "category_quiz_profile",
   "categoryId": "by",
   "title": "By",
   "governance": {
-    "production_standard": "data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md",
+    "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "package_schema": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
     "template_registry": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json",
-    "authority": "category_content_only",
+    "subject_manifest": "data/fag/fag_manifest.json",
+    "authority": "category_content_and_orchestration",
     "may_override_global_rules": false
+  },
+  "input_roles": {
+    "pensum": "læringsmål og faglig progresjon",
+    "emner": "faglige problemer, begreper, konflikter og teorimuligheter",
+    "fagkart": "teorihooks, teoretikere, verk og sammenligningsmuligheter",
+    "methods": "faglige observasjons- og analyseoperasjoner",
+    "supersetQuizMal": "adaptiv profil, relativ progresjon og kontrollrekkefølge",
+    "quizStandard": "felles produksjons- og innholdsregler",
+    "quizQuestionSchema": "teknisk feltkontrakt for spørsmål"
   },
   "required_emne_prefix": "em_by_",
   "content_priorities": [
@@ -37,9 +48,115 @@
   ],
   "category_rules": [
     "Start med dokumentert stoff fra kategorien, ikke med emneetiketten.",
+    "Les og vurder hele fagpakken før det faglige utvalget låses.",
+    "Registrer vurderte og valgte emner, hooks, metoder og teoretikere separat.",
     "Bevar relevante faguttrykk i spørsmål, knowledge eller metadata.",
     "Bruk bare emne_id som finnes i kategoriens emnefil.",
-    "Kategori-profilen styrer faglig utvalg, men ikke global quizbalanse eller språk."
+    "Kategori-profilen kan ikke overstyre globale språk-, kilde- eller balanseregler."
+  ],
+  "adaptive_profiles": {
+    "narrow": {
+      "sets": 3,
+      "questions_per_set": 7,
+      "use_when": "avgrenset sted med få uavhengige, sterke påstander"
+    },
+    "normal": {
+      "sets": 4,
+      "questions_per_set": 7,
+      "use_when": "sted med solid hovedhistorie og minst ett tydelig faglig broledd"
+    },
+    "rich": {
+      "sets_min": 5,
+      "sets_max": 8,
+      "questions_per_set": 7,
+      "use_when": "sted med flere kildebelagte lag, bruksmåter, metoder eller teorimuligheter"
+    },
+    "major": {
+      "sets_min": 8,
+      "sets_max": 10,
+      "questions_per_set": 7,
+      "use_when": "hovedsted med bred og uavhengig dokumentasjon som bærer flere progresjonsløp"
+    }
+  },
+  "profile_selection": {
+    "default": "normal",
+    "evidence_order": [
+      "antall uavhengige kildebelagte påstander",
+      "antall relevante kildetyper",
+      "historisk og funksjonell bredde",
+      "antall stedlig forankrede emner",
+      "relevante relasjoner og historier",
+      "metode- og teorimuligheter med konkret anker"
+    ],
+    "never_pad_to_reach_profile": true,
+    "reduce_profile_when_evidence_is_thin": true
+  },
+  "relative_progression": {
+    "phase_sequences": {
+      "3": ["opening", "bridge", "final"],
+      "4": ["opening", "middle", "bridge", "final"],
+      "5": ["opening", "middle", "middle", "bridge", "final"],
+      "6": ["opening", "middle", "middle", "middle", "bridge", "final"],
+      "7": ["opening", "middle", "middle", "middle", "bridge", "bridge", "final"],
+      "8": ["opening", "middle", "middle", "middle", "middle", "bridge", "bridge", "final"],
+      "9": ["opening", "middle", "middle", "middle", "middle", "middle", "bridge", "bridge", "final"],
+      "10": ["opening", "middle", "middle", "middle", "middle", "middle", "middle", "bridge", "bridge", "final"]
+    },
+    "phase_requirements": {
+      "opening": {
+        "focus": ["sted", "hovedhistorie", "konkrete fakta"],
+        "minimum_fact_share": 0.5
+      },
+      "middle": {
+        "focus": ["personer", "hendelser", "bruk", "endring", "synlige spor"]
+      },
+      "bridge": {
+        "focus": ["årsak", "sammenheng", "metode", "første fagbegreper"],
+        "requires_method_or_context": true
+      },
+      "final": {
+        "focus": ["emner", "teori", "teoretikere", "verk", "sammenligning", "syntese"],
+        "requires_theory_binding": true
+      }
+    },
+    "short_quiz_rule": "Tre og fire sett skal også nå metode-, emne- og teorilaget i siste del.",
+    "absolute_theory_set_numbers_forbidden": true
+  },
+  "question_families": {
+    "fact": {
+      "role": "dokumentert person, tid, verk, hendelse, funksjon, materiale, teknikk eller synlig spor",
+      "normal_share_min": 0.5,
+      "normal_share_max": 0.6
+    },
+    "context": {
+      "role": "årsak, utvikling, konsekvens, observasjon, metode eller sammenheng",
+      "normal_share_min": 0.2,
+      "normal_share_max": 0.3
+    },
+    "concept_theory": {
+      "role": "stedbundet emne, metode, teori, teoretiker, verk eller begrep",
+      "normal_share_min": 0.15,
+      "normal_share_max": 0.25
+    }
+  },
+  "selection_rules": [
+    "Eksplisitte emne_ids på stedet er sterke kandidater, men må fortsatt passe dokumenterte påstander.",
+    "Et teorihook må dele emne med valgt stoff og ha et konkret stedlig eller historisk anker.",
+    "En metode velges bare når spilleren faktisk kan observere, sammenligne, kartlegge eller analysere noe.",
+    "Teoretikere roteres etter fagkartets over- og underbruksdata når flere er like relevante.",
+    "Ingen fil regnes som synlig brukt bare fordi den ble lastet."
+  ],
+  "control_order": [
+    "resolver_og_full_innlasting",
+    "kilde_og_paastandsbank",
+    "pensum_og_emnevalg",
+    "hook_metode_teoretiker_verk",
+    "adaptiv_profil",
+    "relativ_settplan",
+    "sporsmaalskvalitet_og_balanse",
+    "produksjonskontekst",
+    "teoribinding",
+    "knowledge_sync"
   ],
   "example_question": {
     "question": "Hva kalles et gratis sted som biblioteket, der folk kan oppholde seg uten å kjøpe noe?",
@@ -49,6 +166,7 @@
     "knowledge": "Begrepet sosial infrastruktur beskriver fysiske institusjoner og steder som gjør hverdagslige møter, læring og fellesskap mulig.",
     "emne_id": "em_by_<velg_gyldig_emne>",
     "source": ["<konkret_kilde>"],
+    "claim_basis": "<dokumentert bruk eller observasjon>",
     "note": "Eksempelet viser konkret bruk av et fagbegrep. Det er ikke en ferdig produksjonsquiz."
   }
 }

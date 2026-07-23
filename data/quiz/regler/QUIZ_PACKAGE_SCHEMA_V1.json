@@ -1,0 +1,135 @@
+{
+  "version": "1.0",
+  "status": "canonical_output_contract",
+  "purpose": "Teknisk kontrakt for en komplett quizpakke. Produksjonsrekkefølgen ligger i QUIZ_PRODUCTION_CANONICAL.md.",
+  "applies_to": "Alle nyproduserte eller fullt reviderte quizpakker i kategorier med aktiv quizProduction i fag_manifest.json.",
+  "required_top_fields": [
+    "targetId",
+    "categoryId",
+    "sources",
+    "production_context",
+    "sets"
+  ],
+  "production_context": {
+    "required_fields": [
+      "manifest_category",
+      "profile",
+      "standard_version",
+      "source_brief",
+      "context_artifact",
+      "resolved_files",
+      "required_inputs_loaded",
+      "pensum_module_ids",
+      "emne_ids",
+      "topic_hook_ids",
+      "method_ids",
+      "thinker_ids",
+      "works",
+      "source_review_status"
+    ],
+    "resolved_files_type": "object",
+    "id_array_fields": [
+      "required_inputs_loaded",
+      "pensum_module_ids",
+      "emne_ids",
+      "topic_hook_ids",
+      "method_ids",
+      "thinker_ids",
+      "works"
+    ],
+    "source_review_status_values": [
+      "reviewed",
+      "partial",
+      "pending"
+    ],
+    "relative_phase_policy_fields": [
+      "theory_start_phase",
+      "method_start_phase"
+    ]
+  },
+  "source_brief_contract": {
+    "location": "data/quiz/production_briefs/<categoryId>/<targetId>.json",
+    "required_fields": [
+      "schema_version",
+      "status",
+      "categoryId",
+      "targetId",
+      "reviewed_at",
+      "sources",
+      "selected_curriculum",
+      "claims"
+    ],
+    "source_required_fields": [
+      "url",
+      "source_type",
+      "review_status",
+      "review_note"
+    ],
+    "claim_required_fields": [
+      "claim_id",
+      "order",
+      "planned_phase",
+      "family",
+      "statement",
+      "source_ids",
+      "source_origin",
+      "emne_id"
+    ],
+    "rule": "Kildegrunnlaget er input til kontekstbyggeren. Quizspørsmål må referere til claim_id og kan ikke brukes til å utlede sin egen plan."
+  },
+  "profile_contract": {
+    "format": "<profile_id>_<set_count>x<questions_per_set>",
+    "examples": [
+      "narrow_3x7",
+      "normal_4x7",
+      "rich_5x7",
+      "major_8x7"
+    ],
+    "source": "Kategoriens supersetQUIZMAL-fil"
+  },
+  "set_contract": {
+    "required_fields": [
+      "set_id",
+      "level",
+      "order",
+      "phase",
+      "questions"
+    ],
+    "phase_values": [
+      "opening",
+      "middle",
+      "bridge",
+      "final"
+    ]
+  },
+  "theory_question_contract": {
+    "detected_by_any_field": [
+      "topic_hook_id",
+      "thinker_id",
+      "theory_ref"
+    ],
+    "required_fields": [
+      "claim_basis",
+      "emne_id",
+      "topic_hook_id",
+      "source",
+      "theory_ref"
+    ],
+    "theory_ref_required_fields": [
+      "topic_hook_id",
+      "why_it_helps"
+    ],
+    "requires_thinker_or_work": true
+  },
+  "authority": {
+    "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+    "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "subject_manifest": "data/fag/fag_manifest.json",
+    "template_registry": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json"
+  },
+  "migration": {
+    "legacy_packages_without_production_context_may_remain": true,
+    "new_or_fully_revised_packages_must_comply": true,
+    "enforcement_scope": "quizProduction.targets in data/fag/fag_manifest.json"
+  }
+}

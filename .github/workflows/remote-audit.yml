@@ -83,6 +83,13 @@ jobs:
                 ;;
               quiz)
                 npm run audit:quiz-manifest:v2
+                npm run audit:quiz-content
+                npm run audit:quiz-templates
+                npm run audit:quiz-production-context
+                npm run audit:quiz-progression
+                npm run audit:quiz-theory-binding
+                npm run test:quiz-content-audit
+                npm run test:quiz-production
                 npm run health:data
                 ;;
               full)

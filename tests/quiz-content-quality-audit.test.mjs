@@ -106,14 +106,14 @@ test("keeps repaired Deichman and Ullevaal quizzes within the canonical balance"
     "data/quiz/sport/ullevaal_stadion_sets.json"
   ], async (rootDir) => {
     const report = await auditQuizContent({ rootDir });
-    assert.equal(report.summary.questionsScanned, 35);
+    assert.equal(report.summary.questionsScanned, 47);
     assert.equal(report.summary.templateViolations, 0);
     assert.equal(report.summary.balanceViolations, 0);
     assert.equal(report.summary.repeatedOpenings, 0);
     assert.equal(report.summary.optionLengthSignals, 0);
 
     const byTarget = Object.fromEntries(report.groups.map((group) => [group.target, group.ratios]));
-    assert.deepEqual(byTarget.deichman_bjorvika, { fact: 0.609, context: 0.217, theory: 0.174 });
+    assert.deepEqual(byTarget.deichman_bjorvika, { fact: 0.543, context: 0.229, theory: 0.229 });
     assert.deepEqual(byTarget.ullevaal_stadion, { fact: 0.583, context: 0.25, theory: 0.167 });
   });
 });

@@ -4,7 +4,7 @@
 
 Antall sett skal ikke styres av en separat Sport-regel. Alle kategorier følger kuttregelen og den adaptive størrelsen i:
 
-`data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md`
+`data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`
 
 Sportens faglige prioriteringer ligger i:
 
