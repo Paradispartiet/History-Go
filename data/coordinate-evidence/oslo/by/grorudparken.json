@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "grorudparken",
+  "placeFile": "data/places/by/oslo/grorudparken.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9576727,
+    "lon": 10.8755562,
+    "r": 220,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 125848624 – Grorudparken; scope cross-checked with Oslo kommune",
+    "coordType": "park_center",
+    "coordNote": "Batch 170 object-type-first: exact OSM way 125848624 resolves as the named Grorudparken park with area geometry. Fresh exact-object representation point is 59.9576727, 10.8755562, 0.00 m from the locked revalidation coordinate. Oslo kommune defines Grorudparken as the park landscape along Alnaelven from Grorud senter to Hølaløkka and lists Groruddammen as a facility inside the park. Canonical scope is therefore the broader named public park; groruddammen remains a separate exact water/recreation place. No nearest/first-hit selection is used."
+  },
+  "identity": {
+    "currentName": "Grorudparken",
+    "resolvedIdentity": "Grorudparken som det brede navngitte parklandskapet langs Alna, med Groruddammen som separat delsted",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "park",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "exact locked OSM park identity",
+    "official municipal park-scope definition",
+    "canonical duplicate control against current main"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Grorudparken way 125848624",
+      "sourceUrl": "https://www.openstreetmap.org/way/125848624",
+      "sourceObjectId": "osm-way:125848624",
+      "sourceQuality": "unique_exact_named_park_polygon",
+      "finding": "Fresh exact lookup resolves way 125848624 as Grorudparken, type=park, Polygon geometry and representation point 59.9576727, 10.8755562.",
+      "canVerifyCoordinate": true,
+      "reason": "Exact named physical park geometry; no nearest or first-hit selection."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Grorudparken",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/parker-og-lekeplasser/grorudparken/",
+      "sourceObjectId": "oslo-kommune:park:grorudparken",
+      "sourceQuality": "official_park_scope_definition",
+      "finding": "Oslo kommune defines Grorudparken as a park along Alnaelven from Grorud senter to Hølaløkka and lists Groruddammen among the park facilities.",
+      "canVerifyCoordinate": false,
+      "reason": "Official scope and parent/subplace relationship; exact area geometry comes from the locked OSM way."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:125848624",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:park:grorudparken",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:125848624",
+      "geometryType": "Polygon",
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9576727,
+      "lon": 10.8755562,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-way:125848624",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact Grorudparken park identity and geometric representation point are applied to canonical place."
+  },
+  "notes": [
+    "Batch 170 object-type-first: exact OSM way 125848624 resolves as the named Grorudparken park with area geometry. Fresh exact-object representation point is 59.9576727, 10.8755562, 0.00 m from the locked revalidation coordinate. Oslo kommune defines Grorudparken as the park landscape along Alnaelven from Grorud senter to Hølaløkka and lists Groruddammen as a facility inside the park. Canonical scope is therefore the broader named public park; groruddammen remains a separate exact water/recreation place. No nearest/first-hit selection is used.",
+    "Fresh anchor drift from locked production coordinate: 0.00 m.",
+    "Place-id and normalized name were absent from current manifest-loaded canonical place data before production."
+  ]
+}
