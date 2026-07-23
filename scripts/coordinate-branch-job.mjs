@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 
 const DATE = "2026-07-23", BATCH = 187, PLACE_ID = "akershus_energi";
@@ -10,7 +10,7 @@ const SPLIT_FILE = "data/places/naeringsliv/oslo/places_naeringsliv/akershus_ene
 const PLACE_FILE = "data/places/naeringsliv/akershus/akershus_energipark.json";
 const EVIDENCE_FILE = "data/coordinate-evidence/akershus/naeringsliv/akershus_energi.json";
 const REPORT_DIR = "reports/oslo-coordinate-control-batch-187-akershus-energipark-relocation";
-const OFFICIAL_URL = "https://www.mynewsdesk.com/no/akershus-energi/pressreleases/skal-investere-naermere-400-millioner-kroner-for-aa-gi-mer-varme-til-lillestroem-3365257";
+const OFFICIAL_URL = "https://akershusenergi.no/varmesentraler/lillestrom/";
 mkdirSync(REPORT_DIR, { recursive: true });
 
 const readJson = (p) => JSON.parse(readFileSync(p, "utf8"));
@@ -56,7 +56,7 @@ const place = {
   locatorType:"building", sourceProvider:"official_address", sourceObjectId:found.sourceObjectId,
   address:{street:"Rolf Olsens vei",number:"50",postcode:"2007",city:"Kjeller",country:"NO"}, geocodeAccuracy:"rooftop", coordRole:"display_marker",
   coordType:"address_point", coordStatus:"verified", coordSource:"geonorge_adresser_v1", coordSourceId:found.sourceObjectId, coordSourceUrl:found.sourceUrl, coordVerifiedAt:DATE, coordNote,
-  externalLinks:[{type:"official",label:"Akershus Energi – Akershus EnergiPark og fjernvarme i Lillestrøm",url:OFFICIAL_URL,lang:"nb",verifiedAt:DATE}]
+  externalLinks:[{type:"official",label:"Akershus Energi – Akershus EnergiPark",url:OFFICIAL_URL,lang:"nb",verifiedAt:DATE}]
 };
 const evidence = {
   schemaVersion:"1.0", placeId:PLACE_ID, placeFile:PLACE_FILE, evidenceStatus:"applied_to_place", coordinateDecision:"do_not_change_coordinates_yet",
@@ -65,10 +65,10 @@ const evidence = {
   requiredEvidence:["eksakt fysisk anleggsidentitet","offisiell adressekoordinat","geografisk korrigering fra Oslo til Lillestrøm"],
   evidence:[
     {sourceProvider:"official_address",sourceName:"Geonorge Adresser API v1 – Rolf Olsens vei 50",sourceUrl:found.sourceUrl,sourceObjectId:found.sourceObjectId,sourceQuality:"official_address",finding:"Ett tydelig offisielt adressepunkt for Rolf Olsens vei 50, 2007 Kjeller i Lillestrøm kommune.",canVerifyCoordinate:true,reason:coordNote},
-    {sourceProvider:"manual_research",sourceName:"Akershus Energi – omtale av Akershus EnergiPark og fjernvarme i Lillestrøm",sourceUrl:OFFICIAL_URL,sourceObjectId:"akershus-energi:energipark-lillestrom-2025",sourceQuality:"official_institution_identity",finding:"Akershus Energis egen omtale identifiserer Akershus EnergiPark som fjernvarmeanlegget som åpnet i 2011 og leverer varme i Lillestrøm-området.",canVerifyCoordinate:false,reason:"Dokumenterer fysisk institusjonsidentitet og anleggets funksjon; Geonorge brukes som koordinatkilde."}
+    {sourceProvider:"manual_research",sourceName:"Akershus Energi – Akershus EnergiPark",sourceUrl:OFFICIAL_URL,sourceObjectId:"akershus-energi:energipark-lillestrom-current",sourceQuality:"official_institution_identity",finding:"Akershus Energis egen anleggsside identifiserer Akershus EnergiPark som fjernvarmeanlegget som åpnet i Lillestrøm i 2011 og beskriver anleggets funksjon i fjernvarmenettet.",canVerifyCoordinate:false,reason:"Dokumenterer fysisk institusjonsidentitet og anleggets funksjon; Geonorge brukes som koordinatkilde."}
   ],
   addressCandidates:[{address:"Rolf Olsens vei 50, 2007 Kjeller",sourceProvider:"official_address",sourceObjectId:found.sourceObjectId,canApplyToPlace:true}],
-  sourceObjectCandidates:[{sourceProvider:"official_address",sourceObjectId:found.sourceObjectId,canApplyToPlace:true},{sourceProvider:"manual_research",sourceObjectId:"akershus-energi:energipark-lillestrom-2025",canApplyToPlace:false}],
+  sourceObjectCandidates:[{sourceProvider:"official_address",sourceObjectId:found.sourceObjectId,canApplyToPlace:true},{sourceProvider:"manual_research",sourceObjectId:"akershus-energi:energipark-lillestrom-current",canApplyToPlace:false}],
   geometryCandidates:[], coordinateCandidates:[{lat,lon,coordRole:"display_marker",sourceObjectId:found.sourceObjectId,canApplyToPlace:true}],
   decision:{canBecomeVerified:true,blockedReason:"",nextAction:"Canonical-recorden er flyttet til Akershus og forankret på det eksakte offisielle adressepunktet for energiparken."},
   notes:[coordNote,`Nærmeste andre canonical marker ved write-time var ${nearby[0]?.id??"ingen"} på ${nearby[0]?.distanceMeters??"n/a"} meter; ingen markør lå innen 3 meter.`,`Legacy-koordinaten ${oldPlace.lat}, ${oldPlace.lon} er pensjonert som udokumentert og geografisk feil for den løste identiteten.`]
@@ -101,4 +101,12 @@ protocol = lines.filter((_,i)=>!oldRows.includes(i)).join("\n");
 protocol = `${protocol.trimEnd()}\n\n| ${BATCH} | \`${PLACE_ID}\` | Akershus EnergiPark | verified; moved to Akershus | \`${found.sourceObjectId}\` |\n\nBatch ${BATCH} (${DATE}) løser \`${PLACE_ID}\` ved geografisk identitetskorreksjon. Legacy-recorden «Akershus Energi Varme» hadde en udokumentert Oslo-markør, mens source-first-kontrollen identifiserer det konkrete fysiske stedet som Akershus EnergiPark på Kjeller. Geonorge gir ett eksakt adresseobjekt for Rolf Olsens vei 50 i Lillestrøm kommune. Canonical placeId beholdes av kompatibilitetshensyn, men recorden flyttes fra Oslo-aggregatet og tilhørende Oslo-splitfiler til egen Akershus-kildefil. Oslo-totalen for aktive current \`verified*\`-steder økes ikke, fordi dette er en utflytting av en tidligere uverifisert Oslo-køpost.\n`;
 writeFileSync("docs/coordinates/coordinate-control-protocol.md",protocol,"utf8");
 writeJson(`${REPORT_DIR}/batch-187-result.json`,{version:DATE,batch:BATCH,placeId:PLACE_ID,status:"produced_by_geographic_relocation",old:{file:LEGACY_FILE,name:oldPlace.name,coordinate:{lat:oldPlace.lat,lon:oldPlace.lon}},current:{file:PLACE_FILE,name:place.name,coordinate:{lat,lon},sourceObjectId:found.sourceObjectId,coordStatus:place.coordStatus},nearestCanonicalBeforeWrite:nearby[0]??null,checks:{expectedPreviousBatch:186,legacyRecordRemoved:true,oldSplitRecordRemoved:true,dedicatedAkershusFileCreated:true,noOtherCanonicalWithin3m:true,unresolvedProtocolRowRemoved:true}});
-console.log(JSON.stringify({batch:BATCH,placeId:PLACE_ID,sourceObjectId:found.sourceObjectId,coordinate:{lat,lon},movedFrom:"oslo",movedTo:"akershus",nearestCanonicalBeforeWrite:nearby[0]??null},null,2));
+
+const diagnostic = spawnSync("npm", ["run","places:coords:evidence:audit"], { encoding:"utf8" });
+writeFileSync(`${REPORT_DIR}/coordinate-evidence-diagnostic.log`, `${diagnostic.stdout??""}${diagnostic.stderr??""}`, "utf8");
+if (existsSync("reports/coordinate-evidence-audit.md")) {
+  copyFileSync("reports/coordinate-evidence-audit.md", `${REPORT_DIR}/coordinate-evidence-diagnostic.md`);
+  if (diagnostic.status !== 0) console.error(readFileSync("reports/coordinate-evidence-audit.md", "utf8"));
+}
+
+console.log(JSON.stringify({batch:BATCH,placeId:PLACE_ID,sourceObjectId:found.sourceObjectId,coordinate:{lat,lon},movedFrom:"oslo",movedTo:"akershus",nearestCanonicalBeforeWrite:nearby[0]??null,evidenceDiagnosticExitCode:diagnostic.status},null,2));
