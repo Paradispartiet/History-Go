@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T07:58:42.968Z
+Generert: 2026-07-23T08:38:43.962Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -217,7 +217,7 @@ Generert: 2026-07-23T07:58:42.968Z
 | alnabru_jernbane_og_logistikk | data/coordinate-evidence/oslo/natur/alnabru_jernbane_og_logistikk.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alnaelva_hovedsteder | data/coordinate-evidence/oslo/natur/alnaelva_hovedsteder.json | needs_research | needs_geometry | OK |
 | alnaelva | data/coordinate-evidence/oslo/natur/alnaelva.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| alnaelvstien | data/coordinate-evidence/oslo/natur/alnaelvstien.json | needs_research | needs_geometry | OK |
+| alnaelvstien | data/coordinate-evidence/oslo/natur/alnaelvstien.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alnaparken | data/coordinate-evidence/oslo/natur/alnaparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alnsjoen_alna_kilde | data/coordinate-evidence/oslo/natur/alnsjoen_alna_kilde.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ankerbrua | data/coordinate-evidence/oslo/natur/ankerbrua.json | applied_to_place | do_not_change_coordinates_yet | OK |
