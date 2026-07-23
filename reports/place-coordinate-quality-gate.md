@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T04:25:07.160Z
+Generert: 2026-07-23T07:34:34.306Z
 
 ## Oppsummering
-- Aktive filer validert: **628**
-- Antall steder validert: **1245**
+- Aktive filer validert: **633**
+- Antall steder validert: **1250**
 - Harde feil: **0**
-- Varsler: **478**
-- Coordinate review candidates: **744** signaler fordelt på **615** steder
+- Varsler: **482**
+- Coordinate review candidates: **748** signaler fordelt på **619** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -646,6 +646,11 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/religion/vestland/etne/etne_kyrkje.json
 - data/places/religion/vestland/etne/skanevik_kyrkje.json
 - data/places/religion/vestland/etne/frette_kapell.json
+- data/places/scenekunst/buskerud/brageteatret_union_scene.json
+- data/places/scenekunst/rogaland/haugesund_teater_haut_scene.json
+- data/places/scenekunst/ostfold/ostfold_teater.json
+- data/places/scenekunst/trondelag/turneteatret_i_trondelag.json
+- data/places/scenekunst/innlandet/teater_innlandet_hamar_kulturhus.json
 
 ## Harde feil
 - Ingen
@@ -915,7 +920,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/naeringsliv/oslo/places_naeringsliv.json#akerselva_industri: lineært sted uten anchors
 - data/places/naeringsliv/oslo/places_naeringsliv.json#akerselva_industri: stort område uten coordNote/coordStatus
 - data/places/naeringsliv/oslo/places_naeringsliv.json#akerselva_industri: lav koordinatpresisjon (<4 desimaler)
-- data/places/natur/oslo/places_oslo_alna.json#alnaelva: lav koordinatpresisjon (<4 desimaler)
 - data/places/natur/oslo/places_oslo_alna.json#alnaelvstien: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_alna.json#alnaelvstien: lav koordinatpresisjon (<4 desimaler)
 - data/places/natur/oslo/places_oslo_alna.json#trosterud_friomrade: lav koordinatpresisjon (<4 desimaler)
@@ -1129,18 +1133,23 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/subkultur/troms/kafe_x_tromso.json#kafe_x_tromso: coordStatus=verified uten coordPrecisionM
 - data/places/religion/vestland/etne/etne_kyrkje.json#etne_kyrkje: coordStatus=verified uten coordPrecisionM
 - data/places/religion/vestland/etne/skanevik_kyrkje.json#skanevik_kyrkje: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/buskerud/brageteatret_union_scene.json#brageteatret_union_scene: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/rogaland/haugesund_teater_haut_scene.json#haugesund_teater_haut_scene: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/ostfold/ostfold_teater.json#ostfold_teater: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/trondelag/turneteatret_i_trondelag.json#turneteatret_i_trondelag: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/innlandet/teater_innlandet_hamar_kulturhus.json#teater_innlandet_hamar_kulturhus: coordStatus=verified uten coordPrecisionM
 
 ## Coordinate review candidates
 
-Totalt 744 signaler fordelt på 615 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 748 signaler fordelt på 619 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 187 |
+| coordStatus=verified uten coordPrecisionM | 192 |
 | lineært sted uten anchors | 78 |
-| lav koordinatpresisjon (<4 desimaler) | 83 |
+| lav koordinatpresisjon (<4 desimaler) | 82 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
 | park/stort område uten anchors eller coordNote | 130 |
 | svært stor r (>=500 m) uten coordNote | 66 |
@@ -1148,7 +1157,7 @@ Totalt 744 signaler fordelt på 615 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (187)
+### coordStatus=verified uten coordPrecisionM (192)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1339,6 +1348,11 @@ Totalt 744 signaler fordelt på 615 steder. Et sted kan ha flere signaler. Kandi
 | kafe_x_tromso | Kafe X | subkultur | data/places/subkultur/troms/kafe_x_tromso.json | 69.65340838746769 | 18.95628570193868 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | etne_kyrkje | Etne kyrkje | religion | data/places/religion/vestland/etne/etne_kyrkje.json | 59.66966917268966 | 5.944394800224875 | 180 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | skanevik_kyrkje | Skånevik kyrkje | religion | data/places/religion/vestland/etne/skanevik_kyrkje.json | 59.731915140528194 | 5.939778902454844 | 180 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| brageteatret_union_scene | Brageteatret – Union Scene | scenekunst | data/places/scenekunst/buskerud/brageteatret_union_scene.json | 59.74414101262438 | 10.192462050109372 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| haugesund_teater_haut_scene | Haugesund Teater – HAUT scene | scenekunst | data/places/scenekunst/rogaland/haugesund_teater_haut_scene.json | 59.414116623287576 | 5.265435524247058 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| ostfold_teater | Østfold Teater | scenekunst | data/places/scenekunst/ostfold/ostfold_teater.json | 59.21361486821452 | 10.92479215553184 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| turneteatret_i_trondelag | Turnéteatret i Trøndelag | scenekunst | data/places/scenekunst/trondelag/turneteatret_i_trondelag.json | 63.792754200086115 | 11.482567963201188 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| teater_innlandet_hamar_kulturhus | Teater Innlandet – Hamar kulturhus | scenekunst | data/places/scenekunst/innlandet/teater_innlandet_hamar_kulturhus.json | 60.795133859406384 | 11.067054846610478 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
 ### lineært sted uten anchors (78)
 
@@ -1423,7 +1437,7 @@ Totalt 744 signaler fordelt på 615 steder. Et sted kan ha flere signaler. Kandi
 | mustadgarden_kongens_gate_3 | Mustadgården – Kongens gate 3 | historie | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01.json | 59.90925646800815 | 10.740826309073695 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (83)
+### lav koordinatpresisjon (<4 desimaler) (82)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1456,7 +1470,6 @@ Totalt 744 signaler fordelt på 615 steder. Et sted kan ha flere signaler. Kandi
 | orkney_birsay | Brough of Birsay / Orknøyene | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 59.136 | -3.322 | 420 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | akershus_energi | Akershus Energi Varme | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.947 | 10.8355 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| alnaelva | Alnaelva | natur | data/places/natur/oslo/places_oslo_alna.json | 59.9325 | 10.833 | 400 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alnaelvstien | Alnaelvstien | natur | data/places/natur/oslo/places_oslo_alna.json | 59.931 | 10.83 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | trosterud_friomrade | Trosterud friområde | natur | data/places/natur/oslo/places_oslo_alna.json | 59.9305 | 10.846 | 220 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | furuset_haugerud_skogbelte | Furuset–Haugerud skogbelte | natur | data/places/natur/oslo/places_oslo_alna.json | 59.9345 | 10.852 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
