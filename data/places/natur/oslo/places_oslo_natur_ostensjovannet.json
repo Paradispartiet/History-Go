@@ -1,31 +1,30 @@
 [
   {
     "id": "ostensjovannet_nord",
-    "name": "Østensjøvannet nord",
-    "lat": 59.8913,
-    "lon": 10.8255,
+    "name": "Vadedammen",
+    "lat": 59.8977295,
+    "lon": 10.8308273,
     "r": 120,
     "category": "natur",
-    "desc": "Nordre våtmarkssone med gruntvann, siv og trekkfuglaktivitet.",
+    "desc": "Kunstig anlagt, grunn våtmarksdam nord for Østensjøvannet, etablert som habitat for vadefugl.",
     "tags": [
       "vatmark",
       "fugleliv",
       "siv",
-      "innsjo"
+      "dam"
     ],
     "routeId": "ostensjovannet_vatmark",
-    "sourceHint": "Koordinat satt ved nordenden av Østensjøvannet der våtmarksbeltet er tydelig i reservatkart.",
-    "coordType": "legacy_unverified",
-    "coordStatus": "needs_source",
-    "coordSource": "ostensjovannet_nord_canonical_geometry_unresolved",
-    "coordVerifiedAt": "2026-07-21",
+    "sourceHint": "Vadedammen er et konkret navngitt våtmarksobjekt nord for Østensjøvannet. Canonical kartanker er beregnet fra den eksakte OSM-polygonen for dammen.",
+    "coordType": "pond_area_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 6503853 – Vadedammen",
+    "coordVerifiedAt": "2026-07-23",
     "emne_ids": [
       "em_natur_vatmark_vannspeil_habitat",
       "em_natur_arter_habitat_mangfold"
     ],
-    "popupDesc": "Nordsonen av Østensjøvannet er preget av grunt vann, våtmark og vegetasjonsrike kanter. Her møtes åpne vannflater og sivområder som gir leveområder for fugl og annet dyreliv. Gangveier i nærheten gjør sonen tilgjengelig uten å fjerne inntrykket av reservatpreg. Stedet er et tydelig eksempel på bynær våtmark i nordenden av vannet.",
+    "popupDesc": "Vadedammen ligger rett nord for Østensjøvannet og ble anlagt som et eget våtmarksområde for å bedre forholdene for vadefugl. Den grunne dammen har åpne vannflater, takrør og andre fuktige kantsoner, og skjøttes for å motvirke gjengroing. Stedet viser hvordan et konstruert våtmarksområde kan gi egne leve-, raste- og næringsområder for fugl og amfibier i et tett bylandskap.",
     "underbadge_ids": [
-      "innsjo",
       "vatmark",
       "vannfugl",
       "habitat"
@@ -34,7 +33,26 @@
       "designCode": "waterfront_miniature"
     },
     "locatorType": "natural_area",
-    "coordNote": "Recorden beskriver en retningsbestemt del av det større Østensjøvannet naturreservat uten en egen eksplisitt navngitt eller avgrenset kildegeometri. Hele reservatpolygonet kan ikke brukes som proxy for ett lokalt nordpunkt."
+    "coordNote": "Batch 149 erstatter den repo-syntetiske identiteten «Østensjøvannet nord» med det konkrete navngitte våtmarksobjektet Vadedammen, mens placeId beholdes for kompatibilitet. OSM relation 6503853 er den eneste eksakt navngitte Vadedammen-kandidaten i den korrigerte nordende-scope-boksen og er modellert som pond-polygon. Østensjøvannets Venner dokumenterer Vadedammen som en kunstig anlagt, grunn våtmarksdam nord for Østensjøvannet, etablert for vadefugl, og publiserer en GPS-referanse som faller innenfor samme polygon-scope. Canonical lat/lon beregnes deterministisk som arealvektet polygoncentroid. Hele naturreservatpolygonet, legacy-punktet og nearest/first-hit brukes ikke.",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-relation:6503853",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordSourceId": "osm-relation:6503853",
+    "coordSourceUrl": "https://www.openstreetmap.org/relation/6503853",
+    "nature_profile": {
+      "type": "kunstig våtmarksdam / grunt vann / takrør",
+      "title": "Vadedammen – våtmark for vadefugl",
+      "summary": "Vadedammen er en grunn, kunstig anlagt våtmarksdam rett nord for Østensjøvannet. Dammen ble etablert for å bedre forholdene for vadefugl og består av et skiftende samspill mellom åpent vann, takrør og fuktige kantsoner. Skjøtsel mot gjengroing holder deler av vannspeilet åpent og gjør Vadedammen til et tydelig eksempel på aktiv habitatforvaltning i Østensjøområdet.",
+      "themes": [
+        "kunstig anlagt våtmarksdam",
+        "grunt vann og åpent vannspeil",
+        "takrør og fuktige kantsoner",
+        "habitat for vadefugl",
+        "skjøtsel mot gjengroing",
+        "våtmark nord for Østensjøvannet"
+      ]
+    }
   },
   {
     "id": "ostensjovannet_fugletarn",
