@@ -1,0 +1,30 @@
+name: Debug Telegraf audits
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  audit:
+    if: github.head_ref == 'agent/oslo-quiz-telegrafbygningen-5x7'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Write audit reports
+        run: |
+          mkdir -p audit-output
+          node scripts/audit-quiz-production-context.mjs > audit-output/production-context.json || true
+          node scripts/audit-quiz-progression.mjs > audit-output/progression.json || true
+          node scripts/audit-quiz-theory-binding.mjs > audit-output/theory-binding.json || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: telegraf-audit-reports
+          path: audit-output
