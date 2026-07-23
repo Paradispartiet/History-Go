@@ -2,57 +2,107 @@
   "schemaVersion": "1.0",
   "placeId": "bogerudmyra",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_ostensjovannet.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.8927,
-    "lon": 10.8438,
+    "lat": 59.878427,
+    "lon": 10.8342964,
     "r": 180,
-    "coordStatus": "needs_source",
-    "coordSource": "bogerudmyra_canonical_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 4106652 – Bogerudmyra",
+    "coordType": "wetland_area_anchor",
+    "coordNote": "Batch 151 løser Bogerudmyra som et konkret navngitt våtmarksobjekt sør for Østensjøvannet. Eksakt-name-auditen fant flere objekter med navnet Bogerudmyra, men objekttypefilteret skiller entydig ut OSM relation 4106652 som eneste fysiske våtmark; de øvrige treffene er bussholdeplasser og kollektiv stop_area. Relation 4106652 er tagget natural=wetland, wetland=marsh og type=multipolygon. Lovdata og Østensjøvannets Venner dokumenterer Bogerudmyra som del av Østensjøvannet naturreservat. Canonical lat/lon er beregnet deterministisk som arealvektet centroid av MultiPolygon-geometrien. Legacy-punktet og nearest/first-hit brukes ikke."
   },
   "identity": {
-    "currentName": "Bøler/Bogerudmyra",
-    "resolvedIdentity": "Bogerudmyra/Bølermyra som konkret navngitt myr- eller våtmarksområde",
+    "currentName": "Bogerudmyra",
+    "resolvedIdentity": "Bogerudmyra som konkret navngitt våtmarksområde sør for Østensjøvannet",
     "identityStatus": "resolved",
-    "identityProblem": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker.",
+    "identityProblem": "",
     "locatorTypeCandidate": "natural_area",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "Dokumenter ett entydig navngitt myr-/våtmarksobjekt med eksplisitt geometri eller flere kildebelagte habitatankre."
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
-      "sourceProvider": "miljodirektoratet",
-      "sourceName": "Naturbase – Østensjøvannet naturreservat",
-      "sourceUrl": "https://faktaark.naturbase.no/?id=VV00000972",
-      "sourceObjectId": "miljodirektoratet-naturvern:VV00000972",
-      "sourceQuality": "official_parent_area_geometry_only",
-      "finding": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker.",
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Bogerudmyra",
+      "sourceUrl": "https://www.openstreetmap.org/relation/4106652",
+      "sourceObjectId": "osm-relation:4106652",
+      "sourceQuality": "unique_object_type_exact_named_wetland_multipolygon",
+      "finding": "Relation 4106652 er det eneste fysiske wetland-objektet blant eksakte Bogerudmyra-navnetreff; relationen er natural=wetland, wetland=marsh og type=multipolygon. Area-anchor er 59.878427, 10.8342964.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt fysisk våtmarksgeometri med riktig objekttype."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lovdata – forskrift om Østensjøvannet naturreservat",
+      "sourceUrl": "https://lovdata.no/dokument/LF/forskrift/1992-10-02-754/KAPITTEL_5",
+      "sourceObjectId": "lovdata:FOR-1992-10-02-754:bogerudmyra",
+      "sourceQuality": "official_protected_area_identity",
+      "finding": "Verneforskriften fastsetter at våtmarksområdet ved Østensjøvannet og Bogerudmyra er vernet som Østensjøvannet naturreservat.",
       "canVerifyCoordinate": false,
-      "reason": "Den offisielle reservatgeometrien dokumenterer parent-området, men kan ikke alene verifisere denne lokale delsonen eller dette lokale objektet."
+      "reason": "Fastsetter den offisielle Bogerudmyra-identiteten; eksakt lokal geometri kommer fra OSM."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Østensjøvannets Venner – naturreservatet",
+      "sourceUrl": "https://www.ostensjovannet.no/naturreservatet",
+      "sourceObjectId": "ostensjovannets-venner:naturreservatet:bogerudmyra",
+      "sourceQuality": "current_local_reserve_context",
+      "finding": "Den aktuelle reservatbeskrivelsen sier uttrykkelig at reservatet består av Østensjøvannet med kantsone og Bogerudmyra.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker fysisk og vernemessig identitet."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Bogerudmyra",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Bogerudmyra",
+      "sourceObjectId": "lokalhistoriewiki:bogerudmyra:scope-reference",
+      "sourceQuality": "independent_local_scope_crosscheck",
+      "finding": "Publisert referanse 59.87842, 10.83409 ligger innenfor fresh OSM-boundingbox og 11.5 m fra det beregnede area-ankeret.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukes bare som uavhengig scope-kryssjekk, ikke som canonical koordinatkilde."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "miljodirektoratet",
-      "sourceObjectId": "miljodirektoratet-naturvern:VV00000972",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:4106652",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lovdata:FOR-1992-10-02-754:bogerudmyra",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:4106652",
+      "lat": 59.878427,
+      "lon": 10.8342964,
+      "coordRole": "area_anchor",
+      "geometryType": "MultiPolygon",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.878427,
+      "lon": 10.8342964,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker.",
-    "nextAction": "Dokumenter ett entydig navngitt myr-/våtmarksobjekt med eksplisitt geometri eller flere kildebelagte habitatankre."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Bogerudmyras eksakte våtmarksgeometri er anvendt på canonical place."
   },
   "notes": [
-    "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker."
+    "Batch 151 løser Bogerudmyra som et konkret navngitt våtmarksobjekt sør for Østensjøvannet. Eksakt-name-auditen fant flere objekter med navnet Bogerudmyra, men objekttypefilteret skiller entydig ut OSM relation 4106652 som eneste fysiske våtmark; de øvrige treffene er bussholdeplasser og kollektiv stop_area. Relation 4106652 er tagget natural=wetland, wetland=marsh og type=multipolygon. Lovdata og Østensjøvannets Venner dokumenterer Bogerudmyra som del av Østensjøvannet naturreservat. Canonical lat/lon er beregnet deterministisk som arealvektet centroid av MultiPolygon-geometrien. Legacy-punktet og nearest/first-hit brukes ikke."
   ]
 }
