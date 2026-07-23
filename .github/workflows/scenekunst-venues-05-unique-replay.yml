@@ -3,7 +3,7 @@ name: Replay unique Scenekunst batch 5
 on:
   pull_request:
     branches:
-      - agent/scenekunst-oslo-split-venues-01-final
+      - main
 
 permissions:
   contents: write
@@ -16,7 +16,7 @@ jobs:
       - name: Check out replay branch
         uses: actions/checkout@v4
         with:
-          ref: agent/scenekunst-venues-05-unique-replay2
+          ref: agent/scenekunst-venues-05-unique-replay3
           fetch-depth: 0
 
       - name: Set up Node
@@ -172,4 +172,4 @@ jobs:
           git diff --cached --stat
           git diff --cached --quiet && { echo "No production changes produced"; exit 1; }
           git commit -m "Replay three unique Scenekunst batch 5 venues"
-          git push origin HEAD:agent/scenekunst-venues-05-unique-replay2
+          git push origin HEAD:agent/scenekunst-venues-05-unique-replay3
