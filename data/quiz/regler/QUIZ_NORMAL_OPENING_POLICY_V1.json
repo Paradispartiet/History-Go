@@ -14,7 +14,8 @@
       "cause",
       "sammenheng",
       "observation",
-      "comparison"
+      "comparison",
+      "analysis"
     ],
     "preferred_openings": [
       "Hvem",
@@ -39,6 +40,7 @@
       "verk, bygninger, materialer og teknikker",
       "direkte årsaker og dokumenterte sammenhenger",
       "direkte observasjoner og konkrete sammenligninger",
+      "konkret resonnement fra dokumenterte opplysninger",
       "synlige eller kildebelagte detaljer"
     ],
     "forbidden_binding_fields": [
@@ -51,8 +53,7 @@
       "concept",
       "theory",
       "definition",
-      "begrep",
-      "analysis"
+      "begrep"
     ],
     "forbidden_surface_rule_ids": [
       "emne_prompt",
@@ -70,14 +71,14 @@
       "more_than_place"
     ],
     "metadata_rule": "emne_id og andre faglige metadata kan ligge bak et normalt spørsmål, men må ikke gjøre spørsmålsflaten til en emne-, metode- eller teoritest.",
-    "type_rule": "En intern etikett som observation eller comparison er tillatt når spørsmålet er direkte, konkret og kan besvares uten å kjenne produksjonsmodellen.",
+    "type_rule": "Interne etiketter som observation, comparison eller analysis er tillatt når spørsmålet er direkte, konkret og kan besvares uten å kjenne produksjonsmodellen.",
     "knowledge_rule": "Faglig forklaring og begreper kan utdypes i knowledge etter at spilleren har svart."
   },
   "progression": {
     "bridge_earliest_set": 3,
     "method_earliest_set": 3,
     "theory_earliest_set": 3,
-    "rule": "Sett 3 og senere kan gradvis innføre årsak, metode, begrep, teori, sammenligning og syntese."
+    "rule": "Sett 3 og senere kan gradvis innføre metode, eksplisitte begreper, teori og syntese."
   },
   "grandfathered_targets": {
     "deichman_bjorvika": {
