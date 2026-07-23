@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 426 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 427 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -933,3 +933,7 @@ Batch 183 (2026-07-23) produserer `ram_galleri` etter VisitOSLO Galleries scope-
 | 184 | `galleri_schaeffers_gate_5` | Galleri Schaeffers Gate 5 | verified | `geonorge-adresser-v1:0301:16269:5` |
 
 Batch 184 (2026-07-23) produserer `galleri_schaeffers_gate_5` etter VisitOSLO Galleries scope- og readiness-auditene. Det eksakte Geonorge-adressepunktet for Schæffers gate 5 brukes som display-marker for det uavhengige kunst-, musikk- og performancevisningsstedet.
+
+| 185 | `grafill` | Grafill | verified | `geonorge-adresser-v1:0301:14943:39` |
+
+Batch 185 (2026-07-23) produserer `grafill` etter VisitOSLO Galleries scope- og readiness-auditene. Det eksakte Geonorge-adressepunktet for Møllergata 39 brukes som display-marker for Grafill og Grafills hus som én varig design- og kunstinstitusjon.
