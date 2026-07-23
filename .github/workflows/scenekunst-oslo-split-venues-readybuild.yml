@@ -1,0 +1,93 @@
+name: Build Oslo Scenekunst split venues on current main
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/scenekunst-oslo-split-venues-01-readybuild
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Copy validated source files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin agent/scenekunst-oslo-split-venues-01-final
+          files=(
+            data/places/scenekunst/oslo/places_scenekunst/teater_manu.json
+            data/places/scenekunst/oslo/places_scenekunst/vega_scene.json
+            data/places/scenekunst/oslo/places_scenekunst/rommen_scene.json
+            data/places/scenekunst/oslo/places_scenekunst/salt_oslo.json
+            data/places/scenekunst/oslo/places_scenekunst/det_andre_teatret_intimscenen.json
+            reports/scenekunst-oslo-split-venues-batch-1-2026-07-23.json
+            reports/scenekunst-oslo-split-venues-batch-1-2026-07-23.md
+          )
+          for file in "${files[@]}"; do
+            test ! -e "$file" || { echo "Target already exists: $file"; exit 1; }
+            mkdir -p "$(dirname "$file")"
+            git show "origin/agent/scenekunst-oslo-split-venues-01-final:$file" > "$file"
+          done
+
+      - name: Rebuild split data
+        run: node tools/resync-oslo-scenekunst-split-venues.mjs
+
+      - name: Regenerate global index and validate
+        run: |
+          npm run build:tools
+          npm run places:index:build
+          bash scripts/check-places.sh
+          npm run audit:categories
+
+      - name: Mark report validated
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'reports/scenekunst-oslo-split-venues-batch-1-2026-07-23.json';
+          const report = JSON.parse(fs.readFileSync(file, 'utf8'));
+          report.status = 'validated';
+          report.validatedAt = new Date().toISOString();
+          report.validation.placesIndexBuild = 'pass';
+          report.validation.placesChecks = 'pass';
+          report.validation.categoryAudit = 'pass';
+          fs.writeFileSync(file, JSON.stringify(report, null, 2) + '\n');
+          NODE
+
+      - name: Commit production result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/places_index.json
+          git add data/places/scenekunst/oslo/places_scenekunst.json
+          git add data/places/scenekunst/oslo/places_scenekunst_index.json
+          git add data/places/scenekunst/oslo/places_scenekunst_manifest.json
+          git add data/places/scenekunst/oslo/places_scenekunst/teater_manu.json
+          git add data/places/scenekunst/oslo/places_scenekunst/vega_scene.json
+          git add data/places/scenekunst/oslo/places_scenekunst/rommen_scene.json
+          git add data/places/scenekunst/oslo/places_scenekunst/salt_oslo.json
+          git add data/places/scenekunst/oslo/places_scenekunst/det_andre_teatret_intimscenen.json
+          git add reports/scenekunst-oslo-split-venues-batch-1-2026-07-23.json
+          git add reports/scenekunst-oslo-split-venues-batch-1-2026-07-23.md
+          git diff --cached --stat
+          git diff --cached --quiet && { echo "No production changes produced"; exit 1; }
+          git commit -m "Resync five Oslo Scenekunst split venues with main"
+          git push origin HEAD:agent/scenekunst-oslo-split-venues-01-readybuild
