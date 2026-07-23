@@ -2,11 +2,12 @@
 
 Date: 2026-07-23
 
-A verified broad Bryn canonical candidate already exists (alnaelvstien); audit semantic overlap before creating any separate industrial-area geometry.
+No verified broad canonical Bryn area exists. The verified Alna/Alnastien records are route context through Bryn, not substitutes for a Bryn industrial-area geometry. Keep bryn_industriomrade unresolved until a source-backed industrial-area scope/geometry or a deliberately redefined concrete physical identity is documented.
 
 - Bryn-named canonical candidates: 2
-- Area-like Bryn candidates: 2
+- Verified Bryn-context routes: 2
+- True area-like Bryn candidates: 0
+- Verified broad Bryn area candidate: none
 - Exact legacy-ID reference lines: 76 across 12 files
-- Nearby canonical places within 2 km: 19
 
-No coordinate or canonical place data is changed by this audit.
+The earlier machine heuristic temporarily classified a route containing “Bryn” in its name as a broad area candidate. This correction explicitly rejects that equivalence. No coordinate or canonical place data is changed.

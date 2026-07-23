@@ -97,53 +97,8 @@
       "desc": "Alna ved Bryn i overgangen mellom Brynsfossen, industrihistorie, jernbane, veier, Alnastien og en smal byøkologisk elvekorridor."
     }
   ],
-  "areaCandidates": [
-    {
-      "id": "alnaelvstien",
-      "name": "Alnastien – Svartdalen og Bryn",
-      "category": "natur",
-      "lat": 59.9059364,
-      "lon": 10.8030114,
-      "r": 250,
-      "coordStatus": "verified_geometry",
-      "coordType": "multi_segment_route_display_anchor",
-      "locatorType": "route",
-      "sourceObjectId": "osm-way:113281394",
-      "sourceFile": "places/natur/oslo/places_oslo_alna/alnaelvstien.json",
-      "distanceFromLegacyMeters": 1454.64,
-      "desc": "Sammenhengende Alnastien-strekning gjennom Svartdalen og Bryn, eksplisitt modellert som elleve navngitte OSM-segmenter."
-    },
-    {
-      "id": "alna_bryn",
-      "name": "Alna ved Bryn",
-      "category": "natur",
-      "lat": 59.9059447,
-      "lon": 10.8029785,
-      "r": 160,
-      "coordStatus": "verified_geometry",
-      "coordType": "river_segment_anchor",
-      "locatorType": "route",
-      "sourceObjectId": "osm-way:112543919",
-      "sourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute/alna_bryn.json",
-      "distanceFromLegacyMeters": 1455.71,
-      "desc": "Alna ved Bryn i overgangen mellom Brynsfossen, industrihistorie, jernbane, veier, Alnastien og en smal byøkologisk elvekorridor."
-    }
-  ],
-  "verifiedBroadCandidate": {
-    "id": "alnaelvstien",
-    "name": "Alnastien – Svartdalen og Bryn",
-    "category": "natur",
-    "lat": 59.9059364,
-    "lon": 10.8030114,
-    "r": 250,
-    "coordStatus": "verified_geometry",
-    "coordType": "multi_segment_route_display_anchor",
-    "locatorType": "route",
-    "sourceObjectId": "osm-way:113281394",
-    "sourceFile": "places/natur/oslo/places_oslo_alna/alnaelvstien.json",
-    "distanceFromLegacyMeters": 1454.64,
-    "desc": "Sammenhengende Alnastien-strekning gjennom Svartdalen og Bryn, eksplisitt modellert som elleve navngitte OSM-segmenter."
-  },
+  "areaCandidates": [],
+  "verifiedBroadCandidate": null,
   "exactPhysicalDuplicateCandidate": null,
   "nearbyCanonicalWithin2km": [
     {
@@ -848,5 +803,37 @@
       }
     }
   ],
-  "conclusion": "A verified broad Bryn canonical candidate already exists (alnaelvstien); audit semantic overlap before creating any separate industrial-area geometry."
+  "conclusion": "No verified broad canonical Bryn area exists. The verified Alna/Alnastien records are route context through Bryn, not substitutes for a Bryn industrial-area geometry. Keep bryn_industriomrade unresolved until a source-backed industrial-area scope/geometry or a deliberately redefined concrete physical identity is documented.",
+  "contextualRouteCandidates": [
+    {
+      "id": "alnaelvstien",
+      "name": "Alnastien – Svartdalen og Bryn",
+      "category": "natur",
+      "lat": 59.9059364,
+      "lon": 10.8030114,
+      "r": 250,
+      "coordStatus": "verified_geometry",
+      "coordType": "multi_segment_route_display_anchor",
+      "locatorType": "route",
+      "sourceObjectId": "osm-way:113281394",
+      "sourceFile": "places/natur/oslo/places_oslo_alna/alnaelvstien.json",
+      "distanceFromLegacyMeters": 1454.64,
+      "desc": "Sammenhengende Alnastien-strekning gjennom Svartdalen og Bryn, eksplisitt modellert som elleve navngitte OSM-segmenter."
+    },
+    {
+      "id": "alna_bryn",
+      "name": "Alna ved Bryn",
+      "category": "natur",
+      "lat": 59.9059447,
+      "lon": 10.8029785,
+      "r": 160,
+      "coordStatus": "verified_geometry",
+      "coordType": "river_segment_anchor",
+      "locatorType": "route",
+      "sourceObjectId": "osm-way:112543919",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute/alna_bryn.json",
+      "distanceFromLegacyMeters": 1455.71,
+      "desc": "Alna ved Bryn i overgangen mellom Brynsfossen, industrihistorie, jernbane, veier, Alnastien og en smal byøkologisk elvekorridor."
+    }
+  ]
 }
