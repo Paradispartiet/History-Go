@@ -1,6 +1,11 @@
 name: Scenekunst batch 6 builder
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/scenekunst-batch-6-final-trigger.txt'
   push:
     branches:
       - agent/scenekunst-batch-6-final-trigger
@@ -12,6 +17,7 @@ permissions:
 jobs:
   build:
     name: Build clean Scenekunst batch 6 branch
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.ref == 'agent/scenekunst-batch-6-final-trigger'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
