@@ -6,10 +6,8 @@ const ROOT = process.cwd();
 const PARENT_ID = 'ostensjovannet';
 const aggregatePath = path.join(ROOT, 'data/places/natur/oslo/places_oslo_natur_hovedsteder.json');
 const childPath = path.join(ROOT, 'data/places/natur/oslo/places_oslo_natur_hovedsteder/ostensjovannet.json');
-const indexPath = path.join(ROOT, 'data/places/natur/oslo/places_oslo_natur_hovedsteder_index.json');
 const manifestPath = path.join(ROOT, 'data/places/natur/oslo/places_oslo_natur_hovedsteder_manifest.json');
 const reportDir = path.join(ROOT, 'reports/ostensjovannet-parent-anchor-sync-20260723');
-const syncNote = 'Delankrene ble 2026-07-23 synkronisert mot fire separate verified_geometry-komponenter; dette endrer ikke hovedstedets offisielle verneområdeanker.';
 
 const componentSpecs = [
   {
@@ -83,12 +81,10 @@ function updateParent(place) {
   if (place.coordStatus !== 'verified_geometry' || place.sourceObjectId !== 'miljodirektoratet-naturvern:VV00000972') {
     throw new Error('Østensjøvannet-parenten har uventet canonical coordinate state');
   }
-  const baseNote = String(place.coordNote || '').replace(` ${syncNote}`, '').trim();
   return {
     ...place,
     sourceHint: 'Hovedpunktet representerer hele Østensjøvannet naturreservat med Miljødirektoratets offisielle vernegeometri. Delankrene bygges kun fra verifiserte konkrete komponenter: Vadedammen, fugleskjulet på vestsiden, Bølerbekkens utløp og Bogerudmyra. Det generiske sivbelte-recordet står fortsatt needs_source og brukes ikke som kartanker.',
     anchors,
-    coordNote: `${baseNote} ${syncNote}`.trim(),
     nature_profile: {
       ...(place.nature_profile || {}),
       nearby_place_ids: ['ostensjovannet_nord', 'ostensjovannet_fugletarn', 'ostensjovannet_sor', 'bogerudmyra'],
@@ -102,12 +98,6 @@ if (!oldParent) throw new Error(`Mangler ${PARENT_ID} i aggregate`);
 const newParent = updateParent(oldParent);
 writeJson(aggregatePath, aggregate.map((place) => place?.id === PARENT_ID ? newParent : place));
 writeJson(childPath, updateParent(readJson(childPath)));
-
-const index = readJson(indexPath);
-const indexRow = index.find((row) => row?.id === PARENT_ID);
-if (!indexRow) throw new Error(`Mangler ${PARENT_ID} i hovedstedsindeks`);
-indexRow.coordNote = newParent.coordNote;
-writeJson(indexPath, index);
 
 const manifest = readJson(manifestPath);
 manifest.source_sha256 = sha256(aggregatePath);
@@ -125,17 +115,20 @@ writeJson(path.join(reportDir, 'result.json'), {
     lat: newParent.lat,
     lon: newParent.lon,
     coordStatus: newParent.coordStatus,
+    coordType: newParent.coordType,
+    coordNote: newParent.coordNote,
     sourceObjectId: newParent.sourceObjectId,
   },
+  coordinateMetadataChanged: false,
   beforeAnchorIds: oldAnchorIds,
   afterAnchors: anchors,
   excludedAsAnchor: {
     id: 'ostensjovannet_sivbelte',
     reason: 'Batch 152 research found no explicit mapped reedbed geometry in the bounded Østensjøvannet scope; the record remains needs_source and is not used as a parent anchor.',
   },
-  method: 'parent anchor reconciliation from fresh verified component place records; no coordinate change, no copied legacy coordinates, no nearest/first-hit',
+  method: 'parent anchor reconciliation from fresh verified component place records; canonical coordinate metadata and evidence unchanged; no copied legacy coordinates, no nearest/first-hit',
 });
-fs.writeFileSync(path.join(reportDir, 'README.md'), `# Østensjøvannet parent anchor sync\n\nThe parent canonical coordinate remains the official Miljødirektoratet reserve geometry anchor VV00000972.\n\nThe stale manual child anchors are replaced by four fresh verified component records:\n- Vadedammen\n- Fugleskjulet ved Østensjøvannet\n- Bølerbekkens utløp i Østensjøvannet\n- Bogerudmyra\n\nThe unresolved generic sivbelte record is intentionally excluded from the anchor list.\n`);
+fs.writeFileSync(path.join(reportDir, 'README.md'), `# Østensjøvannet parent anchor sync\n\nThe parent canonical coordinate and all coordinate metadata remain unchanged on the official Miljødirektoratet reserve geometry anchor VV00000972.\n\nThe stale manual child anchors are replaced by four fresh verified component records:\n- Vadedammen\n- Fugleskjulet ved Østensjøvannet\n- Bølerbekkens utløp i Østensjøvannet\n- Bogerudmyra\n\nThe unresolved generic sivbelte record is intentionally excluded from the anchor list.\n`);
 
 console.log(JSON.stringify({
   status: 'parent_anchor_sync_applied',
@@ -143,5 +136,5 @@ console.log(JSON.stringify({
   anchorCount: anchors.length,
   anchorIds: anchors.map((anchor) => anchor.id),
   canonicalCoordinateChanged: false,
-  splitIndexCoordNoteSynced: true,
+  coordinateMetadataChanged: false,
 }, null, 2));
