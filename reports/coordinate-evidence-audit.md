@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T16:19:06.781Z
+Generert: 2026-07-23T16:26:16.828Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -270,7 +270,7 @@ Generert: 2026-07-23T16:19:06.781Z
 | stilla_nydalen | data/coordinate-evidence/oslo/natur/stilla_nydalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | svartdalen | data/coordinate-evidence/oslo/natur/svartdalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | tjernsmyr_salamanderlokalitet | data/coordinate-evidence/oslo/natur/tjernsmyr_salamanderlokalitet.json | needs_research | needs_geometry | OK |
-| trosterud_friomrade | data/coordinate-evidence/oslo/natur/trosterud_friomrade.json | needs_research | needs_geometry | OK |
+| trosterud_friomrade | data/coordinate-evidence/oslo/natur/trosterud_friomrade.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vaterland_historisk_elvelop | data/coordinate-evidence/oslo/natur/vaterland_historisk_elvelop.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vaterlandsparken | data/coordinate-evidence/oslo/natur/vaterlandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vettakollen | data/coordinate-evidence/oslo/natur/vettakollen.json | applied_to_place | do_not_change_coordinates_yet | OK |
