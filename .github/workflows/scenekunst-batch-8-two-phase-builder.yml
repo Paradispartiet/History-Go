@@ -1,0 +1,179 @@
+name: Scenekunst batch 8 two-phase builder
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Validate once and replay quickly on current main
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build and fully validate one snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git checkout -B agent/scenekunst-venues-08-validated origin/main
+
+          npm run build:tools
+          node .github/scripts/build-scenekunst-batch-8.mjs
+          npm run places:index:build
+
+          bash scripts/check-places.sh
+          bash scripts/check-people.sh
+          npm run audit:categories
+          npm run audit:quiz-templates
+          npm run test:quiz-content-audit
+          npm run build:tools
+          node dist/tools/validate_nature_maps.mjs
+          node dist/tools/validate_lesespor.mjs
+          npm run typecheck:web
+          npm run build:scripts
+          npm run knowledge:canonical:check
+          npm run knowledge:legacy:check
+          npm run audit:knowledge
+          npm run test:knowledge-v2
+          node --test tests/knowledge-canonical-storage-contract.test.js
+          git diff --check
+
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'reports/scenekunst-new-venues-batch-8-2026-07-23.json';
+          const report = JSON.parse(fs.readFileSync(file, 'utf8'));
+          report.validation.placesIndexBuild = 'pass';
+          report.validation.placesChecks = 'pass';
+          report.validation.categoryAudit = 'pass';
+          report.validation.fullRepositoryGates = 'pass';
+          report.validatedAt = new Date().toISOString();
+          fs.writeFileSync(file, JSON.stringify(report, null, 2) + '\n');
+          NODE
+
+          git add \
+            data/places/scenekunst/nordland/figurteatret_i_nordland.json \
+            data/places/scenekunst/nordland/teater_nor_stamsund.json \
+            data/places/scenekunst/troms/kvaaniteatteri_halti_kulturscene.json \
+            data/places/scenekunst/rogaland/ras_sandnes_kulturhus.json \
+            data/places/scenekunst/ostfold/parkteatret_moss.json \
+            reports/scenekunst-new-venues-batch-8-2026-07-23.json \
+            reports/scenekunst-new-venues-batch-8-2026-07-23.md \
+            data/places/manifest.json \
+            data/places/places_index.json
+
+          CHANGED_COUNT="$(git diff --cached --name-only | wc -l | tr -d ' ')"
+          if [ "${CHANGED_COUNT}" != '9' ]; then
+            echo "Expected exactly 9 validated files, got ${CHANGED_COUNT}"
+            git diff --cached --name-only
+            exit 3
+          fi
+
+          git commit -m 'Validate eighth Scenekunst venue batch snapshot'
+          VALIDATED_SHA="$(git rev-parse HEAD)"
+          echo "VALIDATED_SHA=${VALIDATED_SHA}" >> "${GITHUB_ENV}"
+          git push --force origin HEAD:agent/scenekunst-venues-08-validated
+
+      - name: Replay validated files rapidly on a stable current main
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          FINAL_BRANCH='agent/scenekunst-venues-08-final-v2'
+          FILES=(
+            data/places/scenekunst/nordland/figurteatret_i_nordland.json
+            data/places/scenekunst/nordland/teater_nor_stamsund.json
+            data/places/scenekunst/troms/kvaaniteatteri_halti_kulturscene.json
+            data/places/scenekunst/rogaland/ras_sandnes_kulturhus.json
+            data/places/scenekunst/ostfold/parkteatret_moss.json
+            reports/scenekunst-new-venues-batch-8-2026-07-23.json
+            reports/scenekunst-new-venues-batch-8-2026-07-23.md
+          )
+
+          for attempt in $(seq 1 20); do
+            echo "Fast replay attempt ${attempt}/20"
+            git reset --hard
+            git clean -fd
+            git fetch origin main
+            BASE_SHA="$(git rev-parse origin/main)"
+            git checkout -B "${FINAL_BRANCH}" origin/main
+            git checkout "${VALIDATED_SHA}" -- "${FILES[@]}"
+
+            node <<'NODE'
+            const fs = require('fs');
+            const file = 'data/places/manifest.json';
+            const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+            const additions = [
+              'places/scenekunst/nordland/figurteatret_i_nordland.json',
+              'places/scenekunst/nordland/teater_nor_stamsund.json',
+              'places/scenekunst/troms/kvaaniteatteri_halti_kulturscene.json',
+              'places/scenekunst/rogaland/ras_sandnes_kulturhus.json',
+              'places/scenekunst/ostfold/parkteatret_moss.json',
+            ];
+            for (const item of additions) {
+              if (!manifest.files.includes(item)) manifest.files.push(item);
+            }
+            fs.writeFileSync(file, JSON.stringify(manifest, null, 2) + '\n');
+            NODE
+
+            npm run places:index:build
+            bash scripts/check-places.sh
+            bash scripts/check-people.sh
+            npm run audit:categories
+            npm run audit:quiz-templates
+            git diff --check
+
+            BASE_SHA="${BASE_SHA}" node <<'NODE'
+            const fs = require('fs');
+            const file = 'reports/scenekunst-new-venues-batch-8-2026-07-23.json';
+            const report = JSON.parse(fs.readFileSync(file, 'utf8'));
+            report.baseCommit = process.env.BASE_SHA;
+            report.validation.replayOnCurrentMain = 'pass';
+            report.validatedAt = new Date().toISOString();
+            fs.writeFileSync(file, JSON.stringify(report, null, 2) + '\n');
+            NODE
+
+            git add "${FILES[@]}" data/places/manifest.json data/places/places_index.json
+            CHANGED_COUNT="$(git diff --cached --name-only | wc -l | tr -d ' ')"
+            if [ "${CHANGED_COUNT}" != '9' ]; then
+              echo "Expected exactly 9 replay files, got ${CHANGED_COUNT}"
+              git diff --cached --name-only
+              exit 3
+            fi
+
+            git fetch origin main
+            CURRENT_MAIN="$(git rev-parse origin/main)"
+            if [ "${CURRENT_MAIN}" != "${BASE_SHA}" ]; then
+              echo "main moved during fast replay; retrying"
+              sleep 10
+              continue
+            fi
+
+            git commit -m 'Add eighth Scenekunst venue batch on current main'
+            git push --force origin HEAD:"${FINAL_BRANCH}"
+            exit 0
+          done
+
+          echo 'main did not remain stable during twenty fast replay attempts.'
+          exit 2
