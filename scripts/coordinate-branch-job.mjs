@@ -1,6 +1,7 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 
+// One-shot finalizer: remove the unverified bedehus marker, rebuild indexes, then self-delete via the permanent runner.
 const root = process.cwd();
 const manifestPath = path.join(root, 'data/places/manifest.json');
 const readmePath = path.join(root, 'reports/etne-religion-subculture-batch/README.md');
