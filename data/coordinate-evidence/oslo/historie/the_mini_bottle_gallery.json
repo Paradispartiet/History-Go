@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "the_mini_bottle_gallery",
+  "placeFile": "data/places/historie/oslo/places_historie/the_mini_bottle_gallery.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.90962587013713,
+    "lon": 10.743320753338548,
+    "r": 50,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Kirkegata 10, 0153 Oslo. Museets egen nettside dokumenterer samme adresse og at The Mini Bottle Gallery åpnet her i mai 2003; punktet brukes som canonical display-marker for spesialmuseet og samlingen."
+  },
+  "identity": {
+    "currentName": "The Mini Bottle Gallery",
+    "resolvedIdentity": "Spesialmuseet The Mini Bottle Gallery i Kirkegata 10, separat fra ordinære kunstgallerier i VisitOSLO-kilden",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt nåværende besøksadresse",
+    "canonical identitets- og nærhetskontroll",
+    "dokumentert museumshistorie"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Kirkegata 10",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Kirkegata%2010%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13707:10",
+      "sourceQuality": "official_address",
+      "finding": "Ett tydelig offisielt adressepunkt for Kirkegata 10 i Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Kirkegata 10, 0153 Oslo. Museets egen nettside dokumenterer samme adresse og at The Mini Bottle Gallery åpnet her i mai 2003; punktet brukes som canonical display-marker for spesialmuseet og samlingen."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "The Mini Bottle Gallery – Museum",
+      "sourceUrl": "https://www.minibottlegallery.com/?kategori=museum",
+      "sourceObjectId": "mini-bottle:official-museum",
+      "sourceQuality": "official_museum_identity",
+      "finding": "Dokumenterer samlingens historie, kjøpet av Kirkegata 10 i 1996 og museumsåpningen i mai 2003.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og institusjonshistorisk kryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "The Mini Bottle Gallery – Contact",
+      "sourceUrl": "https://www.minibottlegallery.com/",
+      "sourceObjectId": "mini-bottle:official-contact",
+      "sourceQuality": "official_site_address",
+      "finding": "Dokumenterer The Mini Bottle Gallery AS og Kirkegata 10, 0153 Oslo som dagens adresse.",
+      "canVerifyCoordinate": false,
+      "reason": "Nåværende adressekryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Kirkegata 10, 0153 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13707:10",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13707:10",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "mini-bottle:official-museum",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "mini-bottle:official-contact",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90962587013713,
+      "lon": 10.743320753338548,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13707:10",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kirkegata 10 er anvendt som canonical display-marker."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Kirkegata 10, 0153 Oslo. Museets egen nettside dokumenterer samme adresse og at The Mini Bottle Gallery åpnet her i mai 2003; punktet brukes som canonical display-marker for spesialmuseet og samlingen.",
+    "Nærmeste eksisterende canonical marker ved write-time var stattholdergarden på 28.81 meter; ingen markør lå innen 3 meter."
+  ]
+}
