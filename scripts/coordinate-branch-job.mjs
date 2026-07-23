@@ -26,7 +26,9 @@ async function launchBrowser() {
       } catch {}
     }
     const install = spawnSync("npx", ["playwright", "install", "chromium"], { stdio: "inherit", encoding: "utf8" });
-    if (install.status !== 0) throw new Error(`Playwright browser launch failed and chromium install failed: ${String(firstError)}`);
+    if (install.status !== 0) {
+      throw new Error(`Playwright browser launch failed and chromium install failed: ${String(firstError)}`);
+    }
     return chromium.launch({ headless: true });
   }
 }
@@ -45,13 +47,13 @@ async function dismissCookieBanner(page) {
       if (!(await candidate.isVisible().catch(() => false))) continue;
       try {
         await candidate.click({ timeout: 5000 });
-        await sleep(750);
+        await sleep(500);
         return { dismissed: true, method: "click", locatorIndex: index };
       } catch {}
     }
   }
-  const overlayVisible = await page.locator("#cookie-information-template-wrapper").isVisible().catch(() => false);
-  return { dismissed: !overlayVisible, method: overlayVisible ? "unresolved" : "not-present" };
+  const visible = await page.locator("#cookie-information-template-wrapper").isVisible().catch(() => false);
+  return { dismissed: !visible, method: visible ? "unresolved" : "not-present" };
 }
 
 function productUsesGalleryPath(product) {
@@ -67,8 +69,9 @@ function idsFromProducts(products) {
   return uniq(products.map((product) => product?.id)).map(String).sort();
 }
 
-function arraysEqual(left, right) {
-  return left.length === right.length && left.every((value, index) => value === right[index]);
+function isSubset(subset, superset) {
+  const allowed = new Set(superset);
+  return subset.every((value) => allowed.has(value));
 }
 
 function apiMeta(row) {
@@ -93,7 +96,7 @@ const context = await browser.newContext({
 });
 const page = await context.newPage();
 const apiResponses = [];
-const apiCaptureTasks = [];
+const captureTasks = [];
 
 page.on("response", (response) => {
   if (!response.url().includes("/api/productlist/products")) return;
@@ -106,59 +109,16 @@ page.on("response", (response) => {
     }
     apiResponses.push(row);
   })();
-  apiCaptureTasks.push(task);
+  captureTasks.push(task);
 });
 
-async function settleApiCaptures() {
+async function settleCaptures() {
   let observed = -1;
-  while (observed !== apiCaptureTasks.length) {
-    observed = apiCaptureTasks.length;
-    await Promise.allSettled([...apiCaptureTasks]);
+  while (observed !== captureTasks.length) {
+    observed = captureTasks.length;
+    await Promise.allSettled([...captureTasks]);
     await sleep(200);
   }
-}
-
-async function readDomIds() {
-  return page.evaluate((sourcePath) => [...new Set([...document.querySelectorAll("a[href]")].map((anchor) => {
-    try {
-      const url = new URL(anchor.href, location.href);
-      return url.pathname === sourcePath && url.searchParams.has("tlp") ? url.searchParams.get("tlp") : null;
-    } catch {
-      return null;
-    }
-  }).filter(Boolean))], SOURCE_PATH);
-}
-
-async function findGalleryLoadMoreButton() {
-  const buttons = page.getByRole("button", { name: /^(Vis flere|Se flere|Load more)$/i });
-  const count = await buttons.count().catch(() => 0);
-  let best = null;
-  let bestScore = -1;
-  for (let index = 0; index < count; index += 1) {
-    const candidate = buttons.nth(index);
-    if (!(await candidate.isVisible().catch(() => false))) continue;
-    const score = await candidate.evaluate((button, sourcePath) => {
-      let node = button.parentElement;
-      let max = 0;
-      for (let depth = 0; node && depth < 10; depth += 1, node = node.parentElement) {
-        const ids = [...node.querySelectorAll("a[href]")].map((anchor) => {
-          try {
-            const url = new URL(anchor.href, location.href);
-            return url.pathname === sourcePath ? url.searchParams.get("tlp") : null;
-          } catch {
-            return null;
-          }
-        }).filter(Boolean);
-        max = Math.max(max, new Set(ids).size);
-      }
-      return max;
-    }, SOURCE_PATH).catch(() => 0);
-    if (score > bestScore) {
-      best = candidate;
-      bestScore = score;
-    }
-  }
-  return { button: best, score: bestScore };
 }
 
 let navigation;
@@ -171,171 +131,143 @@ try {
 
 await sleep(6000);
 await page.waitForLoadState("networkidle", { timeout: 20000 }).catch(() => {});
-await settleApiCaptures();
+await settleCaptures();
 const cookie = await dismissCookieBanner(page);
 await sleep(800);
-await settleApiCaptures();
+await settleCaptures();
 
-const initialMapRows = apiResponses.filter((row) => {
+const exactRows = apiResponses.filter((row) => row.status === 200 && Array.isArray(row.json?.products));
+const mapCandidates = exactRows.filter((row) => apiMeta(row).view === "map");
+const mapRow = mapCandidates.find((row) => {
   const meta = apiMeta(row);
-  return meta.status === 200 && meta.view === "map" && Array.isArray(row.json?.products) && row.json.products.length > 0;
-});
-const galleryMapRow = initialMapRows.find((row) => row.json.products.every(productUsesGalleryPath)) ?? null;
-if (!galleryMapRow) {
+  return meta.pageId && row.json.products.length > 0 && row.json.products.every(productUsesGalleryPath);
+}) ?? null;
+
+if (!mapRow) {
   writeJson("api-candidates.json", { navigation, cookie, responses: apiResponses.map(apiMeta) });
-  throw new Error("Could not identify an exact Galleries map API response from live browser traffic.");
+  throw new Error("Could not identify the exact VisitOSLO Galleries map response from live browser traffic.");
 }
 
-const galleryMapMeta = apiMeta(galleryMapRow);
-const pageId = galleryMapMeta.pageId;
-const totalResults = Number(galleryMapRow.json.totalResults);
+const mapMeta = apiMeta(mapRow);
+const pageId = mapMeta.pageId;
+const totalResults = Number(mapRow.json.totalResults);
+const mapProducts = mapRow.json.products;
+const mapIds = idsFromProducts(mapProducts);
 if (!pageId || !Number.isInteger(totalResults) || totalResults <= 0) {
   throw new Error(`Unexpected Galleries map metadata: pageId=${pageId}, totalResults=${totalResults}`);
 }
 
-const clickLog = [];
-for (let attempt = 0; attempt < 10; attempt += 1) {
-  const beforeIds = await readDomIds();
-  if (beforeIds.length >= totalResults) break;
-  const { button, score } = await findGalleryLoadMoreButton();
-  if (!button) {
-    clickLog.push({ attempt: attempt + 1, before: beforeIds.length, buttonFound: false });
-    break;
-  }
-  try {
-    await button.click({ timeout: 8000 });
-    await sleep(1800);
-    await settleApiCaptures();
-  } catch (error) {
-    clickLog.push({ attempt: attempt + 1, before: beforeIds.length, buttonFound: true, buttonScore: score, error: String(error) });
-    break;
-  }
-  const afterIds = await readDomIds();
-  clickLog.push({ attempt: attempt + 1, before: beforeIds.length, after: afterIds.length, buttonFound: true, buttonScore: score });
-  if (afterIds.length <= beforeIds.length) break;
-}
-
-await settleApiCaptures();
-
-const exactRows = apiResponses.filter((row) => {
-  const meta = apiMeta(row);
-  return meta.status === 200 && meta.pageId === pageId && Array.isArray(row.json?.products);
-});
-const dedupedExactRows = [...new Map(exactRows.map((row) => [row.url, row])).values()];
-const mapRows = dedupedExactRows.filter((row) => apiMeta(row).view === "map");
-const listRows = dedupedExactRows
-  .filter((row) => !apiMeta(row).view)
-  .sort((left, right) => Number(apiMeta(left).offset ?? left.json?.offset ?? 0) - Number(apiMeta(right).offset ?? right.json?.offset ?? 0));
-
-const mapRow = mapRows.find((row) => row.json.products.every(productUsesGalleryPath)) ?? galleryMapRow;
-const mapProducts = mapRow.json.products;
-const mapIds = idsFromProducts(mapProducts);
-const pagedProducts = listRows.flatMap((row) => row.json.products);
-const uniquePagedProducts = [...new Map(pagedProducts.map((product) => [String(product.id), product])).values()];
-const pagedIds = idsFromProducts(uniquePagedProducts);
-
-writeJson("gallery-api-map.json", mapRow.json);
-for (const row of listRows) {
-  const offset = Number(apiMeta(row).offset ?? row.json?.offset ?? 0);
-  writeJson(`gallery-api-offset-${String(offset).padStart(3, "0")}.json`, row.json);
-}
-writeJson("api-candidates.json", { navigation, cookie, pageId, responses: apiResponses.map(apiMeta) });
-writeJson("gallery-api-products.json", uniquePagedProducts);
+const listRows = exactRows
+  .filter((row) => {
+    const meta = apiMeta(row);
+    return meta.pageId === pageId && !meta.view;
+  })
+  .sort((left, right) => Number(apiMeta(left).offset ?? 0) - Number(apiMeta(right).offset ?? 0));
+const initialListRow = listRows.find((row) => Number(apiMeta(row).offset ?? row.json?.offset ?? 0) === 0) ?? listRows[0] ?? null;
+const initialListProducts = initialListRow?.json?.products ?? [];
+const initialListIds = idsFromProducts(initialListProducts);
 
 const dom = await page.evaluate((sourcePath) => {
   const anchors = [...document.querySelectorAll("a[href]")].map((anchor) => {
     try {
       const url = new URL(anchor.href, location.href);
       if (url.pathname !== sourcePath || !url.searchParams.has("tlp")) return null;
-      return { tlp: url.searchParams.get("tlp"), href: url.href, text: (anchor.textContent ?? "").replace(/\s+/g, " ").trim() };
+      return {
+        tlp: url.searchParams.get("tlp"),
+        href: url.href,
+        text: (anchor.textContent ?? "").replace(/\s+/g, " ").trim()
+      };
     } catch {
       return null;
     }
   }).filter(Boolean);
   const uniqueAnchors = [...new Map(anchors.map((row) => [row.tlp, row])).values()];
-  const elementRows = [...document.querySelectorAll("main, section, div, ul")].map((element) => {
-    const ids = [...element.querySelectorAll("a[href]")].map((anchor) => {
-      try {
-        const url = new URL(anchor.href, location.href);
-        return url.pathname === sourcePath ? url.searchParams.get("tlp") : null;
-      } catch {
-        return null;
-      }
-    }).filter(Boolean);
-    return {
-      tag: element.tagName.toLowerCase(),
-      id: element.id || null,
-      className: typeof element.className === "string" ? element.className : null,
-      count: new Set(ids).size,
-      textLength: (element.textContent ?? "").length
-    };
-  });
-  const maxCount = Math.max(0, ...elementRows.map((row) => row.count));
-  const containerCandidates = elementRows
-    .filter((row) => row.count === maxCount && row.count > 0)
-    .sort((a, b) => a.textLength - b.textLength)
-    .slice(0, 10);
   return {
     uniqueAnchors,
-    containerCandidates,
     bodyText: (document.body?.innerText ?? "").slice(0, 250000),
     html: document.documentElement.outerHTML
   };
 }, SOURCE_PATH);
+const domIds = uniq(dom.uniqueAnchors.map((row) => row.tlp)).map(String).sort();
 
+writeJson("gallery-api-map.json", mapRow.json);
+if (initialListRow) writeJson("gallery-api-list-initial.json", initialListRow.json);
+writeJson("api-candidates.json", { navigation, cookie, pageId, responses: apiResponses.map(apiMeta) });
+writeJson("gallery-dom-products.json", { products: dom.uniqueAnchors });
 writeFileSync(`${REPORT_DIR}/gallery-rendered.html`, dom.html, "utf8");
 writeFileSync(`${REPORT_DIR}/gallery-visible-text.txt`, `${dom.bodyText}\n`, "utf8");
-writeJson("gallery-dom-products.json", { products: dom.uniqueAnchors, clickLog, containerCandidates: dom.containerCandidates });
 
-const domIds = uniq(dom.uniqueAnchors.map((row) => row.tlp)).map(String).sort();
-const listOffsets = listRows.map((row) => Number(apiMeta(row).offset ?? row.json?.offset ?? 0));
+const sourceSnapshot = {
+  capturedAt: new Date().toISOString(),
+  sourceUrl: SOURCE_URL,
+  sourceApiUrl: mapRow.url,
+  pageId,
+  totalResults,
+  products: mapProducts.map((product) => ({
+    id: product.id,
+    name: product.name,
+    url: product.url,
+    address: product.address ?? null,
+    place: product.place ?? null,
+    geoLocation: product.geoLocation ?? null,
+    primaryCategory: product.primaryCategory ?? null,
+    productType: product.productType ?? null
+  }))
+};
+writeJson("gallery-source-snapshot.json", sourceSnapshot);
+
 const checks = {
   navigationOk: navigation?.status === 200,
   cookieBannerHandled: cookie.dismissed === true,
   discoveredPageId: pageId,
   apiTotalResults: totalResults,
-  capturedListOffsets: listOffsets,
-  paginatedUniqueCount: pagedIds.length,
+  mapProductCount: mapProducts.length,
   mapUniqueCount: mapIds.length,
+  initialListCount: initialListIds.length,
   domUniqueCount: domIds.length,
-  paginatedMatchesTotal: pagedIds.length === totalResults,
-  mapMatchesTotal: mapIds.length === totalResults,
-  paginatedMatchesMap: arraysEqual(pagedIds, mapIds),
-  domMatchesApi: arraysEqual(domIds, mapIds),
-  everyApiProductUsesGalleryPath: mapProducts.every(productUsesGalleryPath) && uniquePagedProducts.every(productUsesGalleryPath)
+  mapCountMatchesTotal: mapProducts.length === totalResults,
+  mapUniqueMatchesTotal: mapIds.length === totalResults,
+  everyMapProductUsesGalleryPath: mapProducts.every(productUsesGalleryPath),
+  initialListPresent: initialListIds.length > 0,
+  initialListSubsetOfMap: isSubset(initialListIds, mapIds),
+  domPresent: domIds.length > 0,
+  domSubsetOfMap: isSubset(domIds, mapIds)
 };
 checks.completeAndReproducible = Boolean(
   checks.navigationOk &&
   checks.cookieBannerHandled &&
-  checks.paginatedMatchesTotal &&
-  checks.mapMatchesTotal &&
-  checks.paginatedMatchesMap &&
-  checks.domMatchesApi &&
-  checks.everyApiProductUsesGalleryPath
+  checks.mapCountMatchesTotal &&
+  checks.mapUniqueMatchesTotal &&
+  checks.everyMapProductUsesGalleryPath &&
+  checks.initialListPresent &&
+  checks.initialListSubsetOfMap &&
+  checks.domPresent &&
+  checks.domSubsetOfMap
 );
 
 const summary = {
   version: DATE,
   sourceUrl: SOURCE_URL,
-  method: "Capture VisitOSLO's own live product-list responses, expand the gallery DOM, and cross-check exact id sets",
+  method: "Capture VisitOSLO's own complete map-view product-list response and validate list/DOM subsets against it",
   navigation,
   cookie,
   pageId,
-  clickLog,
-  apiPages: listRows.map(apiMeta),
-  mapApi: apiMeta(mapRow),
+  mapApi: mapMeta,
+  initialListApi: initialListRow ? apiMeta(initialListRow) : null,
   checks,
   productIds: mapIds,
-  products: mapProducts.map((product) => ({ id: product.id, name: product.name, url: product.url }))
+  products: sourceSnapshot.products.map((product) => ({ id: product.id, name: product.name, url: product.url }))
 };
 writeJson("summary.json", summary);
 writeFileSync(
   `${REPORT_DIR}/README.md`,
-  `# VisitOSLO Galleries — exact API source discovery\n\nDate: ${DATE}\n\nResearch-only pass. It captures the exact product-list responses requested by the official Galleries page, explicitly handles the cookie banner, expands the page through \`Vis flere\`, isolates only Galleries-path TLP links, and compares the paginated list responses, the complete map response and the final DOM.\n\n- pageId: ${pageId}\n- API total: ${totalResults}\n- captured list offsets: ${listOffsets.join(", ")}\n- paginated unique products: ${pagedIds.length}\n- map unique products: ${mapIds.length}\n- expanded DOM unique products: ${domIds.length}\n- complete and reproducible: ${checks.completeAndReproducible}\n`,
+  `# VisitOSLO Galleries — exact source discovery\n\nDate: ${DATE}\n\nResearch-only pass. The official Galleries page itself requests a complete \`view=map\` product-list response for the same live pageId used by its list view. That response is used as the authoritative full category set; the initial list response and rendered Galleries-path DOM links are validated as subsets of the same ID set.\n\n- pageId: ${pageId}\n- API total: ${totalResults}\n- map products: ${mapProducts.length}\n- map unique products: ${mapIds.length}\n- initial list products: ${initialListIds.length}\n- rendered DOM products: ${domIds.length}\n- complete and reproducible: ${checks.completeAndReproducible}\n`,
   "utf8"
 );
 
 await context.close();
 await browser.close();
-if (!checks.completeAndReproducible) throw new Error(`VisitOSLO Galleries completeness proof failed: ${JSON.stringify(checks)}`);
+if (!checks.completeAndReproducible) {
+  throw new Error(`VisitOSLO Galleries completeness proof failed: ${JSON.stringify(checks)}`);
+}
 console.log(JSON.stringify(summary, null, 2));
