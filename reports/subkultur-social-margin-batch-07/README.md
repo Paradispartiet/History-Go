@@ -14,6 +14,13 @@ Batchen går tilbake til kjernen i History Go sin Subkultur-grense: dokumenterte
 
 MO-senteret Gyldenpris og Matfellesskap St. Petri representerer gatenær lavterskel- og støtteinfrastruktur. Kafe X representerer brukerstyrt, rusfri sosial infrastruktur skapt av mennesker med egne erfaringer fra rusrelaterte utfordringer.
 
+## Redaksjonell QA
+
+- Gyldenpris skilles tydelig mellom aktivt rusmiljø, sosialt møtepunkt, skadereduksjon og kommunal tjeneste.
+- St. Petri beskrives som mat- og møtefellesskap for rus- og gatemiljøet, ikke som et generisk kirkested.
+- Kafe X beskrives eksplisitt som rusfri og brukerstyrt, og skal ikke framstilles som en aktiv russcene.
+- Canonical markører følger Geonorges eksakte adresseobjekter; eksterne kilders eventuelle postnummerformatering overstyrer ikke det verifiserte adresseobjektet.
+
 ## Datakvalitet
 
 - mennesker beskrives som mennesker, ikke som problemer eller kulisse
