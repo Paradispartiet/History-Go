@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T20:02:26.282Z
+Generert: 2026-07-23T20:06:12.659Z
 
 ## Oppsummering
-- Aktive filer validert: **681**
+- Aktive filer validert: **682**
 - Antall steder validert: **1290**
 - Harde feil: **0**
 - Varsler: **509**
@@ -699,6 +699,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/edvard_munchs_atelier_ekely.json
 - data/places/kunst/oslo/places_kunst/tegnerforbundet.json
 - data/places/kunst/oslo/places_kunst/unge_kunstneres_samfund.json
+- data/places/kunst/oslo/places_kunst/norske_grafikere.json
 
 ## Harde feil
 - Ingen
