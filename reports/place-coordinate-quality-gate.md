@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T07:58:35.015Z
+Generert: 2026-07-23T08:41:50.096Z
 
 ## Oppsummering
-- Aktive filer validert: **638**
-- Antall steder validert: **1255**
+- Aktive filer validert: **643**
+- Antall steder validert: **1260**
 - Harde feil: **0**
-- Varsler: **488**
-- Coordinate review candidates: **754** signaler fordelt på **624** steder
+- Varsler: **493**
+- Coordinate review candidates: **759** signaler fordelt på **629** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -656,6 +656,11 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/scenekunst/trondelag/rosendal_teater.json
 - data/places/scenekunst/vestland/cornerteateret.json
 - data/places/scenekunst/vestland/studio_bergen_carte_blanche.json
+- data/places/scenekunst/akershus/baerum_kulturhus.json
+- data/places/scenekunst/buskerud/drammens_teater.json
+- data/places/scenekunst/oslo/dramatikkens_hus.json
+- data/places/scenekunst/oslo/teater_manu.json
+- data/places/scenekunst/oslo/vega_scene.json
 
 ## Harde feil
 - Ingen
@@ -1149,16 +1154,21 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/scenekunst/trondelag/rosendal_teater.json#rosendal_teater: coordStatus=verified uten coordPrecisionM
 - data/places/scenekunst/vestland/cornerteateret.json#cornerteateret: coordStatus=verified uten coordPrecisionM
 - data/places/scenekunst/vestland/studio_bergen_carte_blanche.json#studio_bergen_carte_blanche: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/akershus/baerum_kulturhus.json#baerum_kulturhus: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/buskerud/drammens_teater.json#drammens_teater: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/dramatikkens_hus.json#dramatikkens_hus: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/teater_manu.json#teater_manu: coordStatus=verified uten coordPrecisionM
+- data/places/scenekunst/oslo/vega_scene.json#vega_scene: coordStatus=verified uten coordPrecisionM
 
 ## Coordinate review candidates
 
-Totalt 754 signaler fordelt på 624 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 759 signaler fordelt på 629 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 197 |
+| coordStatus=verified uten coordPrecisionM | 202 |
 | lineært sted uten anchors | 79 |
 | lav koordinatpresisjon (<4 desimaler) | 82 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 72 |
@@ -1168,7 +1178,7 @@ Totalt 754 signaler fordelt på 624 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (197)
+### coordStatus=verified uten coordPrecisionM (202)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1369,6 +1379,11 @@ Totalt 754 signaler fordelt på 624 steder. Et sted kan ha flere signaler. Kandi
 | rosendal_teater | Rosendal Teater | scenekunst | data/places/scenekunst/trondelag/rosendal_teater.json | 63.43668599265991 | 10.432509045023487 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | cornerteateret | Cornerteateret | scenekunst | data/places/scenekunst/vestland/cornerteateret.json | 60.3826223798614 | 5.32583895135855 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | studio_bergen_carte_blanche | Studio Bergen / Carte Blanche | scenekunst | data/places/scenekunst/vestland/studio_bergen_carte_blanche.json | 60.39474296284379 | 5.311195329743077 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| baerum_kulturhus | Bærum Kulturhus | scenekunst | data/places/scenekunst/akershus/baerum_kulturhus.json | 59.889029577239945 | 10.522729052403367 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| drammens_teater | Drammens Teater | scenekunst | data/places/scenekunst/buskerud/drammens_teater.json | 59.74459100305455 | 10.200444127330899 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| dramatikkens_hus | Dramatikkens hus | scenekunst | data/places/scenekunst/oslo/dramatikkens_hus.json | 59.91136273231394 | 10.76197612015289 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| teater_manu | Teater Manu | scenekunst | data/places/scenekunst/oslo/teater_manu.json | 59.92748781553136 | 10.765085831638626 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| vega_scene | Vega Scene | scenekunst | data/places/scenekunst/oslo/vega_scene.json | 59.91895316049889 | 10.752326830028103 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
 ### lineært sted uten anchors (79)
 
