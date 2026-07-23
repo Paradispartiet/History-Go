@@ -1,0 +1,64 @@
+name: Prepare canonical Høyland quiz
+
+on:
+  push:
+    branches:
+      - agent/etne-hoyland-gravhaug-canonical-v2
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prepare-canonical-hoyland-quiz
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify deterministic production context
+        run: |
+          npm run quiz:context -- --category historie --target hoyland_gravhaug_etne --output /tmp/hoyland-context.json
+          cmp data/quiz/production_context/historie/hoyland_gravhaug_etne.json /tmp/hoyland-context.json
+
+      - name: Generate canonical Knowledge links
+        run: npm run knowledge:canonical:write
+
+      - name: Run Høyland production checks
+        run: |
+          npm run typecheck:scripts
+          npm run audit:categories
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-content-audit
+          npm run test:quiz-production
+          node scripts/audit-quiz-content-quality.mjs --json /tmp/hoyland-content-audit.json
+          node -e "const r=require('/tmp/hoyland-content-audit.json'); const g=r.groups.find(x=>x.target==='hoyland_gravhaug_etne'); if(!g || g.total!==21 || g.violations.length) { console.error(g); process.exit(1); }"
+          npm run knowledge:canonical:check
+
+      - name: Commit generated artifacts and remove workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/knowledge/concepts.generated.json
+          git add data/knowledge/knowledge_units.generated.json
+          git add data/quiz/historie/hoyland_gravhaug_etne_sets.json
+          git add reports/knowledge-contract-audit.json
+          git add reports/knowledge-id-backfill.json
+          git rm .github/workflows/hoyland-canonical-refresh.yml
+          git diff --cached --check
+          git commit -m "Refresh canonical Knowledge for Høyland"
+          git push origin HEAD:agent/etne-hoyland-gravhaug-canonical-v2
