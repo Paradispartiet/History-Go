@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T21:41:38.667Z
+Generert: 2026-07-23T21:59:57.609Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -201,7 +201,6 @@ Generert: 2026-07-23T21:41:38.667Z
 | oslo_posthus | data/coordinate-evidence/oslo/naeringsliv/oslo_posthus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ovre_foss | data/coordinate-evidence/oslo/naeringsliv/ovre_foss.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ringnes_bryggeri | data/coordinate-evidence/oslo/naeringsliv/ringnes_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| sagene_kvernhus | data/coordinate-evidence/oslo/naeringsliv/sagene_kvernhus.json | needs_research | needs_identity_split | OK |
 | schous_bryggeri | data/coordinate-evidence/oslo/naeringsliv/schous_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | st_halvard_bryggeri | data/coordinate-evidence/oslo/naeringsliv/st_halvard_bryggeri.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | telegrafbygningen | data/coordinate-evidence/oslo/naeringsliv/telegrafbygningen.json | applied_to_place | do_not_change_coordinates_yet | OK |

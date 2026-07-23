@@ -1,0 +1,61 @@
+{
+  "version": "2026-07-23",
+  "batch": 188,
+  "legacyId": "sagene_kvernhus",
+  "canonicalId": "glads_molle",
+  "status": "retired_duplicate_migrated_to_existing_canonical",
+  "canonical": {
+    "file": "data/places/natur/oslo/places_oslo_natur_akerselvarute/glads_molle.json",
+    "name": "Glads mølle",
+    "coordinate": {
+      "lat": 59.931850362845985,
+      "lon": 10.757873019733754,
+      "r": 60
+    },
+    "sourceObjectId": "geonorge-adresser-v1:0301:16161:10A",
+    "coordStatus": "verified"
+  },
+  "retired": {
+    "aggregateFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+    "splitFile": "data/places/naeringsliv/oslo/places_naeringsliv/sagene_kvernhus.json",
+    "evidenceFile": "data/coordinate-evidence/oslo/naeringsliv/sagene_kvernhus.json",
+    "oldName": "Sagene mølle og kvernhus",
+    "oldCoordinate": {
+      "lat": 59.9368,
+      "lon": 10.7569,
+      "r": 200
+    }
+  },
+  "migrations": {
+    "preExactReferenceCount": 83,
+    "removedCivicationMappings": 1,
+    "i18nResult": [
+      {
+        "file": "data/i18n/content/places/en.json",
+        "removedLegacyKey": true,
+        "canonicalKeyAlreadyPresent": true
+      },
+      {
+        "file": "data/i18n/content/places/es.json",
+        "removedLegacyKey": true,
+        "canonicalKeyAlreadyPresent": true
+      },
+      {
+        "file": "data/i18n/content/places/pt.json",
+        "removedLegacyKey": true,
+        "canonicalKeyAlreadyPresent": true
+      }
+    ],
+    "lesesporReplacements": 1,
+    "natureRouteReplacements": 1,
+    "routeReplacements": 1,
+    "historicalRouteChapterRetargeted": true,
+    "removedPersonRelations": 1,
+    "arbeidermuseetContrastRetargeted": true,
+    "retiredQuizPackage": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+    "removedFlatQuizQuestions": 5,
+    "quizManifestHadLegacy": false,
+    "aliasRegistered": "sagene_kvernhus -> glads_molle"
+  },
+  "decision": "No second Glads mølle coordinate is created. The duplicate legacy place is retired and context-specific references are either retargeted to the existing canonical place or removed when the old relationship was not source-supported."
+}
