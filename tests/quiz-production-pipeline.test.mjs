@@ -225,6 +225,6 @@ test("passes production-context, progression and theory-binding audits", async (
 
   for (const report of reports) {
     assert.equal(report.status, "passed", JSON.stringify(report.failures, null, 2));
-    assert.equal(report.quizFilesChecked, 5);
+    assert.equal(report.quizFilesChecked, 6);
   }
 });
