@@ -1,0 +1,513 @@
+{
+  "version": "2026-07-23",
+  "purpose": "Correct the earlier sagene_kvernhus identity resolution after discovering the already canonical Glads mølle place, and inventory every exact active legacy-id reference before migration.",
+  "legacyPlace": {
+    "id": "sagene_kvernhus",
+    "name": "Sagene mølle og kvernhus",
+    "lat": 59.9368,
+    "lon": 10.7569,
+    "r": 200,
+    "file": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+    "evidenceFile": "data/coordinate-evidence/oslo/naeringsliv/sagene_kvernhus.json",
+    "evidenceStatus": "needs_research",
+    "coordinateDecision": "needs_identity_split"
+  },
+  "canonicalPlace": {
+    "id": "glads_molle",
+    "name": "Glads mølle",
+    "lat": 59.931850362845985,
+    "lon": 10.757873019733754,
+    "r": 60,
+    "file": "data/places/natur/oslo/places_oslo_natur_akerselvarute/glads_molle.json",
+    "sourceObjectId": "geonorge-adresser-v1:0301:16161:10A",
+    "coordStatus": "verified",
+    "coordVerifiedAt": "2026-07-19",
+    "exactCanonicalIdentityMatch": true,
+    "sameAddressCandidate": true
+  },
+  "duplicateDecision": {
+    "isDuplicatePhysicalPlace": true,
+    "canonicalId": "glads_molle",
+    "legacyId": "sagene_kvernhus",
+    "requiredAction": "retire legacy duplicate, retarget active exact references to glads_molle, retire duplicate coordinate evidence, add legacy-id alias, and remove unresolved coordinate row; do not create a second Glads mølle marker"
+  },
+  "runtimeLegacyMatchCount": 1,
+  "exactReferenceInventory": {
+    "occurrenceCount": 83,
+    "fileCount": 18,
+    "files": [
+      "data/Civication/map/historyGoPlaceMapping.naeringsliv.json",
+      "data/coordinate-evidence/oslo/naeringsliv/sagene_kvernhus.json",
+      "data/i18n/content/places/en.json",
+      "data/i18n/content/places/es.json",
+      "data/i18n/content/places/pt.json",
+      "data/lesespor/lesespor_oslo_batch2.json",
+      "data/natur/routes_patched_akerselva_knagger_baseline_v0_2_patched_groft.json",
+      "data/people/by/oslo/people_by_oslo.json",
+      "data/places/historie/oslo/places_historie/arbeidermuseet.json",
+      "data/places/naeringsliv/oslo/places_naeringsliv.json",
+      "data/places/naeringsliv/oslo/places_naeringsliv/sagene_kvernhus.json",
+      "data/places/naeringsliv/oslo/places_naeringsliv_index.json",
+      "data/places/naeringsliv/oslo/places_naeringsliv_manifest.json",
+      "data/places/places_index.json",
+      "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+      "data/quiz/quiz_naeringsliv.json",
+      "data/routes.json",
+      "data/routes/historical/routes_historical_oslo.json"
+    ],
+    "categories": {
+      "placeData": [
+        "data/places/historie/oslo/places_historie/arbeidermuseet.json",
+        "data/places/naeringsliv/oslo/places_naeringsliv.json",
+        "data/places/naeringsliv/oslo/places_naeringsliv/sagene_kvernhus.json",
+        "data/places/naeringsliv/oslo/places_naeringsliv_index.json",
+        "data/places/naeringsliv/oslo/places_naeringsliv_manifest.json",
+        "data/places/places_index.json"
+      ],
+      "coordinateEvidence": [
+        "data/coordinate-evidence/oslo/naeringsliv/sagene_kvernhus.json"
+      ],
+      "people": [
+        "data/people/by/oslo/people_by_oslo.json"
+      ],
+      "quiz": [
+        "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "data/quiz/quiz_naeringsliv.json"
+      ],
+      "stories": [],
+      "wonderkammer": [],
+      "civication": [
+        "data/Civication/map/historyGoPlaceMapping.naeringsliv.json"
+      ],
+      "i18n": [
+        "data/i18n/content/places/en.json",
+        "data/i18n/content/places/es.json",
+        "data/i18n/content/places/pt.json"
+      ],
+      "otherData": [
+        "data/lesespor/lesespor_oslo_batch2.json",
+        "data/natur/routes_patched_akerselva_knagger_baseline_v0_2_patched_groft.json",
+        "data/routes.json",
+        "data/routes/historical/routes_historical_oslo.json"
+      ],
+      "codeOrDocs": []
+    },
+    "occurrences": [
+      {
+        "file": "data/Civication/map/historyGoPlaceMapping.naeringsliv.json",
+        "line": 431,
+        "text": "\"historyGoPlaceId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/coordinate-evidence/oslo/naeringsliv/sagene_kvernhus.json",
+        "line": 2,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/i18n/content/places/en.json",
+        "line": 828,
+        "text": "\"sagene_kvernhus\": {"
+      },
+      {
+        "file": "data/i18n/content/places/es.json",
+        "line": 1542,
+        "text": "\"sagene_kvernhus\": {"
+      },
+      {
+        "file": "data/i18n/content/places/pt.json",
+        "line": 2354,
+        "text": "\"sagene_kvernhus\": {"
+      },
+      {
+        "file": "data/lesespor/lesespor_oslo_batch2.json",
+        "line": 92,
+        "text": "\"sagene_kvernhus\","
+      },
+      {
+        "file": "data/natur/routes_patched_akerselva_knagger_baseline_v0_2_patched_groft.json",
+        "line": 112,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/people/by/oslo/people_by_oslo.json",
+        "line": 285,
+        "text": "\"sagene_kvernhus\","
+      },
+      {
+        "file": "data/places/historie/oslo/places_historie/arbeidermuseet.json",
+        "line": 51,
+        "text": "\"sagene_kvernhus\","
+      },
+      {
+        "file": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+        "line": 764,
+        "text": "\"id\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/places/naeringsliv/oslo/places_naeringsliv/sagene_kvernhus.json",
+        "line": 2,
+        "text": "\"id\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/places/naeringsliv/oslo/places_naeringsliv_index.json",
+        "line": 197,
+        "text": "\"id\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/places/naeringsliv/oslo/places_naeringsliv_manifest.json",
+        "line": 105,
+        "text": "\"id\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/places/places_index.json",
+        "line": 10488,
+        "text": "\"id\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 2,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 68,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 71,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 139,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 142,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 211,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 214,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 282,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 285,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 352,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 355,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 423,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 426,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 506,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 509,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 576,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 579,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 647,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 650,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 717,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 720,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 788,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 791,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 858,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 861,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 937,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 940,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1008,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1011,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1078,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1081,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1148,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1151,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1218,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1221,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1290,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1293,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1370,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1373,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1441,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1444,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1511,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1514,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1583,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1586,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1654,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1657,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1725,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1728,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1806,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1809,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1877,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1880,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1947,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 1950,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 2017,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 2020,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 2087,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 2090,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 2160,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/sagene_kvernhus_sets_merged.json",
+        "line": 2163,
+        "text": "\"targetId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/quiz_naeringsliv.json",
+        "line": 545,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/quiz_naeringsliv.json",
+        "line": 557,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/quiz_naeringsliv.json",
+        "line": 569,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/quiz_naeringsliv.json",
+        "line": 581,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/quiz/quiz_naeringsliv.json",
+        "line": 593,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/routes.json",
+        "line": 113,
+        "text": "{ \"title\": \"Sagene mølle og kvernhus\", \"placeId\": \"sagene_kvernhus\", \"info\": \"Her startet byens industri – møller og sagbruk drevet av Akerselva.\" },"
+      },
+      {
+        "file": "data/routes/historical/routes_historical_oslo.json",
+        "line": 711,
+        "text": "\"placeId\": \"sagene_kvernhus\","
+      },
+      {
+        "file": "data/routes/historical/routes_historical_oslo.json",
+        "line": 715,
+        "text": "\"placeId\": \"sagene_kvernhus\""
+      }
+    ]
+  }
+}
