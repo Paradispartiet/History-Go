@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T15:59:37.548Z
+Generert: 2026-07-23T16:07:06.197Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -239,7 +239,7 @@ Generert: 2026-07-23T15:59:37.548Z
 | bygdoy_roykenvika | data/coordinate-evidence/oslo/natur/bygdoy_roykenvika.json | needs_research | needs_geometry | OK |
 | elvestrekning_bla_brenneriveien | data/coordinate-evidence/oslo/natur/elvestrekning_bla_brenneriveien.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | fossveien_elvestrekning | data/coordinate-evidence/oslo/natur/fossveien_elvestrekning.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| frysjadammen | data/coordinate-evidence/oslo/natur/frysjadammen.json | needs_research | needs_identity_split | OK |
+| frysjadammen | data/coordinate-evidence/oslo/natur/frysjadammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | furuset_haugerud_skogbelte | data/coordinate-evidence/oslo/natur/furuset_haugerud_skogbelte.json | needs_research | needs_geometry | OK |
 | glads_molle | data/coordinate-evidence/oslo/natur/glads_molle.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gressholmen | data/coordinate-evidence/oslo/natur/gressholmen.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -267,7 +267,7 @@ Generert: 2026-07-23T15:59:37.548Z
 | rambergoya | data/coordinate-evidence/oslo/natur/rambergoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | seilduksfabrikken_nydalen | data/coordinate-evidence/oslo/natur/seilduksfabrikken_nydalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | sognsvann | data/coordinate-evidence/oslo/natur/sognsvann.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| stilla_nydalen | data/coordinate-evidence/oslo/natur/stilla_nydalen.json | needs_research | needs_geometry | OK |
+| stilla_nydalen | data/coordinate-evidence/oslo/natur/stilla_nydalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | svartdalen | data/coordinate-evidence/oslo/natur/svartdalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | tjernsmyr_salamanderlokalitet | data/coordinate-evidence/oslo/natur/tjernsmyr_salamanderlokalitet.json | needs_research | needs_geometry | OK |
 | trosterud_friomrade | data/coordinate-evidence/oslo/natur/trosterud_friomrade.json | needs_research | needs_geometry | OK |

@@ -1,6 +1,6 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T15:59:29.933Z
+Generert: 2026-07-23T16:06:58.462Z
 
 ## Oppsummering
 - Aktive filer validert: **665**
@@ -1482,7 +1482,7 @@ Totalt 772 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandi
 | christiania_seildugsfabrik | Christiania Seildugsfabrik | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9253444010033 | 10.75475549771365 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | alnaelvstien | Alnastien – Svartdalen og Bryn | natur | data/places/natur/oslo/places_oslo_alna.json | 59.9059364 | 10.8030114 | 250 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| stilla_nydalen | Stilla ved Nydalen | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9449 | 10.7654 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| stilla_nydalen | Elvepartiet nedenfor Nydalsdammen | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.95601833126916 | 10.766397872462578 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | bjoelsenparken_elvenaer | Bjølsenparken (elvenær del) | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.93914 | 10.75891 | 160 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | elvestrekning_bla_brenneriveien | Elvestrekning ved Blå (Brenneriveien) | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.92000495695905 | 10.753194575921878 | 130 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | fossveien_elvestrekning | Fossveien – elvestrekning | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9232309947939 | 10.753360734775319 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |

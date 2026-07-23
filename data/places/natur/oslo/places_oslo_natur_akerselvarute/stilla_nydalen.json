@@ -1,8 +1,8 @@
 {
   "id": "stilla_nydalen",
   "name": "Elvepartiet nedenfor Nydalsdammen",
-  "lat": 59.9449,
-  "lon": 10.7654,
+  "lat": 59.95601833126916,
+  "lon": 10.766397872462578,
   "r": 120,
   "category": "natur",
   "desc": "Elveparti i Akerselva rett nedenfor Nydalsdammen, der vannet går fra oppdemmet damflate til et smalere løp med vegeterte bredder.",
@@ -276,14 +276,27 @@
       "Akerselvas Venner"
     ]
   },
-  "locatorType": "natural_area",
-  "sourceProvider": "manual_research",
-  "sourceObjectId": "stilla-nydalen:unresolved-river-section",
-  "geocodeAccuracy": "unknown",
-  "coordRole": "area_anchor",
-  "coordType": "legacy_unverified",
-  "coordStatus": "needs_source",
-  "coordSource": "named_river_section_unresolved",
-  "coordVerifiedAt": "2026-07-19",
-  "coordNote": "Stilla beskriver en elvestrekning uten ett entydig navngitt kartobjekt eller dokumentert avgrensning. Eksisterende lat/lon beholdes kun som legacy til rutegeometri eller et kildebelagt anker er dokumentert."
+  "locatorType": "route",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:66098212",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "line_anchor",
+  "coordType": "direct_outflow_segment_anchor",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 66098212 – first downstream Akerselva segment from Nydalsdammen outlet node 802312309",
+  "coordVerifiedAt": "2026-07-23",
+  "coordNote": "Batch 165 løser den korrigerte identiteten Elvepartiet nedenfor Nydalsdammen med direkte vassdragstopologi. Fresh OSM way 66098212 er eksakt name=Akerselva/waterway=river, starter i node 802312309, og samme node ligger både i verified Nydalsdammen relation 14637129 og dam way 66098763. Wayen er 161.8 meter lang og representerer dermed en lokal første nedstrømsstrekning; canonical lat/lon er det deterministiske lengdemidtpunktet langs hele wayen. Den andre Akerselva-wayen som møter Nydalsdammen, way 1456110817, slutter ved magasinets andre grensenode og er 2,3 km lang oppstrømsinnløp, ikke kandidat for dette stedet. Den tekniske ID-en stilla_nydalen beholdes for kompatibilitet, men historiske Stilla lenger nord brukes ikke som proxy. Legacy-punktet og nearest/first-hit brukes ikke.",
+  "coordSourceId": "osm-way:66098212",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/66098212",
+  "outflowScope": {
+    "method": "direct_reservoir_outflow_shared_node",
+    "reservoirRelationId": 14637129,
+    "damWayId": 66098763,
+    "outflowWayId": 66098212,
+    "outletNodeId": "802312309",
+    "upstreamInflowWayId": 1456110817,
+    "outflowLengthM": 161.8,
+    "displayAnchorMethod": "deterministic_length_midpoint",
+    "excludedLegacyIdentity": "Historiske Stilla-badekulper lenger nord i Akerselva"
+  }
 }

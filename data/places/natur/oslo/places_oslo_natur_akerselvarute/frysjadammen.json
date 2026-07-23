@@ -1,18 +1,18 @@
 {
   "id": "frysjadammen",
-  "name": "Frysjadammen",
-  "lat": 59.9723,
-  "lon": 10.7819,
+  "name": "Oset slusebru – damanlegget ved Maridalsoset",
+  "lat": 59.969322149999996,
+  "lon": 10.7879593,
   "r": 150,
   "category": "historie",
-  "desc": "Reguleringsdam som markerer starten på Akerselva. Viktig hydrologisk og historisk punkt.",
+  "desc": "Historisk trebru og reguleringspunkt ved Maridalsoset, der Maridalsvannet går over i Akerselva.",
   "routeId": "akerselva_grontdrag",
   "tags": [
     "dam",
     "stille_vann"
   ],
-  "year": 1918,
-  "popupDesc": "Frysjadammen er et reguleringspunkt i øvre del av Akerselva og markerer overgangen mellom magasinert vann og byelv. Dammen har hatt betydning for vannføring nedover dalføret, både for historiske industribehov og for dagens flomsituasjoner.\n\nI History Go er stedet viktig fordi det gjør sammenhengen mellom naturgrunnlag, tekniske inngrep og byutvikling konkret: hvordan vann må styres før det når de tettere bydelene lenger sør.",
+  "year": 1859,
+  "popupDesc": "Oset slusebru ligger ved Maridalsoset og er en bevart del av reguleringsanlegget der Maridalsvannet går over i Akerselva. Trebrua ble oppført i 1859, og reguleringsluken for vannføringen lå i selve broanlegget. Den nyere Oset anleggsbru ligger umiddelbart oppstrøms og gjør den historiske slusebrua fysisk identifiserbar i dagens landskap.\n\nI History Go er stedet viktig fordi det gjør sammenhengen mellom naturgrunnlag, tekniske inngrep og byutvikling konkret: hvordan vann må styres før det når de tettere bydelene lenger sør.",
   "externalLinks": [
     {
       "type": "reference",
@@ -51,8 +51,8 @@
     "place_type": "vannkraftpunkt",
     "subtype": "akerselva_rute",
     "signature_features": [
-      "Frysjadammen",
-      "Reguleringsdam som markerer starten på Akerselva. Viktig hydrologisk og historisk punkt.",
+      "Oset slusebru – damanlegget ved Maridalsoset",
+      "Oset slusebru og damanlegget ved Maridalsoset markerer den regulerte overgangen fra Maridalsvannet til Akerselva.",
       "tags: dam, stille_vann"
     ],
     "primary_angles": [
@@ -172,7 +172,7 @@
       "type": "damanleggsmodell",
       "kind": "physical_object",
       "desc": "En fysisk miniatyr som viser hvordan en reguleringsluke styrer overgangen fra magasinert vann i Maridalsvannet til vannføring i Akerselva.",
-      "placeSpecificReason": "Modellen bygger på Frysjadammens funksjon som utløps- og reguleringspunkt.",
+      "placeSpecificReason": "Modellen bygger på damanleggets funksjon ved Maridalsoset som utløps- og reguleringspunkt.",
       "historicalFunction": "Gjør forbindelsen mellom damkonstruksjon, vannstand og elveføring synlig.",
       "physicalObject": true,
       "placeSpecific": true,
@@ -244,14 +244,27 @@
   "primary_category": "historie",
   "secondary_category": "natur",
   "hybrid": true,
-  "locatorType": "unknown",
-  "sourceProvider": "manual_research",
-  "sourceObjectId": "identity-conflict:frysjadammen-brekkedammen-maridalsoset",
-  "geocodeAccuracy": "unknown",
-  "coordRole": "display_marker",
-  "coordType": "legacy_unverified",
-  "coordStatus": "needs_source",
-  "coordSource": "identity_conflict_unresolved",
-  "coordVerifiedAt": "2026-07-19",
-  "coordNote": "Recorden blander Brekkedammen/Kjelsåsdammen ved Frysja med reguleringsanlegget ved Maridalsoset. Eksisterende lat/lon beholdes kun som legacy til identiteten er splittet eller avgrenset."
+  "locatorType": "linear_area",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:79506476",
+  "geocodeAccuracy": "geometric_center",
+  "coordRole": "line_anchor",
+  "coordType": "bridge_center",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 79506476 – Oset slusebru identified by source-defined topology immediately below Oset anleggsbru way 66159193",
+  "coordVerifiedAt": "2026-07-23",
+  "coordNote": "Batch 164 retter legacy-identiteten Frysjadammen til damanlegget ved Maridalsoset, som resten av recordens kilder og innhold faktisk beskriver. Oslo byleksikon identifiserer Oset slusebru som gangbrua umiddelbart nedenfor Oset anleggsbru. Bounded OSM-research fant tre mulige fotbru/kjørebru-par i den brede korridoren, men bare way 79506476 (trelagt footway) og way 66159193 (access=no servicebru) oppfyller den kildefestede umiddelbare naborelasjonen: 9.6 meter mellom geometrisentrene. Canonical lat/lon er geometrisk sentrum av fresh way 79506476. Brekkedammen/Kjelsåsdammen ved Frysja er et annet sted og brukes ikke som proxy; den gamle koordinaten og nearest/first-hit brukes ikke.",
+  "coordSourceId": "osm-way:79506476",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/79506476",
+  "identityScope": {
+    "method": "source_identity_plus_immediate_bridge_topology",
+    "correctedLegacyName": "Frysjadammen",
+    "resolvedIdentity": "Oset slusebru – damanlegget ved Maridalsoset",
+    "stablePlaceIdRetained": true,
+    "slusebruWayId": 79506476,
+    "anleggsbruWayId": 66159193,
+    "bridgeCenterDistanceM": 9.6,
+    "sourceIdentityRule": "Oset slusebru is the wooden pedestrian bridge immediately below Oset anleggsbru at Maridalsoset.",
+    "excludedIdentity": "Brekkedammen / Kjelsåsdammen at Frysja"
+  }
 }
