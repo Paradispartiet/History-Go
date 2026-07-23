@@ -11,7 +11,11 @@ const response = await fetch(sourceUrl, {
   signal: AbortSignal.timeout(30000),
 });
 if (!response.ok) throw new Error(`Could not fetch validated batch 167-168 production script: ${response.status} ${response.statusText}`);
-const source = await response.text();
+let source = await response.text();
+source = source.replace("place.geocodeAccuracy = 'polygon_centroid';", "place.geocodeAccuracy = 'geometric_center';");
+if (!source.includes("place.geocodeAccuracy = 'geometric_center';")) {
+  throw new Error('Could not patch batch 168 geocodeAccuracy to the coordinate-contract value geometric_center');
+}
 const tempScript = path.join('/tmp', `history-go-batches-167-168-${Date.now()}.mjs`);
 fs.writeFileSync(tempScript, source);
 await import(`${pathToFileURL(tempScript).href}?v=${Date.now()}`);
@@ -61,5 +65,6 @@ console.log(JSON.stringify({
     placeId,
     activePlaceFile: active.file,
     currentCoordinate: evidence.currentCoordinate,
+    geocodeAccuracy: active.place?.geocodeAccuracy ?? null,
   },
 }, null, 2));
