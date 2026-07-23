@@ -557,6 +557,20 @@ function sourceSelectionMetadata(record, matches) {
   };
 }
 
+function manifestSelectionForTarget(manifestEntry, targetId) {
+  const quizProduction = manifestEntry.quizProduction || {};
+  const target = quizProduction.targets?.[targetId];
+  return {
+    ...manifestEntry,
+    quizProduction: {
+      ...quizProduction,
+      targets: {
+        [targetId]: target
+      }
+    }
+  };
+}
+
 function claimBankFromBrief(brief) {
   return [...asArray(brief.claims)]
     .sort((a, b) => a.order - b.order)
@@ -657,8 +671,11 @@ export async function buildQuizProductionContext({
     targetId,
     profile: `${profile.id}_${profile.setCount}x${profile.questionsPerSet}`,
     manifest: {
-      ...sourceSelectionMetadata(loaded.manifestRecord, [loaded.manifestEntry]),
-      category_id: categoryId
+      ...sourceSelectionMetadata(loaded.manifestRecord, [
+        manifestSelectionForTarget(loaded.manifestEntry, targetId)
+      ]),
+      category_id: categoryId,
+      target_id: targetId
     },
     resolved_files: loaded.resolvedFiles,
     required_inputs_loaded: loaded.requiredInputs,

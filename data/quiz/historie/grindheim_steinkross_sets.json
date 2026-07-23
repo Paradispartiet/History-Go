@@ -1,44 +1,74 @@
 {
   "targetId": "grindheim_steinkross",
   "categoryId": "historie",
-  "generator_version": "quiz_standard_canonical_v2_manual_source_based_source_sized",
-  "generated_from": [
-    "data/places/historie/vestland/etne/grindheim_steinkross.json",
-    "reports/etne-historie-batch-7-research.md",
-    "data/quiz/regler/QUIZ_STANDARD_CANONICAL_V2.md"
-  ],
   "sources": {
     "kringom_grindheim": "https://www.kringom.no/nb/grindheim-kyrkje",
     "norges_kirker_grindheim": "https://norgeskirker.no/wiki/Grindheim_kyrkje"
   },
-  "profile_snapshot": {
-    "place_type": "steinkross",
-    "subtype": "tidligkristent_flytta_steinmonument",
-    "signature_features": [
-      "står no like innanfor kyrkjegardsmuren",
-      "låg tidlegare i muren",
-      "skal etter tradisjonen ha stått på Krossbakken",
-      "øvste arm er broten av og gir T-form"
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.0",
+    "source_brief": "data/quiz/production_briefs/historie/grindheim_steinkross.json",
+    "context_artifact": "data/quiz/production_context/historie/grindheim_steinkross.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
     ],
-    "primary_angles": [
-      "tidleg kristendom",
-      "flyttehistorie",
-      "gjenbruk",
-      "kildekritikk"
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_middelalder_kirke_kongemakt",
+      "his_minne_kulturarv_historiebruk"
     ],
-    "avoid_angles": [
-      "framstille Krossbakken som sikkert innmålt opphavsstad",
-      "gjere samlingsfunksjonen sikkert dokumentert ved Grindheim",
-      "blande steinkrossen med runesteinen"
-    ]
+    "emne_ids": [
+      "em_his_kirke_kloster_middelalder",
+      "em_his_spor_materialitet",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk",
+      "his_historiebruk_minne"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [
+      "marc_bloch",
+      "pierre_nora"
+    ],
+    "works": [
+      "The Historian's Craft",
+      "Realms of Memory"
+    ],
+    "source_review_status": "reviewed",
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
   },
   "sets": [
     {
       "set_id": "historie_grindheim_steinkross_set_1",
       "level": 1,
       "order": 1,
+      "phase": "opening",
       "xp": 50,
-      "title": "Steinkrossen ved kyrkjegardsmuren",
+      "title": "Form, plassering og mål",
       "questions": [
         {
           "id": "grindheim_steinkross_quiz_1",
@@ -47,56 +77,31 @@
           "placeId": "grindheim_steinkross",
           "targetId": "grindheim_steinkross",
           "question_scope": "place",
-          "question": "Kva slags monument er Grindheim-krossen?",
+          "question": "Kva slags monument er Grindheimkrossen?",
           "options": [
             "Ein steinkross",
-            "Ein runestein med gravskrift",
-            "Ei gravrøys"
+            "Ein runestein med minneinnskrift",
+            "Ei gravhelle med bildefelt"
           ],
           "answer": "Ein steinkross",
           "answerIndex": 0,
-          "knowledge": "Monumentet ved Grindheim er ein gammal steinkross og må haldast skilt frå runesteinen ved same kyrkje.",
+          "knowledge": "Grindheimkrossen er eit frittståande steinmonument forma som kross. Han må haldast skild frå runesteinen som står ved nordveggen av same kyrkje.",
           "difficulty": 1,
           "question_type": "fact",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_spor_materialitet",
-          "related_emner": [],
           "source": [
             "kringom_grindheim",
             "norges_kirker_grindheim"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Kringom og Norges Kirker dokumenterer monumentet som ein steinkross.",
-          "guidance_basis": {
-            "emne_id": "em_his_spor_materialitet",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_sporlesning"
-          },
-          "method_id": "met_sporlesning",
-          "core_concepts": [
-            "steinkross",
-            "steinmonument"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "grindheim_steinkross",
-            "kulturminnetype",
-            "steinkross"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_monumentet_ved_grindheim_c0525c2902",
+          "source_origin": "external",
+          "claim_basis": "Grindheimkrossen er ein steinkross, ikkje runesteinen som står ved same kyrkje.",
+          "claim_id": "claim_grindheim_steinkross_01",
+          "primary_knowledge_unit_id": "ku_historie_grindheimkrossen_er_eit__243f936f3b",
           "knowledge_unit_ids": [
-            "ku_historie_monumentet_ved_grindheim_c0525c2902"
+            "ku_historie_grindheimkrossen_er_eit__243f936f3b",
+            "ku_historie_han_ma_haldast_skild_fra_1d101bef6f"
           ],
-          "concept_ids": [
-            "co_historie_steinkross_318606db00",
-            "co_historie_steinmonument_bec680a892"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -108,56 +113,31 @@
           "placeId": "grindheim_steinkross",
           "targetId": "grindheim_steinkross",
           "question_scope": "place",
-          "question": "Kvar står steinkrossen i dag?",
+          "question": "Kvar står steinkrossen no?",
           "options": [
-            "Like innanfor kyrkjegardsmuren ved Grindheim kyrkje",
-            "På Krossbakken som eit sikkert innmålt punkt",
-            "Inne i kyrkjetårnet"
+            "Inntil nordveggen på skipet",
+            "Innanfor kyrkjegardsporten på nordsida",
+            "På Krossbakken i opphavleg stilling"
           ],
-          "answer": "Like innanfor kyrkjegardsmuren ved Grindheim kyrkje",
-          "answerIndex": 0,
-          "knowledge": "Dagens fysiske plassering er like innanfor kyrkjegardsmuren ved Grindheim kyrkje.",
+          "answer": "Innanfor kyrkjegardsporten på nordsida",
+          "answerIndex": 1,
+          "knowledge": "Norges Kirker plasserer krossen innanfor kyrkjegardsporten på nordsida. Runesteinen er det andre monumentet som står inntil nordveggen på skipet.",
           "difficulty": 1,
           "question_type": "fact",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_spor_materialitet",
-          "related_emner": [],
           "source": [
             "kringom_grindheim",
             "norges_kirker_grindheim"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Kringom skildrar dagens plassering like innanfor kyrkjegardsmuren.",
-          "guidance_basis": {
-            "emne_id": "em_his_spor_materialitet",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_sporlesning"
-          },
-          "method_id": "met_sporlesning",
-          "core_concepts": [
-            "dagens plassering",
-            "kyrkjegardsmur"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "grindheim_steinkross",
-            "plassering",
-            "kyrkjegard"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_dagens_fysiske_plasserin_f897cb99bf",
+          "source_origin": "external",
+          "claim_basis": "Steinkrossen står no innanfor kyrkjegardsporten på nordsida ved Grindheim kyrkje.",
+          "claim_id": "claim_grindheim_steinkross_02",
+          "primary_knowledge_unit_id": "ku_historie_norges_kirker_plasserer__2cb0a9302b",
           "knowledge_unit_ids": [
-            "ku_historie_dagens_fysiske_plasserin_f897cb99bf"
+            "ku_historie_norges_kirker_plasserer__2cb0a9302b",
+            "ku_historie_runesteinen_er_det_andre_f34cf14f33"
           ],
-          "concept_ids": [
-            "co_historie_dagens_plassering_539a5a482b",
-            "co_historie_kyrkjegardsmur_c8fa36003d"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -169,57 +149,171 @@
           "placeId": "grindheim_steinkross",
           "targetId": "grindheim_steinkross",
           "question_scope": "place",
-          "question": "Kva har skjedd med den øvste krossarmen?",
+          "question": "Kvifor har steinkrossen T-form i dag?",
           "options": [
-            "Han er broten av, slik at monumentet no er T-forma",
-            "Han er måla raud og står urørt",
-            "Han vart erstatta av ein runestein"
+            "Den øvste armen er lagd bak steinen",
+            "Stammen vart forkorta då han vart reist",
+            "Den øvste krossarmen manglar"
           ],
-          "answer": "Han er broten av, slik at monumentet no er T-forma",
-          "answerIndex": 0,
-          "knowledge": "Brotet i den øvste armen er eit synleg bevaringsspor og forklarer T-forma i dag.",
+          "answer": "Den øvste krossarmen manglar",
+          "answerIndex": 2,
+          "knowledge": "Den bevarte steinen manglar øvre arm og ser derfor ut som ein tau- eller T-kross. Ei eldre teikning viser at armen ein gong fanst.",
           "difficulty": 1,
           "question_type": "observation",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_kulturminner_bevaring",
-          "related_emner": [],
           "source": [
-            "kringom_grindheim"
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Kjelda dokumenterer at den øvste armen er broten av.",
-          "guidance_basis": {
-            "emne_id": "em_his_kulturminner_bevaring",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_sporlesning"
-          },
-          "method_id": "met_sporlesning",
-          "core_concepts": [
-            "T-form",
-            "broten krossarm",
-            "bevaringsspor"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "grindheim_steinkross",
-            "form",
-            "skade"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_brotet_i_den_vste_armen__4a3739c524",
+          "source_origin": "external",
+          "claim_basis": "Den øvste krossarmen manglar, slik at monumentet no har T-form.",
+          "claim_id": "claim_grindheim_steinkross_03",
+          "primary_knowledge_unit_id": "ku_historie_den_bevarte_steinen_mang_ad747dfee9",
           "knowledge_unit_ids": [
-            "ku_historie_brotet_i_den_vste_armen__4a3739c524"
+            "ku_historie_den_bevarte_steinen_mang_ad747dfee9",
+            "ku_historie_ei_eldre_teikning_viser__a082984314"
           ],
-          "concept_ids": [
-            "co_historie_t_form_021c737a6e",
-            "co_historie_broten_krossarm_df1a896614",
-            "co_historie_bevaringsspor_342efe5b67"
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_steinkross_quiz_11",
+          "quiz_id": "historie_grindheim_steinkross_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "grindheim_steinkross",
+          "targetId": "grindheim_steinkross",
+          "question_scope": "place",
+          "question": "Kvar vart Grindheimkrossen funnen i 1905?",
+          "options": [
+            "I kyrkjegardsmuren",
+            "Under golvet i kyrkja",
+            "I jorda på Krossbakken"
           ],
+          "answer": "I kyrkjegardsmuren",
+          "answerIndex": 0,
+          "knowledge": "Funnet i 1905 dokumenterer den siste kjende plasseringa før krossen vart reist att. Krossbakken høyrer til ein eldre stadstradisjon, ikkje til funnkonteksten.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Grindheimkrossen vart funnen i kyrkjegardsmuren i 1905.",
+          "claim_id": "claim_grindheim_steinkross_04",
+          "primary_knowledge_unit_id": "ku_historie_funnet_i_1905_dokumenter_5eebf07421",
+          "knowledge_unit_ids": [
+            "ku_historie_funnet_i_1905_dokumenter_5eebf07421",
+            "ku_historie_krossbakken_h_yrer_til_e_6b1f4c658c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_steinkross_quiz_12",
+          "quiz_id": "historie_grindheim_steinkross_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "grindheim_steinkross",
+          "targetId": "grindheim_steinkross",
+          "question_scope": "place",
+          "question": "Kor høg er steinkrossen over bakkenivå?",
+          "options": [
+            "1,11 meter",
+            "1,96 meter",
+            "3,30 meter"
+          ],
+          "answer": "1,96 meter",
+          "answerIndex": 1,
+          "knowledge": "Krossen er 1,96 meter høg over bakken. Målet 1,11 meter gjeld den største breidda, medan 3,30 meter er høgda som Norges Kirker oppgir for runesteinen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Steinkrossen er 1,96 meter høg over bakkenivå.",
+          "claim_id": "claim_grindheim_steinkross_05",
+          "primary_knowledge_unit_id": "ku_historie_krossen_er_1_96_meter_h__9113068c1f",
+          "knowledge_unit_ids": [
+            "ku_historie_krossen_er_1_96_meter_h__9113068c1f",
+            "ku_historie_malet_1_11_meter_gjeld_d_544824172a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_steinkross_quiz_13",
+          "quiz_id": "historie_grindheim_steinkross_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "grindheim_steinkross",
+          "targetId": "grindheim_steinkross",
+          "question_scope": "place",
+          "question": "Kor brei er steinkrossen ved foten?",
+          "options": [
+            "33 centimeter",
+            "1,11 meter",
+            "96 centimeter"
+          ],
+          "answer": "96 centimeter",
+          "answerIndex": 2,
+          "knowledge": "Foten er 96 centimeter brei. Dei andre måla skildrar tverrarmane og den største samla breidda på monumentet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ved foten er steinkrossen 96 centimeter brei.",
+          "claim_id": "claim_grindheim_steinkross_06",
+          "primary_knowledge_unit_id": "ku_historie_foten_er_96_centimeter_b_1af571f5be",
+          "knowledge_unit_ids": [
+            "ku_historie_foten_er_96_centimeter_b_1af571f5be",
+            "ku_historie_dei_andre_mala_skildrar__f906571ca8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_steinkross_quiz_14",
+          "quiz_id": "historie_grindheim_steinkross_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "grindheim_steinkross",
+          "targetId": "grindheim_steinkross",
+          "question_scope": "place",
+          "question": "Korleis skildrar Norges Kirker forma til Grindheimkrossen?",
+          "options": [
+            "Som tidlegkristen form",
+            "Som seinmellomalderleg gravplateform",
+            "Som nyare kyrkjeportalform"
+          ],
+          "answer": "Som tidlegkristen form",
+          "answerIndex": 0,
+          "knowledge": "Forma blir klassifisert som tidlegkristen. Det er ei typologisk skildring av monumentet, ikkje eit eksakt byggjeår.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_kirke_kloster_middelalder",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Norges Kirker skildrar Grindheimkrossen som ein stein med tidlegkristen form.",
+          "claim_id": "claim_grindheim_steinkross_07",
+          "primary_knowledge_unit_id": "ku_historie_forma_blir_klassifisert__d79d07f523",
+          "knowledge_unit_ids": [
+            "ku_historie_forma_blir_klassifisert__d79d07f523",
+            "ku_historie_det_er_ei_typologisk_ski_b899714328"
+          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -230,8 +324,9 @@
       "set_id": "historie_grindheim_steinkross_set_2",
       "level": 2,
       "order": 2,
-      "xp": 50,
-      "title": "Krossbakken, muren og flyttehistoria",
+      "phase": "bridge",
+      "xp": 70,
+      "title": "Krossbakken, muren og steinflata",
       "questions": [
         {
           "id": "grindheim_steinkross_quiz_4",
@@ -240,58 +335,31 @@
           "placeId": "grindheim_steinkross",
           "targetId": "grindheim_steinkross",
           "question_scope": "place",
-          "question": "Kvar låg krossen før han vart reist ved kyrkja?",
+          "question": "Kvar låg krossen før han vart reist på dagens stad?",
           "options": [
-            "Inne i sjølve kyrkjegardsmuren",
-            "På botnen av ei gravrøys",
-            "I elva ved Meland"
+            "I eit magasin under kyrkja",
+            "Som del av kyrkjegardsmuren",
+            "Ved nordveggen saman med runesteinen"
           ],
-          "answer": "Inne i sjølve kyrkjegardsmuren",
-          "answerIndex": 0,
-          "knowledge": "Før dagens oppreiste plassering låg steinkrossen som del av kyrkjegardsmuren.",
+          "answer": "Som del av kyrkjegardsmuren",
+          "answerIndex": 1,
+          "knowledge": "Krossen låg i sjølve muren før funnet og oppattreisinga. Murfasen er dokumentert av begge dei gjennomgåtte kjeldene.",
           "difficulty": 2,
           "question_type": "fact",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_kulturminner_bevaring",
-          "related_emner": [],
           "source": [
             "kringom_grindheim",
             "norges_kirker_grindheim"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Kringom og Norges Kirker dokumenterer ein fase då krossen låg i muren.",
-          "guidance_basis": {
-            "emne_id": "em_his_kulturminner_bevaring",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_sporlesning"
-          },
-          "method_id": "met_sporlesning",
-          "core_concepts": [
-            "murfasen",
-            "gjenbruk",
-            "flytta monument"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "grindheim_steinkross",
-            "kyrkjegardsmur",
-            "tidlegare_plassering"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_f_r_dagens_oppreiste_pla_f110e7da7f",
+          "source_origin": "external",
+          "claim_basis": "Før den noverande oppreiste plasseringa låg steinkrossen i sjølve kyrkjegardsmuren.",
+          "claim_id": "claim_grindheim_steinkross_08",
+          "primary_knowledge_unit_id": "ku_historie_krossen_lag_i_sj_lve_mur_94f4e4b669",
           "knowledge_unit_ids": [
-            "ku_historie_f_r_dagens_oppreiste_pla_f110e7da7f"
+            "ku_historie_krossen_lag_i_sj_lve_mur_94f4e4b669",
+            "ku_historie_murfasen_er_dokumentert__b1daaff805"
           ],
-          "concept_ids": [
-            "co_historie_murfasen_67f7fec6c1",
-            "co_historie_gjenbruk_5720f684ee",
-            "co_historie_flytta_monument_a4e4ef0415"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -303,59 +371,30 @@
           "placeId": "grindheim_steinkross",
           "targetId": "grindheim_steinkross",
           "question_scope": "place",
-          "question": "Kva seier tradisjonen om den opphavlege plasseringa?",
+          "question": "Kva seier Kringom om den opphavlege plasseringa?",
           "options": [
-            "Krossen skal ha stått på Krossbakken",
-            "Krossen stod sikkert inne i dagens kyrkje",
-            "Krossen vart hoggen på kyrkjegarden i moderne tid"
+            "Krossen vart hoggen ved kyrkjegardsporten",
+            "Krossen stod sikkert inntil kyrkjeveggen",
+            "Krossen skal ha stått på Krossbakken"
           ],
           "answer": "Krossen skal ha stått på Krossbakken",
-          "answerIndex": 0,
-          "knowledge": "Krossbakken er ein tradert opphavsstad. Kjelda formulerer dette som noko krossen skal ha gjort, ikkje som ei sikkert innmålt plassering.",
+          "answerIndex": 2,
+          "knowledge": "Formuleringa «skal ha stått» markerer at Krossbakken er ein tradert opphavsstad. Ho må ikkje gjerast om til ei sikkert innmålt funnplassering.",
           "difficulty": 2,
           "question_type": "fact",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_kildekritikk_arkiv_spor",
-          "related_emner": [],
           "source": [
-            "kringom_grindheim",
-            "norges_kirker_grindheim"
+            "kringom_grindheim"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Kjelda gjengir tradisjonen om Krossbakken med atterhald.",
-          "guidance_basis": {
-            "emne_id": "em_his_kildekritikk_arkiv_spor",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_kildekritikk"
-          },
-          "method_id": "met_kildekritikk",
-          "core_concepts": [
-            "Krossbakken",
-            "tradisjon",
-            "opphavsstad"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "grindheim_steinkross",
-            "tradert_opplysning",
-            "krossbakken"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_krossbakken_er_ein_trade_817c162be3",
+          "source_origin": "external",
+          "claim_basis": "Kringom oppgir at steinkrossen opphavleg skal ha stått på Krossbakken.",
+          "claim_id": "claim_grindheim_steinkross_09",
+          "primary_knowledge_unit_id": "ku_historie_formuleringa_skal_ha_sta_b4f808dbea",
           "knowledge_unit_ids": [
-            "ku_historie_krossbakken_er_ein_trade_817c162be3",
-            "ku_historie_kjelda_formulerer_dette__139e8e4f1d"
+            "ku_historie_formuleringa_skal_ha_sta_b4f808dbea",
+            "ku_historie_ho_ma_ikkje_gjerast_om_t_9b6d1ae5fc"
           ],
-          "concept_ids": [
-            "co_historie_krossbakken_3a0871eb71",
-            "co_historie_tradisjon_fa8a4be59b",
-            "co_historie_opphavsstad_1ced4aa117"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -369,56 +408,28 @@
           "question_scope": "place",
           "question": "Kva viser rekkjefølgja Krossbakken, kyrkjegardsmuren og dagens plassering?",
           "options": [
-            "At monumentet har skifta stad og bruk gjennom fleire fasar",
-            "At alle tre stadene er same sikre innmålte punkt",
-            "At krossen aldri har vore flytta"
+            "At monumentet har skifta stad og bruk",
+            "At alle tre er same dokumenterte punkt",
+            "At murfasen var den opphavlege funksjonen"
           ],
-          "answer": "At monumentet har skifta stad og bruk gjennom fleire fasar",
+          "answer": "At monumentet har skifta stad og bruk",
           "answerIndex": 0,
-          "knowledge": "Stadshistoria omfattar ein tradert opphavsstad, gjenbruk i muren og seinare oppreising som synleg kulturminne.",
+          "knowledge": "Kjeldene gir tre ulike lag: ein tradisjon om Krossbakken, eit dokumentert funn i muren og den noverande oppreiste plasseringa.",
           "difficulty": 2,
-          "question_type": "analysis",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
+          "question_type": "context",
           "emne_id": "em_his_kulturminner_bevaring",
-          "related_emner": [],
           "source": [
             "kringom_grindheim",
             "norges_kirker_grindheim"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Dei tre kjeldelagde fasane dokumenterer ei endra monumenthistorie.",
-          "guidance_basis": {
-            "emne_id": "em_his_kulturminner_bevaring",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_kildekritikk"
-          },
-          "method_id": "met_kildekritikk",
-          "core_concepts": [
-            "monumentbiografi",
-            "flyttehistorie",
-            "bruksfase"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "grindheim_steinkross",
-            "analyse",
-            "for_og_na"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_stadshistoria_omfattar_e_9a22e9145a",
+          "source_origin": "external",
+          "claim_basis": "Krossbakken-tradisjonen, murfasen og dagens plassering viser at monumentet har skifta stad og bruk.",
+          "claim_id": "claim_grindheim_steinkross_10",
+          "primary_knowledge_unit_id": "ku_historie_kjeldene_gir_tre_ulike_l_15b938a2b6",
           "knowledge_unit_ids": [
-            "ku_historie_stadshistoria_omfattar_e_9a22e9145a"
+            "ku_historie_kjeldene_gir_tre_ulike_l_15b938a2b6"
           ],
-          "concept_ids": [
-            "co_historie_monumentbiografi_b381b9bea4",
-            "co_historie_flyttehistorie_d9ac2ac33f",
-            "co_historie_bruksfase_75f6d40fa8"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -430,59 +441,136 @@
           "placeId": "grindheim_steinkross",
           "targetId": "grindheim_steinkross",
           "question_scope": "place",
-          "question": "Kvifor kan ikkje dagens kartpunkt brukast som bevis for den nøyaktige plasseringa på Krossbakken?",
+          "question": "Kvifor beviser ikkje dagens kartpunkt den nøyaktige plasseringa på Krossbakken?",
           "options": [
-            "Kartpunktet er eit kyrkjegardsanker for dagens monument, medan Krossbakken er tradert",
-            "Kartpunktet er eldre enn sjølve krossen",
-            "Alle historiske flyttingar endrar koordinatsystemet"
+            "Fordi namnet Krossbakken først kom etter 1905",
+            "Fordi punktet viser dagens monument, ikkje eit sikkert opphavspunkt",
+            "Fordi den eldre teikninga manglar målestokk"
           ],
-          "answer": "Kartpunktet er eit kyrkjegardsanker for dagens monument, medan Krossbakken er tradert",
-          "answerIndex": 0,
-          "knowledge": "Dagens anker viser kvar krossen står no. Det dokumenterer ikkje eit eksakt opphavspunkt på Krossbakken.",
-          "difficulty": 3,
-          "question_type": "analysis",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
+          "answer": "Fordi punktet viser dagens monument, ikkje eit sikkert opphavspunkt",
+          "answerIndex": 1,
+          "knowledge": "Dagens plassering er fysisk dokumentert ved kyrkjegarden. Krossbakken er overlevert som tidlegare stad, men kjeldene gir ikkje eit eksakt arkeologisk punkt.",
+          "difficulty": 2,
+          "question_type": "context",
           "emne_id": "em_his_kildekritikk_arkiv_spor",
-          "related_emner": [],
           "source": [
             "kringom_grindheim",
             "norges_kirker_grindheim"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Stedsposten skil dagens kyrkjegardsanker frå den usikre opphavsplasseringa.",
-          "guidance_basis": {
-            "emne_id": "em_his_kildekritikk_arkiv_spor",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_kildekritikk"
-          },
-          "method_id": "met_kildekritikk",
-          "core_concepts": [
-            "historisk anker",
-            "tradert plassering",
-            "kartgrense"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "grindheim_steinkross",
-            "analyse",
-            "koordinatkritikk"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_dagens_anker_viser_kvar__4d16a8b902",
+          "source_origin": "external",
+          "claim_basis": "Dagens dokumenterte plassering ved kyrkja kan ikkje i seg sjølv stadfeste eit nøyaktig opphavspunkt på Krossbakken.",
+          "claim_id": "claim_grindheim_steinkross_11",
+          "primary_knowledge_unit_id": "ku_historie_dagens_plassering_er_fys_4e63b01978",
           "knowledge_unit_ids": [
-            "ku_historie_dagens_anker_viser_kvar__4d16a8b902",
-            "ku_historie_det_dokumenterer_ikkje_e_7a9de82d97"
+            "ku_historie_dagens_plassering_er_fys_4e63b01978",
+            "ku_historie_krossbakken_er_overlever_823c69c411"
           ],
-          "concept_ids": [
-            "co_historie_historisk_anker_a744087724",
-            "co_historie_tradert_plassering_b6f7da312d",
-            "co_historie_kartgrense_4e59577614"
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_steinkross_quiz_15",
+          "quiz_id": "historie_grindheim_steinkross_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "grindheim_steinkross",
+          "targetId": "grindheim_steinkross",
+          "question_scope": "place",
+          "question": "Kor lang er kvar av dei bevarte tverrarmane?",
+          "options": [
+            "96 centimeter",
+            "1,11 meter",
+            "33 centimeter"
           ],
+          "answer": "33 centimeter",
+          "answerIndex": 2,
+          "knowledge": "Kvar tverrarm er 33 centimeter lang. Fotbreidda og den største totalbreidda er eigne mål og skal ikkje blandast med armlengda.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kvar av dei bevarte tverrarmane er 33 centimeter lang.",
+          "claim_id": "claim_grindheim_steinkross_12",
+          "primary_knowledge_unit_id": "ku_historie_kvar_tverrarm_er_33_cent_dc698bf4e4",
+          "knowledge_unit_ids": [
+            "ku_historie_kvar_tverrarm_er_33_cent_dc698bf4e4",
+            "ku_historie_fotbreidda_og_den_st_rst_b65241c70a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_steinkross_quiz_16",
+          "quiz_id": "historie_grindheim_steinkross_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "grindheim_steinkross",
+          "targetId": "grindheim_steinkross",
+          "question_scope": "place",
+          "question": "Kva er den største breidda på steinkrossen?",
+          "options": [
+            "1,11 meter",
+            "96 centimeter",
+            "1,96 meter"
+          ],
+          "answer": "1,11 meter",
+          "answerIndex": 0,
+          "knowledge": "Den største breidda er 1,11 meter. Til samanlikning er foten 96 centimeter brei, og høgda over bakken er 1,96 meter.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den største breidda på steinkrossen er 1,11 meter.",
+          "claim_id": "claim_grindheim_steinkross_13",
+          "primary_knowledge_unit_id": "ku_historie_den_st_rste_breidda_er_1_d9b45f26fe",
+          "knowledge_unit_ids": [
+            "ku_historie_den_st_rste_breidda_er_1_d9b45f26fe",
+            "ku_historie_til_samanlikning_er_fote_64aca55a6e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_steinkross_quiz_17",
+          "quiz_id": "historie_grindheim_steinkross_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "grindheim_steinkross",
+          "targetId": "grindheim_steinkross",
+          "question_scope": "place",
+          "question": "Kva slags hol har steinkrossen?",
+          "options": [
+            "Rektangulære hol berre ved foten",
+            "Runde hol mellom armane og i krossmidten",
+            "Ei lang renne gjennom heile stammen"
+          ],
+          "answer": "Runde hol mellom armane og i krossmidten",
+          "answerIndex": 1,
+          "knowledge": "Norges Kirker skildrar nærast sirkelrunde armhol og eit sirkelrundt hol i midten. Hola er sentrale trekk ved den tidlegkristne forma.",
+          "difficulty": 2,
+          "question_type": "observation",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Steinen har nærast sirkelrunde hol mellom krossarmane og eit sirkelrundt hol i krossmidten.",
+          "claim_id": "claim_grindheim_steinkross_14",
+          "primary_knowledge_unit_id": "ku_historie_norges_kirker_skildrar_n_e5650af3da",
+          "knowledge_unit_ids": [
+            "ku_historie_norges_kirker_skildrar_n_e5650af3da",
+            "ku_historie_hola_er_sentrale_trekk_v_2fce595a48"
+          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -493,8 +581,9 @@
       "set_id": "historie_grindheim_steinkross_set_3",
       "level": 3,
       "order": 3,
-      "xp": 50,
-      "title": "Samlingsstad, tradisjon og gjenbruk",
+      "phase": "final",
+      "xp": 90,
+      "title": "Tradisjon, kjelde og minnestad",
       "questions": [
         {
           "id": "grindheim_steinkross_quiz_8",
@@ -503,58 +592,30 @@
           "placeId": "grindheim_steinkross",
           "targetId": "grindheim_steinkross",
           "question_scope": "place",
-          "question": "Kvifor blir ei mogleg rolle som samlingsstad formulert med atterhald?",
+          "question": "Kva seier kjeldene sikrast om ei mogleg rolle som samlingsstad?",
           "options": [
-            "Kjelda omtalar ein mogleg generell funksjon for steinkrossar, ikkje eit sikkert bevis for Grindheim",
-            "Kjelda seier at Krossbakken aldri fanst",
-            "Alle steinkrossar hadde identisk dokumentert funksjon"
+            "At Grindheimkrossen sikkert vart brukt til faste gudstenester",
+            "At alle steinkrossar hadde same dokumenterte bruk",
+            "At samlingsstad er ei mogleg generell tolking, ikkje eit lokalt bevis"
           ],
-          "answer": "Kjelda omtalar ein mogleg generell funksjon for steinkrossar, ikkje eit sikkert bevis for Grindheim",
-          "answerIndex": 0,
-          "knowledge": "Steinkrossar kan fleire stader ha markert samlingspunkt før kyrkjer vart bygde. Det gjer tolkinga relevant, men ikkje sikkert bevist ved Grindheim.",
+          "answer": "At samlingsstad er ei mogleg generell tolking, ikkje eit lokalt bevis",
+          "answerIndex": 2,
+          "knowledge": "Kringom skriv at steinkrossar mange stader kan ha vore samlingspunkt før kyrkjene. Det gjer tolkinga relevant, men dokumenterer ikkje den konkrete bruken på Grindheim.",
           "difficulty": 3,
-          "question_type": "analysis",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
+          "question_type": "context",
           "emne_id": "em_his_kirke_kloster_middelalder",
-          "related_emner": [],
           "source": [
             "kringom_grindheim"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Kringom presenterer samlingsfunksjonen som ei mogleg tolking, ikkje ein stadsspesifikk sikker konklusjon.",
-          "guidance_basis": {
-            "emne_id": "em_his_kirke_kloster_middelalder",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_kildekritikk"
-          },
-          "method_id": "met_kildekritikk",
-          "core_concepts": [
-            "mogleg samlingsstad",
-            "analogitolking",
-            "kildeatterhald"
-          ],
-          "concept_focus": [],
-          "tags": [
-            "grindheim_steinkross",
-            "analyse",
-            "tidleg_kristendom"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_steinkrossar_kan_fleire__6bc0831394",
+          "source_origin": "external",
+          "claim_basis": "Kringom omtalar samlingsstader som ein mogleg generell funksjon for steinkrossar, ikkje som eit sikkert bevis for bruken av Grindheimkrossen.",
+          "claim_id": "claim_grindheim_steinkross_15",
+          "primary_knowledge_unit_id": "ku_historie_kringom_skriv_at_steinkr_7a4ffd0146",
           "knowledge_unit_ids": [
-            "ku_historie_steinkrossar_kan_fleire__6bc0831394",
-            "ku_historie_det_gjer_tolkinga_releva_99ecce5e29"
+            "ku_historie_kringom_skriv_at_steinkr_7a4ffd0146",
+            "ku_historie_det_gjer_tolkinga_releva_ab23848c2b"
           ],
-          "concept_ids": [
-            "co_historie_mogleg_samlingsstad_25ef141748",
-            "co_historie_analogitolking_2e609e7248",
-            "co_historie_kildeatterhald_60b875d977"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -566,57 +627,47 @@
           "placeId": "grindheim_steinkross",
           "targetId": "grindheim_steinkross",
           "question_scope": "place",
-          "question": "Kva betyr «tradert opphavsstad» for Krossbakken?",
+          "question": "Kva betyr «tradert opphavsstad» i opplysninga om Krossbakken?",
           "options": [
-            "Ein stad knytt til monumentet gjennom overlevert tradisjon",
-            "Ein plass som er arkeologisk innmålt med sikker opphavskontekst",
-            "Dagens fysiske plassering ved muren"
+            "Ein stad knytt til krossen gjennom overlevert tradisjon",
+            "Ein sikkert utgraven plass med opphavleg fundament",
+            "Den dokumenterte funnplassen i kyrkjegardsmuren"
           ],
-          "answer": "Ein stad knytt til monumentet gjennom overlevert tradisjon",
+          "answer": "Ein stad knytt til krossen gjennom overlevert tradisjon",
           "answerIndex": 0,
-          "knowledge": "Ein tradert opphavsstad er bevart gjennom forteljing eller lokal opplysning og må skiljast frå sikkert dokumentert plassering.",
-          "difficulty": 2,
+          "knowledge": "Tradert tyder at opplysninga er overlevert. Krossbakken må derfor skiljast frå murfunnet i 1905, som har ein konkret dokumentert funnkontekst.",
+          "difficulty": 3,
           "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_kildekritikk_arkiv_spor",
-          "related_emner": [],
           "source": [
             "kringom_grindheim",
             "norges_kirker_grindheim"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Krossbakken er formidla som tradisjon, ikkje som sikker arkeologisk kontekst.",
-          "guidance_basis": {
-            "emne_id": "em_his_kildekritikk_arkiv_spor",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_kildekritikk"
-          },
+          "source_origin": "external",
+          "claim_basis": "Ein tradert opphavsstad er knytt til monumentet gjennom overlevert stadstradisjon og må skiljast frå ei sikkert dokumentert funnplassering.",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
           "method_id": "met_kildekritikk",
+          "claim_id": "claim_grindheim_steinkross_16",
           "core_concepts": [
             "tradert opphavsstad",
-            "stadstradisjon"
+            "stadstradisjon",
+            "funnkontekst"
           ],
           "concept_focus": [
             "tradert opphavsstad"
           ],
-          "tags": [
-            "grindheim_steinkross",
-            "begrep",
-            "krossbakken"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_ein_tradert_opphavsstad__45481ce86c",
+          "primary_knowledge_unit_id": "ku_historie_tradert_tyder_at_opplysn_4dc9a610be",
           "knowledge_unit_ids": [
-            "ku_historie_ein_tradert_opphavsstad__45481ce86c"
+            "ku_historie_tradert_tyder_at_opplysn_4dc9a610be",
+            "ku_historie_krossbakken_ma_derfor_sk_4b38391392"
           ],
           "concept_ids": [
             "co_historie_tradert_opphavsstad_521544ce22",
-            "co_historie_stadstradisjon_db32835ad7"
+            "co_historie_stadstradisjon_db32835ad7",
+            "co_historie_funnkontekst_7628c2fa54"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
@@ -631,58 +682,245 @@
           "question_scope": "place",
           "question": "Kva betyr «gjenbruk» i murfasen til steinkrossen?",
           "options": [
-            "At monumentet vart brukt som del av muren i ein ny samanheng",
-            "At ein ny kross vart laga på same tid",
+            "At ein ny kross vart laga etter same modell",
+            "At det eldre monumentet vart brukt som del av muren",
             "At krossen stod urørt på opphavsstaden"
           ],
-          "answer": "At monumentet vart brukt som del av muren i ein ny samanheng",
-          "answerIndex": 0,
-          "knowledge": "Gjenbruk inneber at eit eldre objekt får ein annan plass eller funksjon. Murfasen endra krossen frå fritt monument til byggjestein før han vart reist att.",
-          "difficulty": 2,
+          "answer": "At det eldre monumentet vart brukt som del av muren",
+          "answerIndex": 1,
+          "knowledge": "Gjenbruk endrar samanhengen til eit eldre objekt. Krossen gjekk frå fritt monument til materiale i muren før han igjen vart reist synleg.",
+          "difficulty": 3,
           "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "historie",
           "emne_id": "em_his_kulturminner_bevaring",
-          "related_emner": [],
           "source": [
             "kringom_grindheim",
             "norges_kirker_grindheim"
           ],
-          "source_origin": "mixed",
-          "claim_basis": "Kjeldene dokumenterer at steinkrossen låg som del av kyrkjegardsmuren.",
-          "guidance_basis": {
-            "emne_id": "em_his_kulturminner_bevaring",
-            "canonical_files_used_as_guidance_only": [
-              "data/fag/historie/emner_historie_canonical_v4_5.json",
-              "data/fag/historie/supersetQUIZMAL_historie.json",
-              "data/fag/historie/methods_historie_canonical_v4_5.json"
-            ],
-            "method_id": "met_sporlesning"
-          },
+          "source_origin": "external",
+          "claim_basis": "Gjenbruk inneber her at det eldre monumentet vart brukt som del av kyrkjegardsmuren i ein ny samanheng.",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
           "method_id": "met_sporlesning",
+          "claim_id": "claim_grindheim_steinkross_17",
           "core_concepts": [
             "gjenbruk",
-            "murstein",
-            "funksjonsendring"
+            "funksjonsendring",
+            "materialitet"
           ],
           "concept_focus": [
             "gjenbruk"
           ],
-          "tags": [
-            "grindheim_steinkross",
-            "begrep",
-            "bevaringshistorie"
-          ],
-          "primary_knowledge_unit_id": "ku_historie_gjenbruk_inneber_at_eit__a62c9f831f",
+          "primary_knowledge_unit_id": "ku_historie_gjenbruk_endrar_samanhen_7b11e6cafe",
           "knowledge_unit_ids": [
-            "ku_historie_gjenbruk_inneber_at_eit__a62c9f831f",
-            "ku_historie_murfasen_endra_krossen_f_7e05c9a9a5"
+            "ku_historie_gjenbruk_endrar_samanhen_7b11e6cafe",
+            "ku_historie_krossen_gjekk_fra_fritt__d31a32e406"
           ],
           "concept_ids": [
             "co_historie_gjenbruk_5720f684ee",
-            "co_historie_murstein_2d0155b6a6",
-            "co_historie_funksjonsendring_3de86e71be"
+            "co_historie_funksjonsendring_3de86e71be",
+            "co_historie_materialitet_657cac5ea7"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_steinkross_quiz_18",
+          "quiz_id": "historie_grindheim_steinkross_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "grindheim_steinkross",
+          "targetId": "grindheim_steinkross",
+          "question_scope": "place",
+          "question": "Kva kan Paaske-teikninga og steinen saman vise?",
+          "options": [
+            "At den øvste armen aldri fanst",
+            "Nøyaktig kva år armen vart broten",
+            "At armen fanst før, men ikkje når han gjekk tapt"
+          ],
+          "answer": "At armen fanst før, men ikkje når han gjekk tapt",
+          "answerIndex": 2,
+          "knowledge": "Teikninga bevarer ei form som ikkje finst på monumentet i dag. Saman dokumenterer kjeldene tapet av armen, men dei tidfestar ikkje brotet.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Paaske-teikninga og den noverande steinen dokumenterer at den øvste armen har gått tapt, men ikkje nøyaktig når det skjedde.",
+          "claim_id": "claim_grindheim_steinkross_18",
+          "primary_knowledge_unit_id": "ku_historie_teikninga_bevarer_ei_for_ba3fbec89a",
+          "knowledge_unit_ids": [
+            "ku_historie_teikninga_bevarer_ei_for_ba3fbec89a",
+            "ku_historie_saman_dokumenterer_kjeld_128a2717fb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_steinkross_quiz_19",
+          "quiz_id": "historie_grindheim_steinkross_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "grindheim_steinkross",
+          "targetId": "grindheim_steinkross",
+          "question_scope": "place",
+          "question": "Kva kan uttrykket «tidlegkristen form» ikkje fastslå åleine?",
+          "options": [
+            "Eit nøyaktig byggjeår",
+            "At monumentet er hogge i stein",
+            "At krossforma har runde hol"
+          ],
+          "answer": "Eit nøyaktig byggjeår",
+          "answerIndex": 0,
+          "knowledge": "Ei formklassifisering kan plassere monumentet i ein type og periode. Ho gir ikkje automatisk ei eksakt datering av når Grindheimkrossen vart hoggen eller reist.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_kirke_kloster_middelalder",
+          "source": [
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Skildringa av tidlegkristen form plasserer monumentet i ein historisk type, men gir ikkje åleine eit sikkert byggjeår.",
+          "claim_id": "claim_grindheim_steinkross_19",
+          "primary_knowledge_unit_id": "ku_historie_ei_formklassifisering_ka_8c17a0d268",
+          "knowledge_unit_ids": [
+            "ku_historie_ei_formklassifisering_ka_8c17a0d268",
+            "ku_historie_ho_gir_ikkje_automatisk__183fa6e59b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_steinkross_quiz_20",
+          "quiz_id": "historie_grindheim_steinkross_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "grindheim_steinkross",
+          "targetId": "grindheim_steinkross",
+          "question_scope": "place",
+          "question": "Kva Bloch-inspirert spørsmål skjerpar undersøkinga av Grindheimkrossen?",
+          "options": [
+            "Kva kjelde kan erstatte alle dei andre?",
+            "Kva kan kvar kjelde vise, og kvar går grensene hennar?",
+            "Kva tolking gjer monumentet mest gåtefullt?"
+          ],
+          "answer": "Kva kan kvar kjelde vise, og kvar går grensene hennar?",
+          "answerIndex": 1,
+          "knowledge": "Marc Bloch la vekt på å stille presise spørsmål til kjelder. Teikninga kan vise ei eldre form, steinen viser dagens materialtilstand, og stadstradisjonen peikar mot eit mogleg opphav utan å bevise det.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Paaske-teikninga, den noverande steinen og stadstradisjonen er ulike kjelder som svarar på ulike spørsmål om form, tap og opphav.",
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "method_id": "met_kildekritikk",
+          "claim_id": "claim_grindheim_steinkross_20",
+          "core_concepts": [
+            "kjeldekritikk",
+            "kildetype",
+            "tolkingsgrense"
+          ],
+          "concept_focus": [
+            "kjeldekritikk"
+          ],
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "marc_bloch",
+          "thinker_name": "Marc Bloch",
+          "work": "The Historian's Craft",
+          "theory_focus": "ulike kjeldetypar og grensene for kva dei kan dokumentere",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "marc_bloch",
+            "work": "The Historian's Craft",
+            "why_it_helps": "Blochs kjeldehandverk gjer det mogleg å bruke teikning, stein og tradisjon saman utan å late som dei dokumenterer det same."
+          },
+          "primary_knowledge_unit_id": "ku_historie_marc_bloch_la_vekt_pa_a__43005a2062",
+          "knowledge_unit_ids": [
+            "ku_historie_marc_bloch_la_vekt_pa_a__43005a2062",
+            "ku_historie_teikninga_kan_vise_ei_el_730a5756e6"
+          ],
+          "concept_ids": [
+            "co_historie_kjeldekritikk_3383e9e245",
+            "co_historie_kildetype_17418c14a8",
+            "co_historie_tolkingsgrense_2b50b734a9"
+          ],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "grindheim_steinkross_quiz_21",
+          "quiz_id": "historie_grindheim_steinkross_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "grindheim_steinkross",
+          "targetId": "grindheim_steinkross",
+          "question_scope": "place",
+          "question": "Kvifor er oppreisinga etter 1905 viktig i ei Nora-inspirert lesing?",
+          "options": [
+            "Ho beviser den nøyaktige staden på Krossbakken",
+            "Ho gjenoppretta den manglande øvste armen",
+            "Ho gjorde murmaterialet synleg som monument og minnestad"
+          ],
+          "answer": "Ho gjorde murmaterialet synleg som monument og minnestad",
+          "answerIndex": 2,
+          "knowledge": "Pierre Nora undersøkte korleis fortida blir nærverande gjennom minnestader. Oppreisinga flytta krossen frå ein del av muren til eit synleg og formidla monument ved kyrkjegarden.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "kringom_grindheim",
+            "norges_kirker_grindheim"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Oppreisinga etter funnet i 1905 gjorde steinkrossen synleg som monument og offentleg minnestad i staden for murmateriale.",
+          "guidance_basis": [
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/emner_historie_canonical_v4_5.json"
+          ],
+          "method_id": "met_minneanalyse",
+          "claim_id": "claim_grindheim_steinkross_21",
+          "core_concepts": [
+            "minnestad",
+            "historiebruk",
+            "kulturminne"
+          ],
+          "concept_focus": [
+            "minnestad"
+          ],
+          "topic_hook_id": "his_historiebruk_minne",
+          "thinker_id": "pierre_nora",
+          "thinker_name": "Pierre Nora",
+          "work": "Realms of Memory",
+          "theory_focus": "overgangen frå murmateriale til synleg offentleg minnestad",
+          "theory_ref": {
+            "topic_hook_id": "his_historiebruk_minne",
+            "thinker_id": "pierre_nora",
+            "work": "Realms of Memory",
+            "why_it_helps": "Noras minnestadsperspektiv viser kvifor den moderne oppreisinga er ein historisk fase i monumentet si offentlege betydning."
+          },
+          "primary_knowledge_unit_id": "ku_historie_pierre_nora_unders_kte_k_c63a631488",
+          "knowledge_unit_ids": [
+            "ku_historie_pierre_nora_unders_kte_k_c63a631488",
+            "ku_historie_oppreisinga_flytta_kross_b3d5824945"
+          ],
+          "concept_ids": [
+            "co_historie_minnestad_5e968e8d73",
+            "co_historie_historiebruk_fda8c699f4",
+            "co_historie_kulturminne_c393a1efb0"
           ],
           "term_ids": [],
           "knowledge_contract_version": 1,
