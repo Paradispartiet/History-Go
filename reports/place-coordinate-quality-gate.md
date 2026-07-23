@@ -1,10 +1,10 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T10:35:31.746Z
+Generert: 2026-07-23T10:46:02.151Z
 
 ## Oppsummering
-- Aktive filer validert: **664**
-- Antall steder validert: **1284**
+- Aktive filer validert: **665**
+- Antall steder validert: **1285**
 - Harde feil: **0**
 - Varsler: **506**
 - Coordinate review candidates: **772** signaler fordelt på **644** steder
@@ -682,6 +682,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/vestland/etne/sandvikevatnet_etne.json
 - data/places/natur/vestland/etne/taraldsoy.json
 - data/places/natur/vestland/etne/osnes_honsvikjo.json
+- data/places/natur/vestland/etne/vikedalsvassdraget_bjonndalen.json
 
 ## Harde feil
 - Ingen
