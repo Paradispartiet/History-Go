@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "edvard_munchs_atelier_ekely",
+  "placeFile": "data/places/kunst/oslo/places_kunst/edvard_munchs_atelier_ekely.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.92918854127767,
+    "lon": 10.670165670212224,
+    "r": 70,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Jarlsborgveien 14, 0377 Oslo. Den offisielle Ekely-nettsiden dokumenterer samme besøksadresse for den bevarte atelier-eiendommen; punktet brukes som canonical display-marker for atelierstedet, ikke for MUNCH-museet i Bjørvika."
+  },
+  "identity": {
+    "currentName": "Edvard Munchs atelier på Ekely",
+    "resolvedIdentity": "Det bevarte vinteratelieret og atelier-eiendommen på Ekely i Jarlsborgveien 14, separat fra MUNCH-museet i Bjørvika",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt nåværende besøksadresse",
+    "canonical identitets- og nærhetskontroll",
+    "dokumentert fysisk og historisk tilknytning mellom atelieret og Ekely"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Jarlsborgveien 14",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Jarlsborgveien%2014%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13413:14",
+      "sourceQuality": "official_address",
+      "finding": "Ett tydelig offisielt adressepunkt for Jarlsborgveien 14 i Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Jarlsborgveien 14, 0377 Oslo. Den offisielle Ekely-nettsiden dokumenterer samme besøksadresse for den bevarte atelier-eiendommen; punktet brukes som canonical display-marker for atelierstedet, ikke for MUNCH-museet i Bjørvika."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Edvard Munchs atelier – About Ekely",
+      "sourceUrl": "https://edvard-munchs-atelier.no/about-ekely/?lang=en",
+      "sourceObjectId": "ekely:about",
+      "sourceQuality": "official_site_identity",
+      "finding": "Dokumenterer Munchs kjøp av Ekely i 1916, atelierets bygningshistorie og at den bevarte vinteratelierbygningen fikk sin nåværende form i 1929.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og stedsforankringskontroll."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Edvard Munchs atelier – Visit us",
+      "sourceUrl": "https://edvard-munchs-atelier.no/visit-us/?lang=en",
+      "sourceObjectId": "ekely:visit",
+      "sourceQuality": "official_site_address",
+      "finding": "Dokumenterer besøksadressen Jarlsborgveien 14, 0377 Oslo for Ekely-eiendommen.",
+      "canVerifyCoordinate": false,
+      "reason": "Institusjonens egen besøksadresse kryssjekker det offisielle adresseobjektet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Jarlsborgveien 14, 0377 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13413:14",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13413:14",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "ekely:about",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "ekely:visit",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.92918854127767,
+      "lon": 10.670165670212224,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13413:14",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Jarlsborgveien 14 er anvendt som canonical display-marker."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Jarlsborgveien 14, 0377 Oslo. Den offisielle Ekely-nettsiden dokumenterer samme besøksadresse for den bevarte atelier-eiendommen; punktet brukes som canonical display-marker for atelierstedet, ikke for MUNCH-museet i Bjørvika.",
+    "Nærmeste eksisterende canonical marker i write-time-auditen var ullern på 896.13 meter; ingen markør lå innen 3 meter."
+  ]
+}
