@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T02:56:04.295Z
+Generert: 2026-07-23T03:11:00.104Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -259,7 +259,7 @@ Generert: 2026-07-23T02:56:04.295Z
 | noklevann | data/coordinate-evidence/oslo/natur/noklevann.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nybrua_vaterlandsparken | data/coordinate-evidence/oslo/natur/nybrua_vaterlandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | nydalsdammen | data/coordinate-evidence/oslo/natur/nydalsdammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| ostensjovannet_fugletarn | data/coordinate-evidence/oslo/natur/ostensjovannet_fugletarn.json | needs_research | needs_geometry | OK |
+| ostensjovannet_fugletarn | data/coordinate-evidence/oslo/natur/ostensjovannet_fugletarn.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ostensjovannet_nord | data/coordinate-evidence/oslo/natur/ostensjovannet_nord.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ostensjovannet_sivbelte | data/coordinate-evidence/oslo/natur/ostensjovannet_sivbelte.json | needs_research | needs_geometry | OK |
 | ostensjovannet_sor | data/coordinate-evidence/oslo/natur/ostensjovannet_sor.json | needs_research | needs_geometry | OK |

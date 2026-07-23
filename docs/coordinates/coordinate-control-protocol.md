@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 393 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 394 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -579,6 +579,10 @@ Batch 146 (2026-07-22) etterfører Subkultur-randsonebatch 03. `brugata_storgata
 | 149 | `ostensjovannet_nord` | Vadedammen | verified_geometry | `osm-relation:6503853` |
 
 Batch 149 (2026-07-23) erstatter den repo-syntetiske «Østensjøvannet nord»-identiteten med det konkrete navngitte våtmarksobjektet Vadedammen; place-id beholdes for kompatibilitet. Korrigert lokal research finner én eneste eksakt navngitt kandidat: OSM relation 6503853, modellert som pond-polygon. Østensjøvannets Venner dokumenterer Vadedammen som en kunstig anlagt, grunn våtmarksdam nord for Østensjøvannet og publiserer en GPS-referanse som faller innenfor samme polygon-scope. Canonical lat/lon beregnes deterministisk fra polygongeometrien som area-anchor. Hele naturreservatpolygonet, legacy-punktet og nearest/first-hit brukes ikke.
+
+| 150 | `ostensjovannet_fugletarn` | Fugleskjulet ved Østensjøvannet | verified_geometry | `osm-way:533351097` |
+
+Batch 150 (2026-07-23) retter den tidligere «Østensjøvannet fugletårn»-identiteten til det konkrete fugleskjulet på vestsiden av vannet; place-id beholdes for kompatibilitet. En objekt-type-first Overpass-audit finner nøyaktig ett leisure=bird_hide rundt Østensjøvannet: OSM way 533351097, tagget building=hut og leisure=bird_hide. En uavhengig oppdatert fugleguide beskriver tilsvarende ett bird hide på vestsiden med utsyn over de sentrale delene av vannet. Canonical lat/lon beregnes deterministisk som bygningssenter for selve OSM-polygonet og klassifiseres som building/building_center. Legacy-punktet på østsiden og nearest/first-hit brukes ikke.
 
 Retrospektiv compliance-audit batch 1–120 (2026-07-21): Full revisjon er nå utvidet fra de historiske batchradene til hele det aktive current verified*-settet fra Oslo-kilder. Sluttinventaret dekker 372/372 current verified*-steder uten duplikater, kontraktfeil eller metodiske review-punkter. Detaljer: `reports/oslo-coordinate-retro-compliance-20260721/final-current-oslo-compliance.json`.
 
