@@ -9,22 +9,20 @@ The exact VisitOSLO Galleries source contains **66** entries. The conservative m
 | Status | Count |
 |---|---:|
 | Approved — coordinate backlog | 1 |
-| Approved — distinct candidate | 10 |
+| Approved — distinct candidate | 12 |
 | Approved — distinct candidate outside Oslo | 1 |
 | Covered — name variant | 1 |
 | Covered — parent enrichment | 3 |
-| Policy-deferred — private/commercial | 28 |
-| Requires policy review | 2 |
-| Unresolved — research needed | 2 |
+| Policy-deferred — private/commercial | 30 |
 
-Four items remain non-final: **Format Oslo**, **SKOG Art Space**, **Oslo Galleri** and **Galleri SPINN**. Full category scope is therefore not yet closed.
+All **48/48 manual rows are now classified**, so the **66/66 source classification is closed**. Production coverage is still open because approved distinct candidates have not all passed current-main duplicate and coordinate gates, and SOFT remains coordinate-blocked.
 
 ## Manual classification
 
 | VisitOSLO source | Decision | Canonical target | Basis |
 |---|---|---|---|
 | Henie Onstad Kunstsenter | Approved — distinct candidate outside Oslo | — | Stabil kunstinstitusjon, men fysisk i Bærum/Akershus; skal ikke produseres i Oslo-batch. |
-| Format Oslo | Requires policy review | — | Varig kunsthåndverks-/designaktør med institusjonelle trekk, men også AS og salgs-/butikkfunksjon; krever konsekvent policyavgjørelse. |
+| Format Oslo | Approved — distinct candidate | — | Varig galleri for samtidskunsthåndverk etablert i 1991 og eid av Norske Kunsthåndverkere; institusjonell eierstruktur og faglig offentlig program overstyrer ren commercial-defer. |
 | Edvard Munchs atelier på Ekely | Approved — distinct candidate | — | Eget fysisk kultursted på Ekely, separat fra MUNCH i Bjørvika. |
 | Kunstverket Galleri | Policy-deferred — private/commercial | — | Kommersielt salgs- og formidlingsgalleri under etablert gallery-policy. |
 | Purenkel | Covered — name variant | purenkel_galleri | Eksisterende canonical sted med navnevarianten Purenkel. |
@@ -54,17 +52,17 @@ Four items remain non-final: **Format Oslo**, **SKOG Art Space**, **Oslo Galleri
 | QB Gallery | Policy-deferred — private/commercial | — | Representasjons-/salgsgalleri under etablert gallery-policy. |
 | WILLAS contemporary | Policy-deferred — private/commercial | — | Galleri/advisory med samler- og salgsorientering. |
 | Standard (Oslo) | Policy-deferred — private/commercial | — | Markeds-/representasjonsgalleri under etablert gallery-policy. |
-| Oslo Galleri | Unresolved — research needed | — | Operatør, varighet og forretnings-/institusjonsmodell er ikke sikkert nok dokumentert. |
+| Oslo Galleri | Policy-deferred — private/commercial | — | Formidler og selger samtidskunst med provisjonsmodell og privat operatørtilknytning; faller under etablert gallery-policy. |
 | Galleri Briskeby | Policy-deferred — private/commercial | — | Salgs- og formidlingsgalleri under etablert gallery-policy. |
 | Grafill | Approved — distinct candidate | — | Nasjonal ideell medlemsorganisasjon med eget offentlig hus og utstillingsprogram. |
 | Buer Gallery | Policy-deferred — private/commercial | — | Tidligere eksplisitt policy-deferred. |
 | ISCA Gallery | Policy-deferred — private/commercial | — | Privat/independent contemporary gallery uten dokumentert nonprofit-institusjonsstatus som overstyrer policyen. |
 | SORGENFRI | Policy-deferred — private/commercial | — | Butikk, konseptgalleri og showroom under high-churn/commercial policy. |
 | Golsa | Policy-deferred — private/commercial | — | Representasjons- og markedsgalleri under etablert gallery-policy. |
-| Galleri SPINN | Unresolved — research needed | — | Eierskap, varighet og institusjonell/kommersiell modell er ikke sikkert nok dokumentert. |
+| Galleri SPINN | Policy-deferred — private/commercial | — | Privat kunstnerdrevet galleri knyttet til enkeltpersonforetaket Tore Wilhelmsen; faller under etablert gallery-policy. |
 | BO Billedkunstnerne i Oslo | Covered — parent enrichment | radmannsgarden_og_anatomibygget | Samme fysiske Anatomigården/Rådhusgata 19-parent; bør være institusjons-/current-use-layer, ikke ny markør. |
 | M35 | Policy-deferred — private/commercial | — | Tidligere eksplisitt policy-deferred. |
-| SKOG Art Space | Requires policy review | — | Har kunstnerstøttende/institusjonelle trekk, men er ung; krever eksplisitt policyvalg om nye nonprofit-lignende art spaces. |
+| SKOG Art Space | Approved — distinct candidate | — | Foreningsdrevet visningsrom med styre, juryert open call, utstillings-/residensprogram og aktiv drift; godkjennes som institusjonell kandidat. |
 | Atelie | Policy-deferred — private/commercial | — | Galleri/plattform med verk til salgs under etablert gallery-policy. |
 | Oslo Glass Studio | Policy-deferred — private/commercial | — | Nytt publikumsåpent verksted/galleri/shop; ikke obligatorisk canonical gap under gjeldende high-churn art-venue policy. |
 | Rivertz | Policy-deferred — private/commercial | — | Ny galleri-/vinbar-/salgsaktør under high-churn/commercial policy. |
@@ -79,3 +77,4 @@ Four items remain non-final: **Format Oslo**, **SKOG Art Space**, **Oslo Galleri
 - SOFT galleri remains coordinate-blocked until a distinct authoritative entrance/site anchor is documented.
 - Parent-enrichment decisions must not create extra overlapping map markers.
 - Policy-deferred venues remain eligible for later reconsideration under a dedicated consistent commercial-gallery/art-venue framework.
+- Closing source classification does not mean production completeness is closed.
