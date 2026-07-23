@@ -2,40 +2,112 @@
   "schemaVersion": "1.0",
   "placeId": "hausmannsomradet_elvelop",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_akerselvarute.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9197,
-    "lon": 10.7364,
-    "r": 170,
-    "coordStatus": "needs_source",
-    "coordSource": "named_river_segment_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Recorden beskriver et bredt elveløp gjennom Hausmannsområdet uten en entydig fysisk avgrensning i dagens modell. De tidligere manuelle ruteankrene lå feilplassert vest for Akerselva og er fjernet. Eksisterende lat/lon beholdes kun som legacy til en eksplisitt kildebelagt elvegeometri eller fleranker-modell er dokumentert."
+    "lat": 59.91675289691115,
+    "lon": 10.7617223200004,
+    "r": 150,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 80915045 – Akerselva clipped between exact named bridge polygons Nybrua 315066295 and Hausmanns bru 377766486",
+    "coordType": "clipped_river_segment_anchor",
+    "coordNote": "Batch 162 avgrenser Hausmannskvartalenes synlige Akerselva-grense mellom de eksakte navngitte broflatene Nybrua (OSM way 315066295) og Hausmanns bru (OSM way 377766486). Begge broflatene skjærer samme synlige Akerselva-way 80915045 nøyaktig to ganger; grenseankrene er midtpunktene langs elvas passasje gjennom hver broflate. Canonical lat/lon er lengdemidtpunktet langs den 409.3 meter lange klippede elvegeometrien. Legacy-punktet vest for elva, nearest/first-hit og tilfeldig valg av kjørebane brukes ikke."
   },
   "identity": {
-    "currentName": "Hausmannsområdet (elveløp)",
-    "resolvedIdentity": "Hausmannsområdet (elveløp)",
-    "identityStatus": "partially_resolved",
-    "identityProblem": "Recorden beskriver et bredt elveløp gjennom Hausmannsområdet uten en entydig fysisk avgrensning i dagens modell. De tidligere manuelle ruteankrene lå feilplassert vest for Akerselva og er fjernet. Eksisterende lat/lon beholdes kun som legacy til en eksplisitt kildebelagt elvegeometri eller fleranker-modell er dokumentert.",
+    "currentName": "Hausmannskvartalene – elveløp",
+    "resolvedIdentity": "Hausmannskvartalenes synlige Akerselva-grense mellom Nybrua og Hausmanns bru",
+    "identityStatus": "resolved",
+    "identityProblem": "",
     "locatorTypeCandidate": "route",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "source-backed river geometry or multiple documented anchors"
+  "requiredEvidence": [],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Hausmannskvartalene",
+      "sourceUrl": "https://oslobyleksikon.no/side/Hausmannskvartalene",
+      "sourceObjectId": "oslobyleksikon:hausmannskvartalene",
+      "sourceQuality": "documented_area_boundary",
+      "finding": "Hausmannskvartalene avgrenses av Hausmanns gate i nord, Akerselva i nordøst og Storgata i sørøst; den relevante elvegrensen ligger derfor mellom broene ved disse gatene.",
+      "canVerifyCoordinate": false,
+      "reason": "Kilden avgrenser identiteten; koordinaten kommer fra den eksplisitt klippede OSM-elvgeometrien."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Akerselva, Nybrua og Hausmanns bru",
+      "sourceUrl": "https://www.openstreetmap.org/way/80915045",
+      "sourceObjectId": "osm-way:80915045",
+      "sourceQuality": "explicit_clipped_route_geometry",
+      "finding": "Synlig Akerselva way 80915045 passerer gjennom de eksakte navngitte broflatene Nybrua way 315066295 og Hausmanns bru way 377766486; deres elvekryssingssentre gir deterministiske yttergrenser.",
+      "canVerifyCoordinate": true,
+      "reason": "Strekningen er fysisk avgrenset av to eksakte navngitte brogeometrier på samme synlige elveobjekt."
+    }
   ],
-  "evidence": [],
   "addressCandidates": [],
-  "sourceObjectCandidates": [],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:80915045",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:80915045",
+      "geometryRole": "clipped_route_segment",
+      "canApplyToPlace": true,
+      "segmentScope": {
+        "method": "clipped_visible_river_geometry_between_exact_named_bridge_polygons",
+        "identity": {
+          "name": "Hausmannskvartalene",
+          "sourceProvider": "manual_research",
+          "sourceUrl": "https://oslobyleksikon.no/side/Hausmannskvartalene",
+          "documentedBoundary": "Hausmanns gate i nord, Akerselva i nordøst og Storgata i sørøst"
+        },
+        "riverWayId": 80915045,
+        "upstreamBoundary": {
+          "name": "Nybrua",
+          "bridgePolygonWayId": 315066295,
+          "sourceUrl": "https://oslobyleksikon.no/side/Nybrua",
+          "riverCrossingCenter": {
+            "lat": 59.917778461174194,
+            "lon": 10.759154678132907
+          },
+          "bridgeWidthAlongRiverM": 21.9
+        },
+        "downstreamBoundary": {
+          "name": "Hausmanns bru",
+          "bridgePolygonWayId": 377766486,
+          "sourceUrl": "https://oslobyleksikon.no/side/Hausmanns_bru",
+          "riverCrossingCenter": {
+            "lat": 59.915187221700485,
+            "lon": 10.7598841974919
+          },
+          "bridgeWidthAlongRiverM": 28.8
+        },
+        "clippedLengthM": 409.3
+      }
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91675289691115,
+      "lon": 10.7617223200004,
+      "geocodeAccuracy": "semantic_anchor",
+      "coordRole": "line_anchor",
+      "sourceObjectId": "osm-way:80915045",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Recorden beskriver et bredt elveløp gjennom Hausmannsområdet uten en entydig fysisk avgrensning i dagens modell. De tidligere manuelle ruteankrene lå feilplassert vest for Akerselva og er fjernet. Eksisterende lat/lon beholdes kun som legacy til en eksplisitt kildebelagt elvegeometri eller fleranker-modell er dokumentert.",
-    "nextAction": "Document a stable river geometry or multiple source-backed anchors before approving a coordinate."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied to canonical place."
   },
   "notes": [
-    "Recorden beskriver et bredt elveløp gjennom Hausmannsområdet uten en entydig fysisk avgrensning i dagens modell. De tidligere manuelle ruteankrene lå feilplassert vest for Akerselva og er fjernet. Eksisterende lat/lon beholdes kun som legacy til en eksplisitt kildebelagt elvegeometri eller fleranker-modell er dokumentert."
+    "Batch 162 avgrenser Hausmannskvartalenes synlige Akerselva-grense mellom de eksakte navngitte broflatene Nybrua (OSM way 315066295) og Hausmanns bru (OSM way 377766486). Begge broflatene skjærer samme synlige Akerselva-way 80915045 nøyaktig to ganger; grenseankrene er midtpunktene langs elvas passasje gjennom hver broflate. Canonical lat/lon er lengdemidtpunktet langs den 409.3 meter lange klippede elvegeometrien. Legacy-punktet vest for elva, nearest/first-hit og tilfeldig valg av kjørebane brukes ikke."
   ]
 }
