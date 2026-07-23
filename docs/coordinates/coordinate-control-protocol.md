@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 411 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 412 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -739,6 +739,7 @@ Batch 167 (2026-07-23) pensjonerer den repo-syntetiske identiteten «Furuset–H
 
 Batch 168 (2026-07-23) oppretter Lillomarka som ett bredt navngitt Marka- og skogsområde, ikke som et utfartssted eller en løypestart. Oslo kommune navngir Lillomarka som en egen del av Oslomarka og knytter Marka til friluftsliv, folkehelse og naturmangfold. Fresh exact-object lookup hard-gater OSM relation 5806405 som name=Lillomarka, category=place, type=woodland med arealgeometri. Canonical lat/lon er det geometriske representasjonspunktet for den eksakte relationen. Lilloseter, vann, stier og startpunkter brukes ikke som proxy; nearest/first-hit brukes ikke.
 
+| 169 | `brekkedammen` | Brekkedammen ved Frysja | verified_geometry | `osm-relation:14334474` |
 ### Dokumenterte Oslo-kontroller uten godkjent koordinat
 
 Disse kontrollene er fullført, men teller ikke blant de 411 verifiserte canonical Oslo-stedene.
