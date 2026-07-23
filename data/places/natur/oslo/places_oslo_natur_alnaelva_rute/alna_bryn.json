@@ -1,8 +1,8 @@
 {
   "id": "alna_bryn",
   "name": "Alna ved Bryn",
-  "lat": 59.90931,
-  "lon": 10.81195,
+  "lat": 59.9059447,
+  "lon": 10.8029785,
   "r": 160,
   "category": "natur",
   "desc": "Alna ved Bryn i overgangen mellom Brynsfossen, industrihistorie, jernbane, veier, Alnastien og en smal byøkologisk elvekorridor.",
@@ -15,12 +15,12 @@
     "fremmede_arter"
   ],
   "routeId": "alnaelva_grontdrag",
-  "sourceHint": "Koordinat justert til Brynseng/Bryn bru-området som nærreferanse for Alna ved Bryn. Punktet er et ruteanker i grøntdraget, ikke hele Bryn-området.",
-  "coordType": "legacy_unverified",
-  "coordStatus": "needs_source",
-  "coordSource": "alna_bryn_segment_unresolved",
+  "sourceHint": "Canonical kartanker er lengdemidtpunktet på OSM way 112543919, den lange åpne Alna-strekningen ved Bryn mellom den verifiserte Smalvoll-korridoren og den nedre kulvert-/Kværnerbyen-sekvensen.",
+  "coordType": "river_segment_anchor",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 112543919 – Alna ved Bryn",
   "coordPrecisionM": 180,
-  "coordVerifiedAt": "2026-07-21",
+  "coordVerifiedAt": "2026-07-23",
   "popupDesc": "Ved Bryn møter Alna Brynsfossen, eldre industribygninger, Hovedbanen, broer, veier og nyere byutvikling. Vannet har både formet terrenget og gitt kraft til industri, mens dagens kantvegetasjon og Alnastien holder en blågrønn forbindelse gjennom området. History Gos aktive naturkart knytter kjempebjørnekjeks og fem byfugler til stedet. Kartkoblingene er observasjonsspor, ikke garanti for aktuelle funn. Kjempebjørnekjeks skal aldri berøres: plantesaften kan i kombinasjon med sollys gi alvorlige hudskader.",
   "nature_profile": {
     "type": "byelv / fossesone / industrilandskap / transportkorridor",
@@ -497,5 +497,12 @@
       "data/natur/fauna/fugler_vatmark_og_skog.json"
     ]
   },
-  "coordNote": "Alna ved Bryn er en bred lokal elvestrekning med flere separate Alna-way-er. Bryn bru er et entydig navngitt objekt, men er ikke identisk med denne recorden, og Brynsfossen ble ikke dokumentert som ett entydig kildeobjekt. Recorden må avgrenses til en konkret elvestrekning eller få flere kildebelagte ankere."
+  "coordNote": "Batch 155 avgrenser Alna ved Bryn til OSM way 112543919, en 1768.8 meter lang åpen name=Alna/waterway=river-strekning. Fresh topologikontroll validerer en sammenhengende kjede fra det allerede verifiserte Smalvoll-segmentet 22698275 gjennom åtte mellomliggende Alna-ways fram til 112543919, og wayen kobler eksakt nedstrøms til culvert-way 113281373. Bryn place-node 1125500266 brukes kun som uavhengig scope-kryssjekk og ligger 166.9 meter fra valgt elvegeometri. Bryn bru brukes ikke som proxy. Canonical lat/lon er lengdemidtpunkt langs selve elvewayen. Legacy-punktet og nearest/first-hit brukes ikke.",
+  "locatorType": "route",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:112543919",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "line_anchor",
+  "coordSourceId": "osm-way:112543919",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/112543919"
 }

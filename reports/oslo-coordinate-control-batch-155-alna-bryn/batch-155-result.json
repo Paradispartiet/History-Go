@@ -1,0 +1,107 @@
+{
+  "generatedAt": "2026-07-23T04:05:13.270Z",
+  "batch": 155,
+  "placeId": "alna_bryn",
+  "status": "verified_geometry",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:112543919",
+  "sourceUrl": "https://www.openstreetmap.org/way/112543919",
+  "sourceTags": {
+    "alt_name": "Loelva;Alnaelva",
+    "name": "Alna",
+    "waterway": "river"
+  },
+  "geometry": {
+    "type": "LineString",
+    "nodeCount": 107,
+    "lengthM": 1768.8
+  },
+  "topology": {
+    "chainWayIds": [
+      22698275,
+      651916465,
+      651916464,
+      127936466,
+      660982413,
+      660982412,
+      27436360,
+      112543918,
+      112543919,
+      113281373
+    ],
+    "chainLinks": [
+      {
+        "fromWay": 22698275,
+        "toWay": 651916465,
+        "sharedNode": "6112659806"
+      },
+      {
+        "fromWay": 651916465,
+        "toWay": 651916464,
+        "sharedNode": "3886783708"
+      },
+      {
+        "fromWay": 651916464,
+        "toWay": 127936466,
+        "sharedNode": "243479274"
+      },
+      {
+        "fromWay": 127936466,
+        "toWay": 660982413,
+        "sharedNode": "6188293986"
+      },
+      {
+        "fromWay": 660982413,
+        "toWay": 660982412,
+        "sharedNode": "6188293985"
+      },
+      {
+        "fromWay": 660982412,
+        "toWay": 27436360,
+        "sharedNode": "1414804619"
+      },
+      {
+        "fromWay": 27436360,
+        "toWay": 112543918,
+        "sharedNode": "1278853136"
+      },
+      {
+        "fromWay": 112543918,
+        "toWay": 112543919,
+        "sharedNode": "1278853134"
+      },
+      {
+        "fromWay": 112543919,
+        "toWay": 113281373,
+        "sharedNode": "301232671"
+      }
+    ],
+    "upstreamVerifiedPlace": "alna_smalvoll",
+    "downstreamCulvertWay": "osm-way:113281373"
+  },
+  "scopeCrosscheck": {
+    "brynNode": "osm-node:1125500266",
+    "distanceToSelectedGeometryM": 166.9
+  },
+  "before": {
+    "lat": 59.90931,
+    "lon": 10.81195,
+    "r": 160,
+    "coordStatus": "needs_source",
+    "coordSource": "alna_bryn_segment_unresolved",
+    "coordType": "legacy_unverified"
+  },
+  "after": {
+    "lat": 59.9059447,
+    "lon": 10.8029785,
+    "r": 160,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 112543919 – Alna ved Bryn",
+    "coordType": "river_segment_anchor",
+    "locatorType": "route",
+    "sourceObjectId": "osm-way:112543919",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor"
+  },
+  "method": "exact named long Alna segment + exact fresh chain topology from verified Smalvoll + direct downstream culvert topology + independent Bryn place scope crosscheck + deterministic length midpoint; no bridge proxy, legacy point, nearest or first-hit"
+}

@@ -2,72 +2,97 @@
   "schemaVersion": "1.0",
   "placeId": "alna_bryn",
   "placeFile": "data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.90931,
-    "lon": 10.81195,
+    "lat": 59.9059447,
+    "lon": 10.8029785,
     "r": 160,
-    "coordStatus": "needs_source",
-    "coordSource": "alna_bryn_segment_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Alna ved Bryn er en bred lokal elvestrekning med flere separate Alna-way-er. Bryn bru er et entydig navngitt objekt, men er ikke identisk med denne recorden, og Brynsfossen ble ikke dokumentert som ett entydig kildeobjekt. Recorden må avgrenses til en konkret elvestrekning eller få flere kildebelagte ankere."
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 112543919 – Alna ved Bryn",
+    "coordType": "river_segment_anchor",
+    "coordNote": "Batch 155 avgrenser Alna ved Bryn til OSM way 112543919, en 1768.8 meter lang åpen name=Alna/waterway=river-strekning. Fresh topologikontroll validerer en sammenhengende kjede fra det allerede verifiserte Smalvoll-segmentet 22698275 gjennom åtte mellomliggende Alna-ways fram til 112543919, og wayen kobler eksakt nedstrøms til culvert-way 113281373. Bryn place-node 1125500266 brukes kun som uavhengig scope-kryssjekk og ligger 166.9 meter fra valgt elvegeometri. Bryn bru brukes ikke som proxy. Canonical lat/lon er lengdemidtpunkt langs selve elvewayen. Legacy-punktet og nearest/first-hit brukes ikke."
   },
   "identity": {
     "currentName": "Alna ved Bryn",
-    "resolvedIdentity": "Lokal Alna-strekning ved Bryn",
+    "resolvedIdentity": "Lokal Alna-strekning ved Bryn mellom Smalvoll-korridoren og den nedre Alna-sekvensen",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "route",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "konkret avgrenset Alna-segment ved Bryn eller flere kildebelagte ruteankre"
-  ],
+  "requiredEvidence": [],
   "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Alna ved Bryn",
+      "sourceUrl": "https://www.openstreetmap.org/way/112543919",
+      "sourceObjectId": "osm-way:112543919",
+      "sourceQuality": "exact_named_long_river_segment_bracketed_by_verified_upstream_chain_and_downstream_culvert",
+      "finding": "Way 112543919 er en 1768.8 m lang åpen Alna-geometri. Fresh OSM-topologi viser en eksakt sammenhengende way-kjede fra verified Smalvoll-way 22698275 fram til valgt segment og direkte videre til culvert-way 113281373.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt fysisk elvegeometri topologisk avgrenset mellom verifisert oppstrøms segment og eksplisitt nedstrøms kulvert."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Bryn place scope",
+      "sourceUrl": "https://www.openstreetmap.org/node/1125500266",
+      "sourceObjectId": "osm-node:1125500266",
+      "sourceQuality": "independent_named_scope_crosscheck",
+      "finding": "Den uavhengige place=Bryn-noden ligger 166.9 m fra valgt Alna-geometri.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukes bare som lokal scope-kryssjekk, ikke som koordinatkilde eller nearest-valg."
+    },
     {
       "sourceProvider": "manual_research",
       "sourceName": "Oslo byleksikon – Alnaelva",
       "sourceUrl": "https://oslobyleksikon.no/side/Alnaelva",
-      "sourceObjectId": "oslobyleksikon:alnaelva",
+      "sourceObjectId": "oslobyleksikon:alnaelva:bryn",
       "sourceQuality": "documented_local_river_identity",
-      "finding": "Kilden dokumenterer Alnas løp nedenfor Bryn og videre gjennom Svartdalen.",
+      "finding": "Kilden dokumenterer Alna under Bryn og videre mot Svartdalen.",
       "canVerifyCoordinate": false,
-      "reason": "Alna ved Bryn er en bred lokal elvestrekning med flere separate Alna-way-er. Bryn bru er et entydig navngitt objekt, men er ikke identisk med denne recorden, og Brynsfossen ble ikke dokumentert som ett entydig kildeobjekt. Recorden må avgrenses til en konkret elvestrekning eller få flere kildebelagte ankere."
-    },
-    {
-      "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap – flere Alna-segmenter ved Bryn",
-      "sourceUrl": "https://www.openstreetmap.org/search?query=Alna%20Bryn%20Oslo",
-      "sourceObjectId": "osm:alna-bryn-multiple-waterway-ways",
-      "sourceQuality": "multiple_plausible_local_segments",
-      "finding": "Flere Alna-way-er og ett eksakt Bryn bru-objekt, men ingen entydig geometri for den brede place-identiteten.",
-      "canVerifyCoordinate": false,
-      "reason": "Alna ved Bryn er en bred lokal elvestrekning med flere separate Alna-way-er. Bryn bru er et entydig navngitt objekt, men er ikke identisk med denne recorden, og Brynsfossen ble ikke dokumentert som ett entydig kildeobjekt. Recorden må avgrenses til en konkret elvestrekning eller få flere kildebelagte ankere."
+      "reason": "Fastsetter Bryn-sekvensen; eksakt geometri kommer fra OSM."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "oslobyleksikon:alnaelva",
-      "canApplyToPlace": false
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:112543919",
+      "canApplyToPlace": true
     },
     {
       "sourceProvider": "osm",
-      "sourceObjectId": "osm:alna-bryn-multiple-waterway-ways",
+      "sourceObjectId": "osm-node:1125500266",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:112543919",
+      "lat": 59.9059447,
+      "lon": 10.8029785,
+      "coordRole": "line_anchor",
+      "geometryType": "LineString",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9059447,
+      "lon": 10.8029785,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Alna ved Bryn er en bred lokal elvestrekning med flere separate Alna-way-er. Bryn bru er et entydig navngitt objekt, men er ikke identisk med denne recorden, og Brynsfossen ble ikke dokumentert som ett entydig kildeobjekt. Recorden må avgrenses til en konkret elvestrekning eller få flere kildebelagte ankere.",
-    "nextAction": "konkret avgrenset Alna-segment ved Bryn eller flere kildebelagte ruteankre"
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Den topologisk avgrensede Alna-geometrien ved Bryn er anvendt på canonical place."
   },
   "notes": [
-    "Alna ved Bryn er en bred lokal elvestrekning med flere separate Alna-way-er. Bryn bru er et entydig navngitt objekt, men er ikke identisk med denne recorden, og Brynsfossen ble ikke dokumentert som ett entydig kildeobjekt. Recorden må avgrenses til en konkret elvestrekning eller få flere kildebelagte ankere."
+    "Batch 155 avgrenser Alna ved Bryn til OSM way 112543919, en 1768.8 meter lang åpen name=Alna/waterway=river-strekning. Fresh topologikontroll validerer en sammenhengende kjede fra det allerede verifiserte Smalvoll-segmentet 22698275 gjennom åtte mellomliggende Alna-ways fram til 112543919, og wayen kobler eksakt nedstrøms til culvert-way 113281373. Bryn place-node 1125500266 brukes kun som uavhengig scope-kryssjekk og ligger 166.9 meter fra valgt elvegeometri. Bryn bru brukes ikke som proxy. Canonical lat/lon er lengdemidtpunkt langs selve elvewayen. Legacy-punktet og nearest/first-hit brukes ikke."
   ]
 }
