@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T18:53:38.315Z
+Generert: 2026-07-23T18:57:30.319Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -335,3 +335,4 @@ Generert: 2026-07-23T18:53:38.315Z
 | grorudparken | data/coordinate-evidence/oslo/by/grorudparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | aamot_bru | data/coordinate-evidence/oslo/historie/aamot_bru.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | klosterenga_skulpturpark | data/coordinate-evidence/oslo/kunst/klosterenga_skulpturpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| peer_gynt_parken | data/coordinate-evidence/oslo/kunst/peer_gynt_parken.json | applied_to_place | do_not_change_coordinates_yet | OK |

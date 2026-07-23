@@ -1,9 +1,9 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-23T18:53:30.368Z
+Generert: 2026-07-23T18:57:22.300Z
 
 ## Oppsummering
-- Aktive filer validert: **677**
+- Aktive filer validert: **678**
 - Antall steder validert: **1290**
 - Harde feil: **0**
 - Varsler: **509**
@@ -695,6 +695,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/grorudparken.json
 - data/places/historie/oslo/places_historie/aamot_bru.json
 - data/places/kunst/oslo/places_kunst/klosterenga_skulpturpark.json
+- data/places/kunst/oslo/places_kunst/peer_gynt_parken.json
 
 ## Harde feil
 - Ingen

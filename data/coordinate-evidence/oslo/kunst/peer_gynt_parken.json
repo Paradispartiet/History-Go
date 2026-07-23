@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "peer_gynt_parken",
+  "placeFile": "data/places/kunst/oslo/places_kunst/peer_gynt_parken.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.9319086,
+    "lon": 10.7922952,
+    "r": 150,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 126850692 – Peer Gynt-parken; scope cross-checked with Peer Gynt-parken and Oslo kommune Byplan",
+    "coordType": "sculpture_park_center",
+    "coordNote": "Batch 173 object-type-first: exact OSM way 126850692 resolves as the named Peer Gynt-parken with Polygon park geometry. Fresh exact-object representation point is 59.9319086, 10.7922952, 0.00 m from the locked revalidation coordinate. Peer Gynt-parkens own current site defines the Løren site as an international sculpture park and art walk inspired by Henrik Ibsens Peer Gynt, while Oslo kommune's Byplan material treats the park as a significant neighbourhood meeting and play environment. Canonical scope is the complete sculpture park; individual sculptures remain content layers unless independently justified as canonical places. No nearest/first-hit selection is used."
+  },
+  "identity": {
+    "currentName": "Peer Gynt-parken",
+    "resolvedIdentity": "Hele Peer Gynt-parken på Løren som internasjonal offentlig skulpturpark og kunstvandring",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "park",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "exact locked OSM park identity",
+    "current whole-site sculpture-park source",
+    "municipal neighbourhood-scope cross-check",
+    "canonical duplicate control against current main"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Peer Gynt-parken way 126850692",
+      "sourceUrl": "https://www.openstreetmap.org/way/126850692",
+      "sourceObjectId": "osm-way:126850692",
+      "sourceQuality": "unique_exact_named_park_polygon",
+      "finding": "Fresh exact lookup resolves way 126850692 as Peer Gynt-parken, type=park, Polygon geometry and representation point 59.9319086, 10.7922952.",
+      "canVerifyCoordinate": true,
+      "reason": "Exact named physical park geometry; no nearest or first-hit selection."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Peer Gynt-parken – official current site",
+      "sourceUrl": "https://www.peergyntparken.no/",
+      "sourceObjectId": "peer-gynt-parken:official-site",
+      "sourceQuality": "current_whole_site_identity",
+      "finding": "Defines Peer Gynt-parken at Løren as a sculpture park and international art walk inspired by Henrik Ibsen's Peer Gynt.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines current whole-site identity and content scope; exact area geometry comes from the locked OSM way."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune Byplan – Hva kan vi lære av Løren?",
+      "sourceUrl": "https://magasin.oslo.kommune.no/byplan/hva-kan-vi-laere-av-loren",
+      "sourceObjectId": "oslo-kommune:byplan:peer-gynt-parken",
+      "sourceQuality": "municipal_neighbourhood_scope_crosscheck",
+      "finding": "Treats Peer Gynt-parken as a sculpture park and important public environment within the Løren neighbourhood.",
+      "canVerifyCoordinate": false,
+      "reason": "Cross-checks public place function and neighbourhood scope."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:126850692",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "peer-gynt-parken:official-site",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:byplan:peer-gynt-parken",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:126850692",
+      "geometryType": "Polygon",
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9319086,
+      "lon": 10.7922952,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-way:126850692",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact Peer Gynt-parken geometry and representation point are applied to the canonical sculpture-park place."
+  },
+  "notes": [
+    "Batch 173 object-type-first: exact OSM way 126850692 resolves as the named Peer Gynt-parken with Polygon park geometry. Fresh exact-object representation point is 59.9319086, 10.7922952, 0.00 m from the locked revalidation coordinate. Peer Gynt-parkens own current site defines the Løren site as an international sculpture park and art walk inspired by Henrik Ibsens Peer Gynt, while Oslo kommune's Byplan material treats the park as a significant neighbourhood meeting and play environment. Canonical scope is the complete sculpture park; individual sculptures remain content layers unless independently justified as canonical places. No nearest/first-hit selection is used.",
+    "Fresh anchor drift from locked production coordinate: 0.00 m.",
+    "Place-id and accepted Peer Gynt park identity names were absent from current manifest-loaded canonical place data before production."
+  ]
+}
