@@ -17,7 +17,7 @@ Dette dokumentet er den løpende protokollen for manuell koordinatkontroll. Det 
 
 ## Oslo
 
-Oslo-protokollen dekker nå 424 aktive current `verified*` canonical Oslo-steder.
+Oslo-protokollen dekker nå 425 aktive current `verified*` canonical Oslo-steder.
 
 | batch | placeId | navn | godkjent status | kildeobjekt |
 |---:|---|---|---|---|
@@ -925,3 +925,7 @@ Batch 181 (2026-07-23) produserer `the_mini_bottle_gallery` etter den lukkede Vi
 | 182 | `galleri_lnm` | Galleri LNM | verified | `geonorge-adresser-v1:0301:16115:37` |
 
 Batch 182 (2026-07-23) produserer `galleri_lnm` etter VisitOSLO Galleries scope- og readiness-auditene. Det eksakte Geonorge-adressepunktet for Rådhusgata 37 brukes som display-marker for LNM som egen fagorganisasjon og offentlig galleriinstitusjon.
+
+| 183 | `ram_galleri` | RAM galleri | verified | `geonorge-adresser-v1:0301:13846:15` |
+
+Batch 183 (2026-07-23) produserer `ram_galleri` etter VisitOSLO Galleries scope- og readiness-auditene. Det eksakte Geonorge-adressepunktet for Kongens gate 15 brukes som display-marker for RAM som eget ikke-kommersielt, kunstnerstyrt visningssted.
