@@ -33,18 +33,24 @@
     "nature_profile": {
       "type": "vernet fjellvassdrag / restfelt / friluftsliv",
       "title": "Nabovassdraget til Vaulaelva",
-      "summary": "Saltåna viser hvordan flere små fjellvassdrag sammen kan bevare et større landskapsmønster. Natur-rundingen kobler vannløpet til fjellandskapet og til Vaulaelva som nabovassdrag.",
+      "summary": "Saltåna er et vernet fjellvassdrag i Etne som NVE framhever for sin plassering i et attraktivt landskap, sin betydning for friluftslivet og rollen som restfelt i en ellers sterkt vannkraftutbygd region. Det særpregede ved vernegrunnlaget er at vassdraget ikke skal leses isolert: NVE sier uttrykkelig at vernet må sees i sammenheng med Vaulaelva. Det gjør Saltåna til et godt eksempel på landskapsvern som nettverk. To nabovassdrag kan hver for seg være små på kartet, men sammen bevare en større fjell- og vannsammenheng. Samtidig viser NVE sine energiregistre at vassdragsområde 042.32Z også har teknisk energibruk. Saltåno kraftverk er registrert i drift fra 2011 med maksimal ytelse 0,3 MW, brutto fallhøyde 92 meter og midlere årsproduksjon 0,9 GWh. En tidligere konsesjonssak for Saltåna minikraftverk ble avgjort som konsesjonsfri i 2005. Disse opplysningene skal brukes med presis avgrensning: History Go-markøren representerer det vernede vassdragets natur- og landskapsverdi, ikke selve kraftverket, og kraftverksdataene viser at vern og bruk kan eksistere i ulike deler eller nivåer av samme vassdragsområde. Natur-rundingen skal derfor lære spilleren tre ting samtidig: hvordan fjellvassdrag henger sammen over landskapet, hvorfor restfelt får større verdi når naboområder er utbygd, og hvorfor tekniske anlegg må skilles fra selve naturankeret. Alle fysiske oppgaver skal gjøres fra trygg etablert ferdsel og aldri ved kraftverksinstallasjoner, inntak, bratte elveløp eller umerket høyfjell.",
       "themes": [
-        "fjellvassdrag",
-        "vernet restfelt",
+        "vernet fjellvassdrag",
+        "Vaulaelva-sammenheng",
+        "restfelt",
         "friluftsliv",
-        "landskapssammenheng",
-        "Vaulaelva"
+        "vern og bruk",
+        "vannkraftkontekst"
       ],
       "nearby_place_ids": [
         "vaulaelva_vassdraget",
-        "etnefjella",
-        "langfoss_etne"
+        "langfoss_etne",
+        "akrafjorden"
+      ],
+      "source_boundaries": [
+        "History Go-markøren representerer det vernede vassdraget, ikke Saltåno kraftverk.",
+        "Kraftverksdata brukes som kontekst for vern og bruk og skal ikke flyttes til naturankeret som fysisk plassering.",
+        "Ingen oppgave skal sende spilleren til inntak, kraftverk, bratt elv eller umerket fjellterreng."
       ]
     },
     "quiz_profile": {
@@ -100,6 +106,180 @@
       "naturvern",
       "friluftsliv",
       "berg_og_knaus"
-    ]
+    ],
+    "tasks_profile": {
+      "title": "Oppgaver ved Saltåna",
+      "summary": "Fire kildeledede og sikkerhetsavgrensede stedshandlinger.",
+      "tasks": [
+        {
+          "id": "saltana_finn_nabosammenhengen",
+          "title": "Finn nabosammenhengen",
+          "instruction": "Bruk kartet til å finne Saltåna og Vaulaelva og forklar hvorfor to nærliggende vassdrag kan vurderes i sammenheng.",
+          "why": "NVE sier uttrykkelig at Saltånas vern må sees i sammenheng med Vaulaelva."
+        },
+        {
+          "id": "saltana_les_fjellplasseringen",
+          "title": "Les fjellplasseringen",
+          "instruction": "Fra trygg etablert ferdsel eller kart: finn hvilke høyder, daler eller vann som gjør Saltåna til et tydelig fjellvassdrag.",
+          "why": "NVE framhever beliggenheten i fjellet som del av vernegrunnlaget."
+        },
+        {
+          "id": "saltana_finn_restfeltet",
+          "title": "Finn restfelt-perspektivet",
+          "instruction": "Se på kartet etter tekniske vannkraftanlegg i regionen og sammenlign med det vernede landskapet. Ikke oppsøk tekniske installasjoner.",
+          "why": "Vassdraget er verdifullt som restfelt i en ellers sterkt vannkraftutbygd region."
+        },
+        {
+          "id": "saltana_skill_vern_og_kraft",
+          "title": "Skill vern fra kraftverk",
+          "instruction": "Finn i kartdata Saltåno kraftverk som eget teknisk punkt og forklar hvorfor det ikke er det samme som History Go-markøren for det vernede vassdraget.",
+          "why": "NVE registrerer både verneverdien og et kraftverk i vassdragsområde 042.32Z; disse må ikke blandes sammen."
+        }
+      ]
+    },
+    "training_profile": {
+      "title": "Karttrening i et sammenhengende vernelandskap",
+      "summary": "Tre lette øvelser for å lese nabovassdrag, restfelt og tekniske punkt uten å oppsøke risikoområder.",
+      "safety": "Bruk bare offentlig vei, merket sti eller annen trygg etablert ferdsel. Ikke oppsøk kraftverksinntak, tekniske installasjoner, bratte elveløp eller umerket høyfjell som del av øvelsene. Kartdata brukes til sammenligning; fysisk nærhet er ikke nødvendig.",
+      "exercises": [
+        {
+          "id": "saltana_kartpar",
+          "title": "Kartpar: Saltåna og Vaulaelva",
+          "instruction": "Finn begge vassdragene på kartet og marker hvor de ligger i forhold til hverandre.",
+          "duration_minutes": 6,
+          "intensity": "svært lett",
+          "why": "Øvelsen gjør NVEs krav om å lese vernet i sammenheng konkret."
+        },
+        {
+          "id": "saltana_restfelt_runde",
+          "title": "Restfelt-runden",
+          "instruction": "Gå rolig i opptil åtte minutter på trygg ferdselslinje og finn ett naturtrekk som virker lite teknisk påvirket. Kontroller deretter regionens kraftanlegg på kart.",
+          "duration_minutes": 8,
+          "intensity": "lett",
+          "why": "Kontrasten mellom landskap og teknisk region forklarer restfeltverdien."
+        },
+        {
+          "id": "saltana_vern_bruk_stopp",
+          "title": "Vern-og-bruk-stopp",
+          "instruction": "Stå stille og formuler én setning som skiller det vernede vassdraget fra kraftverket registrert i samme vassdragsområde.",
+          "duration_minutes": 4,
+          "intensity": "svært lett",
+          "why": "Presis begrepsbruk hindrer at natur- og energidata blandes sammen."
+        }
+      ]
+    },
+    "civication_store": [
+      {
+        "id": "saltana_vaula_parmodell",
+        "title": "Saltåna–Vaula-parmodellen",
+        "type": "landskapsmodell",
+        "kind": "physical_object",
+        "desc": "En fysisk dobbeltmodell som viser de to vernede nabovassdragene side om side.",
+        "placeSpecificReason": "NVE sier at Saltånas vern må sees i sammenheng med Vaulaelva.",
+        "historicalFunction": "Gjør landskapsvern som nettverk konkret.",
+        "physicalObject": true,
+        "placeSpecific": true,
+        "storePrice": 35,
+        "currency": "PC",
+        "collection": "etne_natur",
+        "collectable": true
+      },
+      {
+        "id": "saltana_restfelt_brikke",
+        "title": "Restfelt-brikken",
+        "type": "verneobjekt",
+        "kind": "physical_object",
+        "desc": "En fysisk brikke der et lite vernet vannsystem ligger omgitt av symboler for vannkraftutbygging.",
+        "placeSpecificReason": "Restfeltverdien er en eksplisitt del av NVEs vernegrunnlag for Saltåna.",
+        "historicalFunction": "Viser hvorfor gjenværende lite påvirkede felt kan få økt verdi.",
+        "physicalObject": true,
+        "placeSpecific": true,
+        "storePrice": 35,
+        "currency": "PC",
+        "collection": "etne_natur",
+        "collectable": true
+      },
+      {
+        "id": "saltana_04232z_kort",
+        "title": "042.32Z-kortet",
+        "type": "vassdragskort",
+        "kind": "physical_object",
+        "desc": "Et fysisk kort med vassdragsområde 042.32Z og separate symboler for naturvern og kraftverk.",
+        "placeSpecificReason": "NVE bruker samme vassdragsområde i kraftverksregistreringen.",
+        "historicalFunction": "Lærer spilleren å skille områdeidentitet fra enkeltanlegg.",
+        "physicalObject": true,
+        "placeSpecific": true,
+        "storePrice": 35,
+        "currency": "PC",
+        "collection": "etne_natur",
+        "collectable": true
+      },
+      {
+        "id": "saltana_vern_bruk_overlay",
+        "title": "Vern-og-bruk-overlayet",
+        "type": "kartobjekt",
+        "kind": "physical_object",
+        "desc": "To transparente fysiske kartlag: ett for vernegrunnlag og ett for teknisk energibruk.",
+        "placeSpecificReason": "Saltåna er spesielt egnet til å vise at verne- og energidata må leses i riktige geografiske lag.",
+        "historicalFunction": "Gjør kildeavgrensning til et samlerobjekt.",
+        "physicalObject": true,
+        "placeSpecific": true,
+        "storePrice": 35,
+        "currency": "PC",
+        "collection": "etne_natur",
+        "collectable": true
+      }
+    ],
+    "brands": [
+      {
+        "id": "nve",
+        "name": "Norges vassdrags- og energidirektorat",
+        "brand_kind": "public_actor",
+        "brand_type": "watercourse_and_energy_management"
+      },
+      {
+        "id": "etne_kommune",
+        "name": "Etne kommune",
+        "brand_kind": "public_actor",
+        "brand_type": "municipality"
+      },
+      {
+        "id": "saltano_kraft_as",
+        "name": "Saltåno Kraft AS",
+        "brand_kind": "energy_actor",
+        "brand_type": "hydropower_owner"
+      },
+      {
+        "id": "vaulovassdraget",
+        "name": "Vaulovassdraget",
+        "brand_kind": "protected_watercourse_identity",
+        "brand_type": "related_protected_watercourse"
+      },
+      {
+        "id": "kartverket",
+        "name": "Kartverket",
+        "brand_kind": "public_actor",
+        "brand_type": "place_name_authority"
+      }
+    ],
+    "for_na": {
+      "title": "Et vernet landskap med teknisk energibruk i samme vassdragsområde",
+      "before": "I 2005 ble en konsesjonssak for Saltåna minikraftverk avgjort som konsesjonsfri, før det registrerte Saltåno kraftverket senere ble satt i drift.",
+      "now": "NVE registrerer Saltåno kraftverk i drift fra 2011 med 0,3 MW maksimal ytelse, samtidig som vernegrunnlaget for Saltåna fortsatt framhever fjellandskap, friluftsliv, restfelt og sammenhengen med Vaulaelva.",
+      "change": "Vassdragsområdet kan derfor ikke leses som enten bare vernet natur eller bare energianlegg; geografiske lag og konkrete inngrep må skilles presist.",
+      "lookFor": [
+        "fjellandskapet",
+        "forholdet til Vaulaelva på kart",
+        "områder uten synlige tekniske inngrep",
+        "kraftverk som separat kartpunkt",
+        "skillet mellom vassdrag og anlegg"
+      ],
+      "sources": [
+        "https://www.nve.no/vann-og-vassdrag/vassdragsforvaltning/verneplan-for-vassdrag/vestland/?page=3",
+        "https://www.nve.no/energi/energisystem/vannkraft/vannkraftverk/?id=1612",
+        "https://www.nve.no/konsesjon/konsesjonssaker/konsesjonssak/?id=3310&type=V-1",
+        "https://www.etne.kommune.no/naring-natur-og-miljo/natur-og-miljovern/naturforvaltning/"
+      ]
+    }
   }
 ]
