@@ -83,10 +83,10 @@ def test_apply_runs_in_one_cleanup_transaction_and_deletes_in_fk_safe_order() ->
     assert result.deleted_counts.closed_reports == 1
 
     statements = [str(call.args[0]).lower() for call in connection.execute.call_args_list]
-    delete_statements = [statement for statement in statements if statement.lstrip().startswith("delete")]
-    assert [
-        _deleted_table(statement) for statement in delete_statements
-    ] == [
+    delete_statements = [
+        statement for statement in statements if statement.lstrip().startswith("delete")
+    ]
+    assert [_deleted_table(statement) for statement in delete_statements] == [
         "hg_social_meet_appeals",
         "hg_social_meet_profile_restrictions",
         "hg_social_meet_moderation_queue",
@@ -107,6 +107,18 @@ def test_apply_runs_in_one_cleanup_transaction_and_deletes_in_fk_safe_order() ->
     assert "user_id" not in str(insert_params["candidate_counts"]).lower()
 
 
+@pytest.mark.parametrize(
+    ("entity_type", "expected_table"),
+    [
+        (RetentionEntityType.INVITE, "hg_spotmeeting_invites"),
+        (RetentionEntityType.BLOCK, "hg_social_meet_blocks"),
+        (RetentionEntityType.REPORT, "hg_social_meet_reports"),
+        (RetentionEntityType.MODERATION_QUEUE, "hg_social_meet_moderation_queue"),
+        (RetentionEntityType.RESTRICTION, "hg_social_meet_profile_restrictions"),
+        (RetentionEntityType.APPEAL, "hg_social_meet_appeals"),
+        (RetentionEntityType.SAFETY_AUDIT, "hg_social_meet_safety_audit"),
+    ],
+)
 def test_entity_existence_checks_only_the_canonical_table(
     entity_type: RetentionEntityType,
     expected_table: str,
@@ -121,20 +133,6 @@ def test_entity_existence_checks_only_the_canonical_table(
     params = connection.execute.call_args.args[1]
     assert expected_table in statement
     assert params == {"entity_id": entity_id}
-
-
-test_entity_existence_checks_only_the_canonical_table = pytest.mark.parametrize(
-    ("entity_type", "expected_table"),
-    [
-        (RetentionEntityType.INVITE, "hg_spotmeeting_invites"),
-        (RetentionEntityType.BLOCK, "hg_social_meet_blocks"),
-        (RetentionEntityType.REPORT, "hg_social_meet_reports"),
-        (RetentionEntityType.MODERATION_QUEUE, "hg_social_meet_moderation_queue"),
-        (RetentionEntityType.RESTRICTION, "hg_social_meet_profile_restrictions"),
-        (RetentionEntityType.APPEAL, "hg_social_meet_appeals"),
-        (RetentionEntityType.SAFETY_AUDIT, "hg_social_meet_safety_audit"),
-    ],
-)(test_entity_existence_checks_only_the_canonical_table)
 
 
 def _policy() -> RetentionPolicyView:
