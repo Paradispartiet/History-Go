@@ -2,72 +2,142 @@
   "schemaVersion": "1.0",
   "placeId": "alnaelvstien",
   "placeFile": "data/places/natur/oslo/places_oslo_alna.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.931,
-    "lon": 10.83,
-    "r": 300,
-    "coordStatus": "needs_source",
-    "coordSource": "trail_route_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Oslo kommune dokumenterer turvei langs Alnaelva, mens OSM har flere separate ways med navnet Alnastien og ingen samlet entydig ruterelasjon i kontrollen. Ett legacy-punkt kan derfor ikke verifisere hele stien. Eksisterende lat/lon beholdes kun som uverifisert representasjonsanker til routeSegments eller en samlet kildebelagt rutetrase er modellert."
+    "lat": 59.9059364,
+    "lon": 10.8030114,
+    "r": 250,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap Alnastien routeSegments (31989054, 1527826111, 1527826112, 113281394, 113281380, 945870545, 112543906, 1085893555, 385329987, 385329986, 674182052); display midpoint on way 113281394",
+    "coordType": "multi_segment_route_display_anchor",
+    "coordNote": "Batch 159 retter den tidligere brede og uverifiserte «Alnaelvstien»-representasjonen til den konkrete kartlagte Alnastien-komponenten gjennom Svartdalen og Bryn. Fresh OSM validerer elleve ways med eksakt name=Alnastien. De danner én uforgrenet endepunktkoblet kjede uten isolerte segmenter eller forgreningsnoder. Samlet lengde er 1642 meter. Canonical lat/lon er deterministisk lengdemidtpunkt for den sammensatte kjeden og ligger på OSM way 113281394; denne wayen brukes derfor som coordinate-source-contract displaykilde. Alle elleve ways lagres eksplisitt som routeSegments. Oslo kommune dokumenterer turveien langs Alnaelva gjennom Svartdalsparken og omtaler Alnastien i Etterstad/Bryn-kontekst. Modellen hevder ikke at disse 1,64 kilometerne er hele turveisystemet langs Alna. Legacy-punktet og nearest/first-hit brukes ikke."
   },
   "identity": {
-    "currentName": "Alnaelvstien",
-    "resolvedIdentity": "Turvei langs Alnaelva, med flere OSM-segmenter navngitt Alnastien",
+    "currentName": "Alnastien – Svartdalen og Bryn",
+    "resolvedIdentity": "Den konkrete sammenhengende Alnastien-komponenten gjennom Svartdalen og Bryn, modellert som elleve eksakt navngitte OSM-routeSegments",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "route",
     "requiresSplit": false,
     "splitReason": ""
   },
-  "requiredEvidence": [
-    "samlet offisiell rutetrase eller eksplisitte verifiserte routeSegments"
-  ],
+  "requiredEvidence": [],
   "evidence": [
     {
-      "sourceProvider": "municipality",
-      "sourceName": "Oslo kommune – turvei langs Alnaelva",
-      "sourceUrl": "https://aktuelt.oslo.kommune.no/rehabilitering-av-hengebrua-i-svartdalsparken",
-      "sourceObjectId": "oslo-kommune:turvei-langs-alnaelva",
-      "sourceQuality": "official_route_identity",
-      "finding": "Oslo kommune dokumenterer turveien langs Alnaelva og konkrete deler gjennom Svartdalsparken.",
-      "canVerifyCoordinate": false,
-      "reason": "Kilden dokumenterer ruten som lineært system, ikke ett canonical punkt."
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – sammenhengende Alnastien routeSegments",
+      "sourceUrl": "https://www.openstreetmap.org/way/113281394",
+      "sourceObjectId": "osm-way:113281394",
+      "sourceQuality": "exact_named_unbranched_multi_segment_route_chain",
+      "finding": "Elleve ferskt validerte ways med eksakt name=Alnastien danner én uforgrenet endepunktkoblet kjede på 1642 m. Deterministisk rutemidtpunkt er 59.9059364, 10.8030114 og ligger på way 113281394.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical displaykoordinat beregnes direkte fra den eksplisitte sammensatte rutekjeden, og alle delgeometrier lagres som routeSegments."
     },
     {
-      "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap – Alnastien-segmenter",
-      "sourceUrl": "https://www.openstreetmap.org/search?query=Alnastien%20Oslo",
-      "sourceObjectId": "osm:alnastien-multiple-ways",
-      "sourceQuality": "fragmented_trail_geometry",
-      "finding": "Nominatim finner flere separate ways med navnet Alnastien.",
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – rehabilitering av hengebrua i Svartdalsparken",
+      "sourceUrl": "https://aktuelt.oslo.kommune.no/rehabilitering-av-hengebrua-i-svartdalsparken",
+      "sourceObjectId": "oslo-kommune:svartdalsparken:turvei-langs-alnaelva",
+      "sourceQuality": "official_local_trail_context",
+      "finding": "Oslo kommune dokumenterer hengebrua og bordgangen i Svartdalsparken som del av turveien langs Alnaelva.",
       "canVerifyCoordinate": false,
-      "reason": "Ingen samlet ruterelasjon ble identifisert; ett av segmentene kan ikke velges som hele stiens hovedpunkt."
+      "reason": "Kryssjekker den lokale turvei-identiteten; eksakt rutekjede kommer fra OSM."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Etterstadsletta vest",
+      "sourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/etterstadsletta-vest-bedre-tilrettelegging-for-syklende-og-gaende",
+      "sourceObjectId": "oslo-kommune:etterstadsletta-vest:alnastien",
+      "sourceQuality": "official_named_alnastien_scope_context",
+      "finding": "Oslo kommune omtaler en snarvei fra Alnastien til Etterstadkroken og kryssjekker Alnastien-navnet i Bryn/Etterstad-scope.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker geografisk scope og navn; canonical geometri kommer fra OSM-routeSegments."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "municipality",
-      "sourceObjectId": "oslo-kommune:turvei-langs-alnaelva",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:31989054",
       "canApplyToPlace": false
     },
     {
       "sourceProvider": "osm",
-      "sourceObjectId": "osm:alnastien-multiple-ways",
+      "sourceObjectId": "osm-way:1527826111",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1527826112",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:113281394",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:113281380",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:945870545",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:112543906",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1085893555",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:385329987",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:385329986",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:674182052",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:113281394",
+      "lat": 59.9059364,
+      "lon": 10.8030114,
+      "coordRole": "line_anchor",
+      "geometryType": "MultiSegmentLineString",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9059364,
+      "lon": 10.8030114,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Oslo kommune dokumenterer turvei langs Alnaelva, mens OSM har flere separate ways med navnet Alnastien og ingen samlet entydig ruterelasjon i kontrollen. Ett legacy-punkt kan derfor ikke verifisere hele stien. Eksisterende lat/lon beholdes kun som uverifisert representasjonsanker til routeSegments eller en samlet kildebelagt rutetrase er modellert.",
-    "nextAction": "Bygg routeSegments eller finn samlet offisiell/OSM-ruterelasjon før canonical koordinat godkjennes."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Den konkrete Alnastien-komponenten gjennom Svartdalen og Bryn er anvendt som verified multi-segment route med alle elleve ways lagret eksplisitt."
   },
   "notes": [
-    "Oslo kommune dokumenterer turvei langs Alnaelva, mens OSM har flere separate ways med navnet Alnastien og ingen samlet entydig ruterelasjon i kontrollen. Ett legacy-punkt kan derfor ikke verifisere hele stien. Eksisterende lat/lon beholdes kun som uverifisert representasjonsanker til routeSegments eller en samlet kildebelagt rutetrase er modellert."
+    "Batch 159 retter den tidligere brede og uverifiserte «Alnaelvstien»-representasjonen til den konkrete kartlagte Alnastien-komponenten gjennom Svartdalen og Bryn. Fresh OSM validerer elleve ways med eksakt name=Alnastien. De danner én uforgrenet endepunktkoblet kjede uten isolerte segmenter eller forgreningsnoder. Samlet lengde er 1642 meter. Canonical lat/lon er deterministisk lengdemidtpunkt for den sammensatte kjeden og ligger på OSM way 113281394; denne wayen brukes derfor som coordinate-source-contract displaykilde. Alle elleve ways lagres eksplisitt som routeSegments. Oslo kommune dokumenterer turveien langs Alnaelva gjennom Svartdalsparken og omtaler Alnastien i Etterstad/Bryn-kontekst. Modellen hevder ikke at disse 1,64 kilometerne er hele turveisystemet langs Alna. Legacy-punktet og nearest/first-hit brukes ikke."
   ]
 }
