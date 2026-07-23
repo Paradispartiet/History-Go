@@ -39,7 +39,7 @@ on:
       - 'tests/knowledge-v2-model.test.js'
       - 'tests/knowledge-canonical-storage-contract.test.js'
       - '.github/workflows/data-checks.yml'
-      - '.github/scenekunst-batch-5-final-trigger-v2.txt'
+      - '.github/scenekunst-batch-5-final-trigger-v3.txt'
   workflow_dispatch:
 
 permissions:
@@ -214,7 +214,7 @@ jobs:
 
   build-final-scenekunst-batch-5:
     name: Build final Scenekunst batch 5 branch
-    if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/scenekunst-batch-5-final-trigger-v2'
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/scenekunst-batch-5-final-trigger-v3'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -234,26 +234,27 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Prepare final branch
+      - name: Build, validate and publish final branch
         shell: bash
         run: |
           set -euo pipefail
           SOURCE_BRANCH='agent/scenekunst-venues-05-replayed'
           FINAL_BRANCH='agent/scenekunst-venues-05-final'
+          FILES=(
+            'data/places/scenekunst/akershus/baerum_kulturhus.json'
+            'data/places/scenekunst/buskerud/drammens_teater.json'
+            'data/places/scenekunst/oslo/dramatikkens_hus.json'
+            'data/places/scenekunst/oslo/teater_manu.json'
+            'data/places/scenekunst/oslo/vega_scene.json'
+            'reports/scenekunst-new-venues-batch-5-2026-07-23.json'
+            'reports/scenekunst-new-venues-batch-5-2026-07-23.md'
+          )
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git fetch origin main "${SOURCE_BRANCH}"
           BASE_SHA="$(git rev-parse origin/main)"
-          echo "${BASE_SHA}" > /tmp/scenekunst-batch5-base-sha
           git checkout -B "${FINAL_BRANCH}" "${BASE_SHA}"
-          git checkout "origin/${SOURCE_BRANCH}" -- \
-            data/places/scenekunst/akershus/baerum_kulturhus.json \
-            data/places/scenekunst/buskerud/drammens_teater.json \
-            data/places/scenekunst/oslo/dramatikkens_hus.json \
-            data/places/scenekunst/oslo/teater_manu.json \
-            data/places/scenekunst/oslo/vega_scene.json \
-            reports/scenekunst-new-venues-batch-5-2026-07-23.json \
-            reports/scenekunst-new-venues-batch-5-2026-07-23.md
+          git checkout "origin/${SOURCE_BRANCH}" -- "${FILES[@]}"
           node <<'NODE'
           const fs = require('fs');
           const file = 'data/places/manifest.json';
@@ -271,9 +272,6 @@ jobs:
           fs.writeFileSync(file, JSON.stringify(manifest, null, 2) + '\n');
           NODE
           npm run places:index:build
-
-      - name: Validate final batch
-        run: |
           bash scripts/check-places.sh
           bash scripts/check-people.sh
           npm run audit:categories
@@ -290,27 +288,12 @@ jobs:
           npm run test:knowledge-v2
           node --test tests/knowledge-canonical-storage-contract.test.js
           git diff --check
-
-      - name: Commit and publish final branch
-        shell: bash
-        run: |
-          set -euo pipefail
           git fetch origin main
-          EXPECTED_BASE="$(cat /tmp/scenekunst-batch5-base-sha)"
           CURRENT_MAIN="$(git rev-parse origin/main)"
-          if [ "${CURRENT_MAIN}" != "${EXPECTED_BASE}" ]; then
-            echo "main moved from ${EXPECTED_BASE} to ${CURRENT_MAIN}; refusing stale branch"
+          if [ "${CURRENT_MAIN}" != "${BASE_SHA}" ]; then
+            echo "main moved from ${BASE_SHA} to ${CURRENT_MAIN}; refusing stale branch"
             exit 2
           fi
-          git add \
-            data/places/manifest.json \
-            data/places/places_index.json \
-            data/places/scenekunst/akershus/baerum_kulturhus.json \
-            data/places/scenekunst/buskerud/drammens_teater.json \
-            data/places/scenekunst/oslo/dramatikkens_hus.json \
-            data/places/scenekunst/oslo/teater_manu.json \
-            data/places/scenekunst/oslo/vega_scene.json \
-            reports/scenekunst-new-venues-batch-5-2026-07-23.json \
-            reports/scenekunst-new-venues-batch-5-2026-07-23.md
+          git add data/places/manifest.json data/places/places_index.json "${FILES[@]}"
           git commit -m 'Add fifth Scenekunst venue batch on current main'
-          git push --force-with-lease origin HEAD:agent/scenekunst-venues-05-final
+          git push --force-with-lease origin HEAD:"${FINAL_BRANCH}"
