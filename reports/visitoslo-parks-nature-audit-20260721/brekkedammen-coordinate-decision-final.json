@@ -1,0 +1,48 @@
+{
+  "version": "2026-07-23",
+  "placeId": "brekkedammen",
+  "name": "Brekkedammen ved Frysja",
+  "scopeStatus": "approved_new_physical_place",
+  "coordinateStatus": "blocked_no_authoritative_whole_site_anchor",
+  "primaryCategory": "natur",
+  "representationLock": "The canonical identity is the named municipal bathing/recreation place at upper Akerselva. The weir, reservoir and nearby industrial heritage are physical layers of the site but none may silently redefine the whole bathing-place identity.",
+  "officialIdentitySource": {
+    "name": "Oslo kommune – Brekkedammen ved Frysja",
+    "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/badeplasser/brekkedammen-ved-frysja/",
+    "finding": "Oslo kommune identifies Brekkedammen ved Frysja as a popular bathing place in the upper Akerselva."
+  },
+  "rejectedAsWholeSiteAnchors": [
+    {
+      "sourceObjectId": "osm-way:66357555",
+      "lat": 59.9667474,
+      "lon": 10.7767656,
+      "type": "weir",
+      "reason": "Exact named physical object, but it represents the weir itself rather than the complete municipal bathing/recreation site. It is also only 25.2 m from the existing Brekke power-station place."
+    },
+    {
+      "sourceObjectId": "osm-relation:14334474",
+      "lat": 59.967732,
+      "lon": 10.7816029,
+      "type": "reservoir",
+      "name": "Frysja",
+      "reason": "A broader water polygon, but not an exact Brekkedammen bathing-place identity and 290.6 m from the named weir. It cannot be substituted for the recreation site without source support."
+    }
+  ],
+  "failedAnchorSources": {
+    "kartverketSsrExactCandidates": 0,
+    "officialOsloPageEncodedCoordinates": 0,
+    "officialOsloMapLinks": 0,
+    "exactRecreationOrBathingOsmObjects": 0
+  },
+  "duplicateContext": {
+    "canonicalIdentityMatches": [],
+    "nearbyCanonical": [
+      {
+        "placeId": "frysja_33_brekke_kraftstasjon",
+        "distanceFromWeirM": 25.2
+      }
+    ]
+  },
+  "productionDecision": "Do not produce until a non-guessed authoritative bathing/recreation-site anchor is documented. Preserve the approved place scope and all physical evidence as backlog.",
+  "sourceAuditPrs": [3144, 3146, 3484, 3486]
+}
