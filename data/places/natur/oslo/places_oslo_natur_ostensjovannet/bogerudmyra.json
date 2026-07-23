@@ -1,22 +1,22 @@
 {
   "id": "bogerudmyra",
-  "name": "Bøler/Bogerudmyra",
-  "lat": 59.8927,
-  "lon": 10.8438,
+  "name": "Bogerudmyra",
+  "lat": 59.878427,
+  "lon": 10.8342964,
   "r": 180,
   "category": "natur",
-  "desc": "Myr- og fuktmarksnært stopp i randsonen mot Østensjø-området.",
+  "desc": "Våtmarks- og myrområde sør for Østensjøvannet, vernet som del av Østensjøvannet naturreservat.",
   "nature_profile": {
-    "type": "myr / fuktmark / skogrand",
-    "title": "Fuktmark mellom skog og boligområder",
-    "summary": "Bogerudmyra er en fuktig randsone der myrpreget mark, skogkanter og grønnstruktur møter boligområdene øst for Østensjøvannet. Vannmettet jord og varierende vegetasjon skaper andre vekstvilkår enn i tørrere skog og langs selve innsjøkanten. Natur-rundingen viser hvordan mindre fuktmarker kan holde på vann, gi særpregede leveområder og fungere som forbindelsesledd mellom større naturområder, selv når de ligger tett på byen.",
+    "type": "myr / våtmark / naturreservat",
+    "title": "Bogerudmyra – våtmark sør for Østensjøvannet",
+    "summary": "Bogerudmyra er et langstrakt våtmarks- og myrområde sør for Østensjøvannet og inngår i det samme naturreservatet. Området har egne fuktige vegetasjonssoner og vannforhold, og forbindelsen til innsjøen reguleres blant annet av en erosjonsterskel. Natur-rundingen viser hvordan myr, grunt vann og hydrologisk forvaltning virker sammen i et sammenhengende bynært våtmarkssystem.",
     "themes": [
-      "vannmettet myrjord",
-      "fuktmark i skogrand",
-      "overgang mellom natur og boligområde",
-      "lokal vannlagring",
-      "leveområder i små våtmarker",
-      "grønn forbindelse mot Østensjøområdet"
+      "myr og våtmark",
+      "fuktig vegetasjon",
+      "forbindelsen til Østensjøvannet",
+      "erosjonsterskel og vannstand",
+      "naturreservat",
+      "bynær våtmarksøkologi"
     ],
     "nearby_place_ids": [
       "ostensjovannet_nord",
@@ -26,21 +26,21 @@
   },
   "tags": [
     "myr",
+    "vatmark",
     "fuktmark",
-    "skog",
-    "vatmark"
+    "naturreservat"
   ],
   "routeId": "ostensjovannet_vatmark",
-  "sourceHint": "Koordinat satt ved Bogerudmyra/Bølermyra-området i grønstruktur mot Østensjøvannet.",
-  "coordType": "legacy_unverified",
-  "coordStatus": "needs_source",
-  "coordSource": "bogerudmyra_canonical_geometry_unresolved",
-  "coordVerifiedAt": "2026-07-21",
+  "sourceHint": "Canonical area-anchor er beregnet fra den eksakte navngitte OSM-våtmarksgeometrien for Bogerudmyra.",
+  "coordType": "wetland_area_anchor",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap relation 4106652 – Bogerudmyra",
+  "coordVerifiedAt": "2026-07-23",
   "emne_ids": [
     "em_natur_okosystemtjenester",
     "em_natur_vatmark_vannspeil_habitat"
   ],
-  "popupDesc": "Bogerudmyra er et fuktig myr- og våtmarkspreg i randsonen mot Østensjøområdet. Underlaget og vegetasjonen skiller seg fra tørrere skogpartier rundt, og gir levevilkår for arter knyttet til myr. Området fungerer som en grønn overgang mellom boligstrøk og mer sammenhengende naturdrag. Stedet synliggjør en sjeldnere naturtype i den bynære grønnstrukturen.",
+  "popupDesc": "Bogerudmyra ligger sør for Østensjøvannet og er en del av det vernede våtmarksområdet. Myra står i direkte landskapelig sammenheng med innsjøen, men har egne vann- og vegetasjonsforhold. Fuktig mark, kanaler og myrvegetasjon gjør området viktig for våtmarksøkologi, samtidig som erosjonsterskelen mellom myra og vannet viser hvordan hydrologien i området også er aktivt forvaltet.",
   "underbadge_ids": [
     "vatmark",
     "habitat",
@@ -50,5 +50,11 @@
     "designCode": "park_miniature"
   },
   "locatorType": "natural_area",
-  "coordNote": "Kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med riktig objekttype innenfor den forhåndsdefinerte lokale scope-boksen (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker."
+  "coordNote": "Batch 151 løser Bogerudmyra som et konkret navngitt våtmarksobjekt sør for Østensjøvannet. Eksakt-name-auditen fant flere objekter med navnet Bogerudmyra, men objekttypefilteret skiller entydig ut OSM relation 4106652 som eneste fysiske våtmark; de øvrige treffene er bussholdeplasser og kollektiv stop_area. Relation 4106652 er tagget natural=wetland, wetland=marsh og type=multipolygon. Lovdata og Østensjøvannets Venner dokumenterer Bogerudmyra som del av Østensjøvannet naturreservat. Canonical lat/lon er beregnet deterministisk som arealvektet centroid av MultiPolygon-geometrien. Legacy-punktet og nearest/first-hit brukes ikke.",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-relation:4106652",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "area_anchor",
+  "coordSourceId": "osm-relation:4106652",
+  "coordSourceUrl": "https://www.openstreetmap.org/relation/4106652"
 }

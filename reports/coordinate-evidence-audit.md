@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-23T03:11:00.104Z
+Generert: 2026-07-23T03:19:10.016Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -227,7 +227,7 @@ Generert: 2026-07-23T03:11:00.104Z
 | bjoelsenparken_elvenaer | data/coordinate-evidence/oslo/natur/bjoelsenparken_elvenaer.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bleikoya | data/coordinate-evidence/oslo/natur/bleikoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | blindern_forskningsparken_salamanderdam | data/coordinate-evidence/oslo/natur/blindern_forskningsparken_salamanderdam.json | needs_research | needs_geometry | OK |
-| bogerudmyra | data/coordinate-evidence/oslo/natur/bogerudmyra.json | needs_research | needs_geometry | OK |
+| bogerudmyra | data/coordinate-evidence/oslo/natur/bogerudmyra.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bogstadvannet | data/coordinate-evidence/oslo/natur/bogstadvannet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bygdoy_bygdoynes | data/coordinate-evidence/oslo/natur/bygdoy_bygdoynes.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bygdoy_dronningberget | data/coordinate-evidence/oslo/natur/bygdoy_dronningberget.json | applied_to_place | do_not_change_coordinates_yet | OK |
