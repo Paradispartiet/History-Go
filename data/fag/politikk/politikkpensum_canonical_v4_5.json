@@ -730,10 +730,10 @@
     {
       "domain_id": "konflikt_makt_sivilsamfunn",
       "label": "Konflikt, makt og sivilsamfunn",
-      "tagline": "Hvordan interesser, protester, bevegelser, organisasjoner og konfliktlinjer former samfunnet.",
-      "definition": "Domenet dekker politiske konflikter, makt, interessegrupper, sivilsamfunn, organisasjoner, demonstrasjoner, protest, aktivisme, ideologi og konfliktlinjer.",
-      "question_role": "Starter i konkret institusjon, lov, offentlig rom, reform, konflikt, fordeling, velferdstjeneste, norm eller sosial prosess før teori løftes inn.",
-      "status": "strong",
+      "tagline": "Hvordan interesser, organisasjoner, protester, ideologier og offentlige rom omformer konflikt til politisk makt, motmakt og institusjonell endring.",
+      "definition": "Domenet analyserer hvordan interesser organiseres, hvordan makt utøves og utfordres, og hvordan sivilsamfunn, protest, arbeidsliv, ideologi, miljøstrid, minne og polarisering påvirker politiske beslutninger og offentlig orden.",
+      "question_role": "Start i en dokumenterbar aktør, organisasjon, avtale, protest, beslutning, konflikt, måling eller offentlig hendelse. Identifiser krav og målgruppe, forklar makt-, mobiliserings- eller påvirkningsmekanismen, test en kritisk distinksjon og bruk teori bare når den presiserer mekanismen.",
+      "status": "complete_revised",
       "emne_count": 8,
       "hook_count": 10,
       "method_count": 13,
@@ -821,7 +821,41 @@
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "institution_law_conflict_or_social_process_anchor_required": true
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+      "generator_profile": "konflikt_makt_sivilsamfunn",
+      "revised_method_ids": [
+        "met_pol_konfliktanalyse",
+        "met_pol_fordelingsanalyse",
+        "met_pol_protest_og_bevegelsesanalyse",
+        "met_pol_offentlighetsanalyse",
+        "met_pol_romlig_maktanalyse",
+        "met_pol_parti_og_bevegelsesanalyse",
+        "met_pol_ideologianalyse",
+        "met_pol_makt_og_interesseanalyse",
+        "met_pol_diskursanalyse",
+        "met_pol_sivilsamfunnsanalyse",
+        "met_pol_symbolanalyse",
+        "met_pol_politisk_historisk_analyse",
+        "met_pol_legitimitetsanalyse"
+      ],
+      "required_question_chain": [
+        "external_conflict_case_or_source",
+        "claim_basis",
+        "actor_claim_and_target",
+        "power_mobilisation_or_influence_mechanism",
+        "critical_distinction",
+        "optional_theory_lens"
+      ],
+      "quality_rule": "Teori brukes etter at aktør, krav, mål, kilde og konfliktmekanisme er dokumentert. Canonical-filene definerer analyseformen, men er ikke faktakilder.",
+      "vertical_chain_status": {
+        "fagkart_hooks_revised": 10,
+        "emner_revised": 8,
+        "method_profiles_revised": 13,
+        "mappings_revised": 20,
+        "generator_profile_active": true,
+        "question_blueprints_validated": 10
+      }
     },
     {
       "domain_id": "normer_identitet_hverdagsliv",

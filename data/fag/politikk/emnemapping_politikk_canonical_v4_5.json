@@ -606,15 +606,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_konfliktanalyse",
-          "met_pol_fordelingsanalyse"
+          "met_pol_makt_og_interesseanalyse",
+          "met_pol_politisk_historisk_analyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "collective_agreement",
+          "labour_law",
+          "strike_or_negotiation_case",
+          "organisation_data"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "tariffavtale",
+          "kollektiv forhandling",
+          "streik og lockout",
+          "organisasjonsgrad",
+          "medbestemmelse",
+          "arbeidsrettslig regulering",
+          "frontfagskoordinering",
+          "trepartssamarbeid"
+        ],
+        "critical_distinction_options": [
+          "individuell kontrakt vs kollektiv avtale",
+          "formell rett vs faktisk forhandlingsmakt",
+          "interessekonflikt vs rettstvist",
+          "samarbeid vs maktbalanse"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "karl_marx",
+            "concept": "arbeidsforhold, klasse og konflikt"
+          },
+          {
+            "thinker_id": "stein_rokkan",
+            "concept": "organiserte konfliktlinjer og korporative kanaler"
+          },
+          {
+            "thinker_id": "charles_tilly",
+            "concept": "kollektiv organisering og mobilisering"
+          }
+        ],
+        "case_anchors": [
+          "Folkets Hus",
+          "Youngstorget",
+          "Arbeidsretten"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -2375,15 +2436,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_protest_og_bevegelsesanalyse",
-          "met_pol_offentlighetsanalyse"
+          "met_pol_offentlighetsanalyse",
+          "met_pol_romlig_maktanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "demonstration_record",
+          "permit_or_police_rule",
+          "movement_source",
+          "documented_outcome"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "mobilisering",
+          "kollektiv identitet",
+          "repertoarvalg",
+          "forstyrrelse",
+          "medialisering",
+          "politisk mulighetsstruktur",
+          "politi- og tillatelsesregime",
+          "motmobilisering"
+        ],
+        "critical_distinction_options": [
+          "deltakelse vs representativitet",
+          "synlighet vs gjennomslag",
+          "lovlig regulering vs politisk begrensning",
+          "symbolsk markering vs materiell forstyrrelse"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "charles_tilly",
+            "concept": "protestrepertoarer og kollektiv handling"
+          },
+          {
+            "thinker_id": "sidney_tarrow",
+            "concept": "politisk mulighetsstruktur og mobilisering"
+          },
+          {
+            "thinker_id": "hannah_arendt",
+            "concept": "kollektiv handling i offentligheten"
+          }
+        ],
+        "case_anchors": [
+          "Eidsvolls plass",
+          "Youngstorget",
+          "Rådhusplassen"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "konflikt_makt_sivilsamfunn",
@@ -2479,16 +2601,77 @@
           "Regjeringskvartalet"
         ],
         "recommended_method_ids": [
+          "met_pol_konfliktanalyse",
           "met_pol_protest_og_bevegelsesanalyse",
-          "met_pol_konfliktanalyse"
+          "met_pol_plan_og_reguleringsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "environmental_assessment",
+          "planning_decision",
+          "hearing_record",
+          "protest_or_litigation_case"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "konsekvensutredning",
+          "arealplanlegging",
+          "kunnskapskonflikt",
+          "kostnadsfordeling",
+          "høringsprosess",
+          "rettslig prøving",
+          "protestmobilisering",
+          "kompensasjon"
+        ],
+        "critical_distinction_options": [
+          "vitenskapelig usikkerhet vs politisk uenighet",
+          "nasjonal gevinst vs lokal kostnad",
+          "formell medvirkning vs reell påvirkning",
+          "miljømål vs fordelingsvirkning"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "chantal_mouffe",
+            "concept": "legitim agonistisk konflikt"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "offentlig begrunnelse og deliberasjon"
+          },
+          {
+            "thinker_id": "charles_tilly",
+            "concept": "mobilisering rundt krav og politiske muligheter"
+          }
+        ],
+        "case_anchors": [
+          "Regjeringskvartalet",
+          "Oslo rådhus",
+          "Eidsvolls plass"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "konflikt_makt_sivilsamfunn",
@@ -2584,16 +2767,77 @@
           "Regjeringskvartalet"
         ],
         "recommended_method_ids": [
+          "met_pol_romlig_maktanalyse",
           "met_pol_protest_og_bevegelsesanalyse",
-          "met_pol_romlig_maktanalyse"
+          "met_pol_symbolanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "place_and_access_rule",
+          "demonstration_route",
+          "security_or_design_document",
+          "documented_conflict_event"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "romlig nærhet til beslutningstaker",
+          "samlingsadgang",
+          "tillatelsesregime",
+          "synlighetskontroll",
+          "sikkerhetssone",
+          "symbolsk okkupasjon",
+          "rutevalg",
+          "ekskluderende utforming"
+        ],
+        "critical_distinction_options": [
+          "offentlig eid vs offentlig tilgjengelig",
+          "synlighet vs adgang",
+          "sikkerhet vs politisk begrensning",
+          "symbolsk sted vs operativ beslutningsarena"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "hannah_arendt",
+            "concept": "offentlig rom som handlingsrom"
+          },
+          {
+            "thinker_id": "charles_tilly",
+            "concept": "repertoar og romlig målretting"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "offentlighetens institusjonelle og romlige vilkår"
+          }
+        ],
+        "case_anchors": [
+          "Eidsvolls plass",
+          "Youngstorget",
+          "Regjeringskvartalet"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -3608,16 +3852,77 @@
           "LO-bygget"
         ],
         "recommended_method_ids": [
-          "met_pol_fordelingsanalyse",
-          "met_pol_konfliktanalyse"
+          "met_pol_konfliktanalyse",
+          "met_pol_makt_og_interesseanalyse",
+          "met_pol_politisk_historisk_analyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "collective_agreement",
+          "labour_law",
+          "strike_or_negotiation_case",
+          "organisation_data"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "tariffavtale",
+          "kollektiv forhandling",
+          "streik og lockout",
+          "organisasjonsgrad",
+          "medbestemmelse",
+          "arbeidsrettslig regulering",
+          "frontfagskoordinering",
+          "trepartssamarbeid"
+        ],
+        "critical_distinction_options": [
+          "individuell kontrakt vs kollektiv avtale",
+          "formell rett vs faktisk forhandlingsmakt",
+          "interessekonflikt vs rettstvist",
+          "samarbeid vs maktbalanse"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "karl_marx",
+            "concept": "arbeidsforhold, klasse og konflikt"
+          },
+          {
+            "thinker_id": "stein_rokkan",
+            "concept": "organiserte konfliktlinjer og korporative kanaler"
+          },
+          {
+            "thinker_id": "charles_tilly",
+            "concept": "kollektiv organisering og mobilisering"
+          }
+        ],
+        "case_anchors": [
+          "Folkets Hus",
+          "Youngstorget",
+          "Arbeidsretten"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -5178,16 +5483,77 @@
           "Regjeringskvartalet"
         ],
         "recommended_method_ids": [
-          "met_pol_ideologianalyse",
-          "met_pol_makt_og_interesseanalyse"
+          "met_pol_makt_og_interesseanalyse",
+          "met_pol_institusjonsanalyse",
+          "met_pol_diskursanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "decision",
+          "lobby_record",
+          "hearing",
+          "resource_or_access_data"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "ressurskontroll",
+          "dagsordenmakt",
+          "lobbyvirksomhet",
+          "koalisjonsbygging",
+          "informasjonsasymmetri",
+          "institusjonell adgang",
+          "vetomakt",
+          "ikke-beslutning"
+        ],
+        "critical_distinction_options": [
+          "maktressurs vs faktisk gjennomslag",
+          "åpen beslutning vs dagsordenmakt",
+          "interesse vs organisert interesse",
+          "formell lik adgang vs ulik påvirkningskapasitet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "robert_dahl",
+            "concept": "beslutningsmakt og observerbar innflytelse"
+          },
+          {
+            "thinker_id": "antonio_gramsci",
+            "concept": "hegemoni og organisert samtykke"
+          },
+          {
+            "thinker_id": "karl_marx",
+            "concept": "klasseinteresser og kontroll over materielle ressurser"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "Regjeringskvartalet",
+          "Næringslivets Hus"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "konflikt_makt_sivilsamfunn",
@@ -5294,15 +5660,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_ideologianalyse",
-          "met_pol_diskursanalyse"
+          "met_pol_diskursanalyse",
+          "met_pol_politisk_historisk_analyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "party_programme",
+          "speech_or_manifesto",
+          "policy_document",
+          "historical_conflict"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "problemdefinisjon",
+          "begrepsinnramming",
+          "verdihierarki",
+          "historiefortelling",
+          "naturaliserende språk",
+          "fiende- og fellesskapskonstruksjon",
+          "programformulering",
+          "hegemonisk normalisering"
+        ],
+        "critical_distinction_options": [
+          "ideologi vs enkeltstandpunkt",
+          "beskrivelse vs normativ problemramme",
+          "partiprogram vs faktisk politikk",
+          "hegemoni vs tvang"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "antonio_gramsci",
+            "concept": "hegemoni og common sense"
+          },
+          {
+            "thinker_id": "karl_marx",
+            "concept": "ideologi og materielle klasseforhold"
+          },
+          {
+            "thinker_id": "chantal_mouffe",
+            "concept": "hegemonisk artikulasjon og konflikt"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "partiprogrammer",
+          "Youngstorget"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -6483,15 +6910,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_makt_og_interesseanalyse",
-          "met_pol_sivilsamfunnsanalyse"
+          "met_pol_sivilsamfunnsanalyse",
+          "met_pol_institusjonsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "hearing_submission",
+          "lobby_or_meeting_record",
+          "membership_or_resource_data",
+          "policy_change"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "høringsdeltakelse",
+          "lobbykontakt",
+          "ekspertkunnskap",
+          "medlemsmobilisering",
+          "økonomisk ressursbruk",
+          "korporativ representasjon",
+          "mediestrategi",
+          "alliansebygging"
+        ],
+        "critical_distinction_options": [
+          "interessegruppe vs politisk parti",
+          "innsidepåvirkning vs utsidemobilisering",
+          "ekspertise vs partsinteresse",
+          "medlemsrepresentasjon vs organisatorisk egeninteresse"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "robert_dahl",
+            "concept": "pluralistisk konkurranse mellom organiserte interesser"
+          },
+          {
+            "thinker_id": "stein_rokkan",
+            "concept": "korporative kanaler og konfliktlinjer"
+          },
+          {
+            "thinker_id": "gudmund_hernes",
+            "concept": "maktressurser og organiserte aktører"
+          }
+        ],
+        "case_anchors": [
+          "Folkets Hus",
+          "Næringslivets Hus",
+          "Stortingets høringer"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -10242,15 +10730,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_makt_og_interesseanalyse",
-          "met_pol_ideologianalyse"
+          "met_pol_institusjonsanalyse",
+          "met_pol_diskursanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "decision",
+          "lobby_record",
+          "hearing",
+          "resource_or_access_data"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "ressurskontroll",
+          "dagsordenmakt",
+          "lobbyvirksomhet",
+          "koalisjonsbygging",
+          "informasjonsasymmetri",
+          "institusjonell adgang",
+          "vetomakt",
+          "ikke-beslutning"
+        ],
+        "critical_distinction_options": [
+          "maktressurs vs faktisk gjennomslag",
+          "åpen beslutning vs dagsordenmakt",
+          "interesse vs organisert interesse",
+          "formell lik adgang vs ulik påvirkningskapasitet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "robert_dahl",
+            "concept": "beslutningsmakt og observerbar innflytelse"
+          },
+          {
+            "thinker_id": "antonio_gramsci",
+            "concept": "hegemoni og organisert samtykke"
+          },
+          {
+            "thinker_id": "karl_marx",
+            "concept": "klasseinteresser og kontroll over materielle ressurser"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "Regjeringskvartalet",
+          "Næringslivets Hus"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "konflikt_makt_sivilsamfunn",
@@ -10347,15 +10896,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_makt_og_interesseanalyse",
-          "met_pol_sivilsamfunnsanalyse"
+          "met_pol_sivilsamfunnsanalyse",
+          "met_pol_institusjonsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "hearing_submission",
+          "lobby_or_meeting_record",
+          "membership_or_resource_data",
+          "policy_change"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "høringsdeltakelse",
+          "lobbykontakt",
+          "ekspertkunnskap",
+          "medlemsmobilisering",
+          "økonomisk ressursbruk",
+          "korporativ representasjon",
+          "mediestrategi",
+          "alliansebygging"
+        ],
+        "critical_distinction_options": [
+          "interessegruppe vs politisk parti",
+          "innsidepåvirkning vs utsidemobilisering",
+          "ekspertise vs partsinteresse",
+          "medlemsrepresentasjon vs organisatorisk egeninteresse"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "robert_dahl",
+            "concept": "pluralistisk konkurranse mellom organiserte interesser"
+          },
+          {
+            "thinker_id": "stein_rokkan",
+            "concept": "korporative kanaler og konfliktlinjer"
+          },
+          {
+            "thinker_id": "gudmund_hernes",
+            "concept": "maktressurser og organiserte aktører"
+          }
+        ],
+        "case_anchors": [
+          "Folkets Hus",
+          "Næringslivets Hus",
+          "Stortingets høringer"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -11325,15 +11935,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_romlig_maktanalyse",
-          "met_pol_protest_og_bevegelsesanalyse"
+          "met_pol_protest_og_bevegelsesanalyse",
+          "met_pol_symbolanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "place_and_access_rule",
+          "demonstration_route",
+          "security_or_design_document",
+          "documented_conflict_event"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "romlig nærhet til beslutningstaker",
+          "samlingsadgang",
+          "tillatelsesregime",
+          "synlighetskontroll",
+          "sikkerhetssone",
+          "symbolsk okkupasjon",
+          "rutevalg",
+          "ekskluderende utforming"
+        ],
+        "critical_distinction_options": [
+          "offentlig eid vs offentlig tilgjengelig",
+          "synlighet vs adgang",
+          "sikkerhet vs politisk begrensning",
+          "symbolsk sted vs operativ beslutningsarena"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "hannah_arendt",
+            "concept": "offentlig rom som handlingsrom"
+          },
+          {
+            "thinker_id": "charles_tilly",
+            "concept": "repertoar og romlig målretting"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "offentlighetens institusjonelle og romlige vilkår"
+          }
+        ],
+        "case_anchors": [
+          "Eidsvolls plass",
+          "Youngstorget",
+          "Regjeringskvartalet"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -11543,15 +12214,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_konfliktanalyse",
-          "met_pol_protest_og_bevegelsesanalyse"
+          "met_pol_protest_og_bevegelsesanalyse",
+          "met_pol_plan_og_reguleringsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "environmental_assessment",
+          "planning_decision",
+          "hearing_record",
+          "protest_or_litigation_case"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "konsekvensutredning",
+          "arealplanlegging",
+          "kunnskapskonflikt",
+          "kostnadsfordeling",
+          "høringsprosess",
+          "rettslig prøving",
+          "protestmobilisering",
+          "kompensasjon"
+        ],
+        "critical_distinction_options": [
+          "vitenskapelig usikkerhet vs politisk uenighet",
+          "nasjonal gevinst vs lokal kostnad",
+          "formell medvirkning vs reell påvirkning",
+          "miljømål vs fordelingsvirkning"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "chantal_mouffe",
+            "concept": "legitim agonistisk konflikt"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "offentlig begrunnelse og deliberasjon"
+          },
+          {
+            "thinker_id": "charles_tilly",
+            "concept": "mobilisering rundt krav og politiske muligheter"
+          }
+        ],
+        "case_anchors": [
+          "Regjeringskvartalet",
+          "Oslo rådhus",
+          "Eidsvolls plass"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -11728,15 +12460,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_symbolanalyse",
-          "met_pol_politisk_historisk_analyse"
+          "met_pol_politisk_historisk_analyse",
+          "met_pol_diskursanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "memorial_or_monument",
+          "commemoration_record",
+          "naming_decision",
+          "public_controversy"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "kanonisering",
+          "navngivning",
+          "monumentalisering",
+          "offentlig ritual",
+          "institusjonell kuratering",
+          "motminne",
+          "omtolkning",
+          "fjerning eller flytting"
+        ],
+        "critical_distinction_options": [
+          "historisk hendelse vs offentlig minne",
+          "minne vs hyllest",
+          "representasjon vs dokumentasjon",
+          "glemsel vs aktiv utelatelse"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "hannah_arendt",
+            "concept": "offentlig handling og politisk erindring"
+          },
+          {
+            "thinker_id": "antonio_gramsci",
+            "concept": "hegemonisk historiesyn og motminne"
+          },
+          {
+            "thinker_id": "chantal_mouffe",
+            "concept": "strid om offentlig symbolsk orden"
+          }
+        ],
+        "case_anchors": [
+          "22. juli-senteret",
+          "Eidsvolls plass",
+          "Arbeidersamfunnets plass"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -11928,15 +12721,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_ideologianalyse",
-          "met_pol_diskursanalyse"
+          "met_pol_diskursanalyse",
+          "met_pol_politisk_historisk_analyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "party_programme",
+          "speech_or_manifesto",
+          "policy_document",
+          "historical_conflict"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "problemdefinisjon",
+          "begrepsinnramming",
+          "verdihierarki",
+          "historiefortelling",
+          "naturaliserende språk",
+          "fiende- og fellesskapskonstruksjon",
+          "programformulering",
+          "hegemonisk normalisering"
+        ],
+        "critical_distinction_options": [
+          "ideologi vs enkeltstandpunkt",
+          "beskrivelse vs normativ problemramme",
+          "partiprogram vs faktisk politikk",
+          "hegemoni vs tvang"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "antonio_gramsci",
+            "concept": "hegemoni og common sense"
+          },
+          {
+            "thinker_id": "karl_marx",
+            "concept": "ideologi og materielle klasseforhold"
+          },
+          {
+            "thinker_id": "chantal_mouffe",
+            "concept": "hegemonisk artikulasjon og konflikt"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "partiprogrammer",
+          "Youngstorget"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "normer_identitet_hverdagsliv",
@@ -13206,16 +14060,77 @@
           "Regjeringskvartalet"
         ],
         "recommended_method_ids": [
+          "met_pol_protest_og_bevegelsesanalyse",
           "met_pol_offentlighetsanalyse",
-          "met_pol_protest_og_bevegelsesanalyse"
+          "met_pol_romlig_maktanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "demonstration_record",
+          "permit_or_police_rule",
+          "movement_source",
+          "documented_outcome"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "mobilisering",
+          "kollektiv identitet",
+          "repertoarvalg",
+          "forstyrrelse",
+          "medialisering",
+          "politisk mulighetsstruktur",
+          "politi- og tillatelsesregime",
+          "motmobilisering"
+        ],
+        "critical_distinction_options": [
+          "deltakelse vs representativitet",
+          "synlighet vs gjennomslag",
+          "lovlig regulering vs politisk begrensning",
+          "symbolsk markering vs materiell forstyrrelse"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "charles_tilly",
+            "concept": "protestrepertoarer og kollektiv handling"
+          },
+          {
+            "thinker_id": "sidney_tarrow",
+            "concept": "politisk mulighetsstruktur og mobilisering"
+          },
+          {
+            "thinker_id": "hannah_arendt",
+            "concept": "kollektiv handling i offentligheten"
+          }
+        ],
+        "case_anchors": [
+          "Eidsvolls plass",
+          "Youngstorget",
+          "Rådhusplassen"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "konflikt_makt_sivilsamfunn",
@@ -13322,15 +14237,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_diskursanalyse",
-          "met_pol_legitimitetsanalyse"
+          "met_pol_legitimitetsanalyse",
+          "met_pol_offentlighetsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "survey_or_time_series",
+          "party_position_data",
+          "debate_corpus",
+          "trust_data"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "partipolitisk sortering",
+          "affektiv gruppeknytning",
+          "elitepolarisering",
+          "medial forsterkning",
+          "identitetskobling",
+          "segregerte nettverk",
+          "mistillit",
+          "strategisk fiendebilde"
+        ],
+        "critical_distinction_options": [
+          "ideologisk vs affektiv polarisering",
+          "polarisering vs konflikt",
+          "elitepolarisering vs massepolarisering",
+          "meningsavstand vs sosial fiendtlighet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "chantal_mouffe",
+            "concept": "agonisme vs antagonisme"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "offentlig begrunnelse og kommunikativ fragmentering"
+          },
+          {
+            "thinker_id": "robert_dahl",
+            "concept": "demokratisk opposisjon og gjensidig toleranse"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "Litteraturhuset",
+          "offentlige debattarenaer"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -13897,16 +14873,77 @@
           "Regjeringskvartalet"
         ],
         "recommended_method_ids": [
+          "met_pol_sivilsamfunnsanalyse",
           "met_pol_parti_og_bevegelsesanalyse",
-          "met_pol_sivilsamfunnsanalyse"
+          "met_pol_offentlighetsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "organisation_statutes",
+          "membership_data",
+          "funding_record",
+          "campaign_or_service_case"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "medlemsorganisering",
+          "frivillig arbeid",
+          "ressursmobilisering",
+          "tjenesteproduksjon",
+          "nettverksbygging",
+          "offentlig finansiering",
+          "profesjonalisering",
+          "representasjonskrav"
+        ],
+        "critical_distinction_options": [
+          "medlemsmakt vs profesjonell ledelse",
+          "autonomi vs offentlig finansieringsavhengighet",
+          "tjenesteyting vs politisk påvirkning",
+          "organisert deltakelse vs sosial skjevhet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "alexis_de_tocqueville",
+            "concept": "foreningsliv som demokratisk skole"
+          },
+          {
+            "thinker_id": "antonio_gramsci",
+            "concept": "sivilsamfunn som hegemonisk og mothegemonisk arena"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "foreninger og offentlig meningsdannelse"
+          }
+        ],
+        "case_anchors": [
+          "Folkets Hus",
+          "Litteraturhuset",
+          "frivillighetssentraler"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -14095,15 +15132,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_diskursanalyse",
-          "met_pol_legitimitetsanalyse"
+          "met_pol_legitimitetsanalyse",
+          "met_pol_offentlighetsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "survey_or_time_series",
+          "party_position_data",
+          "debate_corpus",
+          "trust_data"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "partipolitisk sortering",
+          "affektiv gruppeknytning",
+          "elitepolarisering",
+          "medial forsterkning",
+          "identitetskobling",
+          "segregerte nettverk",
+          "mistillit",
+          "strategisk fiendebilde"
+        ],
+        "critical_distinction_options": [
+          "ideologisk vs affektiv polarisering",
+          "polarisering vs konflikt",
+          "elitepolarisering vs massepolarisering",
+          "meningsavstand vs sosial fiendtlighet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "chantal_mouffe",
+            "concept": "agonisme vs antagonisme"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "offentlig begrunnelse og kommunikativ fragmentering"
+          },
+          {
+            "thinker_id": "robert_dahl",
+            "concept": "demokratisk opposisjon og gjensidig toleranse"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "Litteraturhuset",
+          "offentlige debattarenaer"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -17184,15 +18282,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_sivilsamfunnsanalyse",
-          "met_pol_parti_og_bevegelsesanalyse"
+          "met_pol_parti_og_bevegelsesanalyse",
+          "met_pol_offentlighetsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "organisation_statutes",
+          "membership_data",
+          "funding_record",
+          "campaign_or_service_case"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "medlemsorganisering",
+          "frivillig arbeid",
+          "ressursmobilisering",
+          "tjenesteproduksjon",
+          "nettverksbygging",
+          "offentlig finansiering",
+          "profesjonalisering",
+          "representasjonskrav"
+        ],
+        "critical_distinction_options": [
+          "medlemsmakt vs profesjonell ledelse",
+          "autonomi vs offentlig finansieringsavhengighet",
+          "tjenesteyting vs politisk påvirkning",
+          "organisert deltakelse vs sosial skjevhet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "alexis_de_tocqueville",
+            "concept": "foreningsliv som demokratisk skole"
+          },
+          {
+            "thinker_id": "antonio_gramsci",
+            "concept": "sivilsamfunn som hegemonisk og mothegemonisk arena"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "foreninger og offentlig meningsdannelse"
+          }
+        ],
+        "case_anchors": [
+          "Folkets Hus",
+          "Litteraturhuset",
+          "frivillighetssentraler"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -19087,15 +20246,76 @@
         ],
         "recommended_method_ids": [
           "met_pol_symbolanalyse",
-          "met_pol_politisk_historisk_analyse"
+          "met_pol_politisk_historisk_analyse",
+          "met_pol_diskursanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_actor_and_claim_identification": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "memorial_or_monument",
+          "commemoration_record",
+          "naming_decision",
+          "public_controversy"
+        ],
+        "actor_and_claim_required": true,
+        "mechanism_options": [
+          "kanonisering",
+          "navngivning",
+          "monumentalisering",
+          "offentlig ritual",
+          "institusjonell kuratering",
+          "motminne",
+          "omtolkning",
+          "fjerning eller flytting"
+        ],
+        "critical_distinction_options": [
+          "historisk hendelse vs offentlig minne",
+          "minne vs hyllest",
+          "representasjon vs dokumentasjon",
+          "glemsel vs aktiv utelatelse"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "hannah_arendt",
+            "concept": "offentlig handling og politisk erindring"
+          },
+          {
+            "thinker_id": "antonio_gramsci",
+            "concept": "hegemonisk historiesyn og motminne"
+          },
+          {
+            "thinker_id": "chantal_mouffe",
+            "concept": "strid om offentlig symbolsk orden"
+          }
+        ],
+        "case_anchors": [
+          "22. juli-senteret",
+          "Eidsvolls plass",
+          "Arbeidersamfunnets plass"
+        ],
+        "question_chain": [
+          "external_conflict_case_or_source",
+          "claim_basis",
+          "actor_claim_and_target",
+          "power_mobilisation_or_influence_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av aktør, krav, organisasjon, vedtak, avtale, protest, konflikt, måling eller utfall. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",

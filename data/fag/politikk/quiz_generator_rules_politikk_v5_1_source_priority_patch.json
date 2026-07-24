@@ -1380,6 +1380,74 @@
         "avvis spørsmål uten reell distinksjon når teori brukes",
         "avvis canonical-filen som statistikk- eller faktakilde"
       ]
+    },
+    "konflikt_makt_sivilsamfunn": {
+      "status": "complete_revised",
+      "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+      "domain_id": "konflikt_makt_sivilsamfunn",
+      "question_surface_mode": "conflict-case-actor-mechanism-distinction-theory",
+      "required_chain": [
+        "external_conflict_case_or_source",
+        "claim_basis",
+        "actor_claim_and_target",
+        "power_mobilisation_or_influence_mechanism",
+        "critical_distinction",
+        "optional_theory_lens"
+      ],
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "actor_and_claim_required": true,
+      "revised_hook_ids": [
+        "makt_og_interesser",
+        "demonstrasjoner",
+        "sivilsamfunn",
+        "interessegrupper",
+        "ideologi",
+        "arbeidslivspolitikk",
+        "miljopolitisk_konflikt",
+        "minne_og_makt",
+        "polarisering",
+        "konfliktens_rom"
+      ],
+      "revised_emne_ids": [
+        "em_pol_makt_interesser",
+        "em_pol_demonstrasjoner_protest",
+        "em_pol_interessegrupper_organisasjoner",
+        "em_pol_ideologi_konfliktlinjer",
+        "em_pol_arbeidsliv_kollektiv_kamp",
+        "em_pol_miljopolitikk_samfunn",
+        "em_pol_minnesteder_politisk_kamp",
+        "em_pol_polarisering_tillit"
+      ],
+      "revised_method_ids": [
+        "met_pol_konfliktanalyse",
+        "met_pol_fordelingsanalyse",
+        "met_pol_protest_og_bevegelsesanalyse",
+        "met_pol_offentlighetsanalyse",
+        "met_pol_romlig_maktanalyse",
+        "met_pol_parti_og_bevegelsesanalyse",
+        "met_pol_ideologianalyse",
+        "met_pol_makt_og_interesseanalyse",
+        "met_pol_diskursanalyse",
+        "met_pol_sivilsamfunnsanalyse",
+        "met_pol_symbolanalyse",
+        "met_pol_politisk_historisk_analyse",
+        "met_pol_legitimitetsanalyse"
+      ],
+      "global_bans": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk moralsk holdningsspørsmål",
+        "påstand hentet bare fra emne- eller hooknavn",
+        "sted uten dokumentert aktør, krav eller konfliktprosess"
+      ],
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_actor_and_claim_identification": true,
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "require_method_match_to_mechanism": true,
+        "ban_theorist_name_as_answer_without_concept": true
+      }
     }
   }
 }

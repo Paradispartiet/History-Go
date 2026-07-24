@@ -7398,15 +7398,15 @@
     {
       "id": "konflikt_makt_sivilsamfunn",
       "title": "Konflikt, makt og sivilsamfunn",
-      "tagline": "Hvordan interesser, protester, bevegelser, organisasjoner og konfliktlinjer former samfunnet.",
-      "definition": "Domenet dekker politiske konflikter, makt, interessegrupper, sivilsamfunn, organisasjoner, demonstrasjoner, protest, aktivisme, ideologi og konfliktlinjer.",
+      "tagline": "Hvordan interesser, organisasjoner, protester, ideologier og offentlige rom omformer konflikt til politisk makt, motmakt og institusjonell endring.",
+      "definition": "Domenet analyserer hvordan interesser organiseres, hvordan makt utøves og utfordres, og hvordan sivilsamfunn, protest, arbeidsliv, ideologi, miljøstrid, minne og polarisering påvirker politiske beslutninger og offentlig orden.",
       "focus": [
-        "konflikt",
-        "makt",
-        "sivilsamfunn",
-        "protest",
-        "organisasjon",
-        "ideologi"
+        "maktressurser og interesser",
+        "sivilsamfunn og organisering",
+        "protest og politiske muligheter",
+        "ideologi og konfliktlinjer",
+        "arbeidsliv og miljøkonflikt",
+        "minne, polarisering og konfliktens rom"
       ],
       "oslo": {
         "core_cases": [
@@ -7461,33 +7461,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "karl_marx",
-                "name": "Karl Marx",
-                "role": "klasse, konflikt og makt",
+                "id": "robert_dahl",
+                "name": "Robert Dahl",
+                "role": "beslutningsmakt og observerbar innflytelse",
                 "tier": "core"
               },
               {
                 "id": "antonio_gramsci",
                 "name": "Antonio Gramsci",
-                "role": "hegemoni og sivilsamfunn",
+                "role": "hegemoni og organisert samtykke",
                 "tier": "core"
               },
               {
-                "id": "charles_tilly",
-                "name": "Charles Tilly",
-                "role": "kollektiv handling og konflikt",
-                "tier": "core"
-              },
-              {
-                "id": "sidney_tarrow",
-                "name": "Sidney Tarrow",
-                "role": "sosiale bevegelser",
-                "tier": "core"
-              },
-              {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og politisk konflikt",
+                "id": "karl_marx",
+                "name": "Karl Marx",
+                "role": "klasseinteresser og kontroll over materielle ressurser",
                 "tier": "core"
               }
             ]
@@ -7516,7 +7504,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "conflict-power-first",
+          "question_surface_mode": "conflict-case-actor-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -7526,45 +7514,45 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke likestill økonomiske ressurser med automatisk politisk seier.",
+            "Ikke reduser makt til synlige vedtak; undersøk også dagsorden og ikke-beslutninger.",
+            "Ikke kall enhver organisasjon en interessegruppe uten dokumentert påvirkningsrolle.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert konfliktpåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_actor_resource_and_target",
+            "trace_access_to_decision",
+            "compare_formal_access_with_effective_influence"
           ],
           "comparison_pairs": [
             [
-              "karl_marx",
+              "robert_dahl",
               "antonio_gramsci"
             ],
             [
-              "charles_tilly",
-              "sidney_tarrow"
+              "antonio_gramsci",
+              "karl_marx"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Youngstorget",
-            "Eidsvolls plass",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "LO-bygget",
             "Stortinget",
-            "Regjeringskvartalet"
+            "Regjeringskvartalet",
+            "Næringslivets Hus"
           ],
           "recommended_method_ids": [
             "met_pol_makt_og_interesseanalyse",
-            "met_pol_ideologianalyse"
+            "met_pol_institusjonsanalyse",
+            "met_pol_diskursanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "karl_marx",
-            "antonio_gramsci"
+            "robert_dahl",
+            "antonio_gramsci",
+            "karl_marx"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -7577,15 +7565,73 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare konfliktcases, aktører, kilder og mekanismer for Makt og interesser. Teori brukes først etter at krav, maktmekanisme og distinksjon er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_actor_and_claim_identification": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Makt og interesser analyserer hvordan aktører får gjennomslag ved å kontrollere ressurser, dagsorden, informasjon, organisasjon, adgang til beslutningsarenaer eller hvilke alternativer som framstår som mulige.",
+          "core_problem": "Hvordan blir særskilte interesser omformet til politisk innflytelse, og hvilke aktører, ressurser eller ikke-beslutninger blir usynlige i utfallet?",
+          "mechanisms": [
+            "ressurskontroll",
+            "dagsordenmakt",
+            "lobbyvirksomhet",
+            "koalisjonsbygging",
+            "informasjonsasymmetri",
+            "institusjonell adgang",
+            "vetomakt",
+            "ikke-beslutning"
+          ],
+          "critical_distinctions": [
+            "maktressurs vs faktisk gjennomslag",
+            "åpen beslutning vs dagsordenmakt",
+            "interesse vs organisert interesse",
+            "formell lik adgang vs ulik påvirkningskapasitet"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "beslutningsmakt og observerbar innflytelse"
+            },
+            {
+              "thinker_id": "antonio_gramsci",
+              "concept": "hegemoni og organisert samtykke"
+            },
+            {
+              "thinker_id": "karl_marx",
+              "concept": "klasseinteresser og kontroll over materielle ressurser"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Regjeringskvartalet",
+            "Næringslivets Hus"
+          ],
+          "anti_reduction": [
+            "Ikke likestill økonomiske ressurser med automatisk politisk seier.",
+            "Ikke reduser makt til synlige vedtak; undersøk også dagsorden og ikke-beslutninger.",
+            "Ikke kall enhver organisasjon en interessegruppe uten dokumentert påvirkningsrolle."
+          ],
+          "required_anchor_types": [
+            "decision",
+            "lobby_record",
+            "hearing",
+            "resource_or_access_data"
+          ],
+          "quality_revision": "politikk-konflikt-vertical-2026-07-24"
         },
         {
           "id": "demonstrasjoner",
@@ -7593,33 +7639,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "karl_marx",
-                "name": "Karl Marx",
-                "role": "klasse, konflikt og makt",
-                "tier": "core"
-              },
-              {
-                "id": "antonio_gramsci",
-                "name": "Antonio Gramsci",
-                "role": "hegemoni og sivilsamfunn",
-                "tier": "core"
-              },
-              {
                 "id": "charles_tilly",
                 "name": "Charles Tilly",
-                "role": "kollektiv handling og konflikt",
+                "role": "protestrepertoarer og kollektiv handling",
                 "tier": "core"
               },
               {
                 "id": "sidney_tarrow",
                 "name": "Sidney Tarrow",
-                "role": "sosiale bevegelser",
+                "role": "politisk mulighetsstruktur og mobilisering",
                 "tier": "core"
               },
               {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og politisk konflikt",
+                "id": "hannah_arendt",
+                "name": "Hannah Arendt",
+                "role": "kollektiv handling i offentligheten",
                 "tier": "core"
               }
             ]
@@ -7648,7 +7682,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "conflict-power-first",
+          "question_surface_mode": "conflict-case-actor-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -7658,45 +7692,45 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke bruk deltakerantall alene som mål på politisk virkning.",
+            "Ikke anta at all protest representerer en samlet gruppe.",
+            "Ikke vurder en demonstrasjon uten å skille krav, repertoar, målgruppe og myndighetsrespons.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert konfliktpåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_claim_target_and_repertoire",
+            "trace_mobilisation_and_response",
+            "separate_visibility_from_outcome"
           ],
           "comparison_pairs": [
             [
-              "karl_marx",
-              "antonio_gramsci"
-            ],
-            [
               "charles_tilly",
               "sidney_tarrow"
+            ],
+            [
+              "sidney_tarrow",
+              "hannah_arendt"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Youngstorget",
             "Eidsvolls plass",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "LO-bygget",
-            "Stortinget",
-            "Regjeringskvartalet"
+            "Youngstorget",
+            "Rådhusplassen"
           ],
           "recommended_method_ids": [
             "met_pol_protest_og_bevegelsesanalyse",
-            "met_pol_offentlighetsanalyse"
+            "met_pol_offentlighetsanalyse",
+            "met_pol_romlig_maktanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "karl_marx",
-            "antonio_gramsci"
+            "charles_tilly",
+            "sidney_tarrow",
+            "hannah_arendt"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -7709,15 +7743,73 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare konfliktcases, aktører, kilder og mekanismer for Demonstrasjoner. Teori brukes først etter at krav, maktmekanisme og distinksjon er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_actor_and_claim_identification": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Demonstrasjoner er organiserte offentlige handlinger som synliggjør krav, bygger kollektiv identitet, skaper forstyrrelse eller presser beslutningstakere gjennom antall, symbolbruk, mediedekning og kontroll over sted.",
+          "core_problem": "Når og hvordan blir en offentlig markering politisk virksom, og hvordan påvirker mobilisering, politi, medier, motmobilisering og sted protestens rekkevidde?",
+          "mechanisms": [
+            "mobilisering",
+            "kollektiv identitet",
+            "repertoarvalg",
+            "forstyrrelse",
+            "medialisering",
+            "politisk mulighetsstruktur",
+            "politi- og tillatelsesregime",
+            "motmobilisering"
+          ],
+          "critical_distinctions": [
+            "deltakelse vs representativitet",
+            "synlighet vs gjennomslag",
+            "lovlig regulering vs politisk begrensning",
+            "symbolsk markering vs materiell forstyrrelse"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "charles_tilly",
+              "concept": "protestrepertoarer og kollektiv handling"
+            },
+            {
+              "thinker_id": "sidney_tarrow",
+              "concept": "politisk mulighetsstruktur og mobilisering"
+            },
+            {
+              "thinker_id": "hannah_arendt",
+              "concept": "kollektiv handling i offentligheten"
+            }
+          ],
+          "case_anchors": [
+            "Eidsvolls plass",
+            "Youngstorget",
+            "Rådhusplassen"
+          ],
+          "anti_reduction": [
+            "Ikke bruk deltakerantall alene som mål på politisk virkning.",
+            "Ikke anta at all protest representerer en samlet gruppe.",
+            "Ikke vurder en demonstrasjon uten å skille krav, repertoar, målgruppe og myndighetsrespons."
+          ],
+          "required_anchor_types": [
+            "demonstration_record",
+            "permit_or_police_rule",
+            "movement_source",
+            "documented_outcome"
+          ],
+          "quality_revision": "politikk-konflikt-vertical-2026-07-24"
         },
         {
           "id": "sivilsamfunn",
@@ -7725,33 +7817,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "karl_marx",
-                "name": "Karl Marx",
-                "role": "klasse, konflikt og makt",
+                "id": "alexis_de_tocqueville",
+                "name": "Alexis de Tocqueville",
+                "role": "foreningsliv som demokratisk skole",
                 "tier": "core"
               },
               {
                 "id": "antonio_gramsci",
                 "name": "Antonio Gramsci",
-                "role": "hegemoni og sivilsamfunn",
+                "role": "sivilsamfunn som hegemonisk og mothegemonisk arena",
                 "tier": "core"
               },
               {
-                "id": "charles_tilly",
-                "name": "Charles Tilly",
-                "role": "kollektiv handling og konflikt",
-                "tier": "core"
-              },
-              {
-                "id": "sidney_tarrow",
-                "name": "Sidney Tarrow",
-                "role": "sosiale bevegelser",
-                "tier": "core"
-              },
-              {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og politisk konflikt",
+                "id": "jurgen_habermas",
+                "name": "Jürgen Habermas",
+                "role": "foreninger og offentlig meningsdannelse",
                 "tier": "core"
               }
             ]
@@ -7780,7 +7860,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "conflict-power-first",
+          "question_surface_mode": "conflict-case-actor-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -7790,45 +7870,45 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke behandle sivilsamfunnet som automatisk demokratisk eller inkluderende.",
+            "Ikke likestill organisasjonens ledelse med medlemmenes syn.",
+            "Ikke skjul offentlig finansiering eller profesjonalisering når autonomi vurderes.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert konfliktpåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_membership_resource_and_function",
+            "test_autonomy_against_dependency",
+            "compare_service_role_with_advocacy_role"
           ],
           "comparison_pairs": [
             [
-              "karl_marx",
+              "alexis_de_tocqueville",
               "antonio_gramsci"
             ],
             [
-              "charles_tilly",
-              "sidney_tarrow"
+              "antonio_gramsci",
+              "jurgen_habermas"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Youngstorget",
-            "Eidsvolls plass",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "LO-bygget",
-            "Stortinget",
-            "Regjeringskvartalet"
+            "Folkets Hus",
+            "Litteraturhuset",
+            "frivillighetssentraler"
           ],
           "recommended_method_ids": [
             "met_pol_sivilsamfunnsanalyse",
-            "met_pol_parti_og_bevegelsesanalyse"
+            "met_pol_parti_og_bevegelsesanalyse",
+            "met_pol_offentlighetsanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "karl_marx",
-            "antonio_gramsci"
+            "alexis_de_tocqueville",
+            "antonio_gramsci",
+            "jurgen_habermas"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -7841,15 +7921,73 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare konfliktcases, aktører, kilder og mekanismer for Sivilsamfunn. Teori brukes først etter at krav, maktmekanisme og distinksjon er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_actor_and_claim_identification": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Sivilsamfunn omfatter frivillige organisasjoner, foreninger, nettverk og fellesskap mellom stat, marked og privatliv som organiserer interesser, tjenester, offentlighet, solidaritet og motmakt.",
+          "core_problem": "Når fungerer sivilsamfunnet som demokratisk deltakelse og motmakt, og når reproduserer organisasjonene ulikhet, profesjonalisering eller avhengighet av staten?",
+          "mechanisms": [
+            "medlemsorganisering",
+            "frivillig arbeid",
+            "ressursmobilisering",
+            "tjenesteproduksjon",
+            "nettverksbygging",
+            "offentlig finansiering",
+            "profesjonalisering",
+            "representasjonskrav"
+          ],
+          "critical_distinctions": [
+            "medlemsmakt vs profesjonell ledelse",
+            "autonomi vs offentlig finansieringsavhengighet",
+            "tjenesteyting vs politisk påvirkning",
+            "organisert deltakelse vs sosial skjevhet"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "alexis_de_tocqueville",
+              "concept": "foreningsliv som demokratisk skole"
+            },
+            {
+              "thinker_id": "antonio_gramsci",
+              "concept": "sivilsamfunn som hegemonisk og mothegemonisk arena"
+            },
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "foreninger og offentlig meningsdannelse"
+            }
+          ],
+          "case_anchors": [
+            "Folkets Hus",
+            "Litteraturhuset",
+            "frivillighetssentraler"
+          ],
+          "anti_reduction": [
+            "Ikke behandle sivilsamfunnet som automatisk demokratisk eller inkluderende.",
+            "Ikke likestill organisasjonens ledelse med medlemmenes syn.",
+            "Ikke skjul offentlig finansiering eller profesjonalisering når autonomi vurderes."
+          ],
+          "required_anchor_types": [
+            "organisation_statutes",
+            "membership_data",
+            "funding_record",
+            "campaign_or_service_case"
+          ],
+          "quality_revision": "politikk-konflikt-vertical-2026-07-24"
         },
         {
           "id": "interessegrupper",
@@ -7857,33 +7995,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "karl_marx",
-                "name": "Karl Marx",
-                "role": "klasse, konflikt og makt",
+                "id": "robert_dahl",
+                "name": "Robert Dahl",
+                "role": "pluralistisk konkurranse mellom organiserte interesser",
                 "tier": "core"
               },
               {
-                "id": "antonio_gramsci",
-                "name": "Antonio Gramsci",
-                "role": "hegemoni og sivilsamfunn",
+                "id": "stein_rokkan",
+                "name": "Stein Rokkan",
+                "role": "korporative kanaler og konfliktlinjer",
                 "tier": "core"
               },
               {
-                "id": "charles_tilly",
-                "name": "Charles Tilly",
-                "role": "kollektiv handling og konflikt",
-                "tier": "core"
-              },
-              {
-                "id": "sidney_tarrow",
-                "name": "Sidney Tarrow",
-                "role": "sosiale bevegelser",
-                "tier": "core"
-              },
-              {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og politisk konflikt",
+                "id": "gudmund_hernes",
+                "name": "Gudmund Hernes",
+                "role": "maktressurser og organiserte aktører",
                 "tier": "core"
               }
             ]
@@ -7912,7 +8038,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "conflict-power-first",
+          "question_surface_mode": "conflict-case-actor-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -7922,22 +8048,27 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke mål innflytelse bare ved antall møter.",
+            "Ikke presenter ekspertuttalelser som nøytrale uten å identifisere partsrollen.",
+            "Ikke anta at medlemsrike organisasjoner alltid har større gjennomslag enn ressurssterke smågrupper.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert konfliktpåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_constituency_and_strategy",
+            "trace_inside_and_outside_channels",
+            "separate_access_from_policy_effect"
           ],
           "comparison_pairs": [
             [
-              "karl_marx",
-              "antonio_gramsci"
+              "robert_dahl",
+              "stein_rokkan"
             ],
             [
-              "charles_tilly",
-              "sidney_tarrow"
+              "stein_rokkan",
+              "gudmund_hernes"
             ]
           ],
           "norwegian_thinker_ids": [
@@ -7945,22 +8076,20 @@
             "gudmund_hernes"
           ],
           "recommended_oslo_cases": [
-            "Youngstorget",
-            "Eidsvolls plass",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "LO-bygget",
-            "Stortinget",
-            "Regjeringskvartalet"
+            "Folkets Hus",
+            "Næringslivets Hus",
+            "Stortingets høringer"
           ],
           "recommended_method_ids": [
             "met_pol_makt_og_interesseanalyse",
-            "met_pol_sivilsamfunnsanalyse"
+            "met_pol_sivilsamfunnsanalyse",
+            "met_pol_institusjonsanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "karl_marx",
-            "antonio_gramsci"
+            "robert_dahl",
+            "stein_rokkan",
+            "gudmund_hernes"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -7973,15 +8102,73 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare konfliktcases, aktører, kilder og mekanismer for Interessegrupper. Teori brukes først etter at krav, maktmekanisme og distinksjon er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_actor_and_claim_identification": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Interessegrupper er organiserte aktører som forsøker å påvirke politikk på vegne av medlemmer, næringer, profesjoner, saker eller målgrupper uten selv å stille til valg som parti.",
+          "core_problem": "Hvordan får noen interesser stabil adgang til beslutningstakere, høringer og ekspertarenaer, mens andre må mobilisere utenfra?",
+          "mechanisms": [
+            "høringsdeltakelse",
+            "lobbykontakt",
+            "ekspertkunnskap",
+            "medlemsmobilisering",
+            "økonomisk ressursbruk",
+            "korporativ representasjon",
+            "mediestrategi",
+            "alliansebygging"
+          ],
+          "critical_distinctions": [
+            "interessegruppe vs politisk parti",
+            "innsidepåvirkning vs utsidemobilisering",
+            "ekspertise vs partsinteresse",
+            "medlemsrepresentasjon vs organisatorisk egeninteresse"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "pluralistisk konkurranse mellom organiserte interesser"
+            },
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "korporative kanaler og konfliktlinjer"
+            },
+            {
+              "thinker_id": "gudmund_hernes",
+              "concept": "maktressurser og organiserte aktører"
+            }
+          ],
+          "case_anchors": [
+            "Folkets Hus",
+            "Næringslivets Hus",
+            "Stortingets høringer"
+          ],
+          "anti_reduction": [
+            "Ikke mål innflytelse bare ved antall møter.",
+            "Ikke presenter ekspertuttalelser som nøytrale uten å identifisere partsrollen.",
+            "Ikke anta at medlemsrike organisasjoner alltid har større gjennomslag enn ressurssterke smågrupper."
+          ],
+          "required_anchor_types": [
+            "hearing_submission",
+            "lobby_or_meeting_record",
+            "membership_or_resource_data",
+            "policy_change"
+          ],
+          "quality_revision": "politikk-konflikt-vertical-2026-07-24"
         },
         {
           "id": "ideologi",
@@ -7989,33 +8176,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "karl_marx",
-                "name": "Karl Marx",
-                "role": "klasse, konflikt og makt",
-                "tier": "core"
-              },
-              {
                 "id": "antonio_gramsci",
                 "name": "Antonio Gramsci",
-                "role": "hegemoni og sivilsamfunn",
+                "role": "hegemoni og common sense",
                 "tier": "core"
               },
               {
-                "id": "charles_tilly",
-                "name": "Charles Tilly",
-                "role": "kollektiv handling og konflikt",
-                "tier": "core"
-              },
-              {
-                "id": "sidney_tarrow",
-                "name": "Sidney Tarrow",
-                "role": "sosiale bevegelser",
+                "id": "karl_marx",
+                "name": "Karl Marx",
+                "role": "ideologi og materielle klasseforhold",
                 "tier": "core"
               },
               {
                 "id": "chantal_mouffe",
                 "name": "Chantal Mouffe",
-                "role": "agonisme og politisk konflikt",
+                "role": "hegemonisk artikulasjon og konflikt",
                 "tier": "core"
               }
             ]
@@ -8044,7 +8219,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "conflict-power-first",
+          "question_surface_mode": "conflict-case-actor-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -8054,45 +8229,45 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke bruk ideologi som skjellsord for motpartens meninger.",
+            "Ikke utled faktisk politikk bare fra et ideologisk navn.",
+            "Ikke reduser ideologi til teoretiker- eller partinavn uten problemdefinisjon og mekanisme.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert konfliktpåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_problem_frame_and_values",
+            "trace_frame_to_policy_option",
+            "compare_declared_ideology_with_practice"
           ],
           "comparison_pairs": [
             [
-              "karl_marx",
-              "antonio_gramsci"
+              "antonio_gramsci",
+              "karl_marx"
             ],
             [
-              "charles_tilly",
-              "sidney_tarrow"
+              "karl_marx",
+              "chantal_mouffe"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Youngstorget",
-            "Eidsvolls plass",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "LO-bygget",
             "Stortinget",
-            "Regjeringskvartalet"
+            "partiprogrammer",
+            "Youngstorget"
           ],
           "recommended_method_ids": [
             "met_pol_ideologianalyse",
-            "met_pol_diskursanalyse"
+            "met_pol_diskursanalyse",
+            "met_pol_politisk_historisk_analyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
+            "antonio_gramsci",
             "karl_marx",
-            "antonio_gramsci"
+            "chantal_mouffe"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -8105,15 +8280,73 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare konfliktcases, aktører, kilder og mekanismer for Ideologi. Teori brukes først etter at krav, maktmekanisme og distinksjon er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_actor_and_claim_identification": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Ideologi er sammenhengende fortolkninger av samfunn, interesser, problemer og ønsket orden som gjør noen løsninger rimelige, andre utenkelige og bestemte maktforhold legitime eller kritikkverdige.",
+          "core_problem": "Hvordan former ideologiske problemdefinisjoner hvilke aktører, årsaker og løsninger som blir synlige i en konkret konflikt?",
+          "mechanisms": [
+            "problemdefinisjon",
+            "begrepsinnramming",
+            "verdihierarki",
+            "historiefortelling",
+            "naturaliserende språk",
+            "fiende- og fellesskapskonstruksjon",
+            "programformulering",
+            "hegemonisk normalisering"
+          ],
+          "critical_distinctions": [
+            "ideologi vs enkeltstandpunkt",
+            "beskrivelse vs normativ problemramme",
+            "partiprogram vs faktisk politikk",
+            "hegemoni vs tvang"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "antonio_gramsci",
+              "concept": "hegemoni og common sense"
+            },
+            {
+              "thinker_id": "karl_marx",
+              "concept": "ideologi og materielle klasseforhold"
+            },
+            {
+              "thinker_id": "chantal_mouffe",
+              "concept": "hegemonisk artikulasjon og konflikt"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "partiprogrammer",
+            "Youngstorget"
+          ],
+          "anti_reduction": [
+            "Ikke bruk ideologi som skjellsord for motpartens meninger.",
+            "Ikke utled faktisk politikk bare fra et ideologisk navn.",
+            "Ikke reduser ideologi til teoretiker- eller partinavn uten problemdefinisjon og mekanisme."
+          ],
+          "required_anchor_types": [
+            "party_programme",
+            "speech_or_manifesto",
+            "policy_document",
+            "historical_conflict"
+          ],
+          "quality_revision": "politikk-konflikt-vertical-2026-07-24"
         },
         {
           "id": "arbeidslivspolitikk",
@@ -8123,31 +8356,19 @@
               {
                 "id": "karl_marx",
                 "name": "Karl Marx",
-                "role": "klasse, konflikt og makt",
+                "role": "arbeidsforhold, klasse og konflikt",
                 "tier": "core"
               },
               {
-                "id": "antonio_gramsci",
-                "name": "Antonio Gramsci",
-                "role": "hegemoni og sivilsamfunn",
+                "id": "stein_rokkan",
+                "name": "Stein Rokkan",
+                "role": "organiserte konfliktlinjer og korporative kanaler",
                 "tier": "core"
               },
               {
                 "id": "charles_tilly",
                 "name": "Charles Tilly",
-                "role": "kollektiv handling og konflikt",
-                "tier": "core"
-              },
-              {
-                "id": "sidney_tarrow",
-                "name": "Sidney Tarrow",
-                "role": "sosiale bevegelser",
-                "tier": "core"
-              },
-              {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og politisk konflikt",
+                "role": "kollektiv organisering og mobilisering",
                 "tier": "core"
               }
             ]
@@ -8176,7 +8397,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "conflict-power-first",
+          "question_surface_mode": "conflict-case-actor-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -8186,45 +8407,47 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke framstill den norske modellen som konfliktfri konsensus.",
+            "Ikke likestill lovfestet rett med lik faktisk forhandlingsstyrke.",
+            "Ikke forklar lønnsutfall uten å undersøke organisering, avtalesystem og konjunktur.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert konfliktpåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_parties_rules_and_resources",
+            "trace_bargaining_mechanism",
+            "separate_right_dispute_from_interest_dispute"
           ],
           "comparison_pairs": [
             [
               "karl_marx",
-              "antonio_gramsci"
+              "stein_rokkan"
             ],
             [
-              "charles_tilly",
-              "sidney_tarrow"
+              "stein_rokkan",
+              "charles_tilly"
             ]
           ],
           "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
+            "stein_rokkan"
           ],
           "recommended_oslo_cases": [
+            "Folkets Hus",
             "Youngstorget",
-            "Eidsvolls plass",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "LO-bygget",
-            "Stortinget",
-            "Regjeringskvartalet"
+            "Arbeidsretten"
           ],
           "recommended_method_ids": [
             "met_pol_konfliktanalyse",
-            "met_pol_fordelingsanalyse"
+            "met_pol_makt_og_interesseanalyse",
+            "met_pol_politisk_historisk_analyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
             "karl_marx",
-            "antonio_gramsci"
+            "stein_rokkan",
+            "charles_tilly"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -8237,15 +8460,73 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare konfliktcases, aktører, kilder og mekanismer for Arbeidslivspolitikk. Teori brukes først etter at krav, maktmekanisme og distinksjon er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_actor_and_claim_identification": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Arbeidslivspolitikk analyserer hvordan lov, tariffavtaler, organisering, forhandling, streik og medbestemmelse fordeler makt, risiko og inntekt mellom arbeidstakere, arbeidsgivere og staten.",
+          "core_problem": "Hvordan virker kollektiv organisering og institusjonelle spilleregler inn på lønn, arbeidsvilkår, konflikt og hvem som bærer omstillingsrisiko?",
+          "mechanisms": [
+            "tariffavtale",
+            "kollektiv forhandling",
+            "streik og lockout",
+            "organisasjonsgrad",
+            "medbestemmelse",
+            "arbeidsrettslig regulering",
+            "frontfagskoordinering",
+            "trepartssamarbeid"
+          ],
+          "critical_distinctions": [
+            "individuell kontrakt vs kollektiv avtale",
+            "formell rett vs faktisk forhandlingsmakt",
+            "interessekonflikt vs rettstvist",
+            "samarbeid vs maktbalanse"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "karl_marx",
+              "concept": "arbeidsforhold, klasse og konflikt"
+            },
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "organiserte konfliktlinjer og korporative kanaler"
+            },
+            {
+              "thinker_id": "charles_tilly",
+              "concept": "kollektiv organisering og mobilisering"
+            }
+          ],
+          "case_anchors": [
+            "Folkets Hus",
+            "Youngstorget",
+            "Arbeidsretten"
+          ],
+          "anti_reduction": [
+            "Ikke framstill den norske modellen som konfliktfri konsensus.",
+            "Ikke likestill lovfestet rett med lik faktisk forhandlingsstyrke.",
+            "Ikke forklar lønnsutfall uten å undersøke organisering, avtalesystem og konjunktur."
+          ],
+          "required_anchor_types": [
+            "collective_agreement",
+            "labour_law",
+            "strike_or_negotiation_case",
+            "organisation_data"
+          ],
+          "quality_revision": "politikk-konflikt-vertical-2026-07-24"
         },
         {
           "id": "miljopolitisk_konflikt",
@@ -8253,33 +8534,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "karl_marx",
-                "name": "Karl Marx",
-                "role": "klasse, konflikt og makt",
+                "id": "chantal_mouffe",
+                "name": "Chantal Mouffe",
+                "role": "legitim agonistisk konflikt",
                 "tier": "core"
               },
               {
-                "id": "antonio_gramsci",
-                "name": "Antonio Gramsci",
-                "role": "hegemoni og sivilsamfunn",
+                "id": "jurgen_habermas",
+                "name": "Jürgen Habermas",
+                "role": "offentlig begrunnelse og deliberasjon",
                 "tier": "core"
               },
               {
                 "id": "charles_tilly",
                 "name": "Charles Tilly",
-                "role": "kollektiv handling og konflikt",
-                "tier": "core"
-              },
-              {
-                "id": "sidney_tarrow",
-                "name": "Sidney Tarrow",
-                "role": "sosiale bevegelser",
-                "tier": "core"
-              },
-              {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og politisk konflikt",
+                "role": "mobilisering rundt krav og politiske muligheter",
                 "tier": "core"
               }
             ]
@@ -8308,7 +8577,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "conflict-power-first",
+          "question_surface_mode": "conflict-case-actor-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -8318,45 +8587,45 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke framstill all miljøkonflikt som vitenskapsfornektelse.",
+            "Ikke skjul fordelingsvirkninger bak et samlet miljømål.",
+            "Ikke likestill gjennomført høring med faktisk påvirkning.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert konfliktpåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_competing_problem_definitions",
+            "trace_cost_risk_and_authority",
+            "separate_scientific_uncertainty_from_value_conflict"
           ],
           "comparison_pairs": [
             [
-              "karl_marx",
-              "antonio_gramsci"
+              "chantal_mouffe",
+              "jurgen_habermas"
             ],
             [
-              "charles_tilly",
-              "sidney_tarrow"
+              "jurgen_habermas",
+              "charles_tilly"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Youngstorget",
-            "Eidsvolls plass",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "LO-bygget",
-            "Stortinget",
-            "Regjeringskvartalet"
+            "Regjeringskvartalet",
+            "Oslo rådhus",
+            "Eidsvolls plass"
           ],
           "recommended_method_ids": [
             "met_pol_konfliktanalyse",
-            "met_pol_protest_og_bevegelsesanalyse"
+            "met_pol_protest_og_bevegelsesanalyse",
+            "met_pol_plan_og_reguleringsanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "karl_marx",
-            "antonio_gramsci"
+            "chantal_mouffe",
+            "jurgen_habermas",
+            "charles_tilly"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -8369,15 +8638,73 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare konfliktcases, aktører, kilder og mekanismer for Miljøpolitisk konflikt. Teori brukes først etter at krav, maktmekanisme og distinksjon er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_actor_and_claim_identification": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Miljøpolitisk konflikt oppstår når natur, klima, areal, energi, transport, arbeidsplasser og fordelingsvirkninger vurderes ulikt av berørte grupper og beslutningsnivåer.",
+          "core_problem": "Hvem får definere miljøproblemet, hvilke kunnskapsformer teller, og hvordan fordeles gevinster, kostnader, risiko og beslutningsmyndighet?",
+          "mechanisms": [
+            "konsekvensutredning",
+            "arealplanlegging",
+            "kunnskapskonflikt",
+            "kostnadsfordeling",
+            "høringsprosess",
+            "rettslig prøving",
+            "protestmobilisering",
+            "kompensasjon"
+          ],
+          "critical_distinctions": [
+            "vitenskapelig usikkerhet vs politisk uenighet",
+            "nasjonal gevinst vs lokal kostnad",
+            "formell medvirkning vs reell påvirkning",
+            "miljømål vs fordelingsvirkning"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "chantal_mouffe",
+              "concept": "legitim agonistisk konflikt"
+            },
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "offentlig begrunnelse og deliberasjon"
+            },
+            {
+              "thinker_id": "charles_tilly",
+              "concept": "mobilisering rundt krav og politiske muligheter"
+            }
+          ],
+          "case_anchors": [
+            "Regjeringskvartalet",
+            "Oslo rådhus",
+            "Eidsvolls plass"
+          ],
+          "anti_reduction": [
+            "Ikke framstill all miljøkonflikt som vitenskapsfornektelse.",
+            "Ikke skjul fordelingsvirkninger bak et samlet miljømål.",
+            "Ikke likestill gjennomført høring med faktisk påvirkning."
+          ],
+          "required_anchor_types": [
+            "environmental_assessment",
+            "planning_decision",
+            "hearing_record",
+            "protest_or_litigation_case"
+          ],
+          "quality_revision": "politikk-konflikt-vertical-2026-07-24"
         },
         {
           "id": "minne_og_makt",
@@ -8385,33 +8712,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "karl_marx",
-                "name": "Karl Marx",
-                "role": "klasse, konflikt og makt",
+                "id": "hannah_arendt",
+                "name": "Hannah Arendt",
+                "role": "offentlig handling og politisk erindring",
                 "tier": "core"
               },
               {
                 "id": "antonio_gramsci",
                 "name": "Antonio Gramsci",
-                "role": "hegemoni og sivilsamfunn",
-                "tier": "core"
-              },
-              {
-                "id": "charles_tilly",
-                "name": "Charles Tilly",
-                "role": "kollektiv handling og konflikt",
-                "tier": "core"
-              },
-              {
-                "id": "sidney_tarrow",
-                "name": "Sidney Tarrow",
-                "role": "sosiale bevegelser",
+                "role": "hegemonisk historiesyn og motminne",
                 "tier": "core"
               },
               {
                 "id": "chantal_mouffe",
                 "name": "Chantal Mouffe",
-                "role": "agonisme og politisk konflikt",
+                "role": "strid om offentlig symbolsk orden",
                 "tier": "core"
               }
             ]
@@ -8440,7 +8755,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "conflict-power-first",
+          "question_surface_mode": "conflict-case-actor-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -8450,45 +8765,45 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke likestill et minnesmerke med historisk dokumentasjon.",
+            "Ikke anta at offentlig minne er stabilt eller enstemmig.",
+            "Ikke reduser minnekonflikt til smak uten å undersøke representasjon og makt.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert konfliktpåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_author_and_excluded_memory",
+            "trace_ritual_and_reinterpretation",
+            "separate_remembrance_from_honour"
           ],
           "comparison_pairs": [
             [
-              "karl_marx",
+              "hannah_arendt",
               "antonio_gramsci"
             ],
             [
-              "charles_tilly",
-              "sidney_tarrow"
+              "antonio_gramsci",
+              "chantal_mouffe"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Youngstorget",
+            "22. juli-senteret",
             "Eidsvolls plass",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "LO-bygget",
-            "Stortinget",
-            "Regjeringskvartalet"
+            "Arbeidersamfunnets plass"
           ],
           "recommended_method_ids": [
             "met_pol_symbolanalyse",
-            "met_pol_politisk_historisk_analyse"
+            "met_pol_politisk_historisk_analyse",
+            "met_pol_diskursanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "karl_marx",
-            "antonio_gramsci"
+            "hannah_arendt",
+            "antonio_gramsci",
+            "chantal_mouffe"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -8501,15 +8816,73 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare konfliktcases, aktører, kilder og mekanismer for Minne og makt. Teori brukes først etter at krav, maktmekanisme og distinksjon er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_actor_and_claim_identification": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Minne og makt analyserer hvordan monumenter, minnesteder, navngivning, jubileer og institusjonelle fortellinger velger ut fortid, fordeler offentlig anerkjennelse og former politisk identitet.",
+          "core_problem": "Hvem får definere hva som skal minnes offentlig, hvilke erfaringer utelates, og hvordan endres minnets betydning gjennom konflikt, ritual og nytolkning?",
+          "mechanisms": [
+            "kanonisering",
+            "navngivning",
+            "monumentalisering",
+            "offentlig ritual",
+            "institusjonell kuratering",
+            "motminne",
+            "omtolkning",
+            "fjerning eller flytting"
+          ],
+          "critical_distinctions": [
+            "historisk hendelse vs offentlig minne",
+            "minne vs hyllest",
+            "representasjon vs dokumentasjon",
+            "glemsel vs aktiv utelatelse"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "hannah_arendt",
+              "concept": "offentlig handling og politisk erindring"
+            },
+            {
+              "thinker_id": "antonio_gramsci",
+              "concept": "hegemonisk historiesyn og motminne"
+            },
+            {
+              "thinker_id": "chantal_mouffe",
+              "concept": "strid om offentlig symbolsk orden"
+            }
+          ],
+          "case_anchors": [
+            "22. juli-senteret",
+            "Eidsvolls plass",
+            "Arbeidersamfunnets plass"
+          ],
+          "anti_reduction": [
+            "Ikke likestill et minnesmerke med historisk dokumentasjon.",
+            "Ikke anta at offentlig minne er stabilt eller enstemmig.",
+            "Ikke reduser minnekonflikt til smak uten å undersøke representasjon og makt."
+          ],
+          "required_anchor_types": [
+            "memorial_or_monument",
+            "commemoration_record",
+            "naming_decision",
+            "public_controversy"
+          ],
+          "quality_revision": "politikk-konflikt-vertical-2026-07-24"
         },
         {
           "id": "polarisering",
@@ -8517,33 +8890,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "karl_marx",
-                "name": "Karl Marx",
-                "role": "klasse, konflikt og makt",
-                "tier": "core"
-              },
-              {
-                "id": "antonio_gramsci",
-                "name": "Antonio Gramsci",
-                "role": "hegemoni og sivilsamfunn",
-                "tier": "core"
-              },
-              {
-                "id": "charles_tilly",
-                "name": "Charles Tilly",
-                "role": "kollektiv handling og konflikt",
-                "tier": "core"
-              },
-              {
-                "id": "sidney_tarrow",
-                "name": "Sidney Tarrow",
-                "role": "sosiale bevegelser",
-                "tier": "core"
-              },
-              {
                 "id": "chantal_mouffe",
                 "name": "Chantal Mouffe",
-                "role": "agonisme og politisk konflikt",
+                "role": "agonisme vs antagonisme",
+                "tier": "core"
+              },
+              {
+                "id": "jurgen_habermas",
+                "name": "Jürgen Habermas",
+                "role": "offentlig begrunnelse og kommunikativ fragmentering",
+                "tier": "core"
+              },
+              {
+                "id": "robert_dahl",
+                "name": "Robert Dahl",
+                "role": "demokratisk opposisjon og gjensidig toleranse",
                 "tier": "core"
               }
             ]
@@ -8572,7 +8933,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "conflict-power-first",
+          "question_surface_mode": "conflict-case-actor-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -8582,45 +8943,45 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke kall enhver sterk uenighet polarisering.",
+            "Ikke bruk enkeltstående sitater som bevis for samfunnstrend.",
+            "Ikke bland ideologisk avstand, affektiv fiendtlighet og mistillit uten å skille målene.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert konfliktpåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_dimension_and_level",
+            "compare_over_time_or_groups",
+            "separate_disagreement_from_hostility"
           ],
           "comparison_pairs": [
             [
-              "karl_marx",
-              "antonio_gramsci"
+              "chantal_mouffe",
+              "jurgen_habermas"
             ],
             [
-              "charles_tilly",
-              "sidney_tarrow"
+              "jurgen_habermas",
+              "robert_dahl"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Youngstorget",
-            "Eidsvolls plass",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "LO-bygget",
             "Stortinget",
-            "Regjeringskvartalet"
+            "Litteraturhuset",
+            "offentlige debattarenaer"
           ],
           "recommended_method_ids": [
             "met_pol_diskursanalyse",
-            "met_pol_legitimitetsanalyse"
+            "met_pol_legitimitetsanalyse",
+            "met_pol_offentlighetsanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "karl_marx",
-            "antonio_gramsci"
+            "chantal_mouffe",
+            "jurgen_habermas",
+            "robert_dahl"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -8633,15 +8994,73 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare konfliktcases, aktører, kilder og mekanismer for Polarisering. Teori brukes først etter at krav, maktmekanisme og distinksjon er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_actor_and_claim_identification": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Polarisering beskriver økende avstand eller motsetning mellom politiske posisjoner, grupper eller identiteter og må skilles fra vanlig uenighet, konfliktintensitet og midlertidig mobilisering.",
+          "core_problem": "Er et dokumentert case preget av større meningsavstand, sterkere gruppefiendtlighet, mer sosial sortering eller bare høyere synlighet og konfliktnivå?",
+          "mechanisms": [
+            "partipolitisk sortering",
+            "affektiv gruppeknytning",
+            "elitepolarisering",
+            "medial forsterkning",
+            "identitetskobling",
+            "segregerte nettverk",
+            "mistillit",
+            "strategisk fiendebilde"
+          ],
+          "critical_distinctions": [
+            "ideologisk vs affektiv polarisering",
+            "polarisering vs konflikt",
+            "elitepolarisering vs massepolarisering",
+            "meningsavstand vs sosial fiendtlighet"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "chantal_mouffe",
+              "concept": "agonisme vs antagonisme"
+            },
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "offentlig begrunnelse og kommunikativ fragmentering"
+            },
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "demokratisk opposisjon og gjensidig toleranse"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Litteraturhuset",
+            "offentlige debattarenaer"
+          ],
+          "anti_reduction": [
+            "Ikke kall enhver sterk uenighet polarisering.",
+            "Ikke bruk enkeltstående sitater som bevis for samfunnstrend.",
+            "Ikke bland ideologisk avstand, affektiv fiendtlighet og mistillit uten å skille målene."
+          ],
+          "required_anchor_types": [
+            "survey_or_time_series",
+            "party_position_data",
+            "debate_corpus",
+            "trust_data"
+          ],
+          "quality_revision": "politikk-konflikt-vertical-2026-07-24"
         },
         {
           "id": "konfliktens_rom",
@@ -8649,33 +9068,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "karl_marx",
-                "name": "Karl Marx",
-                "role": "klasse, konflikt og makt",
-                "tier": "core"
-              },
-              {
-                "id": "antonio_gramsci",
-                "name": "Antonio Gramsci",
-                "role": "hegemoni og sivilsamfunn",
+                "id": "hannah_arendt",
+                "name": "Hannah Arendt",
+                "role": "offentlig rom som handlingsrom",
                 "tier": "core"
               },
               {
                 "id": "charles_tilly",
                 "name": "Charles Tilly",
-                "role": "kollektiv handling og konflikt",
+                "role": "repertoar og romlig målretting",
                 "tier": "core"
               },
               {
-                "id": "sidney_tarrow",
-                "name": "Sidney Tarrow",
-                "role": "sosiale bevegelser",
-                "tier": "core"
-              },
-              {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og politisk konflikt",
+                "id": "jurgen_habermas",
+                "name": "Jürgen Habermas",
+                "role": "offentlighetens institusjonelle og romlige vilkår",
                 "tier": "core"
               }
             ]
@@ -8704,7 +9111,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "conflict-power-first",
+          "question_surface_mode": "conflict-case-actor-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -8714,45 +9121,45 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke anta at et fysisk offentlig sted er politisk tilgjengelig for alle.",
+            "Ikke reduser stedets betydning til nærhet uten å undersøke adgang og symbolikk.",
+            "Ikke behandle sikkerhetstiltak som enten rent tekniske eller alltid undertrykkende.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert konfliktpåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_target_audience_and_access",
+            "trace_spatial_constraint_or_amplification",
+            "separate_symbolic_site_from_decision_site"
           ],
           "comparison_pairs": [
             [
-              "karl_marx",
-              "antonio_gramsci"
+              "hannah_arendt",
+              "charles_tilly"
             ],
             [
               "charles_tilly",
-              "sidney_tarrow"
+              "jurgen_habermas"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Youngstorget",
             "Eidsvolls plass",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "LO-bygget",
-            "Stortinget",
+            "Youngstorget",
             "Regjeringskvartalet"
           ],
           "recommended_method_ids": [
             "met_pol_romlig_maktanalyse",
-            "met_pol_protest_og_bevegelsesanalyse"
+            "met_pol_protest_og_bevegelsesanalyse",
+            "met_pol_symbolanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "karl_marx",
-            "antonio_gramsci"
+            "hannah_arendt",
+            "charles_tilly",
+            "jurgen_habermas"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -8765,15 +9172,73 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare konfliktcases, aktører, kilder og mekanismer for Konfliktens rom. Teori brukes først etter at krav, maktmekanisme og distinksjon er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_actor_and_claim_identification": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Konfliktens rom analyserer hvordan plasser, gater, institusjonsbygg, møterom og digitale eller juridiske adgangsregler former hvem som kan samles, bli synlig, nå en målgruppe og utfordre makt.",
+          "core_problem": "Hvordan påvirker stedets plassering, symbolikk, eierskap, tillatelser, sikring og publikum konfliktens form og politiske virkning?",
+          "mechanisms": [
+            "romlig nærhet til beslutningstaker",
+            "samlingsadgang",
+            "tillatelsesregime",
+            "synlighetskontroll",
+            "sikkerhetssone",
+            "symbolsk okkupasjon",
+            "rutevalg",
+            "ekskluderende utforming"
+          ],
+          "critical_distinctions": [
+            "offentlig eid vs offentlig tilgjengelig",
+            "synlighet vs adgang",
+            "sikkerhet vs politisk begrensning",
+            "symbolsk sted vs operativ beslutningsarena"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "hannah_arendt",
+              "concept": "offentlig rom som handlingsrom"
+            },
+            {
+              "thinker_id": "charles_tilly",
+              "concept": "repertoar og romlig målretting"
+            },
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "offentlighetens institusjonelle og romlige vilkår"
+            }
+          ],
+          "case_anchors": [
+            "Eidsvolls plass",
+            "Youngstorget",
+            "Regjeringskvartalet"
+          ],
+          "anti_reduction": [
+            "Ikke anta at et fysisk offentlig sted er politisk tilgjengelig for alle.",
+            "Ikke reduser stedets betydning til nærhet uten å undersøke adgang og symbolikk.",
+            "Ikke behandle sikkerhetstiltak som enten rent tekniske eller alltid undertrykkende."
+          ],
+          "required_anchor_types": [
+            "place_and_access_rule",
+            "demonstration_route",
+            "security_or_design_document",
+            "documented_conflict_event"
+          ],
+          "quality_revision": "politikk-konflikt-vertical-2026-07-24"
         }
       ],
       "best_place_types": [
@@ -8797,7 +9262,9 @@
         "Ikke spør generisk om politikk uten institusjon, lov, konflikt, fordeling, norm, offentlighet, sted eller kilde.",
         "Ikke bruk politikk som kategori hvis hovedpoenget egentlig er byarkitektur, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap.",
         "Ikke gjør et sted til politikk bare fordi det ligger nær maktbygg eller har en vag samfunnsvinkel, uten dokumentert institusjons-, lov-, fordelings-, konflikt-, norm- eller forvaltningsvinkel."
-      ]
+      ],
+      "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+      "generator_profile_id": "konflikt_makt_sivilsamfunn"
     },
     {
       "id": "normer_identitet_hverdagsliv",
