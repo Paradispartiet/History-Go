@@ -1,5 +1,5 @@
 {
-  "version": "v5.1-source-priority-patch-politikk",
+  "version": "v5.2-styring-vertical-chain",
   "subject_id": "politikk",
   "subject_title": "Politikk & samfunn",
   "scope": "oslo_og_omegn",
@@ -77,7 +77,12 @@
       "em_natur_"
     ],
     "people_politikk_rule": "people_politikk skal inneholde personer der hovedrollen er politiker, statsråd, byråd, stortingsrepresentant, ordfører, samfunnsreformator, aktivist, organisasjonsleder, juridisk aktør, demokratiforkjemper, velferdspolitisk aktør, maktkritiker, samfunnsforsker med tydelig politisk/samfunnsfaglig hovedrolle eller sentral aktør i offentlig styring, fordeling, konflikt, rett, normer eller sivilsamfunn. Personer der hovedrollen er by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller populærkultur skal primært ligge i disse kategoriene, med politikk som sekundært tag bare der det er relevant.",
-    "places_politikk_rule": "places_politikk skal inneholde steder der hovedrollen er rådhus, Storting, departement, regjeringsbygg, tinghus, domstol, politisk plass, demonstrasjonssted, valglokale, bydelshus, offentlig tjeneste, velferdsinstitusjon, partikontor, organisasjonsbygg, minnessted for politisk kamp, forvaltningssted, offentlig arkiv, rettslig institusjon eller sted der styring, rett, fordeling, konflikt, representasjon, normer eller offentlighet er hovedpoenget."
+    "places_politikk_rule": "places_politikk skal inneholde steder der hovedrollen er rådhus, Storting, departement, regjeringsbygg, tinghus, domstol, politisk plass, demonstrasjonssted, valglokale, bydelshus, offentlig tjeneste, velferdsinstitusjon, partikontor, organisasjonsbygg, minnessted for politisk kamp, forvaltningssted, offentlig arkiv, rettslig institusjon eller sted der styring, rett, fordeling, konflikt, representasjon, normer eller offentlighet er hovedpoenget.",
+    "require_case_mechanism_distinction_chain": true,
+    "ban_theorist_name_as_answer_without_concept": true,
+    "theory_may_not_supply_claim_basis": true,
+    "method_must_match_documented_mechanism": true,
+    "mapping_must_supply_question_build_sequence": true
   },
   "soft_preferences": {
     "preferred_external_source_mix_per_place": [
@@ -127,9 +132,24 @@
         "met_pol_forvaltningsanalyse",
         "met_pol_lokalpolitisk_analyse",
         "met_pol_plan_og_reguleringsanalyse",
-        "met_pol_legitimitetsanalyse"
+        "met_pol_legitimitetsanalyse",
+        "met_pol_teknokrati_og_ekspertanalyse",
+        "met_pol_budsjett_og_fordelingsanalyse",
+        "met_pol_praksisanalyse",
+        "met_pol_rettslig_analyse",
+        "met_pol_velferdsstatlig_analyse",
+        "met_pol_dokumentanalyse",
+        "met_pol_romlig_maktanalyse"
       ],
-      "question_style": "styring, institusjoner, forvaltning, byråkrati, kommunal styring, offentlige tjenester, regulering og legitimitet"
+      "question_style": "dokumentert styringscase -> presis påstand -> mekanisme -> distinksjon -> eventuell teoriforklaring",
+      "required_question_chain": [
+        "external_case_or_document",
+        "claim_basis",
+        "mechanism",
+        "critical_distinction",
+        "optional_theory_lens"
+      ],
+      "method_selection_policy": "Velg metode etter mekanisme og kildetype; ikke roter metoder tilfeldig."
     },
     "3": {
       "name": "demokrati_representasjon_offentlighet",
@@ -235,7 +255,11 @@
     "Flagg teorioverstyring når navngitt teoretiker kommer før institusjon/lov/konflikt/fordeling/norm/offentlighet/sosial prosess er etablert.",
     "Flagg politisk analyse som blir generisk holdning eller samfunnsmoral uten dokumentert institusjon, lov, data, rettighet, velferdstjeneste, offentlighet, konflikt, norm eller kilde.",
     "Flagg biografiske spørsmål som ikke kobler person til konkret politisk rolle, institusjon, reform, konflikt, rettighet, organisasjon, forvaltning, velferd eller samfunnsprosess.",
-    "Flagg stedsbaserte spørsmål der koblingen til politikk bare er løs assosiasjon, nærhet til maktbygg eller generell samfunnsvinkel."
+    "Flagg stedsbaserte spørsmål der koblingen til politikk bare er løs assosiasjon, nærhet til maktbygg eller generell samfunnsvinkel.",
+    "Avvis styringsspørsmål uten eksplisitt mekanisme.",
+    "Avvis styringsspørsmål der valgt metode ikke passer mekanismen eller kildetypen.",
+    "Avvis teorispørsmål uten reell begrepsdistinksjon eller sammenligning.",
+    "Avvis teoretikernavn som svar når begrep og mekanisme ikke er del av spørsmålet."
   ],
   "generation_metadata_additions": {
     "required_per_question_fields_recommended": [
@@ -245,7 +269,12 @@
       "method_id",
       "emne_id",
       "politics_anchor_type",
-      "source_note"
+      "source_note",
+      "hook_id",
+      "mechanism",
+      "critical_distinction",
+      "theory_concept",
+      "case_anchor"
     ],
     "source_origin_values": [
       "external",
@@ -304,8 +333,58 @@
     "guidance_basis_definition": "Hvilket em_pol_*, hook, metode eller teorispor som styrte spørsmålets form uten å levere faktapåstanden.",
     "method_id_definition": "Én method_id fra methods_politikk_canonical_v4_5.json brukt til å forme spørsmålet.",
     "emne_id_definition": "Én em_pol_* fra emner_politikk_canonical_v4_5.json brukt som hovedemne.",
-    "source_note_definition": "Kort kildebeskrivelse som sier hvilken type politisk, rettslig, forvaltningsmessig, statistisk eller samfunnsfaglig kilde som er brukt."
+    "source_note_definition": "Kort kildebeskrivelse som sier hvilken type politisk, rettslig, forvaltningsmessig, statistisk eller samfunnsfaglig kilde som er brukt.",
+    "hook_id_definition": "Topic hook som kobler emne, metode, mekanisme og teorispor.",
+    "mechanism_definition": "Den dokumenterbare prosessen som forklarer hvordan styring gir et konkret utfall.",
+    "critical_distinction_definition": "Begrepsskillet spørsmålet faktisk tester.",
+    "theory_concept_definition": "Valgfritt teoretisk begrep som forklarer eller sammenligner mekanismen.",
+    "case_anchor_definition": "Konkret institusjon, dokument, tjeneste, plan, budsjett eller offentlig prosess."
   },
   "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For politikk skal konkrete institusjoner, lover, vedtak, reformer, offentlige rom, rettsbygg, forvaltningssteder, demokratiske arenaer, velferdstjenester, konflikter, proteststeder, normsystemer, fordelingsdata, rettskilder, budsjett, reguleringsplaner, statistikk og samfunnsfaglige kilder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
-  "migration_note": "Eksisterende places_politikk og people_politikk bør migreres til em_pol_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er politikk og ikke by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller annet fag."
+  "migration_note": "Eksisterende places_politikk og people_politikk bør migreres til em_pol_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er politikk og ikke by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller annet fag.",
+  "updated_at": "2026-07-24",
+  "quality_revision": "politikk-styring-vertical-2026-07-24",
+  "domain_quality_profiles": {
+    "styring_institusjoner_forvaltning": {
+      "status": "complete_revised",
+      "quality_revision": "politikk-styring-vertical-2026-07-24",
+      "required_question_chain": [
+        "external_case_or_document",
+        "claim_basis",
+        "mechanism",
+        "critical_distinction",
+        "optional_theory_lens"
+      ],
+      "required_mapping_fields": [
+        "recommended_method_ids",
+        "mechanism_options",
+        "critical_distinction_options",
+        "theory_lenses",
+        "required_anchor_types"
+      ],
+      "revised_method_ids": [
+        "met_pol_institusjonsanalyse",
+        "met_pol_forvaltningsanalyse",
+        "met_pol_teknokrati_og_ekspertanalyse",
+        "met_pol_budsjett_og_fordelingsanalyse",
+        "met_pol_praksisanalyse",
+        "met_pol_rettslig_analyse",
+        "met_pol_velferdsstatlig_analyse",
+        "met_pol_legitimitetsanalyse",
+        "met_pol_lokalpolitisk_analyse",
+        "met_pol_dokumentanalyse",
+        "met_pol_romlig_maktanalyse",
+        "met_pol_plan_og_reguleringsanalyse"
+      ],
+      "hook_count": 10,
+      "method_selection_rule": "Metoden velges etter dokumentert mekanisme og kildetype.",
+      "theory_rule": "Teori kommer sist og må forklare eller sammenligne en allerede etablert mekanisme.",
+      "rejection_rules": [
+        "avvis teoretikernavn som løsrevet svar",
+        "avvis spørsmål uten ekstern claim_basis",
+        "avvis spørsmål uten mekanisme",
+        "avvis spørsmål uten reell distinksjon når teori brukes"
+      ]
+    }
+  }
 }
