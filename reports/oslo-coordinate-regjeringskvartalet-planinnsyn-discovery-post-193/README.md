@@ -2,10 +2,11 @@
 
 Date: 2026-07-24
 
-- Planinnsyn root status: 200
-- JS/JSON assets inspected: 0
-- candidate service endpoints discovered: 0
-- endpoints probed: 0
-- keyword snippets captured: 0
+- actual map root: https://od2.pbe.oslo.kommune.no/kart/
+- map HTML bytes: 9353
+- JS/JSON assets inspected: 10
+- service-like candidates: 174
+- endpoints probed: 100
+- successful probes: 25
 
-No canonical coordinate changed. See `discovery.json` for the public service candidates used by Oslo Planinnsyn.
+No canonical coordinate changed.
