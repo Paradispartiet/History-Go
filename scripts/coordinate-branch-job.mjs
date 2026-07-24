@@ -66,7 +66,7 @@ const fields = {
   lat: expected.lat,
   lon: expected.lon,
   r: expected.r,
-  locatorType: 'campus',
+  locatorType: 'building',
   sourceProvider: 'official_address',
   sourceObjectId: expected.sourceObjectId,
   geocodeAccuracy: 'rooftop',
@@ -121,7 +121,7 @@ await writeJson(evidenceRel, {
     resolvedIdentity: 'OsloMet – storbyuniversitetet, org.nr. 997058925, underenhet 974647648, hovedresepsjon i Clara Holsts hus, Pilestredet 46, 0167 Oslo',
     identityStatus: 'resolved',
     identityProblem: '',
-    locatorTypeCandidate: 'campus',
+    locatorTypeCandidate: 'building',
     requiresSplit: false,
     splitReason: '',
   },
@@ -153,7 +153,8 @@ await writeJson(`${reportRel}/summary.json`, {
   productionApplied: true,
   researchReport: researchRel,
   before: { lat: expected.oldLat, lon: expected.oldLon, r: expected.oldR },
-  after: { lat: expected.lat, lon: expected.lon, r: expected.r, coordStatus: 'verified', coordType: 'address_point', locatorType: 'campus', sourceObjectId: expected.sourceObjectId },
+  after: { lat: expected.lat, lon: expected.lon, r: expected.r, coordStatus: 'verified', coordType: 'address_point', locatorType: 'building', sourceObjectId: expected.sourceObjectId },
+  campusRepresentation: 'multi-building campus represented by an official main-reception building address anchor and a 270-metre radius',
   displacementMeters: 124.4,
   maximumCampusSupportDistanceMeters: 221.3,
   footprintBufferMeters: 40,
@@ -163,5 +164,5 @@ await writeJson(`${reportRel}/summary.json`, {
   noOtherCoordinateCandidateHandled: true,
 });
 await fs.mkdir(path.join(root, reportRel), { recursive: true });
-await fs.writeFile(path.join(root, reportRel, 'README.md'), `# OsloMet Pilestredet coordinate production\n\n- Marker: **${expected.lat}, ${expected.lon}**\n- Main reception: **Clara Holsts hus, Pilestredet 46**\n- Building: **${expected.osmObjectId} – P46 OsloMet**\n- Radius: **180 m → 270 m**\n- Radius basis: **221,3 m + 40 m buffer**\n- Coordinate status: **verified**\n- Year 1994 preserved: **yes**\n- Protocol max: **195**\n`, 'utf8');
-console.log(JSON.stringify({ status: 'oslo_met_pilestredet_coordinate_applied', coordinate: { lat: expected.lat, lon: expected.lon }, radius: expected.r, protocolMaxBatch: 195 }, null, 2));
+await fs.writeFile(path.join(root, reportRel, 'README.md'), `# OsloMet Pilestredet coordinate production\n\n- Marker: **${expected.lat}, ${expected.lon}**\n- Main reception: **Clara Holsts hus, Pilestredet 46**\n- Building: **${expected.osmObjectId} – P46 OsloMet**\n- Campus representation: **building address anchor + 270 m radius**\n- Radius: **180 m → 270 m**\n- Radius basis: **221,3 m + 40 m buffer**\n- Coordinate status: **verified**\n- Year 1994 preserved: **yes**\n- Protocol max: **195**\n`, 'utf8');
+console.log(JSON.stringify({ status: 'oslo_met_pilestredet_coordinate_applied', coordinate: { lat: expected.lat, lon: expected.lon }, radius: expected.r, locatorType: 'building', protocolMaxBatch: 195 }, null, 2));
