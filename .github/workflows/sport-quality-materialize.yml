@@ -26,6 +26,24 @@ jobs:
         run: |
           set -euo pipefail
           git clone --quiet --depth 1 --branch '${{ github.head_ref }}' "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" repo
+      - name: Check Sport payload part checksums
+        working-directory: repo/.github/sport-quality-payload
+        run: |
+          sha256sum -c <<'EOF'
+          ad6570a495a04c3211af5bd7f20093608c8e57e1ed7a5a9d1b4cce13825d81de  part_00
+          a40dbc4b44b3dc541068ea4a6edf2615e2534431787f31acc1238456cc1852c1  rest_00
+          5c8d45c6542aa12cfccef9aaa05d460db4d86cba0afdf9e7ef000bcfd39ff750  rest_01
+          0a05246ec3ea2d39984698865888b44d4f337ccfbf13efb59cc11245d15e9e77  rest_02
+          6eecebfc74a5fc6f0ddb001f0b9f73da2b1d51c65d7e8b132f74ba13444dcf24  rest_03
+          3b624e269112b94f966b6c0ddbad03acad5a5b487b84b439c6fe8dfe021c76b8  rest_04
+          16e164572570fa7a9206b99839b80eed7e3e03c53e15a1c82cd745ba48702867  rest_05
+          a03005174af158bf94408f85ad5b54126fb3baf41799e0c5a01628570c96530a  tail_00
+          03664fb74e120952f6f3570b63e06a09b0a7d9647064df7d9c7e204b6b9cbce0  tail_01
+          a530c639cd877ffac0f1b26c6cfe506e8e86ddc76e562bceeac4d18496b9ecf4  tail_02
+          35a29d3947fa766b44db2a4443e6f4cbe3f3b9063869b4ff2cb4ec56dfdc3b82  tail_03
+          d23bf8a623a1c548aefc243de0748ab85003a35265c59996cf8c8d9afcd00e0f  tail_04
+          7de0dc494f87381a2134d5aef2b721d1694cfffe42aaf7bf40d75187241aa4db  tail_05
+          EOF
       - name: Verify and decode Sport package
         working-directory: repo
         run: |
@@ -37,46 +55,16 @@ jobs:
           import hashlib
 
           root = Path('.github/sport-quality-payload')
-          ordered = [
-              'part_00',
-              *[f'rest_{index:02d}' for index in range(6)],
-              *[f'tail_{index:02d}' for index in range(6)],
-          ]
-          expected = {
-              'part_00': 'ad6570a495a04c3211af5bd7f20093608c8e57e1ed7a5a9d1b4cce13825d81de',
-              'rest_00': 'a40dbc4b44b3dc541068ea4a6edf2615e2534431787f31acc1238456cc1852c1',
-              'rest_01': '5c8d45c6542aa12cfccef9aaa05d460db4d86cba0afdf9e7ef000bcfd39ff750',
-              'rest_02': '0a05246ec3ea2d39984698865888b44d4f337ccfbf13efb59cc11245d15e9e77',
-              'rest_03': '6eecebfc74a5fc6f0ddb001f0b9f73da2b1d51c65d7e8b132f74ba13444dcf24',
-              'rest_04': '3b624e269112b94f966b6c0ddbad03acad5a5b487b84b439c6fe8dfe021c76b8',
-              'rest_05': '16e164572570fa7a9206b99839b80eed7e3e03c53e15a1c82cd745ba48702867',
-              'tail_00': 'a03005174af158bf94408f85ad5b54126fb3baf41799e0c5a01628570c96530a',
-              'tail_01': '03664fb74e120952f6f3570b63e06a09b0a7d9647064df7d9c7e204b6b9cbce0',
-              'tail_02': 'a530c639cd877ffac0f1b26c6cfe506e8e86ddc76e562bceeac4d18496b9ecf4',
-              'tail_03': '35a29d3947fa766b44db2a4443e6f4cbe3f3b9063869b4ff2cb4ec56dfdc3b82',
-              'tail_04': 'd23bf8a623a1c548aefc243de0748ab85003a35265c59996cf8c8d9afcd00e0f',
-              'tail_05': '7de0dc494f87381a2134d5aef2b721d1694cfffe42aaf7bf40d75187241aa4db',
-          }
-          texts = []
-          for name in ordered:
-              path = root / name
-              if not path.is_file():
-                  raise SystemExit(f'Missing payload part: {name}')
-              raw = path.read_bytes()
-              actual = hashlib.sha256(raw).hexdigest()
-              if actual != expected[name]:
-                  raise SystemExit(f'Payload part checksum mismatch: {name} expected={expected[name]} actual={actual}')
-              texts.append(raw.decode('utf-8'))
-
-          encoded = ''.join(texts)
+          names = ['part_00', *[f'rest_{i:02d}' for i in range(6)], *[f'tail_{i:02d}' for i in range(6)]]
+          encoded = ''.join((root / name).read_text(encoding='utf-8') for name in names)
           payload = base64.b64decode(encoded, validate=True)
-          actual_package_sha = hashlib.sha256(payload).hexdigest()
-          expected_package_sha = 'aa418e8c3447eaba0053444a4cfa53b541240086ae2a5d18f7b971463830e520'
-          if actual_package_sha != expected_package_sha:
-              raise SystemExit(f'Package checksum mismatch: expected={expected_package_sha} actual={actual_package_sha}')
+          actual = hashlib.sha256(payload).hexdigest()
+          expected = 'aa418e8c3447eaba0053444a4cfa53b541240086ae2a5d18f7b971463830e520'
+          if actual != expected:
+              raise SystemExit(f'Package checksum mismatch: expected={expected} actual={actual}')
           gzip.decompress(payload)
           Path('/tmp/sport_quality_lift.tgz').write_bytes(payload)
-          print(f'Package OK: parts={len(ordered)} bytes={len(payload)} sha256={actual_package_sha}')
+          print(f'Package OK: parts={len(names)} bytes={len(payload)} sha256={actual}')
           PY
       - name: Materialize and validate Sport quality lift
         working-directory: repo
