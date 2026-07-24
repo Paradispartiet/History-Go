@@ -1,4 +1,4 @@
-import { execFileSync, spawnSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
@@ -11,7 +11,19 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-async function fetchBuffer(url) {
+function commandAvailable(command) {
+  return spawnSync('bash', ['-lc', `command -v ${command}`], { encoding: 'utf8' }).status === 0;
+}
+
+function exec(command, args, allowFailure = false) {
+  const result = spawnSync(command, args, { encoding: 'utf8', maxBuffer: 25 * 1024 * 1024 });
+  if (!allowFailure && result.status !== 0) {
+    throw new Error(`${command} failed (${result.status}): ${result.stderr || result.stdout}`);
+  }
+  return result;
+}
+
+async function fetchImage(url) {
   const response = await fetch(url, {
     redirect: 'follow',
     headers: {
@@ -25,74 +37,69 @@ async function fetchBuffer(url) {
   return { buffer, finalUrl: response.url, contentType: response.headers.get('content-type') ?? '' };
 }
 
-function commandAvailable(command) {
-  return spawnSync('bash', ['-lc', `command -v ${command}`], { encoding: 'utf8' }).status === 0;
-}
+await mkdir(reportDir, { recursive: true });
+assert(summary.placeId === 'sigrid_undset_statue', 'Unexpected report placeId.');
+assert(summary.coordinateMaxBatch === 194, 'Report is not post-194.');
+assert(summary.exactOsmCandidate?.id === 7596280553, 'Exact OSM candidate changed.');
+assert(summary.googleImage?.sha256 === 'bc1dc83cce6a039eb1012cc69058ba09076707f1e603f36ba1326d326f4f1d6f', 'Pinned OSM-linked thumbnail hash changed.');
 
-function run(command, args, logFile, allowFailure = false) {
-  const result = spawnSync(command, args, { encoding: 'utf8', maxBuffer: 20 * 1024 * 1024 });
-  const text = [`$ ${command} ${args.join(' ')}`, result.stdout ?? '', result.stderr ?? '', `exit=${result.status}`].join('\n');
-  return writeFile(join(reportDir, logFile), text, 'utf8').then(() => {
-    if (!allowFailure && result.status !== 0) throw new Error(`${command} failed; see ${logFile}`);
-    return result;
+const discovered = summary.googleImage.discoveredImageUrls.filter((url) => url.includes('/pw/'));
+const bases = [...new Set(discovered.map((url) => url.replace(/=w\d+[^\s]*$/, '')))];
+assert(bases.length >= 2, `Expected two album image bases, got ${bases.length}.`);
+
+const downloads = [];
+for (let index = 0; index < 2; index += 1) {
+  const sourceUrl = `${bases[index]}=w1800-h1400-no`;
+  const fetched = await fetchImage(sourceUrl);
+  const filename = `osm-google-photo-${index + 1}-full.jpg`;
+  await writeFile(join(reportDir, filename), fetched.buffer);
+  downloads.push({
+    index: index + 1,
+    file: `reports/oslo-coordinate-sigrid-undset-visual-crosscheck-post-194/${filename}`,
+    sourceUrl,
+    finalUrl: fetched.finalUrl,
+    contentType: fetched.contentType,
+    bytes: fetched.buffer.length,
   });
 }
 
-await mkdir(reportDir, { recursive: true });
-assert(summary.placeId === 'sigrid_undset_statue', 'Unexpected research summary.');
-assert(summary.coordinateMaxBatch === 194, 'Research summary is not post-194.');
-assert(summary.exactOsmCandidate?.id === 7596280553, 'Exact OSM node changed.');
-assert(summary.googleImage?.sha256 === 'bc1dc83cce6a039eb1012cc69058ba09076707f1e603f36ba1326d326f4f1d6f', 'Pinned OSM-linked image hash changed.');
-
-const discovered = summary.googleImage.discoveredImageUrls.filter((url) => url.includes('/pw/'));
-const uniqueBases = [...new Set(discovered.map((url) => url.replace(/=w\d+[^\s]*$/, ''))];
-assert(uniqueBases.length >= 2, `Expected at least two album image bases, got ${uniqueBases.length}.`);
-
-const downloads = [];
-for (let index = 0; index < Math.min(2, uniqueBases.length); index += 1) {
-  const sourceUrl = `${uniqueBases[index]}=w1800-h1400-no`;
-  const result = await fetchBuffer(sourceUrl);
-  const file = `osm-google-photo-${index + 1}-full.jpg`;
-  await writeFile(join(reportDir, file), result.buffer);
-  downloads.push({ index: index + 1, file: `reports/oslo-coordinate-sigrid-undset-visual-crosscheck-post-194/${file}`, sourceUrl, finalUrl: result.finalUrl, contentType: result.contentType, bytes: result.buffer.length });
-}
-
-const setupLines = [];
+const setupLog = [];
 if (!commandAvailable('tesseract') || !commandAvailable('convert') || !commandAvailable('identify')) {
-  const update = spawnSync('sudo', ['apt-get', 'update', '-qq'], { encoding: 'utf8', maxBuffer: 20 * 1024 * 1024 });
-  setupLines.push('$ sudo apt-get update -qq', update.stdout ?? '', update.stderr ?? '', `exit=${update.status}`);
-  assert(update.status === 0, 'apt-get update failed.');
-  const install = spawnSync('sudo', ['apt-get', 'install', '-y', '-qq', 'tesseract-ocr', 'tesseract-ocr-eng', 'imagemagick'], { encoding: 'utf8', maxBuffer: 20 * 1024 * 1024 });
-  setupLines.push('$ sudo apt-get install -y -qq tesseract-ocr tesseract-ocr-eng imagemagick', install.stdout ?? '', install.stderr ?? '', `exit=${install.status}`);
-  assert(install.status === 0, 'OCR dependencies could not be installed.');
+  const update = exec('sudo', ['apt-get', 'update', '-qq']);
+  setupLog.push(update.stdout, update.stderr);
+  const install = exec('sudo', ['apt-get', 'install', '-y', '-qq', 'tesseract-ocr', 'tesseract-ocr-eng', 'imagemagick']);
+  setupLog.push(install.stdout, install.stderr);
 }
-await writeFile(join(reportDir, 'ocr-dependency-setup.log'), `${setupLines.join('\n')}\n`, 'utf8');
+await writeFile(join(reportDir, 'ocr-dependency-setup.log'), `${setupLog.join('\n')}\n`, 'utf8');
 
 const ocrRows = [];
 for (const item of downloads) {
   const input = join(root, item.file);
-  const identify = await run('identify', ['-format', '%w %h', input], `photo-${item.index}-identify.log`);
-  const [width, height] = String(identify.stdout).trim().split(/\s+/).map(Number);
+  const dimensions = exec('identify', ['-format', '%w %h', input]);
+  const [width, height] = dimensions.stdout.trim().split(/\s+/).map(Number);
   assert(Number.isFinite(width) && Number.isFinite(height), `Could not identify image ${item.index}.`);
 
   const enhanced = join(reportDir, `photo-${item.index}-enhanced.png`);
   const bottom = join(reportDir, `photo-${item.index}-bottom-enhanced.png`);
-  await run('convert', [input, '-resize', '240%', '-colorspace', 'Gray', '-contrast-stretch', '1%x1%', '-sharpen', '0x1', enhanced], `photo-${item.index}-enhance.log`);
-  await run('convert', [input, '-gravity', 'South', '-crop', `100%x65%+0+0`, '+repage', '-resize', '320%', '-colorspace', 'Gray', '-contrast-stretch', '1%x1%', '-sharpen', '0x1.5', bottom], `photo-${item.index}-bottom.log`);
+  exec('convert', [input, '-resize', '240%', '-colorspace', 'Gray', '-contrast-stretch', '1%x1%', '-sharpen', '0x1', enhanced]);
+  exec('convert', [input, '-gravity', 'South', '-crop', '100%x65%+0+0', '+repage', '-resize', '320%', '-colorspace', 'Gray', '-contrast-stretch', '1%x1%', '-sharpen', '0x1.5', bottom]);
 
   const variants = [
-    { label: 'full', path: input },
-    { label: 'enhanced', path: enhanced },
-    { label: 'bottom', path: bottom },
+    ['full', input],
+    ['enhanced', enhanced],
+    ['bottom', bottom],
   ];
   const texts = [];
-  for (const variant of variants) {
+  for (const [label, path] of variants) {
     for (const psm of ['6', '11', '12']) {
-      const result = await run('tesseract', [variant.path, 'stdout', '-l', 'eng', '--psm', psm], `photo-${item.index}-${variant.label}-psm${psm}.log`, true);
-      texts.push({ variant: variant.label, psm: Number(psm), text: String(result.stdout ?? '').trim(), exitCode: result.status });
+      const result = exec('tesseract', [path, 'stdout', '-l', 'eng', '--psm', psm], true);
+      const text = String(result.stdout ?? '').trim();
+      texts.push({ label, psm: Number(psm), text, exitCode: result.status });
+      await writeFile(join(reportDir, `photo-${item.index}-${label}-psm${psm}.log`), `${text}\n${result.stderr ?? ''}\nexit=${result.status}\n`, 'utf8');
     }
   }
-  const combinedText = texts.map((row) => row.text).join('\n').replace(/\s+/g, ' ').trim();
+
+  const combinedText = texts.map((row) => row.text).join(' ').replace(/\s+/g, ' ').trim();
   const normalized = combinedText.toLocaleUpperCase('nb-NO');
   ocrRows.push({
     imageIndex: item.index,
@@ -111,22 +118,27 @@ const albumResponse = await fetch('https://photos.app.goo.gl/JrhcnKr6gwFmcEtu5',
   headers: { 'user-agent': 'Mozilla/5.0', accept: 'text/html,*/*;q=0.8' },
 });
 const albumHtml = await albumResponse.text();
-const keywords = ['SIGRID', 'UNDSET', 'STENSPARKEN', 'STATUE', 'SKULPTUR', 'STYRKE'];
 const upperHtml = albumHtml.toLocaleUpperCase('nb-NO');
 const contexts = [];
-for (const keyword of keywords) {
-  let from = 0;
+for (const keyword of ['SIGRID', 'UNDSET', 'STENSPARKEN', 'STATUE', 'SKULPTUR', 'STYRKE']) {
+  let cursor = 0;
   while (contexts.length < 40) {
-    const at = upperHtml.indexOf(keyword, from);
+    const at = upperHtml.indexOf(keyword, cursor);
     if (at < 0) break;
     contexts.push({ keyword, context: albumHtml.slice(Math.max(0, at - 180), Math.min(albumHtml.length, at + keyword.length + 180)).replace(/\s+/g, ' ') });
-    from = at + keyword.length;
+    cursor = at + keyword.length;
   }
 }
 await writeFile(join(reportDir, 'google-album-keyword-context.json'), `${JSON.stringify({ status: albumResponse.status, finalUrl: albumResponse.url, htmlBytes: Buffer.byteLength(albumHtml), contexts }, null, 2)}\n`, 'utf8');
 
 const inscriptionConfirmed = ocrRows.some((row) => row.sigridMatch && row.undsetMatch);
 const partialInscriptionEvidence = ocrRows.some((row) => row.sigridMatch || row.undsetMatch || row.lifeDateMatch);
+const decision = inscriptionConfirmed
+  ? 'exact_osm_linked_album_contains_sigrid_undset_inscription'
+  : partialInscriptionEvidence
+    ? 'partial_inscription_evidence_requires_manual_visual_review'
+    : 'ocr_did_not_resolve_identity_manual_visual_review_still_required';
+
 const result = {
   version: '2026-07-24',
   placeId: 'sigrid_undset_statue',
@@ -137,11 +149,7 @@ const result = {
   albumKeywordContexts: contexts,
   inscriptionConfirmed,
   partialInscriptionEvidence,
-  decision: inscriptionConfirmed
-    ? 'exact_osm_linked_album_contains_sigrid_undset_inscription'
-    : partialInscriptionEvidence
-      ? 'partial_inscription_evidence_requires_manual_visual_review'
-      : 'ocr_did_not_resolve_identity_manual_visual_review_still_required',
+  decision,
 };
 await writeFile(join(reportDir, 'inscription-crosscheck.json'), `${JSON.stringify(result, null, 2)}\n`, 'utf8');
 
@@ -149,19 +157,31 @@ summary.inscriptionCrosscheck = {
   report: 'reports/oslo-coordinate-sigrid-undset-visual-crosscheck-post-194/inscription-crosscheck.json',
   inscriptionConfirmed,
   partialInscriptionEvidence,
-  decision: result.decision,
+  decision,
 };
 summary.canPromoteAutomatically = inscriptionConfirmed;
 summary.decision = inscriptionConfirmed
   ? 'exact_osm_node_identified_by_directly_linked_album_inscription'
-  : result.decision;
+  : decision;
 await writeFile(summaryPath, `${JSON.stringify(summary, null, 2)}\n`, 'utf8');
 
 const readmePath = join(reportDir, 'README.md');
-const oldReadme = await readFile(readmePath, 'utf8');
-const appendix = `\n## Full-resolution inscription crosscheck\n\nTwo full-resolution images were downloaded from the exact Google Photos album linked by OSM node 7596280553. OCR was run against the originals, enhanced copies and lower-image crops with multiple page-segmentation modes.\n\n- exact inscription confirmed: \`${inscriptionConfirmed}\`\n- partial inscription evidence: \`${partialInscriptionEvidence}\`\n- decision: \`${result.decision}\`\n\nThe detailed OCR output and image provenance are stored in \`inscription-crosscheck.json\`.\n`;
-await writeFile(readmePath, `${oldReadme.trimEnd()}${appendix}`, 'utf8');
+const readme = await readFile(readmePath, 'utf8');
+const appendix = `\n## Full-resolution inscription crosscheck\n\nTwo full-resolution images were downloaded from the exact Google Photos album linked by OSM node 7596280553. OCR was run against originals, enhanced copies and lower-image crops with multiple page-segmentation modes.\n\n- exact inscription confirmed: \`${inscriptionConfirmed}\`\n- partial inscription evidence: \`${partialInscriptionEvidence}\`\n- decision: \`${decision}\`\n\nDetailed OCR output and image provenance are stored in \`inscription-crosscheck.json\`.\n`;
+await writeFile(readmePath, `${readme.trimEnd()}${appendix}`, 'utf8');
 
-console.log(JSON.stringify({ downloads, ocr: ocrRows.map((row) => ({ imageIndex: row.imageIndex, width: row.width, height: row.height, combinedText: row.combinedText, sigridMatch: row.sigridMatch, undsetMatch: row.undsetMatch, lifeDateMatch: row.lifeDateMatch })), inscriptionConfirmed, partialInscriptionEvidence, decision: result.decision }, null, 2));
-
-// Retry trigger: preserve identical research logic; force a fresh workflow synchronization event.
+console.log(JSON.stringify({
+  downloads,
+  ocr: ocrRows.map((row) => ({
+    imageIndex: row.imageIndex,
+    width: row.width,
+    height: row.height,
+    combinedText: row.combinedText,
+    sigridMatch: row.sigridMatch,
+    undsetMatch: row.undsetMatch,
+    lifeDateMatch: row.lifeDateMatch,
+  })),
+  inscriptionConfirmed,
+  partialInscriptionEvidence,
+  decision,
+}, null, 2));
