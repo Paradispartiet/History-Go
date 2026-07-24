@@ -24,9 +24,12 @@ const fetchText = async (url, accept = 'application/json,text/html;q=0.9,*/*;q=0
 };
 const fetchJson = async (url) => JSON.parse(await fetchText(url, 'application/json'));
 const normalize = (value) => String(value ?? '')
+  .toLowerCase()
+  .replaceAll('æ', 'ae')
+  .replaceAll('ø', 'o')
+  .replaceAll('å', 'a')
   .normalize('NFKD')
   .replace(/[\u0300-\u036f]/g, '')
-  .toLowerCase()
   .replace(/[^a-z0-9]+/g, ' ')
   .trim();
 const distanceMeters = (a, b) => {
