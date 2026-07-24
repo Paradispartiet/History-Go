@@ -1,0 +1,541 @@
+{
+  "version": "1.0",
+  "subject_id": "sport",
+  "type": "scientific_model_registry",
+  "status": "canonical_scientific_evidence_layer",
+  "updated_at": "2026-07-24",
+  "models": [
+    {
+      "model_id": "model_sport_expected_goals",
+      "title": "Expected goals (xG)",
+      "model_family": "probabilistic_event_model",
+      "purpose": "Estimere sannsynligheten for scoring fra en definert skuddhendelse.",
+      "inputs": [
+        "skuddposisjon",
+        "vinkel",
+        "situasjonstype",
+        "kontekstvariabler"
+      ],
+      "outputs": [
+        "sannsynlighet 0–1 per skudd",
+        "aggregert forventet målverdi"
+      ],
+      "assumptions": [
+        "hendelser kodes konsistent",
+        "treningsdata representerer målsettingen",
+        "modellversjon og variabler er kjent"
+      ],
+      "supported_use": [
+        "beskrive sjansekvalitet",
+        "kalibreringsanalyse"
+      ],
+      "misuse": [
+        "behandle xG som faktisk mål",
+        "sammenligne leverandører uten definisjon",
+        "forklare årsak fra output alene"
+      ],
+      "source_ids": [
+        "src_sport_cosmin"
+      ],
+      "claim_ids": [
+        "claim_sport_model_output_definition_dependent"
+      ],
+      "minimum_metadata": [
+        "provider_or_model_name",
+        "model_version",
+        "event_definition",
+        "competition",
+        "date_range",
+        "calibration_note"
+      ]
+    },
+    {
+      "model_id": "model_sport_elo_rating",
+      "title": "Elo-rating",
+      "model_family": "dynamic_rating_model",
+      "purpose": "Oppdatere relativ styrke ut fra forventet og observert konkurranseresultat.",
+      "inputs": [
+        "tidligere rating",
+        "motstanderrating",
+        "resultat",
+        "oppdateringsparameter"
+      ],
+      "outputs": [
+        "oppdatert relativ rating",
+        "forventet resultatsannsynlighet"
+      ],
+      "assumptions": [
+        "resultatnettverket er informativt",
+        "parameteren passer konkurransen",
+        "ratingen er relativ"
+      ],
+      "supported_use": [
+        "styrkeestimat",
+        "rangering med usikkerhetsforbehold"
+      ],
+      "misuse": [
+        "tolke rating som direkte ferdighetsmåling",
+        "ignorere ligastruktur"
+      ],
+      "source_ids": [
+        "src_sport_elo_1978"
+      ],
+      "claim_ids": [
+        "claim_sport_model_output_definition_dependent"
+      ],
+      "minimum_metadata": [
+        "rating_variant",
+        "k_factor",
+        "home_advantage",
+        "initialisation",
+        "competition_scope",
+        "date_range"
+      ]
+    },
+    {
+      "model_id": "model_sport_fitness_fatigue",
+      "title": "Fitness–fatigue / impulse–response",
+      "model_family": "training_response_model",
+      "purpose": "Representere treningsrespons som samspill mellom positiv tilpasning og tretthet.",
+      "inputs": [
+        "operasjonalisert treningsimpuls",
+        "tidskonstanter",
+        "prestasjonstester"
+      ],
+      "outputs": [
+        "modellert responskurve",
+        "fitness- og fatiguekomponenter"
+      ],
+      "assumptions": [
+        "inputmålet representerer relevant belastning",
+        "responsformen er tilstrekkelig",
+        "parameterestimatene er stabile"
+      ],
+      "supported_use": [
+        "hypotesegenerering",
+        "trendanalyse"
+      ],
+      "misuse": [
+        "automatisk individuell resept",
+        "diagnostisere overtrening",
+        "samme parametere for alle"
+      ],
+      "source_ids": [
+        "src_sport_cosmin"
+      ],
+      "claim_ids": [
+        "claim_sport_group_average_not_individual_prescription",
+        "claim_sport_measurement_change_requires_error_context"
+      ],
+      "minimum_metadata": [
+        "load_metric",
+        "performance_outcome",
+        "sampling_frequency",
+        "model_equation",
+        "parameter_method",
+        "validation_window"
+      ]
+    },
+    {
+      "model_id": "model_sport_constraints_led",
+      "title": "Constraints-led approach",
+      "model_family": "skill_acquisition_framework",
+      "purpose": "Designe læringsmiljøer gjennom samspill mellom individ-, oppgave- og miljøbegrensninger.",
+      "inputs": [
+        "utøveregenskaper",
+        "oppgaveregler",
+        "rom",
+        "utstyr",
+        "motstand",
+        "informasjonskilder"
+      ],
+      "outputs": [
+        "mulige handlingsløsninger",
+        "tilpasning og variasjon"
+      ],
+      "assumptions": [
+        "øvelsen beholder relevant persepsjon–handling",
+        "begrensninger beskrives eksplisitt",
+        "læring vurderes over tid"
+      ],
+      "supported_use": [
+        "representativt øvelsesdesign",
+        "utforske variasjon"
+      ],
+      "misuse": [
+        "tilfeldig variasjon uten mål",
+        "kalle enhver småspilløvelse økologisk valid"
+      ],
+      "source_ids": [
+        "src_sport_newell_1986"
+      ],
+      "claim_ids": [
+        "claim_sport_constraints_interaction"
+      ],
+      "minimum_metadata": [
+        "learning_goal",
+        "representative_information",
+        "constraints_changed",
+        "comparison_condition",
+        "retention_or_transfer_measure"
+      ]
+    },
+    {
+      "model_id": "model_sport_self_determination",
+      "title": "Selvbestemmelsesteori",
+      "model_family": "motivation_theory",
+      "purpose": "Forklare motivasjonskvalitet gjennom autonomi, kompetanse, tilhørighet og reguleringsformer.",
+      "inputs": [
+        "behovsstøtte",
+        "behovstilfredsstillelse",
+        "reguleringsform",
+        "miljø"
+      ],
+      "outputs": [
+        "hypoteser om motivasjon, trivsel og atferd"
+      ],
+      "assumptions": [
+        "konstruksjonene måles egnet",
+        "kultur og kontekst vurderes",
+        "sammenhenger er ikke automatisk kausale"
+      ],
+      "supported_use": [
+        "analysere trenerklima",
+        "utøvermedvirkning",
+        "frafall"
+      ],
+      "misuse": [
+        "klassifisere en utøver permanent umotivert",
+        "autonomi som fravær av struktur"
+      ],
+      "source_ids": [
+        "src_sport_deci_ryan_2000"
+      ],
+      "claim_ids": [
+        "claim_sport_motivation_context"
+      ],
+      "minimum_metadata": [
+        "population",
+        "instrument",
+        "language_version",
+        "context",
+        "timepoint",
+        "causal_design_note"
+      ]
+    },
+    {
+      "model_id": "model_sport_deliberate_practice",
+      "title": "Deliberate practice",
+      "model_family": "expertise_framework",
+      "purpose": "Beskrive målrettet, strukturert og feedbackstøttet praksis rettet mot forbedring.",
+      "inputs": [
+        "læringsmål",
+        "utfordringsnivå",
+        "feedback",
+        "repetisjon",
+        "varighet"
+      ],
+      "outputs": [
+        "hypoteser om ferdighetsutvikling"
+      ],
+      "assumptions": [
+        "praksis må defineres, ikke bare telles",
+        "andre faktorer virker samtidig",
+        "retrospektive estimater er usikre"
+      ],
+      "supported_use": [
+        "skille strukturert forbedringsarbeid fra generell aktivitet"
+      ],
+      "misuse": [
+        "10 000 timer som universell lov",
+        "deterministisk talentseleksjon"
+      ],
+      "source_ids": [
+        "src_sport_ericsson_1993",
+        "src_sport_ioc_youth_2015"
+      ],
+      "claim_ids": [
+        "claim_sport_youth_specialisation_contextual"
+      ],
+      "minimum_metadata": [
+        "practice_definition",
+        "age",
+        "sport",
+        "level",
+        "measurement_method",
+        "retrospective_bias_note"
+      ]
+    },
+    {
+      "model_id": "model_sport_injury_surveillance",
+      "title": "Injury and illness surveillance",
+      "model_family": "epidemiological_surveillance",
+      "purpose": "Registrere forekomst, eksponering, alvorlighet og byrde med sammenlignbare definisjoner.",
+      "inputs": [
+        "helsedefinisjon",
+        "eksponering",
+        "alvorlighet",
+        "registreringsmetode",
+        "populasjon"
+      ],
+      "outputs": [
+        "prevalens",
+        "insidens",
+        "alvorlighet",
+        "burden"
+      ],
+      "assumptions": [
+        "registreringsgrad er kjent",
+        "nevneren passer utfallet",
+        "klassifikasjon er konsistent"
+      ],
+      "supported_use": [
+        "overvåking",
+        "beskrivende sammenligning"
+      ],
+      "misuse": [
+        "kausal konklusjon fra rate alene",
+        "sammenligne ulike definisjoner"
+      ],
+      "source_ids": [
+        "src_sport_ioc_injury_2020",
+        "src_sport_para_injury_2021"
+      ],
+      "claim_ids": [
+        "claim_sport_injury_rate_requires_exposure"
+      ],
+      "minimum_metadata": [
+        "health_problem_definition",
+        "exposure_unit",
+        "severity_definition",
+        "reporter",
+        "missingness",
+        "population_characteristics"
+      ]
+    },
+    {
+      "model_id": "model_sport_grade_certainty",
+      "title": "GRADE-inspirert evidensvurdering",
+      "model_family": "certainty_appraisal",
+      "purpose": "Vurdere hvor sikkert et samlet evidensgrunnlag støtter en definert påstand.",
+      "inputs": [
+        "studiedesign",
+        "risiko for bias",
+        "inkonsistens",
+        "indirekthet",
+        "upresisjon",
+        "publikasjonsskjevhet"
+      ],
+      "outputs": [
+        "evidensgrad",
+        "begrunnelse for opp- eller nedgradering"
+      ],
+      "assumptions": [
+        "vurderingen gjelder definert utfall og påstand",
+        "domenevurderinger dokumenteres"
+      ],
+      "supported_use": [
+        "skille enkeltstudie fra evidensgrunnlag",
+        "begrunne usikkerhet"
+      ],
+      "misuse": [
+        "automatisk score uten vurdering",
+        "anta at RCT alltid betyr høy sikkerhet"
+      ],
+      "source_ids": [
+        "src_sport_grade"
+      ],
+      "claim_ids": [
+        "claim_sport_reporting_not_quality",
+        "claim_sport_effect_requires_uncertainty"
+      ],
+      "minimum_metadata": [
+        "claim_id",
+        "outcome",
+        "population",
+        "risk_of_bias",
+        "inconsistency",
+        "indirectness",
+        "imprecision",
+        "publication_bias"
+      ]
+    },
+    {
+      "model_id": "model_sport_causal_dag",
+      "title": "Kausal DAG",
+      "model_family": "causal_inference",
+      "purpose": "Gjøre antakelser om årsaksstruktur, konfundering, mediatorer og seleksjon eksplisitte.",
+      "inputs": [
+        "variabler",
+        "rettede relasjoner",
+        "tidsrekkefølge",
+        "domenekunnskap"
+      ],
+      "outputs": [
+        "justeringssett",
+        "testbare implikasjoner",
+        "synlige antakelser"
+      ],
+      "assumptions": [
+        "piler er kausale antakelser",
+        "viktige variabler er vurdert",
+        "tidsrekkefølge er plausibel"
+      ],
+      "supported_use": [
+        "planlegge analyse",
+        "unngå kontroll for mediator eller kollider"
+      ],
+      "misuse": [
+        "behandle DAG som empirisk bevis",
+        "anta fravær av umålt konfundering"
+      ],
+      "source_ids": [
+        "src_sport_strobe",
+        "src_sport_grade"
+      ],
+      "claim_ids": [
+        "claim_sport_association_not_causation"
+      ],
+      "minimum_metadata": [
+        "causal_question",
+        "time_order",
+        "node_definitions",
+        "edge_rationale",
+        "adjustment_set",
+        "unmeasured_confounding_note"
+      ]
+    },
+    {
+      "model_id": "model_sport_reproducible_pipeline",
+      "title": "Reproduserbar analysepipeline",
+      "model_family": "data_provenance_workflow",
+      "purpose": "Koble rådata, transformasjoner, kode, modell og output med sporbar provenance.",
+      "inputs": [
+        "versjonerte data",
+        "datadictionary",
+        "kode",
+        "miljø",
+        "parametere"
+      ],
+      "outputs": [
+        "reproduserbart resultat",
+        "audit-logg",
+        "maskinlesbar metadata"
+      ],
+      "assumptions": [
+        "avhengigheter dokumenteres",
+        "inputdata kan identifiseres",
+        "tilgangsregler respekteres"
+      ],
+      "supported_use": [
+        "kampanalyse",
+        "tracking",
+        "forskningssyntese"
+      ],
+      "misuse": [
+        "anta at reproduksjon betyr sannhet",
+        "publisere sensitive data uten styring"
+      ],
+      "source_ids": [
+        "src_sport_fair_2016"
+      ],
+      "claim_ids": [
+        "claim_sport_fair_not_open",
+        "claim_sport_reproducible_analysis"
+      ],
+      "minimum_metadata": [
+        "dataset_id",
+        "dataset_version",
+        "code_commit",
+        "runtime",
+        "parameters",
+        "license_or_access",
+        "created_at"
+      ]
+    },
+    {
+      "model_id": "model_sport_reds_framework",
+      "title": "IOC REDs clinical framework",
+      "model_family": "clinical_risk_framework",
+      "purpose": "Strukturere klinisk vurdering av mulig problematisk lav energitilgjengelighet og REDs.",
+      "inputs": [
+        "klinisk historie",
+        "symptomer",
+        "risikoindikatorer",
+        "undersøkelser",
+        "kontekst"
+      ],
+      "outputs": [
+        "strukturert klinisk vurdering av kvalifisert personell"
+      ],
+      "assumptions": [
+        "ingen enkeltmarkør er tilstrekkelig",
+        "differensialdiagnoser vurderes"
+      ],
+      "supported_use": [
+        "sikker kunnskapsformidling",
+        "forstå vurderingsgrenser"
+      ],
+      "misuse": [
+        "quizdiagnose",
+        "automatisk risikoscore",
+        "behandlingsplan i appen"
+      ],
+      "source_ids": [
+        "src_sport_ioc_reds_2023"
+      ],
+      "claim_ids": [
+        "claim_sport_reds_requires_clinical_context"
+      ],
+      "minimum_metadata": [
+        "guideline_version",
+        "clinical_scope",
+        "qualified_assessor_required",
+        "safety_note"
+      ]
+    },
+    {
+      "model_id": "model_sport_concussion_pathway",
+      "title": "Concussion recognition and assessment pathway",
+      "model_family": "clinical_safety_pathway",
+      "purpose": "Skille gjenkjenning av mistanke, akutt sikkerhet, klinisk vurdering og gradvis retur.",
+      "inputs": [
+        "hendelse",
+        "observerte tegn",
+        "symptomer",
+        "klinisk vurdering",
+        "forløp"
+      ],
+      "outputs": [
+        "sikkerhetssteg og kliniske beslutninger"
+      ],
+      "assumptions": [
+        "verktøy brukes i riktig setting",
+        "alvorlige tegn håndteres akutt",
+        "retur vurderes individuelt"
+      ],
+      "supported_use": [
+        "sikkerhetsopplæring",
+        "forstå roller"
+      ],
+      "misuse": [
+        "diagnose fra selvtest",
+        "samme-dag retur fra symptomfravær",
+        "quizgenerert behandlingsråd"
+      ],
+      "source_ids": [
+        "src_sport_concussion_2022"
+      ],
+      "claim_ids": [
+        "claim_sport_concussion_remove_assess"
+      ],
+      "minimum_metadata": [
+        "consensus_version",
+        "tool_role",
+        "age_group",
+        "healthcare_professional_required",
+        "emergency_red_flags"
+      ]
+    }
+  ]
+}

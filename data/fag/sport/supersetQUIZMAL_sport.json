@@ -21,6 +21,26 @@
     "curriculum": "data/fag/sport/sportpensum_extension_canonical_v5.json",
     "compatibility_rule": "Velg fortsatt emne_id fra emner_sport_canonical_v4_5.json. V5-hook, concept_id og analysis_method_v5 brukes til å skjerpe forklaring og kildegrunnlag."
   },
+  "evidence_layer": {
+    "version": "1.0",
+    "manifest": "data/fag/sport/sport_scientific_evidence_manifest_v1.json",
+    "sources": "data/fag/sport/evidence_registry_sport_v1.json",
+    "claims": "data/fag/sport/claims_sport_canonical_v1.json",
+    "models": "data/fag/sport/models_sport_canonical_v1.json",
+    "source_quality_rubric": "data/fag/sport/source_quality_rubric_sport_v1.json",
+    "measurements": "data/fag/sport/measurement_registry_sport_v1.json",
+    "scientific_method_policy": "data/fag/sport/sport_scientific_method_policy_v1.json",
+    "required_for": [
+      "research_claim",
+      "health_claim",
+      "training_claim",
+      "measurement_claim",
+      "model_claim",
+      "risk_claim",
+      "regulatory_claim"
+    ],
+    "compatibility_rule": "Evidenslaget skjerper forskningsbaserte påstander uten å endre eksisterende emne_id- eller V5-hook-ID-er."
+  },
   "content_priorities": [
     "lek, regler, idrettens egenart og fair konkurranse",
     "idrettshistorie, profesjonalisering, rekorder og olympisme",
@@ -53,6 +73,13 @@
     "treningsbelastning",
     "periodisering",
     "målevaliditet",
+    "reliabilitet",
+    "målefeil",
+    "evidensgrad",
+    "kausalitet",
+    "konfundering",
+    "ekstern validitet",
+    "usikkerhet",
     "mestringstro",
     "selvbestemmelse",
     "safeguarding",
@@ -69,6 +96,7 @@
   "preferred_source_types": [
     "gjeldende regelverk fra forbund og konkurranseorgan",
     "fagfellevurdert idrettsvitenskap, idrettsmedisin, biomekanikk og idrettspsykologi",
+    "systematiske oversikter, metaanalyser og konsensusdokumenter med eksplisitt metode",
     "offisielle resultat-, hendelses- og konkurransedata med dokumentert definisjon",
     "klubb-, forbunds-, kommune-, museum- og arkivkilder",
     "systematisk kampvideo, feltobservasjon eller treningsdata med eksplisitt metode",
@@ -81,7 +109,8 @@
       "gyldig emne_id med prefikset em_sport_",
       "sporbar kilde eller dokumentert observasjon",
       "presist begrep eller mekanisme",
-      "knowledge-forklaring som viser hvorfor svaret er riktig og hva som skiller det fra nærliggende alternativer"
+      "knowledge-forklaring som viser hvorfor svaret er riktig",
+      "scientific_evidence-metadata for forsknings-, helse-, trenings-, måle-, modell-, risiko- og regulatoriske påstander"
     ],
     "forbidden": [
       "Hvem er best?",
@@ -91,12 +120,53 @@
       "medisinsk diagnose eller individuell skadeprediksjon",
       "treningsresept uten målgruppe, forutsetninger, progresjon og sikkerhetsramme",
       "stereotype forklaringer om kjønn, rase, nasjonalitet eller funksjonsevne",
-      "påstand om at sensor- eller trackingdata er en nøytral fasit"
+      "påstand om at sensor- eller trackingdata er en nøytral fasit",
+      "kausal konklusjon fra korrelasjon alene",
+      "modelloutput uten modellversjon, inputdefinisjon og valideringsnote",
+      "dopingstatus uten gjeldende WADA-kilde og virkningsdato"
     ],
-    "comparison_rule": "Sammenlign teorier, modeller, spillformer eller perioder bare når sammenligningsgrunnlaget er eksplisitt og caset støttes av samme type evidens.",
-    "result_rule": "Et resultat eller en rekord kan brukes når spørsmålet også lærer bort vilkår, historisk betydning, målemetode eller taktisk/fysiologisk mekanisme.",
-    "youth_rule": "Spørsmål om barn og unge skal prioritere trygghet, medvirkning, utvikling og safeguarding framfor seleksjons- og resultatlogikk.",
-    "science_rule": "Skill korrelasjon fra årsak, gruppefunn fra individ og målbar forskjell fra praktisk relevant endring."
+    "comparison_rule": "Sammenlign teorier, modeller, spillformer eller perioder bare når sammenligningsgrunnlaget er eksplisitt og caset støttes av sammenlignbar evidens.",
+    "result_rule": "Et resultat eller en rekord kan brukes når spørsmålet også lærer bort vilkår, historisk betydning, målemetode eller mekanisme.",
+    "youth_rule": "Spørsmål om barn og unge skal prioritere trygghet, medvirkning, utvikling og safeguarding.",
+    "science_rule": "Skill korrelasjon fra årsak, gruppefunn fra individ, rapportering fra evidenskvalitet og målbar forskjell fra praktisk relevant endring.",
+    "evidence_rule": "Påstandens språk skal følge claim_type, evidence_grade, uncertainty_note og external_validity_note."
+  },
+  "scientific_evidence_metadata": {
+    "required_fields": [
+      "claim_id",
+      "source_ids",
+      "claim_type",
+      "evidence_grade",
+      "population",
+      "context",
+      "uncertainty_note",
+      "external_validity_note"
+    ],
+    "conditional_fields": {
+      "measurement": [
+        "measurement_ids",
+        "instrument_or_provider",
+        "protocol",
+        "unit",
+        "measurement_quality_note"
+      ],
+      "model": [
+        "model_ids",
+        "model_version",
+        "input_definition",
+        "validation_note"
+      ],
+      "regulatory": [
+        "effective_date",
+        "governing_body"
+      ],
+      "clinical": [
+        "guideline_version",
+        "qualified_assessor_boundary",
+        "safety_note"
+      ]
+    },
+    "block_when_missing": true
   },
   "coverage_targets": {
     "history_place_and_memory": 0.18,
@@ -108,40 +178,20 @@
   },
   "category_rules": [
     "Start med dokumentert stoff fra sporten, ikke med emneetiketten eller teoretikernavnet.",
-    "Bevar relevante faguttrykk i spørsmål, knowledge og metadata, og forklar dem uten å vanne dem ut.",
+    "Bevar relevante faguttrykk i spørsmål, knowledge og metadata.",
     "Bruk bare emne_id som finnes i kategoriens aktive emnefil.",
     "Bruk V5-hook og begrepsregister som kvalitetslag, men la globale quizregler styre settrekkefølge og språk.",
+    "Bruk evidenslaget for alle forskningsbaserte påstander, og la aldri påstandens språk være sterkere enn evidensgrunnlaget.",
     "Roter mellom steder, idretter, kjønn, nivåer, funksjonsevne, geografier og kildetyper.",
     "Taktikk og treningslære skal ikke dominere på bekostning av historie, lek, samfunn, etikk og tilgang."
   ],
   "example_questions": [
     {
-      "question": "Hva skiller en konstitutiv regel fra en regulativ regel i en idrett?",
-      "options": [
-        "Den konstitutive regelen er med på å skape selve spillet, mens den regulative styrer gjennomføringen",
-        "Den konstitutive regelen gjelder bare profesjonelle, mens den regulative gjelder barn",
-        "Den konstitutive regelen er alltid muntlig, mens den regulative alltid er skriftlig"
-      ],
-      "answer": "Den konstitutive regelen er med på å skape selve spillet, mens den regulative styrer gjennomføringen",
-      "question_type": "concept_distinction",
-      "knowledge": "Uten konstitutive regler ville aktiviteten være en annen praksis. Regulative regler styrer hvordan en allerede gjenkjennelig aktivitet gjennomføres.",
-      "emne_id": "em_sport_fair_play",
-      "quality_hook_id": "hook_sport_konstitutive_regler",
-      "concept_ids": [
-        "concept_sport_konstitutiv_regel",
-        "concept_sport_regulativ_regel"
-      ],
-      "source": [
-        "<konkret regelverk eller fagkilde>"
-      ],
-      "note": "Emne-ID må verifiseres mot aktiv emnefil før produksjon."
-    },
-    {
       "question": "Hva må undersøkes før en liten endring i trackingdata tolkes som en reell prestasjonsendring?",
       "options": [
         "Målefeil, reliabilitet og minste reelle endring",
         "Bare om tallet er høyere enn forrige kamp",
-        "Bare om utøveren selv synes økten var god"
+        "Bare om utøveren synes økten var god"
       ],
       "answer": "Målefeil, reliabilitet og minste reelle endring",
       "question_type": "method_application",
@@ -152,29 +202,49 @@
         "concept_sport_reliabilitet",
         "concept_sport_minste_reelle_endring"
       ],
-      "source": [
-        "<metodebeskrivelse og konkret datasett>"
-      ]
+      "scientific_evidence": {
+        "claim_id": "claim_sport_measurement_change_requires_error_context",
+        "source_ids": [
+          "src_sport_cosmin"
+        ],
+        "claim_type": "methodological",
+        "evidence_grade": "high",
+        "population": "utøvere og gjentatte prestasjonsmålinger",
+        "context": "tracking og monitorering",
+        "uncertainty_note": "Terskler er instrument-, protokoll- og populasjonsspesifikke.",
+        "external_validity_note": "Validering kan ikke automatisk overføres mellom enheter eller idretter.",
+        "measurement_ids": [
+          "measurement_sport_generic_repeated"
+        ]
+      }
     },
     {
-      "question": "Hvorfor er et dokumentert arenabesøk mer enn bare en registrert kamp i Groundhopper-sammenheng?",
+      "question": "Hvorfor kan ikke en skadeprosent sammenlignes direkte mellom to lag uten mer informasjon?",
       "options": [
-        "Fordi besøket også kan dokumentere sted, historie, kampdagspraksis og lokal idrettskultur",
-        "Fordi alle arenabesøk automatisk gir kunnskap om klubbens økonomi",
-        "Fordi selve reisen beviser at arenaen er historisk viktig"
+        "Fordi skade- og eksponeringsdefinisjonene kan være ulike",
+        "Fordi prosenter aldri kan brukes i idrett",
+        "Fordi bare tabellplassering avgjør skaderisiko"
       ],
-      "answer": "Fordi besøket også kan dokumentere sted, historie, kampdagspraksis og lokal idrettskultur",
-      "question_type": "place_application",
-      "knowledge": "Groundhopping kan kombineres med feltlogg, arena- og kildeanalyse. Besøket er nærdata, men historiske påstander må fortsatt verifiseres.",
-      "emne_id": "em_sport_groundhopper_stedsbesok",
-      "quality_hook_id": "hook_sport_groundhopping_stedsidentitet",
-      "concept_ids": [
-        "concept_sport_groundhopping",
-        "concept_sport_stedstilknytning"
-      ],
-      "source": [
-        "<arena-, klubb- eller arkivkilde>"
-      ]
+      "answer": "Fordi skade- og eksponeringsdefinisjonene kan være ulike",
+      "question_type": "epidemiology_application",
+      "knowledge": "Skadeinsidens krever kompatibel teller, eksponeringsnevner, tidsperiode og definisjon. Ulike registreringssystemer kan gi ulike rater.",
+      "emne_id": "em_sport_skadeforebygging",
+      "scientific_evidence": {
+        "claim_id": "claim_sport_injury_rate_requires_exposure",
+        "source_ids": [
+          "src_sport_ioc_injury_2020",
+          "src_sport_para_injury_2021"
+        ],
+        "claim_type": "epidemiological",
+        "evidence_grade": "high",
+        "population": "idrettsdeltakere",
+        "context": "skadeovervåking",
+        "uncertainty_note": "Registreringsmetoder fanger ulike helseproblemer.",
+        "external_validity_note": "Eksponering og klassifikasjon må være sammenlignbare.",
+        "measurement_ids": [
+          "measurement_sport_injury_incidence"
+        ]
+      }
     }
   ]
 }

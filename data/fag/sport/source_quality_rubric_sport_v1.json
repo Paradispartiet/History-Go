@@ -1,0 +1,159 @@
+{
+  "version": "1.0",
+  "subject_id": "sport",
+  "type": "source_quality_and_evidence_rubric",
+  "status": "canonical_scientific_evidence_layer",
+  "updated_at": "2026-07-24",
+  "certainty_grades": {
+    "high": "Svært liten sannsynlighet for at nye data endrer hovedkonklusjonen vesentlig innen definert populasjon og utfall.",
+    "moderate": "Nye data kan endre konklusjonens størrelse, presisjon eller anvendelsesområde.",
+    "low": "Konklusjonen er usikker og bør formuleres forsiktig.",
+    "very_low": "Påstanden er hovedsakelig hypotesegenererende eller kontekstuell.",
+    "authoritative_current": "Gjeldende regelverk eller offisiell standard; status er versjons- og datobundet, ikke en vitenskapelig effektgrad."
+  },
+  "source_classes": [
+    {
+      "class_id": "systematic_review_meta_analysis",
+      "default_start": "high_or_moderate",
+      "notes": "Avhenger av inkluderte studier, risiko for bias, heterogenitet og publikasjonsskjevhet."
+    },
+    {
+      "class_id": "guideline_or_consensus",
+      "default_start": "moderate",
+      "notes": "Skill evidensutsagn fra ekspertkonsensus og anbefaling."
+    },
+    {
+      "class_id": "randomised_trial",
+      "default_start": "high",
+      "notes": "Kan nedgraderes for bias, indirekthet, upresisjon og inkonsistens."
+    },
+    {
+      "class_id": "prospective_cohort",
+      "default_start": "moderate_or_low",
+      "notes": "Egnet for prognose og assosiasjon; kausal tolkning krever sterke antakelser."
+    },
+    {
+      "class_id": "cross_sectional_or_case_control",
+      "default_start": "low",
+      "notes": "Utsatt for tidsrekkefølge-, seleksjons- og recall-problemer."
+    },
+    {
+      "class_id": "measurement_validation",
+      "default_start": "context_specific",
+      "notes": "Vurder reliabilitet, validitet, feil og responsivitet separat."
+    },
+    {
+      "class_id": "qualitative_study",
+      "default_start": "context_specific",
+      "notes": "Sterk for mening, erfaring, mekanisme og kontekst; ikke effektestimat."
+    },
+    {
+      "class_id": "historical_primary_source",
+      "default_start": "provenance_specific",
+      "notes": "Vurder autentisitet, samtidighet, formål og triangulering."
+    },
+    {
+      "class_id": "official_rule_or_regulation",
+      "default_start": "authoritative_current",
+      "notes": "Kontroller jurisdiksjon, versjon og virkningsdato."
+    },
+    {
+      "class_id": "expert_commentary",
+      "default_start": "very_low",
+      "notes": "Kan forklare praksis, men må ikke bære effektpåstand alene."
+    },
+    {
+      "class_id": "commercial_or_vendor_material",
+      "default_start": "very_low",
+      "notes": "Krever interessekonflikt, metodeinnsyn og uavhengig validering."
+    }
+  ],
+  "downgrade_domains": [
+    {
+      "domain": "risk_of_bias",
+      "questions": [
+        "Er seleksjon, måling og analyse beskyttet mot systematiske skjevheter?",
+        "Er utfallet selektivt rapportert?"
+      ]
+    },
+    {
+      "domain": "inconsistency",
+      "questions": [
+        "Peker studier i samme retning?",
+        "Er heterogenitet forklart?"
+      ]
+    },
+    {
+      "domain": "indirectness",
+      "questions": [
+        "Samsvarer populasjon, idrett, nivå, kjønn, alder, setting og utfall?"
+      ]
+    },
+    {
+      "domain": "imprecision",
+      "questions": [
+        "Er intervallet bredt?",
+        "Er hendelsestallet tilstrekkelig?"
+      ]
+    },
+    {
+      "domain": "publication_bias",
+      "questions": [
+        "Kan små eller negative studier mangle?",
+        "Finnes protokoll eller registrering?"
+      ]
+    },
+    {
+      "domain": "measurement_quality",
+      "questions": [
+        "Er instrumentet validert for konstruktet og populasjonen?",
+        "Er målefeilen relevant?"
+      ]
+    },
+    {
+      "domain": "model_transportability",
+      "questions": [
+        "Er modellen eksternt validert?",
+        "Har datagenereringen endret seg?"
+      ]
+    }
+  ],
+  "claim_type_design_fit": {
+    "descriptive": [
+      "representative surveillance",
+      "registry",
+      "historical primary sources",
+      "transparent event data"
+    ],
+    "causal": [
+      "randomised trial",
+      "natural experiment",
+      "well-justified causal observational design"
+    ],
+    "predictive": [
+      "temporally separated development and validation",
+      "external validation",
+      "calibration and discrimination"
+    ],
+    "normative": [
+      "explicit values, harms, benefits, feasibility and stakeholder perspectives"
+    ],
+    "mechanistic": [
+      "triangulation across experimental, observational and theoretical evidence"
+    ],
+    "clinical_safety": [
+      "current guideline or consensus plus qualified clinical scope"
+    ],
+    "regulatory": [
+      "current official source with effective date"
+    ]
+  },
+  "conflict_handling": [
+    "Registrer motstridende resultater i samme claim_id eller som competing_claim_ids.",
+    "Forklar om uenighet skyldes populasjon, utfall, dose, målemetode, design eller analyse.",
+    "Ikke velg én studie bare fordi den støtter ønsket fortelling.",
+    "Nedgrader sikkerhet ved uforklart inkonsistens.",
+    "Vis minoritetsposisjon når den har relevant faglig grunnlag."
+  ],
+  "reporting_vs_appraisal_rule": "CONSORT, PRISMA og STROBE brukes til rapporteringskontroll. Risiko for bias, målekvalitet og evidensgrad vurderes separat."
+}

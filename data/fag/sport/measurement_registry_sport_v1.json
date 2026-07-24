@@ -1,0 +1,529 @@
+{
+  "version": "1.0",
+  "subject_id": "sport",
+  "type": "measurement_registry",
+  "status": "canonical_scientific_evidence_layer",
+  "updated_at": "2026-07-24",
+  "measurement_principles": [
+    "Definer konstruktet før instrumentet velges.",
+    "Oppgi enhet, protokoll, versjon og populasjon.",
+    "Skill reliabilitet, målefeil, validitet og responsivitet.",
+    "En tallforskjell er ikke automatisk praktisk relevant.",
+    "Leverandørmål er ikke universelle standarder."
+  ],
+  "measurements": [
+    {
+      "measurement_id": "measurement_sport_generic_repeated",
+      "title": "Gjentatt kvantitativ måling",
+      "construct": "endring i eksplisitt definert utfall",
+      "unit": "instrument-specific",
+      "data_type": "continuous_or_count",
+      "required_metadata": [
+        "instrument",
+        "model_or_firmware",
+        "protocol",
+        "unit",
+        "sampling",
+        "population",
+        "timepoint"
+      ],
+      "quality_properties": [
+        "reliability",
+        "measurement_error",
+        "validity",
+        "responsiveness"
+      ],
+      "interpretation": "Rapporter forskjell, usikkerhet og om den overskrider relevant målefeil eller beslutningsterskel.",
+      "minimum_change_rule": "Bruk SEM, MDC/SWC eller annen terskel bare når validert for mål, protokoll og populasjon.",
+      "known_limitations": [
+        "biologisk variasjon",
+        "læringseffekt",
+        "instrumentdrift",
+        "protokollavvik"
+      ],
+      "source_ids": [
+        "src_sport_cosmin"
+      ],
+      "claim_ids": [
+        "claim_sport_measurement_change_requires_error_context",
+        "claim_sport_effect_requires_uncertainty"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_gnss_load",
+      "title": "GNSS/GPS-basert ekstern belastning",
+      "construct": "bevegelse og fart estimert fra satellitt- og sensordata",
+      "unit": "meter, meter per sekund eller leverandørspesifikk enhet",
+      "data_type": "time_series_and_aggregates",
+      "required_metadata": [
+        "device",
+        "firmware",
+        "sampling_rate",
+        "satellite_conditions",
+        "wear_location",
+        "filtering",
+        "speed_zone_definitions"
+      ],
+      "quality_properties": [
+        "criterion_validity",
+        "inter_unit_reliability",
+        "within_unit_reliability",
+        "measurement_error"
+      ],
+      "interpretation": "Tolkes per enhet, fart, bevegelsesmønster, miljø og algoritmeversjon.",
+      "minimum_change_rule": "Ingen universell terskel; bruk enhets- og protokollspesifikk feil.",
+      "known_limitations": [
+        "retningsendringer",
+        "leverandøralgoritmer",
+        "innendørs begrensninger"
+      ],
+      "source_ids": [
+        "src_sport_cosmin",
+        "src_sport_fair_2016"
+      ],
+      "claim_ids": [
+        "claim_sport_measurement_change_requires_error_context",
+        "claim_sport_model_output_definition_dependent"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_session_rpe",
+      "title": "Session-RPE",
+      "construct": "helhetsvurdering av øktbelastning kombinert med øktvarighet",
+      "unit": "arbitrary units",
+      "data_type": "derived_continuous",
+      "required_metadata": [
+        "rpe_scale",
+        "collection_timing",
+        "session_duration_definition",
+        "missingness"
+      ],
+      "quality_properties": [
+        "reliability",
+        "construct_validity",
+        "responsiveness"
+      ],
+      "interpretation": "Kontekstavhengig mål på opplevd intern belastning, ikke diagnose eller komplett fysiologisk fasit.",
+      "minimum_change_rule": "Tolkes mot individuell trend og stabil målepraksis.",
+      "known_limitations": [
+        "rapporteringstidspunkt",
+        "sosial ønskverdighet",
+        "ulik skalaforståelse"
+      ],
+      "source_ids": [
+        "src_sport_cosmin"
+      ],
+      "claim_ids": [
+        "claim_sport_group_average_not_individual_prescription"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_heart_rate",
+      "title": "Hjertefrekvens",
+      "construct": "kardiovaskulær respons i definert aktivitet",
+      "unit": "slag per minutt",
+      "data_type": "time_series",
+      "required_metadata": [
+        "sensor_type",
+        "sampling",
+        "signal_quality",
+        "activity",
+        "environment"
+      ],
+      "quality_properties": [
+        "criterion_validity",
+        "reliability",
+        "signal_quality"
+      ],
+      "interpretation": "Kontekstualiseres med intensitet, temperatur, hydrering, stress og individuell respons.",
+      "minimum_change_rule": "Ingen generell prestasjonsterskel.",
+      "known_limitations": [
+        "sensorartefakt",
+        "kardiovaskulær drift",
+        "forsinkelse ved intervaller"
+      ],
+      "source_ids": [
+        "src_sport_cosmin"
+      ],
+      "claim_ids": [
+        "claim_sport_measurement_change_requires_error_context"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_hrv",
+      "title": "Hjertefrekvensvariabilitet",
+      "construct": "variasjon mellom hjerteslag under standardisert registrering",
+      "unit": "parameter-specific",
+      "data_type": "derived_time_series",
+      "required_metadata": [
+        "parameter",
+        "device",
+        "posture",
+        "recording_duration",
+        "time_of_day",
+        "artifact_correction"
+      ],
+      "quality_properties": [
+        "reliability",
+        "measurement_error",
+        "protocol_validity"
+      ],
+      "interpretation": "Tolkes som trend under standardiserte forhold, ikke entydig restitusjons- eller sykdomsdiagnose.",
+      "minimum_change_rule": "Bruk individuell normalvariasjon.",
+      "known_limitations": [
+        "protokollfølsomhet",
+        "artefakter",
+        "ikke-spesifikk respons"
+      ],
+      "source_ids": [
+        "src_sport_cosmin"
+      ],
+      "claim_ids": [
+        "claim_sport_group_average_not_individual_prescription",
+        "claim_sport_measurement_change_requires_error_context"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_sprint_time",
+      "title": "Sprinttid",
+      "construct": "tid over definert distanse og startprotokoll",
+      "unit": "sekund",
+      "data_type": "continuous",
+      "required_metadata": [
+        "distance",
+        "timing_system",
+        "start_trigger",
+        "surface",
+        "environment",
+        "warmup"
+      ],
+      "quality_properties": [
+        "criterion_validity",
+        "test_retest_reliability",
+        "measurement_error"
+      ],
+      "interpretation": "Sammenlignes bare ved tilstrekkelig lik protokoll og med feilmargin.",
+      "minimum_change_rule": "Forskjellen vurderes mot timingfeil og utøvervariasjon.",
+      "known_limitations": [
+        "manuell timingbias",
+        "startteknikk",
+        "vind og underlag"
+      ],
+      "source_ids": [
+        "src_sport_cosmin"
+      ],
+      "claim_ids": [
+        "claim_sport_measurement_change_requires_error_context"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_jump_height",
+      "title": "Hopphøyde",
+      "construct": "vertikal forflytning estimert fra flytid, impuls eller posisjon",
+      "unit": "centimeter eller meter",
+      "data_type": "derived_continuous",
+      "required_metadata": [
+        "device",
+        "calculation_method",
+        "jump_type",
+        "arm_action",
+        "sampling",
+        "attempt_rule"
+      ],
+      "quality_properties": [
+        "criterion_validity",
+        "reliability",
+        "measurement_error"
+      ],
+      "interpretation": "Flytid og kraftplattform er ikke automatisk utskiftbare metoder.",
+      "minimum_change_rule": "Bruk metode- og utøverspesifikk feil.",
+      "known_limitations": [
+        "teknikkendring",
+        "beregningsantakelser",
+        "dagsvariasjon"
+      ],
+      "source_ids": [
+        "src_sport_cosmin"
+      ],
+      "claim_ids": [
+        "claim_sport_measurement_change_requires_error_context"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_force_plate",
+      "title": "Kraftplattformmåling",
+      "construct": "kraft–tid-egenskaper i definert bevegelse",
+      "unit": "newton, newtonsekund og avledede variabler",
+      "data_type": "high_frequency_time_series",
+      "required_metadata": [
+        "platform",
+        "sampling_rate",
+        "filtering",
+        "event_detection",
+        "normalisation",
+        "task_protocol",
+        "variable_definition"
+      ],
+      "quality_properties": [
+        "criterion_validity",
+        "reliability",
+        "signal_processing_validity"
+      ],
+      "interpretation": "Variabeldefinisjon og signalbehandling må oppgis.",
+      "minimum_change_rule": "Terskler må være variabel-, protokoll- og populasjonsspesifikke.",
+      "known_limitations": [
+        "analytisk fleksibilitet",
+        "normaliseringsvalg",
+        "multiple sammenligninger"
+      ],
+      "source_ids": [
+        "src_sport_cosmin",
+        "src_sport_fair_2016"
+      ],
+      "claim_ids": [
+        "claim_sport_measurement_change_requires_error_context",
+        "claim_sport_reproducible_analysis"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_expected_goals",
+      "title": "Expected goals",
+      "construct": "modellert scoringssannsynlighet for skuddhendelser",
+      "unit": "sannsynlighet 0–1",
+      "data_type": "model_output",
+      "required_metadata": [
+        "model_name",
+        "model_version",
+        "provider",
+        "event_definition",
+        "features",
+        "competition",
+        "calibration"
+      ],
+      "quality_properties": [
+        "calibration",
+        "discrimination",
+        "external_validity",
+        "data_quality"
+      ],
+      "interpretation": "Modellert sannsynlighet, ikke observert mål eller årsaksforklaring.",
+      "minimum_change_rule": "Sammenlign modeller bare etter definisjon og kalibrering.",
+      "known_limitations": [
+        "leverandørforskjeller",
+        "datakodingsfeil",
+        "modellskift"
+      ],
+      "source_ids": [
+        "src_sport_cosmin"
+      ],
+      "claim_ids": [
+        "claim_sport_model_output_definition_dependent"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_rating",
+      "title": "Konkurranserating",
+      "construct": "relativ styrke estimert fra resultater og motstand",
+      "unit": "modellspesifikke ratingpoeng",
+      "data_type": "model_output",
+      "required_metadata": [
+        "rating_model",
+        "parameters",
+        "initialisation",
+        "result_encoding",
+        "competition_network",
+        "date"
+      ],
+      "quality_properties": [
+        "predictive_calibration",
+        "stability",
+        "external_validity"
+      ],
+      "interpretation": "Rating er relativ til modell, motstandernettverk og tidsperiode.",
+      "minimum_change_rule": "Endringer tolkes gjennom modellens oppdateringsregel.",
+      "known_limitations": [
+        "parameteravhengighet",
+        "isolerte ligaer",
+        "inaktivitet"
+      ],
+      "source_ids": [
+        "src_sport_elo_1978"
+      ],
+      "claim_ids": [
+        "claim_sport_model_output_definition_dependent"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_injury_incidence",
+      "title": "Skadeinsidens",
+      "construct": "nye skader per definert eksponeringsenhet",
+      "unit": "hendelser per 1000 utøvertimer eller eksplisitt nevner",
+      "data_type": "rate",
+      "required_metadata": [
+        "injury_definition",
+        "exposure_definition",
+        "setting",
+        "population",
+        "reporter",
+        "time_window",
+        "confidence_interval"
+      ],
+      "quality_properties": [
+        "case_ascertainment",
+        "exposure_accuracy",
+        "classification_reliability"
+      ],
+      "interpretation": "Raten krever kompatibel teller og nevner, og må alltid tolkes med skade-, eksponerings- og tidsdefinisjonen synlig.",
+      "minimum_change_rule": "Rapporter usikkerhet og unngå rangering fra små hendelsestall.",
+      "known_limitations": [
+        "underrapportering",
+        "ulike definisjoner",
+        "eksponeringsfeil"
+      ],
+      "source_ids": [
+        "src_sport_ioc_injury_2020",
+        "src_sport_para_injury_2021"
+      ],
+      "claim_ids": [
+        "claim_sport_injury_rate_requires_exposure"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_injury_burden",
+      "title": "Skadebyrde",
+      "construct": "kombinasjon av forekomst og alvorlighet",
+      "unit": "tapte dager per eksponeringsenhet eller eksplisitt burden-definisjon",
+      "data_type": "rate_or_matrix",
+      "required_metadata": [
+        "health_problem_definition",
+        "severity_measure",
+        "exposure",
+        "followup",
+        "return_definition"
+      ],
+      "quality_properties": [
+        "case_ascertainment",
+        "severity_validity",
+        "exposure_accuracy"
+      ],
+      "interpretation": "Hyppighet og alvorlighet må ses sammen; en sjelden skade kan ha høy samlet byrde, mens hyppige småplager kan gi annet mønster.",
+      "minimum_change_rule": "Bruk samme oppfølgings- og returdefinisjon.",
+      "known_limitations": [
+        "retur varierer sosialt og medisinsk",
+        "tapte dager fanger ikke all konsekvens"
+      ],
+      "source_ids": [
+        "src_sport_ioc_injury_2020"
+      ],
+      "claim_ids": [
+        "claim_sport_injury_rate_requires_exposure"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_prom",
+      "title": "Utøverrapportert utfallsmål",
+      "construct": "rapport av definert symptom, funksjon, erfaring eller psykologisk konstrukt",
+      "unit": "instrument-specific score",
+      "data_type": "ordinal_or_scaled",
+      "required_metadata": [
+        "instrument",
+        "version",
+        "language",
+        "scoring",
+        "recall_period",
+        "population",
+        "missing_item_rule"
+      ],
+      "quality_properties": [
+        "content_validity",
+        "structural_validity",
+        "reliability",
+        "measurement_error",
+        "responsiveness"
+      ],
+      "interpretation": "Bruk instrument som måler riktig konstrukt i relevant språk og målgruppe.",
+      "minimum_change_rule": "MIC/MDC må være relevant for instrument og populasjon.",
+      "known_limitations": [
+        "responsbias",
+        "språkforskjeller",
+        "ordinalitet",
+        "recall bias"
+      ],
+      "source_ids": [
+        "src_sport_cosmin"
+      ],
+      "claim_ids": [
+        "claim_sport_measurement_change_requires_error_context",
+        "claim_sport_motivation_context"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_video_coding",
+      "title": "Systematisk video- og hendelseskoding",
+      "construct": "observerbare handlinger kodet etter eksplisitt manual",
+      "unit": "frekvens, varighet, posisjon eller kategori",
+      "data_type": "coded_events",
+      "required_metadata": [
+        "coding_manual",
+        "camera_coverage",
+        "observer_training",
+        "blinding",
+        "inter_rater_reliability",
+        "missing_view_rule"
+      ],
+      "quality_properties": [
+        "content_validity",
+        "inter_rater_reliability",
+        "intra_rater_reliability"
+      ],
+      "interpretation": "Kategorier må være operasjonelle og observatørenes enighet vurderes.",
+      "minimum_change_rule": "Ikke tolk forskjeller mindre enn kodingsusikkerheten.",
+      "known_limitations": [
+        "kameravinkel",
+        "skjulte hendelser",
+        "subjektiv kategorisering"
+      ],
+      "source_ids": [
+        "src_sport_cosmin",
+        "src_sport_fair_2016"
+      ],
+      "claim_ids": [
+        "claim_sport_constraints_interaction",
+        "claim_sport_reproducible_analysis"
+      ]
+    },
+    {
+      "measurement_id": "measurement_sport_activity_minutes",
+      "title": "Minutter fysisk aktivitet",
+      "construct": "varighet av fysisk aktivitet ved definert intensitet",
+      "unit": "minutter per dag eller uke",
+      "data_type": "duration",
+      "required_metadata": [
+        "assessment_method",
+        "intensity_definition",
+        "wear_time_or_recall_period",
+        "population",
+        "domain"
+      ],
+      "quality_properties": [
+        "criterion_validity",
+        "reliability",
+        "classification_validity"
+      ],
+      "interpretation": "Selvrapport og akselerometri måler ikke identisk.",
+      "minimum_change_rule": "Bruk retningslinjens populasjonsdefinisjon og målemetodens usikkerhet.",
+      "known_limitations": [
+        "recall bias",
+        "wear-time bias",
+        "cut-point differences"
+      ],
+      "source_ids": [
+        "src_sport_who_pa_2020",
+        "src_sport_cosmin"
+      ],
+      "claim_ids": [
+        "claim_sport_physical_activity_population_benefit"
+      ]
+    }
+  ]
+}
