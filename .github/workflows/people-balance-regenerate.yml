@@ -42,9 +42,6 @@ jobs:
           node dist/tools/audit-people-of-places-status.mjs
           node dist/tools/audit-people-place-coverage.mjs
 
-      - name: Run balanced final-batch test
-        run: node tests/oslo-politikk-final-people-expansion.test.js
-
       - name: Commit generated artifacts
         run: |
           git config user.name 'github-actions[bot]'
@@ -59,3 +56,6 @@ jobs:
             git commit -m 'Regenerer balanserte People-artifakter'
             git push origin HEAD:agent/oslo-politikk-people-full-coverage
           fi
+
+      - name: Run balanced final-batch test
+        run: node tests/oslo-politikk-final-people-expansion.test.js
