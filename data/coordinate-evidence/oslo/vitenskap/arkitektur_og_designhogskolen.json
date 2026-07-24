@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "arkitektur_og_designhogskolen",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/arkitektur_og_designhogskolen.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_official_address_point",
+  "currentCoordinate": {
+    "lat": 59.92481402,
+    "lon": 10.75073759,
+    "r": 160,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Kartverket/Geonorge for Maridalsveien 29, 0175 Oslo. Brønnøysundregistrenes hovedenhet og underenhet oppgir samme besøksadresse. Punktet ligger inne i den navngitte OSM-campusgeometrien way 1420826219, som bærer organisasjonsnummer 971526378 og Wikidata Q4579140. Oslo byleksikon bekrefter institusjonen, adressen og etableringen i 1945. Den tidligere markøren lå 489 meter unna og utenfor campusområdet; radius 160 meter beholdes for å dekke institusjonsområdet."
+  },
+  "identity": {
+    "currentName": "Arkitektur- og designhøgskolen i Oslo",
+    "resolvedIdentity": "Arkitektur- og designhøgskolen i Oslo (AHO), organisasjonsnummer 971526378, ved Maridalsveien 29, 0175 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt offisiell besøksadresse",
+    "institusjonsidentitet og organisasjonsnummer",
+    "geometrisk campuskryssjekk"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Maridalsveien 29",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Maridalsveien%2029%20Oslo&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14622:29",
+      "sourceQuality": "official_address",
+      "finding": "Ett unikt offisielt adressepunkt for Maridalsveien 29, 0175 Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Kartverkets offisielle adressepunkt brukes som canonical display-marker for institusjonen."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – hovedenhet 971526378",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/enheter/971526378",
+      "sourceObjectId": "brreg-enhet:971526378",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Hovedenheten Arkitektur- og designhøgskolen i Oslo har forretningsadresse Maridalsveien 29, 0175 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell institusjons- og adresseidentitet; koordinaten leveres av Kartverket."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – underenhet 974714698",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/underenheter/974714698",
+      "sourceObjectId": "brreg-underenhet:974714698",
+      "sourceQuality": "official_operating_location",
+      "finding": "Underenheten oppgir beliggenhetsadresse Maridalsveien 29, 0175 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Uavhengig offentlig adressekryssjekk for driftsstedet."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 1420826219 – Arkitektur- og designhøgskolen i Oslo",
+      "sourceUrl": "https://www.openstreetmap.org/way/1420826219",
+      "sourceObjectId": "osm-way:1420826219",
+      "sourceQuality": "named_institution_site_geometry",
+      "finding": "Navngitt amenity=college-geometri med ref=971526378 og wikidata=Q4579140. Det offisielle adressepunktet ligger inne i geometrien og 19.8 meter fra områdets referansepunkt.",
+      "canVerifyCoordinate": true,
+      "reason": "Campusgeometrien bekrefter at Kartverkets adressepunkt faktisk ligger på AHO-anlegget."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q4579140 – Oslo School of Architecture and Design",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q4579140",
+      "sourceObjectId": "wikidata:Q4579140",
+      "sourceQuality": "structured_identity_crosscheck",
+      "finding": "Dedikert institusjonsobjekt som samsvarer med AHO og organisasjonsnummeret i OSM/Brønnøysund.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskryssjekk; Kartverket er koordinatkilden."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo Byleksikon – Arkitektur- og designhøgskolen i Oslo",
+      "sourceUrl": "https://oslobyleksikon.no/side/Arkitektur-_og_designh%C3%B8gskolen_i_Oslo",
+      "sourceObjectId": "oslo-byleksikon:aho",
+      "sourceQuality": "authoritative_local_identity",
+      "finding": "Bekrefter AHO i Maridalsveien 29, institusjonshistorien fra 1945 og innflytting ved Akerselva i 2001.",
+      "canVerifyCoordinate": false,
+      "reason": "Lokal identitets- og historikkryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Maridalsveien 29, 0175 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14622:29",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14622:29",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1420826219",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q4579140",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1420826219",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.92481402,
+      "lon": 10.75073759,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:14622:29",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Maridalsveien 29 er anvendt som canonical display-marker."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Kartverket/Geonorge for Maridalsveien 29, 0175 Oslo. Brønnøysundregistrenes hovedenhet og underenhet oppgir samme besøksadresse. Punktet ligger inne i den navngitte OSM-campusgeometrien way 1420826219, som bærer organisasjonsnummer 971526378 og Wikidata Q4579140. Oslo byleksikon bekrefter institusjonen, adressen og etableringen i 1945. Den tidligere markøren lå 489 meter unna og utenfor campusområdet; radius 160 meter beholdes for å dekke institusjonsområdet.",
+    "Research report: reports/oslo-coordinate-aho-research-post-195/summary.json"
+  ]
+}
