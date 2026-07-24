@@ -1,0 +1,105 @@
+name: Apply politics canonical migration
+
+on:
+  push:
+    branches:
+      - agent/politikk-kanonisk-integrasjon-styring
+    paths:
+      - tools/politikk-canonical-migration-parts/**
+      - .github/workflows/apply-politikk-canonical-migration.yml
+      - data/fag/politikk/kvalitetslag_v1/**
+
+permissions:
+  contents: write
+
+concurrency:
+  group: politikk-kanonisk-integrasjon-styring
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out migration branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Apply and validate canonical migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/politikk-canonical-migration
+          VALIDATION=reports/politikk-canonical-migration/styring-forvaltning-batch-1-validation.txt
+
+          {
+            echo "Politikk canonical migration validation"
+            echo "Branch: ${GITHUB_REF_NAME}"
+            echo "Commit: ${GITHUB_SHA}"
+            echo
+            echo "== reconstruct migration script =="
+          } | tee "$VALIDATION"
+
+          cat tools/politikk-canonical-migration-parts/part-*.b64 \
+            | base64 --decode \
+            > tools/apply-politikk-canonical-migration.mjs
+          echo "PASS reconstructed tools/apply-politikk-canonical-migration.mjs" | tee -a "$VALIDATION"
+
+          echo "== node --check ==" | tee -a "$VALIDATION"
+          node --check tools/apply-politikk-canonical-migration.mjs 2>&1 | tee -a "$VALIDATION"
+
+          echo "== migration ==" | tee -a "$VALIDATION"
+          node tools/apply-politikk-canonical-migration.mjs 2>&1 | tee -a "$VALIDATION"
+          rm -rf tools/politikk-canonical-migration-parts
+
+          echo "== canonical JSON parse ==" | tee -a "$VALIDATION"
+          node - <<'NODE' 2>&1 | tee -a "$VALIDATION"
+          const fs = require('node:fs');
+          const paths = [
+            'data/fag/politikk/fagkart_politikk_canonical_v4_5.json',
+            'data/fag/politikk/emner_politikk_canonical_v4_5.json',
+            'data/fag/politikk/politikkpensum_canonical_v4_5.json'
+          ];
+          for (const path of paths) {
+            JSON.parse(fs.readFileSync(path, 'utf8'));
+            console.log(`PASS ${path}`);
+          }
+          const forbidden = [
+            'data/fag/politikk/kvalitetslag_v1',
+            'tools/validate-politikk-quality-layer.mjs',
+            'tools/apply-politikk-canonical-migration.mjs',
+            'tools/politikk-canonical-migration-parts',
+            '.github/workflows/apply-politikk-canonical-migration.yml'
+          ];
+          for (const path of forbidden) {
+            if (fs.existsSync(path)) throw new Error(`Midlertidig fil finnes fortsatt: ${path}`);
+            console.log(`REMOVED ${path}`);
+          }
+          NODE
+
+          echo "== repository status ==" | tee -a "$VALIDATION"
+          git status --short 2>&1 | tee -a "$VALIDATION"
+
+          git add -A
+          git diff --cached --check 2>&1 | tee /tmp/politikk-diff-check.txt
+          cat /tmp/politikk-diff-check.txt >> "$VALIDATION"
+          echo "PASS git diff --cached --check" | tee -a "$VALIDATION"
+          git add "$VALIDATION"
+
+      - name: Commit canonical result to migration branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --cached --quiet; then
+            echo "No canonical changes to commit"
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Politikk: integrer styring og forvaltning i kanoniske filer"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
