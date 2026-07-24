@@ -1,3 +1,3 @@
 # Majorstua quizrepair
 
-Diagnostisk materialisering og full validering er startet. Arbeidsfila fjernes når sluttresultatet er committed.
+Sluttpublisering er startet etter at alle faglige og deterministiske kontroller bestod. Arbeidsfila fjernes av runneren ved vellykket commit.
