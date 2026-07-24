@@ -1,19 +1,19 @@
-# Oslo-politikk: full og utvidet People-dekning
+# Oslo-politikk: full og balansert People-dekning
 
 ## Resultat
 
-Alle 18 aktive Oslo-steder med `politikk` som hovedkategori har dokumenterte People-koblinger. Arbeidet er gjennomført i fire batcher, med personene fordelt etter deres faktiske fagrolle.
+Alle 18 aktive Oslo-steder med `politikk` som hovedkategori har dokumenterte People-koblinger. Arbeidet er gjennomført i fire kildebaserte batcher, med personene fordelt etter faktisk fagrolle og med en egen balanseringsrunde for de fire stedene som først ble for arkitekturdominert.
 
 ## Samlet produksjon
 
 - første batch: 7 nye personer
 - andre batch: 17 nye personer
 - tredje batch: 10 nye personer
-- fjerde og siste batch: 12 nye personer
-- totalt: 46 nye personposter
-- siste batch behandlet 20 dokumenterte identiteter: 12 nye og 8 canonical gjenbruk
+- fjerde batch etter balansering: 15 nye personer
+- totalt: 49 nye personposter
+- siste batch behandler 23 dokumenterte identiteter: 15 nye og 8 canonical gjenbruk
 - av de åtte canonical personene fikk fire en ny stedskobling; fire var allerede korrekt koblet og ble kildebekreftet
-- Civication-indeksen: 1 286 personer
+- Civication-indeksen: 1 289 personer
 
 ## Første batch: fylte ti opprinnelige hull
 
@@ -79,22 +79,36 @@ Alle 18 aktive Oslo-steder med `politikk` som hovedkategori har dokumenterte Peo
 - Henrik Wergeland og Arnstein Arneberg → Eidsvolls plass
 - Sverre Jystad, Jens Stoltenberg, Kai Fjell, Tore Haaland, Inger Sitter og Odd Tandberg → Regjeringskvartalet
 
-## Fjerde batch: siste dokumenterte utvidelse
+## Fjerde batch: balansert sluttdekning
 
 ### Nye personer
 
-- Bengt Espen Knudsen → Folkets Hus
-- Torstein Ramberg → Regjeringskvartalet
-- Johan Henrik Nebelong → Slottet
-- Peter Fredrik Wergmann → Slottet
-- Johannes Flintoe → Slottet
-- Peter Petersen → Victoria terrasse
-- Henrik Thrap-Meyer → Victoria terrasse
-- Paul Due → Victoria terrasse
-- Bernhard Steckmest → Victoria terrasse
-- Curt Bräuer → Victoria terrasse
-- Christian Mohr → Victoria terrasse
-- Christian P. Reusch → Victoria terrasse
+#### Folkets Hus
+
+- Yngve Hågensen → LO-leder og fagbevegelsens institusjonsbærer
+- Gerd-Liv Valla → LOs første kvinnelige leder; avgangen ble kunngjort i Folkets Hus
+
+#### Regjeringskvartalet
+
+- Per Borten → statsminister med kontor i Høyblokka 1965–1971
+- Odvar Nordli → statsminister med kontor i Høyblokka 1976–1981
+
+#### Slottet
+
+- Olav V → konge og statsoverhode 1957–1991
+- Harald V → konge og statsoverhode fra 1991
+- Peter Fredrik Wergmann → dekorasjonsmaler
+- Johannes Flintoe → kunstneren bak Fugleværelset
+
+#### Victoria terrasse
+
+- Peter Petersen → byggherre
+- Henrik Thrap-Meyer → hovedarkitekt
+- Curt Bräuer → overbrakte det tyske ultimatumet 9. april 1940
+- Christian Mohr → tok imot Bräuer ved hovedporten
+- Christian P. Reusch → førte Bräuer til biblioteket
+- Halvard Lange → utenriksminister ved regjeringskonferansen i 1948
+- Ulrik Olsen → ny kommunalminister ved regjeringskonferansen i 1948
 
 ### Canonical personer gjenbrukt
 
@@ -109,6 +123,16 @@ Alle 18 aktive Oslo-steder med `politikk` som hovedkategori har dokumenterte Peo
 
 Henrik Bull ble koblet gjennom canonical ID `henrik_bull` i `by`, ikke den separate Nationaltheatret-spesialposten.
 
+### Poster tatt ut i balanseringsrunden
+
+Disse var dokumenterte, men var mindre sentrale enn faktiske brukere og hendelsespersoner ved de politiske stedene:
+
+- Bengt Espen Knudsen → Folkets Hus
+- Torstein Ramberg → Regjeringskvartalet
+- Johan Henrik Nebelong → Slottet
+- Paul Due → Victoria terrasse
+- Bernhard Steckmest → Victoria terrasse
+
 ## Låst minste dekning
 
 | Sted | Personer |
@@ -117,7 +141,7 @@ Henrik Bull ble koblet gjennom canonical ID `henrik_bull` i `by`, ikke den separ
 | Høyesteretts hus | 4 |
 | Politihuset på Grønland | 3 |
 | 22. juli-senteret | 5 |
-| Høyblokka | 8 |
+| Høyblokka | 10 |
 | Y-blokka | 4 |
 | Victoria terrasse | 13 |
 | Statsministerboligen | 3 |
@@ -127,14 +151,28 @@ Henrik Bull ble koblet gjennom canonical ID `henrik_bull` i `by`, ikke den separ
 | Youngstorget | 22 |
 | Oslo rådhus | 17 |
 | Eidsvolls plass | 13 |
-| Regjeringskvartalet | 11 |
-| Folkets Hus | 4 |
-| Slottet | 11 |
+| Regjeringskvartalet | 12 |
+| Folkets Hus | 5 |
+| Slottet | 12 |
 | Christopher Hornsrud-skiltet | 1 |
+
+Høyblokka øker fra åtte til ti fordi Per Borten og Odvar Nordli er koblet både til det samlede Regjeringskvartalet og til den konkrete bygningen der Statsministerens kontor lå.
 
 Y-blokka beholdes på fire fordi den allerede har den komplette dokumenterte kjernen Erling Viksjø, Sverre Jystad, Pablo Picasso og Carl Nesjar.
 
 Christopher Hornsrud-skiltet beholdes på én fordi skiltet er viet Christopher Hornsrud. Ingen annen person er lagt til uten en dokumentert kobling til selve skiltstedet.
+
+## Prioritetsregel for politiske steder
+
+People ved politiske steder skal prioriteres i denne rekkefølgen:
+
+1. beslutningstakere og faktiske brukere
+2. personer i sentrale hendelser
+3. organisasjonsledere, aktivister og embetsfolk
+4. kunstnere og personer som er minnet på stedet
+5. arkitekter og byggherrer
+
+Regresjonstesten låser nå maksimalt to arkitekter ved Folkets Hus, Regjeringskvartalet, Slottet og Victoria terrasse. Den låser også at ikke-arkitektoniske roller alltid skal være i klart flertall ved disse stedene.
 
 ## Datamodell og kontroll
 
@@ -142,14 +180,10 @@ Christopher Hornsrud-skiltet beholdes på én fordi skiltet er viet Christopher 
 - ingen parallelle personidentiteter er opprettet
 - alle nye personer har kilde-URL og avgrenset stedsspesifikk rolle
 - eksisterende personer er utvidet i sine canonical filer
-- Civication People-indeksen og webbygget er regenerert
+- Civication People-indeksen og People-rapportene er regenerert
 - tre regresjonstester låser 18/18-dekning, fagfiler, ID-er, kilder og minimumstall
-- full People-port: bestått
-- full stedport: bestått
-- kategori- og quizkontroll: bestått
-- Knowledge V2: bestått
-- TypeScript typecheck og webbygg-synk: bestått
+- slutt-testen låser også rollebalanse og arkitekttak ved de fire politiske institusjonsstedene
 
 ## Fresh-main og diffkontroll
 
-Hele People-endringen er feltvis flettet mot fersk `main`. En sluttkontroll fjernet formateringsendringer i urørte People-filer, slik at diffen bare beholder de reelle personpostene, canonical stedskoblingene, manifestet, testene, rapportene og genererte indeksene.
+Hele People-endringen er feltvis flettet mot fersk `main`. Sluttkontrollen skal bare beholde reelle personposter, canonical stedskoblinger, manifestet, testene, rapportene og genererte indekser.
