@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "bla",
+  "placeFile": "data/places/subkultur/oslo/places_subkultur.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_exact_named_venue_point",
+  "currentCoordinate": {
+    "lat": 59.920159,
+    "lon": 10.752843,
+    "r": 90,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 4312299494 – Blå; direct Wikidata Q2907430 link, official BLÅ/Brønnøysund identity and Kartverket address-context cross-check",
+    "coordType": "venue_point",
+    "coordNote": "Eksakt navngitt OSM-venuepunkt for Blå, node 4312299494, merket amenity=nightclub og direkte koblet til Wikidata Q2907430. BLÅs egne sider og Brønnøysundregistrenes hoved- og underenhet bekrefter Brenneriveien 9 C, 0182 Oslo og venueidentiteten. Wikidata-punktet ligger 13.7 meter fra OSM-punktet. Kartverket har ikke et eget 9C-punkt; nærmeste Brenneriveien 9-adressepunkt ligger 21.4 meter unna og brukes bare som adressekontekst. Den tidligere markøren lå 289.4 meter unna; radius 90 meter beholdes for venue- og nærområdedekning."
+  },
+  "identity": {
+    "currentName": "Blå",
+    "resolvedIdentity": "Blå, konsert- og klubbscene drevet i Brenneriveien 9 C, 0182 Oslo av Brenneriveien Jazzhus AS",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "venue",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "nåværende venue-identitet og adresse",
+    "eksakt navngitt fysisk venueobjekt",
+    "uavhengig koordinat- og adressekryssjekk"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "BLÅ – offisiell kontakt- og historieside",
+      "sourceUrl": "https://www.blaaoslo.no/kontakt-oss",
+      "sourceObjectId": "bla-official:brenneriveien-9c",
+      "sourceQuality": "official_current_venue_identity",
+      "finding": "BLÅ oppgir Brenneriveien 9C, 0182 Oslo og dokumenterer venuehistorien fra 1998.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter venueidentitet og adresse, men eksponerer ikke et stabilt maskinlesbart koordinatobjekt."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – Brenneriveien Jazzhus AS",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/enheter/979194803",
+      "sourceObjectId": "brreg-enhet:979194803",
+      "sourceQuality": "official_business_identity",
+      "finding": "Hovedenheten Brenneriveien Jazzhus AS oppgir Brenneriveien 9 C, 0182 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell virksomhets- og adresseidentitet."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – Brenneriveien Jazzhus underenhet",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/underenheter/979197071",
+      "sourceObjectId": "brreg-underenhet:979197071",
+      "sourceQuality": "official_operating_location",
+      "finding": "Driftsunderenheten oppgir samme beliggenhetsadresse Brenneriveien 9 C, 0182 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Uavhengig offentlig driftsstedskryssjekk."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 4312299494 – Blå",
+      "sourceUrl": "https://www.openstreetmap.org/node/4312299494",
+      "sourceObjectId": "osm-node:4312299494",
+      "sourceQuality": "unique_exact_named_venue_object",
+      "finding": "Eksakt node med name=Blå, amenity=nightclub og wikidata=Q2907430.",
+      "canVerifyCoordinate": true,
+      "reason": "Objektet representerer selve aktive venuepunktet og er direkte identitetskoblet til Wikidata."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q2907430 – Blå",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q2907430",
+      "sourceObjectId": "wikidata:Q2907430",
+      "sourceQuality": "structured_identity_and_coordinate_crosscheck",
+      "finding": "Dedikert Blå-objekt med koordinat som ligger 13.7 meter fra OSM-venuepunktet.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig strukturert identitets- og koordinatkryssjekk."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Brenneriveien 9-kontekst",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Brenneriveien%209%20Oslo&treffPerSide=50",
+      "sourceObjectId": "geonorge-address-context:brenneriveien-9",
+      "sourceQuality": "official_address_context_not_exact_9c",
+      "finding": "Kartverket har ikke et eget 9C-punkt; Brenneriveien 9-punktet ligger 21.4 meter fra det navngitte venuepunktet.",
+      "canVerifyCoordinate": false,
+      "reason": "Brukes bare som adressekontekst og blir ikke feilaktig promotert som et 9C-koordinatobjekt."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Brenneriveien 9 C, 0182 Oslo",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "bla-official:brenneriveien-9c",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:4312299494",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q2907430",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:4312299494",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:4312299494",
+      "lat": 59.920159,
+      "lon": 10.752843,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Det eksakte navngitte OSM-venuepunktet er anvendt som canonical display-marker."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-venuepunkt for Blå, node 4312299494, merket amenity=nightclub og direkte koblet til Wikidata Q2907430. BLÅs egne sider og Brønnøysundregistrenes hoved- og underenhet bekrefter Brenneriveien 9 C, 0182 Oslo og venueidentiteten. Wikidata-punktet ligger 13.7 meter fra OSM-punktet. Kartverket har ikke et eget 9C-punkt; nærmeste Brenneriveien 9-adressepunkt ligger 21.4 meter unna og brukes bare som adressekontekst. Den tidligere markøren lå 289.4 meter unna; radius 90 meter beholdes for venue- og nærområdedekning.",
+    "Research report: reports/oslo-coordinate-bla-research-post-195/summary.json"
+  ]
+}

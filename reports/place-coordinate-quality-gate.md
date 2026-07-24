@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-24T16:46:53.810Z
+Generert: 2026-07-24T16:53:10.986Z
 
 ## Oppsummering
 - Aktive filer validert: **690**
 - Antall steder validert: **1291**
 - Harde feil: **0**
-- Varsler: **509**
-- Coordinate review candidates: **772** signaler fordelt på **649** steder
+- Varsler: **508**
+- Coordinate review candidates: **770** signaler fordelt på **648** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -1014,7 +1014,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/subkultur/oslo/places_subkultur.json#hausmania: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#skur13: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#torggata_blad: coordStatus=verified uten coordPrecisionM
-- data/places/subkultur/oslo/places_subkultur.json#bla: lav koordinatpresisjon (<4 desimaler)
 - data/places/subkultur/oslo/places_subkultur.json#hausmannsgate_aksen: lineært sted uten anchors
 - data/places/subkultur/oslo/places_subkultur.json#schweigaards_gate_lodalen: lineært sted uten anchors
 - data/places/subkultur/oslo/places_subkultur.json#schweigaards_gate_lodalen: stort område uten coordNote/coordStatus
@@ -1225,7 +1224,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 772 signaler fordelt på 649 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 770 signaler fordelt på 648 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -1234,11 +1233,11 @@ Totalt 772 signaler fordelt på 649 steder. Et sted kan ha flere signaler. Kandi
 | coordStatus=verified uten coordPrecisionM | 227 |
 | lineært sted uten anchors | 80 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 69 |
-| lav koordinatpresisjon (<4 desimaler) | 74 |
+| lav koordinatpresisjon (<4 desimaler) | 73 |
 | park/stort område uten anchors eller coordNote | 128 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
-| identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
+| identisk/nesten identisk lat/lon som annet sted uten forklaring | 8 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
 ### coordStatus=verified uten coordPrecisionM (227)
@@ -1632,7 +1631,7 @@ Totalt 772 signaler fordelt på 649 steder. Et sted kan ha flere signaler. Kandi
 | etne_bmx_og_skatepark | Etne BMX- og skatepark | sport | data/places/sport/vestland/etne/etne_bmx_og_skatepark.json | 59.66795396985244 | 5.942168981207253 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | skanevik_skatepark | Skånevik skatepark | sport | data/places/sport/vestland/etne/skanevik_skatepark.json | 59.73 | 5.92 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 
-### lav koordinatpresisjon (<4 desimaler) (74)
+### lav koordinatpresisjon (<4 desimaler) (73)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1665,7 +1664,6 @@ Totalt 772 signaler fordelt på 649 steder. Et sted kan ha flere signaler. Kandi
 | alnaelva_hovedsteder | Alnaelva | natur | data/places/natur/oslo/places_oslo_natur_hovedsteder.json | 59.9325 | 10.833 | 500 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | wembley_stadium_london | Wembley Stadium | sport | data/places/sport/europa/england/footballgrounds_london.json | 51.556 | -0.2796 | 250 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | stamford_bridge_london | Stamford Bridge | sport | data/places/sport/europa/england/footballgrounds_london.json | 51.4817 | -0.191 | 200 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| bla | Blå | musikk | data/places/subkultur/oslo/places_subkultur.json | 59.9186 | 10.757 | 90 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | brenneriveien_ingens_gate | Brenneriveien / Ingens gate | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9186 | 10.757 | 180 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | universitetet_i_oslo_blindern | Universitetet i Oslo, Blindern | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.9393 | 10.723 | 220 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | rikshospitalet | Rikshospitalet | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.948 | 10.7082 | 190 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -1922,11 +1920,10 @@ Totalt 772 signaler fordelt på 649 steder. Et sted kan ha flere signaler. Kandi
 | norges_bank_bankplassen_4 | Norges Bank – Bankplassen 4 | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04.json | 59.90866481462448 | 10.741285328997623 | 55 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 
-### identisk/nesten identisk lat/lon som annet sted uten forklaring (9)
+### identisk/nesten identisk lat/lon som annet sted uten forklaring (8)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| bla | Blå | musikk | data/places/subkultur/oslo/places_subkultur.json | 59.9186 | 10.757 | 90 | Deler punkt med: brenneriveien_ingens_gate. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | lisbon_panteao_nacional | Panteão Nacional (Igreja de Santa Engrácia) | historie | data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | 38.7155 | -9.1244 | 150 | Deler punkt med: lisbon_feira_da_ladra. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | lisbon_feira_da_ladra | Feira da Ladra | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.7155 | -9.1244 | 250 | Deler punkt med: lisbon_panteao_nacional. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | lisbon_cinema_sao_jorge | Cinema São Jorge | film_tv | data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json | 38.7202 | -9.1463 | 100 | Deler punkt med: lisbon_doclisboa. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
