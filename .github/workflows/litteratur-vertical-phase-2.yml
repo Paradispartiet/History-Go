@@ -1,0 +1,97 @@
+name: Literature vertical depth phase 2
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  build-and-validate:
+    if: github.head_ref == 'agent/litteratur-vertikal-fase-2-historie-verden'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/litteratur-vertikal-fase-2-historie-verden
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build and validate literature phase 2
+        id: build
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          mkdir -p reports/litteratur-canonical-migration
+          exec > >(tee reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-full-run.log) 2>&1
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+          echo 'e8ac1846d413982f723911954ea345636f677576aaf01b1af3f0fb00bd1b23e8  tools/build-litteratur-vertical-phase-2.mjs.gz.b64' \
+            | sha256sum -c - \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-builder-checksum.txt
+
+          base64 -d tools/build-litteratur-vertical-phase-2.mjs.gz.b64 \
+            | gzip -d > tools/build-litteratur-vertical-phase-2.mjs
+          echo 'efeea994c6fecf86d26762224449571af23c87582090b767078c6fbd9da49f65  tools/build-litteratur-vertical-phase-2.mjs' \
+            | sha256sum -c - \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-source-checksum.txt
+          node --check tools/build-litteratur-vertical-phase-2.mjs \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-builder-syntax.txt
+          node tools/build-litteratur-vertical-phase-2.mjs \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-builder-output.txt
+
+          rm -f tools/build-litteratur-vertical-phase-2.mjs
+          rm -f tools/build-litteratur-vertical-phase-2.mjs.gz.b64
+          rm -f .github/workflows/litteratur-vertical-phase-2.yml
+          rm -f reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-builder-checksum.txt
+          rm -f reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-source-checksum.txt
+          rm -f reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-builder-syntax.txt
+          rm -f reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-builder-output.txt
+          rm -f reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-full-run.log
+
+          node tools/validate-litteratur-historie-verden-phase-2.mjs \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-validation.txt
+          node tools/validate-litteratur-poetikk-phase-1.mjs \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-poetikk-phase-1-validation.txt
+
+          for file in \
+            data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json \
+            data/fag/litteratur/emner_litteratur_canonical_v4_5.json \
+            data/fag/litteratur/methods_litteratur_canonical_v4_5.json \
+            data/fag/litteratur/emnemapping_litteratur_canonical_v4_5.json \
+            data/fag/litteratur/litteraturpensum_canonical_v4_5.json \
+            data/fag/litteratur/quiz_generator_rules_litteratur_v5_1_source_priority_patch.json \
+            reports/litteratur-canonical-migration/litteratur-question-blueprints.json; do
+              node -e 'JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log("PASS | Gyldig JSON: "+process.argv[1])' "$file" \
+                2>&1 | tee -a reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-validation.txt
+          done
+
+          git diff --check \
+            2>&1 | tee -a reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-validation.txt
+          echo 'PASS | git diff --check' \
+            | tee -a reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-validation.txt
+
+          git add -A data/fag/litteratur reports/litteratur-canonical-migration tools .github/workflows
+          git diff --cached --check
+          git commit -m 'Litteratur: bygg historie-, verdenslitteratur- og medieakse'
+          git push --force-with-lease origin HEAD:agent/litteratur-vertikal-fase-2-historie-verden
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: literature-history-world-phase-2-diagnostics
+          path: |
+            reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-*
+            reports/litteratur-canonical-migration/litteratur-poetikk-phase-1-validation.txt
+          if-no-files-found: warn
+
+      - name: Propagate build failure
+        if: steps.build.outcome == 'failure'
+        run: exit 1
