@@ -45,7 +45,7 @@ Leveranse:
 
 ## Fase 2 — Politisk teori og ideologier
 
-**Status:** Fullført på arbeidsbranch i PR #3685; ordinær CI er sluttport før merge.
+**Status:** Faglig fullført i PR #3685. Fasevalidatoren har 281 PASS, statsvitenskapelig kjernevalidator har 1165 PASS, og institusjons-, demokrati- og konfliktvalidatorene er bakoverkompatible. Ordinær Data- og TypeScript-CI er siste mergeport.
 
 **Formål:** Bygge en eksplisitt normativ og ideologisk akse som skiller empirisk forklaring fra normativ begrunnelse.
 
