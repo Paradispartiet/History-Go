@@ -1,4 +1,4 @@
-name: Extract Havnelageret questions
+name: Generate Havnelageret production
 
 on:
   pull_request:
@@ -9,39 +9,35 @@ on:
       - synchronize
       - reopened
 
+permissions:
+  contents: write
+
 jobs:
-  extract:
-    if: github.head_ref == 'agent/oslo-quiz-havnelageret-5x7'
+  generate:
+    if: github.head_ref == 'agent/oslo-quiz-havnelageret-5x7' && github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-quiz-havnelageret-5x7
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: Extract compact question inventory
+      - name: Generate canonical package
+        run: node scripts/repair-havnelageret-production.mjs
+      - name: Commit generated files
         run: |
-          mkdir -p audit-output
-          node --input-type=module <<'EOF'
-          import { readFile, writeFile } from 'node:fs/promises';
-          const path = 'data/quiz/naeringsliv/havnelageret_sets_merged.json';
-          const data = JSON.parse(await readFile(path, 'utf8'));
-          const questions = data.sets.flatMap((set) => set.questions.map((q) => ({
-            set_id: set.set_id,
-            id: q.id,
-            question: q.question,
-            options: q.options,
-            answer: q.answer,
-            answerIndex: q.answerIndex,
-            knowledge: q.knowledge,
-            difficulty: q.difficulty,
-            question_type: q.question_type,
-            emne_id: q.emne_id,
-            method_id: q.method_id,
-            source: q.source
-          })));
-          await writeFile('audit-output/havnelageret-question-inventory.json', JSON.stringify(questions, null, 2) + '\n');
-          EOF
-      - uses: actions/upload-artifact@v4
-        with:
-          name: havnelageret-question-inventory
-          path: audit-output/havnelageret-question-inventory.json
+          if git diff --quiet; then
+            echo "No generated changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fag/fag_manifest.json \
+            data/quiz/naeringsliv/havnelageret_sets_merged.json \
+            data/quiz/production_briefs/naeringsliv/havnelageret.json \
+            data/quiz/production_context/naeringsliv/havnelageret.json \
+            tests/quiz-production-pipeline.test.mjs
+          git commit -m "Generer kanonisk Havnelageret-quiz"
+          git push origin HEAD:agent/oslo-quiz-havnelageret-5x7
