@@ -1966,6 +1966,85 @@
           ]
         }
       }
+    },
+    "normer_identitet_hverdagsliv": {
+      "status": "complete_revised",
+      "quality_revision": "politikk-normer-vertical-2026-07-24",
+      "domain_id": "normer_identitet_hverdagsliv",
+      "question_surface_mode": "norm-case-rule-practice-consequence-distinction-theory",
+      "required_chain": [
+        "external_norm_rights_practice_or_population_source",
+        "claim_basis",
+        "rule_category_or_expectation",
+        "actor_institution_and_enforcement",
+        "observable_consequence",
+        "critical_distinction",
+        "optional_theory_lens"
+      ],
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "norm_rule_or_category_required": true,
+      "observable_consequence_required": true,
+      "revised_hook_ids": [
+        "normalitet",
+        "minoritet_majoritet",
+        "hverdagslivets_politikk",
+        "kjonn_og_samfunn",
+        "familie_og_stat",
+        "migrasjon",
+        "sosial_kontroll",
+        "tause_regler",
+        "likeverd",
+        "samfunnets_grenser"
+      ],
+      "revised_emne_ids": [
+        "em_pol_familie_stat_omsorg",
+        "em_pol_hverdagslivets_regler",
+        "em_pol_inkludering_ekskludering",
+        "em_pol_integrering_migrasjon",
+        "em_pol_kjonn_familie_likestilling",
+        "em_pol_majoritet_minoritet",
+        "em_pol_normer_doxa",
+        "em_pol_normer_normalitet",
+        "em_pol_sosial_kontroll"
+      ],
+      "revised_method_ids": [
+        "met_pol_velferdsstatlig_analyse",
+        "met_pol_rettighetsanalyse",
+        "met_pol_forvaltningsanalyse",
+        "met_pol_praksisanalyse",
+        "met_pol_dokumentanalyse",
+        "met_pol_rettslig_analyse",
+        "met_pol_normanalyse",
+        "met_pol_diskursanalyse",
+        "met_pol_minoritet_og_representasjonsanalyse",
+        "met_pol_makt_og_ulikhetsanalyse",
+        "met_pol_integreringsanalyse",
+        "met_pol_statistikk_og_fordelingsanalyse",
+        "met_pol_likestillingsanalyse",
+        "met_pol_fordelingsanalyse",
+        "met_pol_ideologianalyse",
+        "met_pol_kontroll_og_sanksjonsanalyse"
+      ],
+      "global_bans": [
+        "identitet eller gruppe som essensiell forklaring",
+        "teoretikernavn som løsrevet fasit",
+        "anekdote som populasjonspåstand",
+        "formell regel som bevis for faktisk praksis",
+        "påstand hentet bare fra emne- eller hooknavn"
+      ],
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_norm_rule_or_category_identification": true,
+        "require_actor_or_institution_identification": true,
+        "require_practice_or_enforcement_mechanism": true,
+        "require_observable_consequence": true,
+        "require_critical_distinction": true,
+        "require_method_match_to_mechanism": true,
+        "require_population_and_denominator_for_group_claims": true,
+        "ban_identity_essence_questions": true,
+        "ban_theorist_name_as_answer_without_concept": true
+      }
     }
   }
 }

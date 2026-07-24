@@ -3229,15 +3229,83 @@
         ],
         "recommended_method_ids": [
           "met_pol_velferdsstatlig_analyse",
-          "met_pol_rettighetsanalyse"
+          "met_pol_rettighetsanalyse",
+          "met_pol_forvaltningsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "family_law_or_regulation",
+          "service_eligibility_rule",
+          "administrative_decision",
+          "official_statistics_or_evaluation"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "rettighetsfastsettelse",
+          "omsorgsfordeling",
+          "ytelsesvilkår",
+          "forvaltningsskjønn",
+          "barnets beste-vurdering",
+          "tjenestetildeling",
+          "familiekategorisering",
+          "kontroll og oppfølging"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "privat omsorg vs offentlig ansvar",
+          "familieautonomi vs beskyttelsesplikt",
+          "universell ytelse vs behovsprøving",
+          "rettighet vs forvaltningsskjønn"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "theda_skocpol",
+            "concept": "velferdsstat og sosialpolitisk institusjonsbygging"
+          },
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "styring av befolkning og familie"
+          },
+          {
+            "thinker_id": "ronald_dworkin",
+            "concept": "likeverdig offentlig omtanke og rettigheter"
+          }
+        ],
+        "case_anchors": [
+          "familievernkontor",
+          "NAV-kontor",
+          "Oslo tinghus"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -4977,15 +5045,83 @@
         ],
         "recommended_method_ids": [
           "met_pol_praksisanalyse",
-          "met_pol_normanalyse"
+          "met_pol_normanalyse",
+          "met_pol_levekarsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "service_or_access_rule",
+          "observed_or_documented_practice",
+          "time_use_or_usage_data",
+          "complaint_or_user_experience_source"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "rutinisering",
+          "tidsdisiplin",
+          "interaksjonsorden",
+          "adgangskode",
+          "uformell sanksjon",
+          "praktisk tilpasning",
+          "skjult motstand",
+          "serviceutforming"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "regel vs rutine",
+          "frivillig vane vs forventet tilpasning",
+          "små ulemper vs systematisk skjevhet",
+          "individuell høflighet vs institusjonell adgang"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "erving_goffman",
+            "concept": "interaksjonsorden og situasjonsregler"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "habitus og praktisk sans"
+          },
+          {
+            "thinker_id": "james_c_scott",
+            "concept": "hverdagsmotstand og skjulte praksiser"
+          }
+        ],
+        "case_anchors": [
+          "Tøyen",
+          "Oslo kollektivtransport",
+          "bydelskontor"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "normer_identitet_hverdagsliv",
@@ -5101,15 +5237,83 @@
         ],
         "recommended_method_ids": [
           "met_pol_praksisanalyse",
-          "met_pol_diskursanalyse"
+          "met_pol_diskursanalyse",
+          "met_pol_normanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "documented_repeated_practice",
+          "interaction_or_access_case",
+          "institutional_ethnography_or_study",
+          "complaint_or_testimony_collection"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "doxa",
+          "habitus",
+          "situasjonell korreksjon",
+          "portvokting",
+          "kodekunnskap",
+          "symbolsk belønning",
+          "forlegenhet",
+          "common sense"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "taus regel vs personlig preferanse",
+          "implisitt forventning vs formelt krav",
+          "manglende kodekunnskap vs manglende evne",
+          "frivillig stil vs adgangsbetingelse"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "doxa, habitus og symbolsk mestring"
+          },
+          {
+            "thinker_id": "erving_goffman",
+            "concept": "situasjonsregler og forlegenhet"
+          },
+          {
+            "thinker_id": "antonio_gramsci",
+            "concept": "common sense og hegemonisk selvfølgelighet"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "Oslo rådhus",
+          "skoler i Oslo"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -5870,16 +6074,84 @@
           "bydelskontor"
         ],
         "recommended_method_ids": [
+          "met_pol_rettighetsanalyse",
           "met_pol_minoritet_og_representasjonsanalyse",
-          "met_pol_makt_og_ulikhetsanalyse"
+          "met_pol_kritisk_rettsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "membership_or_citizenship_rule",
+          "access_criteria",
+          "court_or_administrative_decision",
+          "participation_or_exclusion_data"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "medlemskapskriterium",
+          "statsborgerskap",
+          "adgangskontroll",
+          "kategoriport",
+          "dokumentasjonskrav",
+          "territoriell avgrensning",
+          "rettighetsstatus",
+          "klage og statusendring"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "juridisk medlemskap vs sosial tilhørighet",
+          "åpen arena vs reell adgang",
+          "inkludering vs betinget assimilering",
+          "kategori vs identitet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "hannah_arendt",
+            "concept": "medlemskap og retten til å ha rettigheter"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "klassifikasjon og symbolsk grensedragning"
+          },
+          {
+            "thinker_id": "robert_dahl",
+            "concept": "inkludering i det politiske fellesskapet"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "Oslo tinghus",
+          "Rådhusplassen"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -6569,15 +6841,83 @@
         ],
         "recommended_method_ids": [
           "met_pol_minoritet_og_representasjonsanalyse",
-          "met_pol_integreringsanalyse"
+          "met_pol_representasjonsanalyse",
+          "met_pol_rettighetsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "representation_data",
+          "law_or_rights_rule",
+          "participation_statistics",
+          "institutional_decision"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "flertallsregel",
+          "representasjonsordning",
+          "språkkrav",
+          "minoritetsvern",
+          "agendaadgang",
+          "koalisjonsbygging",
+          "institusjonell overrepresentasjon",
+          "sosial dominans"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "numerisk minoritet vs maktsvak minoritet",
+          "lik behandling vs likeverdig virkning",
+          "tilstedeværelse vs innflytelse",
+          "integrasjon vs assimilering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "robert_dahl",
+            "concept": "opposisjonsrett og demokratisk inkludering"
+          },
+          {
+            "thinker_id": "anne_phillips",
+            "concept": "politisk tilstedeværelse og representasjon"
+          },
+          {
+            "thinker_id": "arend_lijphart",
+            "concept": "maktfordeling og minoritetsvern"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "Oslo rådhus",
+          "Grønland"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "normer_identitet_hverdagsliv",
@@ -6674,15 +7014,83 @@
         ],
         "recommended_method_ids": [
           "met_pol_integreringsanalyse",
-          "met_pol_statistikk_og_fordelingsanalyse"
+          "met_pol_statistikk_og_fordelingsanalyse",
+          "met_pol_rettighetsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "migration_or_citizenship_rule",
+          "population_statistics",
+          "service_or_labour_market_data",
+          "administrative_or_court_decision"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "oppholdsstatus",
+          "statsborgerskapsregel",
+          "språkkrav",
+          "arbeidsmarkedsadgang",
+          "tjenestetilgang",
+          "bosettingspolitikk",
+          "diskriminering",
+          "nettverksressurs"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "migrasjon vs integrering",
+          "integrering vs assimilering",
+          "rettslig status vs sosial tilhørighet",
+          "gruppegjennomsnitt vs individuell situasjon"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "hannah_arendt",
+            "concept": "statsborgerskap og retten til å ha rettigheter"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "kapital, felt og ulik adgang"
+          },
+          {
+            "thinker_id": "stein_rokkan",
+            "concept": "territorium, sentrum og politiske grenser"
+          }
+        ],
+        "case_anchors": [
+          "Grønland",
+          "Tøyen",
+          "Politihuset på Grønland"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -7107,15 +7515,83 @@
         ],
         "recommended_method_ids": [
           "met_pol_likestillingsanalyse",
-          "met_pol_normanalyse"
+          "met_pol_fordelingsanalyse",
+          "met_pol_rettslig_analyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "equality_law_or_decision",
+          "gender_disaggregated_statistics",
+          "institutional_rule",
+          "documented_practice_or_case"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "kjønnet arbeidsdeling",
+          "direkte diskriminering",
+          "indirekte diskriminering",
+          "representasjonsmønster",
+          "omsorgsfordeling",
+          "performativ norm",
+          "institusjonell kategorisering",
+          "ressursulikhet"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "lik regel vs ulik virkning",
+          "biologisk forskjell vs sosial organisering",
+          "representasjon vs beslutningsmakt",
+          "familievalg vs strukturelt handlingsrom"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "judith_butler",
+            "concept": "kjønnsnormer og performativitet"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "symbolsk makt og kjønnet habitus"
+          },
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdig fordeling av grunnleggende muligheter"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "Oslo tinghus",
+          "skoler i Oslo"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -9015,16 +9491,84 @@
           "skoler"
         ],
         "recommended_method_ids": [
-          "met_pol_normanalyse",
-          "met_pol_likestillingsanalyse"
+          "met_pol_likestillingsanalyse",
+          "met_pol_fordelingsanalyse",
+          "met_pol_rettslig_analyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "equality_law_or_decision",
+          "gender_disaggregated_statistics",
+          "institutional_rule",
+          "documented_practice_or_case"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "kjønnet arbeidsdeling",
+          "direkte diskriminering",
+          "indirekte diskriminering",
+          "representasjonsmønster",
+          "omsorgsfordeling",
+          "performativ norm",
+          "institusjonell kategorisering",
+          "ressursulikhet"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "lik regel vs ulik virkning",
+          "biologisk forskjell vs sosial organisering",
+          "representasjon vs beslutningsmakt",
+          "familievalg vs strukturelt handlingsrom"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "judith_butler",
+            "concept": "kjønnsnormer og performativitet"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "symbolsk makt og kjønnet habitus"
+          },
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdig fordeling av grunnleggende muligheter"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "Oslo tinghus",
+          "skoler i Oslo"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "normer_identitet_hverdagsliv",
@@ -9133,7 +9677,8 @@
           "skoler"
         ],
         "recommended_method_ids": [
-          "met_pol_normanalyse",
+          "met_pol_rettighetsanalyse",
+          "met_pol_likestillingsanalyse",
           "met_pol_fordelingsanalyse"
         ],
         "generator_constraints": {
@@ -9141,8 +9686,75 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "rights_or_equality_law",
+          "ombud_or_court_decision",
+          "access_or_outcome_data",
+          "institutional_rule"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "rettighetsvern",
+          "universell utforming",
+          "rimelig tilrettelegging",
+          "indirekte diskriminering",
+          "ressursfordeling",
+          "prosessuell rettssikkerhet",
+          "representasjon",
+          "klageadgang"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "likhet vs likeverd",
+          "lik behandling vs like muligheter",
+          "forskjellsbehandling vs diskriminering",
+          "formell rett vs faktisk adgang"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdige grunninstitusjoner og reelle muligheter"
+          },
+          {
+            "thinker_id": "ronald_dworkin",
+            "concept": "lik omtanke og respekt"
+          },
+          {
+            "thinker_id": "anne_phillips",
+            "concept": "tilstedeværelse, forskjell og politisk likhet"
+          }
+        ],
+        "case_anchors": [
+          "Oslo tinghus",
+          "Stortinget",
+          "Oslo rådhus"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -10235,15 +10847,83 @@
         ],
         "recommended_method_ids": [
           "met_pol_minoritet_og_representasjonsanalyse",
-          "met_pol_integreringsanalyse"
+          "met_pol_representasjonsanalyse",
+          "met_pol_rettighetsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "representation_data",
+          "law_or_rights_rule",
+          "participation_statistics",
+          "institutional_decision"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "flertallsregel",
+          "representasjonsordning",
+          "språkkrav",
+          "minoritetsvern",
+          "agendaadgang",
+          "koalisjonsbygging",
+          "institusjonell overrepresentasjon",
+          "sosial dominans"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "numerisk minoritet vs maktsvak minoritet",
+          "lik behandling vs likeverdig virkning",
+          "tilstedeværelse vs innflytelse",
+          "integrasjon vs assimilering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "robert_dahl",
+            "concept": "opposisjonsrett og demokratisk inkludering"
+          },
+          {
+            "thinker_id": "anne_phillips",
+            "concept": "politisk tilstedeværelse og representasjon"
+          },
+          {
+            "thinker_id": "arend_lijphart",
+            "concept": "maktfordeling og minoritetsvern"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "Oslo rådhus",
+          "Grønland"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "normer_identitet_hverdagsliv",
@@ -10355,15 +11035,83 @@
         ],
         "recommended_method_ids": [
           "met_pol_integreringsanalyse",
-          "met_pol_statistikk_og_fordelingsanalyse"
+          "met_pol_statistikk_og_fordelingsanalyse",
+          "met_pol_rettighetsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "migration_or_citizenship_rule",
+          "population_statistics",
+          "service_or_labour_market_data",
+          "administrative_or_court_decision"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "oppholdsstatus",
+          "statsborgerskapsregel",
+          "språkkrav",
+          "arbeidsmarkedsadgang",
+          "tjenestetilgang",
+          "bosettingspolitikk",
+          "diskriminering",
+          "nettverksressurs"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "migrasjon vs integrering",
+          "integrering vs assimilering",
+          "rettslig status vs sosial tilhørighet",
+          "gruppegjennomsnitt vs individuell situasjon"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "hannah_arendt",
+            "concept": "statsborgerskap og retten til å ha rettigheter"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "kapital, felt og ulik adgang"
+          },
+          {
+            "thinker_id": "stein_rokkan",
+            "concept": "territorium, sentrum og politiske grenser"
+          }
+        ],
+        "case_anchors": [
+          "Grønland",
+          "Tøyen",
+          "Politihuset på Grønland"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "normer_identitet_hverdagsliv",
@@ -10474,16 +11222,84 @@
           "skoler"
         ],
         "recommended_method_ids": [
+          "met_pol_rettighetsanalyse",
           "met_pol_minoritet_og_representasjonsanalyse",
-          "met_pol_makt_og_ulikhetsanalyse"
+          "met_pol_kritisk_rettsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "membership_or_citizenship_rule",
+          "access_criteria",
+          "court_or_administrative_decision",
+          "participation_or_exclusion_data"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "medlemskapskriterium",
+          "statsborgerskap",
+          "adgangskontroll",
+          "kategoriport",
+          "dokumentasjonskrav",
+          "territoriell avgrensning",
+          "rettighetsstatus",
+          "klage og statusendring"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "juridisk medlemskap vs sosial tilhørighet",
+          "åpen arena vs reell adgang",
+          "inkludering vs betinget assimilering",
+          "kategori vs identitet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "hannah_arendt",
+            "concept": "medlemskap og retten til å ha rettigheter"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "klassifikasjon og symbolsk grensedragning"
+          },
+          {
+            "thinker_id": "robert_dahl",
+            "concept": "inkludering i det politiske fellesskapet"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "Oslo tinghus",
+          "Rådhusplassen"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -12804,16 +13620,84 @@
           "skoler"
         ],
         "recommended_method_ids": [
-          "met_pol_diskursanalyse",
-          "met_pol_normanalyse"
+          "met_pol_normanalyse",
+          "met_pol_praksisanalyse",
+          "met_pol_diskursanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "official_standard_or_guideline",
+          "institutional_practice_record",
+          "statistics_or_classification",
+          "complaint_or_case"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "standardisering",
+          "klassifikasjon",
+          "normalitetsmåling",
+          "institusjonell rutine",
+          "faglig vurderingsmakt",
+          "selvregulering",
+          "stigmatisering",
+          "tilpasningskrav"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "statistisk vanlig vs normativt ønskelig",
+          "forskjell vs avvik",
+          "formell standard vs lokal praksis",
+          "beskrivelse vs normalisering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "normalisering og disiplin"
+          },
+          {
+            "thinker_id": "emile_durkheim",
+            "concept": "normer og sosial orden"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "doxa og symbolsk klassifikasjon"
+          }
+        ],
+        "case_anchors": [
+          "skoler i Oslo",
+          "NAV-kontor",
+          "Oslo tinghus"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "normer_identitet_hverdagsliv",
@@ -12924,16 +13808,84 @@
           "skoler"
         ],
         "recommended_method_ids": [
+          "met_pol_kontroll_og_sanksjonsanalyse",
           "met_pol_normanalyse",
-          "met_pol_kontroll_og_sanksjonsanalyse"
+          "met_pol_kritisk_rettsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "rule_or_sanction_record",
+          "complaint_or_case",
+          "institutional_guideline",
+          "survey_or_research_data"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "formell sanksjon",
+          "uformell sanksjon",
+          "overvåking",
+          "ryktekontroll",
+          "skam og anerkjennelse",
+          "selvdisiplin",
+          "avhengighet",
+          "klage- og utgangsmulighet"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "omsorg vs kontroll",
+          "sosialisering vs tvang",
+          "formell regel vs uformell sanksjon",
+          "negativ sosial kontroll vs all sosial regulering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "disiplin, overvåking og selvregulering"
+          },
+          {
+            "thinker_id": "emile_durkheim",
+            "concept": "normbrudd og sosial sanksjon"
+          },
+          {
+            "thinker_id": "erving_goffman",
+            "concept": "stigma og situasjonell kontroll"
+          }
+        ],
+        "case_anchors": [
+          "skoler i Oslo",
+          "Oslo tinghus",
+          "familievernkontor"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "normer_identitet_hverdagsliv",
@@ -13044,16 +13996,84 @@
           "skoler"
         ],
         "recommended_method_ids": [
+          "met_pol_praksisanalyse",
           "met_pol_diskursanalyse",
-          "met_pol_praksisanalyse"
+          "met_pol_normanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "documented_repeated_practice",
+          "interaction_or_access_case",
+          "institutional_ethnography_or_study",
+          "complaint_or_testimony_collection"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "doxa",
+          "habitus",
+          "situasjonell korreksjon",
+          "portvokting",
+          "kodekunnskap",
+          "symbolsk belønning",
+          "forlegenhet",
+          "common sense"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "taus regel vs personlig preferanse",
+          "implisitt forventning vs formelt krav",
+          "manglende kodekunnskap vs manglende evne",
+          "frivillig stil vs adgangsbetingelse"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "doxa, habitus og symbolsk mestring"
+          },
+          {
+            "thinker_id": "erving_goffman",
+            "concept": "situasjonsregler og forlegenhet"
+          },
+          {
+            "thinker_id": "antonio_gramsci",
+            "concept": "common sense og hegemonisk selvfølgelighet"
+          }
+        ],
+        "case_anchors": [
+          "Stortinget",
+          "Oslo rådhus",
+          "skoler i Oslo"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -13251,6 +14271,7 @@
         ],
         "recommended_method_ids": [
           "met_pol_normanalyse",
+          "met_pol_praksisanalyse",
           "met_pol_diskursanalyse"
         ],
         "generator_constraints": {
@@ -13258,8 +14279,75 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "official_standard_or_guideline",
+          "institutional_practice_record",
+          "statistics_or_classification",
+          "complaint_or_case"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "standardisering",
+          "klassifikasjon",
+          "normalitetsmåling",
+          "institusjonell rutine",
+          "faglig vurderingsmakt",
+          "selvregulering",
+          "stigmatisering",
+          "tilpasningskrav"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "statistisk vanlig vs normativt ønskelig",
+          "forskjell vs avvik",
+          "formell standard vs lokal praksis",
+          "beskrivelse vs normalisering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "normalisering og disiplin"
+          },
+          {
+            "thinker_id": "emile_durkheim",
+            "concept": "normer og sosial orden"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "doxa og symbolsk klassifikasjon"
+          }
+        ],
+        "case_anchors": [
+          "skoler i Oslo",
+          "NAV-kontor",
+          "Oslo tinghus"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       },
       {
         "fagkart_kategori": "normer_identitet_hverdagsliv",
@@ -13355,16 +14443,84 @@
           "bydelskontor"
         ],
         "recommended_method_ids": [
+          "met_pol_praksisanalyse",
           "met_pol_normanalyse",
-          "met_pol_praksisanalyse"
+          "met_pol_levekarsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "service_or_access_rule",
+          "observed_or_documented_practice",
+          "time_use_or_usage_data",
+          "complaint_or_user_experience_source"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "rutinisering",
+          "tidsdisiplin",
+          "interaksjonsorden",
+          "adgangskode",
+          "uformell sanksjon",
+          "praktisk tilpasning",
+          "skjult motstand",
+          "serviceutforming"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "regel vs rutine",
+          "frivillig vane vs forventet tilpasning",
+          "små ulemper vs systematisk skjevhet",
+          "individuell høflighet vs institusjonell adgang"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "erving_goffman",
+            "concept": "interaksjonsorden og situasjonsregler"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "habitus og praktisk sans"
+          },
+          {
+            "thinker_id": "james_c_scott",
+            "concept": "hverdagsmotstand og skjulte praksiser"
+          }
+        ],
+        "case_anchors": [
+          "Tøyen",
+          "Oslo kollektivtransport",
+          "bydelskontor"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -16699,16 +17855,84 @@
           "kommunale boliger"
         ],
         "recommended_method_ids": [
-          "met_pol_fordelingsanalyse",
-          "met_pol_normanalyse"
+          "met_pol_rettighetsanalyse",
+          "met_pol_likestillingsanalyse",
+          "met_pol_fordelingsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "rights_or_equality_law",
+          "ombud_or_court_decision",
+          "access_or_outcome_data",
+          "institutional_rule"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "rettighetsvern",
+          "universell utforming",
+          "rimelig tilrettelegging",
+          "indirekte diskriminering",
+          "ressursfordeling",
+          "prosessuell rettssikkerhet",
+          "representasjon",
+          "klageadgang"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "likhet vs likeverd",
+          "lik behandling vs like muligheter",
+          "forskjellsbehandling vs diskriminering",
+          "formell rett vs faktisk adgang"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdige grunninstitusjoner og reelle muligheter"
+          },
+          {
+            "thinker_id": "ronald_dworkin",
+            "concept": "lik omtanke og respekt"
+          },
+          {
+            "thinker_id": "anne_phillips",
+            "concept": "tilstedeværelse, forskjell og politisk likhet"
+          }
+        ],
+        "case_anchors": [
+          "Oslo tinghus",
+          "Stortinget",
+          "Oslo rådhus"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -18385,16 +19609,84 @@
           "bydelskontor"
         ],
         "recommended_method_ids": [
+          "met_pol_kontroll_og_sanksjonsanalyse",
           "met_pol_normanalyse",
-          "met_pol_kontroll_og_sanksjonsanalyse"
+          "met_pol_kritisk_rettsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "rule_or_sanction_record",
+          "complaint_or_case",
+          "institutional_guideline",
+          "survey_or_research_data"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "formell sanksjon",
+          "uformell sanksjon",
+          "overvåking",
+          "ryktekontroll",
+          "skam og anerkjennelse",
+          "selvdisiplin",
+          "avhengighet",
+          "klage- og utgangsmulighet"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "omsorg vs kontroll",
+          "sosialisering vs tvang",
+          "formell regel vs uformell sanksjon",
+          "negativ sosial kontroll vs all sosial regulering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "disiplin, overvåking og selvregulering"
+          },
+          {
+            "thinker_id": "emile_durkheim",
+            "concept": "normbrudd og sosial sanksjon"
+          },
+          {
+            "thinker_id": "erving_goffman",
+            "concept": "stigma og situasjonell kontroll"
+          }
+        ],
+        "case_anchors": [
+          "skoler i Oslo",
+          "Oslo tinghus",
+          "familievernkontor"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -21432,15 +22724,83 @@
         ],
         "recommended_method_ids": [
           "met_pol_velferdsstatlig_analyse",
-          "met_pol_rettighetsanalyse"
+          "met_pol_rettighetsanalyse",
+          "met_pol_forvaltningsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_norm_rule_or_category_identification": true,
+          "require_actor_or_institution_identification": true,
+          "require_practice_or_enforcement_mechanism": true,
+          "require_observable_consequence": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "require_population_and_denominator_for_group_claims": true,
+          "ban_identity_essence_questions": true,
+          "ban_theorist_name_as_answer_without_concept": true,
+          "do_not_generate_from_hook_or_emne_label_only": true
+        },
+        "quality_revision": "politikk-normer-vertical-2026-07-24",
+        "claim_basis_required": true,
+        "claim_basis_types": [
+          "family_law_or_regulation",
+          "service_eligibility_rule",
+          "administrative_decision",
+          "official_statistics_or_evaluation"
+        ],
+        "norm_rule_or_category_required": true,
+        "actor_or_institution_required": true,
+        "mechanism_options": [
+          "rettighetsfastsettelse",
+          "omsorgsfordeling",
+          "ytelsesvilkår",
+          "forvaltningsskjønn",
+          "barnets beste-vurdering",
+          "tjenestetildeling",
+          "familiekategorisering",
+          "kontroll og oppfølging"
+        ],
+        "observable_consequence_required": true,
+        "critical_distinction_options": [
+          "privat omsorg vs offentlig ansvar",
+          "familieautonomi vs beskyttelsesplikt",
+          "universell ytelse vs behovsprøving",
+          "rettighet vs forvaltningsskjønn"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "theda_skocpol",
+            "concept": "velferdsstat og sosialpolitisk institusjonsbygging"
+          },
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "styring av befolkning og familie"
+          },
+          {
+            "thinker_id": "ronald_dworkin",
+            "concept": "likeverdig offentlig omtanke og rettigheter"
+          }
+        ],
+        "case_anchors": [
+          "familievernkontor",
+          "NAV-kontor",
+          "Oslo tinghus"
+        ],
+        "question_chain": [
+          "external_norm_rights_practice_or_population_source",
+          "claim_basis",
+          "rule_category_or_expectation",
+          "actor_institution_and_enforcement",
+          "observable_consequence",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "source_rule": "Konkrete påstander må bygge på ekstern dokumentasjon av lov, avgjørelse, tjeneste, praksis, klage, populasjon eller sosial prosess. Gruppepåstander krever definert populasjon, nevner og indikator. Canonical-filene styrer analysen, men er ikke faktakilder."
       }
     ],
     "mapping_status": "tiered+canonical",
