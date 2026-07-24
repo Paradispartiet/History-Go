@@ -1,0 +1,37 @@
+name: Politics phase 2 canonical export
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    if: github.head_ref == 'agent/politikk-vertikal-fase-2'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/politikk-vertikal-fase-2
+          fetch-depth: 1
+
+      - name: Export active politics canonical files
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/politikk-phase-2/data/fag/politikk
+          mkdir -p /tmp/politikk-phase-2/reports/politikk-canonical-migration
+          mkdir -p /tmp/politikk-phase-2/tools
+
+          cp data/fag/politikk/{fagkart_politikk_canonical_v4_5.json,emner_politikk_canonical_v4_5.json,methods_politikk_canonical_v4_5.json,emnemapping_politikk_canonical_v4_5.json,politikkpensum_canonical_v4_5.json,quiz_generator_rules_politikk_v5_1_source_priority_patch.json} /tmp/politikk-phase-2/data/fag/politikk/
+          cp reports/politikk-canonical-migration/{statsvitenskap-question-blueprints.json,statsvitenskap-vertical-chain.md,politikk-vertikal-fordypningsplan.md} /tmp/politikk-phase-2/reports/politikk-canonical-migration/
+          cp tools/{validate-politikk-statsvitenskap-core.mjs,validate-politikk-institusjoner-phase-1.mjs} /tmp/politikk-phase-2/tools/
+
+          find /tmp/politikk-phase-2 -type f -print | sort \
+            2>&1 | tee /tmp/politikk-phase-2/export-manifest.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: politics-phase-2-canonical-inputs
+          path: /tmp/politikk-phase-2
