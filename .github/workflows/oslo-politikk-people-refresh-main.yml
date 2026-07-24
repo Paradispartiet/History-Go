@@ -1,0 +1,285 @@
+name: Refresh Oslo politics People on current main
+
+on:
+  push:
+    branches:
+      - agent/oslo-politikk-people-refresh-main
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out fresh-main branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-politikk-people-refresh-main
+          fetch-depth: 0
+
+      - name: Fetch validated source branch
+        run: git fetch origin agent/oslo-politikk-people-full-coverage
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Replay scoped People changes structurally
+        env:
+          SOURCE_REF: origin/agent/oslo-politikk-people-full-coverage
+        run: |
+          python3 <<'PY'
+          import copy
+          import json
+          import os
+          import pathlib
+          import subprocess
+
+          source = os.environ['SOURCE_REF']
+          base = subprocess.check_output(['git', 'merge-base', 'HEAD', source], text=True).strip()
+          print('merge-base:', base)
+
+          def git_bytes(ref, path):
+              proc = subprocess.run(['git', 'show', f'{ref}:{path}'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+              if proc.returncode != 0:
+                  return None
+              return proc.stdout
+
+          def read_json_ref(ref, path):
+              data = git_bytes(ref, path)
+              if data is None:
+                  return None
+              return json.loads(data.decode('utf-8'))
+
+          def write_json(path, value):
+              p = pathlib.Path(path)
+              p.parent.mkdir(parents=True, exist_ok=True)
+              p.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          def merge_value(base_value, source_value, current_value, where):
+              if source_value == base_value:
+                  return copy.deepcopy(current_value)
+
+              if isinstance(base_value, dict) and isinstance(source_value, dict) and isinstance(current_value, dict):
+                  result = copy.deepcopy(current_value)
+                  for key in set(base_value) | set(source_value):
+                      child = f'{where}.{key}'
+                      in_base = key in base_value
+                      in_source = key in source_value
+                      in_current = key in current_value
+
+                      if in_base and not in_source:
+                          if not in_current:
+                              continue
+                          if current_value[key] == base_value[key]:
+                              result.pop(key, None)
+                              continue
+                          raise RuntimeError(f'Conflict removing {child}')
+
+                      if not in_base and in_source:
+                          if not in_current:
+                              result[key] = copy.deepcopy(source_value[key])
+                              continue
+                          if current_value[key] == source_value[key]:
+                              continue
+                          if isinstance(source_value[key], list) and isinstance(current_value[key], list):
+                              merged = list(current_value[key])
+                              for item in source_value[key]:
+                                  if item not in merged:
+                                      merged.append(copy.deepcopy(item))
+                              result[key] = merged
+                              continue
+                          raise RuntimeError(f'Conflict adding {child}')
+
+                      if in_base and in_source:
+                          cur = current_value.get(key, copy.deepcopy(base_value[key]))
+                          result[key] = merge_value(base_value[key], source_value[key], cur, child)
+                  return result
+
+              if isinstance(base_value, list) and isinstance(source_value, list) and isinstance(current_value, list):
+                  if current_value == base_value or current_value == source_value:
+                      return copy.deepcopy(source_value)
+                  if all(isinstance(x, str) for x in base_value + source_value + current_value):
+                      result = list(current_value)
+                      removed = [x for x in base_value if x not in source_value]
+                      for item in removed:
+                          if item in result and current_value == base_value:
+                              result.remove(item)
+                      for item in source_value:
+                          if item not in result:
+                              result.append(item)
+                      return result
+                  raise RuntimeError(f'Conflict in list at {where}')
+
+              if current_value == base_value or current_value == source_value:
+                  return copy.deepcopy(source_value)
+              raise RuntimeError(f'Conflict at {where}: base={base_value!r}, source={source_value!r}, current={current_value!r}')
+
+          def normalize_people(value, path):
+              if isinstance(value, list):
+                  return value, True
+              if isinstance(value, dict) and isinstance(value.get('id'), str):
+                  return [value], False
+              raise RuntimeError(f'Unsupported people JSON shape: {path}')
+
+          def merge_people_file(path):
+              base_doc = read_json_ref(base, path)
+              source_doc = read_json_ref(source, path)
+              current_doc = json.loads(pathlib.Path(path).read_text(encoding='utf-8'))
+              if base_doc is None or source_doc is None:
+                  raise RuntimeError(f'Modified file missing in base/source: {path}')
+
+              base_people, base_array = normalize_people(base_doc, path)
+              source_people, source_array = normalize_people(source_doc, path)
+              current_people, current_array = normalize_people(current_doc, path)
+              if not (base_array == source_array == current_array):
+                  raise RuntimeError(f'JSON shape changed unexpectedly: {path}')
+
+              base_by_id = {p['id']: p for p in base_people}
+              source_by_id = {p['id']: p for p in source_people}
+              current_by_id = {p['id']: p for p in current_people}
+              changed_ids = [pid for pid in source_by_id if source_by_id.get(pid) != base_by_id.get(pid)]
+              removed_ids = [pid for pid in base_by_id if pid not in source_by_id]
+              if removed_ids:
+                  raise RuntimeError(f'Unexpected deleted people in {path}: {removed_ids}')
+
+              result = copy.deepcopy(current_people)
+              index = {p['id']: i for i, p in enumerate(result)}
+              for pid in changed_ids:
+                  src = source_by_id[pid]
+                  if pid not in base_by_id:
+                      if pid in current_by_id and current_by_id[pid] != src:
+                          raise RuntimeError(f'New identity already exists differently: {pid} in {path}')
+                      if pid not in index:
+                          index[pid] = len(result)
+                          result.append(copy.deepcopy(src))
+                      continue
+
+                  if pid not in current_by_id:
+                      raise RuntimeError(f'Canonical identity disappeared on main: {pid} in {path}')
+                  merged = merge_value(base_by_id[pid], src, current_by_id[pid], f'{path}:{pid}')
+                  result[index[pid]] = merged
+
+              write_json(path, result if current_array else result[0])
+              print('merged:', path, 'ids:', ', '.join(changed_ids))
+
+          diff = subprocess.check_output(
+              ['git', 'diff', '--name-status', f'{base}..{source}', '--',
+               'data/people',
+               'tests/oslo-politikk-people-full-coverage.test.js',
+               'tests/oslo-politikk-remaining-people-expansion.test.js',
+               'reports/oslo-politikk-people-full-coverage'],
+              text=True,
+          ).splitlines()
+
+          added_people = []
+          modified_people = []
+          copy_paths = []
+          for row in diff:
+              if not row.strip():
+                  continue
+              status, path = row.split('\t', 1)
+              if path == 'data/people/manifest.json':
+                  continue
+              if path.startswith('data/people/') and path.endswith('.json'):
+                  if status == 'A':
+                      added_people.append(path)
+                  elif status == 'M':
+                      modified_people.append(path)
+                  else:
+                      raise RuntimeError(f'Unsupported People diff status {status}: {path}')
+              elif path.startswith('tests/'):
+                  copy_paths.append(path)
+              elif path.startswith('reports/oslo-politikk-people-full-coverage/') and not path.endswith('.log'):
+                  copy_paths.append(path)
+
+          for path in added_people + copy_paths:
+              data = git_bytes(source, path)
+              if data is None:
+                  raise RuntimeError(f'Missing source file: {path}')
+              p = pathlib.Path(path)
+              p.parent.mkdir(parents=True, exist_ok=True)
+              p.write_bytes(data)
+              print('copied:', path)
+
+          for path in modified_people:
+              merge_people_file(path)
+
+          manifest_path = 'data/people/manifest.json'
+          base_manifest = read_json_ref(base, manifest_path)
+          source_manifest = read_json_ref(source, manifest_path)
+          current_manifest = json.loads(pathlib.Path(manifest_path).read_text(encoding='utf-8'))
+          additions = [x for x in source_manifest['files'] if x not in base_manifest['files']]
+          for rel in additions:
+              if rel not in current_manifest['files']:
+                  current_manifest['files'].append(rel)
+          if len(current_manifest['files']) != len(set(current_manifest['files'])):
+              raise RuntimeError('Duplicate file entries in People manifest after merge')
+          write_json(manifest_path, current_manifest)
+          print('manifest additions:', len(additions))
+
+          check_path = pathlib.Path('scripts/check-people.sh')
+          check = check_path.read_text(encoding='utf-8')
+          marker = 'echo "== People check complete =="'
+          commands = [
+              'echo "== Oslo politics People full coverage =="\nnode tests/oslo-politikk-people-full-coverage.test.js',
+              'echo "== Oslo politics remaining-place expansion =="\nnode tests/oslo-politikk-remaining-people-expansion.test.js',
+          ]
+          for block in commands:
+              command = block.split('\n')[-1]
+              if command not in check:
+                  if marker not in check:
+                      raise RuntimeError('People completion marker not found')
+                  check = check.replace(marker, block + '\n\n' + marker)
+          check_path.write_text(check, encoding='utf-8')
+          PY
+
+      - name: Rebuild generated People surfaces
+        run: |
+          npm run civication:history-people:build
+          npm run build:web
+
+      - name: Run locked politics coverage tests
+        run: |
+          set -o pipefail
+          mkdir -p reports/oslo-politikk-people-full-coverage
+          {
+            node tests/oslo-politikk-people-full-coverage.test.js
+            node tests/oslo-politikk-remaining-people-expansion.test.js
+          } 2>&1 | tee reports/oslo-politikk-people-full-coverage/coverage-test.log
+
+      - name: Run full People gate
+        run: |
+          set -o pipefail
+          bash scripts/check-people.sh 2>&1 | tee reports/oslo-politikk-people-full-coverage/check-people.log
+
+      - name: Run places gate
+        run: |
+          set -o pipefail
+          bash scripts/check-places.sh 2>&1 | tee reports/oslo-politikk-people-full-coverage/check-places.log
+
+      - name: Run scoped TypeScript gates
+        run: |
+          set -o pipefail
+          {
+            npm run typecheck:web
+            npm run typecheck:scripts
+            npm run typecheck:tools
+          } 2>&1 | tee reports/oslo-politikk-people-full-coverage/typecheck.log
+
+      - name: Validate and publish fresh-main branch
+        run: |
+          rm .github/workflows/oslo-politikk-people-refresh-main.yml
+          git diff --check
+          git status --short
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Flytt politikk-People til fersk main"
+          git push origin HEAD:agent/oslo-politikk-people-refresh-main
