@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 
 const OUT = 'reports/oslo-politikk-expansion-research.json';
-const USER_AGENT = 'History-Go politics expansion research/1.0 (github.com/Paradispartiet/History-Go)';
+const USER_AGENT = 'History-Go politics expansion research/1.1 (github.com/Paradispartiet/History-Go)';
 
 async function fetchJson(url, options = {}) {
   const res = await fetch(url, {
@@ -56,12 +56,7 @@ async function wikidata(query) {
   return { query, searchUrl, rows };
 }
 
-async function overpass(names) {
-  const filters = names.map((name) => {
-    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    return `nwr[\"name\"~\"^${escaped}$\",i](59.89,10.68,59.95,10.80);`;
-  }).join('\n');
-  const query = `[out:json][timeout:90];\n(\n${filters}\n);\nout tags center geom;`;
+async function runOverpass(query) {
   const endpoints = [
     'https://overpass-api.de/api/interpreter',
     'https://overpass.kumi.systems/api/interpreter',
@@ -80,6 +75,19 @@ async function overpass(names) {
     }
   }
   return { query, error: lastError, elements: [] };
+}
+
+async function overpassNamed(names) {
+  const filters = names.map((name) => {
+    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return `nwr[\"name\"~\"^${escaped}$\",i](59.89,10.68,59.95,10.80);`;
+  }).join('\n');
+  return runOverpass(`[out:json][timeout:90];\n(\n${filters}\n);\nout tags center geom;`);
+}
+
+async function overpassRegjeringskvartalet() {
+  const query = `[out:json][timeout:120];\n(\n  nwr(around:650,59.91560,10.74510)[\"name\"];\n  nwr(around:650,59.91560,10.74510)[\"old_name\"];\n  nwr(around:650,59.91560,10.74510)[\"official_name\"];\n  nwr(around:650,59.91560,10.74510)[\"building\"];\n  nwr(around:650,59.91560,10.74510)[\"demolished:building\"];\n  nwr(around:650,59.91560,10.74510)[\"razed:building\"];\n  nwr(around:650,59.91560,10.74510)[\"historic\"];\n);\nout tags center geom;`;
+  return runOverpass(query);
 }
 
 const addressQueries = {
@@ -104,7 +112,8 @@ const report = {
   addresses: {},
   nominatim: {},
   wikidata: {},
-  overpass: null,
+  overpass_named: null,
+  overpass_regjeringskvartalet: null,
 };
 
 for (const [id, query] of Object.entries(addressQueries)) {
@@ -129,13 +138,14 @@ for (const query of namedQueries) {
   }
 }
 
-report.overpass = await overpass([
+report.overpass_named = await overpassNamed([
   'Høyblokka',
   'Y-blokka',
   'Arbeidersamfunnets plass',
   'Victoria terrasse',
   '22. juli-senteret',
 ]);
+report.overpass_regjeringskvartalet = await overpassRegjeringskvartalet();
 
 await mkdir('reports', { recursive: true });
 await writeFile(OUT, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
