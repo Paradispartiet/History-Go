@@ -4,7 +4,7 @@
   "scope": "oslo_og_omegn",
   "type": "fagkart",
   "version": "v4.5-canonical-draft-1",
-  "updated_at": "2026-05-06",
+  "updated_at": "2026-07-24",
   "canonical_registry_version": "politikkpensum_v4_5",
   "purpose": "Kanonisk fagkart for Politikk & samfunn i History Go. Fagkartet styrer politiske og samfunnsfaglige emner, metoder, teori, stedstyper, spørsmålsflater og kildekrav. Det skal brukes som styringslag, ikke som erstatning for eksterne kilder om konkrete institusjoner, lover, reformer, konflikter, forvaltning, representasjon, velferd eller samfunnsprosesser.",
   "principles": {
@@ -37,15 +37,18 @@
     {
       "id": "styring_institusjoner_forvaltning",
       "title": "Styring, institusjoner og forvaltning",
-      "tagline": "Hvordan staten, kommunen, byråkratiet og institusjonsbygg gjør kollektive beslutninger virksomme.",
-      "definition": "Domenet dekker styring, institusjoner, forvaltning, byråkrati, offentlig administrasjon, beslutningssystemer, kommunale strukturer og maktens materielle apparat.",
+      "tagline": "Hvordan politiske vedtak blir til myndighet, regler, dokumenter, budsjetter, planer, tjenester og konkrete borgerutfall.",
+      "definition": "Domenet undersøker hvordan politiske beslutninger blir omformet til regler, dokumenter, budsjetter, organisasjoner og skjønnsutøvelse, og hvordan denne omformingen påvirker borgernes rettigheter, handlingsrom og tilgang til offentlige goder.",
       "focus": [
-        "styring",
-        "institusjon",
-        "forvaltning",
-        "byråkrati",
-        "administrasjon",
-        "beslutning"
+        "institusjonell myndighet",
+        "implementering",
+        "forvaltningsskjønn",
+        "flernivåstyring",
+        "rettslig styring",
+        "budsjett og prioritering",
+        "planlegging og regulering",
+        "ekspertise",
+        "legitimitet"
       ],
       "oslo": {
         "core_cases": [
@@ -57,39 +60,105 @@
           "Bydelshus",
           "Statsarkivet"
         ],
-        "place_logic": "Bruk Oslo-steder bare når de har dokumenterbar kobling til styring, institusjon, forvaltning, lov, rett, demokrati, offentlighet, fordeling, velferd, konflikt, normer eller sosial prosess."
+        "place_logic": "Bruk stedet når en ekstern kilde dokumenterer en institusjon, beslutning, regel, ressursstrøm, tjeneste, plan, dokumentpraksis eller legitimitetskonflikt som kan analyseres gjennom domenets mekanismer."
       },
       "canon": {
         "thinkers": [
           {
             "id": "max_weber",
             "name": "Max Weber",
-            "role": "byråkrati, rasjonalisering og legitimitet",
-            "tier": "core"
-          },
-          {
-            "id": "michel_foucault",
-            "name": "Michel Foucault",
-            "role": "styring, disiplin og makt",
-            "tier": "core"
-          },
-          {
-            "id": "pierre_bourdieu",
-            "name": "Pierre Bourdieu",
-            "role": "symbolsk makt og stat",
+            "role": "legal-rasjonell autoritet, byråkrati og embetsverk",
             "tier": "core"
           },
           {
             "id": "theda_skocpol",
             "name": "Theda Skocpol",
-            "role": "stat og institusjoner",
+            "role": "statlig kapasitet og institusjonell autonomi",
             "tier": "core"
+          },
+          {
+            "id": "pierre_bourdieu",
+            "name": "Pierre Bourdieu",
+            "role": "statlig, symbolsk og feltbasert makt",
+            "tier": "supplementary"
+          },
+          {
+            "id": "michael_lipsky",
+            "name": "Michael Lipsky",
+            "role": "frontlinjebyråkrati, skjønn og implementering",
+            "tier": "core"
+          },
+          {
+            "id": "michel_foucault",
+            "name": "Michel Foucault",
+            "role": "normalisering, dokumenterende makt og governmentality",
+            "tier": "core"
+          },
+          {
+            "id": "robert_dahl",
+            "name": "Robert Dahl",
+            "role": "polyarki, deltakelse og politisk likhet",
+            "tier": "core"
+          },
+          {
+            "id": "stein_rokkan",
+            "name": "Stein Rokkan",
+            "role": "sentrum–periferi og territoriell organisering",
+            "tier": "norwegian"
           },
           {
             "id": "james_c_scott",
             "name": "James C. Scott",
-            "role": "statlig lesbarhet og administrativ makt",
+            "role": "administrativ lesbarhet, forenkling og statlig styring",
             "tier": "core"
+          },
+          {
+            "id": "gosta_esping_andersen",
+            "name": "Gøsta Esping-Andersen",
+            "role": "velferdsregimer og institusjonell sosialpolitikk",
+            "tier": "core"
+          },
+          {
+            "id": "kari_waerness",
+            "name": "Kari Wærness",
+            "role": "omsorgsrasjonalitet og velferdstjenester",
+            "tier": "norwegian"
+          },
+          {
+            "id": "charles_lindblom",
+            "name": "Charles E. Lindblom",
+            "role": "inkrementalisme og trinnvis politikkutforming",
+            "tier": "supplementary"
+          },
+          {
+            "id": "john_rawls",
+            "name": "John Rawls",
+            "role": "rettferdig fordeling og institusjonell legitimitet",
+            "tier": "core"
+          },
+          {
+            "id": "gudmund_hernes",
+            "name": "Gudmund Hernes",
+            "role": "makt, avhengighet og fordelingsstrukturer",
+            "tier": "norwegian"
+          },
+          {
+            "id": "jurgen_habermas",
+            "name": "Jürgen Habermas",
+            "role": "offentlig begrunnelse, legitimitet og teknokratikritikk",
+            "tier": "core"
+          },
+          {
+            "id": "sheila_jasanoff",
+            "name": "Sheila Jasanoff",
+            "role": "samproduksjon av kunnskap og politisk orden",
+            "tier": "supplementary"
+          },
+          {
+            "id": "fritz_scharpf",
+            "name": "Fritz W. Scharpf",
+            "role": "input-, throughput- og output-legitimitet",
+            "tier": "supplementary"
           }
         ]
       },
@@ -102,32 +171,20 @@
               {
                 "id": "max_weber",
                 "name": "Max Weber",
-                "role": "byråkrati, rasjonalisering og legitimitet",
-                "tier": "core"
-              },
-              {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "styring, disiplin og makt",
-                "tier": "core"
-              },
-              {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "symbolsk makt og stat",
+                "role": "legal-rasjonell autoritet, byråkrati og embetsverk; brukt her som legal-rasjonell autoritet",
                 "tier": "core"
               },
               {
                 "id": "theda_skocpol",
                 "name": "Theda Skocpol",
-                "role": "stat og institusjoner",
+                "role": "statlig kapasitet og institusjonell autonomi; brukt her som statlig kapasitet og institusjonell autonomi",
                 "tier": "core"
               },
               {
-                "id": "james_c_scott",
-                "name": "James C. Scott",
-                "role": "statlig lesbarhet og administrativ makt",
-                "tier": "core"
+                "id": "pierre_bourdieu",
+                "name": "Pierre Bourdieu",
+                "role": "statlig, symbolsk og feltbasert makt; brukt her som statlig og symbolsk makt",
+                "tier": "supplementary"
               }
             ]
           },
@@ -155,7 +212,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "institution-governance-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -165,36 +222,31 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke likestill institusjon med bygning.",
+            "Ikke bruk makt som synonym for synlig tvang.",
+            "Ikke anta at formelle regler alene forklarer utfallet."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_formal_rules_roles_and_competence_boundaries",
+            "compare_formal_authority_with_actual_influence",
+            "explain_how_stability_is_produced_without_repeated_commands"
           ],
           "comparison_pairs": [
             [
               "max_weber",
-              "michel_foucault"
+              "theda_skocpol"
             ],
             [
-              "pierre_bourdieu",
-              "theda_skocpol"
+              "theda_skocpol",
+              "pierre_bourdieu"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Oslo rådhus",
             "Stortinget",
-            "Regjeringskvartalet",
-            "Oslo tinghus",
-            "Rådhusplassen",
-            "Bydelshus",
-            "Statsarkivet"
+            "Oslo rådhus",
+            "Regjeringskvartalet"
           ],
           "recommended_method_ids": [
             "met_pol_institusjonsanalyse",
@@ -203,10 +255,11 @@
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
             "max_weber",
-            "michel_foucault"
+            "theda_skocpol",
+            "pierre_bourdieu"
           ],
           "case_spread_score": 5,
-          "theory_spread_priority": "spread_more",
+          "theory_spread_priority": "targeted",
           "canonical_status": "canonical",
           "registry_version": "politikkpensum_v4_5",
           "min_recommended_oslo_cases": 2,
@@ -216,15 +269,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter mellom de dokumenterbare casene og mekanismene for institusjon som maktform. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "require_case_specific_question": true
+          },
+          "definition": "Institusjoner er varige regler, roller og forventninger som fordeler beslutningsmyndighet og gjør noen handlingsmåter enklere, mer legitime eller mer sannsynlige enn andre.",
+          "core_problem": "Hvordan kan makt virke stabilt uten at noen gir en ny ordre i hver enkelt situasjon?",
+          "mechanisms": [
+            "kompetansetildeling",
+            "arbeidsdeling",
+            "standardisering",
+            "stiavhengighet",
+            "autorisasjon",
+            "symbolsk naturalisering"
+          ],
+          "critical_distinctions": [
+            "institusjon vs enkeltorganisasjon",
+            "formell kompetanse vs faktisk innflytelse",
+            "regel vs praksis",
+            "autoritet vs tvang"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "max_weber",
+              "concept": "legal-rasjonell autoritet"
+            },
+            {
+              "thinker_id": "theda_skocpol",
+              "concept": "statlig kapasitet og institusjonell autonomi"
+            },
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "statlig og symbolsk makt"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Oslo rådhus",
+            "Regjeringskvartalet"
+          ],
+          "anti_reduction": [
+            "Ikke likestill institusjon med bygning.",
+            "Ikke bruk makt som synonym for synlig tvang.",
+            "Ikke anta at formelle regler alene forklarer utfallet."
+          ],
+          "quality_revision": "politikk-styring-2026-07-24"
         },
         {
           "id": "byrakrati_og_hverdag",
@@ -232,33 +330,21 @@
           "canon": {
             "thinkers": [
               {
+                "id": "michael_lipsky",
+                "name": "Michael Lipsky",
+                "role": "frontlinjebyråkrati, skjønn og implementering; brukt her som street-level bureaucracy",
+                "tier": "core"
+              },
+              {
                 "id": "max_weber",
                 "name": "Max Weber",
-                "role": "byråkrati, rasjonalisering og legitimitet",
+                "role": "legal-rasjonell autoritet, byråkrati og embetsverk; brukt her som regelbundet embetsutøvelse",
                 "tier": "core"
               },
               {
                 "id": "michel_foucault",
                 "name": "Michel Foucault",
-                "role": "styring, disiplin og makt",
-                "tier": "core"
-              },
-              {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "symbolsk makt og stat",
-                "tier": "core"
-              },
-              {
-                "id": "theda_skocpol",
-                "name": "Theda Skocpol",
-                "role": "stat og institusjoner",
-                "tier": "core"
-              },
-              {
-                "id": "james_c_scott",
-                "name": "James C. Scott",
-                "role": "statlig lesbarhet og administrativ makt",
+                "role": "normalisering, dokumenterende makt og governmentality; brukt her som normalisering",
                 "tier": "core"
               }
             ]
@@ -287,7 +373,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "institution-governance-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -297,36 +383,31 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke beskriv byråkrati bare som treghet.",
+            "Ikke framstill skjønn som enten helt fritt eller alltid illegitimt.",
+            "Ikke bruk enkelthistorier uten å undersøke regelverk og organisasjon."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "trace_rule_to_frontline_decision_and_borgerutfall",
+            "identify_where_discretion_scarcity_or_classification_changes_delivery",
+            "compare_equal_treatment_with_individual_adaptation"
           ],
           "comparison_pairs": [
             [
-              "max_weber",
-              "michel_foucault"
+              "michael_lipsky",
+              "max_weber"
             ],
             [
-              "pierre_bourdieu",
-              "theda_skocpol"
+              "max_weber",
+              "michel_foucault"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Oslo rådhus",
-            "Stortinget",
-            "Regjeringskvartalet",
-            "Oslo tinghus",
-            "Rådhusplassen",
             "Bydelshus",
-            "Statsarkivet"
+            "NAV-kontor",
+            "Oslo tinghus"
           ],
           "recommended_method_ids": [
             "met_pol_forvaltningsanalyse",
@@ -334,11 +415,12 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
+            "michael_lipsky",
             "max_weber",
             "michel_foucault"
           ],
           "case_spread_score": 5,
-          "theory_spread_priority": "spread_more",
+          "theory_spread_priority": "targeted",
           "canonical_status": "canonical",
           "registry_version": "politikkpensum_v4_5",
           "min_recommended_oslo_cases": 2,
@@ -348,15 +430,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter mellom de dokumenterbare casene og mekanismene for byråkrati og hverdag. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "require_case_specific_question": true
+          },
+          "definition": "Emnet undersøker hvordan generelle politiske vedtak blir til konkrete møter, ventetider, dokumentkrav, vurderinger og avgjørelser i borgernes hverdag.",
+          "core_problem": "Hvorfor kan samme regel gi ulike erfaringer og utfall når den anvendes i konkrete saker?",
+          "mechanisms": [
+            "skjønnsutøvelse",
+            "ressursknapphet",
+            "målkonflikt",
+            "rutiniserte forenklinger",
+            "kategorisering av brukere",
+            "digital standardisering"
+          ],
+          "critical_distinctions": [
+            "regelstyring vs skjønn",
+            "politikk som vedtatt vs politikk som levert",
+            "likebehandling vs individuell tilpasning",
+            "profesjonelt skjønn vs vilkårlighet"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "michael_lipsky",
+              "concept": "street-level bureaucracy"
+            },
+            {
+              "thinker_id": "max_weber",
+              "concept": "regelbundet embetsutøvelse"
+            },
+            {
+              "thinker_id": "michel_foucault",
+              "concept": "normalisering"
+            }
+          ],
+          "case_anchors": [
+            "Bydelshus",
+            "NAV-kontor",
+            "Oslo tinghus"
+          ],
+          "anti_reduction": [
+            "Ikke beskriv byråkrati bare som treghet.",
+            "Ikke framstill skjønn som enten helt fritt eller alltid illegitimt.",
+            "Ikke bruk enkelthistorier uten å undersøke regelverk og organisasjon."
+          ],
+          "quality_revision": "politikk-styring-2026-07-24"
         },
         {
           "id": "kommunal_styring",
@@ -364,34 +491,22 @@
           "canon": {
             "thinkers": [
               {
+                "id": "robert_dahl",
+                "name": "Robert Dahl",
+                "role": "polyarki, deltakelse og politisk likhet; brukt her som polyarki og faktisk deltakelse",
+                "tier": "core"
+              },
+              {
                 "id": "max_weber",
                 "name": "Max Weber",
-                "role": "byråkrati, rasjonalisering og legitimitet",
+                "role": "legal-rasjonell autoritet, byråkrati og embetsverk; brukt her som politikk og embetsverk",
                 "tier": "core"
               },
               {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "styring, disiplin og makt",
-                "tier": "core"
-              },
-              {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "symbolsk makt og stat",
-                "tier": "core"
-              },
-              {
-                "id": "theda_skocpol",
-                "name": "Theda Skocpol",
-                "role": "stat og institusjoner",
-                "tier": "core"
-              },
-              {
-                "id": "james_c_scott",
-                "name": "James C. Scott",
-                "role": "statlig lesbarhet og administrativ makt",
-                "tier": "core"
+                "id": "stein_rokkan",
+                "name": "Stein Rokkan",
+                "role": "sentrum–periferi og territoriell organisering; brukt her som sentrum–periferi",
+                "tier": "norwegian"
               }
             ]
           },
@@ -419,7 +534,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "institution-governance-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -429,36 +544,33 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke framstill kommunen som én aktør.",
+            "Ikke bland kommunale og statlige ansvarsområder.",
+            "Ikke vurder demokratisk kvalitet bare ut fra valgdeltakelse."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "separate_political_leadership_administration_and_borough_level",
+            "trace_delegation_accountability_and_budget_authority",
+            "evaluate_participation_against_actual_decision_power"
           ],
           "comparison_pairs": [
             [
-              "max_weber",
-              "michel_foucault"
+              "robert_dahl",
+              "max_weber"
             ],
             [
-              "pierre_bourdieu",
-              "theda_skocpol"
+              "max_weber",
+              "stein_rokkan"
             ]
           ],
           "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
+            "stein_rokkan"
           ],
           "recommended_oslo_cases": [
             "Oslo rådhus",
-            "Stortinget",
-            "Regjeringskvartalet",
-            "Oslo tinghus",
-            "Rådhusplassen",
             "Bydelshus",
-            "Statsarkivet"
+            "Rådhusplassen"
           ],
           "recommended_method_ids": [
             "met_pol_lokalpolitisk_analyse",
@@ -466,11 +578,12 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
+            "robert_dahl",
             "max_weber",
-            "michel_foucault"
+            "stein_rokkan"
           ],
           "case_spread_score": 5,
-          "theory_spread_priority": "spread_more",
+          "theory_spread_priority": "targeted",
           "canonical_status": "canonical",
           "registry_version": "politikkpensum_v4_5",
           "min_recommended_oslo_cases": 2,
@@ -480,15 +593,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter mellom de dokumenterbare casene og mekanismene for kommunal styring. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "require_case_specific_question": true
+          },
+          "definition": "Kommunal styring handler om hvordan folkevalgte organer, byråd eller formannskap, administrasjon og bydeler fordeler ansvar og omsetter lokale prioriteringer til tjenester, planer og budsjettvedtak.",
+          "core_problem": "Hvordan kombineres lokal demokratisk kontroll med behovet for faglig og administrativ kapasitet?",
+          "mechanisms": [
+            "delegasjon",
+            "parlamentarisk ansvar",
+            "budsjettstyring",
+            "bydelsdesentralisering",
+            "saksforberedelse",
+            "interesse- og høringskanaler"
+          ],
+          "critical_distinctions": [
+            "politisk ledelse vs administrativ ledelse",
+            "kommune vs stat",
+            "sentralisering vs bydelsautonomi",
+            "representasjon vs effektivitet"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "polyarki og faktisk deltakelse"
+            },
+            {
+              "thinker_id": "max_weber",
+              "concept": "politikk og embetsverk"
+            },
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "sentrum–periferi"
+            }
+          ],
+          "case_anchors": [
+            "Oslo rådhus",
+            "Bydelshus",
+            "Rådhusplassen"
+          ],
+          "anti_reduction": [
+            "Ikke framstill kommunen som én aktør.",
+            "Ikke bland kommunale og statlige ansvarsområder.",
+            "Ikke vurder demokratisk kvalitet bare ut fra valgdeltakelse."
+          ],
+          "quality_revision": "politikk-styring-2026-07-24"
         },
         {
           "id": "stat_og_by",
@@ -496,33 +654,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "max_weber",
-                "name": "Max Weber",
-                "role": "byråkrati, rasjonalisering og legitimitet",
-                "tier": "core"
-              },
-              {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "styring, disiplin og makt",
-                "tier": "core"
-              },
-              {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "symbolsk makt og stat",
-                "tier": "core"
-              },
-              {
                 "id": "theda_skocpol",
                 "name": "Theda Skocpol",
-                "role": "stat og institusjoner",
+                "role": "statlig kapasitet og institusjonell autonomi; brukt her som statlig kapasitet",
                 "tier": "core"
+              },
+              {
+                "id": "stein_rokkan",
+                "name": "Stein Rokkan",
+                "role": "sentrum–periferi og territoriell organisering; brukt her som territoriell organisering",
+                "tier": "norwegian"
               },
               {
                 "id": "james_c_scott",
                 "name": "James C. Scott",
-                "role": "statlig lesbarhet og administrativ makt",
+                "role": "administrativ lesbarhet, forenkling og statlig styring; brukt her som administrativ lesbarhet",
                 "tier": "core"
               }
             ]
@@ -551,7 +697,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "institution-governance-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -561,36 +707,33 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke framstill stat–kommune-forholdet som et enkelt hierarki.",
+            "Ikke bruk geografisk nærhet som bevis på institusjonell kobling.",
+            "Ikke overse finansiering som maktmiddel."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "map_competence_financing_control_and_implementation_across_levels",
+            "identify_coordination_or_responsibility_fragmentation",
+            "explain_how_territory_and_financing_shape_authority"
           ],
           "comparison_pairs": [
             [
-              "max_weber",
-              "michel_foucault"
+              "theda_skocpol",
+              "stein_rokkan"
             ],
             [
-              "pierre_bourdieu",
-              "theda_skocpol"
+              "stein_rokkan",
+              "james_c_scott"
             ]
           ],
           "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
+            "stein_rokkan"
           ],
           "recommended_oslo_cases": [
-            "Oslo rådhus",
-            "Stortinget",
             "Regjeringskvartalet",
-            "Oslo tinghus",
-            "Rådhusplassen",
-            "Bydelshus",
-            "Statsarkivet"
+            "Oslo rådhus",
+            "Bjørvika"
           ],
           "recommended_method_ids": [
             "met_pol_romlig_maktanalyse",
@@ -598,11 +741,12 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "max_weber",
-            "michel_foucault"
+            "theda_skocpol",
+            "stein_rokkan",
+            "james_c_scott"
           ],
           "case_spread_score": 5,
-          "theory_spread_priority": "spread_more",
+          "theory_spread_priority": "targeted",
           "canonical_status": "canonical",
           "registry_version": "politikkpensum_v4_5",
           "min_recommended_oslo_cases": 2,
@@ -612,15 +756,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter mellom de dokumenterbare casene og mekanismene for stat og by. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "require_case_specific_question": true
+          },
+          "definition": "Emnet undersøker hvordan statlige og kommunale myndigheter deler, konkurrerer om og samordner ansvar i hovedstaden, og hvordan denne flernivåstyringen setter romlige spor.",
+          "core_problem": "Hvem kan faktisk beslutte når flere forvaltningsnivåer eier ulike deler av samme problem?",
+          "mechanisms": [
+            "lovbestemt oppgavefordeling",
+            "øremerking",
+            "innsigelse",
+            "samfinansiering",
+            "etatsstyring",
+            "forhandling mellom nivåer"
+          ],
+          "critical_distinctions": [
+            "myndighet vs finansiering",
+            "statlig kontroll vs kommunalt selvstyre",
+            "territorium vs funksjon",
+            "samordning vs ansvarsfragmentering"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "theda_skocpol",
+              "concept": "statlig kapasitet"
+            },
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "territoriell organisering"
+            },
+            {
+              "thinker_id": "james_c_scott",
+              "concept": "administrativ lesbarhet"
+            }
+          ],
+          "case_anchors": [
+            "Regjeringskvartalet",
+            "Oslo rådhus",
+            "Bjørvika"
+          ],
+          "anti_reduction": [
+            "Ikke framstill stat–kommune-forholdet som et enkelt hierarki.",
+            "Ikke bruk geografisk nærhet som bevis på institusjonell kobling.",
+            "Ikke overse finansiering som maktmiddel."
+          ],
+          "quality_revision": "politikk-styring-2026-07-24"
         },
         {
           "id": "offentlige_tjenester",
@@ -628,34 +817,22 @@
           "canon": {
             "thinkers": [
               {
-                "id": "max_weber",
-                "name": "Max Weber",
-                "role": "byråkrati, rasjonalisering og legitimitet",
+                "id": "gosta_esping_andersen",
+                "name": "Gøsta Esping-Andersen",
+                "role": "velferdsregimer og institusjonell sosialpolitikk; brukt her som velferdsregimer",
                 "tier": "core"
               },
               {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "styring, disiplin og makt",
+                "id": "michael_lipsky",
+                "name": "Michael Lipsky",
+                "role": "frontlinjebyråkrati, skjønn og implementering; brukt her som frontlinjeskjønn",
                 "tier": "core"
               },
               {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "symbolsk makt og stat",
-                "tier": "core"
-              },
-              {
-                "id": "theda_skocpol",
-                "name": "Theda Skocpol",
-                "role": "stat og institusjoner",
-                "tier": "core"
-              },
-              {
-                "id": "james_c_scott",
-                "name": "James C. Scott",
-                "role": "statlig lesbarhet og administrativ makt",
-                "tier": "core"
+                "id": "kari_waerness",
+                "name": "Kari Wærness",
+                "role": "omsorgsrasjonalitet og velferdstjenester; brukt her som omsorgsrasjonalitet",
+                "tier": "norwegian"
               }
             ]
           },
@@ -683,7 +860,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "institution-governance-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -693,36 +870,33 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke likestill offentlig tjeneste med gratis tjeneste.",
+            "Ikke anta at lik regel gir lik tilgang.",
+            "Ikke analyser kvalitet uten å se på kapasitet og ansvarslinjer."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_right_capacity_target_group_and_delivery_model",
+            "trace_how_scarcity_and_professional_discretion_shape_access",
+            "compare_universalism_selectivity_equality_and_equity"
           ],
           "comparison_pairs": [
             [
-              "max_weber",
-              "michel_foucault"
+              "gosta_esping_andersen",
+              "michael_lipsky"
             ],
             [
-              "pierre_bourdieu",
-              "theda_skocpol"
+              "michael_lipsky",
+              "kari_waerness"
             ]
           ],
           "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
+            "kari_waerness"
           ],
           "recommended_oslo_cases": [
-            "Oslo rådhus",
-            "Stortinget",
-            "Regjeringskvartalet",
-            "Oslo tinghus",
-            "Rådhusplassen",
             "Bydelshus",
-            "Statsarkivet"
+            "Skole",
+            "Familievernkontor"
           ],
           "recommended_method_ids": [
             "met_pol_velferdsstatlig_analyse",
@@ -730,11 +904,12 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "max_weber",
-            "michel_foucault"
+            "gosta_esping_andersen",
+            "michael_lipsky",
+            "kari_waerness"
           ],
           "case_spread_score": 5,
-          "theory_spread_priority": "spread_more",
+          "theory_spread_priority": "targeted",
           "canonical_status": "canonical",
           "registry_version": "politikkpensum_v4_5",
           "min_recommended_oslo_cases": 2,
@@ -744,15 +919,61 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter mellom de dokumenterbare casene og mekanismene for offentlige tjenester. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "require_case_specific_question": true
+          },
+          "definition": "Offentlige tjenester er institusjonaliserte ordninger som omsetter politiske rettigheter, prioriteringer og profesjonell kunnskap til konkrete ytelser og inngrep.",
+          "core_problem": "Hvordan fordeles knappe ressurser uten at universelle rettigheter blir tomme løfter eller individuell tilpasning blir vilkårlig?",
+          "mechanisms": [
+            "rettighetsfesting",
+            "målgruppeavgrensning",
+            "behovsprøving",
+            "profesjonelt skjønn",
+            "ventelister",
+            "bestiller–utfører-organisering",
+            "privat kontraktsstyring"
+          ],
+          "critical_distinctions": [
+            "universell vs selektiv ordning",
+            "rettighet vs tilgjengelig kapasitet",
+            "likhet vs likeverd",
+            "offentlig finansiering vs offentlig produksjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "gosta_esping_andersen",
+              "concept": "velferdsregimer"
+            },
+            {
+              "thinker_id": "michael_lipsky",
+              "concept": "frontlinjeskjønn"
+            },
+            {
+              "thinker_id": "kari_waerness",
+              "concept": "omsorgsrasjonalitet"
+            }
+          ],
+          "case_anchors": [
+            "Bydelshus",
+            "Skole",
+            "Familievernkontor"
+          ],
+          "anti_reduction": [
+            "Ikke likestill offentlig tjeneste med gratis tjeneste.",
+            "Ikke anta at lik regel gir lik tilgang.",
+            "Ikke analyser kvalitet uten å se på kapasitet og ansvarslinjer."
+          ],
+          "quality_revision": "politikk-styring-2026-07-24"
         },
         {
           "id": "arkiv_dokument_lov",
@@ -762,31 +983,19 @@
               {
                 "id": "max_weber",
                 "name": "Max Weber",
-                "role": "byråkrati, rasjonalisering og legitimitet",
+                "role": "legal-rasjonell autoritet, byråkrati og embetsverk; brukt her som skriftlig saksbehandling",
                 "tier": "core"
               },
               {
                 "id": "michel_foucault",
                 "name": "Michel Foucault",
-                "role": "styring, disiplin og makt",
-                "tier": "core"
-              },
-              {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "symbolsk makt og stat",
-                "tier": "core"
-              },
-              {
-                "id": "theda_skocpol",
-                "name": "Theda Skocpol",
-                "role": "stat og institusjoner",
+                "role": "normalisering, dokumenterende makt og governmentality; brukt her som undersøkelse og dokumenterende makt",
                 "tier": "core"
               },
               {
                 "id": "james_c_scott",
                 "name": "James C. Scott",
-                "role": "statlig lesbarhet og administrativ makt",
+                "role": "administrativ lesbarhet, forenkling og statlig styring; brukt her som lesbarhet",
                 "tier": "core"
               }
             ]
@@ -815,7 +1024,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "institution-governance-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -825,13 +1034,15 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke behandle dokumenter som nøytrale beholdere.",
+            "Ikke anta at mer dokumentasjon alltid gir mer rettssikkerhet.",
+            "Ikke bruk arkiv bare som historisk kulisse."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "trace_how_documents_create_authority_evidence_and_reviewability",
+            "distinguish_legal_text_from_application_and_documentation_from_truth",
+            "evaluate_innsyn_personvern_and_recordkeeping_as_power_relations"
           ],
           "comparison_pairs": [
             [
@@ -839,22 +1050,15 @@
               "michel_foucault"
             ],
             [
-              "pierre_bourdieu",
-              "theda_skocpol"
+              "michel_foucault",
+              "james_c_scott"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Oslo rådhus",
+            "Statsarkivet",
             "Stortinget",
-            "Regjeringskvartalet",
-            "Oslo tinghus",
-            "Rådhusplassen",
-            "Bydelshus",
-            "Statsarkivet"
+            "Oslo tinghus"
           ],
           "recommended_method_ids": [
             "met_pol_rettslig_analyse",
@@ -863,10 +1067,11 @@
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
             "max_weber",
-            "michel_foucault"
+            "michel_foucault",
+            "james_c_scott"
           ],
           "case_spread_score": 5,
-          "theory_spread_priority": "spread_more",
+          "theory_spread_priority": "targeted",
           "canonical_status": "canonical",
           "registry_version": "politikkpensum_v4_5",
           "min_recommended_oslo_cases": 2,
@@ -876,15 +1081,61 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter mellom de dokumenterbare casene og mekanismene for arkiv, dokument og lov. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "require_case_specific_question": true
+          },
+          "definition": "Emnet undersøker hvordan lovtekst, saksdokumenter, registre og arkiver både begrenser myndighetene og gjør styring, kontroll og historisk etterprøving mulig.",
+          "core_problem": "Hvordan kan dokumentasjon være både rettssikkerhetsgaranti og styringsteknologi?",
+          "mechanisms": [
+            "skriftliggjøring",
+            "journalføring",
+            "klassifikasjon",
+            "begrunnelse",
+            "innsyn",
+            "arkivering",
+            "bevisproduksjon"
+          ],
+          "critical_distinctions": [
+            "lovtekst vs rettsanvendelse",
+            "dokumentasjon vs sannhet",
+            "innsyn vs personvern",
+            "arkiv som minne vs arkiv som kontroll"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "max_weber",
+              "concept": "skriftlig saksbehandling"
+            },
+            {
+              "thinker_id": "michel_foucault",
+              "concept": "undersøkelse og dokumenterende makt"
+            },
+            {
+              "thinker_id": "james_c_scott",
+              "concept": "lesbarhet"
+            }
+          ],
+          "case_anchors": [
+            "Statsarkivet",
+            "Stortinget",
+            "Oslo tinghus"
+          ],
+          "anti_reduction": [
+            "Ikke behandle dokumenter som nøytrale beholdere.",
+            "Ikke anta at mer dokumentasjon alltid gir mer rettssikkerhet.",
+            "Ikke bruk arkiv bare som historisk kulisse."
+          ],
+          "quality_revision": "politikk-styring-2026-07-24"
         },
         {
           "id": "budsjett_som_styring",
@@ -892,34 +1143,22 @@
           "canon": {
             "thinkers": [
               {
-                "id": "max_weber",
-                "name": "Max Weber",
-                "role": "byråkrati, rasjonalisering og legitimitet",
+                "id": "charles_lindblom",
+                "name": "Charles E. Lindblom",
+                "role": "inkrementalisme og trinnvis politikkutforming; brukt her som inkrementalisme",
+                "tier": "supplementary"
+              },
+              {
+                "id": "john_rawls",
+                "name": "John Rawls",
+                "role": "rettferdig fordeling og institusjonell legitimitet; brukt her som rettferdig fordeling",
                 "tier": "core"
               },
               {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "styring, disiplin og makt",
-                "tier": "core"
-              },
-              {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "symbolsk makt og stat",
-                "tier": "core"
-              },
-              {
-                "id": "theda_skocpol",
-                "name": "Theda Skocpol",
-                "role": "stat og institusjoner",
-                "tier": "core"
-              },
-              {
-                "id": "james_c_scott",
-                "name": "James C. Scott",
-                "role": "statlig lesbarhet og administrativ makt",
-                "tier": "core"
+                "id": "gudmund_hernes",
+                "name": "Gudmund Hernes",
+                "role": "makt, avhengighet og fordelingsstrukturer; brukt her som makt og avhengighet",
+                "tier": "norwegian"
               }
             ]
           },
@@ -947,7 +1186,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "institution-governance-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -957,36 +1196,33 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke bruk budsjettall uten pris- og befolkningskontekst.",
+            "Ikke likestill bevilgning med faktisk effekt.",
+            "Ikke beskriv kutt eller økning uten å vise fordelingsvirkningen."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_binding_resource_choices_and_alternative_costs",
+            "distinguish_budget_accounts_nominal_growth_and_real_growth",
+            "trace_distributional_effects_from_allocation_to_delivery"
           ],
           "comparison_pairs": [
             [
-              "max_weber",
-              "michel_foucault"
+              "charles_lindblom",
+              "john_rawls"
             ],
             [
-              "pierre_bourdieu",
-              "theda_skocpol"
+              "john_rawls",
+              "gudmund_hernes"
             ]
           ],
           "norwegian_thinker_ids": [
-            "stein_rokkan",
             "gudmund_hernes"
           ],
           "recommended_oslo_cases": [
             "Oslo rådhus",
-            "Stortinget",
-            "Regjeringskvartalet",
-            "Oslo tinghus",
-            "Rådhusplassen",
             "Bydelshus",
-            "Statsarkivet"
+            "Stortinget"
           ],
           "recommended_method_ids": [
             "met_pol_budsjett_og_fordelingsanalyse",
@@ -994,11 +1230,12 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "max_weber",
-            "michel_foucault"
+            "charles_lindblom",
+            "john_rawls",
+            "gudmund_hernes"
           ],
           "case_spread_score": 5,
-          "theory_spread_priority": "spread_more",
+          "theory_spread_priority": "targeted",
           "canonical_status": "canonical",
           "registry_version": "politikkpensum_v4_5",
           "min_recommended_oslo_cases": 2,
@@ -1008,15 +1245,61 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter mellom de dokumenterbare casene og mekanismene for budsjett som styring. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "require_case_specific_question": true
+          },
+          "definition": "Budsjettet er en bindende prioriteringsstruktur som fordeler ressurser, setter aktivitetsrammer og gjør politiske mål målbare gjennom penger og poster.",
+          "core_problem": "Hvordan gjør økonomiske rammer noen politiske mål gjennomførbare og andre symbolske?",
+          "mechanisms": [
+            "rammetildeling",
+            "øremerking",
+            "omprioritering",
+            "resultatkrav",
+            "kostnadsforskyvning",
+            "investeringsbinding",
+            "kutt og effektiviseringskrav"
+          ],
+          "critical_distinctions": [
+            "budsjett vs regnskap",
+            "nominell økning vs realvekst",
+            "drift vs investering",
+            "lik fordeling vs behovsvektet fordeling"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "charles_lindblom",
+              "concept": "inkrementalisme"
+            },
+            {
+              "thinker_id": "john_rawls",
+              "concept": "rettferdig fordeling"
+            },
+            {
+              "thinker_id": "gudmund_hernes",
+              "concept": "makt og avhengighet"
+            }
+          ],
+          "case_anchors": [
+            "Oslo rådhus",
+            "Bydelshus",
+            "Stortinget"
+          ],
+          "anti_reduction": [
+            "Ikke bruk budsjettall uten pris- og befolkningskontekst.",
+            "Ikke likestill bevilgning med faktisk effekt.",
+            "Ikke beskriv kutt eller økning uten å vise fordelingsvirkningen."
+          ],
+          "quality_revision": "politikk-styring-2026-07-24"
         },
         {
           "id": "reguleringsplaner",
@@ -1024,34 +1307,22 @@
           "canon": {
             "thinkers": [
               {
-                "id": "max_weber",
-                "name": "Max Weber",
-                "role": "byråkrati, rasjonalisering og legitimitet",
+                "id": "james_c_scott",
+                "name": "James C. Scott",
+                "role": "administrativ lesbarhet, forenkling og statlig styring; brukt her som forenkling og lesbarhet",
                 "tier": "core"
               },
               {
                 "id": "michel_foucault",
                 "name": "Michel Foucault",
-                "role": "styring, disiplin og makt",
+                "role": "normalisering, dokumenterende makt og governmentality; brukt her som governmentality",
                 "tier": "core"
               },
               {
                 "id": "pierre_bourdieu",
                 "name": "Pierre Bourdieu",
-                "role": "symbolsk makt og stat",
-                "tier": "core"
-              },
-              {
-                "id": "theda_skocpol",
-                "name": "Theda Skocpol",
-                "role": "stat og institusjoner",
-                "tier": "core"
-              },
-              {
-                "id": "james_c_scott",
-                "name": "James C. Scott",
-                "role": "statlig lesbarhet og administrativ makt",
-                "tier": "core"
+                "role": "statlig, symbolsk og feltbasert makt; brukt her som felt og kapital",
+                "tier": "supplementary"
               }
             ]
           },
@@ -1079,7 +1350,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "institution-governance-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -1089,36 +1360,31 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke framstill regulering som ren teknikk.",
+            "Ikke anta at høring betyr lik innflytelse.",
+            "Ikke forveksle kommunal planmyndighet med ubegrenset handlefrihet."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_binding_plan_tools_and_affected_interests",
+            "separate_formal_participation_from_actual_influence",
+            "explain_how_technical_documents_allocate_space_value_and_risk"
           ],
           "comparison_pairs": [
             [
-              "max_weber",
+              "james_c_scott",
               "michel_foucault"
             ],
             [
-              "pierre_bourdieu",
-              "theda_skocpol"
+              "michel_foucault",
+              "pierre_bourdieu"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Oslo rådhus",
-            "Stortinget",
+            "Bjørvika",
             "Regjeringskvartalet",
-            "Oslo tinghus",
-            "Rådhusplassen",
-            "Bydelshus",
-            "Statsarkivet"
+            "Torggata"
           ],
           "recommended_method_ids": [
             "met_pol_plan_og_reguleringsanalyse",
@@ -1126,11 +1392,12 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "max_weber",
-            "michel_foucault"
+            "james_c_scott",
+            "michel_foucault",
+            "pierre_bourdieu"
           ],
           "case_spread_score": 5,
-          "theory_spread_priority": "spread_more",
+          "theory_spread_priority": "targeted",
           "canonical_status": "canonical",
           "registry_version": "politikkpensum_v4_5",
           "min_recommended_oslo_cases": 2,
@@ -1140,15 +1407,61 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter mellom de dokumenterbare casene og mekanismene for reguleringsplaner. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "require_case_specific_question": true
+          },
+          "definition": "Reguleringsplaner oversetter politiske mål og juridiske rammer til bindende bestemmelser om arealbruk, bygging, vern, mobilitet og offentlig rom.",
+          "core_problem": "Hvordan blir framtidig byutvikling avgjort gjennom tekniske dokumenter som samtidig er politiske fordelingsvedtak?",
+          "mechanisms": [
+            "sonering",
+            "utnyttelsesgrad",
+            "rekkefølgekrav",
+            "konsekvensutredning",
+            "høring",
+            "innsigelse",
+            "utbyggingsavtale"
+          ],
+          "critical_distinctions": [
+            "plan vs prosjekt",
+            "formell medvirkning vs faktisk innflytelse",
+            "offentlig interesse vs grunneierverdi",
+            "teknisk begrunnelse vs politisk valg"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "james_c_scott",
+              "concept": "forenkling og lesbarhet"
+            },
+            {
+              "thinker_id": "michel_foucault",
+              "concept": "governmentality"
+            },
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "felt og kapital"
+            }
+          ],
+          "case_anchors": [
+            "Bjørvika",
+            "Regjeringskvartalet",
+            "Torggata"
+          ],
+          "anti_reduction": [
+            "Ikke framstill regulering som ren teknikk.",
+            "Ikke anta at høring betyr lik innflytelse.",
+            "Ikke forveksle kommunal planmyndighet med ubegrenset handlefrihet."
+          ],
+          "quality_revision": "politikk-styring-2026-07-24"
         },
         {
           "id": "teknokratisk_styring",
@@ -1158,32 +1471,20 @@
               {
                 "id": "max_weber",
                 "name": "Max Weber",
-                "role": "byråkrati, rasjonalisering og legitimitet",
+                "role": "legal-rasjonell autoritet, byråkrati og embetsverk; brukt her som faglig spesialisering og verdipolitikk",
                 "tier": "core"
               },
               {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "styring, disiplin og makt",
+                "id": "jurgen_habermas",
+                "name": "Jürgen Habermas",
+                "role": "offentlig begrunnelse, legitimitet og teknokratikritikk; brukt her som teknokratisk bevissthet og offentlig begrunnelse",
                 "tier": "core"
               },
               {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "symbolsk makt og stat",
-                "tier": "core"
-              },
-              {
-                "id": "theda_skocpol",
-                "name": "Theda Skocpol",
-                "role": "stat og institusjoner",
-                "tier": "core"
-              },
-              {
-                "id": "james_c_scott",
-                "name": "James C. Scott",
-                "role": "statlig lesbarhet og administrativ makt",
-                "tier": "core"
+                "id": "sheila_jasanoff",
+                "name": "Sheila Jasanoff",
+                "role": "samproduksjon av kunnskap og politisk orden; brukt her som samproduksjon av kunnskap og orden",
+                "tier": "supplementary"
               }
             ]
           },
@@ -1211,7 +1512,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "institution-governance-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -1221,36 +1522,31 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke bruk teknokrati som skjellsord for all fagkunnskap.",
+            "Ikke framstill tall og modeller som verdifrie.",
+            "Ikke la teoretikernavn erstatte analyse av mandat, metode og ansvar."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "separate_empirical_claims_value_choices_and_mandates",
+            "inspect_models_indicators_uncertainty_and_agenda_limits",
+            "evaluate_when_expertise_supports_or_displaces_democratic_responsibility"
           ],
           "comparison_pairs": [
             [
               "max_weber",
-              "michel_foucault"
+              "jurgen_habermas"
             ],
             [
-              "pierre_bourdieu",
-              "theda_skocpol"
+              "jurgen_habermas",
+              "sheila_jasanoff"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Oslo rådhus",
-            "Stortinget",
             "Regjeringskvartalet",
-            "Oslo tinghus",
-            "Rådhusplassen",
-            "Bydelshus",
-            "Statsarkivet"
+            "Oslo rådhus",
+            "Stortinget"
           ],
           "recommended_method_ids": [
             "met_pol_teknokrati_og_ekspertanalyse",
@@ -1259,10 +1555,11 @@
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
             "max_weber",
-            "michel_foucault"
+            "jurgen_habermas",
+            "sheila_jasanoff"
           ],
           "case_spread_score": 5,
-          "theory_spread_priority": "spread_more",
+          "theory_spread_priority": "targeted",
           "canonical_status": "canonical",
           "registry_version": "politikkpensum_v4_5",
           "min_recommended_oslo_cases": 2,
@@ -1272,15 +1569,61 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter mellom de dokumenterbare casene og mekanismene for teknokratisk styring. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "require_case_specific_question": true
+          },
+          "definition": "Teknokratisk styring oppstår når fagkunnskap, modeller, indikatorer og ekspertorganer får stor innflytelse på problemdefinisjoner og beslutningsalternativer.",
+          "core_problem": "Hvordan kan komplekse beslutninger bygge på kunnskap uten at verdikonflikter skjules som tekniske nødvendigheter?",
+          "mechanisms": [
+            "ekspertdelegasjon",
+            "modellering",
+            "indikatorstyring",
+            "risikovurdering",
+            "standardsetting",
+            "depolitisering",
+            "kunnskapsasymmetri"
+          ],
+          "critical_distinctions": [
+            "fakta vs verdi",
+            "faglig råd vs politisk beslutning",
+            "ekspertise vs ekspertstyre",
+            "måling vs mål"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "max_weber",
+              "concept": "faglig spesialisering og verdipolitikk"
+            },
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "teknokratisk bevissthet og offentlig begrunnelse"
+            },
+            {
+              "thinker_id": "sheila_jasanoff",
+              "concept": "samproduksjon av kunnskap og orden"
+            }
+          ],
+          "case_anchors": [
+            "Regjeringskvartalet",
+            "Oslo rådhus",
+            "Stortinget"
+          ],
+          "anti_reduction": [
+            "Ikke bruk teknokrati som skjellsord for all fagkunnskap.",
+            "Ikke framstill tall og modeller som verdifrie.",
+            "Ikke la teoretikernavn erstatte analyse av mandat, metode og ansvar."
+          ],
+          "quality_revision": "politikk-styring-2026-07-24"
         },
         {
           "id": "legitimitet_i_systemet",
@@ -1290,32 +1633,20 @@
               {
                 "id": "max_weber",
                 "name": "Max Weber",
-                "role": "byråkrati, rasjonalisering og legitimitet",
+                "role": "legal-rasjonell autoritet, byråkrati og embetsverk; brukt her som legitimitetstro",
                 "tier": "core"
               },
               {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "styring, disiplin og makt",
+                "id": "jurgen_habermas",
+                "name": "Jürgen Habermas",
+                "role": "offentlig begrunnelse, legitimitet og teknokratikritikk; brukt her som legitimitet gjennom offentlig begrunnelse",
                 "tier": "core"
               },
               {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "symbolsk makt og stat",
-                "tier": "core"
-              },
-              {
-                "id": "theda_skocpol",
-                "name": "Theda Skocpol",
-                "role": "stat og institusjoner",
-                "tier": "core"
-              },
-              {
-                "id": "james_c_scott",
-                "name": "James C. Scott",
-                "role": "statlig lesbarhet og administrativ makt",
-                "tier": "core"
+                "id": "fritz_scharpf",
+                "name": "Fritz W. Scharpf",
+                "role": "input-, throughput- og output-legitimitet; brukt her som input- og output-legitimitet",
+                "tier": "supplementary"
               }
             ]
           },
@@ -1343,7 +1674,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "institution-governance-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -1353,36 +1684,31 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke likestill legitimitet med popularitet.",
+            "Ikke anta at lovlighet alene gjør en beslutning legitim.",
+            "Ikke bruk tillitsmåling uten å undersøke institusjon, sak og tidsperiode."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_the_specific_basis_for_acceptance_or_rightfulness",
+            "distinguish_legality_popularity_trust_and_legitimacy",
+            "compare_input_throughput_and_output_sources_of_legitimacy"
           ],
           "comparison_pairs": [
             [
               "max_weber",
-              "michel_foucault"
+              "jurgen_habermas"
             ],
             [
-              "pierre_bourdieu",
-              "theda_skocpol"
+              "jurgen_habermas",
+              "fritz_scharpf"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Oslo rådhus",
             "Stortinget",
-            "Regjeringskvartalet",
-            "Oslo tinghus",
-            "Rådhusplassen",
-            "Bydelshus",
-            "Statsarkivet"
+            "Oslo rådhus",
+            "Eidsvolls plass"
           ],
           "recommended_method_ids": [
             "met_pol_legitimitetsanalyse",
@@ -1391,10 +1717,11 @@
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
             "max_weber",
-            "michel_foucault"
+            "jurgen_habermas",
+            "fritz_scharpf"
           ],
           "case_spread_score": 5,
-          "theory_spread_priority": "spread_more",
+          "theory_spread_priority": "targeted",
           "canonical_status": "canonical",
           "registry_version": "politikkpensum_v4_5",
           "min_recommended_oslo_cases": 2,
@@ -1404,15 +1731,61 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter mellom de dokumenterbare casene og mekanismene for legitimitet i systemet. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "require_case_specific_question": true
+          },
+          "definition": "Legitimitet er begrunnet eller faktisk aksept av at en institusjon har rett til å treffe bindende beslutninger, og at beslutningsprosessen oppfattes som lovlig, rettferdig og kompetent.",
+          "core_problem": "Hvorfor aksepterer mennesker beslutninger de er uenige i, og når bryter denne aksepten sammen?",
+          "mechanisms": [
+            "lovlighet",
+            "prosedyrerettferdighet",
+            "representasjon",
+            "ytelse og problemløsning",
+            "begrunnelse",
+            "ansvarliggjøring",
+            "tillit og vane"
+          ],
+          "critical_distinctions": [
+            "legalitet vs legitimitet",
+            "deskriptiv aksept vs normativ rettmessighet",
+            "input-, throughput- og output-legitimitet",
+            "tillit vs blind lydighet"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "max_weber",
+              "concept": "legitimitetstro"
+            },
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "legitimitet gjennom offentlig begrunnelse"
+            },
+            {
+              "thinker_id": "fritz_scharpf",
+              "concept": "input- og output-legitimitet"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Oslo rådhus",
+            "Eidsvolls plass"
+          ],
+          "anti_reduction": [
+            "Ikke likestill legitimitet med popularitet.",
+            "Ikke anta at lovlighet alene gjør en beslutning legitim.",
+            "Ikke bruk tillitsmåling uten å undersøke institusjon, sak og tidsperiode."
+          ],
+          "quality_revision": "politikk-styring-2026-07-24"
         }
       ],
       "best_place_types": [
@@ -1436,7 +1809,33 @@
         "Ikke spør generisk om politikk uten institusjon, lov, konflikt, fordeling, norm, offentlighet, sted eller kilde.",
         "Ikke bruk politikk som kategori hvis hovedpoenget egentlig er byarkitektur, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap.",
         "Ikke gjør et sted til politikk bare fordi det ligger nær maktbygg eller har en vag samfunnsvinkel, uten dokumentert institusjons-, lov-, fordelings-, konflikt-, norm- eller forvaltningsvinkel."
-      ]
+      ],
+      "core_problems": [
+        "Hvordan blir kollektive vedtak gjort virksomme i organisasjoner og hverdagspraksis?",
+        "Hvor oppstår avstanden mellom formell regel, administrativ gjennomføring og faktisk borgerutfall?",
+        "Hvordan balanseres demokratisk ansvar, faglig kapasitet, rettssikkerhet og effektivitet?"
+      ],
+      "mechanism_families": [
+        "kompetansetildeling",
+        "delegasjon",
+        "skjønnsutøvelse",
+        "klassifikasjon",
+        "dokumentasjon",
+        "ressursfordeling",
+        "regulering",
+        "ekspertdelegasjon",
+        "legitimering"
+      ],
+      "critical_distinctions": [
+        "formell kompetanse vs faktisk innflytelse",
+        "politisk vedtak vs administrativ gjennomføring",
+        "likebehandling vs likeverd",
+        "faglig råd vs politisk beslutning",
+        "legalitet vs legitimitet"
+      ],
+      "generator_rule": "Teoretikernavn alene er aldri et svaralternativ. Et gyldig teorispørsmål må knytte et begrep til en dokumenterbar mekanisme eller en reell sammenligning.",
+      "source_rule": "Påstander om konkrete institusjoner, beslutninger, budsjetter, planer, tjenester eller hendelser må bygge på eksterne kilder. Fagkart, emner og pensum definerer analyseformen, men er ikke faktakilder.",
+      "quality_revision": "politikk-styring-2026-07-24"
     },
     {
       "id": "demokrati_representasjon_offentlighet",
@@ -8492,5 +8891,6 @@
     "hook_count": 60,
     "canonical_round": "v4.5",
     "emne_prefix_required": "em_pol_"
-  }
+  },
+  "editorial_revision": "politikk-styring-2026-07-24"
 }

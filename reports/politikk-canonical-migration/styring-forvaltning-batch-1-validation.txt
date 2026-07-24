@@ -1,0 +1,39 @@
+Politikk canonical migration validation
+Branch: agent/politikk-kanonisk-integrasjon-styring
+Commit: a225f14d48ba4c95c254fa4ceb2aa5970118be29
+
+== reconstruct migration script ==
+PASS reconstructed tools/apply-politikk-canonical-migration.mjs
+== node --check ==
+== migration ==
+Canonical politics migration complete: 10 hooks, 16 emner.
+Report: reports/politikk-canonical-migration/styring-forvaltning-batch-1.md
+== canonical JSON parse ==
+PASS data/fag/politikk/fagkart_politikk_canonical_v4_5.json
+PASS data/fag/politikk/emner_politikk_canonical_v4_5.json
+PASS data/fag/politikk/politikkpensum_canonical_v4_5.json
+REMOVED data/fag/politikk/kvalitetslag_v1
+REMOVED tools/validate-politikk-quality-layer.mjs
+REMOVED tools/apply-politikk-canonical-migration.mjs
+REMOVED tools/politikk-canonical-migration-parts
+REMOVED .github/workflows/apply-politikk-canonical-migration.yml
+== repository status ==
+ D .github/workflows/apply-politikk-canonical-migration.yml
+ M data/fag/politikk/emner_politikk_canonical_v4_5.json
+ M data/fag/politikk/fagkart_politikk_canonical_v4_5.json
+ D data/fag/politikk/kvalitetslag_v1/emner_styring_1.json
+ D data/fag/politikk/kvalitetslag_v1/emner_styring_2.json
+ D data/fag/politikk/kvalitetslag_v1/hooks_styring_1.json
+ D data/fag/politikk/kvalitetslag_v1/hooks_styring_2.json
+ D data/fag/politikk/kvalitetslag_v1/manifest.json
+ M data/fag/politikk/politikkpensum_canonical_v4_5.json
+ D tools/politikk-canonical-migration-parts/part-00.b64
+ D tools/politikk-canonical-migration-parts/part-01.b64
+ D tools/politikk-canonical-migration-parts/part-02.b64
+ D tools/politikk-canonical-migration-parts/part-03.b64
+ D tools/politikk-canonical-migration-parts/part-04.b64
+ D tools/politikk-canonical-migration-parts/part-05.b64
+ D tools/politikk-canonical-migration-parts/part-06.b64
+ D tools/validate-politikk-quality-layer.mjs
+?? reports/politikk-canonical-migration/
+PASS git diff --cached --check

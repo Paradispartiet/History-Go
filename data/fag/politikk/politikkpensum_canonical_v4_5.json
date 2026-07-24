@@ -5,7 +5,7 @@
   "scope": "oslo_og_omegn",
   "type": "pensum",
   "canonical_registry_version": "politikkpensum_v4_5",
-  "updated_at": "2026-05-06",
+  "updated_at": "2026-07-24",
   "purpose": "Kanonisk pensumregister for Politikk & samfunn i History Go. Filen samler domener, emner, metoder, hooks, teorispor og anbefalte Oslo-cases for politisk og samfunnsfaglig quizgenerering.",
   "canonical_files": {
     "fagkart": "fagkart_politikk_canonical_v4_5.json",
@@ -35,10 +35,10 @@
     {
       "domain_id": "styring_institusjoner_forvaltning",
       "label": "Styring, institusjoner og forvaltning",
-      "tagline": "Hvordan staten, kommunen, byråkratiet og institusjonsbygg gjør kollektive beslutninger virksomme.",
-      "definition": "Domenet dekker styring, institusjoner, forvaltning, byråkrati, offentlig administrasjon, beslutningssystemer, kommunale strukturer og maktens materielle apparat.",
-      "question_role": "Starter i konkret institusjon, lov, offentlig rom, reform, konflikt, fordeling, velferdstjeneste, norm eller sosial prosess før teori løftes inn.",
-      "status": "strong",
+      "tagline": "Hvordan politiske vedtak blir til myndighet, regler, dokumenter, budsjetter, planer, tjenester og konkrete borgerutfall.",
+      "definition": "Domenet undersøker hvordan politiske beslutninger blir omformet til regler, dokumenter, budsjetter, organisasjoner og skjønnsutøvelse, og hvordan denne omformingen påvirker borgernes rettigheter, handlingsrom og tilgang til offentlige goder.",
+      "question_role": "Start i en dokumenterbar institusjon, beslutning, regel, ressursstrøm, praksis eller konflikt. Identifiser deretter mekanismen som omsetter vedtak til utfall, test en relevant begrepsdistinksjon og bruk teori bare når den forklarer eller sammenligner mekanismen.",
+      "status": "strong_revised",
       "emne_count": 14,
       "hook_count": 10,
       "method_count": 21,
@@ -94,42 +94,38 @@
         "met_pol_protest_og_bevegelsesanalyse"
       ],
       "recommended_oslo_cases": [
-        "Oslo rådhus",
         "Stortinget",
+        "Oslo rådhus",
         "Regjeringskvartalet",
+        "Bydelshus",
+        "NAV-kontor",
         "Oslo tinghus",
         "Rådhusplassen",
-        "Bydelshus",
+        "Bjørvika",
+        "Skole",
+        "Familievernkontor",
         "Statsarkivet",
-        "Høyesterett",
-        "Møllergata 19",
-        "Grunnlovssted",
-        "Politihuset",
-        "NAV-kontor",
-        "Ullevål sykehus",
-        "Tøyen"
+        "Torggata",
+        "Eidsvolls plass"
       ],
       "canonical_thinker_ids": [
         "max_weber",
-        "michel_foucault",
-        "pierre_bourdieu",
         "theda_skocpol",
-        "james_c_scott",
-        "montesquieu",
-        "john_rawls",
-        "ronald_dworkin",
-        "hannah_arendt",
-        "thomas_piketty",
-        "nancy_fraser",
-        "gosta_esping_andersen",
-        "amartya_sen",
-        "jurgen_habermas",
-        "alexis_de_tocqueville",
+        "pierre_bourdieu",
+        "michael_lipsky",
+        "michel_foucault",
         "robert_dahl",
-        "chantal_mouffe"
+        "james_c_scott",
+        "gosta_esping_andersen",
+        "charles_lindblom",
+        "john_rawls",
+        "jurgen_habermas",
+        "sheila_jasanoff",
+        "fritz_scharpf"
       ],
       "norwegian_thinker_ids": [
         "stein_rokkan",
+        "kari_waerness",
         "gudmund_hernes"
       ],
       "best_place_types": [
@@ -153,7 +149,33 @@
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "institution_law_conflict_or_social_process_anchor_required": true
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "core_problems": [
+        "Hvordan blir kollektive vedtak gjort virksomme i organisasjoner og hverdagspraksis?",
+        "Hvor oppstår avstanden mellom formell regel, administrativ gjennomføring og faktisk borgerutfall?",
+        "Hvordan balanseres demokratisk ansvar, faglig kapasitet, rettssikkerhet og effektivitet?"
+      ],
+      "mechanism_families": [
+        "kompetansetildeling",
+        "delegasjon",
+        "skjønnsutøvelse",
+        "klassifikasjon",
+        "dokumentasjon",
+        "ressursfordeling",
+        "regulering",
+        "ekspertdelegasjon",
+        "legitimering"
+      ],
+      "critical_distinctions": [
+        "formell kompetanse vs faktisk innflytelse",
+        "politisk vedtak vs administrativ gjennomføring",
+        "likebehandling vs likeverd",
+        "faglig råd vs politisk beslutning",
+        "legalitet vs legitimitet"
+      ],
+      "generator_rule": "Teoretikernavn alene er aldri et svaralternativ. Et gyldig teorispørsmål må knytte et begrep til en dokumenterbar mekanisme eller en reell sammenligning.",
+      "source_rule": "Påstander om konkrete institusjoner, beslutninger, budsjetter, planer, tjenester eller hendelser må bygge på eksterne kilder. Fagkart, emner og pensum definerer analyseformen, men er ikke faktakilder.",
+      "quality_revision": "politikk-styring-2026-07-24"
     },
     {
       "domain_id": "demokrati_representasjon_offentlighet",
@@ -789,5 +811,6 @@
     "required_place_emne_prefix": "em_pol_",
     "required_people_emne_prefix": "em_pol_",
     "review_note": "Steder og personer i politikk må senere sjekkes mot denne pakken, slik at by-, historie-, næringslivs-, media-, kunst-, litteratur-, musikk-, sport-, natur- og vitenskapsposter ikke blir liggende i politikk hvis hovedkategori er feil."
-  }
+  },
+  "editorial_revision": "politikk-styring-2026-07-24"
 }
