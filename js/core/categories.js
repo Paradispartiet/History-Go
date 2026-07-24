@@ -9,7 +9,7 @@
     { id: "scenekunst", name: "Scenekunst", icon: "\u{1F3AD}", color: "#B35C9E", secondaryColor: "#3A1836", scope: "runtime_domain" },
     { id: "musikk", name: "Musikk", icon: "\u{1F3B5}", color: "#122033", secondaryColor: "#121E2B", scope: "runtime_domain" },
     { id: "natur", name: "Natur & milj\xF8", icon: "\u{1F33F}", color: "#2E4F21", secondaryColor: "#DC7A04", scope: "runtime_domain" },
-    { id: "sport", name: "Sport & lek", icon: "\u26BD", color: "#A01D13", secondaryColor: "#A51E15", scope: "runtime_domain" },
+    { id: "sport", name: "Sport & lek", icon: "\u26BD", color: "#FFFFFF", secondaryColor: "#A51E15", scope: "runtime_domain" },
     { id: "by", name: "By & arkitektur", icon: "\u{1F3D9}\uFE0F", color: "#A1917E", secondaryColor: "#3C3731", scope: "runtime_domain" },
     { id: "politikk", name: "Politikk & samfunn", icon: "\u{1F3DB}\uFE0F", color: "#103E71", secondaryColor: "#114A84", scope: "runtime_domain" },
     { id: "subkultur", name: "Subkultur", icon: "\u{1F9F7}", color: "#292625", secondaryColor: "#E78847", scope: "runtime_domain" },
