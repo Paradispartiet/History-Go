@@ -25,7 +25,9 @@ jobs:
         with:
           node-version: 24
       - name: Generate canonical package
-        run: node scripts/repair-tollbukaia-production.mjs
+        run: |
+          perl -0pi -e 's/Flatquizen hadde riktig kjerne: Tollbukaia\/Tollboden-området var knyttet til havnevarer, tollbehandling og kontroll\./Tollbukaia og Tollboden-området var knyttet til havnevarer, tollbehandling og kontroll./g' scripts/repair-tollbukaia-production.mjs
+          node scripts/repair-tollbukaia-production.mjs
       - name: Commit generated files
         run: |
           if git diff --quiet; then
@@ -39,5 +41,5 @@ jobs:
             data/quiz/production_briefs/naeringsliv/tollbukaia.json \
             data/quiz/production_context/naeringsliv/tollbukaia.json \
             tests/quiz-production-pipeline.test.mjs
-          git commit -m "Generer kanonisk Tollbukaia-quiz"
+          git commit -m "Rydd Tollbukaia-forklaringer"
           git push origin HEAD:agent/oslo-quiz-tollbukaia-5x7
