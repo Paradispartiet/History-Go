@@ -1,0 +1,86 @@
+name: History review fixes
+
+on:
+  push:
+    branches:
+      - agent/historie-kilder-arkiv-vertical-chain
+
+permissions:
+  contents: write
+
+jobs:
+  fix-validate-and-commit:
+    if: github.ref == 'refs/heads/agent/historie-kilder-arkiv-vertical-chain'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/historie-kilder-arkiv-vertical-chain
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Bind hooks to canonical emner
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = 'data/fag/historie/fagkart_historie_canonical_v4_5.json';
+          const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const domain = data.categories.find((entry) => entry.id === 'his_kilder_arkiv_spor');
+          if (!domain) throw new Error('Mangler his_kilder_arkiv_spor');
+          const bindings = new Map([
+            ['his_muntlige_kilder', 'em_his_kilder_taushet_blindsoner'],
+            ['his_digitale_kilder', 'em_his_arkiv_og_dokumentasjon']
+          ]);
+          for (const [hookId, emneId] of bindings) {
+            const hook = domain.topic_hooks.find((entry) => entry.id === hookId);
+            if (!hook) throw new Error(`Mangler hook ${hookId}`);
+            hook.emne_ids = [emneId];
+          }
+          fs.writeFileSync(path, `${JSON.stringify(data, null, 2)}\n`);
+          NODE
+
+      - name: Regenerate history production contexts
+        run: |
+          set -euo pipefail
+          for target in \
+            grindheim_runestein \
+            grindheim_steinkross \
+            grindheimsveien_nord_gravfelt \
+            hoyland_gravhaug_etne; do
+            node scripts/build-quiz-production-context.mjs \
+              --category historie \
+              --target "$target" \
+              --output "data/quiz/production_context/historie/$target.json"
+          done
+
+      - name: Validate review fixes
+        run: |
+          set -euo pipefail
+          node tools/validate-historie-kilder-arkiv-spor.mjs
+          node scripts/audit-quiz-production-context.mjs
+          node scripts/audit-quiz-theory-binding.mjs
+          node scripts/audit-category-governance.mjs
+          node scripts/audit-quiz-template-governance.mjs
+          node --test tests/quiz-production-pipeline.test.mjs
+          git diff --check
+
+      - name: Remove one-shot workflow and commit
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          rm -f .github/workflows/historie-review-fixes.yml
+          git add -A \
+            data/fag/historie/fagkart_historie_canonical_v4_5.json \
+            data/quiz/production_context/historie \
+            .github/workflows/historie-review-fixes.yml
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'Ingen endringer å committe.'
+            exit 0
+          fi
+          git commit -m 'Historie: rett hookbindinger og regenerer produksjonskontekster'
+          git push origin HEAD:agent/historie-kilder-arkiv-vertical-chain
