@@ -1,0 +1,488 @@
+{
+  "version": "v1",
+  "subject_id": "historie",
+  "domain_id": "his_kilder_arkiv_spor",
+  "blueprint_count": 10,
+  "blueprints": [
+    {
+      "blueprint_id": "historie_kilder_his_kildekritikk",
+      "domain_id": "his_kilder_arkiv_spor",
+      "hook_id": "his_kildekritikk",
+      "hook_title": "Kildekritikk, opphav og formål",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted eller kildeobjekt.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "production_context",
+        "limitation",
+        "corroboration",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify producer, date and purpose",
+        "separate testimony from later use",
+        "test representativity",
+        "compare independent source families"
+      ],
+      "critical_distinctions": [
+        "opphav vs senere bruk",
+        "samtidskilde vs ettertidskilde",
+        "levning vs beretning",
+        "troverdighet vs representativitet"
+      ],
+      "method_ids": [
+        "met_kildekritikk",
+        "met_proveniensanalyse",
+        "met_komparativ_historie"
+      ],
+      "recommended_cases": [
+        "Riksarkivet",
+        "Oslo byarkiv",
+        "Gamle Deichman på Hammersborg",
+        "Møllergata 19"
+      ],
+      "forbidden_surface": [
+        "Hvilken metode passer best uten konkret kilde",
+        "Hva viser kilden generelt uten definert påstand",
+        "Hvilken teoretiker forklarer arkivet",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_kilder_his_spor_materialitet",
+      "domain_id": "his_kilder_arkiv_spor",
+      "hook_id": "his_spor_materialitet",
+      "hook_title": "Materielle spor og sted som kilde",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted eller kildeobjekt.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "production_context",
+        "limitation",
+        "corroboration",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify surviving material trace",
+        "connect trace to documented use",
+        "separate original fabric from restoration",
+        "state what the trace cannot prove"
+      ],
+      "critical_distinctions": [
+        "spor vs rekonstruksjon",
+        "opprinnelig materiale vs ombruk",
+        "fravær vs ødeleggelse",
+        "observasjon vs historisk påstand"
+      ],
+      "method_ids": [
+        "met_sporlesning",
+        "met_proveniensanalyse",
+        "met_for_etter_historisk"
+      ],
+      "recommended_cases": [
+        "Hovedøya kloster",
+        "Gamle Aker kirke",
+        "Akershus festning",
+        "Vår Frelsers gravlund"
+      ],
+      "forbidden_surface": [
+        "Hvilken metode passer best uten konkret kilde",
+        "Hva viser kilden generelt uten definert påstand",
+        "Hvilken teoretiker forklarer arkivet",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_kilder_his_arkiv_makt_orden",
+      "domain_id": "his_kilder_arkiv_spor",
+      "hook_id": "his_arkiv_makt_orden",
+      "hook_title": "Arkiv, klassifikasjon og makt",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted eller kildeobjekt.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "production_context",
+        "limitation",
+        "corroboration",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify creating institution",
+        "read classification as practice",
+        "trace selection and preservation",
+        "compare archive order with lived experience"
+      ],
+      "critical_distinctions": [
+        "arkivskaper vs arkivinstitusjon",
+        "registrering vs virkelighet",
+        "bevaring vs representativitet",
+        "tilgang vs fravær"
+      ],
+      "method_ids": [
+        "met_arkivlesning",
+        "met_proveniensanalyse",
+        "met_kildekritikk"
+      ],
+      "recommended_cases": [
+        "Riksarkivet",
+        "Oslo byarkiv",
+        "Stortinget",
+        "Møllergata 19"
+      ],
+      "forbidden_surface": [
+        "Hvilken metode passer best uten konkret kilde",
+        "Hva viser kilden generelt uten definert påstand",
+        "Hvilken teoretiker forklarer arkivet",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_kilder_his_taushet_fravaer",
+      "domain_id": "his_kilder_arkiv_spor",
+      "hook_id": "his_taushet_fravaer",
+      "hook_title": "Taushet, fravær og blindsoner",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted eller kildeobjekt.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "production_context",
+        "limitation",
+        "corroboration",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "locate where silence entered source chain",
+        "avoid absence as proof",
+        "seek independent counter-sources",
+        "define affected population"
+      ],
+      "critical_distinctions": [
+        "manglende kilde vs dokumentert fravær",
+        "taushet vs glemsel",
+        "underregistrering vs ikke-forekomst",
+        "arkivblindhet vs historisk usynlighet"
+      ],
+      "method_ids": [
+        "met_kildekritikk",
+        "met_arkivlesning",
+        "met_muntlig_historie"
+      ],
+      "recommended_cases": [
+        "Jødisk museum",
+        "Villa Grande",
+        "Grønland",
+        "Vår Frelsers gravlund"
+      ],
+      "forbidden_surface": [
+        "Hvilken metode passer best uten konkret kilde",
+        "Hva viser kilden generelt uten definert påstand",
+        "Hvilken teoretiker forklarer arkivet",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_kilder_his_dokument_autentisitet",
+      "domain_id": "his_kilder_arkiv_spor",
+      "hook_id": "his_dokument_autentisitet",
+      "hook_title": "Dokumentform og autentisitet",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted eller kildeobjekt.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "production_context",
+        "limitation",
+        "corroboration",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "inspect form and issuing authority",
+        "trace custody and transmission",
+        "distinguish original from copy",
+        "separate authenticity from truthfulness"
+      ],
+      "critical_distinctions": [
+        "autentisitet vs sannhet",
+        "original vs avskrift",
+        "utsteder vs mottaker",
+        "dokumentform vs innholdspåstand"
+      ],
+      "method_ids": [
+        "met_diplomatikk",
+        "met_proveniensanalyse",
+        "met_kildekritikk"
+      ],
+      "recommended_cases": [
+        "Riksarkivet",
+        "Eidsvollsbygningen",
+        "Stortinget",
+        "Oslo byarkiv"
+      ],
+      "forbidden_surface": [
+        "Hvilken metode passer best uten konkret kilde",
+        "Hva viser kilden generelt uten definert påstand",
+        "Hvilken teoretiker forklarer arkivet",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_kilder_his_skrift_lesning",
+      "domain_id": "his_kilder_arkiv_spor",
+      "hook_id": "his_skrift_lesning",
+      "hook_title": "Skrift, hånd og lesbarhet",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted eller kildeobjekt.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "production_context",
+        "limitation",
+        "corroboration",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify script features",
+        "connect script to social practice",
+        "record reading uncertainty",
+        "compare transcription with image"
+      ],
+      "critical_distinctions": [
+        "lesning vs tolkning",
+        "håndskrift vs dokumenttype",
+        "datering vs proveniens",
+        "transkripsjon vs normalisering"
+      ],
+      "method_ids": [
+        "met_paleografi",
+        "met_diplomatikk",
+        "met_sporlesning"
+      ],
+      "recommended_cases": [
+        "Riksarkivet",
+        "Middelalderbyen Oslo",
+        "Hovedøya kloster",
+        "Gamle Aker kirke"
+      ],
+      "forbidden_surface": [
+        "Hvilken metode passer best uten konkret kilde",
+        "Hva viser kilden generelt uten definert påstand",
+        "Hvilken teoretiker forklarer arkivet",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_kilder_his_serielle_kilder",
+      "domain_id": "his_kilder_arkiv_spor",
+      "hook_id": "his_serielle_kilder",
+      "hook_title": "Serielle kilder og historiske mønstre",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted eller kildeobjekt.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "production_context",
+        "limitation",
+        "corroboration",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "define unit and denominator",
+        "check category stability",
+        "identify missing observations",
+        "separate trend from causal explanation"
+      ],
+      "critical_distinctions": [
+        "tallserie vs forklaring",
+        "registrert kategori vs sosial virkelighet",
+        "trend vs brudd",
+        "absolutt tall vs rate"
+      ],
+      "method_ids": [
+        "met_seriell_kildeanalyse",
+        "met_komparativ_historie",
+        "met_kildekritikk"
+      ],
+      "recommended_cases": [
+        "Oslo byarkiv",
+        "Riksarkivet",
+        "Sagene skole",
+        "Oslo Hospital"
+      ],
+      "forbidden_surface": [
+        "Hvilken metode passer best uten konkret kilde",
+        "Hva viser kilden generelt uten definert påstand",
+        "Hvilken teoretiker forklarer arkivet",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_kilder_his_visuelle_kilder",
+      "domain_id": "his_kilder_arkiv_spor",
+      "hook_id": "his_visuelle_kilder",
+      "hook_title": "Bilder, fotografi og visuelle kilder",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted eller kildeobjekt.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "production_context",
+        "limitation",
+        "corroboration",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify producer and audience",
+        "analyse framing and omission",
+        "compare with independent records",
+        "separate scene from publication context"
+      ],
+      "critical_distinctions": [
+        "motiv vs brukskontekst",
+        "dokumentasjon vs iscenesettelse",
+        "utsnitt vs helhet",
+        "originalbilde vs reproduksjon"
+      ],
+      "method_ids": [
+        "met_visuell_kildekritikk",
+        "met_kildekritikk",
+        "met_sporlesning"
+      ],
+      "recommended_cases": [
+        "Oslo Museum",
+        "Oslo byarkiv",
+        "Akershus festning",
+        "Bjørvika"
+      ],
+      "forbidden_surface": [
+        "Hvilken metode passer best uten konkret kilde",
+        "Hva viser kilden generelt uten definert påstand",
+        "Hvilken teoretiker forklarer arkivet",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_kilder_his_muntlige_kilder",
+      "domain_id": "his_kilder_arkiv_spor",
+      "hook_id": "his_muntlige_kilder",
+      "hook_title": "Muntlige kilder og erindring",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted eller kildeobjekt.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "production_context",
+        "limitation",
+        "corroboration",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "record interview situation",
+        "separate event claim from remembered meaning",
+        "compare testimonies",
+        "protect uncertainty and positionality"
+      ],
+      "critical_distinctions": [
+        "erindring vs hendelsesforløp",
+        "intervjusituasjon vs fortid",
+        "individuell erfaring vs populasjon",
+        "taushet vs glemsel"
+      ],
+      "method_ids": [
+        "met_muntlig_historie",
+        "met_kildekritikk",
+        "met_minneanalyse"
+      ],
+      "recommended_cases": [
+        "Arbeidermuseet",
+        "Grønland",
+        "Tøyen",
+        "Grini fangeleir"
+      ],
+      "forbidden_surface": [
+        "Hvilken metode passer best uten konkret kilde",
+        "Hva viser kilden generelt uten definert påstand",
+        "Hvilken teoretiker forklarer arkivet",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_kilder_his_digitale_kilder",
+      "domain_id": "his_kilder_arkiv_spor",
+      "hook_id": "his_digitale_kilder",
+      "hook_title": "Digitale kilder, metadata og søk",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted eller kildeobjekt.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "production_context",
+        "limitation",
+        "corroboration",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "inspect metadata and digitisation history",
+        "distinguish surrogate from original",
+        "test OCR and search bias",
+        "record version and access path"
+      ],
+      "critical_distinctions": [
+        "digital kopi vs original",
+        "metadata vs innhold",
+        "søketreff vs representativitet",
+        "OCR-feil vs historisk stavemåte"
+      ],
+      "method_ids": [
+        "met_digital_kildekritikk",
+        "met_proveniensanalyse",
+        "met_seriell_kildeanalyse"
+      ],
+      "recommended_cases": [
+        "Nasjonalbiblioteket",
+        "Digitalarkivet",
+        "Riksarkivet",
+        "Oslo byarkiv"
+      ],
+      "forbidden_surface": [
+        "Hvilken metode passer best uten konkret kilde",
+        "Hva viser kilden generelt uten definert påstand",
+        "Hvilken teoretiker forklarer arkivet",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    }
+  ]
+}

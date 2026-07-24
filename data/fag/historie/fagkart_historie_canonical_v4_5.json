@@ -4,7 +4,7 @@
   "scope": "oslo_og_omegn",
   "type": "fagkart",
   "version": "v4.5-canonical-draft-1",
-  "updated_at": "2026-05-01",
+  "updated_at": "2026-07-24",
   "principles": {
     "locked_categories": true,
     "dev_happens_through": [
@@ -267,50 +267,51 @@
       "id": "his_kilder_arkiv_spor",
       "title": "Kilder, arkiv og spor",
       "tagline": "Hvordan fortid blir etterprøvbar",
-      "definition": "Dette området handler om kildekritikk, arkiv, dokumenter, fotografier, kart, bygninger, gjenstander og andre spor som gjør fortiden mulig å undersøke. Det spør hvem som har etterlatt seg materiale, hvem som mangler, og hvordan spor blir gjort til historie.",
+      "definition": "Historiefagets metodiske grunnmur: hvordan kilder, arkiv, materielle spor, muntlige vitnesbyrd, bilder, serier og digitale objekter blir til, bevares, leses og avgrenses.",
       "focus": [
-        "kildekritikk",
-        "arkiv og dokumentasjon",
-        "materielle og digitale spor",
-        "taushet, tap og blindsoner"
+        "kildekritikk, opphav og formål",
+        "arkivdannelse, klassifikasjon og makt",
+        "materielle spor, dokumentform og skrift",
+        "taushet, fravær og representativitet",
+        "serielle, visuelle, muntlige og digitale kilder"
       ],
       "topic_hooks": [
         {
           "id": "his_kildekritikk",
-          "title": "Kildekritikk",
+          "title": "Kildekritikk, opphav og formål",
           "canon": {
             "thinkers": [
               {
-                "id": "leopold_von_ranke",
-                "name": "Leopold von Ranke",
-                "why": "Klassisk kildeorientert historiefag og vekt på dokumenterbarhet",
-                "tier": "background",
-                "works": [
-                  "Histories of the Latin and Germanic Nations"
-                ]
-              },
-              {
-                "id": "e_h_carr",
-                "name": "E.H. Carr",
-                "why": "Kritikk av naive faktaforestillinger og vekt på forholdet mellom historiker og fakta",
-                "tier": "core",
-                "works": [
-                  "What Is History?"
-                ]
-              },
-              {
                 "id": "marc_bloch",
                 "name": "Marc Bloch",
-                "why": "Kildekritisk håndverk, spørsmål til kilden og historikerens metode",
+                "why": "Kildekritikk og historikerens arbeid med spor framfor ferdige fortellinger",
                 "tier": "core",
                 "works": [
                   "The Historian's Craft"
                 ]
               },
               {
+                "id": "e_h_carr",
+                "name": "E. H. Carr",
+                "why": "Forholdet mellom historikeren, utvalget av fakta og framstillingen",
+                "tier": "core",
+                "works": [
+                  "What Is History?"
+                ]
+              },
+              {
+                "id": "leopold_von_ranke",
+                "name": "Leopold von Ranke",
+                "why": "Arkivbasert dokumenthistorie og klassiske kildeidealer",
+                "tier": "advanced",
+                "works": [
+                  "Histories of the Latin and Germanic Nations"
+                ]
+              },
+              {
                 "id": "knut_kjeldstadli",
                 "name": "Knut Kjeldstadli",
-                "why": "Norsk historiefaglig metode, kildearbeid og samfunnshistorisk lesning",
+                "why": "Praktisk kildekritikk, sosialhistorie og norsk historiefaglig metode",
                 "tier": "core",
                 "works": [
                   "Fortida er ikke hva den en gang var"
@@ -319,20 +320,19 @@
             ]
           },
           "emne_ids": [
-            "em_his_kildekritikk_arkiv_spor",
-            "em_his_arkiv_og_dokumentasjon",
-            "em_his_kilder_taushet_blindsoner"
+            "em_his_kildekritikk_arkiv_spor"
           ],
           "best_place_types": [
             "arkiv",
-            "bibliotek",
             "museum",
+            "bibliotek",
+            "historical_site",
             "institusjonsbygg",
-            "minnested",
-            "kulturmiljo"
+            "ruinomrade",
+            "minnested"
           ],
           "avoid_place_types": [
-            "sted_uten_kildespor"
+            "sted_uten_dokumentert_kilde_eller_spor"
           ],
           "set_phase_fit": [
             "bridge_facts_theory",
@@ -342,22 +342,23 @@
           "fact_anchor_required": true,
           "history_anchor_required": true,
           "avoid_surface_forms": [
-            "Hva er kildekritikk generelt",
-            "Hvilken kilde er best uten å nevne avsender, tid eller formål"
+            "Hvilken metode passer best uten konkret kilde",
+            "Hva viser kilden generelt uten definert påstand",
+            "Hvilken teoretiker forklarer arkivet"
           ],
           "preferred_question_moves": [
-            "ask who produced the source",
-            "test source against place trace",
-            "compare official and unofficial source",
-            "identify silence or missing perspective"
+            "identify producer, date and purpose",
+            "separate testimony from later use",
+            "test representativity",
+            "compare independent source families"
           ],
           "comparison_pairs": [
             [
-              "leopold_von_ranke",
+              "marc_bloch",
               "e_h_carr"
             ],
             [
-              "marc_bloch",
+              "leopold_von_ranke",
               "knut_kjeldstadli"
             ]
           ],
@@ -365,14 +366,633 @@
             "knut_kjeldstadli"
           ],
           "recommended_oslo_cases": [
-            "Gamle Deichman på Hammersborg",
             "Riksarkivet",
             "Oslo byarkiv",
+            "Gamle Deichman på Hammersborg",
+            "Møllergata 19"
+          ],
+          "recommended_method_ids": [
+            "met_kildekritikk",
+            "met_proveniensanalyse",
+            "met_komparativ_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_source_type_and_claim": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Vurderer hvem som produserte en kilde, når, for hvilket formål og med hvilke begrensninger.",
+          "critical_distinctions": [
+            "opphav vs senere bruk",
+            "samtidskilde vs ettertidskilde",
+            "levning vs beretning",
+            "troverdighet vs representativitet"
+          ]
+        },
+        {
+          "id": "his_spor_materialitet",
+          "title": "Materielle spor og sted som kilde",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "carlo_ginzburg",
+                "name": "Carlo Ginzburg",
+                "why": "Indisier, små spor og slutninger fra ufullstendig materiale",
+                "tier": "core",
+                "works": [
+                  "Clues, Myths, and the Historical Method"
+                ]
+              },
+              {
+                "id": "marc_bloch",
+                "name": "Marc Bloch",
+                "why": "Kildekritikk og historikerens arbeid med spor framfor ferdige fortellinger",
+                "tier": "core",
+                "works": [
+                  "The Historian's Craft"
+                ]
+              },
+              {
+                "id": "arlette_farge",
+                "name": "Arlette Farge",
+                "why": "Arkivets materialitet, fragmenter og hverdagslivets uferdige spor",
+                "tier": "advanced",
+                "works": [
+                  "The Allure of the Archives"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Praktisk kildekritikk, sosialhistorie og norsk historiefaglig metode",
+                "tier": "core",
+                "works": [
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_spor_materialitet",
+            "em_his_ruiner_rester_ombruk"
+          ],
+          "best_place_types": [
+            "arkiv",
+            "museum",
+            "bibliotek",
+            "historical_site",
+            "institusjonsbygg",
+            "ruinomrade",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kilde_eller_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken metode passer best uten konkret kilde",
+            "Hva viser kilden generelt uten definert påstand",
+            "Hvilken teoretiker forklarer arkivet"
+          ],
+          "preferred_question_moves": [
+            "identify surviving material trace",
+            "connect trace to documented use",
+            "separate original fabric from restoration",
+            "state what the trace cannot prove"
+          ],
+          "comparison_pairs": [
+            [
+              "carlo_ginzburg",
+              "marc_bloch"
+            ],
+            [
+              "arlette_farge",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Hovedøya kloster",
+            "Gamle Aker kirke",
+            "Akershus festning",
+            "Vår Frelsers gravlund"
+          ],
+          "recommended_method_ids": [
+            "met_sporlesning",
+            "met_proveniensanalyse",
+            "met_for_etter_historisk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_source_type_and_claim": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Leser bygninger, ruiner, gjenstander og gravminner som historiske kilder med egne bevaringsproblemer.",
+          "critical_distinctions": [
+            "spor vs rekonstruksjon",
+            "opprinnelig materiale vs ombruk",
+            "fravær vs ødeleggelse",
+            "observasjon vs historisk påstand"
+          ]
+        },
+        {
+          "id": "his_arkiv_makt_orden",
+          "title": "Arkiv, klassifikasjon og makt",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "why": "Arkiv, klassifikasjon, kunnskapsordener og institusjonell makt",
+                "tier": "advanced",
+                "works": [
+                  "The Archaeology of Knowledge"
+                ]
+              },
+              {
+                "id": "ann_laura_stoler",
+                "name": "Ann Laura Stoler",
+                "why": "Arkiv som styringsteknologi og kategoriarbeid",
+                "tier": "advanced",
+                "works": [
+                  "Along the Archival Grain"
+                ]
+              },
+              {
+                "id": "achille_mbembe",
+                "name": "Achille Mbembe",
+                "why": "Arkivets institusjonelle autoritet og politiske vilkår",
+                "tier": "advanced",
+                "works": [
+                  "The Power of the Archive and Its Limits"
+                ]
+              },
+              {
+                "id": "arlette_farge",
+                "name": "Arlette Farge",
+                "why": "Arkivets materialitet, fragmenter og hverdagslivets uferdige spor",
+                "tier": "advanced",
+                "works": [
+                  "The Allure of the Archives"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arkiv_og_dokumentasjon"
+          ],
+          "best_place_types": [
+            "arkiv",
+            "museum",
+            "bibliotek",
+            "historical_site",
+            "institusjonsbygg",
+            "ruinomrade",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kilde_eller_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken metode passer best uten konkret kilde",
+            "Hva viser kilden generelt uten definert påstand",
+            "Hvilken teoretiker forklarer arkivet"
+          ],
+          "preferred_question_moves": [
+            "identify creating institution",
+            "read classification as practice",
+            "trace selection and preservation",
+            "compare archive order with lived experience"
+          ],
+          "comparison_pairs": [
+            [
+              "michel_foucault",
+              "ann_laura_stoler"
+            ],
+            [
+              "achille_mbembe",
+              "arlette_farge"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Riksarkivet",
+            "Oslo byarkiv",
+            "Stortinget",
+            "Møllergata 19"
+          ],
+          "recommended_method_ids": [
+            "met_arkivlesning",
+            "met_proveniensanalyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_source_type_and_claim": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan arkiver blir skapt, ordnet, bevart og brukt, og hvordan kategorier former hva som kan finnes.",
+          "critical_distinctions": [
+            "arkivskaper vs arkivinstitusjon",
+            "registrering vs virkelighet",
+            "bevaring vs representativitet",
+            "tilgang vs fravær"
+          ]
+        },
+        {
+          "id": "his_taushet_fravaer",
+          "title": "Taushet, fravær og blindsoner",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "michel_rolph_trouillot",
+                "name": "Michel-Rolph Trouillot",
+                "why": "Hvordan makt produserer taushet i kilder, arkiv og fortellinger",
+                "tier": "core",
+                "works": [
+                  "Silencing the Past"
+                ]
+              },
+              {
+                "id": "ann_laura_stoler",
+                "name": "Ann Laura Stoler",
+                "why": "Arkiv som styringsteknologi og kategoriarbeid",
+                "tier": "advanced",
+                "works": [
+                  "Along the Archival Grain"
+                ]
+              },
+              {
+                "id": "arlette_farge",
+                "name": "Arlette Farge",
+                "why": "Arkivets materialitet, fragmenter og hverdagslivets uferdige spor",
+                "tier": "advanced",
+                "works": [
+                  "The Allure of the Archives"
+                ]
+              },
+              {
+                "id": "alessandro_portelli",
+                "name": "Alessandro Portelli",
+                "why": "Muntlig historie, erindring og forskjellen mellom hendelse og fortelling",
+                "tier": "core",
+                "works": [
+                  "The Death of Luigi Trastulli"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_kilder_taushet_blindsoner",
+            "em_his_taushet_og_manglende_kilder"
+          ],
+          "best_place_types": [
+            "arkiv",
+            "museum",
+            "bibliotek",
+            "historical_site",
+            "institusjonsbygg",
+            "ruinomrade",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kilde_eller_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken metode passer best uten konkret kilde",
+            "Hva viser kilden generelt uten definert påstand",
+            "Hvilken teoretiker forklarer arkivet"
+          ],
+          "preferred_question_moves": [
+            "locate where silence entered source chain",
+            "avoid absence as proof",
+            "seek independent counter-sources",
+            "define affected population"
+          ],
+          "comparison_pairs": [
+            [
+              "michel_rolph_trouillot",
+              "ann_laura_stoler"
+            ],
+            [
+              "arlette_farge",
+              "alessandro_portelli"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Jødisk museum",
+            "Villa Grande",
+            "Grønland",
             "Vår Frelsers gravlund"
           ],
           "recommended_method_ids": [
             "met_kildekritikk",
             "met_arkivlesning",
+            "met_muntlig_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_source_type_and_claim": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Analyserer hvor i kilde- og fortellingskjeden erfaringer blir utelatt, underregistrert, ødelagt eller tiet.",
+          "critical_distinctions": [
+            "manglende kilde vs dokumentert fravær",
+            "taushet vs glemsel",
+            "underregistrering vs ikke-forekomst",
+            "arkivblindhet vs historisk usynlighet"
+          ]
+        },
+        {
+          "id": "his_dokument_autentisitet",
+          "title": "Dokumentform og autentisitet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "luciana_duranti",
+                "name": "Luciana Duranti",
+                "why": "Diplomatikk, dokumentautentisitet og dokumentform",
+                "tier": "advanced",
+                "works": [
+                  "Diplomatics"
+                ]
+              },
+              {
+                "id": "hilary_jenkinson",
+                "name": "Hilary Jenkinson",
+                "why": "Proveniens, arkivintegritet og administrativ sammenheng",
+                "tier": "advanced",
+                "works": [
+                  "A Manual of Archive Administration"
+                ]
+              },
+              {
+                "id": "robert_henri_bautier",
+                "name": "Robert-Henri Bautier",
+                "why": "Dokumentkritikk og diplomatikkens historiske utvikling",
+                "tier": "advanced",
+                "works": [
+                  "Leçon d’ouverture du cours de diplomatique"
+                ]
+              },
+              {
+                "id": "leopold_von_ranke",
+                "name": "Leopold von Ranke",
+                "why": "Arkivbasert dokumenthistorie og klassiske kildeidealer",
+                "tier": "advanced",
+                "works": [
+                  "Histories of the Latin and Germanic Nations"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_dokument_autentisitet"
+          ],
+          "best_place_types": [
+            "arkiv",
+            "museum",
+            "bibliotek",
+            "historical_site",
+            "institusjonsbygg",
+            "ruinomrade",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kilde_eller_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken metode passer best uten konkret kilde",
+            "Hva viser kilden generelt uten definert påstand",
+            "Hvilken teoretiker forklarer arkivet"
+          ],
+          "preferred_question_moves": [
+            "inspect form and issuing authority",
+            "trace custody and transmission",
+            "distinguish original from copy",
+            "separate authenticity from truthfulness"
+          ],
+          "comparison_pairs": [
+            [
+              "luciana_duranti",
+              "hilary_jenkinson"
+            ],
+            [
+              "robert_henri_bautier",
+              "leopold_von_ranke"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Riksarkivet",
+            "Eidsvollsbygningen",
+            "Stortinget",
+            "Oslo byarkiv"
+          ],
+          "recommended_method_ids": [
+            "met_diplomatikk",
+            "met_proveniensanalyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_source_type_and_claim": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Prøver dokumenters form, opphav, overlevering og administrative sammenheng før de brukes som belegg.",
+          "critical_distinctions": [
+            "autentisitet vs sannhet",
+            "original vs avskrift",
+            "utsteder vs mottaker",
+            "dokumentform vs innholdspåstand"
+          ]
+        },
+        {
+          "id": "his_skrift_lesning",
+          "title": "Skrift, hånd og lesbarhet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "armando_petrucci",
+                "name": "Armando Petrucci",
+                "why": "Skriftkultur, paleografi og skriftens sosiale bruk",
+                "tier": "advanced",
+                "works": [
+                  "Writers and Readers in Medieval Italy"
+                ]
+              },
+              {
+                "id": "malcolm_parkes",
+                "name": "Malcolm Parkes",
+                "why": "Skriftformer og historisk utvikling i manuskriptkultur",
+                "tier": "advanced",
+                "works": [
+                  "Pause and Effect"
+                ]
+              },
+              {
+                "id": "roger_chartier",
+                "name": "Roger Chartier",
+                "why": "Tekst, lesning, materiell form og historiske praksiser",
+                "tier": "core",
+                "works": [
+                  "The Order of Books"
+                ]
+              },
+              {
+                "id": "luciana_duranti",
+                "name": "Luciana Duranti",
+                "why": "Diplomatikk, dokumentautentisitet og dokumentform",
+                "tier": "advanced",
+                "works": [
+                  "Diplomatics"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_skrift_hand_lesning"
+          ],
+          "best_place_types": [
+            "arkiv",
+            "museum",
+            "bibliotek",
+            "historical_site",
+            "institusjonsbygg",
+            "ruinomrade",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kilde_eller_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken metode passer best uten konkret kilde",
+            "Hva viser kilden generelt uten definert påstand",
+            "Hvilken teoretiker forklarer arkivet"
+          ],
+          "preferred_question_moves": [
+            "identify script features",
+            "connect script to social practice",
+            "record reading uncertainty",
+            "compare transcription with image"
+          ],
+          "comparison_pairs": [
+            [
+              "armando_petrucci",
+              "malcolm_parkes"
+            ],
+            [
+              "roger_chartier",
+              "luciana_duranti"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Riksarkivet",
+            "Middelalderbyen Oslo",
+            "Hovedøya kloster",
+            "Gamle Aker kirke"
+          ],
+          "recommended_method_ids": [
+            "met_paleografi",
+            "met_diplomatikk",
             "met_sporlesning"
           ],
           "canonical_status": "canonical",
@@ -388,95 +1008,116 @@
             "min_method_count": 1,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_source_type_and_claim": true,
+            "require_critical_distinction": true,
             "rotate_theorists": true
-          }
+          },
+          "definition": "Bruker skriftform, materiale og forkortelser til å datere, lese og kontekstualisere dokumenter.",
+          "critical_distinctions": [
+            "lesning vs tolkning",
+            "håndskrift vs dokumenttype",
+            "datering vs proveniens",
+            "transkripsjon vs normalisering"
+          ]
         },
         {
-          "id": "his_spor_materialitet",
-          "title": "Spor og materialitet",
+          "id": "his_serielle_kilder",
+          "title": "Serielle kilder og historiske mønstre",
           "canon": {
             "thinkers": [
               {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "why": "Arkiv, diskurs, institusjoner og hvordan kunnskap ordnes",
+                "id": "ernest_labrousse",
+                "name": "Ernest Labrousse",
+                "why": "Serielle kilder, prisdata og økonomiske konjunkturer",
+                "tier": "advanced",
+                "works": [
+                  "La crise de l’économie française"
+                ]
+              },
+              {
+                "id": "fernand_braudel",
+                "name": "Fernand Braudel",
+                "why": "Lange tidsserier, strukturer og historiske rytmer",
                 "tier": "core",
                 "works": [
-                  "The Archaeology of Knowledge"
+                  "The Mediterranean and the Mediterranean World"
                 ]
               },
               {
-                "id": "arlette_farge",
-                "name": "Arlette Farge",
-                "why": "Arkivets konkrete materialitet og fragmenter av hverdagsliv",
-                "tier": "advanced",
+                "id": "charles_tilly",
+                "name": "Charles Tilly",
+                "why": "Sammenlignbare serier, statsdannelse og kollektiv handling",
+                "tier": "core",
                 "works": [
-                  "The Allure of the Archives"
+                  "Coercion, Capital, and European States"
                 ]
               },
               {
-                "id": "michel_rolph_trouillot",
-                "name": "Michel-Rolph Trouillot",
-                "why": "Makt, taushet og produksjonen av historisk kunnskap",
-                "tier": "advanced",
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Praktisk kildekritikk, sosialhistorie og norsk historiefaglig metode",
+                "tier": "core",
                 "works": [
-                  "Silencing the Past"
+                  "Fortida er ikke hva den en gang var"
                 ]
               }
             ]
           },
           "emne_ids": [
-            "em_his_spor_materialitet",
-            "em_his_ruiner_rester_ombruk",
-            "em_his_taushet_og_manglende_kilder"
+            "em_his_serielle_kilder_kvantifisering"
           ],
           "best_place_types": [
-            "ruinomrade",
-            "gravlund",
+            "arkiv",
+            "museum",
+            "bibliotek",
             "historical_site",
-            "bygg",
-            "teknisk_anlegg",
+            "institusjonsbygg",
+            "ruinomrade",
             "minnested"
           ],
           "avoid_place_types": [
-            "sted_uten_synlig_spor_og_uten_kilder"
+            "sted_uten_dokumentert_kilde_eller_spor"
           ],
           "set_phase_fit": [
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "visible-trace-first",
+          "question_surface_mode": "source-first",
           "fact_anchor_required": true,
           "history_anchor_required": true,
           "avoid_surface_forms": [
-            "Hva symboliserer stedet uten konkret spor"
+            "Hvilken metode passer best uten konkret kilde",
+            "Hva viser kilden generelt uten definert påstand",
+            "Hvilken teoretiker forklarer arkivet"
           ],
           "preferred_question_moves": [
-            "read ruin or building as evidence",
-            "connect material detail to institution or conflict",
-            "ask what trace makes visible",
-            "ask what trace hides"
+            "define unit and denominator",
+            "check category stability",
+            "identify missing observations",
+            "separate trend from causal explanation"
           ],
           "comparison_pairs": [
             [
-              "michel_foucault",
-              "michel_rolph_trouillot"
+              "ernest_labrousse",
+              "fernand_braudel"
             ],
             [
-              "arlette_farge",
-              "marc_bloch"
+              "charles_tilly",
+              "knut_kjeldstadli"
             ]
           ],
-          "norwegian_thinker_ids": [],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
           "recommended_oslo_cases": [
-            "Hovedøya kloster",
-            "Gamle Aker kirke",
-            "Middelalderbyen Oslo",
-            "Møllergata 19"
+            "Oslo byarkiv",
+            "Riksarkivet",
+            "Sagene skole",
+            "Oslo Hospital"
           ],
           "recommended_method_ids": [
-            "met_sporlesning",
-            "met_arkivlesning",
+            "met_seriell_kildeanalyse",
+            "met_komparativ_historie",
             "met_kildekritikk"
           ],
           "canonical_status": "canonical",
@@ -491,12 +1132,390 @@
             "min_case_count": 2,
             "min_method_count": 1,
             "require_fact_or_history_anchor": true,
-            "require_visible_trace": true,
             "require_external_claim_basis": true,
+            "require_source_type_and_claim": true,
+            "require_critical_distinction": true,
             "rotate_theorists": true
-          }
+          },
+          "definition": "Analyserer gjentatte registreringer som protokoller, folketellinger, priser og registre over tid.",
+          "critical_distinctions": [
+            "tallserie vs forklaring",
+            "registrert kategori vs sosial virkelighet",
+            "trend vs brudd",
+            "absolutt tall vs rate"
+          ]
+        },
+        {
+          "id": "his_visuelle_kilder",
+          "title": "Bilder, fotografi og visuelle kilder",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "peter_burke",
+                "name": "Peter Burke",
+                "why": "Visuelle kilder, representasjon og kulturelle praksiser",
+                "tier": "core",
+                "works": [
+                  "Eyewitnessing"
+                ]
+              },
+              {
+                "id": "john_berger",
+                "name": "John Berger",
+                "why": "Blikk, bildebruk og sosial posisjon",
+                "tier": "core",
+                "works": [
+                  "Ways of Seeing"
+                ]
+              },
+              {
+                "id": "gisele_freund",
+                "name": "Gisèle Freund",
+                "why": "Fotografiets sosiale historie og dokumentariske autoritet",
+                "tier": "advanced",
+                "works": [
+                  "Photography & Society"
+                ]
+              },
+              {
+                "id": "roger_chartier",
+                "name": "Roger Chartier",
+                "why": "Tekst, lesning, materiell form og historiske praksiser",
+                "tier": "core",
+                "works": [
+                  "The Order of Books"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_visuelle_kilder_fotografi"
+          ],
+          "best_place_types": [
+            "arkiv",
+            "museum",
+            "bibliotek",
+            "historical_site",
+            "institusjonsbygg",
+            "ruinomrade",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kilde_eller_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken metode passer best uten konkret kilde",
+            "Hva viser kilden generelt uten definert påstand",
+            "Hvilken teoretiker forklarer arkivet"
+          ],
+          "preferred_question_moves": [
+            "identify producer and audience",
+            "analyse framing and omission",
+            "compare with independent records",
+            "separate scene from publication context"
+          ],
+          "comparison_pairs": [
+            [
+              "peter_burke",
+              "john_berger"
+            ],
+            [
+              "gisele_freund",
+              "roger_chartier"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Oslo Museum",
+            "Oslo byarkiv",
+            "Akershus festning",
+            "Bjørvika"
+          ],
+          "recommended_method_ids": [
+            "met_visuell_kildekritikk",
+            "met_kildekritikk",
+            "met_sporlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_source_type_and_claim": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Leser fotografier, kart, illustrasjoner og film som produserte representasjoner, ikke nøytrale vinduer.",
+          "critical_distinctions": [
+            "motiv vs brukskontekst",
+            "dokumentasjon vs iscenesettelse",
+            "utsnitt vs helhet",
+            "originalbilde vs reproduksjon"
+          ]
+        },
+        {
+          "id": "his_muntlige_kilder",
+          "title": "Muntlige kilder og erindring",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "alessandro_portelli",
+                "name": "Alessandro Portelli",
+                "why": "Muntlig historie, erindring og forskjellen mellom hendelse og fortelling",
+                "tier": "core",
+                "works": [
+                  "The Death of Luigi Trastulli"
+                ]
+              },
+              {
+                "id": "paul_thompson",
+                "name": "Paul Thompson",
+                "why": "Muntlig historie om hverdagsliv og underrepresenterte erfaringer",
+                "tier": "core",
+                "works": [
+                  "The Voice of the Past"
+                ]
+              },
+              {
+                "id": "luisa_passerini",
+                "name": "Luisa Passerini",
+                "why": "Erindring, subjektivitet, taushet og politisk kultur",
+                "tier": "advanced",
+                "works": [
+                  "Fascism in Popular Memory"
+                ]
+              },
+              {
+                "id": "michel_rolph_trouillot",
+                "name": "Michel-Rolph Trouillot",
+                "why": "Hvordan makt produserer taushet i kilder, arkiv og fortellinger",
+                "tier": "core",
+                "works": [
+                  "Silencing the Past"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_kilder_taushet_blindsoner"
+          ],
+          "best_place_types": [
+            "arkiv",
+            "museum",
+            "bibliotek",
+            "historical_site",
+            "institusjonsbygg",
+            "ruinomrade",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kilde_eller_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken metode passer best uten konkret kilde",
+            "Hva viser kilden generelt uten definert påstand",
+            "Hvilken teoretiker forklarer arkivet"
+          ],
+          "preferred_question_moves": [
+            "record interview situation",
+            "separate event claim from remembered meaning",
+            "compare testimonies",
+            "protect uncertainty and positionality"
+          ],
+          "comparison_pairs": [
+            [
+              "alessandro_portelli",
+              "paul_thompson"
+            ],
+            [
+              "luisa_passerini",
+              "michel_rolph_trouillot"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Arbeidermuseet",
+            "Grønland",
+            "Tøyen",
+            "Grini fangeleir"
+          ],
+          "recommended_method_ids": [
+            "met_muntlig_historie",
+            "met_kildekritikk",
+            "met_minneanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_source_type_and_claim": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Bruker intervjuer og erindringer som kilder til hendelser, erfaringer og senere meningsdannelse.",
+          "critical_distinctions": [
+            "erindring vs hendelsesforløp",
+            "intervjusituasjon vs fortid",
+            "individuell erfaring vs populasjon",
+            "taushet vs glemsel"
+          ]
+        },
+        {
+          "id": "his_digitale_kilder",
+          "title": "Digitale kilder, metadata og søk",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "roy_rosenzweig",
+                "name": "Roy Rosenzweig",
+                "why": "Digital historie, offentlig historie og digitale samlinger",
+                "tier": "core",
+                "works": [
+                  "Digital History"
+                ]
+              },
+              {
+                "id": "lev_manovich",
+                "name": "Lev Manovich",
+                "why": "Databaseform og grensesnitt som strukturerer digitalt materiale",
+                "tier": "advanced",
+                "works": [
+                  "The Language of New Media"
+                ]
+              },
+              {
+                "id": "laura_mandell",
+                "name": "Laura Mandell",
+                "why": "Digital humaniora og kritikk av digitale representasjoner",
+                "tier": "advanced",
+                "works": [
+                  "Breaking the Book"
+                ]
+              },
+              {
+                "id": "roger_chartier",
+                "name": "Roger Chartier",
+                "why": "Tekst, lesning, materiell form og historiske praksiser",
+                "tier": "core",
+                "works": [
+                  "The Order of Books"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arkiv_og_dokumentasjon"
+          ],
+          "best_place_types": [
+            "arkiv",
+            "museum",
+            "bibliotek",
+            "historical_site",
+            "institusjonsbygg",
+            "ruinomrade",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kilde_eller_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken metode passer best uten konkret kilde",
+            "Hva viser kilden generelt uten definert påstand",
+            "Hvilken teoretiker forklarer arkivet"
+          ],
+          "preferred_question_moves": [
+            "inspect metadata and digitisation history",
+            "distinguish surrogate from original",
+            "test OCR and search bias",
+            "record version and access path"
+          ],
+          "comparison_pairs": [
+            [
+              "roy_rosenzweig",
+              "lev_manovich"
+            ],
+            [
+              "laura_mandell",
+              "roger_chartier"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Nasjonalbiblioteket",
+            "Digitalarkivet",
+            "Riksarkivet",
+            "Oslo byarkiv"
+          ],
+          "recommended_method_ids": [
+            "met_digital_kildekritikk",
+            "met_proveniensanalyse",
+            "met_seriell_kildeanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_source_type_and_claim": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Vurderer digitaliserte og digitalt skapte kilder gjennom metadata, utvalg, OCR, versjon og søkbarhet.",
+          "critical_distinctions": [
+            "digital kopi vs original",
+            "metadata vs innhold",
+            "søketreff vs representativitet",
+            "OCR-feil vs historisk stavemåte"
+          ]
         }
-      ]
+      ],
+      "status": "complete_revised"
     },
     {
       "id": "his_makt_stat_institusjoner",
