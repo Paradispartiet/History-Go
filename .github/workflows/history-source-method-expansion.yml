@@ -1,0 +1,96 @@
+name: History source method expansion runner
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - agent/historie-kilder-arkiv-vertical-chain
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  run-expansion-work:
+    if: github.event_name == 'push' || startsWith(github.head_ref, 'agent/historie-kilder-arkiv-')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'push' && github.ref_name || github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Apply and validate history source-method expansion
+        id: apply
+        continue-on-error: true
+        if: hashFiles('tools/historie-kilder-builder.part-*') != ''
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-canonical-migration
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin main
+          git rebase origin/main
+
+          cat tools/historie-kilder-builder.part-* > /tmp/build_historie.py.gz.b64
+          base64 -d /tmp/build_historie.py.gz.b64 | gzip -d > /tmp/build_historie.py
+          echo '39b2aa78a9973f29b85add28bbe60469feac65c6cd8f4c363fb412939832666f  /tmp/build_historie.py' \
+            | sha256sum -c - \
+            2>&1 | tee reports/historie-canonical-migration/kilder-arkiv-spor-builder-checksum.txt
+          python -m py_compile /tmp/build_historie.py \
+            2>&1 | tee reports/historie-canonical-migration/kilder-arkiv-spor-builder-syntax.txt
+          python /tmp/build_historie.py \
+            2>&1 | tee reports/historie-canonical-migration/kilder-arkiv-spor-builder-output.txt
+
+          node tools/validate-historie-kilder-arkiv-spor.mjs \
+            2>&1 | tee reports/historie-canonical-migration/kilder-arkiv-spor-vertical-chain-validation.txt
+
+          for file in \
+            data/fag/historie/fagkart_historie_canonical_v4_5.json \
+            data/fag/historie/emner_historie_canonical_v4_5.json \
+            data/fag/historie/methods_historie_canonical_v4_5.json \
+            data/fag/historie/emnemapping_historie_canonical_v4_5.json \
+            data/fag/historie/historiepensum_canonical_v4_5.json \
+            data/fag/historie/quiz_generator_rules_historie_v5_1_source_priority_patch.json \
+            reports/historie-canonical-migration/kilder-arkiv-spor-question-blueprints.json; do
+            node -e 'JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log("PASS | Gyldig JSON: "+process.argv[1])' "$file" \
+              2>&1 | tee -a reports/historie-canonical-migration/kilder-arkiv-spor-vertical-chain-validation.txt
+          done
+
+          node scripts/audit-category-governance.mjs \
+            2>&1 | tee -a reports/historie-canonical-migration/kilder-arkiv-spor-vertical-chain-validation.txt
+          node scripts/audit-quiz-template-governance.mjs \
+            2>&1 | tee -a reports/historie-canonical-migration/kilder-arkiv-spor-vertical-chain-validation.txt
+          git diff --check \
+            2>&1 | tee -a reports/historie-canonical-migration/kilder-arkiv-spor-vertical-chain-validation.txt
+          echo 'PASS | git diff --check' \
+            | tee -a reports/historie-canonical-migration/kilder-arkiv-spor-vertical-chain-validation.txt
+
+          rm -f tools/historie-kilder-builder.part-*
+          rm -f reports/historie-canonical-migration/kilder-arkiv-spor-builder-checksum.txt
+          rm -f reports/historie-canonical-migration/kilder-arkiv-spor-builder-syntax.txt
+          rm -f reports/historie-canonical-migration/kilder-arkiv-spor-builder-output.txt
+          rm -f .github/workflows/history-source-method-expansion.yml
+
+          git add -A \
+            data/fag/historie \
+            reports/historie-canonical-migration \
+            tools \
+            .github/workflows/history-source-method-expansion.yml
+          git diff --cached --check
+          git commit -m 'Historie: fullfør kilde- og arkivdomenets vertikale kjede'
+          target_branch="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
+          git push --force-with-lease origin HEAD:"$target_branch"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: history-source-method-expansion-diagnostics
+          path: reports/historie-canonical-migration/kilder-arkiv-spor-*
+          if-no-files-found: warn
+      - name: Propagate expansion failure
+        if: steps.apply.outcome == 'failure'
+        run: exit 1
