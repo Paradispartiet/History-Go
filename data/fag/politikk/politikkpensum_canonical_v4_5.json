@@ -16,17 +16,20 @@
   },
   "summary": {
     "domain_count": 12,
-    "emne_count": 89,
-    "method_count": 55,
-    "mapping_count": 89,
-    "topic_hook_count": 120,
+    "emne_count": 101,
+    "method_count": 61,
+    "mapping_count": 99,
+    "topic_hook_count": 130,
     "all_emner_have_mapping": true,
     "all_method_refs_valid": true,
     "political_science_core_domain_count": 8,
     "supporting_bridge_domain_count": 4,
-    "new_political_science_hook_count": 60,
-    "new_political_science_emne_count": 30,
-    "new_political_science_method_count": 17
+    "new_political_science_hook_count": 70,
+    "new_political_science_emne_count": 40,
+    "new_political_science_method_count": 23,
+    "constitutional_institutions_phase_1_hook_count": 10,
+    "constitutional_institutions_phase_1_emne_count": 10,
+    "constitutional_institutions_phase_1_method_count": 6
   },
   "domain_order": [
     "styring_institusjoner_forvaltning",
@@ -211,7 +214,7 @@
         "question_blueprints_validated": 10
       },
       "disciplinary_role": "political_science_core",
-      "political_science_core_weight": 1.0
+      "political_science_core_weight": 1
     },
     {
       "domain_id": "demokrati_representasjon_offentlighet",
@@ -401,7 +404,7 @@
       },
       "quality_revision": "politikk-demokrati-vertical-2026-07-24",
       "disciplinary_role": "political_science_core",
-      "political_science_core_weight": 1.0
+      "political_science_core_weight": 1
     },
     {
       "domain_id": "rett_lov_rettssikkerhet",
@@ -1073,15 +1076,25 @@
       "definition": "Domenet sammenligner statsdannelse, statlig kapasitet, demokratiske og autoritære regimer, parlamentariske systemer, maktfordeling, desentralisering, institusjonell endring og demokratisk tilbakegang.",
       "question_role": "Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt.",
       "status": "complete_revised",
-      "emne_count": 5,
-      "hook_count": 10,
-      "method_count": 4,
+      "emne_count": 15,
+      "hook_count": 20,
+      "method_count": 16,
       "emne_ids": [
         "em_pol_statsdannelse_statskapasitet",
         "em_pol_regimer_demokratisering",
         "em_pol_institusjonelle_systemer",
         "em_pol_desentralisering_flerniva",
-        "em_pol_institusjonell_endring"
+        "em_pol_institusjonell_endring",
+        "em_pol_institusjonsfordypning_parlamentarisme_presidentstyre",
+        "em_pol_institusjonsfordypning_flertalls_konsensusdemokrati",
+        "em_pol_institusjonsfordypning_enhetsstat_foderalisme",
+        "em_pol_institusjonsfordypning_ett_tokammersystem",
+        "em_pol_institusjonsfordypning_koalisjoner_mindretallsregjeringer",
+        "em_pol_institusjonsfordypning_mistillit_opplosningsrett",
+        "em_pol_institusjonsfordypning_vetospillere_beslutningskapasitet",
+        "em_pol_institusjonsfordypning_domstolskontroll_konstitusjonsdomstoler",
+        "em_pol_institusjonsfordypning_utovende_lovgivende_makt",
+        "em_pol_institusjonsfordypning_demokratisk_tilbakegang"
       ],
       "hook_ids": [
         "statsdannelse_og_statlig_kapasitet",
@@ -1093,13 +1106,35 @@
         "rettsstat_og_demokratisk_tilbakegang",
         "sivilt_militaert_forhold",
         "statsborgerskap_og_nasjon",
-        "komparativ_velferdsstat"
+        "komparativ_velferdsstat",
+        "parlamentarisme_og_presidentstyre",
+        "flertalls_og_konsensusdemokrati",
+        "enhetsstat_foderalisme_territorial_makt",
+        "ett_og_tokammersystemer",
+        "koalisjoner_og_mindretallsregjeringer",
+        "mistillit_kabinett_opplosning",
+        "vetospillere_og_beslutningskapasitet",
+        "domstolskontroll_og_konstitusjonsdomstoler",
+        "utovende_og_lovgivende_makt",
+        "demokratisk_tilbakegang_og_institusjonell_uthuling"
       ],
       "method_ids": [
         "met_pol_komparativ_institusjonsanalyse",
         "met_pol_regime_og_demokratiseringsanalyse",
         "met_pol_komparativt_forskningsdesign",
-        "met_pol_prosessporing"
+        "met_pol_prosessporing",
+        "met_pol_parlamentarisk_ansvarlighetsanalyse",
+        "met_pol_vetospilleranalyse",
+        "met_pol_foderalisme_og_flernivaanalyse",
+        "met_pol_konstitusjonell_domstolsanalyse",
+        "met_pol_institusjonell_tilbakegangsanalyse",
+        "met_pol_lovgivningsstruktur_analyse",
+        "met_pol_kausalt_forskningsdesign",
+        "met_pol_policyprosessanalyse",
+        "met_pol_regjerings_og_koalisjonsanalyse",
+        "met_pol_partisystemanalyse",
+        "met_pol_rettslig_analyse",
+        "met_pol_institusjonsanalyse"
       ],
       "recommended_oslo_cases": [
         "Stortinget",
@@ -1107,7 +1142,10 @@
         "Oslo rådhus",
         "Oslo tinghus",
         "Akershus festning",
-        "Riksarkivet"
+        "Riksarkivet",
+        "Høyesterett",
+        "Eidsvolls plass",
+        "Sametinget"
       ],
       "canonical_thinker_ids": [
         "max_weber",
@@ -1127,7 +1165,20 @@
         "samuel_huntington",
         "t_h_marshall",
         "benedict_anderson",
-        "gosta_esping_andersen"
+        "gosta_esping_andersen",
+        "george_tsebelis",
+        "alfred_stepan",
+        "giovanni_sartori",
+        "william_riker",
+        "michael_laver",
+        "alexander_bickel",
+        "tom_ginsburg",
+        "ronald_dworkin",
+        "charles_lindblom",
+        "matthew_shugart",
+        "nancy_bermeo",
+        "steven_levitsky",
+        "daniel_ziblatt"
       ],
       "norwegian_thinker_ids": [
         "kaare_strom",
@@ -1178,7 +1229,7 @@
       ],
       "generator_rule": "Krev eksplisitt analyseenhet, utfall, claim_basis, mekanisme og metode. Komparative og kausale påstander må ha design.",
       "source_rule": "Faktapåstander hentes fra eksterne kilder og datasett; canonical-filene styrer bare faglig struktur.",
-      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "quality_revision": "politikk-institusjoner-vertical-phase-1-2026-07-24",
       "revised_method_ids": [
         "met_pol_komparativ_institusjonsanalyse",
         "met_pol_regime_og_demokratiseringsanalyse",
@@ -1189,7 +1240,44 @@
       "mapping_quality_rule": "Alle mappinger krever analyseenhet, utfall, ekstern claim_basis, metode, mekanisme eller design, kritisk distinksjon og avgrenset rekkevidde.",
       "vertical_chain_status": "complete",
       "disciplinary_role": "political_science_core",
-      "political_science_core_weight": 1.0
+      "political_science_core_weight": 1,
+      "vertical_depth_phase_1": {
+        "revision": "politikk-institusjoner-vertical-phase-1-2026-07-24",
+        "hook_ids": [
+          "parlamentarisme_og_presidentstyre",
+          "flertalls_og_konsensusdemokrati",
+          "enhetsstat_foderalisme_territorial_makt",
+          "ett_og_tokammersystemer",
+          "koalisjoner_og_mindretallsregjeringer",
+          "mistillit_kabinett_opplosning",
+          "vetospillere_og_beslutningskapasitet",
+          "domstolskontroll_og_konstitusjonsdomstoler",
+          "utovende_og_lovgivende_makt",
+          "demokratisk_tilbakegang_og_institusjonell_uthuling"
+        ],
+        "emne_ids": [
+          "em_pol_institusjonsfordypning_parlamentarisme_presidentstyre",
+          "em_pol_institusjonsfordypning_flertalls_konsensusdemokrati",
+          "em_pol_institusjonsfordypning_enhetsstat_foderalisme",
+          "em_pol_institusjonsfordypning_ett_tokammersystem",
+          "em_pol_institusjonsfordypning_koalisjoner_mindretallsregjeringer",
+          "em_pol_institusjonsfordypning_mistillit_opplosningsrett",
+          "em_pol_institusjonsfordypning_vetospillere_beslutningskapasitet",
+          "em_pol_institusjonsfordypning_domstolskontroll_konstitusjonsdomstoler",
+          "em_pol_institusjonsfordypning_utovende_lovgivende_makt",
+          "em_pol_institusjonsfordypning_demokratisk_tilbakegang"
+        ],
+        "method_ids": [
+          "met_pol_parlamentarisk_ansvarlighetsanalyse",
+          "met_pol_vetospilleranalyse",
+          "met_pol_foderalisme_og_flernivaanalyse",
+          "met_pol_konstitusjonell_domstolsanalyse",
+          "met_pol_institusjonell_tilbakegangsanalyse",
+          "met_pol_lovgivningsstruktur_analyse"
+        ],
+        "question_blueprint_count": 10,
+        "status": "complete_revised"
+      }
     },
     {
       "domain_id": "valg_partier_velgeratferd",
@@ -1315,7 +1403,7 @@
       "mapping_quality_rule": "Alle mappinger krever analyseenhet, utfall, ekstern claim_basis, metode, mekanisme eller design, kritisk distinksjon og avgrenset rekkevidde.",
       "vertical_chain_status": "complete",
       "disciplinary_role": "political_science_core",
-      "political_science_core_weight": 1.0
+      "political_science_core_weight": 1
     },
     {
       "domain_id": "offentlig_politikk_beslutning_implementering",
@@ -1443,7 +1531,7 @@
       "mapping_quality_rule": "Alle mappinger krever analyseenhet, utfall, ekstern claim_basis, metode, mekanisme eller design, kritisk distinksjon og avgrenset rekkevidde.",
       "vertical_chain_status": "complete",
       "disciplinary_role": "political_science_core",
-      "political_science_core_weight": 1.0
+      "political_science_core_weight": 1
     },
     {
       "domain_id": "internasjonal_politikk_sikkerhet_samarbeid",
@@ -1564,7 +1652,7 @@
       "mapping_quality_rule": "Alle mappinger krever analyseenhet, utfall, ekstern claim_basis, metode, mekanisme eller design, kritisk distinksjon og avgrenset rekkevidde.",
       "vertical_chain_status": "complete",
       "disciplinary_role": "political_science_core",
-      "political_science_core_weight": 1.0
+      "political_science_core_weight": 1
     },
     {
       "domain_id": "politisk_okonomi_stat_marked",
@@ -1687,7 +1775,7 @@
       "mapping_quality_rule": "Alle mappinger krever analyseenhet, utfall, ekstern claim_basis, metode, mekanisme eller design, kritisk distinksjon og avgrenset rekkevidde.",
       "vertical_chain_status": "complete",
       "disciplinary_role": "political_science_core",
-      "political_science_core_weight": 1.0
+      "political_science_core_weight": 1
     },
     {
       "domain_id": "statsvitenskapelig_metode_og_sammenligning",
@@ -1808,7 +1896,7 @@
       "mapping_quality_rule": "Alle mappinger krever analyseenhet, utfall, ekstern claim_basis, metode, mekanisme eller design, kritisk distinksjon og avgrenset rekkevidde.",
       "vertical_chain_status": "complete",
       "disciplinary_role": "political_science_core",
-      "political_science_core_weight": 1.0
+      "political_science_core_weight": 1
     }
   ],
   "source_priority": [
@@ -1957,5 +2045,33 @@
       "skille empiriske, kausale og normative påstander",
       "anvende teori uten å erstatte dokumentasjon med teoretikernavn"
     ]
+  },
+  "vertical_depth_plan": {
+    "phase_1": {
+      "revision": "politikk-institusjoner-vertical-phase-1-2026-07-24",
+      "status": "complete_revised",
+      "focus": "politiske institusjoner og konstitusjonell politikk",
+      "domain_id": "komparativ_politikk_regimer_institusjoner",
+      "emne_ids": [
+        "em_pol_institusjonsfordypning_parlamentarisme_presidentstyre",
+        "em_pol_institusjonsfordypning_flertalls_konsensusdemokrati",
+        "em_pol_institusjonsfordypning_enhetsstat_foderalisme",
+        "em_pol_institusjonsfordypning_ett_tokammersystem",
+        "em_pol_institusjonsfordypning_koalisjoner_mindretallsregjeringer",
+        "em_pol_institusjonsfordypning_mistillit_opplosningsrett",
+        "em_pol_institusjonsfordypning_vetospillere_beslutningskapasitet",
+        "em_pol_institusjonsfordypning_domstolskontroll_konstitusjonsdomstoler",
+        "em_pol_institusjonsfordypning_utovende_lovgivende_makt",
+        "em_pol_institusjonsfordypning_demokratisk_tilbakegang"
+      ],
+      "method_ids": [
+        "met_pol_parlamentarisk_ansvarlighetsanalyse",
+        "met_pol_vetospilleranalyse",
+        "met_pol_foderalisme_og_flernivaanalyse",
+        "met_pol_konstitusjonell_domstolsanalyse",
+        "met_pol_institusjonell_tilbakegangsanalyse",
+        "met_pol_lovgivningsstruktur_analyse"
+      ]
+    }
   }
 }
