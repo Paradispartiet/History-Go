@@ -877,5 +877,16 @@
     "reason": "The initial candidate filter accepted files matching the standalone token “Sigrid”. Manual metadata review proved both candidates depict athlete Sigrid Borge at Bislett Games, not Sigrid Undset or her monument.",
     "correctedRule": "An independent candidate must explicitly identify Sigrid Undset or the official work/artist, not merely another person named Sigrid.",
     "rejectedCandidateCount": 2
+  },
+  "reportRetention": {
+    "policy": "compact_machine_traceable_summary_only",
+    "removedRawCaptures": [
+      "500-file Commons geosearch and full EXIF detail dump",
+      "2,036-row nearby Wikidata SPARQL response",
+      "raw Overpass artwork/memorial response",
+      "blocked eMuseum HTML/JSON/XML/RDF response bodies",
+      "live artist and Oslo municipality HTML bodies"
+    ],
+    "retainedEvidence": "Endpoint URLs, HTTP status, source hashes, query result counts, relevant result metadata, nearest OSM rows, all exact-candidate decisions and false-positive rejection reasons remain in this summary."
   }
 }
