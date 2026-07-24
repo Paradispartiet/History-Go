@@ -17,8 +17,12 @@ source=source.replace(
   `liveTags:way.tags,geometryPointCount:geometry.length,exactNameDuplicateCount:nameDup.length,nearestCanonicalBeforeWrite:nearby[0]||null,civicationUpdates,updatedCiviFiles,`,
   `liveTags:way.tags,overpassEndpoint,geometryPointCount:geometry.length,exactNameDuplicateCount:nameDup.length,nearestCanonicalBeforeWrite:nearby[0]||null,civicationUpdates:civiUpdates,updatedCiviFiles,`
 );
+source=source.replace(
+  `movedFrom:'oslo',movedTo:'akershus/baerum',civicationUpdates,nearestCanonicalBeforeWrite:nearby[0]||null`,
+  `movedFrom:'oslo',movedTo:'akershus/baerum',civicationUpdates:civiUpdates,nearestCanonicalBeforeWrite:nearby[0]||null`
+);
 if(source.includes(`const OVERPASS='https://overpass.kumi.systems/api/interpreter';`))throw new Error('Failed to install Overpass fallback endpoints');
 if(source.includes(`const raw=await fetchText(OVERPASS,`))throw new Error('Failed to patch exact-way Overpass fetch');
-if(source.includes(`nearestCanonicalBeforeWrite:nearby[0]||null,civicationUpdates,updatedCiviFiles`))throw new Error('Failed to fix Civication report variable');
+if((source.match(/\bcivicationUpdates\b/g)||[]).length>2)throw new Error('Unexpected unresolved Civication shorthand variable');
 writeFileSync(TEMP,source,'utf8');
 await import(pathToFileURL(TEMP).href);
