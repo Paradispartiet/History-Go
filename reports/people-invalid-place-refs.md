@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-20T06:57:24.818Z
+Generated: 2026-07-24T06:58:49.494Z
 
 ## Sammendrag
-- People-filer lest: **620**
-- People lest: **1220**
+- People-filer lest: **645**
+- People lest: **1245**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1220**
+- Duplikate interne place-referanser: **1245**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -212,7 +212,7 @@ Generated: 2026-07-20T06:57:24.818Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: jonas_collett (Jonas Collett) -> camilla_collett_statue x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: ruth_maier (Ruth Maier) -> ruth_maier_minne x2
-- data/people/litteratur/oslo/people_litteratur_oslo.json :: cecilie_loveid (Cecilie Løveid) -> sofienbergparken_subkultur x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: cecilie_loveid (Cecilie Løveid) -> sofienbergparken x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: oskar_braaten (Oskar Braaten) -> oscar_braaten_statuen x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: vogt (Nils Collett Vogt) -> gamle_deichman x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: andersen (Tryggve Andersen) -> gamle_deichman x2
@@ -289,8 +289,6 @@ Generated: 2026-07-20T06:57:24.818Z
 - data/people/litteratur/oslo/nationaltheatret/hanne_tomta.json :: hanne_tomta (Hanne Tømta) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/kristian_seltun.json :: kristian_seltun (Kristian Seltun) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/marit_moum_aune.json :: marit_moum_aune (Marit Moum Aune) -> nationaltheatret x2
-- data/people/litteratur/oslo/nationaltheatret/henrik_ibsen.json :: henrik_ibsen_nationaltheatret (Henrik Ibsen) -> nationaltheatret x2
-- data/people/litteratur/oslo/nationaltheatret/bjornstjerne_bjornson.json :: bjornstjerne_bjornson_nationaltheatret (Bjørnstjerne Bjørnson) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/ludvig_holberg.json :: ludvig_holberg (Ludvig Holberg) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/gunnar_heiberg.json :: gunnar_heiberg (Gunnar Heiberg) -> nationaltheatret x2
 - data/people/litteratur/oslo/nationaltheatret/sigurd_eldegard.json :: sigurd_eldegard_nationaltheatret (Sigurd Eldegard) -> nationaltheatret x2
@@ -362,8 +360,8 @@ Generated: 2026-07-20T06:57:24.818Z
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: gunnar_jahn_statistikk_og_styring (Gunnar Jahn) -> grunnlovsbygget_bankplassen x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: nicolai_rygg_sentralbank (Nicolai Rygg) -> grunnlovsbygget_bankplassen x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: anton_martin_schweigaard_okonomi (Anton Martin Schweigaard) -> grunnlovsbygget_bankplassen x2
-- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: sam_eyde_industriutbygger (Sam Eyde) -> akerselva_industri x2
-- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: kristian_birkeland_teknologi_og_industri (Kristian Birkeland) -> akerselva_industri x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: sam_eyde_industriutbygger (Sam Eyde) -> akerselva x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: kristian_birkeland_teknologi_og_industri (Kristian Birkeland) -> akerselva x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: christen_smith_schous_bryggeri (Christen Smith) -> schous_bryggeri x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: ellef_ringnes_bryggeri_og_ledelse (Ellef Ringnes) -> ringnes_bryggeri x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: christian_schweigaard_post_og_administrasjon (Christian Schweigaard) -> oslo_posthus x2
@@ -448,8 +446,8 @@ Generated: 2026-07-20T06:57:24.818Z
 - data/people/natur/oslo/people_natur_oslo.json :: bernhard_herre (Bernhard Herre) -> maridalsvannet x2
 - data/people/natur/oslo/people_natur_oslo.json :: mikkjel_fonhus (Mikkjel Fønhus) -> maridalsvannet x2
 - data/people/natur/oslo/people_natur_oslo.json :: vannreguleringsmannskapet_maridalsvannet (Vannreguleringsmannskapet ved Maridalsvannet) -> frysjadammen x2
-- data/people/natur/oslo/people_natur_oslo.json :: adam_severin_hiorth_nydalen (Adam Severin Hiorth) -> nydalen_industristed x2
-- data/people/natur/oslo/people_natur_oslo.json :: oluf_onsum_christiania_spigerverk (Oluf Onsum) -> nydalen_industristed x2
+- data/people/natur/oslo/people_natur_oslo.json :: adam_severin_hiorth_nydalen (Adam Severin Hiorth) -> nydalen x2
+- data/people/natur/oslo/people_natur_oslo.json :: oluf_onsum_christiania_spigerverk (Oluf Onsum) -> nydalen x2
 - data/people/natur/oslo/people_natur_oslo.json :: oluf_nicolai_roll_nydalen (Oluf Nicolai Roll) -> seilduksfabrikken_nydalen x2
 - data/people/natur/oslo/people_natur_oslo.json :: gerhard_treschow_bjoelsen (Gerhard Treschow) -> bjoelsenfossen x2
 - data/people/natur/oslo/people_natur_oslo.json :: gustav_martinsen_bjoelsen_valsemolle (Gustav Martinsen) -> bjoelsenfossen x2
@@ -1238,5 +1236,32 @@ Generated: 2026-07-20T06:57:24.818Z
 - data/people/by/europe/portugal/lisbon/campo_pequeno/antonio_jose_dias_da_silva.json :: antonio_jose_dias_da_silva (António José Dias da Silva) -> lisbon_campo_pequeno x2
 - data/people/by/oslo/gamle_aker_kirke/heinrich_ernst_schirmer.json :: heinrich_ernst_schirmer (Heinrich Ernst Schirmer) -> gamle_aker_kirke x2
 - data/people/kunst/oslo/gamle_aker_kirke/torvald_moseid.json :: torvald_moseid (Torvald Moseid) -> gamle_aker_kirke x2
+- data/people/historie/oslo/botsfengselet/paul_magnus_norum.json :: paul_magnus_norum (Paul Magnus Norum) -> botsfengselet x2
+- data/people/historie/oslo/botsfengselet/richard_petersen_fengselsdirektor.json :: richard_petersen_fengselsdirektor (Richard Petersen) -> botsfengselet x2
+- data/people/by/oslo/st_hallvard_kirke_kloster/kjell_lund.json :: kjell_lund (Kjell Lund) -> st_hallvard_kirke_kloster x2
+- data/people/by/oslo/st_hallvard_kirke_kloster/nils_slaatto.json :: nils_slaatto (Nils Slaatto) -> st_hallvard_kirke_kloster x2
+- data/people/historie/oslo/st_hallvard_kirke_kloster/johan_castricum.json :: johan_castricum (Johan Castricum) -> st_hallvard_kirke_kloster x2
+- data/people/by/oslo/oslo_s/john_engh.json :: john_engh (John Engh) -> oslo_s x2
+- data/people/by/oslo/aker_brygge/niels_torp.json :: niels_torp (Niels Torp) -> aker_brygge x2
+- data/people/kunst/oslo/christiania_torv/wenche_gulbransen.json :: wenche_gulbransen (Wenche Gulbransen) -> christiania_torv x2
+- data/people/naeringsliv/telemark/dalen_hotel_tokke/haldor_larsen_borve.json :: haldor_larsen_borve (Haldor Larsen Børve) -> dalen_hotel_tokke x2
+- data/people/kunst/buskerud/hagan_skredsvig/christian_skredsvig.json :: christian_skredsvig (Christian Skredsvig) -> hagan_skredsvig x2
+- data/people/litteratur/buskerud/portaasen_wildenvey/herman_wildenvey.json :: herman_wildenvey (Herman Wildenvey) -> portaasen_wildenvey x2
+- data/people/litteratur/innlandet/aulestad_bjornson/karoline_bjornson.json :: karoline_bjornson (Karoline Bjørnson) -> aulestad_bjornson x2
+- data/people/naeringsliv/agder/nes_jernverk_tvedestrand/heinrich_meldahl.json :: heinrich_meldahl (Heinrich Meldahl) -> nes_jernverk_tvedestrand x2
+- data/people/naeringsliv/agder/nes_jernverk_tvedestrand/thomas_crawfurd.json :: thomas_crawfurd (Thomas Crawfurd) -> nes_jernverk_tvedestrand x2
+- data/people/naeringsliv/agder/froland_verk/magdalene_marie_smith.json :: magdalene_marie_smith (Magdalene Marie Smith) -> froland_verk x2
+- data/people/kunst/akershus/hadeland_glassverk/ragnvald_hansen.json :: ragnvald_hansen (Ragnvald Hansen) -> hadeland_glassverk x2
+- data/people/kunst/akershus/hadeland_glassverk/willy_johansson.json :: willy_johansson (Willy Johansson) -> hadeland_glassverk x2
+- data/people/kunst/akershus/hadeland_glassverk/arne_jon_jutrem.json :: arne_jon_jutrem (Arne Jon Jutrem) -> hadeland_glassverk x2
+- data/people/naeringsliv/buskerud/blaafarvevaerket_modum/wilhelm_christian_benecke.json :: wilhelm_christian_benecke (Wilhelm Christian Benecke) -> blaafarvevaerket_modum x2
+- data/people/naeringsliv/buskerud/blaafarvevaerket_modum/benjamin_wegner.json :: benjamin_wegner (Benjamin Wegner) -> blaafarvevaerket_modum x2
+- data/people/naeringsliv/buskerud/blaafarvevaerket_modum/friedrich_roscher.json :: friedrich_roscher (Friedrich Roscher) -> blaafarvevaerket_modum x2
+- data/people/naeringsliv/buskerud/blaafarvevaerket_modum/karl_friedrich_bobert.json :: karl_friedrich_bobert (Karl Friedrich Böbert) -> blaafarvevaerket_modum x2
+- data/people/kunst/oslo/ibsen_quotes/ingrid_falk.json :: ingrid_falk (Ingrid Falk) -> ibsen_quotes x2
+- data/people/kunst/oslo/ibsen_quotes/gustavo_aguerre.json :: gustavo_aguerre (Gustavo Aguerre) -> ibsen_quotes x2
+- data/people/popkultur/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d/aud_schonemann.json :: aud_schonemann (Aud Schønemann) -> bla_skilt_aud_schonemann_vetlandsveien_69d x2
+- data/people/popkultur/oslo/house_of_nerds/andreas_sollund.json :: andreas_sollund (Andreas Sollund) -> house_of_nerds x2
+- data/people/popkultur/oslo/latter/elina_krantz.json :: elina_krantz (Elina Krantz) -> latter x2
 
 ## Anbefalt neste ryddebatch
