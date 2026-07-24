@@ -970,3 +970,4 @@ Batch 195 (2026-07-24) løser `frognerstranda` som et lineært kystområde fra i
 |---|---|---|---|
 | `bygdoy_roykenvika` | Aktiv place-markør avviklet; identiteten kunne ikke dokumenteres | `reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/summary.json` | Ingen; innhold og koblinger er fjernet fremfor å flyttes til et annet fysisk sted |
 | `bygdoy_kongsgard_salamanderdam` | Separat kartmarkør avviklet; naturkunnskapen er flyttet til `bygdoy_kongsgard` | `reports/oslo-coordinate-bygdoy-kongsgard-salamander-model-audit-post-195/summary.json` | Verifisert offentlig Kongsgård-anker brukes til formidling; presis habitatposisjon publiseres ikke |
+| `ostensjovannet_sivbelte` | Separat kartmarkør avviklet; sivbelteinnholdet ligger i `ostensjovannet` | `reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/summary.json` | Verifisert reservatanker og konkrete kildebelagte delankre beholdes; vilkårlig sivbelte-midpunkt publiseres ikke |

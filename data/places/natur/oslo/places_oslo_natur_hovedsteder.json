@@ -15,7 +15,7 @@
       "habitat",
       "biodiversitet"
     ],
-    "sourceHint": "Hovedpunktet representerer hele Østensjøvannet naturreservat med Miljødirektoratets offisielle vernegeometri. Delankrene bygges kun fra verifiserte konkrete komponenter: Vadedammen, fugleskjulet på vestsiden, Bølerbekkens utløp og Bogerudmyra. Det generiske sivbelte-recordet står fortsatt needs_source og brukes ikke som kartanker.",
+    "sourceHint": "Hovedpunktet representerer hele Østensjøvannet naturreservat med Miljødirektoratets offisielle vernegeometri. Delankrene bygges kun fra verifiserte konkrete komponenter: Vadedammen, fugleskjulet på vestsiden, Bølerbekkens utløp og Bogerudmyra. Det generiske sivbelte-recordet er deaktivert som separat kartsted; sivbelter og våtmarkskanter formidles i hovedstedets naturprofil.",
     "coordType": "protected_wetland_center",
     "coordStatus": "verified_geometry",
     "coordSource": "Miljødirektoratet Naturvernområder – offisiell geometri for Østensjøvannet naturreservat",
@@ -85,6 +85,25 @@
       "em_natur_arter_habitat_mangfold",
       "em_natur_vern_forvaltning_politikk"
     ],
+    "nature_profile": {
+      "type": "næringsrik innsjø / våtmark / naturreservat",
+      "title": "Hele våtmarkssystemet rundt Østensjøvannet",
+      "summary": "Østensjøvannet er hovedinngangen til et sammenhengende våtmarkssystem med åpent vann, grunne soner, sivbelter, fuktige bredder og vegeterte randarealer. Delpunktene rundt vannet viser ulike deler av dette systemet, mens hovedstedet forklarer hvordan vannstand, næring, kantvegetasjon og vern virker sammen. Natur-rundingen skal samle området som ett habitatkompleks uten å overføre artslister fra enkeltpunktene til hele innsjøen.",
+      "themes": [
+        "næringsrik innsjø og gruntvann",
+        "sivbelter og våtmarkskanter",
+        "fugleområde gjennom året",
+        "naturreservat og forvaltning",
+        "sammenheng mellom delhabitater",
+        "skånsom observasjon i bynær våtmark"
+      ],
+      "nearby_place_ids": [
+        "ostensjovannet_nord",
+        "ostensjovannet_fugletarn",
+        "ostensjovannet_sor",
+        "bogerudmyra"
+      ]
+    },
     "quiz_profile": {
       "place_type": "innsjo",
       "subtype": "vatmark_og_naturreservat",
@@ -134,14 +153,12 @@
     "coordRole": "area_anchor",
     "coordSourceId": "miljodirektoratet-naturvern:VV00000972",
     "coordSourceUrl": "https://faktaark.naturbase.no/?id=VV00000972",
-    "nature_profile": {
-      "nearby_place_ids": [
-        "ostensjovannet_nord",
-        "ostensjovannet_fugletarn",
-        "ostensjovannet_sor",
-        "bogerudmyra"
-      ]
-    }
+    "rounds": [
+      "nature",
+      "leksikon",
+      "routes"
+    ],
+    "routeId": "ostensjovannet_vatmark"
   },
   {
     "id": "hovedoya",
