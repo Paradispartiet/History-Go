@@ -1,0 +1,96 @@
+name: Literature phase 1 final gate
+
+on:
+  push:
+    branches: [agent/litteratur-vertikal-fase-1-poetikk]
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/litteratur-vertikal-fase-1-poetikk
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Rebase onto current main
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin main
+          git rebase origin/main
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Run complete final gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/litteratur-canonical-migration /tmp/litteratur-phase1-ci
+          REPORT='reports/litteratur-canonical-migration/litteratur-phase-1-ci-validation.txt'
+          : > "$REPORT"
+
+          run_check() {
+            local name="$1"
+            shift
+            echo "RUN | $name" | tee -a "$REPORT"
+            "$@" 2>&1 | tee "/tmp/litteratur-phase1-ci/${name}.log"
+            echo "PASS | $name" | tee -a "$REPORT"
+          }
+
+          run_check phase-validator node tools/validate-litteratur-poetikk-phase-1.mjs
+          run_check people-data bash scripts/check-people.sh
+          run_check places-data bash scripts/check-places.sh
+          run_check category-audit npm run audit:categories
+          run_check quiz-template-audit npm run audit:quiz-templates
+          run_check quiz-production-context npm run audit:quiz-production-context
+          run_check quiz-progression npm run audit:quiz-progression
+          run_check quiz-theory-binding npm run audit:quiz-theory-binding
+          run_check quiz-content-tests npm run test:quiz-content-audit
+          run_check quiz-production-tests npm run test:quiz-production
+          run_check knowledge-web-typecheck npm run typecheck:web
+          run_check build-scripts npm run build:scripts
+          run_check knowledge-canonical npm run knowledge:canonical:check
+          run_check knowledge-legacy npm run knowledge:legacy:check
+          run_check knowledge-audit npm run audit:knowledge
+          run_check knowledge-v2-tests npm run test:knowledge-v2
+          run_check knowledge-storage-test node --test tests/knowledge-canonical-storage-contract.test.js
+          run_check browser-build-check npm run build:web:check
+          run_check scripts-typecheck npm run typecheck:scripts
+          run_check tools-typecheck npm run typecheck:tools
+          run_check tools-build npm run build:tools
+          run_check social-meet-smoke npm run test:social-meet-spotmeeting-smoke
+          run_check hidden-test-mode node tests/hg-test-mode.test.js
+          run_check header-search-menu node tests/header-search-menu.test.js
+          run_check diff-check git diff --check
+
+          echo 'RESULTAT: PASS' | tee -a "$REPORT"
+
+      - name: Upload complete gate logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: literature-phase-1-final-gate-${{ github.run_id }}
+          path: |
+            /tmp/litteratur-phase1-ci/*.log
+            reports/litteratur-canonical-migration/litteratur-phase-1-ci-validation.txt
+          if-no-files-found: error
+
+      - name: Remove workflow and publish final report
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/litteratur-phase1-final-gate.yml
+          git add -A .github/workflows reports/litteratur-canonical-migration/litteratur-phase-1-ci-validation.txt
+          git diff --cached --check
+          git commit -m 'Litteratur: dokumenter grønn fase 1-sluttkontroll'
+          git push --force-with-lease origin HEAD:agent/litteratur-vertikal-fase-1-poetikk
