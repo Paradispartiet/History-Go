@@ -27,20 +27,35 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
-      - name: Materialize and validate Majorstua
+      - name: Materialize and diagnose Majorstua
+        id: normalize
+        continue-on-error: true
+        shell: bash
         run: |
-          set -euo pipefail
-          node tools/apply-majorstua-quiz-normalization.mjs
-          npm run knowledge:canonical:write
-          node tools/build-quiz-normal-opening-migration-inventory.mjs
-          node tools/compact-quiz-normal-opening-migration-reports.mjs
-          node tools/validate-quiz-normal-opening-migration-inventory.mjs \
-            | tee reports/quiz-normal-opening-migration-inventory-validation.txt
-          node tools/validate-majorstua-quiz-normalization.mjs \
-            | tee reports/majorstua-quiz-repair-validation.txt
-          npm run knowledge:canonical:check
-          npm run audit:quiz-production-context
-          cat > reports/majorstua-quiz-repair.md <<'EOF'
+          set +e
+          LOG="$RUNNER_TEMP/majorstua-quiz-normalization-diagnostic.txt"
+          : > "$LOG"
+          run_step() {
+            name="$1"
+            shift
+            echo "## $name" >> "$LOG"
+            "$@" >> "$LOG" 2>&1
+            status=$?
+            echo "status=$status" >> "$LOG"
+            echo >> "$LOG"
+            return $status
+          }
+          failed=0
+          run_step apply node tools/apply-majorstua-quiz-normalization.mjs || failed=1
+          run_step knowledge_write npm run knowledge:canonical:write || failed=1
+          run_step inventory_build node tools/build-quiz-normal-opening-migration-inventory.mjs || failed=1
+          run_step inventory_compact node tools/compact-quiz-normal-opening-migration-reports.mjs || failed=1
+          run_step inventory_validate bash -lc 'node tools/validate-quiz-normal-opening-migration-inventory.mjs | tee reports/quiz-normal-opening-migration-inventory-validation.txt' || failed=1
+          run_step majorstua_validate bash -lc 'node tools/validate-majorstua-quiz-normalization.mjs | tee reports/majorstua-quiz-repair-validation.txt' || failed=1
+          run_step knowledge_check npm run knowledge:canonical:check || failed=1
+          run_step production_context npm run audit:quiz-production-context || failed=1
+          if [[ "$failed" -eq 0 ]]; then
+            cat > reports/majorstua-quiz-repair.md <<'EOF'
           # Majorstua: normalisert quiz
 
           Majorstua er første reparasjonsbatch fra den globale 2 × 7-migreringskøen.
@@ -55,26 +70,54 @@ jobs:
           - Majorstua er fortsatt manifestregistrert legacy-fil og aktiveres ikke som produksjonsmål i denne batchen
           - Knowledge-koblinger og den globale migreringskøen er regenerert
           EOF
-          git diff --check
+          fi
+          run_step diff_check git diff --check || failed=1
+          cat "$LOG"
+          exit "$failed"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: majorstua-quiz-normalization-diagnostic
+          path: ${{ runner.temp }}/majorstua-quiz-normalization-diagnostic.txt
+          if-no-files-found: warn
       - name: Commit Majorstua repair
+        id: publish
+        continue-on-error: true
+        if: steps.normalize.outcome == 'success'
         shell: bash
         run: |
-          set -euo pipefail
-          rm tools/apply-majorstua-quiz-normalization.mjs
-          rm -f reports/majorstua-quiz-repair-status.md
+          set +e
+          LOG="$RUNNER_TEMP/majorstua-quiz-normalization-publish.txt"
+          : > "$LOG"
+          {
+            rm tools/apply-majorstua-quiz-normalization.mjs
+            rm -f reports/majorstua-quiz-repair-status.md
 
-          changed_paths=$(git status --porcelain | sed -E 's/^.. //')
-          unexpected=$(printf '%s\n' "$changed_paths" | grep -Ev '^(data/quiz/by/majorstua_sets\.json|data/knowledge/(knowledge_units|concepts|terms|stories|knowledge_emne_review_queue)\.generated\.json|reports/(knowledge-id-backfill|quiz-content-quality|quiz-normal-opening-migration-inventory)\.json|reports/quiz-normal-opening-migration-inventory\.md|reports/quiz-normal-opening-migration-inventory-validation\.txt|reports/majorstua-quiz-repair\.md|reports/majorstua-quiz-repair-validation\.txt|reports/majorstua-quiz-repair-status\.md|tools/apply-majorstua-quiz-normalization\.mjs|tools/validate-majorstua-quiz-normalization\.mjs)$' || true)
-          if [[ -n "$unexpected" ]]; then
-            echo 'Uventede filer i Majorstua-reparasjonen:'
-            printf '%s\n' "$unexpected"
-            exit 1
-          fi
+            changed_paths=$(git status --porcelain | sed -E 's/^.. //')
+            unexpected=$(printf '%s\n' "$changed_paths" | grep -Ev '^(data/quiz/by/majorstua_sets\.json|data/knowledge/(knowledge_units|concepts|terms|stories|knowledge_emne_review_queue)\.generated\.json|reports/(knowledge-id-backfill|quiz-content-quality|quiz-normal-opening-migration-inventory)\.json|reports/quiz-normal-opening-migration-inventory\.md|reports/quiz-normal-opening-migration-inventory-validation\.txt|reports/majorstua-quiz-repair\.md|reports/majorstua-quiz-repair-validation\.txt|reports/majorstua-quiz-repair-status\.md|tools/apply-majorstua-quiz-normalization\.mjs|tools/validate-majorstua-quiz-normalization\.mjs)$' || true)
+            if [[ -n "$unexpected" ]]; then
+              echo 'Uventede filer i Majorstua-reparasjonen:'
+              printf '%s\n' "$unexpected"
+              exit 1
+            fi
 
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -A
-          git diff --cached --check
-          git diff --cached --stat
-          git commit -m 'Quiz: normaliser Majorstua til 2x7'
-          git push origin HEAD:${{ github.head_ref }}
+            git config user.name github-actions[bot]
+            git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+            git add -A
+            git diff --cached --check
+            git diff --cached --stat
+            git commit -m 'Quiz: normaliser Majorstua til 2x7'
+            git push origin HEAD:${{ github.head_ref }}
+          } >> "$LOG" 2>&1
+          status=$?
+          cat "$LOG"
+          exit "$status"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: majorstua-quiz-normalization-publish
+          path: ${{ runner.temp }}/majorstua-quiz-normalization-publish.txt
+          if-no-files-found: warn
+      - name: Propagate failure
+        if: steps.normalize.outcome == 'failure' || steps.publish.outcome == 'failure'
+        run: exit 1
