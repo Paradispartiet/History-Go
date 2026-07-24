@@ -6,7 +6,7 @@
   "type": "pensum",
   "canonical_registry_version": "politikkpensum_v4_5",
   "updated_at": "2026-07-24",
-  "purpose": "Kanonisk pensumregister for Politikk & samfunn i History Go. Filen samler domener, emner, metoder, hooks, teorispor og anbefalte Oslo-cases for politisk og samfunnsfaglig quizgenerering.",
+  "purpose": "Kanonisk universitetsorientert pensumregister for Politikk & samfunn. Statsvitenskap utgjør fagets hovedstruktur gjennom institusjoner, komparativ politikk, valg og partier, offentlig politikk, internasjonal politikk, politisk økonomi og metode; sosiologi, rett og velferd er støtte- og brofag.",
   "canonical_files": {
     "fagkart": "fagkart_politikk_canonical_v4_5.json",
     "methods": "methods_politikk_canonical_v4_5.json",
@@ -15,17 +15,28 @@
     "pensum": "politikkpensum_canonical_v4_5.json"
   },
   "summary": {
-    "domain_count": 6,
-    "emne_count": 59,
-    "method_count": 38,
-    "mapping_count": 59,
-    "topic_hook_count": 60,
+    "domain_count": 12,
+    "emne_count": 89,
+    "method_count": 55,
+    "mapping_count": 89,
+    "topic_hook_count": 120,
     "all_emner_have_mapping": true,
-    "all_method_refs_valid": true
+    "all_method_refs_valid": true,
+    "political_science_core_domain_count": 8,
+    "supporting_bridge_domain_count": 4,
+    "new_political_science_hook_count": 60,
+    "new_political_science_emne_count": 30,
+    "new_political_science_method_count": 17
   },
   "domain_order": [
     "styring_institusjoner_forvaltning",
     "demokrati_representasjon_offentlighet",
+    "komparativ_politikk_regimer_institusjoner",
+    "valg_partier_velgeratferd",
+    "offentlig_politikk_beslutning_implementering",
+    "internasjonal_politikk_sikkerhet_samarbeid",
+    "politisk_okonomi_stat_marked",
+    "statsvitenskapelig_metode_og_sammenligning",
     "rett_lov_rettssikkerhet",
     "fordeling_velferd_ulikhet",
     "konflikt_makt_sivilsamfunn",
@@ -198,7 +209,9 @@
         "mappings_revised": 20,
         "generator_profile_active": true,
         "question_blueprints_validated": 10
-      }
+      },
+      "disciplinary_role": "political_science_core",
+      "political_science_core_weight": 1.0
     },
     {
       "domain_id": "demokrati_representasjon_offentlighet",
@@ -386,7 +399,9 @@
         ],
         "ban_theorist_name_as_answer_without_concept": true
       },
-      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24",
+      "disciplinary_role": "political_science_core",
+      "political_science_core_weight": 1.0
     },
     {
       "domain_id": "rett_lov_rettssikkerhet",
@@ -599,7 +614,9 @@
         "mappings_revised": 20,
         "generator_profile_active": true,
         "question_blueprints_validated": 10
-      }
+      },
+      "disciplinary_role": "interdisciplinary_law_bridge",
+      "political_science_core_weight": 0.7
     },
     {
       "domain_id": "fordeling_velferd_ulikhet",
@@ -725,7 +742,9 @@
         "critical_distinction",
         "optional_theory_lens"
       ],
-      "quality_rule": "Teori brukes etter at ressursstrøm, adgang, risiko, terskel eller annen fordelingsmekanisme er dokumentert. Canonical-filene er ikke faktakilder."
+      "quality_rule": "Teori brukes etter at ressursstrøm, adgang, risiko, terskel eller annen fordelingsmekanisme er dokumentert. Canonical-filene er ikke faktakilder.",
+      "disciplinary_role": "political_economy_welfare_bridge",
+      "political_science_core_weight": 0.8
     },
     {
       "domain_id": "konflikt_makt_sivilsamfunn",
@@ -886,7 +905,9 @@
         "met_pol_symbolanalyse",
         "met_pol_politisk_historisk_analyse",
         "met_pol_legitimitetsanalyse"
-      ]
+      ],
+      "disciplinary_role": "political_sociology_bridge",
+      "political_science_core_weight": 0.65
     },
     {
       "domain_id": "normer_identitet_hverdagsliv",
@@ -1041,17 +1062,761 @@
         "mappings_revised": 20,
         "generator_profile_active": true,
         "question_blueprints_validated": 10
-      }
+      },
+      "disciplinary_role": "sociology_bridge",
+      "political_science_core_weight": 0.5
+    },
+    {
+      "domain_id": "komparativ_politikk_regimer_institusjoner",
+      "label": "Komparativ politikk, regimer og institusjoner",
+      "tagline": "Hvordan stater, regimer og institusjonelle ordninger varierer, oppstår og endrer politiske utfall.",
+      "definition": "Domenet sammenligner statsdannelse, statlig kapasitet, demokratiske og autoritære regimer, parlamentariske systemer, maktfordeling, desentralisering, institusjonell endring og demokratisk tilbakegang.",
+      "question_role": "Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt.",
+      "status": "complete_revised",
+      "emne_count": 5,
+      "hook_count": 10,
+      "method_count": 4,
+      "emne_ids": [
+        "em_pol_statsdannelse_statskapasitet",
+        "em_pol_regimer_demokratisering",
+        "em_pol_institusjonelle_systemer",
+        "em_pol_desentralisering_flerniva",
+        "em_pol_institusjonell_endring"
+      ],
+      "hook_ids": [
+        "statsdannelse_og_statlig_kapasitet",
+        "demokrati_og_autokrati",
+        "parlamentarisme_og_presidentialisme",
+        "maktfordeling_og_vetospillere",
+        "federalisme_og_desentralisering",
+        "institusjonell_endring_og_stiavhengighet",
+        "rettsstat_og_demokratisk_tilbakegang",
+        "sivilt_militaert_forhold",
+        "statsborgerskap_og_nasjon",
+        "komparativ_velferdsstat"
+      ],
+      "method_ids": [
+        "met_pol_komparativ_institusjonsanalyse",
+        "met_pol_regime_og_demokratiseringsanalyse",
+        "met_pol_komparativt_forskningsdesign",
+        "met_pol_prosessporing"
+      ],
+      "recommended_oslo_cases": [
+        "Stortinget",
+        "Regjeringskvartalet",
+        "Oslo rådhus",
+        "Oslo tinghus",
+        "Akershus festning",
+        "Riksarkivet"
+      ],
+      "canonical_thinker_ids": [
+        "max_weber",
+        "theda_skocpol",
+        "charles_tilly",
+        "robert_dahl",
+        "juan_linz",
+        "seymour_martin_lipset",
+        "kaare_strom",
+        "arend_lijphart",
+        "montesquieu",
+        "fritz_scharpf",
+        "elinor_ostrom",
+        "stein_rokkan",
+        "paul_pierson",
+        "douglass_north",
+        "samuel_huntington",
+        "t_h_marshall",
+        "benedict_anderson",
+        "gosta_esping_andersen"
+      ],
+      "norwegian_thinker_ids": [
+        "kaare_strom",
+        "stein_rokkan"
+      ],
+      "best_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "tinghus",
+        "ambassade",
+        "forsvarsanlegg",
+        "arkiv"
+      ],
+      "source_priority": [
+        "offisielle lover, vedtak, budsjetter, valgdata, traktater, strategier, utredninger og institusjonsdokumenter",
+        "fagfellevurdert statsvitenskapelig forskning og anerkjente datasett",
+        "arkiv, stortingsdokumenter, kommunale dokumenter, SSB, Valgdirektoratet, regjeringen og internasjonale organisasjoner",
+        "canonical-fagkart som analytisk styring, aldri som faktakilde"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "core_problems": [
+        "Hvorfor utvikler politiske systemer ulike institusjoner og kapasiteter?",
+        "Hvordan påvirker regimetype og institusjonell utforming representasjon, styring og ansvarliggjøring?",
+        "Hvordan oppstår institusjonell stabilitet, endring og demokratisk tilbakegang?"
+      ],
+      "mechanism_families": [
+        "statsbygging",
+        "institusjonalisering",
+        "vetospill",
+        "desentralisering",
+        "stiavhengighet",
+        "koalisjonsbygging",
+        "tvang og beskatning",
+        "rettslig begrensning"
+      ],
+      "critical_distinctions": [
+        "stat vs regjering",
+        "regime vs sittende ledelse",
+        "demokrati vs liberal konstitusjonalisme",
+        "kapasitet vs autonomi",
+        "formell institusjon vs faktisk praksis"
+      ],
+      "generator_rule": "Krev eksplisitt analyseenhet, utfall, claim_basis, mekanisme og metode. Komparative og kausale påstander må ha design.",
+      "source_rule": "Faktapåstander hentes fra eksterne kilder og datasett; canonical-filene styrer bare faglig struktur.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "revised_method_ids": [
+        "met_pol_komparativ_institusjonsanalyse",
+        "met_pol_regime_og_demokratiseringsanalyse",
+        "met_pol_komparativt_forskningsdesign",
+        "met_pol_prosessporing"
+      ],
+      "generator_profile_id": "komparativ_politikk_regimer_institusjoner",
+      "mapping_quality_rule": "Alle mappinger krever analyseenhet, utfall, ekstern claim_basis, metode, mekanisme eller design, kritisk distinksjon og avgrenset rekkevidde.",
+      "vertical_chain_status": "complete",
+      "disciplinary_role": "political_science_core",
+      "political_science_core_weight": 1.0
+    },
+    {
+      "domain_id": "valg_partier_velgeratferd",
+      "label": "Valg, partier og velgeratferd",
+      "tagline": "Hvordan stemmer omsettes til mandater, partier organiserer konkurranse og borgere velger, deltar og holder makthavere ansvarlige.",
+      "definition": "Domenet dekker valgsystemer, partisystemer, konfliktlinjer, partiorganisasjon, kandidatseleksjon, koalisjoner, velgeratferd, kampanjer, deltakelse, representasjon og ansvarliggjøring.",
+      "question_role": "Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt.",
+      "status": "complete_revised",
+      "emne_count": 5,
+      "hook_count": 10,
+      "method_count": 5,
+      "emne_ids": [
+        "em_pol_valgsystemer",
+        "em_pol_partisystemer",
+        "em_pol_regjeringsdannelse",
+        "em_pol_velgeratferd",
+        "em_pol_kampanje_deltakelse_ansvar"
+      ],
+      "hook_ids": [
+        "valgsystemer_og_mandatfordeling",
+        "partisystemer_og_konfliktlinjer",
+        "partiorganisasjon_og_kandidatseleksjon",
+        "regjeringsdannelse_og_koalisjoner",
+        "velgeratferd_og_partivalg",
+        "politisk_deltakelse_og_valgdeltakelse",
+        "kampanjer_medier_og_dagsorden",
+        "representasjon_og_ansvarliggjoring",
+        "populisme_og_anti_etablissement",
+        "politisk_tillit_og_partilojalitet"
+      ],
+      "method_ids": [
+        "met_pol_valgsystemanalyse",
+        "met_pol_partisystemanalyse",
+        "met_pol_velgeratferdsanalyse",
+        "met_pol_regjerings_og_koalisjonsanalyse",
+        "met_pol_survey_og_valgdataanalyse"
+      ],
+      "recommended_oslo_cases": [
+        "Stortinget",
+        "Eidsvolls plass",
+        "Oslo rådhus",
+        "Youngstorget",
+        "Valgdirektoratet",
+        "NRK Marienlyst"
+      ],
+      "canonical_thinker_ids": [
+        "maurice_duverger",
+        "arend_lijphart",
+        "giovanni_sartori",
+        "stein_rokkan",
+        "seymour_martin_lipset",
+        "kaare_strom",
+        "robert_michels",
+        "hanna_pitkin",
+        "anthony_downs",
+        "sidney_verba",
+        "alexis_de_tocqueville",
+        "robert_dahl",
+        "david_easton",
+        "jurgen_habermas",
+        "jane_mansbridge",
+        "chantal_mouffe",
+        "juan_linz"
+      ],
+      "norwegian_thinker_ids": [
+        "stein_rokkan",
+        "kaare_strom"
+      ],
+      "best_place_types": [
+        "storting",
+        "partikontor",
+        "valglokale",
+        "rådhus",
+        "mediehus",
+        "torg",
+        "debattarena"
+      ],
+      "source_priority": [
+        "offisielle lover, vedtak, budsjetter, valgdata, traktater, strategier, utredninger og institusjonsdokumenter",
+        "fagfellevurdert statsvitenskapelig forskning og anerkjente datasett",
+        "arkiv, stortingsdokumenter, kommunale dokumenter, SSB, Valgdirektoratet, regjeringen og internasjonale organisasjoner",
+        "canonical-fagkart som analytisk styring, aldri som faktakilde"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "core_problems": [
+        "Hvordan omsettes preferanser til representasjon og regjering?",
+        "Hvorfor organiseres politisk konkurranse i bestemte partisystemer?",
+        "Hvordan påvirker institusjoner, sosiale skillelinjer og informasjon politisk deltakelse og valg?"
+      ],
+      "mechanism_families": [
+        "mandatfordeling",
+        "strategisk stemmegivning",
+        "partikonkurranse",
+        "konfliktlinjeaktivering",
+        "mobilisering",
+        "koalisjonsforhandling",
+        "agenda-setting",
+        "ansvarliggjøring"
+      ],
+      "critical_distinctions": [
+        "stemmer vs mandater",
+        "partiidentifikasjon vs sakspreferanse",
+        "representasjon vs responsivitet",
+        "valgresultat vs regjeringsmakt",
+        "deltakelse vs politisk likhet"
+      ],
+      "generator_rule": "Krev eksplisitt analyseenhet, utfall, claim_basis, mekanisme og metode. Komparative og kausale påstander må ha design.",
+      "source_rule": "Faktapåstander hentes fra eksterne kilder og datasett; canonical-filene styrer bare faglig struktur.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "revised_method_ids": [
+        "met_pol_valgsystemanalyse",
+        "met_pol_partisystemanalyse",
+        "met_pol_velgeratferdsanalyse",
+        "met_pol_regjerings_og_koalisjonsanalyse",
+        "met_pol_survey_og_valgdataanalyse"
+      ],
+      "generator_profile_id": "valg_partier_velgeratferd",
+      "mapping_quality_rule": "Alle mappinger krever analyseenhet, utfall, ekstern claim_basis, metode, mekanisme eller design, kritisk distinksjon og avgrenset rekkevidde.",
+      "vertical_chain_status": "complete",
+      "disciplinary_role": "political_science_core",
+      "political_science_core_weight": 1.0
+    },
+    {
+      "domain_id": "offentlig_politikk_beslutning_implementering",
+      "label": "Offentlig politikk, beslutning og implementering",
+      "tagline": "Hvordan problemer blir dagsorden, virkemidler velges, vedtak gjennomføres og resultater vurderes.",
+      "definition": "Domenet dekker policyprosessen fra problemdefinisjon og dagsorden via beslutning, virkemiddeldesign og implementering til evaluering, policy feedback, ekspertise, samordning, krisestyring og reformlæring.",
+      "question_role": "Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt.",
+      "status": "complete_revised",
+      "emne_count": 5,
+      "hook_count": 10,
+      "method_count": 5,
+      "emne_ids": [
+        "em_pol_policyprosess_dagsorden",
+        "em_pol_policy_design_virkemidler",
+        "em_pol_implementering_bakkebyrakrati",
+        "em_pol_evaluering_policyfeedback",
+        "em_pol_krisestyring_samordning"
+      ],
+      "hook_ids": [
+        "problemdefinisjon_og_dagsorden",
+        "beslutningsmodeller_og_begrenset_rasjonalitet",
+        "virkemidler_og_policy_design",
+        "implementering_og_bakkebyrakrati",
+        "evaluering_og_kausal_effekt",
+        "policy_feedback_og_stiavhengighet",
+        "ekspertise_kunnskap_og_usikkerhet",
+        "samordning_og_flernivastyring",
+        "krisestyring_og_beredskap",
+        "reform_overforing_og_laering"
+      ],
+      "method_ids": [
+        "met_pol_policyprosessanalyse",
+        "met_pol_policy_design_og_virkemiddelanalyse",
+        "met_pol_implementeringsanalyse",
+        "met_pol_policy_evaluering",
+        "met_pol_prosessporing"
+      ],
+      "recommended_oslo_cases": [
+        "Regjeringskvartalet",
+        "Oslo rådhus",
+        "NAV-kontor",
+        "Helsedirektoratet",
+        "Utdanningsdirektoratet",
+        "Oslo brann- og redningsetat"
+      ],
+      "canonical_thinker_ids": [
+        "john_kingdon",
+        "charles_lindblom",
+        "murray_edelman",
+        "herbert_simon",
+        "david_easton",
+        "harold_lasswell",
+        "elinor_ostrom",
+        "michael_lipsky",
+        "max_weber",
+        "james_c_scott",
+        "gary_king",
+        "karl_popper",
+        "amartya_sen",
+        "paul_pierson",
+        "theda_skocpol",
+        "gosta_esping_andersen",
+        "sheila_jasanoff",
+        "jurgen_habermas",
+        "fritz_scharpf",
+        "robert_putnam",
+        "hannah_arendt",
+        "paul_sabatier"
+      ],
+      "norwegian_thinker_ids": [],
+      "best_place_types": [
+        "departement",
+        "direktorat",
+        "rådhus",
+        "nav_kontor",
+        "skole",
+        "sykehus",
+        "beredskapssentral"
+      ],
+      "source_priority": [
+        "offisielle lover, vedtak, budsjetter, valgdata, traktater, strategier, utredninger og institusjonsdokumenter",
+        "fagfellevurdert statsvitenskapelig forskning og anerkjente datasett",
+        "arkiv, stortingsdokumenter, kommunale dokumenter, SSB, Valgdirektoratet, regjeringen og internasjonale organisasjoner",
+        "canonical-fagkart som analytisk styring, aldri som faktakilde"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "core_problems": [
+        "Hvorfor får noen problemer politisk oppmerksomhet og andre ikke?",
+        "Hvordan påvirker virkemiddeldesign og implementering faktiske utfall?",
+        "Hvordan lærer, samordner og reformerer offentlige myndigheter under usikkerhet?"
+      ],
+      "mechanism_families": [
+        "problemdefinisjon",
+        "agenda-setting",
+        "begrenset rasjonalitet",
+        "virkemiddelvalg",
+        "bakkebyråkrati",
+        "policy feedback",
+        "samordning",
+        "kriselæring"
+      ],
+      "critical_distinctions": [
+        "vedtak vs implementering",
+        "output vs outcome vs impact",
+        "mål vs virkemiddel",
+        "evaluering vs legitimering",
+        "samordning vs sentralisering"
+      ],
+      "generator_rule": "Krev eksplisitt analyseenhet, utfall, claim_basis, mekanisme og metode. Komparative og kausale påstander må ha design.",
+      "source_rule": "Faktapåstander hentes fra eksterne kilder og datasett; canonical-filene styrer bare faglig struktur.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "revised_method_ids": [
+        "met_pol_policyprosessanalyse",
+        "met_pol_policy_design_og_virkemiddelanalyse",
+        "met_pol_implementeringsanalyse",
+        "met_pol_policy_evaluering",
+        "met_pol_prosessporing"
+      ],
+      "generator_profile_id": "offentlig_politikk_beslutning_implementering",
+      "mapping_quality_rule": "Alle mappinger krever analyseenhet, utfall, ekstern claim_basis, metode, mekanisme eller design, kritisk distinksjon og avgrenset rekkevidde.",
+      "vertical_chain_status": "complete",
+      "disciplinary_role": "political_science_core",
+      "political_science_core_weight": 1.0
+    },
+    {
+      "domain_id": "internasjonal_politikk_sikkerhet_samarbeid",
+      "label": "Internasjonal politikk, sikkerhet og samarbeid",
+      "tagline": "Hvordan stater og andre aktører handler under anarki, bygger samarbeid, håndterer konflikt og møter grenseoverskridende problemer.",
+      "definition": "Domenet dekker internasjonalt system, maktbalanse, allianser, avskrekking, institusjoner, utenrikspolitisk beslutning, krig, fredsbygging, menneskerettigheter, global økonomi, klima, migrasjon og norsk småstatspolitikk.",
+      "question_role": "Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt.",
+      "status": "complete_revised",
+      "emne_count": 5,
+      "hook_count": 10,
+      "method_count": 4,
+      "emne_ids": [
+        "em_pol_internasjonalt_system",
+        "em_pol_allianser_avskrekking",
+        "em_pol_internasjonale_institusjoner",
+        "em_pol_utenrikspolitikk_smastat",
+        "em_pol_globale_utfordringer"
+      ],
+      "hook_ids": [
+        "anarki_og_maktbalanse",
+        "allianser_og_avskrekking",
+        "internasjonale_institusjoner_og_samarbeid",
+        "utenrikspolitisk_beslutning",
+        "krig_konflikt_og_sikkerhetsdilemma",
+        "fredsbygging_og_konfliktlosning",
+        "menneskerettigheter_og_humanitaer_intervensjon",
+        "global_okonomi_og_avhengighet",
+        "klima_migrasjon_og_transnasjonale_utfordringer",
+        "norge_som_smastat"
+      ],
+      "method_ids": [
+        "met_pol_internasjonal_politisk_analyse",
+        "met_pol_utenrikspolitisk_analyse",
+        "met_pol_komparativt_forskningsdesign",
+        "met_pol_prosessporing"
+      ],
+      "recommended_oslo_cases": [
+        "Utenriksdepartementet",
+        "Nobels Fredssenter",
+        "Nobelinstituttet",
+        "Stortinget",
+        "Akershus festning",
+        "NUPI"
+      ],
+      "canonical_thinker_ids": [
+        "kenneth_waltz",
+        "hans_morgenthau",
+        "alexander_wendt",
+        "thomas_schelling",
+        "james_fearon",
+        "robert_keohane",
+        "joseph_nye",
+        "elinor_ostrom",
+        "robert_putnam",
+        "herbert_simon",
+        "hannah_arendt",
+        "charles_tilly",
+        "karl_polanyi",
+        "amartya_sen",
+        "stein_rokkan"
+      ],
+      "norwegian_thinker_ids": [
+        "stein_rokkan"
+      ],
+      "best_place_types": [
+        "ambassade",
+        "utenriksdepartement",
+        "fredsinstitusjon",
+        "forsvarsanlegg",
+        "storting",
+        "internasjonal_organisasjon",
+        "forskningsinstitutt"
+      ],
+      "source_priority": [
+        "offisielle lover, vedtak, budsjetter, valgdata, traktater, strategier, utredninger og institusjonsdokumenter",
+        "fagfellevurdert statsvitenskapelig forskning og anerkjente datasett",
+        "arkiv, stortingsdokumenter, kommunale dokumenter, SSB, Valgdirektoratet, regjeringen og internasjonale organisasjoner",
+        "canonical-fagkart som analytisk styring, aldri som faktakilde"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "core_problems": [
+        "Hvordan påvirker fravær av overordnet myndighet staters sikkerhetsvalg?",
+        "Når og hvordan oppstår internasjonalt samarbeid?",
+        "Hvordan balanserer småstater sikkerhet, avhengighet, normer og nasjonalt handlingsrom?"
+      ],
+      "mechanism_families": [
+        "maktbalanse",
+        "avskrekking",
+        "institusjonalisering",
+        "gjensidig avhengighet",
+        "normsosialisering",
+        "signalering",
+        "alliansedannelse",
+        "to-nivåspill"
+      ],
+      "critical_distinctions": [
+        "makt vs innflytelse",
+        "avskrekking vs forsvar",
+        "institusjon vs verdensregjering",
+        "sikkerhetsdilemma vs aggresjon",
+        "utenrikspolitikk vs internasjonal struktur"
+      ],
+      "generator_rule": "Krev eksplisitt analyseenhet, utfall, claim_basis, mekanisme og metode. Komparative og kausale påstander må ha design.",
+      "source_rule": "Faktapåstander hentes fra eksterne kilder og datasett; canonical-filene styrer bare faglig struktur.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "revised_method_ids": [
+        "met_pol_internasjonal_politisk_analyse",
+        "met_pol_utenrikspolitisk_analyse",
+        "met_pol_komparativt_forskningsdesign",
+        "met_pol_prosessporing"
+      ],
+      "generator_profile_id": "internasjonal_politikk_sikkerhet_samarbeid",
+      "mapping_quality_rule": "Alle mappinger krever analyseenhet, utfall, ekstern claim_basis, metode, mekanisme eller design, kritisk distinksjon og avgrenset rekkevidde.",
+      "vertical_chain_status": "complete",
+      "disciplinary_role": "political_science_core",
+      "political_science_core_weight": 1.0
+    },
+    {
+      "domain_id": "politisk_okonomi_stat_marked",
+      "label": "Politisk økonomi, stat og marked",
+      "tagline": "Hvordan politiske institusjoner former markeder, fordeling, vekst, regulering og økonomisk makt.",
+      "definition": "Domenet analyserer forholdet mellom stat og marked, skatt og omfordeling, kapital og arbeid, regulering, makroøkonomisk styring, globalisering, ulikhet, naturressurser, teknologi og grønn omstilling.",
+      "question_role": "Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt.",
+      "status": "complete_revised",
+      "emne_count": 5,
+      "hook_count": 10,
+      "method_count": 4,
+      "emne_ids": [
+        "em_pol_stat_marked_institusjoner",
+        "em_pol_skatt_omfordeling_preferanser",
+        "em_pol_makrookonomi_politisk_styring",
+        "em_pol_regulering_markedssvikt",
+        "em_pol_globalisering_gronn_omstilling"
+      ],
+      "hook_ids": [
+        "stat_marked_og_institusjoner",
+        "skatt_omfordeling_og_preferanser",
+        "kapital_arbeid_og_forhandlingsmakt",
+        "regulering_og_markedssvikt",
+        "sentralbank_finanspolitikk_og_uavhengighet",
+        "globalisering_og_nasjonalt_handlingsrom",
+        "ulikhet_og_politisk_makt",
+        "ressurser_rente_og_statskapasitet",
+        "teknologi_plattformer_og_markedsmakt",
+        "gronn_omstilling_og_fordelingskonflikt"
+      ],
+      "method_ids": [
+        "met_pol_politisk_okonomianalyse",
+        "met_pol_policy_design_og_virkemiddelanalyse",
+        "met_pol_komparativ_institusjonsanalyse",
+        "met_pol_kausalt_forskningsdesign"
+      ],
+      "recommended_oslo_cases": [
+        "Norges Bank",
+        "Finansdepartementet",
+        "Oslo Børs",
+        "Youngstorget",
+        "Stortinget",
+        "Regjeringskvartalet"
+      ],
+      "canonical_thinker_ids": [
+        "douglass_north",
+        "karl_polanyi",
+        "charles_lindblom",
+        "thomas_piketty",
+        "john_rawls",
+        "gosta_esping_andersen",
+        "karl_marx",
+        "mancur_olson",
+        "stein_rokkan",
+        "elinor_ostrom",
+        "max_weber",
+        "sheila_jasanoff",
+        "fritz_scharpf",
+        "robert_keohane",
+        "robert_dahl",
+        "theda_skocpol",
+        "amartya_sen"
+      ],
+      "norwegian_thinker_ids": [
+        "stein_rokkan"
+      ],
+      "best_place_types": [
+        "sentralbank",
+        "finansdepartement",
+        "børs",
+        "arbeidslivsinstitusjon",
+        "reguleringsmyndighet",
+        "energiselskap",
+        "teknologiselskap"
+      ],
+      "source_priority": [
+        "offisielle lover, vedtak, budsjetter, valgdata, traktater, strategier, utredninger og institusjonsdokumenter",
+        "fagfellevurdert statsvitenskapelig forskning og anerkjente datasett",
+        "arkiv, stortingsdokumenter, kommunale dokumenter, SSB, Valgdirektoratet, regjeringen og internasjonale organisasjoner",
+        "canonical-fagkart som analytisk styring, aldri som faktakilde"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "core_problems": [
+        "Hvordan former institusjoner økonomiske interesser og markeder?",
+        "Hvordan påvirker økonomisk ulikhet politisk makt og offentlig politikk?",
+        "Hvordan fordeles kostnader og gevinster ved regulering, globalisering og grønn omstilling?"
+      ],
+      "mechanism_families": [
+        "beskatning",
+        "regulering",
+        "kollektiv forhandling",
+        "kapitalmobilitet",
+        "rentefastsettelse",
+        "markedsmakt",
+        "policy feedback",
+        "kompensasjon"
+      ],
+      "critical_distinctions": [
+        "marked vs fravær av politikk",
+        "effektivitet vs fordeling",
+        "nominell vs reell verdi",
+        "markedsfeil vs styringssvikt",
+        "vekst vs velferd"
+      ],
+      "generator_rule": "Krev eksplisitt analyseenhet, utfall, claim_basis, mekanisme og metode. Komparative og kausale påstander må ha design.",
+      "source_rule": "Faktapåstander hentes fra eksterne kilder og datasett; canonical-filene styrer bare faglig struktur.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "revised_method_ids": [
+        "met_pol_politisk_okonomianalyse",
+        "met_pol_policy_design_og_virkemiddelanalyse",
+        "met_pol_komparativ_institusjonsanalyse",
+        "met_pol_kausalt_forskningsdesign"
+      ],
+      "generator_profile_id": "politisk_okonomi_stat_marked",
+      "mapping_quality_rule": "Alle mappinger krever analyseenhet, utfall, ekstern claim_basis, metode, mekanisme eller design, kritisk distinksjon og avgrenset rekkevidde.",
+      "vertical_chain_status": "complete",
+      "disciplinary_role": "political_science_core",
+      "political_science_core_weight": 1.0
+    },
+    {
+      "domain_id": "statsvitenskapelig_metode_og_sammenligning",
+      "label": "Statsvitenskapelig metode og sammenligning",
+      "tagline": "Hvordan begreper, data, sammenligninger og forskningsdesign brukes til å bygge etterprøvbar politisk kunnskap.",
+      "definition": "Domenet dekker begrepsdannelse, operasjonalisering, kausalitet, komparativt design, caseutvalg, prosessporing, statistisk inferens, survey og eksperiment, dokumentanalyse, normativ analyse, forskningsetikk og reproduserbarhet.",
+      "question_role": "Start i dokumentert politisk enhet, institusjon, beslutning, hendelse eller datasett. Definer utfall, identifiser mekanisme, test en konkurrerende forklaring eller komparativ distinksjon, og bruk teori til slutt.",
+      "status": "complete_revised",
+      "emne_count": 5,
+      "hook_count": 10,
+      "method_count": 5,
+      "emne_ids": [
+        "em_pol_begreper_operasjonalisering",
+        "em_pol_kausalitet_forskningsdesign",
+        "em_pol_komparativ_metode_caseutvalg",
+        "em_pol_kvantitativ_inferens_maling",
+        "em_pol_kvalitativ_prosessporing_etikk"
+      ],
+      "hook_ids": [
+        "begrepsdannelse_og_operasjonalisering",
+        "kausalitet_og_kontrafaktiske_sporsmal",
+        "komparativt_design_most_similar_different",
+        "caseutvalg_og_generaliserbarhet",
+        "prosessporing_og_mekanisme",
+        "statistisk_inferens_og_usikkerhet",
+        "survey_eksperiment_og_maling",
+        "dokument_kildekritikk_og_data",
+        "normativ_og_empirisk_analyse",
+        "forskningsetikk_og_reproduserbarhet"
+      ],
+      "method_ids": [
+        "met_pol_kausalt_forskningsdesign",
+        "met_pol_komparativt_forskningsdesign",
+        "met_pol_prosessporing",
+        "met_pol_survey_og_valgdataanalyse",
+        "met_pol_dokumentanalyse"
+      ],
+      "recommended_oslo_cases": [
+        "Universitetet i Oslo",
+        "Statistisk sentralbyrå",
+        "Nasjonalbiblioteket",
+        "Riksarkivet",
+        "NUPI",
+        "Valgdirektoratet"
+      ],
+      "canonical_thinker_ids": [
+        "giovanni_sartori",
+        "gary_king",
+        "max_weber",
+        "john_stuart_mill",
+        "karl_popper",
+        "arend_lijphart",
+        "theda_skocpol",
+        "charles_tilly",
+        "sidney_verba",
+        "herbert_simon",
+        "james_c_scott",
+        "sheila_jasanoff",
+        "john_rawls",
+        "amartya_sen",
+        "hannah_arendt"
+      ],
+      "norwegian_thinker_ids": [],
+      "best_place_types": [
+        "universitet",
+        "arkiv",
+        "statistikkontor",
+        "forskningsinstitutt",
+        "bibliotek",
+        "valgadministrasjon",
+        "offentlig_utredning"
+      ],
+      "source_priority": [
+        "offisielle lover, vedtak, budsjetter, valgdata, traktater, strategier, utredninger og institusjonsdokumenter",
+        "fagfellevurdert statsvitenskapelig forskning og anerkjente datasett",
+        "arkiv, stortingsdokumenter, kommunale dokumenter, SSB, Valgdirektoratet, regjeringen og internasjonale organisasjoner",
+        "canonical-fagkart som analytisk styring, aldri som faktakilde"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "core_problems": [
+        "Hvordan måles politiske begreper uten å forveksle indikator med fenomen?",
+        "Hvordan skilles årsak fra samvariasjon og fortelling?",
+        "Hvordan kan resultater generaliseres med kjent usikkerhet og etisk forsvarlig databruk?"
+      ],
+      "mechanism_families": [
+        "operasjonalisering",
+        "caseutvalg",
+        "kontrafaktisk inferens",
+        "prosessporing",
+        "målevalidering",
+        "statistisk estimering",
+        "triangulering",
+        "replikasjon"
+      ],
+      "critical_distinctions": [
+        "begrep vs indikator",
+        "korrelasjon vs kausalitet",
+        "case vs observasjon",
+        "intern vs ekstern validitet",
+        "empirisk vs normativ påstand"
+      ],
+      "generator_rule": "Krev eksplisitt analyseenhet, utfall, claim_basis, mekanisme og metode. Komparative og kausale påstander må ha design.",
+      "source_rule": "Faktapåstander hentes fra eksterne kilder og datasett; canonical-filene styrer bare faglig struktur.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "revised_method_ids": [
+        "met_pol_kausalt_forskningsdesign",
+        "met_pol_komparativt_forskningsdesign",
+        "met_pol_prosessporing",
+        "met_pol_survey_og_valgdataanalyse",
+        "met_pol_dokumentanalyse"
+      ],
+      "generator_profile_id": "statsvitenskapelig_metode_og_sammenligning",
+      "mapping_quality_rule": "Alle mappinger krever analyseenhet, utfall, ekstern claim_basis, metode, mekanisme eller design, kritisk distinksjon og avgrenset rekkevidde.",
+      "vertical_chain_status": "complete",
+      "disciplinary_role": "political_science_core",
+      "political_science_core_weight": 1.0
     }
   ],
   "source_priority": [
-    "konkrete institusjoner, lover, reformer, offentlige rom, rettsbygg, forvaltningssteder, demokratiske arenaer, velferdstjenester, konflikter, proteststeder, normsystemer og sosiale prosesser",
-    "offisielle kommune-, stat-, Storting-, domstol-, Lovdata-, SSB-, arkiv-, partiprogram-, utrednings-, rapport-, budsjett-, reguleringsplan- eller institusjonskilder",
-    "politisk historie, samfunnsfaglig forskning, rettskilder, NOU-er, stortingsmeldinger, kommunale dokumenter, statistikk, levekårsdata, demografiske data og forvaltningsdokumenter",
-    "dokumentert samfunnsprosess: styring, representasjon, fordeling, rettssikkerhet, regulering, konflikt, offentlighet, legitimitet, normalitet, sosial kontroll eller kollektiv beslutning",
-    "dokumentert politisk offentlighet: debatt, protest, organisering, partier, bevegelser, interessegrupper, sivilsamfunn, ytringsfrihet, polarisering og demokratiske møteplasser",
-    "stedsdata/persondata i appen",
-    "fagkart, methods, emner, mapping og pensum som styring – ikke faktakilde"
+    "offisielle institusjons-, lov-, budsjett-, valg-, traktat-, policy- og forvaltningskilder",
+    "Valgdirektoratet, SSB, Stortinget, regjeringen, kommuner, domstoler, Norges Bank og relevante internasjonale organisasjoner",
+    "fagfellevurdert statsvitenskapelig forskning, komparative datasett og metodebeskrivelser",
+    "arkiv, utredninger, evalueringer, surveydata, valgdata, administrative data og dokumenterte hendelsesforløp",
+    "canonical-filer som analytisk styring, aldri som faktakilde"
   ],
   "primary_category_rule": {
     "accept_as_politikk_primary_when": [
@@ -1061,13 +1826,22 @@
       "hovedpoenget er fordeling, velferd, levekår, ulikhet, klasse, boligpolitikk, helsepolitikk, sosialpolitikk, utdanning, demografi eller ressursprioritering",
       "hovedpoenget er politisk konflikt, makt, interessegruppe, sivilsamfunn, organisasjon, demonstrasjon, protest, aktivisme, ideologi eller konfliktlinje",
       "hovedpoenget er normer, normalitet, minoritet, majoritet, identitet, kjønn, familie, integrering, migrasjon, hverdagsliv eller sosial kontroll",
+      "hovedpoenget er komparativ politikk, statsdannelse, statlig kapasitet, regimetype, demokratisering, maktfordeling, federalisme eller institusjonell endring",
+      "hovedpoenget er valgsystem, mandatfordeling, partisystem, kandidatseleksjon, regjeringsdannelse, velgeratferd, kampanje eller politisk ansvarliggjøring",
+      "hovedpoenget er offentlig politikk, problemdefinisjon, dagsorden, virkemiddeldesign, implementering, evaluering, policy feedback, samordning eller krisestyring",
+      "hovedpoenget er internasjonal politikk, sikkerhet, allianser, avskrekking, utenrikspolitikk, internasjonale institusjoner, menneskerettigheter eller transnasjonale utfordringer",
+      "hovedpoenget er politisk økonomi, stat–marked-forhold, skatt, makroøkonomisk styring, regulering, globalisering, økonomisk makt eller grønn omstilling",
+      "hovedpoenget er statsvitenskapelig forskningsdesign, begrepsdannelse, operasjonalisering, kausalitet, komparasjon, prosessporing, survey, valgdata eller inferens",
       "quiz kan bygges fra politiske, rettslige, forvaltningsmessige, statistiske, historiske eller samfunnsfaglige kilder"
     ],
     "do_not_accept_as_politikk_primary_when": [
       "hovedrollen er byarkitektur, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller populærkultur",
       "stedet er bare nær et maktbygg eller har vag samfunnsvinkel uten dokumentert institusjons-, lov-, fordelings-, konflikt-, norm-, offentlighets- eller forvaltningsmessig hovedrolle",
       "personen er kulturpersonlighet, næringslivsaktør, forsker, artist, idrettsutøver eller medieperson der politisk rolle bare er sekundærlag",
-      "politikk bare er sekundærlag uten institusjon, lov, reform, vedtak, offentlig tjeneste, rettighet, konflikt, fordeling, norm, offentlighet eller kilde"
+      "politikk bare er sekundærlag uten institusjon, lov, reform, vedtak, offentlig tjeneste, rettighet, konflikt, fordeling, norm, offentlighet eller kilde",
+      "internasjonal historie, diplomati eller krigshistorie uten eksplisitt politisk analyseenhet, mekanisme eller institusjonell problemstilling",
+      "økonomi eller næringsliv uten politisk institusjon, regulering, maktforhold, fordelingsvirkning eller styringsmekanisme",
+      "metodebegrep uten et faktisk politisk spørsmål, datasett, case eller inferensproblem"
     ],
     "secondary_politikk_tag_allowed": true
   },
@@ -1132,7 +1906,11 @@
       "urban_policy",
       "regulation_plan"
     ],
-    "recommended_question_path": "politisk/samfunnsfaglig kilde eller konkret institusjon/lov/konflikt/fordeling/norm -> presist claim -> sted/person/institusjon/prosess -> metode -> emne -> teori"
+    "recommended_question_path": "politisk/samfunnsfaglig kilde eller konkret institusjon/lov/konflikt/fordeling/norm -> presist claim -> sted/person/institusjon/prosess -> metode -> emne -> teori",
+    "political_science_primary": true,
+    "comparative_claims_require_case_selection_and_comparable_indicators": true,
+    "causal_claims_require_design_or_mechanism": true,
+    "theorist_name_never_sufficient": true
   },
   "migration_targets": {
     "places_file": "data/places/politikk/oslo/places_politikk.json",
@@ -1141,5 +1919,43 @@
     "required_people_emne_prefix": "em_pol_",
     "review_note": "Steder og personer i politikk må senere sjekkes mot denne pakken, slik at by-, historie-, næringslivs-, media-, kunst-, litteratur-, musikk-, sport-, natur- og vitenskapsposter ikke blir liggende i politikk hvis hovedkategori er feil."
   },
-  "editorial_revision": "politikk-fordeling-vertical-2026-07-24"
+  "editorial_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+  "disciplinary_profile": {
+    "primary_discipline": "statsvitenskap",
+    "level": "bachelor_core",
+    "political_science_core_domain_count": 8,
+    "supporting_bridge_domain_count": 4,
+    "core_subfields": [
+      "political institutions",
+      "comparative politics",
+      "electoral politics",
+      "public policy",
+      "international relations",
+      "political economy",
+      "political methodology"
+    ],
+    "supporting_fields": [
+      "political sociology",
+      "sociology of law",
+      "social policy",
+      "norm and identity analysis"
+    ],
+    "design_rule": "Statsvitenskapelige forklaringer skal dominere kategorien. Støttefag brukes når de presiserer mekanisme, konsekvens eller normativ konflikt."
+  },
+  "learning_outcomes": {
+    "knowledge": [
+      "forklare sentrale institusjoner, regimetyper, valgsystemer, policyprosesser, internasjonale mekanismer og politisk-økonomiske sammenhenger",
+      "skille sentrale statsvitenskapelige begreper og analysenivåer"
+    ],
+    "skills": [
+      "formulere sammenlignbare og kausalt presise spørsmål",
+      "velge metode etter påstand og datagrunnlag",
+      "analysere politiske utfall gjennom institusjoner, aktører, interesser og mekanismer"
+    ],
+    "general_competence": [
+      "vurdere kildegrunnlag, usikkerhet og generaliserbarhet",
+      "skille empiriske, kausale og normative påstander",
+      "anvende teori uten å erstatte dokumentasjon med teoretikernavn"
+    ]
+  }
 }
