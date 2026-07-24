@@ -10,11 +10,11 @@
     "emner": "emner_politikk_canonical_v4_5.json",
     "emnemapping": "emnemapping_politikk_canonical_v4_5.json",
     "pensum": "politikkpensum_canonical_v4_5.json",
-    "domain_count": 6,
-    "emne_count": 59,
-    "method_count": 38,
-    "mapping_count": 59,
-    "topic_hook_count": 60
+    "domain_count": 12,
+    "emne_count": 101,
+    "method_count": 61,
+    "mapping_count": 99,
+    "topic_hook_count": 130
   },
   "hard_rules": {
     "source_dominance_rule": "Eksterne politiske, rettslige, forvaltningsmessige, statistiske, historiske og samfunnsfaglige kilder, konkrete institusjoner, lover, reformer, vedtak, budsjett, reguleringsplaner, rettsbygg, offentlige tjenester, demokratiske arenaer, konflikter, protester, normsystemer, fordelingsdata, levekårsdata, demografi, arkiver, utredninger og dokumenterte samfunnsprosesser skal dominere det synlige faktainnholdet i politikkquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
@@ -100,7 +100,10 @@
     "policy_claims_distinguish_output_outcome_and_impact": true,
     "international_relations_claims_require_level_of_analysis": true,
     "political_economy_claims_require_distributional_incidence": true,
-    "method_claims_require_scope_and_uncertainty": true
+    "method_claims_require_scope_and_uncertainty": true,
+    "constitutional_claims_require_rule_actor_mechanism_and_outcome": true,
+    "executive_legislative_claims_require_accountability_or_agenda_mechanism": true,
+    "democratic_backsliding_claims_require_baseline_sequence_and_institutional_indicator": true
   },
   "soft_preferences": {
     "preferred_external_source_mix_per_place": [
@@ -2101,7 +2104,7 @@
     },
     "komparativ_politikk_regimer_institusjoner": {
       "status": "complete_revised",
-      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "quality_revision": "politikk-institusjoner-vertical-phase-1-2026-07-24",
       "required_question_chain": [
         "external_source",
         "unit_of_analysis",
@@ -2125,7 +2128,7 @@
         "met_pol_komparativt_forskningsdesign",
         "met_pol_prosessporing"
       ],
-      "hook_count": 10,
+      "hook_count": 20,
       "method_selection_rule": "Metoden velges etter påstand, analyseenhet, datakilde og inferensbehov.",
       "theory_rule": "Teori kommer etter ekstern dokumentasjon og metode, og må forklare eller sammenligne mekanismen.",
       "rejection_rules": [
@@ -2133,7 +2136,74 @@
         "avvis komparasjon uten sammenlignbare indikatorer",
         "avvis kausal påstand uten design eller mekanisme",
         "avvis generalisering uten scope condition"
-      ]
+      ],
+      "required_hook_ids": [
+        "demokrati_og_autokrati",
+        "demokratisk_tilbakegang_og_institusjonell_uthuling",
+        "domstolskontroll_og_konstitusjonsdomstoler",
+        "enhetsstat_foderalisme_territorial_makt",
+        "ett_og_tokammersystemer",
+        "federalisme_og_desentralisering",
+        "flertalls_og_konsensusdemokrati",
+        "institusjonell_endring_og_stiavhengighet",
+        "koalisjoner_og_mindretallsregjeringer",
+        "komparativ_velferdsstat",
+        "maktfordeling_og_vetospillere",
+        "mistillit_kabinett_opplosning",
+        "parlamentarisme_og_presidentialisme",
+        "parlamentarisme_og_presidentstyre",
+        "rettsstat_og_demokratisk_tilbakegang",
+        "sivilt_militaert_forhold",
+        "statsborgerskap_og_nasjon",
+        "statsdannelse_og_statlig_kapasitet",
+        "utovende_og_lovgivende_makt",
+        "vetospillere_og_beslutningskapasitet"
+      ],
+      "required_method_ids": [
+        "met_pol_parlamentarisk_ansvarlighetsanalyse",
+        "met_pol_vetospilleranalyse",
+        "met_pol_foderalisme_og_flernivaanalyse",
+        "met_pol_konstitusjonell_domstolsanalyse",
+        "met_pol_institusjonell_tilbakegangsanalyse",
+        "met_pol_lovgivningsstruktur_analyse"
+      ],
+      "vertical_depth_phase_1": {
+        "revision": "politikk-institusjoner-vertical-phase-1-2026-07-24",
+        "hook_ids": [
+          "parlamentarisme_og_presidentstyre",
+          "flertalls_og_konsensusdemokrati",
+          "enhetsstat_foderalisme_territorial_makt",
+          "ett_og_tokammersystemer",
+          "koalisjoner_og_mindretallsregjeringer",
+          "mistillit_kabinett_opplosning",
+          "vetospillere_og_beslutningskapasitet",
+          "domstolskontroll_og_konstitusjonsdomstoler",
+          "utovende_og_lovgivende_makt",
+          "demokratisk_tilbakegang_og_institusjonell_uthuling"
+        ],
+        "emne_ids": [
+          "em_pol_institusjonsfordypning_parlamentarisme_presidentstyre",
+          "em_pol_institusjonsfordypning_flertalls_konsensusdemokrati",
+          "em_pol_institusjonsfordypning_enhetsstat_foderalisme",
+          "em_pol_institusjonsfordypning_ett_tokammersystem",
+          "em_pol_institusjonsfordypning_koalisjoner_mindretallsregjeringer",
+          "em_pol_institusjonsfordypning_mistillit_opplosningsrett",
+          "em_pol_institusjonsfordypning_vetospillere_beslutningskapasitet",
+          "em_pol_institusjonsfordypning_domstolskontroll_konstitusjonsdomstoler",
+          "em_pol_institusjonsfordypning_utovende_lovgivende_makt",
+          "em_pol_institusjonsfordypning_demokratisk_tilbakegang"
+        ],
+        "method_ids": [
+          "met_pol_parlamentarisk_ansvarlighetsanalyse",
+          "met_pol_vetospilleranalyse",
+          "met_pol_foderalisme_og_flernivaanalyse",
+          "met_pol_konstitusjonell_domstolsanalyse",
+          "met_pol_institusjonell_tilbakegangsanalyse",
+          "met_pol_lovgivningsstruktur_analyse"
+        ],
+        "question_blueprint_count": 10,
+        "status": "complete_revised"
+      }
     },
     "valg_partier_velgeratferd": {
       "status": "complete_revised",
@@ -2453,6 +2523,30 @@
     ],
     "comparative_rule": "Sammenligninger krever begrunnet caseutvalg og sammenlignbare indikatorer.",
     "causal_rule": "Kausale påstander krever mekanisme, kontrafaktisk design eller eksplisitt identifikasjonsstrategi.",
-    "support_field_rule": "Sosiologiske, rettslige og normative perspektiver skal presisere, ikke erstatte, statsvitenskapelig analyseenhet og forklaring."
+    "support_field_rule": "Sosiologiske, rettslige og normative perspektiver skal presisere, ikke erstatte, statsvitenskapelig analyseenhet og forklaring.",
+    "vertical_depth_phase_1": {
+      "revision": "politikk-institusjoner-vertical-phase-1-2026-07-24",
+      "required_domain": "komparativ_politikk_regimer_institusjoner",
+      "required_hook_ids": [
+        "parlamentarisme_og_presidentstyre",
+        "flertalls_og_konsensusdemokrati",
+        "enhetsstat_foderalisme_territorial_makt",
+        "ett_og_tokammersystemer",
+        "koalisjoner_og_mindretallsregjeringer",
+        "mistillit_kabinett_opplosning",
+        "vetospillere_og_beslutningskapasitet",
+        "domstolskontroll_og_konstitusjonsdomstoler",
+        "utovende_og_lovgivende_makt",
+        "demokratisk_tilbakegang_og_institusjonell_uthuling"
+      ],
+      "required_method_ids": [
+        "met_pol_parlamentarisk_ansvarlighetsanalyse",
+        "met_pol_vetospilleranalyse",
+        "met_pol_foderalisme_og_flernivaanalyse",
+        "met_pol_konstitusjonell_domstolsanalyse",
+        "met_pol_institusjonell_tilbakegangsanalyse",
+        "met_pol_lovgivningsstruktur_analyse"
+      ]
+    }
   }
 }

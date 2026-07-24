@@ -55,3 +55,10 @@ Statsvitenskap er nå fagets eksplisitte hoveddisiplin. Politisk sosiologi, rett
 - Alle seks aktive canonical JSON-filer og spørsmålsplanene parser.
 - `git diff --check` består.
 - Ingen `kvalitetslag_v1`, overlay eller parallell runtime-sidekanal er innført.
+
+## Vertikal fase 1 — politiske institusjoner
+
+- Revisjon: `politikk-institusjoner-vertical-phase-1-2026-07-24`
+- Komparativt domene: 20 hooks
+- Totalt: 130 hooks, 101 emner, 61 metoder og 99 mappinger
+- Spørsmålsplaner: 40 totalt
