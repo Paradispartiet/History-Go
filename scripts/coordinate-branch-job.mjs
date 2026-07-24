@@ -280,7 +280,7 @@ const summary = {
   coordStatusCounts: statusCounts,
   centralRows,
   rankedOsloRows,
-  orphanOsloEvidence,
+  orphanOsloEvidence: orphanEvidence,
   nextCandidate,
   decision: centralProductionReady.length > 0
     ? 'continue_with_production_ready_central_candidate'
