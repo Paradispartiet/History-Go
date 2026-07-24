@@ -1,0 +1,37 @@
+name: People balance diagnose
+
+on:
+  push:
+    branches:
+      - agent/oslo-politikk-people-full-coverage
+    paths:
+      - '.github/workflows/people-balance-diagnose.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-politikk-people-full-coverage
+
+      - name: Capture balance test
+        shell: bash
+        run: |
+          set +e
+          node tests/oslo-politikk-final-people-expansion.test.js > reports/oslo-politikk-people-full-coverage/balance-test.log 2>&1
+          status=$?
+          echo "exit_status=$status" >> reports/oslo-politikk-people-full-coverage/balance-test.log
+          exit 0
+
+      - name: Commit diagnostic log
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/oslo-politikk-people-full-coverage/balance-test.log
+          git commit -m 'Logg People-balansekontroll'
+          git push origin HEAD:agent/oslo-politikk-people-full-coverage
