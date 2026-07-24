@@ -1,0 +1,141 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "naturhistorisk_museum",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/naturhistorisk_museum.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_official_nhm_address_point_inside_named_museum_building",
+  "currentCoordinate": {
+    "lat": 59.92013360357791,
+    "lon": 10.770992295176185,
+    "r": 170,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Kartverket/Geonorge for Sars' gate 1, 0562 Oslo. Brønnøysundregistrene bekrefter Naturhistorisk museum som UiO-underenhet 926495720 under Universitetet i Oslo 971035854 på samme adresse. Punktet ligger inne i den navngitte UiO-bygningen Zoologisk museum, OSM way 27011865 (building=university, tourism=museum, Wikidata Q12011265), som dekker 1555 m². Punktet ligger 34.1 meter fra bygningens sentrum og 56 meter fra det dedikerte Naturhistorisk museum-POI-et OSM node 5412354900, som peker til den offisielle NHM-nettsiden og Wikidata Q1840963. Den tidligere markøren lå 371.9 meter unna. Radius 170 meter beholdes og dekker støttebyggets største målte sentrum-til-hjørne-avstand på 41.1 meter. Botanisk hage er eksplisitt beholdt som et separat canonical sted og brukes ikke som museumsmarkør."
+  },
+  "identity": {
+    "currentName": "Naturhistorisk museum",
+    "resolvedIdentity": "Naturhistorisk museum ved Universitetet i Oslo, underenhet 926495720, Sars' gate 1, 0562 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt offisiell besøksadresse",
+    "UiO- og Brønnøysund-identitet",
+    "fysisk museumbygg og dedikert institusjons-POI",
+    "avgrensning mot Botanisk hage"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Adresser API v1 – Sars' gate 1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Sars%27%20gate&nummer=1&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16202:1:59.92013360,10.77099230",
+      "sourceQuality": "official_address",
+      "finding": "Ett unikt offisielt representasjonspunkt for Sars' gate 1, 0562 Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Punktet ligger inne i et navngitt museumbygg og nær dedikert NHM-POI."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – Naturhistorisk museum",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/underenheter/926495720",
+      "sourceObjectId": "brreg-underenhet:926495720",
+      "sourceQuality": "official_operating_location",
+      "finding": "Bekrefter Naturhistorisk museum, UiO-overordnet enhet og Sars' gate 1, 0562 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell institusjons- og adresseidentitet."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 5412354900 – Naturhistorisk museum",
+      "sourceUrl": "https://www.openstreetmap.org/node/5412354900",
+      "sourceObjectId": "osm-node:5412354900",
+      "sourceQuality": "named_museum_institution_poi",
+      "finding": "Dedikert museum-POI med offisiell NHM-nettside og Wikidata Q1840963, 56 meter fra adressepunktet.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter institusjonens museumsfunksjon og identitet i området."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 27011865 – Zoologisk museum",
+      "sourceUrl": "https://www.openstreetmap.org/way/27011865",
+      "sourceObjectId": "osm-way:27011865",
+      "sourceQuality": "complete_named_museum_building_geometry",
+      "finding": "Navngitt UiO-museumbygg med Wikidata Q12011265. 27 noder, 1555 m²; Kartverket-punktet ligger inne i bygget.",
+      "canVerifyCoordinate": true,
+      "reason": "Fysisk bygningskryssjekk for det offisielle adressepunktet."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Canonical Botanisk hage scope",
+      "sourceUrl": "data/places/vitenskap/oslo/places_vitenskap/botanisk_hage.json",
+      "sourceObjectId": "history-go-place:botanisk_hage",
+      "sourceQuality": "canonical_scope_guard",
+      "finding": "Botanisk hage er allerede et separat canonical sted og ble eksplisitt forkastet som museumsmarkør.",
+      "canVerifyCoordinate": false,
+      "reason": "Forhindrer at museum og hage kollapser til samme sted."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Sars' gate 1, 0562 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16202:1:59.92013360,10.77099230",
+      "lat": 59.92013360357791,
+      "lon": 10.770992295176185,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16202:1:59.92013360,10.77099230",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:5412354900",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:27011865",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q1840963",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:27011865",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16202:1:59.92013360,10.77099230",
+      "lat": 59.92013360357791,
+      "lon": 10.770992295176185,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kartverket-punktet for Sars' gate 1 er anvendt som canonical display-markør etter UiO/Brønnøysund-, museums-POI- og bygningskontroll."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Kartverket/Geonorge for Sars' gate 1, 0562 Oslo. Brønnøysundregistrene bekrefter Naturhistorisk museum som UiO-underenhet 926495720 under Universitetet i Oslo 971035854 på samme adresse. Punktet ligger inne i den navngitte UiO-bygningen Zoologisk museum, OSM way 27011865 (building=university, tourism=museum, Wikidata Q12011265), som dekker 1555 m². Punktet ligger 34.1 meter fra bygningens sentrum og 56 meter fra det dedikerte Naturhistorisk museum-POI-et OSM node 5412354900, som peker til den offisielle NHM-nettsiden og Wikidata Q1840963. Den tidligere markøren lå 371.9 meter unna. Radius 170 meter beholdes og dekker støttebyggets største målte sentrum-til-hjørne-avstand på 41.1 meter. Botanisk hage er eksplisitt beholdt som et separat canonical sted og brukes ikke som museumsmarkør.",
+    "Research report: reports/oslo-coordinate-naturhistorisk-museum-research-post-195/summary.json"
+  ]
+}
