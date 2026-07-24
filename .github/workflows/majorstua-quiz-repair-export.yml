@@ -1,0 +1,66 @@
+name: Majorstua quiz repair export
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  export:
+    if: startsWith(github.head_ref, 'agent/quiz-majorstua-normal-opening')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Export complete Majorstua quiz
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/majorstua-repair
+          cp data/quiz/by/majorstua_sets.json /tmp/majorstua-repair/majorstua_sets.json
+          node - <<'NODE'
+          const fs = require('fs');
+          const doc = JSON.parse(fs.readFileSync('data/quiz/by/majorstua_sets.json', 'utf8'));
+          const summary = doc.sets.map((set) => ({
+            set_id: set.set_id,
+            level: set.level,
+            order: set.order,
+            question_count: set.questions.length,
+            questions: set.questions.map((q) => ({
+              id: q.id,
+              quiz_id: q.quiz_id,
+              question: q.question,
+              options: q.options,
+              answer: q.answer,
+              answerIndex: q.answerIndex,
+              question_type: q.question_type,
+              question_layer: q.question_layer,
+              difficulty: q.difficulty,
+              dimension: q.dimension,
+              topic: q.topic,
+              year: q.year,
+              emne_id: q.emne_id,
+              method_id: q.method_id,
+              theory_id: q.theory_id,
+              theorist_id: q.theorist_id,
+              core_concepts: q.core_concepts,
+              knowledge: q.knowledge,
+              source: q.source,
+              claim_basis: q.claim_basis,
+              knowledge_unit_ids: q.knowledge_unit_ids,
+              primary_knowledge_unit_id: q.primary_knowledge_unit_id,
+              concept_ids: q.concept_ids,
+              term_ids: q.term_ids,
+              tags: q.tags
+            }))
+          }));
+          fs.writeFileSync('/tmp/majorstua-repair/majorstua_question_audit.json', JSON.stringify(summary, null, 2));
+          console.log(`Exported ${summary.reduce((sum, set) => sum + set.question_count, 0)} questions.`);
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: majorstua-quiz-repair-input
+          path: /tmp/majorstua-repair/
