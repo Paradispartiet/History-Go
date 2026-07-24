@@ -1,9 +1,9 @@
 {
-  "version": "2.0",
+  "version": "3.0",
   "status": "canonical_category_profile",
   "type": "category_quiz_profile",
   "categoryId": "sport",
-  "title": "Sport",
+  "title": "Sport & lek",
   "governance": {
     "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
@@ -12,43 +12,169 @@
     "may_override_global_rules": false
   },
   "required_emne_prefix": "em_sport_",
+  "quality_layer": {
+    "manifest": "data/fag/sport/sport_quality_manifest_v5.json",
+    "theory_hooks": "data/fag/sport/theory_hooks_sport_canonical_v5.json",
+    "thinkers": "data/fag/sport/teoretikere_sport_canonical_v5.json",
+    "concepts": "data/fag/sport/begreper_sport_canonical_v5.json",
+    "methods": "data/fag/sport/methods_sport_quality_v5.json",
+    "curriculum": "data/fag/sport/sportpensum_extension_canonical_v5.json",
+    "compatibility_rule": "Velg fortsatt emne_id fra emner_sport_canonical_v4_5.json. V5-hook, concept_id og analysis_method_v5 brukes til å skjerpe forklaring og kildegrunnlag."
+  },
   "content_priorities": [
-    "utøver, lag, klubb og konkurranse",
-    "resultater, rekorder og historiske hendelser",
-    "arena, anlegg, regler og utstyr",
-    "forbund, organisering og profesjonalisering",
-    "supporterkultur, identitet, ritual og samfunnsrolle"
+    "lek, regler, idrettens egenart og fair konkurranse",
+    "idrettshistorie, profesjonalisering, rekorder og olympisme",
+    "arena, anlegg, Groundhopper, stedstilknytning og idrettsminne",
+    "taktikk, spillmodell, kampanalyse og beslutning",
+    "ferdighetslæring, øvelsesdesign og trenerpedagogikk",
+    "treningsfysiologi, biomekanikk, restitusjon og målekvalitet",
+    "motivasjon, press, lagdynamikk og ledelse",
+    "klubb, forbund, frivillighet, økonomi og styring",
+    "supporterkultur, medier, ritual, lokal og global identitet",
+    "kjønn, rasisering, paraidrett, tilgjengelighet og interseksjonalitet",
+    "doping, teknologi, utøverdata, dommeravgjørelser og idrettsetikk",
+    "folkehelse, barns rettigheter, sosial tilgang, lek og miljø"
   ],
   "essential_concepts": [
-    "nasjonalarena",
-    "klubbidentitet",
-    "supporterkultur",
-    "taktikk",
+    "sport",
+    "lek",
+    "konstitutiv regel",
+    "konkurranse",
     "rekord",
     "profesjonalisering",
-    "ritual",
-    "idrettsinstitusjon"
+    "idrettsarena",
+    "stedstilknytning",
+    "groundhopping",
+    "taktikk",
+    "spillmodell",
+    "overgang",
+    "persepsjon–handling",
+    "begrensningsstyrt læring",
+    "treningsbelastning",
+    "periodisering",
+    "målevaliditet",
+    "mestringstro",
+    "selvbestemmelse",
+    "safeguarding",
+    "medlemsdemokrati",
+    "supporterkultur",
+    "interseksjonalitet",
+    "tilgjengelighet",
+    "fair play",
+    "utøverdata",
+    "fysisk aktivitet",
+    "aktivitetsulikhet",
+    "idrettens klimaavtrykk"
   ],
   "preferred_source_types": [
-    "forbunds- og klubbarkiv",
-    "resultatdatabaser og konkurransedokumentasjon",
-    "idrettshistorie og museumskilder",
-    "arena- og arrangementsdokumentasjon"
+    "gjeldende regelverk fra forbund og konkurranseorgan",
+    "fagfellevurdert idrettsvitenskap, idrettsmedisin, biomekanikk og idrettspsykologi",
+    "offisielle resultat-, hendelses- og konkurransedata med dokumentert definisjon",
+    "klubb-, forbunds-, kommune-, museum- og arkivkilder",
+    "systematisk kampvideo, feltobservasjon eller treningsdata med eksplisitt metode",
+    "fagfellevurdert idrettshistorie, idrettssosiologi, økonomi, pedagogikk og etikk",
+    "utøver- og supporterintervjuer brukt som situerte kilder og triangulert mot annet materiale"
   ],
+  "question_quality": {
+    "required": [
+      "konkret sportanker",
+      "gyldig emne_id med prefikset em_sport_",
+      "sporbar kilde eller dokumentert observasjon",
+      "presist begrep eller mekanisme",
+      "knowledge-forklaring som viser hvorfor svaret er riktig og hva som skiller det fra nærliggende alternativer"
+    ],
+    "forbidden": [
+      "Hvem er best?",
+      "Hvilken klubb liker du best?",
+      "ren resultat- eller årstalltrivia uten betydning og kontekst",
+      "teoretikernavn uten verk, problem, begrep eller dokumentert anvendelse",
+      "medisinsk diagnose eller individuell skadeprediksjon",
+      "treningsresept uten målgruppe, forutsetninger, progresjon og sikkerhetsramme",
+      "stereotype forklaringer om kjønn, rase, nasjonalitet eller funksjonsevne",
+      "påstand om at sensor- eller trackingdata er en nøytral fasit"
+    ],
+    "comparison_rule": "Sammenlign teorier, modeller, spillformer eller perioder bare når sammenligningsgrunnlaget er eksplisitt og caset støttes av samme type evidens.",
+    "result_rule": "Et resultat eller en rekord kan brukes når spørsmålet også lærer bort vilkår, historisk betydning, målemetode eller taktisk/fysiologisk mekanisme.",
+    "youth_rule": "Spørsmål om barn og unge skal prioritere trygghet, medvirkning, utvikling og safeguarding framfor seleksjons- og resultatlogikk.",
+    "science_rule": "Skill korrelasjon fra årsak, gruppefunn fra individ og målbar forskjell fra praktisk relevant endring."
+  },
+  "coverage_targets": {
+    "history_place_and_memory": 0.18,
+    "tactics_skill_and_coaching": 0.22,
+    "physiology_biomechanics_and_data": 0.2,
+    "organization_supporters_and_media": 0.16,
+    "inclusion_ethics_and_safeguarding": 0.14,
+    "health_play_and_environment": 0.1
+  },
   "category_rules": [
-    "Start med dokumentert stoff fra kategorien, ikke med emneetiketten.",
-    "Bevar relevante faguttrykk i spørsmål, knowledge eller metadata.",
-    "Bruk bare emne_id som finnes i kategoriens emnefil.",
-    "Kategori-profilen styrer faglig utvalg, men ikke global quizbalanse eller språk."
+    "Start med dokumentert stoff fra sporten, ikke med emneetiketten eller teoretikernavnet.",
+    "Bevar relevante faguttrykk i spørsmål, knowledge og metadata, og forklar dem uten å vanne dem ut.",
+    "Bruk bare emne_id som finnes i kategoriens aktive emnefil.",
+    "Bruk V5-hook og begrepsregister som kvalitetslag, men la globale quizregler styre settrekkefølge og språk.",
+    "Roter mellom steder, idretter, kjønn, nivåer, funksjonsevne, geografier og kildetyper.",
+    "Taktikk og treningslære skal ikke dominere på bekostning av historie, lek, samfunn, etikk og tilgang."
   ],
-  "example_question": {
-    "question": "Hva kalles en arena som har en fast, nasjonal rolle for landslag og store finaler?",
-    "options": ["Nasjonalarena", "Klubbakademi", "Treningsfelt"],
-    "answer": "Nasjonalarena",
-    "question_type": "concept",
-    "knowledge": "En nasjonalarena er knyttet til landslag, forbund og store nasjonale arrangementer, ikke bare til én lokal klubb.",
-    "emne_id": "em_sport_<velg_gyldig_emne>",
-    "source": ["<konkret_kilde>"],
-    "note": "Eksempelet viser konkret bruk av et fagbegrep. Det er ikke en ferdig produksjonsquiz."
-  }
+  "example_questions": [
+    {
+      "question": "Hva skiller en konstitutiv regel fra en regulativ regel i en idrett?",
+      "options": [
+        "Den konstitutive regelen er med på å skape selve spillet, mens den regulative styrer gjennomføringen",
+        "Den konstitutive regelen gjelder bare profesjonelle, mens den regulative gjelder barn",
+        "Den konstitutive regelen er alltid muntlig, mens den regulative alltid er skriftlig"
+      ],
+      "answer": "Den konstitutive regelen er med på å skape selve spillet, mens den regulative styrer gjennomføringen",
+      "question_type": "concept_distinction",
+      "knowledge": "Uten konstitutive regler ville aktiviteten være en annen praksis. Regulative regler styrer hvordan en allerede gjenkjennelig aktivitet gjennomføres.",
+      "emne_id": "em_sport_fair_play",
+      "quality_hook_id": "hook_sport_konstitutive_regler",
+      "concept_ids": [
+        "concept_sport_konstitutiv_regel",
+        "concept_sport_regulativ_regel"
+      ],
+      "source": [
+        "<konkret regelverk eller fagkilde>"
+      ],
+      "note": "Emne-ID må verifiseres mot aktiv emnefil før produksjon."
+    },
+    {
+      "question": "Hva må undersøkes før en liten endring i trackingdata tolkes som en reell prestasjonsendring?",
+      "options": [
+        "Målefeil, reliabilitet og minste reelle endring",
+        "Bare om tallet er høyere enn forrige kamp",
+        "Bare om utøveren selv synes økten var god"
+      ],
+      "answer": "Målefeil, reliabilitet og minste reelle endring",
+      "question_type": "method_application",
+      "knowledge": "En numerisk forskjell kan skyldes normal variasjon eller målefeil. Målekvalitet og praktisk betydning må vurderes før tall brukes i beslutninger.",
+      "emne_id": "em_sport_idrettsstatistikk",
+      "quality_hook_id": "hook_sport_prestasjonsdata_validitet",
+      "concept_ids": [
+        "concept_sport_reliabilitet",
+        "concept_sport_minste_reelle_endring"
+      ],
+      "source": [
+        "<metodebeskrivelse og konkret datasett>"
+      ]
+    },
+    {
+      "question": "Hvorfor er et dokumentert arenabesøk mer enn bare en registrert kamp i Groundhopper-sammenheng?",
+      "options": [
+        "Fordi besøket også kan dokumentere sted, historie, kampdagspraksis og lokal idrettskultur",
+        "Fordi alle arenabesøk automatisk gir kunnskap om klubbens økonomi",
+        "Fordi selve reisen beviser at arenaen er historisk viktig"
+      ],
+      "answer": "Fordi besøket også kan dokumentere sted, historie, kampdagspraksis og lokal idrettskultur",
+      "question_type": "place_application",
+      "knowledge": "Groundhopping kan kombineres med feltlogg, arena- og kildeanalyse. Besøket er nærdata, men historiske påstander må fortsatt verifiseres.",
+      "emne_id": "em_sport_groundhopper_stedsbesok",
+      "quality_hook_id": "hook_sport_groundhopping_stedsidentitet",
+      "concept_ids": [
+        "concept_sport_groundhopping",
+        "concept_sport_stedstilknytning"
+      ],
+      "source": [
+        "<arena-, klubb- eller arkivkilde>"
+      ]
+    }
+  ]
 }
