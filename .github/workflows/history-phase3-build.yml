@@ -1,0 +1,142 @@
+name: History phase 3 build
+
+on:
+  push:
+    branches:
+      - agent/historie-makt-stat-institusjoner-phase-3
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-validate:
+    if: ${{ !contains(github.event.head_commit.message, '[phase3-build]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Decode and verify builder
+        shell: bash
+        run: |
+          base64 -d tools/.build-historie-makt-phase3.py.gz.b64 | gzip -d > tools/build-historie-makt-phase3.py
+          python -m py_compile tools/build-historie-makt-phase3.py
+
+      - name: Build phase 3 canonical package
+        run: python tools/build-historie-makt-phase3.py
+
+      - name: Synchronize production test counts
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('tests/quiz-production-pipeline.test.mjs')
+          text = path.read_text(encoding='utf-8')
+          replacements = {
+              'assert.equal(context.considered_curriculum.counts.emner, 53);':
+                  'assert.equal(context.considered_curriculum.counts.emner, 57);',
+              'assert.equal(context.considered_curriculum.counts.topic_hooks, 31);':
+                  'assert.equal(context.considered_curriculum.counts.topic_hooks, 39);',
+              'assert.equal(context.considered_curriculum.counts.methods, 23);':
+                  'assert.equal(context.considered_curriculum.counts.methods, 28);',
+          }
+          for old, new in replacements.items():
+              count = text.count(old)
+              if count != 4:
+                  raise SystemExit(f'Expected 4 occurrences of {old!r}, found {count}')
+              text = text.replace(old, new)
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate JSON and permanent domain guard
+        shell: bash
+        run: |
+          node --check tools/validate-historie-makt-stat-institusjoner.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const paths = [
+            'data/fag/historie/fagkart_historie_canonical_v4_5.json',
+            'data/fag/historie/historiepensum_canonical_v4_5.json',
+            'data/fag/historie/emner_historie_canonical_v4_5.json',
+            'data/fag/historie/emnemapping_historie_canonical_v4_5.json',
+            'data/fag/historie/methods_historie_canonical_v4_5.json',
+            'data/fag/historie/quiz_generator_rules_historie_v5_1_source_priority_patch.json',
+            'reports/historie-canonical-migration/makt-stat-institusjoner-question-blueprints.json'
+          ];
+          for (const path of paths) JSON.parse(fs.readFileSync(path, 'utf8'));
+          console.log(`JSON OK | ${paths.length} files`);
+          NODE
+          node tools/validate-historie-makt-stat-institusjoner.mjs | tee reports/historie-canonical-migration/makt-stat-institusjoner-vertical-chain-validation.txt
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Regenerate canonical Knowledge data
+        run: npm run knowledge:canonical:write
+
+      - name: Rebuild History production contexts
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import path from 'node:path';
+          import { runBuildQuizProductionContext } from './scripts/build-quiz-production-context.mjs';
+
+          const manifest = JSON.parse(await fs.readFile('data/fag/fag_manifest.json', 'utf8'));
+          const targets = manifest.historie?.quizProduction?.targets || {};
+          for (const [targetId, config] of Object.entries(targets)) {
+            const outputPath = path.resolve('data/fag', config.context_artifact);
+            await runBuildQuizProductionContext({
+              root: process.cwd(),
+              categoryId: 'historie',
+              targetId,
+              outputPath
+            });
+            console.log(`Rebuilt ${targetId}: ${path.relative(process.cwd(), outputPath)}`);
+          }
+          NODE
+
+      - name: Run phase 3 contract suite
+        shell: bash
+        run: |
+          node tools/validate-historie-makt-stat-institusjoner.mjs | tee reports/historie-canonical-migration/makt-stat-institusjoner-vertical-chain-validation.txt
+          npm run knowledge:canonical:check
+          npm run knowledge:legacy:check
+          npm run audit:knowledge
+          npm run test:quiz-content-audit
+          npm run test:quiz-production
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          git diff --check
+
+      - name: Remove one-shot build artifacts
+        run: |
+          rm .github/workflows/history-phase3-build.yml
+          rm tools/.build-historie-makt-phase3.py.gz.b64
+          rm tools/build-historie-makt-phase3.py
+          rm reports/historie-canonical-migration/makt-stat-phase3-research.json
+
+      - name: Commit final phase 3 package
+        shell: bash
+        run: |
+          git add -A
+          git status --short
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Historie: fullfør makt, stat og institusjoner [phase3-build]'
+          git push origin HEAD:${{ github.ref_name }}
