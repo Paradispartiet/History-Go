@@ -73,14 +73,57 @@
     "botanicalGardenExcludedAsSeparateCanonicalPlace": true,
     "transportObjectsExcluded": true,
     "fullPolygonValidatedWhenAvailable": false,
-    "officialAddressPointInsideGeometryWhenAvailable": null
+    "officialAddressPointInsideGeometryWhenAvailable": null,
+    "boundedBuildingContextValidated": true,
+    "officialAddressInsideNearbyBuilding": true,
+    "officialAddressNearNamedMuseumPoi": true
   },
   "recommendation": {
     "canBecomeVerified": true,
-    "nextAction": "Apply geonorge-adresser-v1:0301:16202:1:59.92013360,10.77099230 as canonical display marker; preserve NHM/UiO and Brønnøysund identity, retain osm-node:5412354900 as museum support, keep Botanisk hage separate, synchronize evidence/index and keep protocol max at 195.",
+    "nextAction": "Apply geonorge-adresser-v1:0301:16202:1:59.92013360,10.77099230 as canonical display marker because it is the unique official Sars' gate 1 point, lies inside osm-way:27011865, and is 56 metres from the dedicated Naturhistorisk museum POI; preserve NHM/UiO and Brønnøysund identity, retain the museum POI and containing building as support, keep Botanisk hage separate, synchronize evidence/index and keep protocol max at 195.",
     "coordStatus": "verified",
     "coordType": "address_point",
     "locatorType": "building",
     "suggestedRadiusMeters": 170
+  },
+  "buildingContext": {
+    "queryRadiusMeters": 260,
+    "addressContainingBuildingCount": 2,
+    "supportingBuilding": {
+      "sourceObjectId": "osm-way:27011865",
+      "sourceUrl": "https://www.openstreetmap.org/way/27011865",
+      "tags": {
+        "building": "university",
+        "building:levels": "4",
+        "fee": "yes",
+        "heritage": "yes",
+        "name": "Zoologisk museum",
+        "name:en": "Zoology Museum",
+        "name:no": "Zoologisk museum",
+        "opening_hours": "Jun-Aug: Mo-Su 11:00-16:00, Sep-May: Tu-Su 11:00-16:00",
+        "operator": "UiO",
+        "ref:bygningsnr": "81325464",
+        "tourism": "museum",
+        "website": "https://www.nhm.uio.no/utstillinger/zoologiske/index.html",
+        "wheelchair": "limited",
+        "wikidata": "Q12011265",
+        "wikimedia_commons": "Category:Zoological museum, Oslo",
+        "wikipedia": "no:Zoologisk museum (Oslo)"
+      },
+      "containsAddress": true,
+      "museumNamed": false,
+      "knownMuseumBuilding": true,
+      "polygonNodeCount": 27,
+      "areaSquareMeters": 1555,
+      "centroid": {
+        "lat": 59.91983227,
+        "lon": 10.7711035
+      },
+      "addressToCentroidMeters": 34.1,
+      "maximumVertexDistanceMeters": 41.1
+    },
+    "addressToMuseumPoiMeters": 56,
+    "nearbyBuildingCount": 114,
+    "botanicalGardenStillExcluded": true
   }
 }
