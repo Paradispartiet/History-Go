@@ -1,0 +1,553 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "naeringsliv",
+  "targetId": "telegrafbygningen",
+  "reviewed_at": "2026-07-23",
+  "review_note": "Påstandsbanken er bygget fra den eksisterende Telegrafbygningen-quizen og de åtte allerede oppførte institusjons- og prosjektkildene. De første 14 påstandene er låst til normal quizform uten metode- eller teoribinding.",
+  "sources": {
+    "place_record": {
+      "url": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+      "source_type": "canonical_place_record",
+      "review_status": "reviewed",
+      "review_note": "Brukt som intern kontroll av stedets etablerte hovedfunksjon og kategori."
+    },
+    "oslo_byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Telegrafbygningen",
+      "source_type": "municipal_city_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Brukt for byggeår, arkitekter, hovedfunksjon, fasade, arbeidsliv, okkupasjon, ombygging og nåbruk."
+    },
+    "kima": {
+      "url": "https://kimaarkitektur.no/projects/telegrafbygningen1/",
+      "source_type": "project_architect",
+      "review_status": "reviewed",
+      "review_note": "Brukt for arkitektur, kvartalsstruktur, ekspedisjonshall, automatsentral og rehabiliteringsgrep."
+    },
+    "oslo_byes_vel": {
+      "url": "https://www.oslobyesvel.no/kalender/telegrafbygningen",
+      "source_type": "heritage_institution",
+      "review_status": "reviewed",
+      "review_note": "Brukt for blå skilt, arkitektur, fasade og historiske interiørdetaljer."
+    },
+    "telegrafen": {
+      "url": "https://telegrafenoslo.no/",
+      "source_type": "current_operator",
+      "review_status": "reviewed",
+      "review_note": "Brukt for dagens konsept, innganger og publikumsrettet bruk."
+    },
+    "telegrafen_history": {
+      "url": "https://telegrafenoslo.no/historien/",
+      "source_type": "current_operator_history",
+      "review_status": "reviewed",
+      "review_note": "Brukt for historisk og nåværende bruk samt 1966-tilbygget."
+    },
+    "byggalliansen": {
+      "url": "https://www.byggalliansen.no/kunnskapssenter/byggeprosjekter/kongens-gate-21",
+      "source_type": "green_building_project_database",
+      "review_status": "reviewed",
+      "review_note": "Brukt for prosjektareal, BREEAM-NOR og rehabiliteringsdata."
+    },
+    "vedal": {
+      "url": "https://www.vedal.no/prosjekt/telegrafen/",
+      "source_type": "project_contractor",
+      "review_status": "reviewed",
+      "review_note": "Brukt for entreprenør, gateplan, publikumsfunksjoner, pris og prosjektbeskrivelse."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [],
+    "emne_ids": [
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_forbruk_marked",
+      "em_naering_innovasjon_teknologisk_skift",
+      "em_naering_kapital_finans",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_teknologi_infrastruktur"
+    ],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_arbeidslivsanalyse",
+      "met_naering_forbruker_og_atferdsanalyse",
+      "met_naering_infrastrukturanalyse",
+      "met_naering_verdiskapingsanalyse"
+    ],
+    "thinker_ids": [
+      "max_weber"
+    ],
+    "works": []
+  },
+  "claims": [
+    {
+      "claim_id": "claim_telegrafbygningen_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Telegrafbygningen ligger i Kongens gate 21 i Kvadraturen.",
+      "source_ids": [
+        "place_record",
+        "oslo_byleksikon",
+        "telegrafen"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Telegrafbygningen ble oppført for Telegrafverket i perioden 1916–1924.",
+      "source_ids": [
+        "place_record",
+        "oslo_byleksikon",
+        "oslo_byes_vel"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Arnstein Arneberg og Magnus Poulsson tegnet den opprinnelige Telegrafbygningen.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "kima",
+        "byggalliansen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bygningen var hovedsentral og administrasjonsbygning for Telegrafverkets telegraf- og telefonvirksomhet.",
+      "source_ids": [
+        "place_record",
+        "oslo_byleksikon",
+        "vedal"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon omtaler Telegrafbygningen som landets tidligere kommunikasjonsmessige nervesenter.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "oslo_byes_vel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Telegrafverket fikk bygningen oppført som hovedsentral og administrasjonsbygg.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "kima"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "KIMA og Grønn Byggallianse beskriver den opprinnelige bygningen som nordisk nybarokk.",
+      "source_ids": [
+        "kima",
+        "byggalliansen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kongens gate 21 utgjør som eneste bygg et helt kvartal i Kvadraturen.",
+      "source_ids": [
+        "kima",
+        "oslo_byleksikon",
+        "byggalliansen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fasadene er forblendet med prikkhamret labradorstein.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "oslo_byes_vel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Alf Rolfsen dekorerte ekspedisjonshallen i 1922.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "oslo_byes_vel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Publikum kunne henvende seg i ekspedisjonshallen, blant annet for å sende telegrammer.",
+      "source_ids": [
+        "kima"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Nils Holter tegnet tilbygget fra 1966.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "kima",
+        "telegrafen_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tilbygget fra 1966 ble oppført som automatsentral.",
+      "source_ids": [
+        "kima",
+        "telegrafen_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Telegrafbygningen var særlig knyttet til telegrafi og telefoni.",
+      "source_ids": [
+        "place_record",
+        "oslo_byleksikon",
+        "telegrafen_history"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "concept_theory",
+      "statement": "Telegraf- og telefonnettet bandt handel, forvaltning og offentlig kommunikasjon sammen gjennom rask informasjonsflyt.",
+      "source_ids": [
+        "place_record",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_naering_logistikk_verdikjeder",
+      "method_id": "met_naering_verdiskapingsanalyse"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Nærmere tusen telefonistinner arbeidet ved telefonsentralene i bygningen under okkupasjonen.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Telefonistinnene arbeidet med om lag hundre i hvert rom, fordelt på sju etasjer.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tyskerne hadde sitt Dienstpoststelle i Telegrafbygningen under okkupasjonen.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Flere telefonistinner som samarbeidet med Milorg fanget opp viktige meldinger og forsinket andre.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Telegrafbygningen er markert med to blå skilt.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "oslo_byes_vel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Det andre blå skiltet gjelder Televerkets Installasjonsbygning.",
+      "source_ids": [
+        "oslo_byes_vel"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Telegrafbygningen ble ombygd og rehabilitert i perioden 2019–2021.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "byggalliansen",
+        "vedal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift",
+      "method_id": "met_naering_arbeidslivsanalyse"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Rehabiliteringen av Kongens gate 21 fikk BREEAM-NOR-sertifiseringen Very Good.",
+      "source_ids": [
+        "byggalliansen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_innovasjon_teknologisk_skift"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Grønn Byggallianse oppgir et samlet prosjektareal på 16 670 m².",
+      "source_ids": [
+        "byggalliansen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Vedal Entreprenør AS var entreprenør i rehabiliteringsprosjektet.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "vedal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Dagens publikumsrettede konsept i bygningen heter Telegrafen Oslo.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "telegrafen",
+        "telegrafen_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Telegrafen har hovedinngang fra Prinsens gate, mens Faksen har inngang fra Tollbugata.",
+      "source_ids": [
+        "telegrafen",
+        "telegrafen_history"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "concept_theory",
+      "statement": "Første etasje er åpnet for publikum med butikker, restauranter og kafeer.",
+      "source_ids": [
+        "vedal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked",
+      "method_id": "met_naering_forbruker_og_atferdsanalyse"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Vedal beskriver et gateplan på 3 200 m² for opplevelser, arrangementer og bevertning.",
+      "source_ids": [
+        "vedal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Telegrafen-prosjektet vant Cityprisen 2021.",
+      "source_ids": [
+        "vedal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Rehabiliteringen kombinerte kontorer og publikumsrettede tilbud med bevaring og ombruk av historiske bygningskvaliteter.",
+      "source_ids": [
+        "kima",
+        "byggalliansen",
+        "vedal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Samlingen av sentraler, administrasjon og mange arbeidsplasser i ett kvartal viser en storstilt rasjonalisering og organisering av kommunikasjonstjenestene.",
+      "source_ids": [
+        "kima",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping",
+      "method_id": "met_naering_infrastrukturanalyse",
+      "topic_hook_id": "arbeid_som_verdiskaping",
+      "thinker_id": "max_weber"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bygningen har gått fra å være kommunikasjonsentral og administrasjonsbygg til en blanding av kontorer, servering, handel og arrangementer.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "telegrafen",
+        "vedal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift",
+      "method_id": "met_naering_arbeidslivsanalyse"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Både den historiske telekommunikasjonen og dagens service- og møtesteder knytter mennesker, tjenester og informasjonsutveksling sammen.",
+      "source_ids": [
+        "place_record",
+        "telegrafen",
+        "vedal"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_naering_innovasjon_teknologisk_skift",
+      "method_id": "met_naering_verdiskapingsanalyse"
+    },
+    {
+      "claim_id": "claim_telegrafbygningen_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Telegrafbygningen er kommunikasjonsinfrastruktur som gjennom rehabilitering er omformet til moderne kontor-, service- og arrangementsbruk.",
+      "source_ids": [
+        "place_record",
+        "oslo_byleksikon",
+        "byggalliansen",
+        "vedal",
+        "telegrafen"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_naering_omstilling_kriser_skift",
+      "method_id": "met_naering_verdiskapingsanalyse"
+    }
+  ]
+}
