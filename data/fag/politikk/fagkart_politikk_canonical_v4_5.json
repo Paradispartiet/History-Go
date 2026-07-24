@@ -9264,15 +9264,15 @@
     {
       "id": "normer_identitet_hverdagsliv",
       "title": "Normer, identitet og hverdagsliv",
-      "tagline": "Hvordan normalitet, minoritet, majoritet, kjønn, familie, migrasjon og hverdagsregler gjør samfunnet politisk.",
-      "definition": "Domenet dekker normer, normalitet, doxa, minoritet, majoritet, identitet, kjønn, familie, integrering, migrasjon, hverdagsliv og sosial kontroll.",
+      "tagline": "Hvordan regler, kategorier og hverdagspraksiser fordeler normalitet, tilhørighet, omsorg, adgang og likeverd.",
+      "definition": "Domenet analyserer hvordan normer og identitetskategorier blir politiske når de bygges inn i lover, tjenester, institusjonelle rutiner, familier, offentlige rom og uformelle sanksjoner. Det undersøker både formelle rettigheter og den faktiske hverdagsvirkningen.",
       "focus": [
-        "normer",
-        "normalitet",
-        "identitet",
-        "minoritet",
-        "hverdagsliv",
-        "integrering"
+        "normalitet og standardisering",
+        "hverdagsregler og praksis",
+        "majoritet, minoritet og representasjon",
+        "kjønn, familie og omsorg",
+        "migrasjon, medlemskap og samfunnsgrenser",
+        "likeverd, sosial kontroll og tause regler"
       ],
       "oslo": {
         "core_cases": [
@@ -9327,33 +9327,21 @@
           "canon": {
             "thinkers": [
               {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "role": "normalisering og disiplin",
+                "tier": "core"
+              },
+              {
                 "id": "emile_durkheim",
                 "name": "Émile Durkheim",
                 "role": "normer og sosial orden",
                 "tier": "core"
               },
               {
-                "id": "erving_goffman",
-                "name": "Erving Goffman",
-                "role": "hverdagsliv og sosial interaksjon",
-                "tier": "core"
-              },
-              {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "normalisering og sosial kontroll",
-                "tier": "core"
-              },
-              {
-                "id": "judith_butler",
-                "name": "Judith Butler",
-                "role": "kjønn, normer og performativitet",
-                "tier": "core"
-              },
-              {
                 "id": "pierre_bourdieu",
                 "name": "Pierre Bourdieu",
-                "role": "doxa, habitus og symbolsk makt",
+                "role": "doxa og symbolsk klassifikasjon",
                 "tier": "core"
               }
             ]
@@ -9382,7 +9370,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "norms-everyday-first",
+          "question_surface_mode": "norm-case-rule-practice-consequence-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -9392,45 +9380,44 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Ikke bruk «normal» som synonym for riktig eller naturlig.",
+            "Ikke utled en norm bare fra ett avvikstilfelle.",
+            "Ikke bland statistisk flertall med legitim standard.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk gruppeidentitet som forklaring uten dokumentert regel, praksis eller populasjonsdata.",
+            "Ikke bruk canonical-filen som faktakilde."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_standard_and_authority",
+            "trace_enforcement_and_consequence",
+            "separate_description_from_normalisation"
           ],
           "comparison_pairs": [
             [
-              "emile_durkheim",
-              "erving_goffman"
+              "michel_foucault",
+              "emile_durkheim"
             ],
             [
-              "michel_foucault",
-              "judith_butler"
+              "emile_durkheim",
+              "pierre_bourdieu"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Grønland",
-            "Tøyen",
-            "Groruddalen",
-            "Majorstuen",
-            "skoler",
-            "familievernkontor",
-            "bydelskontor"
+            "skoler i Oslo",
+            "NAV-kontor",
+            "Oslo tinghus"
           ],
           "recommended_method_ids": [
             "met_pol_normanalyse",
+            "met_pol_praksisanalyse",
             "met_pol_diskursanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
+            "michel_foucault",
             "emile_durkheim",
-            "erving_goffman"
+            "pierre_bourdieu"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -9443,15 +9430,74 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare norm-, rettighets-, praksis- og tilgangscase for Normalitet. Teori brukes først etter at regel eller forventning, håndheving og konkret virkning er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_norm_rule_or_category_identification": true,
+            "require_actor_or_institution_identification": true,
+            "require_practice_or_enforcement_mechanism": true,
+            "require_observable_consequence": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "require_population_and_denominator_for_group_claims": true,
+            "ban_identity_essence_questions": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Normalitet analyserer hvordan institusjoner, fagstandarder, statistiske kategorier og hverdagsforventninger gjør enkelte kropper, livsformer og handlinger til målestokk, mens andre markeres som avvik eller særtilfeller.",
+          "core_problem": "Hvilken standard eller forventning brukes, hvem har definert den, hvordan håndheves den, og hvilke konkrete konsekvenser får den for adgang, vurdering eller behandling?",
+          "mechanisms": [
+            "standardisering",
+            "klassifikasjon",
+            "normalitetsmåling",
+            "institusjonell rutine",
+            "faglig vurderingsmakt",
+            "selvregulering",
+            "stigmatisering",
+            "tilpasningskrav"
+          ],
+          "critical_distinctions": [
+            "statistisk vanlig vs normativt ønskelig",
+            "forskjell vs avvik",
+            "formell standard vs lokal praksis",
+            "beskrivelse vs normalisering"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "michel_foucault",
+              "concept": "normalisering og disiplin"
+            },
+            {
+              "thinker_id": "emile_durkheim",
+              "concept": "normer og sosial orden"
+            },
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "doxa og symbolsk klassifikasjon"
+            }
+          ],
+          "case_anchors": [
+            "skoler i Oslo",
+            "NAV-kontor",
+            "Oslo tinghus"
+          ],
+          "anti_reduction": [
+            "Ikke bruk «normal» som synonym for riktig eller naturlig.",
+            "Ikke utled en norm bare fra ett avvikstilfelle.",
+            "Ikke bland statistisk flertall med legitim standard."
+          ],
+          "required_anchor_types": [
+            "official_standard_or_guideline",
+            "institutional_practice_record",
+            "statistics_or_classification",
+            "complaint_or_case"
+          ],
+          "quality_revision": "politikk-normer-vertical-2026-07-24"
         },
         {
           "id": "minoritet_majoritet",
@@ -9459,33 +9505,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "emile_durkheim",
-                "name": "Émile Durkheim",
-                "role": "normer og sosial orden",
+                "id": "robert_dahl",
+                "name": "Robert Dahl",
+                "role": "opposisjonsrett og demokratisk inkludering",
                 "tier": "core"
               },
               {
-                "id": "erving_goffman",
-                "name": "Erving Goffman",
-                "role": "hverdagsliv og sosial interaksjon",
+                "id": "anne_phillips",
+                "name": "Anne Phillips",
+                "role": "politisk tilstedeværelse og representasjon",
                 "tier": "core"
               },
               {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "normalisering og sosial kontroll",
-                "tier": "core"
-              },
-              {
-                "id": "judith_butler",
-                "name": "Judith Butler",
-                "role": "kjønn, normer og performativitet",
-                "tier": "core"
-              },
-              {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "doxa, habitus og symbolsk makt",
+                "id": "arend_lijphart",
+                "name": "Arend Lijphart",
+                "role": "maktfordeling og minoritetsvern",
                 "tier": "core"
               }
             ]
@@ -9514,7 +9548,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "norms-everyday-first",
+          "question_surface_mode": "norm-case-rule-practice-consequence-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -9524,45 +9558,44 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Ikke behandle minoritet som synonym for liten gruppe i alle sammenhenger.",
+            "Ikke anta at formell stemmerett gir lik politisk innflytelse.",
+            "Ikke generaliser om en gruppe uten å identifisere populasjon og kilde.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk gruppeidentitet som forklaring uten dokumentert regel, praksis eller populasjonsdata.",
+            "Ikke bruk canonical-filen som faktakilde."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_majority_dimension",
+            "trace_rule_access_and_representation",
+            "separate_presence_from_influence"
           ],
           "comparison_pairs": [
             [
-              "emile_durkheim",
-              "erving_goffman"
+              "robert_dahl",
+              "anne_phillips"
             ],
             [
-              "michel_foucault",
-              "judith_butler"
+              "anne_phillips",
+              "arend_lijphart"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Grønland",
-            "Tøyen",
-            "Groruddalen",
-            "Majorstuen",
-            "skoler",
-            "familievernkontor",
-            "bydelskontor"
+            "Stortinget",
+            "Oslo rådhus",
+            "Grønland"
           ],
           "recommended_method_ids": [
             "met_pol_minoritet_og_representasjonsanalyse",
-            "met_pol_integreringsanalyse"
+            "met_pol_representasjonsanalyse",
+            "met_pol_rettighetsanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "emile_durkheim",
-            "erving_goffman"
+            "robert_dahl",
+            "anne_phillips",
+            "arend_lijphart"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -9575,15 +9608,74 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare norm-, rettighets-, praksis- og tilgangscase for Minoritet og majoritet. Teori brukes først etter at regel eller forventning, håndheving og konkret virkning er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_norm_rule_or_category_identification": true,
+            "require_actor_or_institution_identification": true,
+            "require_practice_or_enforcement_mechanism": true,
+            "require_observable_consequence": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "require_population_and_denominator_for_group_claims": true,
+            "ban_identity_essence_questions": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Minoritet og majoritet analyserer ikke bare antall, men hvordan rettigheter, representasjon, språk, institusjonell adgang og sosial dominans former gruppers mulighet til å bli hørt og påvirke beslutninger.",
+          "core_problem": "Er majoriteten numerisk, kulturelt dominerende eller institusjonelt overrepresentert, og hvilke rettigheter eller ordninger beskytter minoritetens faktiske handlingsrom?",
+          "mechanisms": [
+            "flertallsregel",
+            "representasjonsordning",
+            "språkkrav",
+            "minoritetsvern",
+            "agendaadgang",
+            "koalisjonsbygging",
+            "institusjonell overrepresentasjon",
+            "sosial dominans"
+          ],
+          "critical_distinctions": [
+            "numerisk minoritet vs maktsvak minoritet",
+            "lik behandling vs likeverdig virkning",
+            "tilstedeværelse vs innflytelse",
+            "integrasjon vs assimilering"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "opposisjonsrett og demokratisk inkludering"
+            },
+            {
+              "thinker_id": "anne_phillips",
+              "concept": "politisk tilstedeværelse og representasjon"
+            },
+            {
+              "thinker_id": "arend_lijphart",
+              "concept": "maktfordeling og minoritetsvern"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Oslo rådhus",
+            "Grønland"
+          ],
+          "anti_reduction": [
+            "Ikke behandle minoritet som synonym for liten gruppe i alle sammenhenger.",
+            "Ikke anta at formell stemmerett gir lik politisk innflytelse.",
+            "Ikke generaliser om en gruppe uten å identifisere populasjon og kilde."
+          ],
+          "required_anchor_types": [
+            "representation_data",
+            "law_or_rights_rule",
+            "participation_statistics",
+            "institutional_decision"
+          ],
+          "quality_revision": "politikk-normer-vertical-2026-07-24"
         },
         {
           "id": "hverdagslivets_politikk",
@@ -9591,33 +9683,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "emile_durkheim",
-                "name": "Émile Durkheim",
-                "role": "normer og sosial orden",
-                "tier": "core"
-              },
-              {
                 "id": "erving_goffman",
                 "name": "Erving Goffman",
-                "role": "hverdagsliv og sosial interaksjon",
-                "tier": "core"
-              },
-              {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "normalisering og sosial kontroll",
-                "tier": "core"
-              },
-              {
-                "id": "judith_butler",
-                "name": "Judith Butler",
-                "role": "kjønn, normer og performativitet",
+                "role": "interaksjonsorden og situasjonsregler",
                 "tier": "core"
               },
               {
                 "id": "pierre_bourdieu",
                 "name": "Pierre Bourdieu",
-                "role": "doxa, habitus og symbolsk makt",
+                "role": "habitus og praktisk sans",
+                "tier": "core"
+              },
+              {
+                "id": "james_c_scott",
+                "name": "James C. Scott",
+                "role": "hverdagsmotstand og skjulte praksiser",
                 "tier": "core"
               }
             ]
@@ -9646,7 +9726,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "norms-everyday-first",
+          "question_surface_mode": "norm-case-rule-practice-consequence-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -9656,45 +9736,44 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Ikke gjør enhver vane politisk uten å vise fordeling eller maktvirkning.",
+            "Ikke forklar hverdagspraksis bare med individuelle holdninger.",
+            "Ikke bruk stedets rykte som dokumentasjon på praksis.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk gruppeidentitet som forklaring uten dokumentert regel, praksis eller populasjonsdata.",
+            "Ikke bruk canonical-filen som faktakilde."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_routine_and_expected_user",
+            "trace_distribution_of_time_access_or_dignity",
+            "separate_personal_habit_from_institutional_practice"
           ],
           "comparison_pairs": [
             [
-              "emile_durkheim",
-              "erving_goffman"
+              "erving_goffman",
+              "pierre_bourdieu"
             ],
             [
-              "michel_foucault",
-              "judith_butler"
+              "pierre_bourdieu",
+              "james_c_scott"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Grønland",
             "Tøyen",
-            "Groruddalen",
-            "Majorstuen",
-            "skoler",
-            "familievernkontor",
+            "Oslo kollektivtransport",
             "bydelskontor"
           ],
           "recommended_method_ids": [
             "met_pol_praksisanalyse",
-            "met_pol_normanalyse"
+            "met_pol_normanalyse",
+            "met_pol_levekarsanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "emile_durkheim",
-            "erving_goffman"
+            "erving_goffman",
+            "pierre_bourdieu",
+            "james_c_scott"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -9707,15 +9786,74 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare norm-, rettighets-, praksis- og tilgangscase for Hverdagslivets politikk. Teori brukes først etter at regel eller forventning, håndheving og konkret virkning er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_norm_rule_or_category_identification": true,
+            "require_actor_or_institution_identification": true,
+            "require_practice_or_enforcement_mechanism": true,
+            "require_observable_consequence": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "require_population_and_denominator_for_group_claims": true,
+            "ban_identity_essence_questions": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Hverdagslivets politikk undersøker hvordan rutiner, køer, åpningstider, transport, språk, kroppslig opptreden og uformelle forventninger fordeler tid, verdighet, synlighet og adgang i dagliglivet.",
+          "core_problem": "Hvilken konkret rutine eller praksis organiserer hverdagen, hvem forventes å tilpasse seg, og hvilke ressurser eller grupper rammes ulikt?",
+          "mechanisms": [
+            "rutinisering",
+            "tidsdisiplin",
+            "interaksjonsorden",
+            "adgangskode",
+            "uformell sanksjon",
+            "praktisk tilpasning",
+            "skjult motstand",
+            "serviceutforming"
+          ],
+          "critical_distinctions": [
+            "regel vs rutine",
+            "frivillig vane vs forventet tilpasning",
+            "små ulemper vs systematisk skjevhet",
+            "individuell høflighet vs institusjonell adgang"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "erving_goffman",
+              "concept": "interaksjonsorden og situasjonsregler"
+            },
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "habitus og praktisk sans"
+            },
+            {
+              "thinker_id": "james_c_scott",
+              "concept": "hverdagsmotstand og skjulte praksiser"
+            }
+          ],
+          "case_anchors": [
+            "Tøyen",
+            "Oslo kollektivtransport",
+            "bydelskontor"
+          ],
+          "anti_reduction": [
+            "Ikke gjør enhver vane politisk uten å vise fordeling eller maktvirkning.",
+            "Ikke forklar hverdagspraksis bare med individuelle holdninger.",
+            "Ikke bruk stedets rykte som dokumentasjon på praksis."
+          ],
+          "required_anchor_types": [
+            "service_or_access_rule",
+            "observed_or_documented_practice",
+            "time_use_or_usage_data",
+            "complaint_or_user_experience_source"
+          ],
+          "quality_revision": "politikk-normer-vertical-2026-07-24"
         },
         {
           "id": "kjonn_og_samfunn",
@@ -9723,33 +9861,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "emile_durkheim",
-                "name": "Émile Durkheim",
-                "role": "normer og sosial orden",
-                "tier": "core"
-              },
-              {
-                "id": "erving_goffman",
-                "name": "Erving Goffman",
-                "role": "hverdagsliv og sosial interaksjon",
-                "tier": "core"
-              },
-              {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "normalisering og sosial kontroll",
-                "tier": "core"
-              },
-              {
                 "id": "judith_butler",
                 "name": "Judith Butler",
-                "role": "kjønn, normer og performativitet",
+                "role": "kjønnsnormer og performativitet",
                 "tier": "core"
               },
               {
                 "id": "pierre_bourdieu",
                 "name": "Pierre Bourdieu",
-                "role": "doxa, habitus og symbolsk makt",
+                "role": "symbolsk makt og kjønnet habitus",
+                "tier": "core"
+              },
+              {
+                "id": "john_rawls",
+                "name": "John Rawls",
+                "role": "rettferdig fordeling av grunnleggende muligheter",
                 "tier": "core"
               }
             ]
@@ -9778,7 +9904,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "norms-everyday-first",
+          "question_surface_mode": "norm-case-rule-practice-consequence-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -9788,45 +9914,44 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Ikke forklar kjønnsforskjeller uten å identifisere sammenligningsgrunnlaget.",
+            "Ikke likestill representasjon med faktisk innflytelse.",
+            "Ikke gjør individuelle livsvalg til full forklaring på institusjonelle mønstre.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk gruppeidentitet som forklaring uten dokumentert regel, praksis eller populasjonsdata.",
+            "Ikke bruk canonical-filen som faktakilde."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_rule_or_practice",
+            "trace_gendered_effect",
+            "separate_formal_equality_from_substantive_effect"
           ],
           "comparison_pairs": [
             [
-              "emile_durkheim",
-              "erving_goffman"
+              "judith_butler",
+              "pierre_bourdieu"
             ],
             [
-              "michel_foucault",
-              "judith_butler"
+              "pierre_bourdieu",
+              "john_rawls"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Grønland",
-            "Tøyen",
-            "Groruddalen",
-            "Majorstuen",
-            "skoler",
-            "familievernkontor",
-            "bydelskontor"
+            "Stortinget",
+            "Oslo tinghus",
+            "skoler i Oslo"
           ],
           "recommended_method_ids": [
             "met_pol_likestillingsanalyse",
-            "met_pol_normanalyse"
+            "met_pol_fordelingsanalyse",
+            "met_pol_rettslig_analyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "emile_durkheim",
-            "erving_goffman"
+            "judith_butler",
+            "pierre_bourdieu",
+            "john_rawls"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -9839,15 +9964,74 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare norm-, rettighets-, praksis- og tilgangscase for Kjønn og samfunn. Teori brukes først etter at regel eller forventning, håndheving og konkret virkning er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_norm_rule_or_category_identification": true,
+            "require_actor_or_institution_identification": true,
+            "require_practice_or_enforcement_mechanism": true,
+            "require_observable_consequence": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "require_population_and_denominator_for_group_claims": true,
+            "ban_identity_essence_questions": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Kjønn og samfunn analyserer hvordan lover, arbeidsdeling, familieroller, representasjon, institusjonelle kategorier og forventninger produserer kjønnete muligheter og byrder.",
+          "core_problem": "Hvilken regel, ordning eller praksis får ulik virkning etter kjønn, og skyldes forskjellen direkte regulering, arbeidsdeling, normer eller skjev tilgang til ressurser?",
+          "mechanisms": [
+            "kjønnet arbeidsdeling",
+            "direkte diskriminering",
+            "indirekte diskriminering",
+            "representasjonsmønster",
+            "omsorgsfordeling",
+            "performativ norm",
+            "institusjonell kategorisering",
+            "ressursulikhet"
+          ],
+          "critical_distinctions": [
+            "lik regel vs ulik virkning",
+            "biologisk forskjell vs sosial organisering",
+            "representasjon vs beslutningsmakt",
+            "familievalg vs strukturelt handlingsrom"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "judith_butler",
+              "concept": "kjønnsnormer og performativitet"
+            },
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "symbolsk makt og kjønnet habitus"
+            },
+            {
+              "thinker_id": "john_rawls",
+              "concept": "rettferdig fordeling av grunnleggende muligheter"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Oslo tinghus",
+            "skoler i Oslo"
+          ],
+          "anti_reduction": [
+            "Ikke forklar kjønnsforskjeller uten å identifisere sammenligningsgrunnlaget.",
+            "Ikke likestill representasjon med faktisk innflytelse.",
+            "Ikke gjør individuelle livsvalg til full forklaring på institusjonelle mønstre."
+          ],
+          "required_anchor_types": [
+            "equality_law_or_decision",
+            "gender_disaggregated_statistics",
+            "institutional_rule",
+            "documented_practice_or_case"
+          ],
+          "quality_revision": "politikk-normer-vertical-2026-07-24"
         },
         {
           "id": "familie_og_stat",
@@ -9855,33 +10039,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "emile_durkheim",
-                "name": "Émile Durkheim",
-                "role": "normer og sosial orden",
-                "tier": "core"
-              },
-              {
-                "id": "erving_goffman",
-                "name": "Erving Goffman",
-                "role": "hverdagsliv og sosial interaksjon",
+                "id": "theda_skocpol",
+                "name": "Theda Skocpol",
+                "role": "velferdsstat og sosialpolitisk institusjonsbygging",
                 "tier": "core"
               },
               {
                 "id": "michel_foucault",
                 "name": "Michel Foucault",
-                "role": "normalisering og sosial kontroll",
+                "role": "styring av befolkning og familie",
                 "tier": "core"
               },
               {
-                "id": "judith_butler",
-                "name": "Judith Butler",
-                "role": "kjønn, normer og performativitet",
-                "tier": "core"
-              },
-              {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "doxa, habitus og symbolsk makt",
+                "id": "ronald_dworkin",
+                "name": "Ronald Dworkin",
+                "role": "likeverdig offentlig omtanke og rettigheter",
                 "tier": "core"
               }
             ]
@@ -9910,7 +10082,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "norms-everyday-first",
+          "question_surface_mode": "norm-case-rule-practice-consequence-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -9920,45 +10092,44 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Ikke framstill familien som rent privat når rettigheter og tjenester reguleres offentlig.",
+            "Ikke anta at barnets beste har én automatisk løsning.",
+            "Ikke bland lovfestet rett med faktisk tjenestetilgang.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk gruppeidentitet som forklaring uten dokumentert regel, praksis eller populasjonsdata.",
+            "Ikke bruk canonical-filen som faktakilde."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_family_category_and_state_role",
+            "trace_right_duty_and_discretion",
+            "separate_legal_entitlement_from_service_access"
           ],
           "comparison_pairs": [
             [
-              "emile_durkheim",
-              "erving_goffman"
+              "theda_skocpol",
+              "michel_foucault"
             ],
             [
               "michel_foucault",
-              "judith_butler"
+              "ronald_dworkin"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Grønland",
-            "Tøyen",
-            "Groruddalen",
-            "Majorstuen",
-            "skoler",
             "familievernkontor",
-            "bydelskontor"
+            "NAV-kontor",
+            "Oslo tinghus"
           ],
           "recommended_method_ids": [
             "met_pol_velferdsstatlig_analyse",
-            "met_pol_rettighetsanalyse"
+            "met_pol_rettighetsanalyse",
+            "met_pol_forvaltningsanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "emile_durkheim",
-            "erving_goffman"
+            "theda_skocpol",
+            "michel_foucault",
+            "ronald_dworkin"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -9971,15 +10142,74 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare norm-, rettighets-, praksis- og tilgangscase for Familie og stat. Teori brukes først etter at regel eller forventning, håndheving og konkret virkning er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_norm_rule_or_category_identification": true,
+            "require_actor_or_institution_identification": true,
+            "require_practice_or_enforcement_mechanism": true,
+            "require_observable_consequence": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "require_population_and_denominator_for_group_claims": true,
+            "ban_identity_essence_questions": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Familie og stat analyserer hvordan foreldreansvar, omsorg, samliv, barnevern, permisjon, ytelser og tjenester fordeler rettigheter, plikter og skjønn mellom familie, marked og offentlig myndighet.",
+          "core_problem": "Hvilket omsorgsansvar eller familiebegrep ligger i ordningen, hvem får rettigheter og plikter, og hvor oppstår konflikt mellom privatliv, barnets beste og offentlig inngrep?",
+          "mechanisms": [
+            "rettighetsfastsettelse",
+            "omsorgsfordeling",
+            "ytelsesvilkår",
+            "forvaltningsskjønn",
+            "barnets beste-vurdering",
+            "tjenestetildeling",
+            "familiekategorisering",
+            "kontroll og oppfølging"
+          ],
+          "critical_distinctions": [
+            "privat omsorg vs offentlig ansvar",
+            "familieautonomi vs beskyttelsesplikt",
+            "universell ytelse vs behovsprøving",
+            "rettighet vs forvaltningsskjønn"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "theda_skocpol",
+              "concept": "velferdsstat og sosialpolitisk institusjonsbygging"
+            },
+            {
+              "thinker_id": "michel_foucault",
+              "concept": "styring av befolkning og familie"
+            },
+            {
+              "thinker_id": "ronald_dworkin",
+              "concept": "likeverdig offentlig omtanke og rettigheter"
+            }
+          ],
+          "case_anchors": [
+            "familievernkontor",
+            "NAV-kontor",
+            "Oslo tinghus"
+          ],
+          "anti_reduction": [
+            "Ikke framstill familien som rent privat når rettigheter og tjenester reguleres offentlig.",
+            "Ikke anta at barnets beste har én automatisk løsning.",
+            "Ikke bland lovfestet rett med faktisk tjenestetilgang."
+          ],
+          "required_anchor_types": [
+            "family_law_or_regulation",
+            "service_eligibility_rule",
+            "administrative_decision",
+            "official_statistics_or_evaluation"
+          ],
+          "quality_revision": "politikk-normer-vertical-2026-07-24"
         },
         {
           "id": "migrasjon",
@@ -9987,33 +10217,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "emile_durkheim",
-                "name": "Émile Durkheim",
-                "role": "normer og sosial orden",
-                "tier": "core"
-              },
-              {
-                "id": "erving_goffman",
-                "name": "Erving Goffman",
-                "role": "hverdagsliv og sosial interaksjon",
-                "tier": "core"
-              },
-              {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "normalisering og sosial kontroll",
-                "tier": "core"
-              },
-              {
-                "id": "judith_butler",
-                "name": "Judith Butler",
-                "role": "kjønn, normer og performativitet",
+                "id": "hannah_arendt",
+                "name": "Hannah Arendt",
+                "role": "statsborgerskap og retten til å ha rettigheter",
                 "tier": "core"
               },
               {
                 "id": "pierre_bourdieu",
                 "name": "Pierre Bourdieu",
-                "role": "doxa, habitus og symbolsk makt",
+                "role": "kapital, felt og ulik adgang",
+                "tier": "core"
+              },
+              {
+                "id": "stein_rokkan",
+                "name": "Stein Rokkan",
+                "role": "territorium, sentrum og politiske grenser",
                 "tier": "core"
               }
             ]
@@ -10042,7 +10260,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "norms-everyday-first",
+          "question_surface_mode": "norm-case-rule-practice-consequence-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -10052,45 +10270,46 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Ikke bruk integrering som mål uten å definere indikator og sammenligningsgrunnlag.",
+            "Ikke generaliser fra landbakgrunn til individ.",
+            "Ikke bland oppholdsstatus, statsborgerskap og sosial tilhørighet.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk gruppeidentitet som forklaring uten dokumentert regel, praksis eller populasjonsdata.",
+            "Ikke bruk canonical-filen som faktakilde."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_status_rule_and_population",
+            "trace_barrier_or_participation_mechanism",
+            "separate_integration_from_assimilation"
           ],
           "comparison_pairs": [
             [
-              "emile_durkheim",
-              "erving_goffman"
+              "hannah_arendt",
+              "pierre_bourdieu"
             ],
             [
-              "michel_foucault",
-              "judith_butler"
+              "pierre_bourdieu",
+              "stein_rokkan"
             ]
           ],
           "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
+            "stein_rokkan"
           ],
           "recommended_oslo_cases": [
             "Grønland",
             "Tøyen",
-            "Groruddalen",
-            "Majorstuen",
-            "skoler",
-            "familievernkontor",
-            "bydelskontor"
+            "Politihuset på Grønland"
           ],
           "recommended_method_ids": [
             "met_pol_integreringsanalyse",
-            "met_pol_statistikk_og_fordelingsanalyse"
+            "met_pol_statistikk_og_fordelingsanalyse",
+            "met_pol_rettighetsanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "emile_durkheim",
-            "erving_goffman"
+            "hannah_arendt",
+            "pierre_bourdieu",
+            "stein_rokkan"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -10103,15 +10322,74 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare norm-, rettighets-, praksis- og tilgangscase for Migrasjon. Teori brukes først etter at regel eller forventning, håndheving og konkret virkning er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_norm_rule_or_category_identification": true,
+            "require_actor_or_institution_identification": true,
+            "require_practice_or_enforcement_mechanism": true,
+            "require_observable_consequence": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "require_population_and_denominator_for_group_claims": true,
+            "ban_identity_essence_questions": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Migrasjon analyserer hvordan statsborgerskap, opphold, arbeid, språk, bolig, skole og velferdstjenester former rettigheter, deltakelse og tilhørighet for personer som flytter mellom land og samfunn.",
+          "core_problem": "Hvilken rettslig eller institusjonell status er avgjørende, hvilke barrierer dokumenteres, og måles integrering som deltakelse, likhet, tilhørighet eller tilpasning?",
+          "mechanisms": [
+            "oppholdsstatus",
+            "statsborgerskapsregel",
+            "språkkrav",
+            "arbeidsmarkedsadgang",
+            "tjenestetilgang",
+            "bosettingspolitikk",
+            "diskriminering",
+            "nettverksressurs"
+          ],
+          "critical_distinctions": [
+            "migrasjon vs integrering",
+            "integrering vs assimilering",
+            "rettslig status vs sosial tilhørighet",
+            "gruppegjennomsnitt vs individuell situasjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "hannah_arendt",
+              "concept": "statsborgerskap og retten til å ha rettigheter"
+            },
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "kapital, felt og ulik adgang"
+            },
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "territorium, sentrum og politiske grenser"
+            }
+          ],
+          "case_anchors": [
+            "Grønland",
+            "Tøyen",
+            "Politihuset på Grønland"
+          ],
+          "anti_reduction": [
+            "Ikke bruk integrering som mål uten å definere indikator og sammenligningsgrunnlag.",
+            "Ikke generaliser fra landbakgrunn til individ.",
+            "Ikke bland oppholdsstatus, statsborgerskap og sosial tilhørighet."
+          ],
+          "required_anchor_types": [
+            "migration_or_citizenship_rule",
+            "population_statistics",
+            "service_or_labour_market_data",
+            "administrative_or_court_decision"
+          ],
+          "quality_revision": "politikk-normer-vertical-2026-07-24"
         },
         {
           "id": "sosial_kontroll",
@@ -10119,33 +10397,21 @@
           "canon": {
             "thinkers": [
               {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "role": "disiplin, overvåking og selvregulering",
+                "tier": "core"
+              },
+              {
                 "id": "emile_durkheim",
                 "name": "Émile Durkheim",
-                "role": "normer og sosial orden",
+                "role": "normbrudd og sosial sanksjon",
                 "tier": "core"
               },
               {
                 "id": "erving_goffman",
                 "name": "Erving Goffman",
-                "role": "hverdagsliv og sosial interaksjon",
-                "tier": "core"
-              },
-              {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "normalisering og sosial kontroll",
-                "tier": "core"
-              },
-              {
-                "id": "judith_butler",
-                "name": "Judith Butler",
-                "role": "kjønn, normer og performativitet",
-                "tier": "core"
-              },
-              {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "doxa, habitus og symbolsk makt",
+                "role": "stigma og situasjonell kontroll",
                 "tier": "core"
               }
             ]
@@ -10174,7 +10440,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "norms-everyday-first",
+          "question_surface_mode": "norm-case-rule-practice-consequence-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -10184,43 +10450,42 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Ikke bruk sosial kontroll bare om minoritetsmiljøer.",
+            "Ikke likestill alle normer med tvang.",
+            "Ikke påstå kontroll uten å identifisere sanksjon, avhengighet eller overvåking.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk gruppeidentitet som forklaring uten dokumentert regel, praksis eller populasjonsdata.",
+            "Ikke bruk canonical-filen som faktakilde."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_norm_controller_and_target",
+            "trace_sanction_dependency_and_exit",
+            "separate_socialisation_from_coercion"
           ],
           "comparison_pairs": [
             [
-              "emile_durkheim",
-              "erving_goffman"
+              "michel_foucault",
+              "emile_durkheim"
             ],
             [
-              "michel_foucault",
-              "judith_butler"
+              "emile_durkheim",
+              "erving_goffman"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Grønland",
-            "Tøyen",
-            "Groruddalen",
-            "Majorstuen",
-            "skoler",
-            "familievernkontor",
-            "bydelskontor"
+            "skoler i Oslo",
+            "Oslo tinghus",
+            "familievernkontor"
           ],
           "recommended_method_ids": [
+            "met_pol_kontroll_og_sanksjonsanalyse",
             "met_pol_normanalyse",
-            "met_pol_kontroll_og_sanksjonsanalyse"
+            "met_pol_kritisk_rettsanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
+            "michel_foucault",
             "emile_durkheim",
             "erving_goffman"
           ],
@@ -10235,15 +10500,74 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare norm-, rettighets-, praksis- og tilgangscase for Sosial kontroll. Teori brukes først etter at regel eller forventning, håndheving og konkret virkning er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_norm_rule_or_category_identification": true,
+            "require_actor_or_institution_identification": true,
+            "require_practice_or_enforcement_mechanism": true,
+            "require_observable_consequence": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "require_population_and_denominator_for_group_claims": true,
+            "ban_identity_essence_questions": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Sosial kontroll analyserer hvordan formelle regler, overvåking, rykter, skam, belønning, sanksjoner og gjensidig forventning regulerer handlinger i familier, miljøer og institusjoner.",
+          "core_problem": "Hvem overvåker eller vurderer hvem, hvilken norm håndheves, hvilke sanksjoner er mulige, og finnes det reell mulighet til å protestere eller forlate situasjonen?",
+          "mechanisms": [
+            "formell sanksjon",
+            "uformell sanksjon",
+            "overvåking",
+            "ryktekontroll",
+            "skam og anerkjennelse",
+            "selvdisiplin",
+            "avhengighet",
+            "klage- og utgangsmulighet"
+          ],
+          "critical_distinctions": [
+            "omsorg vs kontroll",
+            "sosialisering vs tvang",
+            "formell regel vs uformell sanksjon",
+            "negativ sosial kontroll vs all sosial regulering"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "michel_foucault",
+              "concept": "disiplin, overvåking og selvregulering"
+            },
+            {
+              "thinker_id": "emile_durkheim",
+              "concept": "normbrudd og sosial sanksjon"
+            },
+            {
+              "thinker_id": "erving_goffman",
+              "concept": "stigma og situasjonell kontroll"
+            }
+          ],
+          "case_anchors": [
+            "skoler i Oslo",
+            "Oslo tinghus",
+            "familievernkontor"
+          ],
+          "anti_reduction": [
+            "Ikke bruk sosial kontroll bare om minoritetsmiljøer.",
+            "Ikke likestill alle normer med tvang.",
+            "Ikke påstå kontroll uten å identifisere sanksjon, avhengighet eller overvåking."
+          ],
+          "required_anchor_types": [
+            "rule_or_sanction_record",
+            "complaint_or_case",
+            "institutional_guideline",
+            "survey_or_research_data"
+          ],
+          "quality_revision": "politikk-normer-vertical-2026-07-24"
         },
         {
           "id": "tause_regler",
@@ -10251,33 +10575,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "emile_durkheim",
-                "name": "Émile Durkheim",
-                "role": "normer og sosial orden",
+                "id": "pierre_bourdieu",
+                "name": "Pierre Bourdieu",
+                "role": "doxa, habitus og symbolsk mestring",
                 "tier": "core"
               },
               {
                 "id": "erving_goffman",
                 "name": "Erving Goffman",
-                "role": "hverdagsliv og sosial interaksjon",
+                "role": "situasjonsregler og forlegenhet",
                 "tier": "core"
               },
               {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "normalisering og sosial kontroll",
-                "tier": "core"
-              },
-              {
-                "id": "judith_butler",
-                "name": "Judith Butler",
-                "role": "kjønn, normer og performativitet",
-                "tier": "core"
-              },
-              {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "doxa, habitus og symbolsk makt",
+                "id": "antonio_gramsci",
+                "name": "Antonio Gramsci",
+                "role": "common sense og hegemonisk selvfølgelighet",
                 "tier": "core"
               }
             ]
@@ -10306,7 +10618,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "norms-everyday-first",
+          "question_surface_mode": "norm-case-rule-practice-consequence-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -10316,45 +10628,44 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Ikke påstå en taus regel uten gjentakende praksis eller reaksjoner.",
+            "Ikke forveksle manglende kunnskap om kode med individuell inkompetanse.",
+            "Ikke bruk anekdote alene som bevis for institusjonell norm.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk gruppeidentitet som forklaring uten dokumentert regel, praksis eller populasjonsdata.",
+            "Ikke bruk canonical-filen som faktakilde."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_unwritten_expectation",
+            "trace_learning_correction_and_gatekeeping",
+            "separate_preference_from_access_condition"
           ],
           "comparison_pairs": [
             [
-              "emile_durkheim",
+              "pierre_bourdieu",
               "erving_goffman"
             ],
             [
-              "michel_foucault",
-              "judith_butler"
+              "erving_goffman",
+              "antonio_gramsci"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Grønland",
-            "Tøyen",
-            "Groruddalen",
-            "Majorstuen",
-            "skoler",
-            "familievernkontor",
-            "bydelskontor"
+            "Stortinget",
+            "Oslo rådhus",
+            "skoler i Oslo"
           ],
           "recommended_method_ids": [
             "met_pol_praksisanalyse",
-            "met_pol_diskursanalyse"
+            "met_pol_diskursanalyse",
+            "met_pol_normanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "emile_durkheim",
-            "erving_goffman"
+            "pierre_bourdieu",
+            "erving_goffman",
+            "antonio_gramsci"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -10367,15 +10678,74 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare norm-, rettighets-, praksis- og tilgangscase for Tause regler. Teori brukes først etter at regel eller forventning, håndheving og konkret virkning er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_norm_rule_or_category_identification": true,
+            "require_actor_or_institution_identification": true,
+            "require_practice_or_enforcement_mechanism": true,
+            "require_observable_consequence": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "require_population_and_denominator_for_group_claims": true,
+            "ban_identity_essence_questions": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Tause regler er forventninger som sjelden formuleres eksplisitt, men som læres gjennom korreksjon, imitasjon, belønning og hvem som oppfattes som naturlig hjemme i en situasjon.",
+          "core_problem": "Hvordan kan en regel dokumenteres når den ikke står skrevet, hvem behersker den på forhånd, og hvilke konkrete reaksjoner møter den som bryter den?",
+          "mechanisms": [
+            "doxa",
+            "habitus",
+            "situasjonell korreksjon",
+            "portvokting",
+            "kodekunnskap",
+            "symbolsk belønning",
+            "forlegenhet",
+            "common sense"
+          ],
+          "critical_distinctions": [
+            "taus regel vs personlig preferanse",
+            "implisitt forventning vs formelt krav",
+            "manglende kodekunnskap vs manglende evne",
+            "frivillig stil vs adgangsbetingelse"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "doxa, habitus og symbolsk mestring"
+            },
+            {
+              "thinker_id": "erving_goffman",
+              "concept": "situasjonsregler og forlegenhet"
+            },
+            {
+              "thinker_id": "antonio_gramsci",
+              "concept": "common sense og hegemonisk selvfølgelighet"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Oslo rådhus",
+            "skoler i Oslo"
+          ],
+          "anti_reduction": [
+            "Ikke påstå en taus regel uten gjentakende praksis eller reaksjoner.",
+            "Ikke forveksle manglende kunnskap om kode med individuell inkompetanse.",
+            "Ikke bruk anekdote alene som bevis for institusjonell norm."
+          ],
+          "required_anchor_types": [
+            "documented_repeated_practice",
+            "interaction_or_access_case",
+            "institutional_ethnography_or_study",
+            "complaint_or_testimony_collection"
+          ],
+          "quality_revision": "politikk-normer-vertical-2026-07-24"
         },
         {
           "id": "likeverd",
@@ -10383,33 +10753,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "emile_durkheim",
-                "name": "Émile Durkheim",
-                "role": "normer og sosial orden",
+                "id": "john_rawls",
+                "name": "John Rawls",
+                "role": "rettferdige grunninstitusjoner og reelle muligheter",
                 "tier": "core"
               },
               {
-                "id": "erving_goffman",
-                "name": "Erving Goffman",
-                "role": "hverdagsliv og sosial interaksjon",
+                "id": "ronald_dworkin",
+                "name": "Ronald Dworkin",
+                "role": "lik omtanke og respekt",
                 "tier": "core"
               },
               {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "normalisering og sosial kontroll",
-                "tier": "core"
-              },
-              {
-                "id": "judith_butler",
-                "name": "Judith Butler",
-                "role": "kjønn, normer og performativitet",
-                "tier": "core"
-              },
-              {
-                "id": "pierre_bourdieu",
-                "name": "Pierre Bourdieu",
-                "role": "doxa, habitus og symbolsk makt",
+                "id": "anne_phillips",
+                "name": "Anne Phillips",
+                "role": "tilstedeværelse, forskjell og politisk likhet",
                 "tier": "core"
               }
             ]
@@ -10438,7 +10796,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "norms-everyday-first",
+          "question_surface_mode": "norm-case-rule-practice-consequence-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -10448,45 +10806,44 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Ikke bruk likeverd som løs moralsk ros uten regel eller virkning.",
+            "Ikke anta at identisk behandling alltid er rettferdig.",
+            "Ikke påstå diskriminering uten sammenligningsgrunnlag og mekanisme.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk gruppeidentitet som forklaring uten dokumentert regel, praksis eller populasjonsdata.",
+            "Ikke bruk canonical-filen som faktakilde."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_comparator_and_rule",
+            "trace_effect_and_accommodation",
+            "separate_equal_treatment_from_equal_access"
           ],
           "comparison_pairs": [
             [
-              "emile_durkheim",
-              "erving_goffman"
+              "john_rawls",
+              "ronald_dworkin"
             ],
             [
-              "michel_foucault",
-              "judith_butler"
+              "ronald_dworkin",
+              "anne_phillips"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Grønland",
-            "Tøyen",
-            "Groruddalen",
-            "Majorstuen",
-            "skoler",
-            "familievernkontor",
-            "bydelskontor"
+            "Oslo tinghus",
+            "Stortinget",
+            "Oslo rådhus"
           ],
           "recommended_method_ids": [
-            "met_pol_normanalyse",
+            "met_pol_rettighetsanalyse",
+            "met_pol_likestillingsanalyse",
             "met_pol_fordelingsanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "emile_durkheim",
-            "erving_goffman"
+            "john_rawls",
+            "ronald_dworkin",
+            "anne_phillips"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -10499,15 +10856,74 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare norm-, rettighets-, praksis- og tilgangscase for Likeverd. Teori brukes først etter at regel eller forventning, håndheving og konkret virkning er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_norm_rule_or_category_identification": true,
+            "require_actor_or_institution_identification": true,
+            "require_practice_or_enforcement_mechanism": true,
+            "require_observable_consequence": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "require_population_and_denominator_for_group_claims": true,
+            "ban_identity_essence_questions": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Likeverd analyserer om mennesker møtes med samme grunnleggende respekt, rettighetsvern og reelle adgang, selv når lik behandling krever ulike tiltak eller tilrettelegging.",
+          "core_problem": "Er regelen lik på papiret, hvem får ulik virkning i praksis, og hvilket rettighets-, fordelings- eller tilretteleggingsprinsipp begrunner forskjellsbehandling?",
+          "mechanisms": [
+            "rettighetsvern",
+            "universell utforming",
+            "rimelig tilrettelegging",
+            "indirekte diskriminering",
+            "ressursfordeling",
+            "prosessuell rettssikkerhet",
+            "representasjon",
+            "klageadgang"
+          ],
+          "critical_distinctions": [
+            "likhet vs likeverd",
+            "lik behandling vs like muligheter",
+            "forskjellsbehandling vs diskriminering",
+            "formell rett vs faktisk adgang"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "john_rawls",
+              "concept": "rettferdige grunninstitusjoner og reelle muligheter"
+            },
+            {
+              "thinker_id": "ronald_dworkin",
+              "concept": "lik omtanke og respekt"
+            },
+            {
+              "thinker_id": "anne_phillips",
+              "concept": "tilstedeværelse, forskjell og politisk likhet"
+            }
+          ],
+          "case_anchors": [
+            "Oslo tinghus",
+            "Stortinget",
+            "Oslo rådhus"
+          ],
+          "anti_reduction": [
+            "Ikke bruk likeverd som løs moralsk ros uten regel eller virkning.",
+            "Ikke anta at identisk behandling alltid er rettferdig.",
+            "Ikke påstå diskriminering uten sammenligningsgrunnlag og mekanisme."
+          ],
+          "required_anchor_types": [
+            "rights_or_equality_law",
+            "ombud_or_court_decision",
+            "access_or_outcome_data",
+            "institutional_rule"
+          ],
+          "quality_revision": "politikk-normer-vertical-2026-07-24"
         },
         {
           "id": "samfunnets_grenser",
@@ -10515,33 +10931,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "emile_durkheim",
-                "name": "Émile Durkheim",
-                "role": "normer og sosial orden",
-                "tier": "core"
-              },
-              {
-                "id": "erving_goffman",
-                "name": "Erving Goffman",
-                "role": "hverdagsliv og sosial interaksjon",
-                "tier": "core"
-              },
-              {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "role": "normalisering og sosial kontroll",
-                "tier": "core"
-              },
-              {
-                "id": "judith_butler",
-                "name": "Judith Butler",
-                "role": "kjønn, normer og performativitet",
+                "id": "hannah_arendt",
+                "name": "Hannah Arendt",
+                "role": "medlemskap og retten til å ha rettigheter",
                 "tier": "core"
               },
               {
                 "id": "pierre_bourdieu",
                 "name": "Pierre Bourdieu",
-                "role": "doxa, habitus og symbolsk makt",
+                "role": "klassifikasjon og symbolsk grensedragning",
+                "tier": "core"
+              },
+              {
+                "id": "robert_dahl",
+                "name": "Robert Dahl",
+                "role": "inkludering i det politiske fellesskapet",
                 "tier": "core"
               }
             ]
@@ -10570,7 +10974,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "norms-everyday-first",
+          "question_surface_mode": "norm-case-rule-practice-consequence-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -10580,45 +10984,44 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Ikke behandle sosial identitet som fast og naturlig kategori.",
+            "Ikke kall en arena inkluderende bare fordi den formelt er åpen.",
+            "Ikke bland juridisk status med opplevd tilhørighet.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk gruppeidentitet som forklaring uten dokumentert regel, praksis eller populasjonsdata.",
+            "Ikke bruk canonical-filen som faktakilde."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_boundary_and_gatekeeper",
+            "trace_criteria_consequence_and_appeal",
+            "separate_legal_membership_from_social_belonging"
           ],
           "comparison_pairs": [
             [
-              "emile_durkheim",
-              "erving_goffman"
+              "hannah_arendt",
+              "pierre_bourdieu"
             ],
             [
-              "michel_foucault",
-              "judith_butler"
+              "pierre_bourdieu",
+              "robert_dahl"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Grønland",
-            "Tøyen",
-            "Groruddalen",
-            "Majorstuen",
-            "skoler",
-            "familievernkontor",
-            "bydelskontor"
+            "Stortinget",
+            "Oslo tinghus",
+            "Rådhusplassen"
           ],
           "recommended_method_ids": [
+            "met_pol_rettighetsanalyse",
             "met_pol_minoritet_og_representasjonsanalyse",
-            "met_pol_makt_og_ulikhetsanalyse"
+            "met_pol_kritisk_rettsanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "emile_durkheim",
-            "erving_goffman"
+            "hannah_arendt",
+            "pierre_bourdieu",
+            "robert_dahl"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -10631,15 +11034,74 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare norm-, rettighets-, praksis- og tilgangscase for Samfunnets grenser. Teori brukes først etter at regel eller forventning, håndheving og konkret virkning er identifisert.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_norm_rule_or_category_identification": true,
+            "require_actor_or_institution_identification": true,
+            "require_practice_or_enforcement_mechanism": true,
+            "require_observable_consequence": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "require_population_and_denominator_for_group_claims": true,
+            "ban_identity_essence_questions": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Samfunnets grenser analyserer hvordan statsborgerskap, medlemskap, språk, bosted, funksjonsevne, alder og sosial kategori avgjør hvem som regnes med, får adgang eller kan gjøre krav gjeldende.",
+          "core_problem": "Hvilken grense trekkes, hvem kontrollerer den, hvilke kriterier brukes, og finnes det rett til begrunnelse, klage eller endring av status?",
+          "mechanisms": [
+            "medlemskapskriterium",
+            "statsborgerskap",
+            "adgangskontroll",
+            "kategoriport",
+            "dokumentasjonskrav",
+            "territoriell avgrensning",
+            "rettighetsstatus",
+            "klage og statusendring"
+          ],
+          "critical_distinctions": [
+            "juridisk medlemskap vs sosial tilhørighet",
+            "åpen arena vs reell adgang",
+            "inkludering vs betinget assimilering",
+            "kategori vs identitet"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "hannah_arendt",
+              "concept": "medlemskap og retten til å ha rettigheter"
+            },
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "klassifikasjon og symbolsk grensedragning"
+            },
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "inkludering i det politiske fellesskapet"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Oslo tinghus",
+            "Rådhusplassen"
+          ],
+          "anti_reduction": [
+            "Ikke behandle sosial identitet som fast og naturlig kategori.",
+            "Ikke kall en arena inkluderende bare fordi den formelt er åpen.",
+            "Ikke bland juridisk status med opplevd tilhørighet."
+          ],
+          "required_anchor_types": [
+            "membership_or_citizenship_rule",
+            "access_criteria",
+            "court_or_administrative_decision",
+            "participation_or_exclusion_data"
+          ],
+          "quality_revision": "politikk-normer-vertical-2026-07-24"
         }
       ],
       "best_place_types": [
@@ -10663,7 +11125,9 @@
         "Ikke spør generisk om politikk uten institusjon, lov, konflikt, fordeling, norm, offentlighet, sted eller kilde.",
         "Ikke bruk politikk som kategori hvis hovedpoenget egentlig er byarkitektur, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap.",
         "Ikke gjør et sted til politikk bare fordi det ligger nær maktbygg eller har en vag samfunnsvinkel, uten dokumentert institusjons-, lov-, fordelings-, konflikt-, norm- eller forvaltningsvinkel."
-      ]
+      ],
+      "quality_revision": "politikk-normer-vertical-2026-07-24",
+      "generator_profile_id": "normer_identitet_hverdagsliv"
     }
   ],
   "meta": {
