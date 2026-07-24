@@ -1,0 +1,57 @@
+name: Politics domain quality runner
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  run-domain-work:
+    if: startsWith(github.head_ref, 'agent/politikk-')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Export current canonical inputs
+        if: hashFiles('reports/politikk-canonical-migration/rett-domain-work-marker.txt') != ''
+        run: |
+          set -euo pipefail
+          phase="$(cat reports/politikk-canonical-migration/rett-domain-work-marker.txt)"
+          if [[ "$phase" != "export-current-canonical" ]]; then
+            exit 0
+          fi
+          mkdir -p /tmp/politikk-canonical
+          cp data/fag/politikk/{fagkart_politikk_canonical_v4_5.json,emner_politikk_canonical_v4_5.json,methods_politikk_canonical_v4_5.json,emnemapping_politikk_canonical_v4_5.json,politikkpensum_canonical_v4_5.json,quiz_generator_rules_politikk_v5_1_source_priority_patch.json} /tmp/politikk-canonical/
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('/tmp/politikk-canonical/*') != ''
+        with:
+          name: politics-canonical-current
+          path: /tmp/politikk-canonical/
+      - name: Apply and validate rights-domain migration
+        if: hashFiles('tools/apply-politikk-rett-vertical.mjs') != ''
+        run: |
+          set -euo pipefail
+          mkdir -p reports/politikk-canonical-migration
+          node --check tools/apply-politikk-rett-vertical.mjs \
+            > reports/politikk-canonical-migration/rett-lov-migration-syntax.txt 2>&1
+          node tools/apply-politikk-rett-vertical.mjs \
+            > reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt 2>&1
+          node tools/validate-politikk-rett-vertical.mjs \
+            >> reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt 2>&1
+          git diff --check \
+            >> reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt 2>&1
+          rm -f tools/apply-politikk-rett-vertical.mjs
+          rm -f reports/politikk-canonical-migration/rett-domain-work-marker.txt
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/fag/politikk reports/politikk-canonical-migration tools
+          git commit -m "Politikk: fullfør rettsdomenets vertikale kvalitetskjede"
+          git push origin HEAD:${{ github.head_ref }}
