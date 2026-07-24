@@ -1,0 +1,204 @@
+name: Politics vertical depth phase 1
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  build-and-validate:
+    if: github.head_ref == 'agent/politikk-vertikal-fase-1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/politikk-vertikal-fase-1
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build canonical phase 1
+        id: build
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          mkdir -p reports/politikk-canonical-migration
+          exec > >(tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-full-run.log) 2>&1
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+          echo 'c3a9b889a7de8e20a1ec3625a5c46e1f6bace036837e2e0fc3cd536d4ae0449d  tools/build-politikk-vertical-phase-1.mjs.gz.b64' \
+            | sha256sum -c - \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-checksum.txt
+
+          node <<'NODE' > /tmp/politikk-phase1-baseline.json
+          const fs = require('fs');
+          const base = 'data/fag/politikk';
+          const read = name => JSON.parse(fs.readFileSync(`${base}/${name}`, 'utf8'));
+          const category = read('fagkart_politikk_canonical_v4_5.json').categories
+            .find(x => x.id === 'komparativ_politikk_regimer_institusjoner');
+          process.stdout.write(JSON.stringify({
+            emner: read('emner_politikk_canonical_v4_5.json').map(x => x.emne_id),
+            methods: read('methods_politikk_canonical_v4_5.json').methods.map(x => x.method_id),
+            mappings: read('emnemapping_politikk_canonical_v4_5.json').map(x => x.emne_id),
+            hooks: category.topic_hooks.map(x => x.id)
+          }));
+          NODE
+
+          base64 -d tools/build-politikk-vertical-phase-1.mjs.gz.b64 \
+            | gzip -d > tools/build-politikk-vertical-phase-1.mjs
+          sed -i 's/emners/emner/g' tools/build-politikk-vertical-phase-1.mjs
+          sed -i 's/category.canon = category.canon || { thinkers: \[\] };/category.canon = category.canon || { thinkers: [] }; category.canon.thinkers = category.canon.thinkers || [];/g' tools/build-politikk-vertical-phase-1.mjs
+          sed -i "/emneId: 'em_pol_/s/emneId: 'em_pol_/emneId: 'em_pol_institusjonsfordypning_/" tools/build-politikk-vertical-phase-1.mjs
+
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/build-politikk-vertical-phase-1.mjs')
+          s = p.read_text()
+          s = s.replace(
+              "ok(pensum.summary.emne_count===99,'Pensum har 99 emner');",
+              "ok(pensum.summary.emne_count===emner.length,'Pensumets emneantall matcher emnekatalogen: '+emner.length);"
+          )
+          s = s.replace(
+              "ok(pensum.summary.method_count===61,'Pensum har 61 metoder');",
+              "ok(pensum.summary.method_count===methods.methods.length,'Pensumets metodeantall matcher metodekatalogen: '+methods.methods.length);"
+          )
+          s = s.replace(
+              "ok(pensum.summary.mapping_count===99,'Pensum har 99 mappinger');",
+              "ok(pensum.summary.mapping_count===mappings.length,'Pensumets mappingantall matcher mappingkatalogen: '+mappings.length);"
+          )
+          s = s.replace(
+              '- Totalt: 130 hooks, 99 emner, 61 metoder og 99 mappinger',
+              '- Totalt: ${pensum.summary.topic_hook_count} hooks, ${pensum.summary.emne_count} emner, ${pensum.summary.method_count} metoder og ${pensum.summary.mapping_count} mappinger'
+          )
+          p.write_text(s)
+          PY
+
+          node --check tools/build-politikk-vertical-phase-1.mjs \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-syntax.txt
+
+          node tools/build-politikk-vertical-phase-1.mjs \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-output.txt
+
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/validate-politikk-statsvitenskap-core.mjs')
+          s = p.read_text()
+          s = s.replace(
+              'const R="politikk-statsvitenskap-core-expansion-2026-07-24";',
+              'const R="politikk-statsvitenskap-core-expansion-2026-07-24"; const P1="politikk-institusjoner-vertical-phase-1-2026-07-24";'
+          )
+          s = s.replace(
+              "ok(c.quality_revision===R,id+' har ny revisjon');",
+              "ok(c.quality_revision===(id==='komparativ_politikk_regimer_institusjoner'?P1:R),id+' har forventet revisjon');"
+          )
+          s = s.replace(
+              "ok(h.quality_revision===R,h.id+' har ny revisjon');",
+              "ok(h.quality_revision===R||(id==='komparativ_politikk_regimer_institusjoner'&&h.quality_revision===P1),h.id+' har gyldig revisjon');"
+          )
+          s = s.replace(
+              "ok(e.quality_revision===R,id+' har ny revisjon');",
+              "ok(e.quality_revision===(id.startsWith('em_pol_institusjonsfordypning_')?P1:R),id+' har gyldig revisjon');"
+          )
+          s = s.replace(
+              "ok(m.quality_revision===R,id+' har ny revisjon');",
+              "ok(m.quality_revision===(id.startsWith('met_pol_parlamentarisk_')||id.startsWith('met_pol_vetospiller')||id.startsWith('met_pol_foderalisme_')||id.startsWith('met_pol_konstitusjonell_')||id.startsWith('met_pol_institusjonell_tilbakegang')||id.startsWith('met_pol_lovgivningsstruktur_')?P1:R),id+' har gyldig revisjon');"
+          )
+          p.write_text(s)
+          PY
+
+          node <<'NODE' 2>&1 | tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-delta.txt
+          const fs = require('fs');
+          const before = JSON.parse(fs.readFileSync('/tmp/politikk-phase1-baseline.json', 'utf8'));
+          const base = 'data/fag/politikk';
+          const read = name => JSON.parse(fs.readFileSync(`${base}/${name}`, 'utf8'));
+          const category = read('fagkart_politikk_canonical_v4_5.json').categories
+            .find(x => x.id === 'komparativ_politikk_regimer_institusjoner');
+          const after = {
+            emner: read('emner_politikk_canonical_v4_5.json').map(x => x.emne_id),
+            methods: read('methods_politikk_canonical_v4_5.json').methods.map(x => x.method_id),
+            mappings: read('emnemapping_politikk_canonical_v4_5.json').map(x => x.emne_id),
+            hooks: category.topic_hooks.map(x => x.id)
+          };
+          const added = (next, prev) => {
+            const old = new Set(prev);
+            return next.filter(x => !old.has(x));
+          };
+          const expected = {emner: 10, methods: 6, mappings: 10, hooks: 10};
+          let failed = false;
+          for (const key of Object.keys(expected)) {
+            const delta = added(after[key], before[key]);
+            const unique = new Set(after[key]).size === after[key].length;
+            console.log(`${key}: før=${before[key].length} etter=${after[key].length} nye=${delta.length}`);
+            console.log(`nye ${key}: ${delta.join(', ')}`);
+            if (delta.length !== expected[key] || !unique) {
+              failed = true;
+              console.error(`FAIL | ${key} skal ha ${expected[key]} nye og ingen duplikater`);
+            } else {
+              console.log(`PASS | ${key} har korrekt fase-1-delta og unike ID-er`);
+            }
+          }
+          const newEmner = added(after.emner, before.emner);
+          if (!newEmner.every(id => id.startsWith('em_pol_institusjonsfordypning_'))) {
+            failed = true;
+            console.error('FAIL | Alle nye emner skal ha entydig institusjonsfordypnings-ID');
+          } else {
+            console.log('PASS | Alle nye emner har entydig institusjonsfordypnings-ID');
+          }
+          if (failed) process.exit(1);
+          NODE
+
+          rm -f tools/build-politikk-vertical-phase-1.mjs
+          rm -f tools/build-politikk-vertical-phase-1.mjs.gz.b64
+          rm -f .github/workflows/politikk-vertical-phase-1.yml
+          rm -f reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-checksum.txt
+          rm -f reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-syntax.txt
+          rm -f reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-output.txt
+          rm -f reports/politikk-canonical-migration/politikk-institusjoner-phase-1-full-run.log
+
+          node tools/validate-politikk-institusjoner-phase-1.mjs \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-validation.txt
+
+          node tools/validate-politikk-statsvitenskap-core.mjs \
+            2>&1 | tee reports/politikk-canonical-migration/statsvitenskap-vertical-chain-validation.txt
+
+          for file in \
+            data/fag/politikk/fagkart_politikk_canonical_v4_5.json \
+            data/fag/politikk/emner_politikk_canonical_v4_5.json \
+            data/fag/politikk/methods_politikk_canonical_v4_5.json \
+            data/fag/politikk/emnemapping_politikk_canonical_v4_5.json \
+            data/fag/politikk/politikkpensum_canonical_v4_5.json \
+            data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json \
+            reports/politikk-canonical-migration/statsvitenskap-question-blueprints.json; do
+              node -e 'JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log("PASS | Gyldig JSON: "+process.argv[1])' "$file" \
+                2>&1 | tee -a reports/politikk-canonical-migration/politikk-institusjoner-phase-1-validation.txt
+          done
+
+          git diff --check \
+            2>&1 | tee -a reports/politikk-canonical-migration/politikk-institusjoner-phase-1-validation.txt
+          echo 'PASS | git diff --check' \
+            | tee -a reports/politikk-canonical-migration/politikk-institusjoner-phase-1-validation.txt
+
+          git add -A data/fag/politikk reports/politikk-canonical-migration tools .github/workflows
+          git diff --cached --check
+          git commit -m 'Politikk: fordyp politiske institusjoner og konstitusjonell politikk'
+          git push --force-with-lease origin HEAD:agent/politikk-vertikal-fase-1
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: politics-institutions-phase-1-diagnostics
+          path: |
+            reports/politikk-canonical-migration/politikk-institusjoner-phase-1-*
+            reports/politikk-canonical-migration/statsvitenskap-vertical-chain-validation.txt
+          if-no-files-found: warn
+
+      - name: Propagate build failure
+        if: steps.build.outcome == 'failure'
+        run: exit 1
