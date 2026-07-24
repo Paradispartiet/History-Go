@@ -32,12 +32,32 @@ jobs:
         run: npm ci
 
       - name: Materialize upgrade
-        run: npx tsx tools/materialize-oslo-people-founder-upgrade.mts
+        id: materialize
+        shell: bash
+        run: |
+          set +e
+          npx tsx tools/materialize-oslo-people-founder-upgrade.mts > reports/people-oslo-founder-upgrade-run.log 2>&1
+          status=$?
+          cat reports/people-oslo-founder-upgrade-run.log
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Publish failure log
+        if: steps.materialize.outputs.status != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/people-oslo-founder-upgrade-run.log
+          git commit -m "Capture Oslo People founder upgrade failure"
+          git push origin HEAD:agent/oslo-people-batch1-founder-upgrade
+          exit 1
 
       - name: Publish clean data commit
+        if: steps.materialize.outputs.status == '0'
         run: |
           rm -f tools/materialize-oslo-people-founder-upgrade.mts
           rm -f .github/workflows/oslo-people-batch1-founder-upgrade.yml
+          rm -f reports/people-oslo-founder-upgrade-run.log
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
