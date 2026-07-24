@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-24T21:17:07.089Z
+Generert: 2026-07-24T21:31:21.947Z
 
 ## Oppsummering
 - Aktive filer validert: **690**
 - Antall steder validert: **1291**
 - Harde feil: **0**
-- Varsler: **513**
-- Coordinate review candidates: **774** signaler fordelt på **650** steder
+- Varsler: **514**
+- Coordinate review candidates: **775** signaler fordelt på **651** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -1049,6 +1049,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/vitenskap/oslo/places_vitenskap.json#radiumhospitalet: lav koordinatpresisjon (<4 desimaler)
 - data/places/vitenskap/oslo/places_vitenskap.json#meteorologisk_institutt: lineært sted uten anchors
 - data/places/vitenskap/oslo/places_vitenskap.json#meteorologisk_institutt: coordStatus=verified uten coordPrecisionM
+- data/places/vitenskap/oslo/places_vitenskap.json#oslo_met_pilestredet: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#arkitektur_og_designhogskolen: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#bi_nydalen: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json#nobelinstituttet: lineært sted uten anchors
@@ -1229,13 +1230,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 774 signaler fordelt på 650 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 775 signaler fordelt på 651 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 232 |
+| coordStatus=verified uten coordPrecisionM | 233 |
 | lineært sted uten anchors | 80 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 68 |
 | lav koordinatpresisjon (<4 desimaler) | 73 |
@@ -1245,7 +1246,7 @@ Totalt 774 signaler fordelt på 650 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 8 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (232)
+### coordStatus=verified uten coordPrecisionM (233)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1365,6 +1366,7 @@ Totalt 774 signaler fordelt på 650 steder. Et sted kan ha flere signaler. Kandi
 | gamlebyen_skole | Gamlebyen skole | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.90681241 | 10.77044366 | 150 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | naturhistorisk_museum | Naturhistorisk museum | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.92013360357791 | 10.770992295176185 | 170 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | meteorologisk_institutt | Meteorologisk institutt | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.94270614863892 | 10.720621900236225 | 150 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| oslo_met_pilestredet | OsloMet, Pilestredet | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.92110512950236 | 10.733028013329037 | 270 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | arkitektur_og_designhogskolen | Arkitektur- og designhøgskolen i Oslo | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.92481402 | 10.75073759 | 160 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | bi_nydalen | BI i Nydalen | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.94887042 | 10.76820661 | 180 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nobelinstituttet | Nobelinstituttet | vitenskap | data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json | 59.91543154930346 | 10.721857053164658 | 150 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
