@@ -1,0 +1,670 @@
+[
+  {
+    "assetUrl": "https://od2.pbe.oslo.kommune.no/kart/assets/index-dfb3b517.js",
+    "size": 1485827,
+    "snippets": [
+      {
+        "keyword": "WFS_SOK",
+        "index": 1114039,
+        "snippet": "fsTillegg:\"&version=1.1.0&service=wfs&request=GetFeature\",cacheurl:baseUrl+\"mapcache/wmts?\",phpAutocomplete:\"https://od2.pbe.oslo.kommune.no/noden/\",autocompleteUrl:\"https://od2.pbe.oslo.kommune.no/noden/getAutocompleteData\",searchUrl:baseUrl+\"cgi-bin/wms?map=WFS_SOK\",sakWFSUrl:\"/cgi-bin/wms?map=PI4_GEOJSON\",planinnsynUrl:baseUrl+\"cgi-bin/wms?map=PLANINNSYN\",kartinnsynurl:baseUrl+\"cgi-bin/wms?map=KARTINNSYN\",regbestIntranett:\"/regbest/\",saksinnsynUrl:\"//terra2.pbe.oslo.kommune.no/saksinnsyn4/main.asp\",saksinnsynDocdetUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/docdet.asp\",saksinnsynCasedetUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/casedet.asp\",saksinnsynShowregbestUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/showregbest.asp?\",geoJsonWFS:baseUrl+\"cgi-bi"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 152878,
+        "snippet": "Feature:null,kommuneGrenseRedered:!1,tipWinShown:!1,listSearch:!1,multiEiendom:!1,list:null,regbestIntranett:void 0,saksinnsynUrl:void 0,saksinnsynCasedetUrl:void 0,saksinnsynDocdetUrl:void 0,sidinmeningUrl:void 0,cacheurl:\"\",searchUrl:void 0,sakWFSUrl:void 0,planinnsynUrl:void 0,kartinnsynurl:void 0,geoJsonWFS:void 0,phpAutocomplete:void 0,autocompleteUrl:void 0,planmetaWSUrl:void 0,vedtakWSUrl:void 0,numberOfComments:0,formatDate:globalFns.formatDate,modes:{},defaults:[],clearLayers:[\"markers\",\"fontmarkers\",\"planobj\",\"geoloclayer\",\"searchhighlight\"],removeLayers:[\"highlight\"],registeredPlugins:{},GIFunctions:{},waitAndThen:function(r,t,n,i){setTimeout(function(){t(n,i)},r)},lastRadioClicked:void 0,replaceAll:function(r,t,n){return n.replace(new RegExp(r,\"g\"),t)},forAl"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 471985,
+        "snippet": "=this.value;privateFns$g.turnOffAllLayers(),global$1.modes[a].layers&&(Array.isArray(global$1.modes[a].layers)?global$1.modes[a].layers.forEach(function(s){$(\"#\"+s).length&&$(\"#\"+s).click()}):global$1.modes[a][0]()),global$1.mapMode=a,history.replaceState({},\"planinnsyn\",window.location.href.split(\"?\")[0].split(\"#\")[0]+\"?mode=\"+this.value)},r.appendChild(n),r.appendChild(t)},turnOffAllLayers:function(){privateFns$g.forEachRecursive(global$1.map,function(r){var t=r.values_.layerId;$(\"#\"+t)[0]&&$(\"#\"+t)[0].checked&&!$(\"#\"+t)[0].parentElement.parentElement.firstChild.classList.contains(\"mapmenu-expander\")&&($(\"#\"+t).click(),privateFns$g.toggleRecursive(t,!0,!1))})},addMapmenu:function(){let r=creator.createNav({css:\"mapmenu\",id:\"mapmenu\"}),t=creator.createDiv({css:\"mapmenu"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 564377,
+        "snippet": "essByggesakRequest({url:t,typeName:\"ADRESSEID_WFS\",valueField:\"ADRESSE\",exact:!0})},getLookupPlanPriv:function(r){global$1.intranett?r=privateFns$e.customEncoder(privateFns$e.fixedEncodeURIComponent(r)):r=privateFns$e.fixedEncodeURIComponent(r);var t=global$1.planinnsynUrl+\"&service=WFS&version=1.1.0&request=GetFeature&\";t+=\"typeName=Reguleringomr_Agg,Planer_uten_flate&Filter=\",t+=\"(<Filter><PropertyIsEqualTo><PropertyName>PLANNAVNSTR</PropertyName><Literal>\"+r.toUpperCase()+\"-str</Literal></PropertyIsEqualTo></Filter>)\",t+=\"(<Filter><PropertyIsEqualTo><PropertyName>PLANNAVNSTR</PropertyName><Literal>\"+r.toUpperCase()+\"-str</Literal></PropertyIsEqualTo></Filter>)\",t+=\"&v=102\",privateFns$e.createSearchResultsPage(),privateFns$e.makePlanRequest({url:t,typeName:[\"Regulerin"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 566899,
+        "snippet": "ropertyIsEqualTo><PropertyName>BRUKSNR</PropertyName><Literal>\"+n.split(\"/\")[1]+\"</Literal></PropertyIsEqualTo></AND></Filter>\";t.push({url:i,typeName:\"EIENDOM_WFS\",noZoom:!1})}),privateFns$e.makePropertyListRequest(t)},searchPlannr:function(r){var t=global$1.planinnsynUrl+\"&service=WFS&version=1.1.0&request=GetFeature&\";t+=\"typeName=Reguleringomr_Agg,Planer_uten_flate&Filter=\",t+=\"(<Filter><PropertyIsLike wildcard='*' singleChar='.' escape='!'><PropertyName>PLANNAVN</PropertyName><Literal>*\"+r.toUpperCase()+\"*</Literal></PropertyIsLike></Filter>)\",t+=\"(<Filter><PropertyIsLike wildcard='*' singleChar='.' escape='!'><PropertyName>PLANNAVN</PropertyName><Literal>*\"+r.toUpperCase()+\"*</Literal></PropertyIsLike></Filter>)\",t+=\"&v=102\",privateFns$e.makePlanRequest({url:t,typ"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 642729,
+        "snippet": "selayers\"&&i.get(\"parentId\")!==\"kartdetaljer\"&&i.get(\"layerId\")&&i.get(\"layerId\").indexOf(\"kp\")<0&&i.get(\"layerId\")!==\"kartdetaljer\"&&($(\"#\"+i.get(\"layerId\")).prop(\"checked\",!1).prop(\"indeterminate\",!1),i.setVisible(!1),t.push(n)),n+=1}),localStorage.getItem(\"planinnsyn-tmp-hidden-layers\")===null&&localStorage.setItem(\"planinnsyn-tmp-hidden-layers\",t),localStorage.getItem(\"planinnsyn-toggle-layers-tip\")===null&&privateFns$b.onKpLayerShowTip(r)},onKpLayerHide:function(){var r=0,t={},n=[];localStorage.getItem(\"planinnsyn-tmp-hidden-layers\")&&(n=localStorage.getItem(\"planinnsyn-tmp-hidden-layers\").split(\",\")),n.forEach(function(i){t[i]=!0}),global$1.forAllLayers(global$1.map,function(i){t[r]&&$(\"#\"+i.get(\"layerId\")).prop(\"checked\",!0).change(),r+=1}),localStorage.removeIte"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 642790,
+        "snippet": "\")&&i.get(\"layerId\").indexOf(\"kp\")<0&&i.get(\"layerId\")!==\"kartdetaljer\"&&($(\"#\"+i.get(\"layerId\")).prop(\"checked\",!1).prop(\"indeterminate\",!1),i.setVisible(!1),t.push(n)),n+=1}),localStorage.getItem(\"planinnsyn-tmp-hidden-layers\")===null&&localStorage.setItem(\"planinnsyn-tmp-hidden-layers\",t),localStorage.getItem(\"planinnsyn-toggle-layers-tip\")===null&&privateFns$b.onKpLayerShowTip(r)},onKpLayerHide:function(){var r=0,t={},n=[];localStorage.getItem(\"planinnsyn-tmp-hidden-layers\")&&(n=localStorage.getItem(\"planinnsyn-tmp-hidden-layers\").split(\",\")),n.forEach(function(i){t[i]=!0}),global$1.forAllLayers(global$1.map,function(i){t[r]&&$(\"#\"+i.get(\"layerId\")).prop(\"checked\",!0).change(),r+=1}),localStorage.removeItem(\"planinnsyn-tmp-hidden-layers\")},onKpLayerShowTip:function("
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 642845,
+        "snippet": "==\"kartdetaljer\"&&($(\"#\"+i.get(\"layerId\")).prop(\"checked\",!1).prop(\"indeterminate\",!1),i.setVisible(!1),t.push(n)),n+=1}),localStorage.getItem(\"planinnsyn-tmp-hidden-layers\")===null&&localStorage.setItem(\"planinnsyn-tmp-hidden-layers\",t),localStorage.getItem(\"planinnsyn-toggle-layers-tip\")===null&&privateFns$b.onKpLayerShowTip(r)},onKpLayerHide:function(){var r=0,t={},n=[];localStorage.getItem(\"planinnsyn-tmp-hidden-layers\")&&(n=localStorage.getItem(\"planinnsyn-tmp-hidden-layers\").split(\",\")),n.forEach(function(i){t[i]=!0}),global$1.forAllLayers(global$1.map,function(i){t[r]&&$(\"#\"+i.get(\"layerId\")).prop(\"checked\",!0).change(),r+=1}),localStorage.removeItem(\"planinnsyn-tmp-hidden-layers\")},onKpLayerShowTip:function(r){if(global$1.tipWinShown===!1){var t=creator.createDi"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 642983,
+        "snippet": "Item(\"planinnsyn-tmp-hidden-layers\")===null&&localStorage.setItem(\"planinnsyn-tmp-hidden-layers\",t),localStorage.getItem(\"planinnsyn-toggle-layers-tip\")===null&&privateFns$b.onKpLayerShowTip(r)},onKpLayerHide:function(){var r=0,t={},n=[];localStorage.getItem(\"planinnsyn-tmp-hidden-layers\")&&(n=localStorage.getItem(\"planinnsyn-tmp-hidden-layers\").split(\",\")),n.forEach(function(i){t[i]=!0}),global$1.forAllLayers(global$1.map,function(i){t[r]&&$(\"#\"+i.get(\"layerId\")).prop(\"checked\",!0).change(),r+=1}),localStorage.removeItem(\"planinnsyn-tmp-hidden-layers\")},onKpLayerShowTip:function(r){if(global$1.tipWinShown===!1){var t=creator.createDiv({css:\"tip-win-toggle-layer\"}),n=creator.createArticle({}),i=creator.createSection({text:\"Kartene i venstremenyen slås av når du velger d"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 643040,
+        "snippet": ".setItem(\"planinnsyn-tmp-hidden-layers\",t),localStorage.getItem(\"planinnsyn-toggle-layers-tip\")===null&&privateFns$b.onKpLayerShowTip(r)},onKpLayerHide:function(){var r=0,t={},n=[];localStorage.getItem(\"planinnsyn-tmp-hidden-layers\")&&(n=localStorage.getItem(\"planinnsyn-tmp-hidden-layers\").split(\",\")),n.forEach(function(i){t[i]=!0}),global$1.forAllLayers(global$1.map,function(i){t[r]&&$(\"#\"+i.get(\"layerId\")).prop(\"checked\",!0).change(),r+=1}),localStorage.removeItem(\"planinnsyn-tmp-hidden-layers\")},onKpLayerShowTip:function(r){if(global$1.tipWinShown===!1){var t=creator.createDiv({css:\"tip-win-toggle-layer\"}),n=creator.createArticle({}),i=creator.createSection({text:\"Kartene i venstremenyen slås av når du velger dette kartet. Om du fjerner avhukingen, slås kartene på ig"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 643252,
+        "snippet": "n-tmp-hidden-layers\")&&(n=localStorage.getItem(\"planinnsyn-tmp-hidden-layers\").split(\",\")),n.forEach(function(i){t[i]=!0}),global$1.forAllLayers(global$1.map,function(i){t[r]&&$(\"#\"+i.get(\"layerId\")).prop(\"checked\",!0).change(),r+=1}),localStorage.removeItem(\"planinnsyn-tmp-hidden-layers\")},onKpLayerShowTip:function(r){if(global$1.tipWinShown===!1){var t=creator.createDiv({css:\"tip-win-toggle-layer\"}),n=creator.createArticle({}),i=creator.createSection({text:\"Kartene i venstremenyen slås av når du velger dette kartet. Om du fjerner avhukingen, slås kartene på igjen.\"});n.appendChild(i),t.appendChild(n);var a=creator.createDiv({css:\"tip-win-btn-wrapper\"});a.appendChild(creator.createButton({css:\"btn btn-default\",text:\"OK\",onclick:function(){$(t).remove()}})),t.appendChil"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 643981,
+        "snippet": "\",onclick:function(){$(t).remove()}})),t.appendChild(a);var s=creator.createDiv({css:\"tip-win-input-wrapper\"});s.appendChild(creator.createInput({type:\"checkbox\",id:\"hide-tip-win-toggle-layer\",onchange:function(o){o.currentTarget.checked?localStorage.setItem(\"planinnsyn-toggle-layers-tip\",!0):localStorage.removeItem(\"planinnsyn-toggle-layers-tip\")}})),s.appendChild(creator.createLabel({htmlfor:\"hide-tip-win-toggle-layer\",text:\"Ikke vis igjen\"})),t.appendChild(s),$(t).css(\"top\",$(r).offset().top-32),$(\"#map\").append(t),global$1.tipWinShown=!0}},createInfoElements:function(r,t,n,i,a){var s=[],o=[];if(t.some(function(d,h){var u=!1,p=creator.createDiv({css:\"kommuneplan-gruppe-ct\"}),f=!1,m=-1,_;return h>=n.maxSubFields&&!a?(p.appendChild(creator.createButton({text:n.showAllT"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 644040,
+        "snippet": " s=creator.createDiv({css:\"tip-win-input-wrapper\"});s.appendChild(creator.createInput({type:\"checkbox\",id:\"hide-tip-win-toggle-layer\",onchange:function(o){o.currentTarget.checked?localStorage.setItem(\"planinnsyn-toggle-layers-tip\",!0):localStorage.removeItem(\"planinnsyn-toggle-layers-tip\")}})),s.appendChild(creator.createLabel({htmlfor:\"hide-tip-win-toggle-layer\",text:\"Ikke vis igjen\"})),t.appendChild(s),$(t).css(\"top\",$(r).offset().top-32),$(\"#map\").append(t),global$1.tipWinShown=!0}},createInfoElements:function(r,t,n,i,a){var s=[],o=[];if(t.some(function(d,h){var u=!1,p=creator.createDiv({css:\"kommuneplan-gruppe-ct\"}),f=!1,m=-1,_;return h>=n.maxSubFields&&!a?(p.appendChild(creator.createButton({text:n.showAllText+\" (\"+t.length+\")\",css:\"looklike-btn-link\",onclick:funct"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 661205,
+        "snippet": "t.checked,privateFns$a.updateUrl()},o.onclick=function(f){urlBase.addPart.mode=f.target.checked,privateFns$a.updateUrl()};var h=creator.createDiv({css:\"share-btn-ct\"});h.appendChild(creator.createA({id:\"share-email\",title:\"Del via epost\",href:\"mailto:?subject=planinnsyn.oslo.no&amp;body=http%3A%2F%2Flocalhost%2Fws.repository%2Fkartinnsyn.v4%2Fsrc%2F%23598717%2C6643751%2C7%2C1%2C1\",content:creator.createIcon({css:\"icon-Epost\"}),ariaLabel:\"Del lenke til planinnsyn via epost\"})),h.appendChild(creator.createA({id:\"share-twitter\",title:\"Del via twitter\",href:\"http://twitter.com/share?url=http%3A%2F%2Flocalhost%2Fws.repository%2Fkartinnsyn.v4%2Fsrc%2F%23598717%2C6643751%2C7%2C1%2C1\",content:creator.createIcon({css:\"fa fa-twitter\"}),ariaLabel:\"Del lenke til planinnsyn via twit"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 661401,
+        "snippet": "A({id:\"share-email\",title:\"Del via epost\",href:\"mailto:?subject=planinnsyn.oslo.no&amp;body=http%3A%2F%2Flocalhost%2Fws.repository%2Fkartinnsyn.v4%2Fsrc%2F%23598717%2C6643751%2C7%2C1%2C1\",content:creator.createIcon({css:\"icon-Epost\"}),ariaLabel:\"Del lenke til planinnsyn via epost\"})),h.appendChild(creator.createA({id:\"share-twitter\",title:\"Del via twitter\",href:\"http://twitter.com/share?url=http%3A%2F%2Flocalhost%2Fws.repository%2Fkartinnsyn.v4%2Fsrc%2F%23598717%2C6643751%2C7%2C1%2C1\",content:creator.createIcon({css:\"fa fa-twitter\"}),ariaLabel:\"Del lenke til planinnsyn via twitter\"})),h.appendChild(creator.createA({id:\"share-facebook\",title:\"Del via facebook\",href:\"http://facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%2Fws.repository%2Fkartinnsyn.v4%2Fsrc%2F%23598717%"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 661706,
+        "snippet": "r.createA({id:\"share-twitter\",title:\"Del via twitter\",href:\"http://twitter.com/share?url=http%3A%2F%2Flocalhost%2Fws.repository%2Fkartinnsyn.v4%2Fsrc%2F%23598717%2C6643751%2C7%2C1%2C1\",content:creator.createIcon({css:\"fa fa-twitter\"}),ariaLabel:\"Del lenke til planinnsyn via twitter\"})),h.appendChild(creator.createA({id:\"share-facebook\",title:\"Del via facebook\",href:\"http://facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%2Fws.repository%2Fkartinnsyn.v4%2Fsrc%2F%23598717%2C6643751%2C7%2C1%2C1\",content:creator.createIcon({css:\"fa fa-facebook\"}),ariaLabel:\"Del lenke til planinnsyn via facebook\"}));var u=creator.createButton({id:\"copy-link\",text:\"Kopier lenke\"});u.onclick=function(){var f=document,m=f.getElementsByClassName(\"permalink\")[0],_,k=!0;if(f.body.createTextRange)_"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 662020,
+        "snippet": "eA({id:\"share-facebook\",title:\"Del via facebook\",href:\"http://facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%2Fws.repository%2Fkartinnsyn.v4%2Fsrc%2F%23598717%2C6643751%2C7%2C1%2C1\",content:creator.createIcon({css:\"fa fa-facebook\"}),ariaLabel:\"Del lenke til planinnsyn via facebook\"}));var u=creator.createButton({id:\"copy-link\",text:\"Kopier lenke\"});u.onclick=function(){var f=document,m=f.getElementsByClassName(\"permalink\")[0],_,k=!0;if(f.body.createTextRange)_=f.body.createTextRange(),_.moveToElementText(m),_.select();else if(window.getSelection){var L=window.getSelection();_=f.createRange(),_.selectNodeContents(m),L.removeAllRanges(),L.addRange(_)}else console.log(\"tekst selektering støttes ikke\"),k=!1;k&&(f.execCommand(\"copy\")?alert(\"Lenken er kopiert\"):alert(\"Nettl"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 663445,
+        "snippet": "t.setAttribute(\"data-enhance\",\"false\");var n=creator.createHeader({}),i=creator.createButton({css:\"btn btn-topmenu btn-noborder\",ariaLabel:\"vis/skjul tips\"});i.appendChild(creator.createIcon({css:\"icon-Close\"})),i.onclick=function(){$(\"#help-page\").hide(),$(\"#planinnsyn-hjelp\").toggleClass(\"drop-down-row-active\"),$(\"#planinnsyn-hjelp\").find(\"i\").toggleClass(\"icon-Menu\").toggleClass(\"icon-Close\")},n.appendChild(i),t.appendChild(n);var a=creator.createDiv({css:\"content\"});r.forEach(function(k){if(k.type===\"article\"){var L=creator.createDiv({});L.appendChild(privateFns$a.createHelpArticle(k)),a.appendChild(L)}else if(k.type===\"helpTopic\"){var L=creator.createDiv({id:\"help-topic-\"+k.id,css:\"help-topic\"}),T=creator.createButton({text:k.header,css:\"btn btn-topmenu btn-noborde"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 663504,
+        "snippet": "Header({}),i=creator.createButton({css:\"btn btn-topmenu btn-noborder\",ariaLabel:\"vis/skjul tips\"});i.appendChild(creator.createIcon({css:\"icon-Close\"})),i.onclick=function(){$(\"#help-page\").hide(),$(\"#planinnsyn-hjelp\").toggleClass(\"drop-down-row-active\"),$(\"#planinnsyn-hjelp\").find(\"i\").toggleClass(\"icon-Menu\").toggleClass(\"icon-Close\")},n.appendChild(i),t.appendChild(n);var a=creator.createDiv({css:\"content\"});r.forEach(function(k){if(k.type===\"article\"){var L=creator.createDiv({});L.appendChild(privateFns$a.createHelpArticle(k)),a.appendChild(L)}else if(k.type===\"helpTopic\"){var L=creator.createDiv({id:\"help-topic-\"+k.id,css:\"help-topic\"}),T=creator.createButton({text:k.header,css:\"btn btn-topmenu btn-noborder\",ariaLabel:k.ariaLabel});T.onclick=function(){$(\"#\"+k.id+"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 667994,
+        "snippet": "d);var m=creator.createDiv({css:\"help-topic\"}),_=creator.createButton({css:\"close-me hide-me\",ariaLabel:\"vis informasjon om vilkår for bruk av tjenesten\",text:\"Tilbakestill instillinger\"});return _.onclick=function(){$.each(localStorage,function(k){k.indexOf(\"planinnsyn\")>=0&&localStorage.removeItem(k),$(\"#hideSketchTip\").attr(\"checked\",!1),$(\"#hideMeasureTip\").attr(\"checked\",!1)}),$(\"#hide-sketch-tip\").prop(\"checked\",!1),$(\"#hide-measure-tip\").prop(\"checked\",!1),alert(\"Lokale innstillinger har blitt slettet.\")},m.appendChild(_),a.insertBefore(m,a.lastChild),t.appendChild(a),t},addTopMenuItems:function(r,t){var n=$(\".drop-down-link-menu\");r.forEach(function(a){n.prepend(privateFns$a.addTopMenuItem(a))});var i=creator.createButton({css:\"top-menu-button small-screen\",aria"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 670655,
+        "snippet": "cebook\").hide(),$(\"#share-page\").find(\"span\").html(\"Url-en er for lang til deling via epost, twitter og facebook. Du kan fortsatt kopiere url-en manuelt og dele den.\")):r.length>140?($(\"#copy-link\").show(),$(\"#share-email\").show().attr(\"href\",\"mailto:?subject=planinnsyn.oslo.no&body=\"+encodeURIComponent(r)+\"%0D%0A%0D%0APlan- og bygningsetaten\"),$(\"#share-twitter\").hide(),$(\"#share-facebook\").show().attr(\"href\",\"http://facebook.com/sharer.php?u=\"+encodeURIComponent(r)),$(\"#share-page\").find(\"span\").html(\"Del via:\")):($(\"#copy-link\").show(),$(\"#share-email\").show().attr(\"href\",\"mailto:?subject=planinnsyn.oslo.no&body=\"+encodeURIComponent(r)+\"%0D%0A%0D%0APlan- og bygningsetaten\"),$(\"#share-twitter\").show().attr(\"href\",\"http://twitter.com/share?url=\"+encodeURIComponent(r)),"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 670994,
+        "snippet": "taten\"),$(\"#share-twitter\").hide(),$(\"#share-facebook\").show().attr(\"href\",\"http://facebook.com/sharer.php?u=\"+encodeURIComponent(r)),$(\"#share-page\").find(\"span\").html(\"Del via:\")):($(\"#copy-link\").show(),$(\"#share-email\").show().attr(\"href\",\"mailto:?subject=planinnsyn.oslo.no&body=\"+encodeURIComponent(r)+\"%0D%0A%0D%0APlan- og bygningsetaten\"),$(\"#share-twitter\").show().attr(\"href\",\"http://twitter.com/share?url=\"+encodeURIComponent(r)),$(\"#share-facebook\").show().attr(\"href\",\"http://facebook.com/sharer.php?u=\"+encodeURIComponent(r)),$(\"#share-page\").find(\"span\").html(\"Del via:\")),r}};clickFns$1={shareClick:function(){$(\"#share-page\").toggle(250),$(\"#help-page\").hide(250),creator.createA({css:\"permalink\"});var r=[];global$1.forAllLayers(global$1.map,function(t){t.getVis"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 773845,
+        "snippet": "le=\"rgba(0,0,0,0.5)\",l.stroke()),l.clip(),layer.getSource().changed()}),layer.on([\"postcompose\",\"postrender\"],function(o){var l=o.context;l.restore(),layer.getSource().changed()})},deactivate:function(r){var t;t=$(\"#layer-spy-tool-help\"),localStorage.getItem(\"planinnsyn-\"+r),layer&&layer.setVisible(!1),t&&t.hide()},spyClick:function(r,t){var n=$(r.currentTarget);if(n.toggleClass){n.toggleClass(\"selected\"),n.blur();var i=void 0,a=void 0;i=$(\"#layer-spy-tool-help\"),a=localStorage.getItem(\"planinnsyn-\"+n.attr(\"id\"))}layer&&layer.values_.visible?privateFns$8.deactivate(n.attr(\"id\")):layer&&!layer.values_.visible?(layer.setVisible(!0),i.is(\":visible\")===!1&&(a===null&&i.show(),a||i.show())):(privateFns$8.startSpy(t,n),i.is(\":visible\")===!1&&(a===null&&i.show(),a||i.show()))}"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 774077,
+        "snippet": "elp\"),localStorage.getItem(\"planinnsyn-\"+r),layer&&layer.setVisible(!1),t&&t.hide()},spyClick:function(r,t){var n=$(r.currentTarget);if(n.toggleClass){n.toggleClass(\"selected\"),n.blur();var i=void 0,a=void 0;i=$(\"#layer-spy-tool-help\"),a=localStorage.getItem(\"planinnsyn-\"+n.attr(\"id\"))}layer&&layer.values_.visible?privateFns$8.deactivate(n.attr(\"id\")):layer&&!layer.values_.visible?(layer.setVisible(!0),i.is(\":visible\")===!1&&(a===null&&i.show(),a||i.show())):(privateFns$8.startSpy(t,n),i.is(\":visible\")===!1&&(a===null&&i.show(),a||i.show()))}};const layerspyPlugin={deactivate:privateFns$8.deactivate,registerPluginFunction:function(r,t){r({id:\"layer-spy\",deactivate:privateFns$8.deactivate,onclick:privateFns$8.spyClick},t)}};var privateFns$7,mapInteractions$3,parameters$3"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 776090,
+        "snippet": "click:function(s){privateFns$7.updateSliderPanel()}}),n.style.float=\"right\",t.appendChild(n),i=creator.createButton({icon:!0,iconClass:\"icon-Informasjon\",ariaLabel:\"Info om verktøy\",id:\"slider-info-btn\",title:\"Informasjon om verktøyet\",onclick:function(s){$(\"#planinnsyn-hjelp\").click(),$(\"#tool-info-btn\").click()}}),i.style.float=\"right\",t.appendChild(i);let a=creator.createUl({id:\"slider-container\"});a.style.listStyleType=\"none\",a.style.paddingLeft=0,t.appendChild(a),r.forEach(function(s){a.prepend(privateFns$7.addSliders(s))}),document.getElementById(\"map\").appendChild(t),$(\"#map-slider-panel\").show()},addSliders:function(r){var t,n;n=r.get(\"title\"),t=creator.createLi({id:n+\"-swiper-container\"});let i=creator.createDiv({text:n});t.appendChild(i);let a=privateFns$7.add"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 808871,
+        "snippet": "teractions$2.deactivateMapTools(r.attr(\"id\")),t()},handler:function(r){r.attr(\"id\");var t=r.attr(\"class\");r.toggleClass(\"selected\");var n=mapInteractions$2.getActiveInteractions(),i=void 0,a=void 0;if(i=$(\"#\"+r.attr(\"id\")+\"-tool-help\"),a=localStorage.getItem(\"planinnsyn-\"+r.attr(\"id\")),n.measureInteraction)return i.hide(),$(\"#map-draw-panel\").hide(),global$1.map.removeInteraction(n.measureInteraction),global$1.mapclick=!0,n.mapClickInteraction&&n.mapClickInteraction.setActive(!0),n.mapHoverInteraction&&n.mapHoverInteraction.setActive(!0),parameters$2.interactions.pointerIcon&&(parameters$2.interactions.pointerIcon.setActive(!1),parameters$2.interactions.trashSelectInteraction.setActive(!1),$(\"#removeBtn\").removeClass(\"activeTool\")),r.removeClass(\"selected\"),r.blur(),!0;"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 817471,
+        "snippet": "getElementById(\"map\").appendChild(r),$(\"#map-draw-panel\").show()},createInfoBtn:function(){let r=creator.createButton({icon:!0,iconClass:\"icon-Informasjon\",ariaLabel:\"Info om verktøy\",id:\"slider-info-btn\",title:\"Informasjon om verktøy\",onclick:function(t){$(\"#planinnsyn-hjelp\").click(),$(\"#tool-info-btn\").click()}});return r.style.float=\"right\",r},createDeleteBtn:function(){var r=creator.createButton({icon:!0,iconClass:\"fa fa-trash\",ariaLabel:\"Fjern tegning\",id:\"removeBtn\",title:\"Fjern tegning\",onclick:function(t){let n=$(t.target);n.prop(\"nodeName\")===\"I\"&&(n=n.parent()),n.hasClass(\"activeTool\")?(n.removeClass(\"activeTool\"),Object.entries(parameters$2.interactions).forEach(function(i,a){parameters$2.interactions[i[0]].setActive(!1)}),parameters$2.interactions.measureIn"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1100698,
+        "snippet": "å importere filer.</br> GeoJSON(.json), shp(.shp.zip), sosi(.sos), gdb(gdb.zip)\",css:\"map-drop-panel\",id:\"map-import-panel\"}),n=creator.createButton({icon:!0,iconClass:\"icon-Informasjon\",ariaLabel:\"Info om verktøy\",id:\"import-info-btn\",onclick:function(a){$(\"#planinnsyn-hjelp\").click(),$(\"#tool-info-btn\").click()}}),n.style.float=\"right\",r.appendChild(n),r.appendChild(t);let i=creator.createUl({id:\"layer-list\"});i.style.listStyleType=\"none\",i.style.paddingLeft=0,r.appendChild(i),document.getElementById(\"map\").appendChild(r),r.addEventListener(\"dragover\",function(a){a.stopPropagation(),a.preventDefault(),a.dataTransfer.dropEffect=\"copy\",t.classList.add(\"map-drop-active\")}),r.addEventListener(\"dragleave\",function(a){a.stopPropagation(),a.preventDefault(),a.dataTransfer.dr"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1114089,
+        "snippet": "eature\",cacheurl:baseUrl+\"mapcache/wmts?\",phpAutocomplete:\"https://od2.pbe.oslo.kommune.no/noden/\",autocompleteUrl:\"https://od2.pbe.oslo.kommune.no/noden/getAutocompleteData\",searchUrl:baseUrl+\"cgi-bin/wms?map=WFS_SOK\",sakWFSUrl:\"/cgi-bin/wms?map=PI4_GEOJSON\",planinnsynUrl:baseUrl+\"cgi-bin/wms?map=PLANINNSYN\",kartinnsynurl:baseUrl+\"cgi-bin/wms?map=KARTINNSYN\",regbestIntranett:\"/regbest/\",saksinnsynUrl:\"//terra2.pbe.oslo.kommune.no/saksinnsyn4/main.asp\",saksinnsynDocdetUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/docdet.asp\",saksinnsynCasedetUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/casedet.asp\",saksinnsynShowregbestUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/showregbest.asp?\",geoJsonWFS:baseUrl+\"cgi-bin/wms?map=PI4_GEOJSON\",tableWfs:baseUrl+\"cgi-bin/w"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1114128,
+        "snippet": "?\",phpAutocomplete:\"https://od2.pbe.oslo.kommune.no/noden/\",autocompleteUrl:\"https://od2.pbe.oslo.kommune.no/noden/getAutocompleteData\",searchUrl:baseUrl+\"cgi-bin/wms?map=WFS_SOK\",sakWFSUrl:\"/cgi-bin/wms?map=PI4_GEOJSON\",planinnsynUrl:baseUrl+\"cgi-bin/wms?map=PLANINNSYN\",kartinnsynurl:baseUrl+\"cgi-bin/wms?map=KARTINNSYN\",regbestIntranett:\"/regbest/\",saksinnsynUrl:\"//terra2.pbe.oslo.kommune.no/saksinnsyn4/main.asp\",saksinnsynDocdetUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/docdet.asp\",saksinnsynCasedetUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/casedet.asp\",saksinnsynShowregbestUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/showregbest.asp?\",geoJsonWFS:baseUrl+\"cgi-bin/wms?map=PI4_GEOJSON\",tableWfs:baseUrl+\"cgi-bin/wms?map=EIENDOM_TABELL&tabell=\",geoJsonO"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1119902,
+        "snippet": "k slideren til å skjule deler av kartlaget eller gjøre det mer gjennomsiktig.\",buttonText:\"Slide\",iconType:\"icon\",icon:\"fa fa-sliders\",onclick:\"mapSliderClick\",register:function(r,t){layerSliderPlugin.registerPluginFunction(r,t)}}],topMenu:[{type:\"button\",id:\"planinnsyn-hjelp\",toolTip:\"Åpner hjelpemeny.\",icon:!0,iconClass:\"icon-Menu\",innerHTML:\"<div class='textHider'>Om tjenesten<div>\",onclick:function(){$(\"#share-page\").hide(250),$(\"#help-page\").toggle(250),$(\".show-collapsible\").removeClass(\"show-collapsible\"),$(\"#planinnsyn-hjelp\").toggleClass(\"drop-down-row-active\"),$(\"#planinnsyn-hjelp\").find(\"i\").toggleClass(\"icon-Menu\").toggleClass(\"icon-Close\")},contentPage:\"helpMenu\",content:[{type:\"article\",text:[{paragraph:\"Plan- og bygningsetaten ønsker å levere data av høy "
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1120164,
+        "snippet": "aninnsyn-hjelp\",toolTip:\"Åpner hjelpemeny.\",icon:!0,iconClass:\"icon-Menu\",innerHTML:\"<div class='textHider'>Om tjenesten<div>\",onclick:function(){$(\"#share-page\").hide(250),$(\"#help-page\").toggle(250),$(\".show-collapsible\").removeClass(\"show-collapsible\"),$(\"#planinnsyn-hjelp\").toggleClass(\"drop-down-row-active\"),$(\"#planinnsyn-hjelp\").find(\"i\").toggleClass(\"icon-Menu\").toggleClass(\"icon-Close\")},contentPage:\"helpMenu\",content:[{type:\"article\",text:[{paragraph:\"Plan- og bygningsetaten ønsker å levere data av høy kvalitet, men kan ikke garantere at innholdet i tjenesten er uten feil og mangler.\"},{paragraph:\"Et reguleringsplankart er en sammenstilling av alle planforslag og gjeldende reguleringsplaner, og sammenstillingen er ikke juridisk bindende.\"},{h4:\"Kart og eiendom"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1120223,
+        "snippet": "ss:\"icon-Menu\",innerHTML:\"<div class='textHider'>Om tjenesten<div>\",onclick:function(){$(\"#share-page\").hide(250),$(\"#help-page\").toggle(250),$(\".show-collapsible\").removeClass(\"show-collapsible\"),$(\"#planinnsyn-hjelp\").toggleClass(\"drop-down-row-active\"),$(\"#planinnsyn-hjelp\").find(\"i\").toggleClass(\"icon-Menu\").toggleClass(\"icon-Close\")},contentPage:\"helpMenu\",content:[{type:\"article\",text:[{paragraph:\"Plan- og bygningsetaten ønsker å levere data av høy kvalitet, men kan ikke garantere at innholdet i tjenesten er uten feil og mangler.\"},{paragraph:\"Et reguleringsplankart er en sammenstilling av alle planforslag og gjeldende reguleringsplaner, og sammenstillingen er ikke juridisk bindende.\"},{h4:\"Kart og eiendomsinformasjon er beskyttet etter åndsverkloven.\"}]},{type:\"h"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1121068,
+        "snippet": ":[{h4:\"Klikk i kartet for å se detaljert informasjon om eiendommen\"},{paragraph:\"Ved å klikke i kartet finner du blant annet gårds- og bruksnummer og planer som gjelder for eiendommen eller punktet du klikket i.\"},{h4:\"Du kan finne bestemmelsene til en plan i Planinnsyn\"},{paragraph:\"Klikk i kartet, velg «Reguleringsplaner» og klikk på «Reguleringsbestemmelser».\"},{h4:\"<Du kan finne data om planene i Planinnsyn\"},{paragraph:\"Klikk i kartet, velg «Kommunedelplan», «Områderegulering» eller «Reguleringsplaner» og klikk på plannummeret. For kommuneplan, må du velge «Mer info om kommuneplanen».\"},{h4:\"Finn tegnforklaringer til kartet\"},{paragraph:\"De fleste kart har tegnforklaringer under «Mer info» -knappen i menyen til venstre. Noen kartlag har også tegnforklaring i menyen"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1121212,
+        "snippet": "er og planer som gjelder for eiendommen eller punktet du klikket i.\"},{h4:\"Du kan finne bestemmelsene til en plan i Planinnsyn\"},{paragraph:\"Klikk i kartet, velg «Reguleringsplaner» og klikk på «Reguleringsbestemmelser».\"},{h4:\"<Du kan finne data om planene i Planinnsyn\"},{paragraph:\"Klikk i kartet, velg «Kommunedelplan», «Områderegulering» eller «Reguleringsplaner» og klikk på plannummeret. For kommuneplan, må du velge «Mer info om kommuneplanen».\"},{h4:\"Finn tegnforklaringer til kartet\"},{paragraph:\"De fleste kart har tegnforklaringer under «Mer info» -knappen i menyen til venstre. Noen kartlag har også tegnforklaring i menyen som dukker opp når du klikker i kartet eller søker på en adresse eller eiendom.\"}],addAdditional:function(r){if(configs.modes&&Object.keys(conf"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1121843,
+        "snippet": "enyen som dukker opp når du klikker i kartet eller søker på en adresse eller eiendom.\"}],addAdditional:function(r){if(configs.modes&&Object.keys(configs.modes).length>0){r.appendChild(creator.createParagraph({text:\"<strong>Du kan bruke mode i URL for å starte planinnsyn med enkelte kartlag slått på</strong>\"})),r.appendChild(creator.createParagraph({text:\"Ved å bruke mode='modus' i urlen kan du starte planinnsyn med gitte kartlag skrudd på.\"})),r.appendChild(creator.createParagraph({text:\"Eks: https://od2.pbe.oslo.kommune.no/kart/?mode=gulliste\"})),r.appendChild(creator.createParagraph({text:\"Gyldige moduser er:\"}));var t=window.location.href.split(\"#\")[0].split(\"?\")[0];r.appendChild(creator.createUl({listItems:configs.modes.filter(n=>!n.handler).map(n=>\"<a href=\"+t+\"?m"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1121988,
+        "snippet": "configs.modes).length>0){r.appendChild(creator.createParagraph({text:\"<strong>Du kan bruke mode i URL for å starte planinnsyn med enkelte kartlag slått på</strong>\"})),r.appendChild(creator.createParagraph({text:\"Ved å bruke mode='modus' i urlen kan du starte planinnsyn med gitte kartlag skrudd på.\"})),r.appendChild(creator.createParagraph({text:\"Eks: https://od2.pbe.oslo.kommune.no/kart/?mode=gulliste\"})),r.appendChild(creator.createParagraph({text:\"Gyldige moduser er:\"}));var t=window.location.href.split(\"#\")[0].split(\"?\")[0];r.appendChild(creator.createUl({listItems:configs.modes.filter(n=>!n.handler).map(n=>\"<a href=\"+t+\"?mode=\"+n.mode+\">\"+n.mode+\"</a>\")}))}}},{type:\"helpTopic\",header:\"Informasjon i kartet\",id:\"kartinfo\",ariaLabel:\"vis/skjul informasjon om hva som f"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1129477,
+        "snippet": " i kartet slik at du før opp informasjonsmenyen til høyre har du mulighet til å bruke hurtiglenker for å bestille byggesakspakke eller eiendomsmeglerpakke. Hurtiglenken tar med seg gårds- og bruksnummeret til eiendommen du klikket på.\"}]}]},{type:\"button\",id:\"planinnsyn-del\",toolTip:\"Del siden, eller lag bokmerke/snarvei.\",icon:!0,iconClass:\"icon-Del\",innerHTML:\"Del\",onclick:\"shareClick\",contentPage:\"sharePage\"}],baseLayers:[{olType:\"group\",layerId:\"baselayers\",layers:[{olType:\"wmts\",title:\"Bakgrunnskart\",layerId:\"bakgrunn\",url:parameters.mapcacheurl,layerName:\"bakgrunn_graa\",visible:!1,dependent:\"text1\",altSource:{url:parameters.bakgrunnGraaUrl,layerName:\"bakgrunn_graa\"}},{olType:\"wmts\",layerId:\"flyfoto\",title:\"Flyfoto\",url:parameters.mapcacheurl+\"map=FLYFOTO\",layerNam"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1133689,
+        "snippet": "o:!0,title:\"T7 Blågrønn struktur\",layerId:\"kp_tema_juridisk_blaagronn_struktur\",url:parameters.kommuneplanurl,layerName:\"tema_t7,markagrense,planens_avgrensning\",dontCascade:!0,visible:!1}]},{olType:\"image\",title:\"Markagrense\",layerId:\"markagr\",url:parameters.planinnsynUrl,layerName:\"Marka_PI4\",layerInfo:!0,visible:!1},{olType:\"group\",title:\"Kommunedelplaner\",layerId:\"kdp\",layerInfo:!0,groupCheckbox:!0,visible:!1,layers:[{olType:\"image\",title:\"Skøyen (Kdp 1 og 9)\",layerId:\"kdp1_9\",url:parameters.kdpUrl,layerName:\"KDP 1_9\",visible:!1},{olType:\"image\",title:\"Akerselva miljøpark (Kdp 4)\",layerId:\"kdp4\",url:parameters.kdpUrl,layerName:\"KDP4\",visible:!1},{olType:\"image\",title:\"Næringskorridor syd (Kdp 7)\",layerId:\"kdp7\",url:parameters.kdpUrl,layerName:\"KDP7\",visible:!1},{olT"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1193487,
+        "snippet": "s:{legendValues:[\"KODE\"],labelValues:[\"KODE_TEKST\"],header:\"TEMAGRUPPE\",layerCheckbox:\"TEMAGRUPPEKODE\",comparator:\"TEMAGRUPPE\",counter:\"KODE\",key:\"KODE\"},extendedInfo:{header:\"Kommuneplan\",internal:\"./kp_extended_info\"}}]},{loaderType:\"WFS\",service:parameters.planinnsynUrl,typeNames:[\"Reg_eiendom\",\"Reg_eiendom_l\"],filterItem:[\"teigid\"],targets:[{id:\"kdp\",filter:function(r){return r.values_.PLANNAVN&&r.values_.PLANNAVN.indexOf(\"KDP\")>=0},layerCheckbox:!0,layerId:\"kdp\",comparator:\"header\",counter:\"navn\",geometryType:!0,layout:[{type:\"header\",value:\"header\",triggerField:!0,unique:!0,halfling:!0},{type:\"itemCheckbox\",tekst:\"Vis planområde\",unique:!0,url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"},{type:\"legendFeature\",legendValue:\"legendValues\""
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1232684,
+        "snippet": "endedInfo:!1}]}],dyplenker:[{innerHTML:\"Bestill reguleringskart for byggesak\",url:\"https://www.byggesak.com/basket.aspx?BasketMode=OpenProductWizard&Basket[0][ProductNumber]=8643&Basket[0][Quantity]=1&Basket[0][DataFormatId]=37&Basket[0][PurposeId]=3&Referrer=Planinnsyn&Basket[0][Reference]=&Basket[0][Address.Gnr]=@(gnr)&Basket[0][Address.Bnr]=@(bnr)&Basket[0][Address.StreetName]=&Basket[0][Address.HouseNumber]=&Basket[0][Address.HouseLetter]=\"},{innerHTML:\"Bestill digitale kartdata\",url:\"https://www.byggesak.com/basket.aspx?BasketMode=OpenProductWizard&Basket[0][ProductNumber]=8502&Referrer=Planinnsyn&Basket[0][Reference]=&Basket[0][Address.Gnr]=@(gnr)&Basket[0][Address.Bnr]=@(bnr)&Basket[0][Address.StreetName]=&Basket[0][Address.HouseNumber]=&Basket[0][Address.HouseLe"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1233023,
+        "snippet": "s.Bnr]=@(bnr)&Basket[0][Address.StreetName]=&Basket[0][Address.HouseNumber]=&Basket[0][Address.HouseLetter]=\"},{innerHTML:\"Bestill digitale kartdata\",url:\"https://www.byggesak.com/basket.aspx?BasketMode=OpenProductWizard&Basket[0][ProductNumber]=8502&Referrer=Planinnsyn&Basket[0][Reference]=&Basket[0][Address.Gnr]=@(gnr)&Basket[0][Address.Bnr]=@(bnr)&Basket[0][Address.StreetName]=&Basket[0][Address.HouseNumber]=&Basket[0][Address.HouseLetter]=&Basket[0][Geometry]=@(polygon)\"},{innerHTML:\"Bestill meglerpakke\",url:\"https://www.byggesak.com/basket.aspx?BasketMode=OpenProductWizard&Basket[0][ProductNumber]=8002&Basket[0][Quantity]=1&Basket[0][DataFormatId]=37&Basket[0][PurposeId]=3&Referrer=Planinnsyn&Basket[0][Reference]=&Basket[0][Address.Gnr]=@(gnr)&Basket[0][Address.Bnr"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1233459,
+        "snippet": "useLetter]=&Basket[0][Geometry]=@(polygon)\"},{innerHTML:\"Bestill meglerpakke\",url:\"https://www.byggesak.com/basket.aspx?BasketMode=OpenProductWizard&Basket[0][ProductNumber]=8002&Basket[0][Quantity]=1&Basket[0][DataFormatId]=37&Basket[0][PurposeId]=3&Referrer=Planinnsyn&Basket[0][Reference]=&Basket[0][Address.Gnr]=@(gnr)&Basket[0][Address.Bnr]=@(bnr)&Basket[0][Address.StreetName]=&Basket[0][Address.HouseNumber]=&Basket[0][Address.HouseLetter]=\"},{innerHTML:\"Skal du bygge, rive eller endre?\",url:\"https://www.oslo.kommune.no/plan-bygg-og-eiendom/skal-du-bygge-rive-eller-endre/\"},{innerHTML:\"Se grunnforhold i Oslo\",url:\"https://od2.pbe.oslo.kommune.no/xkart/grunnforhold\"}],featureClickLayout:{vpor:{header:\"VPOR\",layout:[{type:\"header\",value:\"T\"},{type:\"paragraph\",value:\"B\""
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1246922,
+        "snippet": "meters.planmetaWSUrl+\"plannavn=\"+r;$.ajax({url:a,success:function(s){let o=t.children().detach();t.append(n.createExtendedInfoSection(i,i,s,o,t))},fail:function(){console.error(\"fail\")},error:function(){console.error(\"error\")}})}}]}}]}}},activeTip:!1,tipText:\"Planinnsyn har for tiden litt begrenset funksjonalitet. Vi jobber med å rette problemene!\",tipId:\"phpProblemer\"};const konfig={intranett:!1,baseLayers:configs.baseLayers,layermenuLayers:configs.layermenuLayers,fkbLayers:configs.fkbLayers,mapInteractions:configs.mapInteractions,mapTools:configs.mapTools,site:{title:\"|&nbsp;&nbsp; Planinnsyn\",titleLink:\"\"},loadplugins:function(r,t){attribution.initiate({parent:\"footerId\",id:\"copy-pbe\",text:\"©Oslo PBE\"}),layermenu.initiate(configs.layermenuLayers,\"Velg kartlag\"),basel"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1247253,
+        "snippet": " rette problemene!\",tipId:\"phpProblemer\"};const konfig={intranett:!1,baseLayers:configs.baseLayers,layermenuLayers:configs.layermenuLayers,fkbLayers:configs.fkbLayers,mapInteractions:configs.mapInteractions,mapTools:configs.mapTools,site:{title:\"|&nbsp;&nbsp; Planinnsyn\",titleLink:\"\"},loadplugins:function(r,t){attribution.initiate({parent:\"footerId\",id:\"copy-pbe\",text:\"©Oslo PBE\"}),layermenu.initiate(configs.layermenuLayers,\"Velg kartlag\"),baselayerSwitcher.initiate(document.getElementById(\"mapmenu\"),r,\"bakgrunn\",\"flyfoto\",\"./img/bakgrunnskart.min.png\",\"./img/flyfoto.min.jpg\"),searchPlugin.initiate(configs.search),contextFns.initiate(configs),topMenuPlugin.initiate(configs.topMenu,parameters.intranett),t()},customClickTriggers:[],parameters,configs,getConfigs:function()"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1459402,
+        "snippet": "r);let s=creator.createInput({type:\"checkbox\",css:\"toolCheckbox\"});s.onclick=function(l){l.target.checked?($(\"#\"+$(l.target).parent()[0].value).show(),toolChoice[t.id]=!0):($(\"#\"+$(l.target).parent()[0].value).hide(),toolChoice[t.id]=!1),localStorage.setItem(\"planinnsyn-toolChoice\",JSON.stringify(toolChoice))},a.appendChild(s),t.appendChild(i),$(\".map-toolbar, collapsible\").prepend(t),$(\".map-toolbar-side, collapsible\").prepend(a);let o=JSON.parse(localStorage.getItem(\"planinnsyn-toolChoice\"));o&&typeof o[t.id]<\"u\"?(s.checked=o[t.id],o[t.id]||$(\"#\"+t.id).hide()):(s.checked=!0,toolChoice[t.id]=!0,localStorage.setItem(\"planinnsyn-toolChoice\",JSON.stringify(toolChoice)))}},getMeasureLength:function(r){var t=r.getGeometry().getLength(),n=0;return t>1e4?n=Math.round(t/1e3*10"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1459616,
+        "snippet": "(),toolChoice[t.id]=!1),localStorage.setItem(\"planinnsyn-toolChoice\",JSON.stringify(toolChoice))},a.appendChild(s),t.appendChild(i),$(\".map-toolbar, collapsible\").prepend(t),$(\".map-toolbar-side, collapsible\").prepend(a);let o=JSON.parse(localStorage.getItem(\"planinnsyn-toolChoice\"));o&&typeof o[t.id]<\"u\"?(s.checked=o[t.id],o[t.id]||$(\"#\"+t.id).hide()):(s.checked=!0,toolChoice[t.id]=!0,localStorage.setItem(\"planinnsyn-toolChoice\",JSON.stringify(toolChoice)))}},getMeasureLength:function(r){var t=r.getGeometry().getLength(),n=0;return t>1e4?n=Math.round(t/1e3*100)/100+\" km\":n=Math.round(t)+\" m\",n},getMeasureArea:function(r){var t=r.getGeometry().getArea(),n=0;return t>1e6?n=Math.round(t/1e6*100)/100+\" km²\":n=Math.round(t)+\" m²\",n}};privateFns$3={deactivateMapTools:functio"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1459767,
+        "snippet": "llapsible\").prepend(t),$(\".map-toolbar-side, collapsible\").prepend(a);let o=JSON.parse(localStorage.getItem(\"planinnsyn-toolChoice\"));o&&typeof o[t.id]<\"u\"?(s.checked=o[t.id],o[t.id]||$(\"#\"+t.id).hide()):(s.checked=!0,toolChoice[t.id]=!0,localStorage.setItem(\"planinnsyn-toolChoice\",JSON.stringify(toolChoice)))}},getMeasureLength:function(r){var t=r.getGeometry().getLength(),n=0;return t>1e4?n=Math.round(t/1e3*100)/100+\" km\":n=Math.round(t)+\" m\",n},getMeasureArea:function(r){var t=r.getGeometry().getArea(),n=0;return t>1e6?n=Math.round(t/1e6*100)/100+\" km²\":n=Math.round(t)+\" m²\",n}};privateFns$3={deactivateMapTools:function(r){return r},createToolHelp:function(r){if(!localStorage.getItem(\"planinnsyn-\"+r.id)){var t,n,i,a,s,o,l,d,h,u,p;t=creator.createDiv({css:\"measure-too"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1460204,
+        "snippet": "und(t)+\" m\",n},getMeasureArea:function(r){var t=r.getGeometry().getArea(),n=0;return t>1e6?n=Math.round(t/1e6*100)/100+\" km²\":n=Math.round(t)+\" m²\",n}};privateFns$3={deactivateMapTools:function(r){return r},createToolHelp:function(r){if(!localStorage.getItem(\"planinnsyn-\"+r.id)){var t,n,i,a,s,o,l,d,h,u,p;t=creator.createDiv({css:\"measure-tool-help\",id:r.toolHelp.id}),a=creator.createHeader({}),n=creator.createButton({onclick:function(){$(\"#\"+r.toolHelp.id).hide()}}),i=creator.createIcon({css:\"icon-Close\"}),n.appendChild(i),a.appendChild(n),t.appendChild(a),s=creator.createH4({text:r.toolHelp.header}),t.appendChild(s),o=creator.createOl({}),r.toolHelp.steps.forEach(function(f){o.appendChild(creator.createLi({text:f}))}),t.appendChild(o),l=creator.createDiv({css:\"tip-win-"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1460836,
+        "snippet": "or.createOl({}),r.toolHelp.steps.forEach(function(f){o.appendChild(creator.createLi({text:f}))}),t.appendChild(o),l=creator.createDiv({css:\"tip-win-btn-wrapper\"}),d=creator.createButton({css:\"btn btn-default\",text:\"OK\",onclick:function(){localStorage.setItem(\"planinnsyn-\"+r.id,$(\"#\"+r.toolHelp.id+\"hideTip\").is(\":checked\")),$(\"#\"+r.toolHelp.id).hide()}}),l.appendChild(d),t.appendChild(l),h=creator.createDiv({css:\"tip-win-input-wrapper\"}),u=creator.createInput({type:\"checkbox\",id:r.toolHelp.id+\"hideTip\"}),p=creator.createLabel({labelfor:r.toolHelp.id,text:\"Ikke vis igjen\"}),h.appendChild(u),h.appendChild(p),t.appendChild(h),$(\"#map\")[0].appendChild(t)}},showPosition:function(r){var t=$(\"#go-to-location\"),n=global$1.map.getLayerById(\"geoloclayer\"),i=[r.coords.longitude,r.c"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1478441,
+        "snippet": "\"',\"\").slice(1,-1)),(r.list||r.gnr)&&privateFns$1.DOKHandler(r.gnr,r.bnr,t),privateFns$1.addSearchListener()}};var userTips,giHint,privateFns;privateFns={setSiteAttributes:function(r){var t=$(\".site-name\");r.title?t.find(\"h1\").html(r.title):t.find(\"h1\").html(\"planinnsyn\"),r.subTitle&&t.find(\"h1\").addClass(\"subTitle\").after(\"<br /><span>\"+r.subTitle+\"</span>\"),r.customClass&&t.addClass(r.customClass),r.titleLink&&($(\"#titleLink\")[0].href=r.titleLink)},setColorScheme:function(r){r&&Object.keys(r).forEach(function(n){document.documentElement.style.setProperty(\"--\"+n,r[n])});var t=document.getElementById(\"osloLogo\");t.src=\"./img/\"+window.getComputedStyle(document.documentElement).getPropertyValue(\"--logo\").split(\"#\")[1]+\".png\"}};userTips={showTipWin:function(r,t){var n=crea"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1479240,
+        "snippet": "\"tip-win redTip\"}),i=creator.createButton({css:\"btn btn-default close\",text:\"<i class = 'icon-Close'></i>\"});i.style.opacity=1,i.style.color=\"white\",i.onclick=function(){$(n).remove()},n.appendChild(i);var a=creator.createArticle({}),s=t;localStorage.getItem(\"planinnsyn-\"+s)===null&&global$1.mapMode!==\"kommuneplan\"&&global$1.map.getLayerById(\"kp\")&&a.appendChild(creator.createSection({text:r})),n.appendChild(a);var o=creator.createDiv({css:\"tip-win-btn-wrapper\"}),l=creator.createButton({css:\"btn btn-default\",text:\"OK\"});l.onclick=function(){$(n).remove()},o.appendChild(l),n.appendChild(o);var d=creator.createDiv({css:\"tip-win-input-wrapper\"}),h=creator.createInput({type:\"checkbox\",id:s}),u=creator.createLabel({htmlfor:s,text:\"Ikke vis igjen\"});d.appendChild(h),d.appendC"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1479855,
+        "snippet": "eDiv({css:\"tip-win-input-wrapper\"}),h=creator.createInput({type:\"checkbox\",id:s}),u=creator.createLabel({htmlfor:s,text:\"Ikke vis igjen\"});d.appendChild(h),d.appendChild(u),n.appendChild(d),$(h).change(function(p){p.currentTarget.checked?localStorage.setItem(\"planinnsyn-\"+s,!0):localStorage.removeItem(\"planinnsyn-\"+s)}),$(a).find(\"section\").length>0&&($(\"#map\").append(n),$(n).height()+60>$(window).height()&&$(a).css(\"height\",$(window).height()-140))}};giHint={lagOmraade:function(r,t,n){giHint.showHintWin(\"LagOmraade\",n,t);let i=global$1.map.getInteractions();i.mapClickInteraction&&i.mapClickInteraction.setActive(!1),global$1.mapclick=!1;var a=global$1.map.getLayerByName(\"sketchLayer\"),s=void 0;if(a===null){var o=new Style$1({stroke:new Stroke$1({color:\"#ff0000\",width:3}"
+      },
+      {
+        "keyword": "PLANINNSYN",
+        "index": 1479899,
+        "snippet": "r.createInput({type:\"checkbox\",id:s}),u=creator.createLabel({htmlfor:s,text:\"Ikke vis igjen\"});d.appendChild(h),d.appendChild(u),n.appendChild(d),$(h).change(function(p){p.currentTarget.checked?localStorage.setItem(\"planinnsyn-\"+s,!0):localStorage.removeItem(\"planinnsyn-\"+s)}),$(a).find(\"section\").length>0&&($(\"#map\").append(n),$(n).height()+60>$(window).height()&&$(a).css(\"height\",$(window).height()-140))}};giHint={lagOmraade:function(r,t,n){giHint.showHintWin(\"LagOmraade\",n,t);let i=global$1.map.getInteractions();i.mapClickInteraction&&i.mapClickInteraction.setActive(!1),global$1.mapclick=!1;var a=global$1.map.getLayerByName(\"sketchLayer\"),s=void 0;if(a===null){var o=new Style$1({stroke:new Stroke$1({color:\"#ff0000\",width:3}),image:new Circle({radius:5,stroke:new Stro"
+      },
+      {
+        "keyword": "REGTILLEGG",
+        "index": 195645,
+        "snippet": "ph(\"De ulike formålene i en områdereguleringsplan har samme fargekode som i detaljreguleringsplaner.\")),r.appendChild(privateFns$h.appendSubHeader(\"Tegnforklaring\")),r.appendChild(privateFns$h.appendLegendImage(\"https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=REGTILLEGG&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=Omraadeplan&format=image/png\")),r},gulliste:function(){var r=creator.createDiv({});return r.appendChild(privateFns$h.appendHeader(\"Gul liste\")),r.appendChild(privateFns$h.appendParagraph(\"Gul liste er Byantikvarens oversikt over kulturminner med eller uten formelt vern. Eiendommen kan ha en eller flere statuser, som har forskjellig betydning for en eventuell plan- eller byggesak.\")),r.appendChild(privateFns$h.appendSubHeader(\"Tegn"
+      },
+      {
+        "keyword": "REGTILLEGG",
+        "index": 1114812,
+        "snippet": "\"cgi-bin/wms?map=PI4_GEOJSON\",tableWfs:baseUrl+\"cgi-bin/wms?map=EIENDOM_TABELL&tabell=\",geoJsonOd2WFS:extraUrl+\"cgi-bin/wms?map=GEOJSON\",reguleringUrl:baseUrl+\"cgi-bin/wms?map=REGULERING\",mapcacheurl:baseUrl+\"mapcache/wmts?\",omradeUrl:baseUrl+\"cgi-bin/wms?map=REGTILLEGG\",ki_forgrunnurl:baseUrl+\"cgi-bin/wms?map=FORGRUNN\",kommuneplanurl:baseUrl+\"cgi-bin/wms?map=KOMMUNEPLAN\",kdpUrl:baseUrl+\"cgi-bin/wms?map=KDP\",gullisteUrl:baseUrl+\"cgi-bin/wms?map=GULLISTE\",forurensetgrunnurl:baseUrl+\"cgi-bin/wms?map=FORURENSET\",funnpotensialeUrl:baseUrl+\"cgi-bin/wms?map=FUNNPOTENSIALE\",vannBekkerEleverurl:baseUrl+\"cgi-bin/wms?map=VANN_NY\",fjernvarmeurl:baseUrl+\"cgi-bin/wms?map=FJERNVARME\",risikourl:baseUrl+\"cgi-bin/wms?map=RISIKO\",vegtypeurl:baseUrl+\"cgi-bin/wms?map=VEGKATEGORI\",fartsgren"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 152941,
+        "snippet": "!1,multiEiendom:!1,list:null,regbestIntranett:void 0,saksinnsynUrl:void 0,saksinnsynCasedetUrl:void 0,saksinnsynDocdetUrl:void 0,sidinmeningUrl:void 0,cacheurl:\"\",searchUrl:void 0,sakWFSUrl:void 0,planinnsynUrl:void 0,kartinnsynurl:void 0,geoJsonWFS:void 0,phpAutocomplete:void 0,autocompleteUrl:void 0,planmetaWSUrl:void 0,vedtakWSUrl:void 0,numberOfComments:0,formatDate:globalFns.formatDate,modes:{},defaults:[],clearLayers:[\"markers\",\"fontmarkers\",\"planobj\",\"geoloclayer\",\"searchhighlight\"],removeLayers:[\"highlight\"],registeredPlugins:{},GIFunctions:{},waitAndThen:function(r,t,n,i){setTimeout(function(){t(n,i)},r)},lastRadioClicked:void 0,replaceAll:function(r,t,n){return n.replace(new RegExp(r,\"g\"),t)},forAllLayers:globalFns.forAllLayers,clearMap:function(r){var t=this."
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 152961,
+        "snippet": "ist:null,regbestIntranett:void 0,saksinnsynUrl:void 0,saksinnsynCasedetUrl:void 0,saksinnsynDocdetUrl:void 0,sidinmeningUrl:void 0,cacheurl:\"\",searchUrl:void 0,sakWFSUrl:void 0,planinnsynUrl:void 0,kartinnsynurl:void 0,geoJsonWFS:void 0,phpAutocomplete:void 0,autocompleteUrl:void 0,planmetaWSUrl:void 0,vedtakWSUrl:void 0,numberOfComments:0,formatDate:globalFns.formatDate,modes:{},defaults:[],clearLayers:[\"markers\",\"fontmarkers\",\"planobj\",\"geoloclayer\",\"searchhighlight\"],removeLayers:[\"highlight\"],registeredPlugins:{},GIFunctions:{},waitAndThen:function(r,t,n,i){setTimeout(function(){t(n,i)},r)},lastRadioClicked:void 0,replaceAll:function(r,t,n){return n.replace(new RegExp(r,\"g\"),t)},forAllLayers:globalFns.forAllLayers,clearMap:function(r){var t=this.map;this.clearLayers"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 568549,
+        "snippet": "m(9),$(\"#search-result-page\").remove()}else $(\"#search-result-ct\").append(\"Du tastet inn feil koordinater.\"),$(\"#search-result-loader\").hide()}};const searchInfo={lookupAdresserForGate:function(r){privateFns$e.createSearchResultsPage(),$.ajax({url:global$1.phpAutocomplete+\"prefetchHusnrForGate?gate=\"+encodeURIComponent(r),success:function(t){var n=$(\"#search-result-ct\");t.forEach(function(i){var a=creator.createButton({id:i.id,css:\"zoom-to-search-result\",text:i.value,onclick:privateFns$e.getLookupAdresse});n.append(a)}),n.find(\"div:nth-of-type(1)\").focus(),$(\"#search-result-loader\").hide()}})},getLookupPlan:privateFns$e.getLookupPlanPriv,getLookupStedsnavn:function(r){privateFns$e.createSearchResultsPage(),privateFns$e.getLookupStedsnavnPriv(r)},submitSearch:function(r)"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 570538,
+        "snippet": "earch-input-field\",css:\"btn-group input-group input-group-sm\"}),creator.createDiv({id:\"\",css:\"infoContainer\",text:\"Klikk i kartet for mer info\"}),i=creator.createInput({css:\"searchinput\",id:\"large-search\",name:\"q\"}),i.type=\"text\",i.placeholder=r.placeholder,i.autocomplete=\"off\",i.setAttribute(\"aria-label\",r.ariaLabel),a=creator.createSpan({css:\"input-group-btn\"}),s=creator.createButton({css:\"btn btn-default btn-search\",id:\"btn-searchbtn\",ariaLabel:\"Søk\"}),s.type=\"submit\",o=creator.createIcon({css:\"icon-Search-big\"}),s.appendChild(o),a.appendChild(s),n.appendChild(i),n.appendChild(a),t.appendChild(n),document.getElementById(\"middleDiv\").appendChild(t),privateFns$d.createSmallSearchBtn()},createSmallSearchBtn:function(){let r=creator.createButton({css:\"top-menu-button sma"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 571480,
+        "snippet": "yphicon-search\"></i>'});document.getElementById(\"middleDiv\").appendChild(r)},initPlainSearch:function(){privateFns$d.addButtonTriggers(!0);var r=$(\"#large-search\");r.closest(\"form\").submit(function(t){t.preventDefault(),searchInfo.submitSearch(r.val())})},initAutocomplete:function(r){var t=$(\"#large-search\");t.attr(\"placeholder\",\"Vent...\"),$.ajax({url:global$1.autocompleteUrl,success:function(n){var i=n;i.sort((a,s)=>a.value>s.value?1:s.value>a.value?-1:0),t.autocomplete({lookup:i,minChars:3,dataKey:\"data\",searchKey:\"value\",searchEverywhere:!1,lookupLimit:10,width:320,onSelect:function(a){var s=$(\"#selected\");s.find(\"span\").html(a.value),s.addClass(\"selected\"),r.autocompleteHandlers.forEach(function(o){a.data===o.key&&searchInfo[o.func](a.value)})}}),t.attr(\"placeholder"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 571583,
+        "snippet": "{privateFns$d.addButtonTriggers(!0);var r=$(\"#large-search\");r.closest(\"form\").submit(function(t){t.preventDefault(),searchInfo.submitSearch(r.val())})},initAutocomplete:function(r){var t=$(\"#large-search\");t.attr(\"placeholder\",\"Vent...\"),$.ajax({url:global$1.autocompleteUrl,success:function(n){var i=n;i.sort((a,s)=>a.value>s.value?1:s.value>a.value?-1:0),t.autocomplete({lookup:i,minChars:3,dataKey:\"data\",searchKey:\"value\",searchEverywhere:!1,lookupLimit:10,width:320,onSelect:function(a){var s=$(\"#selected\");s.find(\"span\").html(a.value),s.addClass(\"selected\"),r.autocompleteHandlers.forEach(function(o){a.data===o.key&&searchInfo[o.func](a.value)})}}),t.attr(\"placeholder\",r.placeholder)}})}};$(\"head\").append(\"<link rel='stylesheet' type='text/css' href='./css/searchPlugin"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 571683,
+        "snippet": "preventDefault(),searchInfo.submitSearch(r.val())})},initAutocomplete:function(r){var t=$(\"#large-search\");t.attr(\"placeholder\",\"Vent...\"),$.ajax({url:global$1.autocompleteUrl,success:function(n){var i=n;i.sort((a,s)=>a.value>s.value?1:s.value>a.value?-1:0),t.autocomplete({lookup:i,minChars:3,dataKey:\"data\",searchKey:\"value\",searchEverywhere:!1,lookupLimit:10,width:320,onSelect:function(a){var s=$(\"#selected\");s.find(\"span\").html(a.value),s.addClass(\"selected\"),r.autocompleteHandlers.forEach(function(o){a.data===o.key&&searchInfo[o.func](a.value)})}}),t.attr(\"placeholder\",r.placeholder)}})}};$(\"head\").append(\"<link rel='stylesheet' type='text/css' href='./css/searchPlugin.css'>\");const searchPlugin={initiate:function(r){r&&(privateFns$d.createSearchField(r),privateFns$d"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 571891,
+        "snippet": "rt((a,s)=>a.value>s.value?1:s.value>a.value?-1:0),t.autocomplete({lookup:i,minChars:3,dataKey:\"data\",searchKey:\"value\",searchEverywhere:!1,lookupLimit:10,width:320,onSelect:function(a){var s=$(\"#selected\");s.find(\"span\").html(a.value),s.addClass(\"selected\"),r.autocompleteHandlers.forEach(function(o){a.data===o.key&&searchInfo[o.func](a.value)})}}),t.attr(\"placeholder\",r.placeholder)}})}};$(\"head\").append(\"<link rel='stylesheet' type='text/css' href='./css/searchPlugin.css'>\");const searchPlugin={initiate:function(r){r&&(privateFns$d.createSearchField(r),privateFns$d.initAutocomplete(r),privateFns$d.initPlainSearch())}};var lib={};Object.defineProperty(lib,\"__esModule\",{value:!0});var _default=lib.default=stringInject;function stringInject(r,t){if(typeof r==\"string\"&&t i"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 572208,
+        "snippet": "searchInfo[o.func](a.value)})}}),t.attr(\"placeholder\",r.placeholder)}})}};$(\"head\").append(\"<link rel='stylesheet' type='text/css' href='./css/searchPlugin.css'>\");const searchPlugin={initiate:function(r){r&&(privateFns$d.createSearchField(r),privateFns$d.initAutocomplete(r),privateFns$d.initPlainSearch())}};var lib={};Object.defineProperty(lib,\"__esModule\",{value:!0});var _default=lib.default=stringInject;function stringInject(r,t){if(typeof r==\"string\"&&t instanceof Array)return r.replace(/({\\d})/g,function(i){return t[i.replace(/{/,\"\").replace(/}/,\"\")]});if(typeof r==\"string\"&&t instanceof Object){if(Object.keys(t).length===0)return r;for(var n in t)return r.replace(/({([^}]+)})/g,function(i){var a=i.replace(/{/,\"\").replace(/}/,\"\");return t[a]?t[a]:i})}else return ty"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 630034,
+        "snippet": "u:function(){$(\".navtoggler\").removeClass(\"navtogglerActive\"),$(\".navtoggler\").addClass(\"navtoggler-toggled\"),$(\".mapmenu\").removeClass(\"nav-toggled\")},getEiendomForCoordinate:function(r,t,n){var i=parseInt(r[0],10),a=parseInt(r[1],10);$.ajax({url:global$1.phpAutocomplete+\"kontekstmeny?e=\"+i+\"&n=\"+a,success:function(s){privateFns$b.clearContextMenu(),s.gnr||s.teigid?(privateFns$b.getEiendomPolygon(s,t.contextMenu),privateFns$b.renderEiendomsInfo(s,global$1.intranett),privateFns$b.renderPointInfo(i,a,s),privateFns$b.getContextInfo(t.contextMenu,s,r,n)):$(\".featureinfo\").hide(),global$1.clickInfoInProgress=!1},fail:function(){global$1.clickInfoInProgress=!1,console.error(\"fail\")},error:function(){global$1.clickInfoInProgress=!1,console.error(\"error\")}})},setNoEiendomInfo:"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 1113874,
+        "snippet": "s,configs,baseUrl=\"https://od2.pbe.oslo.kommune.no/\",extraUrl=\"https://od2.pbe.oslo.kommune.no/\",od1Url=\"https://od1.pbe.oslo.kommune.no/\";parameters={intranett:!1,wfsTillegg:\"&version=1.1.0&service=wfs&request=GetFeature\",cacheurl:baseUrl+\"mapcache/wmts?\",phpAutocomplete:\"https://od2.pbe.oslo.kommune.no/noden/\",autocompleteUrl:\"https://od2.pbe.oslo.kommune.no/noden/getAutocompleteData\",searchUrl:baseUrl+\"cgi-bin/wms?map=WFS_SOK\",sakWFSUrl:\"/cgi-bin/wms?map=PI4_GEOJSON\",planinnsynUrl:baseUrl+\"cgi-bin/wms?map=PLANINNSYN\",kartinnsynurl:baseUrl+\"cgi-bin/wms?map=KARTINNSYN\",regbestIntranett:\"/regbest/\",saksinnsynUrl:\"//terra2.pbe.oslo.kommune.no/saksinnsyn4/main.asp\",saksinnsynDocdetUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/docdet.asp\",saksinnsynCasedetUrl:\"http://i"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 1113928,
+        "snippet": "xtraUrl=\"https://od2.pbe.oslo.kommune.no/\",od1Url=\"https://od1.pbe.oslo.kommune.no/\";parameters={intranett:!1,wfsTillegg:\"&version=1.1.0&service=wfs&request=GetFeature\",cacheurl:baseUrl+\"mapcache/wmts?\",phpAutocomplete:\"https://od2.pbe.oslo.kommune.no/noden/\",autocompleteUrl:\"https://od2.pbe.oslo.kommune.no/noden/getAutocompleteData\",searchUrl:baseUrl+\"cgi-bin/wms?map=WFS_SOK\",sakWFSUrl:\"/cgi-bin/wms?map=PI4_GEOJSON\",planinnsynUrl:baseUrl+\"cgi-bin/wms?map=PLANINNSYN\",kartinnsynurl:baseUrl+\"cgi-bin/wms?map=KARTINNSYN\",regbestIntranett:\"/regbest/\",saksinnsynUrl:\"//terra2.pbe.oslo.kommune.no/saksinnsyn4/main.asp\",saksinnsynDocdetUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/docdet.asp\",saksinnsynCasedetUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/casedet.asp\",saks"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 1113986,
+        "snippet": "/od1.pbe.oslo.kommune.no/\";parameters={intranett:!1,wfsTillegg:\"&version=1.1.0&service=wfs&request=GetFeature\",cacheurl:baseUrl+\"mapcache/wmts?\",phpAutocomplete:\"https://od2.pbe.oslo.kommune.no/noden/\",autocompleteUrl:\"https://od2.pbe.oslo.kommune.no/noden/getAutocompleteData\",searchUrl:baseUrl+\"cgi-bin/wms?map=WFS_SOK\",sakWFSUrl:\"/cgi-bin/wms?map=PI4_GEOJSON\",planinnsynUrl:baseUrl+\"cgi-bin/wms?map=PLANINNSYN\",kartinnsynurl:baseUrl+\"cgi-bin/wms?map=KARTINNSYN\",regbestIntranett:\"/regbest/\",saksinnsynUrl:\"//terra2.pbe.oslo.kommune.no/saksinnsyn4/main.asp\",saksinnsynDocdetUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/docdet.asp\",saksinnsynCasedetUrl:\"http://innsyn.pbe.oslo.kommune.no/saksinnsyn/casedet.asp\",saksinnsynShowregbestUrl:\"http://innsyn.pbe.oslo.kommune.no/sa"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 1188754,
+        "snippet": "\"58\" cy=\"61.4\" rx=\"1.5\" ry=\"2.9\"/></svg>'],n=0;n<11;n++){var i=document.createElement(\"i\");i.className=\"snowflake\",i.innerHTML=t[Math.ceil(Math.random()*3)-1],r.appendChild(i)}var a=$(document.body).contents();a.append(r),$(document.body).append(r)}}],search:{autocompleteUrl:parameters.autocompleteUrl,autocompleteHandlers:[{key:\"gate\",func:\"lookupAdresserForGate\"},{key:\"plan\",func:\"getLookupPlan\"},{key:\"stedsnavn\",func:\"getLookupStedsnavn\"}],ariaLabel:\"Skriv inn adresse, gårds- og bruksnummer, plannummer eller saksnummer\",placeholder:\"Søk på adresse, gnr./bnr., plannr. eller saksnr.\"},mapInteractions:{featureHover:!0,featureClick:!0},contextMenu:{active:!0,title1:\"Om valgt eiendom\",title2:\"Om valgt punkt\",mode:{top:!0,area:!0,point:!0,bottom:\"Hva vil du gjøre?\"},headerF"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 1188781,
+        "snippet": "\"2.9\"/></svg>'],n=0;n<11;n++){var i=document.createElement(\"i\");i.className=\"snowflake\",i.innerHTML=t[Math.ceil(Math.random()*3)-1],r.appendChild(i)}var a=$(document.body).contents();a.append(r),$(document.body).append(r)}}],search:{autocompleteUrl:parameters.autocompleteUrl,autocompleteHandlers:[{key:\"gate\",func:\"lookupAdresserForGate\"},{key:\"plan\",func:\"getLookupPlan\"},{key:\"stedsnavn\",func:\"getLookupStedsnavn\"}],ariaLabel:\"Skriv inn adresse, gårds- og bruksnummer, plannummer eller saksnummer\",placeholder:\"Søk på adresse, gnr./bnr., plannr. eller saksnr.\"},mapInteractions:{featureHover:!0,featureClick:!0},contextMenu:{active:!0,title1:\"Om valgt eiendom\",title2:\"Om valgt punkt\",mode:{top:!0,area:!0,point:!0,bottom:\"Hva vil du gjøre?\"},headerField:{},bottomField:{},fiel"
+      },
+      {
+        "keyword": "autocomplete",
+        "index": 1188797,
+        "snippet": "n=0;n<11;n++){var i=document.createElement(\"i\");i.className=\"snowflake\",i.innerHTML=t[Math.ceil(Math.random()*3)-1],r.appendChild(i)}var a=$(document.body).contents();a.append(r),$(document.body).append(r)}}],search:{autocompleteUrl:parameters.autocompleteUrl,autocompleteHandlers:[{key:\"gate\",func:\"lookupAdresserForGate\"},{key:\"plan\",func:\"getLookupPlan\"},{key:\"stedsnavn\",func:\"getLookupStedsnavn\"}],ariaLabel:\"Skriv inn adresse, gårds- og bruksnummer, plannummer eller saksnummer\",placeholder:\"Søk på adresse, gnr./bnr., plannr. eller saksnr.\"},mapInteractions:{featureHover:!0,featureClick:!0},contextMenu:{active:!0,title1:\"Om valgt eiendom\",title2:\"Om valgt punkt\",mode:{top:!0,area:!0,point:!0,bottom:\"Hva vil du gjøre?\"},headerField:{},bottomField:{},fields:[{id:\"planerP"
+      },
+      {
+        "keyword": "plannr",
+        "index": 566865,
+        "snippet": "+\"</Literal></PropertyIsEqualTo><PropertyIsEqualTo><PropertyName>BRUKSNR</PropertyName><Literal>\"+n.split(\"/\")[1]+\"</Literal></PropertyIsEqualTo></AND></Filter>\";t.push({url:i,typeName:\"EIENDOM_WFS\",noZoom:!1})}),privateFns$e.makePropertyListRequest(t)},searchPlannr:function(r){var t=global$1.planinnsynUrl+\"&service=WFS&version=1.1.0&request=GetFeature&\";t+=\"typeName=Reguleringomr_Agg,Planer_uten_flate&Filter=\",t+=\"(<Filter><PropertyIsLike wildcard='*' singleChar='.' escape='!'><PropertyName>PLANNAVN</PropertyName><Literal>*\"+r.toUpperCase()+\"*</Literal></PropertyIsLike></Filter>)\",t+=\"(<Filter><PropertyIsLike wildcard='*' singleChar='.' escape='!'><PropertyName>PLANNAVN</PropertyName><Literal>*\"+r.toUpperCase()+\"*</Literal></PropertyIsLike></Filter>)\",t+=\"&v=102\",priva"
+      },
+      {
+        "keyword": "plannr",
+        "index": 569424,
+        "snippet": "\");privateFns$e.searchListProperty(n)}else if(r.length>0)if(privateFns$e.createSearchResultsPage(),r.indexOf(\"/\")>0&&r.indexOf(\",\")<0)privateFns$e.searchProperty(r);else if(r.indexOf(\"|\")>0)privateFns$e.searchCoordinate(r);else if(!isNaN(r))privateFns$e.searchPlannr(r);else if(r.indexOf(\"/\")>0&&r.indexOf(\",\")>0){var t=r.split(\",\");privateFns$e.searchListProperty(t)}else r.charAt(1)===\"-\"||!isNaN(parseInt(r.charAt(1),10))?privateFns$e.searchPlannr(r):privateFns$e.searchAddress(r)}};var privateFns$d;privateFns$d={addButtonTriggers:function(r){$(\"#large-search\").focus(function(t){$(t.currentTarget).val(\"\")}),$(\"#searchclear\").click(function(){$(\"#large-search\").val(\"\")}),$(\"#small-search-btn\").click(function(){$(\".drop-downs\").hide(),$(\".show-collapsible\").removeClass(\"sho"
+      },
+      {
+        "keyword": "plannr",
+        "index": 569608,
+        "snippet": "|\")>0)privateFns$e.searchCoordinate(r);else if(!isNaN(r))privateFns$e.searchPlannr(r);else if(r.indexOf(\"/\")>0&&r.indexOf(\",\")>0){var t=r.split(\",\");privateFns$e.searchListProperty(t)}else r.charAt(1)===\"-\"||!isNaN(parseInt(r.charAt(1),10))?privateFns$e.searchPlannr(r):privateFns$e.searchAddress(r)}};var privateFns$d;privateFns$d={addButtonTriggers:function(r){$(\"#large-search\").focus(function(t){$(t.currentTarget).val(\"\")}),$(\"#searchclear\").click(function(){$(\"#large-search\").val(\"\")}),$(\"#small-search-btn\").click(function(){$(\".drop-downs\").hide(),$(\".show-collapsible\").removeClass(\"show-collapsible\"),$(\"#searchinput\").toggle(),$(\"#large-search\").val(\"\").focus()}),$(\".hide-me\").click(function(t){$(t.currentTarget).closest(\".drop-downs\").hide(300),$(t.currentTarget).c"
+      },
+      {
+        "keyword": "plannr",
+        "index": 1189062,
+        "snippet": "ompleteHandlers:[{key:\"gate\",func:\"lookupAdresserForGate\"},{key:\"plan\",func:\"getLookupPlan\"},{key:\"stedsnavn\",func:\"getLookupStedsnavn\"}],ariaLabel:\"Skriv inn adresse, gårds- og bruksnummer, plannummer eller saksnummer\",placeholder:\"Søk på adresse, gnr./bnr., plannr. eller saksnr.\"},mapInteractions:{featureHover:!0,featureClick:!0},contextMenu:{active:!0,title1:\"Om valgt eiendom\",title2:\"Om valgt punkt\",mode:{top:!0,area:!0,point:!0,bottom:\"Hva vil du gjøre?\"},headerField:{},bottomField:{},fields:[{id:\"planerParent\",title:\"Planer\",point:!0,fields:[{id:\"kommuneplan\",title:\"Kommuneplan\",point:!0},{id:\"kdp\",title:\"Kommunedelplan\",point:!0,featureCount:!0},{id:\"omrreg\",title:\"Områderegulering\",point:!0,featureCount:!0},{id:\"planer\",title:\"Reguleringsplaner\",point:!0,feature"
+      },
+      {
+        "keyword": "planid",
+        "index": 154155,
+        "snippet": "s().getArray()[0].setPosition(void 0)},addFeaturesToOverlay:function(r,t){var n=this.map.getLayerById(t);r.forEach(function(i){n.getSource().addFeature(i)})},highlightPlan:function(r,t,n,i){var a,s,o,l;t?(o=t.url+r[t.urlKey],l=t.layer):(o=this.kartinnsynurl+\"&planid=\"+r,l=\"highlight_planid\"),a=new Image$1({layerId:\"highlight\",source:new ImageWMS$1({url:o,params:{LAYERS:l},serverType:\"mapserver\"}),visible:!0}),$(\"body\").css(\"cursor\",\"wait\"),n&&(s=creator.createIcon({css:\"fa fa-spinner fa-pulse\"}),$(i).append(s)),a.getSource().on(\"imageloadend\",function(){$(\"body\").css(\"cursor\",\"\"),n&&$(i).find(\"i\").remove()}),this.map.addLayer(a)},toggleTopo4:function(r){var t=this.map;t.getLayerById(\"topo4\")&&(t.getLayerById(\"kommuneflate\").setVisible(r),t.getLayerById(\"topo4\").setVisib"
+      },
+      {
+        "keyword": "planid",
+        "index": 154179,
+        "snippet": "ition(void 0)},addFeaturesToOverlay:function(r,t){var n=this.map.getLayerById(t);r.forEach(function(i){n.getSource().addFeature(i)})},highlightPlan:function(r,t,n,i){var a,s,o,l;t?(o=t.url+r[t.urlKey],l=t.layer):(o=this.kartinnsynurl+\"&planid=\"+r,l=\"highlight_planid\"),a=new Image$1({layerId:\"highlight\",source:new ImageWMS$1({url:o,params:{LAYERS:l},serverType:\"mapserver\"}),visible:!0}),$(\"body\").css(\"cursor\",\"wait\"),n&&(s=creator.createIcon({css:\"fa fa-spinner fa-pulse\"}),$(i).append(s)),a.getSource().on(\"imageloadend\",function(){$(\"body\").css(\"cursor\",\"\"),n&&$(i).find(\"i\").remove()}),this.map.addLayer(a)},toggleTopo4:function(r){var t=this.map;t.getLayerById(\"topo4\")&&(t.getLayerById(\"kommuneflate\").setVisible(r),t.getLayerById(\"topo4\").setVisible(r))},isEmpty:function"
+      },
+      {
+        "keyword": "planid",
+        "index": 558059,
+        "snippet": ".currentTarget).data(\"features\");n[0].getId().indexOf(\"Planer_uten_flate\")>=0?privateFns$e.zoomToFeatureCollection(n,!0):(global$1.map.getView().fit(n[0].getGeometry().getExtent()),$(\"body\").css(\"cursor\",\"wait\"),global$1.highlightPlan($(r.currentTarget).data(\"planid\")))}},zoomToBounds:function(r,t){global$1.map.getView().fit(buffer(r.readFeatureCollectionMetadata(t).bounds,50))},createResultsetButton:function(r){var t=creator.createButton({css:\"zoom-to-search-result\",text:r.html,onclick:privateFns$e.zoomToFeature});return $(t).data(\"type\",r.type),$(t).data(\"features\",r.features),r.planid&&$(t).data(\"planid\",r.planid),t},listResultset:function(r,t){var n=$(\"#search-result-ct\");r.length?r.forEach(function(i){n.append(privateFns$e.createResultsetButton({html:i.get(t),type:"
+      },
+      {
+        "keyword": "planid",
+        "index": 558387,
+        "snippet": "uffer(r.readFeatureCollectionMetadata(t).bounds,50))},createResultsetButton:function(r){var t=creator.createButton({css:\"zoom-to-search-result\",text:r.html,onclick:privateFns$e.zoomToFeature});return $(t).data(\"type\",r.type),$(t).data(\"features\",r.features),r.planid&&$(t).data(\"planid\",r.planid),t},listResultset:function(r,t){var n=$(\"#search-result-ct\");r.length?r.forEach(function(i){n.append(privateFns$e.createResultsetButton({html:i.get(t),type:\"address\",features:i}))}):Object.keys(r).some(function(i){var a=!1;return Object.keys(r).length===1?(privateFns$e.zoomToFeatureCollection(r[i].features,!0),a=!0,$(\"#search-result-page\").remove()):n.append(privateFns$e.createResultsetButton({html:i,type:\"plan\",features:r[i].features,planid:r[i].planid})),a}),global$1.exposedGet"
+      },
+      {
+        "keyword": "planid",
+        "index": 558406,
+        "snippet": "CollectionMetadata(t).bounds,50))},createResultsetButton:function(r){var t=creator.createButton({css:\"zoom-to-search-result\",text:r.html,onclick:privateFns$e.zoomToFeature});return $(t).data(\"type\",r.type),$(t).data(\"features\",r.features),r.planid&&$(t).data(\"planid\",r.planid),t},listResultset:function(r,t){var n=$(\"#search-result-ct\");r.length?r.forEach(function(i){n.append(privateFns$e.createResultsetButton({html:i.get(t),type:\"address\",features:i}))}):Object.keys(r).some(function(i){var a=!1;return Object.keys(r).length===1?(privateFns$e.zoomToFeatureCollection(r[i].features,!0),a=!0,$(\"#search-result-page\").remove()):n.append(privateFns$e.createResultsetButton({html:i,type:\"plan\",features:r[i].features,planid:r[i].planid})),a}),global$1.exposedGetPlanMetadata(t,$(\"#"
+      },
+      {
+        "keyword": "planid",
+        "index": 558416,
+        "snippet": "Metadata(t).bounds,50))},createResultsetButton:function(r){var t=creator.createButton({css:\"zoom-to-search-result\",text:r.html,onclick:privateFns$e.zoomToFeature});return $(t).data(\"type\",r.type),$(t).data(\"features\",r.features),r.planid&&$(t).data(\"planid\",r.planid),t},listResultset:function(r,t){var n=$(\"#search-result-ct\");r.length?r.forEach(function(i){n.append(privateFns$e.createResultsetButton({html:i.get(t),type:\"address\",features:i}))}):Object.keys(r).some(function(i){var a=!1;return Object.keys(r).length===1?(privateFns$e.zoomToFeatureCollection(r[i].features,!0),a=!0,$(\"#search-result-page\").remove()):n.append(privateFns$e.createResultsetButton({html:i,type:\"plan\",features:r[i].features,planid:r[i].planid})),a}),global$1.exposedGetPlanMetadata(t,$(\"#featureinf"
+      },
+      {
+        "keyword": "planid",
+        "index": 558862,
+        "snippet": "}):Object.keys(r).some(function(i){var a=!1;return Object.keys(r).length===1?(privateFns$e.zoomToFeatureCollection(r[i].features,!0),a=!0,$(\"#search-result-page\").remove()):n.append(privateFns$e.createResultsetButton({html:i,type:\"plan\",features:r[i].features,planid:r[i].planid})),a}),global$1.exposedGetPlanMetadata(t,$(\"#featureinfo-details-ct\"))},processPlanFeatures:function(r){var t={},n;r.forEach(function(i){n=i.get(\"PLANNAVN\"),t[n]?t[n].features.push(i):t[n]={features:[i],planid:i.get(\"PLANID\")}}),privateFns$e.listResultset(t,n)},makeAddressByggesakRequest:function(r){$.ajax({url:r.url,success:function(t){var n=privateFns$e.newWfsFormat(r.typeName),i=privateFns$e.readWfsFeatures(n,t),a=$(\"#search-large\");if(global$1.multiEiendom||global$1.clearMap(),i.length===1){$"
+      },
+      {
+        "keyword": "planid",
+        "index": 558874,
+        "snippet": "ys(r).some(function(i){var a=!1;return Object.keys(r).length===1?(privateFns$e.zoomToFeatureCollection(r[i].features,!0),a=!0,$(\"#search-result-page\").remove()):n.append(privateFns$e.createResultsetButton({html:i,type:\"plan\",features:r[i].features,planid:r[i].planid})),a}),global$1.exposedGetPlanMetadata(t,$(\"#featureinfo-details-ct\"))},processPlanFeatures:function(r){var t={},n;r.forEach(function(i){n=i.get(\"PLANNAVN\"),t[n]?t[n].features.push(i):t[n]={features:[i],planid:i.get(\"PLANID\")}}),privateFns$e.listResultset(t,n)},makeAddressByggesakRequest:function(r){$.ajax({url:r.url,success:function(t){var n=privateFns$e.newWfsFormat(r.typeName),i=privateFns$e.readWfsFeatures(n,t),a=$(\"#search-large\");if(global$1.multiEiendom||global$1.clearMap(),i.length===1){$(\"#search-re"
+      },
+      {
+        "keyword": "planid",
+        "index": 559084,
+        "snippet": ":i,type:\"plan\",features:r[i].features,planid:r[i].planid})),a}),global$1.exposedGetPlanMetadata(t,$(\"#featureinfo-details-ct\"))},processPlanFeatures:function(r){var t={},n;r.forEach(function(i){n=i.get(\"PLANNAVN\"),t[n]?t[n].features.push(i):t[n]={features:[i],planid:i.get(\"PLANID\")}}),privateFns$e.listResultset(t,n)},makeAddressByggesakRequest:function(r){$.ajax({url:r.url,success:function(t){var n=privateFns$e.newWfsFormat(r.typeName),i=privateFns$e.readWfsFeatures(n,t),a=$(\"#search-large\");if(global$1.multiEiendom||global$1.clearMap(),i.length===1){$(\"#search-result-page\").remove(),a.val(i[0].get(r.valueField));var s=i[0];s.setStyle(new Style$1({image:new Icon$1({anchor:[.5,1],size:[32,32],src:\"./icons/Kart PinBlue.png\"})})),global$1.map.getLayerById(\"fontmarkers\").ge"
+      },
+      {
+        "keyword": "planid",
+        "index": 559098,
+        "snippet": ",features:r[i].features,planid:r[i].planid})),a}),global$1.exposedGetPlanMetadata(t,$(\"#featureinfo-details-ct\"))},processPlanFeatures:function(r){var t={},n;r.forEach(function(i){n=i.get(\"PLANNAVN\"),t[n]?t[n].features.push(i):t[n]={features:[i],planid:i.get(\"PLANID\")}}),privateFns$e.listResultset(t,n)},makeAddressByggesakRequest:function(r){$.ajax({url:r.url,success:function(t){var n=privateFns$e.newWfsFormat(r.typeName),i=privateFns$e.readWfsFeatures(n,t),a=$(\"#search-large\");if(global$1.multiEiendom||global$1.clearMap(),i.length===1){$(\"#search-result-page\").remove(),a.val(i[0].get(r.valueField));var s=i[0];s.setStyle(new Style$1({image:new Icon$1({anchor:[.5,1],size:[32,32],src:\"./icons/Kart PinBlue.png\"})})),global$1.map.getLayerById(\"fontmarkers\").getSource().addF"
+      },
+      {
+        "keyword": "planid",
+        "index": 562894,
+        "snippet": "ns$e.readWfsFeatures(n,t);$(\"#search-result-loader\").hide(),i.length===1?($(\"#search-large\").val(i[0].get(\"PLANNAVN\")),$(\"#search-result-page\").remove(),$(\"body\").css(\"cursor\",\"wait\"),global$1.multiEiendom||global$1.clearMap(),global$1.highlightPlan(i[0].get(\"PLANID\")),privateFns$e.zoomToBounds(n,t),$(window).width()<767&&$(\"#searchinput\").removeClass(\"show-item\"),$(window).width()<992?$(\".featureinfo-details\").addClass(\"aside-show featureinfo-details-minimized standalone\").removeClass(\"featureinfo-details-show\").find(\".maximize-this\").html(i[0].get(\"PLANNAVN\")):$(\".featureinfo-details\").addClass(\"aside-show standalone\").removeClass(\"featureinfo-details-show\"),$(\".featureinfo\").removeClass(\"almost-hide-right aside-show\"),global$1.exposedGetPlanMetadata(i[0].get(\"PLANNAV"
+      },
+      {
+        "keyword": "planid",
+        "index": 1191681,
+        "snippet": "ters.wfsTillegg,typeNames:[\"kpinfo_for_eiendom\"],filterItem:[\"teigid\"],targets:[{id:\"kommuneplan\",layerId:\"kp\",showExtendedInfo:!0,merInfoLink:\"Mer info om kommuneplanen\",merInfoLayout:[{type:\"header\",value:\"Kommuneplan\"},{type:\"paragraph\",value:\"<strong>Arealplanid</strong><br />-\"},{type:\"paragraph\",value:\"<strong>Plantype</strong><br />Kommuneplan\"},{type:\"paragraph\",value:\"<strong>Planstatus</strong><br />Vedtatt\"},{type:\"paragraph\",value:\"<strong>Planbestemmelse</strong><br />Se plandokument\"},{type:\"paragraph\",value:\"<strong>Lovreferanse</strong><br />PBL 2008\"},{type:\"paragraph\",value:\"<strong>Ikraftsettelsesdato</strong><br />23.09.2015\"},{type:\"paragraph\",value:\"<strong>Plannavn</strong><br />Oslo mot 2030 – Smart, trygg og grønn\"},{type:\"paragraph\",value:\"<str"
+      },
+      {
+        "keyword": "planid",
+        "index": 1193912,
+        "snippet": "exOf(\"KDP\")>=0},layerCheckbox:!0,layerId:\"kdp\",comparator:\"header\",counter:\"navn\",geometryType:!0,layout:[{type:\"header\",value:\"header\",triggerField:!0,unique:!0,halfling:!0},{type:\"itemCheckbox\",tekst:\"Vis planområde\",unique:!0,url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"},{type:\"legendFeature\",legendValue:\"legendValues\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"FORMAAL\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",comparator:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",navn:\"PLANNAVN\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",counter:\"FORMAAL\"},extendedInfo:{external:!0,url:parameters.planmetaWSUrl+\"plannavn=\",urlKey:\"navn\",itemKey:\"saksnr\",header:\"navn\",layout:[{type:\"paragraph\",prefix:\"<strong>Saken gjelder</strong><br"
+      },
+      {
+        "keyword": "planid",
+        "index": 1193950,
+        "snippet": "Id:\"kdp\",comparator:\"header\",counter:\"navn\",geometryType:!0,layout:[{type:\"header\",value:\"header\",triggerField:!0,unique:!0,halfling:!0},{type:\"itemCheckbox\",tekst:\"Vis planområde\",unique:!0,url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"},{type:\"legendFeature\",legendValue:\"legendValues\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"FORMAAL\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",comparator:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",navn:\"PLANNAVN\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",counter:\"FORMAAL\"},extendedInfo:{external:!0,url:parameters.planmetaWSUrl+\"plannavn=\",urlKey:\"navn\",itemKey:\"saksnr\",header:\"navn\",layout:[{type:\"paragraph\",prefix:\"<strong>Saken gjelder</strong><br />\",value:\"tittel\"},{type:\"paragraph\""
+      },
+      {
+        "keyword": "planid",
+        "index": 1194064,
+        "snippet": "unique:!0,halfling:!0},{type:\"itemCheckbox\",tekst:\"Vis planområde\",unique:!0,url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"},{type:\"legendFeature\",legendValue:\"legendValues\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"FORMAAL\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",comparator:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",navn:\"PLANNAVN\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",counter:\"FORMAAL\"},extendedInfo:{external:!0,url:parameters.planmetaWSUrl+\"plannavn=\",urlKey:\"navn\",itemKey:\"saksnr\",header:\"navn\",layout:[{type:\"paragraph\",prefix:\"<strong>Saken gjelder</strong><br />\",value:\"tittel\"},{type:\"paragraph\",prefix:\"<strong>Sakstype</strong><br />\",value:\"typedef\",alt:\"-\"},{type:\"paragraph\",prefix:\"<strong>Vedtaksdato</"
+      },
+      {
+        "keyword": "planid",
+        "index": 1195245,
+        "snippet": "{type:\"paragraph\",value:\"På bakkenivå\"},3:{type:\"paragraph\",value:\"Over bakken\"},4:{type:\"paragraph\",value:\"På havbunnen\"},5:{type:\"paragraph\",value:\"I vannsøylen\"}},{type:\"conditional\",condition:\"type\",21:{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Plandokument\"},0:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"navn\",text:\"Se plansak\"},\"\":{type:\"link\",url:parameters.regbestIntranett+\"%PARAM%/%PARAM%\",urlParam:[\"vedtaksaar\",\"navn\"],postfix:\".pdf\",text:\"Reguleringsbestemmelser\"}},{type:\"conditional\",condition:\"dok\",0:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"saksnr\",text:\"Vis plansak\"},1:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"saksnr\",postfix:\"&rplan=1\""
+      },
+      {
+        "keyword": "planid",
+        "index": 1196807,
+        "snippet": "0,layout:[{type:\"header\",value:\"header\",altText:\"<strong>Objekter som ikke er tilknyttet en plan</strong>\",triggerField:!0,unique:!0},{type:\"conditional\",condition:\"type\",unique:!0,130:{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",unique:!0,addCondition:\"dato\"},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",lay"
+      },
+      {
+        "keyword": "planid",
+        "index": 1196845,
+        "snippet": "\",altText:\"<strong>Objekter som ikke er tilknyttet en plan</strong>\",triggerField:!0,unique:!0},{type:\"conditional\",condition:\"type\",unique:!0,130:{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",unique:!0,addCondition:\"dato\"},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator:\"PLAN"
+      },
+      {
+        "keyword": "planid",
+        "index": 1196940,
+        "snippet": ",{type:\"conditional\",condition:\"type\",unique:!0,130:{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",unique:!0,addCondition:\"dato\"},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator:\"PLANNAVN\",counter:\"FORMAAL\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",type:\"PLANTYPE\",navn:\"PLANNAVN\"},extend"
+      },
+      {
+        "keyword": "planid",
+        "index": 1196978,
+        "snippet": "unique:!0,130:{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",unique:!0,addCondition:\"dato\"},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator:\"PLANNAVN\",counter:\"FORMAAL\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",type:\"PLANTYPE\",navn:\"PLANNAVN\"},extendedInfo:{external:!0,url:parameters.pla"
+      },
+      {
+        "keyword": "planid",
+        "index": 1197042,
+        "snippet": "rameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",unique:!0,addCondition:\"dato\"},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator:\"PLANNAVN\",counter:\"FORMAAL\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",type:\"PLANTYPE\",navn:\"PLANNAVN\"},extendedInfo:{external:!0,url:parameters.planmetaWSUrl+\"plannavn=\",urlKey:\"navn\",itemKey:\"saksnr\",header:\"na"
+      },
+      {
+        "keyword": "planid",
+        "index": 1197252,
+        "snippet": "e:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",unique:!0,addCondition:\"dato\"},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator:\"PLANNAVN\",counter:\"FORMAAL\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",type:\"PLANTYPE\",navn:\"PLANNAVN\"},extendedInfo:{external:!0,url:parameters.planmetaWSUrl+\"plannavn=\",urlKey:\"navn\",itemKey:\"saksnr\",header:\"navn\",layout:[{type:\"paragraph\",prefix:\"<strong>Saken gjelder</strong><br />\",value:\"tittel\"},{type:\"paragraph\",prefix:\"<strong>Sakstype</strong><br />\",value:\"typedef\",alt:\"-\"},{type:\"paragraph\",prefix:\"<strong>"
+      },
+      {
+        "keyword": "planid",
+        "index": 1200225,
+        "snippet": "ype:\"header\",value:\"header\",altText:\"<strong>Objekter som ikke er tilknyttet en plan</strong>\",triggerField:!0,unique:!0,halfling:!0},{type:\"conditional\",condition:\"type\",unique:!0,130:{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",unique:!0,addCondition:\"dato\"},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",lay"
+      },
+      {
+        "keyword": "planid",
+        "index": 1200263,
+        "snippet": "strong>Objekter som ikke er tilknyttet en plan</strong>\",triggerField:!0,unique:!0,halfling:!0},{type:\"conditional\",condition:\"type\",unique:!0,130:{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",unique:!0,addCondition:\"dato\"},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator:\"PLAN"
+      },
+      {
+        "keyword": "planid",
+        "index": 1200358,
+        "snippet": ",{type:\"conditional\",condition:\"type\",unique:!0,130:{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",unique:!0,addCondition:\"dato\"},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator:\"PLANNAVN\",counter:\"FORMAAL\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",type:\"PLANTYPE\",navn:\"PLANNAVN\"},extend"
+      },
+      {
+        "keyword": "planid",
+        "index": 1200396,
+        "snippet": "unique:!0,130:{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",unique:!0,addCondition:\"dato\"},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator:\"PLANNAVN\",counter:\"FORMAAL\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",type:\"PLANTYPE\",navn:\"PLANNAVN\"},extendedInfo:{external:!0,url:parameters.pla"
+      },
+      {
+        "keyword": "planid",
+        "index": 1200460,
+        "snippet": "rameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",unique:!0,addCondition:\"dato\"},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator:\"PLANNAVN\",counter:\"FORMAAL\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",type:\"PLANTYPE\",navn:\"PLANNAVN\"},extendedInfo:{external:!0,url:parameters.planmetaWSUrl+\"plannavn=\",urlKey:\"navn\",itemKey:\"saksnr\",header:\"na"
+      },
+      {
+        "keyword": "planid",
+        "index": 1200670,
+        "snippet": "e:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",unique:!0,addCondition:\"dato\"},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator:\"PLANNAVN\",counter:\"FORMAAL\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",type:\"PLANTYPE\",navn:\"PLANNAVN\"},extendedInfo:{external:!0,url:parameters.planmetaWSUrl+\"plannavn=\",urlKey:\"navn\",itemKey:\"saksnr\",header:\"navn\",modify:function(r){return r.dok&&r.dok>1&&(r.dok=1),r},layout:[{type:\"paragraph\",prefix:\"<strong>Saken gjelder</strong><br />\",value:\"tittel\"},{type:\"paragraph\",prefix:\"<strong>Sakstype</strong><br />\",valu"
+      },
+      {
+        "keyword": "planid",
+        "index": 1202142,
+        "snippet": "en\"},\"2,3,1\":{type:\"paragraph\",value:\"På bakkenivå, Over bakken, I Vannsøylen\"}},{type:\"paragraph\",prefix:\"<strong>Merknader</strong><br />\",value:\"merknad\",alt:\"-\"},{type:\"conditional\",condition:\"type\",\"\":{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",addCondition:\"vedtaksdato\"},0:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"navn\",text:\"Se plansak\"},21:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"navn\",text:\"Plandokument\"},30:{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",addCondition:\"vedtaksdato\"},35:{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbeste"
+      },
+      {
+        "keyword": "planid",
+        "index": 1202478,
+        "snippet": "ato\"},0:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"navn\",text:\"Se plansak\"},21:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"navn\",text:\"Plandokument\"},30:{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",addCondition:\"vedtaksdato\"},35:{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",addCondition:\"vedtaksdato\"}},{type:\"conditional\",condition:\"dok\",0:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"saksnr\",text:\"Vis plansak\"},1:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"saksnr\",postfix:\"&rplan=1\",text:\"Vis saksdokumenter\"},undefined:{type:\"link\",url:parameter"
+      },
+      {
+        "keyword": "planid",
+        "index": 1202617,
+        "snippet": "nnsynCasedetUrl+\"?caseno=\",urlParam:\"navn\",text:\"Plandokument\"},30:{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",addCondition:\"vedtaksdato\"},35:{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",addCondition:\"vedtaksdato\"}},{type:\"conditional\",condition:\"dok\",0:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"saksnr\",text:\"Vis plansak\"},1:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"saksnr\",postfix:\"&rplan=1\",text:\"Vis saksdokumenter\"},undefined:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"navn\",postfix:\"&rplan=1\",text:\"Vis saksdokumenter\"}},{type:\"multi\",value:\"koblinger\",header:{ty"
+      },
+      {
+        "keyword": "planid",
+        "index": 1204141,
+        "snippet": "ype:\"header\",value:\"header\",altText:\"<strong>Objekter som ikke er tilknyttet en plan</strong>\",triggerField:!0,unique:!0,halfling:!0},{type:\"conditional\",condition:\"type\",unique:!0,130:{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.regbestIntranett+\"%PARAM%/%PARAM%\",urlParam:[\"dato\",\"navn\"],postfix:\".pdf\",text:\"Reguleringsbestemmelser\",unique:!0},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAV"
+      },
+      {
+        "keyword": "planid",
+        "index": 1204179,
+        "snippet": "strong>Objekter som ikke er tilknyttet en plan</strong>\",triggerField:!0,unique:!0,halfling:!0},{type:\"conditional\",condition:\"type\",unique:!0,130:{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.regbestIntranett+\"%PARAM%/%PARAM%\",urlParam:[\"dato\",\"navn\"],postfix:\".pdf\",text:\"Reguleringsbestemmelser\",unique:!0},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator"
+      },
+      {
+        "keyword": "planid",
+        "index": 1204274,
+        "snippet": ",{type:\"conditional\",condition:\"type\",unique:!0,130:{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.regbestIntranett+\"%PARAM%/%PARAM%\",urlParam:[\"dato\",\"navn\"],postfix:\".pdf\",text:\"Reguleringsbestemmelser\",unique:!0},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator:\"PLANNAVN\",counter:\"FORMAAL\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",type:\"PLANTYPE\",navn:\"PLANNAVN\"},"
+      },
+      {
+        "keyword": "planid",
+        "index": 1204312,
+        "snippet": "unique:!0,130:{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid_u_flate\"},\"\":{type:\"itemCheckbox\",tekst:\"Vis planområde\",url:parameters.kartinnsynurl+\"&planid=\",urlKey:\"id\",layer:\"highlight_planid\"}},{type:\"link\",url:parameters.regbestIntranett+\"%PARAM%/%PARAM%\",urlParam:[\"dato\",\"navn\"],postfix:\".pdf\",text:\"Reguleringsbestemmelser\",unique:!0},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator:\"PLANNAVN\",counter:\"FORMAAL\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",type:\"PLANTYPE\",navn:\"PLANNAVN\"},extendedInfo:{external:!0,url:paramete"
+      },
+      {
+        "keyword": "planid",
+        "index": 1204592,
+        "snippet": "k\",url:parameters.regbestIntranett+\"%PARAM%/%PARAM%\",urlParam:[\"dato\",\"navn\"],postfix:\".pdf\",text:\"Reguleringsbestemmelser\",unique:!0},{type:\"legendFeature\",legendValue:\"legendValues\",legendPrefix:\"reg-\",labelValue:\"{0}\",hover:!0,triggerField:!1}],values:{id:\"PLANID\",legendValues:[\"KODE\"],labelValues:[\"FORMAAL\"],header:\"PLANNAVN\",layerCheckbox:\"PLANNAVN\",comparator:\"PLANNAVN\",counter:\"FORMAAL\",vertniv:\"VERTNIV\",dato:\"IKRAFT\",type:\"PLANTYPE\",navn:\"PLANNAVN\"},extendedInfo:{external:!0,url:parameters.planmetaWSUrl+\"plannavn=\",urlKey:\"navn\",itemKey:\"saksnr\",header:\"navn\",layout:[{type:\"paragraph\",prefix:\"<strong>Saken gjelder</strong><br />\",value:\"tittel\"},{type:\"paragraph\",prefix:\"<strong>Sakstype</strong><br />\",value:\"typedef\",alt:\"-\"},{type:\"paragraph\",prefix:\"<strong>"
+      },
+      {
+        "keyword": "planid",
+        "index": 1245302,
+        "snippet": "en\"},\"2,3,1\":{type:\"paragraph\",value:\"På bakkenivå, Over bakken, I Vannsøylen\"}},{type:\"paragraph\",prefix:\"<strong>Merknader</strong><br />\",value:\"merknad\",alt:\"-\"},{type:\"conditional\",condition:\"type\",\"\":{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",addCondition:\"vedtaksdato\"},0:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"navn\",text:\"Se plansak\"},21:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"navn\",text:\"Plandokument\"},30:{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",addCondition:\"vedtaksdato\"},35:{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbeste"
+      },
+      {
+        "keyword": "planid",
+        "index": 1245638,
+        "snippet": "ato\"},0:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"navn\",text:\"Se plansak\"},21:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"navn\",text:\"Plandokument\"},30:{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",addCondition:\"vedtaksdato\"},35:{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",addCondition:\"vedtaksdato\"}},{type:\"conditional\",condition:\"dok\",0:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"saksnr\",text:\"Vis plansak\"},1:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"saksnr\",postfix:\"&rplan=1\",text:\"Vis saksdokumenter\"},\"\":{type:\"link\",url:parameters.saksi"
+      },
+      {
+        "keyword": "planid",
+        "index": 1245777,
+        "snippet": "nnsynCasedetUrl+\"?caseno=\",urlParam:\"navn\",text:\"Plandokument\"},30:{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",addCondition:\"vedtaksdato\"},35:{type:\"link\",url:parameters.saksinnsynShowregbestUrl+\"planid=\",urlParam:\"id\",text:\"Reguleringsbestemmelser\",addCondition:\"vedtaksdato\"}},{type:\"conditional\",condition:\"dok\",0:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"saksnr\",text:\"Vis plansak\"},1:{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"saksnr\",postfix:\"&rplan=1\",text:\"Vis saksdokumenter\"},\"\":{type:\"link\",url:parameters.saksinnsynCasedetUrl+\"?caseno=\",urlParam:\"saksnr\",postfix:\"&rplan=1\",text:\"Vis saksdokumenter\"},undefined:{type:\"link\",url:parameters.saksinnsyn"
+      },
+      {
+        "keyword": "PLANNAVN",
+        "index": 559027,
+        "snippet": "move()):n.append(privateFns$e.createResultsetButton({html:i,type:\"plan\",features:r[i].features,planid:r[i].planid})),a}),global$1.exposedGetPlanMetadata(t,$(\"#featureinfo-details-ct\"))},processPlanFeatures:function(r){var t={},n;r.forEach(function(i){n=i.get(\"PLANNAVN\"),t[n]?t[n].features.push(i):t[n]={features:[i],planid:i.get(\"PLANID\")}}),privateFns$e.listResultset(t,n)},makeAddressByggesakRequest:function(r){$.ajax({url:r.url,success:function(t){var n=privateFns$e.newWfsFormat(r.typeName),i=privateFns$e.readWfsFeatures(n,t),a=$(\"#search-large\");if(global$1.multiEiendom||global$1.clearMap(),i.length===1){$(\"#search-result-page\").remove(),a.val(i[0].get(r.valueField));var s=i[0];s.setStyle(new Style$1({image:new Icon$1({anchor:[.5,1],size:[32,32],src:\"./icons/Kart PinB"
+      },
+      {
+        "keyword": "PLANNAVN",
+        "index": 562741,
+        "snippet": "de-show standalone\").removeClass(\"featureinfo-details-show\"),$.ajax({url:r.url,success:function(t){var n=privateFns$e.newWfsFormat(r.typeName),i=privateFns$e.readWfsFeatures(n,t);$(\"#search-result-loader\").hide(),i.length===1?($(\"#search-large\").val(i[0].get(\"PLANNAVN\")),$(\"#search-result-page\").remove(),$(\"body\").css(\"cursor\",\"wait\"),global$1.multiEiendom||global$1.clearMap(),global$1.highlightPlan(i[0].get(\"PLANID\")),privateFns$e.zoomToBounds(n,t),$(window).width()<767&&$(\"#searchinput\").removeClass(\"show-item\"),$(window).width()<992?$(\".featureinfo-details\").addClass(\"aside-show featureinfo-details-minimized standalone\").removeClass(\"featureinfo-details-show\").find(\".maximize-this\").html(i[0].get(\"PLANNAVN\")):$(\".featureinfo-details\").addClass(\"aside-show standalone\""
+      },
+      {
+        "keyword": "PLANNAVN",
+        "index": 563191,
+        "snippet": ",t),$(window).width()<767&&$(\"#searchinput\").removeClass(\"show-item\"),$(window).width()<992?$(\".featureinfo-details\").addClass(\"aside-show featureinfo-details-minimized standalone\").removeClass(\"featureinfo-details-show\").find(\".maximize-this\").html(i[0].get(\"PLANNAVN\")):$(\".featureinfo-details\").addClass(\"aside-show standalone\").removeClass(\"featureinfo-details-show\"),$(\".featureinfo\").removeClass(\"almost-hide-right aside-show\"),global$1.exposedGetPlanMetadata(i[0].get(\"PLANNAVN\"),$(\"#featureinfo-details-ct\"))):i.length>1?privateFns$e.processPlanFeatures(i):r.inputValue&&isNaN(r.inputValue)===!1&&r.typeName!==\"byggesak_sok\"?privateFns$e.searchByggesak(r.inputValue):$(\"#search-result-ct\").html(\"Søket ga ingen treff\")},fail:function(t){console.error(t)},error:function(t)"
+      },
+      {
+        "keyword": "PLANNAVN",
+        "index": 563407,
+        "snippet": "how\").find(\".maximize-this\").html(i[0].get(\"PLANNAVN\")):$(\".featureinfo-details\").addClass(\"aside-show standalone\").removeClass(\"featureinfo-details-show\"),$(\".featureinfo\").removeClass(\"almost-hide-right aside-show\"),global$1.exposedGetPlanMetadata(i[0].get(\"PLANNAVN\"),$(\"#featureinfo-details-ct\"))):i.length>1?privateFns$e.processPlanFeatures(i):r.inputValue&&isNaN(r.inputValue)===!1&&r.typeName!==\"byggesak_sok\"?privateFns$e.searchByggesak(r.inputValue):$(\"#search-result-ct\").html(\"Søket ga ingen treff\")},fail:function(t){console.error(t)},error:function(t){console.error(t)}})},getLookupAdresse:function(r){$(\"#large-search\").val(r.target.innerHTML),privateFns$e.createSearchResultsPage();var t=global$1.searchUrl;t+=\"&VERSION=1.1.0&SERVICE=WFS&REQUEST=GetFeature&TYPENAME"
+      },
+      {
+        "keyword": "PLANNAVN",
+        "index": 564544,
+        "snippet": "teFns$e.fixedEncodeURIComponent(r)):r=privateFns$e.fixedEncodeURIComponent(r);var t=global$1.planinnsynUrl+\"&service=WFS&version=1.1.0&request=GetFeature&\";t+=\"typeName=Reguleringomr_Agg,Planer_uten_flate&Filter=\",t+=\"(<Filter><PropertyIsEqualTo><PropertyName>PLANNAVNSTR</PropertyName><Literal>\"+r.toUpperCase()+\"-str</Literal></PropertyIsEqualTo></Filter>)\",t+=\"(<Filter><PropertyIsEqualTo><PropertyName>PLANNAVNSTR</PropertyName><Literal>\"+r.toUpperCase()+\"-str</Literal></PropertyIsEqualTo></Filter>)\",t+=\"&v=102\",privateFns$e.createSearchResultsPage(),privateFns$e.makePlanRequest({url:t,typeName:[\"Reguleringomr_Agg\",\"Planer_uten_flate\"],inputValue:r})},getLookupStedsnavnPriv:function(r){var t=global$1.searchUrl;$(\"#large-search\").val(r),r=r.toUpperCase().trim(),(global$1"
+      }
+    ],
+    "urlStrings": [
+      "https://www.oslo.kommune.no/getfile.php/1374702/Innhold/Politikk%20og%20administrasjon/Politikk/Kommuneplan/Ny%20kommuneplan%202015/Kommuneplan%202015%20del%202%20justert%2031.01.2017.pdf",
+      "https://www.oslo.kommune.no/getfile.php/1374702/Innhold/Politikk%20og%20administrasjon/Politikk/Kommuneplan/Ny%20kommuneplan%202015/Kommuneplan%202015%20del%202%20justert%2031.01.2017.pdf'",
+      "https://www.oslo.kommune.no/getfile.php/131673/Innhold/Plan%2C%20bygg%20og%20eiendom/Overordnede%20planer/Kommunedelplaner/Kommunedelplan%20akerselva%20milj%C2%9Bpark.pdf'",
+      "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=VANN&service=wms&version=1.3.0&request=getLegendGraphic&layer=Vann&format=image/png&sld_version=1.1.0&v=1",
+      "https://www.oslo.kommune.no/plan-bygg-og-eiendom/planer-og-veiledere/kommunedelplaner/'",
+      "https://www.oslo.kommune.no/getfile.php/134059/Innhold/Plan%2C%20bygg%20og%20eiendom/Overordnede%20planer/Kommunedelplaner/Kommunedelplan%20for%20Alna%20milj%C3%B8park.pdf'",
+      "https://www.oslo.kommune.no/plan-bygg-og-eiendom/plan-og-bygningsetatens-kundesenter/'",
+      "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=VANN_NY&service=wms&version=1.3.0&request=getLegendGraphic&layer=Vann&format=image/png&sld_version=1.1.0&v=1",
+      "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=VANN_NY&service=wms&version=1.3.0&request=getLegendGraphic&layer=Vannflater_tegn&format=image/png&sld_version=1.1.0&v=1",
+      "https://www.oslo.kommune.no/getfile.php/1374702/Innhold/Politikk%20og%20administrasjon/Politikk/Kommuneplan/Ny%20kommuneplan%202015/Kommuneplan%202015%20del%202%20justert%2031.01.2017.pdf#page=21'",
+      "https://www.oslo.kommune.no/getfile.php/1314337/Innhold/Plan%2C%20bygg%20og%20eiendom/Overordnede%20planer/Send%20inn%20reguleringsplan/Veileder%20for%20utforming%20av%20reguleringsbestemmelser%20og%20plankart.pdf#page=83'",
+      "https://www.oslo.kommune.no/getfile.php/1327079/Innhold/Plan%2C%20bygg%20og%20eiendom/Veiledere%2C%20normer%20og%20skjemaer/Fjernvarme%20-%20Retningslinjer%20for%20tilknytningsplikt.pdf#page=7'",
+      "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=FJERNVARME&service=wms&version=1.3.0&request=getLegendGraphic&layer=Fjernvarme&format=image/png&sld_version=1.1.0&v=2",
+      "https://www.oslo.kommune.no/getfile.php/1374702/Innhold/Politikk%20og%20administrasjon/Politikk/Kommuneplan/Ny%20kommuneplan%202015/Kommuneplan%202015%20del%202%20justert%2031.01.2017.pdf#page=29'",
+      "https://www.oslo.kommune.no/getfile.php/1374702/Innhold/Politikk%20og%20administrasjon/Politikk/Kommuneplan/Ny%20kommuneplan%202015/Kommuneplan%202015%20del%202%20justert%2031.01.2017.pdf#page=64'",
+      "https://www.oslo.kommune.no/getfile.php/1374702/Innhold/Politikk%20og%20administrasjon/Politikk/Kommuneplan/Ny%20kommuneplan%202015/Kommuneplan%202015%20del%202%20justert%2031.01.2017.pdf#page=106'",
+      "https://www.oslo.kommune.no/getfile.php/134325/Innhold/Plan%2C%20bygg%20og%20eiendom/Veiledere%2C%20normer%20og%20skjemaer/Avkj%C3%B8rsel%20-%20Veileder%20for%20krav%20i%20ytre%20sone.pdf'",
+      "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=AADT&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=AADT_fastskala&format=image/png",
+      "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=REGTILLEGG&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=Omraadeplan&format=image/png",
+      "https://innsyn.pbe.oslo.kommune.no/saksinnsyn/showfile.asp?jno=2020010672&fileid=9127592'",
+      "https://innsyn.pbe.oslo.kommune.no/saksinnsyn/casedet.asp?direct=Y&mode=&caseno=201312256'",
+      "https://www.oslo.kommune.no/getfile.php/131563-1445244232/Tjenester%20og%20tilbud/Plan%2C%20bygg%20og%20eiendom/Byggesaksveiledere%2C%20normer%20og%20skjemaer/Torshovkvartalene%20-%20juridisk%20bindende%20retningslinjer.pdf'",
+      "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=d:/data_mapserver/kartfiler/Torshov.map&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=Torshov&format=image/png&STYLE=default",
+      "https://www.oslo.kommune.no/getfile.php/13494305-1698840957/Tjenester%20og%20tilbud/Plan%2C%20bygg%20og%20eiendom/Byggesaksveiledere%2C%20normer%20og%20skjemaer/Norm%20vegetasjon%20vannh%C3%A5ndtering%20-%20bl%C3%A5gr%C3%B8nn%20faktor.pdf'",
+      "https://www.oslo.kommune.no/getfile.php/13494304-1698839777/Tjenester%20og%20tilbud/Plan%2C%20bygg%20og%20eiendom/Byggesaksveiledere%2C%20normer%20og%20skjemaer/Normer/Regneark%20til%20norm%20for%20vegetasjon%20og%20vannh%C3%A5ndtering.xlsx'",
+      "https://www.oslo.kommune.no/getfile.php/13494303-1698839777/Tjenester%20og%20tilbud/Plan%2C%20bygg%20og%20eiendom/Byggesaksveiledere%2C%20normer%20og%20skjemaer/Normer/Regneark%20til%20norm%20for%20vegetasjon%20og%20vannh%C3%A5ndtering%20-%20sm%C3%A5husomr%C3%A5der.xlsx'",
+      "https://www.oslo.kommune.no/getfile.php/13502092-1706272436/Tjenester%20og%20tilbud/Plan%2C%20bygg%20og%20eiendom/Byggesaksveiledere%2C%20normer%20og%20skjemaer/Brukerveiledning%20vegetasjon%20og%20vannh%C3%A5ndtering%20-%20bl%C3%A5gr%C3%B8nn%20faktor.pdf'",
+      "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=BLAGRONNFAKTOR&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=blagronn_faktor&format=image/png&STYLE=default",
+      "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=SKILTREKLAME&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=Reklameomrader&format=image/png&STYLE=default",
+      "http://www.opengis.net/wfs/2.0",
+      "http://www.opengis.net/wfs",
+      "http://schemas.opengis.net/wfs/2.0/wfs.xsd",
+      "http://schemas.opengis.net/wfs/1.1.0/wfs.xsd",
+      "http://schemas.opengis.net/wfs/1.0.0/wfs.xsd",
+      "http://innsyn.pbe.oslo.kommune.no/saksinnsyn/docdet.asp",
+      "http://innsyn.pbe.oslo.kommune.no/saksinnsyn/casedet.asp",
+      "http://innsyn.pbe.oslo.kommune.no/saksinnsyn/showregbest.asp?",
+      "https://od2.pbe.oslo.kommune.no/noden/Planmetadata/planmetadata?",
+      "https://www.oslo.kommune.no/getfile.php/13489276-1695900521/Tjenester%20og%20tilbud/Plan%2C%20bygg%20og%20eiendom/Byggesaksveiledere%2C%20normer%20og%20skjemaer/Overvann%20-%20Retningslinjer%20og%20veiledning%20for%20overvannsh%C3%A5ndtering%20i%20Oslo%20kommune.pdf'",
+      "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=AVRENNING&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&format=image/png&STYLE=default&layer=Mike_Dybde'",
+      "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=AVRENNING&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&format=image/png&STYLE=default&layer=Mike_Avrenning'",
+      "https://www.oslo.kommune.no/getfile.php/13489276-1695900521/Tjenester%20og%20tilbud/Plan%2C%20bygg%20og%20eiendom/Byggesaksveiledere%2C%20normer%20og%20skjemaer/Overvann%20-%20Retningslinjer%20og%20veiledning%20for%20overvannsh%C3%A5ndtering%20i%20Oslo%20kommune.pdf",
+      "https://innsyn.pbe.oslo.kommune.no/saksinnsyn/showfile.asp?jno=2023088702&fileid=10883926",
+      "https://innsyn.pbe.oslo.kommune.no/saksinnsyn/showfile.asp?jno=2023088702&fileid=10883952",
+      "https://www.oslo.kommune.no/getfile.php/1374702-1599727170/Tjenester%20og%20tilbud/Politikk%20og%20administrasjon/Politikk/Kommuneplan/Tidligere%20kommuneplandokumenter/Kommuneplan%202015%2C%20del%202%3A%20Juridisk%20arealdel.pdf'",
+      "https://innsyn.pbe.oslo.kommune.no/saksinnsyn/showfile.asp?jno=2023037534&fileid=10696208",
+      "https://innsyn.pbe.oslo.kommune.no/saksinnsyn/showfile.asp?jno=2023037534&fileid=10694324",
+      "https://innsyn.pbe.oslo.kommune.no/saksinnsyn/showfile.asp?jno=2012086229&fileid=3679699",
+      "https://innsyn.pbe.oslo.kommune.no/saksinnsyn/showfile.asp?jno=2013011690&fileid=3881006",
+      "https://innsyn.pbe.oslo.kommune.no/saksinnsyn/showfile.asp?jno=2013011690&fileid=3881007",
+      "https://innsyn.pbe.oslo.kommune.no/saksinnsyn/showfile.asp?jno=2013011645&fileid=3880875",
+      "https://www.oslo.kommune.no/politikk/kommuneplan/",
+      "https://www.oslo.kommune.no/getfile.php/131563-1445244232/Tjenester%20og%20tilbud/Plan%2C%20bygg%20og%20eiendom/Byggesaksveiledere%2C%20normer%20og%20skjemaer/Torshovkvartalene%20-%20juridisk%20bindende%20retningslinjer.pdf#page=",
+      "https://kulturminnesok.no/minne/?queryString=https://data.kulturminne.no/askeladden/lokalitet/",
+      "https://www.oslo.kommune.no/getfile.php/13334993-1581085329/Tjenester%20og%20tilbud/Plan%2C%20bygg%20og%20eiendom/Byggesaksveiledere%2C%20normer%20og%20skjemaer/Bl%C3%A5gr%C3%B8nn%20faktor%20-%20Veiledning%20for%20tiltak%20i%20bl%C3%A5gr%C3%B8nn%20faktor.pdf",
+      "https://www.byggesak.com/basket.aspx?BasketMode=OpenProductWizard&Basket[0][ProductNumber]=8643&Basket[0][Quantity]=1&Basket[0][DataFormatId]=37&Basket[0][PurposeId]=3&Referrer=Planinnsyn&Basket[0][Reference]=&Basket[0][Address.Gnr]=@(gnr)&Basket[0][Address.Bnr]=@(bnr)&Basket[0][Address.StreetName]=&Basket[0][Address.HouseNumber]=&Basket[0][Address.HouseLetter]=",
+      "https://www.byggesak.com/basket.aspx?BasketMode=OpenProductWizard&Basket[0][ProductNumber]=8502&Referrer=Planinnsyn&Basket[0][Reference]=&Basket[0][Address.Gnr]=@(gnr)&Basket[0][Address.Bnr]=@(bnr)&Basket[0][Address.StreetName]=&Basket[0][Address.HouseNumber]=&Basket[0][Address.HouseLetter]=&Basket[0][Geometry]=@(polygon)",
+      "https://www.byggesak.com/basket.aspx?BasketMode=OpenProductWizard&Basket[0][ProductNumber]=8002&Basket[0][Quantity]=1&Basket[0][DataFormatId]=37&Basket[0][PurposeId]=3&Referrer=Planinnsyn&Basket[0][Reference]=&Basket[0][Address.Gnr]=@(gnr)&Basket[0][Address.Bnr]=@(bnr)&Basket[0][Address.StreetName]=&Basket[0][Address.HouseNumber]=&Basket[0][Address.HouseLetter]=",
+      "https://www.oslo.kommune.no/plan-bygg-og-eiendom/skal-du-bygge-rive-eller-endre/",
+      "https://innsyn.pbe.oslo.kommune.no/saksinnsyn/showfile.asp?jno=2020010672&fileid=9127592"
+    ]
+  }
+]

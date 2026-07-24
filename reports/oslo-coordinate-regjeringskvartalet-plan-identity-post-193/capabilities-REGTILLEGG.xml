@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:WFS_Capabilities xmlns:gml="http://www.opengis.net/gml" xmlns:wfs="http://www.opengis.net/wfs" xmlns:ows="http://www.opengis.net/ows" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogc="http://www.opengis.net/ogc" xmlns="http://www.opengis.net/wfs" version="1.1.0" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengeospatial.net/wfs/1.1.0/wfs.xsd">
+  <ows:ServiceIdentification>
+    <ows:Title/>
+    <!--WARNING: Optional metadata "ows_title" missing for ows:Title-->
+    <ows:Abstract/>
+    <!--WARNING: Optional metadata "ows_abstract" was missing for ows:Abstract-->
+    <!--WARNING: Optional metadata "ows_keywordlist" was missing for ows:KeywordList-->
+    <ows:ServiceType codeSpace="OGC">OGC WFS</ows:ServiceType>
+    <ows:ServiceTypeVersion>1.1.0</ows:ServiceTypeVersion>
+    <ows:Fees/>
+    <!--WARNING: Optional metadata "ows_fees" was missing for ows:Fees-->
+    <ows:AccessConstraints/>
+    <!--WARNING: Optional metadata "ows_accessconstraints" was missing for ows:AccessConstraints-->
+  </ows:ServiceIdentification>
+  <ows:ServiceProvider>
+    <ows:ProviderName>Seksjon teknologi/ Plan- og bygningsetaten, Oslo kommune</ows:ProviderName>
+    <ows:ProviderSite xlink:type="simple" xlink:href=""/>
+    <!--WARNING: Optional metadata "ows_service_onlineresource" was missing for ows:ProviderSite/@xlink:href-->
+    <ows:ServiceContact>
+      <ows:IndividualName>Systemutvikling</ows:IndividualName>
+      <ows:PositionName/>
+      <!--WARNING: Optional metadata "ows_contactposition" was missing for ows:PositionName-->
+      <ows:ContactInfo>
+        <ows:Phone>
+          <ows:Voice/>
+          <!--WARNING: Optional metadata "ows_contactvoicetelephone" was missing for ows:Voice-->
+          <ows:Facsimile/>
+          <!--WARNING: Optional metadata "ows_contactfacsimiletelephone" was missing for ows:Facsimile-->
+        </ows:Phone>
+        <ows:Address>
+          <ows:DeliveryPoint>Plan- og bygningsetaten, Oslo kommune, Postboks 364</ows:DeliveryPoint>
+          <ows:City>Oslo</ows:City>
+          <ows:AdministrativeArea>Oslo</ows:AdministrativeArea>
+          <ows:PostalCode>0102</ows:PostalCode>
+          <ows:Country>Norway</ows:Country>
+          <ows:ElectronicMailAddress>brukerstotte@pbe.oslo.kommune.no</ows:ElectronicMailAddress>
+        </ows:Address>
+        <ows:OnlineResource xlink:type="simple" xlink:href=""/>
+        <!--WARNING: Optional metadata "ows_service_onlineresource" was missing for ows:OnlineResource/@xlink:href-->
+        <ows:HoursOfService/>
+        <!--WARNING: Optional metadata "ows_hoursofservice" was missing for ows:HoursOfService-->
+        <ows:ContactInstructions/>
+        <!--WARNING: Optional metadata "ows_contactinstructions" was missing for ows:ContactInstructions-->
+      </ows:ContactInfo>
+      <ows:Role/>
+      <!--WARNING: Optional metadata "ows_role" was missing for ows:Role-->
+    </ows:ServiceContact>
+  </ows:ServiceProvider>
+  <ows:OperationsMetadata>
+    <ows:Operation name="GetCapabilities">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+          <ows:Post xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+        </ows:HTTP>
+      </ows:DCP>
+      <ows:Parameter name="service">
+        <ows:Value>WFS</ows:Value>
+      </ows:Parameter>
+      <ows:Parameter name="AcceptVersions">
+        <ows:Value>1.0.0</ows:Value>
+        <ows:Value>1.1.0</ows:Value>
+      </ows:Parameter>
+      <ows:Parameter name="AcceptFormats">
+        <ows:Value>text/xml</ows:Value>
+      </ows:Parameter>
+    </ows:Operation>
+    <ows:Operation name="DescribeFeatureType">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+          <ows:Post xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+        </ows:HTTP>
+      </ows:DCP>
+      <ows:Parameter name="outputFormat">
+        <ows:Value>XMLSCHEMA</ows:Value>
+        <ows:Value>text/xml; subtype=gml/2.1.2</ows:Value>
+        <ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+      </ows:Parameter>
+    </ows:Operation>
+    <ows:Operation name="GetFeature">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+          <ows:Post xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+        </ows:HTTP>
+      </ows:DCP>
+      <ows:Parameter name="resultType">
+        <ows:Value>results</ows:Value>
+        <ows:Value>hits</ows:Value>
+      </ows:Parameter>
+      <ows:Parameter name="outputFormat">
+        <ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+        <ows:Value>application/json; subtype=geojson; charset=ISO-8859-1</ows:Value>
+      </ows:Parameter>
+    </ows:Operation>
+  </ows:OperationsMetadata>
+  <FeatureTypeList>
+    <Operations>
+      <Operation>Query</Operation>
+    </Operations>
+    <FeatureType>
+      <Name>Byggegrenselinje_linje</Name>
+      <Title>Byggegrenselinje</Title>
+      <DefaultSRS>urn:ogc:def:crs:EPSG::32632</DefaultSRS>
+      <OutputFormats>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>application/json; subtype=geojson; charset=ISO-8859-1</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.563796 59.814721</ows:LowerCorner>
+        <ows:UpperCorner>10.954523 60.045956</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL format="text/xml" type="TC211">https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Byggegrenselinje_linje</MetadataURL>
+    </FeatureType>
+    <FeatureType>
+      <Name>Byggegrenselinje_tekst</Name>
+      <Title>Byggegrenselinje_tekst</Title>
+      <DefaultSRS>urn:ogc:def:crs:EPSG::32632</DefaultSRS>
+      <OutputFormats>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>application/json; subtype=geojson; charset=ISO-8859-1</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.571481 59.814827</ows:LowerCorner>
+        <ows:UpperCorner>10.953275 60.045681</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL format="text/xml" type="TC211">https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Byggegrenselinje_tekst</MetadataURL>
+    </FeatureType>
+    <FeatureType>
+      <Name>Ikke_bebyggelse</Name>
+      <Title>Ikke_bebyggelse</Title>
+      <DefaultSRS>urn:ogc:def:crs:EPSG::32632</DefaultSRS>
+      <OutputFormats>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>application/json; subtype=geojson; charset=ISO-8859-1</Format>
+      </OutputFormats>
+      <!--WARNING: Optional WGS84BoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wfs_extent metadata. Also check that your data exists in the DATA statement-->
+      <MetadataURL format="text/xml" type="TC211">https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Ikke_bebyggelse</MetadataURL>
+    </FeatureType>
+    <FeatureType>
+      <Name>Er_bebyggelse</Name>
+      <Title>Er_bebyggelse</Title>
+      <DefaultSRS>urn:ogc:def:crs:EPSG::32632</DefaultSRS>
+      <OutputFormats>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>application/json; subtype=geojson; charset=ISO-8859-1</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.563414 59.810581</ows:LowerCorner>
+        <ows:UpperCorner>10.955785 60.046446</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL format="text/xml" type="TC211">https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Er_bebyggelse</MetadataURL>
+    </FeatureType>
+    <FeatureType>
+      <Name>Veg_flate</Name>
+      <Title>Veg_flate</Title>
+      <DefaultSRS>urn:ogc:def:crs:EPSG::32632</DefaultSRS>
+      <OutputFormats>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>application/json; subtype=geojson; charset=ISO-8859-1</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.581519 59.810366</ows:LowerCorner>
+        <ows:UpperCorner>10.955731 60.028626</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL format="text/xml" type="TC211">https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Veg_flate</MetadataURL>
+    </FeatureType>
+    <FeatureType>
+      <Name>Fkb_Veg</Name>
+      <Title>Fkb_Veg</Title>
+      <DefaultSRS>urn:ogc:def:crs:EPSG::32632</DefaultSRS>
+      <OutputFormats>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>application/json; subtype=geojson; charset=ISO-8859-1</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.485939 59.811978</ows:LowerCorner>
+        <ows:UpperCorner>10.961986 60.135056</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL format="text/xml" type="TC211">https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Fkb_Veg</MetadataURL>
+    </FeatureType>
+    <FeatureType>
+      <Name>Eiendom_buffer4</Name>
+      <Title>Eiendom_buffer4</Title>
+      <DefaultSRS>urn:ogc:def:crs:EPSG::32632</DefaultSRS>
+      <OutputFormats>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>application/json; subtype=geojson; charset=ISO-8859-1</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.480177 59.808104</ows:LowerCorner>
+        <ows:UpperCorner>10.962010 60.136531</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL format="text/xml" type="TC211">https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Eiendom_buffer4</MetadataURL>
+    </FeatureType>
+    <FeatureType>
+      <Name>Eiendom_buffer1</Name>
+      <Title>Eiendom_buffer1</Title>
+      <DefaultSRS>urn:ogc:def:crs:EPSG::32632</DefaultSRS>
+      <OutputFormats>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>application/json; subtype=geojson; charset=ISO-8859-1</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.480112 59.808069</ows:LowerCorner>
+        <ows:UpperCorner>10.962087 60.136559</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL format="text/xml" type="TC211">https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Eiendom_buffer1</MetadataURL>
+    </FeatureType>
+    <FeatureType>
+      <Name>Hytteareal</Name>
+      <Title>Hytteareal</Title>
+      <DefaultSRS>urn:ogc:def:crs:EPSG::32632</DefaultSRS>
+      <OutputFormats>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>application/json; subtype=geojson; charset=ISO-8859-1</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.690326 59.886066</ows:LowerCorner>
+        <ows:UpperCorner>10.745204 59.893882</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL format="text/xml" type="TC211">https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Hytteareal</MetadataURL>
+    </FeatureType>
+    <FeatureType>
+      <Name>Omraadeplan</Name>
+      <Title>Omraadeplan</Title>
+      <DefaultSRS>urn:ogc:def:crs:EPSG::32632</DefaultSRS>
+      <OutputFormats>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>application/json; subtype=geojson; charset=ISO-8859-1</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.678438 59.808583</ows:LowerCorner>
+        <ows:UpperCorner>10.915227 59.950888</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL format="text/xml" type="TC211">https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Omraadeplan</MetadataURL>
+    </FeatureType>
+  </FeatureTypeList>
+  <ogc:Filter_Capabilities>
+    <ogc:Spatial_Capabilities>
+      <ogc:GeometryOperands>
+        <ogc:GeometryOperand>gml:Point</ogc:GeometryOperand>
+        <ogc:GeometryOperand>gml:LineString</ogc:GeometryOperand>
+        <ogc:GeometryOperand>gml:Polygon</ogc:GeometryOperand>
+        <ogc:GeometryOperand>gml:Envelope</ogc:GeometryOperand>
+      </ogc:GeometryOperands>
+      <ogc:SpatialOperators>
+        <ogc:SpatialOperator name="Equals"/>
+        <ogc:SpatialOperator name="Disjoint"/>
+        <ogc:SpatialOperator name="Touches"/>
+        <ogc:SpatialOperator name="Within"/>
+        <ogc:SpatialOperator name="Overlaps"/>
+        <ogc:SpatialOperator name="Crosses"/>
+        <ogc:SpatialOperator name="Intersects"/>
+        <ogc:SpatialOperator name="Contains"/>
+        <ogc:SpatialOperator name="DWithin"/>
+        <ogc:SpatialOperator name="Beyond"/>
+        <ogc:SpatialOperator name="BBOX"/>
+      </ogc:SpatialOperators>
+    </ogc:Spatial_Capabilities>
+    <ogc:Scalar_Capabilities>
+      <ogc:LogicalOperators/>
+      <ogc:ComparisonOperators>
+        <ogc:ComparisonOperator>LessThan</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>GreaterThan</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>LessThanEqualTo</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>GreaterThanEqualTo</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>EqualTo</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>NotEqualTo</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>Like</ogc:ComparisonOperator>
+        <ogc:ComparisonOperator>Between</ogc:ComparisonOperator>
+      </ogc:ComparisonOperators>
+    </ogc:Scalar_Capabilities>
+    <ogc:Id_Capabilities>
+      <ogc:EID/>
+      <ogc:FID/>
+    </ogc:Id_Capabilities>
+  </ogc:Filter_Capabilities>
+</wfs:WFS_Capabilities>
