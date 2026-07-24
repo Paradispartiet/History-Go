@@ -112,7 +112,9 @@ jobs:
         if: always()
         with:
           name: politics-institutions-phase-1-diagnostics
-          path: reports/politikk-canonical-migration/politikk-institusjoner-phase-1-*
+          path: |
+            reports/politikk-canonical-migration/politikk-institusjoner-phase-1-*
+            reports/politikk-canonical-migration/statsvitenskap-vertical-chain-validation.txt
           if-no-files-found: warn
 
       - name: Propagate build failure
