@@ -32,9 +32,9 @@ The out-of-scope item Blaafarveværket is intentionally not counted in the Oslo 
 ## Parent reuse / enrichment
 
 - **Oslo Kunstforening** → `radmannsgarden_og_anatomibygget` — already completed in the curated priority tranche.
-- **BO Billedkunstnerne i Oslo** → `radmannsgarden_og_anatomibygget` — BO is housed at Rådhusgata 19 / Anatomigården, so the existing combined physical parent should be enriched rather than duplicated.
-- **Oslo Glass Studio** → `kirkeristen_basarene_brannvakten` — the working glass studio/gallery is inside the already canonical Kirkeristen complex.
-- **Atelier Nord** → `hauges_minde` — Atelier Nord occupies Olaf Ryes plass 2, the already canonical Hauges Minde cultural property.
+- **BO Billedkunstnerne i Oslo** → `radmannsgarden_og_anatomibygget` — completed parent enrichment; BO is recorded as a current organisation and exhibition-space layer in Anatomigården.
+- **Oslo Glass Studio** → `kirkeristen_basarene_brannvakten` — completed parent enrichment; the working glass studio/gallery is recorded as a current use layer inside Kirkeristen.
+- **Atelier Nord** → `hauges_minde` — completed parent enrichment; Atelier Nord is recorded as the current media-art exhibition layer in Hauges Minde.
 
 ## Coordinate-only backlog
 
@@ -71,8 +71,8 @@ The full list is recorded in `final-classification.json`.
 ## Next production order
 
 1. Audit and produce the 10 approved new candidates one by one, with current-main duplicate and physical-parent gates before coordinate work.
-2. Apply the three remaining parent enrichments for BO, Oslo Glass Studio and Atelier Nord.
+2. Parent enrichment queue completed: BO, Oslo Glass Studio and Atelier Nord are now folded into their existing physical parent records.
 3. Keep `soft_galleri` in coordinate-only backlog until a distinct authoritative physical anchor exists.
 4. Leave the 31 private/commercial listings deferred until the gallery inclusion framework is intentionally revisited as a single consistent policy pass.
 
-Status: **FULL VISITOSLO GALLERIES SCOPE CLOSED — 66/66 CLASSIFIED; 0 UNRESOLVED.**
+Status: **FULL VISITOSLO GALLERIES SCOPE CLOSED — 66/66 CLASSIFIED; PARENT ENRICHMENT QUEUE COMPLETE; 0 UNRESOLVED.**
