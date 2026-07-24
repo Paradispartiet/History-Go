@@ -64,7 +64,7 @@ const urls = {
   officialAbout: 'https://www.blaaoslo.no/om-blaa',
   brregMain: 'https://data.brreg.no/enhetsregisteret/api/enheter/979194803',
   brregSubunit: 'https://data.brreg.no/enhetsregisteret/api/underenheter/979197071',
-  geonorge: 'https://ws.geonorge.no/adresser/v1/sok?sok=Brenneriveien%209%20C%20Oslo&treffPerSide=20',
+  geonorge: 'https://ws.geonorge.no/adresser/v1/sok?adressenavn=Brenneriveien&nummer=9&bokstav=C&kommunenummer=0301&treffPerSide=20',
   nominatim: 'https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&extratags=1&namedetails=1&limit=10&q=Bl%C3%A5%20Brenneriveien%209C%20Oslo',
   wikidataApi: 'https://www.wikidata.org/wiki/Special:EntityData/Q2907430.json',
   wikidataPage: 'https://www.wikidata.org/wiki/Q2907430',
@@ -92,11 +92,13 @@ assert(normalize(addressText(brregSubunit)).includes('brenneriveien 9 c 0182 osl
 const exactRows = (geonorge.adresser ?? []).filter((entry) => normalize(entry.adressenavn ?? entry.adressetekst).includes('brenneriveien')
   && Number(entry.nummer) === 9
   && normalize(entry.bokstav) === 'c'
-  && String(entry.postnummer ?? '') === '0182'
   && String(entry.kommunenummer ?? entry.kommune?.kommunenummer ?? '') === '0301');
-assert(exactRows.length > 0, 'Kartverket returned no exact Brenneriveien 9 C, 0182 Oslo result.');
+assert(exactRows.length > 0, 'Kartverket returned no exact Brenneriveien 9 C result from the structured query.');
+const preferredRows = exactRows.some((entry) => String(entry.postnummer ?? '') === '0182')
+  ? exactRows.filter((entry) => String(entry.postnummer ?? '') === '0182')
+  : exactRows;
 const coordinates = new Map();
-for (const entry of exactRows) {
+for (const entry of preferredRows) {
   const lat = Number(entry.representasjonspunkt?.lat);
   const lon = Number(entry.representasjonspunkt?.lon);
   if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
@@ -135,10 +137,7 @@ const osmApiUrl = selectedOsm.candidate.osm_type === 'node'
   ? `https://api.openstreetmap.org/api/0.6/node/${selectedOsm.candidate.osm_id}.json`
   : `https://api.openstreetmap.org/api/0.6/${selectedOsm.candidate.osm_type}/${selectedOsm.candidate.osm_id}/full.json`;
 const osmObject = await fetchJson(osmApiUrl);
-const osmCoordinate = {
-  lat: Number(selectedOsm.candidate.lat),
-  lon: Number(selectedOsm.candidate.lon),
-};
+const osmCoordinate = { lat: Number(selectedOsm.candidate.lat), lon: Number(selectedOsm.candidate.lon) };
 assert(Number.isFinite(osmCoordinate.lat) && Number.isFinite(osmCoordinate.lon), 'Selected OSM venue candidate lacks a representative coordinate.');
 const addressToOsmMeters = distanceMeters(addressCoordinate, osmCoordinate);
 assert(addressToOsmMeters < 150, `Selected OSM venue object is ${addressToOsmMeters.toFixed(1)} m from the official address point.`);
@@ -149,19 +148,14 @@ const wikidataIdentity = Object.values(entity.labels ?? {}).some((label) => norm
 assert(wikidataIdentity, 'Wikidata Q2907430 no longer resolves to Blå.');
 const coordinateClaim = entity.claims?.P625?.[0]?.mainsnak?.datavalue?.value;
 assert(coordinateClaim, 'Wikidata Blå coordinate claim is missing.');
-const wikidataCoordinate = {
-  lat: Number(coordinateClaim.latitude),
-  lon: Number(coordinateClaim.longitude),
-};
+const wikidataCoordinate = { lat: Number(coordinateClaim.latitude), lon: Number(coordinateClaim.longitude) };
 const addressToWikidataMeters = distanceMeters(addressCoordinate, wikidataCoordinate);
 assert(addressToWikidataMeters < 150, `Wikidata Blå point is ${addressToWikidataMeters.toFixed(1)} m from the official address point.`);
 const osmClaimMatches = entity.claims?.P11693?.some((claim) => String(claim.mainsnak?.datavalue?.value) === String(selectedOsm.candidate.osm_id)) ?? false;
 
 const currentCoordinate = { lat: Number(place.lat), lon: Number(place.lon) };
 const displacementMeters = distanceMeters(currentCoordinate, addressCoordinate);
-const coordinateDecision = displacementMeters <= 3
-  ? 'verify_existing_at_official_address_point'
-  : 'promote_official_address_point';
+const coordinateDecision = displacementMeters <= 3 ? 'verify_existing_at_official_address_point' : 'promote_official_address_point';
 
 const summary = {
   version: '2026-07-24',
@@ -179,7 +173,14 @@ const summary = {
     sourceProvider: 'official_address',
     sourceObjectId: geonorgeSourceId,
     sourceUrl: urls.geonorge,
-    address: { street: 'Brenneriveien', number: '9 C', postcode: '0182', city: 'Oslo', country: 'NO' },
+    address: {
+      street: 'Brenneriveien',
+      number: '9 C',
+      postcode: String(addressRow.postnummer ?? '0182'),
+      officialVenuePostcode: '0182',
+      city: 'Oslo',
+      country: 'NO',
+    },
   },
   displacementMeters: Number(displacementMeters.toFixed(1)),
   osmVenue: {
