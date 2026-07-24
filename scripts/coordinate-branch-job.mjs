@@ -76,12 +76,15 @@ if (transportedSourceSha !== "3b2b94fa34698192e29a3cf4e98e3fc316cff8c87095da437c
 }
 let sourceText = transportedSource.toString("utf8");
 sourceText = replaceExactly(sourceText, "for e in emners", "for e in emner", 2);
+sourceText = replaceExactly(sourceText, "existing_emners", "existing_emner", 1);
+sourceText = replaceExactly(sourceText, "updated_emners", "updated_emner", 2);
+sourceText = replaceExactly(sourceText, "emners_out", "emner_out", 5);
 const source = Buffer.from(sourceText, "utf8");
 const patchedSourceSha = createHash("sha256").update(source).digest("hex");
-if (patchedSourceSha !== "84b3b0866c0c191847f71dc6b47b8794177eeb1f833472d00de26deed5977f3f") {
+if (patchedSourceSha !== "193aa49e5af8378751362e914b8a42eb3444f385d8f1346a85e069163c7bca3c") {
   throw new Error(`Patched builder source SHA-256 mismatch: ${patchedSourceSha}`);
 }
-console.log(`Builder typo patch verified: ${patchedSourceSha}`);
+console.log(`Builder normalization verified: ${patchedSourceSha}`);
 const builderPath = resolve("tools/build-historie-industri-phase4.py");
 fs.writeFileSync(builderPath, source);
 
