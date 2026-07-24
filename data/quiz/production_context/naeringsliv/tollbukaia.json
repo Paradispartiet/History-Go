@@ -1,0 +1,963 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "naeringsliv",
+  "targetId": "tollbukaia",
+  "profile": "rich_5x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1093,
+    "selection_sha256": "cdd32bac76e8446b6377a3fa47cc729d872b41c42b7db5aa578d75c805ff66ce",
+    "category_id": "naeringsliv",
+    "target_id": "tollbukaia"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json",
+      "bytes": 29047,
+      "sha256": "a0e0b1b46fed8454d38dbd4ffad3b082cd619678f16cc0c1e0757393131ddb28",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+      "bytes": 372200,
+      "sha256": "98dc1707c4c08f96bf956cc5eea801340739f136cb9abf3b79a6427fbf63c049",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/naeringsliv/fagkart_naeringsliv_canonical_v4_5.json",
+      "bytes": 305981,
+      "sha256": "40a00fa3910248b779763d7746760140509741410aa046d4f694c367e7c6e345",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+      "bytes": 89971,
+      "sha256": "a109a5e6eaab0f96fdb0b14aa8139a35714b67473efa860a3f1a8448a204cad3",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+      "bytes": 5818,
+      "sha256": "f798e5b256ce167c26b2de2d12d018f89f1d0b9f3e88e0e893bca25f2742130d",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 10420,
+      "sha256": "f64a00bd951ae44ea19d4d2fba3628bfaf16b6688c21494c90fd59bbcb91d5f1",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 3642,
+      "sha256": "a0b22f8e1091c459b700b3782b9841323c8cfc3dac1e8c92e416dc01c2d6ca04",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/naeringsliv/tollbukaia.json",
+      "bytes": 19523,
+      "sha256": "8eb91b094c93f57ee61756040eaa6372759fe5be89dca6824fdf81ebde4b3d59"
+    },
+    "target": {
+      "path": "data/places/naeringsliv/oslo/places_naeringsliv/tollbukaia.json",
+      "bytes": 2792,
+      "sha256": "0b7fca2e58edb168a2f984da01d3e6bd822e7aecaf6aad8abdd11664dffe7033"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 981,
+      "selection_sha256": "c2e0029fa597acbd985adeb93620c5005123066e450f4144b99c01121184ef99"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_tollbukaia.json",
+        "matches": 1,
+        "selection_bytes": 1719,
+        "selection_sha256": "8224f54cd87582929848506dab746382fa773e31a17204627a8d27075321425c"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+  "source_registry": {
+    "place_record": {
+      "url": "data/places/naeringsliv/oslo/places_naeringsliv/tollbukaia.json",
+      "source_type": "canonical_place_record",
+      "review_status": "reviewed",
+      "review_note": "Brukt som intern kontroll av sted, koordinatrolle, kategori og etablert identitet."
+    },
+    "oslo_byleksikon_tollbukaia": {
+      "url": "https://oslobyleksikon.no/side/Tollbukaia",
+      "source_type": "municipal_city_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Brukt for historisk navn, plassering og kaiområdets avgrensning."
+    },
+    "oslo_byleksikon_tollbubrygga": {
+      "url": "https://oslobyleksikon.no/side/Tollbubrygga",
+      "source_type": "municipal_city_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Brukt for bryggas plassering, utvidelse, hovedbryggerolle og opphør av havnetrafikk."
+    },
+    "oslo_byleksikon_tollboden": {
+      "url": "https://oslobyleksikon.no/index.php/Tollboden",
+      "source_type": "municipal_city_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Brukt for tollbodhistorie, branner, Tollpakkhuset, museum og senere kontorbruk."
+    },
+    "oslo_byleksikon_tollbugata": {
+      "url": "https://oslobyleksikon.no/side/Tollbugata",
+      "source_type": "municipal_city_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Brukt for gatenavn og det eldre navnet Waterstræde."
+    },
+    "snl_tollmuseum": {
+      "url": "https://snl.no/Norsk_Tollmuseum",
+      "source_type": "national_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Brukt for Tollpakkhuset, arkitekt og Norsk Tollmuseums historie."
+    },
+    "oppdag_kvadraturen": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/tollpakkhuset",
+      "source_type": "heritage_interpretation",
+      "review_status": "reviewed",
+      "review_note": "Brukt som kontroll av Tollpakkhusets byggeperiode, arkitekt og historiske funksjon."
+    },
+    "cruise_terminal": {
+      "url": "https://www.oslocruiseterminal.com/",
+      "source_type": "terminal_operator",
+      "review_status": "reviewed",
+      "review_note": "Brukt for Oslo Cruise Terminal i Skur 35 ved Akershusstranda."
+    },
+    "tolletaten": {
+      "url": "https://www.toll.no/en/about-norwegian-customs/contact-us/all-customs-offices/oslo/oslo-port",
+      "source_type": "government_customs_authority",
+      "review_status": "reviewed",
+      "review_note": "Brukt for Utstikker II, adresse og dokumenterte tollklareringstjenester."
+    },
+    "oslo_kommune": {
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/akershusstranda/",
+      "source_type": "municipal_planning_authority",
+      "review_status": "reviewed",
+      "review_note": "Brukt for Fjordbyen, Akershusstranda, publikumsadgang, rekreasjon og nye tilbud i havneskur."
+    }
+  },
+  "source_review_status": "reviewed",
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 6,
+      "emner": 38,
+      "topic_hooks": 60,
+      "methods": 27
+    },
+    "candidate_emner": [
+      {
+        "id": "em_naering_arbeid_verdiskaping",
+        "title": "Arbeid og verdiskaping",
+        "score": 100
+      },
+      {
+        "id": "em_naering_forbruk_marked",
+        "title": "Forbruk og marked",
+        "score": 100
+      },
+      {
+        "id": "em_naering_havn_transport",
+        "title": "Havn og transport",
+        "score": 100
+      },
+      {
+        "id": "em_naering_kapital_finans",
+        "title": "Kapital og finans",
+        "score": 100
+      },
+      {
+        "id": "em_naering_logistikk_verdikjeder",
+        "title": "Logistikk og verdikjeder",
+        "score": 100
+      },
+      {
+        "id": "em_naering_omstilling_kriser_skift",
+        "title": "Omstilling, kriser og skift",
+        "score": 100
+      },
+      {
+        "id": "em_naering_teknologi_infrastruktur",
+        "title": "Teknologi og infrastruktur",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "arbeid_som_verdiskaping",
+        "title": "Arbeid som verdiskaping",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "arbeidslivets_omstilling",
+        "title": "Arbeidslivets omstilling",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "automatisering_arbeid",
+        "title": "Automatisering og arbeid",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "bank_og_kreditt",
+        "title": "Bank og kreditt",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "datasentre_kabler",
+        "title": "Datasentre, kabler og usynlig infrastruktur",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "digitalisering",
+        "title": "Digitalisering",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "forbrukeradferd",
+        "title": "Forbrukeradferd",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "handel_som_bystruktur",
+        "title": "Handel som bystruktur",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "handelens_arbeid",
+        "title": "Handelens arbeid",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "havn_og_varestrommer",
+        "title": "Havn og varestrømmer",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "infrastrukturmakt",
+        "title": "Infrastrukturmakt",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "investering_eiendom",
+        "title": "Investering og eiendom",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "kapitalstrommer",
+        "title": "Kapitalstrømmer",
+        "category_id": "kapital_eierskap_finans",
+        "score": 10
+      },
+      {
+        "id": "lager_og_distribusjon",
+        "title": "Lager og distribusjon",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "marked_og_ulikhet",
+        "title": "Marked og ulikhet",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "merkevare_status",
+        "title": "Merkevare og status",
+        "category_id": "handel_forbruk_marked",
+        "score": 10
+      },
+      {
+        "id": "omstilling_av_naeringsrom",
+        "title": "Omstilling av næringsrom",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "plattformokonomi",
+        "title": "Plattformøkonomi",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "profesjon_kompetanse",
+        "title": "Profesjon og kompetanse",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "programvare_som_infrastruktur",
+        "title": "Programvare som infrastruktur",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "ressursbruk",
+        "title": "Ressursbruk",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "startup_og_skala",
+        "title": "Startup og skalering",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "teknologisk_omstilling",
+        "title": "Teknologisk omstilling",
+        "category_id": "teknologi_innovasjon_plattform",
+        "score": 10
+      },
+      {
+        "id": "tjenester_og_servicearbeid",
+        "title": "Tjenester og servicearbeid",
+        "category_id": "arbeid_produksjon_verdiskaping",
+        "score": 10
+      },
+      {
+        "id": "transport_og_arbeid",
+        "title": "Transport og arbeid",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      },
+      {
+        "id": "ulikhet_og_ekskludering",
+        "title": "Ulikhet og ekskludering",
+        "category_id": "makt_regulering_baerekraft",
+        "score": 10
+      },
+      {
+        "id": "verdikjede_spor",
+        "title": "Verdikjedens spor",
+        "category_id": "logistikk_infrastruktur_rom",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "kapital_eierskap_finans",
+      "handel_forbruk_marked",
+      "teknologi_innovasjon_plattform",
+      "logistikk_infrastruktur_rom"
+    ],
+    "emne_ids": [
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_forbruk_marked",
+      "em_naering_kapital_finans",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_teknologi_infrastruktur"
+    ],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_arbeidslivsanalyse",
+      "met_naering_forbruker_og_atferdsanalyse",
+      "met_naering_infrastrukturanalyse",
+      "met_naering_verdiskapingsanalyse"
+    ],
+    "thinker_ids": [
+      "max_weber"
+    ],
+    "works": []
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_tollbukaia_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver Tollbukaia som kaiområdet mellom Langkaia og Palékaia innerst i Bjørvika.",
+      "source_ids": [
+        "place_record",
+        "oslo_byleksikon_tollbukaia",
+        "oslo_byleksikon_tollbubrygga"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_tollbukaia_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon skriver at navnet Tollbukaia var i bruk før 1939.",
+      "source_ids": [
+        "oslo_byleksikon_tollbukaia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_tollbukaia_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Flatquizen hadde riktig kjerne: Tollbukaia/Tollboden-området var knyttet til havnevarer, tollbehandling og kontroll.",
+      "source_ids": [
+        "place_record",
+        "oslo_byleksikon_tollboden",
+        "oslo_byleksikon_tollbubrygga"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollbukaia_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon skriver at Tollbugata har navn etter Tollboden ved gatens østlige endepunkt.",
+      "source_ids": [
+        "oslo_byleksikon_tollbugata",
+        "oslo_byleksikon_tollboden"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_tollbukaia_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver Tollbugata som et gammelt gatenavn som opprinnelig het Waterstræde.",
+      "source_ids": [
+        "oslo_byleksikon_tollbugata"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_tollbukaia_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon skriver at Tollboden på 1600-tallet lå på en liten holme ved enden av Nordre brygge.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_tollbukaia_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver en ny tollbod av tømmer nord for Nordre brygge i 1695.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_tollbukaia_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver at tredje tollbod i utmurt bindingsverk brant ned ved den store bryggebrannen i 1785.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_tollbukaia_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir at ny tollbod etter 1785-brannen ble reist i 1787–90.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_tollbukaia_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Oppdag Kvadraturen beskriver dagens Tollboden som oppført 1896 etter tegninger av Adolf Schirmer.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_tollbukaia_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon, SNL og Oppdag Kvadraturen oppgir 1846–50 som byggeperiode for Tollpakkhuset.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden",
+        "snl_tollmuseum",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollbukaia_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og SNL oppgir Johan Nebelong som arkitekt for Tollpakkhuset.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden",
+        "snl_tollmuseum",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_tollbukaia_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Oppdag Kvadraturen beskriver Tollpakkhuset som lagerbygning for Tollvesenet.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden",
+        "oppdag_kvadraturen",
+        "snl_tollmuseum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollbukaia_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver Tollpakkhuset som den eldste bygningen på havnen.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_tollbukaia_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og SNL beskriver Norsk Tollmuseum som åpnet i 1915 og holdt til i Tollpakkhuset til 2019.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden",
+        "snl_tollmuseum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_tollbukaia_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon skriver at Tollpakkhuset i dag er kontorer, etter at Norsk Tollmuseum ble avviklet i 2019.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden",
+        "snl_tollmuseum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_tollbukaia_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver Tollbubrygga som tidligere kaianlegg øst for Tollboden, mellom Langkaia og Palébryggen.",
+      "source_ids": [
+        "oslo_byleksikon_tollbubrygga",
+        "oslo_byleksikon_tollbukaia"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_tollbukaia_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon skriver at Tollbubrygga blant annet omfattet den tidligere Tollpakkhusbrygga.",
+      "source_ids": [
+        "oslo_byleksikon_tollbubrygga",
+        "oslo_byleksikon_tollboden"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollbukaia_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir at Tollbubrygga ble ombygd og forlenget i 1893.",
+      "source_ids": [
+        "oslo_byleksikon_tollbubrygga"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_tollbukaia_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver Tollbubrygga som havnens hovedbrygge i midten av 1800-tallet.",
+      "source_ids": [
+        "oslo_byleksikon_tollbubrygga"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollbukaia_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon skriver at havnetrafikken på Tollbubrygga opphørte ved gjenfyllingen innerst i Bjørvika 1957–60.",
+      "source_ids": [
+        "oslo_byleksikon_tollbubrygga",
+        "oslo_byleksikon_tollboden"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_tollbukaia_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo Cruise Terminal oppgir adresse Akershusstranda 15, Skur 35, i nærheten av festning, rådhus og cruiseskip.",
+      "source_ids": [
+        "cruise_terminal",
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_tollbukaia_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Tolletaten oppgir Utstikker II port med adresse Akershusstranda 53, Utstikker II / Skur 44.",
+      "source_ids": [
+        "tolletaten",
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_tollbukaia_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Tolletaten oppgir at kontoret kan hjelpe med tollklarering av varer, motorvogner, ATA-carnet, EUR-1 og Certificate of Origin.",
+      "source_ids": [
+        "tolletaten"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollbukaia_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo kommune beskriver Akershusstranda som del av Fjordbyen-prosjektet.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_tollbukaia_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo kommune beskriver fremtidig Akershusstranda med mer rekreasjon, grøntområder, tilgjengelighet og nye tilbud i eksisterende havneskur.",
+      "source_ids": [
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_tollbukaia_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Brygge, tollbod og pakkhus samlet lossing, lagring og tollkontroll i ett sammenhengende havnesystem.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden",
+        "oslo_byleksikon_tollbubrygga",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollbukaia_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Gjenfyllingen innerst i Bjørvika 1957–60 avsluttet havnetrafikken på Tollbubrygga og åpnet for senere funksjonsendringer.",
+      "source_ids": [
+        "oslo_byleksikon_tollbubrygga",
+        "oslo_byleksikon_tollboden"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_tollbukaia_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Plasseringen ved brygga gjorde det mulig å kontrollere varer ved ankomst før de gikk videre inn i byen.",
+      "source_ids": [
+        "oslo_byleksikon_tollbukaia",
+        "oslo_byleksikon_tollbubrygga",
+        "oslo_byleksikon_tollboden"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_tollbukaia_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Selv om bygninger og kaier har endret seg, finnes tollklarering og offentlig varekontroll fortsatt ved Oslo havn.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden",
+        "tolletaten"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_tollbukaia_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Tollpakkhuset har gått fra lager til museum og videre til kontorer, og viser funksjonell ombruk over tid.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden",
+        "snl_tollmuseum",
+        "oppdag_kvadraturen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_tollbukaia_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Cruiseterminal, service og Fjordbyen-planer viser en forskyvning fra ren varehavn mot tjenester, besøk og offentlig bruk.",
+      "source_ids": [
+        "oslo_byleksikon_tollbubrygga",
+        "cruise_terminal",
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_tollbukaia_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Ombruk av Tollpakkhuset og andre havnebygg kombinerer nye funksjoner med historisk identitet og stedskvalitet.",
+      "source_ids": [
+        "oslo_byleksikon_tollboden",
+        "oppdag_kvadraturen",
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_tollbukaia_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Akershusstranda skal fortsatt håndtere havne-, cruise- og tollfunksjoner samtidig som Fjordbyen åpner for mer rekreasjon og publikumstilgang.",
+      "source_ids": [
+        "tolletaten",
+        "cruise_terminal",
+        "oslo_kommune"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_tollbukaia_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Tollbukaia samlet fysisk vareflyt, lagring, kontroll og dokumentasjon i et koordinert system for handel.",
+      "source_ids": [
+        "oslo_byleksikon_tollbukaia",
+        "oslo_byleksikon_tollbubrygga",
+        "oslo_byleksikon_tollboden",
+        "tolletaten"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_tollbukaia_varene_ble_kontrollert",
+      "source_file": "data/stories/stories_tollbukaia.json",
+      "summary": "Tollbukaia var et kontrollpunkt mellom skip, varer, avgifter og byen, og viser hvordan handel alltid også er regulering."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "naeringsliv_tollbukaia_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_tollbukaia_01",
+        "claim_tollbukaia_02",
+        "claim_tollbukaia_03",
+        "claim_tollbukaia_04",
+        "claim_tollbukaia_05",
+        "claim_tollbukaia_06",
+        "claim_tollbukaia_07"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_tollbukaia_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_tollbukaia_08",
+        "claim_tollbukaia_09",
+        "claim_tollbukaia_10",
+        "claim_tollbukaia_11",
+        "claim_tollbukaia_12",
+        "claim_tollbukaia_13",
+        "claim_tollbukaia_14"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_tollbukaia_set_3",
+      "order": 3,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_tollbukaia_15",
+        "claim_tollbukaia_16",
+        "claim_tollbukaia_17",
+        "claim_tollbukaia_18",
+        "claim_tollbukaia_19",
+        "claim_tollbukaia_20",
+        "claim_tollbukaia_21"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_tollbukaia_set_4",
+      "order": 4,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_tollbukaia_22",
+        "claim_tollbukaia_23",
+        "claim_tollbukaia_24",
+        "claim_tollbukaia_25",
+        "claim_tollbukaia_26",
+        "claim_tollbukaia_27",
+        "claim_tollbukaia_28"
+      ]
+    },
+    {
+      "set_id": "naeringsliv_tollbukaia_set_5",
+      "order": 5,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_tollbukaia_29",
+        "claim_tollbukaia_30",
+        "claim_tollbukaia_31",
+        "claim_tollbukaia_32",
+        "claim_tollbukaia_33",
+        "claim_tollbukaia_34",
+        "claim_tollbukaia_35"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 35,
+    "counts": {
+      "fact": 26,
+      "context": 2,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.743,
+      "context": 0.057,
+      "concept_theory": 0.2
+    }
+  }
+}
