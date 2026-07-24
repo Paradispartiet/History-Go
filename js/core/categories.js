@@ -17,7 +17,7 @@
     { id: "naeringsliv", name: "N\xE6ringsliv", icon: "\u{1F3ED}", color: "#0E3290", secondaryColor: "#AFB0B0", scope: "runtime_domain" },
     { id: "psykologi", name: "Psykologi", icon: "\u{1F9E0}", color: "#06d6a0", scope: "runtime_domain" },
     { id: "film_tv", name: "Film & TV", icon: "\u{1F39E}\uFE0F", color: "#6c757d", scope: "runtime_domain" },
-    { id: "media", name: "Medier", icon: "\u{1F5DE}\uFE0F", color: "#ff595e", scope: "runtime_domain" },
+    { id: "media", name: "Medier", icon: "\u{1F5DE}\uFE0F", color: "#22B8B5", secondaryColor: "#123B4A", scope: "runtime_domain" },
     {
       id: "populaerkultur",
       name: "Popul\xE6rkultur",
