@@ -1,8 +1,8 @@
 # History Go – domain contract
 
-Status: active and binding category decision
-Owner: History Go data/runtime
-Last updated: 2026-07-21
+Status: active and binding category decision  
+Owner: History Go data/runtime  
+Last updated: 2026-07-24
 
 Machine-readable source of truth:
 
@@ -48,84 +48,64 @@ Aliases are allowed only at explicit import and normalization boundaries.
 | `scenekunst` | `scenekunst` | Scenekunst |
 | `sport` | `sport` | Sport & lek |
 | `subkultur` | `subkultur` | Subkultur |
-| `vitenskap` | `vitenskap` | Vitenskap & filosofi |
+| `vitenskap` | `vitenskap` | Vitenskap |
+| `filosofi` | `filosofi` | Filosofi |
 | `film_tv` | `film_tv` | Film & TV |
 
 `populaerkultur` and `popkultur` are two names for the same category. Runtime uses `populaerkultur`; fag/editorial data uses `popkultur`.
 
-## 3. Decisions that are now locked
+## 3. Locked domain decisions
 
 ### Kunst
 
-`kunst` covers visual and material art:
-
-- painting, sculpture, drawing and printmaking
-- photography and contemporary art
-- design and form
-- street art and public art
-- museums, galleries, art halls, collections and art institutions
-
-The display name is **Kunst**, not “Kunst & kultur”.
+`kunst` covers visual and material art: painting, sculpture, drawing, printmaking, photography, contemporary art, design, public art, museums, galleries and collections.
 
 ### Scenekunst
 
-`scenekunst` is a separate top-level category. It covers:
-
-- theatre and drama
-- dance and choreography
-- musicals and music theatre as performance
-- revue, standup and improvisation
-- performance art when the live performance is primary
-- theatres, companies, stages, repertoire and production practice
-
-`teater`, `theatre` and `theater` normalize to `scenekunst`.
+`scenekunst` covers theatre, drama, dance, choreography, musicals, revue, standup, improvisation, performance and scene institutions. `teater`, `theatre` and `theater` normalize to `scenekunst`.
 
 ### Musikk
 
-`musikk` covers music practice and music infrastructure:
-
-- artists, bands and ensembles
-- concerts and music venues
-- genres and scenes
-- composition, performance, sound and production
-
-The display name is **Musikk**, not “Musikk & scenekunst”.
+`musikk` covers artists, ensembles, concerts, venues, genres, composition, performance, sound and production.
 
 ### Kultur
 
-`kultur` is **not** a top-level badge or category. It is a broad descriptive and cross-disciplinary term that may appear in text, tags, stories and analysis.
-
-Creating a culture badge would overlap with art, scenekunst, music, literature, film/TV, media, religion, popular culture and subculture.
+`kultur` is not a top-level badge or category. It remains a cross-disciplinary description.
 
 ### Film & TV
 
-`film_tv` remains a separate top-level category. It is not a child of popular culture.
-
-It covers film and television works, production, camera, editing, sound, scripts, studios, broadcasting, locations, cinemas, genres, formats, audiences and audiovisual history.
-
-Legacy `film` and `tv` ids normalize to `film_tv`; they must not become parallel top-level categories.
+`film_tv` is a separate top-level category. Legacy `film` and `tv` normalize to it.
 
 ### Media
 
-`media` remains a separate top-level category. It covers journalism, editorial institutions, press history, media ethics, public spheres, platforms and distribution.
-
-`journalistikk` normalizes to `media` and must not become a parallel category.
+`media` covers journalism, editorial institutions, press history, media ethics, public spheres, platforms and distribution. `journalistikk` normalizes to `media`.
 
 ### Religion
 
-`religion` remains a separate top-level category for religion, faith, ritual practice, active sacred places and religious institutions.
+`religion` covers religion, faith, ritual practice, active sacred places and religious institutions. Present primary function controls place classification.
 
-Active churches, mosques, synagogues, temples and comparable places normally use primary `category: "religion"` when religious use is their present primary function.
+### Vitenskap
 
-Former religious buildings are classified by their present primary function. Name alone must never trigger a religion migration.
+`vitenskap` covers empirical and formal knowledge production: observation, measurement, experiments, mathematical models, research methods, scientific institutions and documented technological research.
 
-### Philosophy
+### Filosofi
 
-`filosofi` remains under `vitenskap` and normalizes to `vitenskap`. It is not a separate top-level badge now.
+`filosofi` is an independent runtime and editorial subject. It covers:
+
+- argumentation, logic and conceptual analysis
+- epistemology, metaphysics and philosophy of mind
+- ethics and applied ethics
+- political philosophy and public reason
+- aesthetics and hermeneutics
+- philosophy of science and technology
+- existentialism and phenomenology
+- intellectual history and environmental philosophy
+
+`philosophy` normalizes to `filosofi`. A place is primary `filosofi` when philosophical thinking, a documented thinker, an intellectual tradition or a philosophical public practice is its central relevance. Empirical research institutions remain primary `vitenskap`. Real overlap uses `secondaryBadgeIds`.
 
 ### Social learning
 
-`sosial_laering` is a non-place progression badge. It is listed in the badge index but must not appear in `place.category`, the runtime place-category list or the fag manifest.
+`sosial_laering` is a non-place progression badge. It must not appear in `place.category`, runtime category lists or the fag manifest.
 
 ## 4. Primary and secondary badge use
 
@@ -133,15 +113,8 @@ Every place has one primary category:
 
 ```json
 {
-  "category": "scenekunst"
-}
-```
-
-Cross-domain relevance may use:
-
-```json
-{
-  "secondaryBadgeIds": ["litteratur", "musikk"]
+  "category": "filosofi",
+  "secondaryBadgeIds": ["natur", "vitenskap"]
 }
 ```
 
@@ -155,10 +128,10 @@ Rules:
 
 Examples:
 
-- A theatre is normally primary `scenekunst`, with `litteratur` secondary when dramatic literature is central.
-- A musical production may be primary `scenekunst`, with `musikk` secondary.
-- A concert venue is normally primary `musikk`, with `subkultur` secondary when the underground identity is explicit.
-- A visual-art museum is primary `kunst`.
+- A philosophical cabin or documented thinking place may be primary `filosofi`, with `natur` secondary.
+- A philosophy-of-science institution may be primary `filosofi`, with `vitenskap` secondary.
+- A laboratory is normally primary `vitenskap`.
+- A theatre is primary `scenekunst`, with `litteratur` secondary when dramatic literature is central.
 - A newsroom is primary `media`.
 - A cinema or film studio is primary `film_tv`.
 
@@ -196,6 +169,16 @@ data/fag/fag_manifest.json
 data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json
 ```
 
+Philosophy foundation:
+
+```text
+data/fag/filosofi/filosofipensum_canonical_v1.json
+data/fag/filosofi/emner_filosofi_canonical_v1.json
+data/fag/filosofi/fagkart_filosofi_canonical_v1.json
+data/fag/filosofi/methods_filosofi_canonical_v1.json
+data/fag/filosofi/supersetQUIZMAL_filosofi.json
+```
+
 Place validation:
 
 ```text
@@ -212,4 +195,4 @@ Before creating or moving category-level data:
 4. Update registry, badges, manifest, UI and validation in the same change.
 5. Run `npm run audit:categories`.
 
-For Scenekunst, existing theatre and performance data must be migrated in controlled batches. Do not blindly move all music, literature or art records merely because they contain a stage, performance or cultural activity.
+Existing `vitenskap` places must be migrated to `filosofi` only in controlled, evidence-based batches. Do not move universities, schools or research institutions merely because philosophy is taught there. The primary place story must be philosophical.

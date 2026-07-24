@@ -20,6 +20,7 @@
     "sport",
     "subkultur",
     "vitenskap",
+    "filosofi",
     "film_tv"
   ];
 
@@ -53,8 +54,7 @@
     "popular-culture": "popkultur",
     "popular culture": "popkultur",
 
-    "filosofi": "vitenskap",
-    "philosophy": "vitenskap",
+    "philosophy": "filosofi",
     "sci": "vitenskap",
     "science": "vitenskap",
 
@@ -88,10 +88,6 @@
     "film": "film_tv",
     "tv": "film_tv",
     "journalistikk": "media"
-  };
-
-  const QUIZ_CATEGORY_FILES = {
-    "filosofi": "vitenskap"
   };
 
   const FILES = {
@@ -161,9 +157,8 @@
   function file(kind, domainId) {
     const fn = FILES[kind];
     if (!fn) throw new Error(`[DomainRegistry] Ukjent file-kind: "${kind}"`);
-    const runtimeId = kind === "quiz" ? toRuntimeCategoryId(domainId) : null;
     const id = kind === "quiz"
-      ? (QUIZ_CATEGORY_FILES[runtimeId] || runtimeId)
+      ? toRuntimeCategoryId(domainId)
       : toFagSubjectId(domainId);
     return fn(id);
   }
