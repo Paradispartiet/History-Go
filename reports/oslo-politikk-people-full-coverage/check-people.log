@@ -1,0 +1,78 @@
+== People JSON parse and duplicate ID check ==
+json ok (661 files)
+people ids ok (1291 entries, 1291 unique ids)
+== Build tools ==
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+== People invalid place refs ==
+Wrote reports/people-invalid-place-refs.json and reports/people-invalid-place-refs.md
+== People of places status ==
+Wrote reports/people-of-places-status.json and reports/people-of-places-status.md
+People: 1291; flat files: 0; geographic files: 659; invalid refs: 0; duplicate IDs: 0
+== People place coverage ==
+People-place audit complete: reports/people-place-coverage.json
+People-place report complete: reports/people-place-coverage.md
+== Civication history people index sync ==
+
+> history-go@0.0.0 civication:history-people:check
+> npm run build:scripts && node dist/scripts/build-civication-history-people-index.mjs --check
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+OK: data/Civication/historyPeople_index.json er i sync (15 kategorier).
+== Etne people manifest integration ==
+Etne people manifest integration OK (17 recovered people, 1291 active people)
+== Etne People of Places batch 9 ==
+Etne People of Places batch 9 OK (3 literary people, 3 direct place links)
+== Etne People of Places batch 10 ==
+Etne People of Places batch 10 OK (3 people, 2 direct physical-place anchors)
+== Etne People of Places batch 11 ==
+Etne People of Places batch 11 OK (3 museum founders, 1 direct physical-place anchor)
+== Etne People of Places batch 12 ==
+Etne People of Places batch 12 OK (3 canonical people, 2 newly covered physical places, 0 new people IDs)
+== Etne People of Places batch 13 ==
+Etne People of Places batch 13 OK (1 founder/head coach, 1 newly covered physical dojo, 1 canonical identity)
+== Etne People of Places batch 14 ==
+Etne People of Places batch 14 OK (1 bounded collective, 1 newly covered physical pavilion, 1 canonical identity)
+== Etne People of Places batch 15 ==
+Etne People of Places batch 15 OK (1 named initiator, 1 newly covered physical disc-golf course, 1 canonical identity)
+== Etne People of Places batch 16 ==
+Etne People of Places batch 16 OK (2 named work leaders, 1 newly covered outdoor sports facility, 2 canonical identities)
+== Etne People of Places batch 17 ==
+Etne People of Places batch 17 OK (2 named physical construction leaders, 1 newly covered culture hall, 2 canonical identities)
+== Etne People of Places batch 18 ==
+Etne People of Places batch 18 OK (3 named physical project roles, 1 newly covered swimming facility, 3 canonical identities)
+== Etne People of Places batch 19 ==
+Etne People of Places batch 19 OK (1 documented construction leader, 1 newly covered power plant, 1 canonical identity)
+== Etne People of Places batch 20 ==
+Etne People of Places batch 20 OK (3 documented initiators/builders, 1 newly covered disc golf course, 3 canonical identities)
+== Etne People of Places batch 21 ==
+Etne People of Places batch 21 OK (1 documented builder identity, 2 documented pumptrack people links)
+== Etne People of Places batch 22 ==
+Etne People of Places batch 22 OK (2 rehabilitation initiators, 1 current tennis leader, 3 documented place links)
+== Etne People of Places batch 23 ==
+Etne People of Places batch 23 OK (1 documented architect, 1 newly covered municipal building, 1 canonical identity)
+== Etne People of Places batch 24 ==
+Etne People of Places batch 24 OK (1 documented Fikse winner, 1 newly covered shooting range, 1 canonical identity)
+== Etne People of Places batch 25 ==
+Etne People of Places batch 25 OK (1 documented Langfoss project leader, 1 newly covered nature place, 1 canonical identity)
+== Etne People of Places batch 26 ==
+Etne People of Places batch 26 OK (1 documented geologist, 1 newly covered lake, 1 canonical identity)
+== Oslo politics People full coverage ==
+Oslo politikk People-dekning OK: 18/18 steder
+Nye personer totalt: 24; gjenbrukte personer: 8
+Utvidelsesbatch: 17 personer fordelt på politikk, by, kunst og litteratur
+== Oslo politics remaining-place expansion ==
+Resterende Oslo-politikksteder utvidet: 8/8 kontrollert
+Nye personer: 10; gjenbrukte personer: 8
+== Oslo politics final People expansion ==
+folkets_hus_oslo: 4
+regjeringskvartalet: 11
+slottet: 11
+victoria_terrasse: 13
+Final politics People batch OK: 20 identities
+== People check complete ==
