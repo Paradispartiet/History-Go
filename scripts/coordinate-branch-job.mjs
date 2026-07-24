@@ -9,6 +9,7 @@ const SOURCE_OBJECT_ID = 'oslo-kommune:frognerstranda:embedded-geojson-line';
 const REPORT_DIR = 'reports/oslo-coordinate-control-batch-195-frognerstranda-official-line';
 const SPLIT_PATH = 'data/places/popkultur/oslo/places_oslo_populaerkultur/frognerstranda.json';
 const AGGREGATE_PATH = 'data/places/popkultur/oslo/places_oslo_populaerkultur.json';
+const CATEGORY_INDEX_PATH = 'data/places/popkultur/oslo/places_oslo_populaerkultur_index.json';
 const EVIDENCE_PATH = 'data/coordinate-evidence/oslo/popkultur/frognerstranda.json';
 const CIVICATION_PATH = 'data/Civication/map/historyGoPlaceMapping.popkultur.json';
 const PROTOCOL_PATH = 'docs/coordinates/coordinate-control-protocol.md';
@@ -133,9 +134,10 @@ assert(maxBatch === 194, `Batch 195 hard gate failed: protocol max batch is ${ma
 assert(protocolBefore.includes('| 194 | `regjeringskvartalet` |'), 'Batch 194 Regjeringskvartalet row is missing.');
 assert(!protocolBefore.includes('| 195 |'), 'Batch 195 already exists.');
 
-const [splitPlace, aggregate, evidence, civication] = await Promise.all([
+const [splitPlace, aggregate, categoryIndex, evidence, civication] = await Promise.all([
   readJson(SPLIT_PATH),
   readJson(AGGREGATE_PATH),
+  readJson(CATEGORY_INDEX_PATH),
   readJson(EVIDENCE_PATH),
   readJson(CIVICATION_PATH)
 ]);
@@ -144,6 +146,10 @@ assert(Array.isArray(aggregate), 'Popkultur aggregate is not an array.');
 const aggregateMatches = aggregate.filter((place) => place?.id === PLACE_ID);
 assert(aggregateMatches.length === 1, `Expected one aggregate Frognerstranda row, found ${aggregateMatches.length}.`);
 assertLegacyPlace(aggregateMatches[0]);
+assert(Array.isArray(categoryIndex), 'Popkultur category index is not an array.');
+const categoryIndexMatches = categoryIndex.filter((place) => place?.id === PLACE_ID);
+assert(categoryIndexMatches.length === 1, `Expected one category-index Frognerstranda row, found ${categoryIndexMatches.length}.`);
+assertLegacyPlace(categoryIndexMatches[0]);
 assert(evidence.placeId === PLACE_ID, 'Coordinate evidence placeId drifted.');
 assert(evidence.evidenceStatus === 'needs_research', `Unexpected evidenceStatus: ${evidence.evidenceStatus}`);
 assert(evidence.currentCoordinate?.coordStatus === 'needs_source', 'Evidence is no longer unresolved before batch 195.');
@@ -217,6 +223,13 @@ const canonicalUpdate = {
 };
 Object.assign(splitPlace, canonicalUpdate);
 Object.assign(aggregateMatches[0], canonicalUpdate);
+for (const field of [
+  'lat', 'lon', 'r', 'locatorType', 'sourceProvider', 'sourceObjectId',
+  'geocodeAccuracy', 'coordRole', 'coordType', 'coordStatus', 'coordSource',
+  'coordVerifiedAt', 'coordNote'
+]) {
+  categoryIndexMatches[0][field] = splitPlace[field];
+}
 
 const mappingEntries = Object.values(civication.mappings ?? {}).filter((mapping) => mapping?.historyGoPlaceId === PLACE_ID);
 assert(mappingEntries.length === 1, `Expected one Civication Frognerstranda mapping, found ${mappingEntries.length}.`);
@@ -353,6 +366,7 @@ const summary = {
 await Promise.all([
   writeJson(SPLIT_PATH, splitPlace),
   writeJson(AGGREGATE_PATH, aggregate),
+  writeJson(CATEGORY_INDEX_PATH, categoryIndex),
   writeJson(EVIDENCE_PATH, evidence),
   writeJson(CIVICATION_PATH, civication),
   writeFile(PROTOCOL_PATH, `${protocolBefore.trimEnd()}${protocolAddition}`, 'utf8'),
