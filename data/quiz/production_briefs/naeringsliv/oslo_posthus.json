@@ -1,0 +1,536 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "naeringsliv",
+  "targetId": "oslo_posthus",
+  "reviewed_at": "2026-07-24",
+  "review_note": "Påstandsbanken er bygget fra den eksisterende Oslo posthus-quizen og de allerede oppførte institusjons- og prosjektkildene. Fire meta-/korreksjonsspørsmål er erstattet, fem nye kildebelagte spørsmål er lagt til, og de første 14 er låst til normal quizform uten metode- eller teoribinding.",
+  "sources": {
+    "place_record": {
+      "url": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+      "source_type": "canonical_place_record",
+      "review_status": "reviewed",
+      "review_note": "Brukt som intern kontroll av mål, adresse, kategori og etablert stedidentitet."
+    },
+    "oslo_byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Hovedpostkontoret",
+      "source_type": "municipal_city_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Brukt for arkitekt, stil, byggeperioder, bygningspreg, historiske spor og hovedfunksjon."
+    },
+    "lokalhistoriewiki": {
+      "url": "https://lokalhistoriewiki.no/wiki/Oslo_hovedpostkontor",
+      "source_type": "local_history_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Brukt for åpningsdato, terminalperiode, senere institusjoner og tomtas eldre historie."
+    },
+    "postmuseet": {
+      "url": "https://postmuseet.no/postens-historie/postens-historie",
+      "source_type": "postal_history_museum",
+      "review_status": "reviewed",
+      "review_note": "Brukt for Postverkets etablering, drift, frimerke og transporthistorie."
+    },
+    "posten_bring": {
+      "url": "https://www.postenbring.no/om-oss/var-historie",
+      "source_type": "company_history",
+      "review_status": "reviewed",
+      "review_note": "Brukt for Postverkets transporthistorie, dampskip, jernbane og organisatoriske utvikling."
+    },
+    "linstow": {
+      "url": "https://www.linstow.no/prosjekter/quadraturen",
+      "source_type": "property_owner_project_history",
+      "review_status": "reviewed",
+      "review_note": "Brukt for kjøpet i 1999, kvartalets eiendommer, verneverdier og konvertering til bolig og næring."
+    },
+    "kritt": {
+      "url": "https://www.kritt.no/elementer/posthallen",
+      "source_type": "architecture_and_reuse_project",
+      "review_status": "reviewed",
+      "review_note": "Brukt for Posthallen-konverteringen, publikumsfunksjoner og bevarte bygningsdeler."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [],
+    "emne_ids": [
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_forbruk_marked",
+      "em_naering_kapital_finans",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_teknologi_infrastruktur"
+    ],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_arbeidslivsanalyse",
+      "met_naering_forbruker_og_atferdsanalyse",
+      "met_naering_infrastrukturanalyse",
+      "met_naering_verdiskapingsanalyse"
+    ],
+    "thinker_ids": [
+      "max_weber"
+    ],
+    "works": []
+  },
+  "profile_hint": "rich",
+  "claims": [
+    {
+      "claim_id": "claim_oslo_posthus_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo Hovedpostkontor ligger i Dronningens gate 15 i Kvadraturen.",
+      "source_ids": [
+        "place_record",
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Linstow oppgir at bygget ble tatt i bruk som hovedpostkontor i 1924, og Lokalhistoriewiki presiserer 23. februar 1924.",
+      "source_ids": [
+        "linstow",
+        "lokalhistoriewiki",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki oppgir Rudolf E. Jacobsen/Rudolf Emanuel Jacobsen som arkitekt for Hovedpostkontoret.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rudolf E. Jacobsen vant arkitektkonkurransen om Hovedpostkontoret i 1912.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver bygningen som en av de siste store murbygningene fra tiden omkring første verdenskrig i nasjonal nybarokk.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Postverket tok bygningen i bruk som hovedpostkontor i 1924.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki",
+        "linstow"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hovedpostkontoret i Dronningens gate åpnet 23. februar 1924.",
+      "source_ids": [
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Postmuseet og Posten Bring oppgir 17. januar 1647 som opprettelsen av Postverket.",
+      "source_ids": [
+        "postmuseet",
+        "posten_bring"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Postmuseet skriver at Postverket ble opprettet av Hannibal Sehested, dansk stattholder i Norge.",
+      "source_ids": [
+        "postmuseet",
+        "posten_bring"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Postmuseet og Posten Bring oppgir at nederlenderen Henrik Morian fikk enerett til å drive Postverket.",
+      "source_ids": [
+        "postmuseet",
+        "posten_bring"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Posten Bring skriver at Postverket i 1827 ble landets første dampskipsreder ved anskaffelse av Constitutionen og Prinds Carl.",
+      "source_ids": [
+        "postmuseet",
+        "posten_bring"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Postverket anskaffet dampskipene Constitutionen og Prinds Carl i 1827.",
+      "source_ids": [
+        "posten_bring",
+        "postmuseet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Posten Bring og Postmuseet beskriver den første jernbanen fra Christiania til Eidsvoll i 1854 som viktig for posttransporten.",
+      "source_ids": [
+        "postmuseet",
+        "posten_bring"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Postmuseet oppgir 1855 som året da det første norske frimerket ble utgitt.",
+      "source_ids": [
+        "postmuseet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Lokalhistoriewiki beskriver Hovedpostkontoret som Postverkets hovedterminal i Oslo postdistrikt fra 23. februar 1924 til 1975.",
+      "source_ids": [
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki oppgir at bygningen var hovedterminal for Oslo postdistrikt til 1975.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki skriver at bygningen huset Sentrum postkontor, Postdirektoratet og Postmuseet til 2004.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sentrum postkontor, Postdirektoratet og Postmuseet holdt til i bygningen fram til 2004.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Lokalhistoriewiki skriver at huset som sto på tomta var fra 1640 og en av Christianias eldste bygårder.",
+      "source_ids": [
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Lokalhistoriewiki skriver at den gamle bygården blant annet hadde huset Christiania katedralskole.",
+      "source_ids": [
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver at en kanonkule fra svenskenes beleiring av Akershus i 1716 er støpt inn i veggen på Tollbugata-siden.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir byggefaser 1914–18 og 1921–24.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver et tungt borgpreg, høyt mansardtak og barokke tårnhjelmer.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver grovt pussede fasader med granittdekor med mønster fra norsk treskurd.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Linstow skriver at fasadene, postekspedisjonshallen og trappeløp har stor verneverdig verdi.",
+      "source_ids": [
+        "linstow",
+        "kritt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Linstow skriver at selskapet ervervet Posthuskvartalet fra Posten Norge i 1999 for 275 millioner kroner.",
+      "source_ids": [
+        "linstow"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Linstow kjøpte Posthuskvartalet fra Posten Norge i 1999 for 275 millioner kroner.",
+      "source_ids": [
+        "linstow"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Linstow beskriver Posthuskvartalet som Dronningens gate 15, Tollbugata 17 og Kirkegata 20.",
+      "source_ids": [
+        "linstow"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Posthallen-prosjektet omfattet 211 leiligheter med næringsarealer.",
+      "source_ids": [
+        "linstow",
+        "kritt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift",
+      "method_id": "met_naering_verdiskapingsanalyse"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Linstow skriver at prosjektet bestod av 211 leiligheter samt ca. 7 000 m² næringsarealer.",
+      "source_ids": [
+        "linstow"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked",
+      "method_id": "met_naering_verdiskapingsanalyse"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kritt beskriver nederste etasjer med restauranter, butikker, treningsanlegg og kulturtilbud.",
+      "source_ids": [
+        "kritt",
+        "linstow"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked",
+      "method_id": "met_naering_forbruker_og_atferdsanalyse"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Hovedpostkontoret er omformet fra postterminal og administrasjonsbygg til boliger, næring og publikumsfunksjoner.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "linstow",
+        "kritt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift",
+      "method_id": "met_naering_arbeidslivsanalyse"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Fasadene, postekspedisjonshallen og trappeløpene ble fremhevet som sentrale verneverdier i ombyggingen.",
+      "source_ids": [
+        "linstow",
+        "kritt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur",
+      "method_id": "met_naering_infrastrukturanalyse"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Både hovedpostkontoret og dagens blandede bruk samler tjenester og mange brukere i ett bykvartal.",
+      "source_ids": [
+        "lokalhistoriewiki",
+        "linstow",
+        "kritt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift",
+      "method_id": "met_naering_verdiskapingsanalyse"
+    },
+    {
+      "claim_id": "claim_oslo_posthus_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Samlingen av sortering, ekspedisjon og administrasjon i ett hovedpostkontor viser en rasjonalisering av posttjenestene.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping",
+      "method_id": "met_naering_arbeidslivsanalyse",
+      "topic_hook_id": "arbeid_som_verdiskaping",
+      "thinker_id": "max_weber"
+    }
+  ]
+}
