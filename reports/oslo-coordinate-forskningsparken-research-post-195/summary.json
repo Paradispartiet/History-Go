@@ -6,13 +6,21 @@
   "placeId": "forskningsparken",
   "placeName": "Forskningsparken",
   "identityDecision": "resolved_oslo_science_park_gaustadalleen_21",
-  "coordinateDecision": "multiple_official_address_points_need_named_geometry",
+  "coordinateDecision": "promote_named_building_multipolygon_centroid",
   "currentCoordinate": {
     "lat": 59.9426,
     "lon": 10.7192
   },
-  "candidate": null,
-  "displacementMeters": null,
+  "candidate": {
+    "lat": 59.94203365,
+    "lon": 10.71662635,
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-relation:10322880",
+    "sourceUrl": "https://www.openstreetmap.org/relation/10322880",
+    "objectType": "university_building_multipolygon_centroid",
+    "wikidata": "Q7107027"
+  },
+  "displacementMeters": 156.6,
   "officialAddress": {
     "address": "Gaustadalléen 21, 0349 Oslo",
     "coordinateCount": 2,
@@ -32,7 +40,24 @@
     ],
     "selectionDecision": "multiple_official_points_preserved_not_arbitrarily_selected"
   },
-  "supportingGeometry": null,
+  "supportingGeometry": {
+    "sourceObjectId": "osm-relation:10322880",
+    "sourceUrl": "https://www.openstreetmap.org/relation/10322880",
+    "building": "university",
+    "name": "Forskningsparken",
+    "nameEn": "Oslo Science Park",
+    "website": "http://www.oslotech.no/forskningsparken/",
+    "wikidata": "Q7107027",
+    "outerRingCount": 4,
+    "resolvedNodeCount": 101,
+    "areaSquareMeters": 8761.9,
+    "centroidInsideOuter": true,
+    "maximumVertexDistanceMeters": 82.2,
+    "distancesToOfficialAddressPointsMeters": [
+      28.8,
+      46.4
+    ]
+  },
   "rejectedTransportObjects": [
     {
       "sourceObjectId": "osm-way:84603232",
@@ -108,13 +133,16 @@
     "brregOperatingUnitIdentityAndAddress": true,
     "geonorgeExactAddressPointsPreserved": true,
     "transportObjectsExcluded": true,
-    "namedNonTransportBuildingGeometryFound": false
+    "namedNonTransportBuildingGeometryFound": true,
+    "exactBuildingRelationValidated": true,
+    "buildingCentroidInsideGeometry": true,
+    "buildingNearBothOfficialAddressPoints": true
   },
   "recommendation": {
-    "canBecomeVerified": false,
-    "nextAction": "Do not promote either official address point arbitrarily. Continue bounded building-geometry research while preserving the official address identity and keeping protocol max batch at 195.",
-    "coordStatus": "needs_source",
-    "coordType": null,
+    "canBecomeVerified": true,
+    "nextAction": "Apply the area-weighted centroid of named OSM university-building relation 10322880 as the canonical display marker, preserve both Kartverket address points as context, synchronize aggregate/index copies and coordinate evidence, and keep protocol max batch at 195.",
+    "coordStatus": "verified_geometry",
+    "coordType": "building_center",
     "locatorType": "building",
     "suggestedRadiusMeters": 150
   }
