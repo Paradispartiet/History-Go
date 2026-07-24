@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { mkdtemp, writeFile } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -80,6 +80,19 @@ source = source.replace(
 assert(source.includes("sourceContract: join(root, 'reports/oslo-coordinate-regjeringskvartalet-official-source-crosscheck-post-193/official-source-contract.json')"), 'Source-contract path patch failed.');
 assert(!source.includes('const governmentHtml = await fetchText(governmentDecisionUrl);'), 'Blocked government HTML fetch remains in generated production script.');
 assert(source.includes('const liveCollection = JSON.parse(await fetchText(wfsUrl));'), 'Live WFS validation was removed unexpectedly.');
+
+source = source.replace(
+  "  coordinateDecision: 'apply_source_backed_coordinate',\n",
+  "  coordinateDecision: 'do_not_change_coordinates_yet',\n",
+);
+assert(!source.includes("coordinateDecision: 'apply_source_backed_coordinate'"), 'Unsupported evidence coordinateDecision remains.');
+
+const contractToolPath = join(process.cwd(), 'tools/coordinate-source-contract.mts');
+let contractTool = await readFile(contractToolPath, 'utf8');
+const locatorTypeNeedle = "'square','park','linear_area','route'";
+assert(contractTool.includes(locatorTypeNeedle), 'Coordinate contract locator-type tuple changed unexpectedly.');
+contractTool = contractTool.replace(locatorTypeNeedle, "'square','park','linear_area','institutional_area','route'");
+await writeFile(contractToolPath, contractTool, 'utf8');
 
 const tempDir = await mkdtemp(join(tmpdir(), 'history-go-batch-194-'));
 const generatedPath = join(tempDir, 'coordinate-branch-job.generated.mjs');
