@@ -1,0 +1,151 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "observatoriet",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner/observatoriet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_official_observatoriegata_1_point_inside_named_university_observatory",
+  "currentCoordinate": {
+    "lat": 59.91294143279193,
+    "lon": 10.717900602014737,
+    "r": 160,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Kartverket/Geonorge for Observatoriegata 1, 0254 Oslo. Oslo byleksikon bekrefter Det astronomiske observatorium på denne adressen og oppføringen i 1831–33; Store norske leksikon bekrefter Universitetsobservatoriet og bruken fra 1833. Punktet ligger inne i den komplette, navngitte OSM-bygningen Observatoriet, way 134468457, som er merket building=university, heritage=yes og Wikidata Q15728942. Bygningen består av 21 noder, dekker 543,4 m², og adressepunktet ligger 12,2 meter fra geometrisk sentrum. Et navngitt informasjonspunkt for Observatoriet ligger 33,8 meter unna. Den tidligere markøren lå 997,8 meter feil. Radius 160 meter og canonical year 1833 beholdes. Det separate Folkeobservatoriet i Holmenkollen er eksplisitt utelukket."
+  },
+  "identity": {
+    "currentName": "Observatoriet",
+    "resolvedIdentity": "Universitetsobservatoriet / Det astronomiske observatorium, Observatoriegata 1, 0254 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt offisiell adressekoordinat",
+    "historisk universitetsobservatorium-identitet",
+    "navngitt bygningsgeometri som omslutter adressepunktet",
+    "avgrensning mot Folkeobservatoriet i Holmenkollen"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Adresser API v1 – Observatoriegata 1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Observatoriegata&nummer=1&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15294:1:59.91294143,10.71790060",
+      "sourceQuality": "official_address",
+      "finding": "Ett unikt offisielt representasjonspunkt for Observatoriegata 1: 59.91294143279193, 10.717900602014737.",
+      "canVerifyCoordinate": true,
+      "reason": "Punktet brukes som canonical display-markør etter identitets- og bygningskontroll."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo byleksikon – Observatoriet",
+      "sourceUrl": "https://oslobyleksikon.no/side/Observatoriet",
+      "sourceObjectId": "oslo-byleksikon:observatoriet",
+      "sourceQuality": "authoritative_local_identity",
+      "finding": "Bekrefter Observatoriegata 1, astronomisk observatorium og oppføring i 1831–33.",
+      "canVerifyCoordinate": false,
+      "reason": "Autoritativ lokal identitets-, adresse- og historikkilde; koordinaten leveres av Kartverket."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Universitetsobservatoriet",
+      "sourceUrl": "https://snl.no/Universitetsobservatoriet",
+      "sourceObjectId": "snl:universitetsobservatoriet",
+      "sourceQuality": "authoritative_national_identity",
+      "finding": "Bekrefter Universitetsobservatoriet og institusjonshistorikken fra 1833.",
+      "canVerifyCoordinate": false,
+      "reason": "Uavhengig nasjonal identitets- og historikkryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Nasjonalbiblioteket – Observatoriet-omvisning",
+      "sourceUrl": "https://www.nb.no/skole/omvisninger/dobbeltomvisning-nasjonalbiblioteket-observatoriet/",
+      "sourceObjectId": "nb:observatoriet-omvisning",
+      "sourceQuality": "current_public_interpretation",
+      "finding": "Dokumenterer at Observatoriet fortsatt brukes til offentlig formidling.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter dagens aktive stedsidentitet, ikke selve koordinaten."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 134468457 – Observatoriet",
+      "sourceUrl": "https://www.openstreetmap.org/way/134468457",
+      "sourceObjectId": "osm-way:134468457",
+      "sourceQuality": "complete_named_university_building_geometry",
+      "finding": "Navngitt building=university-geometri med heritage=yes og Wikidata Q15728942. 21 noder, 543.4 m²; Kartverket-punktet ligger inne i bygget.",
+      "canVerifyCoordinate": true,
+      "reason": "Bygningsgeometrien bekrefter at det offisielle adressepunktet representerer Observatoriet."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 13235705237 – Observatoriet",
+      "sourceUrl": "https://www.openstreetmap.org/node/13235705237",
+      "sourceObjectId": "osm-node:13235705237",
+      "sourceQuality": "named_place_context",
+      "finding": "Navngitt informasjonspunkt for Observatoriet 33,8 meter fra Kartverket-punktet.",
+      "canVerifyCoordinate": true,
+      "reason": "Supplerende navngitt stedskontekst ved universitetsbygget."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Observatoriegata 1, 0254 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15294:1:59.91294143,10.71790060",
+      "lat": 59.91294143279193,
+      "lon": 10.717900602014737,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15294:1:59.91294143,10.71790060",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:134468457",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:13235705237",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q15728942",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:134468457",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15294:1:59.91294143,10.71790060",
+      "lat": 59.91294143279193,
+      "lon": 10.717900602014737,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Observatoriegata 1 er anvendt som canonical display-markør."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Kartverket/Geonorge for Observatoriegata 1, 0254 Oslo. Oslo byleksikon bekrefter Det astronomiske observatorium på denne adressen og oppføringen i 1831–33; Store norske leksikon bekrefter Universitetsobservatoriet og bruken fra 1833. Punktet ligger inne i den komplette, navngitte OSM-bygningen Observatoriet, way 134468457, som er merket building=university, heritage=yes og Wikidata Q15728942. Bygningen består av 21 noder, dekker 543,4 m², og adressepunktet ligger 12,2 meter fra geometrisk sentrum. Et navngitt informasjonspunkt for Observatoriet ligger 33,8 meter unna. Den tidligere markøren lå 997,8 meter feil. Radius 160 meter og canonical year 1833 beholdes. Det separate Folkeobservatoriet i Holmenkollen er eksplisitt utelukket.",
+    "Research report: reports/oslo-coordinate-observatoriet-research-post-195/summary.json"
+  ]
+}
