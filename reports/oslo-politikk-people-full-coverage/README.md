@@ -126,3 +126,7 @@ Christopher Hornsrud-skiltet beholdes på én fordi skiltet er viet Christopher 
 - Category and quiz governance: bestått
 - Knowledge V2: bestått
 - TypeScript typecheck og webbygg-synk: bestått
+
+## Fresh-main-replay
+
+Hele People-endringen er feltvis flettet mot dagens `main`, de genererte flatene er bygget på nytt, og alle låste politikk-, People-, sted- og TypeScript-kontroller er kjørt på den ferske basen.
