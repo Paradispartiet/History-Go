@@ -1,0 +1,1621 @@
+{
+  "version": "2026-07-24",
+  "status": "research_complete_corrected",
+  "policy": [
+    "Official address was attempted first for both candidates and is unusable because each ordinary address point exactly overlaps an existing canonical marker.",
+    "No VisitOSLO coordinate is accepted as canonical evidence.",
+    "No synthetic offset is allowed.",
+    "Fallback research may use stable OSM objects or Kartverket/official-map objects under Coordinate Source Contract v1 when corroborated by the institution’s own physical-location statement."
+  ],
+  "officialStatements": {
+    "rom_for_kunst_og_arkitektur": {
+      "source": "https://rom.no/kontakt",
+      "statement": "ROM identifies its venue as Maridalsveien 3, building O, with an entrance from the Maridalsveien/Brenneriveien intersection and another route through the property entrance."
+    },
+    "soft_galleri": {
+      "source": "https://www.softgalleri.no/om-oss/",
+      "statement": "SOFT states that its entrance is on the corner at Rådhusgata 20 and that the large gallery window faces northeast toward Rådhusgata."
+    }
+  },
+  "queries": {
+    "rom_named": {
+      "ok": true,
+      "status": 200,
+      "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=ROM+for+kunst+og+arkitektur%2C+Maridalsveien+3%2C+Oslo%2C+Norway&limit=10&addressdetails=1&namedetails=1&extratags=1",
+      "json": []
+    },
+    "rom_address": {
+      "ok": true,
+      "status": 200,
+      "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Maridalsveien+3%2C+0178+Oslo%2C+Norway&limit=10&addressdetails=1&namedetails=1&extratags=1",
+      "json": [
+        {
+          "place_id": 162154809,
+          "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+          "osm_type": "node",
+          "osm_id": 9819590374,
+          "lat": "59.9206580",
+          "lon": "10.7515970",
+          "category": "place",
+          "type": "house",
+          "place_rank": 30,
+          "importance": 0.000081374074921752,
+          "addresstype": "place",
+          "name": "",
+          "display_name": "3, Maridalsveien, Fredensborg, Grünerløkka, Oslo, 0178, Norge",
+          "address": {
+            "house_number": "3",
+            "road": "Maridalsveien",
+            "quarter": "Fredensborg",
+            "suburb": "Grünerløkka",
+            "municipality": "Oslo",
+            "city": "Oslo",
+            "ISO3166-2-lvl4": "NO-03",
+            "postcode": "0178",
+            "country": "Norge",
+            "country_code": "no"
+          },
+          "extratags": null,
+          "namedetails": null,
+          "boundingbox": [
+            "59.9206080",
+            "59.9207080",
+            "10.7515470",
+            "10.7516470"
+          ]
+        }
+      ]
+    },
+    "soft_named": {
+      "ok": true,
+      "status": 200,
+      "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=SOFT+galleri%2C+R%C3%A5dhusgata+20%2C+Oslo%2C+Norway&limit=10&addressdetails=1&namedetails=1&extratags=1",
+      "json": []
+    },
+    "soft_address": {
+      "ok": true,
+      "status": 200,
+      "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=R%C3%A5dhusgata+20%2C+0151+Oslo%2C+Norway&limit=10&addressdetails=1&namedetails=1&extratags=1",
+      "json": [
+        {
+          "place_id": 162781066,
+          "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+          "osm_type": "node",
+          "osm_id": 2785920365,
+          "lat": "59.9095160",
+          "lon": "10.7420990",
+          "category": "place",
+          "type": "house",
+          "place_rank": 30,
+          "importance": 0.000081374074921752,
+          "addresstype": "place",
+          "name": "",
+          "display_name": "20, Rådhusgata, Kvadraturen, Sentrum, Oslo, 0151, Norge",
+          "address": {
+            "house_number": "20",
+            "road": "Rådhusgata",
+            "suburb": "Kvadraturen",
+            "municipality": "Oslo",
+            "city": "Oslo",
+            "ISO3166-2-lvl4": "NO-03",
+            "postcode": "0151",
+            "country": "Norge",
+            "country_code": "no"
+          },
+          "extratags": null,
+          "namedetails": null,
+          "boundingbox": [
+            "59.9094660",
+            "59.9095660",
+            "10.7420490",
+            "10.7421490"
+          ]
+        }
+      ]
+    },
+    "fotografiens_hus": {
+      "ok": true,
+      "status": 200,
+      "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Fotografiens+Hus%2C+R%C3%A5dhusgata+20%2C+Oslo%2C+Norway&limit=10&addressdetails=1&namedetails=1&extratags=1",
+      "json": []
+    },
+    "rom_overpass": {
+      "ok": true,
+      "status": 200,
+      "url": "https://overpass-api.de/api/interpreter",
+      "json": {
+        "version": 0.6,
+        "generator": "Overpass API 0.7.62.11 87bfad18",
+        "osm3s": {
+          "timestamp_osm_base": "2026-07-24T03:59:51Z",
+          "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+        },
+        "elements": [
+          {
+            "type": "node",
+            "id": 1976844285,
+            "lat": 59.9224488,
+            "lon": 10.7521472,
+            "tags": {
+              "entrance": "main"
+            }
+          },
+          {
+            "type": "node",
+            "id": 5685843327,
+            "lat": 59.9190095,
+            "lon": 10.7515156,
+            "tags": {
+              "entrance": "main"
+            }
+          },
+          {
+            "type": "node",
+            "id": 8420554171,
+            "lat": 59.9188634,
+            "lon": 10.7515091,
+            "tags": {
+              "entrance": "yes"
+            }
+          },
+          {
+            "type": "node",
+            "id": 9735417323,
+            "lat": 59.920847,
+            "lon": 10.7512054,
+            "tags": {
+              "entrance": "yes"
+            }
+          },
+          {
+            "type": "node",
+            "id": 9735417324,
+            "lat": 59.9208408,
+            "lon": 10.7508893,
+            "tags": {
+              "entrance": "yes"
+            }
+          },
+          {
+            "type": "node",
+            "id": 9751613768,
+            "lat": 59.9189247,
+            "lon": 10.7523274,
+            "tags": {
+              "entrance": "main"
+            }
+          },
+          {
+            "type": "node",
+            "id": 9751613770,
+            "lat": 59.9191391,
+            "lon": 10.7519806,
+            "tags": {
+              "access": "yes",
+              "door": "hinged",
+              "entrance": "main",
+              "level": "0",
+              "wheelchair": "limited"
+            }
+          },
+          {
+            "type": "node",
+            "id": 9751613774,
+            "lat": 59.9186282,
+            "lon": 10.7521049,
+            "tags": {
+              "entrance": "yes"
+            }
+          },
+          {
+            "type": "node",
+            "id": 9751613776,
+            "lat": 59.9185613,
+            "lon": 10.7517772,
+            "tags": {
+              "entrance": "yes"
+            }
+          },
+          {
+            "type": "node",
+            "id": 9751613777,
+            "lat": 59.9184255,
+            "lon": 10.7515148,
+            "tags": {
+              "entrance": "yes"
+            }
+          },
+          {
+            "type": "node",
+            "id": 9751613779,
+            "lat": 59.9183421,
+            "lon": 10.7512716,
+            "tags": {
+              "entrance": "yes"
+            }
+          },
+          {
+            "type": "node",
+            "id": 9751613781,
+            "lat": 59.918608,
+            "lon": 10.7512965,
+            "tags": {
+              "entrance": "yes"
+            }
+          },
+          {
+            "type": "node",
+            "id": 9819590374,
+            "lat": 59.920658,
+            "lon": 10.751597,
+            "tags": {
+              "addr:city": "Oslo",
+              "addr:housenumber": "3",
+              "addr:postcode": "0178",
+              "addr:street": "Maridalsveien"
+            }
+          },
+          {
+            "type": "node",
+            "id": 10278596725,
+            "lat": 59.9222427,
+            "lon": 10.7517066,
+            "tags": {
+              "entrance": "main"
+            }
+          },
+          {
+            "type": "node",
+            "id": 10281034581,
+            "lat": 59.9219638,
+            "lon": 10.7519359,
+            "tags": {
+              "entrance": "main"
+            }
+          },
+          {
+            "type": "node",
+            "id": 10816258771,
+            "lat": 59.9223763,
+            "lon": 10.7524923,
+            "tags": {
+              "entrance": "yes"
+            }
+          },
+          {
+            "type": "node",
+            "id": 11016815972,
+            "lat": 59.9200678,
+            "lon": 10.7527169,
+            "tags": {
+              "entrance": "yes",
+              "image": "https://photos.app.goo.gl/cFFLhxrUemg1wSs36"
+            }
+          },
+          {
+            "type": "node",
+            "id": 13812242924,
+            "lat": 59.92327,
+            "lon": 10.7525034,
+            "tags": {
+              "emergency": "defibrillator",
+              "emergency:phone": "113",
+              "level": "1",
+              "name": "Vegg på motsatt side av klasserom 1. etg. ved hovedinngang.",
+              "opening_hours": "Mo-Fr 08:00-16:00; PH off",
+              "ref:hjertestarterregister": "40A1960EF87A30F7E06324A4E80A4FA7"
+            }
+          },
+          {
+            "type": "way",
+            "id": 3235867,
+            "bounds": {
+              "minlat": 59.9198174,
+              "minlon": 10.7518905,
+              "maxlat": 59.9211686,
+              "maxlon": 10.7532685
+            },
+            "geometry": [
+              {
+                "lat": 59.9211686,
+                "lon": 10.7532685
+              },
+              {
+                "lat": 59.9211213,
+                "lon": 10.7532621
+              },
+              {
+                "lat": 59.9211024,
+                "lon": 10.7532561
+              },
+              {
+                "lat": 59.9210499,
+                "lon": 10.7532394
+              },
+              {
+                "lat": 59.9209053,
+                "lon": 10.7531474
+              },
+              {
+                "lat": 59.9208457,
+                "lon": 10.7531095
+              },
+              {
+                "lat": 59.9205868,
+                "lon": 10.7528963
+              },
+              {
+                "lat": 59.9204403,
+                "lon": 10.7527334
+              },
+              {
+                "lat": 59.9201412,
+                "lon": 10.7523519
+              },
+              {
+                "lat": 59.9198174,
+                "lon": 10.7518905
+              }
+            ],
+            "tags": {
+              "highway": "residential",
+              "lit": "yes",
+              "maxspeed": "30",
+              "name": "Brenneriveien",
+              "smoothness": "good",
+              "source:maxspeed": "NO:zone30",
+              "surface": "asphalt",
+              "wikidata": "Q11962234"
+            }
+          },
+          {
+            "type": "way",
+            "id": 3236525,
+            "bounds": {
+              "minlat": 59.9212866,
+              "minlon": 10.7508361,
+              "maxlat": 59.9215489,
+              "maxlon": 10.7511806
+            },
+            "geometry": [
+              {
+                "lat": 59.9212866,
+                "lon": 10.7511806
+              },
+              {
+                "lat": 59.9213338,
+                "lon": 10.7511253
+              },
+              {
+                "lat": 59.9213812,
+                "lon": 10.7510685
+              },
+              {
+                "lat": 59.9214091,
+                "lon": 10.7510335
+              },
+              {
+                "lat": 59.9215489,
+                "lon": 10.7508361
+              }
+            ],
+            "tags": {
+              "cycleway:right": "lane",
+              "highway": "secondary",
+              "lanes": "1",
+              "name": "Maridalsveien",
+              "oneway": "yes",
+              "sidewalk:right": "separate",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 4853188,
+            "bounds": {
+              "minlat": 59.9195649,
+              "minlon": 10.7514062,
+              "maxlat": 59.9198174,
+              "maxlon": 10.7518905
+            },
+            "geometry": [
+              {
+                "lat": 59.9195649,
+                "lon": 10.7514062
+              },
+              {
+                "lat": 59.9195688,
+                "lon": 10.7514631
+              },
+              {
+                "lat": 59.9195779,
+                "lon": 10.7515159
+              },
+              {
+                "lat": 59.9196391,
+                "lon": 10.7516116
+              },
+              {
+                "lat": 59.9198174,
+                "lon": 10.7518905
+              }
+            ],
+            "tags": {
+              "highway": "residential",
+              "incline": "down",
+              "lit": "yes",
+              "maxspeed": "30",
+              "name": "Brenneriveien",
+              "oneway": "yes",
+              "smoothness": "good",
+              "source:maxspeed": "NO:zone30",
+              "surface": "asphalt",
+              "wikidata": "Q11962234"
+            }
+          },
+          {
+            "type": "way",
+            "id": 5613189,
+            "bounds": {
+              "minlat": 59.9192265,
+              "minlon": 10.7513496,
+              "maxlat": 59.9194698,
+              "maxlon": 10.751414
+            },
+            "geometry": [
+              {
+                "lat": 59.9194698,
+                "lon": 10.751414
+              },
+              {
+                "lat": 59.9193244,
+                "lon": 10.7513775
+              },
+              {
+                "lat": 59.9192265,
+                "lon": 10.7513496
+              }
+            ],
+            "tags": {
+              "highway": "secondary",
+              "lanes": "2",
+              "lit": "yes",
+              "maxspeed": "30",
+              "maxspeed:type": "sign",
+              "name": "Maridalsveien",
+              "oneway": "yes",
+              "sidewalk": "separate",
+              "smoothness": "excellent",
+              "surface": "asphalt",
+              "turn:lanes": "left|through;right",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 40294740,
+            "bounds": {
+              "minlat": 59.9194698,
+              "minlon": 10.7514062,
+              "maxlat": 59.9195649,
+              "maxlon": 10.751414
+            },
+            "geometry": [
+              {
+                "lat": 59.9194698,
+                "lon": 10.751414
+              },
+              {
+                "lat": 59.9195649,
+                "lon": 10.7514062
+              }
+            ],
+            "tags": {
+              "highway": "secondary",
+              "lanes": "2",
+              "lit": "yes",
+              "maxspeed": "30",
+              "maxspeed:type": "sign",
+              "name": "Maridalsveien",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 129061337,
+            "bounds": {
+              "minlat": 59.9215489,
+              "minlon": 10.7505827,
+              "maxlat": 59.9236864,
+              "maxlon": 10.750921
+            },
+            "geometry": [
+              {
+                "lat": 59.9215489,
+                "lon": 10.7508361
+              },
+              {
+                "lat": 59.9216052,
+                "lon": 10.7507921
+              },
+              {
+                "lat": 59.9216593,
+                "lon": 10.7507521
+              },
+              {
+                "lat": 59.9216723,
+                "lon": 10.7507443
+              },
+              {
+                "lat": 59.9217071,
+                "lon": 10.7507233
+              },
+              {
+                "lat": 59.9217412,
+                "lon": 10.7507071
+              },
+              {
+                "lat": 59.9217712,
+                "lon": 10.7506971
+              },
+              {
+                "lat": 59.9218501,
+                "lon": 10.750672
+              },
+              {
+                "lat": 59.921991,
+                "lon": 10.7506287
+              },
+              {
+                "lat": 59.9221502,
+                "lon": 10.7505898
+              },
+              {
+                "lat": 59.9222056,
+                "lon": 10.7505827
+              },
+              {
+                "lat": 59.922249,
+                "lon": 10.7505858
+              },
+              {
+                "lat": 59.922292,
+                "lon": 10.7505958
+              },
+              {
+                "lat": 59.9223343,
+                "lon": 10.7506136
+              },
+              {
+                "lat": 59.9225072,
+                "lon": 10.750706
+              },
+              {
+                "lat": 59.9225369,
+                "lon": 10.7507212
+              },
+              {
+                "lat": 59.9228006,
+                "lon": 10.7508714
+              },
+              {
+                "lat": 59.922843,
+                "lon": 10.7508922
+              },
+              {
+                "lat": 59.9228839,
+                "lon": 10.750907
+              },
+              {
+                "lat": 59.922932,
+                "lon": 10.7509177
+              },
+              {
+                "lat": 59.9229742,
+                "lon": 10.750921
+              },
+              {
+                "lat": 59.9230994,
+                "lon": 10.750914
+              },
+              {
+                "lat": 59.9235127,
+                "lon": 10.7508959
+              },
+              {
+                "lat": 59.9235683,
+                "lon": 10.7508949
+              },
+              {
+                "lat": 59.9236197,
+                "lon": 10.7508888
+              },
+              {
+                "lat": 59.9236864,
+                "lon": 10.7508667
+              }
+            ],
+            "tags": {
+              "cycleway": "lane",
+              "highway": "secondary",
+              "lanes": "2",
+              "lit": "yes",
+              "name": "Maridalsveien",
+              "oneway": "no",
+              "sidewalk:both": "separate",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 129061339,
+            "bounds": {
+              "minlat": 59.920923,
+              "minlon": 10.7511393,
+              "maxlat": 59.9211127,
+              "maxlon": 10.7514182
+            },
+            "geometry": [
+              {
+                "lat": 59.9211127,
+                "lon": 10.7511393
+              },
+              {
+                "lat": 59.9210958,
+                "lon": 10.7511808
+              },
+              {
+                "lat": 59.9210792,
+                "lon": 10.7512109
+              },
+              {
+                "lat": 59.9210625,
+                "lon": 10.7512363
+              },
+              {
+                "lat": 59.9210284,
+                "lon": 10.7512796
+              },
+              {
+                "lat": 59.9209965,
+                "lon": 10.7513206
+              },
+              {
+                "lat": 59.920923,
+                "lon": 10.7514182
+              }
+            ],
+            "tags": {
+              "highway": "secondary",
+              "lanes": "1",
+              "name": "Maridalsveien",
+              "oneway": "yes",
+              "sidewalk:left": "no",
+              "sidewalk:right": "separate",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 129061341,
+            "bounds": {
+              "minlat": 59.9236864,
+              "minlon": 10.7506766,
+              "maxlat": 59.9241502,
+              "maxlon": 10.7508667
+            },
+            "geometry": [
+              {
+                "lat": 59.9236864,
+                "lon": 10.7508667
+              },
+              {
+                "lat": 59.9238679,
+                "lon": 10.7508409
+              },
+              {
+                "lat": 59.923902,
+                "lon": 10.7508342
+              },
+              {
+                "lat": 59.9239446,
+                "lon": 10.7508215
+              },
+              {
+                "lat": 59.9239852,
+                "lon": 10.7507994
+              },
+              {
+                "lat": 59.9241502,
+                "lon": 10.7506766
+              }
+            ],
+            "tags": {
+              "cycleway:right": "lane",
+              "flood_prone": "yes",
+              "highway": "secondary",
+              "lanes": "1",
+              "name": "Maridalsveien",
+              "oneway": "yes",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 184061416,
+            "bounds": {
+              "minlat": 59.9236864,
+              "minlon": 10.7506766,
+              "maxlat": 59.9241502,
+              "maxlon": 10.7508667
+            },
+            "geometry": [
+              {
+                "lat": 59.9241502,
+                "lon": 10.7506766
+              },
+              {
+                "lat": 59.9239743,
+                "lon": 10.7506931
+              },
+              {
+                "lat": 59.923933,
+                "lon": 10.7507023
+              },
+              {
+                "lat": 59.9238883,
+                "lon": 10.7507262
+              },
+              {
+                "lat": 59.9238599,
+                "lon": 10.7507463
+              },
+              {
+                "lat": 59.9236864,
+                "lon": 10.7508667
+              }
+            ],
+            "tags": {
+              "cycleway:right": "lane",
+              "flood_prone": "yes",
+              "highway": "secondary",
+              "lanes": "1",
+              "name": "Maridalsveien",
+              "oneway": "yes",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 311012193,
+            "bounds": {
+              "minlat": 59.9212599,
+              "minlon": 10.7508361,
+              "maxlat": 59.9215489,
+              "maxlon": 10.7510097
+            },
+            "geometry": [
+              {
+                "lat": 59.9215489,
+                "lon": 10.7508361
+              },
+              {
+                "lat": 59.9213785,
+                "lon": 10.7509213
+              },
+              {
+                "lat": 59.9213525,
+                "lon": 10.7509439
+              },
+              {
+                "lat": 59.9213047,
+                "lon": 10.750981
+              },
+              {
+                "lat": 59.9212599,
+                "lon": 10.7510097
+              }
+            ],
+            "tags": {
+              "cycleway:right": "lane",
+              "highway": "secondary",
+              "lanes": "1",
+              "name": "Maridalsveien",
+              "oneway": "yes",
+              "sidewalk:right": "separate",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 311012194,
+            "bounds": {
+              "minlat": 59.920923,
+              "minlon": 10.7512832,
+              "maxlat": 59.9211496,
+              "maxlon": 10.7514182
+            },
+            "geometry": [
+              {
+                "lat": 59.920923,
+                "lon": 10.7514182
+              },
+              {
+                "lat": 59.920968,
+                "lon": 10.7514162
+              },
+              {
+                "lat": 59.9210184,
+                "lon": 10.7514007
+              },
+              {
+                "lat": 59.9210516,
+                "lon": 10.7513815
+              },
+              {
+                "lat": 59.9210985,
+                "lon": 10.7513437
+              },
+              {
+                "lat": 59.9211496,
+                "lon": 10.7512832
+              }
+            ],
+            "tags": {
+              "highway": "secondary",
+              "lanes": "1",
+              "name": "Maridalsveien",
+              "oneway": "yes",
+              "sidewalk:left": "no",
+              "sidewalk:right": "separate",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 311012195,
+            "bounds": {
+              "minlat": 59.9195649,
+              "minlon": 10.7514062,
+              "maxlat": 59.9208985,
+              "maxlon": 10.7514444
+            },
+            "geometry": [
+              {
+                "lat": 59.9195649,
+                "lon": 10.7514062
+              },
+              {
+                "lat": 59.9197402,
+                "lon": 10.7514075
+              },
+              {
+                "lat": 59.9199632,
+                "lon": 10.7514225
+              },
+              {
+                "lat": 59.9200485,
+                "lon": 10.7514256
+              },
+              {
+                "lat": 59.9200917,
+                "lon": 10.7514257
+              },
+              {
+                "lat": 59.9206178,
+                "lon": 10.7514397
+              },
+              {
+                "lat": 59.9207432,
+                "lon": 10.7514444
+              },
+              {
+                "lat": 59.9208292,
+                "lon": 10.751439
+              },
+              {
+                "lat": 59.9208682,
+                "lon": 10.751433
+              },
+              {
+                "lat": 59.9208985,
+                "lon": 10.7514263
+              }
+            ],
+            "tags": {
+              "highway": "secondary",
+              "lanes": "2",
+              "lit": "yes",
+              "maxspeed": "30",
+              "maxspeed:type": "sign",
+              "name": "Maridalsveien",
+              "sidewalk:both": "separate",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 311012196,
+            "bounds": {
+              "minlat": 59.9212187,
+              "minlon": 10.750968,
+              "maxlat": 59.9212599,
+              "maxlon": 10.7510097
+            },
+            "geometry": [
+              {
+                "lat": 59.9212599,
+                "lon": 10.7510097
+              },
+              {
+                "lat": 59.9212407,
+                "lon": 10.7509834
+              },
+              {
+                "lat": 59.9212187,
+                "lon": 10.750968
+              }
+            ],
+            "tags": {
+              "highway": "secondary",
+              "junction": "roundabout",
+              "lanes": "1",
+              "name": "Maridalsveien",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 632264237,
+            "bounds": {
+              "minlat": 59.9212599,
+              "minlon": 10.7510097,
+              "maxlat": 59.9212883,
+              "maxlon": 10.7511806
+            },
+            "geometry": [
+              {
+                "lat": 59.9212866,
+                "lon": 10.7511806
+              },
+              {
+                "lat": 59.9212883,
+                "lon": 10.7511184
+              },
+              {
+                "lat": 59.921279,
+                "lon": 10.751059
+              },
+              {
+                "lat": 59.9212599,
+                "lon": 10.7510097
+              }
+            ],
+            "tags": {
+              "highway": "secondary",
+              "junction": "roundabout",
+              "lanes": "1",
+              "name": "Maridalsveien",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 632264238,
+            "bounds": {
+              "minlat": 59.9211496,
+              "minlon": 10.7511806,
+              "maxlat": 59.9212866,
+              "maxlon": 10.7513152
+            },
+            "geometry": [
+              {
+                "lat": 59.9211496,
+                "lon": 10.7512832
+              },
+              {
+                "lat": 59.9211683,
+                "lon": 10.7513036
+              },
+              {
+                "lat": 59.9211889,
+                "lon": 10.7513144
+              },
+              {
+                "lat": 59.9212093,
+                "lon": 10.7513152
+              },
+              {
+                "lat": 59.9212293,
+                "lon": 10.7513066
+              },
+              {
+                "lat": 59.9212477,
+                "lon": 10.7512891
+              },
+              {
+                "lat": 59.9212636,
+                "lon": 10.7512636
+              },
+              {
+                "lat": 59.921278,
+                "lon": 10.7512253
+              },
+              {
+                "lat": 59.9212866,
+                "lon": 10.7511806
+              }
+            ],
+            "tags": {
+              "highway": "secondary",
+              "junction": "roundabout",
+              "lanes": "1",
+              "name": "Maridalsveien",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 632264239,
+            "bounds": {
+              "minlat": 59.9211127,
+              "minlon": 10.7511393,
+              "maxlat": 59.9211496,
+              "maxlon": 10.7512832
+            },
+            "geometry": [
+              {
+                "lat": 59.9211127,
+                "lon": 10.7511393
+              },
+              {
+                "lat": 59.921117,
+                "lon": 10.7511944
+              },
+              {
+                "lat": 59.9211298,
+                "lon": 10.751244
+              },
+              {
+                "lat": 59.9211496,
+                "lon": 10.7512832
+              }
+            ],
+            "tags": {
+              "highway": "secondary",
+              "junction": "roundabout",
+              "lanes": "1",
+              "name": "Maridalsveien",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 1313517452,
+            "bounds": {
+              "minlat": 59.9208985,
+              "minlon": 10.7514182,
+              "maxlat": 59.920923,
+              "maxlon": 10.7514263
+            },
+            "geometry": [
+              {
+                "lat": 59.9208985,
+                "lon": 10.7514263
+              },
+              {
+                "lat": 59.920923,
+                "lon": 10.7514182
+              }
+            ],
+            "tags": {
+              "highway": "secondary",
+              "lanes": "2",
+              "lit": "yes",
+              "maxspeed": "30",
+              "maxspeed:type": "sign",
+              "name": "Maridalsveien",
+              "sidewalk:both": "separate",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 1313517454,
+            "bounds": {
+              "minlat": 59.9211127,
+              "minlon": 10.7510102,
+              "maxlat": 59.9211415,
+              "maxlon": 10.7511393
+            },
+            "geometry": [
+              {
+                "lat": 59.9211415,
+                "lon": 10.7510102
+              },
+              {
+                "lat": 59.921126,
+                "lon": 10.7510474
+              },
+              {
+                "lat": 59.9211162,
+                "lon": 10.7510915
+              },
+              {
+                "lat": 59.9211127,
+                "lon": 10.7511393
+              }
+            ],
+            "tags": {
+              "highway": "secondary",
+              "junction": "roundabout",
+              "lanes": "1",
+              "name": "Maridalsveien",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          },
+          {
+            "type": "way",
+            "id": 1313517455,
+            "bounds": {
+              "minlat": 59.9211415,
+              "minlon": 10.7509654,
+              "maxlat": 59.9212187,
+              "maxlon": 10.7510102
+            },
+            "geometry": [
+              {
+                "lat": 59.9212187,
+                "lon": 10.750968
+              },
+              {
+                "lat": 59.9211912,
+                "lon": 10.7509654
+              },
+              {
+                "lat": 59.9211645,
+                "lon": 10.75098
+              },
+              {
+                "lat": 59.9211415,
+                "lon": 10.7510102
+              }
+            ],
+            "tags": {
+              "highway": "secondary",
+              "junction": "roundabout",
+              "lanes": "1",
+              "name": "Maridalsveien",
+              "surface": "asphalt",
+              "wikidata": "Q11988263"
+            }
+          }
+        ]
+      }
+    },
+    "soft_overpass": {
+      "ok": true,
+      "status": 200,
+      "url": "https://overpass-api.de/api/interpreter",
+      "json": {
+        "version": 0.6,
+        "generator": "Overpass API 0.7.62.11 87bfad18",
+        "osm3s": {
+          "timestamp_osm_base": "2026-07-24T03:59:51Z",
+          "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+        },
+        "elements": [
+          {
+            "type": "node",
+            "id": 2555016585,
+            "lat": 59.909589,
+            "lon": 10.745677,
+            "tags": {
+              "entrance": "yes",
+              "name": "Filmens hus"
+            }
+          },
+          {
+            "type": "node",
+            "id": 2785920365,
+            "lat": 59.909516,
+            "lon": 10.742099,
+            "tags": {
+              "addr:city": "Oslo",
+              "addr:housenumber": "20",
+              "addr:postcode": "0151",
+              "addr:street": "Rådhusgata"
+            }
+          },
+          {
+            "type": "node",
+            "id": 11378298514,
+            "lat": 59.909085,
+            "lon": 10.744543,
+            "tags": {
+              "entrance": "main"
+            }
+          },
+          {
+            "type": "node",
+            "id": 11378298560,
+            "lat": 59.9090052,
+            "lon": 10.7451122,
+            "tags": {
+              "entrance": "main"
+            }
+          },
+          {
+            "type": "node",
+            "id": 13356318641,
+            "lat": 59.9098379,
+            "lon": 10.7414131,
+            "tags": {
+              "entrance": "main"
+            }
+          },
+          {
+            "type": "way",
+            "id": 5089080,
+            "bounds": {
+              "minlat": 59.9102573,
+              "minlon": 10.7386614,
+              "maxlat": 59.9104395,
+              "maxlon": 10.7394029
+            },
+            "geometry": [
+              {
+                "lat": 59.9102573,
+                "lon": 10.7394029
+              },
+              {
+                "lat": 59.9103056,
+                "lon": 10.7392031
+              },
+              {
+                "lat": 59.9103274,
+                "lon": 10.7391127
+              },
+              {
+                "lat": 59.9103375,
+                "lon": 10.7390719
+              },
+              {
+                "lat": 59.9103932,
+                "lon": 10.7388463
+              },
+              {
+                "lat": 59.9104038,
+                "lon": 10.7388049
+              },
+              {
+                "lat": 59.9104265,
+                "lon": 10.738713
+              },
+              {
+                "lat": 59.9104318,
+                "lon": 10.7386915
+              },
+              {
+                "lat": 59.9104395,
+                "lon": 10.7386614
+              }
+            ],
+            "tags": {
+              "bicycle": "yes",
+              "highway": "pedestrian",
+              "lit": "yes",
+              "maxspeed": "30",
+              "name": "Rådhusgata",
+              "surface": "asphalt",
+              "wikidata": "Q11998804",
+              "wikipedia": "no:Rådhusgata (Oslo)"
+            }
+          },
+          {
+            "type": "way",
+            "id": 24452133,
+            "bounds": {
+              "minlat": 59.9086864,
+              "minlon": 10.7429222,
+              "maxlat": 59.9094041,
+              "maxlon": 10.745882
+            },
+            "geometry": [
+              {
+                "lat": 59.9086864,
+                "lon": 10.745882
+              },
+              {
+                "lat": 59.9087235,
+                "lon": 10.7457297
+              },
+              {
+                "lat": 59.9087446,
+                "lon": 10.7456428
+              },
+              {
+                "lat": 59.9088954,
+                "lon": 10.7450229
+              },
+              {
+                "lat": 59.9089269,
+                "lon": 10.7448931
+              },
+              {
+                "lat": 59.9089533,
+                "lon": 10.7447842
+              },
+              {
+                "lat": 59.9093801,
+                "lon": 10.7430215
+              },
+              {
+                "lat": 59.9094041,
+                "lon": 10.7429222
+              }
+            ],
+            "tags": {
+              "cycleway:both": "no",
+              "highway": "unclassified",
+              "lanes": "2",
+              "lit": "yes",
+              "maxspeed": "30",
+              "name": "Rådhusgata",
+              "sidewalk:both": "separate",
+              "surface": "asphalt",
+              "wikidata": "Q11998804",
+              "wikipedia": "no:Rådhusgata (Oslo)"
+            }
+          },
+          {
+            "type": "way",
+            "id": 119214411,
+            "bounds": {
+              "minlat": 59.910113,
+              "minlon": 10.7397444,
+              "maxlat": 59.9101709,
+              "maxlon": 10.7399671
+            },
+            "geometry": [
+              {
+                "lat": 59.910113,
+                "lon": 10.7399671
+              },
+              {
+                "lat": 59.9101709,
+                "lon": 10.7397444
+              }
+            ],
+            "tags": {
+              "bicycle": "yes",
+              "highway": "pedestrian",
+              "horse": "no",
+              "lit": "yes",
+              "maxspeed": "30",
+              "motor_vehicle": "no",
+              "name": "Rådhusgata",
+              "surface": "sett",
+              "wikidata": "Q11998804",
+              "wikipedia": "no:Rådhusgata (Oslo)"
+            }
+          },
+          {
+            "type": "way",
+            "id": 365731636,
+            "bounds": {
+              "minlat": 59.9094041,
+              "minlon": 10.741476,
+              "maxlat": 59.9097557,
+              "maxlon": 10.7429222
+            },
+            "geometry": [
+              {
+                "lat": 59.9094041,
+                "lon": 10.7429222
+              },
+              {
+                "lat": 59.9094339,
+                "lon": 10.7427999
+              },
+              {
+                "lat": 59.9097234,
+                "lon": 10.741611
+              },
+              {
+                "lat": 59.9097557,
+                "lon": 10.741476
+              }
+            ],
+            "tags": {
+              "cycleway:both": "shared_lane",
+              "highway": "unclassified",
+              "maxspeed": "30",
+              "name": "Rådhusgata",
+              "sidewalk:both": "separate",
+              "surface": "asphalt",
+              "wikidata": "Q11998804",
+              "wikipedia": "no:Rådhusgata (Oslo)"
+            }
+          },
+          {
+            "type": "way",
+            "id": 365731637,
+            "bounds": {
+              "minlat": 59.9097557,
+              "minlon": 10.7404685,
+              "maxlat": 59.9099881,
+              "maxlon": 10.741476
+            },
+            "geometry": [
+              {
+                "lat": 59.9097557,
+                "lon": 10.741476
+              },
+              {
+                "lat": 59.9097816,
+                "lon": 10.7413659
+              },
+              {
+                "lat": 59.9097914,
+                "lon": 10.7413244
+              },
+              {
+                "lat": 59.9099537,
+                "lon": 10.7406141
+              },
+              {
+                "lat": 59.9099881,
+                "lon": 10.7404685
+              }
+            ],
+            "tags": {
+              "cycleway:both": "shared_lane",
+              "highway": "unclassified",
+              "lanes": "1",
+              "maxspeed": "30",
+              "name": "Rådhusgata",
+              "oneway": "yes",
+              "oneway:bicycle": "no",
+              "sidewalk:both": "separate",
+              "surface": "asphalt",
+              "wikidata": "Q11998804",
+              "wikipedia": "no:Rådhusgata (Oslo)"
+            }
+          },
+          {
+            "type": "way",
+            "id": 437364782,
+            "bounds": {
+              "minlat": 59.9086349,
+              "minlon": 10.745882,
+              "maxlat": 59.9086864,
+              "maxlon": 10.7460914
+            },
+            "geometry": [
+              {
+                "lat": 59.9086349,
+                "lon": 10.7460914
+              },
+              {
+                "lat": 59.9086453,
+                "lon": 10.746049
+              },
+              {
+                "lat": 59.9086864,
+                "lon": 10.745882
+              }
+            ],
+            "tags": {
+              "highway": "trunk",
+              "lanes": "2",
+              "maxspeed": "40",
+              "name": "Rådhusgata",
+              "ref": "E 18",
+              "sidewalk:both": "separate",
+              "surface": "asphalt",
+              "wikidata": "Q11998804",
+              "wikipedia": "no:Rådhusgata (Oslo)"
+            }
+          },
+          {
+            "type": "way",
+            "id": 593914250,
+            "bounds": {
+              "minlat": 59.9099881,
+              "minlon": 10.7399671,
+              "maxlat": 59.910113,
+              "maxlon": 10.7404685
+            },
+            "geometry": [
+              {
+                "lat": 59.9099881,
+                "lon": 10.7404685
+              },
+              {
+                "lat": 59.9100097,
+                "lon": 10.7403828
+              },
+              {
+                "lat": 59.9100272,
+                "lon": 10.7403133
+              },
+              {
+                "lat": 59.910113,
+                "lon": 10.7399671
+              }
+            ],
+            "tags": {
+              "bicycle": "yes",
+              "cycleway": "track",
+              "highway": "pedestrian",
+              "lit": "yes",
+              "maxspeed": "30",
+              "name": "Rådhusgata",
+              "sidewalk": "both",
+              "surface": "asphalt",
+              "wikidata": "Q11998804",
+              "wikipedia": "no:Rådhusgata (Oslo)"
+            }
+          }
+        ]
+      }
+    },
+    "kartverket_capabilities": {
+      "ok": true,
+      "status": 200,
+      "url": "https://wfs.geonorge.no/skwms1/wfs.matrikkelen-bygningspunkt?service=WFS&Request=GetCapabilities",
+      "discoveredTypeNames": []
+    },
+    "kartverket_rom_bbox": {
+      "ok": false,
+      "status": 400,
+      "url": "https://wfs.geonorge.no/skwms1/wfs.matrikkelen-bygningspunkt?service=WFS&version=2.0.0&request=GetFeature&typeNames=app%3ABygning&bbox=10.7498%2C59.9196%2C10.7533%2C59.922%2CEPSG%3A4326&srsName=EPSG%3A4326&outputFormat=application%2Fjson",
+      "json": null,
+      "bodyPreview": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exception>\n</ows:ExceptionReport>"
+    },
+    "kartverket_soft_bbox": {
+      "ok": false,
+      "status": 400,
+      "url": "https://wfs.geonorge.no/skwms1/wfs.matrikkelen-bygningspunkt?service=WFS&version=2.0.0&request=GetFeature&typeNames=app%3ABygning&bbox=10.7408%2C59.9085%2C10.744%2C59.9106%2CEPSG%3A4326&srsName=EPSG%3A4326&outputFormat=application%2Fjson",
+      "json": null,
+      "bodyPreview": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exception>\n</ows:ExceptionReport>"
+    },
+    "refined_geometry_analysis": {
+      "file": "refined-anchor-analysis.json",
+      "kartverketFeatureTypeNames": []
+    }
+  },
+  "decisions": {
+    "rom_for_kunst_og_arkitektur": {
+      "status": "still_requires_anchor_resolution",
+      "rejectedFalsePositive": "osm:node/13812242924 matched the substring \"rom\" inside the Norwegian word \"klasserom\" and is unrelated to ROM for kunst og arkitektur.",
+      "sharedRoadNodes": [],
+      "candidateEntranceObjects": [],
+      "nextGate": "Tie exactly one stable entrance or building object to ROM building O / the institution-defined Maridalsveien-Brenneriveien entrance before production."
+    },
+    "soft_galleri": {
+      "status": "still_requires_anchor_resolution",
+      "containingBuildingObjects": [
+        "osm:way/112191362"
+      ],
+      "candidateEntranceObjectsOnContainingBuilding": [],
+      "nextGate": "Require an entrance object on the Rådhusgata 20 building that uniquely matches SOFT’s stated corner entrance, or another stable authoritative object. Do not select a polygon corner by proximity alone."
+    }
+  }
+}

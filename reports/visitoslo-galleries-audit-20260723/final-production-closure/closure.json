@@ -1,0 +1,60 @@
+{
+  "version": "2026-07-24",
+  "status": "visit_oslo_galleries_production_pass_closed",
+  "scope": {
+    "sourceCount": 66,
+    "classified": 66,
+    "unresolvedClassification": 0
+  },
+  "production": {
+    "mergedNewCanonicalCount": 9,
+    "mergedNewCanonicalPlaceIds": [
+      "edvard_munchs_atelier_ekely",
+      "tegnerforbundet",
+      "unge_kunstneres_samfund",
+      "norske_grafikere",
+      "the_mini_bottle_gallery",
+      "galleri_lnm",
+      "ram_galleri",
+      "galleri_schaeffers_gate_5",
+      "grafill"
+    ],
+    "completedParentEnrichmentCount": 4,
+    "completedParentReuse": [
+      "Oslo Kunstforening -> radmannsgarden_og_anatomibygget",
+      "BO Billedkunstnerne i Oslo -> radmannsgarden_og_anatomibygget",
+      "Oslo Glass Studio -> kirkeristen_basarene_brannvakten",
+      "Atelier Nord -> hauges_minde"
+    ]
+  },
+  "remainingApprovedCoordinateBacklog": [
+    {
+      "placeId": "rom_for_kunst_og_arkitektur",
+      "sourceItem": "Galleri ROM for kunst og arkitektur",
+      "conflict": "Official Maridalsveien 3 address point exactly overlaps xray_ungdomskulturhus.",
+      "institutionPhysicalEvidence": [
+        "ROM identifies its location as Maridalsveien 3, building O.",
+        "ROM identifies the entrance area at the Maridalsveien/Brenneriveien meeting point and a route through the property entrance.",
+        "ROM separately describes the square outside its main entrance where Brenneriveien and Maridalsveien meet."
+      ],
+      "machineFallbackResult": "No named ROM POI and no uniquely attributable entrance/building O object was resolved. A first-pass false positive caused by matching “rom” inside “klasserom” was explicitly rejected.",
+      "decision": "Remain coordinate-blocked; no synthetic offset and no proximity-only entrance selection."
+    },
+    {
+      "placeId": "soft_galleri",
+      "sourceItem": "Soft galleri: Norske tekstilkunstnere",
+      "conflict": "Official Rådhusgata 20 address point exactly overlaps fotografiens_hus.",
+      "institutionPhysicalEvidence": [
+        "SOFT identifies its entrance as the corner entrance at Rådhusgata 20.",
+        "SOFT identifies the large gallery window as facing northeast toward Rådhusgata."
+      ],
+      "machineFallbackResult": "OSM resolved the containing building as osm:way/112191362, but no entrance node on that building uniquely identifies SOFT. The only nearby mapped main entrance returned by the pass is not a member of the containing building.",
+      "decision": "Remain coordinate-blocked; do not convert a building-polygon corner or nearby entrance into a canonical coordinate by inference."
+    }
+  ],
+  "researchFiles": [
+    "reports/visitoslo-galleries-audit-20260723/distinct-anchor-research/anchor-research.json",
+    "reports/visitoslo-galleries-audit-20260723/distinct-anchor-research/refined-anchor-analysis.json"
+  ],
+  "finalRule": "The VisitOSLO Galleries scope is fully decided. Production is complete for every approved candidate that currently has a defensible distinct coordinate anchor. The two remaining approved items are deliberately withheld until authoritative distinct anchors exist."
+}

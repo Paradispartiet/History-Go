@@ -2,7 +2,7 @@
   "version": "2026-07-23",
   "sourceSnapshot": "reports/visitoslo-galleries-audit-20260723/api-source-discovery/gallery-source-snapshot.json",
   "sourceCount": 66,
-  "status": "full_gallery_scope_classified",
+  "status": "full_gallery_scope_classified_and_production_audited",
   "summary": {
     "existingCanonical": 18,
     "parentReuseEnrichment": 4,
@@ -125,8 +125,8 @@
     {
       "sourceItem": "Soft galleri: Norske tekstilkunstnere",
       "placeId": "soft_galleri",
-      "status": "approved_scope_coordinate_blocked",
-      "basis": "The ordinary Rådhusgata 20 address point exactly overlaps the institution-specific Fotografiens Hus marker; production still requires a distinct authoritative entrance or visitor anchor."
+      "status": "approved_scope_coordinate_blocked_researched",
+      "basis": "The ordinary Rådhusgata 20 address point exactly overlaps fotografiens_hus. SOFT documents a corner entrance, but the 2026-07-24 OSM/Kartverket fallback pass found no entrance object on the containing building that can be uniquely tied to SOFT without guessing."
     }
   ],
   "geographicOutOfScope": [
@@ -144,52 +144,63 @@
     {
       "sourceItem": "Edvard Munchs atelier på Ekely",
       "proposedPlaceId": "edvard_munchs_atelier_ekely",
-      "basis": "Distinct preserved historic studio and public cultural site at Ekely; no canonical identity match found."
+      "basis": "Distinct preserved historic studio and public cultural site at Ekely; no canonical identity match found.",
+      "productionStatus": "production_merged"
     },
     {
       "sourceItem": "Tegnerforbundet - senter for tegnekunst",
       "proposedPlaceId": "tegnerforbundet",
-      "basis": "Durable professional organisation with a dedicated public exhibition and mediation venue."
+      "basis": "Durable professional organisation with a dedicated public exhibition and mediation venue.",
+      "productionStatus": "production_merged"
     },
     {
       "sourceItem": "Unge Kunstneres Samfund",
       "proposedPlaceId": "unge_kunstneres_samfund",
-      "basis": "Long-running artist membership organisation and independent exhibition space."
+      "basis": "Long-running artist membership organisation and independent exhibition space.",
+      "productionStatus": "production_merged"
     },
     {
       "sourceItem": "Galleri Norske Grafikere",
       "proposedPlaceId": "norske_grafikere",
-      "basis": "Long-running artist organisation whose gallery is a core public exhibition and knowledge venue."
+      "basis": "Long-running artist organisation whose gallery is a core public exhibition and knowledge venue.",
+      "productionStatus": "production_merged"
     },
     {
       "sourceItem": "Galleri ROM for kunst og arkitektur",
       "proposedPlaceId": "rom_for_kunst_og_arkitektur",
-      "basis": "Independent foundation and durable interdisciplinary exhibition and meeting place with roots in the late 1980s."
+      "basis": "Independent foundation and durable interdisciplinary exhibition and meeting place with roots in the late 1980s.",
+      "productionStatus": "approved_scope_coordinate_blocked",
+      "coordinateBlocker": "The ordinary Maridalsveien 3 address point exactly overlaps xray_ungdomskulturhus. ROM documents building O and its entrance area, but the 2026-07-24 OSM/Kartverket fallback pass did not produce one stable source object that uniquely resolves the ROM entrance or building O without inference."
     },
     {
       "sourceItem": "The Mini Bottle Gallery",
       "proposedPlaceId": "the_mini_bottle_gallery",
-      "basis": "Distinct, durable public specialty museum with an independent physical identity; treat as a museum/cultural-place candidate rather than a commercial art-gallery gap."
+      "basis": "Distinct, durable public specialty museum with an independent physical identity; treat as a museum/cultural-place candidate rather than a commercial art-gallery gap.",
+      "productionStatus": "production_merged"
     },
     {
       "sourceItem": "Galleri LNM",
       "proposedPlaceId": "galleri_lnm",
-      "basis": "Independent professional artist organisation and public gallery."
+      "basis": "Independent professional artist organisation and public gallery.",
+      "productionStatus": "production_merged"
     },
     {
       "sourceItem": "RAM galleri",
       "proposedPlaceId": "ram_galleri",
-      "basis": "Long-running member society and explicitly non-commercial artist-run exhibition institution."
+      "basis": "Long-running member society and explicitly non-commercial artist-run exhibition institution.",
+      "productionStatus": "production_merged"
     },
     {
       "sourceItem": "Galleri Schaeffers Gate 5",
       "proposedPlaceId": "galleri_schaeffers_gate_5",
-      "basis": "Independent not-for-profit art, music and performance space with a stable identity since 2011."
+      "basis": "Independent not-for-profit art, music and performance space with a stable identity since 2011.",
+      "productionStatus": "production_merged"
     },
     {
       "sourceItem": "Grafill",
       "proposedPlaceId": "grafill",
-      "basis": "Non-profit national professional organisation with a dedicated Oslo space used for exhibitions, lectures, workshops and public activity."
+      "basis": "Non-profit national professional organisation with a dedicated Oslo space used for exhibitions, lectures, workshops and public activity.",
+      "productionStatus": "production_merged"
     }
   ],
   "privateCommercialPolicyDeferrals": [
@@ -231,26 +242,54 @@
     "manualResolution": "The manual pass applied the same policy to all 66 source items and separately resolved clear parent-building reuse cases."
   },
   "nextWork": {
-    "coordinateAndIdentityAuditQueue": [
-      "edvard_munchs_atelier_ekely",
-      "tegnerforbundet",
-      "unge_kunstneres_samfund",
-      "norske_grafikere",
-      "rom_for_kunst_og_arkitektur",
-      "the_mini_bottle_gallery",
-      "galleri_lnm",
-      "ram_galleri",
-      "galleri_schaeffers_gate_5",
-      "grafill"
-    ],
+    "coordinateAndIdentityAuditQueue": [],
     "parentEnrichmentQueue": [],
     "coordinateOnlyBacklog": [
+      "rom_for_kunst_og_arkitektur",
       "soft_galleri"
     ],
     "completedParentEnrichments": [
       "radmannsgarden_og_anatomibygget:BO Billedkunstnerne i Oslo",
       "kirkeristen_basarene_brannvakten:Oslo Glass Studio",
       "hauges_minde:Atelier Nord"
-    ]
+    ],
+    "productionComplete": [
+      "edvard_munchs_atelier_ekely",
+      "tegnerforbundet",
+      "unge_kunstneres_samfund",
+      "norske_grafikere",
+      "the_mini_bottle_gallery",
+      "galleri_lnm",
+      "ram_galleri",
+      "galleri_schaeffers_gate_5",
+      "grafill"
+    ],
+    "coordinateBlockerResearch": "reports/visitoslo-galleries-audit-20260723/distinct-anchor-research/anchor-research.json"
+  },
+  "productionClosure": {
+    "date": "2026-07-24",
+    "sourceItemsClassified": 66,
+    "newCanonicalCandidatesApproved": 10,
+    "newCanonicalProductionMerged": 9,
+    "parentReuseEnrichmentsCompleted": 4,
+    "approvedCoordinateBlockersRemaining": 2,
+    "unresolvedScopeDecisions": 0,
+    "producedPlaceIds": [
+      "edvard_munchs_atelier_ekely",
+      "tegnerforbundet",
+      "unge_kunstneres_samfund",
+      "norske_grafikere",
+      "the_mini_bottle_gallery",
+      "galleri_lnm",
+      "ram_galleri",
+      "galleri_schaeffers_gate_5",
+      "grafill"
+    ],
+    "coordinateBlockedPlaceIds": [
+      "rom_for_kunst_og_arkitektur",
+      "soft_galleri"
+    ],
+    "blockerResearch": "reports/visitoslo-galleries-audit-20260723/distinct-anchor-research/anchor-research.json",
+    "policy": "Do not invent offsets or choose an unnamed nearby entrance by proximity. ROM and SOFT remain approved scope items but are withheld from canonical production until a distinct authoritative entrance/building object is available."
   }
 }
