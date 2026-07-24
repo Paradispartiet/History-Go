@@ -41,15 +41,18 @@ jobs:
       - name: Apply and validate rights-domain migration
         id: apply
         continue-on-error: true
-        if: hashFiles('tools/apply-politikk-rett-vertical.py.gz.b64') != ''
+        if: hashFiles('tools/politikk-rett-migration-gz/ready.txt') != ''
         run: |
           set -euo pipefail
           mkdir -p reports/politikk-canonical-migration
+          cat tools/politikk-rett-migration-gz/part-*.b64 > /tmp/apply-politikk-rett-vertical.py.gz.b64
           {
-            wc -c tools/apply-politikk-rett-vertical.py.gz.b64
-            sha256sum tools/apply-politikk-rett-vertical.py.gz.b64
+            wc -c /tmp/apply-politikk-rett-vertical.py.gz.b64
+            sha256sum /tmp/apply-politikk-rett-vertical.py.gz.b64
+            test "$(wc -c < /tmp/apply-politikk-rett-vertical.py.gz.b64)" -eq 25936
+            echo "d640efce6080b311beb002addd2782dbf86e012fc77d9b9bed5bc9fb36b7193c  /tmp/apply-politikk-rett-vertical.py.gz.b64" | sha256sum -c -
           } 2>&1 | tee reports/politikk-canonical-migration/rett-lov-archive-check.txt
-          base64 -d tools/apply-politikk-rett-vertical.py.gz.b64 \
+          base64 -d /tmp/apply-politikk-rett-vertical.py.gz.b64 \
             > /tmp/apply-politikk-rett-vertical.py.gz \
             2> >(tee reports/politikk-canonical-migration/rett-lov-archive-decode.txt >&2)
           gzip -t /tmp/apply-politikk-rett-vertical.py.gz \
@@ -77,6 +80,7 @@ jobs:
           echo "PASS | git diff --check" \
             | tee -a reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt
           rm -f tools/apply-politikk-rett-vertical.py tools/apply-politikk-rett-vertical.py.gz.b64
+          rm -rf tools/politikk-rett-migration-gz
           rm -f reports/politikk-canonical-migration/rett-domain-work-marker.txt
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
