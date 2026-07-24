@@ -77,14 +77,35 @@
     "brregSubunitIdentityAndAddress": true,
     "geonorgeExactAddressCoordinatesPreserved": true,
     "namedNonTransportSchoolObjectFound": true,
-    "transportObjectsExcluded": true
+    "transportObjectsExcluded": true,
+    "fullSchoolPolygonValidated": true,
+    "officialAddressPointInsideSchoolGeometry": true,
+    "schoolRadiusCoversGeometry": true
   },
   "recommendation": {
     "canBecomeVerified": true,
-    "nextAction": "Apply geonorge-adresser-v1:0301:11412:3:59.90681241,10.77044366 as the canonical display marker, preserve official Osloskolen and Brønnøysund identity, retain all Kartverket address evidence, retain osm-way:263309956 as school-object support, add coordinate evidence, synchronize aggregate/index copies, and keep protocol max batch at 195. Review the canonical 1799 year separately against the official 1881 founding year.",
+    "nextAction": "Apply geonorge-adresser-v1:0301:11412:3:59.90681241,10.77044366 as the canonical display marker because it is the unique official Egedes gate 3 address point and lies inside named OSM school polygon 263309956; preserve official Osloskolen and Brønnøysund identity, retain the polygon as geometry support, add coordinate evidence, synchronize aggregate/index copies, and keep protocol max batch at 195. Review the canonical 1799 year separately against the official 1881 founding year.",
     "coordStatus": "verified",
     "coordType": "address_point",
     "locatorType": "building",
     "suggestedRadiusMeters": 150
+  },
+  "geometry": {
+    "sourceObjectId": "osm-way:263309956",
+    "sourceUrl": "https://www.openstreetmap.org/way/263309956",
+    "amenity": "school",
+    "name": "Gamlebyen skole",
+    "organisationNumber": "973626442",
+    "wikidata": "Q17194626",
+    "polygonNodeCount": 8,
+    "areaSquareMeters": 5852.5,
+    "centroid": {
+      "lat": 59.9066112,
+      "lon": 10.77104945
+    },
+    "candidateInsidePolygon": true,
+    "centroidInsidePolygon": true,
+    "addressToCentroidMeters": 40.5,
+    "maximumVertexDistanceMeters": 56.2
   }
 }

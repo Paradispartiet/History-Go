@@ -7,11 +7,13 @@
 - Candidate: **59.90681241, 10.77044366**
 - Candidate source: **geonorge-adresser-v1:0301:11412:3:59.90681241,10.77044366**
 - Displacement: **402.9 m**
-- Official address coordinate count: **1**
-- Supporting OSM object: **osm-way:263309956**
-- Coordinate recommendation: **promote_official_school_address_point**
+- School geometry: **OSM way 263309956**
+- Address point inside polygon: **yes**
+- School polygon area: **5852.5 m²**
+- Address-to-polygon-centroid distance: **40.5 m**
+- Radius covers geometry: **yes**
 - Canonical year: **1799**
 - Official school founding year: **1881**
 - Year changed in this research: **no**
 
-The coordinate recommendation is grounded in the official school identity, Brønnøysund operating-unit address, Kartverket address data and a non-transport OSM school object. The historical year discrepancy is recorded for separate content review. No batch 196 is created.
+The unique official Kartverket point lies inside the exact named school polygon carrying the correct organisation number and Wikidata identity. The historical year discrepancy remains a separate content-review item. No batch 196 is created.
