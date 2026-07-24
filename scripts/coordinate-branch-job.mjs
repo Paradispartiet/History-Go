@@ -196,9 +196,33 @@ const roundedMidpoint = {
   lon: Number(derived.midpoint.lon.toFixed(12))
 };
 const anchors = [
-  { role: 'west_boundary', lat: officialLine[0][1], lon: officialLine[0][0] },
-  { role: 'line_midpoint', lat: roundedMidpoint.lat, lon: roundedMidpoint.lon },
-  { role: 'east_boundary', lat: officialLine.at(-1)[1], lon: officialLine.at(-1)[0] }
+  {
+    id: 'frognerstranda_west_boundary',
+    name: 'Frognerstranda – vestgrense',
+    type: 'line_endpoint',
+    role: 'west_boundary',
+    lat: officialLine[0][1],
+    lon: officialLine[0][0],
+    r: 60
+  },
+  {
+    id: 'frognerstranda_line_midpoint',
+    name: 'Frognerstranda – linjemidtpunkt',
+    type: 'line_midpoint',
+    role: 'line_midpoint',
+    lat: roundedMidpoint.lat,
+    lon: roundedMidpoint.lon,
+    r: 60
+  },
+  {
+    id: 'frognerstranda_east_boundary',
+    name: 'Frognerstranda – østgrense',
+    type: 'line_endpoint',
+    role: 'east_boundary',
+    lat: officialLine.at(-1)[1],
+    lon: officialLine.at(-1)[0],
+    r: 60
+  }
 ];
 const coordNote = 'Oslo kommune definerer Frognerstranda som en strandlinje fra innerste Frognerkilen/Bygdøy i vest til Hjortnes/Framnes i øst og publiserer samme scope som en maskinlesbar 12-punkts GeoJSON LineString på den offisielle Frognerstranda-siden. Canonical lat/lon er det deterministiske lengdemidtpunktet langs denne kommunale linjen (ca. 1,63 km). Det separate kartpunktet på siden, E18, jernbane, tilfeldige coastline-segmenter og den kortere OSM-fotveien brukes ikke som koordinatproxy.';
 
