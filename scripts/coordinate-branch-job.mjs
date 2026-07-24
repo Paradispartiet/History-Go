@@ -7,7 +7,7 @@ const PLANNAVN='S-5100';
 const OUT='reports/oslo-coordinate-regjeringskvartalet-wfs-area-research-post-193';
 const ENDPOINT='https://od2.pbe.oslo.kommune.no/cgi-bin/wms';
 const FORMAT='application/json; subtype=geojson; charset=ISO-8859-1';
-const TYPES=['ms:Regplan','ms:Omraadeplan','ms:Regulering','ms:RegPlanRegTillegg','ms:RegTilleggOmr'];
+const TYPES=['ms:EnkeltPlan','ms:Omraadeplan','ms:RegTilleggTidl','ms:Utbyggingsomrade','ms:Kartutsnitt','ms:Eiendom'];
 mkdirSync(OUT,{recursive:true});
 const readJson=p=>JSON.parse(readFileSync(p,'utf8'));
 const writeJson=(p,v)=>writeFileSync(p,`${JSON.stringify(v,null,2)}\n`,'utf8');
@@ -42,13 +42,14 @@ for(const typeName of TYPES){
 }
 
 const allMatches=typeResults.flatMap(result=>result.matches.map(match=>({typeName:result.typeName,...match})));
-const titleSignals=[...new Set(allMatches.flatMap(x=>Object.entries(x.properties||{}).filter(([key,value])=>/navn|name|title|tittel|beskriv|formål|formaal|plan/i.test(key)).map(([key,value])=>`${key}=${value}`)))];
+const titleSignals=[...new Set(allMatches.flatMap(x=>Object.entries(x.properties||{}).filter(([key])=>/navn|name|title|tittel|beskriv|formål|formaal|plan/i.test(key)).map(([key,value])=>`${key}=${value}`)))];
 const currentCopyDates=[...new Set(allMatches.map(x=>x.properties?.KOPIDATO).filter(Boolean))];
 const result={
   version:DATE,
   placeId:PLACE_ID,
   coordinateMaxBatch:maxBatch,
   lockedCandidate:{planId:PLANID,planName:PLANNAVN,omraadeplanFeature:covering[0]},
+  exposedTypes:TYPES,
   typeResults,
   allMatches,
   titleSignals,
@@ -57,5 +58,5 @@ const result={
   nextAction:'Use matching feature properties and the current Planinnsyn copy date to identify the adopted plan title/version. Only then decide whether the Omraadeplan polygon is the correct canonical institutional-area geometry.'
 };
 writeJson(`${OUT}/planid-crosscheck.json`,result);
-writeFileSync(`${OUT}/README.md`,`# Regjeringskvartalet Oslo Planinnsyn WFS area research\n\nDate: ${DATE}\n\nLocked candidate covering the canonical center:\n- PLANID: ${PLANID}\n- PLANNAVN: ${PLANNAVN}\n\nCrosschecked WFS layers: ${TYPES.length}\nMatching features across layers: ${allMatches.length}\nCurrent copy dates: ${currentCopyDates.join(', ')||'none'}\n\nDecision: **${result.decision}**\n\nNo canonical coordinate changed.\n`,'utf8');
+writeFileSync(`${OUT}/README.md`,`# Regjeringskvartalet Oslo Planinnsyn WFS area research\n\nDate: ${DATE}\n\nLocked candidate covering the canonical center:\n- PLANID: ${PLANID}\n- PLANNAVN: ${PLANNAVN}\n\nCrosschecked exposed WFS layers: ${TYPES.length}\nMatching features across layers: ${allMatches.length}\nCurrent copy dates: ${currentCopyDates.join(', ')||'none'}\n\nDecision: **${result.decision}**\n\nNo canonical coordinate changed.\n`,'utf8');
 console.log(JSON.stringify({placeId:PLACE_ID,planId:PLANID,planName:PLANNAVN,typeResults:typeResults.map(x=>({typeName:x.typeName,featureCount:x.featureCount,propertyKeys:x.propertyKeys,matchCount:x.matchCount,matches:x.matches})),titleSignals,currentCopyDates,decision:result.decision},null,2));
