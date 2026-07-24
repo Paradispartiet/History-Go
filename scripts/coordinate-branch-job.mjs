@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 
 const PINNED_PRODUCTION_SCRIPT_URL = 'https://raw.githubusercontent.com/Paradispartiet/History-Go/cada477a35c0741e9e0693bf6d92d536adc86b22/scripts/coordinate-branch-job.mjs';
 const PINNED_SOURCE_CONTRACT_PATH = 'reports/oslo-coordinate-regjeringskvartalet-official-source-crosscheck-post-193/official-source-contract.json';
@@ -54,3 +54,22 @@ const run = spawnSync(process.execPath, [temporaryScript], {
 });
 if (run.error) throw run.error;
 if (run.status !== 0) process.exit(run.status ?? 1);
+
+for (const command of [
+  ['npm', ['run', 'places:index:build']],
+  ['npm', ['run', 'places:coords:evidence:audit']],
+]) {
+  const result = spawnSync(command[0], command[1], {
+    stdio: 'inherit',
+    env: process.env,
+    cwd: process.cwd(),
+  });
+  if (result.error) throw result.error;
+  if (result.status !== 0) {
+    if (command[1].includes('places:coords:evidence:audit')) {
+      console.error('\n--- exact final evidence report ---\n');
+      console.error(readFileSync('reports/coordinate-evidence-audit.md', 'utf8'));
+    }
+    process.exit(result.status ?? 1);
+  }
+}
