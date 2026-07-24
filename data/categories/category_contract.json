@@ -1,8 +1,8 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "status": "canonical",
-  "updatedAt": "2026-07-21",
-  "rule": "Én kategori har én runtime-id og én fag-id. Kun popkultur/populaerkultur bruker ulike navn for samme domene.",
+  "updatedAt": "2026-07-24",
+  "rule": "Én runtime-kategori har én tydelig visuell identitet. Filosofi er egen runtime-kategori, men bruker vitenskap som faglig grunnlag inntil eget fagkart er etablert.",
   "runtimeCategories": [
     "by",
     "historie",
@@ -20,6 +20,7 @@
     "sport",
     "subkultur",
     "vitenskap",
+    "filosofi",
     "film_tv"
   ],
   "fagSubjects": [
@@ -42,7 +43,8 @@
     "film_tv"
   ],
   "runtimeToFag": {
-    "populaerkultur": "popkultur"
+    "populaerkultur": "popkultur",
+    "filosofi": "vitenskap"
   },
   "fagToRuntime": {
     "popkultur": "populaerkultur"
@@ -50,7 +52,6 @@
   "aliases": {
     "populærkultur": "popkultur",
     "popular_culture": "popkultur",
-    "filosofi": "vitenskap",
     "philosophy": "vitenskap",
     "teater": "scenekunst",
     "theatre": "scenekunst",
@@ -78,7 +79,8 @@
     "scenekunst": "Scenekunst",
     "sport": "Sport & lek",
     "subkultur": "Subkultur",
-    "vitenskap": "Vitenskap & filosofi",
+    "vitenskap": "Vitenskap",
+    "filosofi": "Filosofi",
     "film_tv": "Film & TV"
   },
   "decisions": {
@@ -88,6 +90,7 @@
     "kultur": "Ikke egen badge. Kultur brukes som tverrfaglig beskrivelse, ikke som toppkategori.",
     "film_tv": "Egen kategori, ikke under populærkultur.",
     "media": "Egen kategori, ikke under populærkultur.",
-    "religion": "Egen kategori for religion, trospraksis og aktive hellige rom."
+    "religion": "Egen kategori for religion, trospraksis og aktive hellige rom.",
+    "filosofi": "Egen runtime-kategori og badge. Bruker foreløpig vitenskap som faglig grunnlag gjennom runtimeToFag."
   }
 }
