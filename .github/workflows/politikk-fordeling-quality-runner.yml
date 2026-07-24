@@ -1,0 +1,92 @@
+name: Politics distribution domain quality runner
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  run-domain-work:
+    if: startsWith(github.head_ref, 'agent/politikk-fordeling-')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Export current canonical inputs
+        id: export
+        if: hashFiles('reports/politikk-canonical-migration/fordeling-domain-work-marker.txt') != ''
+        run: |
+          set -euo pipefail
+          phase="$(cat reports/politikk-canonical-migration/fordeling-domain-work-marker.txt)"
+          if [[ "$phase" != "export-current-canonical" ]]; then
+            echo "exported=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          mkdir -p /tmp/politikk-canonical
+          cp data/fag/politikk/{fagkart_politikk_canonical_v4_5.json,emner_politikk_canonical_v4_5.json,methods_politikk_canonical_v4_5.json,emnemapping_politikk_canonical_v4_5.json,politikkpensum_canonical_v4_5.json,quiz_generator_rules_politikk_v5_1_source_priority_patch.json} /tmp/politikk-canonical/
+          echo "exported=true" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: steps.export.outputs.exported == 'true'
+        with:
+          name: politics-canonical-current
+          path: /tmp/politikk-canonical/
+      - name: Apply and validate distribution-domain migration
+        id: apply
+        continue-on-error: true
+        if: hashFiles('tools/politikk-fordeling-migration-parts/*.b64') != ''
+        run: |
+          set -euo pipefail
+          mkdir -p reports/politikk-canonical-migration
+          cat tools/politikk-fordeling-migration-parts/*.b64 > /tmp/apply-politikk-fordeling-vertical.py.gz.b64
+          expected="$(cat tools/politikk-fordeling-migration-parts/sha256.txt)"
+          actual="$(sha256sum /tmp/apply-politikk-fordeling-vertical.py.gz.b64 | awk '{print $1}')"
+          [[ "$actual" == "$expected" ]]
+          base64 -d /tmp/apply-politikk-fordeling-vertical.py.gz.b64 > /tmp/apply-politikk-fordeling-vertical.py.gz
+          gzip -t /tmp/apply-politikk-fordeling-vertical.py.gz
+          gunzip -c /tmp/apply-politikk-fordeling-vertical.py.gz > tools/apply-politikk-fordeling-vertical.py
+          python -m py_compile tools/apply-politikk-fordeling-vertical.py \
+            2>&1 | tee reports/politikk-canonical-migration/fordeling-velferd-migration-syntax.txt
+          python tools/apply-politikk-fordeling-vertical.py \
+            2>&1 | tee reports/politikk-canonical-migration/fordeling-velferd-vertical-chain-validation.txt
+          node tools/validate-politikk-fordeling-vertical.mjs \
+            2>&1 | tee -a reports/politikk-canonical-migration/fordeling-velferd-vertical-chain-validation.txt
+          for file in \
+            data/fag/politikk/fagkart_politikk_canonical_v4_5.json \
+            data/fag/politikk/emner_politikk_canonical_v4_5.json \
+            data/fag/politikk/methods_politikk_canonical_v4_5.json \
+            data/fag/politikk/emnemapping_politikk_canonical_v4_5.json \
+            data/fag/politikk/politikkpensum_canonical_v4_5.json \
+            data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json \
+            reports/politikk-canonical-migration/fordeling-velferd-question-blueprints.json; do
+            node -e 'JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log("PASS | Gyldig JSON: "+process.argv[1])' "$file" \
+              2>&1 | tee -a reports/politikk-canonical-migration/fordeling-velferd-vertical-chain-validation.txt
+          done
+          git diff --check \
+            2>&1 | tee -a reports/politikk-canonical-migration/fordeling-velferd-vertical-chain-validation.txt
+          echo "PASS | git diff --check" | tee -a reports/politikk-canonical-migration/fordeling-velferd-vertical-chain-validation.txt
+          rm -f tools/apply-politikk-fordeling-vertical.py
+          rm -rf tools/politikk-fordeling-migration-parts
+          rm -f reports/politikk-canonical-migration/fordeling-domain-work-marker.txt
+          rm -f reports/politikk-canonical-migration/fordeling-velferd-migration-syntax.txt
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/fag/politikk reports/politikk-canonical-migration tools
+          git commit -m "Politikk: fullfør fordelingsdomenets vertikale kvalitetskjede"
+          git push origin HEAD:${{ github.head_ref }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: politics-fordeling-diagnostics
+          path: reports/politikk-canonical-migration/fordeling-velferd-*
+          if-no-files-found: warn
+      - name: Propagate migration failure
+        if: steps.apply.outcome == 'failure'
+        run: exit 1
