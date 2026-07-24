@@ -1,0 +1,129 @@
+{
+  "version": "2026-07-24",
+  "protocolMaxBatch": 195,
+  "researchOnly": true,
+  "canonicalChanged": false,
+  "placeId": "naturhistorisk_museum",
+  "placeName": "Naturhistorisk museum",
+  "identityDecision": "resolved_natural_history_museum_uio_sars_gate_1",
+  "scopeDecision": "museum_institution_separate_from_botanical_garden_canonical_place",
+  "coordinateDecision": "promote_unique_official_address_point_supported_by_named_museum_object",
+  "currentCoordinate": {
+    "lat": 59.9171,
+    "lon": 10.7738
+  },
+  "candidate": {
+    "lat": 59.92013360357791,
+    "lon": 10.770992295176185,
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:16202:1:59.92013360,10.77099230",
+    "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Sars%27%20gate&nummer=1&kommunenummer=0301&treffPerSide=20",
+    "objectType": "museum_address_point"
+  },
+  "displacementMeters": 371.9,
+  "officialAddress": {
+    "address": "Sars' gate 1, 0562 Oslo",
+    "coordinateCount": 1,
+    "coordinates": [
+      {
+        "lat": 59.92013360357791,
+        "lon": 10.770992295176185,
+        "rowCount": 1,
+        "addressText": "Sars' gate 1",
+        "sourceObjectId": "geonorge-adresser-v1:0301:16202:1:59.92013360,10.77099230"
+      }
+    ],
+    "selectionDecision": "unique_official_point"
+  },
+  "supportingOsmObject": {
+    "sourceObjectId": "osm-node:5412354900",
+    "sourceUrl": "https://www.openstreetmap.org/node/5412354900",
+    "coordinate": {
+      "lat": 59.919783,
+      "lon": 10.771714
+    },
+    "nearestAddressMeters": 56,
+    "score": 1643.9851223678038,
+    "tags": {
+      "fee": "yes",
+      "name": "Naturhistorisk museum",
+      "name:en": "Natural History Museum at the University of Oslo",
+      "name:no": "Naturhistorisk museum",
+      "opening_hours": "Mo-Su 10:00-17:00",
+      "tourism": "museum",
+      "website": "https://www.nhm.uio.no/",
+      "wikidata": "Q1840963",
+      "wikimedia_commons": "Category:Naturhistorisk Museum, Oslo",
+      "wikipedia": "en:Natural History Museum at the University of Oslo"
+    }
+  },
+  "geometry": null,
+  "rejectedObjects": [
+    {
+      "sourceObjectId": "osm-node:13812190850",
+      "name": "UiO, Universitetet i Oslo - Naturhistorisk museum, museumsbutikken i Botanisk hage",
+      "reason": "botanical_garden_is_separate_canonical_place"
+    }
+  ],
+  "sourceChecks": {
+    "brregSubunitIdentityAndAddress": true,
+    "uioParentIdentity": true,
+    "geonorgeExactAddressCoordinatesPreserved": true,
+    "namedNonGardenMuseumObjectFound": true,
+    "botanicalGardenExcludedAsSeparateCanonicalPlace": true,
+    "transportObjectsExcluded": true,
+    "fullPolygonValidatedWhenAvailable": false,
+    "officialAddressPointInsideGeometryWhenAvailable": null,
+    "boundedBuildingContextValidated": true,
+    "officialAddressInsideNearbyBuilding": true,
+    "officialAddressNearNamedMuseumPoi": true
+  },
+  "recommendation": {
+    "canBecomeVerified": true,
+    "nextAction": "Apply geonorge-adresser-v1:0301:16202:1:59.92013360,10.77099230 as canonical display marker because it is the unique official Sars' gate 1 point, lies inside osm-way:27011865, and is 56 metres from the dedicated Naturhistorisk museum POI; preserve NHM/UiO and Brønnøysund identity, retain the museum POI and containing building as support, keep Botanisk hage separate, synchronize evidence/index and keep protocol max at 195.",
+    "coordStatus": "verified",
+    "coordType": "address_point",
+    "locatorType": "building",
+    "suggestedRadiusMeters": 170
+  },
+  "buildingContext": {
+    "queryRadiusMeters": 260,
+    "addressContainingBuildingCount": 2,
+    "supportingBuilding": {
+      "sourceObjectId": "osm-way:27011865",
+      "sourceUrl": "https://www.openstreetmap.org/way/27011865",
+      "tags": {
+        "building": "university",
+        "building:levels": "4",
+        "fee": "yes",
+        "heritage": "yes",
+        "name": "Zoologisk museum",
+        "name:en": "Zoology Museum",
+        "name:no": "Zoologisk museum",
+        "opening_hours": "Jun-Aug: Mo-Su 11:00-16:00, Sep-May: Tu-Su 11:00-16:00",
+        "operator": "UiO",
+        "ref:bygningsnr": "81325464",
+        "tourism": "museum",
+        "website": "https://www.nhm.uio.no/utstillinger/zoologiske/index.html",
+        "wheelchair": "limited",
+        "wikidata": "Q12011265",
+        "wikimedia_commons": "Category:Zoological museum, Oslo",
+        "wikipedia": "no:Zoologisk museum (Oslo)"
+      },
+      "containsAddress": true,
+      "museumNamed": false,
+      "knownMuseumBuilding": true,
+      "polygonNodeCount": 27,
+      "areaSquareMeters": 1555,
+      "centroid": {
+        "lat": 59.91983227,
+        "lon": 10.7711035
+      },
+      "addressToCentroidMeters": 34.1,
+      "maximumVertexDistanceMeters": 41.1
+    },
+    "addressToMuseumPoiMeters": 56,
+    "nearbyBuildingCount": 114,
+    "botanicalGardenStillExcluded": true
+  }
+}
