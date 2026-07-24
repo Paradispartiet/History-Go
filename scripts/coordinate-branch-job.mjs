@@ -1,4 +1,4 @@
-// Retry 3: assemble verified builder chunks.
+// Retry 4: assemble smaller verified builder chunks.
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
@@ -57,10 +57,16 @@ function removeIfExists(relativePath) {
 }
 
 const builderPartPaths = [
-  "tools/.build-historie-makt-phase3.part1",
+  "tools/.build-historie-makt-phase3.part1a",
+  "tools/.build-historie-makt-phase3.part1b",
+  "tools/.build-historie-makt-phase3.part1c",
+  "tools/.build-historie-makt-phase3.part1d",
+  "tools/.build-historie-makt-phase3.part1e",
+  "tools/.build-historie-makt-phase3.part1f",
   "tools/.build-historie-makt-phase3.part2",
   "tools/.build-historie-makt-phase3.part3",
-  "tools/.build-historie-makt-phase3.part4",
+  "tools/.build-historie-makt-phase3.part4a",
+  "tools/.build-historie-makt-phase3.part4b",
 ];
 const encodedBuilder = builderPartPaths
   .map((partPath) => fs.readFileSync(resolve(partPath), "utf8").trim())
@@ -160,6 +166,8 @@ run("git", ["diff", "--check"], "Check diff whitespace");
 
 removeIfExists(".github/workflows/history-phase3-build.yml");
 removeIfExists("tools/.build-historie-makt-phase3.py.gz.b64");
+removeIfExists("tools/.build-historie-makt-phase3.part1");
+removeIfExists("tools/.build-historie-makt-phase3.part4");
 for (const partPath of builderPartPaths) removeIfExists(partPath);
 removeIfExists("tools/build-historie-makt-phase3.py");
 removeIfExists("reports/historie-canonical-migration/makt-stat-phase3-research.json");
