@@ -48,13 +48,22 @@ jobs:
 
           python - <<'PY'
           from pathlib import Path
-          p = Path('tools/validate-politikk-statsvitenskap-core.mjs')
-          s = p.read_text()
+
+          core = Path('tools/validate-politikk-statsvitenskap-core.mjs')
+          text = core.read_text()
           old = "const coreBlueprints=blueprints.filter(b=>b.quality_revision===R||b.quality_revision===P1);"
           new = "const coreBlueprints=blueprints.filter(b=>!b.blueprint_id.startsWith('pol_theory_phase2_'));"
-          if old not in s:
+          if old not in text:
               raise SystemExit('FAIL | Fant ikke forventet blueprint-filter i kjernevalidatoren')
-          p.write_text(s.replace(old, new))
+          core.write_text(text.replace(old, new))
+
+          democracy = Path('tools/validate-politikk-demokrati-vertical.mjs')
+          text = democracy.read_text()
+          old = "ok(e.quality_revision===REV,'Emne '+id+' har ny revisjon')"
+          new = "ok(e.quality_revision===REV||(id==='em_pol_ideologi_konfliktlinjer'&&e.quality_revision==='politikk-konflikt-vertical-2026-07-24'),'Emne '+id+' har gyldig demokrati- eller konfliktrevisjon')"
+          if old not in text:
+              raise SystemExit('FAIL | Fant ikke forventet emnerevisjonskontroll i demokrativalideringen')
+          democracy.write_text(text.replace(old, new))
           PY
 
           rm -f tools/build-politikk-vertical-phase-2.mjs
