@@ -27,21 +27,46 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
-      - name: Apply deterministic followups
+      - name: Apply and diagnose deterministic followups
+        id: followup
+        continue-on-error: true
         if: hashFiles('tools/fix-global-normal-opening-followups.mjs') != ''
+        shell: bash
         run: |
-          set -euo pipefail
-          node tools/fix-global-normal-opening-followups.mjs
-          npm run knowledge:canonical:write
-          node tools/validate-global-quiz-normal-opening-alignment.mjs | tee reports/quiz-global-normal-opening-alignment-validation.txt
-          npm run audit:quiz-production-context
-          npm run knowledge:canonical:check
-          git diff --check
+          set +e
+          LOG=reports/global-quiz-normal-opening-followup-diagnostic.txt
+          : > "$LOG"
+          run_step() {
+            name="$1"
+            shift
+            echo "## $name" >> "$LOG"
+            "$@" >> "$LOG" 2>&1
+            status=$?
+            echo "status=$status" >> "$LOG"
+            echo >> "$LOG"
+            return $status
+          }
+          failed=0
+          run_step fixer node tools/fix-global-normal-opening-followups.mjs || failed=1
+          run_step knowledge_write npm run knowledge:canonical:write || failed=1
+          run_step global_validator node tools/validate-global-quiz-normal-opening-alignment.mjs || failed=1
+          run_step production_context npm run audit:quiz-production-context || failed=1
+          run_step knowledge_check npm run knowledge:canonical:check || failed=1
+          run_step diff_check git diff --check || failed=1
+          cp "$LOG" reports/quiz-global-normal-opening-alignment-validation.txt
+          exit "$failed"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: global-quiz-normal-opening-followup-diagnostic
+          path: reports/global-quiz-normal-opening-followup-diagnostic.txt
+          if-no-files-found: warn
       - name: Commit deterministic followups
-        if: hashFiles('tools/fix-global-normal-opening-followups.mjs') != ''
+        if: steps.followup.outcome == 'success'
         run: |
           set -euo pipefail
           rm tools/fix-global-normal-opening-followups.mjs
+          rm -f reports/global-quiz-normal-opening-followup-diagnostic.txt
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add data/quiz/by/deichman_bjorvika_sets.json
@@ -57,3 +82,6 @@ jobs:
           git diff --cached --check
           git commit -m 'Quiz: synkroniser Deichman og Knowledge etter normalisering'
           git push origin HEAD:${{ github.head_ref }}
+      - name: Propagate followup failure
+        if: steps.followup.outcome == 'failure'
+        run: exit 1
