@@ -1,0 +1,224 @@
+{
+  "version": "2026-07-24",
+  "protocolMaxBatch": 195,
+  "placeId": "ostensjovannet_sivbelte",
+  "parentId": "ostensjovannet",
+  "researchOnly": true,
+  "canonicalChanged": false,
+  "coordinatePromoted": false,
+  "sourcePredecessor": "reports/oslo-coordinate-retire-bygdoy-kongsgard-salamanderdam-post-195/summary.json",
+  "hardGates": {
+    "queueHeadMatches": true,
+    "identityResolved": true,
+    "coordinateNeedsSource": true,
+    "parentVerified": true,
+    "parentAlreadyPreservesSivbelteKnowledge": true,
+    "noBatch196": true
+  },
+  "findings": {
+    "officialNatureTypeFeatureCount": 50,
+    "officialReedFeatureCount": 0,
+    "officialExactFeatureCount": 0,
+    "kartverketOsloExactCandidates": 0,
+    "osloMunicipalityExactSnippets": 0,
+    "overpassElements": 0,
+    "overpassNamedElements": 0,
+    "overpassExactNamedElements": 0
+  },
+  "officialCandidateDetails": {
+    "exactFeatures": [],
+    "reedFeatures": [],
+    "kartverket": []
+  },
+  "contextualOnly": {
+    "osloMunicipalitySnippets": [],
+    "overpassExactNamed": []
+  },
+  "sourceFamiliesAvailable": {
+    "reserve": true,
+    "localReference": true,
+    "naturtyperNiN": true,
+    "naturtyperHB13": true,
+    "kartverket": true,
+    "osloMunicipality": true,
+    "overpassContext": true
+  },
+  "decision": "model_as_parent_habitat_retire_separate_marker",
+  "recommendation": "Disable the separate active marker. Preserve sivbelte knowledge in the verified Østensjøvannet parent, which already treats sivbelter and wetland edges as part of the whole habitat complex. Keep concrete route stops only where they have independent public geometry, such as Vadedammen, the bird hide, Bølerbekkens outlet and Bogerudmyra.",
+  "modelReason": "The record describes a changing vegetation belt rather than a stable named object. The verified parent already carries the wetland and reed-belt learning model, while its concrete child anchors are restricted to independently verifiable public objects or geometries.",
+  "sourceHashesBefore": {
+    "place": "e17e0f42c3fee8997c836b27ac583a8aca5a89d9b9dc78de66513f2927772f58",
+    "evidence": "cc418a7f2d416386a94baef2efd9588d3360e20b33ef108e3608e02945c04ff9",
+    "parent": "daadddd5a1ec8a41158b43af92cd834af5bd0f5ece45b48e9a0b810a72c83795"
+  },
+  "captures": [
+    {
+      "label": "naturbase-ostensjovannet-reserve",
+      "requestedUrl": "https://faktaark.naturbase.no/?id=VV00000972",
+      "finalUrl": "https://faktaark.naturbase.no/?id=VV00000972",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html",
+      "bytes": 6875,
+      "sha256": "59726dd04e1e0cebead78f97d5d447f4889a272f313e18fbec02e11bbb0cab97",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/naturbase-ostensjovannet-reserve.html",
+      "error": null
+    },
+    {
+      "label": "ostensjovannet-venner-natur",
+      "requestedUrl": "https://www.ostensjovannet.no/natur",
+      "finalUrl": "https://www.ostensjovannet.no/natur",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 758043,
+      "sha256": "e0f158364e86ea9f647da8394a32c1b9fe75352b243f81ac35adc972e1e4dc60",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/ostensjovannet-venner-natur.html",
+      "error": null
+    },
+    {
+      "label": "ostensjovannet-venner-planter",
+      "requestedUrl": "https://www.ostensjovannet.no/planter",
+      "finalUrl": "https://www.ostensjovannet.no/planter",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 707430,
+      "sha256": "5f93646364de3609835dba94ac653fd5fd45a52894cf78c251bddbb3501aa32a",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/ostensjovannet-venner-planter.html",
+      "error": null
+    },
+    {
+      "label": "ostensjovannet-venner-turforslag",
+      "requestedUrl": "https://www.ostensjovannet.no/turforslag",
+      "finalUrl": "https://www.ostensjovannet.no/turforslag",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 703152,
+      "sha256": "69ec8a7bd14ebc3dd8748cd6da70fdf4e164a55736d966690ce61dec0d12fe9e",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/ostensjovannet-venner-turforslag.html",
+      "error": null
+    },
+    {
+      "label": "miljodirektoratet-naturtyper-nin-ostensjovannet",
+      "requestedUrl": "https://kart.miljodirektoratet.no/arcgis/rest/services/naturtyper_nin/FeatureServer/0/query?where=1%3D1&geometry=%7B%22xmin%22%3A10.815%2C%22ymin%22%3A59.875%2C%22xmax%22%3A10.845%2C%22ymax%22%3A59.902%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=geojson",
+      "finalUrl": "https://kart.miljodirektoratet.no/arcgis/rest/services/naturtyper_nin/FeatureServer/0/query?where=1%3D1&geometry=%7B%22xmin%22%3A10.815%2C%22ymin%22%3A59.875%2C%22xmax%22%3A10.845%2C%22ymax%22%3A59.902%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=geojson",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/geo+json;charset=UTF-8",
+      "bytes": 52817,
+      "sha256": "8fe565e17c6a6c834535779757bfa4ac45897dc1272830f4258878f77a4b5d8d",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/miljodirektoratet-naturtyper-nin-ostensjovannet.json",
+      "error": null
+    },
+    {
+      "label": "miljodirektoratet-naturtyper-hb13-ostensjovannet",
+      "requestedUrl": "https://arcgis06.miljodirektoratet.no/arcgis/rest/services/faktaark/naturtyper/MapServer/0/query?where=1%3D1&geometry=%7B%22xmin%22%3A10.815%2C%22ymin%22%3A59.875%2C%22xmax%22%3A10.845%2C%22ymax%22%3A59.902%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=geojson",
+      "finalUrl": "https://arcgis06.miljodirektoratet.no/arcgis/rest/services/faktaark/naturtyper/MapServer/0/query?where=1%3D1&geometry=%7B%22xmin%22%3A10.815%2C%22ymin%22%3A59.875%2C%22xmax%22%3A10.845%2C%22ymax%22%3A59.902%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=geojson",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/geo+json;charset=UTF-8",
+      "bytes": 112037,
+      "sha256": "d7ab4f96bff151a5d4a30e4a1e4d0a121c414a77a6e8086d8d9ec06c92d54c1d",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/miljodirektoratet-naturtyper-hb13-ostensjovannet.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-Østensjøvannet sivbelte",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=%C3%98stensj%C3%B8vannet+sivbelte&fuzzy=true&treffPerSide=100&side=1",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=%C3%98stensj%C3%B8vannet+sivbelte&fuzzy=true&treffPerSide=100&side=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 6409,
+      "sha256": "99f847a35d5cd375263dfc36885b53333b0dc056a63d7b8af145ea58ad925c14",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/kartverket-østensjøvannet-sivbelte.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-Sivbeltet ved Østensjøvannet",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=Sivbeltet+ved+%C3%98stensj%C3%B8vannet&fuzzy=true&treffPerSide=100&side=1",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=Sivbeltet+ved+%C3%98stensj%C3%B8vannet&fuzzy=true&treffPerSide=100&side=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 976,
+      "sha256": "640a03f93a0a354d18c919bd84cdf520083e2ef17625a615cb4fc944ae579d88",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/kartverket-sivbeltet-ved-østensjøvannet.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-Østensjøvannet siv",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=%C3%98stensj%C3%B8vannet+siv&fuzzy=true&treffPerSide=100&side=1",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=%C3%98stensj%C3%B8vannet+siv&fuzzy=true&treffPerSide=100&side=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 20444,
+      "sha256": "c75e50842a6b9223fc907f641bcaf18d03f15ea7d742671ed27dc058f97139c7",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/kartverket-østensjøvannet-siv.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-Østensjøvannet rørsump",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=%C3%98stensj%C3%B8vannet+r%C3%B8rsump&fuzzy=true&treffPerSide=100&side=1",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=%C3%98stensj%C3%B8vannet+r%C3%B8rsump&fuzzy=true&treffPerSide=100&side=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 6859,
+      "sha256": "9c0ee01ec40425c97f730a898fd7c3af7d7fd5e839076ea5b705b31da9630f1e",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/kartverket-østensjøvannet-rørsump.json",
+      "error": null
+    },
+    {
+      "label": "oslo-kommune-\"Østensjøvannet sivbelte\"",
+      "requestedUrl": "https://www.oslo.kommune.no/sok/?q=%22%C3%98stensj%C3%B8vannet+sivbelte%22",
+      "finalUrl": "https://www.oslo.kommune.no/sokeresultat/?q=%22%C3%98stensj%C3%B8vannet+sivbelte%22",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 32932,
+      "sha256": "906c1761ded1fb8020165ff442ec36a1ad84d41775b71d68e336ba2b92d6b6e9",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/oslo-kommune-østensjøvannet-sivbelte.html",
+      "error": null
+    },
+    {
+      "label": "oslo-kommune-\"sivbelte\" Østensjøvannet",
+      "requestedUrl": "https://www.oslo.kommune.no/sok/?q=%22sivbelte%22+%C3%98stensj%C3%B8vannet",
+      "finalUrl": "https://www.oslo.kommune.no/sokeresultat/?q=%22%C3%98stensj%C3%B8vannet+sivbelte%22",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 32932,
+      "sha256": "906c1761ded1fb8020165ff442ec36a1ad84d41775b71d68e336ba2b92d6b6e9",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/oslo-kommune-sivbelte-østensjøvannet.html",
+      "error": null
+    },
+    {
+      "label": "oslo-kommune-\"rørsump\" Østensjøvannet",
+      "requestedUrl": "https://www.oslo.kommune.no/sok/?q=%22r%C3%B8rsump%22+%C3%98stensj%C3%B8vannet",
+      "finalUrl": "https://www.oslo.kommune.no/sokeresultat/?q=%22%C3%98stensj%C3%B8vannet+sivbelte%22",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 32932,
+      "sha256": "906c1761ded1fb8020165ff442ec36a1ad84d41775b71d68e336ba2b92d6b6e9",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/oslo-kommune-rørsump-østensjøvannet.html",
+      "error": null
+    },
+    {
+      "label": "overpass-ostensjovannet-reedbed-context",
+      "requestedUrl": "https://overpass-api.de/api/interpreter",
+      "finalUrl": "https://overpass-api.de/api/interpreter",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 287,
+      "sha256": "37a2179f8527ed9382a21113efe9198ededdcd813e5644657bc8a9b86fd12b8b",
+      "reportFile": "reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/overpass-ostensjovannet-reedbed-context.json",
+      "error": null
+    }
+  ]
+}
