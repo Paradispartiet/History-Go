@@ -36,7 +36,7 @@ for (const question of questions) {
   ok(Array.isArray(question.source) && question.source.length > 0, `${question.quiz_id} har kilde`);
   ok(Boolean(question.primary_knowledge_unit_id), `${question.quiz_id} har primær Knowledge-enhet`);
   ok(Array.isArray(question.knowledge_unit_ids) && question.knowledge_unit_ids.length > 0, `${question.quiz_id} har Knowledge-kobling`);
-  ok(question.knowledge_link_status === 'complete', `${question.quiz_id} har komplett Knowledge-status`);
+  ok(question.knowledge_link_status === 'linked', `${question.quiz_id} har kanonisk Knowledge-status`);
 }
 
 const openingQuestions = doc.sets.slice(0, 2).flatMap((set) => set.questions);
