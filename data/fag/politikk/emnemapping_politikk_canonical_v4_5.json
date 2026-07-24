@@ -15,35 +15,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Administrativ makt til et dokumenterbart case gjennom Institusjon som maktform. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
           "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
           "Theda Skocpol",
-          "James C. Scott",
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Hannah Arendt"
+          "Pierre Bourdieu"
         ],
         "thinker_ids": [
           "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
           "theda_skocpol",
-          "james_c_scott",
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "hannah_arendt"
+          "pierre_bourdieu"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -56,18 +44,17 @@
         "comparison_pairs": [
           [
             "max_weber",
-            "michel_foucault"
+            "theda_skocpol"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "theda_skocpol",
+            "pierre_bourdieu"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_formal_rules_roles_and_competence_boundaries",
+          "compare_formal_authority_with_actual_influence",
+          "explain_how_stability_is_produced_without_repeated_commands"
         ],
         "best_place_types": [
           "rådhus",
@@ -85,28 +72,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill institusjon med bygning.",
+          "Ikke bruk makt som synonym for synlig tvang.",
+          "Ikke anta at formelle regler alene forklarer utfallet.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
           "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "Høyesterett",
-          "Møllergata 19",
-          "Grunnlovssted",
-          "Politihuset"
+          "Oslo rådhus",
+          "Regjeringskvartalet"
         ],
         "recommended_method_ids": [
           "met_pol_institusjonsanalyse",
@@ -117,8 +94,56 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "institution",
+          "government_building",
+          "municipality"
+        ],
+        "mechanism_options": [
+          "kompetansetildeling",
+          "arbeidsdeling",
+          "standardisering",
+          "stiavhengighet",
+          "autorisasjon",
+          "symbolsk naturalisering"
+        ],
+        "critical_distinction_options": [
+          "institusjon vs enkeltorganisasjon",
+          "formell kompetanse vs faktisk innflytelse",
+          "regel vs praksis",
+          "autoritet vs tvang"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "max_weber",
+            "concept": "legal-rasjonell autoritet"
+          },
+          {
+            "thinker_id": "theda_skocpol",
+            "concept": "statlig kapasitet og institusjonell autonomi"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "statlig og symbolsk makt"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "styring_institusjoner_forvaltning",
@@ -132,35 +157,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Administrativ makt til et dokumenterbart case gjennom Teknokratisk styring. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
           "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Hannah Arendt"
+          "Jürgen Habermas",
+          "Sheila Jasanoff"
         ],
         "thinker_ids": [
           "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "hannah_arendt"
+          "jurgen_habermas",
+          "sheila_jasanoff"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -173,18 +186,17 @@
         "comparison_pairs": [
           [
             "max_weber",
-            "michel_foucault"
+            "jurgen_habermas"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "jurgen_habermas",
+            "sheila_jasanoff"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "separate_empirical_claims_value_choices_and_mandates",
+          "inspect_models_indicators_uncertainty_and_agenda_limits",
+          "evaluate_when_expertise_supports_or_displaces_democratic_responsibility"
         ],
         "best_place_types": [
           "rådhus",
@@ -202,40 +214,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke bruk teknokrati som skjellsord for all fagkunnskap.",
+          "Ikke framstill tall og modeller som verdifrie.",
+          "Ikke la teoretikernavn erstatte analyse av mandat, metode og ansvar.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
           "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "Høyesterett",
-          "Møllergata 19",
-          "Grunnlovssted",
-          "Politihuset"
+          "Oslo rådhus",
+          "Stortinget"
         ],
         "recommended_method_ids": [
-          "met_pol_forvaltningsanalyse",
-          "met_pol_teknokrati_og_ekspertanalyse"
+          "met_pol_teknokrati_og_ekspertanalyse",
+          "met_pol_legitimitetsanalyse",
+          "met_pol_institusjonsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "official_report",
+          "institution",
+          "administrative_decision"
+        ],
+        "mechanism_options": [
+          "ekspertdelegasjon",
+          "modellering",
+          "indikatorstyring",
+          "risikovurdering",
+          "standardsetting",
+          "depolitisering",
+          "kunnskapsasymmetri"
+        ],
+        "critical_distinction_options": [
+          "fakta vs verdi",
+          "faglig råd vs politisk beslutning",
+          "ekspertise vs ekspertstyre",
+          "måling vs mål"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "max_weber",
+            "concept": "faglig spesialisering og verdipolitikk"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "teknokratisk bevissthet og offentlig begrunnelse"
+          },
+          {
+            "thinker_id": "sheila_jasanoff",
+            "concept": "samproduksjon av kunnskap og orden"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "rett_lov_rettssikkerhet",
@@ -832,37 +884,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Budsjett og prioritering til et dokumenterbart case gjennom Budsjett som styring. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
+          "Charles E. Lindblom",
           "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
-          "Amartya Sen"
+          "Gudmund Hernes"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
+          "charles_lindblom",
           "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
-          "amartya_sen"
+          "gudmund_hernes"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -874,19 +912,18 @@
         ],
         "comparison_pairs": [
           [
-            "max_weber",
-            "michel_foucault"
+            "charles_lindblom",
+            "john_rawls"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "john_rawls",
+            "gudmund_hernes"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_binding_resource_choices_and_alternative_costs",
+          "distinguish_budget_accounts_nominal_growth_and_real_growth",
+          "trace_distributional_effects_from_allocation_to_delivery"
         ],
         "best_place_types": [
           "rådhus",
@@ -904,41 +941,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke bruk budsjettall uten pris- og befolkningskontekst.",
+          "Ikke likestill bevilgning med faktisk effekt.",
+          "Ikke beskriv kutt eller økning uten å vise fordelingsvirkningen.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
           "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
           "Bydelshus",
-          "Statsarkivet",
-          "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "kommunale boliger"
+          "Stortinget"
         ],
         "recommended_method_ids": [
           "met_pol_budsjett_og_fordelingsanalyse",
-          "met_pol_statistikk_og_fordelingsanalyse"
+          "met_pol_lokalpolitisk_analyse",
+          "met_pol_institusjonsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "budget",
+          "distribution",
+          "municipality"
+        ],
+        "mechanism_options": [
+          "rammetildeling",
+          "øremerking",
+          "omprioritering",
+          "resultatkrav",
+          "kostnadsforskyvning",
+          "investeringsbinding",
+          "kutt og effektiviseringskrav"
+        ],
+        "critical_distinction_options": [
+          "budsjett vs regnskap",
+          "nominell økning vs realvekst",
+          "drift vs investering",
+          "lik fordeling vs behovsvektet fordeling"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "charles_lindblom",
+            "concept": "inkrementalisme"
+          },
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdig fordeling"
+          },
+          {
+            "thinker_id": "gudmund_hernes",
+            "concept": "makt og avhengighet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "fordeling_velferd_ulikhet",
@@ -1169,35 +1245,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Byråkrati og forvaltning til et dokumenterbart case gjennom Byråkrati og hverdag. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
+          "Michael Lipsky",
           "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Hannah Arendt"
+          "Michel Foucault"
         ],
         "thinker_ids": [
+          "michael_lipsky",
           "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "hannah_arendt"
+          "michel_foucault"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -1209,19 +1273,18 @@
         ],
         "comparison_pairs": [
           [
-            "max_weber",
-            "michel_foucault"
+            "michael_lipsky",
+            "max_weber"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "max_weber",
+            "michel_foucault"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "trace_rule_to_frontline_decision_and_borgerutfall",
+          "identify_where_discretion_scarcity_or_classification_changes_delivery",
+          "compare_equal_treatment_with_individual_adaptation"
         ],
         "best_place_types": [
           "rådhus",
@@ -1239,40 +1302,79 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke beskriv byråkrati bare som treghet.",
+          "Ikke framstill skjønn som enten helt fritt eller alltid illegitimt.",
+          "Ikke bruk enkelthistorier uten å undersøke regelverk og organisasjon.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
           "Bydelshus",
-          "Statsarkivet",
-          "Høyesterett",
-          "Møllergata 19",
-          "Grunnlovssted",
-          "Politihuset"
+          "NAV-kontor",
+          "Oslo tinghus"
         ],
         "recommended_method_ids": [
           "met_pol_forvaltningsanalyse",
-          "met_pol_praksisanalyse"
+          "met_pol_praksisanalyse",
+          "met_pol_dokumentanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "administrative_decision",
+          "public_service",
+          "archive"
+        ],
+        "mechanism_options": [
+          "skjønnsutøvelse",
+          "ressursknapphet",
+          "målkonflikt",
+          "rutiniserte forenklinger",
+          "kategorisering av brukere",
+          "digital standardisering"
+        ],
+        "critical_distinction_options": [
+          "regelstyring vs skjønn",
+          "politikk som vedtatt vs politikk som levert",
+          "likebehandling vs individuell tilpasning",
+          "profesjonelt skjønn vs vilkårlighet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "michael_lipsky",
+            "concept": "street-level bureaucracy"
+          },
+          {
+            "thinker_id": "max_weber",
+            "concept": "regelbundet embetsutøvelse"
+          },
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "normalisering"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "rett_lov_rettssikkerhet",
@@ -3354,27 +3456,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Forvaltning og ressursfordeling til et dokumenterbart case gjennom Offentlige tjenester. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott"
+          "Gøsta Esping-Andersen",
+          "Michael Lipsky",
+          "Kari Wærness"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott"
+          "gosta_esping_andersen",
+          "michael_lipsky",
+          "kari_waerness"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -3386,19 +3484,18 @@
         ],
         "comparison_pairs": [
           [
-            "max_weber",
-            "michel_foucault"
+            "gosta_esping_andersen",
+            "michael_lipsky"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "michael_lipsky",
+            "kari_waerness"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_right_capacity_target_group_and_delivery_model",
+          "trace_how_scarcity_and_professional_discretion_shape_access",
+          "compare_universalism_selectivity_equality_and_equity"
         ],
         "best_place_types": [
           "rådhus",
@@ -3416,36 +3513,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill offentlig tjeneste med gratis tjeneste.",
+          "Ikke anta at lik regel gir lik tilgang.",
+          "Ikke analyser kvalitet uten å se på kapasitet og ansvarslinjer.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
           "Bydelshus",
-          "Statsarkivet"
+          "Skole",
+          "Familievernkontor"
         ],
         "recommended_method_ids": [
           "met_pol_velferdsstatlig_analyse",
-          "met_pol_fordelingsanalyse"
+          "met_pol_forvaltningsanalyse",
+          "met_pol_praksisanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "public_service",
+          "welfare_service",
+          "administrative_decision"
+        ],
+        "mechanism_options": [
+          "rettighetsfesting",
+          "målgruppeavgrensning",
+          "behovsprøving",
+          "profesjonelt skjønn",
+          "ventelister",
+          "bestiller–utfører-organisering",
+          "privat kontraktsstyring"
+        ],
+        "critical_distinction_options": [
+          "universell vs selektiv ordning",
+          "rettighet vs tilgjengelig kapasitet",
+          "likhet vs likeverd",
+          "offentlig finansiering vs offentlig produksjon"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "gosta_esping_andersen",
+            "concept": "velferdsregimer"
+          },
+          {
+            "thinker_id": "michael_lipsky",
+            "concept": "frontlinjeskjønn"
+          },
+          {
+            "thinker_id": "kari_waerness",
+            "concept": "omsorgsrasjonalitet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "styring_institusjoner_forvaltning",
@@ -3459,27 +3600,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Forvaltning og ressursfordeling til et dokumenterbart case gjennom Budsjett som styring. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott"
+          "Charles E. Lindblom",
+          "John Rawls",
+          "Gudmund Hernes"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott"
+          "charles_lindblom",
+          "john_rawls",
+          "gudmund_hernes"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -3491,19 +3628,18 @@
         ],
         "comparison_pairs": [
           [
-            "max_weber",
-            "michel_foucault"
+            "charles_lindblom",
+            "john_rawls"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "john_rawls",
+            "gudmund_hernes"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_binding_resource_choices_and_alternative_costs",
+          "distinguish_budget_accounts_nominal_growth_and_real_growth",
+          "trace_distributional_effects_from_allocation_to_delivery"
         ],
         "best_place_types": [
           "rådhus",
@@ -3521,36 +3657,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke bruk budsjettall uten pris- og befolkningskontekst.",
+          "Ikke likestill bevilgning med faktisk effekt.",
+          "Ikke beskriv kutt eller økning uten å vise fordelingsvirkningen.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
           "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
           "Bydelshus",
-          "Statsarkivet"
+          "Stortinget"
         ],
         "recommended_method_ids": [
           "met_pol_budsjett_og_fordelingsanalyse",
-          "met_pol_statistikk_og_fordelingsanalyse"
+          "met_pol_lokalpolitisk_analyse",
+          "met_pol_institusjonsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "budget",
+          "distribution",
+          "municipality"
+        ],
+        "mechanism_options": [
+          "rammetildeling",
+          "øremerking",
+          "omprioritering",
+          "resultatkrav",
+          "kostnadsforskyvning",
+          "investeringsbinding",
+          "kutt og effektiviseringskrav"
+        ],
+        "critical_distinction_options": [
+          "budsjett vs regnskap",
+          "nominell økning vs realvekst",
+          "drift vs investering",
+          "lik fordeling vs behovsvektet fordeling"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "charles_lindblom",
+            "concept": "inkrementalisme"
+          },
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdig fordeling"
+          },
+          {
+            "thinker_id": "gudmund_hernes",
+            "concept": "makt og avhengighet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -3832,41 +4012,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Hverdagslivets regler til et dokumenterbart case gjennom Byråkrati og hverdag. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
+          "Michael Lipsky",
           "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Hannah Arendt",
-          "Émile Durkheim",
-          "Erving Goffman",
-          "Judith Butler"
+          "Michel Foucault"
         ],
         "thinker_ids": [
+          "michael_lipsky",
           "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "hannah_arendt",
-          "emile_durkheim",
-          "erving_goffman",
-          "judith_butler"
+          "michel_foucault"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -3878,19 +4040,18 @@
         ],
         "comparison_pairs": [
           [
-            "max_weber",
-            "michel_foucault"
+            "michael_lipsky",
+            "max_weber"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "max_weber",
+            "michel_foucault"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "trace_rule_to_frontline_decision_and_borgerutfall",
+          "identify_where_discretion_scarcity_or_classification_changes_delivery",
+          "compare_equal_treatment_with_individual_adaptation"
         ],
         "best_place_types": [
           "rådhus",
@@ -3908,41 +4069,79 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke beskriv byråkrati bare som treghet.",
+          "Ikke framstill skjønn som enten helt fritt eller alltid illegitimt.",
+          "Ikke bruk enkelthistorier uten å undersøke regelverk og organisasjon.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
           "Bydelshus",
-          "Statsarkivet",
-          "Høyesterett",
-          "Møllergata 19",
-          "Grunnlovssted",
-          "Politihuset",
-          "Grønland"
+          "NAV-kontor",
+          "Oslo tinghus"
         ],
         "recommended_method_ids": [
           "met_pol_forvaltningsanalyse",
-          "met_pol_praksisanalyse"
+          "met_pol_praksisanalyse",
+          "met_pol_dokumentanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "administrative_decision",
+          "public_service",
+          "archive"
+        ],
+        "mechanism_options": [
+          "skjønnsutøvelse",
+          "ressursknapphet",
+          "målkonflikt",
+          "rutiniserte forenklinger",
+          "kategorisering av brukere",
+          "digital standardisering"
+        ],
+        "critical_distinction_options": [
+          "regelstyring vs skjønn",
+          "politikk som vedtatt vs politikk som levert",
+          "likebehandling vs individuell tilpasning",
+          "profesjonelt skjønn vs vilkårlighet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "michael_lipsky",
+            "concept": "street-level bureaucracy"
+          },
+          {
+            "thinker_id": "max_weber",
+            "concept": "regelbundet embetsutøvelse"
+          },
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "normalisering"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "rett_lov_rettssikkerhet",
@@ -5058,37 +5257,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Institusjoner og styring til et dokumenterbart case gjennom Institusjon som maktform. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
           "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
           "Theda Skocpol",
-          "James C. Scott",
-          "Jürgen Habermas",
-          "Hannah Arendt",
-          "Alexis de Tocqueville",
-          "Robert Dahl",
-          "Chantal Mouffe"
+          "Pierre Bourdieu"
         ],
         "thinker_ids": [
           "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
           "theda_skocpol",
-          "james_c_scott",
-          "jurgen_habermas",
-          "hannah_arendt",
-          "alexis_de_tocqueville",
-          "robert_dahl",
-          "chantal_mouffe"
+          "pierre_bourdieu"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -5101,18 +5286,17 @@
         "comparison_pairs": [
           [
             "max_weber",
-            "michel_foucault"
+            "theda_skocpol"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "theda_skocpol",
+            "pierre_bourdieu"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_formal_rules_roles_and_competence_boundaries",
+          "compare_formal_authority_with_actual_influence",
+          "explain_how_stability_is_produced_without_repeated_commands"
         ],
         "best_place_types": [
           "rådhus",
@@ -5130,28 +5314,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill institusjon med bygning.",
+          "Ikke bruk makt som synonym for synlig tvang.",
+          "Ikke anta at formelle regler alene forklarer utfallet.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
           "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "Eidsvolls plass",
-          "Youngstorget",
-          "Universitetsplassen",
-          "Litteraturhuset"
+          "Oslo rådhus",
+          "Regjeringskvartalet"
         ],
         "recommended_method_ids": [
           "met_pol_institusjonsanalyse",
@@ -5162,8 +5336,56 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "institution",
+          "government_building",
+          "municipality"
+        ],
+        "mechanism_options": [
+          "kompetansetildeling",
+          "arbeidsdeling",
+          "standardisering",
+          "stiavhengighet",
+          "autorisasjon",
+          "symbolsk naturalisering"
+        ],
+        "critical_distinction_options": [
+          "institusjon vs enkeltorganisasjon",
+          "formell kompetanse vs faktisk innflytelse",
+          "regel vs praksis",
+          "autoritet vs tvang"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "max_weber",
+            "concept": "legal-rasjonell autoritet"
+          },
+          {
+            "thinker_id": "theda_skocpol",
+            "concept": "statlig kapasitet og institusjonell autonomi"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "statlig og symbolsk makt"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "styring_institusjoner_forvaltning",
@@ -5177,37 +5399,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Institusjoner og styring til et dokumenterbart case gjennom Legitimitet i systemet. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
           "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
           "Jürgen Habermas",
-          "Hannah Arendt",
-          "Alexis de Tocqueville",
-          "Robert Dahl",
-          "Chantal Mouffe"
+          "Fritz W. Scharpf"
         ],
         "thinker_ids": [
           "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
           "jurgen_habermas",
-          "hannah_arendt",
-          "alexis_de_tocqueville",
-          "robert_dahl",
-          "chantal_mouffe"
+          "fritz_scharpf"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -5220,18 +5428,17 @@
         "comparison_pairs": [
           [
             "max_weber",
-            "michel_foucault"
+            "jurgen_habermas"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "jurgen_habermas",
+            "fritz_scharpf"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_the_specific_basis_for_acceptance_or_rightfulness",
+          "distinguish_legality_popularity_trust_and_legitimacy",
+          "compare_input_throughput_and_output_sources_of_legitimacy"
         ],
         "best_place_types": [
           "rådhus",
@@ -5249,40 +5456,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill legitimitet med popularitet.",
+          "Ikke anta at lovlighet alene gjør en beslutning legitim.",
+          "Ikke bruk tillitsmåling uten å undersøke institusjon, sak og tidsperiode.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
           "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "Eidsvolls plass",
-          "Youngstorget",
-          "Universitetsplassen",
-          "Litteraturhuset"
+          "Oslo rådhus",
+          "Eidsvolls plass"
         ],
         "recommended_method_ids": [
+          "met_pol_legitimitetsanalyse",
           "met_pol_institusjonsanalyse",
-          "met_pol_legitimitetsanalyse"
+          "met_pol_forvaltningsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "legitimacy",
+          "trust",
+          "public_service"
+        ],
+        "mechanism_options": [
+          "lovlighet",
+          "prosedyrerettferdighet",
+          "representasjon",
+          "ytelse og problemløsning",
+          "begrunnelse",
+          "ansvarliggjøring",
+          "tillit og vane"
+        ],
+        "critical_distinction_options": [
+          "legalitet vs legitimitet",
+          "deskriptiv aksept vs normativ rettmessighet",
+          "input-, throughput- og output-legitimitet",
+          "tillit vs blind lydighet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "max_weber",
+            "concept": "legitimitetstro"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "legitimitet gjennom offentlig begrunnelse"
+          },
+          {
+            "thinker_id": "fritz_scharpf",
+            "concept": "input- og output-legitimitet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "demokrati_representasjon_offentlighet",
@@ -6468,27 +6715,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Kommune og byrådsmodell til et dokumenterbart case gjennom Kommunal styring. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
+          "Robert Dahl",
           "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott"
+          "Stein Rokkan"
         ],
         "thinker_ids": [
+          "robert_dahl",
           "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott"
+          "stein_rokkan"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -6500,19 +6743,18 @@
         ],
         "comparison_pairs": [
           [
-            "max_weber",
-            "michel_foucault"
+            "robert_dahl",
+            "max_weber"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "max_weber",
+            "stein_rokkan"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "separate_political_leadership_administration_and_borough_level",
+          "trace_delegation_accountability_and_budget_authority",
+          "evaluate_participation_against_actual_decision_power"
         ],
         "best_place_types": [
           "rådhus",
@@ -6530,36 +6772,79 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke framstill kommunen som én aktør.",
+          "Ikke bland kommunale og statlige ansvarsområder.",
+          "Ikke vurder demokratisk kvalitet bare ut fra valgdeltakelse.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
           "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
           "Bydelshus",
-          "Statsarkivet"
+          "Rådhusplassen"
         ],
         "recommended_method_ids": [
           "met_pol_lokalpolitisk_analyse",
-          "met_pol_institusjonsanalyse"
+          "met_pol_institusjonsanalyse",
+          "met_pol_budsjett_og_fordelingsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "municipality",
+          "city_hall",
+          "budget"
+        ],
+        "mechanism_options": [
+          "delegasjon",
+          "parlamentarisk ansvar",
+          "budsjettstyring",
+          "bydelsdesentralisering",
+          "saksforberedelse",
+          "interesse- og høringskanaler"
+        ],
+        "critical_distinction_options": [
+          "politisk ledelse vs administrativ ledelse",
+          "kommune vs stat",
+          "sentralisering vs bydelsautonomi",
+          "representasjon vs effektivitet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "robert_dahl",
+            "concept": "polyarki og faktisk deltakelse"
+          },
+          {
+            "thinker_id": "max_weber",
+            "concept": "politikk og embetsverk"
+          },
+          {
+            "thinker_id": "stein_rokkan",
+            "concept": "sentrum–periferi"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -6653,41 +6938,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Legitimitet og tillit til et dokumenterbart case gjennom Legitimitet i systemet. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
           "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
           "Jürgen Habermas",
-          "Hannah Arendt",
-          "Alexis de Tocqueville",
-          "Robert Dahl",
-          "Chantal Mouffe",
-          "John Rawls",
-          "Thomas Piketty"
+          "Fritz W. Scharpf"
         ],
         "thinker_ids": [
           "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
           "jurgen_habermas",
-          "hannah_arendt",
-          "alexis_de_tocqueville",
-          "robert_dahl",
-          "chantal_mouffe",
-          "john_rawls",
-          "thomas_piketty"
+          "fritz_scharpf"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -6700,18 +6967,17 @@
         "comparison_pairs": [
           [
             "max_weber",
-            "michel_foucault"
+            "jurgen_habermas"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "jurgen_habermas",
+            "fritz_scharpf"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_the_specific_basis_for_acceptance_or_rightfulness",
+          "distinguish_legality_popularity_trust_and_legitimacy",
+          "compare_input_throughput_and_output_sources_of_legitimacy"
         ],
         "best_place_types": [
           "rådhus",
@@ -6729,41 +6995,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill legitimitet med popularitet.",
+          "Ikke anta at lovlighet alene gjør en beslutning legitim.",
+          "Ikke bruk tillitsmåling uten å undersøke institusjon, sak og tidsperiode.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
           "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "Eidsvolls plass",
-          "Youngstorget",
-          "Universitetsplassen",
-          "Litteraturhuset",
-          "NAV-kontor"
+          "Oslo rådhus",
+          "Eidsvolls plass"
         ],
         "recommended_method_ids": [
           "met_pol_legitimitetsanalyse",
-          "met_pol_institusjonsanalyse"
+          "met_pol_institusjonsanalyse",
+          "met_pol_forvaltningsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "legitimacy",
+          "trust",
+          "public_service"
+        ],
+        "mechanism_options": [
+          "lovlighet",
+          "prosedyrerettferdighet",
+          "representasjon",
+          "ytelse og problemløsning",
+          "begrunnelse",
+          "ansvarliggjøring",
+          "tillit og vane"
+        ],
+        "critical_distinction_options": [
+          "legalitet vs legitimitet",
+          "deskriptiv aksept vs normativ rettmessighet",
+          "input-, throughput- og output-legitimitet",
+          "tillit vs blind lydighet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "max_weber",
+            "concept": "legitimitetstro"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "legitimitet gjennom offentlig begrunnelse"
+          },
+          {
+            "thinker_id": "fritz_scharpf",
+            "concept": "input- og output-legitimitet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "demokrati_representasjon_offentlighet",
@@ -7992,37 +8297,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Lokaldemokrati til et dokumenterbart case gjennom Kommunal styring. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "Jürgen Habermas",
-          "Hannah Arendt",
-          "Alexis de Tocqueville",
           "Robert Dahl",
-          "Chantal Mouffe"
+          "Max Weber",
+          "Stein Rokkan"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "jurgen_habermas",
-          "hannah_arendt",
-          "alexis_de_tocqueville",
           "robert_dahl",
-          "chantal_mouffe"
+          "max_weber",
+          "stein_rokkan"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -8034,19 +8325,18 @@
         ],
         "comparison_pairs": [
           [
-            "max_weber",
-            "michel_foucault"
+            "robert_dahl",
+            "max_weber"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "max_weber",
+            "stein_rokkan"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "separate_political_leadership_administration_and_borough_level",
+          "trace_delegation_accountability_and_budget_authority",
+          "evaluate_participation_against_actual_decision_power"
         ],
         "best_place_types": [
           "rådhus",
@@ -8064,40 +8354,79 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke framstill kommunen som én aktør.",
+          "Ikke bland kommunale og statlige ansvarsområder.",
+          "Ikke vurder demokratisk kvalitet bare ut fra valgdeltakelse.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
           "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
           "Bydelshus",
-          "Statsarkivet",
-          "Eidsvolls plass",
-          "Youngstorget",
-          "Universitetsplassen",
-          "Litteraturhuset"
+          "Rådhusplassen"
         ],
         "recommended_method_ids": [
           "met_pol_lokalpolitisk_analyse",
-          "met_pol_institusjonsanalyse"
+          "met_pol_institusjonsanalyse",
+          "met_pol_budsjett_og_fordelingsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "municipality",
+          "city_hall",
+          "budget"
+        ],
+        "mechanism_options": [
+          "delegasjon",
+          "parlamentarisk ansvar",
+          "budsjettstyring",
+          "bydelsdesentralisering",
+          "saksforberedelse",
+          "interesse- og høringskanaler"
+        ],
+        "critical_distinction_options": [
+          "politisk ledelse vs administrativ ledelse",
+          "kommune vs stat",
+          "sentralisering vs bydelsautonomi",
+          "representasjon vs effektivitet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "robert_dahl",
+            "concept": "polyarki og faktisk deltakelse"
+          },
+          {
+            "thinker_id": "max_weber",
+            "concept": "politikk og embetsverk"
+          },
+          {
+            "thinker_id": "stein_rokkan",
+            "concept": "sentrum–periferi"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "demokrati_representasjon_offentlighet",
@@ -8327,35 +8656,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Lov, dokument og arkiv til et dokumenterbart case gjennom Arkiv, dokument og lov. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
           "Max Weber",
           "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Hannah Arendt"
+          "James C. Scott"
         ],
         "thinker_ids": [
           "max_weber",
           "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "hannah_arendt"
+          "james_c_scott"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -8371,15 +8688,14 @@
             "michel_foucault"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "michel_foucault",
+            "james_c_scott"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "trace_how_documents_create_authority_evidence_and_reviewability",
+          "distinguish_legal_text_from_application_and_documentation_from_truth",
+          "evaluate_innsyn_personvern_and_recordkeeping_as_power_relations"
         ],
         "best_place_types": [
           "rådhus",
@@ -8397,40 +8713,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke behandle dokumenter som nøytrale beholdere.",
+          "Ikke anta at mer dokumentasjon alltid gir mer rettssikkerhet.",
+          "Ikke bruk arkiv bare som historisk kulisse.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
           "Statsarkivet",
-          "Høyesterett",
-          "Møllergata 19",
-          "Grunnlovssted",
-          "Politihuset"
+          "Stortinget",
+          "Oslo tinghus"
         ],
         "recommended_method_ids": [
+          "met_pol_dokumentanalyse",
           "met_pol_rettslig_analyse",
-          "met_pol_dokumentanalyse"
+          "met_pol_forvaltningsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "archive",
+          "legal_source",
+          "administrative_decision"
+        ],
+        "mechanism_options": [
+          "skriftliggjøring",
+          "journalføring",
+          "klassifikasjon",
+          "begrunnelse",
+          "innsyn",
+          "arkivering",
+          "bevisproduksjon"
+        ],
+        "critical_distinction_options": [
+          "lovtekst vs rettsanvendelse",
+          "dokumentasjon vs sannhet",
+          "innsyn vs personvern",
+          "arkiv som minne vs arkiv som kontroll"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "max_weber",
+            "concept": "skriftlig saksbehandling"
+          },
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "undersøkelse og dokumenterende makt"
+          },
+          {
+            "thinker_id": "james_c_scott",
+            "concept": "lesbarhet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "rett_lov_rettssikkerhet",
@@ -9712,41 +10068,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Maktens geografi til et dokumenterbart case gjennom Stat og by. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
           "Theda Skocpol",
-          "James C. Scott",
-          "Jürgen Habermas",
-          "Hannah Arendt",
-          "Alexis de Tocqueville",
-          "Robert Dahl",
-          "Chantal Mouffe",
-          "John Rawls",
-          "Thomas Piketty"
+          "Stein Rokkan",
+          "James C. Scott"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
           "theda_skocpol",
-          "james_c_scott",
-          "jurgen_habermas",
-          "hannah_arendt",
-          "alexis_de_tocqueville",
-          "robert_dahl",
-          "chantal_mouffe",
-          "john_rawls",
-          "thomas_piketty"
+          "stein_rokkan",
+          "james_c_scott"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -9758,19 +10096,18 @@
         ],
         "comparison_pairs": [
           [
-            "max_weber",
-            "michel_foucault"
+            "theda_skocpol",
+            "stein_rokkan"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "stein_rokkan",
+            "james_c_scott"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "map_competence_financing_control_and_implementation_across_levels",
+          "identify_coordination_or_responsibility_fragmentation",
+          "explain_how_territory_and_financing_shape_authority"
         ],
         "best_place_types": [
           "rådhus",
@@ -9788,41 +10125,79 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke framstill stat–kommune-forholdet som et enkelt hierarki.",
+          "Ikke bruk geografisk nærhet som bevis på institusjonell kobling.",
+          "Ikke overse finansiering som maktmiddel.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
           "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "Eidsvolls plass",
-          "Youngstorget",
-          "Universitetsplassen",
-          "Litteraturhuset",
-          "NAV-kontor"
+          "Oslo rådhus",
+          "Bjørvika"
         ],
         "recommended_method_ids": [
-          "met_pol_romlig_maktanalyse",
-          "met_pol_institusjonsanalyse"
+          "met_pol_institusjonsanalyse",
+          "met_pol_lokalpolitisk_analyse",
+          "met_pol_romlig_maktanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "government_building",
+          "municipality",
+          "regulation_plan"
+        ],
+        "mechanism_options": [
+          "lovbestemt oppgavefordeling",
+          "øremerking",
+          "innsigelse",
+          "samfinansiering",
+          "etatsstyring",
+          "forhandling mellom nivåer"
+        ],
+        "critical_distinction_options": [
+          "myndighet vs finansiering",
+          "statlig kontroll vs kommunalt selvstyre",
+          "territorium vs funksjon",
+          "samordning vs ansvarsfragmentering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "theda_skocpol",
+            "concept": "statlig kapasitet"
+          },
+          {
+            "thinker_id": "stein_rokkan",
+            "concept": "territoriell organisering"
+          },
+          {
+            "thinker_id": "james_c_scott",
+            "concept": "administrativ lesbarhet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "styring_institusjoner_forvaltning",
@@ -9836,41 +10211,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Maktens geografi til et dokumenterbart case gjennom Reguleringsplaner. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
           "James C. Scott",
-          "Jürgen Habermas",
-          "Hannah Arendt",
-          "Alexis de Tocqueville",
-          "Robert Dahl",
-          "Chantal Mouffe",
-          "John Rawls",
-          "Thomas Piketty"
+          "Michel Foucault",
+          "Pierre Bourdieu"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
           "james_c_scott",
-          "jurgen_habermas",
-          "hannah_arendt",
-          "alexis_de_tocqueville",
-          "robert_dahl",
-          "chantal_mouffe",
-          "john_rawls",
-          "thomas_piketty"
+          "michel_foucault",
+          "pierre_bourdieu"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -9882,19 +10239,18 @@
         ],
         "comparison_pairs": [
           [
-            "max_weber",
+            "james_c_scott",
             "michel_foucault"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "michel_foucault",
+            "pierre_bourdieu"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_binding_plan_tools_and_affected_interests",
+          "separate_formal_participation_from_actual_influence",
+          "explain_how_technical_documents_allocate_space_value_and_risk"
         ],
         "best_place_types": [
           "rådhus",
@@ -9912,41 +10268,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke framstill regulering som ren teknikk.",
+          "Ikke anta at høring betyr lik innflytelse.",
+          "Ikke forveksle kommunal planmyndighet med ubegrenset handlefrihet.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
+          "Bjørvika",
           "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "Eidsvolls plass",
-          "Youngstorget",
-          "Universitetsplassen",
-          "Litteraturhuset",
-          "NAV-kontor"
+          "Torggata"
         ],
         "recommended_method_ids": [
+          "met_pol_plan_og_reguleringsanalyse",
           "met_pol_romlig_maktanalyse",
-          "met_pol_plan_og_reguleringsanalyse"
+          "met_pol_lokalpolitisk_analyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "regulation_plan",
+          "municipality",
+          "urban_policy"
+        ],
+        "mechanism_options": [
+          "sonering",
+          "utnyttelsesgrad",
+          "rekkefølgekrav",
+          "konsekvensutredning",
+          "høring",
+          "innsigelse",
+          "utbyggingsavtale"
+        ],
+        "critical_distinction_options": [
+          "plan vs prosjekt",
+          "formell medvirkning vs faktisk innflytelse",
+          "offentlig interesse vs grunneierverdi",
+          "teknisk begrunnelse vs politisk valg"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "james_c_scott",
+            "concept": "forenkling og lesbarhet"
+          },
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "governmentality"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "felt og kapital"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "demokrati_representasjon_offentlighet",
@@ -13604,37 +13999,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Regulering og planlegging til et dokumenterbart case gjennom Reguleringsplaner. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
           "James C. Scott",
-          "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
-          "Amartya Sen"
+          "Michel Foucault",
+          "Pierre Bourdieu"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
           "james_c_scott",
-          "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
-          "amartya_sen"
+          "michel_foucault",
+          "pierre_bourdieu"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -13646,19 +14027,18 @@
         ],
         "comparison_pairs": [
           [
-            "max_weber",
+            "james_c_scott",
             "michel_foucault"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "michel_foucault",
+            "pierre_bourdieu"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_binding_plan_tools_and_affected_interests",
+          "separate_formal_participation_from_actual_influence",
+          "explain_how_technical_documents_allocate_space_value_and_risk"
         ],
         "best_place_types": [
           "rådhus",
@@ -13676,41 +14056,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke framstill regulering som ren teknikk.",
+          "Ikke anta at høring betyr lik innflytelse.",
+          "Ikke forveksle kommunal planmyndighet med ubegrenset handlefrihet.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
+          "Bjørvika",
           "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "kommunale boliger"
+          "Torggata"
         ],
         "recommended_method_ids": [
           "met_pol_plan_og_reguleringsanalyse",
-          "met_pol_romlig_maktanalyse"
+          "met_pol_romlig_maktanalyse",
+          "met_pol_lokalpolitisk_analyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "regulation_plan",
+          "municipality",
+          "urban_policy"
+        ],
+        "mechanism_options": [
+          "sonering",
+          "utnyttelsesgrad",
+          "rekkefølgekrav",
+          "konsekvensutredning",
+          "høring",
+          "innsigelse",
+          "utbyggingsavtale"
+        ],
+        "critical_distinction_options": [
+          "plan vs prosjekt",
+          "formell medvirkning vs faktisk innflytelse",
+          "offentlig interesse vs grunneierverdi",
+          "teknisk begrunnelse vs politisk valg"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "james_c_scott",
+            "concept": "forenkling og lesbarhet"
+          },
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "governmentality"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "felt og kapital"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "fordeling_velferd_ulikhet",
@@ -14835,35 +15254,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Rettslig styring til et dokumenterbart case gjennom Arkiv, dokument og lov. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
           "Max Weber",
           "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Hannah Arendt"
+          "James C. Scott"
         ],
         "thinker_ids": [
           "max_weber",
           "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "hannah_arendt"
+          "james_c_scott"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -14879,15 +15286,14 @@
             "michel_foucault"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "michel_foucault",
+            "james_c_scott"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "trace_how_documents_create_authority_evidence_and_reviewability",
+          "distinguish_legal_text_from_application_and_documentation_from_truth",
+          "evaluate_innsyn_personvern_and_recordkeeping_as_power_relations"
         ],
         "best_place_types": [
           "rådhus",
@@ -14905,40 +15311,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke behandle dokumenter som nøytrale beholdere.",
+          "Ikke anta at mer dokumentasjon alltid gir mer rettssikkerhet.",
+          "Ikke bruk arkiv bare som historisk kulisse.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
           "Statsarkivet",
-          "Høyesterett",
-          "Møllergata 19",
-          "Grunnlovssted",
-          "Politihuset"
+          "Stortinget",
+          "Oslo tinghus"
         ],
         "recommended_method_ids": [
+          "met_pol_dokumentanalyse",
           "met_pol_rettslig_analyse",
-          "met_pol_dokumentanalyse"
+          "met_pol_forvaltningsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "archive",
+          "legal_source",
+          "administrative_decision"
+        ],
+        "mechanism_options": [
+          "skriftliggjøring",
+          "journalføring",
+          "klassifikasjon",
+          "begrunnelse",
+          "innsyn",
+          "arkivering",
+          "bevisproduksjon"
+        ],
+        "critical_distinction_options": [
+          "lovtekst vs rettsanvendelse",
+          "dokumentasjon vs sannhet",
+          "innsyn vs personvern",
+          "arkiv som minne vs arkiv som kontroll"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "max_weber",
+            "concept": "skriftlig saksbehandling"
+          },
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "undersøkelse og dokumenterende makt"
+          },
+          {
+            "thinker_id": "james_c_scott",
+            "concept": "lesbarhet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "rett_lov_rettssikkerhet",
@@ -16333,26 +16779,22 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Stat og kommune-relasjoner til et dokumenterbart case gjennom Stat og by. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
           "Theda Skocpol",
+          "Stein Rokkan",
           "James C. Scott"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
           "theda_skocpol",
+          "stein_rokkan",
           "james_c_scott"
         ],
         "norwegian_thinker_ids": [
@@ -16365,19 +16807,18 @@
         ],
         "comparison_pairs": [
           [
-            "max_weber",
-            "michel_foucault"
+            "theda_skocpol",
+            "stein_rokkan"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "stein_rokkan",
+            "james_c_scott"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "map_competence_financing_control_and_implementation_across_levels",
+          "identify_coordination_or_responsibility_fragmentation",
+          "explain_how_territory_and_financing_shape_authority"
         ],
         "best_place_types": [
           "rådhus",
@@ -16395,36 +16836,79 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke framstill stat–kommune-forholdet som et enkelt hierarki.",
+          "Ikke bruk geografisk nærhet som bevis på institusjonell kobling.",
+          "Ikke overse finansiering som maktmiddel.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
           "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet"
+          "Oslo rådhus",
+          "Bjørvika"
         ],
         "recommended_method_ids": [
-          "met_pol_romlig_maktanalyse",
-          "met_pol_institusjonsanalyse"
+          "met_pol_institusjonsanalyse",
+          "met_pol_lokalpolitisk_analyse",
+          "met_pol_romlig_maktanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "government_building",
+          "municipality",
+          "regulation_plan"
+        ],
+        "mechanism_options": [
+          "lovbestemt oppgavefordeling",
+          "øremerking",
+          "innsigelse",
+          "samfinansiering",
+          "etatsstyring",
+          "forhandling mellom nivåer"
+        ],
+        "critical_distinction_options": [
+          "myndighet vs finansiering",
+          "statlig kontroll vs kommunalt selvstyre",
+          "territorium vs funksjon",
+          "samordning vs ansvarsfragmentering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "theda_skocpol",
+            "concept": "statlig kapasitet"
+          },
+          {
+            "thinker_id": "stein_rokkan",
+            "concept": "territoriell organisering"
+          },
+          {
+            "thinker_id": "james_c_scott",
+            "concept": "administrativ lesbarhet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -17463,27 +17947,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Teknokrati og ekspertise til et dokumenterbart case gjennom Teknokratisk styring. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
           "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott"
+          "Jürgen Habermas",
+          "Sheila Jasanoff"
         ],
         "thinker_ids": [
           "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott"
+          "jurgen_habermas",
+          "sheila_jasanoff"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -17496,18 +17976,17 @@
         "comparison_pairs": [
           [
             "max_weber",
-            "michel_foucault"
+            "jurgen_habermas"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "jurgen_habermas",
+            "sheila_jasanoff"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "separate_empirical_claims_value_choices_and_mandates",
+          "inspect_models_indicators_uncertainty_and_agenda_limits",
+          "evaluate_when_expertise_supports_or_displaces_democratic_responsibility"
         ],
         "best_place_types": [
           "rådhus",
@@ -17525,36 +18004,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke bruk teknokrati som skjellsord for all fagkunnskap.",
+          "Ikke framstill tall og modeller som verdifrie.",
+          "Ikke la teoretikernavn erstatte analyse av mandat, metode og ansvar.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
           "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet"
+          "Oslo rådhus",
+          "Stortinget"
         ],
         "recommended_method_ids": [
           "met_pol_teknokrati_og_ekspertanalyse",
-          "met_pol_forvaltningsanalyse"
+          "met_pol_legitimitetsanalyse",
+          "met_pol_institusjonsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "official_report",
+          "institution",
+          "administrative_decision"
+        ],
+        "mechanism_options": [
+          "ekspertdelegasjon",
+          "modellering",
+          "indikatorstyring",
+          "risikovurdering",
+          "standardsetting",
+          "depolitisering",
+          "kunnskapsasymmetri"
+        ],
+        "critical_distinction_options": [
+          "fakta vs verdi",
+          "faglig råd vs politisk beslutning",
+          "ekspertise vs ekspertstyre",
+          "måling vs mål"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "max_weber",
+            "concept": "faglig spesialisering og verdipolitikk"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "teknokratisk bevissthet og offentlig begrunnelse"
+          },
+          {
+            "thinker_id": "sheila_jasanoff",
+            "concept": "samproduksjon av kunnskap og orden"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -18018,41 +18541,23 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Velferdsstat og tjenester til et dokumenterbart case gjennom Offentlige tjenester. Forklar mekanisme og distinksjon før eventuell teori.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
           "Gøsta Esping-Andersen",
-          "Amartya Sen",
-          "Émile Durkheim",
-          "Erving Goffman"
+          "Michael Lipsky",
+          "Kari Wærness"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
           "gosta_esping_andersen",
-          "amartya_sen",
-          "emile_durkheim",
-          "erving_goffman"
+          "michael_lipsky",
+          "kari_waerness"
         ],
         "norwegian_thinker_ids": [
           "stein_rokkan",
@@ -18064,19 +18569,18 @@
         ],
         "comparison_pairs": [
           [
-            "max_weber",
-            "michel_foucault"
+            "gosta_esping_andersen",
+            "michael_lipsky"
           ],
           [
-            "pierre_bourdieu",
-            "theda_skocpol"
+            "michael_lipsky",
+            "kari_waerness"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_right_capacity_target_group_and_delivery_model",
+          "trace_how_scarcity_and_professional_discretion_shape_access",
+          "compare_universalism_selectivity_equality_and_equity"
         ],
         "best_place_types": [
           "rådhus",
@@ -18094,41 +18598,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill offentlig tjeneste med gratis tjeneste.",
+          "Ikke anta at lik regel gir lik tilgang.",
+          "Ikke analyser kvalitet uten å se på kapasitet og ansvarslinjer.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
           "Bydelshus",
-          "Statsarkivet",
-          "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "kommunale boliger"
+          "Skole",
+          "Familievernkontor"
         ],
         "recommended_method_ids": [
           "met_pol_velferdsstatlig_analyse",
-          "met_pol_fordelingsanalyse"
+          "met_pol_forvaltningsanalyse",
+          "met_pol_praksisanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "public_service",
+          "welfare_service",
+          "administrative_decision"
+        ],
+        "mechanism_options": [
+          "rettighetsfesting",
+          "målgruppeavgrensning",
+          "behovsprøving",
+          "profesjonelt skjønn",
+          "ventelister",
+          "bestiller–utfører-organisering",
+          "privat kontraktsstyring"
+        ],
+        "critical_distinction_options": [
+          "universell vs selektiv ordning",
+          "rettighet vs tilgjengelig kapasitet",
+          "likhet vs likeverd",
+          "offentlig finansiering vs offentlig produksjon"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "gosta_esping_andersen",
+            "concept": "velferdsregimer"
+          },
+          {
+            "thinker_id": "michael_lipsky",
+            "concept": "frontlinjeskjønn"
+          },
+          {
+            "thinker_id": "kari_waerness",
+            "concept": "omsorgsrasjonalitet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_case_or_document",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-styring-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "fordeling_velferd_ulikhet",

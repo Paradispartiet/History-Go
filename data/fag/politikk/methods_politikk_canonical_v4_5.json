@@ -5,7 +5,7 @@
   "scope": "oslo_og_omegn",
   "type": "methods",
   "purpose": "Metodekatalog for Politikk & samfunn i History Go. Metodene skal sikre at politikkspørsmål starter i konkret institusjon, lov, reform, offentlig rom, fordeling, rett, konflikt, norm, velferdstjeneste eller dokumentert samfunnsfaglig kilde før teori brukes som tolkningsramme.",
-  "updated_at": "2026-05-06",
+  "updated_at": "2026-07-24",
   "canonical_inputs": {
     "fagkart": "fagkart_politikk_canonical_v4_5.json",
     "source_theory": "merke_politikk (1).html"
@@ -96,7 +96,7 @@
       "method_id": "met_pol_budsjett_og_fordelingsanalyse",
       "title": "Budsjett- og fordelingsanalyse",
       "short_label": "Budsjett/fordeling",
-      "description": "Analyse av styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet, fordeling, velferd, levekår, klasse, bolig, helse, utdanning, demografi og ulikhet. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan budsjettprosesser omsetter mål og verdier til prioriteringer, fordelingsvirkninger og institusjonelle bindinger.",
       "best_for_emne_kinds": [
         "styring_institusjoner_forvaltning",
         "fordeling_velferd_ulikhet"
@@ -163,7 +163,59 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "definition": "Analyserer hvordan budsjettprosesser omsetter mål og verdier til prioriteringer, fordelingsvirkninger og institusjonelle bindinger.",
+      "analytical_question": "Hvem får hvilke ressurser, hvilke alternativer fortrenges, og hvilke tidligere bindinger former prioriteringen?",
+      "evidence_inputs": [
+        "årsbudsjett",
+        "økonomiplan",
+        "tildelingsbrev",
+        "regnskap",
+        "fordelingsdata"
+      ],
+      "mechanism_focus": [
+        "rammesetting",
+        "ressursallokering",
+        "inkrementalisme",
+        "øremerking",
+        "prioritering gjennom knapphet"
+      ],
+      "critical_distinctions": [
+        "bevilgning vs faktisk forbruk",
+        "lik fordeling vs rettferdig fordeling",
+        "mål vs budsjettbinding",
+        "kortsiktig prioritering vs langsiktig kapasitet"
+      ],
+      "compatible_anchor_types": [
+        "budget",
+        "distribution",
+        "municipality",
+        "public_service",
+        "statistics"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-styring-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_demokratianalyse",
@@ -315,7 +367,7 @@
       "method_id": "met_pol_dokumentanalyse",
       "title": "Dokumentanalyse",
       "short_label": "Dokument",
-      "description": "Analyse av rettsstat, domstoler, lover, rettigheter, plikter, straff, kontroll og forholdet mellom borger og stat, styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan dokumenter registrerer, klassifiserer, begrunner og gjør beslutninger etterprøvbare, samtidig som de former hva som blir synlig.",
       "best_for_emne_kinds": [
         "rett_lov_rettssikkerhet",
         "styring_institusjoner_forvaltning"
@@ -382,7 +434,59 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "definition": "Analyserer hvordan dokumenter registrerer, klassifiserer, begrunner og gjør beslutninger etterprøvbare, samtidig som de former hva som blir synlig.",
+      "analytical_question": "Hva gjør dokumentet styrbart og etterprøvbart, hvilke kategorier bruker det, og hva faller utenfor registreringen?",
+      "evidence_inputs": [
+        "arkivdokument",
+        "journalpost",
+        "saksframlegg",
+        "vedtak",
+        "skjema eller register"
+      ],
+      "mechanism_focus": [
+        "klassifikasjon",
+        "journalføring",
+        "standardisering",
+        "sporbarhet",
+        "administrativ lesbarhet"
+      ],
+      "critical_distinctions": [
+        "dokumentasjon vs virkelighet",
+        "sporbarhet vs innsyn",
+        "kategori vs individuell situasjon",
+        "arkiv som minne vs arkiv som styring"
+      ],
+      "compatible_anchor_types": [
+        "archive",
+        "official_report",
+        "administrative_decision",
+        "legal_source",
+        "institution"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-styring-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_fordelingsanalyse",
@@ -479,7 +583,7 @@
       "method_id": "met_pol_forvaltningsanalyse",
       "title": "Forvaltningsanalyse",
       "short_label": "Forvaltning",
-      "description": "Analyse av styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet, rettsstat, domstoler, lover, rettigheter, plikter, straff, kontroll og forholdet mellom borger og stat. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan politiske vedtak blir fortolket, prioritert og gjennomført i administrasjon og frontlinjetjenester.",
       "best_for_emne_kinds": [
         "styring_institusjoner_forvaltning",
         "rett_lov_rettssikkerhet"
@@ -548,7 +652,59 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "definition": "Analyserer hvordan politiske vedtak blir fortolket, prioritert og gjennomført i administrasjon og frontlinjetjenester.",
+      "analytical_question": "Hvor i gjennomføringskjeden oppstår skjønn, prioritering eller avvik mellom vedtak og borgerutfall?",
+      "evidence_inputs": [
+        "forvaltningsvedtak",
+        "retningslinje eller rundskriv",
+        "saksbehandlingsrutine",
+        "tilsynsrapport",
+        "dokumentert tjenestepraksis"
+      ],
+      "mechanism_focus": [
+        "implementering",
+        "forvaltningsskjønn",
+        "prioritering",
+        "standardisering",
+        "portvokting"
+      ],
+      "critical_distinctions": [
+        "politisk vedtak vs administrativ gjennomføring",
+        "regelbundethet vs skjønn",
+        "likebehandling vs likeverd",
+        "intensjon vs utfall"
+      ],
+      "compatible_anchor_types": [
+        "administrative_decision",
+        "public_service",
+        "welfare_service",
+        "institution",
+        "official_report"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-styring-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_ideologianalyse",
@@ -626,7 +782,7 @@
       "method_id": "met_pol_institusjonsanalyse",
       "title": "Institusjonsanalyse",
       "short_label": "Institusjon",
-      "description": "Analyse av styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet, rettsstat, domstoler, lover, rettigheter, plikter, straff, kontroll og forholdet mellom borger og stat. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan varige regler, roller, kompetansegrenser og organisatoriske rutiner fordeler myndighet og stabiliserer politiske forventninger.",
       "best_for_emne_kinds": [
         "styring_institusjoner_forvaltning",
         "rett_lov_rettssikkerhet",
@@ -716,7 +872,59 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "definition": "Analyserer hvordan varige regler, roller, kompetansegrenser og organisatoriske rutiner fordeler myndighet og stabiliserer politiske forventninger.",
+      "analytical_question": "Hvilken institusjonell ordning gjør utfallet mulig, hvem har formell kompetanse, og hvordan avviker faktisk innflytelse fra den formelle strukturen?",
+      "evidence_inputs": [
+        "lov eller forskrift",
+        "delegasjonsreglement",
+        "organisasjonskart",
+        "vedtak eller instruks",
+        "dokumentert praksis"
+      ],
+      "mechanism_focus": [
+        "kompetansetildeling",
+        "delegasjon",
+        "arbeidsdeling",
+        "standardisering",
+        "stiavhengighet"
+      ],
+      "critical_distinctions": [
+        "institusjon vs organisasjon",
+        "formell kompetanse vs faktisk innflytelse",
+        "regel vs praksis",
+        "autoritet vs tvang"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "government_building",
+        "municipality",
+        "parliament",
+        "city_hall"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-styring-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_integreringsanalyse",
@@ -988,7 +1196,7 @@
       "method_id": "met_pol_legitimitetsanalyse",
       "title": "Legitimitetsanalyse",
       "short_label": "Legitimitet",
-      "description": "Analyse av styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet, demokrati, valg, representasjon, parlamentarisme, offentlighet, politiske symboler og politiske rom. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvorfor myndighetsutøvelse aksepteres, bestrides eller mister tillit, gjennom deltakelse, prosedyre og resultater.",
       "best_for_emne_kinds": [
         "styring_institusjoner_forvaltning",
         "demokrati_representasjon_offentlighet",
@@ -1064,7 +1272,59 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "definition": "Analyserer hvorfor myndighetsutøvelse aksepteres, bestrides eller mister tillit, gjennom deltakelse, prosedyre og resultater.",
+      "analytical_question": "Bygger aksepten på hvem som deltar, hvordan beslutningen behandles, eller hvilke resultater systemet leverer?",
+      "evidence_inputs": [
+        "beslutningsprosess",
+        "høringsdokument",
+        "tillitsmåling",
+        "klage eller protest",
+        "resultat- og tjenestedata"
+      ],
+      "mechanism_focus": [
+        "begrunnelse",
+        "deltakelse",
+        "prosedyrerettferdighet",
+        "resultatleveranse",
+        "ansvarsplassering"
+      ],
+      "critical_distinctions": [
+        "legalitet vs legitimitet",
+        "tillit vs lydighet",
+        "input- vs throughput- vs output-legitimitet",
+        "aksept vs fravær av protest"
+      ],
+      "compatible_anchor_types": [
+        "legitimacy",
+        "trust",
+        "institution",
+        "public_service",
+        "public_sphere"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-styring-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_levekarsanalyse",
@@ -1200,7 +1460,7 @@
       "method_id": "met_pol_lokalpolitisk_analyse",
       "title": "Lokalpolitisk analyse",
       "short_label": "Lokalpolitikk",
-      "description": "Analyse av styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer lokal myndighet, representasjon, delegasjon og prioritering mellom bystyre, byråd, administrasjon og bydeler.",
       "best_for_emne_kinds": [
         "styring_institusjoner_forvaltning"
       ],
@@ -1256,7 +1516,59 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "definition": "Analyserer lokal myndighet, representasjon, delegasjon og prioritering mellom bystyre, byråd, administrasjon og bydeler.",
+      "analytical_question": "Hvilket lokalt organ beslutter, hvem gjennomfører, og hvordan virker lokalt selvstyre sammen med statlige rammer?",
+      "evidence_inputs": [
+        "bystyre- eller bydelsvedtak",
+        "delegasjonsreglement",
+        "kommunelov",
+        "lokalt budsjett",
+        "saksframlegg"
+      ],
+      "mechanism_focus": [
+        "lokal delegasjon",
+        "parlamentarisk ansvar",
+        "flernivåstyring",
+        "territoriell representasjon",
+        "kommunal prioritering"
+      ],
+      "critical_distinctions": [
+        "politisk organ vs administrasjon",
+        "lokalt selvstyre vs statlig styring",
+        "byråd vs bystyre",
+        "kommune vs bydel"
+      ],
+      "compatible_anchor_types": [
+        "municipality",
+        "city_hall",
+        "budget",
+        "administrative_decision",
+        "public_service"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-styring-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_makt_og_interesseanalyse",
@@ -1786,7 +2098,7 @@
       "method_id": "met_pol_plan_og_reguleringsanalyse",
       "title": "Plan- og reguleringsanalyse",
       "short_label": "Plan/regulering",
-      "description": "Analyse av styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet, fordeling, velferd, levekår, klasse, bolig, helse, utdanning, demografi og ulikhet. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan planer og reguleringer oversetter politiske mål til juridiske rammer for areal, utbygging, bruk og deltakelse.",
       "best_for_emne_kinds": [
         "styring_institusjoner_forvaltning",
         "fordeling_velferd_ulikhet"
@@ -1853,7 +2165,59 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "definition": "Analyserer hvordan planer og reguleringer oversetter politiske mål til juridiske rammer for areal, utbygging, bruk og deltakelse.",
+      "analytical_question": "Hvilke interesser og hensyn blir bundet i planen, hvem deltar, og hvordan fordeles gevinster, kostnader og handlingsrom?",
+      "evidence_inputs": [
+        "reguleringsplan",
+        "kommuneplan",
+        "planbeskrivelse",
+        "høringsinnspill",
+        "konsekvensutredning"
+      ],
+      "mechanism_focus": [
+        "arealbinding",
+        "høring",
+        "konsekvensvurdering",
+        "interesseavveiing",
+        "administrativ forenkling"
+      ],
+      "critical_distinctions": [
+        "planintensjon vs realisert utvikling",
+        "medvirkning vs beslutningsmakt",
+        "faglig vurdering vs politisk prioritering",
+        "allmenn interesse vs særinteresse"
+      ],
+      "compatible_anchor_types": [
+        "regulation_plan",
+        "municipality",
+        "urban_policy",
+        "public_sphere",
+        "official_report"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-styring-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_politisk_historisk_analyse",
@@ -1933,7 +2297,7 @@
       "method_id": "met_pol_praksisanalyse",
       "title": "Praksisanalyse",
       "short_label": "Praksis",
-      "description": "Analyse av normer, normalitet, minoritet, majoritet, identitet, kjønn, familie, migrasjon og hverdagsliv, styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan regler og institusjonelle forventninger faktisk utføres, tilpasses og gjenskapes i hverdagslige møter.",
       "best_for_emne_kinds": [
         "normer_identitet_hverdagsliv",
         "styring_institusjoner_forvaltning",
@@ -2007,7 +2371,59 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "definition": "Analyserer hvordan regler og institusjonelle forventninger faktisk utføres, tilpasses og gjenskapes i hverdagslige møter.",
+      "analytical_question": "Hvilke rutiner og skjønn former den konkrete praksisen, og hvordan påvirker møtet borgerens reelle tilgang eller handlingsrom?",
+      "evidence_inputs": [
+        "observasjon eller dokumentert praksis",
+        "rutinebeskrivelse",
+        "brukererfaring",
+        "tilsyn",
+        "avviksrapport"
+      ],
+      "mechanism_focus": [
+        "rutinisering",
+        "skjønnsutøvelse",
+        "kategorisering",
+        "portvokting",
+        "uformell normdannelse"
+      ],
+      "critical_distinctions": [
+        "formell regel vs utført praksis",
+        "standardisering vs individuell tilpasning",
+        "likebehandling vs likeverd",
+        "vedtak vs møte"
+      ],
+      "compatible_anchor_types": [
+        "public_service",
+        "welfare_service",
+        "administrative_decision",
+        "institution",
+        "social_control"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-styring-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_protest_og_bevegelsesanalyse",
@@ -2219,7 +2635,7 @@
       "method_id": "met_pol_rettslig_analyse",
       "title": "Rettslig analyse",
       "short_label": "Rett",
-      "description": "Analyse av rettsstat, domstoler, lover, rettigheter, plikter, straff, kontroll og forholdet mellom borger og stat, styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hjemmel, rettigheter, plikter, kompetanse og kontroll i politiske og administrative beslutninger.",
       "best_for_emne_kinds": [
         "rett_lov_rettssikkerhet",
         "styring_institusjoner_forvaltning"
@@ -2290,13 +2706,65 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "definition": "Analyserer hjemmel, rettigheter, plikter, kompetanse og kontroll i politiske og administrative beslutninger.",
+      "analytical_question": "Hvilken rettsregel gir kompetanse, hvilke rettssikkerhetsgarantier gjelder, og hvordan påvirker fortolkning den konkrete virkningen?",
+      "evidence_inputs": [
+        "lovtekst",
+        "forskrift",
+        "dom eller kjennelse",
+        "forvaltningsvedtak",
+        "juridisk veileder"
+      ],
+      "mechanism_focus": [
+        "kompetansebinding",
+        "rettighetsfesting",
+        "prosedyrekrav",
+        "klage og kontroll",
+        "rettslig fortolkning"
+      ],
+      "critical_distinctions": [
+        "legalitet vs legitimitet",
+        "rettighet vs tjenestetilbud",
+        "regel vs fortolkning",
+        "myndighet vs ansvar"
+      ],
+      "compatible_anchor_types": [
+        "law",
+        "legal_right",
+        "legal_source",
+        "administrative_decision",
+        "court"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-styring-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_romlig_maktanalyse",
       "title": "Romlig maktanalyse",
       "short_label": "Romlig makt",
-      "description": "Analyse av styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet, demokrati, valg, representasjon, parlamentarisme, offentlighet, politiske symboler og politiske rom. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan plassering, tilgang, arkitektur og romlig organisering påvirker synlighet, nærhet og politisk handlingsrom.",
       "best_for_emne_kinds": [
         "styring_institusjoner_forvaltning",
         "demokrati_representasjon_offentlighet",
@@ -2378,7 +2846,59 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "definition": "Analyserer hvordan plassering, tilgang, arkitektur og romlig organisering påvirker synlighet, nærhet og politisk handlingsrom.",
+      "analytical_question": "Hvordan fordeler stedet tilgang, avstand, synlighet og kontroll mellom myndighet og borgere?",
+      "evidence_inputs": [
+        "kart eller plan",
+        "tilgjengelighetsinformasjon",
+        "romlig organisering",
+        "bruk av offentlig plass",
+        "dokumentert lokalisering av tjenester eller maktorganer"
+      ],
+      "mechanism_focus": [
+        "sentralisering",
+        "adgangskontroll",
+        "synliggjøring",
+        "territorialisering",
+        "romlig differensiering"
+      ],
+      "critical_distinctions": [
+        "symbolsk nærhet vs faktisk tilgang",
+        "offentlig rom vs kontrollert rom",
+        "sentral plassering vs tilgjengelig tjeneste",
+        "representasjon vs administrasjon"
+      ],
+      "compatible_anchor_types": [
+        "government_building",
+        "city_hall",
+        "institution",
+        "public_sphere",
+        "municipality"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-styring-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_sivilsamfunnsanalyse",
@@ -2608,7 +3128,7 @@
       "method_id": "met_pol_teknokrati_og_ekspertanalyse",
       "title": "Teknokrati- og ekspertanalyse",
       "short_label": "Teknokrati/ekspertise",
-      "description": "Analyse av styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan ekspertkunnskap definerer problemer, avgrenser handlingsalternativer og påvirker politiske beslutninger.",
       "best_for_emne_kinds": [
         "styring_institusjoner_forvaltning"
       ],
@@ -2664,7 +3184,59 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "definition": "Analyserer hvordan ekspertkunnskap definerer problemer, avgrenser handlingsalternativer og påvirker politiske beslutninger.",
+      "analytical_question": "Hva bygger ekspertens autoritet på, hvilke premisser gjøres tekniske, og hvor ligger det politiske ansvaret?",
+      "evidence_inputs": [
+        "NOU eller ekspertutredning",
+        "faglig anbefaling",
+        "risikomodell",
+        "konsekvensutredning",
+        "politisk vedtak som viser bruk av ekspertgrunnlag"
+      ],
+      "mechanism_focus": [
+        "problemdefinisjon",
+        "indikatorvalg",
+        "modellering",
+        "ekspertdelegasjon",
+        "samproduksjon av kunnskap og orden"
+      ],
+      "critical_distinctions": [
+        "faglig råd vs politisk beslutning",
+        "ekspertise vs teknokrati",
+        "usikkerhet vs uvitenhet",
+        "kapasitet vs demokratisk kontroll"
+      ],
+      "compatible_anchor_types": [
+        "official_report",
+        "institution",
+        "administrative_decision",
+        "regulation_plan",
+        "statistics"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-styring-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_valg_og_deltakelsesanalyse",
@@ -2732,7 +3304,7 @@
       "method_id": "met_pol_velferdsstatlig_analyse",
       "title": "Velferdsstatlig analyse",
       "short_label": "Velferdsstat",
-      "description": "Analyse av fordeling, velferd, levekår, klasse, bolig, helse, utdanning, demografi og ulikhet, styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan velferdsordninger fordeler risiko, omsorg, rettigheter og tilgang gjennom regler, tjenester og profesjonelt skjønn.",
       "best_for_emne_kinds": [
         "fordeling_velferd_ulikhet",
         "styring_institusjoner_forvaltning",
@@ -2805,7 +3377,72 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "definition": "Analyserer hvordan velferdsordninger fordeler risiko, omsorg, rettigheter og tilgang gjennom regler, tjenester og profesjonelt skjønn.",
+      "analytical_question": "Hvem omfattes av ordningen, hvilke vilkår og praksiser regulerer tilgangen, og hvilke fordelingsvirkninger oppstår?",
+      "evidence_inputs": [
+        "regelverk for ytelse eller tjeneste",
+        "tjenestebeskrivelse",
+        "statistikk over bruk og dekning",
+        "tilsyn",
+        "budsjett eller evaluering"
+      ],
+      "mechanism_focus": [
+        "rettighetsavgrensning",
+        "behovsprøving",
+        "universalisme",
+        "profesjonelt skjønn",
+        "omsorgsorganisering"
+      ],
+      "critical_distinctions": [
+        "universell vs selektiv ordning",
+        "rettighet vs skjønnsbasert hjelp",
+        "lik tilgang vs likeverdig utfall",
+        "omsorgsbehov vs administrativ kategori"
+      ],
+      "compatible_anchor_types": [
+        "welfare_service",
+        "public_service",
+        "legal_right",
+        "distribution",
+        "statistics"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-styring-vertical-2026-07-24"
     }
-  ]
+  ],
+  "quality_revision": "politikk-styring-vertical-2026-07-24",
+  "method_quality_model": {
+    "sequence": [
+      "case_or_source",
+      "claim",
+      "mechanism",
+      "distinction",
+      "optional_theory"
+    ],
+    "external_claim_basis_required": true,
+    "theorist_name_only_forbidden": true,
+    "method_label_only_generation_forbidden": true
+  }
 }

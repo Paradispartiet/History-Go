@@ -1,0 +1,232 @@
+[
+  {
+    "domain_id": "styring_institusjoner_forvaltning",
+    "hook_id": "institusjon_som_maktform",
+    "emne_id": "em_pol_administrativ_makt",
+    "method_id": "met_pol_institusjonsanalyse",
+    "case_anchor": "Stortinget",
+    "required_anchor_type": "institution",
+    "claim_basis": "REQUIRED_EXTERNAL_SOURCE",
+    "mechanism": "kompetansetildeling",
+    "critical_distinction": "institusjon vs enkeltorganisasjon",
+    "theory_lens": {
+      "thinker_id": "max_weber",
+      "concept": "legal-rasjonell autoritet"
+    },
+    "build_sequence": [
+      "external_case_or_document",
+      "claim_basis",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_lens"
+    ],
+    "qa_prompt": "Bruk en ekstern kilde om Stortinget. Test hvordan kompetansetildeling virker, og skill mellom institusjon vs enkeltorganisasjon. Teori er valgfri og kommer sist."
+  },
+  {
+    "domain_id": "styring_institusjoner_forvaltning",
+    "hook_id": "byrakrati_og_hverdag",
+    "emne_id": "em_pol_byrakrati_forvaltning",
+    "method_id": "met_pol_forvaltningsanalyse",
+    "case_anchor": "Bydelshus",
+    "required_anchor_type": "administrative_decision",
+    "claim_basis": "REQUIRED_EXTERNAL_SOURCE",
+    "mechanism": "skjønnsutøvelse",
+    "critical_distinction": "regelstyring vs skjønn",
+    "theory_lens": {
+      "thinker_id": "michael_lipsky",
+      "concept": "street-level bureaucracy"
+    },
+    "build_sequence": [
+      "external_case_or_document",
+      "claim_basis",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_lens"
+    ],
+    "qa_prompt": "Bruk en ekstern kilde om Bydelshus. Test hvordan skjønnsutøvelse virker, og skill mellom regelstyring vs skjønn. Teori er valgfri og kommer sist."
+  },
+  {
+    "domain_id": "styring_institusjoner_forvaltning",
+    "hook_id": "kommunal_styring",
+    "emne_id": "em_pol_kommune_byraadsmodell",
+    "method_id": "met_pol_lokalpolitisk_analyse",
+    "case_anchor": "Oslo rådhus",
+    "required_anchor_type": "municipality",
+    "claim_basis": "REQUIRED_EXTERNAL_SOURCE",
+    "mechanism": "delegasjon",
+    "critical_distinction": "politisk ledelse vs administrativ ledelse",
+    "theory_lens": {
+      "thinker_id": "robert_dahl",
+      "concept": "polyarki og faktisk deltakelse"
+    },
+    "build_sequence": [
+      "external_case_or_document",
+      "claim_basis",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_lens"
+    ],
+    "qa_prompt": "Bruk en ekstern kilde om Oslo rådhus. Test hvordan delegasjon virker, og skill mellom politisk ledelse vs administrativ ledelse. Teori er valgfri og kommer sist."
+  },
+  {
+    "domain_id": "styring_institusjoner_forvaltning",
+    "hook_id": "stat_og_by",
+    "emne_id": "em_pol_maktens_geografi",
+    "method_id": "met_pol_institusjonsanalyse",
+    "case_anchor": "Regjeringskvartalet",
+    "required_anchor_type": "government_building",
+    "claim_basis": "REQUIRED_EXTERNAL_SOURCE",
+    "mechanism": "lovbestemt oppgavefordeling",
+    "critical_distinction": "myndighet vs finansiering",
+    "theory_lens": {
+      "thinker_id": "theda_skocpol",
+      "concept": "statlig kapasitet"
+    },
+    "build_sequence": [
+      "external_case_or_document",
+      "claim_basis",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_lens"
+    ],
+    "qa_prompt": "Bruk en ekstern kilde om Regjeringskvartalet. Test hvordan lovbestemt oppgavefordeling virker, og skill mellom myndighet vs finansiering. Teori er valgfri og kommer sist."
+  },
+  {
+    "domain_id": "styring_institusjoner_forvaltning",
+    "hook_id": "offentlige_tjenester",
+    "emne_id": "em_pol_forvaltning_ressursfordeling",
+    "method_id": "met_pol_velferdsstatlig_analyse",
+    "case_anchor": "Bydelshus",
+    "required_anchor_type": "public_service",
+    "claim_basis": "REQUIRED_EXTERNAL_SOURCE",
+    "mechanism": "rettighetsfesting",
+    "critical_distinction": "universell vs selektiv ordning",
+    "theory_lens": {
+      "thinker_id": "gosta_esping_andersen",
+      "concept": "velferdsregimer"
+    },
+    "build_sequence": [
+      "external_case_or_document",
+      "claim_basis",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_lens"
+    ],
+    "qa_prompt": "Bruk en ekstern kilde om Bydelshus. Test hvordan rettighetsfesting virker, og skill mellom universell vs selektiv ordning. Teori er valgfri og kommer sist."
+  },
+  {
+    "domain_id": "styring_institusjoner_forvaltning",
+    "hook_id": "arkiv_dokument_lov",
+    "emne_id": "em_pol_lov_dokument_arkiv",
+    "method_id": "met_pol_dokumentanalyse",
+    "case_anchor": "Statsarkivet",
+    "required_anchor_type": "archive",
+    "claim_basis": "REQUIRED_EXTERNAL_SOURCE",
+    "mechanism": "skriftliggjøring",
+    "critical_distinction": "lovtekst vs rettsanvendelse",
+    "theory_lens": {
+      "thinker_id": "max_weber",
+      "concept": "skriftlig saksbehandling"
+    },
+    "build_sequence": [
+      "external_case_or_document",
+      "claim_basis",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_lens"
+    ],
+    "qa_prompt": "Bruk en ekstern kilde om Statsarkivet. Test hvordan skriftliggjøring virker, og skill mellom lovtekst vs rettsanvendelse. Teori er valgfri og kommer sist."
+  },
+  {
+    "domain_id": "styring_institusjoner_forvaltning",
+    "hook_id": "budsjett_som_styring",
+    "emne_id": "em_pol_budsjett_prioritering",
+    "method_id": "met_pol_budsjett_og_fordelingsanalyse",
+    "case_anchor": "Oslo rådhus",
+    "required_anchor_type": "budget",
+    "claim_basis": "REQUIRED_EXTERNAL_SOURCE",
+    "mechanism": "rammetildeling",
+    "critical_distinction": "budsjett vs regnskap",
+    "theory_lens": {
+      "thinker_id": "charles_lindblom",
+      "concept": "inkrementalisme"
+    },
+    "build_sequence": [
+      "external_case_or_document",
+      "claim_basis",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_lens"
+    ],
+    "qa_prompt": "Bruk en ekstern kilde om Oslo rådhus. Test hvordan rammetildeling virker, og skill mellom budsjett vs regnskap. Teori er valgfri og kommer sist."
+  },
+  {
+    "domain_id": "styring_institusjoner_forvaltning",
+    "hook_id": "reguleringsplaner",
+    "emne_id": "em_pol_maktens_geografi",
+    "method_id": "met_pol_plan_og_reguleringsanalyse",
+    "case_anchor": "Bjørvika",
+    "required_anchor_type": "regulation_plan",
+    "claim_basis": "REQUIRED_EXTERNAL_SOURCE",
+    "mechanism": "sonering",
+    "critical_distinction": "plan vs prosjekt",
+    "theory_lens": {
+      "thinker_id": "james_c_scott",
+      "concept": "forenkling og lesbarhet"
+    },
+    "build_sequence": [
+      "external_case_or_document",
+      "claim_basis",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_lens"
+    ],
+    "qa_prompt": "Bruk en ekstern kilde om Bjørvika. Test hvordan sonering virker, og skill mellom plan vs prosjekt. Teori er valgfri og kommer sist."
+  },
+  {
+    "domain_id": "styring_institusjoner_forvaltning",
+    "hook_id": "teknokratisk_styring",
+    "emne_id": "em_pol_administrativ_makt",
+    "method_id": "met_pol_teknokrati_og_ekspertanalyse",
+    "case_anchor": "Regjeringskvartalet",
+    "required_anchor_type": "official_report",
+    "claim_basis": "REQUIRED_EXTERNAL_SOURCE",
+    "mechanism": "ekspertdelegasjon",
+    "critical_distinction": "fakta vs verdi",
+    "theory_lens": {
+      "thinker_id": "max_weber",
+      "concept": "faglig spesialisering og verdipolitikk"
+    },
+    "build_sequence": [
+      "external_case_or_document",
+      "claim_basis",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_lens"
+    ],
+    "qa_prompt": "Bruk en ekstern kilde om Regjeringskvartalet. Test hvordan ekspertdelegasjon virker, og skill mellom fakta vs verdi. Teori er valgfri og kommer sist."
+  },
+  {
+    "domain_id": "styring_institusjoner_forvaltning",
+    "hook_id": "legitimitet_i_systemet",
+    "emne_id": "em_pol_institusjoner_styring",
+    "method_id": "met_pol_legitimitetsanalyse",
+    "case_anchor": "Stortinget",
+    "required_anchor_type": "legitimacy",
+    "claim_basis": "REQUIRED_EXTERNAL_SOURCE",
+    "mechanism": "lovlighet",
+    "critical_distinction": "legalitet vs legitimitet",
+    "theory_lens": {
+      "thinker_id": "max_weber",
+      "concept": "legitimitetstro"
+    },
+    "build_sequence": [
+      "external_case_or_document",
+      "claim_basis",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_lens"
+    ],
+    "qa_prompt": "Bruk en ekstern kilde om Stortinget. Test hvordan lovlighet virker, og skill mellom legalitet vs legitimitet. Teori er valgfri og kommer sist."
+  }
+]
