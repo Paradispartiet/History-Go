@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-24T04:48:45.644Z
+Generert: 2026-07-24T04:58:49.949Z
 
 ## Oppsummering
-- Aktive filer validert: **689**
-- Antall steder validert: **1286**
+- Aktive filer validert: **690**
+- Antall steder validert: **1285**
 - Harde feil: **0**
-- Varsler: **504**
-- Coordinate review candidates: **767** signaler fordelt på **644** steder
+- Varsler: **503**
+- Coordinate review candidates: **766** signaler fordelt på **643** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -707,6 +707,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/kunst/oslo/places_kunst/grafill.json
 - data/places/naeringsliv/akershus/akershus_energipark.json
 - data/places/naeringsliv/akershus/telenor_fornebu.json
+- data/places/natur/akershus/tjernsmyr_salamanderlokalitet.json
 
 ## Harde feil
 - Ingen
@@ -989,7 +990,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_ljan: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_fiskevollen: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_bunnefjorden: lineært sted uten anchors
-- data/places/natur/oslo/places_oslo_natur_salamanderdammer.json#tjernsmyr_salamanderlokalitet: lav koordinatpresisjon (<4 desimaler)
 - data/places/politikk/oslo/places_politikk.json#stortinget: coordStatus=verified uten coordPrecisionM
 - data/places/politikk/oslo/places_politikk.json#oslo_radhus: coordStatus=verified uten coordPrecisionM
 - data/places/politikk/oslo/places_politikk.json#tinghuset: coordStatus=verified uten coordPrecisionM
@@ -1219,7 +1219,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 767 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 766 signaler fordelt på 643 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -1228,7 +1228,7 @@ Totalt 767 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandi
 | coordStatus=verified uten coordPrecisionM | 221 |
 | lineært sted uten anchors | 80 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 69 |
-| lav koordinatpresisjon (<4 desimaler) | 75 |
+| lav koordinatpresisjon (<4 desimaler) | 74 |
 | park/stort område uten anchors eller coordNote | 128 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
@@ -1620,7 +1620,7 @@ Totalt 767 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandi
 | etne_bmx_og_skatepark | Etne BMX- og skatepark | sport | data/places/sport/vestland/etne/etne_bmx_og_skatepark.json | 59.66795396985244 | 5.942168981207253 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | skanevik_skatepark | Skånevik skatepark | sport | data/places/sport/vestland/etne/skanevik_skatepark.json | 59.73 | 5.92 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 
-### lav koordinatpresisjon (<4 desimaler) (75)
+### lav koordinatpresisjon (<4 desimaler) (74)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1651,7 +1651,6 @@ Totalt 767 signaler fordelt på 644 steder. Et sted kan ha flere signaler. Kandi
 | jelling_kongsgard | Jelling kongsgård og monumentområde | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 55.756 | 9.419 | 320 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | orkney_birsay | Brough of Birsay / Orknøyene | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 59.136 | -3.322 | 420 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alnaelva_hovedsteder | Alnaelva | natur | data/places/natur/oslo/places_oslo_natur_hovedsteder.json | 59.9325 | 10.833 | 500 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| tjernsmyr_salamanderlokalitet | Tjernsmyr salamanderlokalitet | natur | data/places/natur/oslo/places_oslo_natur_salamanderdammer.json | 59.911 | 10.62714 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | wembley_stadium_london | Wembley Stadium | sport | data/places/sport/europa/england/footballgrounds_london.json | 51.556 | -0.2796 | 250 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | stamford_bridge_london | Stamford Bridge | sport | data/places/sport/europa/england/footballgrounds_london.json | 51.4817 | -0.191 | 200 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | bla | Blå | musikk | data/places/subkultur/oslo/places_subkultur.json | 59.9186 | 10.757 | 90 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |

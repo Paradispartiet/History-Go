@@ -12208,23 +12208,6 @@
     "sourceFile": "places/natur/oslo/places_oslo_natur_salamanderdammer/bygdoy_kongsgard_salamanderdam.json"
   },
   {
-    "id": "tjernsmyr_salamanderlokalitet",
-    "name": "Tjernsmyr salamanderlokalitet",
-    "lat": 59.911,
-    "lon": 10.62714,
-    "r": 300,
-    "category": "natur",
-    "year": 2020,
-    "desc": "Våtmarksområde ved Lysaker der småsalamander og storsalamander er registrert i et sterkt utbyggings- og samferdselslandskap.",
-    "locatorType": "natural_area",
-    "coordType": "legacy_unverified",
-    "coordStatus": "needs_source",
-    "coordSource": "tjernsmyr_salamanderlokalitet_canonical_geometry_unresolved",
-    "coordVerifiedAt": "2026-07-21",
-    "coordNote": "Recorden dokumenterer selv at Tjernsmyr ligger i Bærum, men er lagret i Oslo-kilden. En koordinat kan ikke canonical-verifiseres i Oslo-køen før geografisk eierskap og kildefamilie er rettet; dagens generiske wetland-reference mangler dessuten et stabilt eksplisitt kildeobjekt.",
-    "sourceFile": "places/natur/oslo/places_oslo_natur_salamanderdammer/tjernsmyr_salamanderlokalitet.json"
-  },
-  {
     "id": "blindern_forskningsparken_salamanderdam",
     "name": "Blindern/Forskningsparken salamanderdam",
     "lat": 59.943093038810886,
@@ -24890,5 +24873,26 @@
     "coordVerifiedAt": "2026-07-23",
     "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Snarøyveien 30 på Fornebu. Telenor dokumenterer adressen som konsernets hovedkontor og åpningen av det nye Fornebu-hovedkontoret i 2002. Punktet erstatter den udokumenterte brede proxyen «Fornebu Teknologipark» og flytter stedet fra feil Oslo-kilde til Bærum/Akershus.",
     "sourceFile": "places/naeringsliv/akershus/telenor_fornebu.json"
+  },
+  {
+    "id": "tjernsmyr_salamanderlokalitet",
+    "name": "Tjernsmyr salamanderlokalitet",
+    "lat": 59.911052035250464,
+    "lon": 10.626894645899853,
+    "r": 120,
+    "category": "natur",
+    "year": 2020,
+    "desc": "Våtmarksområde ved Lysaker der småsalamander og storsalamander er registrert i et sterkt utbyggings- og samferdselslandskap.",
+    "locatorType": "natural_area",
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:150926471",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "area_anchor",
+    "coordType": "wetland_area_anchor",
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap exact named wetland way 150926471 – Tjernsmyr",
+    "coordVerifiedAt": "2026-07-24",
+    "coordNote": "Exact public area geometry: OpenStreetMap way 150926471 is named Tjernsmyr and tagged natural=wetland. Canonical lat/lon is a deterministic interior polygon_centroid derived from the public wetland polygon (2277 m²), not a salamander capture, trap, nest or individual-observation point. Statens vegvesen documents Tjernsmyr at Lysaker as a salamander habitat affected by E18 planning; the canonical source family is therefore moved from Oslo to Bærum/Akershus.",
+    "sourceFile": "places/natur/akershus/tjernsmyr_salamanderlokalitet.json"
   }
 ]
