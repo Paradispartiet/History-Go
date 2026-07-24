@@ -41,6 +41,10 @@ jobs:
           echo '39b2aa78a9973f29b85add28bbe60469feac65c6cd8f4c363fb412939832666f  /tmp/build_historie.py' \
             | sha256sum -c - \
             2>&1 | tee reports/historie-canonical-migration/kilder-arkiv-spor-builder-checksum.txt
+          sed -i 's/emners/emner/g' /tmp/build_historie.py
+          echo 'd91750f7bfb91819666a841a736b22550a1bc842ad26603d6fa446e347347599  /tmp/build_historie.py' \
+            | sha256sum -c - \
+            2>&1 | tee -a reports/historie-canonical-migration/kilder-arkiv-spor-builder-checksum.txt
           python -m py_compile /tmp/build_historie.py \
             2>&1 | tee reports/historie-canonical-migration/kilder-arkiv-spor-builder-syntax.txt
           python /tmp/build_historie.py \
