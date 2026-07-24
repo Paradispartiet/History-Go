@@ -91,7 +91,7 @@ summary.buildingContext = {
   queryRadiusMeters: 260,
   addressContainingBuildingCount: containing.length,
   supportingBuilding,
-  addressToMuseumPoiMeters,
+  addressToMuseumPoiMeters: addressToPoiMeters,
   nearbyBuildingCount: buildings.length,
   botanicalGardenStillExcluded: true,
 };
@@ -104,4 +104,4 @@ summary.sourceChecks = {
 summary.recommendation.nextAction = `Apply ${summary.candidate.sourceObjectId} as canonical display marker because it is the unique official Sars' gate 1 point, lies inside ${supportingBuilding.sourceObjectId}, and is ${addressToPoiMeters} metres from the dedicated Naturhistorisk museum POI; preserve NHM/UiO and Brønnøysund identity, retain the museum POI and containing building as support, keep Botanisk hage separate, synchronize evidence/index and keep protocol max at 195.`;
 await fs.writeFile(path.join(reportDir, 'summary.json'), `${JSON.stringify(summary, null, 2)}\n`);
 await fs.writeFile(path.join(reportDir, 'README.md'), `# Natural History Museum coordinate research\n\n- Canonical changed: **no**\n- Unique official point: **yes**\n- Dedicated museum POI: **${museumPoi.sourceObjectId}**\n- Address-to-POI distance: **${addressToPoiMeters} m**\n- Address-containing building: **${supportingBuilding.sourceObjectId}**\n- Building name: **${supportingBuilding.tags.name ?? 'unnamed'}**\n- Botanical garden excluded: **yes**\n- Can become verified: **yes**\n- Protocol max batch: **${maxBatch}**\n`, 'utf8');
-console.log(JSON.stringify({ status: 'nhm_building_context_validated', supportingBuilding: supportingBuilding.sourceObjectId, buildingName: supportingBuilding.tags.name ?? null, addressToMuseumPoiMeters, protocolMaxBatch: maxBatch }, null, 2));
+console.log(JSON.stringify({ status: 'nhm_building_context_validated', supportingBuilding: supportingBuilding.sourceObjectId, buildingName: supportingBuilding.tags.name ?? null, addressToMuseumPoiMeters: addressToPoiMeters, protocolMaxBatch: maxBatch }, null, 2));
