@@ -1,1 +1,71 @@
-{"version":"v5.0-canonical","subject_id":"historie","status":"formalized_complete","domain_count":20,"minimums":{"domains":20,"emner_per_domain":8,"concepts_per_domain":8,"methods_per_domain":8,"theories_per_domain":8},"required_layers":["domains","emner","concepts","theories","methods","historiography","generator_constraints"],"theory_object_types":["theory_framework","middle_range_model","analytical_concept","historiographical_tradition","method","thinker"],"completion_rule":"Alle validatorfeil må være null før Historie kan merkes V5-complete.","next_version":"v6-evidence"}
+{
+  "version": "v5.0-canonical",
+  "subject_id": "historie",
+  "status": "complete",
+  "scope": "oslo_og_omegn_med_nasjonale_og_globale_forbindelser",
+  "counts": {
+    "domains": 20,
+    "emner": 160,
+    "concepts": 160,
+    "theory_objects": 79,
+    "theory_hooks": 160,
+    "methods": 32
+  },
+  "object_types": {
+    "theory": [
+      "theory_framework",
+      "middle_range_model",
+      "historiographical_tradition",
+      "analytical_concept",
+      "methodological_framework"
+    ],
+    "concept": [
+      "analytical_concept",
+      "actor_category",
+      "historiographical_concept"
+    ]
+  },
+  "domain_contract": {
+    "min_emner": 8,
+    "min_theory_hooks": 8,
+    "min_methods": 6,
+    "min_core_concepts": 8
+  },
+  "emne_required_fields": [
+    "emne_id",
+    "subject_id",
+    "domain_id",
+    "title",
+    "definition",
+    "why_it_matters",
+    "core_concept_ids",
+    "key_questions",
+    "analysis_axes",
+    "historiographical_conflicts",
+    "method_ids",
+    "primary_theory_ids",
+    "source_requirements",
+    "generator_constraints",
+    "progression"
+  ],
+  "quality_gates": [
+    "referential_integrity",
+    "no_stopword_concepts",
+    "domain_minimums",
+    "emne_contract",
+    "theory_type_integrity",
+    "method_integrity",
+    "historiography_required",
+    "source_requirements",
+    "progression_required"
+  ],
+  "canonical_files": {
+    "domains": "domains_historie_canonical_v5.json",
+    "emner": "emner_historie_canonical_v5.json",
+    "concepts": "concepts_historie_canonical_v5.json",
+    "theories": "theory_objects_historie_canonical_v5.json",
+    "theory_hooks": "theory_hooks_historie_canonical_v5.json",
+    "methods": "methods_historie_canonical_v5.json"
+  },
+  "updated_at": "2026-07-24"
+}
