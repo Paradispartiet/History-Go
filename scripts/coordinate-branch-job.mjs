@@ -93,7 +93,7 @@ assert(place.coordStatus == null, 'Botanisk hage already has a coordinate status
 assert(Number.isFinite(Number(place.lat)) && Number.isFinite(Number(place.lon)), 'Current Botanisk hage marker is missing.');
 
 const urls = {
-  official: 'https://www.nhm.uio.no/besok-oss/botanisk-hage/',
+  official: 'https://www.nhm.uio.no/utstillinger/botanisk-hage/index.html',
   osmApi: `https://api.openstreetmap.org/api/0.6/way/${osmWayId}/full.json`,
   osmPage: `https://www.openstreetmap.org/way/${osmWayId}`,
   wikidataApi: 'https://www.wikidata.org/wiki/Special:EntityData/Q3116396.json',
