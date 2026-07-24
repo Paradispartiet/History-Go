@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-24T04:08:18.588Z
+Generert: 2026-07-24T04:14:04.996Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -187,7 +187,7 @@ Generert: 2026-07-24T04:08:18.588Z
 | christiania_seildugsfabrik | data/coordinate-evidence/oslo/naeringsliv/christiania_seildugsfabrik.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | frysja_industriomrade | data/coordinate-evidence/oslo/naeringsliv/frysja_industriomrade.json | needs_research | needs_geometry | OK |
 | grensen_kjopesenter | data/coordinate-evidence/oslo/naeringsliv/grensen_kjopesenter.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| gronlikaia | data/coordinate-evidence/oslo/naeringsliv/gronlikaia.json | needs_research | needs_geometry | OK |
+| gronlikaia | data/coordinate-evidence/oslo/naeringsliv/gronlikaia.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grunnlovsbygget_bankplassen | data/coordinate-evidence/oslo/naeringsliv/grunnlovsbygget_bankplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | jernbaneverkstedet_lodalen | data/coordinate-evidence/oslo/naeringsliv/jernbaneverkstedet_lodalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | lilleborg_fabrikker | data/coordinate-evidence/oslo/naeringsliv/lilleborg_fabrikker.json | applied_to_place | do_not_change_coordinates_yet | OK |
