@@ -15,9 +15,10 @@ source=source.replace(
 );
 source=source.replace(
   `liveTags:way.tags,geometryPointCount:geometry.length,exactNameDuplicateCount:nameDup.length,nearestCanonicalBeforeWrite:nearby[0]||null,civicationUpdates,updatedCiviFiles,`,
-  `liveTags:way.tags,overpassEndpoint,geometryPointCount:geometry.length,exactNameDuplicateCount:nameDup.length,nearestCanonicalBeforeWrite:nearby[0]||null,civicationUpdates,updatedCiviFiles,`
+  `liveTags:way.tags,overpassEndpoint,geometryPointCount:geometry.length,exactNameDuplicateCount:nameDup.length,nearestCanonicalBeforeWrite:nearby[0]||null,civicationUpdates:civiUpdates,updatedCiviFiles,`
 );
 if(source.includes(`const OVERPASS='https://overpass.kumi.systems/api/interpreter';`))throw new Error('Failed to install Overpass fallback endpoints');
 if(source.includes(`const raw=await fetchText(OVERPASS,`))throw new Error('Failed to patch exact-way Overpass fetch');
+if(source.includes(`nearestCanonicalBeforeWrite:nearby[0]||null,civicationUpdates,updatedCiviFiles`))throw new Error('Failed to fix Civication report variable');
 writeFileSync(TEMP,source,'utf8');
 await import(pathToFileURL(TEMP).href);
