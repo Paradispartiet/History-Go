@@ -1,58 +1,120 @@
 {
+  "schemaVersion": "1.0",
   "placeId": "gronlikaia",
   "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9001,
-    "lon": 10.7579,
+    "lat": 59.9001854,
+    "lon": 10.7555601,
     "r": 220,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap exact named quay way 865222822 – Grønlikaia",
+    "coordType": "quay_segment_midpoint",
+    "coordNote": "Object-type-first production: exact OSM way 865222822 is the named quay Grønlikaia (man_made=quay, natural=coastline). The canonical display marker is the deterministic length midpoint of this 241.15 m quay segment. Oslo kommune documents the broader Grønlikaia development area; that larger planning area remains historical and transformation context and is not falsely represented as an OSM polygon. No nearby service road or unrelated neighbouring quay is used as the coordinate source."
   },
   "identity": {
     "currentName": "Grønlikaia",
-    "resolvedIdentity": "bredt tidligere havne-/containerområde og dagens utviklingsområde på Grønlia",
-    "identityStatus": "resolved_broad_area",
-    "identityProblem": "Offisielle kilder dokumenterer Grønlikaia som et større utviklings- og havneområde. OSM-søket ga bare serviceveier med navnet Grønlikaia, ikke en arealgeometri som kan bære verified-status for hele stedet.",
-    "locatorTypeCandidate": "quay",
+    "resolvedIdentity": "den eksakte navngitte Grønlikaia-kaien som fysisk locator, med det bredere tidligere havne-/containerområdet og dagens utviklingsområde som kontekstlag",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
     "requiresSplit": false,
-    "splitReason": "Området kan beholdes, men trenger dokumentert quay-/områdegeometri eller flere area-ankre."
+    "splitReason": ""
   },
   "requiredEvidence": [
-    "offisiell plan-/havnegeometri",
-    "eller flere kildebelagte area-/quay-ankre"
+    "eksakt navngitt kai-geometri",
+    "deterministisk lineært displayanker på samme kai",
+    "offisiell kilde som dokumenterer Grønlikaia som bredere havne-/utviklingsområde"
   ],
   "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – way 865222822 Grønlikaia",
+      "sourceUrl": "https://www.openstreetmap.org/way/865222822",
+      "sourceObjectId": "osm-way:865222822",
+      "sourceQuality": "exact_named_quay_geometry",
+      "finding": "Eksakt 241.15 m kyst-/kaigeometri med name=Grønlikaia, man_made=quay og natural=coastline. Lengdemidtpunktet brukes som line-anchor.",
+      "canVerifyCoordinate": true,
+      "reason": "Object-type-first production: exact OSM way 865222822 is the named quay Grønlikaia (man_made=quay, natural=coastline). The canonical display marker is the deterministic length midpoint of this 241.15 m quay segment. Oslo kommune documents the broader Grønlikaia development area; that larger planning area remains historical and transformation context and is not falsely represented as an OSM polygon. No nearby service road or unrelated neighbouring quay is used as the coordinate source."
+    },
     {
       "sourceProvider": "municipality",
       "sourceName": "Oslo kommune – utvikling av Grønlikaia",
       "sourceUrl": "https://aktuelt.oslo.kommune.no/feil-retning-i-utviklingen-av-gronlikaia",
       "sourceObjectId": "oslo-kommune:plan:gronlikaia",
       "sourceQuality": "official_area_identity",
-      "finding": "Oslo kommune dokumenterer Grønlikaia som et større plan- og utviklingsområde knyttet til tidligere havnearealer.",
+      "finding": "Oslo kommune dokumenterer Grønlikaia som et viktig byutviklingsområde knyttet til tidligere havnearealer.",
       "canVerifyCoordinate": false,
-      "reason": "Områdeidentitet er dokumentert, men batchen har ikke maskinsporbar arealgeometri."
+      "reason": "Dokumenterer den bredere historiske og planmessige konteksten; den eksakte fysiske locator-geometrien kommer fra den navngitte OSM-kaien."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo Havn – Grønlikaia og Havnepromenaden",
+      "sourceUrl": "https://www.oslohavn.no/no/meny/fjordbyen/havnepromenaden/",
+      "sourceObjectId": "oslo-havn:fjordbyen:gronlikaia",
+      "sourceQuality": "official_port_scope_context",
+      "finding": "Oslo Havn beskriver Grønlikaia som fjordby-/havnepromenadeområde ved overgangen mot Sydhavna.",
+      "canVerifyCoordinate": false,
+      "reason": "Støtter havne- og transformasjonskonteksten, men brukes ikke som direkte koordinatkilde."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:865222822",
+      "canApplyToPlace": true
+    },
     {
       "sourceProvider": "municipality",
       "sourceObjectId": "oslo-kommune:plan:gronlikaia",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:865222822",
+      "lat": 59.9001854,
+      "lon": 10.7555601,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:865222822",
+      "lat": 59.901199,
+      "lon": 10.7563283,
+      "coordRole": "boundary_anchor",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:865222822",
+      "lat": 59.8991718,
+      "lon": 10.7547919,
+      "coordRole": "boundary_anchor",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:865222822",
+      "lat": 59.9001854,
+      "lon": 10.7555601,
+      "coordRole": "line_anchor",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Offisielle kilder dokumenterer Grønlikaia som et større utviklings- og havneområde. OSM-søket ga bare serviceveier med navnet Grønlikaia, ikke en arealgeometri som kan bære verified-status for hele stedet.",
-    "nextAction": "Hent offisiell plan-/havnegeometri eller flere dokumenterte quay-/area-ankre før verified coordinate contract."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Grønlikaia er produsert på den eksakte navngitte kai-geometrien; det bredere utviklingsområdet beholdes som kontekst uten å bli påstått som samme geometri."
   },
   "notes": [
-    "Ingen koordinatendring i batch 26."
+    "Object-type-first production: exact OSM way 865222822 is the named quay Grønlikaia (man_made=quay, natural=coastline). The canonical display marker is the deterministic length midpoint of this 241.15 m quay segment. Oslo kommune documents the broader Grønlikaia development area; that larger planning area remains historical and transformation context and is not falsely represented as an OSM polygon. No nearby service road or unrelated neighbouring quay is used as the coordinate source.",
+    "Nærmeste andre canonical marker ved write-time var sorenga_sjobad på 211.9 meter; ingen markør lå innen 3 meter."
   ]
 }
