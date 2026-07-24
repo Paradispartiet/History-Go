@@ -1,45 +1,243 @@
 {
   "placeId": "regjeringskvartalet",
-  "attempts": [
-    {
-      "label": "lonlat_bbox",
-      "url": "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=REGTILLEGG&service=WFS&request=GetFeature&version=2.0.0&typeNames=ms%3AOmraadeplan&outputFormat=application%2Fjson%3B+subtype%3Dgeojson%3B+charset%3DISO-8859-1&srsName=EPSG%3A4326&count=500&bbox=10.735%2C59.908%2C10.752%2C59.922%2CEPSG%3A4326",
-      "status": 400,
-      "ok": false,
-      "contentType": "text/xml; charset=UTF-8",
-      "size": 607,
-      "preview": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ows:ExceptionReport xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ows=\"http://www.opengis.net/ows/1.1\" version=\"2.0.0\" xml:lang=\"en-US\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengeospatial.net/ows/1.1.0/owsExceptionReport.xsd\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"srsname\">\n    <ows:ExceptionText>msWFSGetFeature(): WFS server error. Invalid GetFeature Request:Invalid SRS.  Please check the capabilities and reformulate your request.</ows:ExceptionText>\n  </ows:Exception>\n</ows:ExceptionReport>\n",
-      "error": null,
-      "featureCount": null
-    },
-    {
-      "label": "latlon_bbox",
-      "url": "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=REGTILLEGG&service=WFS&request=GetFeature&version=2.0.0&typeNames=ms%3AOmraadeplan&outputFormat=application%2Fjson%3B+subtype%3Dgeojson%3B+charset%3DISO-8859-1&srsName=EPSG%3A4326&count=500&bbox=59.908%2C10.735%2C59.922%2C10.752%2CEPSG%3A4326",
-      "status": 400,
-      "ok": false,
-      "contentType": "text/xml; charset=UTF-8",
-      "size": 607,
-      "preview": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ows:ExceptionReport xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ows=\"http://www.opengis.net/ows/1.1\" version=\"2.0.0\" xml:lang=\"en-US\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengeospatial.net/ows/1.1.0/owsExceptionReport.xsd\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"srsname\">\n    <ows:ExceptionText>msWFSGetFeature(): WFS server error. Invalid GetFeature Request:Invalid SRS.  Please check the capabilities and reformulate your request.</ows:ExceptionText>\n  </ows:Exception>\n</ows:ExceptionReport>\n",
-      "error": null,
-      "featureCount": null
-    },
-    {
-      "label": "all_features",
-      "url": "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=REGTILLEGG&service=WFS&request=GetFeature&version=2.0.0&typeNames=ms%3AOmraadeplan&outputFormat=application%2Fjson%3B+subtype%3Dgeojson%3B+charset%3DISO-8859-1&srsName=EPSG%3A4326&count=10000",
-      "status": 400,
-      "ok": false,
-      "contentType": "text/xml; charset=UTF-8",
-      "size": 607,
-      "preview": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ows:ExceptionReport xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ows=\"http://www.opengis.net/ows/1.1\" version=\"2.0.0\" xml:lang=\"en-US\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengeospatial.net/ows/1.1.0/owsExceptionReport.xsd\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"srsname\">\n    <ows:ExceptionText>msWFSGetFeature(): WFS server error. Invalid GetFeature Request:Invalid SRS.  Please check the capabilities and reformulate your request.</ows:ExceptionText>\n  </ows:Exception>\n</ows:ExceptionReport>\n",
-      "error": null,
-      "featureCount": null
-    }
+  "featureCount": 7,
+  "propertyKeys": [
+    "KOPIDATO",
+    "PLANID",
+    "PLANNAVN",
+    "PLANTYPE"
   ],
-  "uniqueFeatureCount": 0,
-  "propertyKeys": [],
-  "directMatchCount": 0,
-  "directMatches": [],
-  "centerCandidateCount": 0,
-  "centerCandidates": [],
-  "nextAction": "Use returned property keys to query the adopted plan number explicitly."
+  "textMatchCount": 0,
+  "textMatches": [],
+  "planLikeCount": 6,
+  "planLike": [
+    {
+      "featureId": null,
+      "properties": {
+        "PLANID": "15518764",
+        "PLANTYPE": "34",
+        "PLANNAVN": "S-4927",
+        "KOPIDATO": "2026-07-23 00:00:00"
+      },
+      "geometryType": "Polygon",
+      "bbox": {
+        "minX": 603126.28,
+        "minY": 6631633.1,
+        "maxX": 606011.6632,
+        "maxY": 6634496.41
+      },
+      "coordinateSample": [
+        [
+          603598.18665,
+          6632703.1939
+        ],
+        [
+          603600.13485,
+          6632699.4119
+        ],
+        [
+          603602.7317,
+          6632695.309
+        ],
+        [
+          603606.5548,
+          6632690.1979
+        ],
+        [
+          603612.72895,
+          6632683.89775
+        ]
+      ]
+    },
+    {
+      "featureId": null,
+      "properties": {
+        "PLANID": "202001816",
+        "PLANTYPE": "34",
+        "PLANNAVN": "S-5093",
+        "KOPIDATO": "2026-07-23 00:00:00"
+      },
+      "geometryType": "MultiPolygon",
+      "bbox": {
+        "minX": 595087.9904,
+        "minY": 6641982.69471,
+        "maxX": 596372.479,
+        "maxY": 6642957.32052
+      },
+      "coordinateSample": [
+        [
+          595201.02725,
+          6642834.5677
+        ],
+        [
+          595161.46225,
+          6642885.02065
+        ],
+        [
+          595104.52266,
+          6642957.32052
+        ],
+        [
+          595103.41278,
+          6642956.43121
+        ],
+        [
+          595102.63239,
+          6642955.80592
+        ]
+      ]
+    },
+    {
+      "featureId": null,
+      "properties": {
+        "PLANID": "14957860",
+        "PLANTYPE": "34",
+        "PLANNAVN": "S-4726",
+        "KOPIDATO": "2026-07-23 00:00:00"
+      },
+      "geometryType": "Polygon",
+      "bbox": {
+        "minX": 594144.2542,
+        "minY": 6641657.6908,
+        "maxX": 594997.71995,
+        "maxY": 6642529.1388
+      },
+      "coordinateSample": [
+        [
+          594356.03695,
+          6641977.0307
+        ],
+        [
+          594356.97,
+          6641975.67
+        ],
+        [
+          594344.91,
+          6641967.36
+        ],
+        [
+          594345.55,
+          6641966.44
+        ],
+        [
+          594345.24519,
+          6641965.87449
+        ]
+      ]
+    },
+    {
+      "featureId": null,
+      "properties": {
+        "PLANID": "15499109",
+        "PLANTYPE": "34",
+        "PLANNAVN": "S-4926",
+        "KOPIDATO": "2026-07-23 00:00:00"
+      },
+      "geometryType": "Polygon",
+      "bbox": {
+        "minX": 605181.94845,
+        "minY": 6645686.656,
+        "maxX": 606985.41775,
+        "maxY": 6647140.45995
+      },
+      "coordinateSample": [
+        [
+          605603.89655,
+          6646061.486
+        ],
+        [
+          605600.71095,
+          6646044.69941
+        ],
+        [
+          605600.33872,
+          6646044.20093
+        ],
+        [
+          605599.71185,
+          6646043.47574
+        ],
+        [
+          605599.03485,
+          6646042.7971
+        ]
+      ]
+    },
+    {
+      "featureId": null,
+      "properties": {
+        "PLANID": "202020172",
+        "PLANTYPE": "34",
+        "PLANNAVN": "S-5100",
+        "KOPIDATO": "2026-07-23 00:00:00"
+      },
+      "geometryType": "Polygon",
+      "bbox": {
+        "minX": 597273.8086,
+        "minY": 6643040.89,
+        "maxX": 597913.94935,
+        "maxY": 6643554.20995
+      },
+      "coordinateSample": [
+        [
+          597656.55,
+          6643402.2
+        ],
+        [
+          597637.47,
+          6643402.47
+        ],
+        [
+          597630.33,
+          6643402.51
+        ],
+        [
+          597630.25,
+          6643403.06
+        ],
+        [
+          597615.44,
+          6643402.1
+        ]
+      ]
+    },
+    {
+      "featureId": null,
+      "properties": {
+        "PLANID": "15197627",
+        "PLANTYPE": "34",
+        "PLANNAVN": "S-4821",
+        "KOPIDATO": "2026-07-23 00:00:00"
+      },
+      "geometryType": "MultiPolygon",
+      "bbox": {
+        "minX": 598861.1744,
+        "minY": 6641745.51895,
+        "maxX": 599144.3489,
+        "maxY": 6641797.74785
+      },
+      "coordinateSample": [
+        [
+          599136.5217,
+          6641786.6674
+        ],
+        [
+          599120.56515,
+          6641771.89525
+        ],
+        [
+          599075.9599,
+          6641762.4407
+        ],
+        [
+          599075.22,
+          6641770.75
+        ],
+        [
+          599010.95,
+          6641773.91
+        ]
+      ]
+    }
+  ]
 }
