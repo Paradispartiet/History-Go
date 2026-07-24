@@ -7250,7 +7250,11 @@
       "results": []
     }
   ],
-  "exactIndependentCandidates": [
+  "exactIndependentCandidates": [],
+  "coordinateChanged": false,
+  "decision": "keep_needs_source_no_independent_exact_anchor",
+  "nextAction": "Keep needs_source. Seek a new authoritative public-art point dataset or a geotagged image explicitly identifying and visibly matching the official grey-granite Sigrid Undset monument. Do not retry OSM node 7596280553.",
+  "falsePositiveCandidates": [
     {
       "provider": "wikimedia_commons",
       "sourceObjectId": "commons:File:Bislett Games 2026 - Sigrid Borge.jpg",
@@ -7262,7 +7266,9 @@
         "dim": "1000"
       },
       "basis": "geotagged Commons file with matching Sigrid/Undset metadata",
-      "requiresManualVisualReview": true
+      "requiresManualVisualReview": true,
+      "rejected": true,
+      "rejectionReason": "The Commons file title, description and categories identify Norwegian javelin thrower Sigrid Borge at Bislett Games 2026. The match came from the token “Sigrid” alone and has no connection to Sigrid Undset, Kjersti Wexelsen Goksøyr, Stensparken or the granite monument."
     },
     {
       "provider": "wikimedia_commons",
@@ -7275,10 +7281,15 @@
         "dim": "1000"
       },
       "basis": "geotagged Commons file with matching Sigrid/Undset metadata",
-      "requiresManualVisualReview": true
+      "requiresManualVisualReview": true,
+      "rejected": true,
+      "rejectionReason": "The Commons file title, description and categories identify Norwegian javelin thrower Sigrid Borge at Bislett Games 2026. The match came from the token “Sigrid” alone and has no connection to Sigrid Undset, Kjersti Wexelsen Goksøyr, Stensparken or the granite monument."
     }
   ],
-  "coordinateChanged": false,
-  "decision": "independent_candidate_requires_manual_visual_identity_review",
-  "nextAction": "Manually inspect every candidate image/object and promote only if it visibly matches the official grey-granite Sigrid Undset monument."
+  "filterCorrection": {
+    "date": "2026-07-24",
+    "reason": "The initial candidate filter accepted files matching the standalone token “Sigrid”. Manual metadata review proved both candidates depict athlete Sigrid Borge at Bislett Games, not Sigrid Undset or her monument.",
+    "correctedRule": "An independent candidate must explicitly identify Sigrid Undset or the official work/artist, not merely another person named Sigrid.",
+    "rejectedCandidateCount": 2
+  }
 }
