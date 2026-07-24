@@ -52,6 +52,43 @@ const objectCoordinate = (entry) => {
   return Number.isFinite(lat) && Number.isFinite(lon) ? { lat, lon } : null;
 };
 const osmSourceId = (entry) => `osm-${entry.type}:${entry.id}`;
+const pointInPolygon = (point, polygon) => {
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i, i += 1) {
+    const xi = polygon[i].lon;
+    const yi = polygon[i].lat;
+    const xj = polygon[j].lon;
+    const yj = polygon[j].lat;
+    if (((yi > point.lat) !== (yj > point.lat))
+      && point.lon < ((xj - xi) * (point.lat - yi)) / (yj - yi) + xi) inside = !inside;
+  }
+  return inside;
+};
+const polygonCentroid = (points) => {
+  const ring = points[0].lat === points.at(-1).lat && points[0].lon === points.at(-1).lon
+    ? points
+    : [...points, points[0]];
+  let twiceArea = 0;
+  let cx = 0;
+  let cy = 0;
+  for (let i = 0; i < ring.length - 1; i += 1) {
+    const x1 = ring[i].lon;
+    const y1 = ring[i].lat;
+    const x2 = ring[i + 1].lon;
+    const y2 = ring[i + 1].lat;
+    const cross = x1 * y2 - x2 * y1;
+    twiceArea += cross;
+    cx += (x1 + x2) * cross;
+    cy += (y1 + y2) * cross;
+  }
+  if (Math.abs(twiceArea) < 1e-12) {
+    return {
+      lat: points.reduce((sum, point) => sum + point.lat, 0) / points.length,
+      lon: points.reduce((sum, point) => sum + point.lon, 0) / points.length,
+    };
+  }
+  return { lat: cy / (3 * twiceArea), lon: cx / (3 * twiceArea) };
+};
 
 await fs.mkdir(reportDir, { recursive: true });
 
@@ -89,9 +126,7 @@ assert(officialText.includes('forskningsparken'), 'Official pages no longer iden
 assert(officialText.includes('gaustadalleen 21') && officialText.includes('0349 oslo'), 'Official pages no longer resolve Forskningsparken to Gaustadalléen 21, 0349 Oslo.');
 assert(officialText.includes('937 268 815') || officialText.includes('937268815'), 'Official pages no longer expose Oslotech organisation number 937268815.');
 assert(officialText.includes('1989'), 'Official history no longer supports opening in 1989.');
-
-assert(brregMain.organisasjonsnummer === '937268815', 'Unexpected Oslotech main-unit identity.');
-assert(normalize(brregMain.navn) === 'oslotech as', 'Brønnøysund main unit no longer resolves to Oslotech AS.');
+assert(brregMain.organisasjonsnummer === '937268815' && normalize(brregMain.navn) === 'oslotech as', 'Unexpected Oslotech main-unit identity.');
 assert(normalize(addressText(brregMain)).includes('gaustadalleen 21 0349 oslo'), 'Oslotech main unit no longer resolves to Gaustadalléen 21, 0349 Oslo.');
 assert(brregSubunit.organisasjonsnummer === '974166194', 'Unexpected Oslotech operating-unit identity.');
 assert(normalize(addressText(brregSubunit)).includes('gaustadalleen 21 0349 oslo'), 'Oslotech operating unit no longer resolves to Gaustadalléen 21, 0349 Oslo.');
@@ -110,71 +145,91 @@ for (const entry of exactRows) {
   if (!coordinateGroups.has(key)) coordinateGroups.set(key, []);
   coordinateGroups.get(key).push(entry);
 }
-assert(coordinateGroups.size === 1, `Kartverket returned ${coordinateGroups.size} distinct exact coordinates for Gaustadalléen 21.`);
-const [coordinateKey, coordinateRows] = [...coordinateGroups.entries()][0];
-const [addressLat, addressLon] = coordinateKey.split(',').map(Number);
-const addressCoordinate = { lat: addressLat, lon: addressLon };
-const addressRow = coordinateRows[0];
-const municipality = String(addressRow.kommunenummer ?? addressRow.kommune?.kommunenummer ?? '0301');
-const addressCode = String(addressRow.adressekode ?? addressRow.adressenavn?.adressekode ?? 'unknown');
-const addressNumber = `${addressRow.nummer ?? 21}${addressRow.bokstav ?? ''}`;
-const geonorgeSourceId = `geonorge-adresser-v1:${municipality}:${addressCode}:${addressNumber}`;
+assert(coordinateGroups.size > 0, 'Kartverket exact rows contain no coordinates.');
+const officialAddressPoints = [...coordinateGroups.entries()].map(([key, rows]) => {
+  const [lat, lon] = key.split(',').map(Number);
+  const row = rows[0];
+  return {
+    lat,
+    lon,
+    sourceObjectId: `geonorge-adresser-v1:${String(row.kommunenummer ?? row.kommune?.kommunenummer ?? '0301')}:${String(row.adressekode ?? row.adressenavn?.adressekode ?? 'unknown')}:${row.nummer ?? 21}${row.bokstav ?? ''}:${key}`,
+    rowCount: rows.length,
+    rows,
+  };
+});
+const addressAnchor = {
+  lat: officialAddressPoints.reduce((sum, point) => sum + point.lat, 0) / officialAddressPoints.length,
+  lon: officialAddressPoints.reduce((sum, point) => sum + point.lon, 0) / officialAddressPoints.length,
+};
 
-const overpassQuery = `[out:json][timeout:30];(nwr(around:350,${addressCoordinate.lat},${addressCoordinate.lon})["name"~"Forskningsparken|Oslo Science Park",i];);out center tags;`;
+const overpassQuery = `[out:json][timeout:30];(nwr(around:400,${addressAnchor.lat},${addressAnchor.lon})["name"~"Forskningsparken|Oslo Science Park",i];);out center tags;`;
 const overpass = await fetchJson('https://overpass-api.de/api/interpreter', {
   method: 'POST',
   headers: { 'content-type': 'application/x-www-form-urlencoded' },
   body: new URLSearchParams({ data: overpassQuery }).toString(),
 });
-
-const transportLike = (tags) => Boolean(
-  tags.public_transport
-  || tags.railway
-  || tags.highway === 'bus_stop'
-  || tags.amenity === 'bus_station'
-  || tags.station
-  || tags.tram
-  || tags.subway,
-);
+const transportLike = (tags) => Boolean(tags.public_transport || tags.railway || tags.highway === 'bus_stop' || tags.amenity === 'bus_station' || tags.station || tags.tram || tags.subway);
 const rankedOsm = (overpass.elements ?? []).map((entry) => {
   const tags = entry.tags ?? {};
   const coordinate = objectCoordinate(entry);
-  const distance = coordinate ? distanceMeters(addressCoordinate, coordinate) : Infinity;
+  const distance = coordinate ? distanceMeters(addressAnchor, coordinate) : Infinity;
   const names = normalize(`${tags.name ?? ''} ${tags['name:no'] ?? ''} ${tags['name:en'] ?? ''}`);
   const website = normalize(`${tags.website ?? ''} ${tags['contact:website'] ?? ''}`);
   const address = normalize(`${tags['addr:street'] ?? ''} ${tags['addr:housenumber'] ?? ''} ${tags['addr:postcode'] ?? ''}`);
   let score = 0;
-  if (names.includes('forskningsparken')) score += 60;
-  if (names.includes('oslo science park')) score += 45;
-  if (website.includes('forskningsparken no') || website.includes('oslotech no')) score += 60;
-  if (address.includes('gaustadalleen 21')) score += 35;
-  if (tags.building && tags.building !== 'no') score += 20;
+  if (names.includes('forskningsparken')) score += 70;
+  if (names.includes('oslo science park')) score += 55;
+  if (website.includes('forskningsparken no') || website.includes('oslotech no')) score += 70;
+  if (address.includes('gaustadalleen 21')) score += 40;
+  if (entry.type === 'way') score += 20;
+  if (tags.building && tags.building !== 'no') score += 25;
   if (tags.office || tags.landuse === 'commercial' || tags.amenity === 'research_institute') score += 15;
-  if (distance <= 75) score += 25;
-  else if (distance <= 150) score += 15;
-  else if (distance <= 250) score += 5;
-  if (transportLike(tags)) score -= 200;
-  return {
-    entry,
-    tags,
-    coordinate,
-    distanceMeters: Number.isFinite(distance) ? Number(distance.toFixed(1)) : null,
-    score,
-    excludedAsTransport: transportLike(tags),
-  };
+  if (distance <= 100) score += 25;
+  else if (distance <= 200) score += 10;
+  if (transportLike(tags)) score -= 300;
+  return { entry, tags, coordinate, distanceMeters: Number.isFinite(distance) ? Number(distance.toFixed(1)) : null, score, excludedAsTransport: transportLike(tags) };
 }).sort((a, b) => b.score - a.score || (a.distanceMeters ?? Infinity) - (b.distanceMeters ?? Infinity));
-const selectedOsm = rankedOsm.find((candidate) => !candidate.excludedAsTransport && candidate.coordinate && candidate.score >= 60) ?? null;
+const selectedOsm = rankedOsm.find((candidate) => !candidate.excludedAsTransport && candidate.entry.type === 'way' && candidate.coordinate && candidate.score >= 90) ?? null;
+
+let geometry = null;
+let candidate = null;
 if (selectedOsm) {
-  assert(selectedOsm.distanceMeters < 250, `Selected non-transport OSM object is ${selectedOsm.distanceMeters} m from the official address point.`);
+  const full = await fetchJson(`https://api.openstreetmap.org/api/0.6/way/${selectedOsm.entry.id}/full.json`);
+  const way = full.elements?.find((entry) => entry.type === 'way' && entry.id === selectedOsm.entry.id);
+  const nodes = new Map((full.elements ?? []).filter((entry) => entry.type === 'node').map((entry) => [entry.id, entry]));
+  const polygon = (way?.nodes ?? []).map((id) => nodes.get(id)).filter(Boolean).map((node) => ({ lat: Number(node.lat), lon: Number(node.lon) }));
+  assert(polygon.length >= 4, 'Selected Forskningsparken OSM way has incomplete geometry.');
+  const centroid = polygonCentroid(polygon);
+  assert(pointInPolygon(centroid, polygon), 'Calculated Forskningsparken centroid falls outside the selected building geometry.');
+  const officialPointDistances = officialAddressPoints.map((point) => ({
+    ...point,
+    distanceToGeometryCenterMeters: Number(distanceMeters(point, centroid).toFixed(1)),
+    insideGeometry: pointInPolygon(point, polygon),
+  })).sort((a, b) => a.distanceToGeometryCenterMeters - b.distanceToGeometryCenterMeters);
+  geometry = {
+    sourceObjectId: osmSourceId(selectedOsm.entry),
+    sourceUrl: `https://www.openstreetmap.org/way/${selectedOsm.entry.id}`,
+    polygonNodeCount: polygon.length,
+    centroid: { lat: Number(centroid.lat.toFixed(8)), lon: Number(centroid.lon.toFixed(8)) },
+    officialAddressPoints: officialPointDistances,
+    maximumVertexDistanceMeters: Number(Math.max(...polygon.map((point) => distanceMeters(centroid, point))).toFixed(1)),
+    tags: selectedOsm.tags,
+    raw: full,
+  };
+  candidate = {
+    ...geometry.centroid,
+    sourceProvider: 'osm',
+    sourceObjectId: geometry.sourceObjectId,
+    sourceUrl: geometry.sourceUrl,
+    objectType: 'named_science_park_building_geometry_centroid',
+  };
 }
 
 const currentCoordinate = { lat: Number(place.lat), lon: Number(place.lon) };
-const displacementMeters = distanceMeters(currentCoordinate, addressCoordinate);
-const currentToOsmMeters = selectedOsm ? distanceMeters(currentCoordinate, selectedOsm.coordinate) : null;
-const addressToOsmMeters = selectedOsm?.distanceMeters ?? null;
-const coordinateDecision = displacementMeters <= 3
-  ? 'verify_existing_at_official_address_point'
-  : 'promote_official_address_point';
+const displacementMeters = candidate ? distanceMeters(currentCoordinate, candidate) : null;
+const coordinateDecision = candidate
+  ? (displacementMeters <= 3 ? 'verify_existing_at_named_building_centroid' : 'promote_named_science_park_building_centroid')
+  : 'multiple_official_address_points_need_named_geometry';
 
 const summary = {
   version: '2026-07-24',
@@ -186,53 +241,39 @@ const summary = {
   identityDecision: 'resolved_oslo_science_park_gaustadalleen_21',
   coordinateDecision,
   currentCoordinate,
-  candidate: {
-    lat: addressCoordinate.lat,
-    lon: addressCoordinate.lon,
-    sourceProvider: 'official_address',
-    sourceObjectId: geonorgeSourceId,
-    sourceUrl: urls.geonorge,
-    address: {
-      street: 'Gaustadalléen',
-      number: '21',
-      postcode: '0349',
-      city: 'Oslo',
-      country: 'NO',
-    },
+  candidate,
+  displacementMeters: displacementMeters == null ? null : Number(displacementMeters.toFixed(1)),
+  officialAddress: {
+    address: 'Gaustadalléen 21, 0349 Oslo',
+    coordinateCount: officialAddressPoints.length,
+    coordinates: officialAddressPoints.map(({ rows, ...point }) => point),
+    selectionDecision: officialAddressPoints.length === 1 ? 'single_official_point' : 'multiple_official_points_preserved_not_arbitrarily_selected',
   },
-  displacementMeters: Number(displacementMeters.toFixed(1)),
-  supportingOsmObject: selectedOsm ? {
-    sourceObjectId: osmSourceId(selectedOsm.entry),
-    sourceUrl: `https://www.openstreetmap.org/${selectedOsm.entry.type}/${selectedOsm.entry.id}`,
-    coordinate: selectedOsm.coordinate,
-    addressToObjectMeters: addressToOsmMeters,
-    currentToObjectMeters: Number(currentToOsmMeters.toFixed(1)),
-    score: selectedOsm.score,
-    tags: selectedOsm.tags,
-  } : null,
-  rejectedTransportObjects: rankedOsm.filter((candidate) => candidate.excludedAsTransport).map((candidate) => ({
-    sourceObjectId: osmSourceId(candidate.entry),
-    name: candidate.tags.name ?? null,
+  supportingGeometry: geometry ? (({ raw, ...rest }) => rest)(geometry) : null,
+  rejectedTransportObjects: rankedOsm.filter((item) => item.excludedAsTransport).map((item) => ({
+    sourceObjectId: osmSourceId(item.entry),
+    name: item.tags.name ?? null,
     reason: 'transport_object_not_science_park_building',
-    distanceMeters: candidate.distanceMeters,
+    distanceMeters: item.distanceMeters,
   })),
   sourceChecks: {
     officialAddressAndOrganisationNumber: true,
     official1989History: true,
     brregMainUnitIdentityAndAddress: true,
     brregOperatingUnitIdentityAndAddress: true,
-    geonorgeUniqueExactAddressCoordinate: true,
+    geonorgeExactAddressPointsPreserved: true,
     transportObjectsExcluded: true,
-    supportingNonTransportOsmObjectFound: Boolean(selectedOsm),
+    namedNonTransportBuildingGeometryFound: Boolean(geometry),
   },
   recommendation: {
-    canBecomeVerified: true,
-    nextAction: coordinateDecision === 'promote_official_address_point'
-      ? `Apply the unique Kartverket address point for Gaustadalléen 21 as the canonical display marker, preserve Oslotech and official Forskningsparken identity, ${selectedOsm ? `use ${osmSourceId(selectedOsm.entry)} as supporting non-transport geometry, ` : ''}add coordinate evidence, synchronize aggregate/index copies, and keep protocol max batch at 195.`
-      : `Keep the existing coordinate, attach the unique Kartverket Gaustadalléen 21 source and official Oslotech identity${selectedOsm ? ` plus supporting ${osmSourceId(selectedOsm.entry)}` : ''}, synchronize status fields, and keep protocol max batch at 195.`,
-    coordStatus: 'verified',
-    coordType: 'address_point',
+    canBecomeVerified: Boolean(candidate),
+    nextAction: candidate
+      ? `Apply the semantic building centre derived from ${candidate.sourceObjectId}, preserve both official Kartverket address points without arbitrarily selecting one, add coordinate evidence, synchronize aggregate/index copies, and keep protocol max batch at 195.`
+      : 'Do not promote either official address point arbitrarily. Continue bounded building-geometry research while preserving the official address identity and keeping protocol max batch at 195.',
+    coordStatus: candidate ? 'verified_geometry' : 'needs_source',
+    coordType: candidate ? 'building_center' : null,
     locatorType: 'building',
+    suggestedRadiusMeters: geometry ? Math.max(Number(place.r), Math.ceil(geometry.maximumVertexDistanceMeters / 10) * 10) : Number(place.r),
   },
 };
 
@@ -243,15 +284,16 @@ await fs.writeFile(path.join(reportDir, 'brreg-main-937268815.json'), `${JSON.st
 await fs.writeFile(path.join(reportDir, 'brreg-subunit-974166194.json'), `${JSON.stringify(brregSubunit, null, 2)}\n`);
 await fs.writeFile(path.join(reportDir, 'geonorge-gaustadalleen-21.json'), `${JSON.stringify(geonorge, null, 2)}\n`);
 await fs.writeFile(path.join(reportDir, 'overpass-forskningsparken.json'), `${JSON.stringify(overpass, null, 2)}\n`);
+if (geometry?.raw) await fs.writeFile(path.join(reportDir, `${geometry.sourceObjectId.replace(':', '-')}-full.json`), `${JSON.stringify(geometry.raw, null, 2)}\n`);
 await fs.writeFile(path.join(reportDir, 'summary.json'), `${JSON.stringify(summary, null, 2)}\n`);
-await fs.writeFile(path.join(reportDir, 'README.md'), `# Forskningsparken coordinate research after post-195 closure\n\n- Canonical data changed: **no**\n- Protocol max batch: **${protocolMaxBatch}**\n- Identity: **Forskningsparken / Oslo Science Park, Gaustadalléen 21**\n- Current marker: **${currentCoordinate.lat}, ${currentCoordinate.lon}**\n- Kartverket address point: **${addressCoordinate.lat}, ${addressCoordinate.lon}**\n- Displacement: **${summary.displacementMeters} m**\n- Supporting non-transport OSM object: **${summary.supportingOsmObject?.sourceObjectId ?? 'none found'}**\n- Rejected same-name transport objects: **${summary.rejectedTransportObjects.length}**\n- Official operator: **Oslotech AS, 937268815**\n- Recommendation: **${coordinateDecision}**\n\nThe official Forskningsparken pages and both Brønnøysund units independently resolve the science park to Gaustadalléen 21. Kartverket supplies one exact address coordinate. Same-name transit objects are explicitly excluded from the building identity. No batch 196 is created.\n`);
+await fs.writeFile(path.join(reportDir, 'README.md'), `# Forskningsparken coordinate research after post-195 closure\n\n- Canonical data changed: **no**\n- Protocol max batch: **${protocolMaxBatch}**\n- Identity: **Forskningsparken / Oslo Science Park, Gaustadalléen 21**\n- Current marker: **${currentCoordinate.lat}, ${currentCoordinate.lon}**\n- Official Kartverket address points: **${officialAddressPoints.length}**\n- Named non-transport building geometry: **${geometry?.sourceObjectId ?? 'not found'}**\n- Candidate semantic building centre: **${candidate ? `${candidate.lat}, ${candidate.lon}` : 'none'}**\n- Displacement: **${summary.displacementMeters ?? 'not calculated'} m**\n- Rejected same-name transport objects: **${summary.rejectedTransportObjects.length}**\n- Recommendation: **${coordinateDecision}**\n\nBoth official address points are preserved instead of choosing one arbitrarily. A canonical promotion is recommended only when a named non-transport science-park building geometry can supply a reproducible semantic centre. No batch 196 is created.\n`);
 
 console.log(JSON.stringify({
   status: 'forskningsparken_research_complete',
   reportDir: reportRel,
+  officialAddressPointCount: officialAddressPoints.length,
+  supportingGeometry: geometry?.sourceObjectId ?? null,
   displacementMeters: summary.displacementMeters,
-  geonorgeSourceId,
-  supportingOsmObject: summary.supportingOsmObject?.sourceObjectId ?? null,
   rejectedTransportObjects: summary.rejectedTransportObjects.length,
   recommendation: coordinateDecision,
 }, null, 2));
