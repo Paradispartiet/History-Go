@@ -15,8 +15,8 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-function sha256(buffer) {
-  return createHash('sha256').update(buffer).digest('hex');
+function sha256(value) {
+  return createHash('sha256').update(value).digest('hex');
 }
 
 async function readJson(path) {
@@ -53,20 +53,18 @@ function visibleText(html) {
     .trim();
 }
 
-function browserHeaders(accept = 'text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8') {
+function headers(accept = 'text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8') {
   return {
-    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+    'user-agent': 'History-Go-coordinate-control/1.0 (+https://github.com/Paradispartiet/History-Go)',
     'accept-language': 'nb-NO,nb;q=0.9,en;q=0.8',
     accept,
   };
 }
 
-async function fetchCapture(url, options = {}) {
+async function fetchCapture(url, accept) {
   const response = await fetch(url, {
     redirect: 'follow',
-    headers: { ...browserHeaders(options.accept), ...(options.headers ?? {}) },
-    method: options.method ?? 'GET',
-    body: options.body,
+    headers: headers(accept),
   });
   const bytes = Buffer.from(await response.arrayBuffer());
   return {
@@ -80,19 +78,12 @@ async function fetchCapture(url, options = {}) {
   };
 }
 
-function absoluteLinks(html, baseUrl) {
+function absoluteLinks(html, baseUrl, tag = null) {
+  const regex = tag === 'script'
+    ? /<script[^>]+src=["']([^"']+)["']/gi
+    : /(?:href|src)=["']([^"']+)["']/gi;
   const links = new Set();
-  for (const match of html.matchAll(/(?:href|src)=["']([^"']+)["']/gi)) {
-    try {
-      links.add(new URL(decodeEntities(match[1]), baseUrl).href);
-    } catch {}
-  }
-  return [...links];
-}
-
-function scriptLinks(html, baseUrl) {
-  const links = new Set();
-  for (const match of html.matchAll(/<script[^>]+src=["']([^"']+)["']/gi)) {
+  for (const match of html.matchAll(regex)) {
     try {
       links.add(new URL(decodeEntities(match[1]), baseUrl).href);
     } catch {}
@@ -104,17 +95,14 @@ function mapSignals(text) {
   const folded = text.toLowerCase();
   const needles = [
     'frognerstranda', 'frognerkilen', 'hjortnes', 'framnes',
-    'geojson', 'arcgis', 'mapserver', 'featureserver', 'wfs', 'wms',
-    'leaflet', 'mapbox', 'openlayers', 'latitude', 'longitude', 'coordinates',
+    'geojson', 'featureserver', 'mapserver', 'arcgis', 'wfs', 'wms',
+    'leaflet', 'openlayers', 'mapbox', 'coordinates', 'latitude', 'longitude',
   ];
   const hits = [];
   for (const needle of needles) {
     let cursor = 0;
-    while ((cursor = folded.indexOf(needle, cursor)) >= 0 && hits.length < 300) {
-      hits.push({
-        needle,
-        snippet: text.slice(Math.max(0, cursor - 220), cursor + needle.length + 420),
-      });
+    while ((cursor = folded.indexOf(needle, cursor)) >= 0 && hits.length < 250) {
+      hits.push({ needle, snippet: text.slice(Math.max(0, cursor - 180), cursor + needle.length + 360) });
       cursor += needle.length;
     }
   }
@@ -122,8 +110,21 @@ function mapSignals(text) {
     [...text.matchAll(/https?:\\?\/\\?\/[A-Za-z0-9._~:/?#\[\]@!$&'()*+,;=%-]+/g)]
       .map((match) => match[0].replaceAll('\\/', '/'))
       .filter((url) => /map|geo|arcgis|feature|wfs|wms|fjord|api/i.test(url)),
-  )].slice(0, 300);
+  )].slice(0, 250);
   return { hits, urls };
+}
+
+function normalizeName(value) {
+  return String(value ?? '').toLocaleLowerCase('nb-NO').replace(/[^a-z0-9æøå]+/g, ' ').trim();
+}
+
+function geometryOf(element) {
+  if (Array.isArray(element.geometry) && element.geometry.length > 0) {
+    return element.geometry.map(({ lat, lon }) => ({ lat, lon }));
+  }
+  if (Number.isFinite(element.lat) && Number.isFinite(element.lon)) return [{ lat: element.lat, lon: element.lon }];
+  if (Number.isFinite(element.center?.lat) && Number.isFinite(element.center?.lon)) return [element.center];
+  return [];
 }
 
 function haversineMeters(a, b) {
@@ -135,84 +136,60 @@ function haversineMeters(a, b) {
   return 2 * 6371008.8 * Math.asin(Math.sqrt(h));
 }
 
-function lineLengthMeters(points) {
+function lineLength(points) {
   let total = 0;
   for (let i = 1; i < points.length; i += 1) total += haversineMeters(points[i - 1], points[i]);
   return total;
 }
 
-function elementGeometry(element) {
-  if (Array.isArray(element.geometry) && element.geometry.length > 0) {
-    return element.geometry.map((point) => ({ lat: point.lat, lon: point.lon }));
-  }
-  if (Number.isFinite(element.lat) && Number.isFinite(element.lon)) return [{ lat: element.lat, lon: element.lon }];
-  if (element.center && Number.isFinite(element.center.lat) && Number.isFinite(element.center.lon)) {
-    return [{ lat: element.center.lat, lon: element.center.lon }];
-  }
-  return [];
-}
-
 function summarizeElement(element) {
-  const geometry = elementGeometry(element);
-  const first = geometry[0] ?? null;
-  const last = geometry.at(-1) ?? null;
-  const center = element.center
-    ?? (geometry.length === 1 ? geometry[0] : geometry.length > 1 ? {
-      lat: geometry.reduce((sum, p) => sum + p.lat, 0) / geometry.length,
-      lon: geometry.reduce((sum, p) => sum + p.lon, 0) / geometry.length,
-    } : null);
+  const geometry = geometryOf(element);
+  const center = element.center ?? (geometry.length === 1 ? geometry[0] : geometry.length > 1 ? {
+    lat: geometry.reduce((sum, point) => sum + point.lat, 0) / geometry.length,
+    lon: geometry.reduce((sum, point) => sum + point.lon, 0) / geometry.length,
+  } : null);
   return {
     type: element.type,
     id: element.id,
     sourceObjectId: `osm-${element.type}:${element.id}`,
     tags: element.tags ?? {},
-    geometryPointCount: geometry.length,
     center,
-    first,
-    last,
-    lengthM: geometry.length > 1 ? Number(lineLengthMeters(geometry).toFixed(2)) : null,
+    first: geometry[0] ?? null,
+    last: geometry.at(-1) ?? null,
+    geometryPointCount: geometry.length,
+    lengthM: geometry.length > 1 ? Number(lineLength(geometry).toFixed(2)) : null,
   };
 }
 
-function normalizeName(value) {
-  return String(value ?? '').toLocaleLowerCase('nb-NO').replace(/[^a-z0-9æøå]+/g, ' ').trim();
-}
-
-function matchName(element, names) {
+function exactName(element, names) {
   const name = normalizeName(element.tags?.name);
   return names.some((candidate) => name === normalizeName(candidate));
 }
 
-function nominatimCenter(result) {
+function resultCenter(result) {
   return { lat: Number(result.lat), lon: Number(result.lon) };
 }
 
-function nearestDistance(point, candidates) {
-  const rows = candidates
-    .map((candidate) => ({
-      candidate,
-      distanceM: haversineMeters(point, candidate.center ?? candidate),
-    }))
-    .sort((a, b) => a.distanceM - b.distanceM);
-  return rows[0] ?? null;
+function nearest(point, rows) {
+  return rows
+    .map((row) => ({ row, distanceM: haversineMeters(point, row.center ?? resultCenter(row)) }))
+    .sort((a, b) => a.distanceM - b.distanceM)[0] ?? null;
 }
 
 const protocol = await readFile(join(root, 'docs/coordinates/coordinate-control-protocol.md'), 'utf8');
-const protocolBatches = [...protocol.matchAll(/^\|\s*(\d+)\s*\|/gm)].map((match) => Number(match[1]));
-assert(Math.max(...protocolBatches) === EXPECTED_BATCH, `Expected protocol max batch ${EXPECTED_BATCH}.`);
+const batches = [...protocol.matchAll(/^\|\s*(\d+)\s*\|/gm)].map((match) => Number(match[1]));
+assert(Math.max(...batches) === EXPECTED_BATCH, `Expected protocol max batch ${EXPECTED_BATCH}.`);
 assert(protocol.includes('| 194 | `regjeringskvartalet` |'), 'Protocol lacks batch 194 Regjeringskvartalet.');
 
 const centralAudit = await readJson(join(root, 'reports/oslo-coordinate-central-unresolved-audit-post-194/summary.json'));
-assert(centralAudit.coordinateMaxBatch === EXPECTED_BATCH, 'Central unresolved audit is not post-194.');
-const centralRow = centralAudit.centralRows?.find((row) => row.placeId === PLACE_ID);
-assert(centralRow, 'Frognerstranda is absent from merged central unresolved audit.');
-assert(centralRow.productionReadiness === 'needs_source_or_scope', `Unexpected Frognerstranda readiness ${centralRow.productionReadiness}.`);
+assert(centralAudit.coordinateMaxBatch === EXPECTED_BATCH, 'Central audit is not post-194.');
+const auditRow = centralAudit.centralRows?.find((row) => row.placeId === PLACE_ID);
+assert(auditRow?.productionReadiness === 'needs_source_or_scope', 'Frognerstranda central-audit state changed.');
 
 const evidence = await readJson(join(root, 'data/coordinate-evidence/oslo/popkultur/frognerstranda.json'));
 assert(evidence.placeId === PLACE_ID, 'Unexpected Frognerstranda evidence file.');
 assert(evidence.evidenceStatus === 'needs_research' && evidence.coordinateDecision === 'needs_geometry', 'Frognerstranda evidence state changed.');
-assert(evidence.identity?.identityStatus === 'resolved', 'Frognerstranda identity is no longer resolved.');
-assert((evidence.requiredEvidence ?? []).some((text) => text.includes('flere kildebelagte strand-/promenadeankre')), 'Multi-anchor evidence requirement changed.');
+assert((evidence.requiredEvidence ?? []).some((text) => text.includes('flere kildebelagte strand-/promenadeankre')), 'Frognerstranda multi-anchor requirement changed.');
 
 const place = await readJson(join(root, 'data/places/popkultur/oslo/places_oslo_populaerkultur/frognerstranda.json'));
 assert(place.id === PLACE_ID && place.coordStatus === 'needs_source', 'Frognerstranda canonical state changed.');
@@ -228,55 +205,42 @@ const officialChecks = {
   west: officialText.includes('den innerste delen av Frognerkilen og Bygdøy i vest'),
   east: officialText.includes('Hjortnes/Framnes i øst'),
   shoreline: officialText.includes('Frognerstranda er en strandlinje'),
-  fjordCitySubarea: officialText.includes('vestligste delområdet av Fjordbyen'),
+  westernSubarea: officialText.includes('vestligste delområdet av Fjordbyen'),
   pedestrianCycle: officialText.includes('gang- og sykkelveier'),
   harbourPromenade: officialText.toLocaleLowerCase('nb-NO').includes('havnepromenaden'),
 };
-assert(Object.values(officialChecks).every(Boolean), `Official scope page failed hard gate: ${JSON.stringify(officialChecks)}.`);
+assert(Object.values(officialChecks).every(Boolean), `Official scope hard gate failed: ${JSON.stringify(officialChecks)}.`);
 await writeFile(join(reportDir, 'responses/official-frognerstranda-page.html'), official.bytes);
 
 const pageLinks = absoluteLinks(official.text, official.finalUrl);
-const pageScripts = scriptLinks(official.text, official.finalUrl);
+const pageScripts = absoluteLinks(official.text, official.finalUrl, 'script');
 const pageSignals = mapSignals(official.text);
 const scriptReports = [];
 for (const [index, url] of pageScripts.slice(0, 40).entries()) {
-  const capture = await fetchCapture(url, { accept: 'text/javascript,application/javascript,text/plain,*/*' });
+  const capture = await fetchCapture(url, 'text/javascript,application/javascript,text/plain,*/*');
   const signals = mapSignals(capture.text);
-  scriptReports.push({
-    url,
-    status: capture.status,
-    contentType: capture.contentType,
-    bytes: capture.bytes.length,
-    signalCount: signals.hits.length,
-    signals,
-    responseFile: signals.hits.length || signals.urls.length
-      ? `responses/script-${String(index).padStart(2, '0')}.txt`
-      : null,
-  });
-  if (scriptReports.at(-1).responseFile) await writeFile(join(reportDir, scriptReports.at(-1).responseFile), capture.bytes);
+  const responseFile = signals.hits.length || signals.urls.length ? `responses/script-${String(index).padStart(2, '0')}.txt` : null;
+  scriptReports.push({ url, status: capture.status, contentType: capture.contentType, bytes: capture.bytes.length, signals, responseFile });
+  if (responseFile) await writeFile(join(reportDir, responseFile), capture.bytes);
 }
 
-const planPdf = await fetchCapture(OFFICIAL_PLAN_PDF, { accept: 'application/pdf,*/*' });
-assert(planPdf.ok && /pdf/i.test(planPdf.contentType ?? ''), `Official Fjordbyplan PDF failed: ${planPdf.status} ${planPdf.contentType}.`);
+const planPdf = await fetchCapture(OFFICIAL_PLAN_PDF, 'application/pdf,*/*');
+assert(planPdf.ok && /pdf/i.test(planPdf.contentType ?? ''), `Official Fjordbyplan PDF failed ${planPdf.status} ${planPdf.contentType}.`);
 await writeFile(join(reportDir, 'responses/fjordbyplan-2008.pdf'), planPdf.bytes);
 
-const overpassQuery = `[out:json][timeout:180];\n(\n  nwr[\"name\"~\"Frognerstranda|Frognerkilen|Hjortnes|Framnes|Bygdøy\",i](${BBOX.south},${BBOX.west},${BBOX.north},${BBOX.east});\n  way[\"highway\"~\"footway|cycleway|path|pedestrian\"](${BBOX.south},${BBOX.west},${BBOX.north},${BBOX.east});\n  way[\"natural\"=\"coastline\"](${BBOX.south},${BBOX.west},${BBOX.north},${BBOX.east});\n  relation[\"route\"~\"foot|bicycle\"](${BBOX.south},${BBOX.west},${BBOX.north},${BBOX.east});\n);\nout tags center geom;`;
-const overpass = await fetchCapture('https://overpass-api.de/api/interpreter', {
-  method: 'POST',
-  accept: 'application/json',
-  headers: { 'content-type': 'application/x-www-form-urlencoded' },
-  body: new URLSearchParams({ data: overpassQuery }).toString(),
-});
+const overpassQuery = `[out:json][timeout:180];\n(\n  nwr["name"~"Frognerstranda|Frognerkilen|Hjortnes|Framnes|Bygdøy",i](${BBOX.south},${BBOX.west},${BBOX.north},${BBOX.east});\n  way["highway"~"footway|cycleway|path|pedestrian"](${BBOX.south},${BBOX.west},${BBOX.north},${BBOX.east});\n  way["natural"="coastline"](${BBOX.south},${BBOX.west},${BBOX.north},${BBOX.east});\n  relation["route"~"foot|bicycle"](${BBOX.south},${BBOX.west},${BBOX.north},${BBOX.east});\n);\nout tags center geom;`;
+const overpassUrl = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(overpassQuery)}`;
+const overpass = await fetchCapture(overpassUrl, 'application/json');
 assert(overpass.ok, `Overpass failed ${overpass.status}.`);
 const overpassPayload = JSON.parse(overpass.text);
 await writeJson(join(reportDir, 'overpass-raw.json'), overpassPayload);
 
-const allElements = (overpassPayload.elements ?? []).map(summarizeElement);
-const exactFrognerstranda = allElements.filter((element) => matchName(element, ['Frognerstranda']));
-const westNamed = allElements.filter((element) => matchName(element, ['Frognerkilen', 'Bygdøy']));
-const eastNamed = allElements.filter((element) => matchName(element, ['Hjortnes', 'Framnes']));
-const coastlineWays = allElements.filter((element) => element.tags?.natural === 'coastline');
-const pedestrianWays = allElements.filter((element) => /^(footway|cycleway|path|pedestrian)$/.test(element.tags?.highway ?? ''));
+const elements = (overpassPayload.elements ?? []).map(summarizeElement);
+const exactFrognerstranda = elements.filter((element) => exactName(element, ['Frognerstranda']));
+const westNamed = elements.filter((element) => exactName(element, ['Frognerkilen', 'Bygdøy']));
+const eastNamed = elements.filter((element) => exactName(element, ['Hjortnes', 'Framnes']));
+const coastlineWays = elements.filter((element) => element.tags?.natural === 'coastline');
+const pedestrianWays = elements.filter((element) => /^(footway|cycleway|path|pedestrian)$/.test(element.tags?.highway ?? ''));
 
 const queries = [
   'Frognerstranda, Oslo, Norway',
@@ -288,54 +252,42 @@ const queries = [
 const nominatimRuns = [];
 for (const query of queries) {
   const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&q=${encodeURIComponent(query)}&limit=20&polygon_geojson=1&addressdetails=1&namedetails=1&viewbox=${BBOX.west},${BBOX.north},${BBOX.east},${BBOX.south}&bounded=1`;
-  const capture = await fetchCapture(url, { accept: 'application/json' });
+  const capture = await fetchCapture(url, 'application/json');
   assert(capture.ok, `Nominatim failed ${capture.status}: ${query}.`);
   nominatimRuns.push({ query, url, results: JSON.parse(capture.text) });
+  await new Promise((resolve) => setTimeout(resolve, 1100));
 }
 await writeJson(join(reportDir, 'nominatim.json'), { queryRuns: nominatimRuns });
 
 const exactNominatim = nominatimRuns.find((run) => run.query.startsWith('Frognerstranda'))?.results ?? [];
-const westNominatim = nominatimRuns
+const westCandidates = nominatimRuns
   .filter((run) => /Frognerkilen|Bygdøy/.test(run.query))
-  .flatMap((run) => run.results.map((result) => ({ ...result, query: run.query, center: nominatimCenter(result) })));
-const eastNominatim = nominatimRuns
+  .flatMap((run) => run.results.map((result) => ({ ...result, query: run.query, center: resultCenter(result) })));
+const eastCandidates = nominatimRuns
   .filter((run) => /Hjortnes|Framnes/.test(run.query))
-  .flatMap((run) => run.results.map((result) => ({ ...result, query: run.query, center: nominatimCenter(result) })));
+  .flatMap((run) => run.results.map((result) => ({ ...result, query: run.query, center: resultCenter(result) })));
 
-const exactLineCandidates = exactFrognerstranda.filter((element) => element.geometryPointCount > 1);
-const exactNamedLengths = exactLineCandidates.map((element) => ({
-  sourceObjectId: element.sourceObjectId,
-  lengthM: element.lengthM,
-  first: element.first,
-  last: element.last,
-  tags: element.tags,
-  nearestWestToFirst: westNominatim.length && element.first ? nearestDistance(element.first, westNominatim) : null,
-  nearestWestToLast: westNominatim.length && element.last ? nearestDistance(element.last, westNominatim) : null,
-  nearestEastToFirst: eastNominatim.length && element.first ? nearestDistance(element.first, eastNominatim) : null,
-  nearestEastToLast: eastNominatim.length && element.last ? nearestDistance(element.last, eastNominatim) : null,
+const namedLines = exactFrognerstranda.filter((element) => element.geometryPointCount > 1).map((element) => ({
+  ...element,
+  nearestWestFromFirst: element.first && westCandidates.length ? nearest(element.first, westCandidates) : null,
+  nearestWestFromLast: element.last && westCandidates.length ? nearest(element.last, westCandidates) : null,
+  nearestEastFromFirst: element.first && eastCandidates.length ? nearest(element.first, eastCandidates) : null,
+  nearestEastFromLast: element.last && eastCandidates.length ? nearest(element.last, eastCandidates) : null,
 }));
 
-const machineGeometrySignals = [
-  ...pageSignals.urls,
-  ...scriptReports.flatMap((report) => report.signals.urls),
-].filter((url) => /frogner|fjord|map|geo|feature|arcgis|wfs|wms/i.test(url));
-const uniqueMachineGeometrySignals = [...new Set(machineGeometrySignals)];
-
-const exactNamedLineCoversOfficialScope = exactNamedLengths.some((candidate) => {
-  const westDistance = Math.min(
-    candidate.nearestWestToFirst?.distanceM ?? Infinity,
-    candidate.nearestWestToLast?.distanceM ?? Infinity,
-  );
-  const eastDistance = Math.min(
-    candidate.nearestEastToFirst?.distanceM ?? Infinity,
-    candidate.nearestEastToLast?.distanceM ?? Infinity,
-  );
+const exactNamedLineCoversOfficialScope = namedLines.some((line) => {
+  const westDistance = Math.min(line.nearestWestFromFirst?.distanceM ?? Infinity, line.nearestWestFromLast?.distanceM ?? Infinity);
+  const eastDistance = Math.min(line.nearestEastFromFirst?.distanceM ?? Infinity, line.nearestEastFromLast?.distanceM ?? Infinity);
   return westDistance <= 150 && eastDistance <= 150;
 });
 
-const officialMachineGeometryFound = uniqueMachineGeometrySignals.some((url) => /FeatureServer|MapServer|geojson|wfs/i.test(url));
-const canBuildMultiAnchorModel = westNominatim.length > 0
-  && eastNominatim.length > 0
+const machineGeometrySignals = [...new Set([
+  ...pageSignals.urls,
+  ...scriptReports.flatMap((report) => report.signals.urls),
+])];
+const officialMachineGeometryFound = machineGeometrySignals.some((url) => /FeatureServer|MapServer|geojson|wfs/i.test(url));
+const canBuildMultiAnchorModel = westCandidates.length > 0
+  && eastCandidates.length > 0
   && (coastlineWays.length > 0 || pedestrianWays.length > 0)
   && !exactNamedLineCoversOfficialScope;
 
@@ -347,12 +299,12 @@ const decision = officialMachineGeometryFound
       ? 'multi_anchor_linear_model_requires_semantic_chain_research'
       : 'keep_needs_source';
 const nextAction = officialMachineGeometryFound
-  ? 'Follow the discovered official map service and isolate the exact Frognerstranda subarea geometry before production.'
+  ? 'Follow the official map service and isolate the exact Frognerstranda subarea geometry before production.'
   : exactNamedLineCoversOfficialScope
-    ? 'Re-fetch and hard-gate the one exact named line against both official endpoints before production.'
+    ? 'Hard-gate the exact named line against both official endpoints before production.'
     : canBuildMultiAnchorModel
-      ? 'Construct and verify one ordered west–middle–east shoreline/promenade chain from exact named endpoint objects; do not promote the western OSM footway alone.'
-      : 'Retain needs_source because neither an official geometry nor an unambiguous endpoint chain is available.';
+      ? 'Build and verify one ordered west–middle–east shoreline/promenade chain; the western named footway alone is insufficient.'
+      : 'Retain needs_source because no official geometry or unambiguous endpoint chain is available.';
 
 const summary = {
   version: REPORT_DATE,
@@ -373,7 +325,7 @@ const summary = {
     westBoundary: 'inner Frognerkilen and Bygdøy',
     eastBoundary: 'Hjortnes/Framnes',
     parentContext: 'westernmost Fjordbyen subarea',
-    notAcceptableAsSoleProxy: ['E18 road', 'railway', 'one arbitrary coastline way', 'western Frognerstranda footway only'],
+    rejectedSingleProxies: ['E18 road', 'railway', 'arbitrary coastline way', 'western Frognerstranda footway alone'],
   },
   officialPage: {
     status: official.status,
@@ -384,7 +336,7 @@ const summary = {
     pageScripts,
     pageSignals,
     scriptReports,
-    machineGeometrySignals: uniqueMachineGeometrySignals,
+    machineGeometrySignals,
     officialMachineGeometryFound,
   },
   officialPlanPdf: {
@@ -397,38 +349,38 @@ const summary = {
   },
   osmInventory: {
     bbox: BBOX,
-    elementCount: allElements.length,
+    elementCount: elements.length,
     exactFrognerstranda,
     westNamed,
     eastNamed,
     coastlineWayCount: coastlineWays.length,
     pedestrianWayCount: pedestrianWays.length,
-    exactNamedLengths,
+    namedLines,
     exactNamedLineCoversOfficialScope,
   },
   nominatim: {
     exactFrognerstranda: exactNominatim,
-    westBoundaryCandidates: westNominatim,
-    eastBoundaryCandidates: eastNominatim,
+    westBoundaryCandidates: westCandidates,
+    eastBoundaryCandidates: eastCandidates,
   },
   canBuildMultiAnchorModel,
   canPromoteNow: decision === 'exact_named_line_candidate_covers_official_scope',
   decision,
   nextAction,
 };
-
 await writeJson(join(reportDir, 'summary.json'), summary);
+
 const readme = [
   '# Frognerstranda linear scope and geometry research after batch 194',
   '',
   `Date: ${REPORT_DATE}`,
   '',
-  `- official scope: inner Frognerkilen/Bygdøy → Hjortnes/Framnes`,
-  `- official interpretation: linear coastal zone`,
+  '- official scope: inner Frognerkilen/Bygdøy → Hjortnes/Framnes',
+  '- official interpretation: linear coastal zone',
   `- exact named OSM Frognerstranda objects: ${exactFrognerstranda.length}`,
-  `- official machine-geometry signals: ${uniqueMachineGeometrySignals.length}`,
-  `- west boundary candidates: ${westNominatim.length}`,
-  `- east boundary candidates: ${eastNominatim.length}`,
+  `- official machine-geometry signals: ${machineGeometrySignals.length}`,
+  `- west boundary candidates: ${westCandidates.length}`,
+  `- east boundary candidates: ${eastCandidates.length}`,
   `- exact named line covers official scope: ${exactNamedLineCoversOfficialScope}`,
   `- multi-anchor model worth follow-up: ${canBuildMultiAnchorModel}`,
   '',
