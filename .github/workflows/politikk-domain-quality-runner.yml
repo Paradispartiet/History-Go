@@ -45,7 +45,16 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p reports/politikk-canonical-migration
-          base64 -d tools/apply-politikk-rett-vertical.py.gz.b64 | gunzip > tools/apply-politikk-rett-vertical.py
+          {
+            wc -c tools/apply-politikk-rett-vertical.py.gz.b64
+            sha256sum tools/apply-politikk-rett-vertical.py.gz.b64
+          } 2>&1 | tee reports/politikk-canonical-migration/rett-lov-archive-check.txt
+          base64 -d tools/apply-politikk-rett-vertical.py.gz.b64 \
+            > /tmp/apply-politikk-rett-vertical.py.gz \
+            2> >(tee reports/politikk-canonical-migration/rett-lov-archive-decode.txt >&2)
+          gzip -t /tmp/apply-politikk-rett-vertical.py.gz \
+            2>&1 | tee -a reports/politikk-canonical-migration/rett-lov-archive-check.txt
+          gunzip -c /tmp/apply-politikk-rett-vertical.py.gz > tools/apply-politikk-rett-vertical.py
           python -m py_compile tools/apply-politikk-rett-vertical.py \
             2>&1 | tee reports/politikk-canonical-migration/rett-lov-migration-syntax.txt
           python tools/apply-politikk-rett-vertical.py \
