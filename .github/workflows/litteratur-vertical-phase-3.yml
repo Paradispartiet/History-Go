@@ -1,0 +1,133 @@
+name: Literature vertical depth phase 3
+
+on:
+  push:
+    branches: [agent/litteratur-vertikal-fase-3-nordisk]
+
+permissions:
+  contents: write
+
+jobs:
+  build-validate-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/litteratur-vertikal-fase-3-nordisk
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Rebase onto current main
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin main
+          git rebase origin/main
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Materialize and run complete gate
+        id: gate
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/litteratur-canonical-migration /tmp/litteratur-phase3-ci
+          REPORT='reports/litteratur-canonical-migration/litteratur-phase-3-ci-validation.txt'
+          : > "$REPORT"
+          exec > >(tee /tmp/litteratur-phase3-ci/full-run.log) 2>&1
+
+          echo 'dc48283d08061e3d5649579731eadb6ad8a0acbae3d9fe95c6002d50548e2c2f  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part00a' | sha256sum -c -
+          echo 'db63337220b602e6b79a0399f6bea7ddb46e3b4551c5d74a8b4e3b8695233d3c  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part00b' | sha256sum -c -
+          echo 'c446431bc50358f5e28a5a7d872ec069436a10d3a9bbac671621f97c64d057ef  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part01' | sha256sum -c -
+          echo '906aa694dfe41956fea6b0ab77c194bf107a4ade6db3eaf61e9f0f78417ff571  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part02' | sha256sum -c -
+          echo 'e1a660a35657e6f77839f30d11a71feb45ff22d66ac2a294363109f24593dc96  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part03' | sha256sum -c -
+          echo '86f8e5d96fd2b5667f9f9c71bb6f032954536ac113d584ea3cf87c3cb08966b8  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part04' | sha256sum -c -
+          echo 'c5fb8e87bb1008ec2507d3d13eb541f5ad8ccff7bf3889f32a10d121f06e488e  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part05' | sha256sum -c -
+          echo 'a496fe21debf4b5aba73657e9c66e83b745332e0471dc96c257a7f733b9cf6db  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part06' | sha256sum -c -
+          cat tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part* > tools/build-litteratur-vertical-phase-3.mjs.gz.b64
+          echo '743383799598ac348c4f063978291cf44d8cc5dc8946781e7b175bfa905c3598  tools/build-litteratur-vertical-phase-3.mjs.gz.b64' | sha256sum -c -
+          base64 -d tools/build-litteratur-vertical-phase-3.mjs.gz.b64 | gzip -d > tools/build-litteratur-vertical-phase-3.mjs
+          node --check tools/build-litteratur-vertical-phase-3.mjs
+          node tools/build-litteratur-vertical-phase-3.mjs | tee /tmp/litteratur-phase3-ci/builder.log
+
+          rm -f tools/build-litteratur-vertical-phase-3.mjs
+          rm -f tools/build-litteratur-vertical-phase-3.mjs.gz.b64
+          rm -f tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part*
+          rm -f .github/workflows/litteratur-vertical-phase-3.yml
+          rm -f reports/litteratur-canonical-migration/litteratur-phase-3-failure.log
+
+          run_check() {
+            local name="$1"
+            shift
+            echo "RUN | $name" | tee -a "$REPORT"
+            "$@" 2>&1 | tee "/tmp/litteratur-phase3-ci/${name}.log"
+            echo "PASS | $name" | tee -a "$REPORT"
+          }
+
+          run_check phase3-validator node tools/validate-litteratur-nordisk-institusjon-sted-phase-3.mjs
+          run_check phase2-validator node tools/validate-litteratur-historie-verden-phase-2.mjs
+          run_check phase1-validator node tools/validate-litteratur-poetikk-phase-1.mjs
+          run_check people-data bash scripts/check-people.sh
+          run_check places-data bash scripts/check-places.sh
+          run_check category-audit npm run audit:categories
+          run_check quiz-template-audit npm run audit:quiz-templates
+          run_check quiz-production-context npm run audit:quiz-production-context
+          run_check quiz-progression npm run audit:quiz-progression
+          run_check quiz-theory-binding npm run audit:quiz-theory-binding
+          run_check quiz-content-tests npm run test:quiz-content-audit
+          run_check quiz-production-tests npm run test:quiz-production
+          run_check knowledge-web-typecheck npm run typecheck:web
+          run_check build-scripts npm run build:scripts
+          run_check knowledge-canonical npm run knowledge:canonical:check
+          run_check knowledge-legacy npm run knowledge:legacy:check
+          run_check knowledge-audit npm run audit:knowledge
+          run_check knowledge-v2-tests npm run test:knowledge-v2
+          run_check knowledge-storage-test node --test tests/knowledge-canonical-storage-contract.test.js
+          run_check browser-build-check npm run build:web:check
+          run_check scripts-typecheck npm run typecheck:scripts
+          run_check tools-typecheck npm run typecheck:tools
+          run_check tools-build npm run build:tools
+          run_check social-meet-smoke npm run test:social-meet-spotmeeting-smoke
+          run_check hidden-test-mode node tests/hg-test-mode.test.js
+          run_check header-search-menu node tests/header-search-menu.test.js
+          run_check diff-check git diff --check
+
+          echo 'RESULTAT: PASS' | tee -a "$REPORT"
+
+          git add -A data/fag/litteratur reports/litteratur-canonical-migration tools .github/workflows
+          git diff --cached --check
+          git commit -m 'Litteratur: bygg norsk, nordisk og samisk institusjonsakse'
+          git push --force-with-lease origin HEAD:agent/litteratur-vertikal-fase-3-nordisk
+
+      - name: Upload complete gate logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: literature-phase-3-complete-gate-${{ github.run_id }}
+          path: |
+            /tmp/litteratur-phase3-ci/*.log
+            reports/litteratur-canonical-migration/litteratur-phase-3-ci-validation.txt
+            reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-delta.txt
+          if-no-files-found: warn
+
+      - name: Publish failure diagnostics
+        if: steps.gate.outcome == 'failure'
+        run: |
+          set -euo pipefail
+          cp /tmp/litteratur-phase3-ci/full-run.log reports/litteratur-canonical-migration/litteratur-phase-3-failure.log
+          rm -f .github/workflows/litteratur-vertical-phase-3.yml
+          git add -A .github/workflows reports/litteratur-canonical-migration/litteratur-phase-3-failure.log
+          git diff --cached --check
+          git commit -m 'Litteratur: lagre fase 3-feildiagnostikk'
+          git push --force-with-lease origin HEAD:agent/litteratur-vertikal-fase-3-nordisk
+
+      - name: Propagate gate failure
+        if: steps.gate.outcome == 'failure'
+        run: exit 1
