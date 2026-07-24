@@ -1,0 +1,50 @@
+name: Politics two normal opening sets
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: politics-two-normal-opening-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: startsWith(github.head_ref, 'agent/politikk-two-normal-opening-sets')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Apply normal opening contract
+        if: hashFiles('tools/apply-politikk-two-normal-opening-sets.mjs') != ''
+        run: |
+          set -euo pipefail
+          node tools/apply-politikk-two-normal-opening-sets.mjs
+          node tools/validate-politikk-two-normal-opening-sets.mjs | tee reports/politikk-canonical-migration/politikk-two-normal-opening-sets-validation.txt
+          node -e 'JSON.parse(require("fs").readFileSync("data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json","utf8")); JSON.parse(require("fs").readFileSync("reports/politikk-canonical-migration/politikk-two-normal-opening-sets-blueprints.json","utf8")); console.log("JSON parse: PASS")'
+          git diff --check
+      - name: Commit normal opening contract
+        if: hashFiles('tools/apply-politikk-two-normal-opening-sets.mjs') != ''
+        run: |
+          set -euo pipefail
+          rm tools/apply-politikk-two-normal-opening-sets.mjs
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json
+          git add reports/politikk-canonical-migration/politikk-two-normal-opening-sets-blueprints.json
+          git add reports/politikk-canonical-migration/politikk-two-normal-opening-sets.md
+          git add reports/politikk-canonical-migration/politikk-two-normal-opening-sets-validation.txt
+          git add tools/validate-politikk-two-normal-opening-sets.mjs
+          git add -u tools/apply-politikk-two-normal-opening-sets.mjs
+          git diff --cached --check
+          git commit -m 'Politikk: lås to normale åpningssett'
+          git push origin HEAD:${{ github.head_ref }}
