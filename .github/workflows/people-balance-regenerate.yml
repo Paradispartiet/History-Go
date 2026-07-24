@@ -1,0 +1,57 @@
+name: People balance regenerate
+
+on:
+  push:
+    branches:
+      - agent/oslo-politikk-people-full-coverage
+    paths:
+      - 'data/people/**'
+      - 'tests/oslo-politikk-final-people-expansion.test.js'
+      - '.github/workflows/people-balance-regenerate.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-politikk-people-full-coverage
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Regenerate People artifacts
+        run: |
+          npm run civication:history-people:build
+          npm run build:tools
+          node dist/tools/audit-people-invalid-place-refs.mjs
+          node dist/tools/audit-people-of-places-status.mjs
+          node dist/tools/audit-people-place-coverage.mjs
+
+      - name: Run balanced final-batch test
+        run: node tests/oslo-politikk-final-people-expansion.test.js
+
+      - name: Commit generated artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/Civication/historyPeople_index.json
+          git add reports/people-invalid-place-refs.json reports/people-invalid-place-refs.md
+          git add reports/people-of-places-status.json reports/people-of-places-status.md
+          git add reports/people-place-coverage.json reports/people-place-coverage.md
+          if git diff --cached --quiet; then
+            echo 'No generated changes'
+          else
+            git commit -m 'Regenerer balanserte People-artifakter'
+            git push origin HEAD:agent/oslo-politikk-people-full-coverage
+          fi
