@@ -67,6 +67,7 @@ for (const file of [
 let manifest = null;
 let registry = null;
 let normalOpeningPolicy = null;
+let canonicalStandardText = null;
 
 try {
   manifest = await readJson(manifestPath);
@@ -86,6 +87,12 @@ try {
   failures.push({ file: normalOpeningPolicyPath, reason: `invalid JSON: ${error.message}` });
 }
 
+try {
+  canonicalStandardText = await readFile(abs(standardPath), "utf8");
+} catch (error) {
+  failures.push({ file: standardPath, reason: `could not read canonical standard: ${error.message}` });
+}
+
 if (normalOpeningPolicy) {
   if (normalOpeningPolicy.status !== "canonical_global_invariant") {
     failures.push({ file: normalOpeningPolicyPath, reason: "normal opening policy is not canonical_global_invariant" });
@@ -98,6 +105,39 @@ if (normalOpeningPolicy) {
   }
   if (normalOpeningPolicy.opening_block?.total_questions !== 14) {
     failures.push({ file: normalOpeningPolicyPath, reason: "normal opening policy must require fourteen opening questions" });
+  }
+  if (normalOpeningPolicy.exceptions_allowed !== false) {
+    failures.push({ file: normalOpeningPolicyPath, reason: "normal opening policy must forbid target-specific exceptions" });
+  }
+  if (Object.keys(normalOpeningPolicy.grandfathered_targets || {}).length !== 0) {
+    failures.push({ file: normalOpeningPolicyPath, reason: "grandfathered normal-opening targets remain" });
+  }
+  if (!normalOpeningPolicy.opening_block?.surface_rule) {
+    failures.push({ file: normalOpeningPolicyPath, reason: "normal opening policy lacks an explicit visible-surface rule" });
+  }
+  for (const ruleId of ["mechanism_pick", "distinction_pick", "illustrates_place", "what_place_shows"]) {
+    if (!normalOpeningPolicy.opening_block?.forbidden_surface_rule_ids?.includes(ruleId)) {
+      failures.push({ file: normalOpeningPolicyPath, reason: `missing forbidden opening surface rule: ${ruleId}` });
+    }
+  }
+}
+
+if (canonicalStandardText) {
+  const requiredStandardFragments = [
+    normalOpeningPolicyPath,
+    "sett 1 og sett 2",
+    "sju normale",
+    "fjorten normale",
+    "Kategoriens profil kan skjerpe",
+    "tidligst introduseres i sett 3"
+  ];
+  for (const fragment of requiredStandardFragments) {
+    if (!canonicalStandardText.includes(fragment)) {
+      failures.push({ file: standardPath, reason: `canonical standard is not aligned with normal opening policy: missing ${fragment}` });
+    }
+  }
+  if (canonicalStandardText.includes("Teori er aldri låst til absolutte settnumre")) {
+    failures.push({ file: standardPath, reason: "canonical standard retains obsolete fully relative theory rule" });
   }
 }
 
@@ -223,6 +263,18 @@ if (manifest && registry) {
 }
 
 if (registry) {
+  const expectedAuthorityOrder = [
+    standardPath,
+    normalOpeningPolicyPath,
+    manifestPath,
+    schemaPath,
+    packageSchemaPath,
+    "category_profile"
+  ];
+  if (JSON.stringify(registry.authority_order) !== JSON.stringify(expectedAuthorityOrder)) {
+    failures.push({ file: registryPath, reason: "authority_order does not place the global opening policy directly after the production standard", expected: expectedAuthorityOrder, actual: registry.authority_order });
+  }
+
   const expectedCanonicalFiles = {
     production_standard: standardPath,
     normal_opening_policy: normalOpeningPolicyPath,

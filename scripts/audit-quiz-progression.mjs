@@ -27,7 +27,11 @@ const OPENING_SURFACE_RULES = [
   ["question_about_question", /\b(?:hvilket|hvilke|kva|kva for eit) spørsmål\b/iu],
   ["quiz_about_quiz", /\b(?:god|beste|sterk)\b.{0,35}\bquiz\b|\bquiz\b.{0,45}\b(?:trene|trenar|lære|lærer|teste|testar)\b/iu],
   ["history_go_question", /\b(?:history go|history-go)\b.{0,25}\bspørsmål\b|\bspørsmål\b.{0,25}\b(?:history go|history-go)\b/iu],
-  ["more_than_place", /\bhva gjør\b.{0,55}\bmer enn\b|\bkva gjer\b.{0,55}\bmeir enn\b/iu]
+  ["more_than_place", /\bhva gjør\b.{0,55}\bmer enn\b|\bkva gjer\b.{0,55}\bmeir enn\b/iu],
+  ["mechanism_pick", /\b(?:hvilken|kva) mekanisme\b.{0,45}\b(?:forklarer|forklarar|passer|høver)\b/iu],
+  ["distinction_pick", /\b(?:hvilken|kva) distinksjon\b|\bhvilket skille\b.{0,35}\b(?:er|passer|forklarer)\b/iu],
+  ["illustrates_place", /\bhvordan illustrerer\b.{0,55}\b(?:stedet|staden|bygningen|personen)\b/iu],
+  ["what_place_shows", /\bhva viser\b.{0,55}\b(?:stedet|staden|bygningen|personen)\b.{0,35}\bom\b/iu]
 ];
 
 function addFailure(failures, file, reason, details = {}) {
@@ -62,6 +66,16 @@ function normalOpeningProblems(question, openingPolicy) {
     }
   }
 
+  if (!String(question?.question ?? "").trim()) problems.push("missing_question");
+  if (!asArray(question?.source).length) problems.push("missing_source");
+  const options = asArray(question?.options);
+  if (options.length < 3) problems.push("too_few_options");
+  if (!String(question?.answer ?? "").trim()) {
+    problems.push("missing_answer");
+  } else if (options.length && !options.includes(question.answer)) {
+    problems.push("answer_not_in_options");
+  }
+
   const enabledSurfaceRules = new Set(asArray(opening.forbidden_surface_rule_ids));
   for (const [ruleId, regex] of OPENING_SURFACE_RULES) {
     if (enabledSurfaceRules.has(ruleId) && regex.test(String(question?.question ?? ""))) {
@@ -73,15 +87,6 @@ function normalOpeningProblems(question, openingPolicy) {
 }
 
 function auditNormalOpening({ quizPath, targetId, sets, openingPolicy, failures }) {
-  const grandfathered = openingPolicy.grandfathered_targets?.[targetId] || null;
-  if (grandfathered) {
-    return {
-      status: "grandfathered",
-      reason: grandfathered.reason || null,
-      temporary: grandfathered.temporary === true
-    };
-  }
-
   const requiredSets = Number(openingPolicy.opening_block?.sets || 2);
   const questionsPerSet = Number(openingPolicy.opening_block?.questions_per_set || 7);
   const requiredTotal = Number(openingPolicy.opening_block?.total_questions || requiredSets * questionsPerSet);

@@ -1,0 +1,349 @@
+## fixer
+Normaliserte Deichman-spørsmålet uten å overstyre godkjent claim basis.
+Klar for deterministisk Knowledge-regenerering og kontraktdiagnostikk.
+status=0
+
+## knowledge_write
+
+> history-go@0.0.0 knowledge:canonical:write
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --write
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Knowledge canonical data: 2841 questions, 3991 units, 169 unresolved emne links.
+Updated: data/knowledge/knowledge_units.generated.json
+Knowledge contract audit: 0 error question(s), 480 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+status=0
+
+## production_context_write
+Skrev data/quiz/production_context/by/deichman_bjorvika.json
+Skrev data/quiz/production_context/historie/grindheim_runestein.json
+Skrev data/quiz/production_context/historie/grindheim_steinkross.json
+Skrev data/quiz/production_context/historie/grindheimsveien_nord_gravfelt.json
+Skrev data/quiz/production_context/historie/hoyland_gravhaug_etne.json
+Skrev data/quiz/production_context/naeringsliv/telegrafbygningen.json
+Skrev data/quiz/production_context/naeringsliv/oslo_posthus.json
+Skrev data/quiz/production_context/naeringsliv/havnelageret.json
+Regenererte, validerte og staging-klargjorde 8 aktive quizkontekster.
+status=0
+
+## global_validator
+PASS | Produksjonsstandarden er versjon 3.1
+PASS | Produksjonsstandarden registrerer global åpningspolicy
+PASS | Produksjonsstandarden navngir begge absolutte åpningssett
+PASS | Produksjonsstandarden krever sju normale spørsmål per sett
+PASS | Produksjonsstandarden krever fjorten normale spørsmål totalt
+PASS | Kategori-profiler kan bare skjerpe globalregelen
+PASS | Teori kan ikke starte før sett 3
+PASS | Utdatert fullt relativ teoriregel er fjernet
+PASS | 2 × 7 går foran prosentbalansen
+PASS | Global policy er versjon 1.1
+PASS | Global policy er kanonisk invariant
+PASS | Global policy krever to sett
+PASS | Global policy krever sju spørsmål per sett
+PASS | Global policy krever fjorten spørsmål
+PASS | Målspesifikke unntak er forbudt
+PASS | Ingen grandfathered mål står igjen
+PASS | Brostoff kan tidligst starte i sett 3
+PASS | Metode kan tidligst starte i sett 3
+PASS | Teori kan tidligst starte i sett 3
+PASS | Kategoriens skjerpingsregel er dokumentert
+PASS | Synlig normalspørsmålsoverflate er definert
+PASS | Tillatt klassifikasjonsmetadata er avgrenset
+PASS | Global policy blokkerer mechanism_pick
+PASS | Global policy blokkerer distinction_pick
+PASS | Global policy blokkerer illustrates_place
+PASS | Global policy blokkerer what_place_shows
+PASS | Registry er versjon 3.2
+PASS | Registry plasserer åpningspolicy rett etter standarden
+PASS | Registry peker til global åpningspolicy
+PASS | Registry forbyr målspesifikke unntak
+PASS | Deichman har to åpningssett
+PASS | Deichman har sju spørsmål i begge åpningssett
+PASS | Deichmans tidligere begrepsspørsmål er et normalt kontekstspørsmål
+PASS | Deichman-spørsmålet har direkte normalquizform
+PASS | Deichman-spørsmålet har ekstern kilde
+PASS | Deichman-spørsmålet arver godkjent claim basis fra kildegrunnlaget
+{
+  "status": "passed",
+  "canonicalStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+  "canonicalNormalOpeningPolicy": "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
+  "canonicalSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+  "canonicalPackageSchema": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+  "categoriesChecked": 18,
+  "profilesChecked": 18,
+  "failures": []
+}
+PASS | node scripts/audit-quiz-template-governance.mjs består
+{
+  "status": "passed",
+  "quizFilesChecked": 8,
+  "openingPolicy": "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
+  "checked": [
+    {
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 27,
+          "context": 1,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.771,
+          "context": 0.029,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 28,
+          "context": 0,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.8,
+          "context": 0,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 26,
+          "context": 2,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.743,
+          "context": 0.057,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    }
+  ],
+  "failures": []
+}
+PASS | node scripts/audit-quiz-progression.mjs består
+PASS: 38
+RESULTAT: PASS
+status=0
+
+## production_context_check
+
+> history-go@0.0.0 audit:quiz-production-context
+> node scripts/audit-quiz-production-context.mjs
+
+{
+  "status": "passed",
+  "categoriesWithQuizProduction": 3,
+  "quizFilesChecked": 8,
+  "checked": [
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "targetId": "deichman_bjorvika",
+      "questions": 35
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "targetId": "grindheim_runestein",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "targetId": "grindheim_steinkross",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "targetId": "grindheimsveien_nord_gravfelt",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "targetId": "hoyland_gravhaug_etne",
+      "questions": 21
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "targetId": "telegrafbygningen",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "targetId": "oslo_posthus",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "targetId": "havnelageret",
+      "questions": 35
+    }
+  ],
+  "failures": []
+}
+status=0
+
+## knowledge_check
+
+> history-go@0.0.0 knowledge:canonical:check
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --check
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Knowledge canonical data: 2841 questions, 3991 units, 169 unresolved emne links.
+Knowledge contract audit: 0 error question(s), 480 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+status=0
+
+## diff_check
+status=0
+
