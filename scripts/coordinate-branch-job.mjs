@@ -25,8 +25,7 @@ if(evidence.placeId!==PLACE_ID||evidence.coordinateDecision!=='needs_geometry')t
 const sources=[
   ['baerum','https://www.baerum.kommune.no/tjenester/kultur-idrett-og-fritid/kunst-og-kultur/rik-pa-historie/6.-forsvar-og-krigsminner'],
   ['mia','https://mia.no/grinimuseet/om-grini-fangeleir'],
-  ['museum','https://mia.no/grinimuseet/finn-oss'],
-  ['fanger','https://www.fanger.no/prisoncamps/672']
+  ['museum','https://mia.no/grinimuseet/finn-oss']
 ];
 const sourceChecks={};
 for(const [key,url] of sources){const html=await text(url);sourceChecks[key]={url,mentionsGrini:/Grini/i.test(html),mentionsIla:/Ila/i.test(html),mentionsBarracks:/brakk|barrack/i.test(html)};}
