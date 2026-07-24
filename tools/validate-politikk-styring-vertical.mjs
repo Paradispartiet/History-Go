@@ -63,6 +63,8 @@ check(targetMappings.every(({ mapping }) => (mapping.recommended_method_ids ?? [
 check(targetMappings.every(({ mapping }) => (mapping.mechanism_options ?? []).length > 0), 'Alle domenemappinger har mekanismer');
 check(targetMappings.every(({ mapping }) => (mapping.critical_distinction_options ?? []).length > 0), 'Alle domenemappinger har distinksjoner');
 check(targetMappings.every(({ mapping }) => (mapping.theory_lenses ?? []).length > 0), 'Alle domenemappinger har målrettede teorispor');
+check(targetMappings.every(({ mapping }) => mapping.theory_depth === 'targeted'), 'Alle domenemappinger bruker målrettet teoridybde');
+check(targetMappings.every(({ mapping }) => (mapping.norwegian_thinker_ids ?? []).every((id) => (mapping.thinker_ids ?? []).includes(id))), 'Norske teorireferanser er del av hookets målrettede teorispor');
 check(targetMappings.every(({ mapping }) => mapping.generator_constraints?.ban_theorist_name_as_answer_without_concept === true), 'Alle domenemappinger forbyr løsrevet teoretikernavn');
 
 const profile = generator.domain_quality_profiles?.[DOMAIN];
