@@ -74,7 +74,7 @@ Leveranse:
 
 ## Fase 3 — Norsk politikk, EU og flernivåstyring
 
-**Status:** Neste fase etter at fase 2 er merget og kontrollert på `main`.
+**Status:** Fullført på arbeidsbranch i fase 3 med 12 hooks, 12 emner, 6 metoder, 12 mappinger og 12 spørsmålsplaner; ordinær CI er sluttport før merge.
 
 **Formål:** Gjøre pensumet direkte anvendelig på norske steder, institusjoner og politiske prosesser.
 
@@ -112,4 +112,4 @@ Hver fase skal bestå:
 
 ## Rekkefølge
 
-Fase 1 og fase 2 er gjennomført sekvensielt. Fase 3 starter først etter at fase 2 er merget og sluttkontrollert på `main`, fordi den norske institusjons- og casearkitekturen skal bygge på både institusjons- og teorigrunnlaget.
+Fase 1, fase 2 og fase 3 er gjennomført sekvensielt. Fase 3 bygger den norske institusjons- og casearkitekturen på både institusjons- og teorigrunnlaget og kobler den til offisielle dokumenter og aktive History Go-steder.

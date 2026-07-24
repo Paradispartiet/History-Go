@@ -11,10 +11,10 @@
     "emnemapping": "emnemapping_politikk_canonical_v4_5.json",
     "pensum": "politikkpensum_canonical_v4_5.json",
     "domain_count": 12,
-    "emne_count": 111,
-    "method_count": 65,
-    "mapping_count": 109,
-    "topic_hook_count": 140
+    "emne_count": 123,
+    "method_count": 71,
+    "mapping_count": 121,
+    "topic_hook_count": 152
   },
   "hard_rules": {
     "source_dominance_rule": "Eksterne politiske, rettslige, forvaltningsmessige, statistiske, historiske og samfunnsfaglige kilder, konkrete institusjoner, lover, reformer, vedtak, budsjett, reguleringsplaner, rettsbygg, offentlige tjenester, demokratiske arenaer, konflikter, protester, normsystemer, fordelingsdata, levekårsdata, demografi, arkiver, utredninger og dokumenterte samfunnsprosesser skal dominere det synlige faktainnholdet i politikkquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
@@ -107,7 +107,12 @@
     "normative_claims_must_not_be_presented_as_empirical_facts": true,
     "normative_questions_require_explicit_premise_argument_counterargument_and_consequence": true,
     "empirical_premises_in_normative_questions_require_external_source": true,
-    "ideology_may_not_be_reduced_to_party_label": true
+    "ideology_may_not_be_reduced_to_party_label": true,
+    "norwegian_institutional_claims_require_official_document_type_and_decision_stage": true,
+    "norwegian_exceptionalism_requires_explicit_comparative_baseline": true,
+    "eos_claims_require_legal_act_incorporation_and_national_implementation_chain": true,
+    "indigenous_consultation_claims_require_actor_timing_protocol_and_documented_influence": true,
+    "local_government_claims_require_competence_finance_and_accountability_level": true
   },
   "soft_preferences": {
     "preferred_external_source_mix_per_place": [
@@ -289,7 +294,8 @@
       "spørsmål kan bygges fra politiske, rettslige, forvaltningsmessige, statistiske, historiske eller samfunnsfaglige kilder",
       "politikkens og samfunnets systemlogikk er primær, ikke bare generell historie, arkitektur, kultur eller nærhet til maktbygg",
       "stedet, personen eller kilden bærer et dokumentert statsvitenskapelig hovedpoeng om institusjoner, regimer, valg, partier, policy, internasjonal politikk, politisk økonomi eller metode",
-      "spørsmålet kan bygges rundt eksplisitt analyseenhet, definert utfall, mekanisme eller forskningsdesign"
+      "spørsmålet kan bygges rundt eksplisitt analyseenhet, definert utfall, mekanisme eller forskningsdesign",
+      "statsvitenskapelig hovedpoeng er norsk institusjon, beslutningskjede, EØS-gjennomføring, flernivåstyring eller organisert interesseformidling"
     ],
     "do_not_accept_as_politikk_primary_when": [
       "hovedrollen er byarkitektur, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller populærkultur",
@@ -960,7 +966,7 @@
           "scope_condition"
         ]
       },
-      "hook_count": 15
+      "hook_count": 17
     },
     "rett_lov_rettssikkerhet": {
       "profile_id": "rett_lov_rettssikkerhet",
@@ -1427,7 +1433,8 @@
             }
           ]
         }
-      }
+      },
+      "hook_count": 10
     },
     "fordeling_velferd_ulikhet": {
       "status": "complete_revised",
@@ -2170,7 +2177,8 @@
         "require_population_and_denominator_for_group_claims": true,
         "ban_identity_essence_questions": true,
         "ban_theorist_name_as_answer_without_concept": true
-      }
+      },
+      "hook_count": 10
     },
     "komparativ_politikk_regimer_institusjoner": {
       "status": "complete_revised",
@@ -2198,7 +2206,7 @@
         "met_pol_komparativt_forskningsdesign",
         "met_pol_prosessporing"
       ],
-      "hook_count": 20,
+      "hook_count": 22,
       "method_selection_rule": "Metoden velges etter påstand, analyseenhet, datakilde og inferensbehov.",
       "theory_rule": "Teori kommer etter ekstern dokumentasjon og metode, og må forklare eller sammenligne mekanismen.",
       "rejection_rules": [
@@ -2302,7 +2310,7 @@
         "met_pol_regjerings_og_koalisjonsanalyse",
         "met_pol_survey_og_valgdataanalyse"
       ],
-      "hook_count": 10,
+      "hook_count": 11,
       "method_selection_rule": "Metoden velges etter påstand, analyseenhet, datakilde og inferensbehov.",
       "theory_rule": "Teori kommer etter ekstern dokumentasjon og metode, og må forklare eller sammenligne mekanismen.",
       "rejection_rules": [
@@ -2339,7 +2347,7 @@
         "met_pol_policy_evaluering",
         "met_pol_prosessporing"
       ],
-      "hook_count": 10,
+      "hook_count": 14,
       "method_selection_rule": "Metoden velges etter påstand, analyseenhet, datakilde og inferensbehov.",
       "theory_rule": "Teori kommer etter ekstern dokumentasjon og metode, og må forklare eller sammenligne mekanismen.",
       "rejection_rules": [
@@ -2375,7 +2383,7 @@
         "met_pol_komparativt_forskningsdesign",
         "met_pol_prosessporing"
       ],
-      "hook_count": 10,
+      "hook_count": 12,
       "method_selection_rule": "Metoden velges etter påstand, analyseenhet, datakilde og inferensbehov.",
       "theory_rule": "Teori kommer etter ekstern dokumentasjon og metode, og må forklare eller sammenligne mekanismen.",
       "rejection_rules": [
@@ -2411,7 +2419,7 @@
         "met_pol_komparativ_institusjonsanalyse",
         "met_pol_kausalt_forskningsdesign"
       ],
-      "hook_count": 10,
+      "hook_count": 11,
       "method_selection_rule": "Metoden velges etter påstand, analyseenhet, datakilde og inferensbehov.",
       "theory_rule": "Teori kommer etter ekstern dokumentasjon og metode, og må forklare eller sammenligne mekanismen.",
       "rejection_rules": [
@@ -2675,5 +2683,68 @@
       "ban_ideology_as_party_label_only": true,
       "theory_forbidden_in_opening_sets": true
     }
+  },
+  "norwegian_politics_eu_contract": {
+    "revision": "politikk-norge-eu-vertical-phase-3-2026-07-24",
+    "status": "active",
+    "hook_ids": [
+      "norsk_politikk_storting_komiteer_lovgivning",
+      "norsk_politikk_regjering_departement_embetsverk",
+      "norsk_politikk_mindretallsparlamentarisme_kontroll",
+      "norsk_politikk_partisystem_skillelinjer_organisasjon",
+      "norsk_politikk_kommuner_fylkeskommuner_lokaldemokrati",
+      "norsk_politikk_stat_kommune_flernivastyring",
+      "norsk_politikk_sametinget_urfolk_konsultasjon",
+      "norsk_politikk_eos_europeisk_integrasjon",
+      "norsk_politikk_eos_rettsakt_nasjonal_gjennomforing",
+      "norsk_politikk_utenriks_sikkerhet",
+      "norsk_politikk_korporatisme_trepart_organiserte_interesser",
+      "norsk_politikk_statsbudsjett_utredning_lovprosess"
+    ],
+    "emne_ids": [
+      "em_pol_norge_storting_komiteer_lovgivning",
+      "em_pol_norge_regjering_departement_embetsverk",
+      "em_pol_norge_mindretallsparlamentarisme_kontroll",
+      "em_pol_norge_partisystem_skillelinjer_organisasjon",
+      "em_pol_norge_kommuner_fylkeskommuner_lokaldemokrati",
+      "em_pol_norge_stat_kommune_flernivastyring",
+      "em_pol_norge_sametinget_urfolk_konsultasjon",
+      "em_pol_norge_eos_europeisk_integrasjon",
+      "em_pol_norge_eos_rettsakt_nasjonal_gjennomforing",
+      "em_pol_norge_utenriks_sikkerhet",
+      "em_pol_norge_korporatisme_trepart_organiserte_interesser",
+      "em_pol_norge_statsbudsjett_utredning_lovprosess"
+    ],
+    "method_ids": [
+      "met_pol_norsk_lovgivningsprosessanalyse",
+      "met_pol_parlamentarisk_kontrollanalyse_norge",
+      "met_pol_norsk_flernivastyringsanalyse",
+      "met_pol_eos_rettsakt_og_gjennomforingsanalyse",
+      "met_pol_urfolkskonsultasjonsanalyse",
+      "met_pol_korporativ_samhandlingsanalyse"
+    ],
+    "required_place_ids": [
+      "stortinget",
+      "youngstorget",
+      "oslo_radhus",
+      "eidsvolls_plass"
+    ],
+    "required_answer_chain": [
+      "official_norwegian_source",
+      "document_type_and_decision_stage",
+      "unit_time_period_and_outcome",
+      "institutional_actor_and_competence",
+      "mechanism",
+      "critical_distinction_or_competing_explanation",
+      "comparative_baseline_when_relevant",
+      "scope_condition_and_uncertainty"
+    ],
+    "forbidden_shortcuts": [
+      "institusjonsnavn som forklaring",
+      "Norge er spesielt uten sammenligning",
+      "EØS-påstand uten rettsakt og gjennomføringskjede",
+      "konsultasjon likestilt med samtykke",
+      "lokal variasjon forklart uten kompetanse og finansiering"
+    ]
   }
 }

@@ -36,7 +36,9 @@
     "disciplinary_center": "statsvitenskap",
     "political_science_before_support_fields": true,
     "comparative_claims_require_design": true,
-    "causal_claims_require_mechanism_or_identification": true
+    "causal_claims_require_mechanism_or_identification": true,
+    "norwegian_institutional_claims_require_official_document_chain": true,
+    "norwegian_exceptionalism_requires_comparative_baseline": true
   },
   "categories": [
     {
@@ -4501,6 +4503,398 @@
             "documented_conflict"
           ],
           "disciplinary_role": "political_science_core"
+        },
+        {
+          "id": "norsk_politikk_kommuner_fylkeskommuner_lokaldemokrati",
+          "title": "Kommuner, fylkeskommuner og lokaldemokrati",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "robert_dahl",
+                "name": "Robert Dahl",
+                "role": "deltakelse, representasjon og lokal demokratisk skala",
+                "tier": "core"
+              },
+              {
+                "id": "elinor_ostrom",
+                "name": "Elinor Ostrom",
+                "role": "flernivåorganisering og lokal problemløsning",
+                "tier": "core"
+              },
+              {
+                "id": "stein_rokkan",
+                "name": "Stein Rokkan",
+                "role": "territorium, sentrum–periferi og statsbygging",
+                "tier": "supplementary"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_pol_norge_kommuner_fylkeskommuner_lokaldemokrati"
+          ],
+          "best_place_types": [
+            "storting",
+            "rådhus",
+            "regjeringsbygg",
+            "departement",
+            "politisk_plass",
+            "oslo_radhus",
+            "eidsvolls_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_norsk_institusjons_eller_dokumentkobling",
+            "rent_historisk_sted_uten_aktiv_politisk_problemstilling",
+            "generisk_norgespørsmål_uten_analyseenhet_og_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "norwegian-institution-document-mechanism-comparison",
+          "fact_anchor_required": true,
+          "politics_anchor_required": true,
+          "institution_law_conflict_or_social_process_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hva mener du om norsk politikk",
+            "Hvilken institusjon passer best",
+            "Hvilken teoretiker forklarer Norge",
+            "Norsk særtrekk uten dokumentert sammenligningsgrunnlag",
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "preferred_question_moves": [
+            "identify_official_document_and_decision_stage",
+            "define_unit_actor_outcome_and_time_period",
+            "trace_norwegian_institutional_mechanism",
+            "test_critical_distinction_or_comparative_baseline",
+            "state_scope_condition_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "robert_dahl",
+              "elinor_ostrom"
+            ],
+            [
+              "elinor_ostrom",
+              "stein_rokkan"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "stein_rokkan"
+          ],
+          "recommended_oslo_cases": [
+            "Oslo rådhus",
+            "Bydelshus",
+            "Eidsvolls plass"
+          ],
+          "recommended_place_ids": [
+            "oslo_radhus",
+            "eidsvolls_plass"
+          ],
+          "required_document_types": [
+            "kommunestyresak",
+            "bystyresak",
+            "fylkestingssak",
+            "saksframlegg",
+            "møteprotokoll",
+            "kommunebudsjett",
+            "KOSTRA-data"
+          ],
+          "recommended_method_ids": [
+            "met_pol_norsk_flernivastyringsanalyse",
+            "met_pol_lokalpolitisk_analyse",
+            "met_pol_budsjett_og_fordelingsanalyse",
+            "met_pol_dokumentanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "robert_dahl",
+            "elinor_ostrom",
+            "stein_rokkan"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "targeted",
+          "canonical_status": "canonical",
+          "registry_version": "politikkpensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "Roter mellom offentlige dokumenttyper, beslutningsledd, styringsnivåer og steder. Teori brukes etter at norsk institusjon, dokument og mekanisme er etablert.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 3,
+            "require_institution_law_conflict_or_social_process_anchor": true,
+            "require_external_claim_basis": true,
+            "require_official_norwegian_document_type": true,
+            "require_defined_unit_and_time_period": true,
+            "require_defined_outcome_or_dependent_variable": true,
+            "require_documented_decision_stage": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_claim": true,
+            "require_scope_condition": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "ban_norwegian_exceptionalism_without_comparison": true
+          },
+          "definition": "Analyserer kommuner og fylkeskommuner som folkevalgte styringsnivåer med egne oppgaver, budsjetter, organisasjonsformer og demokratiske arenaer.",
+          "core_problem": "Hvordan kombinerer lokale folkevalgte representasjon og politisk skjønn med nasjonale krav, økonomiske rammer og administrativ gjennomføring?",
+          "mechanisms": [
+            "lokal representasjon",
+            "delegasjon til administrasjon",
+            "kommunal budsjettprioritering",
+            "utvalgs- og komitébehandling",
+            "innbyggerdeltakelse",
+            "interkommunalt samarbeid",
+            "fylkeskommunal koordinering"
+          ],
+          "critical_distinctions": [
+            "kommune vs statsforvaltning",
+            "bystyre/kommunestyre vs administrasjon",
+            "lokal autonomi vs nasjonal standard",
+            "politisk ansvar vs tjenesteproduksjon",
+            "kommune vs fylkeskommune"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "deltakelse, representasjon og lokal demokratisk skala"
+            },
+            {
+              "thinker_id": "elinor_ostrom",
+              "concept": "flernivåorganisering og lokal problemløsning"
+            },
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "territorium, sentrum–periferi og statsbygging"
+            }
+          ],
+          "case_anchors": [
+            "Oslo rådhus",
+            "Bydelshus",
+            "Eidsvolls plass"
+          ],
+          "source_types": [
+            "kommunestyresak",
+            "bystyresak",
+            "fylkestingssak",
+            "saksframlegg",
+            "møteprotokoll",
+            "kommunebudsjett",
+            "KOSTRA-data"
+          ],
+          "unit_of_analysis": "kommune, fylkeskommune, folkevalgt organ, sak eller tjenesteområde",
+          "defined_outcome": "lokalt vedtak, prioritering, deltakelse, tjenesteforskjell eller ansvarliggjøring",
+          "anti_reduction": [
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "quality_revision": "politikk-norge-eu-vertical-phase-3-2026-07-24"
+        },
+        {
+          "id": "norsk_politikk_sametinget_urfolk_konsultasjon",
+          "title": "Sametinget, urfolkspolitikk og konsultasjonsordninger",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "will_kymlicka",
+                "name": "Will Kymlicka",
+                "role": "minoritetsrettigheter og flernasjonalt statsborgerskap",
+                "tier": "core"
+              },
+              {
+                "id": "iris_marion_young",
+                "name": "Iris Marion Young",
+                "role": "inkludering, forskjell og politisk representasjon",
+                "tier": "core"
+              },
+              {
+                "id": "robert_dahl",
+                "name": "Robert Dahl",
+                "role": "politisk likhet og effektiv deltakelse",
+                "tier": "supplementary"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_pol_norge_sametinget_urfolk_konsultasjon"
+          ],
+          "best_place_types": [
+            "storting",
+            "rådhus",
+            "regjeringsbygg",
+            "departement",
+            "politisk_plass",
+            "stortinget",
+            "eidsvolls_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_norsk_institusjons_eller_dokumentkobling",
+            "rent_historisk_sted_uten_aktiv_politisk_problemstilling",
+            "generisk_norgespørsmål_uten_analyseenhet_og_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "norwegian-institution-document-mechanism-comparison",
+          "fact_anchor_required": true,
+          "politics_anchor_required": true,
+          "institution_law_conflict_or_social_process_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hva mener du om norsk politikk",
+            "Hvilken institusjon passer best",
+            "Hvilken teoretiker forklarer Norge",
+            "Norsk særtrekk uten dokumentert sammenligningsgrunnlag",
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "preferred_question_moves": [
+            "identify_official_document_and_decision_stage",
+            "define_unit_actor_outcome_and_time_period",
+            "trace_norwegian_institutional_mechanism",
+            "test_critical_distinction_or_comparative_baseline",
+            "state_scope_condition_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "will_kymlicka",
+              "iris_marion_young"
+            ],
+            [
+              "iris_marion_young",
+              "robert_dahl"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Sametinget",
+            "Stortinget",
+            "Eidsvolls plass"
+          ],
+          "recommended_place_ids": [
+            "stortinget",
+            "eidsvolls_plass"
+          ],
+          "required_document_types": [
+            "sameloven",
+            "konsultasjonsprotokoll",
+            "Sametingets plenumssak",
+            "proposisjon",
+            "NOU",
+            "forvaltningsvedtak"
+          ],
+          "recommended_method_ids": [
+            "met_pol_urfolkskonsultasjonsanalyse",
+            "met_pol_rettslig_analyse",
+            "met_pol_representasjonsanalyse",
+            "met_pol_prosessporing"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "will_kymlicka",
+            "iris_marion_young",
+            "robert_dahl"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "targeted",
+          "canonical_status": "canonical",
+          "registry_version": "politikkpensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "Roter mellom offentlige dokumenttyper, beslutningsledd, styringsnivåer og steder. Teori brukes etter at norsk institusjon, dokument og mekanisme er etablert.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 3,
+            "require_institution_law_conflict_or_social_process_anchor": true,
+            "require_external_claim_basis": true,
+            "require_official_norwegian_document_type": true,
+            "require_defined_unit_and_time_period": true,
+            "require_defined_outcome_or_dependent_variable": true,
+            "require_documented_decision_stage": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_claim": true,
+            "require_scope_condition": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "ban_norwegian_exceptionalism_without_comparison": true
+          },
+          "definition": "Analyserer Sametingets representative rolle, samenes urfolksrettigheter og konsultasjoner mellom offentlige myndigheter og samiske interesser.",
+          "core_problem": "Når gir konsultasjon reell medvirkning og påvirkning, og når blir den bare informasjon uten endret beslutningsgrunnlag?",
+          "mechanisms": [
+            "samemanntall og representasjon",
+            "konsultasjonsplikt",
+            "tidlig involvering",
+            "informasjonsdeling",
+            "forhandling i god tro",
+            "protokollføring",
+            "begrunnelse ved uenighet"
+          ],
+          "critical_distinctions": [
+            "konsultasjon vs høring",
+            "medvirkning vs samtykke",
+            "representasjon vs vetorett",
+            "urfolksrett vs generell minoritetspolitikk",
+            "prosessplikt vs bestemt resultat"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "will_kymlicka",
+              "concept": "minoritetsrettigheter og flernasjonalt statsborgerskap"
+            },
+            {
+              "thinker_id": "iris_marion_young",
+              "concept": "inkludering, forskjell og politisk representasjon"
+            },
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "politisk likhet og effektiv deltakelse"
+            }
+          ],
+          "case_anchors": [
+            "Sametinget",
+            "Stortinget",
+            "Eidsvolls plass"
+          ],
+          "source_types": [
+            "sameloven",
+            "konsultasjonsprotokoll",
+            "Sametingets plenumssak",
+            "proposisjon",
+            "NOU",
+            "forvaltningsvedtak"
+          ],
+          "unit_of_analysis": "konsultasjon, offentlig tiltak, representativt organ eller berørt samisk interesse",
+          "defined_outcome": "endret beslutningsgrunnlag, enighet, dokumentert uenighet, representasjon eller rettighetsivaretakelse",
+          "anti_reduction": [
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "quality_revision": "politikk-norge-eu-vertical-phase-3-2026-07-24"
         }
       ],
       "best_place_types": [
@@ -16014,6 +16408,398 @@
             "ban_comparative_claim_without_case_selection": true
           },
           "quality_revision": "politikk-institusjoner-vertical-phase-1-2026-07-24"
+        },
+        {
+          "id": "norsk_politikk_storting_komiteer_lovgivning",
+          "title": "Stortinget, komiteene og lovgivningsprosessen",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "kaare_strom",
+                "name": "Kaare Strøm",
+                "role": "parlamentarisk delegasjon og ansvarlighet",
+                "tier": "core"
+              },
+              {
+                "id": "george_tsebelis",
+                "name": "George Tsebelis",
+                "role": "vetospillere og beslutningsendring",
+                "tier": "core"
+              },
+              {
+                "id": "robert_dahl",
+                "name": "Robert Dahl",
+                "role": "representasjon, deltakelse og demokratisk kontroll",
+                "tier": "supplementary"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_pol_norge_storting_komiteer_lovgivning"
+          ],
+          "best_place_types": [
+            "storting",
+            "rådhus",
+            "regjeringsbygg",
+            "departement",
+            "politisk_plass",
+            "stortinget",
+            "eidsvolls_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_norsk_institusjons_eller_dokumentkobling",
+            "rent_historisk_sted_uten_aktiv_politisk_problemstilling",
+            "generisk_norgespørsmål_uten_analyseenhet_og_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "norwegian-institution-document-mechanism-comparison",
+          "fact_anchor_required": true,
+          "politics_anchor_required": true,
+          "institution_law_conflict_or_social_process_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hva mener du om norsk politikk",
+            "Hvilken institusjon passer best",
+            "Hvilken teoretiker forklarer Norge",
+            "Norsk særtrekk uten dokumentert sammenligningsgrunnlag",
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "preferred_question_moves": [
+            "identify_official_document_and_decision_stage",
+            "define_unit_actor_outcome_and_time_period",
+            "trace_norwegian_institutional_mechanism",
+            "test_critical_distinction_or_comparative_baseline",
+            "state_scope_condition_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "kaare_strom",
+              "george_tsebelis"
+            ],
+            [
+              "george_tsebelis",
+              "robert_dahl"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "kaare_strom"
+          ],
+          "recommended_oslo_cases": [
+            "Stortinget",
+            "Eidsvolls plass",
+            "Regjeringskvartalet"
+          ],
+          "recommended_place_ids": [
+            "stortinget",
+            "eidsvolls_plass"
+          ],
+          "required_document_types": [
+            "stortingsproposisjon",
+            "representantforslag",
+            "komitéinnstilling",
+            "høringsreferat",
+            "stortingsreferat",
+            "lovvedtak"
+          ],
+          "recommended_method_ids": [
+            "met_pol_norsk_lovgivningsprosessanalyse",
+            "met_pol_lovgivningsstruktur_analyse",
+            "met_pol_prosessporing",
+            "met_pol_dokumentanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "kaare_strom",
+            "george_tsebelis",
+            "robert_dahl"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "targeted",
+          "canonical_status": "canonical",
+          "registry_version": "politikkpensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "Roter mellom offentlige dokumenttyper, beslutningsledd, styringsnivåer og steder. Teori brukes etter at norsk institusjon, dokument og mekanisme er etablert.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 3,
+            "require_institution_law_conflict_or_social_process_anchor": true,
+            "require_external_claim_basis": true,
+            "require_official_norwegian_document_type": true,
+            "require_defined_unit_and_time_period": true,
+            "require_defined_outcome_or_dependent_variable": true,
+            "require_documented_decision_stage": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_claim": true,
+            "require_scope_condition": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "ban_norwegian_exceptionalism_without_comparison": true
+          },
+          "definition": "Analyserer hvordan representantforslag, proposisjoner, komitébehandling, innstillinger, debatt og votering omsetter politiske initiativ til norske lover og stortingsvedtak.",
+          "core_problem": "Hvordan endres et politisk forslag når det går fra initiativ via komité og partiforhandlinger til bindende stortingsvedtak?",
+          "mechanisms": [
+            "initiativrett",
+            "saksfordeling til komité",
+            "høring og informasjonsinnhenting",
+            "komitéforhandling",
+            "partigruppedisiplin",
+            "innstilling og votering",
+            "kongelig sanksjon"
+          ],
+          "critical_distinctions": [
+            "proposisjon vs representantforslag",
+            "komitéinnstilling vs stortingsvedtak",
+            "debatt vs beslutning",
+            "formelt flertall vs forhandlet kompromiss",
+            "lovvedtak vs budsjettvedtak"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "kaare_strom",
+              "concept": "parlamentarisk delegasjon og ansvarlighet"
+            },
+            {
+              "thinker_id": "george_tsebelis",
+              "concept": "vetospillere og beslutningsendring"
+            },
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "representasjon, deltakelse og demokratisk kontroll"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Eidsvolls plass",
+            "Regjeringskvartalet"
+          ],
+          "source_types": [
+            "stortingsproposisjon",
+            "representantforslag",
+            "komitéinnstilling",
+            "høringsreferat",
+            "stortingsreferat",
+            "lovvedtak"
+          ],
+          "unit_of_analysis": "lovsak, budsjettkapittel, komité eller parlamentarisk beslutningssekvens",
+          "defined_outcome": "endelig lovtekst, vedtak, flertallskoalisjon eller endring mellom forslag og beslutning",
+          "anti_reduction": [
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "quality_revision": "politikk-norge-eu-vertical-phase-3-2026-07-24"
+        },
+        {
+          "id": "norsk_politikk_mindretallsparlamentarisme_kontroll",
+          "title": "Mindretallsparlamentarisme og parlamentarisk kontroll",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "kaare_strom",
+                "name": "Kaare Strøm",
+                "role": "mindretallsregjeringer og parlamentarisk ansvarlighet",
+                "tier": "core"
+              },
+              {
+                "id": "arend_lijphart",
+                "name": "Arend Lijphart",
+                "role": "konsensus, maktdeling og forhandling",
+                "tier": "core"
+              },
+              {
+                "id": "george_tsebelis",
+                "name": "George Tsebelis",
+                "role": "vetospillere og beslutningskapasitet",
+                "tier": "supplementary"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_pol_norge_mindretallsparlamentarisme_kontroll"
+          ],
+          "best_place_types": [
+            "storting",
+            "rådhus",
+            "regjeringsbygg",
+            "departement",
+            "politisk_plass",
+            "stortinget",
+            "eidsvolls_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_norsk_institusjons_eller_dokumentkobling",
+            "rent_historisk_sted_uten_aktiv_politisk_problemstilling",
+            "generisk_norgespørsmål_uten_analyseenhet_og_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "norwegian-institution-document-mechanism-comparison",
+          "fact_anchor_required": true,
+          "politics_anchor_required": true,
+          "institution_law_conflict_or_social_process_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hva mener du om norsk politikk",
+            "Hvilken institusjon passer best",
+            "Hvilken teoretiker forklarer Norge",
+            "Norsk særtrekk uten dokumentert sammenligningsgrunnlag",
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "preferred_question_moves": [
+            "identify_official_document_and_decision_stage",
+            "define_unit_actor_outcome_and_time_period",
+            "trace_norwegian_institutional_mechanism",
+            "test_critical_distinction_or_comparative_baseline",
+            "state_scope_condition_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "kaare_strom",
+              "arend_lijphart"
+            ],
+            [
+              "arend_lijphart",
+              "george_tsebelis"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "kaare_strom"
+          ],
+          "recommended_oslo_cases": [
+            "Stortinget",
+            "Eidsvolls plass",
+            "Regjeringskvartalet"
+          ],
+          "recommended_place_ids": [
+            "stortinget",
+            "eidsvolls_plass"
+          ],
+          "required_document_types": [
+            "kontroll- og konstitusjonskomiteens innstilling",
+            "kontrollhøring",
+            "spørretimereferat",
+            "mistillitsforslag",
+            "budsjettavtale",
+            "regjeringserklæring"
+          ],
+          "recommended_method_ids": [
+            "met_pol_parlamentarisk_kontrollanalyse_norge",
+            "met_pol_parlamentarisk_ansvarlighetsanalyse",
+            "met_pol_regjerings_og_koalisjonsanalyse",
+            "met_pol_prosessporing"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "kaare_strom",
+            "arend_lijphart",
+            "george_tsebelis"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "targeted",
+          "canonical_status": "canonical",
+          "registry_version": "politikkpensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "Roter mellom offentlige dokumenttyper, beslutningsledd, styringsnivåer og steder. Teori brukes etter at norsk institusjon, dokument og mekanisme er etablert.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 3,
+            "require_institution_law_conflict_or_social_process_anchor": true,
+            "require_external_claim_basis": true,
+            "require_official_norwegian_document_type": true,
+            "require_defined_unit_and_time_period": true,
+            "require_defined_outcome_or_dependent_variable": true,
+            "require_documented_decision_stage": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_claim": true,
+            "require_scope_condition": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "ban_norwegian_exceptionalism_without_comparison": true
+          },
+          "definition": "Analyserer hvordan norske mindretallsregjeringer bygger flertall, møter kontroll og kan holdes ansvarlige gjennom spørsmål, høringer, kontrollkomité, mistillit og kabinettspørsmål.",
+          "core_problem": "Hvordan kan en regjering styre uten fast flertall, og hvilke kontrollmekanismer gjør støttepartier og opposisjon politisk relevante mellom valgene?",
+          "mechanisms": [
+            "negativ parlamentarisme",
+            "sak-til-sak-flertall",
+            "budsjettforlik",
+            "spørretime og interpellasjon",
+            "kontrollhøring",
+            "mistillitsforslag",
+            "kabinettspørsmål"
+          ],
+          "critical_distinctions": [
+            "regjeringsdannelse vs regjeringsopprettholdelse",
+            "støtteavtale vs koalisjon",
+            "politisk kritikk vs konstitusjonelt ansvar",
+            "mistillit vs kritikkvedtak",
+            "mindretallsregjering vs svak regjering"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "kaare_strom",
+              "concept": "mindretallsregjeringer og parlamentarisk ansvarlighet"
+            },
+            {
+              "thinker_id": "arend_lijphart",
+              "concept": "konsensus, maktdeling og forhandling"
+            },
+            {
+              "thinker_id": "george_tsebelis",
+              "concept": "vetospillere og beslutningskapasitet"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Eidsvolls plass",
+            "Regjeringskvartalet"
+          ],
+          "source_types": [
+            "kontroll- og konstitusjonskomiteens innstilling",
+            "kontrollhøring",
+            "spørretimereferat",
+            "mistillitsforslag",
+            "budsjettavtale",
+            "regjeringserklæring"
+          ],
+          "unit_of_analysis": "regjering, kontrollsak, støtteavtale eller parlamentarisk beslutningssekvens",
+          "defined_outcome": "regjeringens overlevelse, endret politikk, ansvarliggjøring eller flertallsdannelse",
+          "anti_reduction": [
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "quality_revision": "politikk-norge-eu-vertical-phase-3-2026-07-24"
         }
       ],
       "best_place_types": [
@@ -17770,6 +18556,204 @@
             "Ikke generaliser fra ett case uten eksplisitt rekkevidde."
           ],
           "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+        },
+        {
+          "id": "norsk_politikk_partisystem_skillelinjer_organisasjon",
+          "title": "Norsk partisystem, skillelinjer og partiorganisasjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "stein_rokkan",
+                "name": "Stein Rokkan",
+                "role": "sentrum–periferi og historiske konfliktlinjer",
+                "tier": "core"
+              },
+              {
+                "id": "seymour_martin_lipset",
+                "name": "Seymour Martin Lipset",
+                "role": "sosiale skillelinjer og partisystemer",
+                "tier": "core"
+              },
+              {
+                "id": "maurice_duverger",
+                "name": "Maurice Duverger",
+                "role": "partiorganisasjon og valgsystemeffekter",
+                "tier": "supplementary"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_pol_norge_partisystem_skillelinjer_organisasjon"
+          ],
+          "best_place_types": [
+            "storting",
+            "rådhus",
+            "regjeringsbygg",
+            "departement",
+            "politisk_plass",
+            "youngstorget",
+            "stortinget",
+            "eidsvolls_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_norsk_institusjons_eller_dokumentkobling",
+            "rent_historisk_sted_uten_aktiv_politisk_problemstilling",
+            "generisk_norgespørsmål_uten_analyseenhet_og_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "norwegian-institution-document-mechanism-comparison",
+          "fact_anchor_required": true,
+          "politics_anchor_required": true,
+          "institution_law_conflict_or_social_process_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hva mener du om norsk politikk",
+            "Hvilken institusjon passer best",
+            "Hvilken teoretiker forklarer Norge",
+            "Norsk særtrekk uten dokumentert sammenligningsgrunnlag",
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "preferred_question_moves": [
+            "identify_official_document_and_decision_stage",
+            "define_unit_actor_outcome_and_time_period",
+            "trace_norwegian_institutional_mechanism",
+            "test_critical_distinction_or_comparative_baseline",
+            "state_scope_condition_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "stein_rokkan",
+              "seymour_martin_lipset"
+            ],
+            [
+              "seymour_martin_lipset",
+              "maurice_duverger"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "stein_rokkan"
+          ],
+          "recommended_oslo_cases": [
+            "Youngstorget",
+            "Stortinget",
+            "Eidsvolls plass"
+          ],
+          "recommended_place_ids": [
+            "youngstorget",
+            "stortinget",
+            "eidsvolls_plass"
+          ],
+          "required_document_types": [
+            "partiprogram",
+            "vedtekter",
+            "nominasjonsliste",
+            "valgresultat",
+            "partimedlemsdata",
+            "surveydata"
+          ],
+          "recommended_method_ids": [
+            "met_pol_partisystemanalyse",
+            "met_pol_parti_og_bevegelsesanalyse",
+            "met_pol_survey_og_valgdataanalyse",
+            "met_pol_komparativt_forskningsdesign"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "stein_rokkan",
+            "seymour_martin_lipset",
+            "maurice_duverger"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "targeted",
+          "canonical_status": "canonical",
+          "registry_version": "politikkpensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "Roter mellom offentlige dokumenttyper, beslutningsledd, styringsnivåer og steder. Teori brukes etter at norsk institusjon, dokument og mekanisme er etablert.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 3,
+            "require_institution_law_conflict_or_social_process_anchor": true,
+            "require_external_claim_basis": true,
+            "require_official_norwegian_document_type": true,
+            "require_defined_unit_and_time_period": true,
+            "require_defined_outcome_or_dependent_variable": true,
+            "require_documented_decision_stage": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_claim": true,
+            "require_scope_condition": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "ban_norwegian_exceptionalism_without_comparison": true
+          },
+          "definition": "Analyserer hvordan historiske og nyere skillelinjer, partiorganisasjoner, nominasjon, medlemskap og velgerkoalisjoner former det norske partisystemet.",
+          "core_problem": "Hvordan oversettes samfunnskonflikter og geografiske forskjeller til varige partier, kandidater, programmer og velgerkoalisjoner?",
+          "mechanisms": [
+            "konfliktlinjeaktivering",
+            "partibygging",
+            "nominasjon",
+            "medlemsmobilisering",
+            "programutvikling",
+            "sakeseierskap",
+            "velgerreallokering"
+          ],
+          "critical_distinctions": [
+            "parti vs stortingsgruppe",
+            "skillelinje vs enkeltsak",
+            "medlem vs velger",
+            "program vs regjeringsplattform",
+            "organisasjon vs kampanje"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "sentrum–periferi og historiske konfliktlinjer"
+            },
+            {
+              "thinker_id": "seymour_martin_lipset",
+              "concept": "sosiale skillelinjer og partisystemer"
+            },
+            {
+              "thinker_id": "maurice_duverger",
+              "concept": "partiorganisasjon og valgsystemeffekter"
+            }
+          ],
+          "case_anchors": [
+            "Youngstorget",
+            "Stortinget",
+            "Eidsvolls plass"
+          ],
+          "source_types": [
+            "partiprogram",
+            "vedtekter",
+            "nominasjonsliste",
+            "valgresultat",
+            "partimedlemsdata",
+            "surveydata"
+          ],
+          "unit_of_analysis": "parti, valgkrets, velgergruppe, nominasjonsprosess eller valgperiode",
+          "defined_outcome": "partistøtte, kandidatvalg, programendring, koalisjonsposisjon eller partisystemendring",
+          "anti_reduction": [
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "quality_revision": "politikk-norge-eu-vertical-phase-3-2026-07-24"
         }
       ],
       "best_place_types": [
@@ -19479,6 +20463,795 @@
             "Ikke generaliser fra ett case uten eksplisitt rekkevidde."
           ],
           "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+        },
+        {
+          "id": "norsk_politikk_regjering_departement_embetsverk",
+          "title": "Regjeringen, departementene og embetsverket",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "max_weber",
+                "name": "Max Weber",
+                "role": "embetsverk, ansvar og legal-rasjonell autoritet",
+                "tier": "core"
+              },
+              {
+                "id": "herbert_simon",
+                "name": "Herbert Simon",
+                "role": "begrenset rasjonalitet og administrativ beslutning",
+                "tier": "core"
+              },
+              {
+                "id": "johan_p_olsen",
+                "name": "Johan P. Olsen",
+                "role": "institusjonell organisering og offentlig administrasjon",
+                "tier": "supplementary"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_pol_norge_regjering_departement_embetsverk"
+          ],
+          "best_place_types": [
+            "storting",
+            "rådhus",
+            "regjeringsbygg",
+            "departement",
+            "politisk_plass",
+            "stortinget",
+            "oslo_radhus"
+          ],
+          "avoid_place_types": [
+            "sted_uten_norsk_institusjons_eller_dokumentkobling",
+            "rent_historisk_sted_uten_aktiv_politisk_problemstilling",
+            "generisk_norgespørsmål_uten_analyseenhet_og_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "norwegian-institution-document-mechanism-comparison",
+          "fact_anchor_required": true,
+          "politics_anchor_required": true,
+          "institution_law_conflict_or_social_process_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hva mener du om norsk politikk",
+            "Hvilken institusjon passer best",
+            "Hvilken teoretiker forklarer Norge",
+            "Norsk særtrekk uten dokumentert sammenligningsgrunnlag",
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "preferred_question_moves": [
+            "identify_official_document_and_decision_stage",
+            "define_unit_actor_outcome_and_time_period",
+            "trace_norwegian_institutional_mechanism",
+            "test_critical_distinction_or_comparative_baseline",
+            "state_scope_condition_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "max_weber",
+              "herbert_simon"
+            ],
+            [
+              "herbert_simon",
+              "johan_p_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "johan_p_olsen"
+          ],
+          "recommended_oslo_cases": [
+            "Regjeringskvartalet",
+            "Stortinget",
+            "Oslo rådhus"
+          ],
+          "recommended_place_ids": [
+            "stortinget",
+            "oslo_radhus"
+          ],
+          "required_document_types": [
+            "NOU",
+            "høringsnotat",
+            "kongelig resolusjon",
+            "regjeringsnotat med offentlig spor",
+            "tildelingsbrev",
+            "departementsstrategi"
+          ],
+          "recommended_method_ids": [
+            "met_pol_forvaltningsanalyse",
+            "met_pol_policyprosessanalyse",
+            "met_pol_prosessporing",
+            "met_pol_norsk_lovgivningsprosessanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "max_weber",
+            "herbert_simon",
+            "johan_p_olsen"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "targeted",
+          "canonical_status": "canonical",
+          "registry_version": "politikkpensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "Roter mellom offentlige dokumenttyper, beslutningsledd, styringsnivåer og steder. Teori brukes etter at norsk institusjon, dokument og mekanisme er etablert.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 3,
+            "require_institution_law_conflict_or_social_process_anchor": true,
+            "require_external_claim_basis": true,
+            "require_official_norwegian_document_type": true,
+            "require_defined_unit_and_time_period": true,
+            "require_defined_outcome_or_dependent_variable": true,
+            "require_documented_decision_stage": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_claim": true,
+            "require_scope_condition": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "ban_norwegian_exceptionalism_without_comparison": true
+          },
+          "definition": "Analyserer hvordan regjeringen, statsrådene, departementene og embetsverket forbereder, samordner, beslutter og følger opp norsk politikk.",
+          "core_problem": "Hvordan fordeles agenda-, kunnskaps- og beslutningsmakt mellom statsråd, regjering, departement og embetsverk?",
+          "mechanisms": [
+            "ministeransvar",
+            "departemental saksforberedelse",
+            "interdepartemental samordning",
+            "utredningsinstruks",
+            "embetsverksråd",
+            "regjeringskonferanse",
+            "tildelingsbrev og etatsstyring"
+          ],
+          "critical_distinctions": [
+            "politisk ledelse vs embetsverk",
+            "faglig råd vs politisk beslutning",
+            "departement vs direktorat",
+            "kollegialt regjeringsansvar vs individuelt ministeransvar",
+            "utredning vs beslutning"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "max_weber",
+              "concept": "embetsverk, ansvar og legal-rasjonell autoritet"
+            },
+            {
+              "thinker_id": "herbert_simon",
+              "concept": "begrenset rasjonalitet og administrativ beslutning"
+            },
+            {
+              "thinker_id": "johan_p_olsen",
+              "concept": "institusjonell organisering og offentlig administrasjon"
+            }
+          ],
+          "case_anchors": [
+            "Regjeringskvartalet",
+            "Stortinget",
+            "Oslo rådhus"
+          ],
+          "source_types": [
+            "NOU",
+            "høringsnotat",
+            "kongelig resolusjon",
+            "regjeringsnotat med offentlig spor",
+            "tildelingsbrev",
+            "departementsstrategi"
+          ],
+          "unit_of_analysis": "regjeringssak, departement, statsråd, direktorat eller styringskjede",
+          "defined_outcome": "politisk forslag, samordnet beslutning, etatsoppdrag eller dokumentert implementeringsvalg",
+          "anti_reduction": [
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "quality_revision": "politikk-norge-eu-vertical-phase-3-2026-07-24"
+        },
+        {
+          "id": "norsk_politikk_stat_kommune_flernivastyring",
+          "title": "Stat–kommune-relasjoner og flernivåstyring",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "fritz_scharpf",
+                "name": "Fritz W. Scharpf",
+                "role": "flernivåstyring og input/output-legitimitet",
+                "tier": "core"
+              },
+              {
+                "id": "elinor_ostrom",
+                "name": "Elinor Ostrom",
+                "role": "polysentrisk styring",
+                "tier": "core"
+              },
+              {
+                "id": "stein_rokkan",
+                "name": "Stein Rokkan",
+                "role": "sentrum–periferi og territoriell organisering",
+                "tier": "supplementary"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_pol_norge_stat_kommune_flernivastyring"
+          ],
+          "best_place_types": [
+            "storting",
+            "rådhus",
+            "regjeringsbygg",
+            "departement",
+            "politisk_plass",
+            "oslo_radhus",
+            "stortinget"
+          ],
+          "avoid_place_types": [
+            "sted_uten_norsk_institusjons_eller_dokumentkobling",
+            "rent_historisk_sted_uten_aktiv_politisk_problemstilling",
+            "generisk_norgespørsmål_uten_analyseenhet_og_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "norwegian-institution-document-mechanism-comparison",
+          "fact_anchor_required": true,
+          "politics_anchor_required": true,
+          "institution_law_conflict_or_social_process_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hva mener du om norsk politikk",
+            "Hvilken institusjon passer best",
+            "Hvilken teoretiker forklarer Norge",
+            "Norsk særtrekk uten dokumentert sammenligningsgrunnlag",
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "preferred_question_moves": [
+            "identify_official_document_and_decision_stage",
+            "define_unit_actor_outcome_and_time_period",
+            "trace_norwegian_institutional_mechanism",
+            "test_critical_distinction_or_comparative_baseline",
+            "state_scope_condition_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "fritz_scharpf",
+              "elinor_ostrom"
+            ],
+            [
+              "elinor_ostrom",
+              "stein_rokkan"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "stein_rokkan"
+          ],
+          "recommended_oslo_cases": [
+            "Oslo rådhus",
+            "Regjeringskvartalet",
+            "Bydelshus"
+          ],
+          "recommended_place_ids": [
+            "oslo_radhus",
+            "stortinget"
+          ],
+          "required_document_types": [
+            "kommunelov",
+            "sektorlov",
+            "statsbudsjett",
+            "tildelingsbrev",
+            "tilsynsrapport",
+            "KOSTRA-data",
+            "kommunalt vedtak"
+          ],
+          "recommended_method_ids": [
+            "met_pol_norsk_flernivastyringsanalyse",
+            "met_pol_foderalisme_og_flernivaanalyse",
+            "met_pol_implementeringsanalyse",
+            "met_pol_policy_evaluering"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "fritz_scharpf",
+            "elinor_ostrom",
+            "stein_rokkan"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "targeted",
+          "canonical_status": "canonical",
+          "registry_version": "politikkpensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "Roter mellom offentlige dokumenttyper, beslutningsledd, styringsnivåer og steder. Teori brukes etter at norsk institusjon, dokument og mekanisme er etablert.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 3,
+            "require_institution_law_conflict_or_social_process_anchor": true,
+            "require_external_claim_basis": true,
+            "require_official_norwegian_document_type": true,
+            "require_defined_unit_and_time_period": true,
+            "require_defined_outcome_or_dependent_variable": true,
+            "require_documented_decision_stage": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_claim": true,
+            "require_scope_condition": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "ban_norwegian_exceptionalism_without_comparison": true
+          },
+          "definition": "Analyserer hvordan lovkrav, finansiering, tilsyn, veiledning, skjønn og forhandling fordeler ansvar mellom stat, fylkeskommune og kommune.",
+          "core_problem": "Hvordan påvirker kompetansefordeling, finansiering og styringsvirkemidler kommunenes reelle handlingsrom og borgernes faktiske tilbud?",
+          "mechanisms": [
+            "lovpålagt oppgave",
+            "rammefinansiering",
+            "øremerket tilskudd",
+            "statlig tilsyn",
+            "veiledning og normering",
+            "kommunalt skjønn",
+            "intergovernmental forhandling"
+          ],
+          "critical_distinctions": [
+            "desentralisering vs delegering",
+            "rammestyring vs detaljstyring",
+            "lokal variasjon vs rettighetsulikhet",
+            "autonomi vs finansieringsavhengighet",
+            "tilsyn vs politisk kontroll"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "fritz_scharpf",
+              "concept": "flernivåstyring og input/output-legitimitet"
+            },
+            {
+              "thinker_id": "elinor_ostrom",
+              "concept": "polysentrisk styring"
+            },
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "sentrum–periferi og territoriell organisering"
+            }
+          ],
+          "case_anchors": [
+            "Oslo rådhus",
+            "Regjeringskvartalet",
+            "Bydelshus"
+          ],
+          "source_types": [
+            "kommunelov",
+            "sektorlov",
+            "statsbudsjett",
+            "tildelingsbrev",
+            "tilsynsrapport",
+            "KOSTRA-data",
+            "kommunalt vedtak"
+          ],
+          "unit_of_analysis": "styringsrelasjon, oppgave, tilskuddsordning, kommune eller tjenesteområde",
+          "defined_outcome": "kommunalt handlingsrom, implementeringsvariasjon, tjenestekvalitet eller etterlevelse",
+          "anti_reduction": [
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "quality_revision": "politikk-norge-eu-vertical-phase-3-2026-07-24"
+        },
+        {
+          "id": "norsk_politikk_eos_rettsakt_nasjonal_gjennomforing",
+          "title": "EØS-rettsakter i norsk lov og forvaltning",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "fritz_scharpf",
+                "name": "Fritz W. Scharpf",
+                "role": "flernivåstyring og institusjonell kapasitet",
+                "tier": "core"
+              },
+              {
+                "id": "robert_keohane",
+                "name": "Robert Keohane",
+                "role": "institusjonalisert samarbeid og etterlevelse",
+                "tier": "core"
+              },
+              {
+                "id": "michael_lipsky",
+                "name": "Michael Lipsky",
+                "role": "implementering og forvaltningspraksis",
+                "tier": "supplementary"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_pol_norge_eos_rettsakt_nasjonal_gjennomforing"
+          ],
+          "best_place_types": [
+            "storting",
+            "rådhus",
+            "regjeringsbygg",
+            "departement",
+            "politisk_plass",
+            "stortinget",
+            "oslo_radhus"
+          ],
+          "avoid_place_types": [
+            "sted_uten_norsk_institusjons_eller_dokumentkobling",
+            "rent_historisk_sted_uten_aktiv_politisk_problemstilling",
+            "generisk_norgespørsmål_uten_analyseenhet_og_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "norwegian-institution-document-mechanism-comparison",
+          "fact_anchor_required": true,
+          "politics_anchor_required": true,
+          "institution_law_conflict_or_social_process_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hva mener du om norsk politikk",
+            "Hvilken institusjon passer best",
+            "Hvilken teoretiker forklarer Norge",
+            "Norsk særtrekk uten dokumentert sammenligningsgrunnlag",
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "preferred_question_moves": [
+            "identify_official_document_and_decision_stage",
+            "define_unit_actor_outcome_and_time_period",
+            "trace_norwegian_institutional_mechanism",
+            "test_critical_distinction_or_comparative_baseline",
+            "state_scope_condition_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "fritz_scharpf",
+              "robert_keohane"
+            ],
+            [
+              "robert_keohane",
+              "michael_lipsky"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Stortinget",
+            "Regjeringskvartalet",
+            "Oslo rådhus"
+          ],
+          "recommended_place_ids": [
+            "stortinget",
+            "oslo_radhus"
+          ],
+          "required_document_types": [
+            "EU-rettsakt",
+            "EØS-komitebeslutning",
+            "EØS-notat",
+            "proposisjon",
+            "lov eller forskrift",
+            "ESA-sak",
+            "tilsynsrapport"
+          ],
+          "recommended_method_ids": [
+            "met_pol_eos_rettsakt_og_gjennomforingsanalyse",
+            "met_pol_rettslig_analyse",
+            "met_pol_implementeringsanalyse",
+            "met_pol_prosessporing"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "fritz_scharpf",
+            "robert_keohane",
+            "michael_lipsky"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "targeted",
+          "canonical_status": "canonical",
+          "registry_version": "politikkpensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "Roter mellom offentlige dokumenttyper, beslutningsledd, styringsnivåer og steder. Teori brukes etter at norsk institusjon, dokument og mekanisme er etablert.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 3,
+            "require_institution_law_conflict_or_social_process_anchor": true,
+            "require_external_claim_basis": true,
+            "require_official_norwegian_document_type": true,
+            "require_defined_unit_and_time_period": true,
+            "require_defined_outcome_or_dependent_variable": true,
+            "require_documented_decision_stage": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_claim": true,
+            "require_scope_condition": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "ban_norwegian_exceptionalism_without_comparison": true
+          },
+          "definition": "Analyserer kjeden fra EU-rettsakt og EØS-innlemmelse til norsk lov, forskrift, forvaltningspraksis, tilsyn og borger- eller markedsutfall.",
+          "core_problem": "Hvor i gjennomføringskjeden finnes norsk skjønn, og hvordan kan feil eller forsinkelse spores fra rettsakt til nasjonal praksis?",
+          "mechanisms": [
+            "rettsaktsklassifisering",
+            "EØS-relevansvurdering",
+            "konstitusjonell behandling",
+            "lov- eller forskriftsendring",
+            "direktoratsimplementering",
+            "tilsyn og sanksjon",
+            "domstols- og ESA-kontroll"
+          ],
+          "critical_distinctions": [
+            "forordning vs direktiv",
+            "innlemmelse vs gjennomføring",
+            "minimumsharmonisering vs fullharmonisering",
+            "rettslig plikt vs politisk virkemiddelvalg",
+            "regeltekst vs håndhevingspraksis"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "fritz_scharpf",
+              "concept": "flernivåstyring og institusjonell kapasitet"
+            },
+            {
+              "thinker_id": "robert_keohane",
+              "concept": "institusjonalisert samarbeid og etterlevelse"
+            },
+            {
+              "thinker_id": "michael_lipsky",
+              "concept": "implementering og forvaltningspraksis"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Regjeringskvartalet",
+            "Oslo rådhus"
+          ],
+          "source_types": [
+            "EU-rettsakt",
+            "EØS-komitebeslutning",
+            "EØS-notat",
+            "proposisjon",
+            "lov eller forskrift",
+            "ESA-sak",
+            "tilsynsrapport"
+          ],
+          "unit_of_analysis": "rettsakt, norsk gjennomføringsregel, forvaltningsorgan eller håndhevingsprosess",
+          "defined_outcome": "rettidig og korrekt gjennomføring, administrativ praksis, sanksjon eller dokumentert etterlevelse",
+          "anti_reduction": [
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "quality_revision": "politikk-norge-eu-vertical-phase-3-2026-07-24"
+        },
+        {
+          "id": "norsk_politikk_statsbudsjett_utredning_lovprosess",
+          "title": "Statsbudsjett, utredninger og politisk beslutningsspor",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_lindblom",
+                "name": "Charles E. Lindblom",
+                "role": "inkrementalisme og trinnvis beslutning",
+                "tier": "core"
+              },
+              {
+                "id": "herbert_simon",
+                "name": "Herbert Simon",
+                "role": "begrenset rasjonalitet",
+                "tier": "core"
+              },
+              {
+                "id": "paul_sabatier",
+                "name": "Paul Sabatier",
+                "role": "policyprosesser, koalisjoner og læring",
+                "tier": "supplementary"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_pol_norge_statsbudsjett_utredning_lovprosess"
+          ],
+          "best_place_types": [
+            "storting",
+            "rådhus",
+            "regjeringsbygg",
+            "departement",
+            "politisk_plass",
+            "stortinget",
+            "oslo_radhus",
+            "eidsvolls_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_norsk_institusjons_eller_dokumentkobling",
+            "rent_historisk_sted_uten_aktiv_politisk_problemstilling",
+            "generisk_norgespørsmål_uten_analyseenhet_og_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "norwegian-institution-document-mechanism-comparison",
+          "fact_anchor_required": true,
+          "politics_anchor_required": true,
+          "institution_law_conflict_or_social_process_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hva mener du om norsk politikk",
+            "Hvilken institusjon passer best",
+            "Hvilken teoretiker forklarer Norge",
+            "Norsk særtrekk uten dokumentert sammenligningsgrunnlag",
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "preferred_question_moves": [
+            "identify_official_document_and_decision_stage",
+            "define_unit_actor_outcome_and_time_period",
+            "trace_norwegian_institutional_mechanism",
+            "test_critical_distinction_or_comparative_baseline",
+            "state_scope_condition_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "charles_lindblom",
+              "herbert_simon"
+            ],
+            [
+              "herbert_simon",
+              "paul_sabatier"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Stortinget",
+            "Regjeringskvartalet",
+            "Oslo rådhus"
+          ],
+          "recommended_place_ids": [
+            "stortinget",
+            "oslo_radhus",
+            "eidsvolls_plass"
+          ],
+          "required_document_types": [
+            "NOU",
+            "høringsuttalelse",
+            "proposisjon",
+            "statsbudsjett",
+            "komitéinnstilling",
+            "stortingsvedtak",
+            "tildelingsbrev"
+          ],
+          "recommended_method_ids": [
+            "met_pol_norsk_lovgivningsprosessanalyse",
+            "met_pol_budsjett_og_fordelingsanalyse",
+            "met_pol_policyprosessanalyse",
+            "met_pol_dokumentanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "charles_lindblom",
+            "herbert_simon",
+            "paul_sabatier"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "targeted",
+          "canonical_status": "canonical",
+          "registry_version": "politikkpensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "Roter mellom offentlige dokumenttyper, beslutningsledd, styringsnivåer og steder. Teori brukes etter at norsk institusjon, dokument og mekanisme er etablert.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 3,
+            "require_institution_law_conflict_or_social_process_anchor": true,
+            "require_external_claim_basis": true,
+            "require_official_norwegian_document_type": true,
+            "require_defined_unit_and_time_period": true,
+            "require_defined_outcome_or_dependent_variable": true,
+            "require_documented_decision_stage": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_claim": true,
+            "require_scope_condition": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "ban_norwegian_exceptionalism_without_comparison": true
+          },
+          "definition": "Analyserer hvordan NOU-er, høringer, proposisjoner, statsbudsjett, komitéinnstillinger og vedtak danner et dokumentert spor fra problemdefinisjon til ressurs- og regelbeslutning.",
+          "core_problem": "Hvordan kan en politisk påstand spores gjennom norske dokumenttyper, og hvor i kjeden endres problem, virkemiddel, kostnad eller fordelingsprofil?",
+          "mechanisms": [
+            "problemmandat",
+            "offentlig utredning",
+            "høringsrespons",
+            "proposisjonsutforming",
+            "budsjettprioritering",
+            "komitéendring",
+            "bevilgnings- og lovvedtak"
+          ],
+          "critical_distinctions": [
+            "NOU vs proposisjon",
+            "høring vs beslutning",
+            "budsjettforslag vs bevilgning",
+            "mål vs virkemiddel",
+            "utgift vs proveny",
+            "lovvedtak vs implementering"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "charles_lindblom",
+              "concept": "inkrementalisme og trinnvis beslutning"
+            },
+            {
+              "thinker_id": "herbert_simon",
+              "concept": "begrenset rasjonalitet"
+            },
+            {
+              "thinker_id": "paul_sabatier",
+              "concept": "policyprosesser, koalisjoner og læring"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Regjeringskvartalet",
+            "Oslo rådhus"
+          ],
+          "source_types": [
+            "NOU",
+            "høringsuttalelse",
+            "proposisjon",
+            "statsbudsjett",
+            "komitéinnstilling",
+            "stortingsvedtak",
+            "tildelingsbrev"
+          ],
+          "unit_of_analysis": "politisk reform, budsjettpost, lovsak eller dokumentert beslutningskjede",
+          "defined_outcome": "endret problemdefinisjon, virkemiddel, bevilgning, lovtekst eller implementeringsoppdrag",
+          "anti_reduction": [
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "quality_revision": "politikk-norge-eu-vertical-phase-3-2026-07-24"
         }
       ],
       "best_place_types": [
@@ -21190,6 +22963,398 @@
             "Ikke generaliser fra ett case uten eksplisitt rekkevidde."
           ],
           "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+        },
+        {
+          "id": "norsk_politikk_eos_europeisk_integrasjon",
+          "title": "EØS, EU og europeisk integrasjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "robert_keohane",
+                "name": "Robert Keohane",
+                "role": "internasjonale institusjoner og samarbeid",
+                "tier": "core"
+              },
+              {
+                "id": "fritz_scharpf",
+                "name": "Fritz W. Scharpf",
+                "role": "flernivåstyring og legitimitet",
+                "tier": "core"
+              },
+              {
+                "id": "andrew_moravcsik",
+                "name": "Andrew Moravcsik",
+                "role": "europeisk integrasjon og liberal mellomstatlighet",
+                "tier": "supplementary"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_pol_norge_eos_europeisk_integrasjon"
+          ],
+          "best_place_types": [
+            "storting",
+            "rådhus",
+            "regjeringsbygg",
+            "departement",
+            "politisk_plass",
+            "stortinget",
+            "eidsvolls_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_norsk_institusjons_eller_dokumentkobling",
+            "rent_historisk_sted_uten_aktiv_politisk_problemstilling",
+            "generisk_norgespørsmål_uten_analyseenhet_og_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "norwegian-institution-document-mechanism-comparison",
+          "fact_anchor_required": true,
+          "politics_anchor_required": true,
+          "institution_law_conflict_or_social_process_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hva mener du om norsk politikk",
+            "Hvilken institusjon passer best",
+            "Hvilken teoretiker forklarer Norge",
+            "Norsk særtrekk uten dokumentert sammenligningsgrunnlag",
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "preferred_question_moves": [
+            "identify_official_document_and_decision_stage",
+            "define_unit_actor_outcome_and_time_period",
+            "trace_norwegian_institutional_mechanism",
+            "test_critical_distinction_or_comparative_baseline",
+            "state_scope_condition_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "robert_keohane",
+              "fritz_scharpf"
+            ],
+            [
+              "fritz_scharpf",
+              "andrew_moravcsik"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Stortinget",
+            "Regjeringskvartalet",
+            "EFTA-sekretariatet"
+          ],
+          "recommended_place_ids": [
+            "stortinget",
+            "eidsvolls_plass"
+          ],
+          "required_document_types": [
+            "EØS-avtalen",
+            "EØS-komitebeslutning",
+            "EU-rettsakt",
+            "EØS-notat",
+            "ESA-vedtak",
+            "EFTA-dom",
+            "stortingsproposisjon"
+          ],
+          "recommended_method_ids": [
+            "met_pol_eos_rettsakt_og_gjennomforingsanalyse",
+            "met_pol_internasjonal_politisk_analyse",
+            "met_pol_komparativ_institusjonsanalyse",
+            "met_pol_prosessporing"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "robert_keohane",
+            "fritz_scharpf",
+            "andrew_moravcsik"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "targeted",
+          "canonical_status": "canonical",
+          "registry_version": "politikkpensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "Roter mellom offentlige dokumenttyper, beslutningsledd, styringsnivåer og steder. Teori brukes etter at norsk institusjon, dokument og mekanisme er etablert.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 3,
+            "require_institution_law_conflict_or_social_process_anchor": true,
+            "require_external_claim_basis": true,
+            "require_official_norwegian_document_type": true,
+            "require_defined_unit_and_time_period": true,
+            "require_defined_outcome_or_dependent_variable": true,
+            "require_documented_decision_stage": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_claim": true,
+            "require_scope_condition": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "ban_norwegian_exceptionalism_without_comparison": true
+          },
+          "definition": "Analyserer hvordan EØS-avtalen knytter Norge til EUs indre marked, regelutvikling, institusjoner og beslutningsprosesser uten norsk medlemskap i EU.",
+          "core_problem": "Hvordan oppstår norske påvirkningsmuligheter og demokratiske avstander når regler utvikles i EU og innlemmes gjennom EØS-systemet?",
+          "mechanisms": [
+            "dynamisk regeltilpasning",
+            "deltakelse i ekspertkomiteer",
+            "EØS-komitebeslutning",
+            "reservasjonsrett",
+            "ESA-overvåking",
+            "EFTA-domstolskontroll",
+            "nasjonal innlemmelse"
+          ],
+          "critical_distinctions": [
+            "EU-medlemskap vs EØS-tilknytning",
+            "formell stemmerett vs tidlig påvirkning",
+            "rettsakt vs norsk gjennomføringsregel",
+            "reservasjonsrett vs ordinært veto",
+            "markedsadgang vs politisk autonomi"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "robert_keohane",
+              "concept": "internasjonale institusjoner og samarbeid"
+            },
+            {
+              "thinker_id": "fritz_scharpf",
+              "concept": "flernivåstyring og legitimitet"
+            },
+            {
+              "thinker_id": "andrew_moravcsik",
+              "concept": "europeisk integrasjon og liberal mellomstatlighet"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Regjeringskvartalet",
+            "EFTA-sekretariatet"
+          ],
+          "source_types": [
+            "EØS-avtalen",
+            "EØS-komitebeslutning",
+            "EU-rettsakt",
+            "EØS-notat",
+            "ESA-vedtak",
+            "EFTA-dom",
+            "stortingsproposisjon"
+          ],
+          "unit_of_analysis": "rettsakt, EØS-komitebeslutning, norsk posisjon eller integrasjonsprosess",
+          "defined_outcome": "innlemmelse, reservasjon, nasjonal tilpasning, håndhevingssak eller endret norsk handlingsrom",
+          "anti_reduction": [
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "quality_revision": "politikk-norge-eu-vertical-phase-3-2026-07-24"
+        },
+        {
+          "id": "norsk_politikk_utenriks_sikkerhet",
+          "title": "Norsk utenriks- og sikkerhetspolitikk",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "kenneth_waltz",
+                "name": "Kenneth Waltz",
+                "role": "systemstruktur og småstaters handlingsvilkår",
+                "tier": "core"
+              },
+              {
+                "id": "robert_keohane",
+                "name": "Robert Keohane",
+                "role": "institusjoner og samarbeid",
+                "tier": "core"
+              },
+              {
+                "id": "robert_putnam",
+                "name": "Robert Putnam",
+                "role": "to-nivåspill i internasjonale forhandlinger",
+                "tier": "supplementary"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_pol_norge_utenriks_sikkerhet"
+          ],
+          "best_place_types": [
+            "storting",
+            "rådhus",
+            "regjeringsbygg",
+            "departement",
+            "politisk_plass",
+            "stortinget",
+            "eidsvolls_plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_norsk_institusjons_eller_dokumentkobling",
+            "rent_historisk_sted_uten_aktiv_politisk_problemstilling",
+            "generisk_norgespørsmål_uten_analyseenhet_og_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "norwegian-institution-document-mechanism-comparison",
+          "fact_anchor_required": true,
+          "politics_anchor_required": true,
+          "institution_law_conflict_or_social_process_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hva mener du om norsk politikk",
+            "Hvilken institusjon passer best",
+            "Hvilken teoretiker forklarer Norge",
+            "Norsk særtrekk uten dokumentert sammenligningsgrunnlag",
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "preferred_question_moves": [
+            "identify_official_document_and_decision_stage",
+            "define_unit_actor_outcome_and_time_period",
+            "trace_norwegian_institutional_mechanism",
+            "test_critical_distinction_or_comparative_baseline",
+            "state_scope_condition_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "kenneth_waltz",
+              "robert_keohane"
+            ],
+            [
+              "robert_keohane",
+              "robert_putnam"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Stortinget",
+            "Utenriksdepartementet",
+            "Nobelinstituttet"
+          ],
+          "recommended_place_ids": [
+            "stortinget",
+            "eidsvolls_plass"
+          ],
+          "required_document_types": [
+            "stortingsmelding",
+            "forsvarsbudsjett",
+            "traktat",
+            "NATO-dokument",
+            "utenrikspolitisk redegjørelse",
+            "strategi",
+            "sanksjonsregelverk"
+          ],
+          "recommended_method_ids": [
+            "met_pol_utenrikspolitisk_analyse",
+            "met_pol_internasjonal_politisk_analyse",
+            "met_pol_prosessporing",
+            "met_pol_komparativt_forskningsdesign"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "kenneth_waltz",
+            "robert_keohane",
+            "robert_putnam"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "targeted",
+          "canonical_status": "canonical",
+          "registry_version": "politikkpensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "Roter mellom offentlige dokumenttyper, beslutningsledd, styringsnivåer og steder. Teori brukes etter at norsk institusjon, dokument og mekanisme er etablert.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 3,
+            "require_institution_law_conflict_or_social_process_anchor": true,
+            "require_external_claim_basis": true,
+            "require_official_norwegian_document_type": true,
+            "require_defined_unit_and_time_period": true,
+            "require_defined_outcome_or_dependent_variable": true,
+            "require_documented_decision_stage": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_claim": true,
+            "require_scope_condition": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "ban_norwegian_exceptionalism_without_comparison": true
+          },
+          "definition": "Analyserer hvordan norske myndigheter balanserer allianser, naboskap, folkerett, handel, bistand, nordområder og nasjonale sikkerhetsinteresser.",
+          "core_problem": "Hvordan påvirker småstatsposisjon, allianseavhengighet og geografisk plassering norske valg under internasjonalt press og usikkerhet?",
+          "mechanisms": [
+            "allianseforankring",
+            "avskrekking og beroligelse",
+            "base- og sikkerhetspolitikk",
+            "diplomatisk mekling",
+            "sanksjoner",
+            "forsvarsplanlegging",
+            "to-nivåforhandling"
+          ],
+          "critical_distinctions": [
+            "utenrikspolitikk vs sikkerhetspolitikk",
+            "avskrekking vs beroligelse",
+            "allianseforpliktelse vs nasjonalt skjønn",
+            "mål vs virkemiddel",
+            "signal vs materiell kapasitet"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "kenneth_waltz",
+              "concept": "systemstruktur og småstaters handlingsvilkår"
+            },
+            {
+              "thinker_id": "robert_keohane",
+              "concept": "institusjoner og samarbeid"
+            },
+            {
+              "thinker_id": "robert_putnam",
+              "concept": "to-nivåspill i internasjonale forhandlinger"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Utenriksdepartementet",
+            "Nobelinstituttet"
+          ],
+          "source_types": [
+            "stortingsmelding",
+            "forsvarsbudsjett",
+            "traktat",
+            "NATO-dokument",
+            "utenrikspolitisk redegjørelse",
+            "strategi",
+            "sanksjonsregelverk"
+          ],
+          "unit_of_analysis": "utenrikspolitisk beslutning, allianseforhold, krise, traktat eller strategiprosess",
+          "defined_outcome": "norsk posisjon, sikkerhetstiltak, internasjonal avtale, ressursprioritering eller endret handlingsrom",
+          "anti_reduction": [
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "quality_revision": "politikk-norge-eu-vertical-phase-3-2026-07-24"
         }
       ],
       "best_place_types": [
@@ -22901,6 +25066,203 @@
             "Ikke generaliser fra ett case uten eksplisitt rekkevidde."
           ],
           "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+        },
+        {
+          "id": "norsk_politikk_korporatisme_trepart_organiserte_interesser",
+          "title": "Korporatisme, trepartssamarbeid og organiserte interesser",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "mancur_olson",
+                "name": "Mancur Olson",
+                "role": "kollektiv handling og organiserte interesser",
+                "tier": "core"
+              },
+              {
+                "id": "stein_rokkan",
+                "name": "Stein Rokkan",
+                "role": "korporative kanaler og norsk politisk organisering",
+                "tier": "core"
+              },
+              {
+                "id": "gudmund_hernes",
+                "name": "Gudmund Hernes",
+                "role": "makt, avhengighet og institusjonalisert forhandling",
+                "tier": "supplementary"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_pol_norge_korporatisme_trepart_organiserte_interesser"
+          ],
+          "best_place_types": [
+            "storting",
+            "rådhus",
+            "regjeringsbygg",
+            "departement",
+            "politisk_plass",
+            "youngstorget",
+            "stortinget"
+          ],
+          "avoid_place_types": [
+            "sted_uten_norsk_institusjons_eller_dokumentkobling",
+            "rent_historisk_sted_uten_aktiv_politisk_problemstilling",
+            "generisk_norgespørsmål_uten_analyseenhet_og_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "norwegian-institution-document-mechanism-comparison",
+          "fact_anchor_required": true,
+          "politics_anchor_required": true,
+          "institution_law_conflict_or_social_process_anchor_required": true,
+          "external_claim_basis_required": true,
+          "avoid_surface_forms": [
+            "Hva mener du om norsk politikk",
+            "Hvilken institusjon passer best",
+            "Hvilken teoretiker forklarer Norge",
+            "Norsk særtrekk uten dokumentert sammenligningsgrunnlag",
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "preferred_question_moves": [
+            "identify_official_document_and_decision_stage",
+            "define_unit_actor_outcome_and_time_period",
+            "trace_norwegian_institutional_mechanism",
+            "test_critical_distinction_or_comparative_baseline",
+            "state_scope_condition_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "mancur_olson",
+              "stein_rokkan"
+            ],
+            [
+              "stein_rokkan",
+              "gudmund_hernes"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "stein_rokkan",
+            "gudmund_hernes"
+          ],
+          "recommended_oslo_cases": [
+            "Youngstorget",
+            "Regjeringskvartalet",
+            "Stortinget"
+          ],
+          "recommended_place_ids": [
+            "youngstorget",
+            "stortinget"
+          ],
+          "required_document_types": [
+            "tariffavtale",
+            "TBU-rapport",
+            "frontfagsdokument",
+            "høringsuttalelse",
+            "partssammensatt utredning",
+            "regjeringsdokument"
+          ],
+          "recommended_method_ids": [
+            "met_pol_korporativ_samhandlingsanalyse",
+            "met_pol_makt_og_interesseanalyse",
+            "met_pol_politisk_okonomianalyse",
+            "met_pol_dokumentanalyse"
+          ],
+          "overused_thinker_ids": [],
+          "underused_thinker_ids": [
+            "mancur_olson",
+            "stein_rokkan",
+            "gudmund_hernes"
+          ],
+          "case_spread_score": 5,
+          "theory_spread_priority": "targeted",
+          "canonical_status": "canonical",
+          "registry_version": "politikkpensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "canonical_file_role": "active",
+          "rotation_note": "Roter mellom offentlige dokumenttyper, beslutningsledd, styringsnivåer og steder. Teori brukes etter at norsk institusjon, dokument og mekanisme er etablert.",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 3,
+            "require_institution_law_conflict_or_social_process_anchor": true,
+            "require_external_claim_basis": true,
+            "require_official_norwegian_document_type": true,
+            "require_defined_unit_and_time_period": true,
+            "require_defined_outcome_or_dependent_variable": true,
+            "require_documented_decision_stage": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_claim": true,
+            "require_scope_condition": true,
+            "rotate_theorists": true,
+            "do_not_generate_from_hook_label_only": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "ban_norwegian_exceptionalism_without_comparison": true
+          },
+          "definition": "Analyserer hvordan staten, arbeidsgiverorganisasjoner, fagbevegelse og andre organiserte interesser deltar i inntektsoppgjør, utredning, høring og politikkutforming.",
+          "core_problem": "Når gir institusjonalisert interessemedvirkning bedre koordinering og legitimitet, og når skaper den lukkethet eller skjev tilgang?",
+          "mechanisms": [
+            "organisasjonsrepresentasjon",
+            "frontfagskoordinering",
+            "inntektspolitisk samordning",
+            "høringsdeltakelse",
+            "partssammensatt utvalg",
+            "forhandlet etterlevelse",
+            "informasjonsutveksling"
+          ],
+          "critical_distinctions": [
+            "korporatisme vs lobbyisme",
+            "trepartssamarbeid vs kollektiv forhandling",
+            "representativitet vs organisasjonsstyrke",
+            "høring vs forhandling",
+            "koordinering vs kartellisering"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "mancur_olson",
+              "concept": "kollektiv handling og organiserte interesser"
+            },
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "korporative kanaler og norsk politisk organisering"
+            },
+            {
+              "thinker_id": "gudmund_hernes",
+              "concept": "makt, avhengighet og institusjonalisert forhandling"
+            }
+          ],
+          "case_anchors": [
+            "Youngstorget",
+            "Regjeringskvartalet",
+            "Stortinget"
+          ],
+          "source_types": [
+            "tariffavtale",
+            "TBU-rapport",
+            "frontfagsdokument",
+            "høringsuttalelse",
+            "partssammensatt utredning",
+            "regjeringsdokument"
+          ],
+          "unit_of_analysis": "forhandlingsrunde, organisasjon, utvalg, høringsprosess eller inntektspolitisk beslutning",
+          "defined_outcome": "lønnsramme, politisk kompromiss, samordnet forventning, høringspåvirkning eller etterlevelse",
+          "anti_reduction": [
+            "Ikke bruk institusjonsnavn eller dokumenttype som løsrevet fasit.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke generaliser fra én norsk sak uten å avgrense tid, nivå og beslutningsspor.",
+            "Ikke behandle formell regel som identisk med politisk praksis."
+          ],
+          "quality_revision": "politikk-norge-eu-vertical-phase-3-2026-07-24"
         }
       ],
       "best_place_types": [
@@ -24781,7 +27143,58 @@
         "normative_consequence",
         "scope_condition"
       ]
-    }
+    },
+    "norwegian_politics_eu_phase_3_revision": "politikk-norge-eu-vertical-phase-3-2026-07-24",
+    "norwegian_politics_eu_phase_3_hook_count": 12
   },
-  "editorial_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+  "editorial_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+  "norwegian_politics_eu_axis": {
+    "revision": "politikk-norge-eu-vertical-phase-3-2026-07-24",
+    "status": "complete_revised",
+    "purpose": "Knytter norsk politisk institusjonskunnskap, EØS/EU, urfolkspolitikk, flernivåstyring og organiserte interesser til offisielle dokumenter, beslutningskjeder og History Go-steder.",
+    "hook_ids": [
+      "norsk_politikk_storting_komiteer_lovgivning",
+      "norsk_politikk_regjering_departement_embetsverk",
+      "norsk_politikk_mindretallsparlamentarisme_kontroll",
+      "norsk_politikk_partisystem_skillelinjer_organisasjon",
+      "norsk_politikk_kommuner_fylkeskommuner_lokaldemokrati",
+      "norsk_politikk_stat_kommune_flernivastyring",
+      "norsk_politikk_sametinget_urfolk_konsultasjon",
+      "norsk_politikk_eos_europeisk_integrasjon",
+      "norsk_politikk_eos_rettsakt_nasjonal_gjennomforing",
+      "norsk_politikk_utenriks_sikkerhet",
+      "norsk_politikk_korporatisme_trepart_organiserte_interesser",
+      "norsk_politikk_statsbudsjett_utredning_lovprosess"
+    ],
+    "emne_ids": [
+      "em_pol_norge_storting_komiteer_lovgivning",
+      "em_pol_norge_regjering_departement_embetsverk",
+      "em_pol_norge_mindretallsparlamentarisme_kontroll",
+      "em_pol_norge_partisystem_skillelinjer_organisasjon",
+      "em_pol_norge_kommuner_fylkeskommuner_lokaldemokrati",
+      "em_pol_norge_stat_kommune_flernivastyring",
+      "em_pol_norge_sametinget_urfolk_konsultasjon",
+      "em_pol_norge_eos_europeisk_integrasjon",
+      "em_pol_norge_eos_rettsakt_nasjonal_gjennomforing",
+      "em_pol_norge_utenriks_sikkerhet",
+      "em_pol_norge_korporatisme_trepart_organiserte_interesser",
+      "em_pol_norge_statsbudsjett_utredning_lovprosess"
+    ],
+    "method_ids": [
+      "met_pol_norsk_lovgivningsprosessanalyse",
+      "met_pol_parlamentarisk_kontrollanalyse_norge",
+      "met_pol_norsk_flernivastyringsanalyse",
+      "met_pol_eos_rettsakt_og_gjennomforingsanalyse",
+      "met_pol_urfolkskonsultasjonsanalyse",
+      "met_pol_korporativ_samhandlingsanalyse"
+    ],
+    "required_place_ids": [
+      "stortinget",
+      "youngstorget",
+      "oslo_radhus",
+      "eidsvolls_plass"
+    ],
+    "source_rule": "Norske faktapåstander krever navngitt offentlig dokument, datasett eller fagfellevurdert studie; canonical-filen er ikke faktakilde.",
+    "comparative_rule": "Påstander om norske særtrekk krever eksplisitt tids-, nivå-, institusjons- eller landssammenligning."
+  }
 }
