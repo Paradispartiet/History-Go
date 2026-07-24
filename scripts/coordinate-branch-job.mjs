@@ -20,21 +20,16 @@ const sha256 = (text) => crypto.createHash('sha256').update(text).digest('hex');
 const protocol = await readText('docs/coordinates/coordinate-control-protocol.md');
 const maxBatch = Math.max(...[...protocol.matchAll(/^\|\s*(\d+)\s*\|/gm)].map((m) => Number(m[1])));
 assert(maxBatch === 195 && !/^\|\s*196\s*\|/m.test(protocol), `Expected protocol to stop at batch 195, got ${maxBatch}`);
-
 const research = await readJson('reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/summary.json');
 assert(research.placeId === id && research.decision === 'identity_unsubstantiated_recommend_retirement', 'Retirement research gate failed.');
-for (const key of ['kartverketExactOsloCandidates', 'kartverketExactBygdoyHits', 'mediaWikiBygdoyHits', 'nationalLibraryBygdoyMetadataHits']) {
-  assert(research.matchCounts?.[key] === 0, `Research gate ${key} is no longer zero.`);
-}
-assert(await exists(splitRel), 'Split place is already absent.');
-assert(await exists(evidenceRel), 'Coordinate evidence is already absent.');
+for (const key of ['kartverketExactOsloCandidates', 'kartverketExactBygdoyHits', 'mediaWikiBygdoyHits', 'nationalLibraryBygdoyMetadataHits']) assert(research.matchCounts?.[key] === 0, `Research gate ${key} is no longer zero.`);
+assert(await exists(splitRel) && await exists(evidenceRel), 'Primary retirement files are already absent.');
 const split = await readJson(splitRel);
 assert(split.id === id && split.coordStatus === 'needs_source', 'Place is no longer an unresolved retirement candidate.');
 
 const stats = { removedRecords: 0, removedStrings: 0, removedKeys: 0 };
 const isTargetString = (value) => typeof value === 'string' && (value === id || value.endsWith(`/${id}.json`));
-const isTargetRecord = (value) => value && typeof value === 'object' && !Array.isArray(value) &&
-  [value.id, value.placeId, value.historyGoPlaceId, value.place_id, value.placeID].includes(id);
+const isTargetRecord = (value) => value && typeof value === 'object' && !Array.isArray(value) && [value.id, value.placeId, value.historyGoPlaceId, value.place_id, value.placeID].includes(id);
 const transform = (value) => {
   if (Array.isArray(value)) return value.flatMap((item) => {
     if (isTargetString(item)) { stats.removedStrings += 1; return []; }
@@ -54,7 +49,6 @@ const transform = (value) => {
   }
   return value;
 };
-
 const walkJson = async (rel) => {
   const files = [];
   for (const entry of await fs.readdir(path.join(root, rel), { withFileTypes: true })) {
@@ -65,11 +59,13 @@ const walkJson = async (rel) => {
   return files;
 };
 
-const activeRoots = ['data/Civication', 'data/i18n/content/places', 'data/leksikon', 'data/natur', 'data/quiz', 'data/stories', 'data/wonderkammer'];
+const activeRoots = ['data/Civication', 'data/i18n/content/places', 'data/leksikon', 'data/natur', 'data/places', 'data/quiz', 'data/stories', 'data/wonderkammer'];
+const explicitPaths = new Set([aggregateRel, splitManifestRel, splitRel]);
 const changedReferenceFiles = [];
 for (const activeRoot of activeRoots) {
   if (!await exists(activeRoot)) continue;
   for (const rel of await walkJson(activeRoot)) {
+    if (explicitPaths.has(rel)) continue;
     const before = await readText(rel);
     if (!before.includes(id)) continue;
     const after = `${JSON.stringify(transform(JSON.parse(before)), null, 2)}\n`;
@@ -97,13 +93,12 @@ splitManifest.source_sha256 = sha256(aggregateText);
 splitManifest.generated_at = new Date().toISOString();
 await writeJson(splitManifestRel, splitManifest);
 
-const evidenceManifest = transform(await readJson(evidenceManifestRel));
-const evidenceManifestText = `${JSON.stringify(evidenceManifest, null, 2)}\n`;
+const evidenceManifestText = `${JSON.stringify(transform(await readJson(evidenceManifestRel)), null, 2)}\n`;
 assert(!evidenceManifestText.includes(id), 'Coordinate evidence manifest still references the retired place.');
 await fs.writeFile(path.join(root, evidenceManifestRel), evidenceManifestText, 'utf8');
 
 const remaining = [];
-for (const activeRoot of [...activeRoots, 'data/places', 'data/coordinate-evidence']) {
+for (const activeRoot of [...activeRoots, 'data/coordinate-evidence']) {
   if (!await exists(activeRoot)) continue;
   for (const rel of await walkJson(activeRoot)) if ((await readText(rel)).includes(id)) remaining.push(rel);
 }
@@ -111,22 +106,14 @@ assert(remaining.length === 0, `Active references remain: ${remaining.join(', ')
 
 await fs.mkdir(path.join(root, reportRel), { recursive: true });
 const summary = {
-  version: '2026-07-24',
-  protocolMaxBatch: maxBatch,
-  placeId: id,
+  version: '2026-07-24', protocolMaxBatch: maxBatch, placeId: id,
   decision: 'retired_unsubstantiated_identity',
   sourceResearch: 'reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/summary.json',
-  canonicalChanged: true,
-  coordinateSelected: false,
-  aggregateBeforeCount,
-  aggregateAfterCount: aggregateAfter.length,
-  splitManifestBeforeCount,
-  splitManifestAfterCount: splitManifest.places.length,
-  removedPrimaryFiles: [splitRel, evidenceRel],
-  changedReferenceFiles,
-  stats,
-  remainingActiveReferences: remaining,
-  nextQueueCandidate: 'bygdoy_kongsgard_salamanderdam'
+  canonicalChanged: true, coordinateSelected: false,
+  aggregateBeforeCount, aggregateAfterCount: aggregateAfter.length,
+  splitManifestBeforeCount, splitManifestAfterCount: splitManifest.places.length,
+  removedPrimaryFiles: [splitRel, evidenceRel], changedReferenceFiles, stats,
+  remainingActiveReferences: remaining, nextQueueCandidate: 'bygdoy_kongsgard_salamanderdam'
 };
 await writeJson(`${reportRel}/summary.json`, summary);
 await fs.writeFile(path.join(root, reportRel, 'README.md'), `# Retire Bygdøy Røykensvika after batch 195\n\n- Decision: **retired_unsubstantiated_identity**\n- Coordinate selected: **no**\n- Active references remaining: **0**\n- Next queue candidate: **bygdoy_kongsgard_salamanderdam**\n`, 'utf8');
