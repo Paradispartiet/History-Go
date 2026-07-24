@@ -2724,6 +2724,784 @@
         "ban_method_label_as_answer": true,
         "require_emne_prefix": "em_lit_"
       }
+    },
+    {
+      "method_id": "met_lit_periodiserings_og_tradisjonsanalyse",
+      "title": "Periodiserings- og tradisjonsanalyse",
+      "short_label": "Periodisering",
+      "description": "Analyserer periodekriterier, samtidige tradisjoner, brudd, kontinuiteter og ettertidig kategorisering.",
+      "best_for_emne_kinds": [
+        "litteraturhistorisk",
+        "komparativ",
+        "oversettelsesanalytisk",
+        "bokhistorisk",
+        "medieanalytisk"
+      ],
+      "data_forms": [
+        "primærtekst",
+        "kritisk eller dokumentert utgave",
+        "oversettelse",
+        "manuskript eller bokobjekt",
+        "lydopptak eller digital versjon",
+        "resepsjons- og institusjonskilde"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sjanger_estetikk_tradisjon",
+        "felt_institusjon_kritikk"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "bibliotek",
+        "arkiv",
+        "forlag",
+        "bokhandel",
+        "museum",
+        "litteraturhus",
+        "scene",
+        "digital_plattform"
+      ],
+      "question_moves": [
+        "identifiser tekstobjekt og utgave",
+        "dater og lokaliser kilde eller medium",
+        "formuler sammenligningsgrunnlag",
+        "spor overføring eller transformasjon",
+        "prøv alternativ forklaring",
+        "avgrens konklusjon"
+      ],
+      "analytical_question": "Hvilket tekstobjekt, historisk kriterium eller medium sammenlignes, og hvilke kilder bærer påstanden?",
+      "evidence_inputs": [
+        "navngitt tekst eller verk",
+        "utgave, språk, oversetter, medium eller versjon når relevant",
+        "datert ekstern fag- eller institusjonskilde",
+        "dokumentert sammenligningsgrunnlag"
+      ],
+      "critical_distinctions": [
+        "periode vs naturgitt epoke",
+        "verk vs utgave",
+        "sirkulasjon vs iboende universalitet",
+        "kildetekst vs adaptasjon",
+        "tekst vs plattformtilstand"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "named_text_work_or_object",
+        "edition_language_medium_or_version",
+        "historical_or_transmission_context",
+        "comparison_baseline",
+        "mechanism_or_transformation",
+        "competing_explanation",
+        "scope_or_uncertainty"
+      ],
+      "output_requirements": [
+        "tekstobjekt",
+        "utgave/språk/medium",
+        "datert kontekst",
+        "sammenligningsgrunnlag",
+        "mekanisme eller transformasjon",
+        "alternativ forklaring",
+        "kritisk distinksjon",
+        "avgrensning"
+      ],
+      "anti_patterns": [
+        "periodenavn som full forklaring",
+        "verdenslitteratur som iboende kvalitet",
+        "oversettelse uten kilde- og måltekst",
+        "adaptasjon vurdert bare etter troskap",
+        "digital tekst uten versjon eller plattformtilstand",
+        "identitet som tekstlig essens"
+      ],
+      "method_use_note": "Metoden styrer historisk, komparativ og medial analyse, men er aldri faktakilde alene.",
+      "rotation_note": "Roter mellom språk, regioner, perioder, medier, utgaver, institusjoner og sirkulasjonsbaner.",
+      "hook_affinities": [
+        "litteraturhistorie_periodisering_samtidighet",
+        "litteraturhistorie_antikk_middelalder_tidligmoderne",
+        "litteraturhistorie_romantikk_realisme_modernisme",
+        "litteraturhistorie_avantgarde_postmodernisme_samtid",
+        "sjangerhistorie_kanon_resepsjon"
+      ],
+      "emne_affinities": [
+        "em_lit_historie_periodisering_samtidige_tradisjoner",
+        "em_lit_historie_antikk_middelalder_tidligmoderne",
+        "em_lit_historie_romantikk_realisme_naturalisme_modernisme",
+        "em_lit_historie_avantgarde_postmodernisme_samtid",
+        "em_lit_sjangerhistorie_kanon_resepsjon"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "quality_revision": "litteratur-historie-verden-media-phase-2-2026-07-24",
+      "generator_constraints": {
+        "require_named_text_work_edition_or_documented_reception": true,
+        "require_external_claim_basis": true,
+        "require_dated_historical_or_institutional_source": true,
+        "require_periodization_criteria": true,
+        "require_language_edition_and_translator_for_translation_claim": true,
+        "require_source_and_adaptation_identification": true,
+        "require_version_or_platform_state_for_digital_claim": true,
+        "require_competing_explanation_or_comparison": true,
+        "require_scope_or_uncertainty_statement": true,
+        "ban_period_label_as_self_explanatory_fact": true,
+        "ban_world_literature_as_intrinsic_universality": true,
+        "ban_identity_as_textual_essence": true,
+        "ban_theorist_name_as_answer_without_concept": true,
+        "do_not_generate_from_hook_label_only": true,
+        "do_not_generate_from_emne_label_only": true,
+        "required_emne_prefix": "em_lit_",
+        "ban_method_label_as_answer": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_verdenslitteraer_sirkulasjonsanalyse",
+      "title": "Verdenslitterær sirkulasjonsanalyse",
+      "short_label": "Verdenssirkulasjon",
+      "description": "Kartlegger hvordan tekster beveger seg gjennom oversettelse, forlag, marked, undervisning, priser og kanon.",
+      "best_for_emne_kinds": [
+        "litteraturhistorisk",
+        "komparativ",
+        "oversettelsesanalytisk",
+        "bokhistorisk",
+        "medieanalytisk"
+      ],
+      "data_forms": [
+        "primærtekst",
+        "kritisk eller dokumentert utgave",
+        "oversettelse",
+        "manuskript eller bokobjekt",
+        "lydopptak eller digital versjon",
+        "resepsjons- og institusjonskilde"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sjanger_estetikk_tradisjon",
+        "sprak_makt_identitet"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "bibliotek",
+        "arkiv",
+        "forlag",
+        "bokhandel",
+        "museum",
+        "litteraturhus",
+        "scene",
+        "digital_plattform"
+      ],
+      "question_moves": [
+        "identifiser tekstobjekt og utgave",
+        "dater og lokaliser kilde eller medium",
+        "formuler sammenligningsgrunnlag",
+        "spor overføring eller transformasjon",
+        "prøv alternativ forklaring",
+        "avgrens konklusjon"
+      ],
+      "analytical_question": "Hvilket tekstobjekt, historisk kriterium eller medium sammenlignes, og hvilke kilder bærer påstanden?",
+      "evidence_inputs": [
+        "navngitt tekst eller verk",
+        "utgave, språk, oversetter, medium eller versjon når relevant",
+        "datert ekstern fag- eller institusjonskilde",
+        "dokumentert sammenligningsgrunnlag"
+      ],
+      "critical_distinctions": [
+        "periode vs naturgitt epoke",
+        "verk vs utgave",
+        "sirkulasjon vs iboende universalitet",
+        "kildetekst vs adaptasjon",
+        "tekst vs plattformtilstand"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "named_text_work_or_object",
+        "edition_language_medium_or_version",
+        "historical_or_transmission_context",
+        "comparison_baseline",
+        "mechanism_or_transformation",
+        "competing_explanation",
+        "scope_or_uncertainty"
+      ],
+      "output_requirements": [
+        "tekstobjekt",
+        "utgave/språk/medium",
+        "datert kontekst",
+        "sammenligningsgrunnlag",
+        "mekanisme eller transformasjon",
+        "alternativ forklaring",
+        "kritisk distinksjon",
+        "avgrensning"
+      ],
+      "anti_patterns": [
+        "periodenavn som full forklaring",
+        "verdenslitteratur som iboende kvalitet",
+        "oversettelse uten kilde- og måltekst",
+        "adaptasjon vurdert bare etter troskap",
+        "digital tekst uten versjon eller plattformtilstand",
+        "identitet som tekstlig essens"
+      ],
+      "method_use_note": "Metoden styrer historisk, komparativ og medial analyse, men er aldri faktakilde alene.",
+      "rotation_note": "Roter mellom språk, regioner, perioder, medier, utgaver, institusjoner og sirkulasjonsbaner.",
+      "hook_affinities": [
+        "verdenslitteratur_sirkulasjon_komparasjon",
+        "postkoloniale_litteraere_systemer"
+      ],
+      "emne_affinities": [
+        "em_lit_verdenslitteratur_sirkulasjon_komparasjon",
+        "em_lit_postkoloniale_litteraere_systemer"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "quality_revision": "litteratur-historie-verden-media-phase-2-2026-07-24",
+      "generator_constraints": {
+        "require_named_text_work_edition_or_documented_reception": true,
+        "require_external_claim_basis": true,
+        "require_dated_historical_or_institutional_source": true,
+        "require_periodization_criteria": true,
+        "require_language_edition_and_translator_for_translation_claim": true,
+        "require_source_and_adaptation_identification": true,
+        "require_version_or_platform_state_for_digital_claim": true,
+        "require_competing_explanation_or_comparison": true,
+        "require_scope_or_uncertainty_statement": true,
+        "ban_period_label_as_self_explanatory_fact": true,
+        "ban_world_literature_as_intrinsic_universality": true,
+        "ban_identity_as_textual_essence": true,
+        "ban_theorist_name_as_answer_without_concept": true,
+        "do_not_generate_from_hook_label_only": true,
+        "do_not_generate_from_emne_label_only": true,
+        "required_emne_prefix": "em_lit_",
+        "ban_method_label_as_answer": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_oversettelseskomparativ_analyse",
+      "title": "Oversettelseskomparativ analyse",
+      "short_label": "Oversettelseskomparasjon",
+      "description": "Sammenligner kilde- og måltekst med eksplisitt språk, oversetter, utgave, tekststed og alternative valg.",
+      "best_for_emne_kinds": [
+        "litteraturhistorisk",
+        "komparativ",
+        "oversettelsesanalytisk",
+        "bokhistorisk",
+        "medieanalytisk"
+      ],
+      "data_forms": [
+        "primærtekst",
+        "kritisk eller dokumentert utgave",
+        "oversettelse",
+        "manuskript eller bokobjekt",
+        "lydopptak eller digital versjon",
+        "resepsjons- og institusjonskilde"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sprak_makt_identitet",
+        "sjanger_estetikk_tradisjon"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "bibliotek",
+        "arkiv",
+        "forlag",
+        "bokhandel",
+        "museum",
+        "litteraturhus",
+        "scene",
+        "digital_plattform"
+      ],
+      "question_moves": [
+        "identifiser tekstobjekt og utgave",
+        "dater og lokaliser kilde eller medium",
+        "formuler sammenligningsgrunnlag",
+        "spor overføring eller transformasjon",
+        "prøv alternativ forklaring",
+        "avgrens konklusjon"
+      ],
+      "analytical_question": "Hvilket tekstobjekt, historisk kriterium eller medium sammenlignes, og hvilke kilder bærer påstanden?",
+      "evidence_inputs": [
+        "navngitt tekst eller verk",
+        "utgave, språk, oversetter, medium eller versjon når relevant",
+        "datert ekstern fag- eller institusjonskilde",
+        "dokumentert sammenligningsgrunnlag"
+      ],
+      "critical_distinctions": [
+        "periode vs naturgitt epoke",
+        "verk vs utgave",
+        "sirkulasjon vs iboende universalitet",
+        "kildetekst vs adaptasjon",
+        "tekst vs plattformtilstand"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "named_text_work_or_object",
+        "edition_language_medium_or_version",
+        "historical_or_transmission_context",
+        "comparison_baseline",
+        "mechanism_or_transformation",
+        "competing_explanation",
+        "scope_or_uncertainty"
+      ],
+      "output_requirements": [
+        "tekstobjekt",
+        "utgave/språk/medium",
+        "datert kontekst",
+        "sammenligningsgrunnlag",
+        "mekanisme eller transformasjon",
+        "alternativ forklaring",
+        "kritisk distinksjon",
+        "avgrensning"
+      ],
+      "anti_patterns": [
+        "periodenavn som full forklaring",
+        "verdenslitteratur som iboende kvalitet",
+        "oversettelse uten kilde- og måltekst",
+        "adaptasjon vurdert bare etter troskap",
+        "digital tekst uten versjon eller plattformtilstand",
+        "identitet som tekstlig essens"
+      ],
+      "method_use_note": "Metoden styrer historisk, komparativ og medial analyse, men er aldri faktakilde alene.",
+      "rotation_note": "Roter mellom språk, regioner, perioder, medier, utgaver, institusjoner og sirkulasjonsbaner.",
+      "hook_affinities": [
+        "oversettelse_uoversettelighet_flerspraklighet"
+      ],
+      "emne_affinities": [
+        "em_lit_oversettelse_uoversettelighet_flerspraklighet"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "quality_revision": "litteratur-historie-verden-media-phase-2-2026-07-24",
+      "generator_constraints": {
+        "require_named_text_work_edition_or_documented_reception": true,
+        "require_external_claim_basis": true,
+        "require_dated_historical_or_institutional_source": true,
+        "require_periodization_criteria": true,
+        "require_language_edition_and_translator_for_translation_claim": true,
+        "require_source_and_adaptation_identification": true,
+        "require_version_or_platform_state_for_digital_claim": true,
+        "require_competing_explanation_or_comparison": true,
+        "require_scope_or_uncertainty_statement": true,
+        "ban_period_label_as_self_explanatory_fact": true,
+        "ban_world_literature_as_intrinsic_universality": true,
+        "ban_identity_as_textual_essence": true,
+        "ban_theorist_name_as_answer_without_concept": true,
+        "do_not_generate_from_hook_label_only": true,
+        "do_not_generate_from_emne_label_only": true,
+        "required_emne_prefix": "em_lit_",
+        "ban_method_label_as_answer": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_utgave_paratekst_og_overleveringsanalyse",
+      "title": "Utgave-, paratekst- og overleveringsanalyse",
+      "short_label": "Utgave/paratekst",
+      "description": "Analyserer manuskript, variant, utgave, redaksjonelt inngrep, paratekst, format og bevaringshistorie.",
+      "best_for_emne_kinds": [
+        "litteraturhistorisk",
+        "komparativ",
+        "oversettelsesanalytisk",
+        "bokhistorisk",
+        "medieanalytisk"
+      ],
+      "data_forms": [
+        "primærtekst",
+        "kritisk eller dokumentert utgave",
+        "oversettelse",
+        "manuskript eller bokobjekt",
+        "lydopptak eller digital versjon",
+        "resepsjons- og institusjonskilde"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "skriftkultur_materialitet",
+        "felt_institusjon_kritikk"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "bibliotek",
+        "arkiv",
+        "forlag",
+        "bokhandel",
+        "museum",
+        "litteraturhus",
+        "scene",
+        "digital_plattform"
+      ],
+      "question_moves": [
+        "identifiser tekstobjekt og utgave",
+        "dater og lokaliser kilde eller medium",
+        "formuler sammenligningsgrunnlag",
+        "spor overføring eller transformasjon",
+        "prøv alternativ forklaring",
+        "avgrens konklusjon"
+      ],
+      "analytical_question": "Hvilket tekstobjekt, historisk kriterium eller medium sammenlignes, og hvilke kilder bærer påstanden?",
+      "evidence_inputs": [
+        "navngitt tekst eller verk",
+        "utgave, språk, oversetter, medium eller versjon når relevant",
+        "datert ekstern fag- eller institusjonskilde",
+        "dokumentert sammenligningsgrunnlag"
+      ],
+      "critical_distinctions": [
+        "periode vs naturgitt epoke",
+        "verk vs utgave",
+        "sirkulasjon vs iboende universalitet",
+        "kildetekst vs adaptasjon",
+        "tekst vs plattformtilstand"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "named_text_work_or_object",
+        "edition_language_medium_or_version",
+        "historical_or_transmission_context",
+        "comparison_baseline",
+        "mechanism_or_transformation",
+        "competing_explanation",
+        "scope_or_uncertainty"
+      ],
+      "output_requirements": [
+        "tekstobjekt",
+        "utgave/språk/medium",
+        "datert kontekst",
+        "sammenligningsgrunnlag",
+        "mekanisme eller transformasjon",
+        "alternativ forklaring",
+        "kritisk distinksjon",
+        "avgrensning"
+      ],
+      "anti_patterns": [
+        "periodenavn som full forklaring",
+        "verdenslitteratur som iboende kvalitet",
+        "oversettelse uten kilde- og måltekst",
+        "adaptasjon vurdert bare etter troskap",
+        "digital tekst uten versjon eller plattformtilstand",
+        "identitet som tekstlig essens"
+      ],
+      "method_use_note": "Metoden styrer historisk, komparativ og medial analyse, men er aldri faktakilde alene.",
+      "rotation_note": "Roter mellom språk, regioner, perioder, medier, utgaver, institusjoner og sirkulasjonsbaner.",
+      "hook_affinities": [
+        "litteraturhistorie_antikk_middelalder_tidligmoderne",
+        "bokhistorie_utgave_paratekst_overlevering",
+        "digital_litteratur_plattform_elektronisk_tekst"
+      ],
+      "emne_affinities": [
+        "em_lit_historie_antikk_middelalder_tidligmoderne",
+        "em_lit_bokhistorie_utgave_paratekst_overlevering",
+        "em_lit_digital_litteratur_plattform_elektronisk_tekst"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "quality_revision": "litteratur-historie-verden-media-phase-2-2026-07-24",
+      "generator_constraints": {
+        "require_named_text_work_edition_or_documented_reception": true,
+        "require_external_claim_basis": true,
+        "require_dated_historical_or_institutional_source": true,
+        "require_periodization_criteria": true,
+        "require_language_edition_and_translator_for_translation_claim": true,
+        "require_source_and_adaptation_identification": true,
+        "require_version_or_platform_state_for_digital_claim": true,
+        "require_competing_explanation_or_comparison": true,
+        "require_scope_or_uncertainty_statement": true,
+        "ban_period_label_as_self_explanatory_fact": true,
+        "ban_world_literature_as_intrinsic_universality": true,
+        "ban_identity_as_textual_essence": true,
+        "ban_theorist_name_as_answer_without_concept": true,
+        "do_not_generate_from_hook_label_only": true,
+        "do_not_generate_from_emne_label_only": true,
+        "required_emne_prefix": "em_lit_",
+        "ban_method_label_as_answer": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_muntlighets_og_lydtekstanalyse",
+      "title": "Muntlighets- og lydtekstanalyse",
+      "short_label": "Muntlighet/lyd",
+      "description": "Analyserer stemme, rytme, fremføring, opptak, situasjon og auditiv distribusjon.",
+      "best_for_emne_kinds": [
+        "litteraturhistorisk",
+        "komparativ",
+        "oversettelsesanalytisk",
+        "bokhistorisk",
+        "medieanalytisk"
+      ],
+      "data_forms": [
+        "primærtekst",
+        "kritisk eller dokumentert utgave",
+        "oversettelse",
+        "manuskript eller bokobjekt",
+        "lydopptak eller digital versjon",
+        "resepsjons- og institusjonskilde"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "skriftkultur_materialitet",
+        "sted_leser_offentlighet"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "bibliotek",
+        "arkiv",
+        "forlag",
+        "bokhandel",
+        "museum",
+        "litteraturhus",
+        "scene",
+        "digital_plattform"
+      ],
+      "question_moves": [
+        "identifiser tekstobjekt og utgave",
+        "dater og lokaliser kilde eller medium",
+        "formuler sammenligningsgrunnlag",
+        "spor overføring eller transformasjon",
+        "prøv alternativ forklaring",
+        "avgrens konklusjon"
+      ],
+      "analytical_question": "Hvilket tekstobjekt, historisk kriterium eller medium sammenlignes, og hvilke kilder bærer påstanden?",
+      "evidence_inputs": [
+        "navngitt tekst eller verk",
+        "utgave, språk, oversetter, medium eller versjon når relevant",
+        "datert ekstern fag- eller institusjonskilde",
+        "dokumentert sammenligningsgrunnlag"
+      ],
+      "critical_distinctions": [
+        "periode vs naturgitt epoke",
+        "verk vs utgave",
+        "sirkulasjon vs iboende universalitet",
+        "kildetekst vs adaptasjon",
+        "tekst vs plattformtilstand"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "named_text_work_or_object",
+        "edition_language_medium_or_version",
+        "historical_or_transmission_context",
+        "comparison_baseline",
+        "mechanism_or_transformation",
+        "competing_explanation",
+        "scope_or_uncertainty"
+      ],
+      "output_requirements": [
+        "tekstobjekt",
+        "utgave/språk/medium",
+        "datert kontekst",
+        "sammenligningsgrunnlag",
+        "mekanisme eller transformasjon",
+        "alternativ forklaring",
+        "kritisk distinksjon",
+        "avgrensning"
+      ],
+      "anti_patterns": [
+        "periodenavn som full forklaring",
+        "verdenslitteratur som iboende kvalitet",
+        "oversettelse uten kilde- og måltekst",
+        "adaptasjon vurdert bare etter troskap",
+        "digital tekst uten versjon eller plattformtilstand",
+        "identitet som tekstlig essens"
+      ],
+      "method_use_note": "Metoden styrer historisk, komparativ og medial analyse, men er aldri faktakilde alene.",
+      "rotation_note": "Roter mellom språk, regioner, perioder, medier, utgaver, institusjoner og sirkulasjonsbaner.",
+      "hook_affinities": [
+        "muntlighet_opplesning_lydlitteratur"
+      ],
+      "emne_affinities": [
+        "em_lit_muntlighet_opplesning_lydlitteratur"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "quality_revision": "litteratur-historie-verden-media-phase-2-2026-07-24",
+      "generator_constraints": {
+        "require_named_text_work_edition_or_documented_reception": true,
+        "require_external_claim_basis": true,
+        "require_dated_historical_or_institutional_source": true,
+        "require_periodization_criteria": true,
+        "require_language_edition_and_translator_for_translation_claim": true,
+        "require_source_and_adaptation_identification": true,
+        "require_version_or_platform_state_for_digital_claim": true,
+        "require_competing_explanation_or_comparison": true,
+        "require_scope_or_uncertainty_statement": true,
+        "ban_period_label_as_self_explanatory_fact": true,
+        "ban_world_literature_as_intrinsic_universality": true,
+        "ban_identity_as_textual_essence": true,
+        "ban_theorist_name_as_answer_without_concept": true,
+        "do_not_generate_from_hook_label_only": true,
+        "do_not_generate_from_emne_label_only": true,
+        "required_emne_prefix": "em_lit_",
+        "ban_method_label_as_answer": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_adaptasjons_og_intermedialitetsanalyse",
+      "title": "Adaptasjons- og intermedialitetsanalyse",
+      "short_label": "Adaptasjon",
+      "description": "Sammenligner kildetekst og adaptasjon gjennom mediumspesifikke valg, transformasjon og resepsjon.",
+      "best_for_emne_kinds": [
+        "litteraturhistorisk",
+        "komparativ",
+        "oversettelsesanalytisk",
+        "bokhistorisk",
+        "medieanalytisk"
+      ],
+      "data_forms": [
+        "primærtekst",
+        "kritisk eller dokumentert utgave",
+        "oversettelse",
+        "manuskript eller bokobjekt",
+        "lydopptak eller digital versjon",
+        "resepsjons- og institusjonskilde"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sjanger_estetikk_tradisjon",
+        "skriftkultur_materialitet"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "bibliotek",
+        "arkiv",
+        "forlag",
+        "bokhandel",
+        "museum",
+        "litteraturhus",
+        "scene",
+        "digital_plattform"
+      ],
+      "question_moves": [
+        "identifiser tekstobjekt og utgave",
+        "dater og lokaliser kilde eller medium",
+        "formuler sammenligningsgrunnlag",
+        "spor overføring eller transformasjon",
+        "prøv alternativ forklaring",
+        "avgrens konklusjon"
+      ],
+      "analytical_question": "Hvilket tekstobjekt, historisk kriterium eller medium sammenlignes, og hvilke kilder bærer påstanden?",
+      "evidence_inputs": [
+        "navngitt tekst eller verk",
+        "utgave, språk, oversetter, medium eller versjon når relevant",
+        "datert ekstern fag- eller institusjonskilde",
+        "dokumentert sammenligningsgrunnlag"
+      ],
+      "critical_distinctions": [
+        "periode vs naturgitt epoke",
+        "verk vs utgave",
+        "sirkulasjon vs iboende universalitet",
+        "kildetekst vs adaptasjon",
+        "tekst vs plattformtilstand"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "named_text_work_or_object",
+        "edition_language_medium_or_version",
+        "historical_or_transmission_context",
+        "comparison_baseline",
+        "mechanism_or_transformation",
+        "competing_explanation",
+        "scope_or_uncertainty"
+      ],
+      "output_requirements": [
+        "tekstobjekt",
+        "utgave/språk/medium",
+        "datert kontekst",
+        "sammenligningsgrunnlag",
+        "mekanisme eller transformasjon",
+        "alternativ forklaring",
+        "kritisk distinksjon",
+        "avgrensning"
+      ],
+      "anti_patterns": [
+        "periodenavn som full forklaring",
+        "verdenslitteratur som iboende kvalitet",
+        "oversettelse uten kilde- og måltekst",
+        "adaptasjon vurdert bare etter troskap",
+        "digital tekst uten versjon eller plattformtilstand",
+        "identitet som tekstlig essens"
+      ],
+      "method_use_note": "Metoden styrer historisk, komparativ og medial analyse, men er aldri faktakilde alene.",
+      "rotation_note": "Roter mellom språk, regioner, perioder, medier, utgaver, institusjoner og sirkulasjonsbaner.",
+      "hook_affinities": [
+        "digital_litteratur_plattform_elektronisk_tekst",
+        "adaptasjon_intermedialitet_transformasjon"
+      ],
+      "emne_affinities": [
+        "em_lit_digital_litteratur_plattform_elektronisk_tekst",
+        "em_lit_adaptasjon_intermedialitet_transformasjon"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "quality_revision": "litteratur-historie-verden-media-phase-2-2026-07-24",
+      "generator_constraints": {
+        "require_named_text_work_edition_or_documented_reception": true,
+        "require_external_claim_basis": true,
+        "require_dated_historical_or_institutional_source": true,
+        "require_periodization_criteria": true,
+        "require_language_edition_and_translator_for_translation_claim": true,
+        "require_source_and_adaptation_identification": true,
+        "require_version_or_platform_state_for_digital_claim": true,
+        "require_competing_explanation_or_comparison": true,
+        "require_scope_or_uncertainty_statement": true,
+        "ban_period_label_as_self_explanatory_fact": true,
+        "ban_world_literature_as_intrinsic_universality": true,
+        "ban_identity_as_textual_essence": true,
+        "ban_theorist_name_as_answer_without_concept": true,
+        "do_not_generate_from_hook_label_only": true,
+        "do_not_generate_from_emne_label_only": true,
+        "required_emne_prefix": "em_lit_",
+        "ban_method_label_as_answer": true,
+        "require_emne_prefix": "em_lit_"
+      }
     }
   ],
   "poetics_method_core": [
@@ -2735,6 +3513,15 @@
     "met_lit_lyrisk_form_og_rytmeanalyse"
   ],
   "quality_revisions": [
-    "litteratur-poetikk-vertical-phase-1-2026-07-24"
+    "litteratur-poetikk-vertical-phase-1-2026-07-24",
+    "litteratur-historie-verden-media-phase-2-2026-07-24"
+  ],
+  "literary_history_world_method_core": [
+    "met_lit_periodiserings_og_tradisjonsanalyse",
+    "met_lit_verdenslitteraer_sirkulasjonsanalyse",
+    "met_lit_oversettelseskomparativ_analyse",
+    "met_lit_utgave_paratekst_og_overleveringsanalyse",
+    "met_lit_muntlighets_og_lydtekstanalyse",
+    "met_lit_adaptasjons_og_intermedialitetsanalyse"
   ]
 }
