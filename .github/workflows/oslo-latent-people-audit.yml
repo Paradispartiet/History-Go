@@ -1,0 +1,49 @@
+name: Oslo latent People audit
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - tools/audit-oslo-latent-people-coverage.mts
+      - .github/workflows/oslo-latent-people-audit.yml
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out audit branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-people-latent-manifest-audit
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate latent coverage audit
+        run: npx tsx tools/audit-oslo-latent-people-coverage.mts
+
+      - name: Validate People data
+        run: bash scripts/check-people.sh
+
+      - name: Validate diff
+        run: git diff --check
+
+      - name: Publish durable audit
+        run: |
+          rm .github/workflows/oslo-latent-people-audit.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/audit-oslo-latent-people-coverage.mts reports/oslo-people-latent-coverage.json reports/oslo-people-latent-coverage.md .github/workflows/oslo-latent-people-audit.yml
+          git commit -m "Audit latent Oslo People coverage"
+          git push origin HEAD:agent/oslo-people-latent-manifest-audit
