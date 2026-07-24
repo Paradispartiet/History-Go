@@ -289,8 +289,8 @@
   {
     "id": "frognerstranda",
     "name": "Frognerstranda",
-    "lat": 59.9129,
-    "lon": 10.7098,
+    "lat": 59.915451,
+    "lon": 10.694761,
     "r": 180,
     "category": "populaerkultur",
     "desc": "Sesongbasert kjendissone brukt i sladder- og livsstilsmedier.",
@@ -337,12 +337,107 @@
     "visual": {
       "designCode": "waterfront_miniature"
     },
-    "locatorType": "natural_area",
-    "coordStatus": "needs_source",
-    "coordType": "legacy_unverified",
-    "coordSource": "frognerstranda_canonical_geometry_unresolved",
-    "coordVerifiedAt": "2026-07-21",
-    "coordNote": "Kontrollen fant ikke ett eksakt navngitt strand-/områdefysisk objekt med stabil polygongeometri (no_exact_semantic_candidate). En vei eller tilfeldig fjordkantlinje med samme navn kan ikke brukes som proxy for den brede popkulturelle strandsonen."
+    "locatorType": "linear_area",
+    "coordStatus": "verified_geometry",
+    "coordType": "official_coastal_zone_anchor",
+    "coordSource": "Oslo kommune – Frognerstranda official page GeoJSON",
+    "coordVerifiedAt": "2026-07-24",
+    "coordNote": "Object-type-first line production from Oslo kommunes own Frognerstranda page. The page defines the full shoreline scope from inner Frognerkilen/Bygdøy in the west to Hjortnes/Framnes in the east and embeds one exact GeoJSON LineString with 12 ordered points (1633.7 m) plus one official map point. Canonical lat/lon uses that official point; the complete official line is stored as geometry and its west, middle and east positions are stored as anchors. E18, railway, an arbitrary coastline segment and the western OSM footway alone are rejected as proxies for the full waterfront.",
+    "sourceProvider": "municipality",
+    "sourceObjectId": "oslo-kommune:fjordbyen:frognerstranda:official-page-geojson",
+    "geocodeAccuracy": "semantic_anchor",
+    "coordRole": "line_anchor",
+    "coordSourceId": "oslo-kommune:fjordbyen:frognerstranda:official-page-geojson",
+    "coordSourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/frognerstranda/",
+    "sourceHint": "The canonical object is the full official Frognerstranda coastal zone, not one road, railway, coastline fragment or western promenade segment.",
+    "geometry": {
+      "type": "LineString",
+      "coordinates": [
+        [
+          10.687466,
+          59.917656
+        ],
+        [
+          10.689268,
+          59.918
+        ],
+        [
+          10.690899,
+          59.917183
+        ],
+        [
+          10.692959,
+          59.915634
+        ],
+        [
+          10.696049,
+          59.915419
+        ],
+        [
+          10.698195,
+          59.914558
+        ],
+        [
+          10.700169,
+          59.913181
+        ],
+        [
+          10.704889,
+          59.910255
+        ],
+        [
+          10.706091,
+          59.910513
+        ],
+        [
+          10.707378,
+          59.910298
+        ],
+        [
+          10.707293,
+          59.909997
+        ],
+        [
+          10.70858,
+          59.909825
+        ]
+      ]
+    },
+    "anchors": [
+      {
+        "id": "frognerstranda_vest_frognerkilen_bygdoy",
+        "name": "Frognerstranda vest – indre Frognerkilen/Bygdøy",
+        "type": "route_point",
+        "lat": 59.917656,
+        "lon": 10.687466,
+        "r": 140
+      },
+      {
+        "id": "frognerstranda_midt_offisielt_kartanker",
+        "name": "Frognerstranda midt – offisielt kartanker",
+        "type": "route_point",
+        "lat": 59.915451,
+        "lon": 10.694761,
+        "r": 140
+      },
+      {
+        "id": "frognerstranda_ost_hjortnes_framnes",
+        "name": "Frognerstranda øst – Hjortnes/Framnes",
+        "type": "route_point",
+        "lat": 59.909825,
+        "lon": 10.70858,
+        "r": 140
+      }
+    ],
+    "externalLinks": [
+      {
+        "type": "official",
+        "label": "Oslo kommune – Frognerstranda i Fjordbyen",
+        "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/frognerstranda/",
+        "lang": "nb",
+        "verifiedAt": "2026-07-24"
+      }
+    ]
   },
   {
     "id": "grand_hotel",
