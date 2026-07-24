@@ -90,8 +90,8 @@ run('npx', ['tsx', 'tools/audit-oslo-people-coverage.mts']);
 run('npx', ['tsx', 'tools/audit-oslo-people-latent-coverage.mts']);
 
 const coverage = readJson('reports/oslo-people-coverage.json');
-if (coverage.summary?.requiredCovered !== 148 || coverage.summary?.requiredUncovered !== 185) {
-  throw new Error(`Unexpected coverage: ${JSON.stringify(coverage.summary)}`);
+if (coverage.totals?.coveredRequiredPlaces !== 148 || coverage.totals?.uncoveredRequiredPlaces !== 185) {
+  throw new Error(`Unexpected coverage: ${JSON.stringify(coverage.totals)}`);
 }
 
 const indexText = fs.readFileSync('data/Civication/historyPeople_index.json', 'utf8');
