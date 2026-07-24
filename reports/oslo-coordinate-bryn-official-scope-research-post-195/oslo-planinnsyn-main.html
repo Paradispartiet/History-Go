@@ -1,0 +1,315 @@
+﻿<!doctype html>
+<html class="no-js" lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Planinnsyn - Reguleringsplaner, kommuneplan og kart over Oslo</title>
+    <meta
+      name="description"
+      content="Se reguleringsplaner og kommuneplan i Oslo kommunes karttjeneste. Du finner også kommunedelplaner, planprogram, veiledende planer for offentlig rom, gul liste, byggesaker, plansaker, plankunngjøringer, postliste, sannsynlighet for å finne fortidsminner, kulturminnevern i kommuneplanen, eiendomsgrenser, bygninger, veier, koter, gatenavn, adresser og bydeler."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript">
+      var worldPath = "";
+    </script>
+    <style type="text/css">
+      :root {
+        --main: #2a2859;
+        --main2: #f9c66b;
+        --main3: white;
+        --logo: #2a2859;
+      }
+      /* Laster inn OsloSans font */
+      @font-face {
+        font-family: "OsloSans";
+        font-style: normal;
+        font-weight: 300;
+        src:
+          local("OsloSans Light"),
+          local("OsloSans-Light"),
+          url("fonts/OsloSans/OsloSans-Light.woff") format("woff");
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "OsloSans";
+        font-style: normal;
+        font-weight: 400;
+        src:
+          local("OsloSans Regular"),
+          local("OsloSans-Regular"),
+          url("fonts/OsloSans/OsloSans-Medium.woff") format("woff");
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "OsloSans";
+        font-style: normal;
+        font-weight: 700;
+        src:
+          local("OsloSans Bold"),
+          local("OsloSans-Bold"),
+          url("fonts/OsloSans/OsloSans-Bold.woff") format("woff");
+        font-display: swap;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+      /* Generell stil for alle knapper ***************************************************/
+      button {
+        border: 0;
+        background: 0;
+      }
+      /* container og target for kartobjektet **********************************************/
+      #map {
+        position: absolute;
+        font-family: "OsloSans", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 16px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        overflow: hidden;
+        z-index: 0;
+      }
+      /* header ****************************************************************************/
+      #header,
+      #share-page,
+      #andre-tjenester-page,
+      #help-page,
+      .drop-down-link-menu {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+      }
+      #header {
+        top: 0;
+        left: 0;
+        height: 63px;
+        width: 100%;
+        z-index: 10;
+        //background: rgb(255, 255, 255);
+      }
+      #header .top-col {
+        padding: 0 5px;
+        line-height: 25px;
+      }
+
+      #searchinput {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 320px;
+        z-index: 1;
+        padding: 5px 10px;
+        background: white;
+        color: var(--main);
+        border: 0;
+        box-shadow: 2px 2px 5px #888;
+        display: none;
+      }
+      #searchinput .input-group .form-control:first-child {
+        font-size: 16px;
+        height: 35px;
+        margin: 12px 0;
+      }
+      #searchinput .input-group .input-group-btn:last-child > .btn {
+        height: 50px;
+        width: 50px;
+        top: -1px;
+        border-color: #2a2859;
+        border: 2px solid;
+        border-radius: 50%;
+        background: var(--main2);
+        color: var(--main);
+      }
+      @media (min-width: 767px) {
+        #searchinput .input-group .input-group-btn:last-child > .btn {
+          height: 50px;
+          width: 50px;
+          top: -1px;
+          border: 0;
+        }
+      }
+      #searchinput .input-group .input-group-btn:last-child > .btn i {
+        font-size: 16px;
+      }
+      .input-group-btn {
+        height: 50px;
+      }
+      #header .top-menu-button {
+        -webkit-appearance: none;
+        font-size: 25px;
+        font-weight: 700;
+        color: var(--main) !important;
+        float: right;
+        margin: 0 5px;
+        /*display: none;*/
+      }
+      #header #andre-tjenester-btn,
+      #header #feedback-btn {
+        font-size: 16px;
+      }
+      #header #help-btn {
+        font-size: 30px;
+      }
+      #header .large-screen {
+        display: none;
+      }
+      .drop-down-link-menu {
+        display: none;
+      }
+
+      /* footer ****************************************************************************/
+      .map-footer {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 5px;
+        background: var(--main);
+        color: white;
+        z-index: 1;
+        /*width: 360px;*/
+      }
+
+      .map-footer .first-level {
+        float: left;
+        margin: 0 2px;
+      }
+      /*.map-footer #mouseposition {
+                width: 170px;
+                height: 22px;
+            }*/
+
+      /* elementer som ikke skal vises ved init ********************************************/
+      #help-page,
+      #andre-tjenester-page,
+      #share-page,
+      #map-marker,
+      #popup {
+        display: none;
+      }
+
+      .map-toolbar,
+      .collapsible-toolbar-toggler {
+        position: absolute;
+        bottom: 40px;
+        /*overflow: hidden;*/
+
+        z-index: 1;
+      }
+      .map-toolbar {
+        right: 85px;
+        bottom: 55px;
+      }
+      img {
+        vertical-align: middle;
+      }
+
+      /* tipsvindu for tegning og måling  **************************************************/
+      .measure-tool-help {
+        position: absolute;
+        /*top: 60px;*/
+        bottom: 82px;
+        left: 5px;
+        right: 5px;
+        background: var(--main);
+        opacity: 0.8;
+        z-index: 2000;
+        display: none;
+        color: #fafafa;
+        box-shadow: 2px -2px 5px #888;
+        padding: 10px;
+      }
+    </style>
+    <script src="./js/vendor/jquery.min.js"></script>
+    <script src="./js/vendor/jquery-ui.min.js"></script>
+    <script src="./js/vendor/jquery.autocomplete.js"></script>
+    <script src="./js/vendor/bootstrap-datepicker.min.js"></script>
+    <script src="./js/vendor/popper.min.js"></script>
+    <script src="./js/vendor/bootstrap.min.js"></script>
+    <script src="./js/vendor/fileGDB.js-master/dist/fgdb.js"></script>
+    <script src="./js/vendor/sosi.js-master/lib/underscore-min.js"></script>
+    <!-- Bør finne en måte å legge til i layerimport, eller sosi.js-->
+    <script src="./js/vendor/sosi.js-master/dist/SOSI.min.js"></script>
+    <!-- Bør finne en måte å legge til i layerimport, eller sosi.js-->
+    
+    <script type="module" crossorigin src="/kart/assets/index-dfb3b517.js"></script>
+    <link rel="stylesheet" href="/kart/assets/index-d50b374f.css">
+  </head>
+  <body>
+    <!-- kartobjekt og wrapper for hele siden -->
+    <main id="map">
+      <!-- toplinje -->
+      <header id="header" data-enhance="false" class="header">
+        <!-- kommunelogo og sidetittel -->
+        <a id="titleLink" href="">
+          <div class="col-lg-3 col-sm-4 col-xs-8 top-col site-name col-left">
+            <img id="osloLogo" alt="Byvåpen" />
+            <div id="site-name-ct">
+              <h1></h1>
+              <span></span>
+            </div>
+          </div>
+        </a>
+        <!-- søkefelt -->
+        <div
+          id="middleDiv"
+          class="col-lg-4 col-sm-4 col-xs-0 top-col col-middle"
+        ></div>
+        <!-- knapperad -->
+        <div
+          id="topMenuButtonContainer"
+          class="col-lg-5 col-sm-4 col-xs-4 top-col col-right"
+        >
+          <div class="drop-down-link-menu"></div>
+        </div>
+      </header>
+      <!-- verktøylinje -->
+      <div id="mapToolbar" class="map-toolbar ol-control ol-unselectable">
+        <div class="collapsible ol-control ol-unselectable"></div>
+      </div>
+      <div
+        id="mapToolbarSide"
+        class="map-toolbar-side ol-control-side ol-unselectable"
+      >
+        <div class="collapsible ol-control ol-unselectable"></div>
+      </div>
+      <!-- vertkøyknapp for små skjermer -->
+      <div class="collapsible-toolbar-toggler ol-control ol-unselectable"></div>
+      <!-- Popup element, plasseres inne i ol-viewport når overlaykartlaget legges til i map -->
+      <div id="popup"></div>
+      <!-- copyrightknapp, målestokk og koordinater -->
+      <footer class="map-footer" id="footerId">
+        <!-- Lenke til side om personvern og informasjonskapsler -->
+        <div class="cookie-warning">
+          <a
+            href="https://www.oslo.kommune.no/startsiden/personvern-og-informasjonskapsler-article3008.html"
+            target="_blank"
+            >Personvern og informasjonskapsler <i class="icon-new-window"></i
+          ></a>
+        </div>
+        <div id="mouseposition" class="first-level"></div>
+        <div id="scaleline" class="first-level"></div>
+      </footer>
+      <!-- Copyright/disclaimer vindu -->
+    </main>
+
+    <!-- Henter inn stildefinisjoner -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </body>
+</html>

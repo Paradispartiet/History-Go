@@ -1,0 +1,1696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:WFS_Capabilities xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:wfs="http://www.opengis.net/wfs/2.0" xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:ms="http://mapserver.gis.umn.edu/mapserver" xmlns="http://www.opengis.net/wfs/2.0" version="2.0.0" xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd">
+  <ows:ServiceIdentification>
+    <ows:Title>ki_kommuneplan</ows:Title>
+    <ows:Abstract>Tjenesten viser kommuneplan med hensynskart og temakart i forbindelse med denne, samt et forenklet bakgrunnskart</ows:Abstract>
+    <!--WARNING: Optional metadata "ows_keywordlist" was missing for ows:KeywordList-->
+    <ows:ServiceType codeSpace="OGC">WFS</ows:ServiceType>
+    <ows:ServiceTypeVersion>2.0.0</ows:ServiceTypeVersion>
+    <ows:Fees/>
+    <!--WARNING: Optional metadata "ows_fees" was missing for ows:Fees-->
+    <ows:AccessConstraints/>
+    <!--WARNING: Optional metadata "ows_accessconstraints" was missing for ows:AccessConstraints-->
+  </ows:ServiceIdentification>
+  <ows:ServiceProvider>
+    <ows:ProviderName>Seksjon teknologi/ Plan- og bygningsetaten, Oslo kommune</ows:ProviderName>
+    <ows:ProviderSite xlink:type="simple" xlink:href=""/>
+    <!--WARNING: Optional metadata "ows_service_onlineresource" was missing for ows:ProviderSite/@xlink:href-->
+    <ows:ServiceContact>
+      <ows:IndividualName>Systemutvikling</ows:IndividualName>
+      <ows:PositionName/>
+      <!--WARNING: Optional metadata "ows_contactposition" was missing for ows:PositionName-->
+      <ows:ContactInfo>
+        <ows:Phone>
+          <ows:Voice/>
+          <!--WARNING: Optional metadata "ows_contactvoicetelephone" was missing for ows:Voice-->
+          <ows:Facsimile/>
+          <!--WARNING: Optional metadata "ows_contactfacsimiletelephone" was missing for ows:Facsimile-->
+        </ows:Phone>
+        <ows:Address>
+          <ows:DeliveryPoint>Plan- og bygningsetaten, Oslo kommune, Postboks 364</ows:DeliveryPoint>
+          <ows:City>Oslo</ows:City>
+          <ows:AdministrativeArea>Oslo</ows:AdministrativeArea>
+          <ows:PostalCode>0102</ows:PostalCode>
+          <ows:Country>Norway</ows:Country>
+          <ows:ElectronicMailAddress>brukerstotte@pbe.oslo.kommune.no</ows:ElectronicMailAddress>
+        </ows:Address>
+        <ows:OnlineResource xlink:type="simple" xlink:href=""/>
+        <!--WARNING: Optional metadata "ows_service_onlineresource" was missing for ows:OnlineResource/@xlink:href-->
+        <ows:HoursOfService/>
+        <!--WARNING: Optional metadata "ows_hoursofservice" was missing for ows:HoursOfService-->
+        <ows:ContactInstructions/>
+        <!--WARNING: Optional metadata "ows_contactinstructions" was missing for ows:ContactInstructions-->
+      </ows:ContactInfo>
+      <ows:Role/>
+      <!--WARNING: Optional metadata "ows_role" was missing for ows:Role-->
+    </ows:ServiceContact>
+  </ows:ServiceProvider>
+  <ows:OperationsMetadata>
+    <ows:Operation name="GetCapabilities">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+          <ows:Post xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+        </ows:HTTP>
+      </ows:DCP>
+      <ows:Parameter name="AcceptVersions">
+        <ows:AllowedValues>
+          <ows:Value>2.0.0</ows:Value>
+          <ows:Value>1.1.0</ows:Value>
+          <ows:Value>1.0.0</ows:Value>
+        </ows:AllowedValues>
+      </ows:Parameter>
+      <ows:Parameter name="AcceptFormats">
+        <ows:AllowedValues>
+          <ows:Value>text/xml</ows:Value>
+        </ows:AllowedValues>
+      </ows:Parameter>
+      <ows:Parameter name="Sections">
+        <ows:AllowedValues>
+          <ows:Value>ServiceIdentification</ows:Value>
+          <ows:Value>ServiceProvider</ows:Value>
+          <ows:Value>OperationsMetadata</ows:Value>
+          <ows:Value>FeatureTypeList</ows:Value>
+          <ows:Value>Filter_Capabilities</ows:Value>
+        </ows:AllowedValues>
+      </ows:Parameter>
+    </ows:Operation>
+    <ows:Operation name="DescribeFeatureType">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+          <ows:Post xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+        </ows:HTTP>
+      </ows:DCP>
+      <ows:Parameter name="outputFormat">
+        <ows:AllowedValues>
+          <ows:Value>application/gml+xml; version=3.2</ows:Value>
+          <ows:Value>text/xml; subtype=gml/3.2.1</ows:Value>
+          <ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+          <ows:Value>text/xml; subtype=gml/2.1.2</ows:Value>
+        </ows:AllowedValues>
+      </ows:Parameter>
+    </ows:Operation>
+    <ows:Operation name="GetFeature">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+          <ows:Post xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+        </ows:HTTP>
+      </ows:DCP>
+      <ows:Parameter name="outputFormat">
+        <ows:AllowedValues>
+          <ows:Value>application/gml+xml; version=3.2</ows:Value>
+          <ows:Value>text/xml; subtype=gml/3.2.1</ows:Value>
+          <ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+          <ows:Value>text/xml; subtype=gml/2.1.2</ows:Value>
+        </ows:AllowedValues>
+      </ows:Parameter>
+    </ows:Operation>
+    <ows:Operation name="GetPropertyValue">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+          <ows:Post xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+        </ows:HTTP>
+      </ows:DCP>
+      <ows:Parameter name="outputFormat">
+        <ows:AllowedValues>
+          <ows:Value>application/gml+xml; version=3.2</ows:Value>
+          <ows:Value>text/xml; subtype=gml/3.2.1</ows:Value>
+          <ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+          <ows:Value>text/xml; subtype=gml/2.1.2</ows:Value>
+        </ows:AllowedValues>
+      </ows:Parameter>
+    </ows:Operation>
+    <ows:Operation name="ListStoredQueries">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+          <ows:Post xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+        </ows:HTTP>
+      </ows:DCP>
+    </ows:Operation>
+    <ows:Operation name="DescribeStoredQueries">
+      <ows:DCP>
+        <ows:HTTP>
+          <ows:Get xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+          <ows:Post xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+        </ows:HTTP>
+      </ows:DCP>
+    </ows:Operation>
+    <ows:Parameter name="version">
+      <ows:AllowedValues>
+        <ows:Value>2.0.0</ows:Value>
+        <ows:Value>1.1.0</ows:Value>
+        <ows:Value>1.0.0</ows:Value>
+      </ows:AllowedValues>
+    </ows:Parameter>
+    <ows:Constraint name="ImplementsBasicWFS">
+      <ows:NoValues/>
+      <ows:DefaultValue>TRUE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="ImplementsTransactionalWFS">
+      <ows:NoValues/>
+      <ows:DefaultValue>FALSE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="ImplementsLockingWFS">
+      <ows:NoValues/>
+      <ows:DefaultValue>FALSE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="KVPEncoding">
+      <ows:NoValues/>
+      <ows:DefaultValue>TRUE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="XMLEncoding">
+      <ows:NoValues/>
+      <ows:DefaultValue>TRUE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="SOAPEncoding">
+      <ows:NoValues/>
+      <ows:DefaultValue>FALSE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="ImplementsInheritance">
+      <ows:NoValues/>
+      <ows:DefaultValue>FALSE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="ImplementsRemoteResolve">
+      <ows:NoValues/>
+      <ows:DefaultValue>FALSE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="ImplementsResultPaging">
+      <ows:NoValues/>
+      <ows:DefaultValue>TRUE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="ImplementsStandardJoins">
+      <ows:NoValues/>
+      <ows:DefaultValue>FALSE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="ImplementsSpatialJoins">
+      <ows:NoValues/>
+      <ows:DefaultValue>FALSE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="ImplementsTemporalJoins">
+      <ows:NoValues/>
+      <ows:DefaultValue>FALSE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="ImplementsFeatureVersioning">
+      <ows:NoValues/>
+      <ows:DefaultValue>FALSE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="ManageStoredQueries">
+      <ows:NoValues/>
+      <ows:DefaultValue>FALSE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="PagingIsTransactionSafe">
+      <ows:NoValues/>
+      <ows:DefaultValue>FALSE</ows:DefaultValue>
+    </ows:Constraint>
+    <ows:Constraint name="QueryExpressions">
+      <ows:AllowedValues>
+        <ows:Value>wfs:Query</ows:Value>
+        <ows:Value>wfs:StoredQuery</ows:Value>
+      </ows:AllowedValues>
+    </ows:Constraint>
+  </ows:OperationsMetadata>
+  <FeatureTypeList>
+    <FeatureType>
+      <Name>ms:gronnstruktur</Name>
+      <Title>gronnstruktur</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.614239 59.814524</ows:LowerCorner>
+        <ows:UpperCorner>10.953212 59.994158</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=gronnstruktur"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:vann</Name>
+      <Title>vann</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.490409 59.808503</ows:LowerCorner>
+        <ows:UpperCorner>10.957006 60.135819</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=vann"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:utv_indre_by</Name>
+      <Title>utv_indre_by</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.700668 59.898481</ows:LowerCorner>
+        <ows:UpperCorner>10.794971 59.949130</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=utv_indre_by"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:utv_ytre_by</Name>
+      <Title>utv_ytre_by</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.625217 59.808350</ows:LowerCorner>
+        <ows:UpperCorner>10.932549 59.973814</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=utv_ytre_by"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:bebyggelse_anl_eksisterende</Name>
+      <Title>bebyggelse_anl_eksisterende</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.571349 59.814806</ows:LowerCorner>
+        <ows:UpperCorner>10.956821 60.046348</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=bebyggelse_anl_eksisterende"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:bebyggelse_anl_fremtidig</Name>
+      <Title>bebyggelse_anl_fremtidig</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.571349 59.814806</ows:LowerCorner>
+        <ows:UpperCorner>10.956821 60.046348</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=bebyggelse_anl_fremtidig"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:samferdsel</Name>
+      <Title>samferdsel</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.620941 59.821051</ows:LowerCorner>
+        <ows:UpperCorner>10.944199 59.982547</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=samferdsel"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:Forsvaret</Name>
+      <Title>Forsvaret</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.651618 59.897471</ows:LowerCorner>
+        <ows:UpperCorner>10.882607 59.953215</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Forsvaret"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:LNF</Name>
+      <Title>LNF</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.480412 59.815423</ows:LowerCorner>
+        <ows:UpperCorner>10.954154 60.136568</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=LNF"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:Feltnavn</Name>
+      <Title>Feltnavn</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.630448 59.820864</ows:LowerCorner>
+        <ows:UpperCorner>10.931789 59.970657</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Feltnavn"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:Opplysningstekst</Name>
+      <Title>Opplysningstekst</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.593772 59.820554</ows:LowerCorner>
+        <ows:UpperCorner>10.938532 60.031264</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Opplysningstekst"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:bevaring_kulturmiljo</Name>
+      <Title>bevaring_kulturmiljo</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.714607 59.918070</ows:LowerCorner>
+        <ows:UpperCorner>10.768351 59.935222</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=bevaring_kulturmiljo"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:bandlegging</Name>
+      <Title>bandlegging</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.643187 59.860348</ows:LowerCorner>
+        <ows:UpperCorner>10.901764 59.976859</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=bandlegging"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:omforming_h820</Name>
+      <Title>omforming_h820</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.630646 59.861618</ows:LowerCorner>
+        <ows:UpperCorner>10.913541 59.974783</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=omforming_h820"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:felles_planlegging_h810</Name>
+      <Title>felles_planlegging_h810</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.625075 59.808346</ows:LowerCorner>
+        <ows:UpperCorner>10.932875 59.973816</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=felles_planlegging_h810"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:planens_avgrensning</Name>
+      <Title>planens_avgrensning</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.480091 59.808057</ows:LowerCorner>
+        <ows:UpperCorner>10.962113 60.136568</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=planens_avgrensning"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:markagrense</Name>
+      <Title>markagrense</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.619707 59.815435</ows:LowerCorner>
+        <ows:UpperCorner>10.952810 59.987595</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=markagrense"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:bestemmelsesgrense</Name>
+      <Title>bestemmelsesgrense</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.592132 59.815429</ows:LowerCorner>
+        <ows:UpperCorner>10.946694 60.032444</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=bestemmelsesgrense"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:lnf_symbol</Name>
+      <Title>lnf_symbol</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.625975 60.019162</ows:LowerCorner>
+        <ows:UpperCorner>10.625975 60.019162</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=lnf_symbol"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:fjernveg_europaveger</Name>
+      <Title>fjernveg_europaveger</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.625398 59.815368</ows:LowerCorner>
+        <ows:UpperCorner>10.952946 59.983848</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=fjernveg_europaveger"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:sporveg</Name>
+      <Title>sporveg</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.622204 59.846125</ows:LowerCorner>
+        <ows:UpperCorner>10.930259 59.982483</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=sporveg"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:jernbane</Name>
+      <Title>jernbane</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.635970 59.815894</ows:LowerCorner>
+        <ows:UpperCorner>10.947706 60.042139</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=jernbane"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:farled</Name>
+      <Title>farled</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.661511 59.875521</ows:LowerCorner>
+        <ows:UpperCorner>10.762570 59.908154</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=farled"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:kollektivknutepunkt</Name>
+      <Title>kollektivknutepunkt</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.638298 59.845721</ows:LowerCorner>
+        <ows:UpperCorner>10.896853 59.953640</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=kollektivknutepunkt"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:ikke_juridisk_sporveg_fjordtrikk</Name>
+      <Title>ikke_juridisk_sporveg_fjordtrikk</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.709404 59.903740</ows:LowerCorner>
+        <ows:UpperCorner>10.751012 59.912907</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=ikke_juridisk_sporveg_fjordtrikk"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:ikke_juridisk_sporveg_mulig_banetrase</Name>
+      <Title>ikke_juridisk_sporveg_mulig_banetrase</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.635757 59.818276</ows:LowerCorner>
+        <ows:UpperCorner>10.933056 59.944338</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=ikke_juridisk_sporveg_mulig_banetrase"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:samferdsel_ikke_juridisk</Name>
+      <Title>samferdsel_ikke_juridisk</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.648580 59.878337</ows:LowerCorner>
+        <ows:UpperCorner>10.909709 59.968362</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=samferdsel_ikke_juridisk"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:stasjoner</Name>
+      <Title>stasjoner</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.629425 59.821815</ows:LowerCorner>
+        <ows:UpperCorner>10.933267 60.040076</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=stasjoner"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:nedslagsfelt_drikkevann</Name>
+      <Title>nedslagsfelt_drikkevann</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.554433 59.830961</ows:LowerCorner>
+        <ows:UpperCorner>10.952757 60.112145</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=nedslagsfelt_drikkevann"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:andre_sikringssoner</Name>
+      <Title>andre_sikringssoner</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.625159 59.814833</ows:LowerCorner>
+        <ows:UpperCorner>10.936046 59.978174</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=andre_sikringssoner"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:ras_og_skredfare</Name>
+      <Title>ras_og_skredfare</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.619640 59.810362</ows:LowerCorner>
+        <ows:UpperCorner>10.953048 59.988454</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=ras_og_skredfare"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:flomfare</Name>
+      <Title>flomfare</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.592595 59.810462</ows:LowerCorner>
+        <ows:UpperCorner>10.950180 60.019180</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=flomfare"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:annen_fare</Name>
+      <Title>annen_fare</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.849885 59.835650</ows:LowerCorner>
+        <ows:UpperCorner>10.917854 59.962647</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=annen_fare"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:tekst_nedslagsfelt_drikkevann</Name>
+      <Title>tekst_nedslagsfelt_drikkevann</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.575037 59.858435</ows:LowerCorner>
+        <ows:UpperCorner>10.918874 60.099512</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=tekst_nedslagsfelt_drikkevann"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:tekst_andre_sikringssoner</Name>
+      <Title>tekst_andre_sikringssoner</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.630770 59.819999</ows:LowerCorner>
+        <ows:UpperCorner>10.930339 59.969384</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=tekst_andre_sikringssoner"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:tekst_ras_og_skredfare</Name>
+      <Title>tekst_ras_og_skredfare</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.620585 59.810774</ows:LowerCorner>
+        <ows:UpperCorner>10.951567 59.988052</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=tekst_ras_og_skredfare"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:tekst_flomfare</Name>
+      <Title>tekst_flomfare</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.615632 59.812419</ows:LowerCorner>
+        <ows:UpperCorner>10.948729 59.990449</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=tekst_flomfare"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:tekst_annen_fare</Name>
+      <Title>tekst_annen_fare</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.854107 59.840326</ows:LowerCorner>
+        <ows:UpperCorner>10.909124 59.959259</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=tekst_annen_fare"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t1_vei_2011</Name>
+      <Title>t1_vei_2011</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.620090 59.809863</ows:LowerCorner>
+        <ows:UpperCorner>10.953818 59.988017</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t1_vei_2011"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t1_vei_gul</Name>
+      <Title>t1_vei_gul</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.620090 59.809863</ows:LowerCorner>
+        <ows:UpperCorner>10.953818 59.988017</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t1_vei_gul"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t1_baner_2011</Name>
+      <Title>t1_baner_2011</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.620612 59.820839</ows:LowerCorner>
+        <ows:UpperCorner>10.948332 59.982364</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t1_baner_2011"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t1_baner_gul</Name>
+      <Title>t1_baner_gul</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.620612 59.820839</ows:LowerCorner>
+        <ows:UpperCorner>10.948332 59.982364</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t1_baner_gul"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t1_havn_gul</Name>
+      <Title>t1_havn_gul</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.699340 59.876726</ows:LowerCorner>
+        <ows:UpperCorner>10.774956 59.911529</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t1_havn_gul"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t1_aarvoll_skytebane_gul</Name>
+      <Title>t1_aarvoll_skytebane_gul</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.805280 59.951589</ows:LowerCorner>
+        <ows:UpperCorner>10.821227 59.966375</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t1_aarvoll_skytebane_gul"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t1_aarvoll_skytebane_roed</Name>
+      <Title>t1_aarvoll_skytebane_roed</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.806923 59.953150</ows:LowerCorner>
+        <ows:UpperCorner>10.820697 59.966063</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t1_aarvoll_skytebane_roed"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t1_havn_roed</Name>
+      <Title>t1_havn_roed</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.704671 59.883371</ows:LowerCorner>
+        <ows:UpperCorner>10.768222 59.909765</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t1_havn_roed"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t1_vei_rod</Name>
+      <Title>t1_vei_rod</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.620090 59.809863</ows:LowerCorner>
+        <ows:UpperCorner>10.953818 59.988017</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t1_vei_rod"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t1_baner_rod</Name>
+      <Title>t1_baner_rod</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.620612 59.820839</ows:LowerCorner>
+        <ows:UpperCorner>10.948332 59.982364</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t1_baner_rod"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t1_havneomraade</Name>
+      <Title>t1_havneomraade</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.705280 59.880496</ows:LowerCorner>
+        <ows:UpperCorner>10.770285 59.910473</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t1_havneomraade"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t1_stille_omraader</Name>
+      <Title>t1_stille_omraader</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.620492 59.821464</ows:LowerCorner>
+        <ows:UpperCorner>10.932563 59.980505</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t1_stille_omraader"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t1_avvikssone</Name>
+      <Title>t1_avvikssone</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.625845 59.821239</ows:LowerCorner>
+        <ows:UpperCorner>10.932875 59.973814</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t1_avvikssone"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t2_luftforurensing</Name>
+      <Title>t2_luftforurensing</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.614544 59.813520</ows:LowerCorner>
+        <ows:UpperCorner>10.949709 59.985889</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t2_luftforurensing"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t3_luftforurensing</Name>
+      <Title>t3_luftforurensing</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.614544 59.813520</ows:LowerCorner>
+        <ows:UpperCorner>10.949709 59.985889</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t3_luftforurensing"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t4_marka_temakart</Name>
+      <Title>t4_marka_temakart</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.480091 59.808174</ows:LowerCorner>
+        <ows:UpperCorner>10.954154 60.136568</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t4_marka_temakart"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t4_baandlegging_andre_lover</Name>
+      <Title>t4_baandlegging_andre_lover</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.612317 59.819223</ows:LowerCorner>
+        <ows:UpperCorner>10.946094 59.998675</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t4_baandlegging_andre_lover"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t4_naturmiljo_naturA</Name>
+      <Title>t4_naturmiljo_naturA</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.503983 59.810600</ows:LowerCorner>
+        <ows:UpperCorner>10.943428 60.135005</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t4_naturmiljo_naturA"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t4_naturB</Name>
+      <Title>t4_naturB</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.499739 59.811714</ows:LowerCorner>
+        <ows:UpperCorner>10.952900 60.133627</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t4_naturB"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t4_vernet_etter_naturmangfoldlvn</Name>
+      <Title>t4_vernet_etter_naturmangfoldlvn</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.531308 59.858812</ows:LowerCorner>
+        <ows:UpperCorner>10.906834 60.055097</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t4_vernet_etter_naturmangfoldlvn"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t4_naturC</Name>
+      <Title>t4_naturC</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.489334 59.811256</ows:LowerCorner>
+        <ows:UpperCorner>10.952868 60.136396</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t4_naturC"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t4_verneforslag_oslo</Name>
+      <Title>t4_verneforslag_oslo</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.675368 59.833956</ows:LowerCorner>
+        <ows:UpperCorner>10.936713 60.006395</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t4_verneforslag_oslo"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t4_baandlegging_regulering</Name>
+      <Title>t4_baandlegging_regulering</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.643187 59.860348</ows:LowerCorner>
+        <ows:UpperCorner>10.901764 59.976859</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t4_baandlegging_regulering"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t5_avklart_uavklart_indre_by</Name>
+      <Title>t5_avklart_uavklart_indre_by</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.616455 59.816406</ows:LowerCorner>
+        <ows:UpperCorner>10.921529 59.975672</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t5_avklart_uavklart_indre_by"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t5_avklart_uavklart_ytre_by</Name>
+      <Title>t5_avklart_uavklart_ytre_by</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.616455 59.816406</ows:LowerCorner>
+        <ows:UpperCorner>10.921529 59.975672</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t5_avklart_uavklart_ytre_by"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t5_baandlegging_andre_lover</Name>
+      <Title>t5_baandlegging_andre_lover</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.582785 59.816015</ows:LowerCorner>
+        <ows:UpperCorner>10.954439 60.023429</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t5_baandlegging_andre_lover"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t5_baandlegging_lov_om_kulturminner</Name>
+      <Title>t5_baandlegging_lov_om_kulturminner</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.574617 59.810037</ows:LowerCorner>
+        <ows:UpperCorner>10.960264 60.119629</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t5_baandlegging_lov_om_kulturminner"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t5_Verneklasse2_Tema</Name>
+      <Title>t5_Verneklasse2_Tema</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.653509 59.909138</ows:LowerCorner>
+        <ows:UpperCorner>10.776960 59.947548</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t5_Verneklasse2_Tema"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t5_hensynssone_c</Name>
+      <Title>t5_hensynssone_c</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.714607 59.918070</ows:LowerCorner>
+        <ows:UpperCorner>10.768351 59.935222</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t5_hensynssone_c"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t5_indre_by</Name>
+      <Title>t5_indre_by</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.685609 59.894880</ows:LowerCorner>
+        <ows:UpperCorner>10.797355 59.949492</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t5_indre_by"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t5_nasjonal_verneverdi</Name>
+      <Title>t5_nasjonal_verneverdi</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.693280 59.900909</ows:LowerCorner>
+        <ows:UpperCorner>10.795188 59.946654</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t5_nasjonal_verneverdi"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t5_freda_bygninger</Name>
+      <Title>t5_freda_bygninger</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.588070 59.810260</ows:LowerCorner>
+        <ows:UpperCorner>10.939692 60.123848</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t5_freda_bygninger"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t6_brann_eksplosjonsfare</Name>
+      <Title>t6_brann_eksplosjonsfare</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.825129 59.910056</ows:LowerCorner>
+        <ows:UpperCorner>10.902698 59.961726</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t6_brann_eksplosjonsfare"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t7_bakgrunn_gronne_omraader</Name>
+      <Title>t7_bakgrunn_gronne_omraader</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.619663 59.814524</ows:LowerCorner>
+        <ows:UpperCorner>10.952869 59.988272</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t7_bakgrunn_gronne_omraader"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t7_framtidig_park</Name>
+      <Title>t7_framtidig_park</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.709849 59.895631</ows:LowerCorner>
+        <ows:UpperCorner>10.772701 59.935329</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t7_framtidig_park"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t7_elv_bekk_vann_dam</Name>
+      <Title>t7_elv_bekk_vann_dam</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.619656 59.810823</ows:LowerCorner>
+        <ows:UpperCorner>10.948668 59.986999</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t7_elv_bekk_vann_dam"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t7_fremtidig_elv_bekk</Name>
+      <Title>t7_fremtidig_elv_bekk</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.641136 59.830639</ows:LowerCorner>
+        <ows:UpperCorner>10.934704 59.979665</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t7_fremtidig_elv_bekk"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t7_viktige_kommunikasjonsaarer</Name>
+      <Title>t7_viktige_kommunikasjonsaarer</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.628164 59.814860</ows:LowerCorner>
+        <ows:UpperCorner>10.953144 59.987111</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t7_viktige_kommunikasjonsaarer"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t7_krysningspunkt</Name>
+      <Title>t7_krysningspunkt</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.683448 59.835945</ows:LowerCorner>
+        <ows:UpperCorner>10.933676 59.979237</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t7_krysningspunkt"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t7_omraade_med_behov_for_park_5daa</Name>
+      <Title>t7_omraade_med_behov_for_park_5daa</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.628156 59.808766</ows:LowerCorner>
+        <ows:UpperCorner>10.949331 59.980241</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t7_omraade_med_behov_for_park_5daa"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t7_omraade_med_behov_for_park_1daa</Name>
+      <Title>t7_omraade_med_behov_for_park_1daa</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.689770 59.895262</ows:LowerCorner>
+        <ows:UpperCorner>10.790777 59.949417</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t7_omraade_med_behov_for_park_1daa"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t7_framtidig_turdrag</Name>
+      <Title>t7_framtidig_turdrag</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.657575 59.839898</ows:LowerCorner>
+        <ows:UpperCorner>10.898922 59.961250</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t7_framtidig_turdrag"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t7_hovedturveg</Name>
+      <Title>t7_hovedturveg</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.619646 59.814696</ows:LowerCorner>
+        <ows:UpperCorner>10.948766 59.988056</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t7_hovedturveg"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:t7_navn_turvei</Name>
+      <Title>t7_navn_turvei</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.621801 59.817469</ows:LowerCorner>
+        <ows:UpperCorner>10.948910 59.984215</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=t7_navn_turvei"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:n10_vann</Name>
+      <Title>n10_vann</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.492617 59.808483</ows:LowerCorner>
+        <ows:UpperCorner>10.957486 60.136125</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=n10_vann"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:n10_veg</Name>
+      <Title>n10_veg</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.513321 59.810078</ows:LowerCorner>
+        <ows:UpperCorner>10.957459 60.055351</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=n10_veg"/>
+    </FeatureType>
+    <FeatureType>
+      <Name>ms:n10_tekst</Name>
+      <Title>n10_tekst</Title>
+      <DefaultCRS>urn:ogc:def:crs:EPSG::25832</DefaultCRS>
+      <OutputFormats>
+        <Format>application/gml+xml; version=3.2</Format>
+        <Format>text/xml; subtype=gml/3.2.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/2.1.2</Format>
+      </OutputFormats>
+      <ows:WGS84BoundingBox dimensions="2">
+        <ows:LowerCorner>10.481428 59.808891</ows:LowerCorner>
+        <ows:UpperCorner>10.952985 60.136182</ows:UpperCorner>
+      </ows:WGS84BoundingBox>
+      <MetadataURL xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=n10_tekst"/>
+    </FeatureType>
+  </FeatureTypeList>
+  <fes:Filter_Capabilities>
+    <fes:Conformance>
+      <fes:Constraint name="ImplementsQuery">
+        <ows:NoValues/>
+        <ows:DefaultValue>TRUE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsAdHocQuery">
+        <ows:NoValues/>
+        <ows:DefaultValue>TRUE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsFunctions">
+        <ows:NoValues/>
+        <ows:DefaultValue>FALSE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsResourceId">
+        <ows:NoValues/>
+        <ows:DefaultValue>TRUE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsMinStandardFilter">
+        <ows:NoValues/>
+        <ows:DefaultValue>TRUE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsStandardFilter">
+        <ows:NoValues/>
+        <ows:DefaultValue>TRUE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsMinSpatialFilter">
+        <ows:NoValues/>
+        <ows:DefaultValue>TRUE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsSpatialFilter">
+        <ows:NoValues/>
+        <ows:DefaultValue>FALSE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsMinTemporalFilter">
+        <ows:NoValues/>
+        <ows:DefaultValue>TRUE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsTemporalFilter">
+        <ows:NoValues/>
+        <ows:DefaultValue>FALSE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsVersionNav">
+        <ows:NoValues/>
+        <ows:DefaultValue>FALSE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsSorting">
+        <ows:NoValues/>
+        <ows:DefaultValue>FALSE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsExtendedOperators">
+        <ows:NoValues/>
+        <ows:DefaultValue>FALSE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsMinimumXPath">
+        <ows:NoValues/>
+        <ows:DefaultValue>TRUE</ows:DefaultValue>
+      </fes:Constraint>
+      <fes:Constraint name="ImplementsSchemaElementFunc">
+        <ows:NoValues/>
+        <ows:DefaultValue>FALSE</ows:DefaultValue>
+      </fes:Constraint>
+    </fes:Conformance>
+    <fes:Id_Capabilities>
+      <fes:ResourceIdentifier name="fes:ResourceId"/>
+    </fes:Id_Capabilities>
+    <fes:Scalar_Capabilities>
+      <fes:LogicalOperators/>
+      <fes:ComparisonOperators>
+        <fes:ComparisonOperator name="PropertyIsEqualTo"/>
+        <fes:ComparisonOperator name="PropertyIsNotEqualTo"/>
+        <fes:ComparisonOperator name="PropertyIsLessThan"/>
+        <fes:ComparisonOperator name="PropertyIsGreaterThan"/>
+        <fes:ComparisonOperator name="PropertyIsLessThanOrEqualTo"/>
+        <fes:ComparisonOperator name="PropertyIsGreaterThanOrEqualTo"/>
+        <fes:ComparisonOperator name="PropertyIsLike"/>
+        <fes:ComparisonOperator name="PropertyIsBetween"/>
+      </fes:ComparisonOperators>
+    </fes:Scalar_Capabilities>
+    <fes:Spatial_Capabilities>
+      <fes:GeometryOperands>
+        <fes:GeometryOperand name="gml:Point"/>
+        <fes:GeometryOperand name="gml:MultiPoint"/>
+        <fes:GeometryOperand name="gml:LineString"/>
+        <fes:GeometryOperand name="gml:MultiLineString"/>
+        <fes:GeometryOperand name="gml:Curve"/>
+        <fes:GeometryOperand name="gml:MultiCurve"/>
+        <fes:GeometryOperand name="gml:Polygon"/>
+        <fes:GeometryOperand name="gml:MultiPolygon"/>
+        <fes:GeometryOperand name="gml:Surface"/>
+        <fes:GeometryOperand name="gml:MultiSurface"/>
+        <fes:GeometryOperand name="gml:Box"/>
+        <fes:GeometryOperand name="gml:Envelope"/>
+      </fes:GeometryOperands>
+      <fes:SpatialOperators>
+        <fes:SpatialOperator name="Equals"/>
+        <fes:SpatialOperator name="Disjoint"/>
+        <fes:SpatialOperator name="Touches"/>
+        <fes:SpatialOperator name="Within"/>
+        <fes:SpatialOperator name="Overlaps"/>
+        <fes:SpatialOperator name="Crosses"/>
+        <fes:SpatialOperator name="Intersects"/>
+        <fes:SpatialOperator name="Contains"/>
+        <fes:SpatialOperator name="DWithin"/>
+        <fes:SpatialOperator name="Beyond"/>
+        <fes:SpatialOperator name="BBOX"/>
+      </fes:SpatialOperators>
+    </fes:Spatial_Capabilities>
+    <fes:Temporal_Capabilities>
+      <fes:TemporalOperands>
+        <fes:TemporalOperand name="gml:TimePeriod"/>
+        <fes:TemporalOperand name="gml:TimeInstant"/>
+      </fes:TemporalOperands>
+      <fes:TemporalOperators>
+        <fes:TemporalOperator name="During"/>
+      </fes:TemporalOperators>
+    </fes:Temporal_Capabilities>
+  </fes:Filter_Capabilities>
+</wfs:WFS_Capabilities>
