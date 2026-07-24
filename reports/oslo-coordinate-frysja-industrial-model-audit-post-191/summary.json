@@ -1,0 +1,5192 @@
+{
+  "version": "2026-07-24",
+  "purpose": "Resolve whether Frysja industriområde is a duplicate, a source-backed OSM/municipal area, or still an unresolved broad-area proxy.",
+  "legacy": {
+    "id": "frysja_industriomrade",
+    "name": "Frysja industriområde",
+    "lat": 59.9608,
+    "lon": 10.7726,
+    "r": 260,
+    "category": "naeringsliv",
+    "year": 1750,
+    "desc": "Vannkraften fra Akerselva drev sagbruk og møller her allerede på 1700-tallet – et levende industriområde også i dag.",
+    "locatorType": "linear_area",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslo-kommune:byplan:frysja",
+    "geocodeAccuracy": "unknown",
+    "coordRole": "display_marker",
+    "coordType": "unverified_area_anchor",
+    "coordStatus": "needs_source",
+    "coordSource": "legacy_manual_map_check",
+    "coordNote": "Dagens lat/lon beholdes kun som foreløpig displayanker for det brede Frysja industriområdet. Punktet bygger på legacy manual_map_check og er ikke kildebelagt områdegeometri; canonical koordinatstatus er derfor needs_source inntil offisiell plan-/områdegeometri eller flere dokumenterte area-ankre er på plass.",
+    "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/frysja_industriomrade.json"
+  },
+  "evidence": {
+    "placeId": "frysja_industriomrade",
+    "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+    "evidenceStatus": "needs_research",
+    "coordinateDecision": "needs_geometry",
+    "currentCoordinate": {
+      "lat": 59.9608,
+      "lon": 10.7726,
+      "r": 260,
+      "coordStatus": "needs_source",
+      "coordSource": "legacy_manual_map_check",
+      "coordType": "unverified_area_anchor",
+      "coordNote": "Dagens lat/lon beholdes kun som foreløpig displayanker for det brede Frysja industriområdet. Punktet bygger på legacy manual_map_check og er ikke kildebelagt områdegeometri; canonical koordinatstatus er derfor needs_source inntil offisiell plan-/områdegeometri eller flere dokumenterte area-ankre er på plass."
+    },
+    "identity": {
+      "currentName": "Frysja industriområde",
+      "resolvedIdentity": "det historiske industri- og transformasjonsområdet langs øvre Akerselva ved Frysja",
+      "identityStatus": "resolved_broad_area",
+      "identityProblem": "Frysja er et dokumentert område, men den aktive recorden har bare ett manuelt sentrumspunkt og ingen kildebelagt områdegeometri eller anchors. Et bredt industriområde kan ikke være `verified` på grunnlag av ett manuelt punkt.",
+      "locatorTypeCandidate": "linear_area",
+      "requiresSplit": false,
+      "splitReason": "Området kan beholdes, men må få eksplisitt geometri eller flere dokumenterte area-ankre."
+    },
+    "requiredEvidence": [
+      "offisiell områdeavgrensning eller plan-geometri",
+      "flere area-ankre dersom full polygon ikke brukes",
+      "nedgradering av legacy verified-status inntil geometri er på plass"
+    ],
+    "evidence": [
+      {
+        "sourceProvider": "municipality",
+        "sourceName": "Oslo kommune – Frysja: kvalitet og kvantitet",
+        "sourceUrl": "https://magasin.oslo.kommune.no/byplan/frysja-kvalitet-og-kvantitet",
+        "sourceObjectId": "oslo-kommune:byplan:frysja",
+        "sourceQuality": "official_area_identity",
+        "finding": "Oslo kommune dokumenterer Frysja som et større tidligere industriområde vest for Akerselva under transformasjon til byområde.",
+        "canVerifyCoordinate": false,
+        "reason": "Kilden dokumenterer områdeidentiteten, men evidence-passet har ikke en maskinsporbar polygon eller flere fysiske anchors."
+      }
+    ],
+    "addressCandidates": [],
+    "sourceObjectCandidates": [],
+    "geometryCandidates": [],
+    "coordinateCandidates": [],
+    "decision": {
+      "canBecomeVerified": false,
+      "blockedReason": "Bredt område mangler kildebelagt geometri/anchors; dagens manual_map_check er ikke nok.",
+      "nextAction": "Hent offisiell plan-/områdegeometri eller legg inn dokumenterte area-ankre før canonical koordinatstatus kan verifiseres."
+    },
+    "notes": [
+      "Ingen koordinatendring i batch 25.",
+      "Koordinatkorreksjon 2026-07-21: legacy verified-status fra manual_map_check er fjernet. Eksisterende punkt beholdes kun som foreløpig displayanker mens områdegeometri fortsatt mangler."
+    ]
+  },
+  "officialSource": {
+    "url": "https://magasin.oslo.kommune.no/byplan/frysja-kvalitet-og-kvantitet",
+    "checks": {
+      "mentionsFrysja": true,
+      "mentionsIndustrialHistory": true,
+      "mentionsAkerselva": true
+    }
+  },
+  "repoCandidates": [
+    {
+      "id": "frysja_33_brekke_kraftstasjon",
+      "name": "Frysja 33 – Brekke kraftstasjon",
+      "category": "naeringsliv",
+      "lat": 59.96652761473437,
+      "lon": 10.776657553367157,
+      "r": 70,
+      "locatorType": "building",
+      "coordStatus": "verified",
+      "coordType": "address_point",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13747:151C",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_13.json",
+      "distanceMeters": 675.74
+    },
+    {
+      "id": "brekkedammen",
+      "name": "Brekkedammen ved Frysja",
+      "category": "natur",
+      "lat": 59.967732,
+      "lon": 10.7816029,
+      "r": 320,
+      "locatorType": "natural_area",
+      "coordStatus": "verified_geometry",
+      "coordType": "reservoir_area_anchor",
+      "sourceObjectId": "osm-relation:14334474",
+      "sourceFile": "places/natur/oslo/brekkedammen.json",
+      "distanceMeters": 919.36
+    },
+    {
+      "id": "frysjadammen",
+      "name": "Oset slusebru – damanlegget ved Maridalsoset",
+      "category": "historie",
+      "lat": 59.969322149999996,
+      "lon": 10.7879593,
+      "r": 150,
+      "locatorType": "linear_area",
+      "coordStatus": "verified_geometry",
+      "coordType": "bridge_center",
+      "sourceObjectId": "osm-way:79506476",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute/frysjadammen.json",
+      "distanceMeters": 1276.22
+    },
+    {
+      "id": "brekke_sluser_haldenkanalen",
+      "name": "Brekke sluser / Haldenkanalen",
+      "category": "by",
+      "lat": 59.1501,
+      "lon": 11.4643,
+      "r": 420,
+      "locatorType": null,
+      "coordStatus": null,
+      "coordType": null,
+      "sourceObjectId": null,
+      "sourceFile": "places/by/ostfold/brekke_sluser_haldenkanalen.json",
+      "distanceMeters": 98208.16
+    },
+    {
+      "id": "brekkeparken_skien",
+      "name": "Brekkeparken Skien",
+      "category": "historie",
+      "lat": 59.2072,
+      "lon": 9.6005,
+      "r": 360,
+      "locatorType": null,
+      "coordStatus": null,
+      "coordType": null,
+      "sourceObjectId": null,
+      "sourceFile": "places/historie/telemark/places_historie_telemark_batch1/brekkeparken_skien.json",
+      "distanceMeters": 106653.47
+    }
+  ],
+  "referenceLineCount": 85,
+  "references": [
+    "data/Civication/map/historyGoPlaceMapping.naeringsliv.json:745:      \"historyGoPlaceId\": \"frysja_industriomrade\",",
+    "data/coordinate-evidence/oslo/naeringsliv/frysja_industriomrade.json:2:  \"placeId\": \"frysja_industriomrade\",",
+    "data/i18n/content/places/en.json:884:  \"frysja_industriomrade\": {",
+    "data/i18n/content/places/es.json:1598:  \"frysja_industriomrade\": {",
+    "data/i18n/content/places/pt.json:2410:  \"frysja_industriomrade\": {",
+    "data/natur/nature_bird_place_map.json:619:    \"frysja_industriomrade\": {",
+    "data/natur/places_akerselva_profiles_register_ids.json:70:    \"id\": \"frysja_industriomrade\",",
+    "data/places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_06.json:52:        \"frysja_industriomrade\"",
+    "data/places/naeringsliv/oslo/places_naeringsliv.json:1490:    \"id\": \"frysja_industriomrade\",",
+    "data/places/naeringsliv/oslo/places_naeringsliv/frysja_industriomrade.json:2:  \"id\": \"frysja_industriomrade\",",
+    "data/places/naeringsliv/oslo/places_naeringsliv_index.json:442:    \"id\": \"frysja_industriomrade\",",
+    "data/places/naeringsliv/oslo/places_naeringsliv_manifest.json:178:      \"id\": \"frysja_industriomrade\",",
+    "data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04.json:54:        \"frysja_industriomrade\"",
+    "data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_05.json:51:        \"frysja_industriomrade\",",
+    "data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_13.json:50:        \"frysja_industriomrade\",",
+    "data/places/natur/oslo/brekkedammen.json:1459:      \"frysja_industriomrade\",",
+    "data/places/places_index.json:10732:    \"id\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:2:  \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:61:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:64:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:131:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:134:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:201:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:204:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:272:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:275:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:344:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:347:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:416:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:419:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:499:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:502:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:570:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:573:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:641:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:644:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:711:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:714:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:781:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:784:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:851:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:854:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:930:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:933:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1000:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1003:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1070:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1073:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1141:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1144:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1212:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1215:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1282:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1285:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1363:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1366:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1434:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1437:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1505:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1508:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1576:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1579:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1646:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1649:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1716:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1719:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1795:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1798:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1865:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1868:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1935:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:1938:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:2005:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:2008:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:2075:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:2078:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:2148:          \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/naeringsliv/frysja_industriomrade_sets_merged.json:2151:          \"targetId\": \"frysja_industriomrade\",",
+    "data/quiz/quiz_naeringsliv.json:485:    \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/quiz_naeringsliv.json:497:    \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/quiz_naeringsliv.json:509:    \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/quiz_naeringsliv.json:521:    \"placeId\": \"frysja_industriomrade\",",
+    "data/quiz/quiz_naeringsliv.json:533:    \"placeId\": \"frysja_industriomrade\",",
+    "data/routes/historical/routes_historical_oslo.json:689:          \"placeId\": \"frysja_industriomrade\",",
+    "data/routes/historical/routes_historical_oslo.json:693:        \"placeId\": \"frysja_industriomrade\""
+  ],
+  "osm": {
+    "query": "[out:json][timeout:60];\n(\n  way[\"landuse\"=\"industrial\"](59.953,10.756,59.970,10.790);\n  relation[\"landuse\"=\"industrial\"](59.953,10.756,59.970,10.790);\n  nwr[\"name\"~\"Frysja|Brekke\",i](59.953,10.756,59.970,10.790);\n);\nout tags center geom;",
+    "candidateCount": 56,
+    "industrialPolygonCount": 0,
+    "containingIndustrialCount": 0,
+    "namedFrysjaCount": 27,
+    "containingIndustrial": [],
+    "namedFrysjaCandidates": [
+      {
+        "type": "node",
+        "id": 25730483,
+        "osmObjectId": "osm-node:25730483",
+        "tags": {
+          "hiking": "yes",
+          "information": "guidepost",
+          "name": "Brekkevn/Frysjavn",
+          "operator": "DNT Oslo og Omegn",
+          "ref": "NM991493",
+          "tourism": "information"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 3458029182,
+        "osmObjectId": "osm-node:3458029182",
+        "tags": {
+          "bus": "yes",
+          "name": "Frysja",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 5921084081,
+        "osmObjectId": "osm-node:5921084081",
+        "tags": {
+          "amenity": "doctors",
+          "healthcare": "doctor",
+          "healthcare:service": "fastlege",
+          "healthcare:speciality": "general",
+          "name": "Frysja legekontor",
+          "ref:NO:orgnr": "920150594",
+          "ref:nhn": "920150594"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6313035324,
+        "osmObjectId": "osm-node:6313035324",
+        "tags": {
+          "name": "Frysjafossen",
+          "waterway": "weir",
+          "wikidata": "Q17775367",
+          "wikipedia": "no:Frysjafossen"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6373811040,
+        "osmObjectId": "osm-node:6373811040",
+        "tags": {
+          "bench": "yes",
+          "bus": "yes",
+          "highway": "bus_stop",
+          "name": "Frysja",
+          "public_transport": "platform",
+          "ref:nsrq": "11278",
+          "shelter": "yes",
+          "tactile_paving": "yes"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 7935639787,
+        "osmObjectId": "osm-node:7935639787",
+        "tags": {
+          "branch": "Frysja",
+          "brand": "Joker",
+          "brand:wikidata": "Q716328",
+          "brand:wikipedia": "en:Joker (store)",
+          "check_date:opening_hours": "2025-08-31",
+          "email": "joker.frysja@joker.no",
+          "name": "Joker Frysja",
+          "opening_hours": "Mo-Fr 07:00-23:00, Sa-Su 09:00-21:00",
+          "phone": "+47 47511072",
+          "ref:norgesgruppen": "4125766",
+          "shop": "supermarket"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 11508954000,
+        "osmObjectId": "osm-node:11508954000",
+        "tags": {
+          "branch": "Frysja",
+          "brand": "Meny",
+          "brand:wikidata": "Q10581720",
+          "email": "butikksjef.frysja@meny.no",
+          "name": "Meny Frysja",
+          "opening_hours": "Mo-Fr 08:00-21:00, Sa 08:00-20:00",
+          "operator": "Meny",
+          "phone": "+47 22495000",
+          "ref:norgesgruppen": "4383999",
+          "shop": "supermarket",
+          "website": "https://meny.no/finn-butikk/meny-frysja"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 11884847916,
+        "osmObjectId": "osm-node:11884847916",
+        "tags": {
+          "amenity": "restaurant",
+          "cuisine": "cake;coffee_shop;french;italian_pizza",
+          "name": "Grains Bakeri (Frysja)",
+          "opening_hours": "Mo-Sa 08:00-22:00; Su 09:00-21:00",
+          "phone": "+47 45 65 31 95",
+          "shop": "bakery",
+          "website": "https://www.grains.no/",
+          "website:menu": "https://order.gastroplanner.no/s/grainsfrysja"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 11884847917,
+        "osmObjectId": "osm-node:11884847917",
+        "tags": {
+          "amenity": "restaurant",
+          "cuisine": "sushi",
+          "name": "Frysja Sushi"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 11884851954,
+        "osmObjectId": "osm-node:11884851954",
+        "tags": {
+          "leisure": "fitness_centre",
+          "name": "EVO Frysja"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 11889579530,
+        "osmObjectId": "osm-node:11889579530",
+        "tags": {
+          "amenity": "pharmacy",
+          "branch": "Frysjaparken",
+          "brand": "Vitusapotek",
+          "brand:wikidata": "Q17047215",
+          "email": "frysjaparken@vitusapotek.no",
+          "healthcare": "pharmacy",
+          "name": "Vitusapotek Frysjaparken",
+          "opening_hours": "Mo-Fr 09:00-18:00, Sa 10:00-16:00",
+          "phone": "+47 21930104",
+          "ref:nmd": "2330"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 13945006715,
+        "osmObjectId": "osm-node:13945006715",
+        "tags": {
+          "defibrillator:location": "Inn rundell, til venstre på søyle. 113 kan gi tilgang.",
+          "emergency": "defibrillator",
+          "emergency:phone": "113",
+          "level": "1",
+          "name": "EVO Frysja",
+          "opening_hours": "Mo-Su 05:00-24:00; PH open",
+          "ref:hjertestarterregister": "1B1170BCB61B116BE06322C8E80AC03C"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "way",
+        "id": 4241039,
+        "osmObjectId": "osm-way:4241039",
+        "tags": {
+          "highway": "tertiary",
+          "maxspeed": "30",
+          "name": "Frysjaveien",
+          "surface": "asphalt",
+          "wikidata": "Q11970439"
+        },
+        "center": {
+          "lat": 59.9612030488889,
+          "lon": 10.767483548888888
+        },
+        "distanceFromLegacyMeters": 288.3,
+        "geometryPointCount": 45,
+        "approxAreaSquareMeters": 20919,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9594592,
+            "lon": 10.7642275
+          },
+          {
+            "lat": 59.959457,
+            "lon": 10.7643185
+          },
+          {
+            "lat": 59.9594661,
+            "lon": 10.7644653
+          },
+          {
+            "lat": 59.959473,
+            "lon": 10.7645516
+          },
+          {
+            "lat": 59.9594935,
+            "lon": 10.7647053
+          },
+          {
+            "lat": 59.9595471,
+            "lon": 10.7649828
+          },
+          {
+            "lat": 59.9595725,
+            "lon": 10.7651097
+          },
+          {
+            "lat": 59.9596052,
+            "lon": 10.765251
+          },
+          {
+            "lat": 59.959641,
+            "lon": 10.765367
+          },
+          {
+            "lat": 59.9596841,
+            "lon": 10.7654721
+          },
+          {
+            "lat": 59.959738,
+            "lon": 10.7655871
+          },
+          {
+            "lat": 59.9598934,
+            "lon": 10.7659077
+          },
+          {
+            "lat": 59.9600555,
+            "lon": 10.7662423
+          },
+          {
+            "lat": 59.960124,
+            "lon": 10.7663836
+          },
+          {
+            "lat": 59.9601705,
+            "lon": 10.7664733
+          },
+          {
+            "lat": 59.9602784,
+            "lon": 10.7666815
+          },
+          {
+            "lat": 59.960304,
+            "lon": 10.7667327
+          },
+          {
+            "lat": 59.9604252,
+            "lon": 10.7669378
+          },
+          {
+            "lat": 59.9604936,
+            "lon": 10.7670383
+          },
+          {
+            "lat": 59.9605798,
+            "lon": 10.7671531
+          },
+          {
+            "lat": 59.9606722,
+            "lon": 10.7672684
+          },
+          {
+            "lat": 59.9608312,
+            "lon": 10.7674632
+          },
+          {
+            "lat": 59.9610103,
+            "lon": 10.7676745
+          },
+          {
+            "lat": 59.9613418,
+            "lon": 10.7680657
+          },
+          {
+            "lat": 59.9613579,
+            "lon": 10.7680847
+          },
+          {
+            "lat": 59.9615601,
+            "lon": 10.7683293
+          },
+          {
+            "lat": 59.9618017,
+            "lon": 10.7686228
+          },
+          {
+            "lat": 59.9619025,
+            "lon": 10.7687438
+          },
+          {
+            "lat": 59.9620057,
+            "lon": 10.768856
+          },
+          {
+            "lat": 59.9621013,
+            "lon": 10.7689445
+          },
+          {
+            "lat": 59.9621821,
+            "lon": 10.7690162
+          },
+          {
+            "lat": 59.9622777,
+            "lon": 10.7690892
+          },
+          {
+            "lat": 59.9623765,
+            "lon": 10.7691576
+          },
+          {
+            "lat": 59.9624791,
+            "lon": 10.7692161
+          },
+          {
+            "lat": 59.9625842,
+            "lon": 10.7692661
+          },
+          {
+            "lat": 59.9626686,
+            "lon": 10.7693006
+          },
+          {
+            "lat": 59.962719,
+            "lon": 10.769323
+          },
+          {
+            "lat": 59.9628105,
+            "lon": 10.7693637
+          },
+          {
+            "lat": 59.9628998,
+            "lon": 10.7694109
+          },
+          {
+            "lat": 59.9630204,
+            "lon": 10.769491
+          },
+          {
+            "lat": 59.9630559,
+            "lon": 10.7695189
+          },
+          {
+            "lat": 59.9631325,
+            "lon": 10.7695924
+          },
+          {
+            "lat": 59.9632088,
+            "lon": 10.7696785
+          },
+          {
+            "lat": 59.9632729,
+            "lon": 10.7697611
+          },
+          {
+            "lat": 59.9634034,
+            "lon": 10.7699333
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 66566862,
+        "osmObjectId": "osm-way:66566862",
+        "tags": {
+          "bicycle": "yes",
+          "foot": "yes",
+          "highway": "service",
+          "name": "Frysjaveien",
+          "source": "survey+Yahoo",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.96116542553192,
+          "lon": 10.768677578723402
+        },
+        "distanceFromLegacyMeters": 222.08,
+        "geometryPointCount": 47,
+        "approxAreaSquareMeters": 10985,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9623765,
+            "lon": 10.7691576
+          },
+          {
+            "lat": 59.9623607,
+            "lon": 10.7693002
+          },
+          {
+            "lat": 59.9623169,
+            "lon": 10.7696754
+          },
+          {
+            "lat": 59.9622941,
+            "lon": 10.7698529
+          },
+          {
+            "lat": 59.9622608,
+            "lon": 10.7699335
+          },
+          {
+            "lat": 59.9621357,
+            "lon": 10.7699273
+          },
+          {
+            "lat": 59.9620648,
+            "lon": 10.769911
+          },
+          {
+            "lat": 59.9620194,
+            "lon": 10.7699053
+          },
+          {
+            "lat": 59.9619315,
+            "lon": 10.7698985
+          },
+          {
+            "lat": 59.9618563,
+            "lon": 10.7698946
+          },
+          {
+            "lat": 59.9617696,
+            "lon": 10.7698902
+          },
+          {
+            "lat": 59.9617312,
+            "lon": 10.7698828
+          },
+          {
+            "lat": 59.961708,
+            "lon": 10.7698721
+          },
+          {
+            "lat": 59.9616607,
+            "lon": 10.769839
+          },
+          {
+            "lat": 59.9615846,
+            "lon": 10.7697343
+          },
+          {
+            "lat": 59.9615353,
+            "lon": 10.7696638
+          },
+          {
+            "lat": 59.9613909,
+            "lon": 10.7694571
+          },
+          {
+            "lat": 59.9613082,
+            "lon": 10.7693334
+          },
+          {
+            "lat": 59.9610984,
+            "lon": 10.7690198
+          },
+          {
+            "lat": 59.9610541,
+            "lon": 10.7689548
+          },
+          {
+            "lat": 59.9608164,
+            "lon": 10.7686165
+          },
+          {
+            "lat": 59.9607556,
+            "lon": 10.7685278
+          },
+          {
+            "lat": 59.9607198,
+            "lon": 10.7684872
+          },
+          {
+            "lat": 59.9606958,
+            "lon": 10.7684324
+          },
+          {
+            "lat": 59.960666,
+            "lon": 10.7683027
+          },
+          {
+            "lat": 59.9606618,
+            "lon": 10.7682637
+          },
+          {
+            "lat": 59.960659,
+            "lon": 10.7682382
+          },
+          {
+            "lat": 59.9606797,
+            "lon": 10.7681503
+          },
+          {
+            "lat": 59.9607306,
+            "lon": 10.7680705
+          },
+          {
+            "lat": 59.960767,
+            "lon": 10.7680614
+          },
+          {
+            "lat": 59.960795,
+            "lon": 10.7680458
+          },
+          {
+            "lat": 59.960814,
+            "lon": 10.7680129
+          },
+          {
+            "lat": 59.960824,
+            "lon": 10.7679713
+          },
+          {
+            "lat": 59.960824,
+            "lon": 10.7679181
+          },
+          {
+            "lat": 59.9608144,
+            "lon": 10.7678693
+          },
+          {
+            "lat": 59.9607908,
+            "lon": 10.7678322
+          },
+          {
+            "lat": 59.9607616,
+            "lon": 10.7678193
+          },
+          {
+            "lat": 59.960741,
+            "lon": 10.7678295
+          },
+          {
+            "lat": 59.960718,
+            "lon": 10.7678595
+          },
+          {
+            "lat": 59.9606994,
+            "lon": 10.7679128
+          },
+          {
+            "lat": 59.9606694,
+            "lon": 10.7679483
+          },
+          {
+            "lat": 59.960521,
+            "lon": 10.7675269
+          },
+          {
+            "lat": 59.9604867,
+            "lon": 10.7674542
+          },
+          {
+            "lat": 59.9604665,
+            "lon": 10.7674275
+          },
+          {
+            "lat": 59.960442,
+            "lon": 10.7674167
+          },
+          {
+            "lat": 59.9604168,
+            "lon": 10.7673973
+          },
+          {
+            "lat": 59.960381,
+            "lon": 10.7673503
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 118991932,
+        "osmObjectId": "osm-way:118991932",
+        "tags": {
+          "building": "office",
+          "name": "Frysja 33",
+          "ref:bygningsnr": "81478775"
+        },
+        "center": {
+          "lat": 59.966400588888895,
+          "lon": 10.776588133333332
+        },
+        "distanceFromLegacyMeters": 661.13,
+        "geometryPointCount": 9,
+        "approxAreaSquareMeters": 207,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9663923,
+            "lon": 10.7768912
+          },
+          {
+            "lat": 59.9664707,
+            "lon": 10.7765067
+          },
+          {
+            "lat": 59.9664218,
+            "lon": 10.7764669
+          },
+          {
+            "lat": 59.9664318,
+            "lon": 10.7764181
+          },
+          {
+            "lat": 59.9663928,
+            "lon": 10.7763864
+          },
+          {
+            "lat": 59.9663815,
+            "lon": 10.7764418
+          },
+          {
+            "lat": 59.9663996,
+            "lon": 10.7764565
+          },
+          {
+            "lat": 59.9663225,
+            "lon": 10.7768344
+          },
+          {
+            "lat": 59.9663923,
+            "lon": 10.7768912
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 119387354,
+        "osmObjectId": "osm-way:119387354",
+        "tags": {
+          "highway": "residential",
+          "name": "Frysjaveien",
+          "surface": "asphalt",
+          "wikidata": "Q11970439"
+        },
+        "center": {
+          "lat": 59.968414499999994,
+          "lon": 10.775037642307694
+        },
+        "distanceFromLegacyMeters": 857.49,
+        "geometryPointCount": 26,
+        "approxAreaSquareMeters": 7799,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9692067,
+            "lon": 10.7750925
+          },
+          {
+            "lat": 59.9691978,
+            "lon": 10.7752502
+          },
+          {
+            "lat": 59.9691858,
+            "lon": 10.7753457
+          },
+          {
+            "lat": 59.9691671,
+            "lon": 10.7754197
+          },
+          {
+            "lat": 59.96914,
+            "lon": 10.7755109
+          },
+          {
+            "lat": 59.9691086,
+            "lon": 10.7755873
+          },
+          {
+            "lat": 59.969068,
+            "lon": 10.7756597
+          },
+          {
+            "lat": 59.9690184,
+            "lon": 10.7757258
+          },
+          {
+            "lat": 59.9689644,
+            "lon": 10.7757712
+          },
+          {
+            "lat": 59.9689121,
+            "lon": 10.7757908
+          },
+          {
+            "lat": 59.9688669,
+            "lon": 10.7757982
+          },
+          {
+            "lat": 59.9688231,
+            "lon": 10.7757953
+          },
+          {
+            "lat": 59.9687818,
+            "lon": 10.7757829
+          },
+          {
+            "lat": 59.9687412,
+            "lon": 10.7757568
+          },
+          {
+            "lat": 59.9686869,
+            "lon": 10.7757017
+          },
+          {
+            "lat": 59.9686351,
+            "lon": 10.7756403
+          },
+          {
+            "lat": 59.968582,
+            "lon": 10.7755713
+          },
+          {
+            "lat": 59.9682501,
+            "lon": 10.7751401
+          },
+          {
+            "lat": 59.9679629,
+            "lon": 10.7747508
+          },
+          {
+            "lat": 59.9676728,
+            "lon": 10.7743493
+          },
+          {
+            "lat": 59.9674082,
+            "lon": 10.7739606
+          },
+          {
+            "lat": 59.9672522,
+            "lon": 10.7737365
+          },
+          {
+            "lat": 59.9671282,
+            "lon": 10.7735623
+          },
+          {
+            "lat": 59.9670679,
+            "lon": 10.7734825
+          },
+          {
+            "lat": 59.9670116,
+            "lon": 10.7734191
+          },
+          {
+            "lat": 59.9669372,
+            "lon": 10.7733772
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1057813730,
+        "osmObjectId": "osm-way:1057813730",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.965980975,
+          "lon": 10.771095549999998
+        },
+        "distanceFromLegacyMeters": 582.15,
+        "geometryPointCount": 4,
+        "approxAreaSquareMeters": 10,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9660903,
+            "lon": 10.7712045
+          },
+          {
+            "lat": 59.9659943,
+            "lon": 10.7711146
+          },
+          {
+            "lat": 59.9659387,
+            "lon": 10.7710592
+          },
+          {
+            "lat": 59.9659006,
+            "lon": 10.7710039
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1090912655,
+        "osmObjectId": "osm-way:1090912655",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.9670942,
+          "lon": 10.772155825
+        },
+        "distanceFromLegacyMeters": 700.32,
+        "geometryPointCount": 4,
+        "approxAreaSquareMeters": 0,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9672078,
+            "lon": 10.7722632
+          },
+          {
+            "lat": 59.9671443,
+            "lon": 10.7722053
+          },
+          {
+            "lat": 59.9671256,
+            "lon": 10.772184
+          },
+          {
+            "lat": 59.9668991,
+            "lon": 10.7719708
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1090912656,
+        "osmObjectId": "osm-way:1090912656",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "concrete"
+        },
+        "center": {
+          "lat": 59.96679964,
+          "lon": 10.77189186
+        },
+        "distanceFromLegacyMeters": 668.29,
+        "geometryPointCount": 5,
+        "approxAreaSquareMeters": 0,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9668991,
+            "lon": 10.7719708
+          },
+          {
+            "lat": 59.9668908,
+            "lon": 10.7719644
+          },
+          {
+            "lat": 59.9667475,
+            "lon": 10.7718503
+          },
+          {
+            "lat": 59.9667408,
+            "lon": 10.7718449
+          },
+          {
+            "lat": 59.96672,
+            "lon": 10.7718289
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1200002822,
+        "osmObjectId": "osm-way:1200002822",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.96662165,
+          "lon": 10.771737949999999
+        },
+        "distanceFromLegacyMeters": 649.11,
+        "geometryPointCount": 2,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.96672,
+            "lon": 10.7718289
+          },
+          {
+            "lat": 59.9665233,
+            "lon": 10.771647
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1200002823,
+        "osmObjectId": "osm-way:1200002823",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "concrete"
+        },
+        "center": {
+          "lat": 59.9664779,
+          "lon": 10.771592533333333
+        },
+        "distanceFromLegacyMeters": 633.84,
+        "geometryPointCount": 3,
+        "approxAreaSquareMeters": 2,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.96651,
+            "lon": 10.7716342
+          },
+          {
+            "lat": 59.9664898,
+            "lon": 10.7716135
+          },
+          {
+            "lat": 59.9664339,
+            "lon": 10.7715299
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1200002824,
+        "osmObjectId": "osm-way:1200002824",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.96635083333334,
+          "lon": 10.771448766666667
+        },
+        "distanceFromLegacyMeters": 620.54,
+        "geometryPointCount": 3,
+        "approxAreaSquareMeters": 1,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9664339,
+            "lon": 10.7715299
+          },
+          {
+            "lat": 59.9663821,
+            "lon": 10.7714776
+          },
+          {
+            "lat": 59.9662365,
+            "lon": 10.7713388
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1200002825,
+        "osmObjectId": "osm-way:1200002825",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "concrete"
+        },
+        "center": {
+          "lat": 59.966137124999996,
+          "lon": 10.771247500000001
+        },
+        "distanceFromLegacyMeters": 598.22,
+        "geometryPointCount": 4,
+        "approxAreaSquareMeters": 0,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9662365,
+            "lon": 10.7713388
+          },
+          {
+            "lat": 59.9661218,
+            "lon": 10.7712334
+          },
+          {
+            "lat": 59.9660999,
+            "lon": 10.7712133
+          },
+          {
+            "lat": 59.9660903,
+            "lon": 10.7712045
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1262980246,
+        "osmObjectId": "osm-way:1262980246",
+        "tags": {
+          "bicycle:lanes:backward": "yes",
+          "bicycle:lanes:forward": "yes|designated",
+          "cycleway:lanes:forward": "no|lane",
+          "cycleway:left": "no",
+          "cycleway:right": "advisory",
+          "cycleway:right:marking": "dashed_line",
+          "cycleway:surface": "asphalt",
+          "cycleway:surface:colour": "red",
+          "highway": "tertiary",
+          "lane_markings": "no",
+          "lanes": "2",
+          "lanes:backward": "1",
+          "lanes:forward": "1",
+          "maxspeed": "30",
+          "name": "Frysjaveien",
+          "oneway": "no",
+          "surface": "asphalt",
+          "wikidata": "Q11970439"
+        },
+        "center": {
+          "lat": 59.96490550434783,
+          "lon": 10.771455339130434
+        },
+        "distanceFromLegacyMeters": 460.94,
+        "geometryPointCount": 23,
+        "approxAreaSquareMeters": 1192,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9634034,
+            "lon": 10.7699333
+          },
+          {
+            "lat": 59.9634901,
+            "lon": 10.7700449
+          },
+          {
+            "lat": 59.9636108,
+            "lon": 10.7702082
+          },
+          {
+            "lat": 59.9636801,
+            "lon": 10.770302
+          },
+          {
+            "lat": 59.9637106,
+            "lon": 10.7703433
+          },
+          {
+            "lat": 59.9637467,
+            "lon": 10.7703815
+          },
+          {
+            "lat": 59.9637991,
+            "lon": 10.7704369
+          },
+          {
+            "lat": 59.9639402,
+            "lon": 10.7705701
+          },
+          {
+            "lat": 59.9639815,
+            "lon": 10.7706095
+          },
+          {
+            "lat": 59.9641387,
+            "lon": 10.7707594
+          },
+          {
+            "lat": 59.9642171,
+            "lon": 10.7708341
+          },
+          {
+            "lat": 59.9648397,
+            "lon": 10.7714127
+          },
+          {
+            "lat": 59.9649305,
+            "lon": 10.7714971
+          },
+          {
+            "lat": 59.9650248,
+            "lon": 10.7715847
+          },
+          {
+            "lat": 59.9655607,
+            "lon": 10.772075
+          },
+          {
+            "lat": 59.9656468,
+            "lon": 10.7721613
+          },
+          {
+            "lat": 59.9659846,
+            "lon": 10.77247
+          },
+          {
+            "lat": 59.9661077,
+            "lon": 10.7725825
+          },
+          {
+            "lat": 59.9662463,
+            "lon": 10.7727129
+          },
+          {
+            "lat": 59.9663126,
+            "lon": 10.7727754
+          },
+          {
+            "lat": 59.9666555,
+            "lon": 10.7730982
+          },
+          {
+            "lat": 59.9668619,
+            "lon": 10.7733026
+          },
+          {
+            "lat": 59.9669372,
+            "lon": 10.7733772
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1280358937,
+        "osmObjectId": "osm-way:1280358937",
+        "tags": {
+          "bridge": "yes",
+          "highway": "living_street",
+          "layer": "1",
+          "name": "Frysjaveien",
+          "surface": "concrete"
+        },
+        "center": {
+          "lat": 59.96651665,
+          "lon": 10.7716406
+        },
+        "distanceFromLegacyMeters": 637.9,
+        "geometryPointCount": 2,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9665233,
+            "lon": 10.771647
+          },
+          {
+            "lat": 59.96651,
+            "lon": 10.7716342
+          }
+        ]
+      },
+      {
+        "type": "relation",
+        "id": 4792594,
+        "osmObjectId": "osm-relation:4792594",
+        "tags": {
+          "Ruter:code": "FRY",
+          "Ruter:id": "3012191",
+          "Ruter:name": "Frysja",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Frysja",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "relation",
+        "id": 14334474,
+        "osmObjectId": "osm-relation:14334474",
+        "tags": {
+          "alt_name": "Brekkedammen",
+          "name": "Frysja",
+          "natural": "water",
+          "type": "multipolygon",
+          "water": "reservoir"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      }
+    ],
+    "nearestIndustrialPolygons": [],
+    "allCandidates": [
+      {
+        "type": "node",
+        "id": 281727,
+        "osmObjectId": "osm-node:281727",
+        "tags": {
+          "junction": "yes",
+          "name": "Brekkekrysset",
+          "source": "Maridalens Venner"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 25730483,
+        "osmObjectId": "osm-node:25730483",
+        "tags": {
+          "hiking": "yes",
+          "information": "guidepost",
+          "name": "Brekkevn/Frysjavn",
+          "operator": "DNT Oslo og Omegn",
+          "ref": "NM991493",
+          "tourism": "information"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 664281381,
+        "osmObjectId": "osm-node:664281381",
+        "tags": {
+          "hiking": "yes",
+          "information": "guidepost",
+          "name": "Brekke/Maridalsvn Ø",
+          "operator": "DNT Oslo og Omegn",
+          "ref": "NM986492",
+          "tourism": "information"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 928089003,
+        "osmObjectId": "osm-node:928089003",
+        "tags": {
+          "hiking": "yes",
+          "information": "guidepost",
+          "name": "Brekke/Maridalsvn V",
+          "operator": "DNT Oslo og Omegn",
+          "ref": "NM986491",
+          "start_date": "2003-08-23",
+          "tourism": "information"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 928089181,
+        "osmObjectId": "osm-node:928089181",
+        "tags": {
+          "board_type": "history",
+          "information": "board",
+          "name": "Brekke sagbruk",
+          "tourism": "information"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 1126998701,
+        "osmObjectId": "osm-node:1126998701",
+        "tags": {
+          "name": "Brekke",
+          "place": "suburb",
+          "wikidata": "Q11962203"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 1374970041,
+        "osmObjectId": "osm-node:1374970041",
+        "tags": {
+          "name": "Brekke",
+          "old_name": "Brekka",
+          "source": "Maridalens Venner",
+          "website": "http://www.maridalensvenner.no/brekke.4496843-26347.html"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 1374970042,
+        "osmObjectId": "osm-node:1374970042",
+        "tags": {
+          "alt_name": "Brekke bruk",
+          "historic": "ruins",
+          "name": "Brekke sagbruk",
+          "place": "locality",
+          "source": "Maridalens Venner",
+          "website": "http://www.maridalensvenner.no/brekke-sagbruk.4913065-28323.html"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 2510798432,
+        "osmObjectId": "osm-node:2510798432",
+        "tags": {
+          "board_type": "history",
+          "information": "board",
+          "name": "Brekke gård",
+          "tourism": "information"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 3458029178,
+        "osmObjectId": "osm-node:3458029178",
+        "tags": {
+          "bus": "yes",
+          "name": "Brekke",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 3458029179,
+        "osmObjectId": "osm-node:3458029179",
+        "tags": {
+          "bus": "yes",
+          "name": "Brekkehagan",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 3458029180,
+        "osmObjectId": "osm-node:3458029180",
+        "tags": {
+          "bus": "yes",
+          "name": "Brekkekrysset",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 3458029181,
+        "osmObjectId": "osm-node:3458029181",
+        "tags": {
+          "bus": "yes",
+          "name": "Brekkekrysset",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 3458029182,
+        "osmObjectId": "osm-node:3458029182",
+        "tags": {
+          "bus": "yes",
+          "name": "Frysja",
+          "network": "Ruter",
+          "public_transport": "stop_position"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 5921084081,
+        "osmObjectId": "osm-node:5921084081",
+        "tags": {
+          "amenity": "doctors",
+          "healthcare": "doctor",
+          "healthcare:service": "fastlege",
+          "healthcare:speciality": "general",
+          "name": "Frysja legekontor",
+          "ref:NO:orgnr": "920150594",
+          "ref:nhn": "920150594"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6313035323,
+        "osmObjectId": "osm-node:6313035323",
+        "tags": {
+          "name": "Brekkefossen",
+          "waterway": "weir",
+          "wikidata": "Q11962213",
+          "wikipedia": "no:Brekkefossen_(Oslo)"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6313035324,
+        "osmObjectId": "osm-node:6313035324",
+        "tags": {
+          "name": "Frysjafossen",
+          "waterway": "weir",
+          "wikidata": "Q17775367",
+          "wikipedia": "no:Frysjafossen"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6373810990,
+        "osmObjectId": "osm-node:6373810990",
+        "tags": {
+          "bus": "yes",
+          "highway": "bus_stop",
+          "name": "Brekkehagan",
+          "public_transport": "platform",
+          "ref:nsrq": "11428",
+          "shelter": "no"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6373810992,
+        "osmObjectId": "osm-node:6373810992",
+        "tags": {
+          "bench": "no",
+          "bin": "no",
+          "bus": "yes",
+          "highway": "bus_stop",
+          "name": "Brekkehagan",
+          "public_transport": "platform",
+          "ref:nsrq": "11427",
+          "shelter": "no"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6373810993,
+        "osmObjectId": "osm-node:6373810993",
+        "tags": {
+          "bench": "yes",
+          "bin": "yes",
+          "highway": "bus_stop",
+          "name": "Brekkekrysset",
+          "ref:nsrq": "11432",
+          "shelter": "yes"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6373810994,
+        "osmObjectId": "osm-node:6373810994",
+        "tags": {
+          "bench": "yes",
+          "bin": "yes",
+          "highway": "bus_stop",
+          "name": "Brekkekrysset",
+          "ref:nsrq": "11431",
+          "shelter": "yes",
+          "tactile_paving": "yes"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6373811036,
+        "osmObjectId": "osm-node:6373811036",
+        "tags": {
+          "bench": "yes",
+          "bin": "yes",
+          "highway": "bus_stop",
+          "name": "Brekke",
+          "ref:nsrq": "11286",
+          "shelter": "yes"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6373811040,
+        "osmObjectId": "osm-node:6373811040",
+        "tags": {
+          "bench": "yes",
+          "bus": "yes",
+          "highway": "bus_stop",
+          "name": "Frysja",
+          "public_transport": "platform",
+          "ref:nsrq": "11278",
+          "shelter": "yes",
+          "tactile_paving": "yes"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 7935639787,
+        "osmObjectId": "osm-node:7935639787",
+        "tags": {
+          "branch": "Frysja",
+          "brand": "Joker",
+          "brand:wikidata": "Q716328",
+          "brand:wikipedia": "en:Joker (store)",
+          "check_date:opening_hours": "2025-08-31",
+          "email": "joker.frysja@joker.no",
+          "name": "Joker Frysja",
+          "opening_hours": "Mo-Fr 07:00-23:00, Sa-Su 09:00-21:00",
+          "phone": "+47 47511072",
+          "ref:norgesgruppen": "4125766",
+          "shop": "supermarket"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 11508954000,
+        "osmObjectId": "osm-node:11508954000",
+        "tags": {
+          "branch": "Frysja",
+          "brand": "Meny",
+          "brand:wikidata": "Q10581720",
+          "email": "butikksjef.frysja@meny.no",
+          "name": "Meny Frysja",
+          "opening_hours": "Mo-Fr 08:00-21:00, Sa 08:00-20:00",
+          "operator": "Meny",
+          "phone": "+47 22495000",
+          "ref:norgesgruppen": "4383999",
+          "shop": "supermarket",
+          "website": "https://meny.no/finn-butikk/meny-frysja"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 11884847916,
+        "osmObjectId": "osm-node:11884847916",
+        "tags": {
+          "amenity": "restaurant",
+          "cuisine": "cake;coffee_shop;french;italian_pizza",
+          "name": "Grains Bakeri (Frysja)",
+          "opening_hours": "Mo-Sa 08:00-22:00; Su 09:00-21:00",
+          "phone": "+47 45 65 31 95",
+          "shop": "bakery",
+          "website": "https://www.grains.no/",
+          "website:menu": "https://order.gastroplanner.no/s/grainsfrysja"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 11884847917,
+        "osmObjectId": "osm-node:11884847917",
+        "tags": {
+          "amenity": "restaurant",
+          "cuisine": "sushi",
+          "name": "Frysja Sushi"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 11884851954,
+        "osmObjectId": "osm-node:11884851954",
+        "tags": {
+          "leisure": "fitness_centre",
+          "name": "EVO Frysja"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 11889579530,
+        "osmObjectId": "osm-node:11889579530",
+        "tags": {
+          "amenity": "pharmacy",
+          "branch": "Frysjaparken",
+          "brand": "Vitusapotek",
+          "brand:wikidata": "Q17047215",
+          "email": "frysjaparken@vitusapotek.no",
+          "healthcare": "pharmacy",
+          "name": "Vitusapotek Frysjaparken",
+          "opening_hours": "Mo-Fr 09:00-18:00, Sa 10:00-16:00",
+          "phone": "+47 21930104",
+          "ref:nmd": "2330"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 13945006715,
+        "osmObjectId": "osm-node:13945006715",
+        "tags": {
+          "defibrillator:location": "Inn rundell, til venstre på søyle. 113 kan gi tilgang.",
+          "emergency": "defibrillator",
+          "emergency:phone": "113",
+          "level": "1",
+          "name": "EVO Frysja",
+          "opening_hours": "Mo-Su 05:00-24:00; PH open",
+          "ref:hjertestarterregister": "1B1170BCB61B116BE06322C8E80AC03C"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "way",
+        "id": 4241039,
+        "osmObjectId": "osm-way:4241039",
+        "tags": {
+          "highway": "tertiary",
+          "maxspeed": "30",
+          "name": "Frysjaveien",
+          "surface": "asphalt",
+          "wikidata": "Q11970439"
+        },
+        "center": {
+          "lat": 59.9612030488889,
+          "lon": 10.767483548888888
+        },
+        "distanceFromLegacyMeters": 288.3,
+        "geometryPointCount": 45,
+        "approxAreaSquareMeters": 20919,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9594592,
+            "lon": 10.7642275
+          },
+          {
+            "lat": 59.959457,
+            "lon": 10.7643185
+          },
+          {
+            "lat": 59.9594661,
+            "lon": 10.7644653
+          },
+          {
+            "lat": 59.959473,
+            "lon": 10.7645516
+          },
+          {
+            "lat": 59.9594935,
+            "lon": 10.7647053
+          },
+          {
+            "lat": 59.9595471,
+            "lon": 10.7649828
+          },
+          {
+            "lat": 59.9595725,
+            "lon": 10.7651097
+          },
+          {
+            "lat": 59.9596052,
+            "lon": 10.765251
+          },
+          {
+            "lat": 59.959641,
+            "lon": 10.765367
+          },
+          {
+            "lat": 59.9596841,
+            "lon": 10.7654721
+          },
+          {
+            "lat": 59.959738,
+            "lon": 10.7655871
+          },
+          {
+            "lat": 59.9598934,
+            "lon": 10.7659077
+          },
+          {
+            "lat": 59.9600555,
+            "lon": 10.7662423
+          },
+          {
+            "lat": 59.960124,
+            "lon": 10.7663836
+          },
+          {
+            "lat": 59.9601705,
+            "lon": 10.7664733
+          },
+          {
+            "lat": 59.9602784,
+            "lon": 10.7666815
+          },
+          {
+            "lat": 59.960304,
+            "lon": 10.7667327
+          },
+          {
+            "lat": 59.9604252,
+            "lon": 10.7669378
+          },
+          {
+            "lat": 59.9604936,
+            "lon": 10.7670383
+          },
+          {
+            "lat": 59.9605798,
+            "lon": 10.7671531
+          },
+          {
+            "lat": 59.9606722,
+            "lon": 10.7672684
+          },
+          {
+            "lat": 59.9608312,
+            "lon": 10.7674632
+          },
+          {
+            "lat": 59.9610103,
+            "lon": 10.7676745
+          },
+          {
+            "lat": 59.9613418,
+            "lon": 10.7680657
+          },
+          {
+            "lat": 59.9613579,
+            "lon": 10.7680847
+          },
+          {
+            "lat": 59.9615601,
+            "lon": 10.7683293
+          },
+          {
+            "lat": 59.9618017,
+            "lon": 10.7686228
+          },
+          {
+            "lat": 59.9619025,
+            "lon": 10.7687438
+          },
+          {
+            "lat": 59.9620057,
+            "lon": 10.768856
+          },
+          {
+            "lat": 59.9621013,
+            "lon": 10.7689445
+          },
+          {
+            "lat": 59.9621821,
+            "lon": 10.7690162
+          },
+          {
+            "lat": 59.9622777,
+            "lon": 10.7690892
+          },
+          {
+            "lat": 59.9623765,
+            "lon": 10.7691576
+          },
+          {
+            "lat": 59.9624791,
+            "lon": 10.7692161
+          },
+          {
+            "lat": 59.9625842,
+            "lon": 10.7692661
+          },
+          {
+            "lat": 59.9626686,
+            "lon": 10.7693006
+          },
+          {
+            "lat": 59.962719,
+            "lon": 10.769323
+          },
+          {
+            "lat": 59.9628105,
+            "lon": 10.7693637
+          },
+          {
+            "lat": 59.9628998,
+            "lon": 10.7694109
+          },
+          {
+            "lat": 59.9630204,
+            "lon": 10.769491
+          },
+          {
+            "lat": 59.9630559,
+            "lon": 10.7695189
+          },
+          {
+            "lat": 59.9631325,
+            "lon": 10.7695924
+          },
+          {
+            "lat": 59.9632088,
+            "lon": 10.7696785
+          },
+          {
+            "lat": 59.9632729,
+            "lon": 10.7697611
+          },
+          {
+            "lat": 59.9634034,
+            "lon": 10.7699333
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 4982900,
+        "osmObjectId": "osm-way:4982900",
+        "tags": {
+          "highway": "residential",
+          "name": "Brekkeveien",
+          "surface": "asphalt",
+          "wikidata": "Q19372073"
+        },
+        "center": {
+          "lat": 59.968594097058826,
+          "lon": 10.770627135294122
+        },
+        "distanceFromLegacyMeters": 873.59,
+        "geometryPointCount": 34,
+        "approxAreaSquareMeters": 16316,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9676975,
+            "lon": 10.7679206
+          },
+          {
+            "lat": 59.9678124,
+            "lon": 10.767897
+          },
+          {
+            "lat": 59.9678301,
+            "lon": 10.7678933
+          },
+          {
+            "lat": 59.9678653,
+            "lon": 10.7679105
+          },
+          {
+            "lat": 59.9678955,
+            "lon": 10.7679426
+          },
+          {
+            "lat": 59.9679222,
+            "lon": 10.7679798
+          },
+          {
+            "lat": 59.9680448,
+            "lon": 10.7682416
+          },
+          {
+            "lat": 59.9680672,
+            "lon": 10.7682918
+          },
+          {
+            "lat": 59.9681296,
+            "lon": 10.7684316
+          },
+          {
+            "lat": 59.9681831,
+            "lon": 10.7685736
+          },
+          {
+            "lat": 59.968235,
+            "lon": 10.7687132
+          },
+          {
+            "lat": 59.9682877,
+            "lon": 10.7688894
+          },
+          {
+            "lat": 59.968297,
+            "lon": 10.7689222
+          },
+          {
+            "lat": 59.9683391,
+            "lon": 10.7690707
+          },
+          {
+            "lat": 59.9684009,
+            "lon": 10.7692885
+          },
+          {
+            "lat": 59.968472,
+            "lon": 10.7695648
+          },
+          {
+            "lat": 59.9686726,
+            "lon": 10.7703351
+          },
+          {
+            "lat": 59.9686996,
+            "lon": 10.7704371
+          },
+          {
+            "lat": 59.9687422,
+            "lon": 10.770598
+          },
+          {
+            "lat": 59.9688187,
+            "lon": 10.7708823
+          },
+          {
+            "lat": 59.9689484,
+            "lon": 10.7713641
+          },
+          {
+            "lat": 59.9690033,
+            "lon": 10.7715675
+          },
+          {
+            "lat": 59.9690527,
+            "lon": 10.771796
+          },
+          {
+            "lat": 59.9690921,
+            "lon": 10.7720293
+          },
+          {
+            "lat": 59.9691173,
+            "lon": 10.7722387
+          },
+          {
+            "lat": 59.9691272,
+            "lon": 10.7723887
+          },
+          {
+            "lat": 59.9691367,
+            "lon": 10.7726122
+          },
+          {
+            "lat": 59.9691602,
+            "lon": 10.7733046
+          },
+          {
+            "lat": 59.969169,
+            "lon": 10.7735625
+          },
+          {
+            "lat": 59.9691778,
+            "lon": 10.7739313
+          },
+          {
+            "lat": 59.9691947,
+            "lon": 10.7744457
+          },
+          {
+            "lat": 59.9691947,
+            "lon": 10.7744556
+          },
+          {
+            "lat": 59.969206,
+            "lon": 10.7747502
+          },
+          {
+            "lat": 59.9692067,
+            "lon": 10.7750925
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 66357555,
+        "osmObjectId": "osm-way:66357555",
+        "tags": {
+          "name": "Brekkedammen",
+          "waterway": "weir",
+          "website": "https://www.oslo.kommune.no/natur-kultur-og-fritid/tur-og-friluftsliv/badeplasser-og-temperaturer/brekkedammen-ved-frysja/#gref"
+        },
+        "center": {
+          "lat": 59.96674240000001,
+          "lon": 10.776765866666667
+        },
+        "distanceFromLegacyMeters": 700.27,
+        "geometryPointCount": 3,
+        "approxAreaSquareMeters": 0,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.966874,
+            "lon": 10.7767587
+          },
+          {
+            "lat": 59.9667324,
+            "lon": 10.7767664
+          },
+          {
+            "lat": 59.9666208,
+            "lon": 10.7767725
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 66566862,
+        "osmObjectId": "osm-way:66566862",
+        "tags": {
+          "bicycle": "yes",
+          "foot": "yes",
+          "highway": "service",
+          "name": "Frysjaveien",
+          "source": "survey+Yahoo",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.96116542553192,
+          "lon": 10.768677578723402
+        },
+        "distanceFromLegacyMeters": 222.08,
+        "geometryPointCount": 47,
+        "approxAreaSquareMeters": 10985,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9623765,
+            "lon": 10.7691576
+          },
+          {
+            "lat": 59.9623607,
+            "lon": 10.7693002
+          },
+          {
+            "lat": 59.9623169,
+            "lon": 10.7696754
+          },
+          {
+            "lat": 59.9622941,
+            "lon": 10.7698529
+          },
+          {
+            "lat": 59.9622608,
+            "lon": 10.7699335
+          },
+          {
+            "lat": 59.9621357,
+            "lon": 10.7699273
+          },
+          {
+            "lat": 59.9620648,
+            "lon": 10.769911
+          },
+          {
+            "lat": 59.9620194,
+            "lon": 10.7699053
+          },
+          {
+            "lat": 59.9619315,
+            "lon": 10.7698985
+          },
+          {
+            "lat": 59.9618563,
+            "lon": 10.7698946
+          },
+          {
+            "lat": 59.9617696,
+            "lon": 10.7698902
+          },
+          {
+            "lat": 59.9617312,
+            "lon": 10.7698828
+          },
+          {
+            "lat": 59.961708,
+            "lon": 10.7698721
+          },
+          {
+            "lat": 59.9616607,
+            "lon": 10.769839
+          },
+          {
+            "lat": 59.9615846,
+            "lon": 10.7697343
+          },
+          {
+            "lat": 59.9615353,
+            "lon": 10.7696638
+          },
+          {
+            "lat": 59.9613909,
+            "lon": 10.7694571
+          },
+          {
+            "lat": 59.9613082,
+            "lon": 10.7693334
+          },
+          {
+            "lat": 59.9610984,
+            "lon": 10.7690198
+          },
+          {
+            "lat": 59.9610541,
+            "lon": 10.7689548
+          },
+          {
+            "lat": 59.9608164,
+            "lon": 10.7686165
+          },
+          {
+            "lat": 59.9607556,
+            "lon": 10.7685278
+          },
+          {
+            "lat": 59.9607198,
+            "lon": 10.7684872
+          },
+          {
+            "lat": 59.9606958,
+            "lon": 10.7684324
+          },
+          {
+            "lat": 59.960666,
+            "lon": 10.7683027
+          },
+          {
+            "lat": 59.9606618,
+            "lon": 10.7682637
+          },
+          {
+            "lat": 59.960659,
+            "lon": 10.7682382
+          },
+          {
+            "lat": 59.9606797,
+            "lon": 10.7681503
+          },
+          {
+            "lat": 59.9607306,
+            "lon": 10.7680705
+          },
+          {
+            "lat": 59.960767,
+            "lon": 10.7680614
+          },
+          {
+            "lat": 59.960795,
+            "lon": 10.7680458
+          },
+          {
+            "lat": 59.960814,
+            "lon": 10.7680129
+          },
+          {
+            "lat": 59.960824,
+            "lon": 10.7679713
+          },
+          {
+            "lat": 59.960824,
+            "lon": 10.7679181
+          },
+          {
+            "lat": 59.9608144,
+            "lon": 10.7678693
+          },
+          {
+            "lat": 59.9607908,
+            "lon": 10.7678322
+          },
+          {
+            "lat": 59.9607616,
+            "lon": 10.7678193
+          },
+          {
+            "lat": 59.960741,
+            "lon": 10.7678295
+          },
+          {
+            "lat": 59.960718,
+            "lon": 10.7678595
+          },
+          {
+            "lat": 59.9606994,
+            "lon": 10.7679128
+          },
+          {
+            "lat": 59.9606694,
+            "lon": 10.7679483
+          },
+          {
+            "lat": 59.960521,
+            "lon": 10.7675269
+          },
+          {
+            "lat": 59.9604867,
+            "lon": 10.7674542
+          },
+          {
+            "lat": 59.9604665,
+            "lon": 10.7674275
+          },
+          {
+            "lat": 59.960442,
+            "lon": 10.7674167
+          },
+          {
+            "lat": 59.9604168,
+            "lon": 10.7673973
+          },
+          {
+            "lat": 59.960381,
+            "lon": 10.7673503
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 118991932,
+        "osmObjectId": "osm-way:118991932",
+        "tags": {
+          "building": "office",
+          "name": "Frysja 33",
+          "ref:bygningsnr": "81478775"
+        },
+        "center": {
+          "lat": 59.966400588888895,
+          "lon": 10.776588133333332
+        },
+        "distanceFromLegacyMeters": 661.13,
+        "geometryPointCount": 9,
+        "approxAreaSquareMeters": 207,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9663923,
+            "lon": 10.7768912
+          },
+          {
+            "lat": 59.9664707,
+            "lon": 10.7765067
+          },
+          {
+            "lat": 59.9664218,
+            "lon": 10.7764669
+          },
+          {
+            "lat": 59.9664318,
+            "lon": 10.7764181
+          },
+          {
+            "lat": 59.9663928,
+            "lon": 10.7763864
+          },
+          {
+            "lat": 59.9663815,
+            "lon": 10.7764418
+          },
+          {
+            "lat": 59.9663996,
+            "lon": 10.7764565
+          },
+          {
+            "lat": 59.9663225,
+            "lon": 10.7768344
+          },
+          {
+            "lat": 59.9663923,
+            "lon": 10.7768912
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 119387354,
+        "osmObjectId": "osm-way:119387354",
+        "tags": {
+          "highway": "residential",
+          "name": "Frysjaveien",
+          "surface": "asphalt",
+          "wikidata": "Q11970439"
+        },
+        "center": {
+          "lat": 59.968414499999994,
+          "lon": 10.775037642307694
+        },
+        "distanceFromLegacyMeters": 857.49,
+        "geometryPointCount": 26,
+        "approxAreaSquareMeters": 7799,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9692067,
+            "lon": 10.7750925
+          },
+          {
+            "lat": 59.9691978,
+            "lon": 10.7752502
+          },
+          {
+            "lat": 59.9691858,
+            "lon": 10.7753457
+          },
+          {
+            "lat": 59.9691671,
+            "lon": 10.7754197
+          },
+          {
+            "lat": 59.96914,
+            "lon": 10.7755109
+          },
+          {
+            "lat": 59.9691086,
+            "lon": 10.7755873
+          },
+          {
+            "lat": 59.969068,
+            "lon": 10.7756597
+          },
+          {
+            "lat": 59.9690184,
+            "lon": 10.7757258
+          },
+          {
+            "lat": 59.9689644,
+            "lon": 10.7757712
+          },
+          {
+            "lat": 59.9689121,
+            "lon": 10.7757908
+          },
+          {
+            "lat": 59.9688669,
+            "lon": 10.7757982
+          },
+          {
+            "lat": 59.9688231,
+            "lon": 10.7757953
+          },
+          {
+            "lat": 59.9687818,
+            "lon": 10.7757829
+          },
+          {
+            "lat": 59.9687412,
+            "lon": 10.7757568
+          },
+          {
+            "lat": 59.9686869,
+            "lon": 10.7757017
+          },
+          {
+            "lat": 59.9686351,
+            "lon": 10.7756403
+          },
+          {
+            "lat": 59.968582,
+            "lon": 10.7755713
+          },
+          {
+            "lat": 59.9682501,
+            "lon": 10.7751401
+          },
+          {
+            "lat": 59.9679629,
+            "lon": 10.7747508
+          },
+          {
+            "lat": 59.9676728,
+            "lon": 10.7743493
+          },
+          {
+            "lat": 59.9674082,
+            "lon": 10.7739606
+          },
+          {
+            "lat": 59.9672522,
+            "lon": 10.7737365
+          },
+          {
+            "lat": 59.9671282,
+            "lon": 10.7735623
+          },
+          {
+            "lat": 59.9670679,
+            "lon": 10.7734825
+          },
+          {
+            "lat": 59.9670116,
+            "lon": 10.7734191
+          },
+          {
+            "lat": 59.9669372,
+            "lon": 10.7733772
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 119401920,
+        "osmObjectId": "osm-way:119401920",
+        "tags": {
+          "building": "apartments",
+          "building:levels": "2",
+          "name": "Brekke gård",
+          "ref:bygningsnr": "81552746"
+        },
+        "center": {
+          "lat": 59.96743221538462,
+          "lon": 10.768274446153846
+        },
+        "distanceFromLegacyMeters": 775.77,
+        "geometryPointCount": 13,
+        "approxAreaSquareMeters": 272,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9674399,
+            "lon": 10.7684008
+          },
+          {
+            "lat": 59.967445,
+            "lon": 10.7684158
+          },
+          {
+            "lat": 59.967463,
+            "lon": 10.7683912
+          },
+          {
+            "lat": 59.9674583,
+            "lon": 10.7683776
+          },
+          {
+            "lat": 59.9674952,
+            "lon": 10.768327
+          },
+          {
+            "lat": 59.9674585,
+            "lon": 10.7682202
+          },
+          {
+            "lat": 59.967471,
+            "lon": 10.7682031
+          },
+          {
+            "lat": 59.967437,
+            "lon": 10.7681041
+          },
+          {
+            "lat": 59.9674242,
+            "lon": 10.7681216
+          },
+          {
+            "lat": 59.9673875,
+            "lon": 10.7680146
+          },
+          {
+            "lat": 59.9672962,
+            "lon": 10.7681398
+          },
+          {
+            "lat": 59.9674031,
+            "lon": 10.7684512
+          },
+          {
+            "lat": 59.9674399,
+            "lon": 10.7684008
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 119516501,
+        "osmObjectId": "osm-way:119516501",
+        "tags": {
+          "highway": "residential",
+          "name": "Brekkelia",
+          "source": "bing",
+          "surface": "asphalt",
+          "wikidata": "Q19372072"
+        },
+        "center": {
+          "lat": 59.961733289473685,
+          "lon": 10.767137384210525
+        },
+        "distanceFromLegacyMeters": 321.29,
+        "geometryPointCount": 19,
+        "approxAreaSquareMeters": 1753,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9612361,
+            "lon": 10.7669004
+          },
+          {
+            "lat": 59.9612598,
+            "lon": 10.7669502
+          },
+          {
+            "lat": 59.9619331,
+            "lon": 10.767453
+          },
+          {
+            "lat": 59.9620026,
+            "lon": 10.767506
+          },
+          {
+            "lat": 59.9620513,
+            "lon": 10.7675015
+          },
+          {
+            "lat": 59.9620716,
+            "lon": 10.7674878
+          },
+          {
+            "lat": 59.9620879,
+            "lon": 10.7674599
+          },
+          {
+            "lat": 59.9620971,
+            "lon": 10.767426
+          },
+          {
+            "lat": 59.9621032,
+            "lon": 10.7673892
+          },
+          {
+            "lat": 59.9621025,
+            "lon": 10.7673107
+          },
+          {
+            "lat": 59.9620872,
+            "lon": 10.7672537
+          },
+          {
+            "lat": 59.9620445,
+            "lon": 10.767189
+          },
+          {
+            "lat": 59.9619608,
+            "lon": 10.7671397
+          },
+          {
+            "lat": 59.9619502,
+            "lon": 10.7671325
+          },
+          {
+            "lat": 59.9612782,
+            "lon": 10.7666723
+          },
+          {
+            "lat": 59.9611827,
+            "lon": 10.7666291
+          },
+          {
+            "lat": 59.961099,
+            "lon": 10.7665912
+          },
+          {
+            "lat": 59.9611486,
+            "lon": 10.7667177
+          },
+          {
+            "lat": 59.9612361,
+            "lon": 10.7669004
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 159921215,
+        "osmObjectId": "osm-way:159921215",
+        "tags": {
+          "building": "kiosk",
+          "name": "Brekkehagen kiosk",
+          "ref:bygningsnr": "80160038",
+          "shop": "kiosk"
+        },
+        "center": {
+          "lat": 59.9624659,
+          "lon": 10.765135244444444
+        },
+        "distanceFromLegacyMeters": 454.92,
+        "geometryPointCount": 9,
+        "approxAreaSquareMeters": 188,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9625071,
+            "lon": 10.7651671
+          },
+          {
+            "lat": 59.9625359,
+            "lon": 10.7649859
+          },
+          {
+            "lat": 59.9624239,
+            "lon": 10.764915
+          },
+          {
+            "lat": 59.9623811,
+            "lon": 10.7651849
+          },
+          {
+            "lat": 59.9624349,
+            "lon": 10.7652191
+          },
+          {
+            "lat": 59.9624381,
+            "lon": 10.7651992
+          },
+          {
+            "lat": 59.962477,
+            "lon": 10.7652239
+          },
+          {
+            "lat": 59.962488,
+            "lon": 10.765155
+          },
+          {
+            "lat": 59.9625071,
+            "lon": 10.7651671
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 338680307,
+        "osmObjectId": "osm-way:338680307",
+        "tags": {
+          "area": "yes",
+          "bench": "no",
+          "bin": "yes",
+          "bus": "yes",
+          "name": "Brekkekrysset",
+          "network": "Ruter",
+          "public_transport": "platform",
+          "shelter": "yes"
+        },
+        "center": {
+          "lat": 59.967186845454556,
+          "lon": 10.766630272727271
+        },
+        "distanceFromLegacyMeters": 784.07,
+        "geometryPointCount": 11,
+        "approxAreaSquareMeters": 60,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9672553,
+            "lon": 10.7665916
+          },
+          {
+            "lat": 59.9672554,
+            "lon": 10.7666165
+          },
+          {
+            "lat": 59.9672555,
+            "lon": 10.7666399
+          },
+          {
+            "lat": 59.9672135,
+            "lon": 10.7666406
+          },
+          {
+            "lat": 59.9672136,
+            "lon": 10.7666789
+          },
+          {
+            "lat": 59.9671621,
+            "lon": 10.7666798
+          },
+          {
+            "lat": 59.967162,
+            "lon": 10.7666406
+          },
+          {
+            "lat": 59.9670943,
+            "lon": 10.7666417
+          },
+          {
+            "lat": 59.9670942,
+            "lon": 10.7666175
+          },
+          {
+            "lat": 59.9670941,
+            "lon": 10.7665943
+          },
+          {
+            "lat": 59.9672553,
+            "lon": 10.7665916
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 911755627,
+        "osmObjectId": "osm-way:911755627",
+        "tags": {
+          "highway": "residential",
+          "name": "Brekkelia",
+          "surface": "asphalt",
+          "wikidata": "Q19372072"
+        },
+        "center": {
+          "lat": 59.960714657142866,
+          "lon": 10.765819207142858
+        },
+        "distanceFromLegacyMeters": 377.56,
+        "geometryPointCount": 14,
+        "approxAreaSquareMeters": 2130,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9606245,
+            "lon": 10.7647692
+          },
+          {
+            "lat": 59.9606163,
+            "lon": 10.7648555
+          },
+          {
+            "lat": 59.960553,
+            "lon": 10.7653893
+          },
+          {
+            "lat": 59.9605494,
+            "lon": 10.7654812
+          },
+          {
+            "lat": 59.9605513,
+            "lon": 10.7655598
+          },
+          {
+            "lat": 59.9605578,
+            "lon": 10.7656305
+          },
+          {
+            "lat": 59.9605825,
+            "lon": 10.765712
+          },
+          {
+            "lat": 59.9606395,
+            "lon": 10.7659177
+          },
+          {
+            "lat": 59.960711,
+            "lon": 10.766112
+          },
+          {
+            "lat": 59.9607893,
+            "lon": 10.7662604
+          },
+          {
+            "lat": 59.9608435,
+            "lon": 10.7663306
+          },
+          {
+            "lat": 59.9609321,
+            "lon": 10.766418
+          },
+          {
+            "lat": 59.960956,
+            "lon": 10.7664415
+          },
+          {
+            "lat": 59.961099,
+            "lon": 10.7665912
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1057813730,
+        "osmObjectId": "osm-way:1057813730",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.965980975,
+          "lon": 10.771095549999998
+        },
+        "distanceFromLegacyMeters": 582.15,
+        "geometryPointCount": 4,
+        "approxAreaSquareMeters": 10,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9660903,
+            "lon": 10.7712045
+          },
+          {
+            "lat": 59.9659943,
+            "lon": 10.7711146
+          },
+          {
+            "lat": 59.9659387,
+            "lon": 10.7710592
+          },
+          {
+            "lat": 59.9659006,
+            "lon": 10.7710039
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1090912655,
+        "osmObjectId": "osm-way:1090912655",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.9670942,
+          "lon": 10.772155825
+        },
+        "distanceFromLegacyMeters": 700.32,
+        "geometryPointCount": 4,
+        "approxAreaSquareMeters": 0,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9672078,
+            "lon": 10.7722632
+          },
+          {
+            "lat": 59.9671443,
+            "lon": 10.7722053
+          },
+          {
+            "lat": 59.9671256,
+            "lon": 10.772184
+          },
+          {
+            "lat": 59.9668991,
+            "lon": 10.7719708
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1090912656,
+        "osmObjectId": "osm-way:1090912656",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "concrete"
+        },
+        "center": {
+          "lat": 59.96679964,
+          "lon": 10.77189186
+        },
+        "distanceFromLegacyMeters": 668.29,
+        "geometryPointCount": 5,
+        "approxAreaSquareMeters": 0,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9668991,
+            "lon": 10.7719708
+          },
+          {
+            "lat": 59.9668908,
+            "lon": 10.7719644
+          },
+          {
+            "lat": 59.9667475,
+            "lon": 10.7718503
+          },
+          {
+            "lat": 59.9667408,
+            "lon": 10.7718449
+          },
+          {
+            "lat": 59.96672,
+            "lon": 10.7718289
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1200002822,
+        "osmObjectId": "osm-way:1200002822",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.96662165,
+          "lon": 10.771737949999999
+        },
+        "distanceFromLegacyMeters": 649.11,
+        "geometryPointCount": 2,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.96672,
+            "lon": 10.7718289
+          },
+          {
+            "lat": 59.9665233,
+            "lon": 10.771647
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1200002823,
+        "osmObjectId": "osm-way:1200002823",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "concrete"
+        },
+        "center": {
+          "lat": 59.9664779,
+          "lon": 10.771592533333333
+        },
+        "distanceFromLegacyMeters": 633.84,
+        "geometryPointCount": 3,
+        "approxAreaSquareMeters": 2,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.96651,
+            "lon": 10.7716342
+          },
+          {
+            "lat": 59.9664898,
+            "lon": 10.7716135
+          },
+          {
+            "lat": 59.9664339,
+            "lon": 10.7715299
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1200002824,
+        "osmObjectId": "osm-way:1200002824",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.96635083333334,
+          "lon": 10.771448766666667
+        },
+        "distanceFromLegacyMeters": 620.54,
+        "geometryPointCount": 3,
+        "approxAreaSquareMeters": 1,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9664339,
+            "lon": 10.7715299
+          },
+          {
+            "lat": 59.9663821,
+            "lon": 10.7714776
+          },
+          {
+            "lat": 59.9662365,
+            "lon": 10.7713388
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1200002825,
+        "osmObjectId": "osm-way:1200002825",
+        "tags": {
+          "highway": "living_street",
+          "name": "Frysjaveien",
+          "surface": "concrete"
+        },
+        "center": {
+          "lat": 59.966137124999996,
+          "lon": 10.771247500000001
+        },
+        "distanceFromLegacyMeters": 598.22,
+        "geometryPointCount": 4,
+        "approxAreaSquareMeters": 0,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9662365,
+            "lon": 10.7713388
+          },
+          {
+            "lat": 59.9661218,
+            "lon": 10.7712334
+          },
+          {
+            "lat": 59.9660999,
+            "lon": 10.7712133
+          },
+          {
+            "lat": 59.9660903,
+            "lon": 10.7712045
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1262980246,
+        "osmObjectId": "osm-way:1262980246",
+        "tags": {
+          "bicycle:lanes:backward": "yes",
+          "bicycle:lanes:forward": "yes|designated",
+          "cycleway:lanes:forward": "no|lane",
+          "cycleway:left": "no",
+          "cycleway:right": "advisory",
+          "cycleway:right:marking": "dashed_line",
+          "cycleway:surface": "asphalt",
+          "cycleway:surface:colour": "red",
+          "highway": "tertiary",
+          "lane_markings": "no",
+          "lanes": "2",
+          "lanes:backward": "1",
+          "lanes:forward": "1",
+          "maxspeed": "30",
+          "name": "Frysjaveien",
+          "oneway": "no",
+          "surface": "asphalt",
+          "wikidata": "Q11970439"
+        },
+        "center": {
+          "lat": 59.96490550434783,
+          "lon": 10.771455339130434
+        },
+        "distanceFromLegacyMeters": 460.94,
+        "geometryPointCount": 23,
+        "approxAreaSquareMeters": 1192,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9634034,
+            "lon": 10.7699333
+          },
+          {
+            "lat": 59.9634901,
+            "lon": 10.7700449
+          },
+          {
+            "lat": 59.9636108,
+            "lon": 10.7702082
+          },
+          {
+            "lat": 59.9636801,
+            "lon": 10.770302
+          },
+          {
+            "lat": 59.9637106,
+            "lon": 10.7703433
+          },
+          {
+            "lat": 59.9637467,
+            "lon": 10.7703815
+          },
+          {
+            "lat": 59.9637991,
+            "lon": 10.7704369
+          },
+          {
+            "lat": 59.9639402,
+            "lon": 10.7705701
+          },
+          {
+            "lat": 59.9639815,
+            "lon": 10.7706095
+          },
+          {
+            "lat": 59.9641387,
+            "lon": 10.7707594
+          },
+          {
+            "lat": 59.9642171,
+            "lon": 10.7708341
+          },
+          {
+            "lat": 59.9648397,
+            "lon": 10.7714127
+          },
+          {
+            "lat": 59.9649305,
+            "lon": 10.7714971
+          },
+          {
+            "lat": 59.9650248,
+            "lon": 10.7715847
+          },
+          {
+            "lat": 59.9655607,
+            "lon": 10.772075
+          },
+          {
+            "lat": 59.9656468,
+            "lon": 10.7721613
+          },
+          {
+            "lat": 59.9659846,
+            "lon": 10.77247
+          },
+          {
+            "lat": 59.9661077,
+            "lon": 10.7725825
+          },
+          {
+            "lat": 59.9662463,
+            "lon": 10.7727129
+          },
+          {
+            "lat": 59.9663126,
+            "lon": 10.7727754
+          },
+          {
+            "lat": 59.9666555,
+            "lon": 10.7730982
+          },
+          {
+            "lat": 59.9668619,
+            "lon": 10.7733026
+          },
+          {
+            "lat": 59.9669372,
+            "lon": 10.7733772
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1280358937,
+        "osmObjectId": "osm-way:1280358937",
+        "tags": {
+          "bridge": "yes",
+          "highway": "living_street",
+          "layer": "1",
+          "name": "Frysjaveien",
+          "surface": "concrete"
+        },
+        "center": {
+          "lat": 59.96651665,
+          "lon": 10.7716406
+        },
+        "distanceFromLegacyMeters": 637.9,
+        "geometryPointCount": 2,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": [
+          {
+            "lat": 59.9665233,
+            "lon": 10.771647
+          },
+          {
+            "lat": 59.96651,
+            "lon": 10.7716342
+          }
+        ]
+      },
+      {
+        "type": "relation",
+        "id": 4792591,
+        "osmObjectId": "osm-relation:4792591",
+        "tags": {
+          "Ruter:code": "BR",
+          "Ruter:id": "3012194",
+          "Ruter:name": "Brekke",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Brekke",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "relation",
+        "id": 4792592,
+        "osmObjectId": "osm-relation:4792592",
+        "tags": {
+          "Ruter:code": "BRH",
+          "Ruter:id": "3012293",
+          "Ruter:name": "Brekkehagan",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Brekkehagan",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "relation",
+        "id": 4792593,
+        "osmObjectId": "osm-relation:4792593",
+        "tags": {
+          "Ruter:code": "BRKR",
+          "Ruter:id": "3012295",
+          "Ruter:name": "Brekkekrysset (i Maridalsveien)",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Brekkekrysset",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "relation",
+        "id": 4792594,
+        "osmObjectId": "osm-relation:4792594",
+        "tags": {
+          "Ruter:code": "FRY",
+          "Ruter:id": "3012191",
+          "Ruter:name": "Frysja",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Frysja",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "relation",
+        "id": 14334474,
+        "osmObjectId": "osm-relation:14334474",
+        "tags": {
+          "alt_name": "Brekkedammen",
+          "name": "Frysja",
+          "natural": "water",
+          "type": "multipolygon",
+          "water": "reservoir"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      },
+      {
+        "type": "relation",
+        "id": 14611183,
+        "osmObjectId": "osm-relation:14611183",
+        "tags": {
+          "landuse": "industrial",
+          "source": "bing",
+          "type": "multipolygon"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "approxAreaSquareMeters": null,
+        "containsLegacyPoint": false,
+        "geometry": []
+      }
+    ]
+  },
+  "nominatim": [
+    {
+      "osm_type": "relation",
+      "osm_id": 14334474,
+      "type": "reservoir",
+      "category": "water",
+      "display_name": "Frysja, Kjelsås, Nordre Aker, Oslo, Norge",
+      "lat": 59.967732,
+      "lon": 10.7816029,
+      "distanceFromLegacyMeters": 919.36,
+      "geojsonType": "Polygon",
+      "geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.7768342,
+              59.9668608
+            ],
+            [
+              10.7768379,
+              59.9666882
+            ],
+            [
+              10.7769012,
+              59.9666883
+            ],
+            [
+              10.7769079,
+              59.9666376
+            ],
+            [
+              10.776973,
+              59.966638
+            ],
+            [
+              10.7769757,
+              59.9665625
+            ],
+            [
+              10.7769328,
+              59.9665611
+            ],
+            [
+              10.7769435,
+              59.9664588
+            ],
+            [
+              10.776979,
+              59.9663937
+            ],
+            [
+              10.7771157,
+              59.9663915
+            ],
+            [
+              10.7772821,
+              59.9663762
+            ],
+            [
+              10.7774856,
+              59.9661949
+            ],
+            [
+              10.7777363,
+              59.9661666
+            ],
+            [
+              10.7777676,
+              59.9660809
+            ],
+            [
+              10.7779714,
+              59.9660325
+            ],
+            [
+              10.7780278,
+              59.9659842
+            ],
+            [
+              10.7782102,
+              59.965999
+            ],
+            [
+              10.7782821,
+              59.9660411
+            ],
+            [
+              10.7783708,
+              59.9661634
+            ],
+            [
+              10.7782945,
+              59.9662319
+            ],
+            [
+              10.778186,
+              59.9663238
+            ],
+            [
+              10.7781351,
+              59.9664245
+            ],
+            [
+              10.7780003,
+              59.9664571
+            ],
+            [
+              10.7779634,
+              59.9664839
+            ],
+            [
+              10.7779305,
+              59.9665145
+            ],
+            [
+              10.7779513,
+              59.9665564
+            ],
+            [
+              10.7779547,
+              59.9665789
+            ],
+            [
+              10.7779956,
+              59.9666084
+            ],
+            [
+              10.778061,
+              59.966654
+            ],
+            [
+              10.7780774,
+              59.966695
+            ],
+            [
+              10.7780982,
+              59.9667403
+            ],
+            [
+              10.7781451,
+              59.966791
+            ],
+            [
+              10.7782638,
+              59.9668511
+            ],
+            [
+              10.7783081,
+              59.9668618
+            ],
+            [
+              10.7783671,
+              59.9668652
+            ],
+            [
+              10.7784234,
+              59.9668769
+            ],
+            [
+              10.7784945,
+              59.9668833
+            ],
+            [
+              10.778581,
+              59.966881
+            ],
+            [
+              10.7786581,
+              59.9668662
+            ],
+            [
+              10.7787325,
+              59.966841
+            ],
+            [
+              10.778817,
+              59.9668091
+            ],
+            [
+              10.778925,
+              59.9667685
+            ],
+            [
+              10.77898,
+              59.9667575
+            ],
+            [
+              10.7790276,
+              59.9667591
+            ],
+            [
+              10.7790484,
+              59.9667514
+            ],
+            [
+              10.7790698,
+              59.9667168
+            ],
+            [
+              10.7790665,
+              59.9666729
+            ],
+            [
+              10.7790805,
+              59.9666326
+            ],
+            [
+              10.7791194,
+              59.9665816
+            ],
+            [
+              10.7791697,
+              59.966539
+            ],
+            [
+              10.7792401,
+              59.9665084
+            ],
+            [
+              10.7793032,
+              59.9664947
+            ],
+            [
+              10.7793749,
+              59.9664782
+            ],
+            [
+              10.779558,
+              59.9664232
+            ],
+            [
+              10.7797042,
+              59.9663712
+            ],
+            [
+              10.7798067,
+              59.9663477
+            ],
+            [
+              10.7798718,
+              59.966341
+            ],
+            [
+              10.7799388,
+              59.9663413
+            ],
+            [
+              10.7800039,
+              59.9663457
+            ],
+            [
+              10.7800885,
+              59.9663577
+            ],
+            [
+              10.7801802,
+              59.9663833
+            ],
+            [
+              10.7802686,
+              59.9664211
+            ],
+            [
+              10.780302,
+              59.9664486
+            ],
+            [
+              10.7803263,
+              59.9664956
+            ],
+            [
+              10.7803379,
+              59.9665806
+            ],
+            [
+              10.7803438,
+              59.9666702
+            ],
+            [
+              10.7803248,
+              59.9668435
+            ],
+            [
+              10.7803525,
+              59.9669011
+            ],
+            [
+              10.7805672,
+              59.9670642
+            ],
+            [
+              10.7806531,
+              59.9672091
+            ],
+            [
+              10.7807565,
+              59.9672489
+            ],
+            [
+              10.7809293,
+              59.967373
+            ],
+            [
+              10.7810654,
+              59.9674267
+            ],
+            [
+              10.7811894,
+              59.9674545
+            ],
+            [
+              10.7813048,
+              59.9674585
+            ],
+            [
+              10.7814362,
+              59.9674505
+            ],
+            [
+              10.7815428,
+              59.967432
+            ],
+            [
+              10.7816441,
+              59.9673985
+            ],
+            [
+              10.781744,
+              59.9673595
+            ],
+            [
+              10.7818291,
+              59.9673397
+            ],
+            [
+              10.7819156,
+              59.967328
+            ],
+            [
+              10.7820189,
+              59.967323
+            ],
+            [
+              10.7822221,
+              59.9673226
+            ],
+            [
+              10.7823475,
+              59.96733
+            ],
+            [
+              10.7825386,
+              59.9673579
+            ],
+            [
+              10.7826599,
+              59.9673857
+            ],
+            [
+              10.7827753,
+              59.9674005
+            ],
+            [
+              10.7827976,
+              59.9674055
+            ],
+            [
+              10.7828609,
+              59.9674242
+            ],
+            [
+              10.7829173,
+              59.9674445
+            ],
+            [
+              10.7829581,
+              59.9674564
+            ],
+            [
+              10.7830769,
+              59.9674995
+            ],
+            [
+              10.7831819,
+              59.9675344
+            ],
+            [
+              10.7832282,
+              59.967554
+            ],
+            [
+              10.7833035,
+              59.9675791
+            ],
+            [
+              10.783349,
+              59.9675996
+            ],
+            [
+              10.7835071,
+              59.9676517
+            ],
+            [
+              10.7835653,
+              59.9676735
+            ],
+            [
+              10.7840809,
+              59.9678238
+            ],
+            [
+              10.7845308,
+              59.9679935
+            ],
+            [
+              10.7846039,
+              59.9680328
+            ],
+            [
+              10.7846354,
+              59.9680808
+            ],
+            [
+              10.7846689,
+              59.9681153
+            ],
+            [
+              10.7847112,
+              59.9681371
+            ],
+            [
+              10.7847628,
+              59.9681432
+            ],
+            [
+              10.7848218,
+              59.9681395
+            ],
+            [
+              10.7849271,
+              59.9681244
+            ],
+            [
+              10.7849908,
+              59.9680995
+            ],
+            [
+              10.7850183,
+              59.968061
+            ],
+            [
+              10.785029,
+              59.9679972
+            ],
+            [
+              10.7850531,
+              59.9679485
+            ],
+            [
+              10.7851135,
+              59.9679046
+            ],
+            [
+              10.7852134,
+              59.9678489
+            ],
+            [
+              10.7854407,
+              59.9677428
+            ],
+            [
+              10.7856432,
+              59.9676804
+            ],
+            [
+              10.7858666,
+              59.9676147
+            ],
+            [
+              10.7858884,
+              59.9676161
+            ],
+            [
+              10.7860235,
+              59.9676243
+            ],
+            [
+              10.7860724,
+              59.9676274
+            ],
+            [
+              10.786119,
+              59.9676352
+            ],
+            [
+              10.7861649,
+              59.9676442
+            ],
+            [
+              10.7861988,
+              59.9676536
+            ],
+            [
+              10.7862352,
+              59.9676585
+            ],
+            [
+              10.7863083,
+              59.9676699
+            ],
+            [
+              10.7863771,
+              59.9676747
+            ],
+            [
+              10.7864136,
+              59.9676763
+            ],
+            [
+              10.7864422,
+              59.9676818
+            ],
+            [
+              10.7864702,
+              59.9676898
+            ],
+            [
+              10.7864837,
+              59.9676995
+            ],
+            [
+              10.786501,
+              59.9677161
+            ],
+            [
+              10.786515,
+              59.9677249
+            ],
+            [
+              10.78655,
+              59.9677391
+            ],
+            [
+              10.786578,
+              59.9677522
+            ],
+            [
+              10.7865928,
+              59.9677652
+            ],
+            [
+              10.7866176,
+              59.9677834
+            ],
+            [
+              10.7866362,
+              59.9678087
+            ],
+            [
+              10.7866656,
+              59.9678197
+            ],
+            [
+              10.7866803,
+              59.967822
+            ],
+            [
+              10.7866894,
+              59.9678276
+            ],
+            [
+              10.786703,
+              59.9678334
+            ],
+            [
+              10.7867271,
+              59.9678389
+            ],
+            [
+              10.7867583,
+              59.9678402
+            ],
+            [
+              10.786801,
+              59.967843
+            ],
+            [
+              10.7868195,
+              59.9678457
+            ],
+            [
+              10.7868275,
+              59.9678486
+            ],
+            [
+              10.7868273,
+              59.9678516
+            ],
+            [
+              10.7868245,
+              59.9678546
+            ],
+            [
+              10.7868097,
+              59.9678601
+            ],
+            [
+              10.7867865,
+              59.9678705
+            ],
+            [
+              10.7867315,
+              59.967887
+            ],
+            [
+              10.7866746,
+              59.9679018
+            ],
+            [
+              10.7866634,
+              59.9679041
+            ],
+            [
+              10.7866333,
+              59.9679192
+            ],
+            [
+              10.7866239,
+              59.9679276
+            ],
+            [
+              10.7866185,
+              59.9679402
+            ],
+            [
+              10.7866233,
+              59.9679526
+            ],
+            [
+              10.7866327,
+              59.9679643
+            ],
+            [
+              10.786672,
+              59.9679885
+            ],
+            [
+              10.7866873,
+              59.9680002
+            ],
+            [
+              10.7866948,
+              59.9680104
+            ],
+            [
+              10.7866982,
+              59.9680251
+            ],
+            [
+              10.7867023,
+              59.9680625
+            ],
+            [
+              10.7867034,
+              59.968082
+            ],
+            [
+              10.7867168,
+              59.9681041
+            ],
+            [
+              10.7867234,
+              59.9681305
+            ],
+            [
+              10.786732,
+              59.9681564
+            ],
+            [
+              10.7867446,
+              59.9681773
+            ],
+            [
+              10.7867646,
+              59.9682069
+            ],
+            [
+              10.786774,
+              59.9682324
+            ],
+            [
+              10.7867906,
+              59.9682582
+            ],
+            [
+              10.7867932,
+              59.9682721
+            ],
+            [
+              10.7867987,
+              59.9682843
+            ],
+            [
+              10.7868115,
+              59.968305
+            ],
+            [
+              10.7868259,
+              59.968339
+            ],
+            [
+              10.7868307,
+              59.9683539
+            ],
+            [
+              10.7868418,
+              59.9683852
+            ],
+            [
+              10.7868512,
+              59.9684109
+            ],
+            [
+              10.7868704,
+              59.9684449
+            ],
+            [
+              10.7868864,
+              59.968465
+            ],
+            [
+              10.7869192,
+              59.9685022
+            ],
+            [
+              10.7869376,
+              59.9685268
+            ],
+            [
+              10.7869571,
+              59.9685432
+            ],
+            [
+              10.7870183,
+              59.9685837
+            ],
+            [
+              10.7870546,
+              59.9686162
+            ],
+            [
+              10.7870997,
+              59.9686416
+            ],
+            [
+              10.7871561,
+              59.9686701
+            ],
+            [
+              10.7872225,
+              59.9687216
+            ],
+            [
+              10.7872696,
+              59.9687449
+            ],
+            [
+              10.7872884,
+              59.9687565
+            ],
+            [
+              10.7873538,
+              59.9687939
+            ],
+            [
+              10.7874574,
+              59.9688436
+            ],
+            [
+              10.7876449,
+              59.9689335
+            ],
+            [
+              10.7877044,
+              59.9689579
+            ],
+            [
+              10.7877613,
+              59.9689813
+            ],
+            [
+              10.7878359,
+              59.9690107
+            ],
+            [
+              10.7878987,
+              59.9690365
+            ],
+            [
+              10.7879903,
+              59.9690752
+            ],
+            [
+              10.7880287,
+              59.9690914
+            ],
+            [
+              10.788057,
+              59.9691078
+            ],
+            [
+              10.7880773,
+              59.9691225
+            ],
+            [
+              10.7880964,
+              59.969141
+            ],
+            [
+              10.7881095,
+              59.9691568
+            ],
+            [
+              10.7881253,
+              59.9691788
+            ],
+            [
+              10.7881397,
+              59.9692199
+            ],
+            [
+              10.7881417,
+              59.96924
+            ],
+            [
+              10.7881421,
+              59.9692579
+            ],
+            [
+              10.7881393,
+              59.969274
+            ],
+            [
+              10.7881281,
+              59.9693111
+            ],
+            [
+              10.7881163,
+              59.9693232
+            ],
+            [
+              10.7880935,
+              59.9693391
+            ],
+            [
+              10.7880537,
+              59.9693725
+            ],
+            [
+              10.7879999,
+              59.969423
+            ],
+            [
+              10.7879663,
+              59.9694154
+            ],
+            [
+              10.7879232,
+              59.9694584
+            ],
+            [
+              10.7878912,
+              59.9694897
+            ],
+            [
+              10.7878891,
+              59.9694924
+            ],
+            [
+              10.7878076,
+              59.9694692
+            ],
+            [
+              10.7877195,
+              59.969457
+            ],
+            [
+              10.7877254,
+              59.9694508
+            ],
+            [
+              10.7877368,
+              59.9694537
+            ],
+            [
+              10.7877862,
+              59.9694043
+            ],
+            [
+              10.7877752,
+              59.9694016
+            ],
+            [
+              10.7877994,
+              59.9693782
+            ],
+            [
+              10.7877629,
+              59.9693683
+            ],
+            [
+              10.7878242,
+              59.9693127
+            ],
+            [
+              10.7878576,
+              59.9692772
+            ],
+            [
+              10.7878612,
+              59.9692676
+            ],
+            [
+              10.7878567,
+              59.9692412
+            ],
+            [
+              10.787842,
+              59.9691842
+            ],
+            [
+              10.7878058,
+              59.9691385
+            ],
+            [
+              10.7877454,
+              59.9690909
+            ],
+            [
+              10.7876106,
+              59.9690124
+            ],
+            [
+              10.7873557,
+              59.968894
+            ],
+            [
+              10.7873417,
+              59.9689018
+            ],
+            [
+              10.7872841,
+              59.9688775
+            ],
+            [
+              10.7871848,
+              59.9688234
+            ],
+            [
+              10.7870088,
+              59.9687139
+            ],
+            [
+              10.7869401,
+              59.968663
+            ],
+            [
+              10.7868657,
+              59.9686201
+            ],
+            [
+              10.7867982,
+              59.9685772
+            ],
+            [
+              10.7867045,
+              59.968491
+            ],
+            [
+              10.7866491,
+              59.9684257
+            ],
+            [
+              10.7865677,
+              59.9683079
+            ],
+            [
+              10.7864794,
+              59.9682009
+            ],
+            [
+              10.7863842,
+              59.9681502
+            ],
+            [
+              10.786285,
+              59.9680851
+            ],
+            [
+              10.7861562,
+              59.9680261
+            ],
+            [
+              10.7860831,
+              59.9680073
+            ],
+            [
+              10.7859805,
+              59.9679925
+            ],
+            [
+              10.7858799,
+              59.9679881
+            ],
+            [
+              10.7857995,
+              59.9679911
+            ],
+            [
+              10.7857203,
+              59.968014
+            ],
+            [
+              10.7856372,
+              59.9680472
+            ],
+            [
+              10.7855715,
+              59.9680532
+            ],
+            [
+              10.7853663,
+              59.9681771
+            ],
+            [
+              10.7851712,
+              59.9682643
+            ],
+            [
+              10.7850873,
+              59.9683006
+            ],
+            [
+              10.7849687,
+              59.9683308
+            ],
+            [
+              10.7848781,
+              59.9683465
+            ],
+            [
+              10.7847876,
+              59.9683536
+            ],
+            [
+              10.7847132,
+              59.9683553
+            ],
+            [
+              10.7846347,
+              59.9683526
+            ],
+            [
+              10.7844973,
+              59.9683375
+            ],
+            [
+              10.7843732,
+              59.9683096
+            ],
+            [
+              10.7843021,
+              59.9682767
+            ],
+            [
+              10.7842324,
+              59.9682375
+            ],
+            [
+              10.7841888,
+              59.9682049
+            ],
+            [
+              10.7841486,
+              59.9681821
+            ],
+            [
+              10.7840916,
+              59.9681616
+            ],
+            [
+              10.784042,
+              59.9681321
+            ],
+            [
+              10.7838804,
+              59.968019
+            ],
+            [
+              10.7837952,
+              59.967974
+            ],
+            [
+              10.7837375,
+              59.9679485
+            ],
+            [
+              10.7836423,
+              59.9679119
+            ],
+            [
+              10.7835411,
+              59.9678465
+            ],
+            [
+              10.7833942,
+              59.9677841
+            ],
+            [
+              10.7831313,
+              59.9676998
+            ],
+            [
+              10.7828598,
+              59.9676143
+            ],
+            [
+              10.7827706,
+              59.9675935
+            ],
+            [
+              10.7826968,
+              59.9675878
+            ],
+            [
+              10.782619,
+              59.9675914
+            ],
+            [
+              10.7824957,
+              59.9676099
+            ],
+            [
+              10.7823937,
+              59.9676381
+            ],
+            [
+              10.7823032,
+              59.9676794
+            ],
+            [
+              10.7821604,
+              59.967771
+            ],
+            [
+              10.7821061,
+              59.967814
+            ],
+            [
+              10.7820223,
+              59.9678522
+            ],
+            [
+              10.7819532,
+              59.967875
+            ],
+            [
+              10.7819029,
+              59.9678831
+            ],
+            [
+              10.7817728,
+              59.9678767
+            ],
+            [
+              10.7816407,
+              59.967869
+            ],
+            [
+              10.7814295,
+              59.9678405
+            ],
+            [
+              10.7812793,
+              59.9678106
+            ],
+            [
+              10.7810674,
+              59.9677613
+            ],
+            [
+              10.7809299,
+              59.9677126
+            ],
+            [
+              10.7808213,
+              59.9676602
+            ],
+            [
+              10.7806852,
+              59.9675633
+            ],
+            [
+              10.78048,
+              59.9674243
+            ],
+            [
+              10.7802956,
+              59.9673183
+            ],
+            [
+              10.7801018,
+              59.9672058
+            ],
+            [
+              10.7799422,
+              59.9671323
+            ],
+            [
+              10.779845,
+              59.9670968
+            ],
+            [
+              10.7797712,
+              59.9670582
+            ],
+            [
+              10.779729,
+              59.9670155
+            ],
+            [
+              10.7797095,
+              59.9669719
+            ],
+            [
+              10.7797055,
+              59.9669229
+            ],
+            [
+              10.779739,
+              59.9668105
+            ],
+            [
+              10.7797424,
+              59.9667363
+            ],
+            [
+              10.7797296,
+              59.9666991
+            ],
+            [
+              10.7797109,
+              59.9666762
+            ],
+            [
+              10.7796713,
+              59.9666621
+            ],
+            [
+              10.7796123,
+              59.9666497
+            ],
+            [
+              10.7795479,
+              59.9666494
+            ],
+            [
+              10.7794963,
+              59.9666571
+            ],
+            [
+              10.7794594,
+              59.9666692
+            ],
+            [
+              10.7794386,
+              59.9666917
+            ],
+            [
+              10.7793883,
+              59.9667776
+            ],
+            [
+              10.7793219,
+              59.9668689
+            ],
+            [
+              10.7792683,
+              59.9669306
+            ],
+            [
+              10.7791892,
+              59.9669793
+            ],
+            [
+              10.7791288,
+              59.9670108
+            ],
+            [
+              10.7790497,
+              59.9670296
+            ],
+            [
+              10.7788646,
+              59.967041
+            ],
+            [
+              10.7786165,
+              59.9670639
+            ],
+            [
+              10.7785367,
+              59.9670793
+            ],
+            [
+              10.7784824,
+              59.9671018
+            ],
+            [
+              10.7784382,
+              59.9671337
+            ],
+            [
+              10.778418,
+              59.9671535
+            ],
+            [
+              10.7783798,
+              59.9671659
+            ],
+            [
+              10.7783228,
+              59.9671686
+            ],
+            [
+              10.7782631,
+              59.9671649
+            ],
+            [
+              10.7780412,
+              59.9671233
+            ],
+            [
+              10.7778957,
+              59.9670927
+            ],
+            [
+              10.777714,
+              59.9670444
+            ],
+            [
+              10.7775336,
+              59.966986
+            ],
+            [
+              10.7774109,
+              59.9669437
+            ],
+            [
+              10.777319,
+              59.9669162
+            ],
+            [
+              10.7772513,
+              59.9669078
+            ],
+            [
+              10.7771721,
+              59.9669061
+            ],
+            [
+              10.7771219,
+              59.9669108
+            ],
+            [
+              10.7770722,
+              59.9669222
+            ],
+            [
+              10.7770213,
+              59.9669293
+            ],
+            [
+              10.7769884,
+              59.9669256
+            ],
+            [
+              10.7768999,
+              59.9669014
+            ],
+            [
+              10.7768764,
+              59.966887
+            ],
+            [
+              10.7768342,
+              59.9668608
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "osm_type": "node",
+      "osm_id": 6373811040,
+      "type": "bus_stop",
+      "category": "highway",
+      "display_name": "Frysja, Kjelsåsveien, Brekke, Nordre Aker, Oslo, 0884, Norge",
+      "lat": 59.966757,
+      "lon": 10.773937,
+      "distanceFromLegacyMeters": 666.56,
+      "geojsonType": "Point",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          10.773937,
+          59.966757
+        ]
+      }
+    }
+  ],
+  "decision": "No single live OSM industrial polygon contains the legacy point. Continue with a multi-anchor or municipal-plan geometry approach; do not verify the current point."
+}
