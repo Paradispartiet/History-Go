@@ -1,0 +1,52 @@
+name: Philosophy theory quality v2
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: philosophy-theory-quality-v2-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: startsWith(github.head_ref, 'agent/philosophy-theory-quality-v2')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Materialize and validate philosophy quality lift
+        run: |
+          set -euo pipefail
+          cat .github/philosophy-theory-quality-payload/part_* > /tmp/philosophy_quality.b64
+          base64 --decode /tmp/philosophy_quality.b64 > /tmp/philosophy_quality.tgz
+          tar -xzf /tmp/philosophy_quality.tgz -C .
+          node tools/validate-filosofi-theory-quality.mjs | tee /tmp/philosophy-validation.json
+          node scripts/audit-category-governance.mjs
+          node scripts/audit-quiz-template-governance.mjs
+          node -e 'const fs=require("fs"); const files=["data/fag/filosofi/fagkart_filosofi_canonical_v1.json","data/fag/filosofi/emner_filosofi_canonical_v1.json","data/fag/filosofi/filosofipensum_canonical_v1.json","data/fag/filosofi/methods_filosofi_canonical_v1.json","data/fag/filosofi/supersetQUIZMAL_filosofi.json","data/fag/filosofi/teoretikere_filosofi_canonical_v2.json","data/fag/filosofi/begreper_filosofi_canonical_v2.json","reports/filosofi-theory-quality-validation.json"]; for (const f of files) JSON.parse(fs.readFileSync(f,"utf8")); console.log("JSON parse: PASS");'
+          git diff --check
+      - name: Commit final philosophy files
+        run: |
+          set -euo pipefail
+          rm -rf .github/philosophy-theory-quality-payload
+          rm .github/workflows/philosophy-theory-quality-v2.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fag/filosofi
+          git add tools/validate-filosofi-theory-quality.mjs
+          git add reports/filosofi-theory-quality-lift.md
+          git add reports/filosofi-theory-quality-validation.json
+          git add -u .github/philosophy-theory-quality-payload .github/workflows/philosophy-theory-quality-v2.yml
+          git diff --cached --check
+          git commit -m 'Filosofi: løft teori- og begrepsgrunnlaget'
+          git push origin HEAD:${{ github.head_ref }}
