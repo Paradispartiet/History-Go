@@ -1,46 +1,48 @@
 # People-place coverage audit
 
-Generert: 2026-07-20T06:57:25.165Z
+Generert: 2026-07-24T06:58:49.950Z
 
 ## Sammendrag
 
-- People totalt: **1222**
-- Places totalt: **1215**
-- Places med people: **305**
-- Places uten people: **910**
-- People-place-lenker: **1407**
-- People koblet til flere gyldige steder: **234**
+- People totalt: **1247**
+- Places totalt: **1285**
+- Places med people: **327**
+- Places uten people: **958**
+- People-place-lenker: **1446**
+- People koblet til flere gyldige steder: **241**
 - People uten gyldig sted: **122**
-- Ugyldige place-referanser: **47**
-- Duplikate place-referanser inne på people: **1141**
-- People uten image: **881**
-- People uten cardImage: **882**
+- Ugyldige place-referanser: **50**
+- Duplikate place-referanser inne på people: **1166**
+- People uten image: **906**
+- People uten cardImage: **907**
 - People uten popupDesc: **105**
 
 ## Dekning per place-kategori
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 214 | 53 | 161 | 172 | 142 |
+| by | 213 | 56 | 157 | 178 | 147 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 450 | 61 | 389 | 216 | 143 |
-| kunst | 38 | 17 | 21 | 47 | 44 |
-| litteratur | 41 | 24 | 17 | 179 | 174 |
+| historie | 449 | 62 | 387 | 222 | 149 |
+| kunst | 34 | 20 | 14 | 50 | 46 |
+| litteratur | 40 | 32 | 8 | 68 | 58 |
 | media | 11 | 8 | 3 | 28 | 27 |
-| musikk | 17 | 14 | 3 | 110 | 102 |
-| naeringsliv | 148 | 32 | 116 | 65 | 60 |
-| natur | 80 | 8 | 72 | 18 | 18 |
+| musikk | 15 | 13 | 2 | 30 | 22 |
+| naeringsliv | 144 | 35 | 109 | 75 | 69 |
+| natur | 99 | 8 | 91 | 18 | 18 |
 | politikk | 28 | 13 | 15 | 137 | 120 |
-| populaerkultur | 21 | 3 | 18 | 35 | 31 |
+| populaerkultur | 17 | 2 | 15 | 2 | 2 |
 | psykologi | 3 | 2 | 1 | 2 | 1 |
-| sport | 84 | 30 | 54 | 260 | 245 |
-| subkultur | 35 | 20 | 15 | 38 | 35 |
+| religion | 3 | 0 | 3 | 0 | 0 |
+| scenekunst | 59 | 7 | 52 | 241 | 223 |
+| sport | 71 | 30 | 41 | 260 | 245 |
+| subkultur | 54 | 19 | 35 | 35 | 32 |
 | vitenskap | 37 | 12 | 25 | 55 | 45 |
 
 ## People tags
 
 - sport: 245
-- historie: 234
+- historie: 237
 - teater: 202
 - scenekunst: 193
 - litteratur: 177
@@ -50,18 +52,18 @@ Generert: 2026-07-20T06:57:25.165Z
 - holmenkollen: 105
 - holmenkollrennet: 80
 - subkultur: 64
+- kunst: 62
+- naeringsliv: 56
 - regissor: 56
-- kunst: 54
+- arkitektur: 53
+- by: 50
 - langrenn: 49
 - fotball: 47
-- naeringsliv: 47
 - teatersjef: 47
-- arkitektur: 46
-- by: 45
 - ensemble: 45
+- ibsen: 45
 - bislett: 44
 - film: 44
-- ibsen: 43
 - valerenga: 43
 - norge_for_1500: 40
 - 1814: 38
@@ -83,16 +85,16 @@ Generert: 2026-07-20T06:57:25.165Z
 - skihopp: 24
 - film_tv: 23
 - seriemester: 23
+- modernisme: 22
+- etterkrigstid: 21
 - torshovteatret: 20
 - verdenscup: 19
-- etterkrigstid: 18
+- industri: 18
 - middelalder: 18
-- filantrop: 17
-- krig: 17
 
 ## Steder med flest people
 
-- nationaltheatret (Nationaltheatret) – 123
+- nationaltheatret (Nationaltheatret) – 122
 - holmenkollen_nasjonalanlegg (Holmenkollen nasjonalanlegg) – 109
 - bislett_stadion (Bislett Stadion) – 82
 - det_norske_teatret (Det Norske Teatret) – 80
@@ -125,6 +127,9 @@ Generert: 2026-07-20T06:57:25.165Z
 - rolf_wickstrom (Rolf Wickstrøm) -> grini_fangeleir
 - trygve_bratteli (Trygve Bratteli) -> grini_fangeleir
 - arnulf_overland (Arnulf Øverland) -> grini_fangeleir
+- gro_dahle (Gro Dahle) -> sofienbergparken
+- jan_erik_vold (Jan Erik Vold) -> sofienbergparken
+- cecilie_loveid (Cecilie Løveid) -> sofienbergparken
 - alf_proysen (Alf Prøysen) -> alf_proysen_statue_nittedal
 - helgaberget_ristningsskaparane (Ristningsskaparane på Helgaberget) -> helgaberget_etne
 - borgasen_borgbyggjarane (Borgbyggjarane på Borgåsen) -> borgasen_etne
@@ -270,14 +275,14 @@ Generert: 2026-07-20T06:57:25.165Z
 - haakon_v_magnusson (Håkon V Magnusson) -> akershus_festning
 - st_hallvard (St. Hallvard) -> middelalder_oslo
 - harald_hardrade (Harald Hardråde) -> middelalder_oslo
-- ... 1041 flere
+- ... 1066 flere
 
 ## Anbefalt første people-batch
 
 Første 50 steder uten people, sortert etter worklist-prioritet og videre innholdsklarhet.
 
 - beierbrua | Beierbrua | by | high
-- hausmannsomradet_elvelop | Hausmannsområdet (elveløp) | by | high
+- hausmannsomradet_elvelop | Hausmannskvartalene – elveløp | by | high
 - lisbon_ajuda | Ajuda | by | high
 - lisbon_alcantara | Alcântara | by | high
 - lisbon_alfama | Alfama | by | high
@@ -299,7 +304,6 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - lisbon_principe_real | Príncipe Real | by | high
 - lisbon_rossio | Rossio (Praça Dom Pedro IV) | by | high
 - majorstuen_tbanestasjon | Majorstuen T-banestasjon | by | high
-- nydalen | Nydalen | by | high
 - oslo_bussterminal | Oslo bussterminal | by | high
 - romsaås | Romsås | by | high
 - storgata | Storgata | by | high
@@ -326,4 +330,5 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - nonneseter_kloster | Nonneseter kloster | historie | high
 - oslo_hospital | Oslo hospital | historie | high
 - oslo_ladegard | Oslo ladegård | historie | high
+- lisbon_centro_cultural_de_belem | Centro Cultural de Belém | kunst | high
 
