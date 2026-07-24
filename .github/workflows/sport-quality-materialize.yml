@@ -30,8 +30,13 @@ jobs:
         working-directory: repo/.github/sport-quality-payload
         run: |
           sha256sum -c <<'EOF'
-          ad6570a495a04c3211af5bd7f20093608c8e57e1ed7a5a9d1b4cce13825d81de  part_00
-          a40dbc4b44b3dc541068ea4a6edf2615e2534431787f31acc1238456cc1852c1  rest_00
+          80b1f2cd5e717690e7fed2cdc1a3bc3ba136ed154e714b0839a153797335e91e  head_00
+          915a5594674ab76c31b5aa39559b46601e7bb7f1409c850ec896d0b3c5cf632c  head_01
+          410dc709a6cba6e4f8a7e648043394e75a7970d269752bf8eb2cf49748aeb556  head_02
+          07011a1fddb5008ea78ff8f21b671248d89be574d10d209f4af2397f1075becb  head_03
+          cad95bcd4cf5361721b0f6c4ea4978230d6f04c89be20a356b943be6ae428c06  head_04
+          706893e352a0d9e3d82b9a87a61032620982009f39e876e69c8bcc9fc556d3fe  head_05
+          f8a218dcaa6638bf637afac7bd2c9ccee5520910d4f5badc257f3b1f13455cee  head_06
           5c8d45c6542aa12cfccef9aaa05d460db4d86cba0afdf9e7ef000bcfd39ff750  rest_01
           0a05246ec3ea2d39984698865888b44d4f337ccfbf13efb59cc11245d15e9e77  rest_02
           6eecebfc74a5fc6f0ddb001f0b9f73da2b1d51c65d7e8b132f74ba13444dcf24  rest_03
@@ -55,7 +60,7 @@ jobs:
           import hashlib
 
           root = Path('.github/sport-quality-payload')
-          names = ['part_00', *[f'rest_{i:02d}' for i in range(6)], *[f'tail_{i:02d}' for i in range(6)]]
+          names = [*[f'head_{i:02d}' for i in range(7)], *[f'rest_{i:02d}' for i in range(1, 6)], *[f'tail_{i:02d}' for i in range(6)]]
           encoded = ''.join((root / name).read_text(encoding='utf-8') for name in names)
           payload = base64.b64decode(encoded, validate=True)
           actual = hashlib.sha256(payload).hexdigest()
