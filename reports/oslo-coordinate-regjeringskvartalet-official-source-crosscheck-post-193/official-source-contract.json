@@ -1,0 +1,68 @@
+{
+  "version": "2026-07-24",
+  "placeId": "regjeringskvartalet",
+  "researchType": "official_identity_and_scope_crosscheck",
+  "officialDecision": {
+    "provider": "Kommunal- og moderniseringsdepartementet",
+    "currentPublisherLabel": "Kommunal- og distriktsdepartementet",
+    "title": "Vedtak av statlig reguleringsplan for nytt regjeringskvartal",
+    "documentType": "brev",
+    "decisionDate": "2017-02-10",
+    "reference": "16/2890-8",
+    "recipient": "Statsbygg",
+    "legalBasis": "plan- og bygningsloven § 6-4",
+    "htmlUrl": "https://www.regjeringen.no/no/dokumenter/vedtak-av-statlig-reguleringsplan-for-nytt-regjeringskvartal/id2538263/",
+    "pdfUrl": "https://www.regjeringen.no/contentassets/0d818c1beaa54b8f94671cc598c225ef/vedtak_statlig_reguleringsplan_rkv.pdf",
+    "adoptedStateRegulationConfirmed": true
+  },
+  "documentedPlanScope": {
+    "westBoundary": "Akersgata",
+    "eastBoundary": "Møllergata",
+    "northBoundary": [
+      "Trefoldighetskirken",
+      "Deichmanske bibliotek"
+    ],
+    "southBoundary": [
+      "Høyesterett mellom Akersgata og Grubbegata",
+      "Grensen 1 mellom Grubbegata og Møllergata"
+    ],
+    "additionalIncludedObject": "Regjeringsbygget R5 på vestsiden av Akersgata",
+    "scopeType": "combined_government_institutional_area"
+  },
+  "planinnsynCandidate": {
+    "provider": "Oslo kommune Plan- og bygningsetaten",
+    "map": "REGTILLEGG",
+    "featureType": "ms:Omraadeplan",
+    "crs": "EPSG:32632",
+    "planId": "202020172",
+    "planName": "S-5100",
+    "planType": "34",
+    "geometryType": "Polygon",
+    "bbox": {
+      "minX": 597273.8086,
+      "minY": 6643040.89,
+      "maxX": 597913.94935,
+      "maxY": 6643554.20995
+    },
+    "containsLegacyCanonicalPoint": true
+  },
+  "crosscheckDecision": {
+    "identityMatches": true,
+    "scopeMatches": true,
+    "canSupportProduction": true,
+    "reason": "The official state decision defines Regjeringskvartalet as the same combined institutional area represented by the single Oslo Planinnsyn S-5100 polygon. The municipal polygon supplies machine-traceable geometry; the state decision supplies authoritative identity and physical scope.",
+    "productionConditions": [
+      "live WFS must still return exactly one PLANID 202020172 / S-5100 / PLANTYPE 34 Polygon",
+      "live geometry must match the merged post-193 research within the locked drift tolerance",
+      "protocol maximum batch must remain 193",
+      "canonical parent/subplace overlaps must be explicit and no unexpected coordinate collision may be introduced"
+    ]
+  },
+  "verification": {
+    "verifiedAt": "2026-07-24",
+    "htmlAndPdfIndependentlyChecked": true,
+    "githubActionsOriginReachability": "blocked_http_403",
+    "note": "The official government HTML and PDF were independently checked outside GitHub Actions. The origin blocks GitHub-hosted Actions requests with HTTP 403, so production must hard-gate this merged research contract and revalidate the official Oslo WFS geometry live rather than substituting a proxy or cached third-party page."
+  },
+  "contractSha256": "c987de325475ee96d536957f276c350e2cc1a035ba336c43ea5d782cf0b36f09"
+}
