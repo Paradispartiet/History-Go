@@ -1,1 +1,69 @@
-{"version":"3.2","status":"canonical","authority_order":["data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md","data/fag/fag_manifest.json","data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json","data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json","category_profile"],"rule":"Ingen andre quizmaler, generatorpatcher, README-filer eller pseudokodefiler kan overstyre authority_order.","canonical_files":{"category_contract":"data/categories/category_contract.json","production_standard":"data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md","normal_opening_policy":"data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json","question_schema":"data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json","package_schema":"data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json","subject_manifest":"data/fag/fag_manifest.json","context_builder":"scripts/build-quiz-production-context.mjs","content_audit":"scripts/audit-quiz-content-quality.mjs","template_audit":"scripts/audit-quiz-template-governance.mjs","production_context_audit":"scripts/audit-quiz-production-context.mjs","progression_audit":"scripts/audit-quiz-progression.mjs","theory_binding_audit":"scripts/audit-quiz-theory-binding.mjs"},"global_invariants":{"normal_opening":{"policy":"data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json","rule":"Alle aktive quizmål skal starte med to sett à sju normale, direkte quizspørsmål før metode, teori og syntese."}},"category_profiles":{"by":"data/fag/by/supersetQUIZMAL_by.json","historie":"data/fag/historie/supersetQUIZMAL_historie.json","kunst":"data/fag/kunst/supersetQUIZMAL_kunst.json","litteratur":"data/fag/litteratur/supersetQUIZMAL_litteratur.json","media":"data/fag/media/supersetQUIZMAL_media.json","musikk":"data/fag/musikk/supersetQUIZMAL_musikk.json","naeringsliv":"data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json","natur":"data/fag/natur/supersetQUIZMAL_natur.json","politikk":"data/fag/politikk/supersetQUIZMAL_politikk.json","popkultur":"data/fag/popkultur/supersetQUIZMAL_populaerkultur.json","psykologi":"data/fag/psykologi/supersetQUIZMAL_psykologi.json","religion":"data/fag/religion/supersetQUIZMAL_religion.json","scenekunst":"data/fag/scenekunst/supersetQUIZMAL_scenekunst.json","sport":"data/fag/sport/supersetQUIZMAL_sport.json","subkultur":"data/fag/subkultur/supersetQUIZMAL_subkultur.json","vitenskap":"data/fag/vitenskap/supersetQUIZMAL_vitenskap.json","filosofi":"data/fag/filosofi/supersetQUIZMAL_filosofi.json","film_tv":"data/fag/TV_og_Film/supersetQUIZMAL_film_tv.json"},"non_authoritative_patterns":["data/quiz/regler/QUIZ_STANDARD_CANONICAL_V*.md","data/quiz/regler/SET_MAL_README_*.md","data/quiz/regler/quiz_generator_rules_*.json","data/quiz/regler/quiz_generator_rules_*.md","data/quiz/regler/quiz_generator_pseudocode_*.js","data/fag/*/SET_MAL_README_*.md","data/fag/*/QUIZ_SET_SCOPE_README_*.md","data/fag/*/quiz_generator_rules_*.json"],"legacy_policy":{"may_remain_for_history":true,"must_be_marked_deprecated_or_redirect":true,"must_not_be_referenced_as_authority":true,"must_not_define_independent_balance_or_generation_order":true}}
+{
+  "version": "3.2",
+  "status": "canonical",
+  "authority_order": [
+    "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+    "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
+    "data/fag/fag_manifest.json",
+    "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+    "category_profile"
+  ],
+  "rule": "Ingen andre quizmaler, generatorpatcher, README-filer eller pseudokodefiler kan overstyre authority_order.",
+  "canonical_files": {
+    "category_contract": "data/categories/category_contract.json",
+    "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+    "normal_opening_policy": "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
+    "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "package_schema": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+    "subject_manifest": "data/fag/fag_manifest.json",
+    "context_builder": "scripts/build-quiz-production-context.mjs",
+    "content_audit": "scripts/audit-quiz-content-quality.mjs",
+    "template_audit": "scripts/audit-quiz-template-governance.mjs",
+    "production_context_audit": "scripts/audit-quiz-production-context.mjs",
+    "progression_audit": "scripts/audit-quiz-progression.mjs",
+    "theory_binding_audit": "scripts/audit-quiz-theory-binding.mjs"
+  },
+  "global_invariants": {
+    "normal_opening": {
+      "policy": "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
+      "rule": "Alle aktive quizmål skal starte med to sett à sju normale, direkte og kildebelagte quizspørsmål. Kategori-profiler kan skjerpe, men ikke svekke regelen; målspesifikke unntak er ikke tillatt."
+    }
+  },
+  "category_profiles": {
+    "by": "data/fag/by/supersetQUIZMAL_by.json",
+    "historie": "data/fag/historie/supersetQUIZMAL_historie.json",
+    "kunst": "data/fag/kunst/supersetQUIZMAL_kunst.json",
+    "litteratur": "data/fag/litteratur/supersetQUIZMAL_litteratur.json",
+    "media": "data/fag/media/supersetQUIZMAL_media.json",
+    "musikk": "data/fag/musikk/supersetQUIZMAL_musikk.json",
+    "naeringsliv": "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+    "natur": "data/fag/natur/supersetQUIZMAL_natur.json",
+    "politikk": "data/fag/politikk/supersetQUIZMAL_politikk.json",
+    "popkultur": "data/fag/popkultur/supersetQUIZMAL_populaerkultur.json",
+    "psykologi": "data/fag/psykologi/supersetQUIZMAL_psykologi.json",
+    "religion": "data/fag/religion/supersetQUIZMAL_religion.json",
+    "scenekunst": "data/fag/scenekunst/supersetQUIZMAL_scenekunst.json",
+    "sport": "data/fag/sport/supersetQUIZMAL_sport.json",
+    "subkultur": "data/fag/subkultur/supersetQUIZMAL_subkultur.json",
+    "vitenskap": "data/fag/vitenskap/supersetQUIZMAL_vitenskap.json",
+    "filosofi": "data/fag/filosofi/supersetQUIZMAL_filosofi.json",
+    "film_tv": "data/fag/TV_og_Film/supersetQUIZMAL_film_tv.json"
+  },
+  "non_authoritative_patterns": [
+    "data/quiz/regler/QUIZ_STANDARD_CANONICAL_V*.md",
+    "data/quiz/regler/SET_MAL_README_*.md",
+    "data/quiz/regler/quiz_generator_rules_*.json",
+    "data/quiz/regler/quiz_generator_rules_*.md",
+    "data/quiz/regler/quiz_generator_pseudocode_*.js",
+    "data/fag/*/SET_MAL_README_*.md",
+    "data/fag/*/QUIZ_SET_SCOPE_README_*.md",
+    "data/fag/*/quiz_generator_rules_*.json"
+  ],
+  "legacy_policy": {
+    "may_remain_for_history": true,
+    "must_be_marked_deprecated_or_redirect": true,
+    "must_not_be_referenced_as_authority": true,
+    "must_not_define_independent_balance_or_generation_order": true
+  }
+}

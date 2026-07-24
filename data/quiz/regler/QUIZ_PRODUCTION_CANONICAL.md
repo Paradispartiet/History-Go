@@ -1,6 +1,6 @@
 # History Go – kanonisk quizproduksjon
 
-**Versjon:** 3.0
+**Versjon:** 3.1
 
 **Status:** eneste bindende produksjonsprosedyre for nye og reviderte quizer
 
@@ -11,11 +11,12 @@ Denne filen bestemmer arbeidsrekkefølge, innholdsregler og kontrollrekkefølge.
 ## 1. Autoritetsrekkefølge
 
 1. `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`
-2. `data/fag/fag_manifest.json`
-3. filene manifestet krever for valgt kategori
-4. `data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json`
-5. `data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json`
-6. stedets dokumenterte kilder
+2. `data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json`
+3. `data/fag/fag_manifest.json`
+4. filene manifestet krever for valgt kategori
+5. `data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json`
+6. `data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json`
+7. stedets dokumenterte kilder
 
 `data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json` registrerer disse filene. Eldre README-filer, generatorregler, patcher og pseudokodefiler er bare arkiv eller pekerfiler.
 
@@ -35,11 +36,12 @@ Konkret:
 6. Vurder pensummoduler, emner, teorihooks, metoder, teoretikere og verk.
 7. Registrer både hva som ble vurdert og hva som faktisk ble valgt.
 8. Velg adaptiv profil fra kategoriens `supersetQUIZMAL`.
-9. Lag relativ settplan.
-10. Skriv spørsmål fra dokumenterte påstander og observasjoner.
-11. Lagre `production_context` i quizpakken.
-12. Kjør innholds-, kontekst-, progresjons- og teorikontroll.
-13. Generer eller synkroniser Knowledge-koblinger.
+9. Lås de to første settene til sju normale spørsmål hver etter `QUIZ_NORMAL_OPENING_POLICY_V1.json`.
+10. Lag relativ settplan for progresjonen fra sett 3 og videre.
+11. Skriv spørsmål fra dokumenterte påstander og observasjoner.
+12. Lagre `production_context` i quizpakken.
+13. Kjør innholds-, kontekst-, progresjons- og teorikontroll.
+14. Generer eller synkroniser Knowledge-koblinger.
 
 Følgende omvendte løp er ikke tillatt:
 
@@ -123,16 +125,24 @@ Kategoriens superset definerer profilene:
 
 Profilen velges ut fra dokumentert stoffmengde og faglig bredde, ikke ut fra ønsket lengde. En quiz skal aldri fylles med svake spørsmål for å treffe en profil. Hvis kildematerialet ikke bærer planen, skal profilen reduseres.
 
-## 7. Relativ settprogresjon
+Alle profiler med minst to sett følger den samme absolutte åpningen: sett 1 og sett 2 skal hver ha sju normale, direkte og kildebelagte quizspørsmål. Kategoriens profil kan skjerpe denne regelen, for eksempel ved å utsette teori til sett 4, men kan aldri redusere de fjorten normale åpningsspørsmålene.
 
-Progresjonen er relativ til antall sett:
+## 7. Absolutt normalåpning og relativ videre progresjon
 
-- **første del:** sted, hovedhistorie og konkrete fakta
-- **midtdel:** personer, hendelser, bruk, endring og synlige spor
+`QUIZ_NORMAL_OPENING_POLICY_V1.json` er en global invariant for alle aktive quizmål med minst to sett:
+
+- **sett 1:** sju normale spørsmål om sted, person, institusjon, funksjon, verk, art, hendelse eller andre direkte fakta
+- **sett 2:** sju normale spørsmål om historie, personer, bruk, endring, årsak, sammenheng, observasjon eller konkret sammenligning
+- spørsmålene skal kunne forstås uten kjennskap til fagplan, metode, hook, teoretiker eller produksjonsmodell
+- eksplisitt metode-, begreps- og teoribinding kan ikke drive de første fjorten spørsmålene
+- faglige klassifikasjonsfelt som `emne_id`, `core_concepts` og `concept_focus` kan ligge bak et normalt spørsmål, men må ikke gjøre spørsmålsflaten akademisk
+
+Fra sett 3 er progresjonen relativ til quizens totale lengde:
+
 - **brodel:** årsak, sammenheng, metode og første fagbegreper
 - **sluttdel:** emner, teori, teoretikere, verk, sammenligning og syntese
 
-En quiz med tre sett skal derfor nå fag- og teorilaget i sett 3. En quiz med åtte sett kan bygge det gradvis fra midten. Teori er aldri låst til absolutte settnumre.
+En quiz med tre sett kan nå fag- og teorilaget i sett 3. En kategori kan kreve senere teoristart, men aldri tidligere enn sett 3. Den globale 2 × 7-åpningen går foran kategoriens relative faseplan.
 
 ## 8. Innholdsbalanse
 
@@ -142,7 +152,7 @@ For en quizpakke med minst ti spørsmål er normalområdet:
 - **20–30 % årsak, utvikling og sammenheng**
 - **15–25 % emne-, metode-, teori- og begrepsspørsmål**
 
-Dette er et kvalitetsområde, ikke en grunn til å dikte eller gjenta stoff. En liten eller svært konkret quiz kan avvike når `production_context` forklarer hvorfor.
+Dette er et kvalitetsområde, ikke en grunn til å dikte eller gjenta stoff. En liten eller svært konkret quiz kan avvike når `production_context` forklarer hvorfor. Den globale 2 × 7-åpningen har alltid forrang: en quiz med tre sett vil nødvendigvis være mer faktatung enn normalområdet, og skal ikke presses inn i prosentmålet med oppkonstruerte spørsmål.
 
 ### Konkrete fakta
 
@@ -186,6 +196,8 @@ God rekkefølge:
 
 > dokumentert detalj → faglig problem → teori som skjerper forståelsen
 
+Teori kan tidligst introduseres i sett 3. Kategoriens profil kan utsette teoristarten ytterligere, men kan ikke flytte teori eller eksplisitt metode inn i de første fjorten spørsmålene.
+
 Blokkerte overflater:
 
 - «Hvilken teoretiker passer best?»
@@ -196,7 +208,9 @@ Blokkerte overflater:
 
 ## 10. Spørsmål og svaralternativer
 
-Bruk naturlige åpninger som «Hvem», «Når», «Hva», «Hvorfor» og «Hvordan» når stoffet krever det.
+Bruk naturlige åpninger som «Hvem», «Når», «Hva», «Hvor», «Hvilken», «Hvorfor» og «Hvordan» når stoffet krever det.
+
+I sett 1 og sett 2 skal spørsmålene oppleves som vanlig quiz. Direkte observasjoner, konkrete sammenligninger og enkle hvorfor-/hvordan-spørsmål er tillatt når svaret følger av dokumenterte opplysninger. Formuleringer som «Hvordan kan stedet leses som …?», «Hva er den mest presise faglige lesningen …?», «Hvilket begrep beskriver best …?», «Hvilken mekanisme forklarer best …?» og «Hvilken teoretiker …?» er forbudt i åpningsblokken.
 
 Svaralternativene skal:
 
@@ -239,9 +253,11 @@ Kontrollene skal verifisere:
 
 1. at manifestet resolver hele fagpakken
 2. at lagrede ID-er finnes i de resolverte fagfilene
-3. at valgt profil og settprogresjon stemmer
-4. at teorispørsmål er bundet til påstand, emne, hook og teori
-5. at spørsmålene følger innholdsbalanse, språk- og kildereglene
+3. at sett 1 og sett 2 har nøyaktig sju normale spørsmål hver
+4. at åpningsspørsmålene har kilder, gyldig svar og plausible svaralternativer
+5. at valgt profil og videre settprogresjon stemmer
+6. at teorispørsmål er bundet til påstand, emne, hook og teori
+7. at spørsmålene følger innholdsbalanse, språk- og kildereglene
 
 ## 13. Eldre regler
 

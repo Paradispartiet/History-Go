@@ -1,8 +1,8 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "status": "canonical_global_invariant",
   "title": "To normale quizsett først",
-  "scope": "Alle aktive quizproduksjonsmål med minst to sett",
+  "scope": "Alle aktive quizproduksjonsmål med minst to sett, uten målspesifikke unntak",
   "purpose": "De første fjorten spørsmålene skal oppleves som en vanlig, konkret quiz før faglig metode, teori og syntese introduseres.",
   "opening_block": {
     "sets": 2,
@@ -68,22 +68,24 @@
       "question_about_question",
       "quiz_about_quiz",
       "history_go_question",
-      "more_than_place"
+      "more_than_place",
+      "mechanism_pick",
+      "distinction_pick",
+      "illustrates_place",
+      "what_place_shows"
     ],
-    "metadata_rule": "emne_id og andre faglige metadata kan ligge bak et normalt spørsmål, men må ikke gjøre spørsmålsflaten til en emne-, metode- eller teoritest.",
+    "metadata_rule": "Klassifikasjonsmetadata som emne_id, related_emner, core_concepts og concept_focus kan ligge bak et normalt spørsmål. Eksplisitte metode- og teoribindinger i forbidden_binding_fields er fortsatt blokkert i de første fjorten spørsmålene.",
     "type_rule": "Interne etiketter som observation, comparison eller analysis er tillatt når spørsmålet er direkte, konkret og kan besvares uten å kjenne produksjonsmodellen.",
-    "knowledge_rule": "Faglig forklaring og begreper kan utdypes i knowledge etter at spilleren har svart."
+    "knowledge_rule": "Faglig forklaring og begreper kan utdypes i knowledge etter at spilleren har svart.",
+    "surface_rule": "Det synlige spørsmålet skal være direkte, konkret og forståelig uten kjennskap til fagplan, metode, hook, teoretiker eller produksjonsmodell."
   },
   "progression": {
     "bridge_earliest_set": 3,
     "method_earliest_set": 3,
     "theory_earliest_set": 3,
-    "rule": "Sett 3 og senere kan gradvis innføre metode, eksplisitte begreper, teori og syntese."
+    "rule": "Sett 3 og senere kan gradvis innføre metode, eksplisitte begreper, teori og syntese.",
+    "category_tightening_rule": "Kategoriens profil kan utsette metode eller teori til et senere sett, men aldri starte før den globale grensen og aldri redusere 2 × 7-åpningen."
   },
-  "grandfathered_targets": {
-    "deichman_bjorvika": {
-      "reason": "Eldre pilotpakke produsert før denne åpningskontrakten. Skal følge policyen ved neste fullrevisjon.",
-      "temporary": true
-    }
-  }
+  "grandfathered_targets": {},
+  "exceptions_allowed": false
 }
