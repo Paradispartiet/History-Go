@@ -14,7 +14,7 @@ const WFS_ENDPOINT = 'https://od2.pbe.oslo.kommune.no/cgi-bin/wms';
 mkdirSync(REPORT_DIR, { recursive: true });
 
 function maxProtocolBatch() {
-  const text = readFileSync('docs/coordinate-control-protocol.md', 'utf8');
+  const text = readFileSync('docs/coordinates/coordinate-control-protocol.md', 'utf8');
   const batches = [...text.matchAll(/^\|\s*(\d+)\s*\|/gm)].map((m) => Number(m[1]));
   return Math.max(...batches);
 }
