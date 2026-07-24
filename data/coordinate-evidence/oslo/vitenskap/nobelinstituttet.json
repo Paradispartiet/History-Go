@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "nobelinstituttet",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner/nobelinstituttet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_official_nobel_institute_address_point_inside_building_with_named_context",
+  "currentCoordinate": {
+    "lat": 59.91543154930346,
+    "lon": 10.721857053164658,
+    "r": 150,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Kartverket/Geonorge for Henrik Ibsens gate 51, 0255 Oslo. Det Norske Nobelinstitutts offisielle sider bekrefter adressen og at instituttet flyttet inn i dagens bygg i mai 1905; Brønnøysundregistrenes hovedenhet 971434457 og underenhet 973276476 oppgir samme adresse. Punktet ligger inne i kontorbygget OSM way 132766124, et vernet treetasjes bygg på 596 m², 13,4 meter fra bygningssentrum. Det ligger også 7,7 meter fra det navngitte OSM-objektet node 13812187375, som identifiserer Det Norske Nobelinstitutt i bygget. Den tidligere markøren lå 1 583,6 meter unna. Radius 150 meter og canonical year 1905 beholdes; instituttet ble opprettet i 1904, mens 1905 her representerer innflyttingen i dagens bygg."
+  },
+  "identity": {
+    "currentName": "Nobelinstituttet",
+    "resolvedIdentity": "Det Norske Nobelinstitutt, hovedenhet 971434457 og underenhet 973276476, Henrik Ibsens gate 51, 0255 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt offisiell besøksadresse",
+    "offisiell institusjons- og driftsstedsidentitet",
+    "bygningspolygon som omslutter adressepunktet",
+    "navngitt Nobel-kontekst ved bygget"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Adresser API v1 – Henrik Ibsens gate 51",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Henrik%20Ibsens%20gate&nummer=51&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21471:51:59.91543155,10.72185705",
+      "sourceQuality": "official_address",
+      "finding": "Ett unikt offisielt representasjonspunkt: 59.91543154930346, 10.721857053164658.",
+      "canVerifyCoordinate": true,
+      "reason": "Punktet brukes som canonical display-markør etter bygnings- og identitetskryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Det Norske Nobelinstitutt – offisiell institutt- og bygningshistorikk",
+      "sourceUrl": "https://www.nobelpeaceprize.org/om-oss/nobelinstituttet/",
+      "sourceObjectId": "nobel-official:instituttet-henrik-ibsens-gate-51",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Bekrefter adressen, institusjonens opprettelse i 1904 og innflytting i dagens bygg i mai 1905.",
+      "canVerifyCoordinate": false,
+      "reason": "Autoritativ identitets-, adresse- og historikkilde; koordinaten leveres av Kartverket."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – Det Norske Nobelinstitutt",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/enheter/971434457",
+      "sourceObjectId": "brreg-enhet:971434457",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Hovedenheten 971434457 og underenheten 973276476 oppgir Henrik Ibsens gate 51.",
+      "canVerifyCoordinate": false,
+      "reason": "Uavhengig offentlig institusjons- og adressekryssjekk."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 132766124 – adressebygget",
+      "sourceUrl": "https://www.openstreetmap.org/way/132766124",
+      "sourceObjectId": "osm-way:132766124",
+      "sourceQuality": "complete_address_building_geometry",
+      "finding": "Vernet treetasjes kontorbygg på 596 m²; Kartverket-punktet ligger inne i polygonet og 13,4 meter fra bygningssentrum.",
+      "canVerifyCoordinate": true,
+      "reason": "Fysisk bygningskryssjekk for det offisielle adressepunktet."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 13812187375 – Det Norske Nobelinstitutt",
+      "sourceUrl": "https://www.openstreetmap.org/node/13812187375",
+      "sourceObjectId": "osm-node:13812187375",
+      "sourceQuality": "named_institution_context",
+      "finding": "Navngitt institusjonsobjekt inne i bygget, 7,7 meter fra Kartverket-punktet.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter at adressebygget faktisk er knyttet til Det Norske Nobelinstitutt."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Henrik Ibsens gate 51, 0255 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21471:51:59.91543155,10.72185705",
+      "lat": 59.91543154930346,
+      "lon": 10.721857053164658,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21471:51:59.91543155,10.72185705",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:132766124",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:13812187375",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:132766124",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:21471:51:59.91543155,10.72185705",
+      "lat": 59.91543154930346,
+      "lon": 10.721857053164658,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Henrik Ibsens gate 51 er anvendt som canonical display-markør."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Kartverket/Geonorge for Henrik Ibsens gate 51, 0255 Oslo. Det Norske Nobelinstitutts offisielle sider bekrefter adressen og at instituttet flyttet inn i dagens bygg i mai 1905; Brønnøysundregistrenes hovedenhet 971434457 og underenhet 973276476 oppgir samme adresse. Punktet ligger inne i kontorbygget OSM way 132766124, et vernet treetasjes bygg på 596 m², 13,4 meter fra bygningssentrum. Det ligger også 7,7 meter fra det navngitte OSM-objektet node 13812187375, som identifiserer Det Norske Nobelinstitutt i bygget. Den tidligere markøren lå 1 583,6 meter unna. Radius 150 meter og canonical year 1905 beholdes; instituttet ble opprettet i 1904, mens 1905 her representerer innflyttingen i dagens bygg.",
+    "Research report: reports/oslo-coordinate-nobelinstituttet-research-post-195/summary.json"
+  ]
+}
