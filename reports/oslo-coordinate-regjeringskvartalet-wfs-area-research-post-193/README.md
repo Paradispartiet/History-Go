@@ -2,14 +2,10 @@
 
 Date: 2026-07-24
 
-- WFS map: REGTILLEGG
-- feature type: ms:Omraadeplan
-- native CRS: EPSG:32632
-- returned plan features: 7
-- direct Regjeringskvartalet text matches: 0
-- features whose geometry contains the canonical center: 1
-- features whose bbox contains the canonical center: 2
+Locked candidate: PLANID 202020172 / S-5100.
 
-Decision: **candidate_covering_plan_feature_requires_identity_crosscheck**
+- Planinnsyn JS assets scanned: 10
+- map configurations discovered: 39
+- map configurations with usable WFS feature types: 25
 
 No canonical coordinate changed.

@@ -1,76 +1,1368 @@
 {
   "placeId": "regjeringskvartalet",
-  "featureCount": 7,
-  "propertyKeys": [
-    "KOPIDATO",
-    "PLANID",
-    "PLANNAVN",
-    "PLANTYPE"
+  "mapConfigs": [
+    "AADT",
+    "AVRENNING",
+    "BAKGRUNN",
+    "BLAGRONNFAKTOR",
+    "EIENDOM_TABELL",
+    "FARTSGRENSER",
+    "FJERNVARME",
+    "FLOM",
+    "FLYFOTO",
+    "FLY_HIST",
+    "FORGRUNN",
+    "FORURENSET",
+    "FRILUFT",
+    "FUNNPOTENSIALE",
+    "GEOJSON",
+    "GRUNNFORHOLD",
+    "GULLISTE",
+    "KARTINNSYN",
+    "KARTLAGTSKRED",
+    "KDP",
+    "KOMMUNEPLAN",
+    "NATURMANGFOLD",
+    "PAAGAAENDE",
+    "PI4_GEOJSON",
+    "PLANER",
+    "PLANINNSYN",
+    "REGTILLEGG",
+    "REGULERING",
+    "RISIKO",
+    "SKILTREKLAME",
+    "TEKST_FLYFOTO",
+    "TORSHOV",
+    "VANN",
+    "VANN_NY",
+    "VEGKATEGORI",
+    "WFS_SOK",
+    "d",
+    "n",
+    "s"
   ],
-  "directTextMatchCount": 0,
-  "directMatches": [],
-  "geometryContainsCenterCount": 1,
-  "geometryContainsCenter": [
+  "usable": [
     {
-      "featureId": null,
-      "properties": {
-        "PLANID": "202020172",
-        "PLANTYPE": "34",
-        "PLANNAVN": "S-5100",
-        "KOPIDATO": "2026-07-23 00:00:00"
-      },
-      "geometryType": "Polygon",
-      "bbox": {
-        "minX": 597273.8086,
-        "minY": 6643040.89,
-        "maxX": 597913.94935,
-        "maxY": 6643554.20995
-      },
-      "bboxContainsCenter": true,
-      "geometryContainsCenter": true,
-      "textMatch": false
-    }
-  ],
-  "bboxContainsCenterCount": 2,
-  "bboxContainsCenter": [
-    {
-      "featureId": null,
-      "properties": {
-        "PLANID": "201618254",
-        "PLANTYPE": "34",
-        "PLANNAVN": "S-5046",
-        "KOPIDATO": "2026-07-23 00:00:00"
-      },
-      "geometryType": "MultiPolygon",
-      "bbox": {
-        "minX": 596557.12965,
-        "minY": 6642082.94732,
-        "maxX": 598042.3382,
-        "maxY": 6643477.39
-      },
-      "bboxContainsCenter": true,
-      "geometryContainsCenter": false,
-      "textMatch": false
+      "map": "AADT",
+      "featureTypes": [
+        {
+          "name": "ms:AADT_fastskala",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
     },
     {
-      "featureId": null,
-      "properties": {
-        "PLANID": "202020172",
-        "PLANTYPE": "34",
-        "PLANNAVN": "S-5100",
-        "KOPIDATO": "2026-07-23 00:00:00"
-      },
-      "geometryType": "Polygon",
-      "bbox": {
-        "minX": 597273.8086,
-        "minY": 6643040.89,
-        "maxX": 597913.94935,
-        "maxY": 6643554.20995
-      },
-      "bboxContainsCenter": true,
-      "geometryContainsCenter": true,
-      "textMatch": false
+      "map": "EIENDOM_TABELL",
+      "featureTypes": [
+        {
+          "name": "ms:eiendom_polygon",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:eiendom_linje",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:eiendom_punkt",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        }
+      ]
+    },
+    {
+      "map": "FARTSGRENSER",
+      "featureTypes": [
+        {
+          "name": "ms:Fartsgrenser",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "FJERNVARME",
+      "featureTypes": [
+        {
+          "name": "ms:Fjernvarme",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "FLOM",
+      "featureTypes": [
+        {
+          "name": "ms:Initialflom",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Flomsonekart",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "FLYFOTO",
+      "featureTypes": [
+        {
+          "name": "ms:Ramme",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        }
+      ]
+    },
+    {
+      "map": "FORURENSET",
+      "featureTypes": [
+        {
+          "name": "ms:Aktsomhetskart",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Forurenset grunn",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Potensiell forurensing",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "FRILUFT",
+      "featureTypes": [
+        {
+          "name": "ms:Kartlagte friluftslivsområder",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Statlig sikra friluftslivsområder",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "FUNNPOTENSIALE",
+      "featureTypes": [
+        {
+          "name": "ms:Funnpotensiale",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "GRUNNFORHOLD",
+      "featureTypes": [
+        {
+          "name": "ms:Dybde_til_fjell_flate",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Dybde_til_fjell_label",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Aktsomhetskart",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Fundament",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Leire",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Kvikkleire",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Aktsomhetsone kvikkleire",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Fjellidagen_punkt",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Fjellidagen_polygon",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        }
+      ]
+    },
+    {
+      "map": "GULLISTE",
+      "featureTypes": [
+        {
+          "name": "ms:Kulturmiljo",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Sikringssone",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Lokaliteter",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Enkeltminner_o",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Enkeltminner_g",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Enkeltminner_r",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "KARTLAGTSKRED",
+      "featureTypes": [
+        {
+          "name": "ms:Helningsanalyse",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Steinsprangkartlegging",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "KDP",
+      "featureTypes": [
+        {
+          "name": "ms:Arealbruk_1_9",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Arealbruk-tekst_1_9",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Plangrenser_1_9",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Linjer_1_9",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Tekst_1_9",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Symboler_1_9",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Arealbruk",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Linjer_4",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Symbolerflater_4",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Symboler_4",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KDP_Plangrenser_4",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Arealbruk_7",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Arealbruk-tekst_7",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Plangrenser_7",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Linjer_7",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Symbolerflater_7",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Arealbruk_12",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Arealbruk-tekst_12",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Plangrenser_12",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Linjer_12",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Symboler_12",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Arealbruk_15",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Arealbruk-tekst_15",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Plangrenser_15",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Linjer_15",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Arealbruk_17",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Linjer_17",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Arealbruk_18_test",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Arealbruk_18",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KDP_Plangrenser_18",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Linjer_18",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Symbolerflater_18",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Symboler_18",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Siktlinjer_18",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Arealbruk-tekst_18",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Tekst_18",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpArealformaalOmraade - Naa",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpArealformaalOmraade - Fremtidig",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpAngittHensynSone",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpAngittHensynGrense",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpFareSone",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpFareGrense",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpBaandleggingSone",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpBaandleggingGrense",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpDetaljeringSone",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpDetaljeringGrense",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpBestemmelseGrense",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpGrense",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpArealGrense",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:KpSamferdselLinje",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "KOMMUNEPLAN",
+      "featureTypes": [
+        {
+          "name": "ms:gronnstruktur",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:vann",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:utv_indre_by",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:utv_ytre_by",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:bebyggelse_anl_eksisterende",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:bebyggelse_anl_fremtidig",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:samferdsel",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Forsvaret",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:LNF",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Feltnavn",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Opplysningstekst",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:bevaring_kulturmiljo",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:bandlegging",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:omforming_h820",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:felles_planlegging_h810",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:planens_avgrensning",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:markagrense",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:bestemmelsesgrense",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:lnf_symbol",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:fjernveg_europaveger",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:sporveg",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:jernbane",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:farled",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:kollektivknutepunkt",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:ikke_juridisk_sporveg_fjordtrikk",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:ikke_juridisk_sporveg_mulig_banetrase",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:samferdsel_ikke_juridisk",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:stasjoner",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:nedslagsfelt_drikkevann",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:andre_sikringssoner",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:ras_og_skredfare",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:flomfare",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:annen_fare",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:tekst_nedslagsfelt_drikkevann",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:tekst_andre_sikringssoner",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:tekst_ras_og_skredfare",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:tekst_flomfare",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:tekst_annen_fare",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t1_vei_2011",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t1_vei_gul",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t1_baner_2011",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t1_baner_gul",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t1_havn_gul",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t1_aarvoll_skytebane_gul",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t1_aarvoll_skytebane_roed",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t1_havn_roed",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t1_vei_rod",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t1_baner_rod",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t1_havneomraade",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t1_stille_omraader",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t1_avvikssone",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t2_luftforurensing",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t3_luftforurensing",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t4_marka_temakart",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t4_baandlegging_andre_lover",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t4_naturmiljo_naturA",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t4_naturB",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t4_vernet_etter_naturmangfoldlvn",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t4_naturC",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t4_verneforslag_oslo",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t4_baandlegging_regulering",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t5_avklart_uavklart_indre_by",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t5_avklart_uavklart_ytre_by",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t5_baandlegging_andre_lover",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t5_baandlegging_lov_om_kulturminner",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t5_Verneklasse2_Tema",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t5_hensynssone_c",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t5_indre_by",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t5_nasjonal_verneverdi",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t5_freda_bygninger",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t6_brann_eksplosjonsfare",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t7_bakgrunn_gronne_omraader",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t7_framtidig_park",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t7_elv_bekk_vann_dam",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t7_fremtidig_elv_bekk",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t7_viktige_kommunikasjonsaarer",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t7_krysningspunkt",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t7_omraade_med_behov_for_park_5daa",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t7_omraade_med_behov_for_park_1daa",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t7_framtidig_turdrag",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t7_hovedturveg",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:t7_navn_turvei",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:n10_vann",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:n10_veg",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:n10_tekst",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "NATURMANGFOLD",
+      "featureTypes": [
+        {
+          "name": "ms:naturmangfold_p",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:naturmangfold_l",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:naturmangfold_f",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:fremmede_arter",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "PAAGAAENDE",
+      "featureTypes": [
+        {
+          "name": "ms:planprogram",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:vpor",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:detaljregulering",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:omraaderegulering",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:MFT",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "PLANER",
+      "featureTypes": [
+        {
+          "name": "ms:planprogram",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:vpor",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:plansak",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:plankunngj",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:hovinbyen_flate",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:hovinbyen_aksene",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        }
+      ]
+    },
+    {
+      "map": "REGTILLEGG",
+      "featureTypes": [
+        {
+          "name": "ms:Byggegrenselinje_linje",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Byggegrenselinje_tekst",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Ikke_bebyggelse",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Er_bebyggelse",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Veg_flate",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Fkb_Veg",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Eiendom_buffer4",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Eiendom_buffer1",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Hytteareal",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Omraadeplan",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        }
+      ]
+    },
+    {
+      "map": "RISIKO",
+      "featureTypes": [
+        {
+          "name": "ms:Akstomhetsone_kvikkleire",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Aktsomhetsone_steinsprang",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Akstomhetsone_stormflo",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Akstomhetsone_elveflom",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Akstomhetsone_annen_fare",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Storulykke",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Maringrense",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Dreneringslinjer_5000m2",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Dreneringslinjer_50000m2",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "TEKST_FLYFOTO",
+      "featureTypes": [
+        {
+          "name": "ms:Nabokommuner",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Vegtekst_80000_250000",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Bydelstekst_80000_250000",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Stedsnavn_10000_80000",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Vanntekst_10000_50000",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Gatenavn10000",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:AnnenTekst5000",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Fkb_tekst5000",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Gatenavn5000",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Stedsnavn5000",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Fkb_tekst1000_terr",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Fkb_adresse_txt_1000",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Vegnummer_1000",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Gatenavn_1000",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Stedsnavn_1000",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Fkb_tekst500_terr",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Fkb_adresse_txt_500",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Vegnummer_500",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Gatenavn_500",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Stedsnavn_500",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        }
+      ]
+    },
+    {
+      "map": "TORSHOV",
+      "featureTypes": [
+        {
+          "name": "ms:Torshov",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "VANN",
+      "featureTypes": [
+        {
+          "name": "ms:Aapne_vannflater",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Aapne_vannlinjer",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Historiske_elvelop",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "VANN_NY",
+      "featureTypes": [
+        {
+          "name": "ms:Aapne_vannflater1",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Aapne_vannflater2",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Aapne_vannflater3",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Vannflater_tegn",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Aapne_vannlinjer",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Aapne_vannlinjer2",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Aapne_vannlinjer3",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Historiske",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "VEGKATEGORI",
+      "featureTypes": [
+        {
+          "name": "ms:Privat_veg",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Gang-_og_sykkelveg_langs_kommunal_veg",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Kommunal_veg",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Gang-_og_sykkelveg_langs_europa-_og_riksveg",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Europaveg_og_riksveg_i_tunneler",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Europaveg_og_riksveg",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        },
+        {
+          "name": "ms:Offentlig_veg",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::25832"
+        }
+      ]
+    },
+    {
+      "map": "WFS_SOK",
+      "featureTypes": [
+        {
+          "name": "ms:ADRESSER_WFS",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:GATE_ADRESSER_WFS",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:Eiendomsinfo_bbox",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:EIENDOM_GNR_BNR_FNR_SNR",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:EIENDOM_WFS",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:EIENDOM_PUNKT_WFS",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:EIENDOM_WFS_FULL",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:ADRESSEID_WFS",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:ADR_CONCAT",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        },
+        {
+          "name": "ms:STEDSNAVN_WFS",
+          "defaultCrs": "urn:ogc:def:crs:EPSG::32632"
+        }
+      ]
     }
   ],
-  "decision": "candidate_covering_plan_feature_requires_identity_crosscheck"
+  "probeSummary": [
+    {
+      "map": "AADT",
+      "status": 200,
+      "featureTypeCount": 1
+    },
+    {
+      "map": "AVRENNING",
+      "status": 504,
+      "featureTypeCount": 0
+    },
+    {
+      "map": "BAKGRUNN",
+      "status": 504,
+      "featureTypeCount": 0
+    },
+    {
+      "map": "BLAGRONNFAKTOR",
+      "status": 504,
+      "featureTypeCount": 0
+    },
+    {
+      "map": "EIENDOM_TABELL",
+      "status": 200,
+      "featureTypeCount": 3
+    },
+    {
+      "map": "FARTSGRENSER",
+      "status": 200,
+      "featureTypeCount": 1
+    },
+    {
+      "map": "FJERNVARME",
+      "status": 200,
+      "featureTypeCount": 1
+    },
+    {
+      "map": "FLOM",
+      "status": 200,
+      "featureTypeCount": 2
+    },
+    {
+      "map": "FLYFOTO",
+      "status": 200,
+      "featureTypeCount": 1
+    },
+    {
+      "map": "FLY_HIST",
+      "status": 200,
+      "featureTypeCount": 0
+    },
+    {
+      "map": "FORGRUNN",
+      "status": 504,
+      "featureTypeCount": 0
+    },
+    {
+      "map": "FORURENSET",
+      "status": 200,
+      "featureTypeCount": 3
+    },
+    {
+      "map": "FRILUFT",
+      "status": 200,
+      "featureTypeCount": 2
+    },
+    {
+      "map": "FUNNPOTENSIALE",
+      "status": 200,
+      "featureTypeCount": 1
+    },
+    {
+      "map": "GEOJSON",
+      "status": 200,
+      "featureTypeCount": 0
+    },
+    {
+      "map": "GRUNNFORHOLD",
+      "status": 200,
+      "featureTypeCount": 9
+    },
+    {
+      "map": "GULLISTE",
+      "status": 200,
+      "featureTypeCount": 6
+    },
+    {
+      "map": "KARTINNSYN",
+      "status": 504,
+      "featureTypeCount": 0
+    },
+    {
+      "map": "KARTLAGTSKRED",
+      "status": 200,
+      "featureTypeCount": 2
+    },
+    {
+      "map": "KDP",
+      "status": 200,
+      "featureTypeCount": 50
+    },
+    {
+      "map": "KOMMUNEPLAN",
+      "status": 200,
+      "featureTypeCount": 85
+    },
+    {
+      "map": "NATURMANGFOLD",
+      "status": 200,
+      "featureTypeCount": 4
+    },
+    {
+      "map": "PAAGAAENDE",
+      "status": 200,
+      "featureTypeCount": 5
+    },
+    {
+      "map": "PI4_GEOJSON",
+      "status": 504,
+      "featureTypeCount": 0
+    },
+    {
+      "map": "PLANER",
+      "status": 200,
+      "featureTypeCount": 6
+    },
+    {
+      "map": "PLANINNSYN",
+      "status": 504,
+      "featureTypeCount": 0
+    },
+    {
+      "map": "REGTILLEGG",
+      "status": 200,
+      "featureTypeCount": 10
+    },
+    {
+      "map": "REGULERING",
+      "status": 504,
+      "featureTypeCount": 0
+    },
+    {
+      "map": "RISIKO",
+      "status": 200,
+      "featureTypeCount": 9
+    },
+    {
+      "map": "SKILTREKLAME",
+      "status": 504,
+      "featureTypeCount": 0
+    },
+    {
+      "map": "TEKST_FLYFOTO",
+      "status": 200,
+      "featureTypeCount": 20
+    },
+    {
+      "map": "TORSHOV",
+      "status": 200,
+      "featureTypeCount": 1
+    },
+    {
+      "map": "VANN",
+      "status": 200,
+      "featureTypeCount": 3
+    },
+    {
+      "map": "VANN_NY",
+      "status": 200,
+      "featureTypeCount": 8
+    },
+    {
+      "map": "VEGKATEGORI",
+      "status": 200,
+      "featureTypeCount": 7
+    },
+    {
+      "map": "WFS_SOK",
+      "status": 200,
+      "featureTypeCount": 10
+    },
+    {
+      "map": "d",
+      "status": 200,
+      "featureTypeCount": 0
+    },
+    {
+      "map": "n",
+      "status": 200,
+      "featureTypeCount": 0
+    },
+    {
+      "map": "s",
+      "status": 200,
+      "featureTypeCount": 0
+    }
+  ]
 }
