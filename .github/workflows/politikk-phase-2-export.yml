@@ -17,16 +17,20 @@ jobs:
         with:
           ref: agent/politikk-vertikal-fase-2
           fetch-depth: 1
+          show-progress: false
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Build and validate political theory phase 2
+        id: apply
+        continue-on-error: true
         if: hashFiles('tools/politikk-phase-2-builder-ready.txt') != ''
         run: |
           set -euo pipefail
           mkdir -p reports/politikk-canonical-migration
+          exec > >(tee reports/politikk-canonical-migration/politikk-phase-2-full-run.log) 2>&1
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
@@ -143,7 +147,24 @@ jobs:
           echo 'PASS | git diff --check' \
             | tee -a reports/politikk-canonical-migration/politikk-phase-2-reference-audit.txt
 
+          git status --short \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-phase-2-git-status.txt
           git add -A data/fag/politikk reports/politikk-canonical-migration tools .github/workflows
           git diff --cached --check
-          git commit -m 'Politikk: bygg politisk teori og ideologier som vertikal fase 2'
-          git push --force-with-lease origin HEAD:agent/politikk-vertikal-fase-2
+          git diff --cached --stat \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-phase-2-git-stat.txt
+          git commit -m 'Politikk: bygg politisk teori og ideologier som vertikal fase 2' \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-phase-2-git-commit.txt
+          git push --force-with-lease origin HEAD:agent/politikk-vertikal-fase-2 \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-phase-2-git-push.txt
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: politics-phase-2-materialization-diagnostics
+          path: reports/politikk-canonical-migration/politikk-phase-2-*
+          if-no-files-found: warn
+
+      - name: Propagate materialization failure
+        if: steps.apply.outcome == 'failure'
+        run: exit 1
