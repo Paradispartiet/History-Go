@@ -1,6 +1,6 @@
 # Quiz: migreringskø for global 2 × 7-normalåpning
 
-Generert: 2026-07-24T17:11:22.787Z
+Generert: 2026-07-24T17:20:44.405Z
 
 ## Omfang
 
@@ -15,9 +15,9 @@ Generert: 2026-07-24T17:11:22.787Z
 - uregistrerte set-filer: **141**
 - manglende filer: **0**
 - JSON-feil: **0**
-- fullstendig 2 × 7-kompatible filer: **20**
-- filer som krever åpning-/malreparasjon: **284**
-- filer som bare trenger videre innholdsgjennomgang: **3**
+- fullstendig 2 × 7-kompatible filer: **21**
+- filer som krever åpning-/malreparasjon: **283**
+- filer som bare trenger videre innholdsgjennomgang: **4**
 
 ## Tolkning
 
