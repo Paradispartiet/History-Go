@@ -3,13 +3,13 @@ name: Literature vertical depth phase 2
 on:
   push:
     branches:
-      - agent/litteratur-vertikal-fase-2-historie
+      - agent/litteratur-fase2-final-20260724
 
 permissions:
   contents: write
 
 concurrency:
-  group: litteratur-vertical-phase-2
+  group: litteratur-vertical-phase-2-final
   cancel-in-progress: false
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout phase branch
         uses: actions/checkout@v4
         with:
-          ref: agent/litteratur-vertikal-fase-2-historie
+          ref: agent/litteratur-fase2-final-20260724
           fetch-depth: 0
 
       - name: Configure Git
@@ -98,7 +98,7 @@ jobs:
             .github/workflows/litteratur-vertical-phase-2.yml
           git diff --cached --check
           git commit -m 'Litteratur: bygg historisk og verdenslitterær akse'
-          git push origin HEAD:agent/litteratur-vertikal-fase-2-historie
+          git push origin HEAD:agent/litteratur-fase2-final-20260724
 
       - name: Upload diagnostics
         if: always()
