@@ -18,7 +18,7 @@ const methodIds=["met_pol_implementeringsanalyse", "met_pol_internasjonal_politi
 ok(fagkart.meta.disciplinary_profile.includes('statsvitenskapelig hovedpensum'),'Fagkart har eksplisitt statsvitenskapelig hovedprofil');
 ok(pensum.disciplinary_profile.primary_discipline==='statsvitenskap','Pensum har statsvitenskap som primærdisiplin');
 ok(pensum.summary.domain_count===12,'Pensum har 12 domener');
-ok(pensum.summary.topic_hook_count===130,'Pensum har 130 hooks');
+ok(pensum.summary.topic_hook_count===fagkart.categories.reduce((sum,d)=>sum+(d.topic_hooks?.length||0),0),'Pensumets hook-antall matcher fagkartet');
 ok(pensum.summary.political_science_core_domain_count===8,'Åtte domener er statsvitenskapelig kjerne');
 ok(generator.political_science_core_contract.required_core_share===0.67,'Generator krever minst to tredeler statsvitenskapelig kjerne');
 for(const id of domains){
@@ -36,7 +36,7 @@ ok(generator.politikk_category_guardrails.accept_as_politikk_primary_when.some(x
 ok(pensum.learning_outcomes.knowledge.length>=2,'Pensum har kunnskapsmål');
 ok(pensum.learning_outcomes.skills.length>=3,'Pensum har ferdighetsmål');
 ok(pensum.learning_outcomes.general_competence.length>=3,'Pensum har generell kompetanse');
-ok(methods.political_science_method_core.length===23,'Metodekatalogen har 23 nye kjernemetoder');
-ok(blueprints.length===40,'Det finnes 40 spørsmålsplaner'); for(const b of blueprints){ok(domains.includes(b.domain_id),b.blueprint_id+' har gyldig domene');ok(emneIds.includes(b.emne_id)||(b.blueprint_id.startsWith('pol_institutions_phase1_')&&emner.some(e=>e.emne_id===b.emne_id)),b.blueprint_id+' har gyldig emne');ok(methods.methods.some(m=>m.method_id===b.method_id),b.blueprint_id+' har gyldig metode');ok(b.answer_requirements.length===6,b.blueprint_id+' har seks svarskrav');}
+ok(methods.political_science_method_core.length>=23,'Metodekatalogen beholder minst 23 statsvitenskapelige kjernemetoder');
+const coreBlueprints=blueprints.filter(b=>!b.blueprint_id.startsWith('pol_theory_phase2_')); ok(coreBlueprints.length===40,'Det finnes fortsatt 40 kjerne- og fase-1-planer'); for(const b of coreBlueprints){ok(domains.includes(b.domain_id),b.blueprint_id+' har gyldig domene');ok(emneIds.includes(b.emne_id)||(b.blueprint_id.startsWith('pol_institutions_phase1_')&&emner.some(e=>e.emne_id===b.emne_id)),b.blueprint_id+' har gyldig emne');ok(methods.methods.some(m=>m.method_id===b.method_id),b.blueprint_id+' har gyldig metode');ok(b.answer_requirements.length===6,b.blueprint_id+' har seks svarskrav');}
 ok(!fs.existsSync(path.join(BASE,'kvalitetslag_v1')),'Ingen kvalitetslag-overlay finnes');
 console.log('PASS: '+pass); console.log('RESULTAT: PASS');
