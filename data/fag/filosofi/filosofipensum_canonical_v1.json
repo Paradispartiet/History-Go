@@ -1,118 +1,585 @@
 {
   "subject_id": "filosofi",
   "label": "Filosofi – pensum",
-  "version": "1.0",
+  "version": "2.0",
+  "progression_rule": "Fra presise begreper og argumentrekonstruksjon til teorisammenligning, kritikk, globale tradisjoner og selvstendig stedsbasert analyse.",
   "modules": [
     {
       "module_id": "kur_filosofi_01_argumentasjon_logikk",
       "title": "Argumentasjon og logikk",
       "level": 1,
-      "estimated_minutes": 40,
+      "estimated_minutes": 45,
       "mål": [
-        "Kunne skille premiss, konklusjon og skjulte forutsetninger i et argument.",
-        "Kunne forklare forskjellen mellom gyldighet og holdbarhet.",
-        "Kunne formulere en presis innvending uten å lage en stråmann."
+        "Kunne definere og skille sentrale begreper i argumentasjon og logikk.",
+        "Kunne rekonstruere minst ett argument og formulere en presis innvending.",
+        "Kunne sammenligne minst to teoretikere på samme eksplisitte problem.",
+        "Kunne anvende teori på et dokumentert case, verk, institusjon eller sted."
       ],
-      "emner": ["em_filosofi_argument_premiss_konklusjon", "em_filosofi_gyldighet_holdbarhet", "em_filosofi_feilslutninger_motargument"],
-      "konsepter": ["argument", "premiss", "konklusjon", "gyldighet", "holdbarhet", "motargument"],
+      "emner": [
+        "em_filosofi_argument_premiss_konklusjon",
+        "em_filosofi_gyldighet_holdbarhet",
+        "em_filosofi_uformell_logikk_feilslutninger",
+        "em_filosofi_dialog_uenighet"
+      ],
+      "konsepter": [
+        "argument",
+        "premiss",
+        "konklusjon",
+        "gyldighet",
+        "holdbarhet",
+        "logisk_folge",
+        "feilslutning",
+        "stramann",
+        "sirkelargument",
+        "velvillig_fortolkning",
+        "uenighetskompetanse",
+        "intellektuell_ydmykhet"
+      ],
+      "topic_hooks": [
+        "fil_argumentasjon_logikk_01",
+        "fil_argumentasjon_logikk_02",
+        "fil_argumentasjon_logikk_03"
+      ],
+      "metoder": [
+        "met_filosofi_argumentrekonstruksjon",
+        "met_filosofi_deduktiv_analyse",
+        "met_filosofi_premissproving",
+        "met_filosofi_velvillig_fortolkning"
+      ],
       "status": "active"
     },
     {
-      "module_id": "kur_filosofi_02_kunnskap_sannhet_tvil",
-      "title": "Kunnskap, sannhet og tvil",
+      "module_id": "kur_filosofi_02_erkjennelse_sannhet",
+      "title": "Erkjennelse, sannhet og kunnskapsmakt",
       "level": 1,
       "estimated_minutes": 45,
       "mål": [
-        "Kunne skille tro, sannhet og begrunnelse.",
-        "Kunne bruke et moteksempel til å teste en definisjon av kunnskap.",
-        "Kunne forklare forskjellen mellom metodisk tvil og total skepsis."
+        "Kunne definere og skille sentrale begreper i erkjennelse, sannhet og kunnskapsmakt.",
+        "Kunne rekonstruere minst ett argument og formulere en presis innvending.",
+        "Kunne sammenligne minst to teoretikere på samme eksplisitte problem.",
+        "Kunne anvende teori på et dokumentert case, verk, institusjon eller sted."
       ],
-      "emner": ["em_filosofi_kunnskap_begrunnelse_sannhet", "em_filosofi_skepsis_sikkerhet"],
-      "konsepter": ["kunnskap", "sannhet", "begrunnelse", "skepsis", "sikkerhet", "feilbarlighet"],
+      "emner": [
+        "em_filosofi_kunnskap_begrunnelse_sannhet",
+        "em_filosofi_skepsis_feilbarlighet",
+        "em_filosofi_vitnesbyrd_ekspertise_tillit",
+        "em_filosofi_epistemisk_urettferdighet_standpunkt"
+      ],
+      "konsepter": [
+        "kunnskap",
+        "begrunnelse",
+        "sannhet",
+        "skepsis",
+        "feilbarlighet",
+        "metodisk_tvil",
+        "vitnesbyrd",
+        "ekspertise",
+        "epistemisk_tillit",
+        "epistemisk_urettferdighet",
+        "standpunktsteori",
+        "situert_kunnskap"
+      ],
+      "topic_hooks": [
+        "fil_erkjennelse_sannhet_01",
+        "fil_erkjennelse_sannhet_02",
+        "fil_erkjennelse_sannhet_03"
+      ],
+      "metoder": [
+        "met_filosofi_begrepsanalyse",
+        "met_filosofi_moteksempel",
+        "met_filosofi_standpunktanalyse",
+        "met_filosofi_abduktiv_vurdering"
+      ],
       "status": "active"
     },
     {
-      "module_id": "kur_filosofi_03_virkelighet_bevissthet_identitet",
-      "title": "Virkelighet, bevissthet og identitet",
+      "module_id": "kur_filosofi_03_metafysikk_virkelighet",
+      "title": "Metafysikk, virkelighet og tid",
       "level": 2,
-      "estimated_minutes": 50,
-      "mål": [
-        "Kunne formulere et ontologisk spørsmål og skille det fra et empirisk spørsmål.",
-        "Kunne sammenligne minst to posisjoner om forholdet mellom kropp og sinn.",
-        "Kunne bruke et tankeeksperiment på personlig identitet eller fri vilje."
-      ],
-      "emner": ["em_filosofi_metafysikk_ontologi", "em_filosofi_bevissthet_kropp_sinn", "em_filosofi_person_identitet_frihet"],
-      "konsepter": ["ontologi", "bevissthet", "kropp_sinn", "personlig_identitet", "fri_vilje", "ansvar"],
-      "status": "active"
-    },
-    {
-      "module_id": "kur_filosofi_04_etikk_ansvar",
-      "title": "Etikk og ansvar",
-      "level": 2,
-      "estimated_minutes": 50,
-      "mål": [
-        "Kunne skille konsekvensetiske, pliktetiske og dydsetiske begrunnelser.",
-        "Kunne identifisere hvilke moralske hensyn som kolliderer i et konkret case.",
-        "Kunne begrunne en vurdering og samtidig formulere den sterkeste innvendingen."
-      ],
-      "emner": ["em_filosofi_normativ_etikk", "em_filosofi_anvendt_etikk_ansvar"],
-      "konsepter": ["konsekvensetikk", "pliktetikk", "dydsetikk", "rettighet", "ansvar", "samtykke"],
-      "status": "active"
-    },
-    {
-      "module_id": "kur_filosofi_05_politisk_filosofi_offentlighet",
-      "title": "Politisk filosofi og offentlighet",
-      "level": 2,
-      "estimated_minutes": 50,
-      "mål": [
-        "Kunne skille makt, autoritet og legitimitet.",
-        "Kunne sammenligne frihet, likhet og rettferdighet som politiske idealer.",
-        "Kunne forklare hvorfor offentlig begrunnelse er viktig under uenighet."
-      ],
-      "emner": ["em_filosofi_makt_autoritet_legitimitet", "em_filosofi_rettferdighet_likhet_frihet", "em_filosofi_demokrati_offentlig_fornuft"],
-      "konsepter": ["makt", "legitimitet", "rettferdighet", "likhet", "frihet", "offentlig_fornuft"],
-      "status": "active"
-    },
-    {
-      "module_id": "kur_filosofi_06_estetikk_fortolkning",
-      "title": "Estetikk og fortolkning",
-      "level": 2,
-      "estimated_minutes": 45,
-      "mål": [
-        "Kunne skille estetisk erfaring fra en ren faktabeskrivelse av et verk.",
-        "Kunne forklare hvordan historisk kontekst påvirker fortolkning.",
-        "Kunne begrunne en tolkning med synlige trekk og fagbegreper."
-      ],
-      "emner": ["em_filosofi_estetikk_kunsterfaring", "em_filosofi_fortolkning_hermeneutikk"],
-      "konsepter": ["estetikk", "kunstverk", "smak", "fortolkning", "hermeneutikk", "forforståelse"],
-      "status": "active"
-    },
-    {
-      "module_id": "kur_filosofi_07_vitenskapsfilosofi_teknologi",
-      "title": "Vitenskapsfilosofi og teknologi",
-      "level": 3,
       "estimated_minutes": 55,
       "mål": [
-        "Kunne forklare et sentralt avgrensningsproblem mellom vitenskap og pseudovitenskap.",
-        "Kunne skille data, modell, evidens og forklaring.",
-        "Kunne analysere hvordan teknologi og institusjoner fordeler kunnskapsmakt."
+        "Kunne definere og skille sentrale begreper i metafysikk, virkelighet og tid.",
+        "Kunne rekonstruere minst ett argument og formulere en presis innvending.",
+        "Kunne sammenligne minst to teoretikere på samme eksplisitte problem.",
+        "Kunne anvende teori på et dokumentert case, verk, institusjon eller sted."
       ],
-      "emner": ["em_filosofi_vitenskapsfilosofi_avgrensning", "em_filosofi_forklaring_modell_evidens", "em_filosofi_teknologi_kunnskapsinstitusjoner"],
-      "konsepter": ["demarkasjon", "etterprovbarhet", "modell", "evidens", "forklaring", "ekspertise"],
+      "emner": [
+        "em_filosofi_ontologi_substans_relajson",
+        "em_filosofi_arsak_nodvendighet_mulighet",
+        "em_filosofi_tid_endring_prosess",
+        "em_filosofi_realisme_antirealisme"
+      ],
+      "konsepter": [
+        "ontologi",
+        "substans",
+        "relasjonell_ontologi",
+        "arsak",
+        "nodvendighet",
+        "mulig_verden",
+        "tid",
+        "endring",
+        "prosessontologi",
+        "realisme",
+        "antirealisme",
+        "begrepsskjema"
+      ],
+      "topic_hooks": [
+        "fil_metafysikk_virkelighet_01",
+        "fil_metafysikk_virkelighet_02",
+        "fil_metafysikk_virkelighet_03"
+      ],
+      "metoder": [
+        "met_filosofi_begrepsanalyse",
+        "met_filosofi_distinksjon_definisjon",
+        "met_filosofi_tankeeksperiment",
+        "met_filosofi_moteksempel"
+      ],
       "status": "active"
     },
     {
-      "module_id": "kur_filosofi_08_eksistens_erfaring_miljo_idehistorie",
-      "title": "Eksistens, erfaring, miljø og idéhistorie",
-      "level": 3,
-      "estimated_minutes": 60,
+      "module_id": "kur_filosofi_04_sinn_bevissthet_identitet",
+      "title": "Sinn, bevissthet og personlig identitet",
+      "level": 2,
+      "estimated_minutes": 55,
       "mål": [
-        "Kunne beskrive et fenomen før det forklares eller vurderes.",
-        "Kunne drøfte egenverdi og ansvar i miljøfilosofi.",
-        "Kunne plassere en filosofisk idé i en historisk tradisjon og et konkret sted."
+        "Kunne definere og skille sentrale begreper i sinn, bevissthet og personlig identitet.",
+        "Kunne rekonstruere minst ett argument og formulere en presis innvending.",
+        "Kunne sammenligne minst to teoretikere på samme eksplisitte problem.",
+        "Kunne anvende teori på et dokumentert case, verk, institusjon eller sted."
       ],
-      "emner": ["em_filosofi_eksistens_mening", "em_filosofi_fenomenologi_erfaring", "em_filosofi_miljofilosofi_dypokologi", "em_filosofi_idehistorie_tradisjon_resepsjon"],
-      "konsepter": ["eksistens", "livsverden", "fenomenologi", "egenverdi", "dypokologi", "resepsjon"],
+      "emner": [
+        "em_filosofi_kropp_sinn_bevissthet",
+        "em_filosofi_intentionalitet_representasjon",
+        "em_filosofi_personlig_identitet_selv",
+        "em_filosofi_fri_vilje_ansvar"
+      ],
+      "konsepter": [
+        "bevissthet",
+        "dualisme",
+        "fysikalisme",
+        "intentionalitet",
+        "mental_representasjon",
+        "funksjonalisme",
+        "personlig_identitet",
+        "selv",
+        "psykologisk_kontinuitet",
+        "fri_vilje",
+        "determinisme",
+        "kompatibilisme"
+      ],
+      "topic_hooks": [
+        "fil_sinn_bevissthet_identitet_01",
+        "fil_sinn_bevissthet_identitet_02",
+        "fil_sinn_bevissthet_identitet_03"
+      ],
+      "metoder": [
+        "met_filosofi_tankeeksperiment",
+        "met_filosofi_fenomenologisk_beskrivelse",
+        "met_filosofi_begrepsanalyse",
+        "met_filosofi_dilemmavariasjon"
+      ],
+      "status": "active"
+    },
+    {
+      "module_id": "kur_filosofi_05_etikk_moralpsykologi",
+      "title": "Etikk, dyd og moralsk ansvar",
+      "level": 2,
+      "estimated_minutes": 55,
+      "mål": [
+        "Kunne definere og skille sentrale begreper i etikk, dyd og moralsk ansvar.",
+        "Kunne rekonstruere minst ett argument og formulere en presis innvending.",
+        "Kunne sammenligne minst to teoretikere på samme eksplisitte problem.",
+        "Kunne anvende teori på et dokumentert case, verk, institusjon eller sted."
+      ],
+      "emner": [
+        "em_filosofi_normativ_etikk",
+        "em_filosofi_metaetikk_moralsk_sannhet",
+        "em_filosofi_omsorg_relasjon_sarbarhet",
+        "em_filosofi_anvendt_etikk_ansvar"
+      ],
+      "konsepter": [
+        "konsekvensetikk",
+        "pliktetikk",
+        "dydsetikk",
+        "moralsk_realisme",
+        "ekspressivisme",
+        "moralsk_relativisme",
+        "omsorgsetikk",
+        "sarbarhet",
+        "relasjonell_autonomi",
+        "samtykke",
+        "skadeprinsipp",
+        "moralsk_ansvar"
+      ],
+      "topic_hooks": [
+        "fil_etikk_moralpsykologi_01",
+        "fil_etikk_moralpsykologi_02",
+        "fil_etikk_moralpsykologi_03"
+      ],
+      "metoder": [
+        "met_filosofi_normativ_sammenligning",
+        "met_filosofi_reflektiv_likevekt",
+        "met_filosofi_casebasert_etikk",
+        "met_filosofi_dilemmavariasjon"
+      ],
+      "status": "active"
+    },
+    {
+      "module_id": "kur_filosofi_06_politisk_filosofi_rettferdighet",
+      "title": "Politisk filosofi, frihet og rettferdighet",
+      "level": 2,
+      "estimated_minutes": 55,
+      "mål": [
+        "Kunne definere og skille sentrale begreper i politisk filosofi, frihet og rettferdighet.",
+        "Kunne rekonstruere minst ett argument og formulere en presis innvending.",
+        "Kunne sammenligne minst to teoretikere på samme eksplisitte problem.",
+        "Kunne anvende teori på et dokumentert case, verk, institusjon eller sted."
+      ],
+      "emner": [
+        "em_filosofi_stat_samfunnskontrakt_legitimitet",
+        "em_filosofi_frihet_rettigheter_tvang",
+        "em_filosofi_rettferdighet_likhet_fordeling",
+        "em_filosofi_demokrati_offentlig_fornuft"
+      ],
+      "konsepter": [
+        "samfunnskontrakt",
+        "politisk_legitimitet",
+        "suverenitet",
+        "negativ_frihet",
+        "positiv_frihet",
+        "rettighet",
+        "fordelingsrettferdighet",
+        "likhet",
+        "kapabilitet",
+        "deliberativt_demokrati",
+        "offentlig_fornuft",
+        "politisk_pluralisme"
+      ],
+      "topic_hooks": [
+        "fil_politisk_filosofi_rettferdighet_01",
+        "fil_politisk_filosofi_rettferdighet_02",
+        "fil_politisk_filosofi_rettferdighet_03"
+      ],
+      "metoder": [
+        "met_filosofi_normativ_sammenligning",
+        "met_filosofi_reflektiv_likevekt",
+        "met_filosofi_argumentrekonstruksjon",
+        "met_filosofi_stedsanalyse_dialog"
+      ],
+      "status": "active"
+    },
+    {
+      "module_id": "kur_filosofi_07_sosial_filosofi_makt",
+      "title": "Sosial filosofi, makt og frigjøring",
+      "level": 2,
+      "estimated_minutes": 55,
+      "mål": [
+        "Kunne definere og skille sentrale begreper i sosial filosofi, makt og frigjøring.",
+        "Kunne rekonstruere minst ett argument og formulere en presis innvending.",
+        "Kunne sammenligne minst to teoretikere på samme eksplisitte problem.",
+        "Kunne anvende teori på et dokumentert case, verk, institusjon eller sted."
+      ],
+      "emner": [
+        "em_filosofi_makt_disiplin_hegemoni",
+        "em_filosofi_rase_kolonialitet_dekolonisering",
+        "em_filosofi_kjonn_performativitet_feminisme",
+        "em_filosofi_anerkjennelse_fremmedgjoring_frigjoring"
+      ],
+      "konsepter": [
+        "makt",
+        "disiplin",
+        "hegemoni",
+        "kolonialitet",
+        "rasialisering",
+        "dekolonisering",
+        "kjonn",
+        "performativitet",
+        "interseksjonalitet",
+        "anerkjennelse",
+        "fremmedgjoring",
+        "frigjoring"
+      ],
+      "topic_hooks": [
+        "fil_sosial_filosofi_makt_01",
+        "fil_sosial_filosofi_makt_02",
+        "fil_sosial_filosofi_makt_03"
+      ],
+      "metoder": [
+        "met_filosofi_kritisk_teori",
+        "met_filosofi_diskursanalyse",
+        "met_filosofi_standpunktanalyse",
+        "met_filosofi_dekolonial_lesning"
+      ],
+      "status": "active"
+    },
+    {
+      "module_id": "kur_filosofi_08_estetikk_fortolkning",
+      "title": "Estetikk, kunst og fortolkning",
+      "level": 2,
+      "estimated_minutes": 55,
+      "mål": [
+        "Kunne definere og skille sentrale begreper i estetikk, kunst og fortolkning.",
+        "Kunne rekonstruere minst ett argument og formulere en presis innvending.",
+        "Kunne sammenligne minst to teoretikere på samme eksplisitte problem.",
+        "Kunne anvende teori på et dokumentert case, verk, institusjon eller sted."
+      ],
+      "emner": [
+        "em_filosofi_skjonnhet_smak_dom",
+        "em_filosofi_kunstverk_kunststatus_institusjon",
+        "em_filosofi_hermeneutikk_fortolkning",
+        "em_filosofi_kunst_politikk_offentlighet"
+      ],
+      "konsepter": [
+        "skjonnhet",
+        "smak",
+        "estetisk_dom",
+        "kunstverk",
+        "kunststatus",
+        "kunstinstitusjon",
+        "hermeneutikk",
+        "forforstaelse",
+        "hermeneutisk_sirkel",
+        "estetisk_regime",
+        "aura",
+        "kritisk_kunst"
+      ],
+      "topic_hooks": [
+        "fil_estetikk_fortolkning_01",
+        "fil_estetikk_fortolkning_02"
+      ],
+      "metoder": [
+        "met_filosofi_hermeneutisk_lesning",
+        "met_filosofi_fenomenologisk_beskrivelse",
+        "met_filosofi_kildekritisk_verklesning",
+        "met_filosofi_stedsanalyse_dialog"
+      ],
+      "status": "active"
+    },
+    {
+      "module_id": "kur_filosofi_09_vitenskapsfilosofi",
+      "title": "Vitenskapsfilosofi og forklaring",
+      "level": 3,
+      "estimated_minutes": 65,
+      "mål": [
+        "Kunne definere og skille sentrale begreper i vitenskapsfilosofi og forklaring.",
+        "Kunne rekonstruere minst ett argument og formulere en presis innvending.",
+        "Kunne sammenligne minst to teoretikere på samme eksplisitte problem.",
+        "Kunne anvende teori på et dokumentert case, verk, institusjon eller sted."
+      ],
+      "emner": [
+        "em_filosofi_demarkasjon_falsifikasjon",
+        "em_filosofi_paradigmer_forskningsprogrammer",
+        "em_filosofi_evidens_forklaring_modell",
+        "em_filosofi_verdier_objektivitet_vitenskap"
+      ],
+      "konsepter": [
+        "demarkasjon",
+        "falsifiserbarhet",
+        "pseudovitenskap",
+        "paradigme",
+        "normalvitenskap",
+        "forskningsprogram",
+        "evidens",
+        "vitenskapelig_forklaring",
+        "modell",
+        "objektivitet",
+        "verdiladet_vitenskap",
+        "underdeterminering"
+      ],
+      "topic_hooks": [
+        "fil_vitenskapsfilosofi_01",
+        "fil_vitenskapsfilosofi_02",
+        "fil_vitenskapsfilosofi_03"
+      ],
+      "metoder": [
+        "met_filosofi_vitenskapsfilosofisk_case",
+        "met_filosofi_abduktiv_vurdering",
+        "met_filosofi_premissproving",
+        "met_filosofi_genealogi_idehistorie"
+      ],
+      "status": "active"
+    },
+    {
+      "module_id": "kur_filosofi_10_teknologi_ai",
+      "title": "Teknologi, digitalitet og kunstig intelligens",
+      "level": 3,
+      "estimated_minutes": 65,
+      "mål": [
+        "Kunne definere og skille sentrale begreper i teknologi, digitalitet og kunstig intelligens.",
+        "Kunne rekonstruere minst ett argument og formulere en presis innvending.",
+        "Kunne sammenligne minst to teoretikere på samme eksplisitte problem.",
+        "Kunne anvende teori på et dokumentert case, verk, institusjon eller sted."
+      ],
+      "emner": [
+        "em_filosofi_teknologi_makt_infrastruktur",
+        "em_filosofi_ai_intelligens_personskap",
+        "em_filosofi_algoritmisk_rettferdighet_ansvar",
+        "em_filosofi_data_personvern_overvaking"
+      ],
+      "konsepter": [
+        "teknologisk_determinisme",
+        "infrastruktur",
+        "teknologisk_makt",
+        "kunstig_intelligens",
+        "forstaelse",
+        "personskap",
+        "algoritmisk_skjevhet",
+        "forklarbarhet",
+        "ansvarsgap",
+        "personvern",
+        "overvaking",
+        "informasjonsautonomi"
+      ],
+      "topic_hooks": [
+        "fil_teknologi_ai_01",
+        "fil_teknologi_ai_02",
+        "fil_teknologi_ai_03"
+      ],
+      "metoder": [
+        "met_filosofi_teknologisk_medisiering",
+        "met_filosofi_algoritmisk_audit",
+        "met_filosofi_casebasert_etikk",
+        "met_filosofi_konseptuell_ingeniorkunst"
+      ],
+      "status": "active"
+    },
+    {
+      "module_id": "kur_filosofi_11_eksistens_fenomenologi",
+      "title": "Eksistens, fenomenologi og livstolkning",
+      "level": 3,
+      "estimated_minutes": 65,
+      "mål": [
+        "Kunne definere og skille sentrale begreper i eksistens, fenomenologi og livstolkning.",
+        "Kunne rekonstruere minst ett argument og formulere en presis innvending.",
+        "Kunne sammenligne minst to teoretikere på samme eksplisitte problem.",
+        "Kunne anvende teori på et dokumentert case, verk, institusjon eller sted."
+      ],
+      "emner": [
+        "em_filosofi_eksistens_mening_autentisitet",
+        "em_filosofi_angst_absurditet_dodelighet",
+        "em_filosofi_fenomenologi_livsverden_kropp",
+        "em_filosofi_den_andre_ansikt_ansvar"
+      ],
+      "konsepter": [
+        "eksistens",
+        "mening",
+        "autentisitet",
+        "angst",
+        "absurditet",
+        "dodelighet",
+        "fenomenologi",
+        "livsverden",
+        "levd_kropp",
+        "den_andre",
+        "ansikt",
+        "uendelig_ansvar"
+      ],
+      "topic_hooks": [
+        "fil_eksistens_fenomenologi_01",
+        "fil_eksistens_fenomenologi_02"
+      ],
+      "metoder": [
+        "met_filosofi_fenomenologisk_beskrivelse",
+        "met_filosofi_hermeneutisk_lesning",
+        "met_filosofi_tankeeksperiment",
+        "met_filosofi_stedsanalyse_dialog"
+      ],
+      "status": "active"
+    },
+    {
+      "module_id": "kur_filosofi_12_miljo_dyr_klima",
+      "title": "Miljø-, dyre- og klimafilosofi",
+      "level": 3,
+      "estimated_minutes": 65,
+      "mål": [
+        "Kunne definere og skille sentrale begreper i miljø-, dyre- og klimafilosofi.",
+        "Kunne rekonstruere minst ett argument og formulere en presis innvending.",
+        "Kunne sammenligne minst to teoretikere på samme eksplisitte problem.",
+        "Kunne anvende teori på et dokumentert case, verk, institusjon eller sted."
+      ],
+      "emner": [
+        "em_filosofi_natur_egenverdi_dypokologi",
+        "em_filosofi_dyr_moralsk_status",
+        "em_filosofi_klimarettferdighet_generasjoner",
+        "em_filosofi_okofeminisme_urfolkskunnskap"
+      ],
+      "konsepter": [
+        "egenverdi",
+        "dypokologi",
+        "okologisk_selv",
+        "moralsk_status",
+        "sentiens",
+        "artsdiskriminering",
+        "klimarettferdighet",
+        "generasjonsrettferdighet",
+        "historisk_ansvar",
+        "okofeminisme",
+        "urfolkskunnskap",
+        "gjensidighet"
+      ],
+      "topic_hooks": [
+        "fil_miljo_dyr_klima_01",
+        "fil_miljo_dyr_klima_02"
+      ],
+      "metoder": [
+        "met_filosofi_normativ_sammenligning",
+        "met_filosofi_casebasert_etikk",
+        "met_filosofi_standpunktanalyse",
+        "met_filosofi_stedsanalyse_dialog"
+      ],
+      "status": "active"
+    },
+    {
+      "module_id": "kur_filosofi_13_globale_tradisjoner",
+      "title": "Globale tradisjoner og filosofihistorie",
+      "level": 3,
+      "estimated_minutes": 65,
+      "mål": [
+        "Kunne definere og skille sentrale begreper i globale tradisjoner og filosofihistorie.",
+        "Kunne rekonstruere minst ett argument og formulere en presis innvending.",
+        "Kunne sammenligne minst to teoretikere på samme eksplisitte problem.",
+        "Kunne anvende teori på et dokumentert case, verk, institusjon eller sted."
+      ],
+      "emner": [
+        "em_filosofi_antikk_middelalder_modernitet",
+        "em_filosofi_kinesisk_filosofi",
+        "em_filosofi_indisk_buddhistisk_filosofi",
+        "em_filosofi_islamsk_jodisk_filosofi",
+        "em_filosofi_afrikansk_filosofi_ubuntu",
+        "em_filosofi_latinamerikansk_dekolonial_filosofi"
+      ],
+      "konsepter": [
+        "filosofisk_kanon",
+        "resepsjon",
+        "modernitet",
+        "ren",
+        "li",
+        "dao",
+        "anatman",
+        "sunyata",
+        "pramana",
+        "fornuft_apenbaring",
+        "nodvendig_vaerende",
+        "dobbel_sannhet",
+        "ubuntu",
+        "person_gjennom_fellesskap",
+        "konseptuell_avkolonisering",
+        "frigjoringsfilosofi",
+        "maktens_kolonialitet",
+        "transmodernitet"
+      ],
+      "topic_hooks": [
+        "fil_globale_tradisjoner_01",
+        "fil_globale_tradisjoner_02",
+        "fil_globale_tradisjoner_03",
+        "fil_globale_tradisjoner_04"
+      ],
+      "metoder": [
+        "met_filosofi_komparativ_filosofi",
+        "met_filosofi_kildekritisk_verklesning",
+        "met_filosofi_dekolonial_lesning",
+        "met_filosofi_genealogi_idehistorie"
+      ],
       "status": "active"
     }
   ]

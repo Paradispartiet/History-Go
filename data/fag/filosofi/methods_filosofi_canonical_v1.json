@@ -1,91 +1,331 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "subject_id": "filosofi",
-  "purpose": "Metodekatalog for presis argumentasjon, begrepsanalyse, normativ vurdering, idéhistorisk lesning og stedsbasert filosofisk arbeid i History Go.",
+  "purpose": "Metodekatalog for argumentasjon, begrepsanalyse, normativ vurdering, kritisk teori, komparativ filosofi og stedsbasert arbeid.",
   "methods": [
     {
       "method_id": "met_filosofi_argumentrekonstruksjon",
       "title": "Argumentrekonstruksjon",
-      "description": "Gjør en tekst eller ytring om til et tydelig argument med eksplisitte premisser, konklusjon og eventuelle skjulte forutsetninger.",
-      "data_forms": ["argumentkart", "premissliste", "tekstutdrag"],
-      "canonical_status": "canonical"
+      "description": "Gjør en tekst eller ytring om til eksplisitte premisser, slutningstrinn og konklusjon.",
+      "data_forms": [
+        "argumentkart",
+        "premissliste",
+        "tekstutdrag"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
     },
     {
       "method_id": "met_filosofi_begrepsanalyse",
       "title": "Begrepsanalyse",
-      "description": "Undersøker hvordan et begrep brukes, hvilke kriterier det forutsetter og hvilke grenseeksempler som utfordrer det.",
-      "data_forms": ["begrepsmatrise", "eksempelsett", "definisjonsnotat"],
-      "canonical_status": "canonical"
+      "description": "Undersøker kriterier, bruksmåter, grenseeksempler og nødvendige distinksjoner.",
+      "data_forms": [
+        "begrepsmatrise",
+        "eksempelsett",
+        "definisjonsnotat"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
     },
     {
       "method_id": "met_filosofi_distinksjon_definisjon",
       "title": "Distinksjon og definisjon",
-      "description": "Skiller nærliggende fenomener fra hverandre og formulerer definisjoner som er presise nok til å kunne prøves.",
-      "data_forms": ["distinksjonstabell", "arbeidsdefinisjon", "grensetilfelle"],
-      "canonical_status": "canonical"
+      "description": "Skiller nærliggende fenomener og formulerer prøvbare arbeidsdefinisjoner.",
+      "data_forms": [
+        "distinksjonstabell",
+        "arbeidsdefinisjon",
+        "grensetilfelle"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
     },
     {
       "method_id": "met_filosofi_moteksempel",
       "title": "Moteksempel",
-      "description": "Tester en generell påstand ved å finne et relevant tilfelle der påstanden ser ut til å gi feil resultat.",
-      "data_forms": ["case", "moteksempel", "revidert påstand"],
-      "canonical_status": "canonical"
+      "description": "Tester en generell påstand med et relevant tilfelle som utfordrer den.",
+      "data_forms": [
+        "case",
+        "moteksempel",
+        "revidert_pastand"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
     },
     {
       "method_id": "met_filosofi_tankeeksperiment",
       "title": "Tankeeksperiment",
-      "description": "Bruker et kontrollert hypotetisk scenario til å isolere intuisjoner, prinsipper eller konsekvenser som ellers er vanskelige å se.",
-      "data_forms": ["scenario", "variantanalyse", "intuisjonslogg"],
-      "canonical_status": "canonical"
+      "description": "Isolerer prinsipper og intuisjoner gjennom kontrollerte hypotetiske scenarier.",
+      "data_forms": [
+        "scenario",
+        "variantanalyse",
+        "intuisjonslogg"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
     },
     {
       "method_id": "met_filosofi_premissproving",
       "title": "Premissprøving",
-      "description": "Vurderer om et premiss er relevant, rimelig begrunnet og tilstrekkelig for konklusjonen det skal støtte.",
-      "data_forms": ["premissvurdering", "evidensnotat", "innvending"],
-      "canonical_status": "canonical"
+      "description": "Vurderer relevans, sannsynlighet, evidens og støtteforhold for et premiss.",
+      "data_forms": [
+        "premissvurdering",
+        "evidensnotat",
+        "innvending"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
     },
     {
       "method_id": "met_filosofi_velvillig_fortolkning",
       "title": "Velvillig fortolkning",
-      "description": "Tolker en posisjon i dens sterkeste rimelige form før den vurderes eller kritiseres.",
-      "data_forms": ["primærtekst", "posisjonssammendrag", "tolkningsalternativer"],
-      "canonical_status": "canonical"
+      "description": "Rekonstruerer en posisjon i dens sterkeste rimelige form før kritikk.",
+      "data_forms": [
+        "primærtekst",
+        "posisjonssammendrag",
+        "tolkningsalternativer"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_deduktiv_analyse",
+      "title": "Deduktiv analyse",
+      "description": "Tester om konklusjoner følger nødvendigvis fra gitte premisser.",
+      "data_forms": [
+        "formalisering",
+        "sannhetstabell",
+        "slutningsskjema"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_abduktiv_vurdering",
+      "title": "Abduktiv vurdering",
+      "description": "Sammenligner forklaringer etter omfang, enkelhet, presisjon og evidens.",
+      "data_forms": [
+        "forklaringsmatrise",
+        "hypoteseliste",
+        "evidensprofil"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_konseptuell_ingeniorkunst",
+      "title": "Konseptuell ingeniørkunst",
+      "description": "Vurderer om et begrep bør revideres for å fungere bedre normativt eller praktisk.",
+      "data_forms": [
+        "begrepsdiagnose",
+        "revisjonsforslag",
+        "konsekvensanalyse"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
     },
     {
       "method_id": "met_filosofi_normativ_sammenligning",
       "title": "Normativ sammenligning",
-      "description": "Sammenligner prinsipper eller teorier etter eksplisitte kriterier som frihet, velferd, rettferdighet, rettigheter eller ansvar.",
-      "data_forms": ["prinsipptabell", "case-matrise", "konsekvensanalyse"],
-      "canonical_status": "canonical"
+      "description": "Sammenligner teorier etter eksplisitte kriterier som frihet, velferd, rettigheter og ansvar.",
+      "data_forms": [
+        "prinsipptabell",
+        "case_matrise",
+        "konsekvensanalyse"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
     },
     {
       "method_id": "met_filosofi_reflektiv_likevekt",
       "title": "Reflektiv likevekt",
-      "description": "Justerer prinsipper og vurderinger mot hverandre til de danner en mest mulig sammenhengende helhet.",
-      "data_forms": ["vurderingssett", "prinsipprevisjon", "begrunnelseskjede"],
-      "canonical_status": "canonical"
+      "description": "Justerer prinsipper og vurderinger mot hverandre til en mer sammenhengende helhet.",
+      "data_forms": [
+        "vurderingssett",
+        "prinsipprevisjon",
+        "begrunnelseskjede"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_casebasert_etikk",
+      "title": "Casebasert etikk",
+      "description": "Analyserer konkrete konflikter før generelle prinsipper anvendes eller revideres.",
+      "data_forms": [
+        "casebeskrivelse",
+        "interessentkart",
+        "normkonflikt"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
     },
     {
       "method_id": "met_filosofi_genealogi_idehistorie",
       "title": "Genealogisk og idéhistorisk analyse",
-      "description": "Undersøker hvordan et begrep, ideal eller problem har oppstått, endret funksjon og blitt institusjonalisert over tid.",
-      "data_forms": ["primærtekst", "tidslinje", "institusjonshistorie"],
-      "canonical_status": "canonical"
+      "description": "Undersøker hvordan begreper, praksiser og idealer har oppstått og endret funksjon.",
+      "data_forms": [
+        "primærtekst",
+        "tidslinje",
+        "institusjonshistorie"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_hermeneutisk_lesning",
+      "title": "Hermeneutisk lesning",
+      "description": "Fortolker del og helhet i lys av språk, tradisjon, situasjon og forforståelse.",
+      "data_forms": [
+        "tekstutdrag",
+        "kontekstnotat",
+        "tolkningssirkel"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
     },
     {
       "method_id": "met_filosofi_fenomenologisk_beskrivelse",
       "title": "Fenomenologisk beskrivelse",
-      "description": "Beskriver hvordan et fenomen erfares før det forklares kausalt eller vurderes normativt.",
-      "data_forms": ["førstepersonsnotat", "sanselog", "erfaringsbeskrivelse"],
-      "canonical_status": "canonical"
+      "description": "Beskriver hvordan et fenomen viser seg i erfaring før kausal forklaring eller normativ dom.",
+      "data_forms": [
+        "førstepersonsnotat",
+        "sanselog",
+        "erfaringsbeskrivelse"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_kritisk_teori",
+      "title": "Kritisk-teoretisk analyse",
+      "description": "Kobler ideer og erfaringer til institusjoner, makt, ideologi og muligheter for frigjøring.",
+      "data_forms": [
+        "maktanalyse",
+        "institusjonskart",
+        "immanent_kritikk"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_diskursanalyse",
+      "title": "Diskursanalyse",
+      "description": "Undersøker hvilke begreper, kategorier og normaliteter som gjør utsagn mulige.",
+      "data_forms": [
+        "begrepskorpus",
+        "utsagnsmønster",
+        "diskurskart"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_standpunktanalyse",
+      "title": "Standpunktanalyse",
+      "description": "Undersøker hvordan sosial posisjon påvirker tilgang til erfaring og kunnskap.",
+      "data_forms": [
+        "posisjonskart",
+        "erfaringsgrunnlag",
+        "blindsonelogg"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_dekolonial_lesning",
+      "title": "Dekolonial lesning",
+      "description": "Identifiserer koloniale hierarkier, kunnskapsgrenser og alternative begrepsressurser.",
+      "data_forms": [
+        "kanonkritikk",
+        "oversettelsesnotat",
+        "kolonialitetskart"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_komparativ_filosofi",
+      "title": "Komparativ filosofi",
+      "description": "Sammenligner tradisjoner uten å redusere den ene til den andres begreper.",
+      "data_forms": [
+        "begrepspar",
+        "tradisjonsnotat",
+        "oversettelsesproblem"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_vitenskapsfilosofisk_case",
+      "title": "Vitenskapsfilosofisk caseanalyse",
+      "description": "Analyserer evidens, modeller, usikkerhet, verdier og institusjoner i konkret forskning.",
+      "data_forms": [
+        "forskningscase",
+        "modellkart",
+        "usikkerhetsprofil"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_teknologisk_medisiering",
+      "title": "Analyse av teknologisk mediering",
+      "description": "Undersøker hvordan teknologi former persepsjon, handling og normativt ansvar.",
+      "data_forms": [
+        "bruksscenario",
+        "infrastrukturkart",
+        "ansvarskjede"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_algoritmisk_audit",
+      "title": "Filosofisk algoritmeaudit",
+      "description": "Vurderer skjevhet, målvariabler, forklarbarhet, ansvar og berørte interesser.",
+      "data_forms": [
+        "modellkort",
+        "skjevhetsanalyse",
+        "ansvarsmatrise"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
     },
     {
       "method_id": "met_filosofi_stedsanalyse_dialog",
       "title": "Stedsanalyse og filosofisk dialog",
-      "description": "Bruker et konkret sted, monument, institusjon eller landskap som utgangspunkt for spørsmål, argumenter og offentlig samtale.",
-      "data_forms": ["stedsobservasjon", "dialogprotokoll", "fotodokumentasjon"],
-      "canonical_status": "canonical"
+      "description": "Bruker et konkret sted som utgangspunkt for spørsmål, argumenter og offentlig samtale.",
+      "data_forms": [
+        "stedsobservasjon",
+        "dialogprotokoll",
+        "fotodokumentasjon"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_dilemmavariasjon",
+      "title": "Dilemmavariasjon",
+      "description": "Endrer én faktor om gangen i et moralsk eller politisk dilemma for å teste prinsipper.",
+      "data_forms": [
+        "dilemma",
+        "variantserie",
+        "prinsipprespons"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
+    },
+    {
+      "method_id": "met_filosofi_kildekritisk_verklesning",
+      "title": "Kildekritisk verklesning",
+      "description": "Skiller verkets tekst, historisk kontekst, oversettelse og senere resepsjon.",
+      "data_forms": [
+        "primærtekst",
+        "utgavekritikk",
+        "resepsjonsnotat"
+      ],
+      "canonical_status": "canonical",
+      "quality_gate": "Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold."
     }
   ]
 }
