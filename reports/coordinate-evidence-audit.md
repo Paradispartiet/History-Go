@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-24T04:48:51.761Z
+Generert: 2026-07-24T04:58:57.770Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -265,7 +265,6 @@ Generert: 2026-07-24T04:48:51.761Z
 | sognsvann | data/coordinate-evidence/oslo/natur/sognsvann.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | stilla_nydalen | data/coordinate-evidence/oslo/natur/stilla_nydalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | svartdalen | data/coordinate-evidence/oslo/natur/svartdalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| tjernsmyr_salamanderlokalitet | data/coordinate-evidence/oslo/natur/tjernsmyr_salamanderlokalitet.json | needs_research | needs_geometry | OK |
 | trosterud_friomrade | data/coordinate-evidence/oslo/natur/trosterud_friomrade.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vaterland_historisk_elvelop | data/coordinate-evidence/oslo/natur/vaterland_historisk_elvelop.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vaterlandsparken | data/coordinate-evidence/oslo/natur/vaterlandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -343,3 +342,4 @@ Generert: 2026-07-24T04:48:51.761Z
 | grafill | data/coordinate-evidence/oslo/kunst/grafill.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akershus_energi | data/coordinate-evidence/akershus/naeringsliv/akershus_energi.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | fornebu_teknologipark | data/coordinate-evidence/akershus/naeringsliv/fornebu_teknologipark.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| tjernsmyr_salamanderlokalitet | data/coordinate-evidence/akershus/baerum/tjernsmyr_salamanderlokalitet.json | applied_to_place | do_not_change_coordinates_yet | OK |

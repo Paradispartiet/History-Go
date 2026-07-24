@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "tjernsmyr_salamanderlokalitet",
+  "placeFile": "data/places/natur/akershus/tjernsmyr_salamanderlokalitet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
+  "currentCoordinate": {
+    "lat": 59.911052035250464,
+    "lon": 10.626894645899853,
+    "r": 120,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap exact named wetland way 150926471 – Tjernsmyr",
+    "coordType": "wetland_area_anchor",
+    "coordNote": "Exact public area geometry: OpenStreetMap way 150926471 is named Tjernsmyr and tagged natural=wetland. Canonical lat/lon is a deterministic interior polygon_centroid derived from the public wetland polygon (2277 m²), not a salamander capture, trap, nest or individual-observation point. Statens vegvesen documents Tjernsmyr at Lysaker as a salamander habitat affected by E18 planning; the canonical source family is therefore moved from Oslo to Bærum/Akershus."
+  },
+  "identity": {
+    "currentName": "Tjernsmyr salamanderlokalitet",
+    "resolvedIdentity": "den offentlig kartlagte våtmarksflaten Tjernsmyr ved Lysaker i Bærum, brukt som habitatområde-locator for salamandercaset",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "natural_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt offentlig navngitt våtmarksgeometri",
+    "innvendig deterministisk områdeanker på samme polygon",
+    "offisiell kilde som dokumenterer Tjernsmyr som salamanderhabitat ved Lysaker/Bærum"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – way 150926471 Tjernsmyr",
+      "sourceUrl": "https://www.openstreetmap.org/way/150926471",
+      "sourceObjectId": "osm-way:150926471",
+      "sourceQuality": "exact_named_public_wetland_geometry",
+      "finding": "Eksakt offentlig polygon med name=Tjernsmyr og natural=wetland, ca. 2277 m².",
+      "canVerifyCoordinate": true,
+      "reason": "Exact public area geometry: OpenStreetMap way 150926471 is named Tjernsmyr and tagged natural=wetland. Canonical lat/lon is a deterministic interior polygon_centroid derived from the public wetland polygon (2277 m²), not a salamander capture, trap, nest or individual-observation point. Statens vegvesen documents Tjernsmyr at Lysaker as a salamander habitat affected by E18 planning; the canonical source family is therefore moved from Oslo to Bærum/Akershus."
+    },
+    {
+      "sourceProvider": "statens_vegvesen",
+      "sourceName": "Statens vegvesen – undersøkte salamanderliv ved Tjernsmyr",
+      "sourceUrl": "https://www.vegvesen.no/vegprosjekter/europaveg/e18vestkorridoren/nyhetsarkiv/undersokte-salamanderliv-ved-tjernsmyr/",
+      "sourceObjectId": "vegvesen:e18-vestkorridoren:tjernsmyr-salamander",
+      "sourceQuality": "official_habitat_identity",
+      "finding": "Statens vegvesen dokumenterer Tjernsmyr ved Lysaker som salamanderlokalitet i samferdsels- og utbyggingslandskapet.",
+      "canVerifyCoordinate": false,
+      "reason": "Dokumenterer habitatidentiteten og geografisk Bærum/Lysaker-kontekst; den offentlige OSM-våtmarksflaten brukes som koordinatgeometri."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:150926471",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "statens_vegvesen",
+      "sourceObjectId": "vegvesen:e18-vestkorridoren:tjernsmyr-salamander",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:150926471",
+      "lat": 59.911052035250464,
+      "lon": 10.626894645899853,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:150926471",
+      "lat": 59.9113328,
+      "lon": 10.6266225,
+      "coordRole": "boundary_anchor",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:150926471",
+      "lat": 59.9106733,
+      "lon": 10.6270294,
+      "coordRole": "boundary_anchor",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:150926471",
+      "lat": 59.9111776,
+      "lon": 10.6274597,
+      "coordRole": "boundary_anchor",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:150926471",
+      "lat": 59.9108765,
+      "lon": 10.6262167,
+      "coordRole": "boundary_anchor",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:150926471",
+      "lat": 59.911052035250464,
+      "lon": 10.626894645899853,
+      "coordRole": "area_anchor",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Tjernsmyr er flyttet til Bærum/Akershus og verifisert på den offentlige navngitte våtmarksflaten; biologiske individ- og fangstpunkter er eksplisitt ikke del av koordinatmodellen."
+  },
+  "notes": [
+    "Exact public area geometry: OpenStreetMap way 150926471 is named Tjernsmyr and tagged natural=wetland. Canonical lat/lon is a deterministic interior polygon_centroid derived from the public wetland polygon (2277 m²), not a salamander capture, trap, nest or individual-observation point. Statens vegvesen documents Tjernsmyr at Lysaker as a salamander habitat affected by E18 planning; the canonical source family is therefore moved from Oslo to Bærum/Akershus.",
+    "Nærmeste andre canonical marker ved write-time var fornebu_teknologipark på 1308.97 meter; ingen markør lå innen 3 meter."
+  ]
+}

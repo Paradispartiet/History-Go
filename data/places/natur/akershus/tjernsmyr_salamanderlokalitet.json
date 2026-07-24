@@ -1,9 +1,9 @@
 {
   "id": "tjernsmyr_salamanderlokalitet",
   "name": "Tjernsmyr salamanderlokalitet",
-  "lat": 59.911,
-  "lon": 10.62714,
-  "r": 300,
+  "lat": 59.911052035250464,
+  "lon": 10.626894645899853,
+  "r": 120,
   "category": "natur",
   "badge_refs": {
     "primary": "natur",
@@ -29,16 +29,16 @@
     "naturhensyn"
   ],
   "routeId": "oslo_salamanderdammer",
-  "sourceHint": "Statens vegvesen beskriver funn av både småsalamander og storsalamander ved Tjernsmyr i forbindelse med E18 Vestkorridoren. Koordinatet er lagt til Tjernsmyr-våtmarken som områdeanker.",
-  "coordType": "legacy_unverified",
-  "coordStatus": "needs_source",
-  "coordSource": "tjernsmyr_salamanderlokalitet_canonical_geometry_unresolved",
-  "coordVerifiedAt": "2026-07-21",
-  "coordNote": "Recorden dokumenterer selv at Tjernsmyr ligger i Bærum, men er lagret i Oslo-kilden. En koordinat kan ikke canonical-verifiseres i Oslo-køen før geografisk eierskap og kildefamilie er rettet; dagens generiske wetland-reference mangler dessuten et stabilt eksplisitt kildeobjekt.",
+  "sourceHint": "Statens vegvesen documents the Tjernsmyr salamander habitat at Lysaker. The public named Tjernsmyr wetland polygon is used only as the area locator; precise biological observation locations are intentionally excluded.",
+  "coordType": "wetland_area_anchor",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap exact named wetland way 150926471 – Tjernsmyr",
+  "coordVerifiedAt": "2026-07-24",
+  "coordNote": "Exact public area geometry: OpenStreetMap way 150926471 is named Tjernsmyr and tagged natural=wetland. Canonical lat/lon is a deterministic interior polygon_centroid derived from the public wetland polygon (2277 m²), not a salamander capture, trap, nest or individual-observation point. Statens vegvesen documents Tjernsmyr at Lysaker as a salamander habitat affected by E18 planning; the canonical source family is therefore moved from Oslo to Bærum/Akershus.",
   "links": {
     "website": "https://www.vegvesen.no/vegprosjekter/europaveg/e18vestkorridoren/nyhetsarkiv/undersokte-salamanderliv-ved-tjernsmyr/",
     "wikipedia": "",
-    "map": ""
+    "map": "https://www.openstreetmap.org/way/150926471"
   },
   "popupDesc": "Tjernsmyr er et godt eksempel på at salamanderlokaliteter ikke bare finnes i stille skogstjern, men også tett på store veier, anleggsområder og byutvikling. Statens vegvesen beskriver funn av både småsalamander og storsalamander ved Tjernsmyr, og hvordan kunnskap om overvintring, trekkruter og leveområder må brukes når E18-arbeid planlegges.\n\nI History Go bør Tjernsmyr brukes som case for naturhensyn i byggesonen. Spørsmål bør koble våtmark, rødlistet art, miljø-DNA, anleggsarbeid og naturmangfoldloven, men alltid på en konkret og stedlig måte: Hvorfor må et lite våtmarksområde kartlegges før store tekniske inngrep? Hva skjer når artenes trekkruter krysser veisystemer?",
   "emne_ids": [
@@ -103,5 +103,45 @@
       "blindern_forskningsparken_salamanderdam"
     ]
   },
-  "locatorType": "natural_area"
+  "locatorType": "natural_area",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:150926471",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "area_anchor",
+  "coordSourceId": "osm-way:150926471",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/150926471",
+  "anchors": [
+    {
+      "id": "tjernsmyr_boundary_north",
+      "name": "Tjernsmyr våtmark – north",
+      "type": "boundary_point",
+      "lat": 59.9113328,
+      "lon": 10.6266225,
+      "r": 25
+    },
+    {
+      "id": "tjernsmyr_boundary_south",
+      "name": "Tjernsmyr våtmark – south",
+      "type": "boundary_point",
+      "lat": 59.9106733,
+      "lon": 10.6270294,
+      "r": 25
+    },
+    {
+      "id": "tjernsmyr_boundary_east",
+      "name": "Tjernsmyr våtmark – east",
+      "type": "boundary_point",
+      "lat": 59.9111776,
+      "lon": 10.6274597,
+      "r": 25
+    },
+    {
+      "id": "tjernsmyr_boundary_west",
+      "name": "Tjernsmyr våtmark – west",
+      "type": "boundary_point",
+      "lat": 59.9108765,
+      "lon": 10.6262167,
+      "r": 25
+    }
+  ]
 }
