@@ -64,25 +64,26 @@ jobs:
           if-no-files-found: warn
       - name: Commit deterministic followups
         if: steps.followup.outcome == 'success'
+        shell: bash
         run: |
           set -euo pipefail
           rm tools/fix-global-normal-opening-followups.mjs
           rm tools/rebuild-active-quiz-production-contexts.mjs
           rm -f reports/global-quiz-normal-opening-followup-diagnostic.txt
+
+          changed_paths=$(git status --porcelain | sed -E 's/^.. //')
+          unexpected=$(printf '%s\n' "$changed_paths" | grep -Ev '^(data/quiz/by/deichman_bjorvika_sets\.json|data/quiz/production_context/[^/]+/[^/]+\.json|data/knowledge/(knowledge_units|concepts|terms|stories|knowledge_emne_review_queue)\.generated\.json|reports/knowledge-id-backfill\.json|reports/quiz-global-normal-opening-alignment-validation\.txt|tools/validate-global-quiz-normal-opening-alignment\.mjs|tools/fix-global-normal-opening-followups\.mjs|tools/rebuild-active-quiz-production-contexts\.mjs)$' || true)
+          if [[ -n "$unexpected" ]]; then
+            echo 'Uventede filer i deterministisk regenerering:'
+            printf '%s\n' "$unexpected"
+            exit 1
+          fi
+
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add data/quiz/by/deichman_bjorvika_sets.json
-          git add data/quiz/production_context
-          git add data/knowledge/knowledge_units.generated.json
-          git add data/knowledge/concepts.generated.json
-          git add data/knowledge/terms.generated.json
-          git add data/knowledge/stories.generated.json
-          git add data/knowledge/knowledge_emne_review_queue.generated.json
-          git add reports/knowledge-id-backfill.json
-          git add reports/quiz-global-normal-opening-alignment-validation.txt
-          git add tools/validate-global-quiz-normal-opening-alignment.mjs
-          git add -u tools/fix-global-normal-opening-followups.mjs tools/rebuild-active-quiz-production-contexts.mjs
+          git add -A
           git diff --cached --check
+          git diff --cached --stat
           git commit -m 'Quiz: synkroniser normalåpning, Knowledge og produksjonskontekst'
           git push origin HEAD:${{ github.head_ref }}
       - name: Propagate followup failure
