@@ -2,13 +2,14 @@
 
 Date: 2026-07-24
 
-- public OSM objects named Tjernsmyr: 5
-- named Tjernsmyr area geometries: 5
-- wetland/water areas within search radius: 11
-- wetland areas containing legacy anchor: 1
-- named Nominatim hits: 7
-- named Nominatim polygons: 7
+- public OSM objects containing Tjernsmyr in the name: 5
+- exact public `name=Tjernsmyr` + `natural=wetland` polygons: 1
+- named transport objects excluded from area classification: 3
+- named water-body objects: 1
+- exact wetland source: `osm-way:150926471`
+- exact wetland area: 2277 m²
+- legacy public area anchor lies inside polygon: true
 
-Decision: **candidate_unnamed_wetland_requires_identity_crosscheck:osm-way:150926471**
+Decision: **candidate_exact_public_named_wetland:osm-way:150926471**
 
-The record belongs in Bærum/Akershus. Only a public area geometry may be used; precise salamander observation locations are out of scope.
+The record belongs in Bærum/Akershus. Production may use the public named wetland polygon as the canonical habitat-area locator. Exact biological observation locations remain out of scope.
