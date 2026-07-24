@@ -1,8 +1,8 @@
 {
   "id": "regjeringskvartalet",
   "name": "Regjeringskvartalet",
-  "lat": 59.9156,
-  "lon": 10.7451,
+  "lat": 59.915605149367,
+  "lon": 10.745978768986,
   "r": 200,
   "category": "politikk",
   "year": 1958,
@@ -53,14 +53,71 @@
     "notes": "Skal spørres som møtepunkt mellom utøvende makt, sikkerhetspolitikk, byomforming og nyhetsformidlet offentlighet; medielaget skal knyttes til regjeringsmakt, kriser, 22. juli-etterhistorie og debatt om åpenhet/sikkerhet, ikke til generell bygningssymbolikk."
   },
   "locatorType": "institutional_area",
-  "coordStatus": "needs_source",
-  "coordType": "legacy_unverified",
-  "coordSource": "regjeringskvartalet_canonical_geometry_unresolved",
-  "coordVerifiedAt": "2026-07-21",
-  "coordNote": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes.",
+  "coordStatus": "verified_geometry",
+  "coordType": "official_plan_area_anchor",
+  "coordSource": "Oslo kommune Planinnsyn – S-5100 / PLANID 202020172",
+  "coordVerifiedAt": "2026-07-24",
+  "coordNote": "Object-type-first area production: Oslo kommune Planinnsyn exposes one exact current area-plan polygon as S-5100 / PLANID 202020172 in REGTILLEGG WFS. The canonical display marker is the deterministic polygon_centroid of that official polygon (105740 m²). Kommunal- og moderniseringsdepartementets decision of 10 February 2017 documents the same Regjeringskvartalet institutional scope between Akersgata and Møllergata, with Trefoldighetskirken/Deichman to the north and Høyesterett/Grensen 1 to the south. Høyblokka, 22. juli-senteret and the historical Y-blokka remain separate canonical subplaces inside the parent area; no individual building is used as a proxy for the whole quarter.",
   "underbadge_ids": [
     "storting_og_regjering",
     "politi_og_beredskap",
     "velferd_og_institusjoner"
+  ],
+  "sourceProvider": "municipality",
+  "sourceObjectId": "oslo-planinnsyn:REGTILLEGG:Omraadeplan:202020172",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "area_anchor",
+  "coordSourceId": "oslo-planinnsyn:REGTILLEGG:Omraadeplan:202020172",
+  "coordSourceUrl": "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=REGTILLEGG&SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms%3AOmraadeplan&OUTPUTFORMAT=geojson&SRSNAME=EPSG%3A32632",
+  "sourceHint": "Canonical parent geometry is the official S-5100 Regjeringskvartalet plan polygon. Individual government buildings and memorial institutions remain separate subplaces.",
+  "anchors": [
+    {
+      "id": "regjeringskvartalet_plan_boundary_north",
+      "name": "Regjeringskvartalet planområde – north",
+      "type": "boundary_point",
+      "lat": 59.917912329405,
+      "lon": 10.744400441097,
+      "r": 25
+    },
+    {
+      "id": "regjeringskvartalet_plan_boundary_south",
+      "name": "Regjeringskvartalet planområde – south",
+      "type": "boundary_point",
+      "lat": 59.913293827876,
+      "lon": 10.745015867107,
+      "r": 25
+    },
+    {
+      "id": "regjeringskvartalet_plan_boundary_east",
+      "name": "Regjeringskvartalet planområde – east",
+      "type": "boundary_point",
+      "lat": 59.915444545758,
+      "lon": 10.751101720332,
+      "r": 25
+    },
+    {
+      "id": "regjeringskvartalet_plan_boundary_west",
+      "name": "Regjeringskvartalet planområde – west",
+      "type": "boundary_point",
+      "lat": 59.916856083061,
+      "lon": 10.73972551233,
+      "r": 25
+    }
+  ],
+  "externalLinks": [
+    {
+      "type": "official",
+      "label": "Regjeringen.no – vedtak av statlig reguleringsplan",
+      "url": "https://www.regjeringen.no/no/dokumenter/vedtak-av-statlig-reguleringsplan-for-nytt-regjeringskvartal/id2538263/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-24"
+    },
+    {
+      "type": "official_map",
+      "label": "Oslo kommune Planinnsyn – S-5100",
+      "url": "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=REGTILLEGG&SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms%3AOmraadeplan&OUTPUTFORMAT=geojson&SRSNAME=EPSG%3A32632",
+      "lang": "nb",
+      "verifiedAt": "2026-07-24"
+    }
   ]
 }
