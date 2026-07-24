@@ -49,8 +49,9 @@ jobs:
           failed=0
           run_step fixer node tools/fix-global-normal-opening-followups.mjs || failed=1
           run_step knowledge_write npm run knowledge:canonical:write || failed=1
+          run_step production_context_write node tools/rebuild-active-quiz-production-contexts.mjs || failed=1
           run_step global_validator node tools/validate-global-quiz-normal-opening-alignment.mjs || failed=1
-          run_step production_context npm run audit:quiz-production-context || failed=1
+          run_step production_context_check npm run audit:quiz-production-context || failed=1
           run_step knowledge_check npm run knowledge:canonical:check || failed=1
           run_step diff_check git diff --check || failed=1
           cp "$LOG" reports/quiz-global-normal-opening-alignment-validation.txt
@@ -66,10 +67,12 @@ jobs:
         run: |
           set -euo pipefail
           rm tools/fix-global-normal-opening-followups.mjs
+          rm tools/rebuild-active-quiz-production-contexts.mjs
           rm -f reports/global-quiz-normal-opening-followup-diagnostic.txt
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add data/quiz/by/deichman_bjorvika_sets.json
+          git add data/quiz/production_context
           git add data/knowledge/knowledge_units.generated.json
           git add data/knowledge/concepts.generated.json
           git add data/knowledge/terms.generated.json
@@ -78,9 +81,9 @@ jobs:
           git add reports/knowledge-id-backfill.json
           git add reports/quiz-global-normal-opening-alignment-validation.txt
           git add tools/validate-global-quiz-normal-opening-alignment.mjs
-          git add -u tools/fix-global-normal-opening-followups.mjs
+          git add -u tools/fix-global-normal-opening-followups.mjs tools/rebuild-active-quiz-production-contexts.mjs
           git diff --cached --check
-          git commit -m 'Quiz: synkroniser Deichman og Knowledge etter normalisering'
+          git commit -m 'Quiz: synkroniser normalåpning, Knowledge og produksjonskontekst'
           git push origin HEAD:${{ github.head_ref }}
       - name: Propagate followup failure
         if: steps.followup.outcome == 'failure'
