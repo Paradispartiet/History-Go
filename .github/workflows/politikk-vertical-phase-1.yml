@@ -1,0 +1,94 @@
+name: Politics vertical depth phase 1
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  build-and-validate:
+    if: github.head_ref == 'agent/politikk-vertikal-fase-1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/politikk-vertikal-fase-1
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build canonical phase 1
+        id: build
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          mkdir -p reports/politikk-canonical-migration
+          exec > >(tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-full-run.log) 2>&1
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+          echo 'c3a9b889a7de8e20a1ec3625a5c46e1f6bace036837e2e0fc3cd536d4ae0449d  tools/build-politikk-vertical-phase-1.mjs.gz.b64' \
+            | sha256sum -c - \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-checksum.txt
+
+          base64 -d tools/build-politikk-vertical-phase-1.mjs.gz.b64 \
+            | gzip -d > tools/build-politikk-vertical-phase-1.mjs
+
+          node --check tools/build-politikk-vertical-phase-1.mjs \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-syntax.txt
+
+          node tools/build-politikk-vertical-phase-1.mjs \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-output.txt
+
+          rm -f tools/build-politikk-vertical-phase-1.mjs
+          rm -f tools/build-politikk-vertical-phase-1.mjs.gz.b64
+          rm -f .github/workflows/politikk-vertical-phase-1.yml
+          rm -f reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-checksum.txt
+          rm -f reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-syntax.txt
+          rm -f reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-output.txt
+          rm -f reports/politikk-canonical-migration/politikk-institusjoner-phase-1-full-run.log
+
+          node tools/validate-politikk-institusjoner-phase-1.mjs \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-validation.txt
+
+          node tools/validate-politikk-statsvitenskap-core.mjs \
+            2>&1 | tee reports/politikk-canonical-migration/statsvitenskap-vertical-chain-validation.txt
+
+          for file in \
+            data/fag/politikk/fagkart_politikk_canonical_v4_5.json \
+            data/fag/politikk/emner_politikk_canonical_v4_5.json \
+            data/fag/politikk/methods_politikk_canonical_v4_5.json \
+            data/fag/politikk/emnemapping_politikk_canonical_v4_5.json \
+            data/fag/politikk/politikkpensum_canonical_v4_5.json \
+            data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json \
+            reports/politikk-canonical-migration/statsvitenskap-question-blueprints.json; do
+            node -e 'JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log("PASS | Gyldig JSON: "+process.argv[1])' "$file" \
+              2>&1 | tee -a reports/politikk-canonical-migration/politikk-institusjoner-phase-1-validation.txt
+          done
+
+          git diff --check \
+            2>&1 | tee -a reports/politikk-canonical-migration/politikk-institusjoner-phase-1-validation.txt
+          echo 'PASS | git diff --check' \
+            | tee -a reports/politikk-canonical-migration/politikk-institusjoner-phase-1-validation.txt
+
+          git add -A data/fag/politikk reports/politikk-canonical-migration tools .github/workflows
+          git diff --cached --check
+          git commit -m 'Politikk: fordyp politiske institusjoner og konstitusjonell politikk'
+          git push --force-with-lease origin HEAD:agent/politikk-vertikal-fase-1
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: politics-institutions-phase-1-diagnostics
+          path: reports/politikk-canonical-migration/politikk-institusjoner-phase-1-*
+          if-no-files-found: warn
+
+      - name: Propagate build failure
+        if: steps.build.outcome == 'failure'
+        run: exit 1
