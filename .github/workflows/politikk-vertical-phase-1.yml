@@ -40,6 +40,7 @@ jobs:
           base64 -d tools/build-politikk-vertical-phase-1.mjs.gz.b64 \
             | gzip -d > tools/build-politikk-vertical-phase-1.mjs
           sed -i 's/emners/emner/g' tools/build-politikk-vertical-phase-1.mjs
+          sed -i 's/category.canon = category.canon || { thinkers: \[\] };/category.canon = category.canon || { thinkers: [] }; category.canon.thinkers = category.canon.thinkers || [];/g' tools/build-politikk-vertical-phase-1.mjs
 
           node --check tools/build-politikk-vertical-phase-1.mjs \
             2>&1 | tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-syntax.txt
