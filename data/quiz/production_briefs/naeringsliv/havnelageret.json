@@ -1,0 +1,552 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "naeringsliv",
+  "targetId": "havnelageret",
+  "reviewed_at": "2026-07-24",
+  "review_note": "Påstandsbanken bygger på den eksisterende Havnelageret-quizen og de allerede registrerte historie-, eiendoms- og prosjektkildene. Fire meta-/flatquizspørsmål er fjernet, mens de første 14 påstandene er låst til normal quizform uten metode- eller teoribinding.",
+  "profile_hint": "rich",
+  "sources": {
+    "place_record": {
+      "url": "data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json",
+      "source_type": "canonical_place_record",
+      "review_status": "reviewed",
+      "review_note": "Brukt som intern kontroll av sted, adresse, kategori og etablert identitet."
+    },
+    "oslo_byleksikon": {
+      "url": "https://oslobyleksikon.no/index.php/Oslo_Havnelager",
+      "source_type": "municipal_city_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Brukt for byggeår, arkitekt, størrelse, fasade, byggemetode, krigsbruk og senere ombygginger."
+    },
+    "lokalhistoriewiki": {
+      "url": "https://lokalhistoriewiki.no/wiki/Oslo_havnelager",
+      "source_type": "local_history_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Brukt for navn, fundamentering, lagerhistorie, arkitektur og havnekontekst."
+    },
+    "entra": {
+      "url": "https://www.entra.no/vare-eiendommer/ledige-lokaler/langkaia-1a",
+      "source_type": "property_owner",
+      "review_status": "reviewed",
+      "review_note": "Brukt for dagens kontor- og fullservicebruk, tjenester og Bjørvika-plassering."
+    },
+    "let": {
+      "url": "https://let.no/kontor/oslo/langkaia-1",
+      "source_type": "office_leasing",
+      "review_status": "reviewed",
+      "review_note": "Brukt som kontroll av dagens kontorbruk, beliggenhet og marked."
+    },
+    "betonmast": {
+      "url": "https://www.betonmast.no/prosjekter/langkaia-1/",
+      "source_type": "project_contractor",
+      "review_status": "reviewed",
+      "review_note": "Brukt for rehabilitering av de øvre etasjene og ombygging til kontorlandskap."
+    },
+    "bygg": {
+      "url": "https://www.bygg.no/betonmast-kontrakter-rehabilitering/betonmast-renoverer-havnelageret/402345",
+      "source_type": "construction_trade_press",
+      "review_status": "reviewed",
+      "review_note": "Brukt som kontroll av Betonmast-prosjektets omfang og funksjon."
+    },
+    "estate": {
+      "url": "https://ne.no/2025/07/04/langkaia-1-fylles-opp-entra-sikrer-ny-leieavtale-i-havnelageret/",
+      "source_type": "property_trade_press",
+      "review_status": "reviewed",
+      "review_note": "Brukt for den daterte leieavtalen i 2025 og byggets rolle i kontormarkedet."
+    },
+    "snl_bjorvika": {
+      "url": "https://snl.no/Bj%C3%B8rvika",
+      "source_type": "national_encyclopedia",
+      "review_status": "reviewed",
+      "review_note": "Brukt for Bjørvika som havneområde og stedlig orientering."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [],
+    "emne_ids": [
+      "em_naering_arbeid_verdiskaping",
+      "em_naering_forbruk_marked",
+      "em_naering_kapital_finans",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_omstilling_kriser_skift",
+      "em_naering_teknologi_infrastruktur"
+    ],
+    "topic_hook_ids": [
+      "arbeid_som_verdiskaping"
+    ],
+    "method_ids": [
+      "met_naering_arbeidslivsanalyse",
+      "met_naering_forbruker_og_atferdsanalyse",
+      "met_naering_infrastrukturanalyse",
+      "met_naering_verdiskapingsanalyse"
+    ],
+    "thinker_ids": [
+      "max_weber"
+    ],
+    "works": []
+  },
+  "claims": [
+    {
+      "claim_id": "claim_havnelageret_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver bygningen som et monument over sjøfartens utvikling, og Lokalhistoriewiki beskriver den som lagerbygning i stort format.",
+      "source_ids": [
+        "place_record",
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_havnelageret_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Lokalhistoriewiki beskriver Oslo havnelager som opprinnelig Kristiania havnelager.",
+      "source_ids": [
+        "lokalhistoriewiki",
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki oppgir Langkaia 1 som adresse for Oslo Havnelager.",
+      "source_ids": [
+        "place_record",
+        "oslo_byleksikon",
+        "lokalhistoriewiki",
+        "entra"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki oppgir at bygget ble oppført 1916–20.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon og Lokalhistoriewiki oppgir Bredo Berntsen som arkitekt.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver Havnelagerets fasade som prikkhamret betong.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver ni etasjer og elleve etasjer i hjørnetårnene.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir 27 000 m² for Havnelageret.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Lokalhistoriewiki gjengir Aftenpostens omtale av 1550 armerte betongpæler på 20–24 meter.",
+      "source_ids": [
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Lokalhistoriewiki gjengir en omtale av 1550 armerte betongpæler som var 20–24 meter lange.",
+      "source_ids": [
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver Havnelageret som et av de tidligst kjente eksemplene på armert betong i sivilt byggeri i Norge.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver prikkhamret betongfasade i nordisk nybarokk med jugenddetaljer, mens Lokalhistoriewiki beskriver nordisk nybarokk med klassiske elementer og jugenddetaljer.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver bygningen som monument over sjøfartens enorme utvikling under og etter første verdenskrig.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_havnelageret_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Havnelageret ligger ved Langkaia, like ved Akershus festning og Bjørvika.",
+      "source_ids": [
+        "place_record",
+        "oslo_byleksikon",
+        "snl_bjorvika"
+      ],
+      "source_origin": "mixed",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_15",
+      "order": 15,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "SNL beskriver Bjørvika som den nordøstlige delen av Oslos havneområde, og Langkaia/Havnelageret ligger i dette havneområdet.",
+      "source_ids": [
+        "snl_bjorvika",
+        "entra",
+        "let"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_16",
+      "order": 16,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon skriver at bygningen ble rekvirert av tyskerne og brukt av den tyske marinen som materiellager, kalt Gerätelager I.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_havnelageret_17",
+      "order": 17,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir at bygningen ble modernisert og bygd om til kontorer 1982–85.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_havnelageret_18",
+      "order": 18,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir arkitekt Espen Eskeland for modernisering og ombygging til kontorer 1982–85.",
+      "source_ids": [
+        "oslo_byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_19",
+      "order": 19,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir at Havnelageret ble betydelig oppgradert i 2003.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "entra"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_havnelageret_20",
+      "order": 20,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Martela beskriver at Entra Eiendom kjøpte eiendommen i 2003 og startet renovering. Entra er dagens eiendomsaktør i utleiematerialet.",
+      "source_ids": [
+        "entra",
+        "let",
+        "estate"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_havnelageret_21",
+      "order": 21,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Entra beskriver Langkaia 1 som moderne fullservicebygg med kontorlokaler, resepsjon, kantine, møterom, treningsrom og servicekonsept.",
+      "source_ids": [
+        "entra",
+        "let",
+        "estate"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_havnelageret_22",
+      "order": 22,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Betonmast beskriver ombygging og rehabilitering av niende og tiende etasje samt tårnet i ellevte etasje.",
+      "source_ids": [
+        "betonmast",
+        "bygg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_havnelageret_23",
+      "order": 23,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Betonmast beskriver at arealene etter riving skulle ombygges til kontorlandskap med god standard for ny leietaker.",
+      "source_ids": [
+        "betonmast",
+        "bygg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_havnelageret_24",
+      "order": 24,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Entra og utleiekilder beskriver Langkaia 1 som moderne kontorbygg i Bjørvika, nær kollektivknutepunkt og kulturinstitusjoner.",
+      "source_ids": [
+        "entra",
+        "let",
+        "estate"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_havnelageret_25",
+      "order": 25,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Estate Nyheter skrev i juli 2025 at Entra hadde inngått ny femårig leieavtale på 1 700 m², og at blant annet Dun & Bradstreet Norway og Hurtigruten hadde fornyet avtaler.",
+      "source_ids": [
+        "estate"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_havnelageret_26",
+      "order": 26,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Entra beskriver Langkaia 1 med resepsjon, kantine, møterom, treningsrom og andre servicetilbud.",
+      "source_ids": [
+        "entra"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_havnelageret_27",
+      "order": 27,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Havnelageret viser eldre havnelogistikk med store lagerflater tett på kai, før containerterminaler og ny havneorganisering flyttet mye godslogistikk ut av sentrum.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_havnelageret_28",
+      "order": 28,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Havnelageret viser eiendomsøkonomisk omstilling: en tung havnelagerbygning blir modernisert kontorbygg i et nytt Bjørvika-marked.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "entra",
+        "let",
+        "estate"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_havnelageret_29",
+      "order": 29,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et areal på om lag 27 000 m² og ni etasjer ga kapasitet til storskala lagring og organisering av varer ved havna.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_havnelageret_30",
+      "order": 30,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "De mange, lange betongpælene bar den store lagerbygningen på krevende grunn ved havna.",
+      "source_ids": [
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_teknologi_infrastruktur"
+    },
+    {
+      "claim_id": "claim_havnelageret_31",
+      "order": 31,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Havnelageret er omformet fra lager for havnens varestrømmer til et moderne kontor- og servicebygg.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "entra",
+        "betonmast"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_omstilling_kriser_skift"
+    },
+    {
+      "claim_id": "claim_havnelageret_32",
+      "order": 32,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Før organiserte bygningen varestrømmer; i dag samler den arbeidsplasser, tjenester og mennesker i Bjørvika.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki",
+        "entra"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_havnelageret_33",
+      "order": 33,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kjøp, oppgraderinger og rehabilitering viser hvordan eldre havneinfrastruktur kan få ny økonomisk verdi gjennom ombruk.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "entra",
+        "betonmast",
+        "bygg"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_kapital_finans"
+    },
+    {
+      "claim_id": "claim_havnelageret_34",
+      "order": 34,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Utleiekildene fremhever sentral beliggenhet, kollektivtilgang, servicetilbud og moderne kontorlokaler.",
+      "source_ids": [
+        "entra",
+        "let",
+        "estate"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_forbruk_marked"
+    },
+    {
+      "claim_id": "claim_havnelageret_35",
+      "order": 35,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Havnelagerets størrelse, plassering og organiserte vareflyt viser rasjonalisering av havneøkonomien i stor skala.",
+      "source_ids": [
+        "oslo_byleksikon",
+        "lokalhistoriewiki"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_arbeid_verdiskaping"
+    }
+  ]
+}
