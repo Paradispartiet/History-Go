@@ -3579,9 +3579,29 @@
       "distanceM": 63.78
     }
   ],
-  "decision": "candidate_exact_named_osm_area:osm-way:125480528",
+  "decision": "candidate_geometry_requires_current_plan_crosscheck:osm-way:125480528",
   "notes": [
     "Individual government buildings are contextual candidates only and cannot represent the entire complex.",
-    "If no exact combined area exists in OSM/Nominatim, the next pass must resolve the official state regulation-plan boundary."
-  ]
+    "If no exact combined area exists in OSM/Nominatim, the next pass must resolve the official state regulation-plan boundary.",
+    "The earlier automatic candidate decision is superseded: exact name alone is insufficient because the OSM area is explicitly stale construction semantics."
+  ],
+  "currentPlanCrosscheck": {
+    "source": "https://www.statsbygg.no/byggeprosjekter/nytt-regjeringskvartal/",
+    "statsbyggPlanLinkCount": 0,
+    "level2PlanLinks": [],
+    "osmCandidate": {
+      "sourceObjectId": "osm-way:125480528",
+      "tags": {
+        "check_date": "2021-05-28",
+        "landuse": "construction",
+        "name": "Regjeringskvartalet"
+      },
+      "approxAreaM2": 44783,
+      "center": {
+        "lat": 59.915247678014204,
+        "lon": 10.745489600000003
+      }
+    },
+    "conclusion": "The exact named OSM polygon is not production-ready as the canonical institutional area because it remains tagged landuse=construction with check_date=2021-05-28, while Statsbygg documents later plan changes. Crosscheck against the current adopted level-2 plan boundary before any coordinate promotion."
+  }
 }
