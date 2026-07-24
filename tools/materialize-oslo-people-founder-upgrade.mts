@@ -87,7 +87,7 @@ fs.writeFileSync('reports/people-oslo-zero-gap-batch1-founder-upgrade.md', `# Os
 
 run('npx', ['tsx', 'scripts/build-civication-history-people-index.mts']);
 run('npx', ['tsx', 'tools/audit-oslo-people-coverage.mts']);
-run('npx', ['tsx', 'tools/audit-oslo-people-latent-coverage.mts']);
+run('npx', ['tsx', 'tools/audit-oslo-latent-people-coverage.mts']);
 
 const coverage = readJson('reports/oslo-people-coverage.json');
 if (coverage.totals?.coveredRequiredPlaces !== 148 || coverage.totals?.uncoveredRequiredPlaces !== 185) {
