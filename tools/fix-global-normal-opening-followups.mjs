@@ -10,3 +10,4 @@ delete question.claim_basis;
 delete question.source_origin;
 fs.writeFileSync(QUIZ_PATH, `${JSON.stringify(quiz, null, 2)}\n`);
 console.log('Normaliserte Deichman-spørsmålet uten å overstyre godkjent claim basis.');
+console.log('Klar for deterministisk Knowledge-regenerering.');
