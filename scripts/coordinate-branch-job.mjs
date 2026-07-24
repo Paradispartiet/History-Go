@@ -68,6 +68,10 @@ const transform = (value, stats) => {
         stats.removedObjectKeys += 1;
         continue;
       }
+      if (isTargetRecord(child)) {
+        stats.removedRecords += 1;
+        continue;
+      }
       output[key] = transform(child, stats);
     }
     return output;
