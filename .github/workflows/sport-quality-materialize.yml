@@ -32,7 +32,8 @@ jobs:
           sha256sum -c <<'EOF'
           80b1f2cd5e717690e7fed2cdc1a3bc3ba136ed154e714b0839a153797335e91e  head_00
           915a5594674ab76c31b5aa39559b46601e7bb7f1409c850ec896d0b3c5cf632c  head_01
-          410dc709a6cba6e4f8a7e648043394e75a7970d269752bf8eb2cf49748aeb556  head_02
+          c624fe0225a0654813b6fdebaadfa643815fa8facaffddb41972e3565e70d70c  h2_00
+          d2597f43ebc6b4d7e41c6fbbdc6307cb83ff2bf047189118230251eade6523ee  h2_01
           07011a1fddb5008ea78ff8f21b671248d89be574d10d209f4af2397f1075becb  head_03
           cad95bcd4cf5361721b0f6c4ea4978230d6f04c89be20a356b943be6ae428c06  head_04
           706893e352a0d9e3d82b9a87a61032620982009f39e876e69c8bcc9fc556d3fe  head_05
@@ -60,7 +61,7 @@ jobs:
           import hashlib
 
           root = Path('.github/sport-quality-payload')
-          names = [*[f'head_{i:02d}' for i in range(7)], *[f'rest_{i:02d}' for i in range(1, 6)], *[f'tail_{i:02d}' for i in range(6)]]
+          names = ['head_00', 'head_01', 'h2_00', 'h2_01', *[f'head_{i:02d}' for i in range(3, 7)], *[f'rest_{i:02d}' for i in range(1, 6)], *[f'tail_{i:02d}' for i in range(6)]]
           encoded = ''.join((root / name).read_text(encoding='utf-8') for name in names)
           payload = base64.b64decode(encoded, validate=True)
           actual = hashlib.sha256(payload).hexdigest()
