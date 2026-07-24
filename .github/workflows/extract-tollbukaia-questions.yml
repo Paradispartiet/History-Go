@@ -26,7 +26,20 @@ jobs:
           node-version: 24
       - name: Generate canonical package
         run: |
-          perl -0pi -e 's/Flatquizen hadde riktig kjerne: Tollbukaia\/Tollboden-området var knyttet til havnevarer, tollbehandling og kontroll\./Tollbukaia og Tollboden-området var knyttet til havnevarer, tollbehandling og kontroll./g' scripts/repair-tollbukaia-production.mjs
+          node --input-type=module <<'EOF'
+          import { readFile, writeFile } from 'node:fs/promises';
+          const scriptPath = 'scripts/repair-tollbukaia-production.mjs';
+          let text = await readFile(scriptPath, 'utf8');
+          text = text.replace(
+            'Flatquizen hadde riktig kjerne: Tollbukaia/Tollboden-området var knyttet til havnevarer, tollbehandling og kontroll.',
+            'Tollbukaia og Tollboden-området var knyttet til havnevarer, tollbehandling og kontroll.'
+          );
+          text = text.replace(
+            'if (!testText.includes("assert.equal(report.quizFilesChecked, 8);")) throw new Error("Fant ikke forventet quizFilesChecked=8 i produksjonstesten");',
+            'if (!testText.includes("assert.equal(report.quizFilesChecked, 8);") && !testText.includes("assert.equal(report.quizFilesChecked, 9);")) throw new Error("Fant ikke forventet quizFilesChecked=8/9 i produksjonstesten");'
+          );
+          await writeFile(scriptPath, text, 'utf8');
+          EOF
           node scripts/repair-tollbukaia-production.mjs
       - name: Commit generated files
         run: |
