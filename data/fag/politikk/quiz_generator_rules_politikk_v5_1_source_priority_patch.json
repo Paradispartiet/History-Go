@@ -362,7 +362,7 @@
   "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For politikk skal konkrete institusjoner, lover, vedtak, reformer, offentlige rom, rettsbygg, forvaltningssteder, demokratiske arenaer, velferdstjenester, konflikter, proteststeder, normsystemer, fordelingsdata, rettskilder, budsjett, reguleringsplaner, statistikk og samfunnsfaglige kilder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
   "migration_note": "Eksisterende places_politikk og people_politikk bør migreres til em_pol_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er politikk og ikke by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller annet fag.",
   "updated_at": "2026-07-24",
-  "quality_revision": "politikk-styring-vertical-2026-07-24",
+  "quality_revision": "politikk-fordeling-vertical-2026-07-24",
   "domain_quality_profiles": {
     "styring_institusjoner_forvaltning": {
       "status": "complete_revised",
@@ -1335,6 +1335,51 @@
           ]
         }
       }
+    },
+    "fordeling_velferd_ulikhet": {
+      "status": "complete_revised",
+      "quality_revision": "politikk-fordeling-vertical-2026-07-24",
+      "required_question_chain": [
+        "external_distribution_case_or_source",
+        "claim_basis",
+        "distribution_or_welfare_mechanism",
+        "critical_distinction",
+        "optional_theory_lens"
+      ],
+      "required_mapping_fields": [
+        "recommended_method_ids",
+        "mechanism_options",
+        "critical_distinction_options",
+        "theory_lenses",
+        "required_anchor_types"
+      ],
+      "revised_method_ids": [
+        "met_pol_bolig_og_byutviklingsanalyse",
+        "met_pol_levekarsanalyse",
+        "met_pol_fordelingsanalyse",
+        "met_pol_budsjett_og_fordelingsanalyse",
+        "met_pol_velferdsstatlig_analyse",
+        "met_pol_institusjonsanalyse",
+        "met_pol_makt_og_ulikhetsanalyse",
+        "met_pol_statistikk_og_fordelingsanalyse",
+        "met_pol_plan_og_reguleringsanalyse",
+        "met_pol_romlig_maktanalyse",
+        "met_pol_minoritet_og_representasjonsanalyse",
+        "met_pol_legitimitetsanalyse",
+        "met_pol_konfliktanalyse",
+        "met_pol_normanalyse",
+        "met_pol_rettighetsanalyse"
+      ],
+      "hook_count": 10,
+      "method_selection_rule": "Metoden velges etter dokumentert ressursstrøm, terskel, tilgangsproblem, reproduksjonsmekanisme eller kildetype.",
+      "theory_rule": "Teori kommer sist og må forklare eller sammenligne en allerede etablert fordelings- eller velferdsmekanisme.",
+      "rejection_rules": [
+        "avvis teoretikernavn som løsrevet svar",
+        "avvis spørsmål uten ekstern claim_basis",
+        "avvis spørsmål uten fordelings- eller velferdsmekanisme",
+        "avvis spørsmål uten reell distinksjon når teori brukes",
+        "avvis canonical-filen som statistikk- eller faktakilde"
+      ]
     }
   }
 }

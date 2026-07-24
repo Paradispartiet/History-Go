@@ -5518,15 +5518,15 @@
     {
       "id": "fordeling_velferd_ulikhet",
       "title": "Fordeling, velferd og ulikhet",
-      "tagline": "Hvordan ressurser, tjenester, levekår, bolig, helse, utdanning og klasse organiseres politisk.",
-      "definition": "Domenet dekker fordeling, velferdsstat, levekår, ulikhet, klasse, demografi, statistikk, boligpolitikk, helsepolitikk, sosialpolitikk og ressursprioritering.",
+      "tagline": "Hvordan skatter, budsjetter, tjenester, bolig, helse, utdanning og institusjoner fordeler ressurser, risiko og livssjanser.",
+      "definition": "Domenet analyserer hvordan offentlige inntekter, utgifter, tjenester, rettigheter og regulering fordeler ressurser, risiko, omsorg, bolig, helse, utdanning og livssjanser mellom grupper, steder og generasjoner.",
       "focus": [
-        "fordeling",
-        "velferd",
-        "ulikhet",
-        "levekår",
-        "klasse",
-        "ressurser"
+        "ressurser og byrder",
+        "velferdsordninger og sosiale rettigheter",
+        "levekår og kumulativ ulempe",
+        "klasse, formue og mobilitet",
+        "bolig, helse og utdanning",
+        "demografi, plan og legitimitet"
       ],
       "oslo": {
         "core_cases": [
@@ -5583,31 +5583,19 @@
               {
                 "id": "john_rawls",
                 "name": "John Rawls",
-                "role": "rettferdighet og fordeling",
-                "tier": "core"
-              },
-              {
-                "id": "thomas_piketty",
-                "name": "Thomas Piketty",
-                "role": "kapital og ulikhet",
-                "tier": "core"
-              },
-              {
-                "id": "nancy_fraser",
-                "name": "Nancy Fraser",
-                "role": "omfordeling og anerkjennelse",
-                "tier": "core"
-              },
-              {
-                "id": "gosta_esping_andersen",
-                "name": "Gøsta Esping-Andersen",
-                "role": "velferdsstatsregimer",
+                "role": "forskjellsprinsippet og rettferdig fordeling",
                 "tier": "core"
               },
               {
                 "id": "amartya_sen",
                 "name": "Amartya Sen",
-                "role": "kapabiliteter og sosial rettferdighet",
+                "role": "kapabiliteter og reelle handlingsmuligheter",
+                "tier": "core"
+              },
+              {
+                "id": "thomas_piketty",
+                "name": "Thomas Piketty",
+                "role": "kapital- og inntektskonsentrasjon",
                 "tier": "core"
               }
             ]
@@ -5636,7 +5624,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "welfare-distribution-first",
+          "question_surface_mode": "distribution-case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -5646,36 +5634,34 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke likestill høyere bevilgning med bedre fordelingsvirkning.",
+            "Ikke skjul hvem som bærer kostnaden eller hvilke alternativer som fortrenges.",
+            "Ikke bruk gjennomsnitt alene når fordelingen mellom grupper er poenget.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_resource_flow_and_recipients",
+            "test_equal_allocation_against_need_weighting",
+            "compare_inputs_with_distributional_effects"
           ],
           "comparison_pairs": [
             [
               "john_rawls",
-              "thomas_piketty"
+              "amartya_sen"
             ],
             [
-              "nancy_fraser",
-              "gosta_esping_andersen"
+              "amartya_sen",
+              "thomas_piketty"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "NAV-kontor",
-            "Ullevål sykehus",
-            "Tøyen",
-            "Groruddalen",
             "Oslo rådhus",
-            "kommunale boliger",
-            "Aker sykehus"
+            "NAV-kontor",
+            "bydelsbudsjetter"
           ],
           "recommended_method_ids": [
             "met_pol_fordelingsanalyse",
@@ -5684,6 +5670,7 @@
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
             "john_rawls",
+            "amartya_sen",
             "thomas_piketty"
           ],
           "case_spread_score": 5,
@@ -5697,15 +5684,72 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare fordelingscases, kildetyper og mekanismer for Ressursfordeling. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Ressursfordeling er politiske og administrative beslutninger om hvordan knappe offentlige penger, tjenester, tid, kapasitet og byrder fordeles mellom formål, grupper, steder og perioder.",
+          "core_problem": "Hvilke kriterier og prosedyrer avgjør hvem som får hvilke goder, hvem som bærer kostnadene, og om fordelingen faktisk reduserer eller forsterker ulikhet?",
+          "mechanisms": [
+            "skatt og inntektsgrunnlag",
+            "budsjettbevilgning",
+            "øremerking",
+            "behovsvekting",
+            "universell tildeling",
+            "målrettet tildeling",
+            "rasjonering og kø",
+            "overføring mellom forvaltningsnivåer"
+          ],
+          "critical_distinctions": [
+            "fordeling vs omfordeling",
+            "lik tildeling vs behovsvektet tildeling",
+            "universalisme vs målretting",
+            "ressursinnsats vs fordelingsvirkning"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "john_rawls",
+              "concept": "forskjellsprinsippet og rettferdig fordeling"
+            },
+            {
+              "thinker_id": "amartya_sen",
+              "concept": "kapabiliteter og reelle handlingsmuligheter"
+            },
+            {
+              "thinker_id": "thomas_piketty",
+              "concept": "kapital- og inntektskonsentrasjon"
+            }
+          ],
+          "case_anchors": [
+            "Oslo rådhus",
+            "NAV-kontor",
+            "bydelsbudsjetter"
+          ],
+          "anti_reduction": [
+            "Ikke likestill høyere bevilgning med bedre fordelingsvirkning.",
+            "Ikke skjul hvem som bærer kostnaden eller hvilke alternativer som fortrenges.",
+            "Ikke bruk gjennomsnitt alene når fordelingen mellom grupper er poenget."
+          ],
+          "required_anchor_types": [
+            "budget",
+            "public_service",
+            "tax",
+            "allocation"
+          ],
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         },
         {
           "id": "velferdsstat",
@@ -5713,33 +5757,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "john_rawls",
-                "name": "John Rawls",
-                "role": "rettferdighet og fordeling",
-                "tier": "core"
-              },
-              {
-                "id": "thomas_piketty",
-                "name": "Thomas Piketty",
-                "role": "kapital og ulikhet",
-                "tier": "core"
-              },
-              {
-                "id": "nancy_fraser",
-                "name": "Nancy Fraser",
-                "role": "omfordeling og anerkjennelse",
-                "tier": "core"
-              },
-              {
                 "id": "gosta_esping_andersen",
                 "name": "Gøsta Esping-Andersen",
-                "role": "velferdsstatsregimer",
+                "role": "velferdsregimer og avkommodifisering",
                 "tier": "core"
               },
               {
-                "id": "amartya_sen",
-                "name": "Amartya Sen",
-                "role": "kapabiliteter og sosial rettferdighet",
+                "id": "t_h_marshall",
+                "name": "T. H. Marshall",
+                "role": "sosiale medborgerskapsrettigheter",
+                "tier": "core"
+              },
+              {
+                "id": "kari_waerness",
+                "name": "Kari Wærness",
+                "role": "omsorgsarbeid og velferdens kjønnete organisering",
                 "tier": "core"
               }
             ]
@@ -5768,7 +5800,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "welfare-distribution-first",
+          "question_surface_mode": "distribution-case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -5778,36 +5810,36 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke reduser velferdsstaten til kontantytelser.",
+            "Ikke behandle behovsprøving som nøytral uten å undersøke terskler og kontroll.",
+            "Ikke anta at en formell rettighet automatisk gir faktisk tilgang.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_social_risk_and_entitlement",
+            "test_universalism_against_targeting",
+            "compare_formal_right_with_effective_access"
           ],
           "comparison_pairs": [
             [
-              "john_rawls",
-              "thomas_piketty"
+              "gosta_esping_andersen",
+              "t_h_marshall"
             ],
             [
-              "nancy_fraser",
-              "gosta_esping_andersen"
+              "t_h_marshall",
+              "kari_waerness"
             ]
           ],
           "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
+            "kari_waerness"
           ],
           "recommended_oslo_cases": [
             "NAV-kontor",
             "Ullevål sykehus",
-            "Tøyen",
-            "Groruddalen",
-            "Oslo rådhus",
-            "kommunale boliger",
-            "Aker sykehus"
+            "kommunale omsorgstjenester"
           ],
           "recommended_method_ids": [
             "met_pol_velferdsstatlig_analyse",
@@ -5815,8 +5847,9 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "john_rawls",
-            "thomas_piketty"
+            "gosta_esping_andersen",
+            "t_h_marshall",
+            "kari_waerness"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -5829,15 +5862,72 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare fordelingscases, kildetyper og mekanismer for Velferdsstat. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Velferdsstaten er et institusjonelt system av rettigheter, inntektssikring, tjenester, sosialforsikring og omsorg som håndterer sosiale risikoer og fordeler ansvar mellom stat, marked, familie og sivilsamfunn.",
+          "core_problem": "Hvordan kan velferdsordninger gi trygghet og lik adgang uten å skape vilkårlige terskler, uoversiktlig kontroll eller store forskjeller mellom formelle rettigheter og faktisk hjelp?",
+          "mechanisms": [
+            "sosialforsikring",
+            "skattefinansierte universelle tjenester",
+            "behovsprøving",
+            "kontantytelser",
+            "tjenesteyting",
+            "aktivering og vilkår",
+            "avkommodifisering",
+            "omsorgsorganisering"
+          ],
+          "critical_distinctions": [
+            "universell ordning vs behovsprøvd ordning",
+            "forsikring vs sosialhjelp",
+            "kontantytelse vs tjeneste",
+            "avkommodifisering vs aktivering"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "gosta_esping_andersen",
+              "concept": "velferdsregimer og avkommodifisering"
+            },
+            {
+              "thinker_id": "t_h_marshall",
+              "concept": "sosiale medborgerskapsrettigheter"
+            },
+            {
+              "thinker_id": "kari_waerness",
+              "concept": "omsorgsarbeid og velferdens kjønnete organisering"
+            }
+          ],
+          "case_anchors": [
+            "NAV-kontor",
+            "Ullevål sykehus",
+            "kommunale omsorgstjenester"
+          ],
+          "anti_reduction": [
+            "Ikke reduser velferdsstaten til kontantytelser.",
+            "Ikke behandle behovsprøving som nøytral uten å undersøke terskler og kontroll.",
+            "Ikke anta at en formell rettighet automatisk gir faktisk tilgang."
+          ],
+          "required_anchor_types": [
+            "welfare_office",
+            "public_service",
+            "social_right",
+            "care_institution"
+          ],
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         },
         {
           "id": "levekår",
@@ -5845,33 +5935,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "john_rawls",
-                "name": "John Rawls",
-                "role": "rettferdighet og fordeling",
+                "id": "amartya_sen",
+                "name": "Amartya Sen",
+                "role": "kapabiliteter og reelle livsmuligheter",
+                "tier": "core"
+              },
+              {
+                "id": "pierre_bourdieu",
+                "name": "Pierre Bourdieu",
+                "role": "økonomisk, sosial og kulturell kapital",
                 "tier": "core"
               },
               {
                 "id": "thomas_piketty",
                 "name": "Thomas Piketty",
-                "role": "kapital og ulikhet",
-                "tier": "core"
-              },
-              {
-                "id": "nancy_fraser",
-                "name": "Nancy Fraser",
-                "role": "omfordeling og anerkjennelse",
-                "tier": "core"
-              },
-              {
-                "id": "gosta_esping_andersen",
-                "name": "Gøsta Esping-Andersen",
-                "role": "velferdsstatsregimer",
-                "tier": "core"
-              },
-              {
-                "id": "amartya_sen",
-                "name": "Amartya Sen",
-                "role": "kapabiliteter og sosial rettferdighet",
+                "role": "inntekts- og formuesulikhet over tid",
                 "tier": "core"
               }
             ]
@@ -5900,7 +5978,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "welfare-distribution-first",
+          "question_surface_mode": "distribution-case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -5910,36 +5988,34 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke bruk inntekt som eneste mål på levekår.",
+            "Ikke tolke områdeforskjeller som egenskaper ved innbyggerne.",
+            "Ikke trekke årsaksslutning fra statistisk samvariasjon alene.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "define_dimensions_and_population",
+            "separate_correlation_from_mechanism",
+            "compare_average_with_distribution"
           ],
           "comparison_pairs": [
             [
-              "john_rawls",
-              "thomas_piketty"
+              "amartya_sen",
+              "pierre_bourdieu"
             ],
             [
-              "nancy_fraser",
-              "gosta_esping_andersen"
+              "pierre_bourdieu",
+              "thomas_piketty"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "NAV-kontor",
-            "Ullevål sykehus",
             "Tøyen",
             "Groruddalen",
-            "Oslo rådhus",
-            "kommunale boliger",
-            "Aker sykehus"
+            "SSB-bydelsstatistikk"
           ],
           "recommended_method_ids": [
             "met_pol_statistikk_og_fordelingsanalyse",
@@ -5947,7 +6023,8 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "john_rawls",
+            "amartya_sen",
+            "pierre_bourdieu",
             "thomas_piketty"
           ],
           "case_spread_score": 5,
@@ -5961,15 +6038,72 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare fordelingscases, kildetyper og mekanismer for Levekår. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Levekår er menneskers faktiske situasjon på flere områder samtidig, blant annet inntekt, arbeid, bolig, helse, utdanning, trygghet og deltakelse.",
+          "core_problem": "Hvordan kan politikk forklare og påvirke sammensatte forskjeller uten å redusere levekår til ett mål, ett gjennomsnitt eller individets egne valg?",
+          "mechanisms": [
+            "kumulativ ulempe",
+            "arbeidsmarkedstilknytning",
+            "tilgang til tjenester",
+            "nabolagseffekter",
+            "boligkostnader",
+            "helsebelastning",
+            "demografisk seleksjon",
+            "ressursoverføring mellom generasjoner"
+          ],
+          "critical_distinctions": [
+            "inntekt vs fler­dimensjonale levekår",
+            "absolutt vs relativ deprivasjon",
+            "korrelasjon vs årsaksmekanisme",
+            "gjennomsnitt vs fordelingsprofil"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "amartya_sen",
+              "concept": "kapabiliteter og reelle livsmuligheter"
+            },
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "økonomisk, sosial og kulturell kapital"
+            },
+            {
+              "thinker_id": "thomas_piketty",
+              "concept": "inntekts- og formuesulikhet over tid"
+            }
+          ],
+          "case_anchors": [
+            "Tøyen",
+            "Groruddalen",
+            "SSB-bydelsstatistikk"
+          ],
+          "anti_reduction": [
+            "Ikke bruk inntekt som eneste mål på levekår.",
+            "Ikke tolke områdeforskjeller som egenskaper ved innbyggerne.",
+            "Ikke trekke årsaksslutning fra statistisk samvariasjon alene."
+          ],
+          "required_anchor_types": [
+            "statistics",
+            "neighbourhood",
+            "public_service",
+            "living_conditions"
+          ],
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         },
         {
           "id": "klasse_og_ulikhet",
@@ -5977,33 +6111,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "john_rawls",
-                "name": "John Rawls",
-                "role": "rettferdighet og fordeling",
+                "id": "karl_marx",
+                "name": "Karl Marx",
+                "role": "klasse, eierskap og konflikt",
+                "tier": "core"
+              },
+              {
+                "id": "pierre_bourdieu",
+                "name": "Pierre Bourdieu",
+                "role": "kapitalformer og sosial reproduksjon",
                 "tier": "core"
               },
               {
                 "id": "thomas_piketty",
                 "name": "Thomas Piketty",
-                "role": "kapital og ulikhet",
-                "tier": "core"
-              },
-              {
-                "id": "nancy_fraser",
-                "name": "Nancy Fraser",
-                "role": "omfordeling og anerkjennelse",
-                "tier": "core"
-              },
-              {
-                "id": "gosta_esping_andersen",
-                "name": "Gøsta Esping-Andersen",
-                "role": "velferdsstatsregimer",
-                "tier": "core"
-              },
-              {
-                "id": "amartya_sen",
-                "name": "Amartya Sen",
-                "role": "kapabiliteter og sosial rettferdighet",
+                "role": "formueskonsentrasjon og ulikhetsdynamikk",
                 "tier": "core"
               }
             ]
@@ -6032,7 +6154,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "welfare-distribution-first",
+          "question_surface_mode": "distribution-case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -6042,36 +6164,34 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke bruk klasse som synonym for inntekt.",
+            "Ikke forklar stabil ulikhet bare med individuelle valg.",
+            "Ikke overse formue, eierskap og organisatorisk makt.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_resource_and_position",
+            "trace_reproduction_mechanism",
+            "separate_income_from_wealth_and_class"
           ],
           "comparison_pairs": [
             [
-              "john_rawls",
-              "thomas_piketty"
+              "karl_marx",
+              "pierre_bourdieu"
             ],
             [
-              "nancy_fraser",
-              "gosta_esping_andersen"
+              "pierre_bourdieu",
+              "thomas_piketty"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "NAV-kontor",
-            "Ullevål sykehus",
-            "Tøyen",
-            "Groruddalen",
-            "Oslo rådhus",
-            "kommunale boliger",
-            "Aker sykehus"
+            "Youngstorget",
+            "Oslo øst og vest",
+            "boligeierskap i Oslo"
           ],
           "recommended_method_ids": [
             "met_pol_makt_og_ulikhetsanalyse",
@@ -6079,7 +6199,8 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "john_rawls",
+            "karl_marx",
+            "pierre_bourdieu",
             "thomas_piketty"
           ],
           "case_spread_score": 5,
@@ -6093,15 +6214,72 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare fordelingscases, kildetyper og mekanismer for Klasse og ulikhet. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Klasse og ulikhet viser til varige forskjeller i eierskap, inntekt, yrkesposisjon, makt, status og livssjanser som organiseres og reproduseres sosialt og politisk.",
+          "core_problem": "Hvordan blir ressursforskjeller stabile over tid, og når skyldes de markedsutfall, institusjonelle regler, arv, organisert makt eller ulik tilgang til kapitalformer?",
+          "mechanisms": [
+            "kapitalakkumulasjon",
+            "arv og formuesoverføring",
+            "yrkesmessig lukning",
+            "utdanningsreproduksjon",
+            "forhandlingsmakt",
+            "nettverk",
+            "kulturell kapital",
+            "skatte- og boligregler"
+          ],
+          "critical_distinctions": [
+            "klasse vs inntekt",
+            "formue vs løpende inntekt",
+            "mulighetslikhet vs resultatlikhet",
+            "individuell mobilitet vs strukturell ulikhet"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "karl_marx",
+              "concept": "klasse, eierskap og konflikt"
+            },
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "kapitalformer og sosial reproduksjon"
+            },
+            {
+              "thinker_id": "thomas_piketty",
+              "concept": "formueskonsentrasjon og ulikhetsdynamikk"
+            }
+          ],
+          "case_anchors": [
+            "Youngstorget",
+            "Oslo øst og vest",
+            "boligeierskap i Oslo"
+          ],
+          "anti_reduction": [
+            "Ikke bruk klasse som synonym for inntekt.",
+            "Ikke forklar stabil ulikhet bare med individuelle valg.",
+            "Ikke overse formue, eierskap og organisatorisk makt."
+          ],
+          "required_anchor_types": [
+            "labour_market",
+            "wealth",
+            "housing",
+            "class_structure"
+          ],
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         },
         {
           "id": "boligpolitikk",
@@ -6109,33 +6287,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "john_rawls",
-                "name": "John Rawls",
-                "role": "rettferdighet og fordeling",
-                "tier": "core"
-              },
-              {
                 "id": "thomas_piketty",
                 "name": "Thomas Piketty",
-                "role": "kapital og ulikhet",
+                "role": "boligformue og kapitalakkumulasjon",
                 "tier": "core"
               },
               {
-                "id": "nancy_fraser",
-                "name": "Nancy Fraser",
-                "role": "omfordeling og anerkjennelse",
+                "id": "john_rawls",
+                "name": "John Rawls",
+                "role": "rettferdig tilgang til grunnleggende goder",
                 "tier": "core"
               },
               {
-                "id": "gosta_esping_andersen",
-                "name": "Gøsta Esping-Andersen",
-                "role": "velferdsstatsregimer",
-                "tier": "core"
-              },
-              {
-                "id": "amartya_sen",
-                "name": "Amartya Sen",
-                "role": "kapabiliteter og sosial rettferdighet",
+                "id": "pierre_bourdieu",
+                "name": "Pierre Bourdieu",
+                "role": "bolig, posisjon og sosial reproduksjon",
                 "tier": "core"
               }
             ]
@@ -6164,7 +6330,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "welfare-distribution-first",
+          "question_surface_mode": "distribution-case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -6174,36 +6340,34 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke anta at økt boligbygging alene gir rimelige boliger.",
+            "Ikke bland sammen eierskap og botrygghet.",
+            "Ikke behandle boligmarkedet som løsrevet fra skatt, kreditt og arealpolitikk.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_tenure_finance_and_regulation",
+            "test_supply_against_affordability",
+            "compare_home_function_with_asset_function"
           ],
           "comparison_pairs": [
             [
-              "john_rawls",
-              "thomas_piketty"
+              "thomas_piketty",
+              "john_rawls"
             ],
             [
-              "nancy_fraser",
-              "gosta_esping_andersen"
+              "john_rawls",
+              "pierre_bourdieu"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "NAV-kontor",
-            "Ullevål sykehus",
-            "Tøyen",
-            "Groruddalen",
-            "Oslo rådhus",
             "kommunale boliger",
-            "Aker sykehus"
+            "Tøyen",
+            "Bjørvika"
           ],
           "recommended_method_ids": [
             "met_pol_bolig_og_byutviklingsanalyse",
@@ -6211,8 +6375,9 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
+            "thomas_piketty",
             "john_rawls",
-            "thomas_piketty"
+            "pierre_bourdieu"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -6225,15 +6390,72 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare fordelingscases, kildetyper og mekanismer for Boligpolitikk. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Boligpolitikk er offentlige beslutninger om tomter, bygging, finansiering, skatt, leie, regulering, tildeling og botrygghet som former hvem som kan bo hvor og på hvilke vilkår.",
+          "core_problem": "Hvordan balanseres bolig som hjem, velferdsgode og investeringsobjekt når tilbud, priser, regulering og offentlige ordninger fordeler tilgang ulikt?",
+          "mechanisms": [
+            "arealregulering",
+            "kommunal tomtepolitikk",
+            "boligfinansiering",
+            "skattefordeler",
+            "kommunal boligtildeling",
+            "leieregulering",
+            "fortetting",
+            "bostøtte"
+          ],
+          "critical_distinctions": [
+            "bolig som hjem vs bolig som kapitalobjekt",
+            "boligtilbud vs faktisk betalbarhet",
+            "eierskap vs botrygghet",
+            "sosial boligpolitikk vs generell markedspolitikk"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "thomas_piketty",
+              "concept": "boligformue og kapitalakkumulasjon"
+            },
+            {
+              "thinker_id": "john_rawls",
+              "concept": "rettferdig tilgang til grunnleggende goder"
+            },
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "bolig, posisjon og sosial reproduksjon"
+            }
+          ],
+          "case_anchors": [
+            "kommunale boliger",
+            "Tøyen",
+            "Bjørvika"
+          ],
+          "anti_reduction": [
+            "Ikke anta at økt boligbygging alene gir rimelige boliger.",
+            "Ikke bland sammen eierskap og botrygghet.",
+            "Ikke behandle boligmarkedet som løsrevet fra skatt, kreditt og arealpolitikk."
+          ],
+          "required_anchor_types": [
+            "housing",
+            "planning",
+            "municipal_land",
+            "neighbourhood"
+          ],
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         },
         {
           "id": "helse_og_velferd",
@@ -6241,33 +6463,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "john_rawls",
-                "name": "John Rawls",
-                "role": "rettferdighet og fordeling",
-                "tier": "core"
-              },
-              {
-                "id": "thomas_piketty",
-                "name": "Thomas Piketty",
-                "role": "kapital og ulikhet",
-                "tier": "core"
-              },
-              {
-                "id": "nancy_fraser",
-                "name": "Nancy Fraser",
-                "role": "omfordeling og anerkjennelse",
-                "tier": "core"
-              },
-              {
-                "id": "gosta_esping_andersen",
-                "name": "Gøsta Esping-Andersen",
-                "role": "velferdsstatsregimer",
-                "tier": "core"
-              },
-              {
                 "id": "amartya_sen",
                 "name": "Amartya Sen",
-                "role": "kapabiliteter og sosial rettferdighet",
+                "role": "helse som kapabilitet",
+                "tier": "core"
+              },
+              {
+                "id": "kari_waerness",
+                "name": "Kari Wærness",
+                "role": "omsorgsarbeid og rasjonalitet",
+                "tier": "core"
+              },
+              {
+                "id": "john_rawls",
+                "name": "John Rawls",
+                "role": "rettferdig tilgang til grunnleggende institusjoner",
                 "tier": "core"
               }
             ]
@@ -6296,7 +6506,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "welfare-distribution-first",
+          "question_surface_mode": "distribution-case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -6306,36 +6516,36 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke likestill lik adgang med like helseutfall.",
+            "Ikke overse omsorgsarbeid og bemanning når kapasitet analyseres.",
+            "Ikke bruk medisinsk behov som om prioriteringsreglene er selvforklarende.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_need_capacity_and_priority_rule",
+            "test_equal_access_against_equal_outcome",
+            "compare_formal_entitlement_with_actual_capacity"
           ],
           "comparison_pairs": [
             [
-              "john_rawls",
-              "thomas_piketty"
+              "amartya_sen",
+              "kari_waerness"
             ],
             [
-              "nancy_fraser",
-              "gosta_esping_andersen"
+              "kari_waerness",
+              "john_rawls"
             ]
           ],
           "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
+            "kari_waerness"
           ],
           "recommended_oslo_cases": [
-            "NAV-kontor",
             "Ullevål sykehus",
-            "Tøyen",
-            "Groruddalen",
-            "Oslo rådhus",
-            "kommunale boliger",
-            "Aker sykehus"
+            "Aker sykehus",
+            "kommunale helse- og omsorgstjenester"
           ],
           "recommended_method_ids": [
             "met_pol_velferdsstatlig_analyse",
@@ -6343,8 +6553,9 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "john_rawls",
-            "thomas_piketty"
+            "amartya_sen",
+            "kari_waerness",
+            "john_rawls"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -6357,15 +6568,72 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare fordelingscases, kildetyper og mekanismer for Helse og velferd. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Helse- og velferdspolitikk organiserer finansiering, prioritering, adgang, kvalitet og ansvar i helsetjenester, forebygging og omsorg.",
+          "core_problem": "Hvordan fordeles begrenset kapasitet etter behov, rettigheter og forventet nytte, og hvordan oppstår forskjeller mellom formell adgang og faktisk behandling eller omsorg?",
+          "mechanisms": [
+            "prioriteringskriterier",
+            "henvisning og portvakt",
+            "finansieringsmodell",
+            "geografisk tjenesteorganisering",
+            "bemanning",
+            "ventelister",
+            "forebygging",
+            "omsorgsarbeid"
+          ],
+          "critical_distinctions": [
+            "behov vs etterspørsel",
+            "lik adgang vs like helseutfall",
+            "behandling vs folkehelse",
+            "formell rett vs faktisk kapasitet"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "amartya_sen",
+              "concept": "helse som kapabilitet"
+            },
+            {
+              "thinker_id": "kari_waerness",
+              "concept": "omsorgsarbeid og rasjonalitet"
+            },
+            {
+              "thinker_id": "john_rawls",
+              "concept": "rettferdig tilgang til grunnleggende institusjoner"
+            }
+          ],
+          "case_anchors": [
+            "Ullevål sykehus",
+            "Aker sykehus",
+            "kommunale helse- og omsorgstjenester"
+          ],
+          "anti_reduction": [
+            "Ikke likestill lik adgang med like helseutfall.",
+            "Ikke overse omsorgsarbeid og bemanning når kapasitet analyseres.",
+            "Ikke bruk medisinsk behov som om prioriteringsreglene er selvforklarende."
+          ],
+          "required_anchor_types": [
+            "hospital",
+            "care_service",
+            "health_priority",
+            "public_health"
+          ],
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         },
         {
           "id": "utdanning_og_mobilitet",
@@ -6373,33 +6641,21 @@
           "canon": {
             "thinkers": [
               {
+                "id": "pierre_bourdieu",
+                "name": "Pierre Bourdieu",
+                "role": "kulturell kapital og sosial reproduksjon",
+                "tier": "core"
+              },
+              {
                 "id": "john_rawls",
                 "name": "John Rawls",
-                "role": "rettferdighet og fordeling",
-                "tier": "core"
-              },
-              {
-                "id": "thomas_piketty",
-                "name": "Thomas Piketty",
-                "role": "kapital og ulikhet",
-                "tier": "core"
-              },
-              {
-                "id": "nancy_fraser",
-                "name": "Nancy Fraser",
-                "role": "omfordeling og anerkjennelse",
-                "tier": "core"
-              },
-              {
-                "id": "gosta_esping_andersen",
-                "name": "Gøsta Esping-Andersen",
-                "role": "velferdsstatsregimer",
+                "role": "rettferdig mulighetslikhet",
                 "tier": "core"
               },
               {
                 "id": "amartya_sen",
                 "name": "Amartya Sen",
-                "role": "kapabiliteter og sosial rettferdighet",
+                "role": "utdanning som kapabilitet",
                 "tier": "core"
               }
             ]
@@ -6428,7 +6684,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "welfare-distribution-first",
+          "question_surface_mode": "distribution-case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -6438,36 +6694,34 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke likestill utdanningsdeltakelse med sosial mobilitet.",
+            "Ikke anta at formelt like opptaksvilkår gir reell mulighetslikhet.",
+            "Ikke forklar prestasjonsforskjeller uten å undersøke ressurs- og seleksjonsmekanismer.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_selection_and_resource_mechanism",
+            "separate_access_from_completion",
+            "compare_absolute_with_relative_mobility"
           ],
           "comparison_pairs": [
             [
-              "john_rawls",
-              "thomas_piketty"
+              "pierre_bourdieu",
+              "john_rawls"
             ],
             [
-              "nancy_fraser",
-              "gosta_esping_andersen"
+              "john_rawls",
+              "amartya_sen"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "NAV-kontor",
-            "Ullevål sykehus",
-            "Tøyen",
-            "Groruddalen",
-            "Oslo rådhus",
-            "kommunale boliger",
-            "Aker sykehus"
+            "Universitetsplassen",
+            "Oslo-skolen",
+            "Tøyen"
           ],
           "recommended_method_ids": [
             "met_pol_levekarsanalyse",
@@ -6475,8 +6729,9 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
+            "pierre_bourdieu",
             "john_rawls",
-            "thomas_piketty"
+            "amartya_sen"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -6489,15 +6744,72 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare fordelingscases, kildetyper og mekanismer for Utdanning og mobilitet. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Utdannings- og mobilitetspolitikk handler om hvordan skoler, opptak, finansiering, kvalifisering og læringsmiljø fordeler kompetanse, vitnemål og livsmuligheter mellom generasjoner og grupper.",
+          "core_problem": "Når fremmer utdanning reell sosial mobilitet, og når omsetter systemet eksisterende ressursforskjeller til nye forskjeller i prestasjon, kvalifikasjon og adgang?",
+          "mechanisms": [
+            "skolefinansiering",
+            "opptak og sortering",
+            "skolevalg",
+            "karakter- og credential-system",
+            "kulturell kapital",
+            "foreldreressurser",
+            "læringsmiljø",
+            "peer-effekter"
+          ],
+          "critical_distinctions": [
+            "mobilitet vs likhet",
+            "absolutt vs relativ mobilitet",
+            "meritokrati vs ressursfordel",
+            "tilgang vs fullføring"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "kulturell kapital og sosial reproduksjon"
+            },
+            {
+              "thinker_id": "john_rawls",
+              "concept": "rettferdig mulighetslikhet"
+            },
+            {
+              "thinker_id": "amartya_sen",
+              "concept": "utdanning som kapabilitet"
+            }
+          ],
+          "case_anchors": [
+            "Universitetsplassen",
+            "Oslo-skolen",
+            "Tøyen"
+          ],
+          "anti_reduction": [
+            "Ikke likestill utdanningsdeltakelse med sosial mobilitet.",
+            "Ikke anta at formelt like opptaksvilkår gir reell mulighetslikhet.",
+            "Ikke forklar prestasjonsforskjeller uten å undersøke ressurs- og seleksjonsmekanismer."
+          ],
+          "required_anchor_types": [
+            "school",
+            "university",
+            "admission",
+            "mobility_statistics"
+          ],
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         },
         {
           "id": "demografi_og_plan",
@@ -6505,33 +6817,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "john_rawls",
-                "name": "John Rawls",
-                "role": "rettferdighet og fordeling",
-                "tier": "core"
-              },
-              {
-                "id": "thomas_piketty",
-                "name": "Thomas Piketty",
-                "role": "kapital og ulikhet",
-                "tier": "core"
-              },
-              {
-                "id": "nancy_fraser",
-                "name": "Nancy Fraser",
-                "role": "omfordeling og anerkjennelse",
-                "tier": "core"
-              },
-              {
-                "id": "gosta_esping_andersen",
-                "name": "Gøsta Esping-Andersen",
-                "role": "velferdsstatsregimer",
+                "id": "james_c_scott",
+                "name": "James C. Scott",
+                "role": "statlig lesbarhet og forenkling",
                 "tier": "core"
               },
               {
                 "id": "amartya_sen",
                 "name": "Amartya Sen",
-                "role": "kapabiliteter og sosial rettferdighet",
+                "role": "behov som reelle kapabilitetsmangler",
+                "tier": "core"
+              },
+              {
+                "id": "gudmund_hernes",
+                "name": "Gudmund Hernes",
+                "role": "ressursfordeling og institusjonell styring",
                 "tier": "core"
               }
             ]
@@ -6560,7 +6860,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "welfare-distribution-first",
+          "question_surface_mode": "distribution-case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -6570,36 +6870,36 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke presenter framskriving som sikker framtid.",
+            "Ikke behandle demografiske kategorier som naturlige og nøytrale.",
+            "Ikke slutte fra befolkningsvekst direkte til én bestemt politisk løsning.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_projection_assumptions",
+            "separate_demographic_need_from_political_priority",
+            "test_average_against_group_and_area_variation"
           ],
           "comparison_pairs": [
             [
-              "john_rawls",
-              "thomas_piketty"
+              "james_c_scott",
+              "amartya_sen"
             ],
             [
-              "nancy_fraser",
-              "gosta_esping_andersen"
+              "amartya_sen",
+              "gudmund_hernes"
             ]
           ],
           "norwegian_thinker_ids": [
-            "stein_rokkan",
             "gudmund_hernes"
           ],
           "recommended_oslo_cases": [
-            "NAV-kontor",
-            "Ullevål sykehus",
-            "Tøyen",
             "Groruddalen",
             "Oslo rådhus",
-            "kommunale boliger",
-            "Aker sykehus"
+            "kommunale skole- og helseplaner"
           ],
           "recommended_method_ids": [
             "met_pol_statistikk_og_fordelingsanalyse",
@@ -6607,8 +6907,9 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "john_rawls",
-            "thomas_piketty"
+            "james_c_scott",
+            "amartya_sen",
+            "gudmund_hernes"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -6621,15 +6922,72 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare fordelingscases, kildetyper og mekanismer for Demografi og plan. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Demografi og plan analyserer hvordan befolkningsstørrelse, alder, husholdninger, flytting og geografisk fordeling oversettes til prognoser, kapasitet, tjenestebehov og arealbeslutninger.",
+          "core_problem": "Hvordan brukes befolkningsdata til å styre fremtiden uten at prognoser forveksles med sikre fakta eller kategorier skjuler ulike behov og lokale erfaringer?",
+          "mechanisms": [
+            "befolkningsframskriving",
+            "kapasitetsberegning",
+            "skole- og tjenestekretser",
+            "lokalisering av institusjoner",
+            "aldersstruktur",
+            "flytting",
+            "datakategorisering",
+            "arealprioritering"
+          ],
+          "critical_distinctions": [
+            "framskriving vs forutsigelse",
+            "demografisk behov vs politisk prioritet",
+            "befolkningsgjennomsnitt vs gruppespredning",
+            "planområde vs levd nabolag"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "james_c_scott",
+              "concept": "statlig lesbarhet og forenkling"
+            },
+            {
+              "thinker_id": "amartya_sen",
+              "concept": "behov som reelle kapabilitetsmangler"
+            },
+            {
+              "thinker_id": "gudmund_hernes",
+              "concept": "ressursfordeling og institusjonell styring"
+            }
+          ],
+          "case_anchors": [
+            "Groruddalen",
+            "Oslo rådhus",
+            "kommunale skole- og helseplaner"
+          ],
+          "anti_reduction": [
+            "Ikke presenter framskriving som sikker framtid.",
+            "Ikke behandle demografiske kategorier som naturlige og nøytrale.",
+            "Ikke slutte fra befolkningsvekst direkte til én bestemt politisk løsning."
+          ],
+          "required_anchor_types": [
+            "population_projection",
+            "planning_area",
+            "service_capacity",
+            "neighbourhood"
+          ],
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         },
         {
           "id": "sosial_ekskludering",
@@ -6637,33 +6995,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "john_rawls",
-                "name": "John Rawls",
-                "role": "rettferdighet og fordeling",
-                "tier": "core"
-              },
-              {
-                "id": "thomas_piketty",
-                "name": "Thomas Piketty",
-                "role": "kapital og ulikhet",
-                "tier": "core"
-              },
-              {
                 "id": "nancy_fraser",
                 "name": "Nancy Fraser",
-                "role": "omfordeling og anerkjennelse",
-                "tier": "core"
-              },
-              {
-                "id": "gosta_esping_andersen",
-                "name": "Gøsta Esping-Andersen",
-                "role": "velferdsstatsregimer",
+                "role": "omfordeling, anerkjennelse og representasjon",
                 "tier": "core"
               },
               {
                 "id": "amartya_sen",
                 "name": "Amartya Sen",
-                "role": "kapabiliteter og sosial rettferdighet",
+                "role": "kapabilitetsmangel og eksklusjon",
+                "tier": "core"
+              },
+              {
+                "id": "erving_goffman",
+                "name": "Erving Goffman",
+                "role": "stigma og sosial identitet",
                 "tier": "core"
               }
             ]
@@ -6692,7 +7038,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "welfare-distribution-first",
+          "question_surface_mode": "distribution-case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -6702,36 +7048,34 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke reduser sosial ekskludering til lav inntekt.",
+            "Ikke individualiser et problem før institusjonelle terskler er undersøkt.",
+            "Ikke anta at et tilbud er tilgjengelig bare fordi det formelt eksisterer.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_access_barrier_and_affected_group",
+            "separate_formal_access_from_effective_participation",
+            "compare_redistribution_with_recognition"
           ],
           "comparison_pairs": [
             [
-              "john_rawls",
-              "thomas_piketty"
+              "nancy_fraser",
+              "amartya_sen"
             ],
             [
-              "nancy_fraser",
-              "gosta_esping_andersen"
+              "amartya_sen",
+              "erving_goffman"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
             "NAV-kontor",
-            "Ullevål sykehus",
-            "Tøyen",
-            "Groruddalen",
-            "Oslo rådhus",
             "kommunale boliger",
-            "Aker sykehus"
+            "Tøyen"
           ],
           "recommended_method_ids": [
             "met_pol_makt_og_ulikhetsanalyse",
@@ -6739,8 +7083,9 @@
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
-            "john_rawls",
-            "thomas_piketty"
+            "nancy_fraser",
+            "amartya_sen",
+            "erving_goffman"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -6753,15 +7098,72 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare fordelingscases, kildetyper og mekanismer for Sosial ekskludering. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Sosial ekskludering er prosesser som stenger mennesker ute fra ressurser, tjenester, arbeid, bolig, rettigheter, deltakelse eller sosial anerkjennelse.",
+          "core_problem": "Hvordan oppstår varig utenforskap gjennom institusjonelle terskler, stigma og kumulative ulemper, selv når formelle rettigheter eller tilbud finnes?",
+          "mechanisms": [
+            "vilkår og dokumentasjonskrav",
+            "stigma",
+            "romlig segregering",
+            "digital ekskludering",
+            "diskriminering",
+            "administrative terskler",
+            "kumulativ ulempe",
+            "manglende representasjon"
+          ],
+          "critical_distinctions": [
+            "fattigdom vs sosial ekskludering",
+            "formell adgang vs effektiv deltakelse",
+            "omfordeling vs anerkjennelse",
+            "individuell mangel vs strukturell barriere"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "nancy_fraser",
+              "concept": "omfordeling, anerkjennelse og representasjon"
+            },
+            {
+              "thinker_id": "amartya_sen",
+              "concept": "kapabilitetsmangel og eksklusjon"
+            },
+            {
+              "thinker_id": "erving_goffman",
+              "concept": "stigma og sosial identitet"
+            }
+          ],
+          "case_anchors": [
+            "NAV-kontor",
+            "kommunale boliger",
+            "Tøyen"
+          ],
+          "anti_reduction": [
+            "Ikke reduser sosial ekskludering til lav inntekt.",
+            "Ikke individualiser et problem før institusjonelle terskler er undersøkt.",
+            "Ikke anta at et tilbud er tilgjengelig bare fordi det formelt eksisterer."
+          ],
+          "required_anchor_types": [
+            "welfare_office",
+            "housing",
+            "minority_access",
+            "administrative_barrier"
+          ],
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         },
         {
           "id": "omfordeling_og_legitimitet",
@@ -6771,31 +7173,19 @@
               {
                 "id": "john_rawls",
                 "name": "John Rawls",
-                "role": "rettferdighet og fordeling",
+                "role": "rettferdighet som rimelige samarbeidsvilkår",
                 "tier": "core"
               },
               {
-                "id": "thomas_piketty",
-                "name": "Thomas Piketty",
-                "role": "kapital og ulikhet",
+                "id": "jurgen_habermas",
+                "name": "Jürgen Habermas",
+                "role": "offentlig begrunnelse og deliberativ legitimitet",
                 "tier": "core"
               },
               {
-                "id": "nancy_fraser",
-                "name": "Nancy Fraser",
-                "role": "omfordeling og anerkjennelse",
-                "tier": "core"
-              },
-              {
-                "id": "gosta_esping_andersen",
-                "name": "Gøsta Esping-Andersen",
-                "role": "velferdsstatsregimer",
-                "tier": "core"
-              },
-              {
-                "id": "amartya_sen",
-                "name": "Amartya Sen",
-                "role": "kapabiliteter og sosial rettferdighet",
+                "id": "fritz_scharpf",
+                "name": "Fritz W. Scharpf",
+                "role": "input- og outputlegitimitet",
                 "tier": "core"
               }
             ]
@@ -6824,7 +7214,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "welfare-distribution-first",
+          "question_surface_mode": "distribution-case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -6834,36 +7224,34 @@
             "Hvilken teoretiker passer best",
             "Hva betyr samfunn generelt",
             "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-            "Påstand hentet bare fra emnenavn eller teori"
+            "Påstand hentet bare fra emnenavn eller teori",
+            "Ikke anta at omfordeling er legitim bare fordi den er lovlig.",
+            "Ikke forklar oppslutning bare med egeninteresse.",
+            "Ikke bruk høy tillit som erstatning for analyse av prosedyrer og resultater.",
+            "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+            "Ikke bruk canonical-filen som faktakilde.",
+            "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_contribution_benefit_and_justification",
+            "separate_legality_from_legitimacy",
+            "test_input_process_and_output_legitimacy"
           ],
           "comparison_pairs": [
             [
               "john_rawls",
-              "thomas_piketty"
+              "jurgen_habermas"
             ],
             [
-              "nancy_fraser",
-              "gosta_esping_andersen"
+              "jurgen_habermas",
+              "fritz_scharpf"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "NAV-kontor",
-            "Ullevål sykehus",
-            "Tøyen",
-            "Groruddalen",
             "Oslo rådhus",
-            "kommunale boliger",
-            "Aker sykehus"
+            "NAV-kontor",
+            "Stortinget"
           ],
           "recommended_method_ids": [
             "met_pol_fordelingsanalyse",
@@ -6872,7 +7260,8 @@
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
             "john_rawls",
-            "thomas_piketty"
+            "jurgen_habermas",
+            "fritz_scharpf"
           ],
           "case_spread_score": 5,
           "theory_spread_priority": "spread_more",
@@ -6885,15 +7274,72 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare fordelingscases, kildetyper og mekanismer for Omfordeling og legitimitet. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_concrete_institution_law_conflict_policy_or_social_process": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_pol_",
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "require_method_match_to_mechanism": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Omfordeling og legitimitet analyserer hvorfor skatter, overføringer og tjenester oppfattes som rettferdige, bindende og verdt å støtte, eller som vilkårlige og urimelige.",
+          "core_problem": "Hvilke fordelingsresultater, prosedyrer og begrunnelser skaper oppslutning om å betale inn og dele risiko, særlig når ulike grupper vurderer bidrag, behov og fortjeneste forskjellig?",
+          "mechanisms": [
+            "skatt og overføring",
+            "universelle ytelser",
+            "synlig gjensidighet",
+            "fortjenestefortellinger",
+            "prosedyrerettferdighet",
+            "åpen begrunnelse",
+            "tjenestekvalitet",
+            "politisk tilbakekobling"
+          ],
+          "critical_distinctions": [
+            "legalitet vs legitimitet",
+            "input-, prosess- og outputlegitimitet",
+            "egeninteresse vs rettferdighetsnorm",
+            "universalisme vs fortjenestebasert avgrensning"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "john_rawls",
+              "concept": "rettferdighet som rimelige samarbeidsvilkår"
+            },
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "offentlig begrunnelse og deliberativ legitimitet"
+            },
+            {
+              "thinker_id": "fritz_scharpf",
+              "concept": "input- og outputlegitimitet"
+            }
+          ],
+          "case_anchors": [
+            "Oslo rådhus",
+            "NAV-kontor",
+            "Stortinget"
+          ],
+          "anti_reduction": [
+            "Ikke anta at omfordeling er legitim bare fordi den er lovlig.",
+            "Ikke forklar oppslutning bare med egeninteresse.",
+            "Ikke bruk høy tillit som erstatning for analyse av prosedyrer og resultater."
+          ],
+          "required_anchor_types": [
+            "tax",
+            "transfer",
+            "public_service",
+            "legitimation"
+          ],
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         }
       ],
       "best_place_types": [
@@ -6905,7 +7351,7 @@
         "bydel",
         "offentlig_tjeneste"
       ],
-      "question_role": "Starter i konkret institusjon, lov, offentlig rom, reform, konflikt, fordeling, velferdstjeneste, norm eller sosial prosess før teori løftes inn.",
+      "question_role": "Start i ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller dokumenterbart velferdscase. Identifiser deretter fordelingsmekanisme og kritisk distinksjon før teori brukes.",
       "source_priority": [
         "konkret institusjon, lov, reform, beslutning, offentlig tjeneste, demokratisk arena, rettsbygg, konflikt, protest, normsystem eller sosial prosess",
         "offisiell kommune-, stat-, Storting-, domstol-, lovdata-, SSB-, arkiv-, partiprogram-, utrednings-, rapport- eller institusjonskilde",
@@ -6916,8 +7362,38 @@
       "anti_patterns": [
         "Ikke spør generisk om politikk uten institusjon, lov, konflikt, fordeling, norm, offentlighet, sted eller kilde.",
         "Ikke bruk politikk som kategori hvis hovedpoenget egentlig er byarkitektur, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap.",
-        "Ikke gjør et sted til politikk bare fordi det ligger nær maktbygg eller har en vag samfunnsvinkel, uten dokumentert institusjons-, lov-, fordelings-, konflikt-, norm- eller forvaltningsvinkel."
-      ]
+        "Ikke gjør et sted til politikk bare fordi det ligger nær maktbygg eller har en vag samfunnsvinkel, uten dokumentert institusjons-, lov-, fordelings-, konflikt-, norm- eller forvaltningsvinkel.",
+        "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+        "Ikke bruk canonical-filen som faktakilde.",
+        "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand.",
+        "Ikke gjør fordelingsspørsmål til generell moralsk synsing.",
+        "Ikke bruk gjennomsnitt uten å undersøke hvem som skjules i fordelingen."
+      ],
+      "core_problems": [
+        "hvem får hvilke goder og hvem bærer kostnadene",
+        "hvordan formelle rettigheter blir eller ikke blir faktisk tilgang",
+        "hvordan ulikhet reproduseres mellom grupper, steder og generasjoner",
+        "hvordan omfordeling begrunnes og legitimeres"
+      ],
+      "mechanism_families": [
+        "skatt og budsjett",
+        "universalisme og målretting",
+        "tildeling, terskler og rasjonering",
+        "kapitalakkumulasjon og sosial reproduksjon",
+        "planlegging og tjenestelokalisering",
+        "prosedyrerettferdighet og politisk tilbakekobling"
+      ],
+      "critical_distinctions": [
+        "fordeling vs omfordeling",
+        "lik tildeling vs likeverdig virkning",
+        "formell rett vs faktisk tilgang",
+        "inntekt vs formue og klasse",
+        "gjennomsnitt vs fordelingsprofil",
+        "legalitet vs legitimitet"
+      ],
+      "generator_rule": "Ekstern kilde eller dokumenterbart fordelingscase → presis claim_basis → identifisert fordelings- eller velferdsmekanisme → kritisk distinksjon → valgfritt teoribegrep.",
+      "source_rule": "Canonical-filene bestemmer analyseformen, men leverer ikke statistikk, budsjettall, ordningsinnhold eller faktapåstand. Slike påstander må komme fra ekstern kilde.",
+      "quality_revision": "politikk-fordeling-vertical-2026-07-24"
     },
     {
       "id": "konflikt_makt_sivilsamfunn",
@@ -9762,5 +10238,5 @@
     "canonical_round": "v4.5",
     "emne_prefix_required": "em_pol_"
   },
-  "editorial_revision": "politikk-styring-2026-07-24"
+  "editorial_revision": "politikk-fordeling-vertical-2026-07-24"
 }
