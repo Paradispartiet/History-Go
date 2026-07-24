@@ -67,7 +67,9 @@ function normalizeText(html) {
 async function fetchText(url) {
   const response = await fetch(url, {
     headers: {
-      'user-agent': 'History-Go-coordinate-control/1.0 (+https://github.com/Paradispartiet/History-Go)',
+      'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'accept-language': 'nb-NO,nb;q=0.9,en;q=0.8',
+      referer: 'https://www.regjeringen.no/',
       accept: 'text/html,application/json,application/geo+json;q=0.9,*/*;q=0.8',
     },
   });
