@@ -1,4 +1,4 @@
-export const allowedLocatorTypes = ['current_place','poi','building','entrance','street','square','park','linear_area','route','quay','historic_site','archaeological_site','natural_area','unknown'] as const;
+export const allowedLocatorTypes = ['current_place','poi','building','entrance','street','square','park','linear_area','institutional_area','route','quay','historic_site','archaeological_site','natural_area','unknown'] as const;
 export const allowedSourceProviders = ['official_address','official_map','osm','google_places','mapbox','kartverket','municipality','historical_map','manual_research','legacy_unknown'] as const;
 export const allowedGeocodeAccuracy = ['rooftop','entrance','building','parcel','interpolated','geometric_center','approximate','historical_approximation','semantic_anchor','unknown'] as const;
 export const allowedCoordRoles = ['display_marker','unlock_point','label_anchor','entrance','building_center','site_center','line_anchor','area_anchor','historical_anchor'] as const;

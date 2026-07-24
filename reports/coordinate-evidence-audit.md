@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-24T05:48:15.678Z
+Generert: 2026-07-24T08:07:26.248Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -277,7 +277,7 @@ Generert: 2026-07-24T05:48:15.678Z
 | hoyesteretts_hus | data/coordinate-evidence/oslo/politikk/hoyesteretts_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_radhus | data/coordinate-evidence/oslo/politikk/oslo_radhus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | politihuset_gronland | data/coordinate-evidence/oslo/politikk/politihuset_gronland.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| regjeringskvartalet | data/coordinate-evidence/oslo/politikk/regjeringskvartalet.json | needs_research | needs_geometry | OK |
+| regjeringskvartalet | data/coordinate-evidence/oslo/politikk/regjeringskvartalet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | stortinget | data/coordinate-evidence/oslo/politikk/stortinget.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | youngstorget | data/coordinate-evidence/oslo/politikk/youngstorget.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | chat_noir | data/coordinate-evidence/oslo/popkultur/chat_noir.json | applied_to_place | do_not_change_coordinates_yet | OK |
