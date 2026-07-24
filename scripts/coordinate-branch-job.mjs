@@ -52,3 +52,5 @@ for (let index = 0; index < inputs.length; index += 1) {
 await writeFile(join(reportDir, 'visual-preview-generation.log'), `${[...setup, ...commands].map((row) => `${row.command}\n${row.stdout}\n${row.stderr}\nexit=${row.status}`).join('\n\n')}\n`, 'utf8');
 await writeFile(join(reportDir, 'visual-previews-base64.json'), `${JSON.stringify({ version: '2026-07-24', placeId: 'sigrid_undset_statue', exactOsmNodeId: 7596280553, previews }, null, 2)}\n`, 'utf8');
 console.log(JSON.stringify({ placeId: 'sigrid_undset_statue', exactOsmNodeId: 7596280553, previews: previews.map(({ preview, width, height, bytes }) => ({ preview, width, height, bytes })) }, null, 2));
+
+// Fresh push trigger for the dedicated visual-preview branch.
