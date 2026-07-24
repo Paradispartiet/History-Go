@@ -1,0 +1,87 @@
+name: Politikk styring mapping cleanup
+
+on:
+  push:
+    branches:
+      - agent/politikk-styring-vertical-chain
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/politikk-styring-vertical-chain
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fjern gamle generiske teorireferanser
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const domain = 'styring_institusjoner_forvaltning';
+          const mappingPath = 'data/fag/politikk/emnemapping_politikk_canonical_v4_5.json';
+          const fagkartPath = 'data/fag/politikk/fagkart_politikk_canonical_v4_5.json';
+          const methodsPath = 'data/fag/politikk/methods_politikk_canonical_v4_5.json';
+          const validatorPath = 'tools/validate-politikk-styring-vertical.mjs';
+
+          const mapping = JSON.parse(fs.readFileSync(mappingPath, 'utf8'));
+          const fagkart = JSON.parse(fs.readFileSync(fagkartPath, 'utf8'));
+          const methods = JSON.parse(fs.readFileSync(methodsPath, 'utf8'));
+          const category = fagkart.categories.find((item) => item.id === domain);
+          const hooks = new Map(category.topic_hooks.map((hook) => [hook.id, hook]));
+
+          let count = 0;
+          for (const entry of mapping) {
+            for (const item of entry.mappings ?? []) {
+              if (item.fagkart_kategori !== domain) continue;
+              const hook = hooks.get(item.topic_hook);
+              if (!hook) throw new Error(`Mangler hook ${item.topic_hook}`);
+              const norwegian = (hook.canon?.thinkers ?? []).filter((thinker) => thinker.tier === 'norwegian');
+              item.norwegian_thinker_ids = norwegian.map((thinker) => thinker.id);
+              item.norwegian_thinkers = norwegian.map((thinker) => thinker.name);
+              item.theory_depth = 'targeted';
+              count += 1;
+            }
+          }
+          methods.version = 'v4.5-canonical';
+
+          fs.writeFileSync(mappingPath, JSON.stringify(mapping, null, 2) + '\n');
+          fs.writeFileSync(methodsPath, JSON.stringify(methods, null, 2) + '\n');
+
+          let validator = fs.readFileSync(validatorPath, 'utf8');
+          const needle = "check(targetMappings.every(({ mapping }) => (mapping.theory_lenses ?? []).length > 0), 'Alle domenemappinger har målrettede teorispor');\n";
+          const addition = needle + "check(targetMappings.every(({ mapping }) => mapping.theory_depth === 'targeted'), 'Alle domenemappinger bruker målrettet teoridybde');\n" +
+            "check(targetMappings.every(({ mapping }) => (mapping.norwegian_thinker_ids ?? []).every((id) => (mapping.thinker_ids ?? []).includes(id))), 'Norske teorireferanser er del av hookets målrettede teorispor');\n";
+          if (!validator.includes(needle)) throw new Error('Fant ikke validatoranker');
+          validator = validator.replace(needle, addition);
+          fs.writeFileSync(validatorPath, validator);
+          console.log(`Ryddet teorireferanser i ${count} mappinger.`);
+          NODE
+
+          node tools/validate-politikk-styring-vertical.mjs \
+            | tee reports/politikk-canonical-migration/styring-forvaltning-vertical-chain-validation.txt
+          git diff --check \
+            >> reports/politikk-canonical-migration/styring-forvaltning-vertical-chain-validation.txt
+          echo "PASS | git diff --check" \
+            | tee -a reports/politikk-canonical-migration/styring-forvaltning-vertical-chain-validation.txt
+
+      - name: Commit oppryddingen
+        run: |
+          rm .github/workflows/agent-politikk-styring-mapping-cleanup.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/fag/politikk/emnemapping_politikk_canonical_v4_5.json \
+            data/fag/politikk/methods_politikk_canonical_v4_5.json \
+            tools/validate-politikk-styring-vertical.mjs \
+            reports/politikk-canonical-migration/styring-forvaltning-vertical-chain-validation.txt \
+            .github/workflows/agent-politikk-styring-mapping-cleanup.yml
+          git commit -m "Politikk: målrett teorimappingen"
+          git push origin HEAD:agent/politikk-styring-vertical-chain
