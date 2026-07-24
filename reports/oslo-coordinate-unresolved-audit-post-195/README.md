@@ -17,8 +17,10 @@ Frognerstranda is excluded because batch 195 applied Oslo kommunes official full
 - production-ready: **0**
 - needs source or scope: **9**
 
-Next candidate: **sigrid_undset_statue — Sigrid Undset-statuen**  
-Readiness: **needs_source_or_scope**  
-Decision: **central_queue_blocked_continue_with_ranked_research_first_oslo_candidate**
+Because the central queue has no production-ready place, the next candidate is selected from outside the central box.
+
+Next candidate: **bygdoy_natur — Bygdøy natur- og kulturmiljø**
+Readiness: **needs_source_or_scope**
+Decision: **central_queue_blocked_continue_with_ranked_research_first_outside_central_candidate**
 
 No canonical place, coordinate evidence or protocol data changed in this audit.

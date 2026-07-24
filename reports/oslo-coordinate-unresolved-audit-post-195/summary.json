@@ -14,7 +14,8 @@
       "lon": 10.7522
     },
     "inclusionRule": "Active evidence-backed Oslo places whose canonical coordinate state is not fully applied and verified.",
-    "rankingRule": "Production-ready first; otherwise applicable candidate count, resolved identity, distance from central reference and placeId."
+    "rankingRule": "Production-ready first; otherwise applicable candidate count, resolved identity, distance from central reference and placeId.",
+    "nextCandidateRule": "When no central place is production-ready, select the highest-ranked unresolved Oslo place outside the central box; do not recycle the blocked central place."
   },
   "activePlaceCount": 1445,
   "placeManifestFileCount": 690,
@@ -438,31 +439,31 @@
   ],
   "orphanOsloEvidence": [],
   "nextCandidate": {
-    "placeId": "sigrid_undset_statue",
-    "name": "Sigrid Undset-statuen",
-    "category": "litteratur",
-    "sourceFile": "data/places/litteratur/oslo/places_litteratur.json",
-    "evidenceFile": "data/coordinate-evidence/oslo/litteratur/sigrid_undset_statue.json",
-    "lat": 59.9242,
-    "lon": 10.7297,
-    "r": 120,
+    "placeId": "bygdoy_natur",
+    "name": "Bygdøy natur- og kulturmiljø",
+    "category": "natur",
+    "sourceFile": "data/places/natur/oslo/places_oslo_natur_hovedsteder.json",
+    "evidenceFile": "data/coordinate-evidence/oslo/natur/bygdoy_natur.json",
+    "lat": 59.9048,
+    "lon": 10.6849,
+    "r": 950,
     "coordStatus": "needs_source",
-    "coordType": "unverified_monument_point",
-    "locatorType": "poi",
-    "sourceProvider": "manual_research",
-    "sourceObjectId": "oslo-kommune:stensparken:sigrid-undset-skulptur",
+    "coordType": "legacy_unverified",
+    "locatorType": "natural_area",
+    "sourceProvider": null,
+    "sourceObjectId": null,
     "evidenceStatus": "needs_research",
     "coordinateDecision": "needs_geometry",
     "identityStatus": "resolved",
     "identityResolved": true,
-    "resolvedIdentity": "Sigrid Undset-skulpturen i Stensparken, avduket i 1991",
-    "identityProblem": "Fysisk identitet er dokumentert, men batchens strenge koordinatkrav er ikke oppfylt for ett entydig canonical punkt.",
-    "blockedReason": "Official sources resolve the Sigrid Undset monument identity but expose no exact coordinate. The closest exact OSM artwork candidate, node 7596280553, is now visually rejected because its directly linked images show a different sculpture. No verified canonical anchor remains.",
-    "nextAction": "Find an independent exact monument anchor or authoritative coordinate. Do not retry OSM node 7596280553.",
+    "resolvedIdentity": "Bygdøy som sammensatt natur- og kulturmiljø på halvøyskala",
+    "identityProblem": "Recorden er et repo-syntetisk landskapssystem som kombinerer hele halvøya, kystsoner, skog og flere allerede separate canonical delsteder. Ett enkelt adresse-, strand- eller parkobjekt kan ikke legitimt representere hele natur- og kulturmiljøet.",
+    "blockedReason": "Recorden er et repo-syntetisk landskapssystem som kombinerer hele halvøya, kystsoner, skog og flere allerede separate canonical delsteder. Ett enkelt adresse-, strand- eller parkobjekt kan ikke legitimt representere hele natur- og kulturmiljøet.",
+    "nextAction": "Dokumenter en eksplisitt halvøy-/multi-anchor-modell eller offisiell områdegeometri som samsvarer med hele recordens scope.",
     "canBecomeVerified": false,
     "candidateCounts": {
       "address": 0,
-      "sourceObject": 3,
+      "sourceObject": 1,
       "geometry": 0,
       "coordinate": 0
     },
@@ -473,9 +474,9 @@
       "coordinate": 0
     },
     "applicableCandidateCount": 0,
-    "centralBbox": true,
-    "distanceFromCentralReferenceM": 1698.3,
+    "centralBbox": false,
+    "distanceFromCentralReferenceM": 3886,
     "productionReadiness": "needs_source_or_scope"
   },
-  "decision": "central_queue_blocked_continue_with_ranked_research_first_oslo_candidate"
+  "decision": "central_queue_blocked_continue_with_ranked_research_first_outside_central_candidate"
 }
