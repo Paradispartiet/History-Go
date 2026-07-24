@@ -1,0 +1,80 @@
+name: Oslo People zero-gap batch 1
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - tools/materialize-oslo-people-zero-gap-batch1.mjs
+      - .github/workflows/oslo-people-zero-gap-batch1.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out batch branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-people-zero-gap-batch1
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize strict People batch
+        run: node tools/materialize-oslo-people-zero-gap-batch1.mjs
+
+      - name: Regenerate Civication people index
+        run: npx tsx scripts/build-civication-history-people-index.mts
+
+      - name: Regenerate Oslo coverage reports
+        run: |
+          npx tsx tools/audit-oslo-people-coverage.mts
+          npx tsx tools/audit-oslo-latent-people-coverage.mts
+
+      - name: Assert coverage reduction
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const coverage = JSON.parse(fs.readFileSync('reports/oslo-people-coverage.json', 'utf8'));
+          const latent = JSON.parse(fs.readFileSync('reports/oslo-people-latent-coverage.json', 'utf8'));
+          if (coverage.totals.uncoveredRequiredPlaces !== 185) {
+            throw new Error(`Expected 185 uncovered Oslo non-nature places, got ${coverage.totals.uncoveredRequiredPlaces}`);
+          }
+          if (coverage.totals.coveredRequiredPlaces !== 148) {
+            throw new Error(`Expected 148 covered Oslo non-nature places, got ${coverage.totals.coveredRequiredPlaces}`);
+          }
+          if (latent.totals.latentCoveredPlaces !== 1) {
+            throw new Error(`Expected one remaining latent uncovered place, got ${latent.totals.latentCoveredPlaces}`);
+          }
+          NODE
+
+      - name: Validate People data
+        run: bash scripts/check-people.sh
+
+      - name: Validate diff
+        run: git diff --check
+
+      - name: Publish clean data commit
+        run: |
+          rm .github/workflows/oslo-people-zero-gap-batch1.yml
+          rm tools/materialize-oslo-people-zero-gap-batch1.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/people data/Civication/historyPeople_index.json \
+            reports/oslo-people-coverage.json reports/oslo-people-coverage.md \
+            reports/oslo-people-latent-coverage.json reports/oslo-people-latent-coverage.md \
+            reports/people-oslo-zero-gap-batch1-validation.md \
+            .github/workflows/oslo-people-zero-gap-batch1.yml \
+            tools/materialize-oslo-people-zero-gap-batch1.mjs
+          git commit -m "Add Oslo People zero-gap batch 1"
+          git push origin HEAD:agent/oslo-people-zero-gap-batch1
