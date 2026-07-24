@@ -562,8 +562,8 @@
     "title": "Boligpolitikk og byutvikling",
     "short_label": "Boligpolitikk og byutvikling",
     "status": "active",
-    "definition": "Emnet studerer boligpolitikk og byutvikling som politisk og samfunnsfaglig inngang til konkrete institusjoner, lover, reformer, offentlige rom, fordelingsspørsmål, konflikter, normer, rettigheter, tjenester og sosiale prosesser.",
-    "why_it_matters": "Emnet synliggjør hvordan velferd, ressurser, levekår, klasse, bolig, helse, utdanning og demografi organiseres politisk.",
+    "definition": "Studiet av hvordan tomtepolitikk, arealplanlegging, bygging, finansiering, skatt, leie og kommunal tildeling former boligtilgang, priser, botrygghet og byutvikling.",
+    "why_it_matters": "Bolig er både hjem, velferdsgode og kapitalobjekt; politikken påvirker derfor fordeling, formue, segregering og hvem som kan bo hvor.",
     "keywords": [
       "boligpolitikk",
       "byutvikling",
@@ -601,14 +601,12 @@
       "ressurser"
     ],
     "core_concepts": [
-      "boligpolitikk",
-      "byutvikling",
-      "fordeling",
-      "velferd",
-      "ulikhet",
-      "levekår",
-      "klasse",
-      "ressurser"
+      "boligtilbud",
+      "betalbarhet",
+      "botrygghet",
+      "boligformue",
+      "kommunal bolig",
+      "arealregulering"
     ],
     "sub_concepts": [
       "boligpolitikk",
@@ -621,17 +619,14 @@
       "ressurser"
     ],
     "key_questions": [
-      "Hvilken konkret institusjon, lov, reform, konflikt, tjeneste, norm, rettighet eller sosial prosess gjør emnet relevant?",
-      "Hvordan organiseres, legitimeres, begrenses, fordeles eller utfordres makt her?",
-      "Hvilke kilder, vedtak, statistikker, rettsdokumenter, planer, arkiver eller samfunnsfaglige data kan dokumentere påstanden?"
+      "Hvilke boligpolitiske virkemidler påvirker tilbud, pris eller botrygghet i caset?",
+      "Hvem får tilgang, hvem bærer kostnaden, og hvem får kapitalgevinsten?",
+      "Er problemet mangel på boliger, mangel på rimelige boliger eller manglende trygghet i boforholdet?"
     ],
     "conflicts": [
-      "styring vs frihet",
-      "rettigheter vs kontroll",
-      "representasjon vs ekskludering",
-      "fordeling vs ulikhet",
-      "offentlighet vs administrativ makt",
-      "normalitet vs minoritetserfaring"
+      "bolig som hjem vs investeringsobjekt",
+      "utbygging vs sosial bærekraft",
+      "eierskap vs botrygghet"
     ],
     "ideological_dimensions": [
       "demokrati vs teknokrati",
@@ -646,31 +641,21 @@
       "met_pol_romlig_maktanalyse"
     ],
     "analysis_axes": [
-      "institusjon vs borger",
-      "lov vs praksis",
-      "makt vs legitimitet",
-      "fordeling vs rettferdighet",
-      "offentlighet vs kontroll",
-      "norm vs avvik"
+      "tilbud vs betalbarhet",
+      "marked vs offentlig tildeling",
+      "boligtilgang vs formuesoppbygging"
     ],
     "canonical_thinkers": [
-      "John Rawls",
       "Thomas Piketty",
-      "Nancy Fraser",
-      "Gøsta Esping-Andersen",
-      "Amartya Sen"
+      "John Rawls",
+      "Pierre Bourdieu"
     ],
     "canonical_thinker_ids": [
-      "john_rawls",
       "thomas_piketty",
-      "nancy_fraser",
-      "gosta_esping_andersen",
-      "amartya_sen"
+      "john_rawls",
+      "pierre_bourdieu"
     ],
-    "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
+    "norwegian_thinker_ids": [],
     "norwegian_thinkers": [
       "stein_rokkan",
       "gudmund_hernes"
@@ -691,10 +676,9 @@
       "offentlig_tjeneste"
     ],
     "quiz_angles": [
-      "start_with_concrete_institution_law_conflict_policy_or_social_process",
-      "connect_visible_place_to_power_norm_or_decision",
-      "identify_distribution_legitimacy_rights_or_governance",
-      "avoid_party_opinion_as_default"
+      "identifiser dokumenterbart fordelingscase og berørte grupper",
+      "forklar mekanismen som fordeler ressurs, risiko eller adgang",
+      "test en presis fordelingsdistinksjon før eventuell teori"
     ],
     "blindspots": [
       "Emnet må ikke brukes som synlig spørsmålsinnhold uten konkret institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
@@ -740,7 +724,7 @@
     "scope_guard": "Brukes bare når stedet, personen, institusjonen, loven, konflikten, tjenesten, reformen, normen eller prosessen har dokumenterbar politisk eller samfunnsfaglig kobling.",
     "mapping_count": 1,
     "mapping_pressure": "mapped",
-    "generator_use_note": "Start fra konkret institusjon, lov, reform, vedtak, offentlig rom, rettighet, fordeling, velferdstjeneste, konflikt, norm, sosial prosess eller ekstern samfunnsfaglig kilde. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
+    "generator_use_note": "Bruk emnet til å velge mekanisme, distinksjon og metode. Faktapåstanden må komme fra ekstern statistikk, vedtak, ordningsregel, plan eller dokumenterbart case.",
     "primary_theory_hooks": [
       "boligpolitikk"
     ],
@@ -796,17 +780,52 @@
       "require_case_anchor_before_theory": true,
       "require_external_claim_basis": true,
       "require_institution_law_conflict_or_social_process_anchor": true,
-      "do_not_generate_from_emne_label_only": true
+      "do_not_generate_from_emne_label_only": true,
+      "require_mechanism_explanation": true,
+      "require_critical_distinction": true,
+      "ban_theorist_name_as_answer_without_concept": true
     },
     "anti_patterns": [
       "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
       "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag.",
+      "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+      "Ikke bruk canonical-filen som faktakilde.",
+      "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
     ],
     "recommended_methods": [
       "met_pol_bolig_og_byutviklingsanalyse",
       "met_pol_romlig_maktanalyse"
-    ]
+    ],
+    "mechanisms": [
+      "arealregulering",
+      "tomtepolitikk",
+      "boligkreditt",
+      "skattefordel",
+      "kommunal tildeling",
+      "bostøtte"
+    ],
+    "distinguish_from": [
+      "økt tilbud er ikke det samme som økt betalbarhet",
+      "eierskap er ikke det samme som botrygghet",
+      "sosial boligpolitikk retter seg mot adgang og trygghet; generell markedspolitikk påvirker hele boligsystemet"
+    ],
+    "misconceptions": [
+      "Mer bygging løser ikke nødvendigvis problemet for husholdninger med lav betalingsevne.",
+      "Boligmarkedet er ikke uavhengig av skatt, kreditt og planlegging.",
+      "Kommunale boliger er ett virkemiddel, ikke hele boligpolitikken."
+    ],
+    "recommended_method_ids": [
+      "met_pol_bolig_og_byutviklingsanalyse",
+      "met_pol_romlig_maktanalyse"
+    ],
+    "theory_progression": [
+      "case og kilde",
+      "fordelingsmekanisme",
+      "kritisk distinksjon",
+      "målrettet teoribegrep"
+    ],
+    "quality_revision": "politikk-fordeling-vertical-2026-07-24"
   },
   {
     "emne_id": "em_pol_budsjett_prioritering",
@@ -2496,8 +2515,8 @@
     "title": "Fordeling og ressurser",
     "short_label": "Fordeling og ressurser",
     "status": "active",
-    "definition": "Emnet studerer fordeling og ressurser som politisk og samfunnsfaglig inngang til konkrete institusjoner, lover, reformer, offentlige rom, fordelingsspørsmål, konflikter, normer, rettigheter, tjenester og sosiale prosesser.",
-    "why_it_matters": "Emnet synliggjør hvordan velferd, ressurser, levekår, klasse, bolig, helse, utdanning og demografi organiseres politisk.",
+    "definition": "Studiet av hvordan offentlige inntekter, utgifter, tjenester og byrder fordeles mellom grupper, territorier, sektorer og tidspunkter.",
+    "why_it_matters": "Gjør fordelingspolitikk konkret ved å vise hvem som mottar ressurser, hvem som finansierer dem, hvilke kriterier som brukes, og hvilke alternative formål som fortrenges.",
     "keywords": [
       "fordeling",
       "ressurser",
@@ -2535,14 +2554,12 @@
       "klasse og ulikhet"
     ],
     "core_concepts": [
-      "fordeling",
-      "ressurser",
-      "velferd",
-      "ulikhet",
-      "levekår",
-      "klasse",
       "ressursfordeling",
-      "klasse og ulikhet"
+      "omfordeling",
+      "behovsvekting",
+      "universalisme",
+      "målretting",
+      "fordelingsvirkning"
     ],
     "sub_concepts": [
       "fordeling",
@@ -2555,17 +2572,14 @@
       "klasse og ulikhet"
     ],
     "key_questions": [
-      "Hvilken konkret institusjon, lov, reform, konflikt, tjeneste, norm, rettighet eller sosial prosess gjør emnet relevant?",
-      "Hvordan organiseres, legitimeres, begrenses, fordeles eller utfordres makt her?",
-      "Hvilke kilder, vedtak, statistikker, rettsdokumenter, planer, arkiver eller samfunnsfaglige data kan dokumentere påstanden?"
+      "Hvilke ressurser eller byrder fordeles, og mellom hvilke grupper eller steder?",
+      "Hvilken tildelingsmekanisme og hvilke kriterier avgjør utfallet?",
+      "Hvordan skiller ressursinnsats, faktisk mottak og fordelingsvirkning seg?"
     ],
     "conflicts": [
-      "styring vs frihet",
-      "rettigheter vs kontroll",
-      "representasjon vs ekskludering",
-      "fordeling vs ulikhet",
-      "offentlighet vs administrativ makt",
-      "normalitet vs minoritetserfaring"
+      "lik tildeling vs behovsvekting",
+      "universalisme vs målretting",
+      "kortsiktig prioritering vs langsiktig ulikhet"
     ],
     "ideological_dimensions": [
       "demokrati vs teknokrati",
@@ -2583,41 +2597,21 @@
       "met_pol_konfliktanalyse"
     ],
     "analysis_axes": [
-      "institusjon vs borger",
-      "lov vs praksis",
-      "makt vs legitimitet",
-      "fordeling vs rettferdighet",
-      "offentlighet vs kontroll",
-      "norm vs avvik"
+      "fordeling vs omfordeling",
+      "innsats vs virkning",
+      "gjennomsnitt vs fordelingsprofil"
     ],
     "canonical_thinkers": [
       "John Rawls",
-      "Thomas Piketty",
-      "Nancy Fraser",
-      "Gøsta Esping-Andersen",
       "Amartya Sen",
-      "Karl Marx",
-      "Antonio Gramsci",
-      "Charles Tilly",
-      "Sidney Tarrow",
-      "Chantal Mouffe"
+      "Thomas Piketty"
     ],
     "canonical_thinker_ids": [
       "john_rawls",
-      "thomas_piketty",
-      "nancy_fraser",
-      "gosta_esping_andersen",
       "amartya_sen",
-      "karl_marx",
-      "antonio_gramsci",
-      "charles_tilly",
-      "sidney_tarrow",
-      "chantal_mouffe"
+      "thomas_piketty"
     ],
-    "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
+    "norwegian_thinker_ids": [],
     "norwegian_thinkers": [
       "stein_rokkan",
       "gudmund_hernes"
@@ -2649,10 +2643,9 @@
       "minnested"
     ],
     "quiz_angles": [
-      "start_with_concrete_institution_law_conflict_policy_or_social_process",
-      "connect_visible_place_to_power_norm_or_decision",
-      "identify_distribution_legitimacy_rights_or_governance",
-      "avoid_party_opinion_as_default"
+      "identifiser dokumenterbart fordelingscase og berørte grupper",
+      "forklar mekanismen som fordeler ressurs, risiko eller adgang",
+      "test en presis fordelingsdistinksjon før eventuell teori"
     ],
     "blindspots": [
       "Emnet må ikke brukes som synlig spørsmålsinnhold uten konkret institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
@@ -2703,7 +2696,7 @@
     "scope_guard": "Brukes bare når stedet, personen, institusjonen, loven, konflikten, tjenesten, reformen, normen eller prosessen har dokumenterbar politisk eller samfunnsfaglig kobling.",
     "mapping_count": 4,
     "mapping_pressure": "mapped",
-    "generator_use_note": "Start fra konkret institusjon, lov, reform, vedtak, offentlig rom, rettighet, fordeling, velferdstjeneste, konflikt, norm, sosial prosess eller ekstern samfunnsfaglig kilde. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
+    "generator_use_note": "Bruk emnet til å velge mekanisme, distinksjon og metode. Faktapåstanden må komme fra ekstern statistikk, vedtak, ordningsregel, plan eller dokumenterbart case.",
     "primary_theory_hooks": [
       "ressursfordeling",
       "klasse_og_ulikhet",
@@ -2773,12 +2766,18 @@
       "require_case_anchor_before_theory": true,
       "require_external_claim_basis": true,
       "require_institution_law_conflict_or_social_process_anchor": true,
-      "do_not_generate_from_emne_label_only": true
+      "do_not_generate_from_emne_label_only": true,
+      "require_mechanism_explanation": true,
+      "require_critical_distinction": true,
+      "ban_theorist_name_as_answer_without_concept": true
     },
     "anti_patterns": [
       "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
       "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag.",
+      "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+      "Ikke bruk canonical-filen som faktakilde.",
+      "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
     ],
     "recommended_methods": [
       "met_pol_fordelingsanalyse",
@@ -2786,7 +2785,36 @@
       "met_pol_makt_og_ulikhetsanalyse",
       "met_pol_legitimitetsanalyse",
       "met_pol_konfliktanalyse"
-    ]
+    ],
+    "mechanisms": [
+      "skatt",
+      "budsjettbevilgning",
+      "behovsvekting",
+      "målretting",
+      "rasjonering",
+      "overføring"
+    ],
+    "distinguish_from": [
+      "fordeling er allokering av goder og byrder; omfordeling endrer en allerede etablert fordeling",
+      "lik tildeling er ikke det samme som likeverdig virkning",
+      "bevilgning er ikke det samme som mottatt tjeneste eller resultat"
+    ],
+    "misconceptions": [
+      "Mer penger gir ikke automatisk bedre fordelingsvirkning.",
+      "Gjennomsnittstall kan skjule systematiske forskjeller mellom grupper.",
+      "Målretting er ikke alltid mer treffsikkert når terskler og ikke-bruk tas med."
+    ],
+    "recommended_method_ids": [
+      "met_pol_fordelingsanalyse",
+      "met_pol_budsjett_og_fordelingsanalyse"
+    ],
+    "theory_progression": [
+      "case og kilde",
+      "fordelingsmekanisme",
+      "kritisk distinksjon",
+      "målrettet teoribegrep"
+    ],
+    "quality_revision": "politikk-fordeling-vertical-2026-07-24"
   },
   {
     "emne_id": "em_pol_forvaltning_ressursfordeling",
@@ -3080,8 +3108,8 @@
     "title": "Helsepolitikk og omsorg",
     "short_label": "Helsepolitikk og omsorg",
     "status": "active",
-    "definition": "Emnet studerer helsepolitikk og omsorg som politisk og samfunnsfaglig inngang til konkrete institusjoner, lover, reformer, offentlige rom, fordelingsspørsmål, konflikter, normer, rettigheter, tjenester og sosiale prosesser.",
-    "why_it_matters": "Emnet synliggjør hvordan velferd, ressurser, levekår, klasse, bolig, helse, utdanning og demografi organiseres politisk.",
+    "definition": "Studiet av hvordan helsetjenester, forebygging og omsorg finansieres, prioriteres, organiseres og fordeles mellom behov, grupper, steder og behandlingsnivåer.",
+    "why_it_matters": "Helsepolitikk avgjør ikke bare formelle rettigheter, men også ventetid, kapasitet, kvalitet, geografisk adgang og hvem som utfører omsorgsarbeidet.",
     "keywords": [
       "helsepolitikk",
       "omsorg",
@@ -3121,14 +3149,12 @@
       "helse og velferd"
     ],
     "core_concepts": [
-      "helsepolitikk",
-      "omsorg",
-      "fordeling",
-      "velferd",
-      "ulikhet",
-      "levekår",
-      "klasse",
-      "ressurser"
+      "prioritering",
+      "behov",
+      "kapasitet",
+      "henvisning",
+      "folkehelse",
+      "omsorgsarbeid"
     ],
     "sub_concepts": [
       "helsepolitikk",
@@ -3142,17 +3168,14 @@
       "helse og velferd"
     ],
     "key_questions": [
-      "Hvilken konkret institusjon, lov, reform, konflikt, tjeneste, norm, rettighet eller sosial prosess gjør emnet relevant?",
-      "Hvordan organiseres, legitimeres, begrenses, fordeles eller utfordres makt her?",
-      "Hvilke kilder, vedtak, statistikker, rettsdokumenter, planer, arkiver eller samfunnsfaglige data kan dokumentere påstanden?"
+      "Hvilke behov og prioriteringskriterier styrer tilgang til tjenesten?",
+      "Hvor oppstår forskjellen mellom formell rett, faktisk kapasitet og oppnådd helseutfall?",
+      "Hvordan fordeles ansvar og omsorgsarbeid mellom institusjon, familie og marked?"
     ],
     "conflicts": [
-      "styring vs frihet",
-      "rettigheter vs kontroll",
-      "representasjon vs ekskludering",
-      "fordeling vs ulikhet",
-      "offentlighet vs administrativ makt",
-      "normalitet vs minoritetserfaring"
+      "behov vs etterspørsel",
+      "lik adgang vs like helseutfall",
+      "behandling vs forebygging"
     ],
     "ideological_dimensions": [
       "demokrati vs teknokrati",
@@ -3167,30 +3190,22 @@
       "met_pol_levekarsanalyse"
     ],
     "analysis_axes": [
-      "institusjon vs borger",
-      "lov vs praksis",
-      "makt vs legitimitet",
-      "fordeling vs rettferdighet",
-      "offentlighet vs kontroll",
-      "norm vs avvik"
+      "rettighet vs kapasitet",
+      "medisinsk behov vs politisk prioritering",
+      "behandling vs omsorg"
     ],
     "canonical_thinkers": [
-      "John Rawls",
-      "Thomas Piketty",
-      "Nancy Fraser",
-      "Gøsta Esping-Andersen",
-      "Amartya Sen"
+      "Amartya Sen",
+      "Kari Wærness",
+      "John Rawls"
     ],
     "canonical_thinker_ids": [
-      "john_rawls",
-      "thomas_piketty",
-      "nancy_fraser",
-      "gosta_esping_andersen",
-      "amartya_sen"
+      "amartya_sen",
+      "kari_waerness",
+      "john_rawls"
     ],
     "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
+      "kari_waerness"
     ],
     "norwegian_thinkers": [
       "stein_rokkan",
@@ -3212,10 +3227,9 @@
       "offentlig_tjeneste"
     ],
     "quiz_angles": [
-      "start_with_concrete_institution_law_conflict_policy_or_social_process",
-      "connect_visible_place_to_power_norm_or_decision",
-      "identify_distribution_legitimacy_rights_or_governance",
-      "avoid_party_opinion_as_default"
+      "identifiser dokumenterbart fordelingscase og berørte grupper",
+      "forklar mekanismen som fordeler ressurs, risiko eller adgang",
+      "test en presis fordelingsdistinksjon før eventuell teori"
     ],
     "blindspots": [
       "Emnet må ikke brukes som synlig spørsmålsinnhold uten konkret institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
@@ -3261,7 +3275,7 @@
     "scope_guard": "Brukes bare når stedet, personen, institusjonen, loven, konflikten, tjenesten, reformen, normen eller prosessen har dokumenterbar politisk eller samfunnsfaglig kobling.",
     "mapping_count": 1,
     "mapping_pressure": "mapped",
-    "generator_use_note": "Start fra konkret institusjon, lov, reform, vedtak, offentlig rom, rettighet, fordeling, velferdstjeneste, konflikt, norm, sosial prosess eller ekstern samfunnsfaglig kilde. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
+    "generator_use_note": "Bruk emnet til å velge mekanisme, distinksjon og metode. Faktapåstanden må komme fra ekstern statistikk, vedtak, ordningsregel, plan eller dokumenterbart case.",
     "primary_theory_hooks": [
       "helse_og_velferd"
     ],
@@ -3317,17 +3331,52 @@
       "require_case_anchor_before_theory": true,
       "require_external_claim_basis": true,
       "require_institution_law_conflict_or_social_process_anchor": true,
-      "do_not_generate_from_emne_label_only": true
+      "do_not_generate_from_emne_label_only": true,
+      "require_mechanism_explanation": true,
+      "require_critical_distinction": true,
+      "ban_theorist_name_as_answer_without_concept": true
     },
     "anti_patterns": [
       "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
       "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag.",
+      "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+      "Ikke bruk canonical-filen som faktakilde.",
+      "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
     ],
     "recommended_methods": [
       "met_pol_velferdsstatlig_analyse",
       "met_pol_levekarsanalyse"
-    ]
+    ],
+    "mechanisms": [
+      "prioriteringsregel",
+      "henvisning",
+      "venteliste",
+      "finansieringsmodell",
+      "bemanning",
+      "geografisk organisering"
+    ],
+    "distinguish_from": [
+      "lik adgang betyr ikke nødvendigvis like helseutfall",
+      "behandling av sykdom er ikke det samme som folkehelse og forebygging",
+      "formell rett til tjeneste er ikke identisk med faktisk kapasitet"
+    ],
+    "misconceptions": [
+      "Medisinsk behov avgjør ikke alene hvordan ressurser prioriteres.",
+      "Ventetid er ikke bare et administrativt problem, men en fordelingsvirkning.",
+      "Omsorgsarbeid kan ikke analyseres bare som en kostnadspost."
+    ],
+    "recommended_method_ids": [
+      "met_pol_velferdsstatlig_analyse",
+      "met_pol_levekarsanalyse"
+    ],
+    "theory_progression": [
+      "case og kilde",
+      "fordelingsmekanisme",
+      "kritisk distinksjon",
+      "målrettet teoribegrep"
+    ],
+    "quality_revision": "politikk-fordeling-vertical-2026-07-24"
   },
   {
     "emne_id": "em_pol_hverdagslivets_regler",
@@ -5279,8 +5328,8 @@
     "title": "Klasse og ulikhet",
     "short_label": "Klasse og ulikhet",
     "status": "active",
-    "definition": "Emnet studerer klasse og ulikhet som politisk og samfunnsfaglig inngang til konkrete institusjoner, lover, reformer, offentlige rom, fordelingsspørsmål, konflikter, normer, rettigheter, tjenester og sosiale prosesser.",
-    "why_it_matters": "Emnet synliggjør hvordan velferd, ressurser, levekår, klasse, bolig, helse, utdanning og demografi organiseres politisk.",
+    "definition": "Studiet av hvordan eierskap, inntekt, formue, yrkesposisjon, utdanning, status og makt skaper varige forskjeller i livssjanser og politisk innflytelse.",
+    "why_it_matters": "Klasseanalyse viser hvordan ulikhet reproduseres gjennom institusjoner og kapitalformer, ikke bare gjennom enkeltpersoners løpende inntekt eller valg.",
     "keywords": [
       "klasse",
       "ulikhet",
@@ -5319,13 +5368,11 @@
     ],
     "core_concepts": [
       "klasse",
-      "ulikhet",
-      "fordeling",
-      "velferd",
-      "levekår",
-      "ressurser",
-      "klasse og ulikhet",
-      "utdanning og mobilitet"
+      "formue",
+      "inntekt",
+      "livssjanser",
+      "sosial reproduksjon",
+      "kapitalformer"
     ],
     "sub_concepts": [
       "klasse",
@@ -5338,17 +5385,14 @@
       "utdanning og mobilitet"
     ],
     "key_questions": [
-      "Hvilken konkret institusjon, lov, reform, konflikt, tjeneste, norm, rettighet eller sosial prosess gjør emnet relevant?",
-      "Hvordan organiseres, legitimeres, begrenses, fordeles eller utfordres makt her?",
-      "Hvilke kilder, vedtak, statistikker, rettsdokumenter, planer, arkiver eller samfunnsfaglige data kan dokumentere påstanden?"
+      "Hvilke ressurser og posisjoner skiller gruppene i caset?",
+      "Hvilken mekanisme gjør forskjellen stabil eller overførbar mellom generasjoner?",
+      "Er ulikheten primært økonomisk, sosial, kulturell, organisatorisk eller en kombinasjon?"
     ],
     "conflicts": [
-      "styring vs frihet",
-      "rettigheter vs kontroll",
-      "representasjon vs ekskludering",
-      "fordeling vs ulikhet",
-      "offentlighet vs administrativ makt",
-      "normalitet vs minoritetserfaring"
+      "eierskap vs arbeid",
+      "mulighetslikhet vs resultatlikhet",
+      "meritokrati vs ressursarv"
     ],
     "ideological_dimensions": [
       "demokrati vs teknokrati",
@@ -5365,31 +5409,21 @@
       "met_pol_statistikk_og_fordelingsanalyse"
     ],
     "analysis_axes": [
-      "institusjon vs borger",
-      "lov vs praksis",
-      "makt vs legitimitet",
-      "fordeling vs rettferdighet",
-      "offentlighet vs kontroll",
-      "norm vs avvik"
+      "klasse vs inntekt",
+      "formue vs løpende inntekt",
+      "mobilitet vs reproduksjon"
     ],
     "canonical_thinkers": [
-      "John Rawls",
-      "Thomas Piketty",
-      "Nancy Fraser",
-      "Gøsta Esping-Andersen",
-      "Amartya Sen"
+      "Karl Marx",
+      "Pierre Bourdieu",
+      "Thomas Piketty"
     ],
     "canonical_thinker_ids": [
-      "john_rawls",
-      "thomas_piketty",
-      "nancy_fraser",
-      "gosta_esping_andersen",
-      "amartya_sen"
+      "karl_marx",
+      "pierre_bourdieu",
+      "thomas_piketty"
     ],
-    "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
+    "norwegian_thinker_ids": [],
     "norwegian_thinkers": [
       "stein_rokkan",
       "gudmund_hernes"
@@ -5412,10 +5446,9 @@
       "offentlig_tjeneste"
     ],
     "quiz_angles": [
-      "start_with_concrete_institution_law_conflict_policy_or_social_process",
-      "connect_visible_place_to_power_norm_or_decision",
-      "identify_distribution_legitimacy_rights_or_governance",
-      "avoid_party_opinion_as_default"
+      "identifiser dokumenterbart fordelingscase og berørte grupper",
+      "forklar mekanismen som fordeler ressurs, risiko eller adgang",
+      "test en presis fordelingsdistinksjon før eventuell teori"
     ],
     "blindspots": [
       "Emnet må ikke brukes som synlig spørsmålsinnhold uten konkret institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
@@ -5461,7 +5494,7 @@
     "scope_guard": "Brukes bare når stedet, personen, institusjonen, loven, konflikten, tjenesten, reformen, normen eller prosessen har dokumenterbar politisk eller samfunnsfaglig kobling.",
     "mapping_count": 2,
     "mapping_pressure": "mapped",
-    "generator_use_note": "Start fra konkret institusjon, lov, reform, vedtak, offentlig rom, rettighet, fordeling, velferdstjeneste, konflikt, norm, sosial prosess eller ekstern samfunnsfaglig kilde. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
+    "generator_use_note": "Bruk emnet til å velge mekanisme, distinksjon og metode. Faktapåstanden må komme fra ekstern statistikk, vedtak, ordningsregel, plan eller dokumenterbart case.",
     "primary_theory_hooks": [
       "klasse_og_ulikhet",
       "utdanning_og_mobilitet"
@@ -5521,19 +5554,54 @@
       "require_case_anchor_before_theory": true,
       "require_external_claim_basis": true,
       "require_institution_law_conflict_or_social_process_anchor": true,
-      "do_not_generate_from_emne_label_only": true
+      "do_not_generate_from_emne_label_only": true,
+      "require_mechanism_explanation": true,
+      "require_critical_distinction": true,
+      "ban_theorist_name_as_answer_without_concept": true
     },
     "anti_patterns": [
       "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
       "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag.",
+      "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+      "Ikke bruk canonical-filen som faktakilde.",
+      "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
     ],
     "recommended_methods": [
       "met_pol_makt_og_ulikhetsanalyse",
       "met_pol_fordelingsanalyse",
       "met_pol_levekarsanalyse",
       "met_pol_statistikk_og_fordelingsanalyse"
-    ]
+    ],
+    "mechanisms": [
+      "kapitalakkumulasjon",
+      "arv",
+      "yrkesmessig lukning",
+      "utdanningsreproduksjon",
+      "forhandlingsmakt",
+      "nettverk"
+    ],
+    "distinguish_from": [
+      "klasse er en strukturert posisjon, ikke bare et inntektsnivå",
+      "formue og inntekt gir ulike typer varighet og makt",
+      "individuell mobilitet kan eksistere samtidig med stabil strukturell ulikhet"
+    ],
+    "misconceptions": [
+      "Høy inntekt og høy formue er ikke det samme.",
+      "Sosial mobilitet for enkelte beviser ikke at klassestrukturen er åpen.",
+      "Ulikhet kan ikke forklares fullstendig med individuelle valg."
+    ],
+    "recommended_method_ids": [
+      "met_pol_makt_og_ulikhetsanalyse",
+      "met_pol_fordelingsanalyse"
+    ],
+    "theory_progression": [
+      "case og kilde",
+      "fordelingsmekanisme",
+      "kritisk distinksjon",
+      "målrettet teoribegrep"
+    ],
+    "quality_revision": "politikk-fordeling-vertical-2026-07-24"
   },
   {
     "emne_id": "em_pol_kommune_byraadsmodell",
@@ -6119,8 +6187,8 @@
     "title": "Levekår og demografi",
     "short_label": "Levekår og demografi",
     "status": "active",
-    "definition": "Emnet studerer levekår og demografi som politisk og samfunnsfaglig inngang til konkrete institusjoner, lover, reformer, offentlige rom, fordelingsspørsmål, konflikter, normer, rettigheter, tjenester og sosiale prosesser.",
-    "why_it_matters": "Emnet synliggjør hvordan velferd, ressurser, levekår, klasse, bolig, helse, utdanning og demografi organiseres politisk.",
+    "definition": "Studiet av hvordan inntekt, arbeid, bolig, helse, utdanning, trygghet, husholdning og demografisk sammensetning former faktiske livsbetingelser i grupper og områder.",
+    "why_it_matters": "Levekårsanalyse binder statistikk til konkrete mekanismer og hindrer at områdeforskjeller, demografi eller gjennomsnitt brukes som forklaringer i seg selv.",
     "keywords": [
       "levekår",
       "demografi",
@@ -6159,13 +6227,11 @@
     ],
     "core_concepts": [
       "levekår",
+      "kumulativ ulempe",
       "demografi",
-      "fordeling",
-      "velferd",
-      "ulikhet",
-      "klasse",
-      "ressurser",
-      "demografi og plan"
+      "områdeforskjell",
+      "relativ deprivasjon",
+      "kapabilitet"
     ],
     "sub_concepts": [
       "levekår",
@@ -6178,17 +6244,14 @@
       "demografi og plan"
     ],
     "key_questions": [
-      "Hvilken konkret institusjon, lov, reform, konflikt, tjeneste, norm, rettighet eller sosial prosess gjør emnet relevant?",
-      "Hvordan organiseres, legitimeres, begrenses, fordeles eller utfordres makt her?",
-      "Hvilke kilder, vedtak, statistikker, rettsdokumenter, planer, arkiver eller samfunnsfaglige data kan dokumentere påstanden?"
+      "Hvilke levekårsdimensjoner og hvilken befolkning måles?",
+      "Hvilken mekanisme kan forklare sammenhengen mellom område, gruppe og utfall?",
+      "Hvordan endres bildet når gjennomsnitt erstattes med fordeling, undergrupper eller tidsutvikling?"
     ],
     "conflicts": [
-      "styring vs frihet",
-      "rettigheter vs kontroll",
-      "representasjon vs ekskludering",
-      "fordeling vs ulikhet",
-      "offentlighet vs administrativ makt",
-      "normalitet vs minoritetserfaring"
+      "individforklaring vs strukturmekanisme",
+      "gjennomsnitt vs intern variasjon",
+      "prognose vs politisk valg"
     ],
     "ideological_dimensions": [
       "demokrati vs teknokrati",
@@ -6204,31 +6267,21 @@
       "met_pol_plan_og_reguleringsanalyse"
     ],
     "analysis_axes": [
-      "institusjon vs borger",
-      "lov vs praksis",
-      "makt vs legitimitet",
-      "fordeling vs rettferdighet",
-      "offentlighet vs kontroll",
-      "norm vs avvik"
+      "inntekt vs fler­dimensjonale levekår",
+      "korrelasjon vs årsak",
+      "befolkningsdata vs levd erfaring"
     ],
     "canonical_thinkers": [
-      "John Rawls",
-      "Thomas Piketty",
-      "Nancy Fraser",
-      "Gøsta Esping-Andersen",
-      "Amartya Sen"
+      "Amartya Sen",
+      "Pierre Bourdieu",
+      "Thomas Piketty"
     ],
     "canonical_thinker_ids": [
-      "john_rawls",
-      "thomas_piketty",
-      "nancy_fraser",
-      "gosta_esping_andersen",
-      "amartya_sen"
+      "amartya_sen",
+      "pierre_bourdieu",
+      "thomas_piketty"
     ],
-    "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
+    "norwegian_thinker_ids": [],
     "norwegian_thinkers": [
       "stein_rokkan",
       "gudmund_hernes"
@@ -6251,10 +6304,9 @@
       "offentlig_tjeneste"
     ],
     "quiz_angles": [
-      "start_with_concrete_institution_law_conflict_policy_or_social_process",
-      "connect_visible_place_to_power_norm_or_decision",
-      "identify_distribution_legitimacy_rights_or_governance",
-      "avoid_party_opinion_as_default"
+      "identifiser dokumenterbart fordelingscase og berørte grupper",
+      "forklar mekanismen som fordeler ressurs, risiko eller adgang",
+      "test en presis fordelingsdistinksjon før eventuell teori"
     ],
     "blindspots": [
       "Emnet må ikke brukes som synlig spørsmålsinnhold uten konkret institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
@@ -6300,7 +6352,7 @@
     "scope_guard": "Brukes bare når stedet, personen, institusjonen, loven, konflikten, tjenesten, reformen, normen eller prosessen har dokumenterbar politisk eller samfunnsfaglig kobling.",
     "mapping_count": 2,
     "mapping_pressure": "mapped",
-    "generator_use_note": "Start fra konkret institusjon, lov, reform, vedtak, offentlig rom, rettighet, fordeling, velferdstjeneste, konflikt, norm, sosial prosess eller ekstern samfunnsfaglig kilde. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
+    "generator_use_note": "Bruk emnet til å velge mekanisme, distinksjon og metode. Faktapåstanden må komme fra ekstern statistikk, vedtak, ordningsregel, plan eller dokumenterbart case.",
     "primary_theory_hooks": [
       "levekår",
       "demografi_og_plan"
@@ -6359,18 +6411,53 @@
       "require_case_anchor_before_theory": true,
       "require_external_claim_basis": true,
       "require_institution_law_conflict_or_social_process_anchor": true,
-      "do_not_generate_from_emne_label_only": true
+      "do_not_generate_from_emne_label_only": true,
+      "require_mechanism_explanation": true,
+      "require_critical_distinction": true,
+      "ban_theorist_name_as_answer_without_concept": true
     },
     "anti_patterns": [
       "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
       "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag.",
+      "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+      "Ikke bruk canonical-filen som faktakilde.",
+      "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
     ],
     "recommended_methods": [
       "met_pol_statistikk_og_fordelingsanalyse",
       "met_pol_levekarsanalyse",
       "met_pol_plan_og_reguleringsanalyse"
-    ]
+    ],
+    "mechanisms": [
+      "kumulativ ulempe",
+      "arbeidsmarkedstilknytning",
+      "boligkostnad",
+      "tjenestetilgang",
+      "nabolagseffekt",
+      "demografisk seleksjon"
+    ],
+    "distinguish_from": [
+      "levekår er fler­dimensjonale og kan ikke reduseres til inntekt",
+      "demografisk sammensetning beskriver en befolkning, men forklarer ikke alene et utfall",
+      "statistisk samvariasjon er ikke det samme som årsak"
+    ],
+    "misconceptions": [
+      "Områdestatistikk beskriver ikke alle innbyggere i området.",
+      "Befolkningsvekst gir ikke automatisk ett bestemt tjenestebehov.",
+      "Et gjennomsnitt kan forbedres samtidig som ulikheten øker."
+    ],
+    "recommended_method_ids": [
+      "met_pol_statistikk_og_fordelingsanalyse",
+      "met_pol_levekarsanalyse"
+    ],
+    "theory_progression": [
+      "case og kilde",
+      "fordelingsmekanisme",
+      "kritisk distinksjon",
+      "målrettet teoribegrep"
+    ],
+    "quality_revision": "politikk-fordeling-vertical-2026-07-24"
   },
   {
     "emne_id": "em_pol_likeverd_rettssikkerhet",
@@ -14109,8 +14196,8 @@
     "title": "Sosialpolitikk",
     "short_label": "Sosialpolitikk",
     "status": "active",
-    "definition": "Emnet studerer sosialpolitikk som politisk og samfunnsfaglig inngang til konkrete institusjoner, lover, reformer, offentlige rom, fordelingsspørsmål, konflikter, normer, rettigheter, tjenester og sosiale prosesser.",
-    "why_it_matters": "Emnet synliggjør hvordan velferd, ressurser, levekår, klasse, bolig, helse, utdanning og demografi organiseres politisk.",
+    "definition": "Studiet av politikk som forebygger eller håndterer inntektsbortfall, fattigdom, funksjonsnedsettelse, omsorgsbehov, arbeidsledighet og andre sosiale risikoer gjennom rettigheter, ytelser og tjenester.",
+    "why_it_matters": "Sosialpolitikk viser hvordan trygghet, kontroll, aktivering og verdighet bygges inn i ordningenes vilkår, dokumentasjonskrav og møte med forvaltningen.",
     "keywords": [
       "sosialpolitikk",
       "fordeling",
@@ -14148,14 +14235,12 @@
       "velferdsstat"
     ],
     "core_concepts": [
-      "sosialpolitikk",
-      "fordeling",
-      "velferd",
-      "ulikhet",
-      "levekår",
-      "klasse",
-      "ressurser",
-      "velferdsstat"
+      "sosial risiko",
+      "inntektssikring",
+      "behovsprøving",
+      "aktivering",
+      "sosial rettighet",
+      "ikke-bruk"
     ],
     "sub_concepts": [
       "sosialpolitikk",
@@ -14168,17 +14253,14 @@
       "velferdsstat"
     ],
     "key_questions": [
-      "Hvilken konkret institusjon, lov, reform, konflikt, tjeneste, norm, rettighet eller sosial prosess gjør emnet relevant?",
-      "Hvordan organiseres, legitimeres, begrenses, fordeles eller utfordres makt her?",
-      "Hvilke kilder, vedtak, statistikker, rettsdokumenter, planer, arkiver eller samfunnsfaglige data kan dokumentere påstanden?"
+      "Hvilken sosial risiko skal ordningen håndtere, og hvem omfattes?",
+      "Hvordan virker vilkår, dokumentasjonskrav og skjønn inn på faktisk tilgang?",
+      "Fordeler ordningen trygghet, kontroll og ansvar universelt eller selektivt?"
     ],
     "conflicts": [
-      "styring vs frihet",
-      "rettigheter vs kontroll",
-      "representasjon vs ekskludering",
-      "fordeling vs ulikhet",
-      "offentlighet vs administrativ makt",
-      "normalitet vs minoritetserfaring"
+      "trygghet vs kontroll",
+      "universalisme vs behovsprøving",
+      "rettighet vs skjønn"
     ],
     "ideological_dimensions": [
       "demokrati vs teknokrati",
@@ -14193,31 +14275,21 @@
       "met_pol_institusjonsanalyse"
     ],
     "analysis_axes": [
-      "institusjon vs borger",
-      "lov vs praksis",
-      "makt vs legitimitet",
-      "fordeling vs rettferdighet",
-      "offentlighet vs kontroll",
-      "norm vs avvik"
+      "forsikring vs sosialhjelp",
+      "kontantytelse vs tjeneste",
+      "formell rett vs faktisk bruk"
     ],
     "canonical_thinkers": [
-      "John Rawls",
-      "Thomas Piketty",
-      "Nancy Fraser",
+      "T. H. Marshall",
       "Gøsta Esping-Andersen",
-      "Amartya Sen"
+      "Nancy Fraser"
     ],
     "canonical_thinker_ids": [
-      "john_rawls",
-      "thomas_piketty",
-      "nancy_fraser",
+      "t_h_marshall",
       "gosta_esping_andersen",
-      "amartya_sen"
+      "nancy_fraser"
     ],
-    "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
+    "norwegian_thinker_ids": [],
     "norwegian_thinkers": [
       "stein_rokkan",
       "gudmund_hernes"
@@ -14238,10 +14310,9 @@
       "offentlig_tjeneste"
     ],
     "quiz_angles": [
-      "start_with_concrete_institution_law_conflict_policy_or_social_process",
-      "connect_visible_place_to_power_norm_or_decision",
-      "identify_distribution_legitimacy_rights_or_governance",
-      "avoid_party_opinion_as_default"
+      "identifiser dokumenterbart fordelingscase og berørte grupper",
+      "forklar mekanismen som fordeler ressurs, risiko eller adgang",
+      "test en presis fordelingsdistinksjon før eventuell teori"
     ],
     "blindspots": [
       "Emnet må ikke brukes som synlig spørsmålsinnhold uten konkret institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
@@ -14287,7 +14358,7 @@
     "scope_guard": "Brukes bare når stedet, personen, institusjonen, loven, konflikten, tjenesten, reformen, normen eller prosessen har dokumenterbar politisk eller samfunnsfaglig kobling.",
     "mapping_count": 1,
     "mapping_pressure": "mapped",
-    "generator_use_note": "Start fra konkret institusjon, lov, reform, vedtak, offentlig rom, rettighet, fordeling, velferdstjeneste, konflikt, norm, sosial prosess eller ekstern samfunnsfaglig kilde. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
+    "generator_use_note": "Bruk emnet til å velge mekanisme, distinksjon og metode. Faktapåstanden må komme fra ekstern statistikk, vedtak, ordningsregel, plan eller dokumenterbart case.",
     "primary_theory_hooks": [
       "velferdsstat"
     ],
@@ -14343,17 +14414,52 @@
       "require_case_anchor_before_theory": true,
       "require_external_claim_basis": true,
       "require_institution_law_conflict_or_social_process_anchor": true,
-      "do_not_generate_from_emne_label_only": true
+      "do_not_generate_from_emne_label_only": true,
+      "require_mechanism_explanation": true,
+      "require_critical_distinction": true,
+      "ban_theorist_name_as_answer_without_concept": true
     },
     "anti_patterns": [
       "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
       "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag.",
+      "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+      "Ikke bruk canonical-filen som faktakilde.",
+      "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
     ],
     "recommended_methods": [
       "met_pol_velferdsstatlig_analyse",
       "met_pol_institusjonsanalyse"
-    ]
+    ],
+    "mechanisms": [
+      "sosialforsikring",
+      "behovsprøving",
+      "vilkår",
+      "aktivering",
+      "kontantytelse",
+      "tjenestetildeling"
+    ],
+    "distinguish_from": [
+      "sosialforsikring bygger på medlemskap eller opptjening; sosialhjelp er behovsprøvd siste sikkerhetsnett",
+      "formell rettighet er ikke det samme som faktisk bruk",
+      "aktivering kan være støtte, vilkår eller kontroll avhengig av utforming"
+    ],
+    "misconceptions": [
+      "Behovsprøving er ikke automatisk mer rettferdig enn universalisme.",
+      "Lav bruk av en ordning betyr ikke nødvendigvis lavt behov.",
+      "Vilkår er ikke bare tekniske regler; de fordeler ansvar og kontroll."
+    ],
+    "recommended_method_ids": [
+      "met_pol_velferdsstatlig_analyse",
+      "met_pol_institusjonsanalyse"
+    ],
+    "theory_progression": [
+      "case og kilde",
+      "fordelingsmekanisme",
+      "kritisk distinksjon",
+      "målrettet teoribegrep"
+    ],
+    "quality_revision": "politikk-fordeling-vertical-2026-07-24"
   },
   {
     "emne_id": "em_pol_stat_borger_relaster",
@@ -16056,8 +16162,8 @@
     "title": "Utdanning og mobilitet",
     "short_label": "Utdanning og mobilitet",
     "status": "active",
-    "definition": "Emnet studerer utdanning og mobilitet som politisk og samfunnsfaglig inngang til konkrete institusjoner, lover, reformer, offentlige rom, fordelingsspørsmål, konflikter, normer, rettigheter, tjenester og sosiale prosesser.",
-    "why_it_matters": "Emnet synliggjør hvordan velferd, ressurser, levekår, klasse, bolig, helse, utdanning og demografi organiseres politisk.",
+    "definition": "Studiet av hvordan utdanningssystemets finansiering, opptak, sortering, læringsmiljø og kvalifikasjoner påvirker sosial mobilitet og reproduksjon.",
+    "why_it_matters": "Utdanning kan både utvide reelle muligheter og omsette eksisterende familie- og ressursforskjeller til nye forskjeller i prestasjon, fullføring og adgang.",
     "keywords": [
       "utdanning",
       "mobilitet",
@@ -16097,14 +16203,12 @@
       "utdanning og mobilitet"
     ],
     "core_concepts": [
-      "utdanning",
-      "mobilitet",
-      "fordeling",
-      "velferd",
-      "ulikhet",
-      "levekår",
-      "klasse",
-      "ressurser"
+      "sosial mobilitet",
+      "mulighetslikhet",
+      "kulturell kapital",
+      "opptak",
+      "fullføring",
+      "credential"
     ],
     "sub_concepts": [
       "utdanning",
@@ -16118,17 +16222,14 @@
       "utdanning og mobilitet"
     ],
     "key_questions": [
-      "Hvilken konkret institusjon, lov, reform, konflikt, tjeneste, norm, rettighet eller sosial prosess gjør emnet relevant?",
-      "Hvordan organiseres, legitimeres, begrenses, fordeles eller utfordres makt her?",
-      "Hvilke kilder, vedtak, statistikker, rettsdokumenter, planer, arkiver eller samfunnsfaglige data kan dokumentere påstanden?"
+      "Hvilke ressurser og seleksjonsregler påvirker adgang, prestasjon eller fullføring?",
+      "Er mobiliteten absolutt eller relativ, og for hvilke grupper?",
+      "Hvordan skiller formelt like regler seg fra reelle muligheter til å lykkes?"
     ],
     "conflicts": [
-      "styring vs frihet",
-      "rettigheter vs kontroll",
-      "representasjon vs ekskludering",
-      "fordeling vs ulikhet",
-      "offentlighet vs administrativ makt",
-      "normalitet vs minoritetserfaring"
+      "meritokrati vs ressursarv",
+      "skolevalg vs segregering",
+      "tilgang vs fullføring"
     ],
     "ideological_dimensions": [
       "demokrati vs teknokrati",
@@ -16143,31 +16244,21 @@
       "met_pol_statistikk_og_fordelingsanalyse"
     ],
     "analysis_axes": [
-      "institusjon vs borger",
-      "lov vs praksis",
-      "makt vs legitimitet",
-      "fordeling vs rettferdighet",
-      "offentlighet vs kontroll",
-      "norm vs avvik"
+      "mobilitet vs likhet",
+      "absolutt vs relativ mobilitet",
+      "formell vs reell mulighetslikhet"
     ],
     "canonical_thinkers": [
+      "Pierre Bourdieu",
       "John Rawls",
-      "Thomas Piketty",
-      "Nancy Fraser",
-      "Gøsta Esping-Andersen",
       "Amartya Sen"
     ],
     "canonical_thinker_ids": [
+      "pierre_bourdieu",
       "john_rawls",
-      "thomas_piketty",
-      "nancy_fraser",
-      "gosta_esping_andersen",
       "amartya_sen"
     ],
-    "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
+    "norwegian_thinker_ids": [],
     "norwegian_thinkers": [
       "stein_rokkan",
       "gudmund_hernes"
@@ -16188,10 +16279,9 @@
       "offentlig_tjeneste"
     ],
     "quiz_angles": [
-      "start_with_concrete_institution_law_conflict_policy_or_social_process",
-      "connect_visible_place_to_power_norm_or_decision",
-      "identify_distribution_legitimacy_rights_or_governance",
-      "avoid_party_opinion_as_default"
+      "identifiser dokumenterbart fordelingscase og berørte grupper",
+      "forklar mekanismen som fordeler ressurs, risiko eller adgang",
+      "test en presis fordelingsdistinksjon før eventuell teori"
     ],
     "blindspots": [
       "Emnet må ikke brukes som synlig spørsmålsinnhold uten konkret institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
@@ -16237,7 +16327,7 @@
     "scope_guard": "Brukes bare når stedet, personen, institusjonen, loven, konflikten, tjenesten, reformen, normen eller prosessen har dokumenterbar politisk eller samfunnsfaglig kobling.",
     "mapping_count": 1,
     "mapping_pressure": "mapped",
-    "generator_use_note": "Start fra konkret institusjon, lov, reform, vedtak, offentlig rom, rettighet, fordeling, velferdstjeneste, konflikt, norm, sosial prosess eller ekstern samfunnsfaglig kilde. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
+    "generator_use_note": "Bruk emnet til å velge mekanisme, distinksjon og metode. Faktapåstanden må komme fra ekstern statistikk, vedtak, ordningsregel, plan eller dokumenterbart case.",
     "primary_theory_hooks": [
       "utdanning_og_mobilitet"
     ],
@@ -16293,17 +16383,52 @@
       "require_case_anchor_before_theory": true,
       "require_external_claim_basis": true,
       "require_institution_law_conflict_or_social_process_anchor": true,
-      "do_not_generate_from_emne_label_only": true
+      "do_not_generate_from_emne_label_only": true,
+      "require_mechanism_explanation": true,
+      "require_critical_distinction": true,
+      "ban_theorist_name_as_answer_without_concept": true
     },
     "anti_patterns": [
       "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
       "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+      "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag.",
+      "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+      "Ikke bruk canonical-filen som faktakilde.",
+      "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
     ],
     "recommended_methods": [
       "met_pol_levekarsanalyse",
       "met_pol_statistikk_og_fordelingsanalyse"
-    ]
+    ],
+    "mechanisms": [
+      "skolefinansiering",
+      "opptak",
+      "sortering",
+      "kulturell kapital",
+      "foreldreressurs",
+      "læringsmiljø"
+    ],
+    "distinguish_from": [
+      "høy utdanningsdeltakelse er ikke det samme som høy relativ mobilitet",
+      "formelt like opptaksvilkår kan gi ulik reell adgang",
+      "tilgang til utdanning er ikke identisk med fullføring eller avkastning"
+    ],
+    "misconceptions": [
+      "Mer utdanning i befolkningen betyr ikke automatisk mindre sosial ulikhet.",
+      "Karakterer er ikke rene mål på medfødt evne.",
+      "Individuell suksess beviser ikke at systemet gir lik mulighet."
+    ],
+    "recommended_method_ids": [
+      "met_pol_levekarsanalyse",
+      "met_pol_statistikk_og_fordelingsanalyse"
+    ],
+    "theory_progression": [
+      "case og kilde",
+      "fordelingsmekanisme",
+      "kritisk distinksjon",
+      "målrettet teoribegrep"
+    ],
+    "quality_revision": "politikk-fordeling-vertical-2026-07-24"
   },
   {
     "emne_id": "em_pol_valg_deltakelse",

@@ -604,10 +604,10 @@
     {
       "domain_id": "fordeling_velferd_ulikhet",
       "label": "Fordeling, velferd og ulikhet",
-      "tagline": "Hvordan ressurser, tjenester, levekår, bolig, helse, utdanning og klasse organiseres politisk.",
-      "definition": "Domenet dekker fordeling, velferdsstat, levekår, ulikhet, klasse, demografi, statistikk, boligpolitikk, helsepolitikk, sosialpolitikk og ressursprioritering.",
-      "question_role": "Starter i konkret institusjon, lov, offentlig rom, reform, konflikt, fordeling, velferdstjeneste, norm eller sosial prosess før teori løftes inn.",
-      "status": "strong",
+      "tagline": "Hvordan skatter, budsjetter, tjenester, bolig, helse, utdanning og institusjoner fordeler ressurser, risiko og livssjanser.",
+      "definition": "Domenet analyserer hvordan offentlige inntekter, utgifter, tjenester, rettigheter og regulering fordeler ressurser, risiko, omsorg, bolig, helse, utdanning og livssjanser mellom grupper, steder og generasjoner.",
+      "question_role": "Start i ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller dokumenterbart velferdscase. Identifiser deretter fordelingsmekanisme og kritisk distinksjon før teori brukes.",
+      "status": "complete_revised",
       "emne_count": 9,
       "hook_count": 10,
       "method_count": 15,
@@ -715,7 +715,17 @@
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "institution_law_conflict_or_social_process_anchor_required": true
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "quality_revision": "politikk-fordeling-vertical-2026-07-24",
+      "generator_profile": "fordeling_velferd_ulikhet",
+      "required_question_chain": [
+        "external_distribution_case_or_source",
+        "claim_basis",
+        "distribution_or_welfare_mechanism",
+        "critical_distinction",
+        "optional_theory_lens"
+      ],
+      "quality_rule": "Teori brukes etter at ressursstrøm, adgang, risiko, terskel eller annen fordelingsmekanisme er dokumentert. Canonical-filene er ikke faktakilder."
     },
     {
       "domain_id": "konflikt_makt_sivilsamfunn",
@@ -1027,5 +1037,5 @@
     "required_people_emne_prefix": "em_pol_",
     "review_note": "Steder og personer i politikk må senere sjekkes mot denne pakken, slik at by-, historie-, næringslivs-, media-, kunst-, litteratur-, musikk-, sport-, natur- og vitenskapsposter ikke blir liggende i politikk hvis hovedkategori er feil."
   },
-  "editorial_revision": "politikk-styring-2026-07-24"
+  "editorial_revision": "politikk-fordeling-vertical-2026-07-24"
 }

@@ -708,51 +708,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "welfare-distribution-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "John Rawls",
           "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
-          "Amartya Sen"
+          "John Rawls",
+          "Pierre Bourdieu"
         ],
         "thinker_ids": [
-          "john_rawls",
           "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
-          "amartya_sen"
+          "john_rawls",
+          "pierre_bourdieu"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "thomas_piketty",
+            "john_rawls"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "john_rawls",
+            "pierre_bourdieu"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_tenure_finance_and_regulation",
+          "test_supply_against_affordability",
+          "compare_home_function_with_asset_function"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -770,24 +759,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke anta at økt boligbygging alene gir rimelige boliger.",
+          "Ikke bland sammen eierskap og botrygghet.",
+          "Ikke behandle boligmarkedet som løsrevet fra skatt, kreditt og arealpolitikk.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "Oslo rådhus",
           "kommunale boliger",
-          "Aker sykehus"
+          "Tøyen",
+          "Bjørvika"
         ],
         "recommended_method_ids": [
           "met_pol_bolig_og_byutviklingsanalyse",
@@ -798,8 +781,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "housing",
+          "planning",
+          "municipal_land",
+          "neighbourhood"
+        ],
+        "mechanism_options": [
+          "arealregulering",
+          "kommunal tomtepolitikk",
+          "boligfinansiering",
+          "skattefordeler",
+          "kommunal boligtildeling",
+          "leieregulering",
+          "fortetting",
+          "bostøtte"
+        ],
+        "critical_distinction_options": [
+          "bolig som hjem vs bolig som kapitalobjekt",
+          "boligtilbud vs faktisk betalbarhet",
+          "eierskap vs botrygghet",
+          "sosial boligpolitikk vs generell markedspolitikk"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "thomas_piketty",
+            "concept": "boligformue og kapitalakkumulasjon"
+          },
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdig tilgang til grunnleggende goder"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "bolig, posisjon og sosial reproduksjon"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -815,29 +849,19 @@
     "external_claim_basis_required": true,
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
-      "John Rawls",
       "Thomas Piketty",
-      "Nancy Fraser",
-      "Gøsta Esping-Andersen",
-      "Amartya Sen"
+      "John Rawls",
+      "Pierre Bourdieu"
     ],
     "canonical_thinker_ids": [
-      "john_rawls",
       "thomas_piketty",
-      "nancy_fraser",
-      "gosta_esping_andersen",
-      "amartya_sen"
+      "john_rawls",
+      "pierre_bourdieu"
     ],
-    "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
-    "norwegian_thinkers": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
-    "theory_diversity_score": 5,
-    "has_norwegian_theory_path": true,
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
+    "theory_diversity_score": 3,
+    "has_norwegian_theory_path": false,
     "theory_sync_version": "v1-politikk",
     "generator_theory_note": "Bruk konkret institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm eller sosial prosess først; løft teori inn når politikkankeret allerede er etablert.",
     "recommended_oslo_cases": [
@@ -1035,61 +1059,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
           "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
-          "Amartya Sen"
+          "Amartya Sen",
+          "Thomas Piketty"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
           "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
-          "amartya_sen"
+          "amartya_sen",
+          "thomas_piketty"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
             "john_rawls",
-            "thomas_piketty"
+            "amartya_sen"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "amartya_sen",
+            "thomas_piketty"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_resource_flow_and_recipients",
+          "test_equal_allocation_against_need_weighting",
+          "compare_inputs_with_distributional_effects"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -1107,41 +1110,81 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill høyere bevilgning med bedre fordelingsvirkning.",
+          "Ikke skjul hvem som bærer kostnaden eller hvilke alternativer som fortrenges.",
+          "Ikke bruk gjennomsnitt alene når fordelingen mellom grupper er poenget.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
           "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
           "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "kommunale boliger"
+          "bydelsbudsjetter"
         ],
         "recommended_method_ids": [
-          "met_pol_budsjett_og_fordelingsanalyse",
-          "met_pol_fordelingsanalyse"
+          "met_pol_fordelingsanalyse",
+          "met_pol_budsjett_og_fordelingsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "budget",
+          "public_service",
+          "tax",
+          "allocation"
+        ],
+        "mechanism_options": [
+          "skatt og inntektsgrunnlag",
+          "budsjettbevilgning",
+          "øremerking",
+          "behovsvekting",
+          "universell tildeling",
+          "målrettet tildeling",
+          "rasjonering og kø",
+          "overføring mellom forvaltningsnivåer"
+        ],
+        "critical_distinction_options": [
+          "fordeling vs omfordeling",
+          "lik tildeling vs behovsvektet tildeling",
+          "universalisme vs målretting",
+          "ressursinnsats vs fordelingsvirkning"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "john_rawls",
+            "concept": "forskjellsprinsippet og rettferdig fordeling"
+          },
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "kapabiliteter og reelle handlingsmuligheter"
+          },
+          {
+            "thinker_id": "thomas_piketty",
+            "concept": "kapital- og inntektskonsentrasjon"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -1158,38 +1201,26 @@
     "external_claim_basis_required": true,
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
-      "Max Weber",
-      "Michel Foucault",
-      "Pierre Bourdieu",
-      "Theda Skocpol",
-      "James C. Scott",
+      "Charles E. Lindblom",
       "John Rawls",
-      "Thomas Piketty",
-      "Nancy Fraser",
-      "Gøsta Esping-Andersen",
-      "Amartya Sen"
+      "Gudmund Hernes",
+      "Amartya Sen",
+      "Thomas Piketty"
     ],
     "canonical_thinker_ids": [
-      "max_weber",
-      "michel_foucault",
-      "pierre_bourdieu",
-      "theda_skocpol",
-      "james_c_scott",
+      "charles_lindblom",
       "john_rawls",
-      "thomas_piketty",
-      "nancy_fraser",
-      "gosta_esping_andersen",
-      "amartya_sen"
+      "gudmund_hernes",
+      "amartya_sen",
+      "thomas_piketty"
     ],
     "norwegian_thinker_ids": [
-      "stein_rokkan",
       "gudmund_hernes"
     ],
     "norwegian_thinkers": [
-      "stein_rokkan",
       "gudmund_hernes"
     ],
-    "theory_diversity_score": 10,
+    "theory_diversity_score": 5,
     "has_norwegian_theory_path": true,
     "theory_sync_version": "v1-politikk",
     "generator_theory_note": "Bruk konkret institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm eller sosial prosess først; løft teori inn når politikkankeret allerede er etablert.",
@@ -1209,7 +1240,8 @@
     ],
     "recommended_method_ids": [
       "met_pol_budsjett_og_fordelingsanalyse",
-      "met_pol_statistikk_og_fordelingsanalyse",
+      "met_pol_lokalpolitisk_analyse",
+      "met_pol_institusjonsanalyse",
       "met_pol_fordelingsanalyse"
     ],
     "overlap_risk": "medium",
@@ -3062,61 +3094,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "welfare-distribution-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
           "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
           "Amartya Sen",
-          "Karl Marx",
-          "Antonio Gramsci",
-          "Charles Tilly",
-          "Sidney Tarrow",
-          "Chantal Mouffe"
+          "Thomas Piketty"
         ],
         "thinker_ids": [
           "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
           "amartya_sen",
-          "karl_marx",
-          "antonio_gramsci",
-          "charles_tilly",
-          "sidney_tarrow",
-          "chantal_mouffe"
+          "thomas_piketty"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
             "john_rawls",
-            "thomas_piketty"
+            "amartya_sen"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "amartya_sen",
+            "thomas_piketty"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_resource_flow_and_recipients",
+          "test_equal_allocation_against_need_weighting",
+          "compare_inputs_with_distributional_effects"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -3134,29 +3145,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill høyere bevilgning med bedre fordelingsvirkning.",
+          "Ikke skjul hvem som bærer kostnaden eller hvilke alternativer som fortrenges.",
+          "Ikke bruk gjennomsnitt alene når fordelingen mellom grupper er poenget.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
           "Oslo rådhus",
-          "kommunale boliger",
-          "Aker sykehus",
-          "Youngstorget",
-          "Eidsvolls plass",
-          "Universitetsplassen",
-          "Rådhusplassen",
-          "LO-bygget"
+          "NAV-kontor",
+          "bydelsbudsjetter"
         ],
         "recommended_method_ids": [
           "met_pol_fordelingsanalyse",
@@ -3167,8 +3167,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "budget",
+          "public_service",
+          "tax",
+          "allocation"
+        ],
+        "mechanism_options": [
+          "skatt og inntektsgrunnlag",
+          "budsjettbevilgning",
+          "øremerking",
+          "behovsvekting",
+          "universell tildeling",
+          "målrettet tildeling",
+          "rasjonering og kø",
+          "overføring mellom forvaltningsnivåer"
+        ],
+        "critical_distinction_options": [
+          "fordeling vs omfordeling",
+          "lik tildeling vs behovsvektet tildeling",
+          "universalisme vs målretting",
+          "ressursinnsats vs fordelingsvirkning"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "john_rawls",
+            "concept": "forskjellsprinsippet og rettferdig fordeling"
+          },
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "kapabiliteter og reelle handlingsmuligheter"
+          },
+          {
+            "thinker_id": "thomas_piketty",
+            "concept": "kapital- og inntektskonsentrasjon"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "fordeling_velferd_ulikhet",
@@ -3182,61 +3233,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "welfare-distribution-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
-          "Amartya Sen",
           "Karl Marx",
-          "Antonio Gramsci",
-          "Charles Tilly",
-          "Sidney Tarrow",
-          "Chantal Mouffe"
+          "Pierre Bourdieu",
+          "Thomas Piketty"
         ],
         "thinker_ids": [
-          "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
-          "amartya_sen",
           "karl_marx",
-          "antonio_gramsci",
-          "charles_tilly",
-          "sidney_tarrow",
-          "chantal_mouffe"
+          "pierre_bourdieu",
+          "thomas_piketty"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "karl_marx",
+            "pierre_bourdieu"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "pierre_bourdieu",
+            "thomas_piketty"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_resource_and_position",
+          "trace_reproduction_mechanism",
+          "separate_income_from_wealth_and_class"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -3254,41 +3284,81 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke bruk klasse som synonym for inntekt.",
+          "Ikke forklar stabil ulikhet bare med individuelle valg.",
+          "Ikke overse formue, eierskap og organisatorisk makt.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "Oslo rådhus",
-          "kommunale boliger",
-          "Aker sykehus",
           "Youngstorget",
-          "Eidsvolls plass",
-          "Universitetsplassen",
-          "Rådhusplassen",
-          "LO-bygget"
+          "Oslo øst og vest",
+          "boligeierskap i Oslo"
         ],
         "recommended_method_ids": [
-          "met_pol_fordelingsanalyse",
-          "met_pol_makt_og_ulikhetsanalyse"
+          "met_pol_makt_og_ulikhetsanalyse",
+          "met_pol_fordelingsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "labour_market",
+          "wealth",
+          "housing",
+          "class_structure"
+        ],
+        "mechanism_options": [
+          "kapitalakkumulasjon",
+          "arv og formuesoverføring",
+          "yrkesmessig lukning",
+          "utdanningsreproduksjon",
+          "forhandlingsmakt",
+          "nettverk",
+          "kulturell kapital",
+          "skatte- og boligregler"
+        ],
+        "critical_distinction_options": [
+          "klasse vs inntekt",
+          "formue vs løpende inntekt",
+          "mulighetslikhet vs resultatlikhet",
+          "individuell mobilitet vs strukturell ulikhet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "karl_marx",
+            "concept": "klasse, eierskap og konflikt"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "kapitalformer og sosial reproduksjon"
+          },
+          {
+            "thinker_id": "thomas_piketty",
+            "concept": "formueskonsentrasjon og ulikhetsdynamikk"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "fordeling_velferd_ulikhet",
@@ -3302,61 +3372,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "welfare-distribution-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
           "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
-          "Amartya Sen",
-          "Karl Marx",
-          "Antonio Gramsci",
-          "Charles Tilly",
-          "Sidney Tarrow",
-          "Chantal Mouffe"
+          "Jürgen Habermas",
+          "Fritz W. Scharpf"
         ],
         "thinker_ids": [
           "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
-          "amartya_sen",
-          "karl_marx",
-          "antonio_gramsci",
-          "charles_tilly",
-          "sidney_tarrow",
-          "chantal_mouffe"
+          "jurgen_habermas",
+          "fritz_scharpf"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
             "john_rawls",
-            "thomas_piketty"
+            "jurgen_habermas"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "jurgen_habermas",
+            "fritz_scharpf"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_contribution_benefit_and_justification",
+          "separate_legality_from_legitimacy",
+          "test_input_process_and_output_legitimacy"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -3374,29 +3423,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke anta at omfordeling er legitim bare fordi den er lovlig.",
+          "Ikke forklar oppslutning bare med egeninteresse.",
+          "Ikke bruk høy tillit som erstatning for analyse av prosedyrer og resultater.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
           "Oslo rådhus",
-          "kommunale boliger",
-          "Aker sykehus",
-          "Youngstorget",
-          "Eidsvolls plass",
-          "Universitetsplassen",
-          "Rådhusplassen",
-          "LO-bygget"
+          "NAV-kontor",
+          "Stortinget"
         ],
         "recommended_method_ids": [
           "met_pol_fordelingsanalyse",
@@ -3407,8 +3445,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "tax",
+          "transfer",
+          "public_service",
+          "legitimation"
+        ],
+        "mechanism_options": [
+          "skatt og overføring",
+          "universelle ytelser",
+          "synlig gjensidighet",
+          "fortjenestefortellinger",
+          "prosedyrerettferdighet",
+          "åpen begrunnelse",
+          "tjenestekvalitet",
+          "politisk tilbakekobling"
+        ],
+        "critical_distinction_options": [
+          "legalitet vs legitimitet",
+          "input-, prosess- og outputlegitimitet",
+          "egeninteresse vs rettferdighetsnorm",
+          "universalisme vs fortjenestebasert avgrensning"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdighet som rimelige samarbeidsvilkår"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "offentlig begrunnelse og deliberativ legitimitet"
+          },
+          {
+            "thinker_id": "fritz_scharpf",
+            "concept": "input- og outputlegitimitet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "konflikt_makt_sivilsamfunn",
@@ -3548,11 +3637,14 @@
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
       "John Rawls",
+      "Amartya Sen",
       "Thomas Piketty",
+      "Karl Marx",
+      "Pierre Bourdieu",
+      "Jürgen Habermas",
+      "Fritz W. Scharpf",
       "Nancy Fraser",
       "Gøsta Esping-Andersen",
-      "Amartya Sen",
-      "Karl Marx",
       "Antonio Gramsci",
       "Charles Tilly",
       "Sidney Tarrow",
@@ -3560,26 +3652,23 @@
     ],
     "canonical_thinker_ids": [
       "john_rawls",
+      "amartya_sen",
       "thomas_piketty",
+      "karl_marx",
+      "pierre_bourdieu",
+      "jurgen_habermas",
+      "fritz_scharpf",
       "nancy_fraser",
       "gosta_esping_andersen",
-      "amartya_sen",
-      "karl_marx",
       "antonio_gramsci",
       "charles_tilly",
       "sidney_tarrow",
       "chantal_mouffe"
     ],
-    "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
-    "norwegian_thinkers": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
-    "theory_diversity_score": 10,
-    "has_norwegian_theory_path": true,
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
+    "theory_diversity_score": 13,
+    "has_norwegian_theory_path": false,
     "theory_sync_version": "v1-politikk",
     "generator_theory_note": "Bruk konkret institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm eller sosial prosess først; løft teori inn når politikkankeret allerede er etablert.",
     "recommended_oslo_cases": [
@@ -4010,51 +4099,44 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "welfare-distribution-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
-          "Amartya Sen"
+          "Amartya Sen",
+          "Kari Wærness",
+          "John Rawls"
         ],
         "thinker_ids": [
-          "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
-          "amartya_sen"
+          "amartya_sen",
+          "kari_waerness",
+          "john_rawls"
         ],
         "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
+          "kari_waerness"
         ],
         "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
+          "kari_waerness"
         ],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "amartya_sen",
+            "kari_waerness"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "kari_waerness",
+            "john_rawls"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_need_capacity_and_priority_rule",
+          "test_equal_access_against_equal_outcome",
+          "compare_formal_entitlement_with_actual_capacity"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -4072,24 +4154,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill lik adgang med like helseutfall.",
+          "Ikke overse omsorgsarbeid og bemanning når kapasitet analyseres.",
+          "Ikke bruk medisinsk behov som om prioriteringsreglene er selvforklarende.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "NAV-kontor",
           "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "Oslo rådhus",
-          "kommunale boliger",
-          "Aker sykehus"
+          "Aker sykehus",
+          "kommunale helse- og omsorgstjenester"
         ],
         "recommended_method_ids": [
           "met_pol_velferdsstatlig_analyse",
@@ -4100,8 +4176,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "hospital",
+          "care_service",
+          "health_priority",
+          "public_health"
+        ],
+        "mechanism_options": [
+          "prioriteringskriterier",
+          "henvisning og portvakt",
+          "finansieringsmodell",
+          "geografisk tjenesteorganisering",
+          "bemanning",
+          "ventelister",
+          "forebygging",
+          "omsorgsarbeid"
+        ],
+        "critical_distinction_options": [
+          "behov vs etterspørsel",
+          "lik adgang vs like helseutfall",
+          "behandling vs folkehelse",
+          "formell rett vs faktisk kapasitet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "helse som kapabilitet"
+          },
+          {
+            "thinker_id": "kari_waerness",
+            "concept": "omsorgsarbeid og rasjonalitet"
+          },
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdig tilgang til grunnleggende institusjoner"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -4117,28 +4244,22 @@
     "external_claim_basis_required": true,
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
-      "John Rawls",
-      "Thomas Piketty",
-      "Nancy Fraser",
-      "Gøsta Esping-Andersen",
-      "Amartya Sen"
+      "Amartya Sen",
+      "Kari Wærness",
+      "John Rawls"
     ],
     "canonical_thinker_ids": [
-      "john_rawls",
-      "thomas_piketty",
-      "nancy_fraser",
-      "gosta_esping_andersen",
-      "amartya_sen"
+      "amartya_sen",
+      "kari_waerness",
+      "john_rawls"
     ],
     "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
+      "kari_waerness"
     ],
     "norwegian_thinkers": [
-      "stein_rokkan",
-      "gudmund_hernes"
+      "kari_waerness"
     ],
-    "theory_diversity_score": 5,
+    "theory_diversity_score": 3,
     "has_norwegian_theory_path": true,
     "theory_sync_version": "v1-politikk",
     "generator_theory_note": "Bruk konkret institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm eller sosial prosess først; løft teori inn når politikkankeret allerede er etablert.",
@@ -6649,51 +6770,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "welfare-distribution-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
-          "Amartya Sen"
+          "Karl Marx",
+          "Pierre Bourdieu",
+          "Thomas Piketty"
         ],
         "thinker_ids": [
-          "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
-          "amartya_sen"
+          "karl_marx",
+          "pierre_bourdieu",
+          "thomas_piketty"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "karl_marx",
+            "pierre_bourdieu"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "pierre_bourdieu",
+            "thomas_piketty"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_resource_and_position",
+          "trace_reproduction_mechanism",
+          "separate_income_from_wealth_and_class"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -6711,24 +6821,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke bruk klasse som synonym for inntekt.",
+          "Ikke forklar stabil ulikhet bare med individuelle valg.",
+          "Ikke overse formue, eierskap og organisatorisk makt.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "Oslo rådhus",
-          "kommunale boliger",
-          "Aker sykehus"
+          "Youngstorget",
+          "Oslo øst og vest",
+          "boligeierskap i Oslo"
         ],
         "recommended_method_ids": [
           "met_pol_makt_og_ulikhetsanalyse",
@@ -6739,8 +6843,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "labour_market",
+          "wealth",
+          "housing",
+          "class_structure"
+        ],
+        "mechanism_options": [
+          "kapitalakkumulasjon",
+          "arv og formuesoverføring",
+          "yrkesmessig lukning",
+          "utdanningsreproduksjon",
+          "forhandlingsmakt",
+          "nettverk",
+          "kulturell kapital",
+          "skatte- og boligregler"
+        ],
+        "critical_distinction_options": [
+          "klasse vs inntekt",
+          "formue vs løpende inntekt",
+          "mulighetslikhet vs resultatlikhet",
+          "individuell mobilitet vs strukturell ulikhet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "karl_marx",
+            "concept": "klasse, eierskap og konflikt"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "kapitalformer og sosial reproduksjon"
+          },
+          {
+            "thinker_id": "thomas_piketty",
+            "concept": "formueskonsentrasjon og ulikhetsdynamikk"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "fordeling_velferd_ulikhet",
@@ -6754,51 +6909,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "welfare-distribution-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
+          "Pierre Bourdieu",
           "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
           "Amartya Sen"
         ],
         "thinker_ids": [
+          "pierre_bourdieu",
           "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
           "amartya_sen"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "pierre_bourdieu",
+            "john_rawls"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "john_rawls",
+            "amartya_sen"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_selection_and_resource_mechanism",
+          "separate_access_from_completion",
+          "compare_absolute_with_relative_mobility"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -6816,24 +6960,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill utdanningsdeltakelse med sosial mobilitet.",
+          "Ikke anta at formelt like opptaksvilkår gir reell mulighetslikhet.",
+          "Ikke forklar prestasjonsforskjeller uten å undersøke ressurs- og seleksjonsmekanismer.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "Oslo rådhus",
-          "kommunale boliger",
-          "Aker sykehus"
+          "Universitetsplassen",
+          "Oslo-skolen",
+          "Tøyen"
         ],
         "recommended_method_ids": [
           "met_pol_levekarsanalyse",
@@ -6844,8 +6982,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "school",
+          "university",
+          "admission",
+          "mobility_statistics"
+        ],
+        "mechanism_options": [
+          "skolefinansiering",
+          "opptak og sortering",
+          "skolevalg",
+          "karakter- og credential-system",
+          "kulturell kapital",
+          "foreldreressurser",
+          "læringsmiljø",
+          "peer-effekter"
+        ],
+        "critical_distinction_options": [
+          "mobilitet vs likhet",
+          "absolutt vs relativ mobilitet",
+          "meritokrati vs ressursfordel",
+          "tilgang vs fullføring"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "kulturell kapital og sosial reproduksjon"
+          },
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdig mulighetslikhet"
+          },
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "utdanning som kapabilitet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -6862,29 +7051,23 @@
     "external_claim_basis_required": true,
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
-      "John Rawls",
+      "Karl Marx",
+      "Pierre Bourdieu",
       "Thomas Piketty",
-      "Nancy Fraser",
-      "Gøsta Esping-Andersen",
+      "John Rawls",
       "Amartya Sen"
     ],
     "canonical_thinker_ids": [
-      "john_rawls",
+      "karl_marx",
+      "pierre_bourdieu",
       "thomas_piketty",
-      "nancy_fraser",
-      "gosta_esping_andersen",
+      "john_rawls",
       "amartya_sen"
     ],
-    "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
-    "norwegian_thinkers": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
     "theory_diversity_score": 5,
-    "has_norwegian_theory_path": true,
+    "has_norwegian_theory_path": false,
     "theory_sync_version": "v1-politikk",
     "generator_theory_note": "Bruk konkret institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm eller sosial prosess først; løft teori inn når politikkankeret allerede er etablert.",
     "recommended_oslo_cases": [
@@ -7438,65 +7621,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "Jürgen Habermas",
-          "Hannah Arendt",
-          "Alexis de Tocqueville",
-          "Robert Dahl",
-          "Chantal Mouffe",
           "John Rawls",
-          "Thomas Piketty"
+          "Jürgen Habermas",
+          "Fritz W. Scharpf"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "jurgen_habermas",
-          "hannah_arendt",
-          "alexis_de_tocqueville",
-          "robert_dahl",
-          "chantal_mouffe",
           "john_rawls",
-          "thomas_piketty"
+          "jurgen_habermas",
+          "fritz_scharpf"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
             "john_rawls",
-            "thomas_piketty"
+            "jurgen_habermas"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "jurgen_habermas",
+            "fritz_scharpf"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_contribution_benefit_and_justification",
+          "separate_legality_from_legitimacy",
+          "test_input_process_and_output_legitimacy"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -7514,41 +7672,81 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke anta at omfordeling er legitim bare fordi den er lovlig.",
+          "Ikke forklar oppslutning bare med egeninteresse.",
+          "Ikke bruk høy tillit som erstatning for analyse av prosedyrer og resultater.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
           "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "Eidsvolls plass",
-          "Youngstorget",
-          "Universitetsplassen",
-          "Litteraturhuset",
-          "NAV-kontor"
+          "NAV-kontor",
+          "Stortinget"
         ],
         "recommended_method_ids": [
-          "met_pol_legitimitetsanalyse",
-          "met_pol_fordelingsanalyse"
+          "met_pol_fordelingsanalyse",
+          "met_pol_legitimitetsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "tax",
+          "transfer",
+          "public_service",
+          "legitimation"
+        ],
+        "mechanism_options": [
+          "skatt og overføring",
+          "universelle ytelser",
+          "synlig gjensidighet",
+          "fortjenestefortellinger",
+          "prosedyrerettferdighet",
+          "åpen begrunnelse",
+          "tjenestekvalitet",
+          "politisk tilbakekobling"
+        ],
+        "critical_distinction_options": [
+          "legalitet vs legitimitet",
+          "input-, prosess- og outputlegitimitet",
+          "egeninteresse vs rettferdighetsnorm",
+          "universalisme vs fortjenestebasert avgrensning"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdighet som rimelige samarbeidsvilkår"
+          },
+          {
+            "thinker_id": "jurgen_habermas",
+            "concept": "offentlig begrunnelse og deliberativ legitimitet"
+          },
+          {
+            "thinker_id": "fritz_scharpf",
+            "concept": "input- og outputlegitimitet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -7567,42 +7765,22 @@
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
       "Max Weber",
-      "Michel Foucault",
-      "Pierre Bourdieu",
-      "Theda Skocpol",
-      "James C. Scott",
       "Jürgen Habermas",
-      "Hannah Arendt",
-      "Alexis de Tocqueville",
-      "Robert Dahl",
-      "Chantal Mouffe",
-      "John Rawls",
-      "Thomas Piketty"
+      "Fritz W. Scharpf",
+      "David Easton",
+      "John Rawls"
     ],
     "canonical_thinker_ids": [
       "max_weber",
-      "michel_foucault",
-      "pierre_bourdieu",
-      "theda_skocpol",
-      "james_c_scott",
       "jurgen_habermas",
-      "hannah_arendt",
-      "alexis_de_tocqueville",
-      "robert_dahl",
-      "chantal_mouffe",
-      "john_rawls",
-      "thomas_piketty"
+      "fritz_scharpf",
+      "david_easton",
+      "john_rawls"
     ],
-    "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
-    "norwegian_thinkers": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
-    "theory_diversity_score": 12,
-    "has_norwegian_theory_path": true,
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": false,
     "theory_sync_version": "v1-politikk",
     "generator_theory_note": "Bruk konkret institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm eller sosial prosess først; løft teori inn når politikkankeret allerede er etablert.",
     "recommended_oslo_cases": [
@@ -7622,6 +7800,7 @@
     "recommended_method_ids": [
       "met_pol_legitimitetsanalyse",
       "met_pol_institusjonsanalyse",
+      "met_pol_forvaltningsanalyse",
       "met_pol_demokratianalyse",
       "met_pol_fordelingsanalyse"
     ],
@@ -7665,51 +7844,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "welfare-distribution-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
-          "Amartya Sen"
+          "Amartya Sen",
+          "Pierre Bourdieu",
+          "Thomas Piketty"
         ],
         "thinker_ids": [
-          "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
-          "amartya_sen"
+          "amartya_sen",
+          "pierre_bourdieu",
+          "thomas_piketty"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "amartya_sen",
+            "pierre_bourdieu"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "pierre_bourdieu",
+            "thomas_piketty"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "define_dimensions_and_population",
+          "separate_correlation_from_mechanism",
+          "compare_average_with_distribution"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -7727,24 +7895,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke bruk inntekt som eneste mål på levekår.",
+          "Ikke tolke områdeforskjeller som egenskaper ved innbyggerne.",
+          "Ikke trekke årsaksslutning fra statistisk samvariasjon alene.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "NAV-kontor",
-          "Ullevål sykehus",
           "Tøyen",
           "Groruddalen",
-          "Oslo rådhus",
-          "kommunale boliger",
-          "Aker sykehus"
+          "SSB-bydelsstatistikk"
         ],
         "recommended_method_ids": [
           "met_pol_statistikk_og_fordelingsanalyse",
@@ -7755,8 +7917,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "statistics",
+          "neighbourhood",
+          "public_service",
+          "living_conditions"
+        ],
+        "mechanism_options": [
+          "kumulativ ulempe",
+          "arbeidsmarkedstilknytning",
+          "tilgang til tjenester",
+          "nabolagseffekter",
+          "boligkostnader",
+          "helsebelastning",
+          "demografisk seleksjon",
+          "ressursoverføring mellom generasjoner"
+        ],
+        "critical_distinction_options": [
+          "inntekt vs fler­dimensjonale levekår",
+          "absolutt vs relativ deprivasjon",
+          "korrelasjon vs årsaksmekanisme",
+          "gjennomsnitt vs fordelingsprofil"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "kapabiliteter og reelle livsmuligheter"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "økonomisk, sosial og kulturell kapital"
+          },
+          {
+            "thinker_id": "thomas_piketty",
+            "concept": "inntekts- og formuesulikhet over tid"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "fordeling_velferd_ulikhet",
@@ -7770,51 +7983,44 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "welfare-distribution-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
-          "Amartya Sen"
+          "James C. Scott",
+          "Amartya Sen",
+          "Gudmund Hernes"
         ],
         "thinker_ids": [
-          "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
-          "amartya_sen"
+          "james_c_scott",
+          "amartya_sen",
+          "gudmund_hernes"
         ],
         "norwegian_thinker_ids": [
-          "stein_rokkan",
           "gudmund_hernes"
         ],
         "norwegian_thinkers": [
-          "stein_rokkan",
           "gudmund_hernes"
         ],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "james_c_scott",
+            "amartya_sen"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "amartya_sen",
+            "gudmund_hernes"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_projection_assumptions",
+          "separate_demographic_need_from_political_priority",
+          "test_average_against_group_and_area_variation"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -7832,24 +8038,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke presenter framskriving som sikker framtid.",
+          "Ikke behandle demografiske kategorier som naturlige og nøytrale.",
+          "Ikke slutte fra befolkningsvekst direkte til én bestemt politisk løsning.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
           "Groruddalen",
           "Oslo rådhus",
-          "kommunale boliger",
-          "Aker sykehus"
+          "kommunale skole- og helseplaner"
         ],
         "recommended_method_ids": [
           "met_pol_statistikk_og_fordelingsanalyse",
@@ -7860,8 +8060,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "population_projection",
+          "planning_area",
+          "service_capacity",
+          "neighbourhood"
+        ],
+        "mechanism_options": [
+          "befolkningsframskriving",
+          "kapasitetsberegning",
+          "skole- og tjenestekretser",
+          "lokalisering av institusjoner",
+          "aldersstruktur",
+          "flytting",
+          "datakategorisering",
+          "arealprioritering"
+        ],
+        "critical_distinction_options": [
+          "framskriving vs forutsigelse",
+          "demografisk behov vs politisk prioritet",
+          "befolkningsgjennomsnitt vs gruppespredning",
+          "planområde vs levd nabolag"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "james_c_scott",
+            "concept": "statlig lesbarhet og forenkling"
+          },
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "behov som reelle kapabilitetsmangler"
+          },
+          {
+            "thinker_id": "gudmund_hernes",
+            "concept": "ressursfordeling og institusjonell styring"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -7878,25 +8129,23 @@
     "external_claim_basis_required": true,
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
-      "John Rawls",
+      "Amartya Sen",
+      "Pierre Bourdieu",
       "Thomas Piketty",
-      "Nancy Fraser",
-      "Gøsta Esping-Andersen",
-      "Amartya Sen"
+      "James C. Scott",
+      "Gudmund Hernes"
     ],
     "canonical_thinker_ids": [
-      "john_rawls",
+      "amartya_sen",
+      "pierre_bourdieu",
       "thomas_piketty",
-      "nancy_fraser",
-      "gosta_esping_andersen",
-      "amartya_sen"
+      "james_c_scott",
+      "gudmund_hernes"
     ],
     "norwegian_thinker_ids": [
-      "stein_rokkan",
       "gudmund_hernes"
     ],
     "norwegian_thinkers": [
-      "stein_rokkan",
       "gudmund_hernes"
     ],
     "theory_diversity_score": 5,
@@ -10835,65 +11084,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "Jürgen Habermas",
-          "Hannah Arendt",
-          "Alexis de Tocqueville",
-          "Robert Dahl",
-          "Chantal Mouffe",
+          "Thomas Piketty",
           "John Rawls",
-          "Thomas Piketty"
+          "Pierre Bourdieu"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "jurgen_habermas",
-          "hannah_arendt",
-          "alexis_de_tocqueville",
-          "robert_dahl",
-          "chantal_mouffe",
+          "thomas_piketty",
           "john_rawls",
-          "thomas_piketty"
+          "pierre_bourdieu"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "thomas_piketty",
+            "john_rawls"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "john_rawls",
+            "pierre_bourdieu"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_tenure_finance_and_regulation",
+          "test_supply_against_affordability",
+          "compare_home_function_with_asset_function"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -10911,41 +11135,81 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke anta at økt boligbygging alene gir rimelige boliger.",
+          "Ikke bland sammen eierskap og botrygghet.",
+          "Ikke behandle boligmarkedet som løsrevet fra skatt, kreditt og arealpolitikk.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "Eidsvolls plass",
-          "Youngstorget",
-          "Universitetsplassen",
-          "Litteraturhuset",
-          "NAV-kontor"
+          "kommunale boliger",
+          "Tøyen",
+          "Bjørvika"
         ],
         "recommended_method_ids": [
-          "met_pol_romlig_maktanalyse",
-          "met_pol_bolig_og_byutviklingsanalyse"
+          "met_pol_bolig_og_byutviklingsanalyse",
+          "met_pol_romlig_maktanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "housing",
+          "planning",
+          "municipal_land",
+          "neighbourhood"
+        ],
+        "mechanism_options": [
+          "arealregulering",
+          "kommunal tomtepolitikk",
+          "boligfinansiering",
+          "skattefordeler",
+          "kommunal boligtildeling",
+          "leieregulering",
+          "fortetting",
+          "bostøtte"
+        ],
+        "critical_distinction_options": [
+          "bolig som hjem vs bolig som kapitalobjekt",
+          "boligtilbud vs faktisk betalbarhet",
+          "eierskap vs botrygghet",
+          "sosial boligpolitikk vs generell markedspolitikk"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "thomas_piketty",
+            "concept": "boligformue og kapitalakkumulasjon"
+          },
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdig tilgang til grunnleggende goder"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "bolig, posisjon og sosial reproduksjon"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "konflikt_makt_sivilsamfunn",
@@ -11090,42 +11354,46 @@
     "external_claim_basis_required": true,
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
-      "Max Weber",
+      "Theda Skocpol",
+      "Stein Rokkan",
+      "James C. Scott",
       "Michel Foucault",
       "Pierre Bourdieu",
-      "Theda Skocpol",
-      "James C. Scott",
-      "Jürgen Habermas",
       "Hannah Arendt",
-      "Alexis de Tocqueville",
-      "Robert Dahl",
-      "Chantal Mouffe",
+      "Henri Lefebvre",
+      "Charles Tilly",
+      "Thomas Piketty",
       "John Rawls",
-      "Thomas Piketty"
+      "Max Weber",
+      "Jürgen Habermas",
+      "Alexis De Tocqueville",
+      "Robert Dahl",
+      "Chantal Mouffe"
     ],
     "canonical_thinker_ids": [
-      "max_weber",
+      "theda_skocpol",
+      "stein_rokkan",
+      "james_c_scott",
       "michel_foucault",
       "pierre_bourdieu",
-      "theda_skocpol",
-      "james_c_scott",
-      "jurgen_habermas",
       "hannah_arendt",
+      "henri_lefebvre",
+      "charles_tilly",
+      "thomas_piketty",
+      "john_rawls",
+      "max_weber",
+      "jurgen_habermas",
       "alexis_de_tocqueville",
       "robert_dahl",
-      "chantal_mouffe",
-      "john_rawls",
-      "thomas_piketty"
+      "chantal_mouffe"
     ],
     "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
+      "stein_rokkan"
     ],
     "norwegian_thinkers": [
-      "stein_rokkan",
-      "gudmund_hernes"
+      "stein_rokkan"
     ],
-    "theory_diversity_score": 12,
+    "theory_diversity_score": 15,
     "has_norwegian_theory_path": true,
     "theory_sync_version": "v1-politikk",
     "generator_theory_note": "Bruk konkret institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm eller sosial prosess først; løft teori inn når politikkankeret allerede er etablert.",
@@ -11144,8 +11412,9 @@
       "NAV-kontor"
     ],
     "recommended_method_ids": [
-      "met_pol_romlig_maktanalyse",
       "met_pol_institusjonsanalyse",
+      "met_pol_lokalpolitisk_analyse",
+      "met_pol_romlig_maktanalyse",
       "met_pol_plan_og_reguleringsanalyse",
       "met_pol_offentlighetsanalyse",
       "met_pol_bolig_og_byutviklingsanalyse",
@@ -14728,61 +14997,44 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
           "James C. Scott",
-          "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
-          "Amartya Sen"
+          "Amartya Sen",
+          "Gudmund Hernes"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
           "james_c_scott",
-          "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
-          "amartya_sen"
+          "amartya_sen",
+          "gudmund_hernes"
         ],
         "norwegian_thinker_ids": [
-          "stein_rokkan",
           "gudmund_hernes"
         ],
         "norwegian_thinkers": [
-          "stein_rokkan",
           "gudmund_hernes"
         ],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "james_c_scott",
+            "amartya_sen"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "amartya_sen",
+            "gudmund_hernes"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_projection_assumptions",
+          "separate_demographic_need_from_political_priority",
+          "test_average_against_group_and_area_variation"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -14800,41 +15052,81 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke presenter framskriving som sikker framtid.",
+          "Ikke behandle demografiske kategorier som naturlige og nøytrale.",
+          "Ikke slutte fra befolkningsvekst direkte til én bestemt politisk løsning.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
           "Groruddalen",
-          "kommunale boliger"
+          "Oslo rådhus",
+          "kommunale skole- og helseplaner"
         ],
         "recommended_method_ids": [
-          "met_pol_plan_og_reguleringsanalyse",
-          "met_pol_statistikk_og_fordelingsanalyse"
+          "met_pol_statistikk_og_fordelingsanalyse",
+          "met_pol_plan_og_reguleringsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "population_projection",
+          "planning_area",
+          "service_capacity",
+          "neighbourhood"
+        ],
+        "mechanism_options": [
+          "befolkningsframskriving",
+          "kapasitetsberegning",
+          "skole- og tjenestekretser",
+          "lokalisering av institusjoner",
+          "aldersstruktur",
+          "flytting",
+          "datakategorisering",
+          "arealprioritering"
+        ],
+        "critical_distinction_options": [
+          "framskriving vs forutsigelse",
+          "demografisk behov vs politisk prioritet",
+          "befolkningsgjennomsnitt vs gruppespredning",
+          "planområde vs levd nabolag"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "james_c_scott",
+            "concept": "statlig lesbarhet og forenkling"
+          },
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "behov som reelle kapabilitetsmangler"
+          },
+          {
+            "thinker_id": "gudmund_hernes",
+            "concept": "ressursfordeling og institusjonell styring"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -14851,38 +15143,26 @@
     "external_claim_basis_required": true,
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
-      "Max Weber",
+      "James C. Scott",
       "Michel Foucault",
       "Pierre Bourdieu",
-      "Theda Skocpol",
-      "James C. Scott",
-      "John Rawls",
-      "Thomas Piketty",
-      "Nancy Fraser",
-      "Gøsta Esping-Andersen",
-      "Amartya Sen"
+      "Amartya Sen",
+      "Gudmund Hernes"
     ],
     "canonical_thinker_ids": [
-      "max_weber",
+      "james_c_scott",
       "michel_foucault",
       "pierre_bourdieu",
-      "theda_skocpol",
-      "james_c_scott",
-      "john_rawls",
-      "thomas_piketty",
-      "nancy_fraser",
-      "gosta_esping_andersen",
-      "amartya_sen"
+      "amartya_sen",
+      "gudmund_hernes"
     ],
     "norwegian_thinker_ids": [
-      "stein_rokkan",
       "gudmund_hernes"
     ],
     "norwegian_thinkers": [
-      "stein_rokkan",
       "gudmund_hernes"
     ],
-    "theory_diversity_score": 10,
+    "theory_diversity_score": 5,
     "has_norwegian_theory_path": true,
     "theory_sync_version": "v1-politikk",
     "generator_theory_note": "Bruk konkret institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm eller sosial prosess først; løft teori inn når politikkankeret allerede er etablert.",
@@ -14903,6 +15183,7 @@
     "recommended_method_ids": [
       "met_pol_plan_og_reguleringsanalyse",
       "met_pol_romlig_maktanalyse",
+      "met_pol_lokalpolitisk_analyse",
       "met_pol_statistikk_og_fordelingsanalyse"
     ],
     "overlap_risk": "medium",
@@ -15082,65 +15363,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "democracy-public-sphere-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "Jürgen Habermas",
-          "Hannah Arendt",
-          "Alexis de Tocqueville",
-          "Robert Dahl",
-          "Chantal Mouffe",
-          "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
           "Amartya Sen",
-          "Émile Durkheim",
-          "Erving Goffman"
+          "Pierre Bourdieu",
+          "Thomas Piketty"
         ],
         "thinker_ids": [
-          "jurgen_habermas",
-          "hannah_arendt",
-          "alexis_de_tocqueville",
-          "robert_dahl",
-          "chantal_mouffe",
-          "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
           "amartya_sen",
-          "emile_durkheim",
-          "erving_goffman"
+          "pierre_bourdieu",
+          "thomas_piketty"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "amartya_sen",
+            "pierre_bourdieu"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "pierre_bourdieu",
+            "thomas_piketty"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "define_dimensions_and_population",
+          "separate_correlation_from_mechanism",
+          "compare_average_with_distribution"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -15158,29 +15414,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke bruk inntekt som eneste mål på levekår.",
+          "Ikke tolke områdeforskjeller som egenskaper ved innbyggerne.",
+          "Ikke trekke årsaksslutning fra statistisk samvariasjon alene.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Stortinget",
-          "Oslo rådhus",
-          "Eidsvolls plass",
-          "Youngstorget",
-          "Universitetsplassen",
-          "Rådhusplassen",
-          "Litteraturhuset",
-          "NAV-kontor",
-          "Ullevål sykehus",
           "Tøyen",
           "Groruddalen",
-          "kommunale boliger"
+          "SSB-bydelsstatistikk"
         ],
         "recommended_method_ids": [
           "met_pol_statistikk_og_fordelingsanalyse",
@@ -15191,8 +15436,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "statistics",
+          "neighbourhood",
+          "public_service",
+          "living_conditions"
+        ],
+        "mechanism_options": [
+          "kumulativ ulempe",
+          "arbeidsmarkedstilknytning",
+          "tilgang til tjenester",
+          "nabolagseffekter",
+          "boligkostnader",
+          "helsebelastning",
+          "demografisk seleksjon",
+          "ressursoverføring mellom generasjoner"
+        ],
+        "critical_distinction_options": [
+          "inntekt vs fler­dimensjonale levekår",
+          "absolutt vs relativ deprivasjon",
+          "korrelasjon vs årsaksmekanisme",
+          "gjennomsnitt vs fordelingsprofil"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "kapabiliteter og reelle livsmuligheter"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "økonomisk, sosial og kulturell kapital"
+          },
+          {
+            "thinker_id": "thomas_piketty",
+            "concept": "inntekts- og formuesulikhet over tid"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "fordeling_velferd_ulikhet",
@@ -15206,65 +15502,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "democracy-public-sphere-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "Jürgen Habermas",
-          "Hannah Arendt",
-          "Alexis de Tocqueville",
-          "Robert Dahl",
-          "Chantal Mouffe",
-          "John Rawls",
-          "Thomas Piketty",
           "Nancy Fraser",
-          "Gøsta Esping-Andersen",
           "Amartya Sen",
-          "Émile Durkheim",
           "Erving Goffman"
         ],
         "thinker_ids": [
-          "jurgen_habermas",
-          "hannah_arendt",
-          "alexis_de_tocqueville",
-          "robert_dahl",
-          "chantal_mouffe",
-          "john_rawls",
-          "thomas_piketty",
           "nancy_fraser",
-          "gosta_esping_andersen",
           "amartya_sen",
-          "emile_durkheim",
           "erving_goffman"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "nancy_fraser",
+            "amartya_sen"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "amartya_sen",
+            "erving_goffman"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_access_barrier_and_affected_group",
+          "separate_formal_access_from_effective_participation",
+          "compare_redistribution_with_recognition"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -15282,41 +15553,81 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke reduser sosial ekskludering til lav inntekt.",
+          "Ikke individualiser et problem før institusjonelle terskler er undersøkt.",
+          "Ikke anta at et tilbud er tilgjengelig bare fordi det formelt eksisterer.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Stortinget",
-          "Oslo rådhus",
-          "Eidsvolls plass",
-          "Youngstorget",
-          "Universitetsplassen",
-          "Rådhusplassen",
-          "Litteraturhuset",
           "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "kommunale boliger"
+          "kommunale boliger",
+          "Tøyen"
         ],
         "recommended_method_ids": [
-          "met_pol_minoritet_og_representasjonsanalyse",
-          "met_pol_makt_og_ulikhetsanalyse"
+          "met_pol_makt_og_ulikhetsanalyse",
+          "met_pol_minoritet_og_representasjonsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "welfare_office",
+          "housing",
+          "minority_access",
+          "administrative_barrier"
+        ],
+        "mechanism_options": [
+          "vilkår og dokumentasjonskrav",
+          "stigma",
+          "romlig segregering",
+          "digital ekskludering",
+          "diskriminering",
+          "administrative terskler",
+          "kumulativ ulempe",
+          "manglende representasjon"
+        ],
+        "critical_distinction_options": [
+          "fattigdom vs sosial ekskludering",
+          "formell adgang vs effektiv deltakelse",
+          "omfordeling vs anerkjennelse",
+          "individuell mangel vs strukturell barriere"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "nancy_fraser",
+            "concept": "omfordeling, anerkjennelse og representasjon"
+          },
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "kapabilitetsmangel og eksklusjon"
+          },
+          {
+            "thinker_id": "erving_goffman",
+            "concept": "stigma og sosial identitet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "normer_identitet_hverdagsliv",
@@ -15459,43 +15770,43 @@
     "external_claim_basis_required": true,
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
-      "Jürgen Habermas",
-      "Hannah Arendt",
-      "Alexis de Tocqueville",
       "Robert Dahl",
-      "Chantal Mouffe",
-      "John Rawls",
+      "Arend Lijphart",
+      "Anne Phillips",
+      "Amartya Sen",
+      "Pierre Bourdieu",
       "Thomas Piketty",
       "Nancy Fraser",
+      "Erving Goffman",
+      "Jürgen Habermas",
+      "Hannah Arendt",
+      "Alexis De Tocqueville",
+      "Chantal Mouffe",
+      "John Rawls",
       "Gøsta Esping-Andersen",
-      "Amartya Sen",
-      "Émile Durkheim",
-      "Erving Goffman"
+      "Émile Durkheim"
     ],
     "canonical_thinker_ids": [
+      "robert_dahl",
+      "arend_lijphart",
+      "anne_phillips",
+      "amartya_sen",
+      "pierre_bourdieu",
+      "thomas_piketty",
+      "nancy_fraser",
+      "erving_goffman",
       "jurgen_habermas",
       "hannah_arendt",
       "alexis_de_tocqueville",
-      "robert_dahl",
       "chantal_mouffe",
       "john_rawls",
-      "thomas_piketty",
-      "nancy_fraser",
       "gosta_esping_andersen",
-      "amartya_sen",
-      "emile_durkheim",
-      "erving_goffman"
+      "emile_durkheim"
     ],
-    "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
-    "norwegian_thinkers": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
-    "theory_diversity_score": 12,
-    "has_norwegian_theory_path": true,
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
+    "theory_diversity_score": 15,
+    "has_norwegian_theory_path": false,
     "theory_sync_version": "v1-politikk",
     "generator_theory_note": "Bruk konkret institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm eller sosial prosess først; løft teori inn når politikkankeret allerede er etablert.",
     "recommended_oslo_cases": [
@@ -17173,51 +17484,44 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "welfare-distribution-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
           "Gøsta Esping-Andersen",
-          "Amartya Sen"
+          "T. H. Marshall",
+          "Kari Wærness"
         ],
         "thinker_ids": [
-          "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
           "gosta_esping_andersen",
-          "amartya_sen"
+          "t_h_marshall",
+          "kari_waerness"
         ],
         "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
+          "kari_waerness"
         ],
         "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
+          "kari_waerness"
         ],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "gosta_esping_andersen",
+            "t_h_marshall"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "t_h_marshall",
+            "kari_waerness"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_social_risk_and_entitlement",
+          "test_universalism_against_targeting",
+          "compare_formal_right_with_effective_access"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -17235,24 +17539,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke reduser velferdsstaten til kontantytelser.",
+          "Ikke behandle behovsprøving som nøytral uten å undersøke terskler og kontroll.",
+          "Ikke anta at en formell rettighet automatisk gir faktisk tilgang.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
           "NAV-kontor",
           "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "Oslo rådhus",
-          "kommunale boliger",
-          "Aker sykehus"
+          "kommunale omsorgstjenester"
         ],
         "recommended_method_ids": [
           "met_pol_velferdsstatlig_analyse",
@@ -17263,8 +17561,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "welfare_office",
+          "public_service",
+          "social_right",
+          "care_institution"
+        ],
+        "mechanism_options": [
+          "sosialforsikring",
+          "skattefinansierte universelle tjenester",
+          "behovsprøving",
+          "kontantytelser",
+          "tjenesteyting",
+          "aktivering og vilkår",
+          "avkommodifisering",
+          "omsorgsorganisering"
+        ],
+        "critical_distinction_options": [
+          "universell ordning vs behovsprøvd ordning",
+          "forsikring vs sosialhjelp",
+          "kontantytelse vs tjeneste",
+          "avkommodifisering vs aktivering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "gosta_esping_andersen",
+            "concept": "velferdsregimer og avkommodifisering"
+          },
+          {
+            "thinker_id": "t_h_marshall",
+            "concept": "sosiale medborgerskapsrettigheter"
+          },
+          {
+            "thinker_id": "kari_waerness",
+            "concept": "omsorgsarbeid og velferdens kjønnete organisering"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -17280,28 +17629,22 @@
     "external_claim_basis_required": true,
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
-      "John Rawls",
-      "Thomas Piketty",
-      "Nancy Fraser",
       "Gøsta Esping-Andersen",
-      "Amartya Sen"
+      "T. H. Marshall",
+      "Kari Wærness"
     ],
     "canonical_thinker_ids": [
-      "john_rawls",
-      "thomas_piketty",
-      "nancy_fraser",
       "gosta_esping_andersen",
-      "amartya_sen"
+      "t_h_marshall",
+      "kari_waerness"
     ],
     "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
+      "kari_waerness"
     ],
     "norwegian_thinkers": [
-      "stein_rokkan",
-      "gudmund_hernes"
+      "kari_waerness"
     ],
-    "theory_diversity_score": 5,
+    "theory_diversity_score": 3,
     "has_norwegian_theory_path": true,
     "theory_sync_version": "v1-politikk",
     "generator_theory_note": "Bruk konkret institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm eller sosial prosess først; løft teori inn når politikkankeret allerede er etablert.",
@@ -18292,59 +18635,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt",
-          "Thomas Piketty",
           "Nancy Fraser",
-          "Gøsta Esping-Andersen",
-          "Amartya Sen"
+          "Amartya Sen",
+          "Erving Goffman"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt",
-          "thomas_piketty",
           "nancy_fraser",
-          "gosta_esping_andersen",
-          "amartya_sen"
+          "amartya_sen",
+          "erving_goffman"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "nancy_fraser",
+            "amartya_sen"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "amartya_sen",
+            "erving_goffman"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_access_barrier_and_affected_group",
+          "separate_formal_access_from_effective_participation",
+          "compare_redistribution_with_recognition"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -18362,29 +18686,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke reduser sosial ekskludering til lav inntekt.",
+          "Ikke individualiser et problem før institusjonelle terskler er undersøkt.",
+          "Ikke anta at et tilbud er tilgjengelig bare fordi det formelt eksisterer.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
-          "Høyesterett",
-          "Møllergata 19",
-          "Regjeringskvartalet",
-          "Stortinget",
-          "Grunnlovssted",
-          "Politihuset",
           "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "Oslo rådhus"
+          "kommunale boliger",
+          "Tøyen"
         ],
         "recommended_method_ids": [
           "met_pol_makt_og_ulikhetsanalyse",
@@ -18395,8 +18708,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "welfare_office",
+          "housing",
+          "minority_access",
+          "administrative_barrier"
+        ],
+        "mechanism_options": [
+          "vilkår og dokumentasjonskrav",
+          "stigma",
+          "romlig segregering",
+          "digital ekskludering",
+          "diskriminering",
+          "administrative terskler",
+          "kumulativ ulempe",
+          "manglende representasjon"
+        ],
+        "critical_distinction_options": [
+          "fattigdom vs sosial ekskludering",
+          "formell adgang vs effektiv deltakelse",
+          "omfordeling vs anerkjennelse",
+          "individuell mangel vs strukturell barriere"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "nancy_fraser",
+            "concept": "omfordeling, anerkjennelse og representasjon"
+          },
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "kapabilitetsmangel og eksklusjon"
+          },
+          {
+            "thinker_id": "erving_goffman",
+            "concept": "stigma og sosial identitet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -18413,37 +18777,25 @@
     "external_claim_basis_required": true,
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
-      "Montesquieu",
-      "John Rawls",
-      "Ronald Dworkin",
-      "Michel Foucault",
-      "Hannah Arendt",
-      "Thomas Piketty",
+      "Kimberlé Crenshaw",
+      "Catharine A. MacKinnon",
+      "Pierre Bourdieu",
       "Nancy Fraser",
-      "Gøsta Esping-Andersen",
-      "Amartya Sen"
+      "Amartya Sen",
+      "Erving Goffman"
     ],
     "canonical_thinker_ids": [
-      "montesquieu",
-      "john_rawls",
-      "ronald_dworkin",
-      "michel_foucault",
-      "hannah_arendt",
-      "thomas_piketty",
+      "kimberle_crenshaw",
+      "catharine_mackinnon",
+      "pierre_bourdieu",
       "nancy_fraser",
-      "gosta_esping_andersen",
-      "amartya_sen"
+      "amartya_sen",
+      "erving_goffman"
     ],
-    "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
-    "norwegian_thinkers": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
-    "theory_diversity_score": 9,
-    "has_norwegian_theory_path": true,
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": false,
     "theory_sync_version": "v1-politikk",
     "generator_theory_note": "Bruk konkret institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm eller sosial prosess først; løft teori inn når politikkankeret allerede er etablert.",
     "recommended_oslo_cases": [
@@ -19067,51 +19419,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "welfare-distribution-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
+          "Pierre Bourdieu",
           "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
           "Amartya Sen"
         ],
         "thinker_ids": [
+          "pierre_bourdieu",
           "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
           "amartya_sen"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "pierre_bourdieu",
+            "john_rawls"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "john_rawls",
+            "amartya_sen"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_selection_and_resource_mechanism",
+          "separate_access_from_completion",
+          "compare_absolute_with_relative_mobility"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -19129,24 +19470,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill utdanningsdeltakelse med sosial mobilitet.",
+          "Ikke anta at formelt like opptaksvilkår gir reell mulighetslikhet.",
+          "Ikke forklar prestasjonsforskjeller uten å undersøke ressurs- og seleksjonsmekanismer.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "Oslo rådhus",
-          "kommunale boliger",
-          "Aker sykehus"
+          "Universitetsplassen",
+          "Oslo-skolen",
+          "Tøyen"
         ],
         "recommended_method_ids": [
           "met_pol_levekarsanalyse",
@@ -19157,8 +19492,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "school",
+          "university",
+          "admission",
+          "mobility_statistics"
+        ],
+        "mechanism_options": [
+          "skolefinansiering",
+          "opptak og sortering",
+          "skolevalg",
+          "karakter- og credential-system",
+          "kulturell kapital",
+          "foreldreressurser",
+          "læringsmiljø",
+          "peer-effekter"
+        ],
+        "critical_distinction_options": [
+          "mobilitet vs likhet",
+          "absolutt vs relativ mobilitet",
+          "meritokrati vs ressursfordel",
+          "tilgang vs fullføring"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "kulturell kapital og sosial reproduksjon"
+          },
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdig mulighetslikhet"
+          },
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "utdanning som kapabilitet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -19174,29 +19560,19 @@
     "external_claim_basis_required": true,
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
+      "Pierre Bourdieu",
       "John Rawls",
-      "Thomas Piketty",
-      "Nancy Fraser",
-      "Gøsta Esping-Andersen",
       "Amartya Sen"
     ],
     "canonical_thinker_ids": [
+      "pierre_bourdieu",
       "john_rawls",
-      "thomas_piketty",
-      "nancy_fraser",
-      "gosta_esping_andersen",
       "amartya_sen"
     ],
-    "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
-    "norwegian_thinkers": [
-      "stein_rokkan",
-      "gudmund_hernes"
-    ],
-    "theory_diversity_score": 5,
-    "has_norwegian_theory_path": true,
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
+    "theory_diversity_score": 3,
+    "has_norwegian_theory_path": false,
     "theory_sync_version": "v1-politikk",
     "generator_theory_note": "Bruk konkret institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm eller sosial prosess først; løft teori inn når politikkankeret allerede er etablert.",
     "recommended_oslo_cases": [
@@ -19615,65 +19991,44 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
           "Gøsta Esping-Andersen",
-          "Amartya Sen",
-          "Émile Durkheim",
-          "Erving Goffman"
+          "T. H. Marshall",
+          "Kari Wærness"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
           "gosta_esping_andersen",
-          "amartya_sen",
-          "emile_durkheim",
-          "erving_goffman"
+          "t_h_marshall",
+          "kari_waerness"
         ],
         "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
+          "kari_waerness"
         ],
         "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
+          "kari_waerness"
         ],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "gosta_esping_andersen",
+            "t_h_marshall"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "t_h_marshall",
+            "kari_waerness"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_social_risk_and_entitlement",
+          "test_universalism_against_targeting",
+          "compare_formal_right_with_effective_access"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -19691,29 +20046,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke reduser velferdsstaten til kontantytelser.",
+          "Ikke behandle behovsprøving som nøytral uten å undersøke terskler og kontroll.",
+          "Ikke anta at en formell rettighet automatisk gir faktisk tilgang.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
           "NAV-kontor",
           "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "kommunale boliger"
+          "kommunale omsorgstjenester"
         ],
         "recommended_method_ids": [
           "met_pol_velferdsstatlig_analyse",
@@ -19724,8 +20068,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "welfare_office",
+          "public_service",
+          "social_right",
+          "care_institution"
+        ],
+        "mechanism_options": [
+          "sosialforsikring",
+          "skattefinansierte universelle tjenester",
+          "behovsprøving",
+          "kontantytelser",
+          "tjenesteyting",
+          "aktivering og vilkår",
+          "avkommodifisering",
+          "omsorgsorganisering"
+        ],
+        "critical_distinction_options": [
+          "universell ordning vs behovsprøvd ordning",
+          "forsikring vs sosialhjelp",
+          "kontantytelse vs tjeneste",
+          "avkommodifisering vs aktivering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "gosta_esping_andersen",
+            "concept": "velferdsregimer og avkommodifisering"
+          },
+          {
+            "thinker_id": "t_h_marshall",
+            "concept": "sosiale medborgerskapsrettigheter"
+          },
+          {
+            "thinker_id": "kari_waerness",
+            "concept": "omsorgsarbeid og velferdens kjønnete organisering"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "fordeling_velferd_ulikhet",
@@ -19739,65 +20134,44 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "distribution-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Bruk hooket som analytisk bro fra dokumentert statistikk, budsjett, ordningsregel, plan eller velferdscase til mekanisme og distinksjon. Teori kommer sist.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "John Rawls",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
           "Amartya Sen",
-          "Émile Durkheim",
-          "Erving Goffman"
+          "Kari Wærness",
+          "John Rawls"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "john_rawls",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
           "amartya_sen",
-          "emile_durkheim",
-          "erving_goffman"
+          "kari_waerness",
+          "john_rawls"
         ],
         "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
+          "kari_waerness"
         ],
         "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
+          "kari_waerness"
         ],
         "comparison_pairs": [
           [
-            "john_rawls",
-            "thomas_piketty"
+            "amartya_sen",
+            "kari_waerness"
           ],
           [
-            "nancy_fraser",
-            "gosta_esping_andersen"
+            "kari_waerness",
+            "john_rawls"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_need_capacity_and_priority_rule",
+          "test_equal_access_against_equal_outcome",
+          "compare_formal_entitlement_with_actual_capacity"
         ],
         "best_place_types": [
           "velferdsinstitusjon",
@@ -19815,29 +20189,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill lik adgang med like helseutfall.",
+          "Ikke overse omsorgsarbeid og bemanning når kapasitet analyseres.",
+          "Ikke bruk medisinsk behov som om prioriteringsreglene er selvforklarende.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som faktakilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert fordelingspåstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "NAV-kontor",
           "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "kommunale boliger"
+          "Aker sykehus",
+          "kommunale helse- og omsorgstjenester"
         ],
         "recommended_method_ids": [
           "met_pol_velferdsstatlig_analyse",
@@ -19848,8 +20211,59 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "hospital",
+          "care_service",
+          "health_priority",
+          "public_health"
+        ],
+        "mechanism_options": [
+          "prioriteringskriterier",
+          "henvisning og portvakt",
+          "finansieringsmodell",
+          "geografisk tjenesteorganisering",
+          "bemanning",
+          "ventelister",
+          "forebygging",
+          "omsorgsarbeid"
+        ],
+        "critical_distinction_options": [
+          "behov vs etterspørsel",
+          "lik adgang vs like helseutfall",
+          "behandling vs folkehelse",
+          "formell rett vs faktisk kapasitet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "helse som kapabilitet"
+          },
+          {
+            "thinker_id": "kari_waerness",
+            "concept": "omsorgsarbeid og rasjonalitet"
+          },
+          {
+            "thinker_id": "john_rawls",
+            "concept": "rettferdig tilgang til grunnleggende institusjoner"
+          }
+        ],
+        "question_build_sequence": [
+          "external_distribution_case_or_source",
+          "claim_basis",
+          "distribution_or_welfare_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter dokumentert mekanisme og kildetype, ikke etter emne- eller teoretikernavn.",
+        "source_role": "Ekstern statistikk, budsjett, vedtak, ordningsregel, plan eller institusjonskilde leverer faktapåstanden; canonical-filen leverer analyseformen.",
+        "quality_revision": "politikk-fordeling-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "normer_identitet_hverdagsliv",
@@ -19992,42 +20406,46 @@
     "external_claim_basis_required": true,
     "institution_law_conflict_or_social_process_anchor_required": true,
     "canonical_thinkers": [
+      "Gøsta Esping-Andersen",
+      "Michael Lipsky",
+      "Kari Wærness",
+      "T. H. Marshall",
+      "Amartya Sen",
+      "John Rawls",
       "Max Weber",
       "Michel Foucault",
       "Pierre Bourdieu",
       "Theda Skocpol",
       "James C. Scott",
-      "John Rawls",
       "Thomas Piketty",
       "Nancy Fraser",
-      "Gøsta Esping-Andersen",
-      "Amartya Sen",
       "Émile Durkheim",
       "Erving Goffman"
     ],
     "canonical_thinker_ids": [
+      "gosta_esping_andersen",
+      "michael_lipsky",
+      "kari_waerness",
+      "t_h_marshall",
+      "amartya_sen",
+      "john_rawls",
       "max_weber",
       "michel_foucault",
       "pierre_bourdieu",
       "theda_skocpol",
       "james_c_scott",
-      "john_rawls",
       "thomas_piketty",
       "nancy_fraser",
-      "gosta_esping_andersen",
-      "amartya_sen",
       "emile_durkheim",
       "erving_goffman"
     ],
     "norwegian_thinker_ids": [
-      "stein_rokkan",
-      "gudmund_hernes"
+      "kari_waerness"
     ],
     "norwegian_thinkers": [
-      "stein_rokkan",
-      "gudmund_hernes"
+      "kari_waerness"
     ],
-    "theory_diversity_score": 12,
+    "theory_diversity_score": 15,
     "has_norwegian_theory_path": true,
     "theory_sync_version": "v1-politikk",
     "generator_theory_note": "Bruk konkret institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm eller sosial prosess først; løft teori inn når politikkankeret allerede er etablert.",
@@ -20047,7 +20465,8 @@
     ],
     "recommended_method_ids": [
       "met_pol_velferdsstatlig_analyse",
-      "met_pol_fordelingsanalyse",
+      "met_pol_forvaltningsanalyse",
+      "met_pol_praksisanalyse",
       "met_pol_institusjonsanalyse",
       "met_pol_levekarsanalyse",
       "met_pol_rettighetsanalyse"

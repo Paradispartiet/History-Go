@@ -90,7 +90,114 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer hvordan tomtepolitikk, regulering, bygging, finansiering, skatt og tildeling påvirker boligtilbud, betalbarhet, botrygghet og romlig fordeling.",
+          "analytical_question": "Hvilket boligpolitisk virkemiddel endrer hvem som kan bo hvor, til hvilken kostnad og med hvilken trygghet?",
+          "evidence_inputs": [
+            "reguleringsplan eller byggesak",
+            "boligpris- og leiedata",
+            "kommunal tildelingsregel",
+            "skatte- eller finansieringsordning"
+          ],
+          "mechanism_focus": [
+            "arealregulering",
+            "tomtepolitikk",
+            "boligfinansiering",
+            "skattefordel",
+            "kommunal tildeling",
+            "bostøtte"
+          ],
+          "critical_distinctions": [
+            "tilbud vs betalbarhet",
+            "eierskap vs botrygghet",
+            "bolig som hjem vs kapitalobjekt"
+          ],
+          "compatible_anchor_types": [
+            "housing",
+            "planning",
+            "municipal_land",
+            "neighbourhood"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-fordeling-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan tomtepolitikk, regulering, bygging, finansiering, skatt og tildeling påvirker boligtilbud, betalbarhet, botrygghet og romlig fordeling.",
+      "analytical_question": "Hvilket boligpolitisk virkemiddel endrer hvem som kan bo hvor, til hvilken kostnad og med hvilken trygghet?",
+      "evidence_inputs": [
+        "reguleringsplan eller byggesak",
+        "boligpris- og leiedata",
+        "kommunal tildelingsregel",
+        "skatte- eller finansieringsordning"
+      ],
+      "mechanism_focus": [
+        "arealregulering",
+        "tomtepolitikk",
+        "boligfinansiering",
+        "skattefordel",
+        "kommunal tildeling",
+        "bostøtte"
+      ],
+      "critical_distinctions": [
+        "tilbud vs betalbarhet",
+        "eierskap vs botrygghet",
+        "bolig som hjem vs kapitalobjekt"
+      ],
+      "compatible_anchor_types": [
+        "housing",
+        "planning",
+        "municipal_land",
+        "neighbourhood"
+      ],
+      "question_build_sequence": [
+        "documented_distribution_case_or_source",
+        "precise_claim_basis",
+        "identified_distribution_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én fordelings- eller velferdsmekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk moralsk holdning uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+      "quality_revision": "politikk-fordeling-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_budsjett_og_fordelingsanalyse",
@@ -215,7 +322,63 @@
       "mechanism_explanation_required": true,
       "critical_distinction_required": true,
       "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
-      "quality_revision": "politikk-styring-vertical-2026-07-24"
+      "quality_revision": "politikk-styring-vertical-2026-07-24",
+      "domain_profiles": {
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer hvordan bevilgninger, kutt, øremerking og investeringsvalg omsetter politiske prioriteringer til fordelingsvirkninger.",
+          "analytical_question": "Hvilke formål, grupper eller områder prioriteres eller fortrenges når budsjettet endres?",
+          "evidence_inputs": [
+            "budsjettforslag",
+            "bevilgningsvedtak",
+            "regnskap",
+            "befolknings- og prisjusterte sammenligninger"
+          ],
+          "mechanism_focus": [
+            "bevilgning",
+            "omprioritering",
+            "kutt",
+            "øremerking",
+            "investeringsbinding"
+          ],
+          "critical_distinctions": [
+            "budsjett vs regnskap",
+            "nominell vs reell endring",
+            "bevilgning vs resultat"
+          ],
+          "compatible_anchor_types": [
+            "budget",
+            "accounts",
+            "public_service",
+            "allocation"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-fordeling-vertical-2026-07-24"
+      ]
     },
     {
       "method_id": "met_pol_demokratianalyse",
@@ -946,11 +1109,64 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
           "quality_revision": "politikk-rett-vertical-2026-07-24"
+        },
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer hvordan regler og beslutninger fordeler ressurser, byrder, risiko og adgang mellom grupper, steder og tidspunkter.",
+          "analytical_question": "Hvem får hva, hvem finansierer eller bærer kostnaden, og hvilken fordelingsmekanisme skaper utfallet?",
+          "evidence_inputs": [
+            "budsjett eller tildelingsvedtak",
+            "skatte- og overføringsdata",
+            "tjeneste- eller mottakerdata",
+            "fordelingsstatistikk"
+          ],
+          "mechanism_focus": [
+            "tildeling",
+            "behovsvekting",
+            "universalisme",
+            "målretting",
+            "rasjonering",
+            "kompensasjon"
+          ],
+          "critical_distinctions": [
+            "fordeling vs omfordeling",
+            "lik tildeling vs likeverdig virkning",
+            "innsats vs fordelingsresultat"
+          ],
+          "compatible_anchor_types": [
+            "distribution",
+            "budget",
+            "tax",
+            "public_service"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
         "politikk-demokrati-vertical-2026-07-24",
-        "politikk-rett-vertical-2026-07-24"
+        "politikk-rett-vertical-2026-07-24",
+        "politikk-fordeling-vertical-2026-07-24"
       ],
       "definition": "Analyserer hvordan demokratiske regler og beslutninger fordeler politisk adgang, representasjon, rettigheter, byrder og goder mellom grupper.",
       "analytical_question": "Hvem får hva, hvem bærer kostnaden, og hvilken mekanisme skaper eller begrenser den skjeve fordelingen?",
@@ -1611,12 +1827,64 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
           "quality_revision": "politikk-rett-vertical-2026-07-24"
+        },
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer hvordan formelle regler, organisasjoner, roller og beslutningsrutiner former tilgang til velferd, ressurser og ansvar.",
+          "analytical_question": "Hvilken institusjonell regel eller rutine fordeler adgang, skjønn, ansvar eller byrde i caset?",
+          "evidence_inputs": [
+            "lov og forskrift",
+            "organisasjonskart",
+            "vedtak eller prosedyre",
+            "forvaltnings- og tjenestedata"
+          ],
+          "mechanism_focus": [
+            "kompetansefordeling",
+            "regelbinding",
+            "skjønn",
+            "standardisering",
+            "portvakt"
+          ],
+          "critical_distinctions": [
+            "formell regel vs praktisert rutine",
+            "rettighet vs faktisk adgang",
+            "institusjonell kapasitet vs politisk mål"
+          ],
+          "compatible_anchor_types": [
+            "institution",
+            "public_service",
+            "administration",
+            "entitlement"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
         "politikk-styring-vertical-2026-07-24",
         "politikk-demokrati-vertical-2026-07-24",
-        "politikk-rett-vertical-2026-07-24"
+        "politikk-rett-vertical-2026-07-24",
+        "politikk-fordeling-vertical-2026-07-24"
       ]
     },
     {
@@ -1745,7 +2013,63 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer fordelingskonflikter ved å identifisere aktører, interesser, ressurser, skillelinjer og institusjonelle arenaer.",
+          "analytical_question": "Hvem står mot hvem om hvilke ressurser eller regler, og hvordan organiseres og avgjøres konflikten?",
+          "evidence_inputs": [
+            "vedtak og høringer",
+            "organisasjons- og protestkilder",
+            "fordelingsdata",
+            "forhandlings- eller konfliktforløp"
+          ],
+          "mechanism_focus": [
+            "interesseorganisering",
+            "mobilisering",
+            "forhandling",
+            "vetoposisjon",
+            "koalisjonsbygging"
+          ],
+          "critical_distinctions": [
+            "interessekonflikt vs verdikonflikt",
+            "latent vs mobilisert konflikt",
+            "kompromiss vs maktforskyvning"
+          ],
+          "compatible_anchor_types": [
+            "conflict",
+            "organisation",
+            "budget",
+            "public_decision"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-fordeling-vertical-2026-07-24"
+      ]
     },
     {
       "method_id": "met_pol_kontroll_og_sanksjonsanalyse",
@@ -2282,11 +2606,63 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
           "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        },
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer hvorfor fordelingsbeslutninger, skatter og velferdsordninger oppfattes som rettferdige, bindende og verdt å støtte.",
+          "analytical_question": "Hvilke resultater, prosedyrer og begrunnelser skaper eller svekker oppslutning om ordningen?",
+          "evidence_inputs": [
+            "vedtak og begrunnelse",
+            "tillits- eller holdningsdata",
+            "fordelingsresultat",
+            "klage- eller deltakelsesdata"
+          ],
+          "mechanism_focus": [
+            "prosedyrerettferdighet",
+            "åpen begrunnelse",
+            "gjensidighet",
+            "tjenesteytelse",
+            "politisk tilbakekobling"
+          ],
+          "critical_distinctions": [
+            "legalitet vs legitimitet",
+            "input vs outputlegitimitet",
+            "egeninteresse vs rettferdighetsnorm"
+          ],
+          "compatible_anchor_types": [
+            "legitimation",
+            "tax",
+            "public_service",
+            "decision_process"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
         "politikk-styring-vertical-2026-07-24",
-        "politikk-demokrati-vertical-2026-07-24"
+        "politikk-demokrati-vertical-2026-07-24",
+        "politikk-fordeling-vertical-2026-07-24"
       ]
     },
     {
@@ -2355,7 +2731,112 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer fler­dimensjonale forskjeller i inntekt, arbeid, bolig, helse, utdanning, trygghet og deltakelse, og kobler mønstre til dokumenterbare mekanismer.",
+          "analytical_question": "Hvilke levekårsdimensjoner varierer, mellom hvem, og hvilken mekanisme kan forklare forskjellen?",
+          "evidence_inputs": [
+            "levekårsstatistikk",
+            "områdedata",
+            "tjenestedata",
+            "tidsserie eller gruppefordeling"
+          ],
+          "mechanism_focus": [
+            "kumulativ ulempe",
+            "arbeidsmarkedstilknytning",
+            "boligkostnad",
+            "tjenestetilgang",
+            "nabolagseffekt"
+          ],
+          "critical_distinctions": [
+            "inntekt vs fler­dimensjonale levekår",
+            "korrelasjon vs årsak",
+            "gjennomsnitt vs fordelingsprofil"
+          ],
+          "compatible_anchor_types": [
+            "statistics",
+            "living_conditions",
+            "neighbourhood",
+            "public_service"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-fordeling-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer fler­dimensjonale forskjeller i inntekt, arbeid, bolig, helse, utdanning, trygghet og deltakelse, og kobler mønstre til dokumenterbare mekanismer.",
+      "analytical_question": "Hvilke levekårsdimensjoner varierer, mellom hvem, og hvilken mekanisme kan forklare forskjellen?",
+      "evidence_inputs": [
+        "levekårsstatistikk",
+        "områdedata",
+        "tjenestedata",
+        "tidsserie eller gruppefordeling"
+      ],
+      "mechanism_focus": [
+        "kumulativ ulempe",
+        "arbeidsmarkedstilknytning",
+        "boligkostnad",
+        "tjenestetilgang",
+        "nabolagseffekt"
+      ],
+      "critical_distinctions": [
+        "inntekt vs fler­dimensjonale levekår",
+        "korrelasjon vs årsak",
+        "gjennomsnitt vs fordelingsprofil"
+      ],
+      "compatible_anchor_types": [
+        "statistics",
+        "living_conditions",
+        "neighbourhood",
+        "public_service"
+      ],
+      "question_build_sequence": [
+        "documented_distribution_case_or_source",
+        "precise_claim_basis",
+        "identified_distribution_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én fordelings- eller velferdsmekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk moralsk holdning uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+      "quality_revision": "politikk-fordeling-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_likestillingsanalyse",
@@ -2836,10 +3317,62 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
           "quality_revision": "politikk-rett-vertical-2026-07-24"
+        },
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer hvordan eierskap, ressurser, posisjoner og institusjonelle regler skaper eller stabiliserer ulik makt og livssjanser.",
+          "analytical_question": "Hvilken ressurs eller posisjon gir varig fordel, og hvordan reproduseres den gjennom regler eller institusjoner?",
+          "evidence_inputs": [
+            "inntekts- og formuesdata",
+            "arbeidsmarkedsdata",
+            "eierskaps- eller boligdata",
+            "institusjonelle adgangsregler"
+          ],
+          "mechanism_focus": [
+            "kapitalakkumulasjon",
+            "arv",
+            "lukning",
+            "forhandlingsmakt",
+            "sosial reproduksjon"
+          ],
+          "critical_distinctions": [
+            "klasse vs inntekt",
+            "formue vs løpende inntekt",
+            "individuell mobilitet vs strukturell ulikhet"
+          ],
+          "compatible_anchor_types": [
+            "wealth",
+            "class_structure",
+            "labour_market",
+            "housing"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
-        "politikk-rett-vertical-2026-07-24"
+        "politikk-rett-vertical-2026-07-24",
+        "politikk-fordeling-vertical-2026-07-24"
       ],
       "definition": "Analyserer hvordan rettslige og institusjonelle ordninger fordeler beslutningsmakt, risiko, byrder og beskyttelse ulikt.",
       "analytical_question": "Hvem får større kontroll, beskyttelse eller belastning, og hvilken rettslig eller institusjonell mekanisme skaper mønsteret?",
@@ -3302,11 +3835,63 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
           "quality_revision": "politikk-rett-vertical-2026-07-24"
+        },
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer hvordan grupper inkluderes eller ekskluderes fra tjenester, ressurser, beslutninger og offentlig representasjon.",
+          "analytical_question": "Hvilken gruppe møter hvilken terskel, og er problemet ressursfordeling, anerkjennelse, representasjon eller flere samtidig?",
+          "evidence_inputs": [
+            "gruppefordelt statistikk",
+            "representasjonsdata",
+            "tjeneste- eller klagedata",
+            "regel- og praksiskilder"
+          ],
+          "mechanism_focus": [
+            "seleksjon",
+            "diskriminering",
+            "administrativ terskel",
+            "stigma",
+            "manglende representasjon"
+          ],
+          "critical_distinctions": [
+            "formell adgang vs effektiv deltakelse",
+            "omfordeling vs anerkjennelse",
+            "numerisk nærvær vs substansiell innflytelse"
+          ],
+          "compatible_anchor_types": [
+            "minority_access",
+            "representation",
+            "public_service",
+            "administrative_barrier"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
         "politikk-demokrati-vertical-2026-07-24",
-        "politikk-rett-vertical-2026-07-24"
+        "politikk-rett-vertical-2026-07-24",
+        "politikk-fordeling-vertical-2026-07-24"
       ],
       "definition": "Analyserer om minoriteter og underrepresenterte grupper har reell tilstedeværelse, opposisjonsmulighet, rettighetsvern og respons i demokratiske institusjoner.",
       "analytical_question": "Hvilken gruppe er marginalisert i hvilket ledd, og hvilken representasjons- eller vernemekanisme påvirker utfallet?",
@@ -3491,10 +4076,62 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
           "quality_revision": "politikk-rett-vertical-2026-07-24"
+        },
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer hvordan forestillinger om behov, fortjeneste, normalitet og ansvar legitimerer eller begrenser velferd og omfordeling.",
+          "analytical_question": "Hvilken norm avgjør hvem som anses som berettiget, ansvarlig eller avvikende, og hvordan virker normen institusjonelt?",
+          "evidence_inputs": [
+            "regelbegrunnelse",
+            "politisk debatt",
+            "forvaltningspraksis",
+            "bruker- eller holdningsdata"
+          ],
+          "mechanism_focus": [
+            "fortjenestekategorisering",
+            "stigma",
+            "normalisering",
+            "ansvarsplassering",
+            "vilkårssetting"
+          ],
+          "critical_distinctions": [
+            "behov vs fortjeneste",
+            "juridisk vilkår vs sosial norm",
+            "individansvar vs strukturelt ansvar"
+          ],
+          "compatible_anchor_types": [
+            "norm",
+            "welfare_rule",
+            "public_debate",
+            "administrative_practice"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
-        "politikk-rett-vertical-2026-07-24"
+        "politikk-rett-vertical-2026-07-24",
+        "politikk-fordeling-vertical-2026-07-24"
       ],
       "definition": "Analyserer hvordan rettslige og sosiale normer formulerer plikter, tillatelser og forbud, og hvordan normene begrunnes og håndheves.",
       "analytical_question": "Hvilken norm gjelder, hvem omfattes, hvilken type plikt eller tillatelse etableres, og hvordan håndheves den?",
@@ -4018,7 +4655,63 @@
       "mechanism_explanation_required": true,
       "critical_distinction_required": true,
       "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
-      "quality_revision": "politikk-styring-vertical-2026-07-24"
+      "quality_revision": "politikk-styring-vertical-2026-07-24",
+      "domain_profiles": {
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer hvordan planer, prognoser, arealformål og reguleringsvedtak fordeler kapasitet, bolig, tjenester og miljøbelastning i rom og tid.",
+          "analytical_question": "Hvilke antakelser og prioriteringer oversettes til bindende areal- eller kapasitetsvalg?",
+          "evidence_inputs": [
+            "planprogram",
+            "reguleringsplan",
+            "befolkningsframskriving",
+            "hørings- og vedtaksdokument"
+          ],
+          "mechanism_focus": [
+            "arealformål",
+            "kapasitetsberegning",
+            "lokalisering",
+            "rekkefølgekrav",
+            "prognosestyring"
+          ],
+          "critical_distinctions": [
+            "framskriving vs forutsigelse",
+            "demografisk behov vs politisk prioritet",
+            "planområde vs levd nabolag"
+          ],
+          "compatible_anchor_types": [
+            "planning",
+            "population_projection",
+            "service_capacity",
+            "neighbourhood"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-fordeling-vertical-2026-07-24"
+      ]
     },
     {
       "method_id": "met_pol_politisk_historisk_analyse",
@@ -4903,10 +5596,62 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
           "quality_revision": "politikk-rett-vertical-2026-07-24"
+        },
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer hvordan sosiale rettigheter defineres, avgrenses, håndheves og omsettes til faktisk tilgang til ytelser og tjenester.",
+          "analytical_question": "Hvilken rettighet finnes, hvem omfattes, hvilke terskler gjelder, og hvilke rettsmidler finnes ved avslag eller manglende oppfyllelse?",
+          "evidence_inputs": [
+            "lov og forskrift",
+            "vedtak og klagepraksis",
+            "tjeneste- og brukstall",
+            "tilsyns- eller ombudsrapport"
+          ],
+          "mechanism_focus": [
+            "rettighetstildeling",
+            "vilkår",
+            "skjønn",
+            "klage",
+            "håndheving"
+          ],
+          "critical_distinctions": [
+            "formell rett vs faktisk tilgang",
+            "universell rett vs behovsprøvd ytelse",
+            "rettighet vs politisk mål"
+          ],
+          "compatible_anchor_types": [
+            "social_right",
+            "public_service",
+            "administrative_decision",
+            "appeal"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
-        "politikk-rett-vertical-2026-07-24"
+        "politikk-rett-vertical-2026-07-24",
+        "politikk-fordeling-vertical-2026-07-24"
       ],
       "definition": "Analyserer rettighetshaver, pliktbærer, rettighetens rekkevidde, begrensning, håndheving og effektive rettsmiddel.",
       "analytical_question": "Hvem kan kreve hva av hvem, på hvilket grunnlag, med hvilke begrensninger og gjennom hvilken håndheving?",
@@ -5387,12 +6132,64 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
           "quality_revision": "politikk-rett-vertical-2026-07-24"
+        },
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer hvordan lokalisering, grenser, boligstruktur, transport og institusjonell nærhet fordeler adgang, belastning og politisk synlighet.",
+          "analytical_question": "Hvordan produserer den romlige organiseringen forskjeller i tilgang, kostnad, status eller påvirkningsmulighet?",
+          "evidence_inputs": [
+            "kart og arealdata",
+            "transport- og reisetidsdata",
+            "bolig- og tjenestelokalisering",
+            "områdestatistikk"
+          ],
+          "mechanism_focus": [
+            "segregering",
+            "lokalisering",
+            "grensedragning",
+            "tilgjengelighet",
+            "konsentrasjon"
+          ],
+          "critical_distinctions": [
+            "geografisk nærhet vs faktisk adgang",
+            "områdeeffekt vs befolkningssammensetning",
+            "lokalisering vs fordeling"
+          ],
+          "compatible_anchor_types": [
+            "map",
+            "neighbourhood",
+            "service_location",
+            "housing"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
         "politikk-styring-vertical-2026-07-24",
         "politikk-demokrati-vertical-2026-07-24",
-        "politikk-rett-vertical-2026-07-24"
+        "politikk-rett-vertical-2026-07-24",
+        "politikk-fordeling-vertical-2026-07-24"
       ]
     },
     {
@@ -5701,10 +6498,62 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
           "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        },
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer hvordan statistiske mål, kategorier og fordelinger dokumenterer ulikhet uten å forveksle samvariasjon med forklaring.",
+          "analytical_question": "Hva måles, for hvilken befolkning, med hvilken fordeling, og hvilken mekanisme kan eller kan ikke utledes?",
+          "evidence_inputs": [
+            "offisiell statistikk",
+            "mikro- eller aggregatdata",
+            "tidsserie",
+            "fordeling etter gruppe eller område"
+          ],
+          "mechanism_focus": [
+            "målekonstruksjon",
+            "utvalg og kategorisering",
+            "sammensetningseffekt",
+            "seleksjon",
+            "kumulativ ulempe"
+          ],
+          "critical_distinctions": [
+            "gjennomsnitt vs spredning",
+            "korrelasjon vs årsak",
+            "absolutt vs relativ ulikhet"
+          ],
+          "compatible_anchor_types": [
+            "statistics",
+            "population",
+            "distribution",
+            "time_series"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
-        "politikk-demokrati-vertical-2026-07-24"
+        "politikk-demokrati-vertical-2026-07-24",
+        "politikk-fordeling-vertical-2026-07-24"
       ],
       "definition": "Analyserer mønstre i valgdeltakelse, representasjon, tillit og politisk ressursfordeling uten å forveksle statistisk sammenheng med demokratisk mekanisme.",
       "analytical_question": "Hvilket mønster dokumenteres, hvilke grupper eller geografier skiller seg ut, og hvilken mekanisme kan eller kan ikke underbygges?",
@@ -6336,7 +7185,63 @@
       "mechanism_explanation_required": true,
       "critical_distinction_required": true,
       "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
-      "quality_revision": "politikk-styring-vertical-2026-07-24"
+      "quality_revision": "politikk-styring-vertical-2026-07-24",
+      "domain_profiles": {
+        "fordeling_velferd_ulikhet": {
+          "definition": "Analyserer hvordan velferdsordninger fordeler sosial risiko, rettigheter, inntektssikring, tjenester, omsorg og kontroll.",
+          "analytical_question": "Hvilken sosial risiko håndteres, gjennom hvilken institusjonell ordning, og med hvilke terskler og fordelingsvirkninger?",
+          "evidence_inputs": [
+            "lov eller ordningsregel",
+            "ytelses- og tjenestedata",
+            "forvaltningspraksis",
+            "bruker- eller ikke-bruksdata"
+          ],
+          "mechanism_focus": [
+            "sosialforsikring",
+            "universell tjeneste",
+            "behovsprøving",
+            "aktivering",
+            "tjenestetildeling"
+          ],
+          "critical_distinctions": [
+            "forsikring vs sosialhjelp",
+            "universalisme vs behovsprøving",
+            "kontantytelse vs tjeneste"
+          ],
+          "compatible_anchor_types": [
+            "welfare_office",
+            "social_right",
+            "public_service",
+            "care_institution"
+          ],
+          "question_build_sequence": [
+            "documented_distribution_case_or_source",
+            "precise_claim_basis",
+            "identified_distribution_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én fordelings- eller velferdsmekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte statistikk, vedtak, ordningsregel eller casegrunnlag.",
+          "quality_revision": "politikk-fordeling-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-fordeling-vertical-2026-07-24"
+      ]
     }
   ],
   "quality_revision": "politikk-styring-vertical-2026-07-24",
@@ -6351,5 +7256,8 @@
     "external_claim_basis_required": true,
     "theorist_name_only_forbidden": true,
     "method_label_only_generation_forbidden": true
-  }
+  },
+  "quality_revisions": [
+    "politikk-fordeling-vertical-2026-07-24"
+  ]
 }
