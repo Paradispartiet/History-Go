@@ -1,0 +1,1692 @@
+{
+  "version": "2026-07-24",
+  "protocolMaxBatch": 195,
+  "placeId": "bygdoy_roykenvika",
+  "researchOnly": true,
+  "canonicalChanged": false,
+  "sourceAudit": "reports/oslo-coordinate-research-exhaustion-audit-post-195/summary.json",
+  "correction": {
+    "reason": "The first pass incorrectly treated every response from a URL carrying kommunenummer=0301 as an Oslo hit even though the API returned nationwide fuzzy results. This pass post-filters each named object by explicit municipality and Bygdøy bounds.",
+    "nationwideFuzzyResultsAreNotOsloEvidence": true,
+    "nationalLibraryQueryResultsRequireMetadataContext": true
+  },
+  "hardGates": {
+    "queueHeadIsRoykenvika": true,
+    "identityWasUnresolved": true,
+    "coordinateWasNeedsSource": true,
+    "noBatch196": true,
+    "canonicalFilesByteStable": true
+  },
+  "variants": [
+    "Røykensvika",
+    "Røykensvik",
+    "Røykenvika",
+    "Røykenvik",
+    "Røykensviken",
+    "Røykensviga",
+    "Røikensvika",
+    "Røkensvika"
+  ],
+  "authoritativeAvailability": {
+    "kartverketSuccessfulQueries": 16,
+    "mediaWikiSuccessfulQueries": 6,
+    "nationalLibrarySuccessfulQueries": 5,
+    "osloMunicipalitySuccessfulQueries": 3
+  },
+  "matchCounts": {
+    "kartverketRawCandidates": 1456,
+    "kartverketExactVariantCandidates": 40,
+    "kartverketExactOsloCandidates": 0,
+    "kartverketExactBygdoyHits": 0,
+    "mediaWikiRows": 0,
+    "mediaWikiBygdoyHits": 0,
+    "nationalLibraryItems": 110,
+    "nationalLibraryBygdoyMetadataHits": 0,
+    "wikidataBygdoyHits": 0,
+    "nominatimBygdoyHits": 0,
+    "overpassBygdoyHits": 0
+  },
+  "strongIdentitySignals": [],
+  "correctedCandidateGroups": {
+    "kartverket": {
+      "rawCandidateCount": 1456,
+      "exactVariantCandidateCount": 40,
+      "exactOsloCandidateCount": 0,
+      "exactBygdoyCandidateCount": 0,
+      "exactCandidatesOutsideOslo": [
+        {
+          "file": "kartverket-stedsnavn-r-ikensvika-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ikensvika-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-kensvika-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-kensvika-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensviga-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bygdelag (bygd)",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.43142,
+              "øst": 10.46857
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 674148,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensviga-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bru",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42739,
+              "øst": 10.48523
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 653149,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensviga-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensviga-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bygdelag (bygd)",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.43142,
+              "øst": 10.46857
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 674148,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensviga-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bru",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42739,
+              "øst": 10.48523
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 653149,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensviga-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensvik-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bygdelag (bygd)",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.43142,
+              "øst": 10.46857
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 674148,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensvik-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bru",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42739,
+              "øst": 10.48523
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 653149,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensvik-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensvik-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bygdelag (bygd)",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.43142,
+              "øst": 10.46857
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 674148,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensvik-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bru",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42739,
+              "øst": 10.48523
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 653149,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensvik-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensvika-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensvika-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bygdelag (bygd)",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.43142,
+              "øst": 10.46857
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 674148,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensvika-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bru",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42739,
+              "øst": 10.48523
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 653149,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensvika-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensvika-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bygdelag (bygd)",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.43142,
+              "øst": 10.46857
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 674148,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensvika-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bru",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42739,
+              "øst": 10.48523
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 653149,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensviken-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bygdelag (bygd)",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.43142,
+              "øst": 10.46857
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 674148,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensviken-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bru",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42739,
+              "øst": 10.48523
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 653149,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensviken-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensviken-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bygdelag (bygd)",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.43142,
+              "øst": 10.46857
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 674148,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensviken-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bru",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42739,
+              "øst": 10.48523
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 653149,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykensviken-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykenvik-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bygdelag (bygd)",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.43142,
+              "øst": 10.46857
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 674148,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykenvik-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bru",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42739,
+              "øst": 10.48523
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 653149,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykenvik-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykenvik-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bygdelag (bygd)",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.43142,
+              "øst": 10.46857
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 674148,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykenvik-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bru",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42739,
+              "øst": 10.48523
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 653149,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykenvik-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykenvika-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykenvika-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bygdelag (bygd)",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.43142,
+              "øst": 10.46857
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 674148,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykenvika-nationwide.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bru",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42739,
+              "øst": 10.48523
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 653149,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykenvika-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Vik",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42636,
+              "øst": 10.47407
+            },
+            "skrivemåte": "Røykenvika",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 734159,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykenvika-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bygdelag (bygd)",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.43142,
+              "øst": 10.46857
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 674148,
+            "stedstatus": "aktiv"
+          }
+        },
+        {
+          "file": "kartverket-stedsnavn-r-ykenvika-oslo.json",
+          "candidate": {
+            "fylker": [
+              {
+                "fylkesnavn": "Innlandet",
+                "fylkesnummer": "34"
+              }
+            ],
+            "kommuner": [
+              {
+                "kommunenavn": "Gran",
+                "kommunenummer": "3446"
+              }
+            ],
+            "navneobjekttype": "Bru",
+            "navnestatus": "hovednavn",
+            "representasjonspunkt": {
+              "nord": 60.42739,
+              "øst": 10.48523
+            },
+            "skrivemåte": "Røykenvik",
+            "skrivemåtestatus": "godkjent og prioritert",
+            "språk": "Norsk",
+            "stedsnummer": 653149,
+            "stedstatus": "aktiv"
+          }
+        }
+      ]
+    },
+    "mediaWiki": {
+      "resultCount": 0,
+      "bygdoyIdentityHits": []
+    },
+    "nationalLibrary": {
+      "resultCount": 110,
+      "note": "Catalogue query hits are not treated as identity evidence unless the returned item metadata itself contains both the name variant and Bygdøy context.",
+      "bygdoyMetadataHits": []
+    },
+    "contextualOnly": {
+      "wikidataBygdoyHits": [],
+      "nominatimBygdoyHits": [],
+      "overpassHits": [],
+      "currentLegacyMarkerReverse": {
+        "place_id": 163011959,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "osm_type": "node",
+        "osm_id": 2785293040,
+        "lat": "59.9025967",
+        "lon": "10.6861081",
+        "category": "place",
+        "type": "house",
+        "place_rank": 30,
+        "importance": 0.000081374074921752,
+        "addresstype": "place",
+        "name": "",
+        "display_name": "20B, Fredriksborgveien, Fredensborg, Bygdøy, Frogner, Oslo, 0286, Norge",
+        "address": {
+          "house_number": "20B",
+          "road": "Fredriksborgveien",
+          "neighbourhood": "Fredensborg",
+          "suburb": "Bygdøy",
+          "municipality": "Oslo",
+          "city": "Oslo",
+          "ISO3166-2-lvl4": "NO-03",
+          "postcode": "0286",
+          "country": "Norge",
+          "country_code": "no"
+        },
+        "boundingbox": [
+          "59.9025467",
+          "59.9026467",
+          "10.6860581",
+          "10.6861581"
+        ]
+      }
+    }
+  },
+  "decision": "identity_unsubstantiated_recommend_retirement",
+  "recommendation": "Do not select or verify a coordinate. Retire the active place marker and its synthetic place content unless a new independent credible source documents a local Bygdøy identity named Røykensvika/Røykensvik.",
+  "sourceHashesBefore": {
+    "splitPlace": "4b4c55e1baa548c31cdf5790f544ef9c2bbe1c6432d52988715b1631aa676152",
+    "aggregate": "38ff49d43cf5278165daf4c8c5bd424b2191d0dbd4d483280a03c7d39b0dceab",
+    "evidence": "ca44911d24308831aa4d53e758beaf8abdfc8229ccf7746d91dd8549461f7636"
+  },
+  "preservedCaptures": [
+    {
+      "label": "kartverket-stedsnavn-Røykensvika-nationwide",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensvika&fuzzy=true&treffPerSide=100&side=1",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensvika&fuzzy=true&treffPerSide=100&side=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 39126,
+      "sha256": "6883d67453186835d4e82dcee984f3fc1f3885e17d3031038325a0d05e62a5eb",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ykensvika-nationwide.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røykensvika-oslo",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensvika&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensvika&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 39145,
+      "sha256": "2a9a00129ad517aae16fe25598cfb16a33d274a526aa1bec271e1566e5c3b6de",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ykensvika-oslo.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røykensvik-nationwide",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensvik&fuzzy=true&treffPerSide=100&side=1",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensvik&fuzzy=true&treffPerSide=100&side=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 38996,
+      "sha256": "8399e3a7aa4cd8bae20b0333916b56a97e13249dc97f7ac80410ddcc1df34252",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ykensvik-nationwide.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røykensvik-oslo",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensvik&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensvik&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 39015,
+      "sha256": "3ed08b9efc3a21b3ab5915d9f8efd1c4fd3ce4a0ab78b4e5b23c0a64b09b7fba",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ykensvik-oslo.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røykenvika-nationwide",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykenvika&fuzzy=true&treffPerSide=100&side=1",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykenvika&fuzzy=true&treffPerSide=100&side=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 39403,
+      "sha256": "99a4e4d01b0e2c2d92866402889a80c397b462a9921022c37266acca72ad1708",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ykenvika-nationwide.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røykenvika-oslo",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykenvika&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykenvika&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 39422,
+      "sha256": "e40db7777528a8be35f4c319434381dee2f86a78616ad88493f71581b365b21c",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ykenvika-oslo.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røykenvik-nationwide",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykenvik&fuzzy=true&treffPerSide=100&side=1",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykenvik&fuzzy=true&treffPerSide=100&side=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 39070,
+      "sha256": "939c30cb5681f30da322fa419c1faffd76199798a4847481f35503c8dd09420a",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ykenvik-nationwide.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røykenvik-oslo",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykenvik&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykenvik&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 39089,
+      "sha256": "bda58924bd7ea1535e6007ea692b7d4943e865cf780fe2e8aa9f6964214a86ee",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ykenvik-oslo.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røykensviken-nationwide",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensviken&fuzzy=true&treffPerSide=100&side=1",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensviken&fuzzy=true&treffPerSide=100&side=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 32944,
+      "sha256": "8bd9e9097de21b31d74f2702ffd85389f7e2d15bd5977dcdec1c2dd458d77a03",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ykensviken-nationwide.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røykensviken-oslo",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensviken&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensviken&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 32963,
+      "sha256": "09ab18c7c684166ef406a6c32cfe9f251465839d6add2d108c9e326e082eb344",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ykensviken-oslo.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røykensviga-nationwide",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensviga&fuzzy=true&treffPerSide=100&side=1",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensviga&fuzzy=true&treffPerSide=100&side=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 17411,
+      "sha256": "535ed46552dc878b5de5ca02ec18ebe7a88d711a1394fe3f97c75c68a815707a",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ykensviga-nationwide.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røykensviga-oslo",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensviga&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ykensviga&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 17430,
+      "sha256": "19f9f8a0ca15933b239020d3301a0c426a9805609e6790958d09d7134bafc65e",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ykensviga-oslo.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røikensvika-nationwide",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ikensvika&fuzzy=true&treffPerSide=100&side=1",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ikensvika&fuzzy=true&treffPerSide=100&side=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 39208,
+      "sha256": "40308883f2307c9ced9cf08126e2bd0164f3044e5da0c3b69186fda2ed818e18",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ikensvika-nationwide.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røikensvika-oslo",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ikensvika&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8ikensvika&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 39227,
+      "sha256": "812ad33850e22d581db7072dccd0e5f29d99da742d9eb589e2898b57999bc738",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-ikensvika-oslo.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røkensvika-nationwide",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8kensvika&fuzzy=true&treffPerSide=100&side=1",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8kensvika&fuzzy=true&treffPerSide=100&side=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 39178,
+      "sha256": "900a305a364795f98c028de3e123b63bb4300e3f71171f5b0907c8803a24dbad",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-kensvika-nationwide.json",
+      "error": null
+    },
+    {
+      "label": "kartverket-stedsnavn-Røkensvika-oslo",
+      "requestedUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8kensvika&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "finalUrl": "https://api.kartverket.no/stedsnavn/v1/navn?sok=R%C3%B8kensvika&fuzzy=true&treffPerSide=100&side=1&kommunenummer=0301",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 39197,
+      "sha256": "1fe990560b866dd34c036900671d255393919a258aea1514d4fffae6726163d2",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/kartverket-stedsnavn-r-kensvika-oslo.json",
+      "error": null
+    },
+    {
+      "label": "oslo-byleksikon-search-Røykensvika-bygdoy",
+      "requestedUrl": "https://oslobyleksikon.no/api.php?action=query&list=search&srsearch=%22R%C3%B8ykensvika%22+Bygd%C3%B8y&srlimit=50&format=json&origin=*",
+      "finalUrl": "https://oslobyleksikon.no/api.php?action=query&list=search&srsearch=%22R%C3%B8ykensvika%22+Bygd%C3%B8y&srlimit=50&format=json&origin=*",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 71,
+      "sha256": "688d401ed6447a04b61b8b5aea327e975f2f69ec5596d800d49a0b230236ea4b",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/oslo-byleksikon-search-r-ykensvika-bygdoy.json",
+      "error": null
+    },
+    {
+      "label": "oslo-byleksikon-search-Røykensvik-bygdoy",
+      "requestedUrl": "https://oslobyleksikon.no/api.php?action=query&list=search&srsearch=%22R%C3%B8ykensvik%22+Bygd%C3%B8y&srlimit=50&format=json&origin=*",
+      "finalUrl": "https://oslobyleksikon.no/api.php?action=query&list=search&srsearch=%22R%C3%B8ykensvik%22+Bygd%C3%B8y&srlimit=50&format=json&origin=*",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 71,
+      "sha256": "688d401ed6447a04b61b8b5aea327e975f2f69ec5596d800d49a0b230236ea4b",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/oslo-byleksikon-search-r-ykensvik-bygdoy.json",
+      "error": null
+    },
+    {
+      "label": "oslo-byleksikon-search-Røykenvika-bygdoy",
+      "requestedUrl": "https://oslobyleksikon.no/api.php?action=query&list=search&srsearch=%22R%C3%B8ykenvika%22+Bygd%C3%B8y&srlimit=50&format=json&origin=*",
+      "finalUrl": "https://oslobyleksikon.no/api.php?action=query&list=search&srsearch=%22R%C3%B8ykenvika%22+Bygd%C3%B8y&srlimit=50&format=json&origin=*",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 71,
+      "sha256": "688d401ed6447a04b61b8b5aea327e975f2f69ec5596d800d49a0b230236ea4b",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/oslo-byleksikon-search-r-ykenvika-bygdoy.json",
+      "error": null
+    },
+    {
+      "label": "lokalhistoriewiki-search-Røykensvika-bygdoy",
+      "requestedUrl": "https://lokalhistoriewiki.no/api.php?action=query&list=search&srsearch=%22R%C3%B8ykensvika%22+Bygd%C3%B8y&srlimit=50&format=json&origin=*",
+      "finalUrl": "https://lokalhistoriewiki.no/api.php?action=query&list=search&srsearch=%22R%C3%B8ykensvika%22+Bygd%C3%B8y&srlimit=50&format=json&origin=*",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 71,
+      "sha256": "688d401ed6447a04b61b8b5aea327e975f2f69ec5596d800d49a0b230236ea4b",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/lokalhistoriewiki-search-r-ykensvika-bygdoy.json",
+      "error": null
+    },
+    {
+      "label": "lokalhistoriewiki-search-Røykensvik-bygdoy",
+      "requestedUrl": "https://lokalhistoriewiki.no/api.php?action=query&list=search&srsearch=%22R%C3%B8ykensvik%22+Bygd%C3%B8y&srlimit=50&format=json&origin=*",
+      "finalUrl": "https://lokalhistoriewiki.no/api.php?action=query&list=search&srsearch=%22R%C3%B8ykensvik%22+Bygd%C3%B8y&srlimit=50&format=json&origin=*",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 71,
+      "sha256": "688d401ed6447a04b61b8b5aea327e975f2f69ec5596d800d49a0b230236ea4b",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/lokalhistoriewiki-search-r-ykensvik-bygdoy.json",
+      "error": null
+    },
+    {
+      "label": "lokalhistoriewiki-search-Røykenvika-bygdoy",
+      "requestedUrl": "https://lokalhistoriewiki.no/api.php?action=query&list=search&srsearch=%22R%C3%B8ykenvika%22+Bygd%C3%B8y&srlimit=50&format=json&origin=*",
+      "finalUrl": "https://lokalhistoriewiki.no/api.php?action=query&list=search&srsearch=%22R%C3%B8ykenvika%22+Bygd%C3%B8y&srlimit=50&format=json&origin=*",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 71,
+      "sha256": "688d401ed6447a04b61b8b5aea327e975f2f69ec5596d800d49a0b230236ea4b",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/lokalhistoriewiki-search-r-ykenvika-bygdoy.json",
+      "error": null
+    },
+    {
+      "label": "nasjonalbiblioteket-\"Røykensvika\"",
+      "requestedUrl": "https://api.nb.no/catalog/v1/items?q=%22R%C3%B8ykensvika%22&size=50",
+      "finalUrl": "https://api.nb.no/catalog/v1/items?q=%22R%C3%B8ykensvika%22&size=50",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/hal+json",
+      "bytes": 27400,
+      "sha256": "831a080ed8164ee391da047dda1adb0100a047e5ba0b5a5edfd9abb674b4da5b",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/nasjonalbiblioteket-r-ykensvika.json",
+      "error": null
+    },
+    {
+      "label": "nasjonalbiblioteket-\"Røykensvik\"",
+      "requestedUrl": "https://api.nb.no/catalog/v1/items?q=%22R%C3%B8ykensvik%22&size=50",
+      "finalUrl": "https://api.nb.no/catalog/v1/items?q=%22R%C3%B8ykensvik%22&size=50",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/hal+json",
+      "bytes": 99888,
+      "sha256": "568bf7f5109579db80d13380f0e5f0c1733a006d59740c2c53f3f4425a0f914a",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/nasjonalbiblioteket-r-ykensvik.json",
+      "error": null
+    },
+    {
+      "label": "nasjonalbiblioteket-\"Røykenvika\"",
+      "requestedUrl": "https://api.nb.no/catalog/v1/items?q=%22R%C3%B8ykenvika%22&size=50",
+      "finalUrl": "https://api.nb.no/catalog/v1/items?q=%22R%C3%B8ykenvika%22&size=50",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/hal+json",
+      "bytes": 125370,
+      "sha256": "5fc0d536c76eb151b2f07b6032c588e9fb64238da068c7d5725017731957f9df",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/nasjonalbiblioteket-r-ykenvika.json",
+      "error": null
+    },
+    {
+      "label": "nasjonalbiblioteket-\"Røykensvika\" Bygdøy",
+      "requestedUrl": "https://api.nb.no/catalog/v1/items?q=%22R%C3%B8ykensvika%22+Bygd%C3%B8y&size=50",
+      "finalUrl": "https://api.nb.no/catalog/v1/items?q=%22R%C3%B8ykensvika%22+Bygd%C3%B8y&size=50",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/hal+json",
+      "bytes": 5408,
+      "sha256": "6c0382a49d6013749c94586b4757efeb26ab878df106bb3729e5f16cbfcdd7ef",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/nasjonalbiblioteket-r-ykensvika-bygd-y.json",
+      "error": null
+    },
+    {
+      "label": "nasjonalbiblioteket-\"Røykensvik\" Bygdøy",
+      "requestedUrl": "https://api.nb.no/catalog/v1/items?q=%22R%C3%B8ykensvik%22+Bygd%C3%B8y&size=50",
+      "finalUrl": "https://api.nb.no/catalog/v1/items?q=%22R%C3%B8ykensvik%22+Bygd%C3%B8y&size=50",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/hal+json",
+      "bytes": 15113,
+      "sha256": "51594bcd97b30a894652c02a2a5c5b64c249c91162a8ad0f2d035b3a78cbc303",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/nasjonalbiblioteket-r-ykensvik-bygd-y.json",
+      "error": null
+    },
+    {
+      "label": "oslo-kommune-search-Røykensvika Bygdøy",
+      "requestedUrl": "https://www.oslo.kommune.no/sok/?q=R%C3%B8ykensvika+Bygd%C3%B8y",
+      "finalUrl": "https://www.oslo.kommune.no/sokeresultat/?q=R%C3%B8ykensvika+Bygd%C3%B8y",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 32932,
+      "sha256": "2bd7146a5124d359495c554b2a4df6d365e2365ab499851752bbace493b25c6f",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/oslo-kommune-search-r-ykensvika-bygd-y.html",
+      "error": null
+    },
+    {
+      "label": "oslo-kommune-search-Røykensvik Bygdøy",
+      "requestedUrl": "https://www.oslo.kommune.no/sok/?q=R%C3%B8ykensvik+Bygd%C3%B8y",
+      "finalUrl": "https://www.oslo.kommune.no/sokeresultat/?q=R%C3%B8ykensvika+Bygd%C3%B8y",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 32932,
+      "sha256": "2bd7146a5124d359495c554b2a4df6d365e2365ab499851752bbace493b25c6f",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/oslo-kommune-search-r-ykensvik-bygd-y.html",
+      "error": null
+    },
+    {
+      "label": "oslo-kommune-search-Røykenvika Bygdøy",
+      "requestedUrl": "https://www.oslo.kommune.no/sok/?q=R%C3%B8ykenvika+Bygd%C3%B8y",
+      "finalUrl": "https://www.oslo.kommune.no/sokeresultat/?q=R%C3%B8ykensvika+Bygd%C3%B8y",
+      "status": 200,
+      "ok": true,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 32932,
+      "sha256": "2bd7146a5124d359495c554b2a4df6d365e2365ab499851752bbace493b25c6f",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/oslo-kommune-search-r-ykenvika-bygd-y.html",
+      "error": null
+    },
+    {
+      "label": "wikidata-search-Røykensvika",
+      "requestedUrl": "https://www.wikidata.org/w/api.php?action=wbsearchentities&search=R%C3%B8ykensvika&language=nb&uselang=nb&limit=50&format=json&origin=*",
+      "finalUrl": "https://www.wikidata.org/w/api.php?action=wbsearchentities&search=R%C3%B8ykensvika&language=nb&uselang=nb&limit=50&format=json&origin=*",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 68,
+      "sha256": "c21057ff7cef33494a5fde48447cc6a7c270f74a16ccccd7d7c099c5befddab1",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/wikidata-search-r-ykensvika.json",
+      "error": null
+    },
+    {
+      "label": "wikidata-search-Røykensvik",
+      "requestedUrl": "https://www.wikidata.org/w/api.php?action=wbsearchentities&search=R%C3%B8ykensvik&language=nb&uselang=nb&limit=50&format=json&origin=*",
+      "finalUrl": "https://www.wikidata.org/w/api.php?action=wbsearchentities&search=R%C3%B8ykensvik&language=nb&uselang=nb&limit=50&format=json&origin=*",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 67,
+      "sha256": "fcc7c71bae7cd1a4f1e8120a81353ee357799d29d3e8496bc5d1475899c83cc9",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/wikidata-search-r-ykensvik.json",
+      "error": null
+    },
+    {
+      "label": "wikidata-search-Røykenvika",
+      "requestedUrl": "https://www.wikidata.org/w/api.php?action=wbsearchentities&search=R%C3%B8ykenvika&language=nb&uselang=nb&limit=50&format=json&origin=*",
+      "finalUrl": "https://www.wikidata.org/w/api.php?action=wbsearchentities&search=R%C3%B8ykenvika&language=nb&uselang=nb&limit=50&format=json&origin=*",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 592,
+      "sha256": "79a695037068a9b19315fd39f6eec85f38a7dda20e62df4eadcd0e1bc34cdaa3",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/wikidata-search-r-ykenvika.json",
+      "error": null
+    },
+    {
+      "label": "nominatim-search-Røykensvika Bygdøy Oslo",
+      "requestedUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=R%C3%B8ykensvika+Bygd%C3%B8y+Oslo&limit=50&addressdetails=1&extratags=1",
+      "finalUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=R%C3%B8ykensvika+Bygd%C3%B8y+Oslo&limit=50&addressdetails=1&extratags=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/nominatim-search-r-ykensvika-bygd-y-oslo.json",
+      "error": null
+    },
+    {
+      "label": "nominatim-search-Røykensvik Bygdøy Oslo",
+      "requestedUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=R%C3%B8ykensvik+Bygd%C3%B8y+Oslo&limit=50&addressdetails=1&extratags=1",
+      "finalUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=R%C3%B8ykensvik+Bygd%C3%B8y+Oslo&limit=50&addressdetails=1&extratags=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/nominatim-search-r-ykensvik-bygd-y-oslo.json",
+      "error": null
+    },
+    {
+      "label": "nominatim-search-Røykenvika Bygdøy Oslo",
+      "requestedUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=R%C3%B8ykenvika+Bygd%C3%B8y+Oslo&limit=50&addressdetails=1&extratags=1",
+      "finalUrl": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=R%C3%B8ykenvika+Bygd%C3%B8y+Oslo&limit=50&addressdetails=1&extratags=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/nominatim-search-r-ykenvika-bygd-y-oslo.json",
+      "error": null
+    },
+    {
+      "label": "nominatim-reverse-current-legacy-marker",
+      "requestedUrl": "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=59.9028&lon=10.6861&zoom=18&addressdetails=1",
+      "finalUrl": "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=59.9028&lon=10.6861&zoom=18&addressdetails=1",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 680,
+      "sha256": "dc7348a6481e4bc27385df5bcc668a210f19a0f3de57fb504147421a2382e5f4",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/nominatim-reverse-current-legacy-marker.json",
+      "error": null
+    },
+    {
+      "label": "overpass-bygdoy-name-variants",
+      "requestedUrl": "https://overpass-api.de/api/interpreter",
+      "finalUrl": "https://overpass-api.de/api/interpreter",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "bytes": 287,
+      "sha256": "2a101a6d8c0b1c4c597fcfa0f3ff7e9a363724f9bd9f918190e568839e3c0952",
+      "reportFile": "reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/overpass-bygdoy-name-variants.json",
+      "error": null
+    }
+  ]
+}
