@@ -1,0 +1,105 @@
+name: History phase 2 derived diagnostic
+
+on:
+  push:
+    branches:
+      - agent/historie-tid-periodisering-phase-2-main-refresh
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Regenerate canonical Knowledge data
+        run: npm run knowledge:canonical:write
+
+      - name: Rebuild History production contexts
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import path from 'node:path';
+          import { runBuildQuizProductionContext } from './scripts/build-quiz-production-context.mjs';
+
+          const manifest = JSON.parse(await fs.readFile('data/fag/fag_manifest.json', 'utf8'));
+          const targets = manifest.historie?.quizProduction?.targets || {};
+          for (const [targetId, config] of Object.entries(targets)) {
+            const outputPath = path.resolve('data/fag', config.context_artifact);
+            await runBuildQuizProductionContext({
+              root: process.cwd(),
+              categoryId: 'historie',
+              targetId,
+              outputPath
+            });
+            console.log(`Rebuilt ${targetId}: ${path.relative(process.cwd(), outputPath)}`);
+          }
+          NODE
+
+      - name: Run derived contract audits
+        shell: bash
+        run: |
+          set +e
+          npm run knowledge:canonical:check 2>&1 | tee /tmp/knowledge-check.log
+          echo $? > /tmp/knowledge-check.exit
+          npm run knowledge:legacy:check 2>&1 | tee /tmp/knowledge-legacy.log
+          echo $? > /tmp/knowledge-legacy.exit
+          npm run audit:knowledge 2>&1 | tee /tmp/knowledge-audit.log
+          echo $? > /tmp/knowledge-audit.exit
+          npm run audit:quiz-production-context 2>&1 | tee /tmp/quiz-production-context.log
+          echo $? > /tmp/quiz-production-context.exit
+          npm run audit:quiz-progression 2>&1 | tee /tmp/quiz-progression.log
+          echo $? > /tmp/quiz-progression.exit
+          npm run audit:quiz-theory-binding 2>&1 | tee /tmp/quiz-theory-binding.log
+          echo $? > /tmp/quiz-theory-binding.exit
+          exit 0
+
+      - name: Capture generated diff
+        shell: bash
+        run: |
+          git status --short | tee /tmp/history-phase2-derived-status.txt
+          git diff --stat | tee /tmp/history-phase2-derived-stat.txt
+          git diff --name-only | tee /tmp/history-phase2-derived-files.txt
+          git diff --binary > /tmp/history-phase2-derived.patch
+          mapfile -t files < <(git ls-files -m -o --exclude-standard)
+          if [ ${#files[@]} -gt 0 ]; then
+            tar -czf /tmp/history-phase2-derived-files.tar.gz "${files[@]}"
+          else
+            tar -czf /tmp/history-phase2-derived-files.tar.gz --files-from /dev/null
+          fi
+
+      - name: Upload diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-phase2-derived-diagnostic
+          path: |
+            /tmp/history-phase2-derived-status.txt
+            /tmp/history-phase2-derived-stat.txt
+            /tmp/history-phase2-derived-files.txt
+            /tmp/history-phase2-derived.patch
+            /tmp/history-phase2-derived-files.tar.gz
+            /tmp/knowledge-check.log
+            /tmp/knowledge-check.exit
+            /tmp/knowledge-legacy.log
+            /tmp/knowledge-legacy.exit
+            /tmp/knowledge-audit.log
+            /tmp/knowledge-audit.exit
+            /tmp/quiz-production-context.log
+            /tmp/quiz-production-context.exit
+            /tmp/quiz-progression.log
+            /tmp/quiz-progression.exit
+            /tmp/quiz-theory-binding.log
+            /tmp/quiz-theory-binding.exit
