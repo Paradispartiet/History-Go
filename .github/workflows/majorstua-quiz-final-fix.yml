@@ -1,0 +1,64 @@
+name: Majorstua quiz final surface fix
+
+on:
+  pull_request:
+    types: [synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: majorstua-quiz-final-fix-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  fix:
+    if: startsWith(github.head_ref, 'agent/quiz-majorstua-normal-opening') && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Apply and validate final Majorstua fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/fix-majorstua-opening-surface.mjs
+          npm run knowledge:canonical:write
+          node tools/build-quiz-normal-opening-migration-inventory.mjs
+          node tools/compact-quiz-normal-opening-migration-reports.mjs
+          node tools/validate-quiz-normal-opening-migration-inventory.mjs \
+            | tee reports/quiz-normal-opening-migration-inventory-validation.txt
+          node tools/validate-majorstua-quiz-normalization.mjs \
+            | tee reports/majorstua-quiz-repair-validation.txt
+          npm run knowledge:canonical:check
+          npm run audit:quiz-production-context
+          git diff --check
+      - name: Commit final Majorstua fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm tools/fix-majorstua-opening-surface.mjs
+          rm -f reports/majorstua-final-fix-status.md
+          changed_paths=$(git status --porcelain | sed -E 's/^.. //')
+          unexpected=$(printf '%s\n' "$changed_paths" | grep -Ev '^(data/quiz/by/majorstua_sets\.json|data/knowledge/(knowledge_units|concepts|terms|stories|knowledge_emne_review_queue)\.generated\.json|reports/(knowledge-id-backfill|knowledge-contract-audit|quiz-content-quality|quiz-normal-opening-migration-inventory)\.json|reports/quiz-normal-opening-migration-inventory\.md|reports/quiz-normal-opening-migration-inventory-validation\.txt|reports/majorstua-quiz-repair-validation\.txt|reports/majorstua-final-fix-status\.md|tools/fix-majorstua-opening-surface\.mjs|tools/validate-majorstua-quiz-normalization\.mjs)$' || true)
+          if [[ -n "$unexpected" ]]; then
+            echo 'Uventede filer i Majorstua-sluttfiksen:'
+            printf '%s\n' "$unexpected"
+            exit 1
+          fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git diff --cached --check
+          git diff --cached --stat
+          git commit -m 'Quiz: fullfør Majorstua-normalisering'
+          git push origin HEAD:${{ github.head_ref }}
