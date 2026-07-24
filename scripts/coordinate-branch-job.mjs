@@ -14,8 +14,39 @@ const payload = await response.json();
 if (payload.encoding !== 'base64' || typeof payload.content !== 'string') {
   throw new Error('Stored coordinate implementation was not returned as base64.');
 }
+let implementation = Buffer.from(payload.content.replace(/\s/g, ''), 'base64').toString('utf8');
+const originalFetchJson = "const fetchJson = async (url) => JSON.parse(await fetchText(url, 'application/json'));";
+const resilientFetchJson = `const fetchJson = async (url) => {
+  const urls = url.includes('overpass-api.de/api/interpreter')
+    ? [
+      url,
+      url.replace('https://overpass-api.de', 'https://overpass.kumi.systems'),
+    ]
+    : [url];
+  let lastError = null;
+  for (const candidateUrl of urls) {
+    const attempts = urls.length > 1 ? 3 : 1;
+    for (let attempt = 0; attempt < attempts; attempt += 1) {
+      try {
+        return JSON.parse(await fetchText(candidateUrl, 'application/json'));
+      } catch (error) {
+        lastError = error;
+        if (attempt + 1 < attempts) {
+          await new Promise((resolve) => setTimeout(resolve, 1500 * (attempt + 1)));
+        }
+      }
+    }
+  }
+  throw lastError;
+};`;
+if (!implementation.includes(originalFetchJson)) {
+  throw new Error('Unable to patch stored implementation with resilient JSON fetching.');
+}
+implementation = implementation
+  .replace(originalFetchJson, resilientFetchJson)
+  .replace('[out:json][timeout:30]', '[out:json][timeout:60]');
 const implementationPath = path.join(process.cwd(), 'scripts', '.coordinate-branch-job-implementation.mjs');
-await fs.writeFile(implementationPath, Buffer.from(payload.content.replace(/\s/g, ''), 'base64'));
+await fs.writeFile(implementationPath, implementation, 'utf8');
 try {
   await import(`${pathToFileURL(implementationPath).href}?run=${Date.now()}`);
 } finally {
