@@ -1,0 +1,84 @@
+name: Open literature phase 1 PR
+
+on:
+  push:
+    branches: [agent/litteratur-vertikal-fase-1-poetikk]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  open-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/litteratur-vertikal-fase-1-poetikk
+          fetch-depth: 1
+
+      - name: Remove one-shot workflow
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          rm -f .github/workflows/litteratur-phase1-open-pr.yml
+          git add .github/workflows/litteratur-phase1-open-pr.yml
+          git commit -m 'Litteratur: fjern engangsworkflow for PR-opprettelse'
+          git push origin HEAD:agent/litteratur-vertikal-fase-1-poetikk
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh pr create \
+            --repo Paradispartiet/History-Go \
+            --base main \
+            --head agent/litteratur-vertikal-fase-1-poetikk \
+            --title 'Litteratur: bygg poetikk- og narratologiakse' \
+            --body-file - <<'BODY'
+          ## Resultat
+
+          Gjennomfører fase 1 i den vertikale fordypningsplanen for Litteratur og gir tekst-, form- og sjangeranalysen full bachelorbredde.
+
+          ## Leveranse
+
+          - 10 nye poetikk- og narratologihooks
+          - 10 nye emner i `em_lit_poetikk_*`
+          - 6 nye spesialiserte analysemetoder
+          - 10 nye emnemappinger med to analysebaner hver
+          - 10 tekst- og kildeforankrede spørsmålsplaner
+          - aktiv poetikk- og narratologiakse i fagkart og pensum
+          - aktiv generator-kontrakt for tekstbelegg, konkurrerende lesning og avgrensning
+          - permanent fasevalidator
+          - tre-faseplan for videre litteraturfordypning
+
+          ## Canonical-delta
+
+          - hooks: 60 → 70
+          - emner: 31 → 41
+          - metoder: 29 → 35
+          - mappinger: 28 → 38
+          - spørsmålsplaner: 10
+
+          ## Vitenskapelige sperrer
+
+          - navngitt tekst eller verk er obligatorisk
+          - presist tekstbelegg må komme før tolkning
+          - observasjon, tolkning og kontekstpåstand skilles
+          - avansert analyse krever en konkurrerende lesning
+          - forfatterintensjon krever dokumentert kilde
+          - teoretikernavn kan ikke være løsrevet fasit
+          - konklusjoner må avgrenses til tekstgrunnlag og utgave
+
+          ## Kontroll
+
+          - fase-1-validator: **354 PASS, 0 feil**
+          - alle canonical JSON-filer og spørsmålsplaner parser
+          - `git diff --check`: grønn
+          - engangsbygger, base64-deler og midlertidig materialiseringsworkflow er fjernet
+          - ingen overlay eller parallell runtime
+
+          Ordinær Data- og TypeScript-CI er sluttport før merge.
+          BODY
