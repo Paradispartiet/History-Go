@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<script src="/_/asset/no.met.metno:0000019ed58c0d50/js/vendor.js"></script><script src="/_/asset/no.met.metno:0000019ed58c0d50/js/main.js"></script><link rel="stylesheet" href="/_/asset/no.met.metno:0000019ed58c0d50/css/main.css"><link rel="stylesheet" href="/_/asset/no.bouvet.app.cookiepanel:0000019c4d221060/css/main.css"/><link rel="shortcut icon" sizes="64x64" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-64/met-logo.png" type="image/png" />
+<link rel="apple-touch-icon" sizes="57x57" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-57/met-logo.png.jpg" type="image/jpg" />
+<link rel="apple-touch-icon" sizes="60x60" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-60/met-logo.png.jpg" type="image/jpg" />
+<link rel="apple-touch-icon" sizes="72x72" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-72/met-logo.png.jpg" type="image/jpg" />
+<link rel="apple-touch-icon" sizes="76x76" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-76/met-logo.png.jpg" type="image/jpg" />
+<link rel="apple-touch-icon" sizes="114x114" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-114/met-logo.png.jpg" type="image/jpg" />
+<link rel="apple-touch-icon" sizes="120x120" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-120/met-logo.png.jpg" type="image/jpg" />
+<link rel="apple-touch-icon" sizes="144x144" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-144/met-logo.png.jpg" type="image/jpg" />
+<link rel="apple-touch-icon" sizes="152x152" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-152/met-logo.png.jpg" type="image/jpg" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-180/met-logo.png.jpg" type="image/jpg" />
+<link rel="icon" sizes="16x16" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-16/met-logo.png" type="image/png" />
+<link rel="icon" sizes="32x32" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-32/met-logo.png" type="image/png" />
+<link rel="icon" sizes="96x96" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-96/met-logo.png" type="image/png" />
+<link rel="icon" sizes="192x192" href="https://www.met.no/_/image/66f38792-6e49-4e4d-a2dd-76d00dc682f1:4f35ecddb34ffc5862fd3f880663716dd1503178/square-192/met-logo.png" type="image/png" /><script defer src="/matomo.js"></script><script defer src="https://cdn.matomo.cloud/met.matomo.cloud/matomo.js"></script></head>
+
+<body data-portal-component-type="page" data-ng-app="metApp">
+    <a href="#main-container" class="skip-link" id="skip-link">Hopp til hovedinnhold</a>
+    <div id="loading-bar-container"></div>
+    <header class="hidden-print">
+        <div class="container">
+            <div class="row header">
+                <div class="col-xs-6 col-sm-3 logo-container">
+                    <a href="/">
+                        <img class="site-logo" src="/kontakt-oss/veibeskrivelse/_/image/06766f5d-3a93-405b-a04f-0e245ea9c10f:7af644ed6c3084365c1a49d64eae3082f33c3d1f/height-51/met-logo.svg" alt="Gå til forsiden">
+                    </a>
+                </div>
+                <div class="col-xs-4 right">
+
+                    <div class="header-elements">
+                        <div class="header-element global-search">
+                            <form action="/sokeresultat">
+                                <div class="input-group search-input-group">
+                                    <label for="search-input" class="header-search-label">Søk</label>
+                                    <input name="q" type="search" id="search-input" class="header-search" placeholder="Søk etter noe...">
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="header-element languages">
+                            <span class="language-switcher">
+                                <a href="https://www.met.no/en/contact-us/travel-here">EN</a>
+                            </span>
+                        </div>
+
+                        <nav class="header-element">
+                            <a href="#" data-target="main-menu" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span>Meny</span>
+                                <img class="icon-menu" src="/_/asset/no.met.metno:0000019ed58c0d50/images/menu-icon.svg" alt="Meny">
+                            </a>
+                            <div class="dropdown-menu main-menu">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xs-12 pull-right right">
+                                            <a href="#" id="menu-close" data-target="main-menu" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                                <img class="icon-menu" src="/_/asset/no.met.metno:0000019ed58c0d50/images/close-icon.svg" alt="Lukk meny">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <ul class="menu-level-1">
+                                            <li class="col-md-3">
+                                                <a href="/nyhetsarkiv">
+                                                    <span class="header__menu-title">Nyheter fra Meteorologisk institutt</a>
+                                                
+                                            </li>
+                                            <li class="col-md-3">
+                                                <a href="/publikasjoner">
+                                                    <span class="header__menu-title">Publikasjonar</a>
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="/publikasjoner/met-report">
+                                                            MET report
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/publikasjoner/met-info">
+                                                            MET info
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/publikasjoner/mywave">
+                                                            MyWave
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/publikasjoner/eksterne-publikasjoner">
+                                                            Eksterne publikasjoner
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <a href="/vaer-og-klima">
+                                                    <span class="header__menu-title">Vêr og klima</a>
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="/vaer-og-klima/sesongvarsel">
+                                                            Sesongvarsel
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/vaer-og-klima/dab-kanalen-nrk-yr">
+                                                            Værvarsel på DAB-kanalen NRK Yr
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/vaer-og-klima/klimasvar">
+                                                            Klimasvar
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/vaer-og-klima/klima-siste-150-ar">
+                                                            Klima fra 1900 til i dag
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/vaer-og-klima/ekstremvaervarsler-og-andre-farevarsler">
+                                                            Ekstremværvarsel og andre farevarsel
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/vaer-og-klima/tekstvarsel-for-kysten">
+                                                            Tekstvarsel for kysten
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/vaer-og-klima/tekstvarsel-for-havomradene">
+                                                            Tekstvarsel for havområdene
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/vaer-og-klima/tekstvarsel">
+                                                            Tekstvarsel for landområder
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/vaer-og-klima/meteorologens-prognosekart">
+                                                            Meteorologens prognosekart
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/vaer-og-klima/meteorologens-analysekart">
+                                                            Meteorologens analysekart
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/vaer-og-klima/satellittbilder">
+                                                            Satellittbilder
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <a href="/tjenester">
+                                                    <span class="header__menu-title">Våre tjenester</a>
+                                                
+                                            </li>
+                                            <li class="col-md-3">
+                                                <a href="/prosjekter">
+                                                    <span class="header__menu-title">Prosjekt og aktivitetar</a>
+                                                
+                                            </li>
+                                            <li class="col-md-3">
+                                                <a href="/hav-og-nordomrader-landing">
+                                                    <span class="header__menu-title">Hav og nordområde</a>
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="/hav-og-nordomrader-landing/vart-arbeid-i-havomradene">
+                                                            Vårt arbeid i havområdene
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/hav-og-nordomrader-landing/vart-arbeid-i-nordomradene">
+                                                            Vårt arbeid i nordområdene
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <a href="/frie-meteorologiske-data">
+                                                    <span class="header__menu-title">Frie meteorologiske data</a>
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="/frie-meteorologiske-data/frie-meteorologiske-data">
+                                                            Data og produkter fra MET
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/frie-meteorologiske-data/priser">
+                                                            Servicenivå-avtaler
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/frie-meteorologiske-data/fri-kildekode">
+                                                            Fri kildekode
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/frie-meteorologiske-data/lisensiering-og-kreditering">
+                                                            Lisensiering og kreditering
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <a href="/kontakt-oss">
+                                                    <span class="header__menu-title">Kontakt oss</a>
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="/kontakt-oss/veibeskrivelse">
+                                                            Veibeskrivelse
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <a href="/kurs">
+                                                    <span class="header__menu-title">Kurs</a>
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="/kurs/kurs-i-vaerobservering">
+                                                            Kurs i værobservering
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <a href="/om-oss">
+                                                    <span class="header__menu-title">Om oss</a>
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="/om-oss/om-meteorologisk-institutt">
+                                                            Om Meteorologisk institutt
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/om-oss/offentlig-journal">
+                                                            Offentlig journal
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/om-oss/elektronisk-faktura">
+                                                            Elektronisk faktura
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/om-oss/dagleg-leiing-for-meteorologisk-institutt">
+                                                            Dagleg leiing for Meteorologisk institutt
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/om-oss/personvern">
+                                                            Personvernerklæring for Meteorologisk institutt
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/om-oss/organisasjonskart">
+                                                            Organisasjonskart
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/om-oss/oppdragsverksemd">
+                                                            Oppdragsverksemd
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/om-oss/samarbeidspartnarar">
+                                                            Samarbeidspartnarar
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/om-oss/styret-for-meteorologisk-institutt">
+                                                            Styret for Meteorologisk institutt
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/om-oss/likestilling">
+                                                            Likestilling
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/om-oss/logo">
+                                                            Logo
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <a href="/jobb-og-karriere">
+                                                    <span class="header__menu-title">Jobb og karriere</a>
+                                                <ul class="menu-level-2">
+                                                    <li>
+                                                        <a href="/jobb-og-karriere/ledige-stillinger">
+                                                            Ledige stillinger
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/jobb-og-karriere/det-beste-med-a-vaere-meteorolog">
+                                                            Det beste med å være meteorolog?
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/jobb-og-karriere/hvordan-er-det-a-vaere-tv-meteorolog">
+                                                            Hvordan er det å varsle været på TV?
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="col-md-3">
+                                                <a href="/iv%C3%A6ret">
+                                                    <span class="header__menu-title">I været</a>
+                                                
+                                            </li>
+                                            <li class="col-md-3">
+                                                <a href="/plaskorama">
+                                                    <span class="header__menu-title">Værkampanjen: PLASKORAMA</a>
+                                                
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav vocab="http://schema.org/" prefix="ov: http://open.vocab.org/terms/" class="container breadcrumbs">
+        <ul id="breadcrumblist" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <a itemprop="item" href="/">
+                    <span itemprop="name">Meteorologisk institutt</span>
+                </a>
+                
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <a itemprop="item" href="/kontakt-oss">
+                    <span itemprop="name">Kontakt oss</span>
+                </a>
+                
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                
+                <span>
+                    <span itemprop="name">Veibeskrivelse</span>
+                </span>
+            </li>
+        </ul>
+    </nav>
+
+    <section data-portal-component-type="region" data-portal-region="main" class="region-section" id="main-container">
+        
+            <div data-portal-component-type="part" class="background-layout topbar-short">
+    <article class="container" role="main">
+        <div class="row">
+            <div class="col-xs-12">
+                <figure class="top-image responsive">
+    <img alt="METs hovedbygg i Oslo." src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/kontakt-oss/veibeskrivelse/_/image/a01f355a-e2a0-498d-874d-ec5c2d3fd0d2:c8785cacdd65b9d6f462958af17dcc8447a1f776/block-256-85/MET%20hovedbygg.JPG.jpg?quality=70 256w, /kontakt-oss/veibeskrivelse/_/image/a01f355a-e2a0-498d-874d-ec5c2d3fd0d2:c8785cacdd65b9d6f462958af17dcc8447a1f776/block-512-171/MET%20hovedbygg.JPG.jpg?quality=70 512w, /kontakt-oss/veibeskrivelse/_/image/a01f355a-e2a0-498d-874d-ec5c2d3fd0d2:c8785cacdd65b9d6f462958af17dcc8447a1f776/block-1024-341/MET%20hovedbygg.JPG.jpg?quality=70 1024w">
+    <figcaption>
+        METs hovedbygg i Oslo.
+        <div>
+            Foto:
+            
+                <span class="author">Ingrid Våset</span>
+                
+            
+            
+        </div>
+    </figcaption>
+</figure>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 right">
+                <h1 class="title">Veibeskrivelse</h1>
+                <div class="byline">
+                    
+                    
+                    
+                        
+                        <span class="text-muted">27.9.2017</span>
+                        
+                            <span class="text-muted"> | Endret </span>
+                            <span class="text-muted">26.3.2021</span>
+                        
+                    
+                </div>
+                <div class="preface"></div>
+                <div class="htmlAreaLinkContainer">
+                    <div class="clearfix">
+                        <h2>Adresse til Meteorologisk institutt (MET)</h2>
+
+<p>Henrik Mohns plass 1<br>
+0371&nbsp;Oslo&nbsp;(<a href="https://www.google.no/maps/place/Meteorologisk+institutt/@59.9426757,10.7206611,15z/data=!4m5!3m4!1s0x0:0x62f6d2aec00d71b!8m2!3d59.9426757!4d10.7206611">googlemap</a>)<br>
+Telefon:&nbsp;+47 22 96 30 00</p>
+
+<p>Den enkleste og raskeste måten å reise til Meteorologisk institutt fra Oslo flyplass Gardermoen er med flytoget. Men du kan også reise med flybussen.</p>
+
+                    </div>
+                    <div class="clearfix">
+                        <h2>Flytoget</h2>
+
+<p>Flytoget tar deg direkte til Oslo sentrum eller Oslo sentralstasjon (Oslo S) på 20 minutter. Følg skiltene “flytoget” eller ” airport express” inne i terminalen.</p>
+
+<p>Toget har avgang hvert tiende minutt.<br>
+Togbiletten koster kr 204&nbsp;(for voksne)</p>
+
+<p>Billetter kan kjøpets i billettautomatene på flyplassen eller på flytoget. Du kan også reise billettløst med billett fra flytogets app. Søk og last ned «Flytoget» i Google Play eller i App Store.</p>
+
+<figure class="editor-align-justify editor-style-original"><a class="justify" href="http://flytoget.no/flytoget_eng/News-and-the-press/Press/Download-the-Flytoget-App"><img alt="apple-touch-icon2" src="/kontakt-oss/veibeskrivelse/_/attachment/inline/ce462583-0b79-479a-a64e-9a3791d5f5f5:040f5b1697bc507599c60bc06dbf61f968ee0daa/apple-touch-icon2.png" style="text-align:justify; width:auto"></a><br>
+<br>
+<a href="http://www.flytoget.no/flytoget_nor/">Informasjon om rutetider</a></figure>
+
+                    </div>
+                    
+                </div>
+                <div class="htmlAreaLinkContainer">
+                    <div class="clearfix">
+                        <h2>Flybussen</h2>
+
+<p>Like utenfor flyplassterminalen finner du holdeplassene til flybussene. Ønsker du en flybuss som går direkte til MET, velger du den som er merket FB3 i retning Bekkestua. Gå av på holdeplass "Gaustad”. Derfra er det gåavstand til MET. (Se kart 1.)</p>
+
+<p>Reisetid med buss: 46 minutter<br>
+Gåtid: 13 minutter</p>
+
+<h3>Kart&nbsp;1</h3>
+
+<figure class="editor-align-justify editor-style-original"><a class="justify" href="http://bit.ly/2vHnM8N"><img alt="gaustad til met via expressbuss" src="/kontakt-oss/veibeskrivelse/_/attachment/inline/ad9fa0b1-2e4e-408f-b438-fb094f08ff30:54202c5a3b661f4b34830bb26399e0d2d7abf836/gaustad%20til%20met%20via%20expressbuss.JPG" style="text-align:justify; width:auto"></a></figure>
+
+<p><a href="http://bit.ly/2vHnM8N">Klikk på lenken for å se detaljer</a></p>
+
+<p>Bussbilletten koster kr 205 (voksen)<br>
+<a href="https://www.nor-way.no/nb-NO?when=2017-09-20%2013%3A21">Informasjon om rutetider og billetter online</a></p>
+
+<p>Du kan også reise direkte til sentrum med flybussen. Velg den som er merket FB2 og gå av på siste stopp.<br>
+Reisetid: 47 minutter<br>
+Bussbilletten koster kr 175&nbsp;(voksen)<br>
+<a href="https://www.nor-way.no/nb-NO?when=2017-09-20%2015%3A27">Informasjon om rutetider og kjøp av billetter online</a>&nbsp;&nbsp;</p>
+
+<h2>Fra sentrum/Oslo S to MET</h2>
+
+<h3>T-bane</h3>
+
+<p>Den raskeste og enkleste måten å komme seg fra sentrum til MET er med t-banen.</p>
+
+<p>T-bane stasjonen “Jernbanetorget” ligger i samme bygning som Oslo Sentralstasjon “Oslo S”. Hvis du vil spasere litt i sentrum, kan du også ta t-banen fra stasjoner som “Nationaltheatret” og“ Stortinget”.</p>
+
+<p>Reisetid fra sentrum til MET: cirka 15 minutter.<br>
+Billettpris: kr 38&nbsp;(for voksne). Fra du har stemplet billetten er den gyldig i 60 minutter.<br>
+<a href="https://ruter.no/">Informasjon om rutetabeller</a></p>
+
+<p>Billetter kan kjøpes på alle t-banestasjoner eller kiosker (Narvesen, 7eleven med flere) eller last ned billett-appen til Ruter på smarttelefonen din. Søk etter “Ruter” i Google Play or the App Store.</p>
+
+<figure class="editor-align-justify editor-style-original"><a class="justify" href="https://ruter.no/kjop-billett/ruterbillett-app/"><img alt="Ruterapp" src="/kontakt-oss/veibeskrivelse/_/attachment/inline/e1c63046-a701-4978-a0ae-f4c77e1d01a6:a657bb349e2096476927275f17f175310fc2dc9d/Ruterapp.png" style="text-align:justify; width:auto"></a></figure>
+
+                    </div>
+                    <div class="clearfix">
+                        <h2>Viktig informasjon om t-banen</h2>
+
+<h3>&nbsp;</h3>
+
+<p>Oslo har vestgående og østgående t-banelinjer. Dobbeltsjekk at du reiser i riktig retning!</p>
+
+<h3>Fra sentrum til MET</h3>
+
+<p>Ta t-bane linje 4 (Vestli via Storo), 5 (Ringen via Storo) eller 5 (Sognsvann) til “Forskningsparken” stasjon. Når du går av på stasjonen ser du den røde mursteinsbygningen til MET. Se kart 2 for detaljert veibeskrivelse.<br>
+Fra MET til sentrum</p>
+
+<p>Ta t-bane linje 4 (Bergkrystallen), 5 (Ringen via Majorstuen) eller 5 (Vestli via Majorstuen).</p>
+
+<h3>Kart 2</h3>
+
+<figure class="editor-align-justify editor-style-original"><a class="justify" href="http://bit.ly/2eHbqHj"><img alt="MET og tbane" src="/kontakt-oss/veibeskrivelse/_/attachment/inline/d127434e-2610-4d59-810f-3b4fba4ec22a:62ee2ecd9160e4433f0aa62b43921aadc345330d/MET%20og%20tbane.JPG" style="text-align:justify; width:auto"></a></figure>
+
+<p><a href="http://bit.ly/2eHbqHj">Klikk på kartet for flere detaljer</a></p>
+
+<p>&nbsp;</p>
+
+<p>Bygninger ved MET</p>
+
+<figure class="editor-align-justify editor-style-original"><img alt="bygninger og ciens" src="/kontakt-oss/veibeskrivelse/_/attachment/inline/f9158994-6966-414e-93d1-2262bc58144d:8879996451c7a9821c40e919f8c94ab0a9803dd1/bygninger%20og%20ciens.png" style="text-align:justify; width:auto">
+<figcaption style="text-align:left"></figcaption>
+</figure>
+
+                    </div>
+                    
+                </div>
+                <div class="htmlAreaLinkContainer">
+                    
+                    
+                </div>
+                <div class="htmlAreaLinkContainer">
+                    <div class="clearfix">
+                        <h2>Visit Oslo</h2>
+<figure class="editor-align-justify editor-style-original"><a href="https://www.visitoslo.com/en/" class="justify"><img src="/kontakt-oss/veibeskrivelse/_/attachment/inline/8dc313f7-1645-4544-9385-07cc7333446d:b04cf81ded7ad1db27a652596a580ff70cc4ec2f/visitoslo-logo2.png" alt="visitoslo-logo2" style="text-align: justify; width: auto;"></a></figure>
+<p></p>
+<p>Trenger du overnatting i Oslo eller har litt ekstra tid å utforske byen? På nettsiden <a href="https://www.visitoslo.com">Visit Oslo</a>&nbsp; finner du all den informasjonen du trenger. Eller last ned &nbsp;appen til Visit Oslo.</p>
+<h3><strong>Anbefaling</strong></h3>
+<p>De fleste av våre gjester velger hoteller i sentrum og i området nær handlegaten “Karl Johan”. Langs Karl Johan finner du tre t-banestasjoner (Jernbanetorget, Stortinget og Nationaltheatret). Reisetid fra disse til MET er cirka 10-15 minutter.</p>
+                    </div>
+                    
+                </div>
+            </div>
+            <aside class="col-xs-12 col-sm-4">
+                
+                <section>
+                    <h4>
+                        <button class="share-trigger right" data-placement="bottom" data-popover-content="#article-share" title="Del denne artikkelen" data-toggle="popover" data-trigger="click" tabindex="0">
+                            Del
+                            <img src="/_/asset/no.met.metno:0000019ed58c0d50/images/share-icon.svg" alt=""><!-- intentionally empty alt, image only decorative -->
+                        </button>
+                    </h4>
+                    <div class="hidden" id="article-share" style="width:600px">
+                        <div class="popover-body">
+                            <div class="share-on-some">
+                                <a class="btn btn-primary share-twitter share-button"
+                                    data-share-service="Twitter"
+                                    title="Del på twitter"
+                                    href="https://twitter.com/intent/tweet?url=https://www.met.no/kontakt-oss/veibeskrivelse"
+                                    target="_blank">
+                                    <img src="/_/asset/no.met.metno:0000019ed58c0d50/images/social-twitter-icon.svg" alt="Del på twitter">
+                                </a>
+                                <a class="btn btn-primary share-facebook share-button"
+                                    data-share-service="Facebook"
+                                    title="Del på facebook"
+                                    href="https://www.facebook.com/sharer.php?u=https://www.met.no/kontakt-oss/veibeskrivelse"
+                                    target="_blank">
+                                    <img src="/_/asset/no.met.metno:0000019ed58c0d50/images/social-facebook-icon.svg" alt="Del på facebook">
+                                </a>
+                                <input class="some-link" type="text" value="https://www.met.no/kontakt-oss/veibeskrivelse"/>
+                                <button id="copy" class="btn btn-primary" type="button" data-toggle="tooltip" data-placement="top" data-clipboard-text="https://www.met.no/kontakt-oss/veibeskrivelse" data-failed="Klarte ikke kopiere til utklippstavlen" data-success="Kopiert til utklippstavlen">Kopier</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                
+                
+                
+                
+            </aside>
+        </div>
+    </article>
+</div>
+
+        
+    </section>
+
+    <footer>
+        <nav class="navbar navbar-footer">
+            <div class="container">
+                <div class="col-md-4"><p>Meteorologisk institutt<br>
+Henrik Mohns Plass 1<br>
+0371&nbsp;Oslo<br>
+Telefon 22 96 30 00</p>
+</div>
+                <ul class="col-md-4">
+                    <li>
+                        <a href="/pressebilder-ntb">Pressebilder</a>
+                    </li>
+                    <li>
+                        <a href="/tilgjengelighetserklaering">Tilgjengelegheitserklæring</a>
+                    </li>
+                    <li>
+                        <a href="/footer/kontakt-oss">Gi tilbakemelding om universell utforming</a>
+                    </li>
+                    <li>
+                        <a href="/kontakt-oss/veibeskrivelse">Veibeskrivelse</a>
+                    </li>
+                    <li>
+                        <a href="/kontakt-oss">Kontakt oss</a>
+                    </li>
+                    <li>
+                        <a href="/om-oss/personvern">Personvern</a>
+                    </li>
+                </ul>
+                <div class="col-md-4 social-links">
+                    <ul>
+                        <li>
+                            <a href="https://www.facebook.com/Yr-22652235447/"><img src="/_/asset/no.met.metno:0000019ed58c0d50/images/social-facebook-icon.svg" alt="Facebook for Meteorologisk institutt"></a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.instagram.com/yrbilder/"><img src="/_/asset/no.met.metno:0000019ed58c0d50/images/social-instagram-icon.svg" alt="Instagram for Meteorologisk institutt"></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div><!-- /.container-fluid -->
+        </nav>
+    </footer>
+<script src="/_/asset/no.bouvet.app.cookiepanel:0000019c4d221060/js/main.js" defer></script><script type="application/json" data-cookie-panel-selector="config">{"controlCookie":"no.bouvet.app.cookiepanel-cookie-control","url":"/kontakt-oss/veibeskrivelse/_/service/no.bouvet.app.cookiepanel/cookie-info","showSettings":false,"theme":"theme light","buttonOrder":"accept-right","title":"Denne siden bruker informasjonskapsler (cookies)","description":"På våre nettsider bruker vi informasjonskapsler (cookies) for å forbedre brukeropplevelsen og optimalisere vår nettside. Ved å klikke godkjenn, godtar du vår bruk av disse informasjonskapslene.","settingsLabel":"Tilpass cookies","acceptLabel":"Godkjenn alle","rejectLabel":"Avslå alle","saveLabel":"Lagre og lukk","readMoreLabel":"Les mer","readMoreLink":"/om-oss/personvern","categories":[{"title":"Nødvendige informasjonskapsler - kan ikke slås av","description":"Nødvendige informasjonskapsler ivaretar grunnleggende funksjoner som sidenavigasjon og tilgang til sikre områder av nettstedet. Nettstedet kan ikke fungere optimalt uten disse informasjonskapslene.","cookies":[],"default":true,"id":"cookie-panel-nodvendige-informasjonskapsler-kan-ikke-slas-av"},{"title":"Statistikk","description":"Denne informasjonskapselen samler inn anonymisert statistikk som skal hjelpe oss å forstå hvordan du som besøker nettsiden vår bruker den, slik at vi kan gjøre den best mulig for deg.","cookies":{"cookie-name":"no-bouvet-app-matomo_disabled","cookie-value-accepted":"false","cookie-value-rejected":"true"},"id":"cookie-panel-statistikk"}],"expireControlCookieAfterDays":365,"controlCookieInvalidateNumber":0}</script><noscript><p><img src="https://met.matomo.cloud/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript></body>
+</html>

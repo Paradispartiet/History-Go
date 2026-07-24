@@ -1,0 +1,99 @@
+{
+  "version": "2026-07-24",
+  "protocolMaxBatch": 195,
+  "researchOnly": true,
+  "canonicalChanged": false,
+  "placeId": "meteorologisk_institutt",
+  "placeName": "Meteorologisk institutt",
+  "identityDecision": "resolved_meteorological_institute_henrik_mohns_plass_1",
+  "coordinateDecision": "promote_unique_official_address_point_supported_by_named_met_object",
+  "currentCoordinate": {
+    "lat": 59.9429,
+    "lon": 10.7188
+  },
+  "candidate": {
+    "lat": 59.94270614863892,
+    "lon": 10.720621900236225,
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:21546:1:59.94270615,10.72062190",
+    "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Henrik%20Mohns%20plass&nummer=1&kommunenummer=0301&treffPerSide=20",
+    "objectType": "institution_address_point"
+  },
+  "displacementMeters": 103.7,
+  "officialAddress": {
+    "address": "Henrik Mohns plass 1, 0371 Oslo",
+    "coordinateCount": 1,
+    "coordinates": [
+      {
+        "lat": 59.94270614863892,
+        "lon": 10.720621900236225,
+        "sourceObjectId": "geonorge-adresser-v1:0301:21546:1:59.94270615,10.72062190",
+        "rowCount": 1,
+        "addressText": "Henrik Mohns plass 1"
+      }
+    ],
+    "selectionDecision": "unique_official_point"
+  },
+  "supportingOsmObject": {
+    "sourceObjectId": "osm-way:5012038",
+    "sourceUrl": "https://www.openstreetmap.org/way/5012038",
+    "coordinate": {
+      "lat": 59.9426519,
+      "lon": 10.7205347
+    },
+    "nearestAddressMeters": 7.7,
+    "score": 1492.2557886607551,
+    "tags": {
+      "building": "office",
+      "building:colour": "#a27961",
+      "building:levels": "7",
+      "building:material": "brick",
+      "government": "meteorological",
+      "name": "Meteorologisk institutt",
+      "name:en": "Norwegian Meteorological Institute",
+      "name:fr": "Institut météorologique norvégien",
+      "name:no": "Meteorologisk institutt",
+      "office": "government",
+      "opening_hours": "Mo-Fr 08:00-15:00",
+      "ref:bygningsnr": "80126697",
+      "roof:levels": "0",
+      "short_name": "MET",
+      "start_date": "1866-12-01",
+      "wikidata": "Q665666",
+      "wikipedia": "no:Meteorologisk institutt"
+    }
+  },
+  "geometry": {
+    "sourceObjectId": "osm-way:5012038",
+    "sourceUrl": "https://www.openstreetmap.org/way/5012038",
+    "polygonNodeCount": 24,
+    "areaSquareMeters": 1012.9,
+    "centroid": {
+      "lat": 59.94266117,
+      "lon": 10.72058776
+    },
+    "officialAddressPointInside": true,
+    "centroidInsidePolygon": true,
+    "addressToCentroidMeters": 5.4,
+    "maximumVertexDistanceMeters": 39.7
+  },
+  "rejectedTransportObjects": [],
+  "sourceChecks": {
+    "officialMetIdentityAndAddress": true,
+    "official1866History": true,
+    "brregIdentityAndAddress": true,
+    "geonorgeExactAddressCoordinatesPreserved": true,
+    "namedNonTransportMetObjectFound": true,
+    "transportObjectsExcluded": true,
+    "fullPolygonValidatedWhenAvailable": true,
+    "officialAddressPointInsideGeometryWhenAvailable": true
+  },
+  "recommendation": {
+    "canBecomeVerified": true,
+    "nextAction": "Apply geonorge-adresser-v1:0301:21546:1:59.94270615,10.72062190 as the canonical display marker, preserve MET and Brønnøysund identity, retain osm-way:5012038 as geometry/object support, synchronize aggregate/index copies and coordinate evidence, and keep protocol max batch at 195.",
+    "coordStatus": "verified",
+    "coordType": "address_point",
+    "locatorType": "building",
+    "suggestedRadiusMeters": 150
+  }
+}
