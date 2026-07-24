@@ -45,7 +45,7 @@ assert(summary.exactOsmCandidate?.id === 7596280553, 'Exact OSM node changed.');
 assert(summary.googleImage?.sha256 === 'bc1dc83cce6a039eb1012cc69058ba09076707f1e603f36ba1326d326f4f1d6f', 'Pinned OSM-linked image hash changed.');
 
 const discovered = summary.googleImage.discoveredImageUrls.filter((url) => url.includes('/pw/'));
-const uniqueBases = [...new Set(discovered.map((url) => url.replace(/=w\d+[^\s]*$/, '')))];
+const uniqueBases = [...new Set(discovered.map((url) => url.replace(/=w\d+[^\s]*$/, ''))];
 assert(uniqueBases.length >= 2, `Expected at least two album image bases, got ${uniqueBases.length}.`);
 
 const downloads = [];
@@ -163,3 +163,5 @@ const appendix = `\n## Full-resolution inscription crosscheck\n\nTwo full-resolu
 await writeFile(readmePath, `${oldReadme.trimEnd()}${appendix}`, 'utf8');
 
 console.log(JSON.stringify({ downloads, ocr: ocrRows.map((row) => ({ imageIndex: row.imageIndex, width: row.width, height: row.height, combinedText: row.combinedText, sigridMatch: row.sigridMatch, undsetMatch: row.undsetMatch, lifeDateMatch: row.lifeDateMatch })), inscriptionConfirmed, partialInscriptionEvidence, decision: result.decision }, null, 2));
+
+// Retry trigger: preserve identical research logic; force a fresh workflow synchronization event.
