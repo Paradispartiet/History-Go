@@ -36,9 +36,17 @@ jobs:
           b87b8ad8edd13c82e96dd64922df423243d6719c0ca12f066cd74b2d75d558ac  part_00
           185aef7c4a308aea9e97899656caac14a38cf2290d00e2f8728577448f3a218a  part_01
           6128ef42236235fa6c7f6964194d5614b3f452d2a24241ec7e1709c99e8fb337  part_02
-          efa5e064d24d3088edd4e94435694a39a3b70ba8e22e1a85f8068c86cf2cd684  rest_03_11
+          4cfd96c412eab802af3a1b3536487c5213a5db3f815bc546658e9a392cc26413  part_03
+          b56a4db2777ff672c75df5b3e56a7f4c3156c22305fceaf6a0bd4e766cf9612c  part_04
+          e514235112d19699a337e59060cbb34d32a97c7b261de580c2a08a11bd162d8b  part_05
+          f59c66854c3372fe091720111e5090d8740e34c5456805cc53a25fac83d78994  part_06
+          f3c94d91f647ca472281d3141da51673e6da55f0cead9dc7a4cf890842ad0a78  part_07
+          67946ceef1f52b448d25402461741e77bd589ec445ced990f6ac8cc6ea4af467  part_08
+          aa198e6c8754e722d15f14909b3205adc364ff12ec350a239278c9c286e05625  part_09
+          5d54b028d953e724c3557dbccaccbec42788f35ba6f59d13820aa740dd9f4dfe  part_10
+          d95e741c3154b450b06805d12e3e73e63f9cad7152790971ffd57e51d93e0afb  part_11
           EOF
-          cat part_00 part_01 part_02 rest_03_11 > /tmp/sport_science.b64
+          cat part_00 part_01 part_02 part_03 part_04 part_05 part_06 part_07 part_08 part_09 part_10 part_11 > /tmp/sport_science.b64
           base64 -d /tmp/sport_science.b64 > /tmp/sport_science_v1.tgz
           echo '321a2a61227a31250f9f0dd77a5b9aa7a7ad75e4f4c7d13f55e90dd2ae9c4d29  /tmp/sport_science_v1.tgz' | sha256sum -c -
           tar -tzf /tmp/sport_science_v1.tgz >/dev/null
