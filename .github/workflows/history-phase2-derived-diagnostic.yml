@@ -1,4 +1,4 @@
-name: History phase 2 derived diagnostic
+name: History phase 2 derived sync
 
 on:
   push:
@@ -6,14 +6,18 @@ on:
       - agent/historie-tid-periodisering-phase-2-main-refresh
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  diagnose:
+  sync-derived:
+    if: ${{ !contains(github.event.head_commit.message, '[derived-sync]') }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out branch
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -48,58 +52,48 @@ jobs:
           }
           NODE
 
-      - name: Run derived contract audits
-        shell: bash
+      - name: Validate derived contracts
         run: |
-          set +e
-          npm run knowledge:canonical:check 2>&1 | tee /tmp/knowledge-check.log
-          echo $? > /tmp/knowledge-check.exit
-          npm run knowledge:legacy:check 2>&1 | tee /tmp/knowledge-legacy.log
-          echo $? > /tmp/knowledge-legacy.exit
-          npm run audit:knowledge 2>&1 | tee /tmp/knowledge-audit.log
-          echo $? > /tmp/knowledge-audit.exit
-          npm run audit:quiz-production-context 2>&1 | tee /tmp/quiz-production-context.log
-          echo $? > /tmp/quiz-production-context.exit
-          npm run audit:quiz-progression 2>&1 | tee /tmp/quiz-progression.log
-          echo $? > /tmp/quiz-progression.exit
-          npm run audit:quiz-theory-binding 2>&1 | tee /tmp/quiz-theory-binding.log
-          echo $? > /tmp/quiz-theory-binding.exit
-          exit 0
+          npm run knowledge:canonical:check
+          npm run knowledge:legacy:check
+          npm run audit:knowledge
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
 
       - name: Capture generated diff
+        if: always()
         shell: bash
         run: |
           git status --short | tee /tmp/history-phase2-derived-status.txt
           git diff --stat | tee /tmp/history-phase2-derived-stat.txt
           git diff --name-only | tee /tmp/history-phase2-derived-files.txt
           git diff --binary > /tmp/history-phase2-derived.patch
-          mapfile -t files < <(git ls-files -m -o --exclude-standard)
-          if [ ${#files[@]} -gt 0 ]; then
-            tar -czf /tmp/history-phase2-derived-files.tar.gz "${files[@]}"
-          else
-            tar -czf /tmp/history-phase2-derived-files.tar.gz --files-from /dev/null
+
+      - name: Commit deterministic derived files
+        shell: bash
+        run: |
+          git add data/knowledge data/quiz \
+            reports/knowledge-contract-audit.json \
+            reports/knowledge-id-backfill.json \
+            reports/knowledge-universe-readers.json
+          if git diff --cached --quiet; then
+            echo 'No derived changes to commit.'
+            exit 0
           fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Historie: synkroniser avledede kontrakter [derived-sync]'
+          git push origin HEAD:${{ github.ref_name }}
 
       - name: Upload diagnostic
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: history-phase2-derived-diagnostic
+          name: history-phase2-derived-sync
           path: |
             /tmp/history-phase2-derived-status.txt
             /tmp/history-phase2-derived-stat.txt
             /tmp/history-phase2-derived-files.txt
             /tmp/history-phase2-derived.patch
-            /tmp/history-phase2-derived-files.tar.gz
-            /tmp/knowledge-check.log
-            /tmp/knowledge-check.exit
-            /tmp/knowledge-legacy.log
-            /tmp/knowledge-legacy.exit
-            /tmp/knowledge-audit.log
-            /tmp/knowledge-audit.exit
-            /tmp/quiz-production-context.log
-            /tmp/quiz-production-context.exit
-            /tmp/quiz-progression.log
-            /tmp/quiz-progression.exit
-            /tmp/quiz-theory-binding.log
-            /tmp/quiz-theory-binding.exit
+          if-no-files-found: warn
