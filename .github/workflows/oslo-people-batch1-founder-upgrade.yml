@@ -4,12 +4,16 @@ on:
   push:
     branches:
       - agent/oslo-people-batch1-founder-upgrade
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   materialize:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Check out branch
