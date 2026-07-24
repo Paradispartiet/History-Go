@@ -142,7 +142,7 @@ await fs.writeFile(path.join(reportDir, 'README.md'), `# Gamlebyen school coordi
 console.log(JSON.stringify({
   status: 'gamlebyen_school_polygon_validation_complete',
   reportDir: reportRel,
-  candidateInsidePolygon,
+  candidateInsidePolygon: candidateInside,
   addressToCentroidMeters: summary.geometry.addressToCentroidMeters,
   areaSquareMeters: summary.geometry.areaSquareMeters,
   displacementMeters: summary.displacementMeters,
