@@ -2,57 +2,100 @@
   "schemaVersion": "1.0",
   "placeId": "regjeringskvartalet",
   "placeFile": "data/places/politikk/oslo/places_politikk.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9156,
-    "lon": 10.7451,
+    "lat": 59.915605149367,
+    "lon": 10.745978768986,
     "r": 200,
-    "coordStatus": "needs_source",
-    "coordSource": "regjeringskvartalet_canonical_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes."
+    "coordStatus": "verified_geometry",
+    "coordSource": "Oslo kommune Planinnsyn – S-5100 / PLANID 202020172",
+    "coordType": "official_plan_area_anchor",
+    "coordNote": "Object-type-first area production: Oslo kommune Planinnsyn exposes one exact current area-plan polygon as S-5100 / PLANID 202020172 in REGTILLEGG WFS. Canonical lat/lon is the deterministic polygon_centroid of the same official polygon (105740 m²). The merged official state source contract documents the same Regjeringskvartalet institutional scope between Akersgata and Møllergata, with Trefoldighetskirken/Deichman in the north, Høyesterett/Grensen 1 in the south and R5 included. Høyblokka, 22. juli-senteret and historical Y-blokka remain separate canonical subplaces; no individual building is used as proxy for the parent area."
   },
   "identity": {
     "currentName": "Regjeringskvartalet",
-    "resolvedIdentity": "Regjeringskvartalet som samlet institusjonsområde",
+    "resolvedIdentity": "Regjeringskvartalet som samlet institusjonsområde avgrenset av offisiell statlig reguleringsplan",
     "identityStatus": "resolved",
-    "identityProblem": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes.",
-    "locatorTypeCandidate": "institutional_area",
+    "identityProblem": "",
+    "locatorTypeCandidate": "current_place",
     "requiresSplit": false,
-    "splitReason": ""
+    "splitReason": "Parent-area identity retained; Høyblokka, 22. juli-senteret and historical Y-blokka remain separate canonical subplaces."
   },
   "requiredEvidence": [
-    "Dokumenter én legitim samlet institusjonsgeometri for Regjeringskvartalet; enkeltbygninger kan ikke brukes som proxy for hele området."
+    "merged official state identity and scope contract",
+    "live official municipal plan-area geometry",
+    "deterministic interior area anchor"
   ],
   "evidence": [
     {
-      "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap bounded exact-name candidate audit",
-      "sourceUrl": "https://www.openstreetmap.org/search?query=Regjeringskvartalet%20Oslo",
-      "sourceObjectId": "osm-search-audit:regjeringskvartalet",
-      "sourceQuality": "candidate_search_without_unique_applicable_object",
-      "finding": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes.",
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune Planinnsyn REGTILLEGG – S-5100",
+      "sourceUrl": "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=REGTILLEGG&SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms%3AOmraadeplan&OUTPUTFORMAT=geojson&SRSNAME=EPSG%3A32632",
+      "sourceObjectId": "oslo-planinnsyn:REGTILLEGG:Omraadeplan:202020172",
+      "sourceQuality": "official_exact_plan_area_geometry",
+      "finding": "Live WFS returns exactly one PLANID 202020172, PLANNAVN S-5100, PLANTYPE 34 Polygon matching merged research.",
+      "canVerifyCoordinate": true,
+      "reason": "Object-type-first area production: Oslo kommune Planinnsyn exposes one exact current area-plan polygon as S-5100 / PLANID 202020172 in REGTILLEGG WFS. Canonical lat/lon is the deterministic polygon_centroid of the same official polygon (105740 m²). The merged official state source contract documents the same Regjeringskvartalet institutional scope between Akersgata and Møllergata, with Trefoldighetskirken/Deichman in the north, Høyesterett/Grensen 1 in the south and R5 included. Høyblokka, 22. juli-senteret and historical Y-blokka remain separate canonical subplaces; no individual building is used as proxy for the parent area."
+    },
+    {
+      "sourceProvider": "government",
+      "sourceName": "Vedtak av statlig reguleringsplan for nytt regjeringskvartal",
+      "sourceUrl": "https://www.regjeringen.no/no/dokumenter/vedtak-av-statlig-reguleringsplan-for-nytt-regjeringskvartal/id2538263/",
+      "sourceObjectId": "regjeringen:16-2890-8:2017-02-10",
+      "sourceQuality": "merged_official_adopted_plan_identity_and_scope",
+      "finding": "The official state decision defines Regjeringskvartalet as the same combined institutional area represented by the single Oslo Planinnsyn S-5100 polygon. The municipal polygon supplies machine-traceable geometry; the state decision supplies authoritative identity and physical scope.",
       "canVerifyCoordinate": false,
-      "reason": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes."
+      "reason": "The state decision establishes identity and scope; live Oslo Planinnsyn supplies the coordinate geometry."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-search-audit:regjeringskvartalet",
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-planinnsyn:REGTILLEGG:Omraadeplan:202020172",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "government",
+      "sourceObjectId": "regjeringen:16-2890-8:2017-02-10",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-planinnsyn:REGTILLEGG:Omraadeplan:202020172",
+      "geometryType": "Polygon",
+      "areaM2": 105740.22,
+      "pointCount": 568,
+      "bbox": {
+        "minX": 597273.8086,
+        "minY": 6643040.89,
+        "maxX": 597913.94935,
+        "maxY": 6643554.20995
+      },
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.915605149367,
+      "lon": 10.745978768986,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "oslo-planinnsyn:REGTILLEGG:Omraadeplan:202020172",
+      "derivation": "polygon_centroid",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes.",
-    "nextAction": "Dokumenter én legitim samlet institusjonsgeometri for Regjeringskvartalet; enkeltbygninger kan ikke brukes som proxy for hele området."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Official plan geometry and deterministic area anchor applied to canonical Regjeringskvartalet."
   },
   "notes": [
-    "Den avgrensede kontrollen ga ikke ett unikt eksakt navngitt fysisk objekt med godkjent objekttype (no_exact_semantic_candidate). Legacy-punktet beholdes kun som uverifisert kartanker; ingen nearest/first-hit-kandidat brukes."
+    "Object-type-first area production: Oslo kommune Planinnsyn exposes one exact current area-plan polygon as S-5100 / PLANID 202020172 in REGTILLEGG WFS. Canonical lat/lon is the deterministic polygon_centroid of the same official polygon (105740 m²). The merged official state source contract documents the same Regjeringskvartalet institutional scope between Akersgata and Møllergata, with Trefoldighetskirken/Deichman in the north, Høyesterett/Grensen 1 in the south and R5 included. Høyblokka, 22. juli-senteret and historical Y-blokka remain separate canonical subplaces; no individual building is used as proxy for the parent area.",
+    "Live geometry maximum drift from merged research: 0.000 m.",
+    "Expected child overlaps: hoyblokka (28.5 m), y_blokka (48.9 m), 22_juli_senteret (78.9 m)."
   ]
 }

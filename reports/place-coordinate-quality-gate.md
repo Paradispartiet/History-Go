@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-24T05:48:08.114Z
+Generert: 2026-07-24T08:12:33.683Z
 
 ## Oppsummering
 - Aktive filer validert: **690**
-- Antall steder validert: **1285**
+- Antall steder validert: **1292**
 - Harde feil: **0**
-- Varsler: **503**
-- Coordinate review candidates: **766** signaler fordelt på **643** steder
+- Varsler: **507**
+- Coordinate review candidates: **770** signaler fordelt på **647** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -996,6 +996,10 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/politikk/oslo/places_politikk.json#hoyesteretts_hus: coordStatus=verified uten coordPrecisionM
 - data/places/politikk/oslo/places_politikk.json#politihuset_gronland: coordStatus=verified uten coordPrecisionM
 - data/places/politikk/oslo/places_politikk.json#folkets_hus_oslo: coordStatus=verified uten coordPrecisionM
+- data/places/politikk/oslo/places_politikk.json#22_juli_senteret: coordStatus=verified uten coordPrecisionM
+- data/places/politikk/oslo/places_politikk.json#victoria_terrasse: coordStatus=verified uten coordPrecisionM
+- data/places/politikk/oslo/places_politikk.json#statsministerboligen: coordStatus=verified uten coordPrecisionM
+- data/places/politikk/oslo/places_politikk.json#hoyres_hus: coordStatus=verified uten coordPrecisionM
 - data/places/popkultur/oslo/places_oslo_populaerkultur.json#cinemateket_oslo: coordStatus=verified uten coordPrecisionM
 - data/places/popkultur/oslo/places_oslo_populaerkultur.json#house_of_nerds: coordStatus=verified uten coordPrecisionM
 - data/places/popkultur/oslo/places_oslo_populaerkultur.json#chateau_neuf: coordStatus=verified uten coordPrecisionM
@@ -1219,13 +1223,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 766 signaler fordelt på 643 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 770 signaler fordelt på 647 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 221 |
+| coordStatus=verified uten coordPrecisionM | 225 |
 | lineært sted uten anchors | 80 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 69 |
 | lav koordinatpresisjon (<4 desimaler) | 74 |
@@ -1235,7 +1239,7 @@ Totalt 766 signaler fordelt på 643 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 9 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (221)
+### coordStatus=verified uten coordPrecisionM (225)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1318,6 +1322,10 @@ Totalt 766 signaler fordelt på 643 steder. Et sted kan ha flere signaler. Kandi
 | hoyesteretts_hus | Høyesteretts hus | politikk | data/places/politikk/oslo/places_politikk.json | 59.914567897676186 | 10.744510031498768 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | politihuset_gronland | Politihuset på Grønland | politikk | data/places/politikk/oslo/places_politikk.json | 59.91076260893923 | 10.770099603960052 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | folkets_hus_oslo | Folkets Hus i Oslo | politikk | data/places/politikk/oslo/places_politikk.json | 59.9148900622556 | 10.750628039496302 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| 22_juli_senteret | 22. juli-senteret | politikk | data/places/politikk/oslo/places_politikk.json | 59.91524358534389 | 10.744760134934927 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| victoria_terrasse | Victoria terrasse | politikk | data/places/politikk/oslo/places_politikk.json | 59.91477868971177 | 10.729192422176304 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| statsministerboligen | Statsministerboligen | politikk | data/places/politikk/oslo/places_politikk.json | 59.91808030407976 | 10.722602475302931 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| hoyres_hus | Høyres Hus | politikk | data/places/politikk/oslo/places_politikk.json | 59.913769172155234 | 10.73493492745129 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | cinemateket_oslo | Cinemateket i Oslo | film_tv | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.90961165359811 | 10.745752189439866 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | house_of_nerds | House of Nerds | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.92186714382747 | 10.75148579082984 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | chateau_neuf | Chateau Neuf | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.93227611011727 | 10.71254747404495 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
