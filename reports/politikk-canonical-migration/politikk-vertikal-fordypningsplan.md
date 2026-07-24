@@ -6,6 +6,8 @@ Revisjon: `politikk-vertical-depth-plan-2026-07-24`
 
 Politikkpensumet skal utvikles fra et bredt statsvitenskapelig fagkart til et vertikalt, progresjonsbasert bachelorpensum. Utvidelsen skal skje i aktive canonical-filer, uten overlay, parallell runtime eller løsrevne teorilister.
 
+**Samlet status:** Alle tre faser er gjennomført. Fase 3 er ferdig materialisert i PR #3686 og avventer bare ordinær Data- og TypeScript-sluttkontroll før merge.
+
 ## Prinsipper
 
 1. Statsvitenskap forblir hoveddisiplin.
@@ -41,11 +43,11 @@ Leveranse:
 - 6 nye institusjonsmetoder
 - 10 nye emnemappinger med to produksjonsbaner hver
 - 10 nye kilde- og metodeforankrede spørsmålsplaner
-- utvidet permanent validator
+- permanent fasevalidator
 
 ## Fase 2 — Politisk teori og ideologier
 
-**Status:** Fullført på arbeidsbranch i PR #3685; ordinær CI er sluttport før merge.
+**Status:** Fullført og merget i PR #3685.
 
 **Formål:** Bygge en eksplisitt normativ og ideologisk akse som skiller empirisk forklaring fra normativ begrunnelse.
 
@@ -72,11 +74,11 @@ Leveranse:
 - generatorkontrakt som forbyr å presentere normative påstander som empiriske fakta
 - permanent fasevalidator
 
-## Fase 3 — Norsk politikk, EU og flernivåstyring
+## Fase 3 — Norsk politikk, EØS/EU og flernivåstyring
 
-**Status:** Neste fase etter at fase 2 er merget og kontrollert på `main`.
+**Status:** Fullført på arbeidsbranch i PR #3686; ordinær CI er sluttport før merge.
 
-**Formål:** Gjøre pensumet direkte anvendelig på norske steder, institusjoner og politiske prosesser.
+**Formål:** Gjøre pensumet direkte anvendelig på norske steder, institusjoner og politiske prosesser, samtidig som norske case kobles til komparative, europeiske og kausale spørsmål.
 
 Temaer:
 
@@ -87,20 +89,37 @@ Temaer:
 - stat–kommune-relasjoner og flernivåstyring
 - Sametinget, urfolkspolitikk og konsultasjonsordninger
 - EØS, EU og europeisk integrasjon
-- internasjonale regler i nasjonal og lokal gjennomføring
+- europeiske regler i nasjonal og lokal gjennomføring
 - norsk utenriks- og sikkerhetspolitikk
 - korporatisme, trepartssamarbeid og organiserte interesser
+- offentlig utredning, høring og lovprosess
+- statsbudsjett, kommunefinansiering og politisk prioritering
 
 Leveranse:
 
-- 12–15 emner og hooks
-- institusjonskart for norsk politikk
-- kobling mellom steder, offentlige dokumenter og komparative spørsmål
-- egne norske progresjons- og casekrav
+- ett nytt statsvitenskapelig kjernedomene
+- 12 nye hooks
+- 12 nye emner i `em_pol_norsk_politikk_*`
+- 6 nye analysemetoder
+- 12 emnemappinger med to produksjonsbaner hver
+- 12 kilde- og metodeforankrede spørsmålsplaner
+- institusjonskart for norsk, samisk, kommunal, organisert og europeisk styring
+- generatorkontrakt for institusjonsnivå, kompetanse, dokumentkjeder, EØS/EU-gjennomføring og flernivåstyring
+- permanent fasevalidator
+
+## Samlet canonical-status etter fase 3
+
+- 13 domener
+- 152 hooks
+- 123 emner
+- 71 metoder
+- 121 mappinger
+- 9 statsvitenskapelige kjernedomener
+- 4 støtte- og brodomener
 
 ## Kvalitetsporter
 
-Hver fase skal bestå:
+Alle faser skal bestå:
 
 - canonical JSON-parsing
 - referanseintegritet mellom fagkart, emner, metoder, mappinger, pensum og generator
@@ -110,6 +129,6 @@ Hver fase skal bestå:
 - TypeScript typecheck og build guard
 - ingen overlay eller midlertidige byggefiler ved merge
 
-## Rekkefølge
+## Avslutning
 
-Fase 1 og fase 2 er gjennomført sekvensielt. Fase 3 starter først etter at fase 2 er merget og sluttkontrollert på `main`, fordi den norske institusjons- og casearkitekturen skal bygge på både institusjons- og teorigrunnlaget.
+Den planlagte vertikale fordypningen er gjennomført sekvensielt. Videre arbeid skal være vedlikehold, kildeoppdatering, caseproduksjon og ekstern faglig evaluering — ikke en ny ukontrollert horisontal utvidelse.
