@@ -1,6 +1,6 @@
 # Oslo People of Places coverage
 
-Generert: 2026-07-24T06:02:15.544Z
+Generert: 2026-07-24T06:24:18.692Z
 
 ## Policy
 
@@ -12,9 +12,9 @@ Generert: 2026-07-24T06:02:15.544Z
 
 - Oslo-steder totalt: **383**
 - Kravpliktige steder utenom natur: **333**
-- Dekket: **142**
-- Uten People: **191**
-- Dekningsgrad: **42.64%**
+- Dekket: **148**
+- Uten People: **185**
+- Dekningsgrad: **44.44%**
 - Natursteder: **50** (46 uten People)
 - Geografikonflikter holdt utenfor Oslo-tellingen: **0**
 - Ugyldige People→place-referanser globalt: **50**
@@ -26,16 +26,16 @@ Generert: 2026-07-24T06:02:15.544Z
 | by | 78 | 40 | 38 | 158 |
 | film_tv | 2 | 2 | 0 | 12 |
 | historie | 66 | 23 | 43 | 134 |
-| kunst | 10 | 4 | 6 | 13 |
-| litteratur | 19 | 15 | 4 | 46 |
+| kunst | 10 | 5 | 5 | 14 |
+| litteratur | 19 | 17 | 2 | 50 |
 | media | 5 | 5 | 0 | 19 |
 | musikk | 9 | 9 | 0 | 16 |
 | naeringsliv | 46 | 6 | 40 | 18 |
 | natur | 50 | 4 | 46 | 11 |
 | politikk | 11 | 8 | 3 | 87 |
-| populaerkultur | 11 | 0 | 11 | 0 |
+| populaerkultur | 11 | 2 | 9 | 2 |
 | psykologi | 1 | 0 | 1 | 0 |
-| scenekunst | 22 | 6 | 16 | 240 |
+| scenekunst | 22 | 7 | 15 | 241 |
 | sport | 1 | 0 | 1 | 0 |
 | subkultur | 33 | 17 | 16 | 31 |
 | vitenskap | 19 | 7 | 12 | 47 |
@@ -125,7 +125,6 @@ Generert: 2026-07-24T06:02:15.544Z
 | historie | `tveten_gard` | Tveten gård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
 | historie | `waisenhuset_kongens_gate` | Waisenhuset | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02.json |
 | historie | `ovre_fossum_gard` | Øvre Fossum gård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
-| kunst | `emanuel_vigeland_mausoleum` | Emanuel Vigelands mausoleum | data/places/kunst/oslo/places_kunst.json |
 | kunst | `framtidsbiblioteket_nordmarka` | Framtidsbiblioteket – Nordmarka | data/places/kunst/oslo/places_kunst.json |
 | kunst | `roseslottet` | Roseslottet | data/places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_06.json |
 | kunst | `skulptursonen_ovre_slottsgate` | Skulptursonen i Øvre Slottsgate | data/places/kunst/oslo/places_kunst_oslo_oppdag_kvadraturen_art_sites_batch_01.json |
@@ -133,8 +132,6 @@ Generert: 2026-07-24T06:02:15.544Z
 | kunst | `villa_romsli` | Villa Romsli | data/places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_06.json |
 | litteratur | `alexander_kiellands_plass` | Alexander Kiellands plass | data/places/litteratur/oslo/places_litteratur.json |
 | litteratur | `honse_lovisas_hus` | Hønse-Lovisas hus | data/places/litteratur/oslo/places_litteratur_oslo_kultureiendommer_batch_05.json |
-| litteratur | `inger_hagerups_plass` | Inger Hagerups plass | data/places/litteratur/oslo/places_litteratur.json |
-| litteratur | `ibsen_quotes` | Sitatgaten – Ibsen-sitatene | data/places/litteratur/oslo/places_litteratur.json |
 | naeringsliv | `oslo_mek` | Akers mekaniske Verksted | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `amerikalinjen` | Amerikalinjen | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_03.json |
 | naeringsliv | `akershus_slott_bakeriet` | Bakeriet ved Akershus | data/places/naeringsliv/oslo/places_naeringsliv.json |
@@ -178,13 +175,11 @@ Generert: 2026-07-24T06:02:15.544Z
 | politikk | `hoyesteretts_hus` | Høyesteretts hus | data/places/politikk/oslo/places_politikk.json |
 | politikk | `tinghuset` | Oslo tinghus | data/places/politikk/oslo/places_politikk.json |
 | politikk | `politihuset_gronland` | Politihuset på Grønland | data/places/politikk/oslo/places_politikk.json |
-| populaerkultur | `bla_skilt_aud_schonemann_vetlandsveien_69d` | Blått skilt: Aud Schønemann | data/places/popkultur/oslo/places_populaerkultur_oslo_bla_skilt_2026_batch_01.json |
 | populaerkultur | `chateau_neuf` | Chateau Neuf | data/places/popkultur/oslo/places_oslo_populaerkultur.json |
 | populaerkultur | `frognerstranda` | Frognerstranda | data/places/popkultur/oslo/places_oslo_populaerkultur.json |
 | populaerkultur | `gimle_kino` | Gimle kino | data/places/film/oslo/places_oslo_film.json |
 | populaerkultur | `grand_hotel` | Grand Hotel | data/places/popkultur/oslo/places_oslo_populaerkultur.json |
 | populaerkultur | `hartvig_nissens_skole_skam` | Hartvig Nissens skole (SKAM) | data/places/film/oslo/places_oslo_film.json |
-| populaerkultur | `house_of_nerds` | House of Nerds | data/places/popkultur/oslo/places_oslo_populaerkultur.json |
 | populaerkultur | `klingenberg_kino` | Klingenberg kino | data/places/film/oslo/places_oslo_film.json |
 | populaerkultur | `saga_kino` | Saga kino | data/places/film/oslo/places_oslo_film.json |
 | populaerkultur | `slottsplassen` | Slottsplassen | data/places/popkultur/oslo/places_oslo_populaerkultur.json |
@@ -198,7 +193,6 @@ Generert: 2026-07-24T06:02:15.544Z
 | scenekunst | `dramatikkens_hus` | Dramatikkens hus | data/places/scenekunst/oslo/dramatikkens_hus.json |
 | scenekunst | `grusomhetens_teater` | Grusomhetens Teater | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `kloden_teater_pilotscenen` | Kloden teater – Pilotscenen | data/places/scenekunst/oslo/places_scenekunst.json |
-| scenekunst | `latter` | Latter | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `nordic_black_theatre_cafeteatret` | Nordic Black Theatre / Cafeteatret | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `oslo_nye_teater_hovedscenen` | Oslo Nye Teater – Hovedscenen | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `riksscenen` | Riksscenen | data/places/scenekunst/oslo/places_scenekunst.json |
