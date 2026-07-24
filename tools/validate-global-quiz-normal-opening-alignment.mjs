@@ -70,9 +70,9 @@ ok(openingSets.length === 2, 'Deichman har to åpningssett');
 ok(openingSets.every((set) => set.questions.length === 7), 'Deichman har sju spørsmål i begge åpningssett');
 const deichmanQ5 = openingSets[0].questions.find((question) => question.quiz_id === 'by_deichman_bjorvika_set_1_q5');
 ok(deichmanQ5?.question_type === 'context', 'Deichmans tidligere begrepsspørsmål er et normalt kontekstspørsmål');
-ok(deichmanQ5?.question === 'Hva tilbyr Deichman som gjør biblioteket til et møtested for mange grupper?', 'Deichman-spørsmålet har direkte normalquizform');
+ok(deichmanQ5?.question === 'Hvorfor er Deichman et møtested for mange grupper?', 'Deichman-spørsmålet har direkte normalquizform');
 ok(Array.isArray(deichmanQ5?.source) && deichmanQ5.source.length > 0, 'Deichman-spørsmålet har ekstern kilde');
-ok(Boolean(deichmanQ5?.claim_basis), 'Deichman-spørsmålet har eksplisitt claim basis');
+ok(!Object.prototype.hasOwnProperty.call(deichmanQ5, 'claim_basis'), 'Deichman-spørsmålet arver godkjent claim basis fra kildegrunnlaget');
 
 run('node', ['scripts/audit-quiz-template-governance.mjs']);
 run('node', ['scripts/audit-quiz-progression.mjs']);
