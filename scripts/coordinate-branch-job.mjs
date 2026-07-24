@@ -6,6 +6,7 @@ const reportRel = 'reports/oslo-coordinate-bla-research-post-195';
 const reportDir = path.join(root, reportRel);
 const placeRel = 'data/places/subkultur/oslo/places_subkultur/bla.json';
 const protocolRel = 'docs/coordinates/coordinate-control-protocol.md';
+const osmNodeId = 4312299494;
 
 const assert = (condition, message) => { if (!condition) throw new Error(message); };
 const readText = async (rel) => fs.readFile(path.join(root, rel), 'utf8');
@@ -44,7 +45,6 @@ const addressText = (record) => {
   const address = record?.forretningsadresse ?? record?.beliggenhetsadresse ?? record?.postadresse ?? {};
   return [...(address.adresse ?? []), address.postnummer, address.poststed].filter(Boolean).join(' ');
 };
-const osmSourceId = (candidate) => `osm-${candidate.osm_type}:${candidate.osm_id}`;
 
 await fs.mkdir(reportDir, { recursive: true });
 
@@ -66,19 +66,20 @@ const urls = {
   brregSubunit: 'https://data.brreg.no/enhetsregisteret/api/underenheter/979197071',
   geonorgeStructured: 'https://ws.geonorge.no/adresser/v1/sok?adressenavn=Brenneriveien&nummer=9&bokstav=C&kommunenummer=0301&treffPerSide=20',
   geonorgeBroad: 'https://ws.geonorge.no/adresser/v1/sok?sok=Brenneriveien%209%20Oslo&treffPerSide=50',
-  nominatim: 'https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&extratags=1&namedetails=1&limit=10&q=Bl%C3%A5%20Brenneriveien%209C%20Oslo',
+  osmApi: `https://api.openstreetmap.org/api/0.6/node/${osmNodeId}.json`,
+  osmPage: `https://www.openstreetmap.org/node/${osmNodeId}`,
   wikidataApi: 'https://www.wikidata.org/wiki/Special:EntityData/Q2907430.json',
   wikidataPage: 'https://www.wikidata.org/wiki/Q2907430',
 };
 
-const [officialContactHtml, officialAboutHtml, brregMain, brregSubunit, geonorgeStructured, geonorgeBroad, nominatim, wikidata] = await Promise.all([
+const [officialContactHtml, officialAboutHtml, brregMain, brregSubunit, geonorgeStructured, geonorgeBroad, osm, wikidata] = await Promise.all([
   fetchText(urls.officialContact, 'text/html,*/*;q=0.8'),
   fetchText(urls.officialAbout, 'text/html,*/*;q=0.8'),
   fetchJson(urls.brregMain),
   fetchJson(urls.brregSubunit),
   fetchJson(urls.geonorgeStructured),
   fetchJson(urls.geonorgeBroad),
-  fetchJson(urls.nominatim),
+  fetchJson(urls.osmApi),
   fetchJson(urls.wikidataApi),
 ]);
 
@@ -91,44 +92,14 @@ assert(normalize(addressText(brregMain)).includes('brenneriveien 9 c 0182 oslo')
 assert(brregSubunit.organisasjonsnummer === '979197071', 'Unexpected Brenneriveien Jazzhus subunit identity.');
 assert(normalize(addressText(brregSubunit)).includes('brenneriveien 9 c 0182 oslo'), 'Brønnøysund subunit no longer resolves to Brenneriveien 9 C, 0182 Oslo.');
 
-const geonorgeRows = [...(geonorgeStructured.adresser ?? []), ...(geonorgeBroad.adresser ?? [])];
-const nearbyAddressRows = geonorgeRows.filter((entry) => {
-  const text = normalize(`${entry.adressetekst ?? ''} ${entry.adressenavn ?? ''} ${entry.nummer ?? ''}${entry.bokstav ?? ''}`);
-  return text.includes('brenneriveien') && (Number(entry.nummer) === 9 || text.includes('brenneriveien 9'));
-});
-const geonorgeCandidates = nearbyAddressRows.map((entry) => ({
-  addressText: entry.adressetekst ?? null,
-  number: entry.nummer ?? null,
-  letter: entry.bokstav ?? null,
-  postcode: entry.postnummer ?? null,
-  municipality: entry.kommunenummer ?? entry.kommune?.kommunenummer ?? null,
-  lat: Number(entry.representasjonspunkt?.lat),
-  lon: Number(entry.representasjonspunkt?.lon),
-})).filter((entry) => Number.isFinite(entry.lat) && Number.isFinite(entry.lon));
-
-assert(Array.isArray(nominatim) && nominatim.length > 0, 'Nominatim returned no Blå candidates.');
-const rankedOsm = nominatim.map((candidate) => {
-  const name = normalize(candidate.namedetails?.name ?? candidate.name ?? candidate.display_name);
-  const road = normalize(candidate.address?.road ?? candidate.display_name);
-  const houseNumber = normalize(candidate.address?.house_number ?? candidate.display_name);
-  const wikidataId = candidate.extratags?.wikidata ?? null;
-  let score = 0;
-  if (wikidataId === 'Q2907430') score += 100;
-  if (name === 'bla' || name.startsWith('bla ')) score += 55;
-  if (road.includes('brenneriveien')) score += 30;
-  if (houseNumber.includes('9c') || houseNumber.includes('9 c')) score += 20;
-  if (['music_venue', 'nightclub', 'bar', 'arts_centre'].includes(candidate.type)) score += 10;
-  return { candidate, score, name, road, houseNumber, wikidataId };
-}).sort((a, b) => b.score - a.score || Number(a.candidate.place_rank ?? 99) - Number(b.candidate.place_rank ?? 99));
-const selectedOsm = rankedOsm[0];
-assert(selectedOsm.score >= 85, `Best OSM venue candidate scored only ${selectedOsm.score}.`);
-assert(['node', 'way', 'relation'].includes(selectedOsm.candidate.osm_type), 'OSM candidate has unsupported object type.');
-const osmApiUrl = selectedOsm.candidate.osm_type === 'node'
-  ? `https://api.openstreetmap.org/api/0.6/node/${selectedOsm.candidate.osm_id}.json`
-  : `https://api.openstreetmap.org/api/0.6/${selectedOsm.candidate.osm_type}/${selectedOsm.candidate.osm_id}/full.json`;
-const osmObject = await fetchJson(osmApiUrl);
-const osmCoordinate = { lat: Number(selectedOsm.candidate.lat), lon: Number(selectedOsm.candidate.lon) };
-assert(Number.isFinite(osmCoordinate.lat) && Number.isFinite(osmCoordinate.lon), 'Selected OSM venue candidate lacks a representative coordinate.');
+const node = osm.elements?.find((entry) => entry.type === 'node' && entry.id === osmNodeId);
+assert(node, `OSM node ${osmNodeId} was not returned.`);
+const tags = node.tags ?? {};
+assert(normalize(tags.name) === 'bla', 'OSM node no longer has the venue name Blå.');
+assert(tags.amenity === 'nightclub' || tags.amenity === 'music_venue', 'OSM node no longer represents a music/nightlife venue.');
+assert(tags.wikidata === 'Q2907430', 'OSM node no longer links Wikidata Q2907430.');
+const osmCoordinate = { lat: Number(node.lat), lon: Number(node.lon) };
+assert(Number.isFinite(osmCoordinate.lat) && Number.isFinite(osmCoordinate.lon), 'OSM venue point lacks coordinates.');
 
 const entity = wikidata.entities?.Q2907430;
 assert(entity, 'Wikidata Q2907430 was not returned.');
@@ -139,20 +110,29 @@ assert(coordinateClaim, 'Wikidata Blå coordinate claim is missing.');
 const wikidataCoordinate = { lat: Number(coordinateClaim.latitude), lon: Number(coordinateClaim.longitude) };
 const osmToWikidataMeters = distanceMeters(osmCoordinate, wikidataCoordinate);
 assert(osmToWikidataMeters < 100, `OSM and Wikidata venue points disagree by ${osmToWikidataMeters.toFixed(1)} m.`);
-const osmClaimMatches = entity.claims?.P11693?.some((claim) => String(claim.mainsnak?.datavalue?.value) === String(selectedOsm.candidate.osm_id)) ?? false;
+const osmClaimMatches = entity.claims?.P11693?.some((claim) => String(claim.mainsnak?.datavalue?.value) === String(osmNodeId)) ?? false;
 
-const geonorgeDistances = geonorgeCandidates.map((candidate) => ({
-  ...candidate,
-  distanceToOsmMeters: Number(distanceMeters(candidate, osmCoordinate).toFixed(1)),
-})).sort((a, b) => a.distanceToOsmMeters - b.distanceToOsmMeters);
-const nearestGeonorge = geonorgeDistances[0] ?? null;
+const geonorgeRows = [...(geonorgeStructured.adresser ?? []), ...(geonorgeBroad.adresser ?? [])];
+const geonorgeCandidates = geonorgeRows.map((entry) => ({
+  addressText: entry.adressetekst ?? null,
+  number: entry.nummer ?? null,
+  letter: entry.bokstav ?? null,
+  postcode: entry.postnummer ?? null,
+  municipality: entry.kommunenummer ?? entry.kommune?.kommunenummer ?? null,
+  lat: Number(entry.representasjonspunkt?.lat),
+  lon: Number(entry.representasjonspunkt?.lon),
+})).filter((entry) => Number.isFinite(entry.lat) && Number.isFinite(entry.lon))
+  .filter((entry) => normalize(entry.addressText).includes('brenneriveien') && (Number(entry.number) === 9 || normalize(entry.addressText).includes('brenneriveien 9')))
+  .map((entry) => ({ ...entry, distanceToOsmMeters: Number(distanceMeters(entry, osmCoordinate).toFixed(1)) }))
+  .sort((a, b) => a.distanceToOsmMeters - b.distanceToOsmMeters);
+const nearestGeonorge = geonorgeCandidates[0] ?? null;
 assert(!nearestGeonorge || nearestGeonorge.distanceToOsmMeters < 250, `Nearest Kartverket Brenneriveien 9 address is ${nearestGeonorge.distanceToOsmMeters} m from the venue.`);
 
 const currentCoordinate = { lat: Number(place.lat), lon: Number(place.lon) };
 const displacementMeters = distanceMeters(currentCoordinate, osmCoordinate);
 assert(displacementMeters > 3, 'Current marker already coincides with the exact venue point; manual status-only review required.');
 
-const sourceObjectId = osmSourceId(selectedOsm.candidate);
+const sourceObjectId = `osm-node:${osmNodeId}`;
 const summary = {
   version: '2026-07-24',
   protocolMaxBatch,
@@ -168,9 +148,9 @@ const summary = {
     lon: osmCoordinate.lon,
     sourceProvider: 'osm',
     sourceObjectId,
-    sourceUrl: `https://www.openstreetmap.org/${selectedOsm.candidate.osm_type}/${selectedOsm.candidate.osm_id}`,
-    objectType: selectedOsm.candidate.type ?? selectedOsm.candidate.category ?? 'venue',
-    wikidata: selectedOsm.wikidataId,
+    sourceUrl: urls.osmPage,
+    objectType: tags.amenity,
+    wikidata: tags.wikidata,
   },
   displacementMeters: Number(displacementMeters.toFixed(1)),
   officialAddress: {
@@ -188,12 +168,10 @@ const summary = {
   },
   osmVenue: {
     sourceObjectId,
-    sourceUrl: `https://www.openstreetmap.org/${selectedOsm.candidate.osm_type}/${selectedOsm.candidate.osm_id}`,
+    sourceUrl: urls.osmPage,
     coordinate: osmCoordinate,
-    selectedScore: selectedOsm.score,
-    wikidata: selectedOsm.wikidataId,
-    type: selectedOsm.candidate.type ?? null,
-    category: selectedOsm.candidate.category ?? null,
+    amenity: tags.amenity,
+    wikidata: tags.wikidata,
   },
   wikidata: {
     sourceObjectId: 'wikidata:Q2907430',
@@ -207,6 +185,7 @@ const summary = {
     brregMainUnitIdentityAndAddress: true,
     brregSubunitIdentityAndAddress: true,
     osmExactNamedVenue: true,
+    osmWikidataDirectLink: true,
     wikidataIdentityAndCoordinateAgreement: true,
     geonorgeAddressContextReviewed: true,
   },
@@ -225,11 +204,10 @@ await fs.writeFile(path.join(reportDir, 'brreg-main-979194803.json'), `${JSON.st
 await fs.writeFile(path.join(reportDir, 'brreg-subunit-979197071.json'), `${JSON.stringify(brregSubunit, null, 2)}\n`);
 await fs.writeFile(path.join(reportDir, 'geonorge-structured.json'), `${JSON.stringify(geonorgeStructured, null, 2)}\n`);
 await fs.writeFile(path.join(reportDir, 'geonorge-broad.json'), `${JSON.stringify(geonorgeBroad, null, 2)}\n`);
-await fs.writeFile(path.join(reportDir, 'nominatim-bla.json'), `${JSON.stringify(nominatim, null, 2)}\n`);
-await fs.writeFile(path.join(reportDir, `${selectedOsm.candidate.osm_type}-${selectedOsm.candidate.osm_id}.json`), `${JSON.stringify(osmObject, null, 2)}\n`);
+await fs.writeFile(path.join(reportDir, `osm-node-${osmNodeId}.json`), `${JSON.stringify(osm, null, 2)}\n`);
 await fs.writeFile(path.join(reportDir, 'wikidata-Q2907430.json'), `${JSON.stringify(wikidata, null, 2)}\n`);
 await fs.writeFile(path.join(reportDir, 'summary.json'), `${JSON.stringify(summary, null, 2)}\n`);
-await fs.writeFile(path.join(reportDir, 'README.md'), `# Blå coordinate research after post-195 closure\n\n- Canonical data changed: **no**\n- Protocol max batch: **${protocolMaxBatch}**\n- Identity: **Blå, Brenneriveien 9 C**\n- Current marker: **${currentCoordinate.lat}, ${currentCoordinate.lon}**\n- Exact named OSM venue point: **${osmCoordinate.lat}, ${osmCoordinate.lon}**\n- Displacement: **${summary.displacementMeters} m**\n- OSM venue object: **${sourceObjectId}**\n- Wikidata object: **Q2907430**\n- OSM/Wikidata agreement: **${summary.wikidata.osmAgreementMeters} m**\n- Dedicated Kartverket 9C point: **${summary.geonorgeAddressContext.dedicated9cPointFound ? 'yes' : 'no'}**\n- Recommendation: **promote_exact_named_venue_point**\n\nBLÅ's official pages and Brenneriveien Jazzhus' main and operating units independently resolve the venue to Brenneriveien 9 C. Kartverket does not have to be forced into a dedicated 9C point: the exact named OSM venue object, cross-checked with Wikidata Q2907430, is the proposed coordinate source. No batch 196 is created.\n`);
+await fs.writeFile(path.join(reportDir, 'README.md'), `# Blå coordinate research after post-195 closure\n\n- Canonical data changed: **no**\n- Protocol max batch: **${protocolMaxBatch}**\n- Identity: **Blå, Brenneriveien 9 C**\n- Current marker: **${currentCoordinate.lat}, ${currentCoordinate.lon}**\n- Exact named OSM venue point: **${osmCoordinate.lat}, ${osmCoordinate.lon}**\n- Displacement: **${summary.displacementMeters} m**\n- OSM venue object: **${sourceObjectId}**\n- Wikidata object: **Q2907430**\n- OSM/Wikidata agreement: **${summary.wikidata.osmAgreementMeters} m**\n- Dedicated Kartverket 9C point: **${summary.geonorgeAddressContext.dedicated9cPointFound ? 'yes' : 'no'}**\n- Recommendation: **promote_exact_named_venue_point**\n\nBLÅ's official pages and Brenneriveien Jazzhus' main and operating units independently resolve the venue to Brenneriveien 9 C. The exact OSM node names Blå, classifies it as a nightlife venue and directly links Wikidata Q2907430. Kartverket address context is preserved without inventing a dedicated 9C point. No batch 196 is created.\n`);
 
 console.log(JSON.stringify({
   status: 'bla_research_complete',
