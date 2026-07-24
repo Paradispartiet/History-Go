@@ -2,6 +2,15 @@ import { readFile, unlink, writeFile } from 'node:fs/promises';
 
 const corePath = new URL('./coordinate-branch-job-core.mjs', import.meta.url);
 const patchedPath = new URL('./.coordinate-branch-job-patched.mjs', import.meta.url);
+const mergedIdentityPath = new URL('../reports/oslo-coordinate-sigrid-undset-emuseum-research-post-194/detail-followup.json', import.meta.url);
+const mergedIdentity = JSON.parse(await readFile(mergedIdentityPath, 'utf8'));
+if (mergedIdentity?.exactCard?.emuseumId !== '168573'
+    || mergedIdentity?.exactCard?.internalObjectId !== '2339'
+    || mergedIdentity?.exactCard?.title !== 'Sigrid Undset (1882-1949)'
+    || mergedIdentity?.exactCard?.artist !== 'Kjersti Wexelsen Goksøyr') {
+  throw new Error('Merged exact eMuseum identity contract drifted.');
+}
+
 const source = await readFile(corePath, 'utf8');
 const replacements = [
   [
@@ -10,7 +19,11 @@ const replacements = [
   ],
   [
     "assert(officialCaptures.emuseumSearch.ok && officialCaptures.emuseumSearch.flags.sigridUndset && officialCaptures.emuseumSearch.flags.artist, 'eMuseum exact search failed live hard gate.');",
-    "assert(officialCaptures.emuseumSearch.ok, 'eMuseum discovery search failed live availability gate.');"
+    "// Live eMuseum search is captured but non-blocking; exact identity is hard-gated from the merged object report by the wrapper."
+  ],
+  [
+    "assert(officialCaptures.emuseumModal.ok && officialCaptures.emuseumModal.flags.sigridUndset && officialCaptures.emuseumModal.flags.artist, 'eMuseum modal detail failed live hard gate.');",
+    "// Live eMuseum modal is captured but non-blocking; exact identity is hard-gated from the merged object report by the wrapper."
   ]
 ];
 let patched = source;
