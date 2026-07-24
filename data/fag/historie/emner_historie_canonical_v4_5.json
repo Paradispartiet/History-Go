@@ -1546,10 +1546,10 @@
       "samtid vs ettertid"
     ],
     "canonical_thinkers": [
-      "Leopold von Ranke",
-      "E.H. Carr",
-      "Marc Bloch",
-      "Knut Kjeldstadli"
+      "Michel Foucault",
+      "Ann Laura Stoler",
+      "Achille Mbembe",
+      "Arlette Farge"
     ],
     "related_emner": [
       "em_his_kildekritikk_arkiv_spor",
@@ -1612,25 +1612,23 @@
       "Generisk moraliserende spørsmål uten stedlig anker"
     ],
     "scope_guard": "Bruk bare når det finnes dokumenterbar historisk kobling gjennom kilde, sted, hendelse, person eller synlig spor.",
-    "mapping_count": 0,
-    "mapping_pressure": "pending_mapping",
+    "mapping_count": 2,
+    "mapping_pressure": "mapped",
     "generator_use_note": "Start fra ekstern lokalhistorisk kilde eller synlig stedlig spor. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
     "canonical_thinker_ids": [
-      "leopold_von_ranke",
-      "e_h_carr",
-      "marc_bloch",
-      "knut_kjeldstadli"
+      "michel_foucault",
+      "ann_laura_stoler",
+      "achille_mbembe",
+      "arlette_farge"
     ],
-    "norwegian_thinker_ids": [
-      "knut_kjeldstadli"
-    ],
-    "norwegian_thinkers": [
-      "Knut Kjeldstadli"
-    ],
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
     "primary_theory_hooks": [
-      "his_kildekritikk"
+      "his_arkiv_makt_orden"
     ],
-    "secondary_theory_hooks": [],
+    "secondary_theory_hooks": [
+      "his_digitale_kilder"
+    ],
     "reserve_theory_hooks": [],
     "theory_diversity_score": 4,
     "has_norwegian_theory_path": true,
@@ -1638,15 +1636,15 @@
     "theory_progression_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
     "theory_overreach_risk": "medium",
     "method_ids": [
-      "met_kildekritikk",
       "met_arkivlesning",
-      "met_sporlesning"
+      "met_proveniensanalyse",
+      "met_kildekritikk"
     ],
     "recommended_oslo_cases": [
-      "Gamle Deichman på Hammersborg",
       "Riksarkivet",
       "Oslo byarkiv",
-      "Vår Frelsers gravlund"
+      "Stortinget",
+      "Møllergata 19"
     ],
     "overlap_risk": "medium",
     "distinguish_from_emner": [
@@ -1679,10 +1677,12 @@
     "generator_constraints": {
       "min_case_count": 2,
       "min_method_count": 1,
-      "max_primary_hooks": 3,
+      "max_primary_hooks": 2,
       "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
+      "require_external_claim_basis": true,
+      "require_source_object": true,
+      "require_critical_distinction": true
     },
     "anti_patterns": [
       "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
@@ -1690,10 +1690,26 @@
       "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
     ],
     "recommended_methods": [
-      "met_kildekritikk",
       "met_arkivlesning",
-      "met_sporlesning"
-    ]
+      "met_proveniensanalyse",
+      "met_kildekritikk"
+    ],
+    "source_object_required": true,
+    "claim_basis_required": true,
+    "critical_distinction_required": true,
+    "source_method_profile": {
+      "source_object": "Konkret dokument, spor, bilde, intervju, serie eller digitalt objekt.",
+      "claim_basis": "Presis historisk påstand som kilden faktisk kan bære.",
+      "production_context": "Hvem skapte kilden, når, for hvem og med hvilket formål.",
+      "limitation": "Hva kilden ikke kan avgjøre alene.",
+      "corroboration": "Minst én uavhengig kilde eller dokumentert kildeknapphet.",
+      "critical_distinctions": [
+        "arkivskaper vs arkivinstitusjon",
+        "registrering vs virkelighet",
+        "bevaring vs representativitet",
+        "tilgang vs fravær"
+      ]
+    }
   },
   {
     "emne_id": "em_his_kildekritikk_arkiv_spor",
@@ -1792,9 +1808,9 @@
       "samtid vs ettertid"
     ],
     "canonical_thinkers": [
-      "Leopold von Ranke",
-      "E.H. Carr",
       "Marc Bloch",
+      "E. H. Carr",
+      "Leopold von Ranke",
       "Knut Kjeldstadli"
     ],
     "related_emner": [
@@ -1840,7 +1856,7 @@
       "minnested",
       "kulturmiljo"
     ],
-    "opening_use_ok": true,
+    "opening_use_ok": false,
     "bridge_use_ok": true,
     "late_use_ok": true,
     "recommended_set_phases": [
@@ -1858,13 +1874,13 @@
       "Generisk moraliserende spørsmål uten stedlig anker"
     ],
     "scope_guard": "Bruk bare når det finnes dokumenterbar historisk kobling gjennom kilde, sted, hendelse, person eller synlig spor.",
-    "mapping_count": 0,
-    "mapping_pressure": "pending_mapping",
+    "mapping_count": 2,
+    "mapping_pressure": "mapped",
     "generator_use_note": "Start fra ekstern lokalhistorisk kilde eller synlig stedlig spor. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
     "canonical_thinker_ids": [
-      "leopold_von_ranke",
-      "e_h_carr",
       "marc_bloch",
+      "e_h_carr",
+      "leopold_von_ranke",
       "knut_kjeldstadli"
     ],
     "norwegian_thinker_ids": [
@@ -1876,7 +1892,9 @@
     "primary_theory_hooks": [
       "his_kildekritikk"
     ],
-    "secondary_theory_hooks": [],
+    "secondary_theory_hooks": [
+      "his_arkiv_makt_orden"
+    ],
     "reserve_theory_hooks": [],
     "theory_diversity_score": 4,
     "has_norwegian_theory_path": true,
@@ -1885,14 +1903,14 @@
     "theory_overreach_risk": "medium",
     "method_ids": [
       "met_kildekritikk",
-      "met_arkivlesning",
-      "met_sporlesning"
+      "met_proveniensanalyse",
+      "met_komparativ_historie"
     ],
     "recommended_oslo_cases": [
-      "Gamle Deichman på Hammersborg",
       "Riksarkivet",
       "Oslo byarkiv",
-      "Vår Frelsers gravlund"
+      "Gamle Deichman på Hammersborg",
+      "Møllergata 19"
     ],
     "overlap_risk": "medium",
     "distinguish_from_emner": [
@@ -1925,10 +1943,12 @@
     "generator_constraints": {
       "min_case_count": 2,
       "min_method_count": 1,
-      "max_primary_hooks": 3,
+      "max_primary_hooks": 2,
       "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
+      "require_external_claim_basis": true,
+      "require_source_object": true,
+      "require_critical_distinction": true
     },
     "anti_patterns": [
       "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
@@ -1937,9 +1957,25 @@
     ],
     "recommended_methods": [
       "met_kildekritikk",
-      "met_arkivlesning",
-      "met_sporlesning"
-    ]
+      "met_proveniensanalyse",
+      "met_komparativ_historie"
+    ],
+    "source_object_required": true,
+    "claim_basis_required": true,
+    "critical_distinction_required": true,
+    "source_method_profile": {
+      "source_object": "Konkret dokument, spor, bilde, intervju, serie eller digitalt objekt.",
+      "claim_basis": "Presis historisk påstand som kilden faktisk kan bære.",
+      "production_context": "Hvem skapte kilden, når, for hvem og med hvilket formål.",
+      "limitation": "Hva kilden ikke kan avgjøre alene.",
+      "corroboration": "Minst én uavhengig kilde eller dokumentert kildeknapphet.",
+      "critical_distinctions": [
+        "opphav vs senere bruk",
+        "samtidskilde vs ettertidskilde",
+        "levning vs beretning",
+        "troverdighet vs representativitet"
+      ]
+    }
   },
   {
     "emne_id": "em_his_kilder_taushet_blindsoner",
@@ -2038,10 +2074,10 @@
       "samtid vs ettertid"
     ],
     "canonical_thinkers": [
-      "Leopold von Ranke",
-      "E.H. Carr",
-      "Marc Bloch",
-      "Knut Kjeldstadli"
+      "Michel-Rolph Trouillot",
+      "Ann Laura Stoler",
+      "Arlette Farge",
+      "Alessandro Portelli"
     ],
     "related_emner": [
       "em_his_kildekritikk_arkiv_spor",
@@ -2104,25 +2140,23 @@
       "Generisk moraliserende spørsmål uten stedlig anker"
     ],
     "scope_guard": "Bruk bare når det finnes dokumenterbar historisk kobling gjennom kilde, sted, hendelse, person eller synlig spor.",
-    "mapping_count": 0,
-    "mapping_pressure": "pending_mapping",
+    "mapping_count": 2,
+    "mapping_pressure": "mapped",
     "generator_use_note": "Start fra ekstern lokalhistorisk kilde eller synlig stedlig spor. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
     "canonical_thinker_ids": [
-      "leopold_von_ranke",
-      "e_h_carr",
-      "marc_bloch",
-      "knut_kjeldstadli"
+      "michel_rolph_trouillot",
+      "ann_laura_stoler",
+      "arlette_farge",
+      "alessandro_portelli"
     ],
-    "norwegian_thinker_ids": [
-      "knut_kjeldstadli"
-    ],
-    "norwegian_thinkers": [
-      "Knut Kjeldstadli"
-    ],
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
     "primary_theory_hooks": [
-      "his_kildekritikk"
+      "his_taushet_fravaer"
     ],
-    "secondary_theory_hooks": [],
+    "secondary_theory_hooks": [
+      "his_muntlige_kilder"
+    ],
     "reserve_theory_hooks": [],
     "theory_diversity_score": 4,
     "has_norwegian_theory_path": true,
@@ -2132,12 +2166,12 @@
     "method_ids": [
       "met_kildekritikk",
       "met_arkivlesning",
-      "met_sporlesning"
+      "met_muntlig_historie"
     ],
     "recommended_oslo_cases": [
-      "Gamle Deichman på Hammersborg",
-      "Riksarkivet",
-      "Oslo byarkiv",
+      "Jødisk museum",
+      "Villa Grande",
+      "Grønland",
       "Vår Frelsers gravlund"
     ],
     "overlap_risk": "medium",
@@ -2171,10 +2205,12 @@
     "generator_constraints": {
       "min_case_count": 2,
       "min_method_count": 1,
-      "max_primary_hooks": 3,
-      "risk_mode": "strict",
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
+      "require_external_claim_basis": true,
+      "require_source_object": true,
+      "require_critical_distinction": true
     },
     "anti_patterns": [
       "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
@@ -2184,8 +2220,24 @@
     "recommended_methods": [
       "met_kildekritikk",
       "met_arkivlesning",
-      "met_sporlesning"
-    ]
+      "met_muntlig_historie"
+    ],
+    "source_object_required": true,
+    "claim_basis_required": true,
+    "critical_distinction_required": true,
+    "source_method_profile": {
+      "source_object": "Konkret dokument, spor, bilde, intervju, serie eller digitalt objekt.",
+      "claim_basis": "Presis historisk påstand som kilden faktisk kan bære.",
+      "production_context": "Hvem skapte kilden, når, for hvem og med hvilket formål.",
+      "limitation": "Hva kilden ikke kan avgjøre alene.",
+      "corroboration": "Minst én uavhengig kilde eller dokumentert kildeknapphet.",
+      "critical_distinctions": [
+        "manglende kilde vs dokumentert fravær",
+        "taushet vs glemsel",
+        "underregistrering vs ikke-forekomst",
+        "arkivblindhet vs historisk usynlighet"
+      ]
+    }
   },
   {
     "emne_id": "em_his_ruiner_rester_ombruk",
@@ -2283,9 +2335,10 @@
       "samtid vs ettertid"
     ],
     "canonical_thinkers": [
-      "Michel Foucault",
+      "Carlo Ginzburg",
+      "Marc Bloch",
       "Arlette Farge",
-      "Michel-Rolph Trouillot"
+      "Knut Kjeldstadli"
     ],
     "related_emner": [
       "em_his_kildekritikk_arkiv_spor",
@@ -2340,7 +2393,7 @@
     ],
     "requires_history_anchor": true,
     "requires_visible_trace": true,
-    "question_surface_mode": "visible-trace-first",
+    "question_surface_mode": "source-first",
     "avoid_surface_forms": [
       "Hvilken teoretiker passer best",
       "Hva sier dette generelt om historie",
@@ -2348,20 +2401,27 @@
       "Generisk moraliserende spørsmål uten stedlig anker"
     ],
     "scope_guard": "Bruk bare når det finnes dokumenterbar historisk kobling gjennom kilde, sted, hendelse, person eller synlig spor.",
-    "mapping_count": 0,
-    "mapping_pressure": "pending_mapping",
+    "mapping_count": 2,
+    "mapping_pressure": "mapped",
     "generator_use_note": "Start fra ekstern lokalhistorisk kilde eller synlig stedlig spor. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
     "canonical_thinker_ids": [
-      "michel_foucault",
+      "carlo_ginzburg",
+      "marc_bloch",
       "arlette_farge",
-      "michel_rolph_trouillot"
+      "knut_kjeldstadli"
     ],
-    "norwegian_thinker_ids": [],
-    "norwegian_thinkers": [],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli"
+    ],
     "primary_theory_hooks": [
       "his_spor_materialitet"
     ],
-    "secondary_theory_hooks": [],
+    "secondary_theory_hooks": [
+      "his_taushet_fravaer"
+    ],
     "reserve_theory_hooks": [],
     "theory_diversity_score": 3,
     "has_norwegian_theory_path": false,
@@ -2370,14 +2430,14 @@
     "theory_overreach_risk": "medium",
     "method_ids": [
       "met_sporlesning",
-      "met_arkivlesning",
-      "met_kildekritikk"
+      "met_proveniensanalyse",
+      "met_for_etter_historisk"
     ],
     "recommended_oslo_cases": [
       "Hovedøya kloster",
       "Gamle Aker kirke",
-      "Middelalderbyen Oslo",
-      "Møllergata 19"
+      "Akershus festning",
+      "Vår Frelsers gravlund"
     ],
     "overlap_risk": "medium",
     "distinguish_from_emner": [
@@ -2410,10 +2470,12 @@
     "generator_constraints": {
       "min_case_count": 2,
       "min_method_count": 1,
-      "max_primary_hooks": 3,
+      "max_primary_hooks": 2,
       "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
+      "require_external_claim_basis": true,
+      "require_source_object": true,
+      "require_critical_distinction": true
     },
     "anti_patterns": [
       "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
@@ -2422,9 +2484,25 @@
     ],
     "recommended_methods": [
       "met_sporlesning",
-      "met_arkivlesning",
-      "met_kildekritikk"
-    ]
+      "met_proveniensanalyse",
+      "met_for_etter_historisk"
+    ],
+    "source_object_required": true,
+    "claim_basis_required": true,
+    "critical_distinction_required": true,
+    "source_method_profile": {
+      "source_object": "Konkret dokument, spor, bilde, intervju, serie eller digitalt objekt.",
+      "claim_basis": "Presis historisk påstand som kilden faktisk kan bære.",
+      "production_context": "Hvem skapte kilden, når, for hvem og med hvilket formål.",
+      "limitation": "Hva kilden ikke kan avgjøre alene.",
+      "corroboration": "Minst én uavhengig kilde eller dokumentert kildeknapphet.",
+      "critical_distinctions": [
+        "spor vs rekonstruksjon",
+        "opprinnelig materiale vs ombruk",
+        "fravær vs ødeleggelse",
+        "observasjon vs historisk påstand"
+      ]
+    }
   },
   {
     "emne_id": "em_his_spor_materialitet",
@@ -2519,9 +2597,10 @@
       "samtid vs ettertid"
     ],
     "canonical_thinkers": [
-      "Michel Foucault",
+      "Carlo Ginzburg",
+      "Marc Bloch",
       "Arlette Farge",
-      "Michel-Rolph Trouillot"
+      "Knut Kjeldstadli"
     ],
     "related_emner": [
       "em_his_kildekritikk_arkiv_spor",
@@ -2566,7 +2645,7 @@
       "teknisk_anlegg",
       "minnested"
     ],
-    "opening_use_ok": true,
+    "opening_use_ok": false,
     "bridge_use_ok": true,
     "late_use_ok": true,
     "recommended_set_phases": [
@@ -2576,7 +2655,7 @@
     ],
     "requires_history_anchor": true,
     "requires_visible_trace": true,
-    "question_surface_mode": "visible-trace-first",
+    "question_surface_mode": "source-first",
     "avoid_surface_forms": [
       "Hvilken teoretiker passer best",
       "Hva sier dette generelt om historie",
@@ -2584,20 +2663,27 @@
       "Generisk moraliserende spørsmål uten stedlig anker"
     ],
     "scope_guard": "Bruk bare når det finnes dokumenterbar historisk kobling gjennom kilde, sted, hendelse, person eller synlig spor.",
-    "mapping_count": 0,
-    "mapping_pressure": "pending_mapping",
+    "mapping_count": 2,
+    "mapping_pressure": "mapped",
     "generator_use_note": "Start fra ekstern lokalhistorisk kilde eller synlig stedlig spor. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
     "canonical_thinker_ids": [
-      "michel_foucault",
+      "carlo_ginzburg",
+      "marc_bloch",
       "arlette_farge",
-      "michel_rolph_trouillot"
+      "knut_kjeldstadli"
     ],
-    "norwegian_thinker_ids": [],
-    "norwegian_thinkers": [],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli"
+    ],
     "primary_theory_hooks": [
       "his_spor_materialitet"
     ],
-    "secondary_theory_hooks": [],
+    "secondary_theory_hooks": [
+      "his_dokument_autentisitet"
+    ],
     "reserve_theory_hooks": [],
     "theory_diversity_score": 3,
     "has_norwegian_theory_path": false,
@@ -2606,14 +2692,14 @@
     "theory_overreach_risk": "medium",
     "method_ids": [
       "met_sporlesning",
-      "met_arkivlesning",
-      "met_kildekritikk"
+      "met_proveniensanalyse",
+      "met_for_etter_historisk"
     ],
     "recommended_oslo_cases": [
       "Hovedøya kloster",
       "Gamle Aker kirke",
-      "Middelalderbyen Oslo",
-      "Møllergata 19"
+      "Akershus festning",
+      "Vår Frelsers gravlund"
     ],
     "overlap_risk": "medium",
     "distinguish_from_emner": [
@@ -2646,10 +2732,12 @@
     "generator_constraints": {
       "min_case_count": 2,
       "min_method_count": 1,
-      "max_primary_hooks": 3,
+      "max_primary_hooks": 2,
       "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
+      "require_external_claim_basis": true,
+      "require_source_object": true,
+      "require_critical_distinction": true
     },
     "anti_patterns": [
       "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
@@ -2658,9 +2746,25 @@
     ],
     "recommended_methods": [
       "met_sporlesning",
-      "met_arkivlesning",
-      "met_kildekritikk"
-    ]
+      "met_proveniensanalyse",
+      "met_for_etter_historisk"
+    ],
+    "source_object_required": true,
+    "claim_basis_required": true,
+    "critical_distinction_required": true,
+    "source_method_profile": {
+      "source_object": "Konkret dokument, spor, bilde, intervju, serie eller digitalt objekt.",
+      "claim_basis": "Presis historisk påstand som kilden faktisk kan bære.",
+      "production_context": "Hvem skapte kilden, når, for hvem og med hvilket formål.",
+      "limitation": "Hva kilden ikke kan avgjøre alene.",
+      "corroboration": "Minst én uavhengig kilde eller dokumentert kildeknapphet.",
+      "critical_distinctions": [
+        "spor vs rekonstruksjon",
+        "opprinnelig materiale vs ombruk",
+        "fravær vs ødeleggelse",
+        "observasjon vs historisk påstand"
+      ]
+    }
   },
   {
     "emne_id": "em_his_taushet_og_manglende_kilder",
@@ -2756,9 +2860,10 @@
       "samtid vs ettertid"
     ],
     "canonical_thinkers": [
-      "Michel Foucault",
+      "Michel-Rolph Trouillot",
+      "Ann Laura Stoler",
       "Arlette Farge",
-      "Michel-Rolph Trouillot"
+      "Alessandro Portelli"
     ],
     "related_emner": [
       "em_his_kildekritikk_arkiv_spor",
@@ -2813,7 +2918,7 @@
     ],
     "requires_history_anchor": true,
     "requires_visible_trace": false,
-    "question_surface_mode": "visible-trace-first",
+    "question_surface_mode": "source-first",
     "avoid_surface_forms": [
       "Hvilken teoretiker passer best",
       "Hva sier dette generelt om historie",
@@ -2821,20 +2926,23 @@
       "Generisk moraliserende spørsmål uten stedlig anker"
     ],
     "scope_guard": "Bruk bare når det finnes dokumenterbar historisk kobling gjennom kilde, sted, hendelse, person eller synlig spor.",
-    "mapping_count": 0,
-    "mapping_pressure": "pending_mapping",
+    "mapping_count": 2,
+    "mapping_pressure": "mapped",
     "generator_use_note": "Start fra ekstern lokalhistorisk kilde eller synlig stedlig spor. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
     "canonical_thinker_ids": [
-      "michel_foucault",
+      "michel_rolph_trouillot",
+      "ann_laura_stoler",
       "arlette_farge",
-      "michel_rolph_trouillot"
+      "alessandro_portelli"
     ],
     "norwegian_thinker_ids": [],
     "norwegian_thinkers": [],
     "primary_theory_hooks": [
-      "his_spor_materialitet"
+      "his_taushet_fravaer"
     ],
-    "secondary_theory_hooks": [],
+    "secondary_theory_hooks": [
+      "his_kildekritikk"
+    ],
     "reserve_theory_hooks": [],
     "theory_diversity_score": 3,
     "has_norwegian_theory_path": false,
@@ -2842,15 +2950,15 @@
     "theory_progression_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
     "theory_overreach_risk": "high",
     "method_ids": [
-      "met_sporlesning",
+      "met_kildekritikk",
       "met_arkivlesning",
-      "met_kildekritikk"
+      "met_muntlig_historie"
     ],
     "recommended_oslo_cases": [
-      "Hovedøya kloster",
-      "Gamle Aker kirke",
-      "Middelalderbyen Oslo",
-      "Møllergata 19"
+      "Jødisk museum",
+      "Villa Grande",
+      "Grønland",
+      "Vår Frelsers gravlund"
     ],
     "overlap_risk": "medium",
     "distinguish_from_emner": [
@@ -2883,10 +2991,12 @@
     "generator_constraints": {
       "min_case_count": 2,
       "min_method_count": 1,
-      "max_primary_hooks": 3,
-      "risk_mode": "strict",
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
+      "require_external_claim_basis": true,
+      "require_source_object": true,
+      "require_critical_distinction": true
     },
     "anti_patterns": [
       "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
@@ -2894,10 +3004,26 @@
       "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
     ],
     "recommended_methods": [
-      "met_sporlesning",
+      "met_kildekritikk",
       "met_arkivlesning",
-      "met_kildekritikk"
-    ]
+      "met_muntlig_historie"
+    ],
+    "source_object_required": true,
+    "claim_basis_required": true,
+    "critical_distinction_required": true,
+    "source_method_profile": {
+      "source_object": "Konkret dokument, spor, bilde, intervju, serie eller digitalt objekt.",
+      "claim_basis": "Presis historisk påstand som kilden faktisk kan bære.",
+      "production_context": "Hvem skapte kilden, når, for hvem og med hvilket formål.",
+      "limitation": "Hva kilden ikke kan avgjøre alene.",
+      "corroboration": "Minst én uavhengig kilde eller dokumentert kildeknapphet.",
+      "critical_distinctions": [
+        "manglende kilde vs dokumentert fravær",
+        "taushet vs glemsel",
+        "underregistrering vs ikke-forekomst",
+        "arkivblindhet vs historisk usynlighet"
+      ]
+    }
   },
   {
     "emne_id": "em_his_embetsstat_forvaltning",
@@ -10853,5 +10979,1004 @@
       "met_for_etter_historisk",
       "met_institusjonshistorisk_analyse"
     ]
+  },
+  {
+    "emne_id": "em_his_dokument_autentisitet",
+    "subject_id": "historie",
+    "domain": "kilder",
+    "area_id": "his_kilder_arkiv_spor",
+    "area_label": "Kilder, arkiv og spor",
+    "level": 3,
+    "title": "Dokumentform og autentisitet",
+    "short_label": "Dokumentautentisitet",
+    "status": "active",
+    "definition": "Undersøker dokumenters form, opphav, overlevering og administrative funksjon.",
+    "why_it_matters": "Gjør det mulig å bygge kildebaserte historiequizer der spilleren møter et konkret kildeobjekt før metode og teori.",
+    "keywords": [
+      "dokumentform",
+      "og",
+      "autentisitet",
+      "kilde",
+      "historie"
+    ],
+    "dimensions": [
+      "tid",
+      "spor",
+      "sted",
+      "makt",
+      "minne"
+    ],
+    "akse": [
+      "kilde",
+      "tid",
+      "sted",
+      "makt"
+    ],
+    "key_concepts": [
+      "kildeobjekt",
+      "opphav",
+      "formål",
+      "kontekst",
+      "usikkerhet"
+    ],
+    "core_concepts": [
+      "kildeobjekt",
+      "claim_basis",
+      "produksjonskontekst",
+      "begrensning",
+      "kontrollkilde"
+    ],
+    "sub_concepts": [
+      "proveniens",
+      "representativitet",
+      "autentisitet",
+      "tolkning"
+    ],
+    "key_questions": [
+      "Hvilket konkret kildeobjekt undersøkes?",
+      "Hvilken påstand kan kilden bære?",
+      "Hvilken kontrollkilde eller usikkerhet må oppgis?"
+    ],
+    "conflicts": [
+      "dokumentert kilde vs senere fortelling",
+      "synlig spor vs manglende stemme",
+      "offisiell historie vs hverdagslig erfaring"
+    ],
+    "ideological_dimensions": [
+      "bevaring vs glemsel",
+      "nasjonal fortelling vs lokal erfaring",
+      "maktens arkiv vs marginale stemmer",
+      "fremgangsfortelling vs konflikt og tap"
+    ],
+    "methods": [
+      "Historisk før/etter-analyse",
+      "Institusjonshistorisk analyse",
+      "Arkivlesning"
+    ],
+    "analysis_axes": [
+      "brudd vs kontinuitet",
+      "kilde vs minne",
+      "institusjon vs individ",
+      "synlig spor vs skjult struktur",
+      "samtid vs ettertid"
+    ],
+    "canonical_thinkers": [
+      "Luciana Duranti",
+      "Hilary Jenkinson",
+      "Robert-Henri Bautier",
+      "Leopold von Ranke"
+    ],
+    "related_emner": [
+      "em_his_tid_periodisering_epoker",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_modernisering_1800",
+      "em_his_samtidshistorie_brudd"
+    ],
+    "good_for_places": [
+      "arkiv",
+      "museum",
+      "bibliotek",
+      "historical_site",
+      "institusjonsbygg",
+      "ruinomrade",
+      "minnested"
+    ],
+    "quiz_angles": [
+      "fakta",
+      "kilde",
+      "spor",
+      "historisk endring",
+      "begrep"
+    ],
+    "blindspots": [
+      "at synlige monumenter kan overskygge mindre dokumenterte erfaringer",
+      "at kildene kan være skjeve etter klasse, kjønn, makt og institusjon",
+      "at nåtidens forståelse kan projiseres for lett bakover"
+    ],
+    "logic_family": "tid",
+    "emne_role": "grunnemne",
+    "parent_emne_id": null,
+    "quiz_priority": "high",
+    "direct_quiz_ok": true,
+    "history_weight": 5,
+    "theory_weight": 4,
+    "broadness": "medium",
+    "place_type_fit": [
+      "arkiv",
+      "museum",
+      "bibliotek",
+      "historical_site",
+      "institusjonsbygg",
+      "ruinomrade",
+      "minnested"
+    ],
+    "opening_use_ok": false,
+    "bridge_use_ok": true,
+    "late_use_ok": true,
+    "recommended_set_phases": [
+      "facts",
+      "bridge_facts_theory",
+      "late_theory"
+    ],
+    "requires_history_anchor": true,
+    "requires_visible_trace": true,
+    "question_surface_mode": "source-first",
+    "avoid_surface_forms": [
+      "Hvilken teoretiker passer best",
+      "Hva sier dette generelt om historie",
+      "Spørsmål bygget bare på emnenavn uten ekstern kilde",
+      "Generisk moraliserende spørsmål uten stedlig anker"
+    ],
+    "scope_guard": "Bruk bare når det finnes dokumenterbar historisk kobling gjennom kilde, sted, hendelse, person eller synlig spor.",
+    "mapping_count": 2,
+    "mapping_pressure": "mapped",
+    "generator_use_note": "Start fra ekstern lokalhistorisk kilde eller synlig stedlig spor. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
+    "canonical_thinker_ids": [
+      "luciana_duranti",
+      "hilary_jenkinson",
+      "robert_henri_bautier",
+      "leopold_von_ranke"
+    ],
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
+    "primary_theory_hooks": [
+      "his_dokument_autentisitet"
+    ],
+    "secondary_theory_hooks": [
+      "his_skrift_lesning"
+    ],
+    "reserve_theory_hooks": [],
+    "theory_diversity_score": 3,
+    "has_norwegian_theory_path": false,
+    "theory_surface_priority": "place-first_then_named_theorist",
+    "theory_progression_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "theory_overreach_risk": "medium",
+    "method_ids": [
+      "met_diplomatikk",
+      "met_proveniensanalyse",
+      "met_kildekritikk"
+    ],
+    "recommended_oslo_cases": [
+      "Riksarkivet",
+      "Eidsvollsbygningen",
+      "Stortinget",
+      "Oslo byarkiv"
+    ],
+    "overlap_risk": "medium",
+    "distinguish_from_emner": [
+      "em_his_tid_periodisering_epoker",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_modernisering_1800",
+      "em_his_samtidshistorie_brudd"
+    ],
+    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "progression_stage": "full_ladder",
+    "pedagogical_track": "fra_kilde_og_spor_til_analyse",
+    "case_spread_score": 4,
+    "overused_thinker_ids": [],
+    "underused_thinker_ids": [
+      "marc_bloch",
+      "eric_hobsbawm"
+    ],
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 3,
+    "generator_risk_mode": "guarded",
+    "theory_rotation_required": true,
+    "case_rotation_required": true,
+    "canonical_file_role": "active",
+    "generator_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_source_object": true,
+      "require_critical_distinction": true
+    },
+    "anti_patterns": [
+      "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
+      "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
+      "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+    ],
+    "recommended_methods": [
+      "met_diplomatikk",
+      "met_proveniensanalyse",
+      "met_kildekritikk"
+    ],
+    "source_object_required": true,
+    "claim_basis_required": true,
+    "critical_distinction_required": true,
+    "source_method_profile": {
+      "source_object": "Konkret dokument, spor, bilde, intervju, serie eller digitalt objekt.",
+      "claim_basis": "Presis historisk påstand som kilden faktisk kan bære.",
+      "production_context": "Hvem skapte kilden, når, for hvem og med hvilket formål.",
+      "limitation": "Hva kilden ikke kan avgjøre alene.",
+      "corroboration": "Minst én uavhengig kilde eller dokumentert kildeknapphet.",
+      "critical_distinctions": [
+        "autentisitet vs sannhet",
+        "original vs avskrift",
+        "utsteder vs mottaker",
+        "dokumentform vs innholdspåstand"
+      ]
+    }
+  },
+  {
+    "emne_id": "em_his_skrift_hand_lesning",
+    "subject_id": "historie",
+    "domain": "kilder",
+    "area_id": "his_kilder_arkiv_spor",
+    "area_label": "Kilder, arkiv og spor",
+    "level": 3,
+    "title": "Historisk skrift og håndlesning",
+    "short_label": "Skrift og hånd",
+    "status": "active",
+    "definition": "Leser historiske skriftformer og skrivepraksiser med eksplisitt usikkerhet.",
+    "why_it_matters": "Gjør det mulig å bygge kildebaserte historiequizer der spilleren møter et konkret kildeobjekt før metode og teori.",
+    "keywords": [
+      "historisk",
+      "skrift",
+      "og",
+      "håndlesning",
+      "kilde",
+      "historie"
+    ],
+    "dimensions": [
+      "tid",
+      "spor",
+      "sted",
+      "makt",
+      "minne"
+    ],
+    "akse": [
+      "kilde",
+      "tid",
+      "sted",
+      "makt"
+    ],
+    "key_concepts": [
+      "kildeobjekt",
+      "opphav",
+      "formål",
+      "kontekst",
+      "usikkerhet"
+    ],
+    "core_concepts": [
+      "kildeobjekt",
+      "claim_basis",
+      "produksjonskontekst",
+      "begrensning",
+      "kontrollkilde"
+    ],
+    "sub_concepts": [
+      "proveniens",
+      "representativitet",
+      "autentisitet",
+      "tolkning"
+    ],
+    "key_questions": [
+      "Hvilket konkret kildeobjekt undersøkes?",
+      "Hvilken påstand kan kilden bære?",
+      "Hvilken kontrollkilde eller usikkerhet må oppgis?"
+    ],
+    "conflicts": [
+      "dokumentert kilde vs senere fortelling",
+      "synlig spor vs manglende stemme",
+      "offisiell historie vs hverdagslig erfaring"
+    ],
+    "ideological_dimensions": [
+      "bevaring vs glemsel",
+      "nasjonal fortelling vs lokal erfaring",
+      "maktens arkiv vs marginale stemmer",
+      "fremgangsfortelling vs konflikt og tap"
+    ],
+    "methods": [
+      "Historisk før/etter-analyse",
+      "Institusjonshistorisk analyse",
+      "Arkivlesning"
+    ],
+    "analysis_axes": [
+      "brudd vs kontinuitet",
+      "kilde vs minne",
+      "institusjon vs individ",
+      "synlig spor vs skjult struktur",
+      "samtid vs ettertid"
+    ],
+    "canonical_thinkers": [
+      "Armando Petrucci",
+      "Malcolm Parkes",
+      "Roger Chartier",
+      "Luciana Duranti"
+    ],
+    "related_emner": [
+      "em_his_tid_periodisering_epoker",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_modernisering_1800",
+      "em_his_samtidshistorie_brudd"
+    ],
+    "good_for_places": [
+      "arkiv",
+      "museum",
+      "bibliotek",
+      "historical_site",
+      "institusjonsbygg",
+      "ruinomrade",
+      "minnested"
+    ],
+    "quiz_angles": [
+      "fakta",
+      "kilde",
+      "spor",
+      "historisk endring",
+      "begrep"
+    ],
+    "blindspots": [
+      "at synlige monumenter kan overskygge mindre dokumenterte erfaringer",
+      "at kildene kan være skjeve etter klasse, kjønn, makt og institusjon",
+      "at nåtidens forståelse kan projiseres for lett bakover"
+    ],
+    "logic_family": "tid",
+    "emne_role": "grunnemne",
+    "parent_emne_id": null,
+    "quiz_priority": "high",
+    "direct_quiz_ok": true,
+    "history_weight": 5,
+    "theory_weight": 4,
+    "broadness": "medium",
+    "place_type_fit": [
+      "arkiv",
+      "museum",
+      "bibliotek",
+      "historical_site",
+      "institusjonsbygg",
+      "ruinomrade",
+      "minnested"
+    ],
+    "opening_use_ok": false,
+    "bridge_use_ok": true,
+    "late_use_ok": true,
+    "recommended_set_phases": [
+      "facts",
+      "bridge_facts_theory",
+      "late_theory"
+    ],
+    "requires_history_anchor": true,
+    "requires_visible_trace": true,
+    "question_surface_mode": "source-first",
+    "avoid_surface_forms": [
+      "Hvilken teoretiker passer best",
+      "Hva sier dette generelt om historie",
+      "Spørsmål bygget bare på emnenavn uten ekstern kilde",
+      "Generisk moraliserende spørsmål uten stedlig anker"
+    ],
+    "scope_guard": "Bruk bare når det finnes dokumenterbar historisk kobling gjennom kilde, sted, hendelse, person eller synlig spor.",
+    "mapping_count": 2,
+    "mapping_pressure": "mapped",
+    "generator_use_note": "Start fra ekstern lokalhistorisk kilde eller synlig stedlig spor. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
+    "canonical_thinker_ids": [
+      "armando_petrucci",
+      "malcolm_parkes",
+      "roger_chartier",
+      "luciana_duranti"
+    ],
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
+    "primary_theory_hooks": [
+      "his_skrift_lesning"
+    ],
+    "secondary_theory_hooks": [
+      "his_dokument_autentisitet"
+    ],
+    "reserve_theory_hooks": [],
+    "theory_diversity_score": 3,
+    "has_norwegian_theory_path": false,
+    "theory_surface_priority": "place-first_then_named_theorist",
+    "theory_progression_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "theory_overreach_risk": "medium",
+    "method_ids": [
+      "met_paleografi",
+      "met_diplomatikk",
+      "met_sporlesning"
+    ],
+    "recommended_oslo_cases": [
+      "Riksarkivet",
+      "Middelalderbyen Oslo",
+      "Hovedøya kloster",
+      "Gamle Aker kirke"
+    ],
+    "overlap_risk": "medium",
+    "distinguish_from_emner": [
+      "em_his_tid_periodisering_epoker",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_modernisering_1800",
+      "em_his_samtidshistorie_brudd"
+    ],
+    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "progression_stage": "full_ladder",
+    "pedagogical_track": "fra_kilde_og_spor_til_analyse",
+    "case_spread_score": 4,
+    "overused_thinker_ids": [],
+    "underused_thinker_ids": [
+      "marc_bloch",
+      "eric_hobsbawm"
+    ],
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 3,
+    "generator_risk_mode": "guarded",
+    "theory_rotation_required": true,
+    "case_rotation_required": true,
+    "canonical_file_role": "active",
+    "generator_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_source_object": true,
+      "require_critical_distinction": true
+    },
+    "anti_patterns": [
+      "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
+      "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
+      "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+    ],
+    "recommended_methods": [
+      "met_paleografi",
+      "met_diplomatikk",
+      "met_sporlesning"
+    ],
+    "source_object_required": true,
+    "claim_basis_required": true,
+    "critical_distinction_required": true,
+    "source_method_profile": {
+      "source_object": "Konkret dokument, spor, bilde, intervju, serie eller digitalt objekt.",
+      "claim_basis": "Presis historisk påstand som kilden faktisk kan bære.",
+      "production_context": "Hvem skapte kilden, når, for hvem og med hvilket formål.",
+      "limitation": "Hva kilden ikke kan avgjøre alene.",
+      "corroboration": "Minst én uavhengig kilde eller dokumentert kildeknapphet.",
+      "critical_distinctions": [
+        "lesning vs tolkning",
+        "håndskrift vs dokumenttype",
+        "datering vs proveniens",
+        "transkripsjon vs normalisering"
+      ]
+    }
+  },
+  {
+    "emne_id": "em_his_serielle_kilder_kvantifisering",
+    "subject_id": "historie",
+    "domain": "kilder",
+    "area_id": "his_kilder_arkiv_spor",
+    "area_label": "Kilder, arkiv og spor",
+    "level": 3,
+    "title": "Serielle kilder og kvantifisering",
+    "short_label": "Kildeserier",
+    "status": "active",
+    "definition": "Bruker repeterte registreringer uten å forveksle kategorier med sosial virkelighet.",
+    "why_it_matters": "Gjør det mulig å bygge kildebaserte historiequizer der spilleren møter et konkret kildeobjekt før metode og teori.",
+    "keywords": [
+      "serielle",
+      "kilder",
+      "og",
+      "kvantifisering",
+      "kilde",
+      "historie"
+    ],
+    "dimensions": [
+      "tid",
+      "spor",
+      "sted",
+      "makt",
+      "minne"
+    ],
+    "akse": [
+      "kilde",
+      "tid",
+      "sted",
+      "makt"
+    ],
+    "key_concepts": [
+      "kildeobjekt",
+      "opphav",
+      "formål",
+      "kontekst",
+      "usikkerhet"
+    ],
+    "core_concepts": [
+      "kildeobjekt",
+      "claim_basis",
+      "produksjonskontekst",
+      "begrensning",
+      "kontrollkilde"
+    ],
+    "sub_concepts": [
+      "proveniens",
+      "representativitet",
+      "autentisitet",
+      "tolkning"
+    ],
+    "key_questions": [
+      "Hvilket konkret kildeobjekt undersøkes?",
+      "Hvilken påstand kan kilden bære?",
+      "Hvilken kontrollkilde eller usikkerhet må oppgis?"
+    ],
+    "conflicts": [
+      "dokumentert kilde vs senere fortelling",
+      "synlig spor vs manglende stemme",
+      "offisiell historie vs hverdagslig erfaring"
+    ],
+    "ideological_dimensions": [
+      "bevaring vs glemsel",
+      "nasjonal fortelling vs lokal erfaring",
+      "maktens arkiv vs marginale stemmer",
+      "fremgangsfortelling vs konflikt og tap"
+    ],
+    "methods": [
+      "Historisk før/etter-analyse",
+      "Institusjonshistorisk analyse",
+      "Arkivlesning"
+    ],
+    "analysis_axes": [
+      "brudd vs kontinuitet",
+      "kilde vs minne",
+      "institusjon vs individ",
+      "synlig spor vs skjult struktur",
+      "samtid vs ettertid"
+    ],
+    "canonical_thinkers": [
+      "Ernest Labrousse",
+      "Fernand Braudel",
+      "Charles Tilly",
+      "Knut Kjeldstadli"
+    ],
+    "related_emner": [
+      "em_his_tid_periodisering_epoker",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_modernisering_1800",
+      "em_his_samtidshistorie_brudd"
+    ],
+    "good_for_places": [
+      "arkiv",
+      "museum",
+      "bibliotek",
+      "historical_site",
+      "institusjonsbygg",
+      "ruinomrade",
+      "minnested"
+    ],
+    "quiz_angles": [
+      "fakta",
+      "kilde",
+      "spor",
+      "historisk endring",
+      "begrep"
+    ],
+    "blindspots": [
+      "at synlige monumenter kan overskygge mindre dokumenterte erfaringer",
+      "at kildene kan være skjeve etter klasse, kjønn, makt og institusjon",
+      "at nåtidens forståelse kan projiseres for lett bakover"
+    ],
+    "logic_family": "tid",
+    "emne_role": "grunnemne",
+    "parent_emne_id": null,
+    "quiz_priority": "high",
+    "direct_quiz_ok": true,
+    "history_weight": 5,
+    "theory_weight": 4,
+    "broadness": "medium",
+    "place_type_fit": [
+      "arkiv",
+      "museum",
+      "bibliotek",
+      "historical_site",
+      "institusjonsbygg",
+      "ruinomrade",
+      "minnested"
+    ],
+    "opening_use_ok": false,
+    "bridge_use_ok": true,
+    "late_use_ok": true,
+    "recommended_set_phases": [
+      "facts",
+      "bridge_facts_theory",
+      "late_theory"
+    ],
+    "requires_history_anchor": true,
+    "requires_visible_trace": true,
+    "question_surface_mode": "source-first",
+    "avoid_surface_forms": [
+      "Hvilken teoretiker passer best",
+      "Hva sier dette generelt om historie",
+      "Spørsmål bygget bare på emnenavn uten ekstern kilde",
+      "Generisk moraliserende spørsmål uten stedlig anker"
+    ],
+    "scope_guard": "Bruk bare når det finnes dokumenterbar historisk kobling gjennom kilde, sted, hendelse, person eller synlig spor.",
+    "mapping_count": 2,
+    "mapping_pressure": "mapped",
+    "generator_use_note": "Start fra ekstern lokalhistorisk kilde eller synlig stedlig spor. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
+    "canonical_thinker_ids": [
+      "ernest_labrousse",
+      "fernand_braudel",
+      "charles_tilly",
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli"
+    ],
+    "primary_theory_hooks": [
+      "his_serielle_kilder"
+    ],
+    "secondary_theory_hooks": [
+      "his_digitale_kilder"
+    ],
+    "reserve_theory_hooks": [],
+    "theory_diversity_score": 3,
+    "has_norwegian_theory_path": false,
+    "theory_surface_priority": "place-first_then_named_theorist",
+    "theory_progression_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "theory_overreach_risk": "medium",
+    "method_ids": [
+      "met_seriell_kildeanalyse",
+      "met_komparativ_historie",
+      "met_kildekritikk"
+    ],
+    "recommended_oslo_cases": [
+      "Oslo byarkiv",
+      "Riksarkivet",
+      "Sagene skole",
+      "Oslo Hospital"
+    ],
+    "overlap_risk": "medium",
+    "distinguish_from_emner": [
+      "em_his_tid_periodisering_epoker",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_modernisering_1800",
+      "em_his_samtidshistorie_brudd"
+    ],
+    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "progression_stage": "full_ladder",
+    "pedagogical_track": "fra_kilde_og_spor_til_analyse",
+    "case_spread_score": 4,
+    "overused_thinker_ids": [],
+    "underused_thinker_ids": [
+      "marc_bloch",
+      "eric_hobsbawm"
+    ],
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 3,
+    "generator_risk_mode": "guarded",
+    "theory_rotation_required": true,
+    "case_rotation_required": true,
+    "canonical_file_role": "active",
+    "generator_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_source_object": true,
+      "require_critical_distinction": true
+    },
+    "anti_patterns": [
+      "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
+      "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
+      "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+    ],
+    "recommended_methods": [
+      "met_seriell_kildeanalyse",
+      "met_komparativ_historie",
+      "met_kildekritikk"
+    ],
+    "source_object_required": true,
+    "claim_basis_required": true,
+    "critical_distinction_required": true,
+    "source_method_profile": {
+      "source_object": "Konkret dokument, spor, bilde, intervju, serie eller digitalt objekt.",
+      "claim_basis": "Presis historisk påstand som kilden faktisk kan bære.",
+      "production_context": "Hvem skapte kilden, når, for hvem og med hvilket formål.",
+      "limitation": "Hva kilden ikke kan avgjøre alene.",
+      "corroboration": "Minst én uavhengig kilde eller dokumentert kildeknapphet.",
+      "critical_distinctions": [
+        "tallserie vs forklaring",
+        "registrert kategori vs sosial virkelighet",
+        "trend vs brudd",
+        "absolutt tall vs rate"
+      ]
+    }
+  },
+  {
+    "emne_id": "em_his_visuelle_kilder_fotografi",
+    "subject_id": "historie",
+    "domain": "kilder",
+    "area_id": "his_kilder_arkiv_spor",
+    "area_label": "Kilder, arkiv og spor",
+    "level": 3,
+    "title": "Visuelle kilder og fotografi",
+    "short_label": "Visuelle kilder",
+    "status": "active",
+    "definition": "Analyserer fotografier, kart, illustrasjoner og film som produserte representasjoner.",
+    "why_it_matters": "Gjør det mulig å bygge kildebaserte historiequizer der spilleren møter et konkret kildeobjekt før metode og teori.",
+    "keywords": [
+      "visuelle",
+      "kilder",
+      "og",
+      "fotografi",
+      "kilde",
+      "historie"
+    ],
+    "dimensions": [
+      "tid",
+      "spor",
+      "sted",
+      "makt",
+      "minne"
+    ],
+    "akse": [
+      "kilde",
+      "tid",
+      "sted",
+      "makt"
+    ],
+    "key_concepts": [
+      "kildeobjekt",
+      "opphav",
+      "formål",
+      "kontekst",
+      "usikkerhet"
+    ],
+    "core_concepts": [
+      "kildeobjekt",
+      "claim_basis",
+      "produksjonskontekst",
+      "begrensning",
+      "kontrollkilde"
+    ],
+    "sub_concepts": [
+      "proveniens",
+      "representativitet",
+      "autentisitet",
+      "tolkning"
+    ],
+    "key_questions": [
+      "Hvilket konkret kildeobjekt undersøkes?",
+      "Hvilken påstand kan kilden bære?",
+      "Hvilken kontrollkilde eller usikkerhet må oppgis?"
+    ],
+    "conflicts": [
+      "dokumentert kilde vs senere fortelling",
+      "synlig spor vs manglende stemme",
+      "offisiell historie vs hverdagslig erfaring"
+    ],
+    "ideological_dimensions": [
+      "bevaring vs glemsel",
+      "nasjonal fortelling vs lokal erfaring",
+      "maktens arkiv vs marginale stemmer",
+      "fremgangsfortelling vs konflikt og tap"
+    ],
+    "methods": [
+      "Historisk før/etter-analyse",
+      "Institusjonshistorisk analyse",
+      "Arkivlesning"
+    ],
+    "analysis_axes": [
+      "brudd vs kontinuitet",
+      "kilde vs minne",
+      "institusjon vs individ",
+      "synlig spor vs skjult struktur",
+      "samtid vs ettertid"
+    ],
+    "canonical_thinkers": [
+      "Peter Burke",
+      "John Berger",
+      "Gisèle Freund",
+      "Roger Chartier"
+    ],
+    "related_emner": [
+      "em_his_tid_periodisering_epoker",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_modernisering_1800",
+      "em_his_samtidshistorie_brudd"
+    ],
+    "good_for_places": [
+      "arkiv",
+      "museum",
+      "bibliotek",
+      "historical_site",
+      "institusjonsbygg",
+      "ruinomrade",
+      "minnested"
+    ],
+    "quiz_angles": [
+      "fakta",
+      "kilde",
+      "spor",
+      "historisk endring",
+      "begrep"
+    ],
+    "blindspots": [
+      "at synlige monumenter kan overskygge mindre dokumenterte erfaringer",
+      "at kildene kan være skjeve etter klasse, kjønn, makt og institusjon",
+      "at nåtidens forståelse kan projiseres for lett bakover"
+    ],
+    "logic_family": "tid",
+    "emne_role": "grunnemne",
+    "parent_emne_id": null,
+    "quiz_priority": "high",
+    "direct_quiz_ok": true,
+    "history_weight": 5,
+    "theory_weight": 4,
+    "broadness": "medium",
+    "place_type_fit": [
+      "arkiv",
+      "museum",
+      "bibliotek",
+      "historical_site",
+      "institusjonsbygg",
+      "ruinomrade",
+      "minnested"
+    ],
+    "opening_use_ok": false,
+    "bridge_use_ok": true,
+    "late_use_ok": true,
+    "recommended_set_phases": [
+      "facts",
+      "bridge_facts_theory",
+      "late_theory"
+    ],
+    "requires_history_anchor": true,
+    "requires_visible_trace": true,
+    "question_surface_mode": "source-first",
+    "avoid_surface_forms": [
+      "Hvilken teoretiker passer best",
+      "Hva sier dette generelt om historie",
+      "Spørsmål bygget bare på emnenavn uten ekstern kilde",
+      "Generisk moraliserende spørsmål uten stedlig anker"
+    ],
+    "scope_guard": "Bruk bare når det finnes dokumenterbar historisk kobling gjennom kilde, sted, hendelse, person eller synlig spor.",
+    "mapping_count": 2,
+    "mapping_pressure": "mapped",
+    "generator_use_note": "Start fra ekstern lokalhistorisk kilde eller synlig stedlig spor. Bruk emnet som tolkningsramme, ikke som synlig hovedinnhold.",
+    "canonical_thinker_ids": [
+      "peter_burke",
+      "john_berger",
+      "gisele_freund",
+      "roger_chartier"
+    ],
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
+    "primary_theory_hooks": [
+      "his_visuelle_kilder"
+    ],
+    "secondary_theory_hooks": [
+      "his_kildekritikk"
+    ],
+    "reserve_theory_hooks": [],
+    "theory_diversity_score": 3,
+    "has_norwegian_theory_path": false,
+    "theory_surface_priority": "place-first_then_named_theorist",
+    "theory_progression_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "theory_overreach_risk": "medium",
+    "method_ids": [
+      "met_visuell_kildekritikk",
+      "met_kildekritikk",
+      "met_sporlesning"
+    ],
+    "recommended_oslo_cases": [
+      "Oslo Museum",
+      "Oslo byarkiv",
+      "Akershus festning",
+      "Bjørvika"
+    ],
+    "overlap_risk": "medium",
+    "distinguish_from_emner": [
+      "em_his_tid_periodisering_epoker",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_samtid_ettertid_fortelling",
+      "em_his_modernisering_1800",
+      "em_his_samtidshistorie_brudd"
+    ],
+    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "progression_stage": "full_ladder",
+    "pedagogical_track": "fra_kilde_og_spor_til_analyse",
+    "case_spread_score": 4,
+    "overused_thinker_ids": [],
+    "underused_thinker_ids": [
+      "marc_bloch",
+      "eric_hobsbawm"
+    ],
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 3,
+    "generator_risk_mode": "guarded",
+    "theory_rotation_required": true,
+    "case_rotation_required": true,
+    "canonical_file_role": "active",
+    "generator_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_source_object": true,
+      "require_critical_distinction": true
+    },
+    "anti_patterns": [
+      "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
+      "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
+      "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+    ],
+    "recommended_methods": [
+      "met_visuell_kildekritikk",
+      "met_kildekritikk",
+      "met_sporlesning"
+    ],
+    "source_object_required": true,
+    "claim_basis_required": true,
+    "critical_distinction_required": true,
+    "source_method_profile": {
+      "source_object": "Konkret dokument, spor, bilde, intervju, serie eller digitalt objekt.",
+      "claim_basis": "Presis historisk påstand som kilden faktisk kan bære.",
+      "production_context": "Hvem skapte kilden, når, for hvem og med hvilket formål.",
+      "limitation": "Hva kilden ikke kan avgjøre alene.",
+      "corroboration": "Minst én uavhengig kilde eller dokumentert kildeknapphet.",
+      "critical_distinctions": [
+        "motiv vs brukskontekst",
+        "dokumentasjon vs iscenesettelse",
+        "utsnitt vs helhet",
+        "originalbilde vs reproduksjon"
+      ]
+    }
   }
 ]

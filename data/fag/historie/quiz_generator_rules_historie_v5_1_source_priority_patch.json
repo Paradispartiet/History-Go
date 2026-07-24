@@ -11,9 +11,9 @@
     "emnemapping": "emnemapping_historie_canonical_v4_5.json",
     "pensum": "historiepensum_canonical_v4_5.json",
     "domain_count": 12,
-    "emne_count": 45,
-    "method_count": 12,
-    "mapping_count": 45
+    "emne_count": 49,
+    "method_count": 18,
+    "mapping_count": 49
   },
   "hard_rules": {
     "source_dominance_rule": "External historical/local sources must dominate the factual substance of every history quiz. Canonical files may guide emne choice, method choice, theory choice, set progression and risk control, but may not be the main source of visible question content.",
@@ -252,5 +252,102 @@
     "source_note_definition": "Short source note naming the type of source used, not a raw unverifiable claim."
   },
   "diagnosis_note": "When many files are uploaded, the model must not over-weight canonical system files simply because they are numerous. For history, source-bearing external material, institution pages, local history literature, archives, museums and visible traces must dominate the visible quiz content. Fagkart, methods, emner, emnemapping and pensum are steering files only.",
-  "migration_note": "Existing places_historie and people_historie entries should be migrated from em_by_* to em_his_* only after checking that each new em_his_* is supported by the place/person's actual story, category and sources."
+  "migration_note": "Existing places_historie and people_historie entries should be migrated from em_by_* to em_his_* only after checking that each new em_his_* is supported by the place/person's actual story, category and sources.",
+  "normal_opening_contract": {
+    "version": "history-2x7-v1",
+    "sets": {
+      "1": {
+        "question_count": 7,
+        "surface": "normal_quiz",
+        "content": [
+          "sted",
+          "navn",
+          "funksjon",
+          "årstall",
+          "kildeobjekt",
+          "synlig_spor",
+          "historisk_aktor"
+        ],
+        "theory_names_forbidden": true,
+        "method_names_forbidden": true
+      },
+      "2": {
+        "question_count": 7,
+        "surface": "normal_quiz",
+        "content": [
+          "hendelse",
+          "person",
+          "institusjon",
+          "endring",
+          "kronologi",
+          "dokumentert_sammenheng",
+          "enkel_kildekontroll"
+        ],
+        "theory_names_forbidden": true,
+        "method_names_forbidden": true
+      }
+    },
+    "analysis_begins_from_set": 3,
+    "theory_begins_from_set": 4,
+    "external_source_required_per_question": true
+  },
+  "domain_profiles": {
+    "his_kilder_arkiv_spor": {
+      "status": "complete_revised",
+      "purpose": "Bygge spørsmål fra identifiserte kildeobjekter og etterprøvbare påstander, ikke løse teorinavn.",
+      "required_chain": [
+        "ekstern kilde eller konkret kildeobjekt",
+        "presis claim_basis",
+        "kildetype og produksjonskontekst",
+        "egnet historisk metode",
+        "eksplisitt begrensning",
+        "uavhengig kontroll eller dokumentert kildeknapphet",
+        "kritisk distinksjon",
+        "eventuelt teoribegrep etter at kilden er etablert"
+      ],
+      "hook_ids": [
+        "his_kildekritikk",
+        "his_spor_materialitet",
+        "his_arkiv_makt_orden",
+        "his_taushet_fravaer",
+        "his_dokument_autentisitet",
+        "his_skrift_lesning",
+        "his_serielle_kilder",
+        "his_visuelle_kilder",
+        "his_muntlige_kilder",
+        "his_digitale_kilder"
+      ],
+      "emne_ids": [
+        "em_his_kildekritikk_arkiv_spor",
+        "em_his_spor_materialitet",
+        "em_his_ruiner_rester_ombruk",
+        "em_his_arkiv_og_dokumentasjon",
+        "em_his_kilder_taushet_blindsoner",
+        "em_his_taushet_og_manglende_kilder",
+        "em_his_dokument_autentisitet",
+        "em_his_skrift_hand_lesning",
+        "em_his_serielle_kilder_kvantifisering",
+        "em_his_visuelle_kilder_fotografi"
+      ],
+      "method_ids": [
+        "met_kildekritikk",
+        "met_arkivlesning",
+        "met_sporlesning",
+        "met_diplomatikk",
+        "met_paleografi",
+        "met_proveniensanalyse",
+        "met_seriell_kildeanalyse",
+        "met_visuell_kildekritikk",
+        "met_digital_kildekritikk"
+      ],
+      "forbidden_shortcuts": [
+        "canonical-fil som faktakilde",
+        "teoretikernavn som tilstrekkelig svar",
+        "arkivfravær som bevis for ikke-forekomst",
+        "digitalt søketreff som representativt utvalg",
+        "fotografi som nøytral avbildning",
+        "muntlig minne som uredigert hendelsesreferat"
+      ]
+    }
+  }
 }
