@@ -69,11 +69,19 @@ const gzipSha = createHash("sha256").update(gzipBytes).digest("hex");
 if (gzipSha !== "d844e1c6bc30b5850600bf5a997aed39ef602b7e2afab0e7633e3c7e7f4e30d3") {
   throw new Error(`Builder gzip SHA-256 mismatch: ${gzipSha}`);
 }
-const source = gunzipSync(gzipBytes);
-const sourceSha = createHash("sha256").update(source).digest("hex");
-if (sourceSha !== "3b2b94fa34698192e29a3cf4e98e3fc316cff8c87095da437c51215c0cede333") {
-  throw new Error(`Builder source SHA-256 mismatch: ${sourceSha}`);
+const transportedSource = gunzipSync(gzipBytes);
+const transportedSourceSha = createHash("sha256").update(transportedSource).digest("hex");
+if (transportedSourceSha !== "3b2b94fa34698192e29a3cf4e98e3fc316cff8c87095da437c51215c0cede333") {
+  throw new Error(`Transported builder source SHA-256 mismatch: ${transportedSourceSha}`);
 }
+let sourceText = transportedSource.toString("utf8");
+sourceText = replaceExactly(sourceText, "for e in emners", "for e in emner", 2);
+const source = Buffer.from(sourceText, "utf8");
+const patchedSourceSha = createHash("sha256").update(source).digest("hex");
+if (patchedSourceSha !== "84b3b0866c0c191847f71dc6b47b8794177eeb1f833472d00de26deed5977f3f") {
+  throw new Error(`Patched builder source SHA-256 mismatch: ${patchedSourceSha}`);
+}
+console.log(`Builder typo patch verified: ${patchedSourceSha}`);
 const builderPath = resolve("tools/build-historie-industri-phase4.py");
 fs.writeFileSync(builderPath, source);
 
