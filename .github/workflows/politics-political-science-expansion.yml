@@ -24,21 +24,71 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Export current canonical inputs
-        id: export
-        if: hashFiles('reports/politikk-canonical-migration/statsvitenskap-expansion-marker.txt') != ''
+      - name: Apply and validate political-science expansion
+        id: apply
+        continue-on-error: true
+        if: hashFiles('tools/politikk-statsvitenskap-builder.part-*') != ''
         run: |
           set -euo pipefail
-          phase="$(cat reports/politikk-canonical-migration/statsvitenskap-expansion-marker.txt)"
-          if [[ "$phase" != "export-current-canonical" ]]; then
-            echo "exported=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          mkdir -p /tmp/politikk-statsvitenskap
-          cp data/fag/politikk/{fagkart_politikk_canonical_v4_5.json,emner_politikk_canonical_v4_5.json,methods_politikk_canonical_v4_5.json,emnemapping_politikk_canonical_v4_5.json,politikkpensum_canonical_v4_5.json,quiz_generator_rules_politikk_v5_1_source_priority_patch.json} /tmp/politikk-statsvitenskap/
-          echo "exported=true" >> "$GITHUB_OUTPUT"
+          mkdir -p reports/politikk-canonical-migration
+
+          git fetch origin main
+          git rebase origin/main
+
+          cat tools/politikk-statsvitenskap-builder.part-* > /tmp/politikk-statsvitenskap-builder.py.gz.b64
+          echo 'dba367dda166d87e406b4c15bc993620da81d243e8f440c0d1b50c275602205a  /tmp/politikk-statsvitenskap-builder.py.gz.b64' | sha256sum -c - \
+            2>&1 | tee reports/politikk-canonical-migration/statsvitenskap-builder-checksum.txt
+          base64 -d /tmp/politikk-statsvitenskap-builder.py.gz.b64 | gzip -d > /tmp/build-politikk-statsvitenskap.py
+          python -m py_compile /tmp/build-politikk-statsvitenskap.py \
+            2>&1 | tee reports/politikk-canonical-migration/statsvitenskap-builder-syntax.txt
+
+          rm -rf /tmp/politikk-statsvitenskap-expanded
+          POLITIKK_SRC="$GITHUB_WORKSPACE/data/fag/politikk" \
+          POLITIKK_OUT=/tmp/politikk-statsvitenskap-expanded \
+            python /tmp/build-politikk-statsvitenskap.py \
+            2>&1 | tee reports/politikk-canonical-migration/statsvitenskap-builder-output.txt
+
+          cp /tmp/politikk-statsvitenskap-expanded/{fagkart_politikk_canonical_v4_5.json,emner_politikk_canonical_v4_5.json,methods_politikk_canonical_v4_5.json,emnemapping_politikk_canonical_v4_5.json,politikkpensum_canonical_v4_5.json,quiz_generator_rules_politikk_v5_1_source_priority_patch.json} data/fag/politikk/
+          cp /tmp/politikk-statsvitenskap-expanded/reports/politikk-canonical-migration/{statsvitenskap-question-blueprints.json,statsvitenskap-vertical-chain.md} reports/politikk-canonical-migration/
+          cp /tmp/politikk-statsvitenskap-expanded/tools/validate-politikk-statsvitenskap-core.mjs tools/
+
+          node tools/validate-politikk-statsvitenskap-core.mjs \
+            2>&1 | tee reports/politikk-canonical-migration/statsvitenskap-vertical-chain-validation.txt
+
+          for file in \
+            data/fag/politikk/fagkart_politikk_canonical_v4_5.json \
+            data/fag/politikk/emner_politikk_canonical_v4_5.json \
+            data/fag/politikk/methods_politikk_canonical_v4_5.json \
+            data/fag/politikk/emnemapping_politikk_canonical_v4_5.json \
+            data/fag/politikk/politikkpensum_canonical_v4_5.json \
+            data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json \
+            reports/politikk-canonical-migration/statsvitenskap-question-blueprints.json; do
+            node -e 'JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log("PASS | Gyldig JSON: "+process.argv[1])' "$file" \
+              2>&1 | tee -a reports/politikk-canonical-migration/statsvitenskap-vertical-chain-validation.txt
+          done
+
+          git diff --check \
+            2>&1 | tee -a reports/politikk-canonical-migration/statsvitenskap-vertical-chain-validation.txt
+          echo 'PASS | git diff --check' | tee -a reports/politikk-canonical-migration/statsvitenskap-vertical-chain-validation.txt
+
+          rm -f tools/politikk-statsvitenskap-builder.part-*
+          rm -f reports/politikk-canonical-migration/statsvitenskap-expansion-marker.txt
+          rm -f reports/politikk-canonical-migration/statsvitenskap-builder-checksum.txt
+          rm -f reports/politikk-canonical-migration/statsvitenskap-builder-syntax.txt
+          rm -f reports/politikk-canonical-migration/statsvitenskap-builder-output.txt
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A data/fag/politikk reports/politikk-canonical-migration tools
+          git diff --cached --check
+          git commit -m 'Politikk: bygg full statsvitenskapelig hovedstruktur'
+          git push --force-with-lease origin HEAD:${{ github.head_ref }}
       - uses: actions/upload-artifact@v4
-        if: steps.export.outputs.exported == 'true'
+        if: always()
         with:
-          name: politics-current-before-political-science-expansion
-          path: /tmp/politikk-statsvitenskap/
+          name: politics-political-science-expansion-diagnostics
+          path: reports/politikk-canonical-migration/statsvitenskap-*
+          if-no-files-found: warn
+      - name: Propagate expansion failure
+        if: steps.apply.outcome == 'failure'
+        run: exit 1
