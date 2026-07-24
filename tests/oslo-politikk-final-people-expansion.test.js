@@ -62,9 +62,13 @@ function placesFor(person) {
 }
 
 function isArchitect(person) {
-  const tags = Array.isArray(person.tags) ? person.tags.map(String) : [];
-  const text = `${person.desc || ""} ${person.popupDesc || ""}`.toLowerCase();
-  return tags.includes("arkitektur") || /\barkitekt(?:en|er|ene|assistent)?\b/.test(text);
+  const desc = String(person.desc || "").trim().toLowerCase();
+  const period = String(person.period || "").toLowerCase();
+  const popup = String(person.popupDesc || "").toLowerCase();
+
+  return /^(?:hoved)?arkitekt(?:en|assistent)?\b/.test(desc)
+    || period.includes("arkitekt")
+    || /\b(?:var|som) (?:hoved)?arkitekt\b/.test(popup);
 }
 
 for (const [placeId, minimum] of Object.entries(minimums)) {
