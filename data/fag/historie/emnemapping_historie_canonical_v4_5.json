@@ -7,7 +7,7 @@
         "fagkart_kategori": "his_tid_periodisering",
         "fagkart_kategori_tittel": "Historisk tid og periodisering",
         "topic_hook": "his_brudd_kontinuitet",
-        "topic_hook_tittel": "Brudd og kontinuitet",
+        "topic_hook_tittel": "Brudd, kontinuitet og omforming",
         "mapping_tier": "primary",
         "priority_score": 10,
         "set_phase_fit": [
@@ -19,35 +19,45 @@
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
-        "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær bane: bygg fra dokumentert tidsrekke til tidslig analyse.",
         "tenkere": [
           "Marc Bloch",
           "Eric Hobsbawm",
-          "Paul Ricoeur"
+          "Fernand Braudel",
+          "Knut Kjeldstadli"
         ],
         "thinker_ids": [
           "marc_bloch",
           "eric_hobsbawm",
-          "paul_ricoeur"
+          "fernand_braudel",
+          "knut_kjeldstadli"
         ],
-        "norwegian_thinker_ids": [],
-        "norwegian_thinkers": [],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
         "comparison_pairs": [
           [
             "marc_bloch",
             "eric_hobsbawm"
           ],
           [
-            "paul_ricoeur",
-            "reinhart_koselleck"
+            "fernand_braudel",
+            "knut_kjeldstadli"
           ]
         ],
         "preferred_question_moves": [
-          "identify what changed and what remained",
-          "connect event to institutional consequence",
-          "compare before and after",
-          "use material trace to show continuity"
+          "identify the documented change",
+          "name what persisted across the change",
+          "separate formal reform from practical consequence",
+          "compare short-term rupture with long-term continuity"
         ],
         "best_place_types": [
           "transformasjonsomrade",
@@ -57,87 +67,184 @@
           "omrade"
         ],
         "avoid_place_types": [
-          "sted_uten_dokumentert_endring"
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
         ],
         "anti_patterns": [
-          "Er dette et brudd eller kontinuitet uten konkret hendelse",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
           "Regjeringskvartalet",
-          "Bispelokket",
+          "Møllergata 19",
           "Aker Brygge",
-          "Møllergata 19"
+          "Bispelokket"
         ],
         "recommended_method_ids": [
           "met_for_etter_historisk",
-          "met_institusjonshistorisk_analyse",
-          "met_arkivlesning"
+          "met_hendelsesforlop_analyse",
+          "met_komparativ_historie"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_hendelse_prosess",
+        "topic_hook_tittel": "Hendelse, forløp og konsekvens",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "event-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær bane: brukes når samme case støtter en tydelig supplerende tidsdistinksjon.",
+        "tenkere": [
+          "Marc Bloch",
+          "E. H. Carr",
+          "Paul Ricoeur",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "marc_bloch",
+          "e_h_carr",
+          "paul_ricoeur",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "marc_bloch",
+            "e_h_carr"
+          ],
+          [
+            "paul_ricoeur",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "order independently sourced events",
+          "separate trigger from background conditions",
+          "trace immediate and later consequences",
+          "mark uncertainty in the sequence"
+        ],
+        "best_place_types": [
+          "minnested",
+          "institusjonsbygg",
+          "festning",
+          "historical_site",
+          "museum"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Oscarsborg festning",
+          "Regjeringskvartalet"
+        ],
+        "recommended_method_ids": [
+          "met_hendelsesforlop_analyse",
+          "met_kronologisk_rekonstruksjon",
+          "met_kildekritikk"
         ]
       }
     ],
-    "mapping_status": "tiered+canonical",
+    "mapping_status": "two_lane+canonical",
     "primary_hooks": [
       "his_brudd_kontinuitet"
     ],
-    "secondary_hooks": [],
+    "secondary_hooks": [
+      "his_hendelse_prosess"
+    ],
     "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først. Sekundær bane krever selvstendig kildegrunnlag og en annen eksplisitt tidslig distinksjon.",
     "history_anchor_required": true,
     "source_anchor_required": true,
     "external_claim_basis_required": true,
     "canonical_thinkers": [
       "Marc Bloch",
       "Eric Hobsbawm",
-      "Paul Ricoeur"
+      "Fernand Braudel",
+      "Knut Kjeldstadli"
     ],
     "canonical_thinker_ids": [
       "marc_bloch",
       "eric_hobsbawm",
-      "paul_ricoeur"
+      "fernand_braudel",
+      "knut_kjeldstadli"
     ],
-    "norwegian_thinker_ids": [],
-    "norwegian_thinkers": [],
-    "theory_diversity_score": 3,
-    "has_norwegian_theory_path": false,
-    "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v2-historie-tid",
+    "generator_theory_note": "Teori kommer etter kilde, kronologi, tidsrom og kritisk distinksjon.",
     "recommended_oslo_cases": [
       "Regjeringskvartalet",
-      "Bispelokket",
+      "Møllergata 19",
       "Aker Brygge",
-      "Møllergata 19"
+      "Bispelokket"
     ],
     "recommended_method_ids": [
       "met_for_etter_historisk",
-      "met_institusjonshistorisk_analyse",
-      "met_arkivlesning"
+      "met_hendelsesforlop_analyse",
+      "met_komparativ_historie"
     ],
     "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "overlap_resolution_note": "Avgrens med dokumentert tidsrom, kildegrunnlag og forskjellen mellom den primære og sekundære tidsanalysen.",
     "theory_overreach_risk": "medium",
     "progression_stage": "full_ladder",
     "theory_spread_priority": "spread_more",
     "canonical_status": "canonical",
     "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
+    "min_recommended_oslo_cases": 4,
     "case_gate_required": true,
     "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
+    "recommended_max_primary_hooks": 2,
     "generator_risk_mode": "guarded",
     "canonical_file_role": "active",
     "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
       "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
+      "require_external_claim_basis": true,
+      "require_chronology_or_temporal_claim": true,
+      "require_temporal_scope": true,
+      "require_critical_distinction": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
   },
   {
     "emne_id": "em_his_historiske_lag_i_byrom",
@@ -146,10 +253,95 @@
       {
         "fagkart_kategori": "his_tid_periodisering",
         "fagkart_kategori_tittel": "Historisk tid og periodisering",
-        "topic_hook": "his_periodisering_epoker",
-        "topic_hook_tittel": "Periodisering og epoker",
+        "topic_hook": "his_tidslag_samtidighet",
+        "topic_hook_tittel": "Tidslag og samtidighet i sted",
         "mapping_tier": "primary",
         "priority_score": 10,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "trace-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær bane: bygg fra dokumentert tidsrekke til tidslig analyse.",
+        "tenkere": [
+          "Fernand Braudel",
+          "Jacques Le Goff",
+          "Reinhart Koselleck",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "fernand_braudel",
+          "jacques_le_goff",
+          "reinhart_koselleck",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "fernand_braudel",
+            "jacques_le_goff"
+          ],
+          [
+            "reinhart_koselleck",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify the surviving layer",
+          "date reuse and alteration separately",
+          "compare physical sequence with public narrative",
+          "state which layers are absent or reconstructed"
+        ],
+        "best_place_types": [
+          "kulturmiljo",
+          "ruinomrade",
+          "kirke",
+          "festning",
+          "gate",
+          "omrade"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Middelalderbyen Oslo",
+          "Gamle Aker kirke",
+          "Akershus festning",
+          "Bjørvika"
+        ],
+        "recommended_method_ids": [
+          "met_tidslagsanalyse",
+          "met_sporlesning",
+          "met_periodisering"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_periodisering_epoker",
+        "topic_hook_tittel": "Periodisering, epoker og analytiske grenser",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
         "set_phase_fit": [
           "bridge_facts_theory",
           "late_theory"
@@ -159,8 +351,12 @@
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
-        "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær bane: brukes når samme case støtter en tydelig supplerende tidsdistinksjon.",
         "tenkere": [
           "Reinhart Koselleck",
           "Fernand Braudel",
@@ -190,65 +386,64 @@
           ]
         ],
         "preferred_question_moves": [
-          "connect dated fact to broader period",
-          "compare continuity and rupture",
-          "read visible layer as historical time",
-          "separate event from long-term structure"
+          "state the period boundary and its evidence",
+          "compare calendar boundary with lived continuity",
+          "test a national period label against a local sequence",
+          "identify what the chosen periodisation excludes"
         ],
         "best_place_types": [
           "kulturmiljo",
           "ruinomrade",
           "institusjonsbygg",
+          "historical_site",
           "gate",
-          "plass",
           "omrade"
         ],
         "avoid_place_types": [
-          "ren_natur",
-          "kommersielt_sted_uten_historisk_spor"
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
         ],
         "anti_patterns": [
-          "Hvilken epoke passer best uten stedlig belegg",
-          "Hva er periodisering generelt",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
         ],
-        "theory_depth": "high",
+        "theory_depth": "medium",
         "recommended_oslo_cases": [
           "Middelalderbyen Oslo",
-          "Gamle Aker kirke",
-          "Akershus festning",
+          "Eidsvollsbygningen",
+          "Regjeringskvartalet",
           "Bjørvika"
         ],
         "recommended_method_ids": [
           "met_periodisering",
-          "met_for_etter_historisk",
-          "met_sporlesning"
+          "met_kronologisk_rekonstruksjon",
+          "met_begrepshistorie"
         ]
       }
     ],
-    "mapping_status": "tiered+canonical",
+    "mapping_status": "two_lane+canonical",
     "primary_hooks": [
+      "his_tidslag_samtidighet"
+    ],
+    "secondary_hooks": [
       "his_periodisering_epoker"
     ],
-    "secondary_hooks": [],
     "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først. Sekundær bane krever selvstendig kildegrunnlag og en annen eksplisitt tidslig distinksjon.",
     "history_anchor_required": true,
     "source_anchor_required": true,
     "external_claim_basis_required": true,
     "canonical_thinkers": [
-      "Reinhart Koselleck",
       "Fernand Braudel",
       "Jacques Le Goff",
+      "Reinhart Koselleck",
       "Knut Kjeldstadli"
     ],
     "canonical_thinker_ids": [
-      "reinhart_koselleck",
       "fernand_braudel",
       "jacques_le_goff",
+      "reinhart_koselleck",
       "knut_kjeldstadli"
     ],
     "norwegian_thinker_ids": [
@@ -259,8 +454,8 @@
     ],
     "theory_diversity_score": 4,
     "has_norwegian_theory_path": true,
-    "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "theory_sync_version": "v2-historie-tid",
+    "generator_theory_note": "Teori kommer etter kilde, kronologi, tidsrom og kritisk distinksjon.",
     "recommended_oslo_cases": [
       "Middelalderbyen Oslo",
       "Gamle Aker kirke",
@@ -268,204 +463,402 @@
       "Bjørvika"
     ],
     "recommended_method_ids": [
-      "met_periodisering",
-      "met_for_etter_historisk",
-      "met_sporlesning"
+      "met_tidslagsanalyse",
+      "met_sporlesning",
+      "met_periodisering"
     ],
     "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "overlap_resolution_note": "Avgrens med dokumentert tidsrom, kildegrunnlag og forskjellen mellom den primære og sekundære tidsanalysen.",
     "theory_overreach_risk": "medium",
     "progression_stage": "full_ladder",
     "theory_spread_priority": "spread_more",
     "canonical_status": "canonical",
     "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
+    "min_recommended_oslo_cases": 4,
     "case_gate_required": true,
     "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
+    "recommended_max_primary_hooks": 2,
     "generator_risk_mode": "guarded",
     "canonical_file_role": "active",
     "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
       "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
+      "require_external_claim_basis": true,
+      "require_chronology_or_temporal_claim": true,
+      "require_temporal_scope": true,
+      "require_critical_distinction": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
   },
   {
     "emne_id": "em_his_modernisering_1800",
-    "title": "1800-tallets modernisering",
+    "title": "1800-tallets modernisering og ulike endringstempo",
     "mappings": [
       {
         "fagkart_kategori": "his_tid_periodisering",
         "fagkart_kategori_tittel": "Historisk tid og periodisering",
-        "topic_hook": "his_brudd_kontinuitet",
-        "topic_hook_tittel": "Brudd og kontinuitet",
+        "topic_hook": "his_rytmer_tempo",
+        "topic_hook_tittel": "Historiske rytmer, tempo og modernisering",
         "mapping_tier": "primary",
         "priority_score": 10,
         "set_phase_fit": [
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "place-first",
+        "question_surface_mode": "change-first",
         "history_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
-        "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær bane: bygg fra dokumentert tidsrekke til tidslig analyse.",
         "tenkere": [
-          "Marc Bloch",
           "Eric Hobsbawm",
-          "Paul Ricoeur"
+          "Fernand Braudel",
+          "Reinhart Koselleck",
+          "Francis Sejersted"
         ],
         "thinker_ids": [
-          "marc_bloch",
           "eric_hobsbawm",
-          "paul_ricoeur"
+          "fernand_braudel",
+          "reinhart_koselleck",
+          "francis_sejersted"
         ],
-        "norwegian_thinker_ids": [],
-        "norwegian_thinkers": [],
+        "norwegian_thinker_ids": [
+          "francis_sejersted"
+        ],
+        "norwegian_thinkers": [
+          "Francis Sejersted"
+        ],
         "comparison_pairs": [
           [
-            "marc_bloch",
-            "eric_hobsbawm"
+            "eric_hobsbawm",
+            "fernand_braudel"
           ],
           [
-            "paul_ricoeur",
-            "reinhart_koselleck"
+            "reinhart_koselleck",
+            "francis_sejersted"
           ]
         ],
         "preferred_question_moves": [
-          "identify what changed and what remained",
-          "connect event to institutional consequence",
-          "compare before and after",
-          "use material trace to show continuity"
+          "compare the pace of two changes",
+          "identify who experienced change first",
+          "separate technical introduction from social adoption",
+          "use dated series to test acceleration"
         ],
         "best_place_types": [
-          "transformasjonsomrade",
+          "industriomrade",
+          "skole",
           "institusjonsbygg",
-          "minnested",
-          "gate",
-          "omrade"
+          "infrastruktur",
+          "transformasjonsomrade"
         ],
         "avoid_place_types": [
-          "sted_uten_dokumentert_endring"
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
         ],
         "anti_patterns": [
-          "Er dette et brudd eller kontinuitet uten konkret hendelse",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Regjeringskvartalet",
-          "Bispelokket",
-          "Aker Brygge",
-          "Møllergata 19"
+          "Akerselva",
+          "Sagene skole",
+          "Bjørvika",
+          "Stortinget"
         ],
         "recommended_method_ids": [
-          "met_for_etter_historisk",
-          "met_institusjonshistorisk_analyse",
-          "met_arkivlesning"
+          "met_temporalitetsanalyse",
+          "met_seriell_kildeanalyse",
+          "met_for_etter_historisk"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_lang_varighet_strukturer",
+        "topic_hook_tittel": "Lang varighet og strukturell endring",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "process-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær bane: brukes når samme case støtter en tydelig supplerende tidsdistinksjon.",
+        "tenkere": [
+          "Fernand Braudel",
+          "Marc Bloch",
+          "Eric Hobsbawm",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "fernand_braudel",
+          "marc_bloch",
+          "eric_hobsbawm",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "fernand_braudel",
+            "marc_bloch"
+          ],
+          [
+            "eric_hobsbawm",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "define the long time span",
+          "identify a stable structure and its indicators",
+          "compare several dated observations",
+          "avoid explaining a long process with a single event"
+        ],
+        "best_place_types": [
+          "kulturmiljo",
+          "institusjonsbygg",
+          "industriomrade",
+          "bydel",
+          "infrastruktur",
+          "historical_site"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Akerselva",
+          "Oslo Hospital",
+          "Akershus festning",
+          "Grønland"
+        ],
+        "recommended_method_ids": [
+          "met_langvarighetsanalyse",
+          "met_seriell_kildeanalyse",
+          "met_komparativ_historie"
         ]
       }
     ],
-    "mapping_status": "tiered+canonical",
+    "mapping_status": "two_lane+canonical",
     "primary_hooks": [
-      "his_brudd_kontinuitet"
+      "his_rytmer_tempo"
     ],
-    "secondary_hooks": [],
+    "secondary_hooks": [
+      "his_lang_varighet_strukturer"
+    ],
     "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først. Sekundær bane krever selvstendig kildegrunnlag og en annen eksplisitt tidslig distinksjon.",
     "history_anchor_required": true,
     "source_anchor_required": true,
     "external_claim_basis_required": true,
     "canonical_thinkers": [
-      "Marc Bloch",
       "Eric Hobsbawm",
-      "Paul Ricoeur"
+      "Fernand Braudel",
+      "Reinhart Koselleck",
+      "Francis Sejersted"
     ],
     "canonical_thinker_ids": [
-      "marc_bloch",
       "eric_hobsbawm",
-      "paul_ricoeur"
+      "fernand_braudel",
+      "reinhart_koselleck",
+      "francis_sejersted"
     ],
-    "norwegian_thinker_ids": [],
-    "norwegian_thinkers": [],
-    "theory_diversity_score": 3,
-    "has_norwegian_theory_path": false,
-    "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "norwegian_thinker_ids": [
+      "francis_sejersted"
+    ],
+    "norwegian_thinkers": [
+      "Francis Sejersted"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v2-historie-tid",
+    "generator_theory_note": "Teori kommer etter kilde, kronologi, tidsrom og kritisk distinksjon.",
     "recommended_oslo_cases": [
-      "Regjeringskvartalet",
-      "Bispelokket",
-      "Aker Brygge",
-      "Møllergata 19"
+      "Akerselva",
+      "Sagene skole",
+      "Bjørvika",
+      "Stortinget"
     ],
     "recommended_method_ids": [
-      "met_for_etter_historisk",
-      "met_institusjonshistorisk_analyse",
-      "met_arkivlesning"
+      "met_temporalitetsanalyse",
+      "met_seriell_kildeanalyse",
+      "met_for_etter_historisk"
     ],
     "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "overlap_resolution_note": "Avgrens med dokumentert tidsrom, kildegrunnlag og forskjellen mellom den primære og sekundære tidsanalysen.",
     "theory_overreach_risk": "medium",
     "progression_stage": "full_ladder",
     "theory_spread_priority": "spread_more",
     "canonical_status": "canonical",
     "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
+    "min_recommended_oslo_cases": 4,
     "case_gate_required": true,
     "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
+    "recommended_max_primary_hooks": 2,
     "generator_risk_mode": "guarded",
     "canonical_file_role": "active",
     "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
       "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
+      "require_external_claim_basis": true,
+      "require_chronology_or_temporal_claim": true,
+      "require_temporal_scope": true,
+      "require_critical_distinction": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
   },
   {
     "emne_id": "em_his_samtid_ettertid_fortelling",
-    "title": "Samtid, ettertid og fortelling",
+    "title": "Samtid, ettertid og historisk fortelling",
     "mappings": [
       {
         "fagkart_kategori": "his_tid_periodisering",
         "fagkart_kategori_tittel": "Historisk tid og periodisering",
-        "topic_hook": "his_periodisering_epoker",
-        "topic_hook_tittel": "Periodisering og epoker",
+        "topic_hook": "his_samtid_ettertid_fortelling",
+        "topic_hook_tittel": "Samtid, ettertid og historisk fortelling",
         "mapping_tier": "primary",
         "priority_score": 10,
         "set_phase_fit": [
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "fact-first",
+        "question_surface_mode": "source-first",
         "history_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
-        "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær bane: bygg fra dokumentert tidsrekke til tidslig analyse.",
         "tenkere": [
+          "Paul Ricoeur",
+          "E. H. Carr",
           "Reinhart Koselleck",
-          "Fernand Braudel",
-          "Jacques Le Goff",
+          "Eric Hobsbawm"
+        ],
+        "thinker_ids": [
+          "paul_ricoeur",
+          "e_h_carr",
+          "reinhart_koselleck",
+          "eric_hobsbawm"
+        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
+        "comparison_pairs": [
+          [
+            "paul_ricoeur",
+            "e_h_carr"
+          ],
+          [
+            "reinhart_koselleck",
+            "eric_hobsbawm"
+          ]
+        ],
+        "preferred_question_moves": [
+          "compare contemporary and later accounts",
+          "identify the chosen beginning and ending",
+          "separate chronology from narrative coherence",
+          "trace how later knowledge changes emphasis"
+        ],
+        "best_place_types": [
+          "museum",
+          "minnested",
+          "gravlund",
+          "historical_site",
+          "institusjonsbygg"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Villa Grande",
+          "Vår Frelsers gravlund",
+          "22. juli-senteret",
+          "Eidsvollsbygningen"
+        ],
+        "recommended_method_ids": [
+          "met_temporalitetsanalyse",
+          "met_minneanalyse",
+          "met_kildekritikk"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_hendelse_prosess",
+        "topic_hook_tittel": "Hendelse, forløp og konsekvens",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "event-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær bane: brukes når samme case støtter en tydelig supplerende tidsdistinksjon.",
+        "tenkere": [
+          "Marc Bloch",
+          "E. H. Carr",
+          "Paul Ricoeur",
           "Knut Kjeldstadli"
         ],
         "thinker_ids": [
-          "reinhart_koselleck",
-          "fernand_braudel",
-          "jacques_le_goff",
+          "marc_bloch",
+          "e_h_carr",
+          "paul_ricoeur",
           "knut_kjeldstadli"
         ],
         "norwegian_thinker_ids": [
@@ -476,130 +869,214 @@
         ],
         "comparison_pairs": [
           [
-            "reinhart_koselleck",
-            "fernand_braudel"
+            "marc_bloch",
+            "e_h_carr"
           ],
           [
-            "jacques_le_goff",
+            "paul_ricoeur",
             "knut_kjeldstadli"
           ]
         ],
         "preferred_question_moves": [
-          "connect dated fact to broader period",
-          "compare continuity and rupture",
-          "read visible layer as historical time",
-          "separate event from long-term structure"
+          "order independently sourced events",
+          "separate trigger from background conditions",
+          "trace immediate and later consequences",
+          "mark uncertainty in the sequence"
         ],
         "best_place_types": [
-          "kulturmiljo",
-          "ruinomrade",
+          "minnested",
           "institusjonsbygg",
-          "gate",
-          "plass",
-          "omrade"
+          "festning",
+          "historical_site",
+          "museum"
         ],
         "avoid_place_types": [
-          "ren_natur",
-          "kommersielt_sted_uten_historisk_spor"
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
         ],
         "anti_patterns": [
-          "Hvilken epoke passer best uten stedlig belegg",
-          "Hva er periodisering generelt",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
         ],
-        "theory_depth": "high",
+        "theory_depth": "medium",
         "recommended_oslo_cases": [
-          "Middelalderbyen Oslo",
-          "Gamle Aker kirke",
-          "Akershus festning",
-          "Bjørvika"
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Oscarsborg festning",
+          "Regjeringskvartalet"
         ],
         "recommended_method_ids": [
-          "met_periodisering",
-          "met_for_etter_historisk",
-          "met_sporlesning"
+          "met_hendelsesforlop_analyse",
+          "met_kronologisk_rekonstruksjon",
+          "met_kildekritikk"
         ]
       }
     ],
-    "mapping_status": "tiered+canonical",
+    "mapping_status": "two_lane+canonical",
     "primary_hooks": [
-      "his_periodisering_epoker"
+      "his_samtid_ettertid_fortelling"
     ],
-    "secondary_hooks": [],
+    "secondary_hooks": [
+      "his_hendelse_prosess"
+    ],
     "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først. Sekundær bane krever selvstendig kildegrunnlag og en annen eksplisitt tidslig distinksjon.",
     "history_anchor_required": true,
     "source_anchor_required": true,
     "external_claim_basis_required": true,
     "canonical_thinkers": [
+      "Paul Ricoeur",
+      "E. H. Carr",
       "Reinhart Koselleck",
-      "Fernand Braudel",
-      "Jacques Le Goff",
-      "Knut Kjeldstadli"
+      "Eric Hobsbawm"
     ],
     "canonical_thinker_ids": [
+      "paul_ricoeur",
+      "e_h_carr",
       "reinhart_koselleck",
-      "fernand_braudel",
-      "jacques_le_goff",
-      "knut_kjeldstadli"
+      "eric_hobsbawm"
     ],
-    "norwegian_thinker_ids": [
-      "knut_kjeldstadli"
-    ],
-    "norwegian_thinkers": [
-      "Knut Kjeldstadli"
-    ],
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
     "theory_diversity_score": 4,
-    "has_norwegian_theory_path": true,
-    "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "has_norwegian_theory_path": false,
+    "theory_sync_version": "v2-historie-tid",
+    "generator_theory_note": "Teori kommer etter kilde, kronologi, tidsrom og kritisk distinksjon.",
     "recommended_oslo_cases": [
-      "Middelalderbyen Oslo",
-      "Gamle Aker kirke",
-      "Akershus festning",
-      "Bjørvika"
+      "Villa Grande",
+      "Vår Frelsers gravlund",
+      "22. juli-senteret",
+      "Eidsvollsbygningen"
     ],
     "recommended_method_ids": [
-      "met_periodisering",
-      "met_for_etter_historisk",
-      "met_sporlesning"
+      "met_temporalitetsanalyse",
+      "met_minneanalyse",
+      "met_kildekritikk"
     ],
     "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "overlap_resolution_note": "Avgrens med dokumentert tidsrom, kildegrunnlag og forskjellen mellom den primære og sekundære tidsanalysen.",
     "theory_overreach_risk": "medium",
     "progression_stage": "full_ladder",
     "theory_spread_priority": "spread_more",
     "canonical_status": "canonical",
     "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
+    "min_recommended_oslo_cases": 4,
     "case_gate_required": true,
     "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
+    "recommended_max_primary_hooks": 2,
     "generator_risk_mode": "guarded",
     "canonical_file_role": "active",
     "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
       "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
+      "require_external_claim_basis": true,
+      "require_chronology_or_temporal_claim": true,
+      "require_temporal_scope": true,
+      "require_critical_distinction": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
   },
   {
     "emne_id": "em_his_samtidshistorie_brudd",
-    "title": "Samtidshistoriske brudd",
+    "title": "Samtidshistorie, erfaring og åpne framtider",
     "mappings": [
       {
         "fagkart_kategori": "his_tid_periodisering",
         "fagkart_kategori_tittel": "Historisk tid og periodisering",
-        "topic_hook": "his_brudd_kontinuitet",
-        "topic_hook_tittel": "Brudd og kontinuitet",
+        "topic_hook": "his_erfaringsrom_forventningshorisont",
+        "topic_hook_tittel": "Erfaringsrom og forventningshorisont",
         "mapping_tier": "primary",
         "priority_score": 10,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "actor-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær bane: bygg fra dokumentert tidsrekke til tidslig analyse.",
+        "tenkere": [
+          "Reinhart Koselleck",
+          "Paul Ricoeur",
+          "Eric Hobsbawm",
+          "Francis Sejersted"
+        ],
+        "thinker_ids": [
+          "reinhart_koselleck",
+          "paul_ricoeur",
+          "eric_hobsbawm",
+          "francis_sejersted"
+        ],
+        "norwegian_thinker_ids": [
+          "francis_sejersted"
+        ],
+        "norwegian_thinkers": [
+          "Francis Sejersted"
+        ],
+        "comparison_pairs": [
+          [
+            "reinhart_koselleck",
+            "paul_ricoeur"
+          ],
+          [
+            "eric_hobsbawm",
+            "francis_sejersted"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify an actor's available experience",
+          "document a contemporary expectation",
+          "separate expectation from later outcome",
+          "compare competing future horizons"
+        ],
+        "best_place_types": [
+          "institusjonsbygg",
+          "minnested",
+          "historical_site",
+          "museum",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Eidsvollsbygningen",
+          "Stortinget",
+          "Regjeringskvartalet",
+          "22. juli-senteret"
+        ],
+        "recommended_method_ids": [
+          "met_temporalitetsanalyse",
+          "met_begrepshistorie",
+          "met_institusjonshistorisk_analyse"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_brudd_kontinuitet",
+        "topic_hook_tittel": "Brudd, kontinuitet og omforming",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
         "set_phase_fit": [
           "bridge_facts_theory",
           "late_theory"
@@ -609,35 +1086,45 @@
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
-        "visible_trace_required": false,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær bane: brukes når samme case støtter en tydelig supplerende tidsdistinksjon.",
         "tenkere": [
           "Marc Bloch",
           "Eric Hobsbawm",
-          "Paul Ricoeur"
+          "Fernand Braudel",
+          "Knut Kjeldstadli"
         ],
         "thinker_ids": [
           "marc_bloch",
           "eric_hobsbawm",
-          "paul_ricoeur"
+          "fernand_braudel",
+          "knut_kjeldstadli"
         ],
-        "norwegian_thinker_ids": [],
-        "norwegian_thinkers": [],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
         "comparison_pairs": [
           [
             "marc_bloch",
             "eric_hobsbawm"
           ],
           [
-            "paul_ricoeur",
-            "reinhart_koselleck"
+            "fernand_braudel",
+            "knut_kjeldstadli"
           ]
         ],
         "preferred_question_moves": [
-          "identify what changed and what remained",
-          "connect event to institutional consequence",
-          "compare before and after",
-          "use material trace to show continuity"
+          "identify the documented change",
+          "name what persisted across the change",
+          "separate formal reform from practical consequence",
+          "compare short-term rupture with long-term continuity"
         ],
         "best_place_types": [
           "transformasjonsomrade",
@@ -647,97 +1134,110 @@
           "omrade"
         ],
         "avoid_place_types": [
-          "sted_uten_dokumentert_endring"
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
         ],
         "anti_patterns": [
-          "Er dette et brudd eller kontinuitet uten konkret hendelse",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
         ],
-        "theory_depth": "high",
+        "theory_depth": "medium",
         "recommended_oslo_cases": [
           "Regjeringskvartalet",
-          "Bispelokket",
+          "Møllergata 19",
           "Aker Brygge",
-          "Møllergata 19"
+          "Bispelokket"
         ],
         "recommended_method_ids": [
           "met_for_etter_historisk",
-          "met_institusjonshistorisk_analyse",
-          "met_arkivlesning"
+          "met_hendelsesforlop_analyse",
+          "met_komparativ_historie"
         ]
       }
     ],
-    "mapping_status": "tiered+canonical",
+    "mapping_status": "two_lane+canonical",
     "primary_hooks": [
+      "his_erfaringsrom_forventningshorisont"
+    ],
+    "secondary_hooks": [
       "his_brudd_kontinuitet"
     ],
-    "secondary_hooks": [],
     "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først. Sekundær bane krever selvstendig kildegrunnlag og en annen eksplisitt tidslig distinksjon.",
     "history_anchor_required": true,
     "source_anchor_required": true,
     "external_claim_basis_required": true,
     "canonical_thinkers": [
-      "Marc Bloch",
+      "Reinhart Koselleck",
+      "Paul Ricoeur",
       "Eric Hobsbawm",
-      "Paul Ricoeur"
+      "Francis Sejersted"
     ],
     "canonical_thinker_ids": [
-      "marc_bloch",
+      "reinhart_koselleck",
+      "paul_ricoeur",
       "eric_hobsbawm",
-      "paul_ricoeur"
+      "francis_sejersted"
     ],
-    "norwegian_thinker_ids": [],
-    "norwegian_thinkers": [],
-    "theory_diversity_score": 3,
-    "has_norwegian_theory_path": false,
-    "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "norwegian_thinker_ids": [
+      "francis_sejersted"
+    ],
+    "norwegian_thinkers": [
+      "Francis Sejersted"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v2-historie-tid",
+    "generator_theory_note": "Teori kommer etter kilde, kronologi, tidsrom og kritisk distinksjon.",
     "recommended_oslo_cases": [
+      "Eidsvollsbygningen",
+      "Stortinget",
       "Regjeringskvartalet",
-      "Bispelokket",
-      "Aker Brygge",
-      "Møllergata 19"
+      "22. juli-senteret"
     ],
     "recommended_method_ids": [
-      "met_for_etter_historisk",
-      "met_institusjonshistorisk_analyse",
-      "met_arkivlesning"
+      "met_temporalitetsanalyse",
+      "met_begrepshistorie",
+      "met_institusjonshistorisk_analyse"
     ],
     "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
-    "theory_overreach_risk": "high",
+    "overlap_resolution_note": "Avgrens med dokumentert tidsrom, kildegrunnlag og forskjellen mellom den primære og sekundære tidsanalysen.",
+    "theory_overreach_risk": "medium",
     "progression_stage": "full_ladder",
     "theory_spread_priority": "spread_more",
     "canonical_status": "canonical",
     "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
+    "min_recommended_oslo_cases": 4,
     "case_gate_required": true,
     "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
-    "generator_risk_mode": "strict",
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
     "canonical_file_role": "active",
     "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
-      "risk_mode": "strict",
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
+      "require_external_claim_basis": true,
+      "require_chronology_or_temporal_claim": true,
+      "require_temporal_scope": true,
+      "require_critical_distinction": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
   },
   {
     "emne_id": "em_his_tid_periodisering_epoker",
-    "title": "Historisk tid, epoker og periodisering",
+    "title": "Tid, periodisering og epoker",
     "mappings": [
       {
         "fagkart_kategori": "his_tid_periodisering",
         "fagkart_kategori_tittel": "Historisk tid og periodisering",
         "topic_hook": "his_periodisering_epoker",
-        "topic_hook_tittel": "Periodisering og epoker",
+        "topic_hook_tittel": "Periodisering, epoker og analytiske grenser",
         "mapping_tier": "primary",
         "priority_score": 10,
         "set_phase_fit": [
@@ -749,8 +1249,12 @@
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
-        "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær bane: bygg fra dokumentert tidsrekke til tidslig analyse.",
         "tenkere": [
           "Reinhart Koselleck",
           "Fernand Braudel",
@@ -780,52 +1284,135 @@
           ]
         ],
         "preferred_question_moves": [
-          "connect dated fact to broader period",
-          "compare continuity and rupture",
-          "read visible layer as historical time",
-          "separate event from long-term structure"
+          "state the period boundary and its evidence",
+          "compare calendar boundary with lived continuity",
+          "test a national period label against a local sequence",
+          "identify what the chosen periodisation excludes"
         ],
         "best_place_types": [
           "kulturmiljo",
           "ruinomrade",
           "institusjonsbygg",
+          "historical_site",
           "gate",
-          "plass",
           "omrade"
         ],
         "avoid_place_types": [
-          "ren_natur",
-          "kommersielt_sted_uten_historisk_spor"
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
         ],
         "anti_patterns": [
-          "Hvilken epoke passer best uten stedlig belegg",
-          "Hva er periodisering generelt",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
           "Middelalderbyen Oslo",
-          "Gamle Aker kirke",
-          "Akershus festning",
+          "Eidsvollsbygningen",
+          "Regjeringskvartalet",
           "Bjørvika"
         ],
         "recommended_method_ids": [
           "met_periodisering",
-          "met_for_etter_historisk",
-          "met_sporlesning"
+          "met_kronologisk_rekonstruksjon",
+          "met_begrepshistorie"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_anakronisme_begrepsbruk",
+        "topic_hook_tittel": "Anakronisme og historisk begrepsbruk",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "concept-after-fact",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær bane: brukes når samme case støtter en tydelig supplerende tidsdistinksjon.",
+        "tenkere": [
+          "Reinhart Koselleck",
+          "E. H. Carr",
+          "Marc Bloch",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "reinhart_koselleck",
+          "e_h_carr",
+          "marc_bloch",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "reinhart_koselleck",
+            "e_h_carr"
+          ],
+          [
+            "marc_bloch",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify the contemporary term",
+          "compare later and earlier meanings",
+          "test whether the category existed for the actor",
+          "rewrite the claim without hindsight"
+        ],
+        "best_place_types": [
+          "institusjonsbygg",
+          "skole",
+          "hospital",
+          "historical_site",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Stortinget",
+          "Eidsvollsbygningen",
+          "Oslo Hospital",
+          "Sagene skole"
+        ],
+        "recommended_method_ids": [
+          "met_begrepshistorie",
+          "met_temporalitetsanalyse",
+          "met_kildekritikk"
         ]
       }
     ],
-    "mapping_status": "tiered+canonical",
+    "mapping_status": "two_lane+canonical",
     "primary_hooks": [
       "his_periodisering_epoker"
     ],
-    "secondary_hooks": [],
+    "secondary_hooks": [
+      "his_anakronisme_begrepsbruk"
+    ],
     "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først. Sekundær bane krever selvstendig kildegrunnlag og en annen eksplisitt tidslig distinksjon.",
     "history_anchor_required": true,
     "source_anchor_required": true,
     "external_claim_basis_required": true,
@@ -849,40 +1436,46 @@
     ],
     "theory_diversity_score": 4,
     "has_norwegian_theory_path": true,
-    "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "theory_sync_version": "v2-historie-tid",
+    "generator_theory_note": "Teori kommer etter kilde, kronologi, tidsrom og kritisk distinksjon.",
     "recommended_oslo_cases": [
       "Middelalderbyen Oslo",
-      "Gamle Aker kirke",
-      "Akershus festning",
+      "Eidsvollsbygningen",
+      "Regjeringskvartalet",
       "Bjørvika"
     ],
     "recommended_method_ids": [
       "met_periodisering",
-      "met_for_etter_historisk",
-      "met_sporlesning"
+      "met_kronologisk_rekonstruksjon",
+      "met_begrepshistorie"
     ],
     "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "overlap_resolution_note": "Avgrens med dokumentert tidsrom, kildegrunnlag og forskjellen mellom den primære og sekundære tidsanalysen.",
     "theory_overreach_risk": "medium",
     "progression_stage": "full_ladder",
     "theory_spread_priority": "spread_more",
     "canonical_status": "canonical",
     "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
+    "min_recommended_oslo_cases": 4,
     "case_gate_required": true,
     "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
+    "recommended_max_primary_hooks": 2,
     "generator_risk_mode": "guarded",
     "canonical_file_role": "active",
     "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
       "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
+      "require_external_claim_basis": true,
+      "require_chronology_or_temporal_claim": true,
+      "require_temporal_scope": true,
+      "require_critical_distinction": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
   },
   {
     "emne_id": "em_his_arkiv_og_dokumentasjon",
@@ -8689,5 +9282,996 @@
     "limitation_required": true,
     "corroboration_required": true,
     "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_lang_varighet_strukturer",
+    "title": "Lang varighet og historiske strukturer",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_lang_varighet_strukturer",
+        "topic_hook_tittel": "Lang varighet og strukturell endring",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "process-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær bane: bygg fra dokumentert tidsrekke til tidslig analyse.",
+        "tenkere": [
+          "Fernand Braudel",
+          "Marc Bloch",
+          "Eric Hobsbawm",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "fernand_braudel",
+          "marc_bloch",
+          "eric_hobsbawm",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "fernand_braudel",
+            "marc_bloch"
+          ],
+          [
+            "eric_hobsbawm",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "define the long time span",
+          "identify a stable structure and its indicators",
+          "compare several dated observations",
+          "avoid explaining a long process with a single event"
+        ],
+        "best_place_types": [
+          "kulturmiljo",
+          "institusjonsbygg",
+          "industriomrade",
+          "bydel",
+          "infrastruktur",
+          "historical_site"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Akerselva",
+          "Oslo Hospital",
+          "Akershus festning",
+          "Grønland"
+        ],
+        "recommended_method_ids": [
+          "met_langvarighetsanalyse",
+          "met_seriell_kildeanalyse",
+          "met_komparativ_historie"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_rytmer_tempo",
+        "topic_hook_tittel": "Historiske rytmer, tempo og modernisering",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "change-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær bane: brukes når samme case støtter en tydelig supplerende tidsdistinksjon.",
+        "tenkere": [
+          "Eric Hobsbawm",
+          "Fernand Braudel",
+          "Reinhart Koselleck",
+          "Francis Sejersted"
+        ],
+        "thinker_ids": [
+          "eric_hobsbawm",
+          "fernand_braudel",
+          "reinhart_koselleck",
+          "francis_sejersted"
+        ],
+        "norwegian_thinker_ids": [
+          "francis_sejersted"
+        ],
+        "norwegian_thinkers": [
+          "Francis Sejersted"
+        ],
+        "comparison_pairs": [
+          [
+            "eric_hobsbawm",
+            "fernand_braudel"
+          ],
+          [
+            "reinhart_koselleck",
+            "francis_sejersted"
+          ]
+        ],
+        "preferred_question_moves": [
+          "compare the pace of two changes",
+          "identify who experienced change first",
+          "separate technical introduction from social adoption",
+          "use dated series to test acceleration"
+        ],
+        "best_place_types": [
+          "industriomrade",
+          "skole",
+          "institusjonsbygg",
+          "infrastruktur",
+          "transformasjonsomrade"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Akerselva",
+          "Sagene skole",
+          "Bjørvika",
+          "Stortinget"
+        ],
+        "recommended_method_ids": [
+          "met_temporalitetsanalyse",
+          "met_seriell_kildeanalyse",
+          "met_for_etter_historisk"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_lang_varighet_strukturer"
+    ],
+    "secondary_hooks": [
+      "his_rytmer_tempo"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først. Sekundær bane krever selvstendig kildegrunnlag og en annen eksplisitt tidslig distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true,
+    "canonical_thinkers": [
+      "Fernand Braudel",
+      "Marc Bloch",
+      "Eric Hobsbawm",
+      "Knut Kjeldstadli"
+    ],
+    "canonical_thinker_ids": [
+      "fernand_braudel",
+      "marc_bloch",
+      "eric_hobsbawm",
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v2-historie-tid",
+    "generator_theory_note": "Teori kommer etter kilde, kronologi, tidsrom og kritisk distinksjon.",
+    "recommended_oslo_cases": [
+      "Akerselva",
+      "Oslo Hospital",
+      "Akershus festning",
+      "Grønland"
+    ],
+    "recommended_method_ids": [
+      "met_langvarighetsanalyse",
+      "met_seriell_kildeanalyse",
+      "met_komparativ_historie"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med dokumentert tidsrom, kildegrunnlag og forskjellen mellom den primære og sekundære tidsanalysen.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_chronology_or_temporal_claim": true,
+      "require_temporal_scope": true,
+      "require_critical_distinction": true
+    }
+  },
+  {
+    "emne_id": "em_his_hendelse_prosess_tidsforlop",
+    "title": "Hendelse, prosess og tidsforløp",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_hendelse_prosess",
+        "topic_hook_tittel": "Hendelse, forløp og konsekvens",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "event-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær bane: bygg fra dokumentert tidsrekke til tidslig analyse.",
+        "tenkere": [
+          "Marc Bloch",
+          "E. H. Carr",
+          "Paul Ricoeur",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "marc_bloch",
+          "e_h_carr",
+          "paul_ricoeur",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "marc_bloch",
+            "e_h_carr"
+          ],
+          [
+            "paul_ricoeur",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "order independently sourced events",
+          "separate trigger from background conditions",
+          "trace immediate and later consequences",
+          "mark uncertainty in the sequence"
+        ],
+        "best_place_types": [
+          "minnested",
+          "institusjonsbygg",
+          "festning",
+          "historical_site",
+          "museum"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Oscarsborg festning",
+          "Regjeringskvartalet"
+        ],
+        "recommended_method_ids": [
+          "met_hendelsesforlop_analyse",
+          "met_kronologisk_rekonstruksjon",
+          "met_kildekritikk"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_brudd_kontinuitet",
+        "topic_hook_tittel": "Brudd, kontinuitet og omforming",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær bane: brukes når samme case støtter en tydelig supplerende tidsdistinksjon.",
+        "tenkere": [
+          "Marc Bloch",
+          "Eric Hobsbawm",
+          "Fernand Braudel",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "marc_bloch",
+          "eric_hobsbawm",
+          "fernand_braudel",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "marc_bloch",
+            "eric_hobsbawm"
+          ],
+          [
+            "fernand_braudel",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify the documented change",
+          "name what persisted across the change",
+          "separate formal reform from practical consequence",
+          "compare short-term rupture with long-term continuity"
+        ],
+        "best_place_types": [
+          "transformasjonsomrade",
+          "institusjonsbygg",
+          "minnested",
+          "gate",
+          "omrade"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Regjeringskvartalet",
+          "Møllergata 19",
+          "Aker Brygge",
+          "Bispelokket"
+        ],
+        "recommended_method_ids": [
+          "met_for_etter_historisk",
+          "met_hendelsesforlop_analyse",
+          "met_komparativ_historie"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_hendelse_prosess"
+    ],
+    "secondary_hooks": [
+      "his_brudd_kontinuitet"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først. Sekundær bane krever selvstendig kildegrunnlag og en annen eksplisitt tidslig distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true,
+    "canonical_thinkers": [
+      "Marc Bloch",
+      "E. H. Carr",
+      "Paul Ricoeur",
+      "Knut Kjeldstadli"
+    ],
+    "canonical_thinker_ids": [
+      "marc_bloch",
+      "e_h_carr",
+      "paul_ricoeur",
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v2-historie-tid",
+    "generator_theory_note": "Teori kommer etter kilde, kronologi, tidsrom og kritisk distinksjon.",
+    "recommended_oslo_cases": [
+      "22. juli-senteret",
+      "Eidsvollsbygningen",
+      "Oscarsborg festning",
+      "Regjeringskvartalet"
+    ],
+    "recommended_method_ids": [
+      "met_hendelsesforlop_analyse",
+      "met_kronologisk_rekonstruksjon",
+      "met_kildekritikk"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med dokumentert tidsrom, kildegrunnlag og forskjellen mellom den primære og sekundære tidsanalysen.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_chronology_or_temporal_claim": true,
+      "require_temporal_scope": true,
+      "require_critical_distinction": true
+    }
+  },
+  {
+    "emne_id": "em_his_kronologi_datering_usikkerhet",
+    "title": "Kronologi, datering og tidsmessig usikkerhet",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_kronologi_datering",
+        "topic_hook_tittel": "Kronologi, datering og usikkerhet",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "source-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær bane: bygg fra dokumentert tidsrekke til tidslig analyse.",
+        "tenkere": [
+          "Marc Bloch",
+          "Jacques Le Goff",
+          "Carlo Ginzburg",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "marc_bloch",
+          "jacques_le_goff",
+          "carlo_ginzburg",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "marc_bloch",
+            "carlo_ginzburg"
+          ],
+          [
+            "jacques_le_goff",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "state the dating basis",
+          "separate exact from approximate date",
+          "order relative phases",
+          "record conflicting dates without false precision"
+        ],
+        "best_place_types": [
+          "ruinomrade",
+          "kirke",
+          "kloster",
+          "festning",
+          "arkiv",
+          "historical_site"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Middelalderbyen Oslo",
+          "Gamle Aker kirke",
+          "Hovedøya kloster",
+          "Akershus festning"
+        ],
+        "recommended_method_ids": [
+          "met_kronologisk_rekonstruksjon",
+          "met_kildekritikk",
+          "met_periodisering"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_periodisering_epoker",
+        "topic_hook_tittel": "Periodisering, epoker og analytiske grenser",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "fact-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær bane: brukes når samme case støtter en tydelig supplerende tidsdistinksjon.",
+        "tenkere": [
+          "Reinhart Koselleck",
+          "Fernand Braudel",
+          "Jacques Le Goff",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "reinhart_koselleck",
+          "fernand_braudel",
+          "jacques_le_goff",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "reinhart_koselleck",
+            "fernand_braudel"
+          ],
+          [
+            "jacques_le_goff",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "state the period boundary and its evidence",
+          "compare calendar boundary with lived continuity",
+          "test a national period label against a local sequence",
+          "identify what the chosen periodisation excludes"
+        ],
+        "best_place_types": [
+          "kulturmiljo",
+          "ruinomrade",
+          "institusjonsbygg",
+          "historical_site",
+          "gate",
+          "omrade"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Middelalderbyen Oslo",
+          "Eidsvollsbygningen",
+          "Regjeringskvartalet",
+          "Bjørvika"
+        ],
+        "recommended_method_ids": [
+          "met_periodisering",
+          "met_kronologisk_rekonstruksjon",
+          "met_begrepshistorie"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_kronologi_datering"
+    ],
+    "secondary_hooks": [
+      "his_periodisering_epoker"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først. Sekundær bane krever selvstendig kildegrunnlag og en annen eksplisitt tidslig distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true,
+    "canonical_thinkers": [
+      "Marc Bloch",
+      "Jacques Le Goff",
+      "Carlo Ginzburg",
+      "Knut Kjeldstadli"
+    ],
+    "canonical_thinker_ids": [
+      "marc_bloch",
+      "jacques_le_goff",
+      "carlo_ginzburg",
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v2-historie-tid",
+    "generator_theory_note": "Teori kommer etter kilde, kronologi, tidsrom og kritisk distinksjon.",
+    "recommended_oslo_cases": [
+      "Middelalderbyen Oslo",
+      "Gamle Aker kirke",
+      "Hovedøya kloster",
+      "Akershus festning"
+    ],
+    "recommended_method_ids": [
+      "met_kronologisk_rekonstruksjon",
+      "met_kildekritikk",
+      "met_periodisering"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med dokumentert tidsrom, kildegrunnlag og forskjellen mellom den primære og sekundære tidsanalysen.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_chronology_or_temporal_claim": true,
+      "require_temporal_scope": true,
+      "require_critical_distinction": true
+    }
+  },
+  {
+    "emne_id": "em_his_anakronisme_historiske_begreper",
+    "title": "Anakronisme og historiske begreper",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_anakronisme_begrepsbruk",
+        "topic_hook_tittel": "Anakronisme og historisk begrepsbruk",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "concept-after-fact",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær bane: bygg fra dokumentert tidsrekke til tidslig analyse.",
+        "tenkere": [
+          "Reinhart Koselleck",
+          "E. H. Carr",
+          "Marc Bloch",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "reinhart_koselleck",
+          "e_h_carr",
+          "marc_bloch",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "reinhart_koselleck",
+            "e_h_carr"
+          ],
+          [
+            "marc_bloch",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify the contemporary term",
+          "compare later and earlier meanings",
+          "test whether the category existed for the actor",
+          "rewrite the claim without hindsight"
+        ],
+        "best_place_types": [
+          "institusjonsbygg",
+          "skole",
+          "hospital",
+          "historical_site",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Stortinget",
+          "Eidsvollsbygningen",
+          "Oslo Hospital",
+          "Sagene skole"
+        ],
+        "recommended_method_ids": [
+          "met_begrepshistorie",
+          "met_temporalitetsanalyse",
+          "met_kildekritikk"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_tid_periodisering",
+        "fagkart_kategori_tittel": "Historisk tid og periodisering",
+        "topic_hook": "his_erfaringsrom_forventningshorisont",
+        "topic_hook_tittel": "Erfaringsrom og forventningshorisont",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "actor-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "chronology_required": true,
+        "temporal_claim_required": true,
+        "temporal_scope_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær bane: brukes når samme case støtter en tydelig supplerende tidsdistinksjon.",
+        "tenkere": [
+          "Reinhart Koselleck",
+          "Paul Ricoeur",
+          "Eric Hobsbawm",
+          "Francis Sejersted"
+        ],
+        "thinker_ids": [
+          "reinhart_koselleck",
+          "paul_ricoeur",
+          "eric_hobsbawm",
+          "francis_sejersted"
+        ],
+        "norwegian_thinker_ids": [
+          "francis_sejersted"
+        ],
+        "norwegian_thinkers": [
+          "Francis Sejersted"
+        ],
+        "comparison_pairs": [
+          [
+            "reinhart_koselleck",
+            "paul_ricoeur"
+          ],
+          [
+            "eric_hobsbawm",
+            "francis_sejersted"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify an actor's available experience",
+          "document a contemporary expectation",
+          "separate expectation from later outcome",
+          "compare competing future horizons"
+        ],
+        "best_place_types": [
+          "institusjonsbygg",
+          "minnested",
+          "historical_site",
+          "museum",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+        ],
+        "anti_patterns": [
+          "Ikke bruk tidsbegrepet uten konkret kilde eller kronologi.",
+          "Ikke spør etter teoretiker før sted og tidsforløp er etablert.",
+          "Ikke forveksle kronologisk rekkefølge med årsak."
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Eidsvollsbygningen",
+          "Stortinget",
+          "Regjeringskvartalet",
+          "22. juli-senteret"
+        ],
+        "recommended_method_ids": [
+          "met_temporalitetsanalyse",
+          "met_begrepshistorie",
+          "met_institusjonshistorisk_analyse"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_anakronisme_begrepsbruk"
+    ],
+    "secondary_hooks": [
+      "his_erfaringsrom_forventningshorisont"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først. Sekundær bane krever selvstendig kildegrunnlag og en annen eksplisitt tidslig distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true,
+    "canonical_thinkers": [
+      "Reinhart Koselleck",
+      "E. H. Carr",
+      "Marc Bloch",
+      "Knut Kjeldstadli"
+    ],
+    "canonical_thinker_ids": [
+      "reinhart_koselleck",
+      "e_h_carr",
+      "marc_bloch",
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v2-historie-tid",
+    "generator_theory_note": "Teori kommer etter kilde, kronologi, tidsrom og kritisk distinksjon.",
+    "recommended_oslo_cases": [
+      "Stortinget",
+      "Eidsvollsbygningen",
+      "Oslo Hospital",
+      "Sagene skole"
+    ],
+    "recommended_method_ids": [
+      "met_begrepshistorie",
+      "met_temporalitetsanalyse",
+      "met_kildekritikk"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med dokumentert tidsrom, kildegrunnlag og forskjellen mellom den primære og sekundære tidsanalysen.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_chronology_or_temporal_claim": true,
+      "require_temporal_scope": true,
+      "require_critical_distinction": true
+    }
   }
 ]
