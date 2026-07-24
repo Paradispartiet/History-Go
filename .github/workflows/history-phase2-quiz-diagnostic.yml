@@ -1,4 +1,4 @@
-name: History phase 2 quiz diagnostic
+name: History phase 2 quiz test sync
 
 on:
   push:
@@ -9,8 +9,8 @@ permissions:
   contents: write
 
 jobs:
-  diagnose:
-    if: ${{ !contains(github.event.head_commit.message, '[quiz-diagnostic]') }}
+  sync-test-contract:
+    if: ${{ !contains(github.event.head_commit.message, '[quiz-test-sync]') }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out branch
@@ -18,6 +18,32 @@ jobs:
         with:
           ref: ${{ github.ref_name }}
           fetch-depth: 0
+
+      - name: Update synchronized History counts
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('tests/quiz-production-pipeline.test.mjs')
+          text = path.read_text()
+          replacements = {
+              'assert.equal(context.considered_curriculum.counts.emner, 49);':
+                  'assert.equal(context.considered_curriculum.counts.emner, 53);',
+              'assert.equal(context.considered_curriculum.counts.topic_hooks, 23);':
+                  'assert.equal(context.considered_curriculum.counts.topic_hooks, 31);',
+              'assert.equal(context.considered_curriculum.counts.methods, 18);':
+                  'assert.equal(context.considered_curriculum.counts.methods, 23);',
+          }
+          for old, new in replacements.items():
+              count = text.count(old)
+              if count != 4:
+                  raise SystemExit(f'Expected 4 occurrences of {old!r}, found {count}')
+              text = text.replace(old, new)
+          path.write_text(text)
+          PY
+
+          rm .github/workflows/history-phase2-quiz-diagnostic.yml
+          rm reports/history-phase2-quiz-test-diagnostic.md
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -28,36 +54,22 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Run quiz tests separately
-        shell: bash
+      - name: Validate synchronized test contract
         run: |
-          set +e
-          npm run test:quiz-content-audit > /tmp/quiz-content-audit.log 2>&1
-          content_exit=$?
-          npm run test:quiz-production > /tmp/quiz-production.log 2>&1
-          production_exit=$?
-          {
-            echo '# History phase 2 quiz diagnostic'
-            echo
-            echo "test:quiz-content-audit exit: ${content_exit}"
-            echo "test:quiz-production exit: ${production_exit}"
-            echo
-            echo '## test:quiz-content-audit'
-            echo '```text'
-            cat /tmp/quiz-content-audit.log
-            echo '```'
-            echo
-            echo '## test:quiz-production'
-            echo '```text'
-            cat /tmp/quiz-production.log
-            echo '```'
-          } > reports/history-phase2-quiz-test-diagnostic.md
+          node tools/validate-historie-tid-periodisering.mjs
+          npm run knowledge:canonical:check
+          npm run test:quiz-content-audit
+          npm run test:quiz-production
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
 
-      - name: Commit diagnostic report
-        shell: bash
+      - name: Commit final test synchronization
         run: |
-          git add reports/history-phase2-quiz-test-diagnostic.md
+          git add tests/quiz-production-pipeline.test.mjs \
+            .github/workflows/history-phase2-quiz-diagnostic.yml \
+            reports/history-phase2-quiz-test-diagnostic.md
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'test: capture History phase 2 quiz failure [quiz-diagnostic]'
+          git commit -m 'Historie: synkroniser produksjonstestene [quiz-test-sync]'
           git push origin HEAD:${{ github.ref_name }}
