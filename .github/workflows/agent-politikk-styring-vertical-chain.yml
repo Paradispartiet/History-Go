@@ -1,0 +1,535 @@
+name: Politikk styring vertical chain
+
+on:
+  push:
+    branches:
+      - agent/politikk-styring-vertical-chain
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/politikk-styring-vertical-chain
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Integrer metoder, mapping og generatorprofil
+        run: |
+          cat > /tmp/upgrade-politikk-styring.mjs <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+
+          const ROOT = process.cwd();
+          const DOMAIN = 'styring_institusjoner_forvaltning';
+          const REVISION = 'politikk-styring-vertical-2026-07-24';
+          const DATE = '2026-07-24';
+
+          const files = {
+            fagkart: 'data/fag/politikk/fagkart_politikk_canonical_v4_5.json',
+            methods: 'data/fag/politikk/methods_politikk_canonical_v4_5.json',
+            mapping: 'data/fag/politikk/emnemapping_politikk_canonical_v4_5.json',
+            pensum: 'data/fag/politikk/politikkpensum_canonical_v4_5.json',
+            generator: 'data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json'
+          };
+
+          const readJson = (file) => JSON.parse(fs.readFileSync(path.join(ROOT, file), 'utf8'));
+          const writeJson = (file, value) => fs.writeFileSync(path.join(ROOT, file), JSON.stringify(value, null, 2) + '\n');
+          const unique = (items) => [...new Set(items.filter(Boolean))];
+
+          const fagkart = readJson(files.fagkart);
+          const methodsDoc = readJson(files.methods);
+          const mappings = readJson(files.mapping);
+          const pensum = readJson(files.pensum);
+          const generator = readJson(files.generator);
+
+          const category = fagkart.categories.find((item) => item.id === DOMAIN);
+          if (!category) throw new Error(`Fant ikke fagkartdomene ${DOMAIN}`);
+          const hooksById = new Map(category.topic_hooks.map((hook) => [hook.id, hook]));
+
+          const methodProfiles = {
+            met_pol_institusjonsanalyse: {
+              description: 'Analyserer hvordan varige regler, roller, kompetansegrenser og organisatoriske rutiner fordeler myndighet og stabiliserer politiske forventninger.',
+              analyticalQuestion: 'Hvilken institusjonell ordning gjør utfallet mulig, hvem har formell kompetanse, og hvordan avviker faktisk innflytelse fra den formelle strukturen?',
+              evidenceInputs: ['lov eller forskrift', 'delegasjonsreglement', 'organisasjonskart', 'vedtak eller instruks', 'dokumentert praksis'],
+              mechanisms: ['kompetansetildeling', 'delegasjon', 'arbeidsdeling', 'standardisering', 'stiavhengighet'],
+              distinctions: ['institusjon vs organisasjon', 'formell kompetanse vs faktisk innflytelse', 'regel vs praksis', 'autoritet vs tvang'],
+              anchorTypes: ['institution', 'government_building', 'municipality', 'parliament', 'city_hall']
+            },
+            met_pol_forvaltningsanalyse: {
+              description: 'Analyserer hvordan politiske vedtak blir fortolket, prioritert og gjennomført i administrasjon og frontlinjetjenester.',
+              analyticalQuestion: 'Hvor i gjennomføringskjeden oppstår skjønn, prioritering eller avvik mellom vedtak og borgerutfall?',
+              evidenceInputs: ['forvaltningsvedtak', 'retningslinje eller rundskriv', 'saksbehandlingsrutine', 'tilsynsrapport', 'dokumentert tjenestepraksis'],
+              mechanisms: ['implementering', 'forvaltningsskjønn', 'prioritering', 'standardisering', 'portvokting'],
+              distinctions: ['politisk vedtak vs administrativ gjennomføring', 'regelbundethet vs skjønn', 'likebehandling vs likeverd', 'intensjon vs utfall'],
+              anchorTypes: ['administrative_decision', 'public_service', 'welfare_service', 'institution', 'official_report']
+            },
+            met_pol_teknokrati_og_ekspertanalyse: {
+              description: 'Analyserer hvordan ekspertkunnskap definerer problemer, avgrenser handlingsalternativer og påvirker politiske beslutninger.',
+              analyticalQuestion: 'Hva bygger ekspertens autoritet på, hvilke premisser gjøres tekniske, og hvor ligger det politiske ansvaret?',
+              evidenceInputs: ['NOU eller ekspertutredning', 'faglig anbefaling', 'risikomodell', 'konsekvensutredning', 'politisk vedtak som viser bruk av ekspertgrunnlag'],
+              mechanisms: ['problemdefinisjon', 'indikatorvalg', 'modellering', 'ekspertdelegasjon', 'samproduksjon av kunnskap og orden'],
+              distinctions: ['faglig råd vs politisk beslutning', 'ekspertise vs teknokrati', 'usikkerhet vs uvitenhet', 'kapasitet vs demokratisk kontroll'],
+              anchorTypes: ['official_report', 'institution', 'administrative_decision', 'regulation_plan', 'statistics']
+            },
+            met_pol_budsjett_og_fordelingsanalyse: {
+              description: 'Analyserer hvordan budsjettprosesser omsetter mål og verdier til prioriteringer, fordelingsvirkninger og institusjonelle bindinger.',
+              analyticalQuestion: 'Hvem får hvilke ressurser, hvilke alternativer fortrenges, og hvilke tidligere bindinger former prioriteringen?',
+              evidenceInputs: ['årsbudsjett', 'økonomiplan', 'tildelingsbrev', 'regnskap', 'fordelingsdata'],
+              mechanisms: ['rammesetting', 'ressursallokering', 'inkrementalisme', 'øremerking', 'prioritering gjennom knapphet'],
+              distinctions: ['bevilgning vs faktisk forbruk', 'lik fordeling vs rettferdig fordeling', 'mål vs budsjettbinding', 'kortsiktig prioritering vs langsiktig kapasitet'],
+              anchorTypes: ['budget', 'distribution', 'municipality', 'public_service', 'statistics']
+            },
+            met_pol_praksisanalyse: {
+              description: 'Analyserer hvordan regler og institusjonelle forventninger faktisk utføres, tilpasses og gjenskapes i hverdagslige møter.',
+              analyticalQuestion: 'Hvilke rutiner og skjønn former den konkrete praksisen, og hvordan påvirker møtet borgerens reelle tilgang eller handlingsrom?',
+              evidenceInputs: ['observasjon eller dokumentert praksis', 'rutinebeskrivelse', 'brukererfaring', 'tilsyn', 'avviksrapport'],
+              mechanisms: ['rutinisering', 'skjønnsutøvelse', 'kategorisering', 'portvokting', 'uformell normdannelse'],
+              distinctions: ['formell regel vs utført praksis', 'standardisering vs individuell tilpasning', 'likebehandling vs likeverd', 'vedtak vs møte'],
+              anchorTypes: ['public_service', 'welfare_service', 'administrative_decision', 'institution', 'social_control']
+            },
+            met_pol_rettslig_analyse: {
+              description: 'Analyserer hjemmel, rettigheter, plikter, kompetanse og kontroll i politiske og administrative beslutninger.',
+              analyticalQuestion: 'Hvilken rettsregel gir kompetanse, hvilke rettssikkerhetsgarantier gjelder, og hvordan påvirker fortolkning den konkrete virkningen?',
+              evidenceInputs: ['lovtekst', 'forskrift', 'dom eller kjennelse', 'forvaltningsvedtak', 'juridisk veileder'],
+              mechanisms: ['kompetansebinding', 'rettighetsfesting', 'prosedyrekrav', 'klage og kontroll', 'rettslig fortolkning'],
+              distinctions: ['legalitet vs legitimitet', 'rettighet vs tjenestetilbud', 'regel vs fortolkning', 'myndighet vs ansvar'],
+              anchorTypes: ['law', 'legal_right', 'legal_source', 'administrative_decision', 'court']
+            },
+            met_pol_velferdsstatlig_analyse: {
+              description: 'Analyserer hvordan velferdsordninger fordeler risiko, omsorg, rettigheter og tilgang gjennom regler, tjenester og profesjonelt skjønn.',
+              analyticalQuestion: 'Hvem omfattes av ordningen, hvilke vilkår og praksiser regulerer tilgangen, og hvilke fordelingsvirkninger oppstår?',
+              evidenceInputs: ['regelverk for ytelse eller tjeneste', 'tjenestebeskrivelse', 'statistikk over bruk og dekning', 'tilsyn', 'budsjett eller evaluering'],
+              mechanisms: ['rettighetsavgrensning', 'behovsprøving', 'universalisme', 'profesjonelt skjønn', 'omsorgsorganisering'],
+              distinctions: ['universell vs selektiv ordning', 'rettighet vs skjønnsbasert hjelp', 'lik tilgang vs likeverdig utfall', 'omsorgsbehov vs administrativ kategori'],
+              anchorTypes: ['welfare_service', 'public_service', 'legal_right', 'distribution', 'statistics']
+            },
+            met_pol_legitimitetsanalyse: {
+              description: 'Analyserer hvorfor myndighetsutøvelse aksepteres, bestrides eller mister tillit, gjennom deltakelse, prosedyre og resultater.',
+              analyticalQuestion: 'Bygger aksepten på hvem som deltar, hvordan beslutningen behandles, eller hvilke resultater systemet leverer?',
+              evidenceInputs: ['beslutningsprosess', 'høringsdokument', 'tillitsmåling', 'klage eller protest', 'resultat- og tjenestedata'],
+              mechanisms: ['begrunnelse', 'deltakelse', 'prosedyrerettferdighet', 'resultatleveranse', 'ansvarsplassering'],
+              distinctions: ['legalitet vs legitimitet', 'tillit vs lydighet', 'input- vs throughput- vs output-legitimitet', 'aksept vs fravær av protest'],
+              anchorTypes: ['legitimacy', 'trust', 'institution', 'public_service', 'public_sphere']
+            },
+            met_pol_lokalpolitisk_analyse: {
+              description: 'Analyserer lokal myndighet, representasjon, delegasjon og prioritering mellom bystyre, byråd, administrasjon og bydeler.',
+              analyticalQuestion: 'Hvilket lokalt organ beslutter, hvem gjennomfører, og hvordan virker lokalt selvstyre sammen med statlige rammer?',
+              evidenceInputs: ['bystyre- eller bydelsvedtak', 'delegasjonsreglement', 'kommunelov', 'lokalt budsjett', 'saksframlegg'],
+              mechanisms: ['lokal delegasjon', 'parlamentarisk ansvar', 'flernivåstyring', 'territoriell representasjon', 'kommunal prioritering'],
+              distinctions: ['politisk organ vs administrasjon', 'lokalt selvstyre vs statlig styring', 'byråd vs bystyre', 'kommune vs bydel'],
+              anchorTypes: ['municipality', 'city_hall', 'budget', 'administrative_decision', 'public_service']
+            },
+            met_pol_dokumentanalyse: {
+              description: 'Analyserer hvordan dokumenter registrerer, klassifiserer, begrunner og gjør beslutninger etterprøvbare, samtidig som de former hva som blir synlig.',
+              analyticalQuestion: 'Hva gjør dokumentet styrbart og etterprøvbart, hvilke kategorier bruker det, og hva faller utenfor registreringen?',
+              evidenceInputs: ['arkivdokument', 'journalpost', 'saksframlegg', 'vedtak', 'skjema eller register'],
+              mechanisms: ['klassifikasjon', 'journalføring', 'standardisering', 'sporbarhet', 'administrativ lesbarhet'],
+              distinctions: ['dokumentasjon vs virkelighet', 'sporbarhet vs innsyn', 'kategori vs individuell situasjon', 'arkiv som minne vs arkiv som styring'],
+              anchorTypes: ['archive', 'official_report', 'administrative_decision', 'legal_source', 'institution']
+            },
+            met_pol_romlig_maktanalyse: {
+              description: 'Analyserer hvordan plassering, tilgang, arkitektur og romlig organisering påvirker synlighet, nærhet og politisk handlingsrom.',
+              analyticalQuestion: 'Hvordan fordeler stedet tilgang, avstand, synlighet og kontroll mellom myndighet og borgere?',
+              evidenceInputs: ['kart eller plan', 'tilgjengelighetsinformasjon', 'romlig organisering', 'bruk av offentlig plass', 'dokumentert lokalisering av tjenester eller maktorganer'],
+              mechanisms: ['sentralisering', 'adgangskontroll', 'synliggjøring', 'territorialisering', 'romlig differensiering'],
+              distinctions: ['symbolsk nærhet vs faktisk tilgang', 'offentlig rom vs kontrollert rom', 'sentral plassering vs tilgjengelig tjeneste', 'representasjon vs administrasjon'],
+              anchorTypes: ['government_building', 'city_hall', 'institution', 'public_sphere', 'municipality']
+            },
+            met_pol_plan_og_reguleringsanalyse: {
+              description: 'Analyserer hvordan planer og reguleringer oversetter politiske mål til juridiske rammer for areal, utbygging, bruk og deltakelse.',
+              analyticalQuestion: 'Hvilke interesser og hensyn blir bundet i planen, hvem deltar, og hvordan fordeles gevinster, kostnader og handlingsrom?',
+              evidenceInputs: ['reguleringsplan', 'kommuneplan', 'planbeskrivelse', 'høringsinnspill', 'konsekvensutredning'],
+              mechanisms: ['arealbinding', 'høring', 'konsekvensvurdering', 'interesseavveiing', 'administrativ forenkling'],
+              distinctions: ['planintensjon vs realisert utvikling', 'medvirkning vs beslutningsmakt', 'faglig vurdering vs politisk prioritering', 'allmenn interesse vs særinteresse'],
+              anchorTypes: ['regulation_plan', 'municipality', 'urban_policy', 'public_sphere', 'official_report']
+            }
+          };
+
+          const methodsById = new Map(methodsDoc.methods.map((method) => [method.method_id, method]));
+          for (const [methodId, profile] of Object.entries(methodProfiles)) {
+            const method = methodsById.get(methodId);
+            if (!method) throw new Error(`Fant ikke metode ${methodId}`);
+            Object.assign(method, {
+              description: profile.description,
+              definition: profile.description,
+              analytical_question: profile.analyticalQuestion,
+              evidence_inputs: profile.evidenceInputs,
+              mechanism_focus: profile.mechanisms,
+              critical_distinctions: profile.distinctions,
+              compatible_anchor_types: profile.anchorTypes,
+              question_build_sequence: [
+                'documented_case_or_source',
+                'precise_claim_basis',
+                'identified_mechanism',
+                'tested_critical_distinction',
+                'optional_theory_concept'
+              ],
+              output_requirements: [
+                'navngi dokumenterbart case eller kildegrunnlag',
+                'forklar minst én mekanisme',
+                'test minst én reell begrepsdistinksjon',
+                'bruk teori bare som forklaring eller sammenligning'
+              ],
+              anti_patterns: [
+                'teoretikernavn som løsrevet fasit',
+                'generisk holdningsspørsmål uten dokumentert case',
+                'metodenavn som synlig quizinnhold',
+                'påstand hentet bare fra canonical-fil'
+              ],
+              external_claim_basis_required: true,
+              mechanism_explanation_required: true,
+              critical_distinction_required: true,
+              theory_use_rule: 'Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.',
+              quality_revision: REVISION
+            });
+          }
+          methodsDoc.updated_at = DATE;
+          methodsDoc.quality_revision = REVISION;
+          methodsDoc.method_quality_model = {
+            sequence: ['case_or_source', 'claim', 'mechanism', 'distinction', 'optional_theory'],
+            external_claim_basis_required: true,
+            theorist_name_only_forbidden: true,
+            method_label_only_generation_forbidden: true
+          };
+
+          const hookProfiles = {
+            institusjon_som_maktform: {
+              methods: ['met_pol_institusjonsanalyse', 'met_pol_forvaltningsanalyse'],
+              anchors: ['institution', 'government_building', 'municipality']
+            },
+            byrakrati_og_hverdag: {
+              methods: ['met_pol_forvaltningsanalyse', 'met_pol_praksisanalyse', 'met_pol_dokumentanalyse'],
+              anchors: ['administrative_decision', 'public_service', 'archive']
+            },
+            kommunal_styring: {
+              methods: ['met_pol_lokalpolitisk_analyse', 'met_pol_institusjonsanalyse', 'met_pol_budsjett_og_fordelingsanalyse'],
+              anchors: ['municipality', 'city_hall', 'budget']
+            },
+            stat_og_by: {
+              methods: ['met_pol_institusjonsanalyse', 'met_pol_lokalpolitisk_analyse', 'met_pol_romlig_maktanalyse'],
+              anchors: ['government_building', 'municipality', 'regulation_plan']
+            },
+            offentlige_tjenester: {
+              methods: ['met_pol_velferdsstatlig_analyse', 'met_pol_forvaltningsanalyse', 'met_pol_praksisanalyse'],
+              anchors: ['public_service', 'welfare_service', 'administrative_decision']
+            },
+            arkiv_dokument_lov: {
+              methods: ['met_pol_dokumentanalyse', 'met_pol_rettslig_analyse', 'met_pol_forvaltningsanalyse'],
+              anchors: ['archive', 'legal_source', 'administrative_decision']
+            },
+            budsjett_som_styring: {
+              methods: ['met_pol_budsjett_og_fordelingsanalyse', 'met_pol_lokalpolitisk_analyse', 'met_pol_institusjonsanalyse'],
+              anchors: ['budget', 'distribution', 'municipality']
+            },
+            reguleringsplaner: {
+              methods: ['met_pol_plan_og_reguleringsanalyse', 'met_pol_romlig_maktanalyse', 'met_pol_lokalpolitisk_analyse'],
+              anchors: ['regulation_plan', 'municipality', 'urban_policy']
+            },
+            teknokratisk_styring: {
+              methods: ['met_pol_teknokrati_og_ekspertanalyse', 'met_pol_legitimitetsanalyse', 'met_pol_institusjonsanalyse'],
+              anchors: ['official_report', 'institution', 'administrative_decision']
+            },
+            legitimitet_i_systemet: {
+              methods: ['met_pol_legitimitetsanalyse', 'met_pol_institusjonsanalyse', 'met_pol_forvaltningsanalyse'],
+              anchors: ['legitimacy', 'trust', 'public_service']
+            }
+          };
+
+          let revisedMappingCount = 0;
+          for (const entry of mappings) {
+            for (const mapping of entry.mappings ?? []) {
+              if (mapping.fagkart_kategori !== DOMAIN) continue;
+              const hook = hooksById.get(mapping.topic_hook);
+              const profile = hookProfiles[mapping.topic_hook];
+              if (!hook || !profile) throw new Error(`Mangler hookprofil for ${mapping.topic_hook}`);
+              const thinkerNames = new Map((hook.canon?.thinkers ?? []).map((thinker) => [thinker.id, thinker.name]));
+              const thinkerIds = (hook.theory_lenses ?? []).map((lens) => lens.thinker_id);
+              Object.assign(mapping, {
+                question_surface_mode: 'case-mechanism-distinction-theory',
+                recommended_method_ids: profile.methods,
+                required_anchor_types: profile.anchors,
+                mechanism_options: hook.mechanisms,
+                critical_distinction_options: hook.critical_distinctions,
+                theory_lenses: hook.theory_lenses,
+                thinker_ids: thinkerIds,
+                tenkere: thinkerIds.map((id) => thinkerNames.get(id) ?? id),
+                comparison_pairs: hook.comparison_pairs ?? [],
+                preferred_question_moves: hook.preferred_question_moves ?? [],
+                recommended_oslo_cases: hook.case_anchors ?? hook.recommended_oslo_cases ?? [],
+                anti_patterns: unique([
+                  ...(hook.anti_reduction ?? []),
+                  'Ikke bruk teoretikernavn som svar uten begrep og mekanisme.',
+                  'Ikke bruk canonical-filen som faktakilde.',
+                  'Ikke hopp direkte fra sted til teori uten dokumentert påstand.'
+                ]),
+                question_build_sequence: [
+                  'external_case_or_document',
+                  'claim_basis',
+                  'mechanism',
+                  'critical_distinction',
+                  'optional_theory_lens'
+                ],
+                method_selection_policy: 'Velg metode etter mekanismen i caset, ikke etter teoretikernavn eller hooktittel.',
+                source_role: 'Ekstern kilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.',
+                use_note: `Koble ${entry.title} til et dokumenterbart case gjennom ${mapping.topic_hook_tittel}. Forklar mekanisme og distinksjon før eventuell teori.`,
+                quality_revision: REVISION
+              });
+              mapping.generator_constraints = {
+                ...(mapping.generator_constraints ?? {}),
+                require_concrete_institution_law_conflict_policy_or_social_process: true,
+                require_external_claim_basis: true,
+                require_case_specific_question: true,
+                require_mechanism_explanation: true,
+                require_critical_distinction: true,
+                require_method_match_to_mechanism: true,
+                ban_theorist_name_as_answer_without_concept: true,
+                do_not_generate_from_hook_label_only: true,
+                do_not_generate_from_emne_label_only: true
+              };
+              revisedMappingCount += 1;
+            }
+          }
+
+          generator.version = 'v5.2-styring-vertical-chain';
+          generator.updated_at = DATE;
+          generator.quality_revision = REVISION;
+          Object.assign(generator.hard_rules, {
+            require_case_mechanism_distinction_chain: true,
+            ban_theorist_name_as_answer_without_concept: true,
+            theory_may_not_supply_claim_basis: true,
+            method_must_match_documented_mechanism: true,
+            mapping_must_supply_question_build_sequence: true
+          });
+          generator.domain_quality_profiles ??= {};
+          generator.domain_quality_profiles[DOMAIN] = {
+            status: 'complete_revised',
+            quality_revision: REVISION,
+            required_question_chain: ['external_case_or_document', 'claim_basis', 'mechanism', 'critical_distinction', 'optional_theory_lens'],
+            required_mapping_fields: ['recommended_method_ids', 'mechanism_options', 'critical_distinction_options', 'theory_lenses', 'required_anchor_types'],
+            revised_method_ids: Object.keys(methodProfiles),
+            hook_count: category.topic_hooks.length,
+            method_selection_rule: 'Metoden velges etter dokumentert mekanisme og kildetype.',
+            theory_rule: 'Teori kommer sist og må forklare eller sammenligne en allerede etablert mekanisme.',
+            rejection_rules: [
+              'avvis teoretikernavn som løsrevet svar',
+              'avvis spørsmål uten ekstern claim_basis',
+              'avvis spørsmål uten mekanisme',
+              'avvis spørsmål uten reell distinksjon når teori brukes'
+            ]
+          };
+          const setTwo = generator.set_guidance?.['2'];
+          if (!setTwo) throw new Error('Fant ikke set_guidance 2');
+          setTwo.allowed_methods = unique([...setTwo.allowed_methods, ...Object.keys(methodProfiles)]);
+          setTwo.required_question_chain = generator.domain_quality_profiles[DOMAIN].required_question_chain;
+          setTwo.method_selection_policy = 'Velg metode etter mekanisme og kildetype; ikke roter metoder tilfeldig.';
+          setTwo.question_style = 'dokumentert styringscase -> presis påstand -> mekanisme -> distinksjon -> eventuell teoriforklaring';
+          generator.validator_additions = unique([
+            ...(generator.validator_additions ?? []),
+            'Avvis styringsspørsmål uten eksplisitt mekanisme.',
+            'Avvis styringsspørsmål der valgt metode ikke passer mekanismen eller kildetypen.',
+            'Avvis teorispørsmål uten reell begrepsdistinksjon eller sammenligning.',
+            'Avvis teoretikernavn som svar når begrep og mekanisme ikke er del av spørsmålet.'
+          ]);
+          const metadata = generator.generation_metadata_additions;
+          metadata.required_per_question_fields_recommended = unique([
+            ...metadata.required_per_question_fields_recommended,
+            'hook_id',
+            'mechanism',
+            'critical_distinction',
+            'theory_concept',
+            'case_anchor'
+          ]);
+          Object.assign(metadata, {
+            hook_id_definition: 'Topic hook som kobler emne, metode, mekanisme og teorispor.',
+            mechanism_definition: 'Den dokumenterbare prosessen som forklarer hvordan styring gir et konkret utfall.',
+            critical_distinction_definition: 'Begrepsskillet spørsmålet faktisk tester.',
+            theory_concept_definition: 'Valgfritt teoretisk begrep som forklarer eller sammenligner mekanismen.',
+            case_anchor_definition: 'Konkret institusjon, dokument, tjeneste, plan, budsjett eller offentlig prosess.'
+          });
+
+          const pensumDomain = pensum.domains.find((item) => item.domain_id === DOMAIN);
+          if (!pensumDomain) throw new Error(`Fant ikke pensumdomene ${DOMAIN}`);
+          Object.assign(pensumDomain, {
+            status: 'complete_revised',
+            revised_method_ids: Object.keys(methodProfiles),
+            generator_profile_id: DOMAIN,
+            mapping_quality_rule: 'Alle mappinger skal føre fra ekstern kilde og claim_basis via mekanisme og distinksjon til valgfritt teorispor.',
+            vertical_chain_status: {
+              fagkart_hooks_revised: category.topic_hooks.length,
+              methods_revised: Object.keys(methodProfiles).length,
+              mappings_revised: revisedMappingCount,
+              generator_profile_active: true,
+              question_blueprints_validated: category.topic_hooks.length
+            },
+            quality_revision: REVISION
+          });
+          pensum.updated_at = DATE;
+
+          const mappingRows = mappings.flatMap((entry) => (entry.mappings ?? []).map((mapping) => ({ entry, mapping })));
+          const blueprints = category.topic_hooks.map((hook) => {
+            const pair = mappingRows.find(({ mapping }) => mapping.fagkart_kategori === DOMAIN && mapping.topic_hook === hook.id);
+            if (!pair) throw new Error(`Fant ingen mapping for hook ${hook.id}`);
+            const profile = hookProfiles[hook.id];
+            return {
+              domain_id: DOMAIN,
+              hook_id: hook.id,
+              emne_id: pair.entry.emne_id,
+              method_id: profile.methods[0],
+              case_anchor: (hook.case_anchors ?? hook.recommended_oslo_cases ?? [])[0],
+              required_anchor_type: profile.anchors[0],
+              claim_basis: 'REQUIRED_EXTERNAL_SOURCE',
+              mechanism: hook.mechanisms[0],
+              critical_distinction: hook.critical_distinctions[0],
+              theory_lens: hook.theory_lenses[0],
+              build_sequence: ['external_case_or_document', 'claim_basis', 'mechanism', 'critical_distinction', 'optional_theory_lens'],
+              qa_prompt: `Bruk en ekstern kilde om ${(hook.case_anchors ?? hook.recommended_oslo_cases ?? ['et dokumenterbart case'])[0]}. Test hvordan ${hook.mechanisms[0]} virker, og skill mellom ${hook.critical_distinctions[0]}. Teori er valgfri og kommer sist.`
+            };
+          });
+
+          writeJson(files.methods, methodsDoc);
+          writeJson(files.mapping, mappings);
+          writeJson(files.generator, generator);
+          writeJson(files.pensum, pensum);
+
+          const reportDir = path.join(ROOT, 'reports/politikk-canonical-migration');
+          fs.mkdirSync(reportDir, { recursive: true });
+          fs.writeFileSync(path.join(reportDir, 'styring-forvaltning-question-blueprints.json'), JSON.stringify(blueprints, null, 2) + '\n');
+          fs.writeFileSync(path.join(reportDir, 'styring-forvaltning-vertical-chain.md'), `# Politikk – vertikal kvalitetskjede for styring og forvaltning\n\n- Revisjon: \`${REVISION}\`\n- Dato: ${DATE}\n- Direkte reviderte metoder: ${Object.keys(methodProfiles).length}\n- Direkte reviderte mappinger: ${revisedMappingCount}\n- Generatorprofil: \`${DOMAIN}\`\n- Validerte spørsmålsplaner: ${blueprints.length}\n\n## Kvalitetsrekkefølge\n\n1. Ekstern kilde eller dokumenterbart case\n2. Presis \`claim_basis\`\n3. Identifisert mekanisme\n4. Testet kritisk distinksjon\n5. Valgfritt teoribegrep som forklarer eller sammenligner\n\nTeoretikernavn alene er ikke gyldig svar. Canonical-filene styrer analyseformen, men leverer ikke faktapåstanden.\n`);
+
+          console.log(`Oppgradert ${Object.keys(methodProfiles).length} metoder, ${revisedMappingCount} mappinger og ${blueprints.length} spørsmålsplaner.`);
+          NODE
+
+          node /tmp/upgrade-politikk-styring.mjs
+
+      - name: Legg til varig validator og kjør den
+        run: |
+          mkdir -p tools reports/politikk-canonical-migration
+          cat > tools/validate-politikk-styring-vertical.mjs <<'NODE'
+          import fs from 'node:fs';
+
+          const DOMAIN = 'styring_institusjoner_forvaltning';
+          const REVISION = 'politikk-styring-vertical-2026-07-24';
+          const paths = {
+            fagkart: 'data/fag/politikk/fagkart_politikk_canonical_v4_5.json',
+            emner: 'data/fag/politikk/emner_politikk_canonical_v4_5.json',
+            methods: 'data/fag/politikk/methods_politikk_canonical_v4_5.json',
+            mapping: 'data/fag/politikk/emnemapping_politikk_canonical_v4_5.json',
+            pensum: 'data/fag/politikk/politikkpensum_canonical_v4_5.json',
+            generator: 'data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json',
+            blueprints: 'reports/politikk-canonical-migration/styring-forvaltning-question-blueprints.json'
+          };
+          const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+          const fail = [];
+          const pass = [];
+          const check = (condition, message) => (condition ? pass : fail).push(message);
+          const nonEmpty = (value) => Array.isArray(value) ? value.length > 0 : typeof value === 'string' ? value.trim().length > 0 : value && typeof value === 'object';
+
+          const fagkart = read(paths.fagkart);
+          const emnerDoc = read(paths.emner);
+          const methodsDoc = read(paths.methods);
+          const mappings = read(paths.mapping);
+          const pensum = read(paths.pensum);
+          const generator = read(paths.generator);
+          const blueprints = read(paths.blueprints);
+
+          const category = fagkart.categories.find((item) => item.id === DOMAIN);
+          check(Boolean(category), 'Fagkartdomenet finnes');
+          check(category?.topic_hooks?.length === 10, 'Fagkartdomenet har 10 hooks');
+
+          const hookFields = ['definition', 'core_problem', 'mechanisms', 'critical_distinctions', 'theory_lenses', 'case_anchors', 'anti_reduction'];
+          for (const hook of category?.topic_hooks ?? []) {
+            for (const field of hookFields) check(nonEmpty(hook[field]), `Hook ${hook.id} har ${field}`);
+            check(hook.quality_revision === 'politikk-styring-2026-07-24', `Hook ${hook.id} beholder direkte fagkartrevisjon`);
+          }
+
+          const hookEmneIds = [...new Set((category?.topic_hooks ?? []).flatMap((hook) => hook.emne_ids ?? []))];
+          const emner = emnerDoc.emner ?? emnerDoc.topics ?? emnerDoc;
+          const emneById = new Map(emner.map((emne) => [emne.emne_id ?? emne.id, emne]));
+          check(hookEmneIds.length === 16, 'Hookene dekker 16 unike emner');
+          for (const id of hookEmneIds) {
+            const emne = emneById.get(id);
+            check(Boolean(emne), `Emne ${id} finnes`);
+            check((emne?.key_questions ?? []).length === 3, `Emne ${id} har tre nøkkelspørsmål`);
+            check((emne?.canonical_thinker_ids ?? []).length === 3, `Emne ${id} har tre målrettede teorispor`);
+          }
+
+          const revisedMethods = Object.values(methodsDoc.methods).filter((method) => method.quality_revision === REVISION);
+          check(revisedMethods.length === 12, '12 metoder er direkte revidert');
+          const methodFields = ['analytical_question', 'evidence_inputs', 'mechanism_focus', 'critical_distinctions', 'compatible_anchor_types', 'question_build_sequence', 'output_requirements', 'anti_patterns'];
+          for (const method of revisedMethods) {
+            for (const field of methodFields) check(nonEmpty(method[field]), `Metode ${method.method_id} har ${field}`);
+            check(method.external_claim_basis_required === true, `Metode ${method.method_id} krever ekstern claim_basis`);
+            check(method.mechanism_explanation_required === true, `Metode ${method.method_id} krever mekanisme`);
+            check(method.critical_distinction_required === true, `Metode ${method.method_id} krever distinksjon`);
+          }
+
+          const targetMappings = mappings.flatMap((entry) => (entry.mappings ?? []).filter((mapping) => mapping.fagkart_kategori === DOMAIN).map((mapping) => ({ entry, mapping })));
+          check(targetMappings.length >= 16, 'Minst 16 mappinger er koblet til domenet');
+          check(targetMappings.every(({ mapping }) => mapping.quality_revision === REVISION), 'Alle domenemappinger har ny revisjon');
+          check(targetMappings.every(({ mapping }) => (mapping.recommended_method_ids ?? []).length >= 2), 'Alle domenemappinger har målrettede metoder');
+          check(targetMappings.every(({ mapping }) => (mapping.mechanism_options ?? []).length > 0), 'Alle domenemappinger har mekanismer');
+          check(targetMappings.every(({ mapping }) => (mapping.critical_distinction_options ?? []).length > 0), 'Alle domenemappinger har distinksjoner');
+          check(targetMappings.every(({ mapping }) => (mapping.theory_lenses ?? []).length > 0), 'Alle domenemappinger har målrettede teorispor');
+          check(targetMappings.every(({ mapping }) => mapping.generator_constraints?.ban_theorist_name_as_answer_without_concept === true), 'Alle domenemappinger forbyr løsrevet teoretikernavn');
+
+          const profile = generator.domain_quality_profiles?.[DOMAIN];
+          check(profile?.status === 'complete_revised', 'Generatorprofilen er aktiv og komplett revidert');
+          check(profile?.revised_method_ids?.length === 12, 'Generatorprofilen peker til 12 reviderte metoder');
+          check(generator.hard_rules?.require_case_mechanism_distinction_chain === true, 'Generatoren krever case–mekanisme–distinksjon');
+          check(generator.hard_rules?.ban_theorist_name_as_answer_without_concept === true, 'Generatoren forbyr løsrevet teoretikernavn');
+
+          const pensumDomain = pensum.domains.find((item) => item.domain_id === DOMAIN);
+          check(pensumDomain?.status === 'complete_revised', 'Pensum markerer domenet complete_revised');
+          check(pensumDomain?.vertical_chain_status?.generator_profile_active === true, 'Pensum dokumenterer aktiv generatorprofil');
+
+          check(blueprints.length === 10, 'Det finnes 10 representative spørsmålsplaner');
+          check(blueprints.every((item) => item.claim_basis === 'REQUIRED_EXTERNAL_SOURCE'), 'Alle spørsmålsplaner krever ekstern kilde');
+          check(blueprints.every((item) => item.mechanism && item.critical_distinction && item.method_id && item.emne_id), 'Alle spørsmålsplaner har emne, metode, mekanisme og distinksjon');
+
+          check(!fs.existsSync('data/fag/politikk/kvalitetslag_v1'), 'Ingen kvalitetslag-overlay finnes');
+
+          console.log(`# Politikk vertikal validering – ${REVISION}`);
+          console.log(`PASS: ${pass.length}`);
+          for (const item of pass) console.log(`PASS | ${item}`);
+          if (fail.length) {
+            console.log(`FAIL: ${fail.length}`);
+            for (const item of fail) console.log(`FAIL | ${item}`);
+            process.exitCode = 1;
+          } else {
+            console.log('RESULTAT: PASS');
+          }
+          NODE
+
+          node tools/validate-politikk-styring-vertical.mjs \
+            | tee reports/politikk-canonical-migration/styring-forvaltning-vertical-chain-validation.txt
+
+          git diff --check \
+            >> reports/politikk-canonical-migration/styring-forvaltning-vertical-chain-validation.txt
+          echo "PASS | git diff --check" \
+            | tee -a reports/politikk-canonical-migration/styring-forvaltning-vertical-chain-validation.txt
+
+      - name: Commit direkte kanoniske endringer
+        run: |
+          rm .github/workflows/agent-politikk-styring-vertical-chain.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/fag/politikk/methods_politikk_canonical_v4_5.json \
+            data/fag/politikk/emnemapping_politikk_canonical_v4_5.json \
+            data/fag/politikk/politikkpensum_canonical_v4_5.json \
+            data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json \
+            tools/validate-politikk-styring-vertical.mjs \
+            reports/politikk-canonical-migration/styring-forvaltning-vertical-chain.md \
+            reports/politikk-canonical-migration/styring-forvaltning-question-blueprints.json \
+            reports/politikk-canonical-migration/styring-forvaltning-vertical-chain-validation.txt \
+            .github/workflows/agent-politikk-styring-vertical-chain.yml
+          git commit -m "[vertical-chain-generated] Politikk: fullfør styringskjeden"
+          git push origin HEAD:agent/politikk-styring-vertical-chain
