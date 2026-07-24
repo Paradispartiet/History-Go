@@ -1,10 +1,10 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-24T12:26:35.159Z
+Generert: 2026-07-24T12:40:21.308Z
 
 ## Oppsummering
 - Aktive filer validert: **690**
-- Antall steder validert: **1292**
+- Antall steder validert: **1291**
 - Harde feil: **0**
 - Varsler: **507**
 - Coordinate review candidates: **770** signaler fordelt på **647** steder
