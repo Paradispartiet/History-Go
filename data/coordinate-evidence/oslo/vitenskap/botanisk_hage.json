@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "botanisk_hage",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_verified_garden_geometry_centroid",
+  "currentCoordinate": {
+    "lat": 59.91817656,
+    "lon": 10.77042737,
+    "r": 340,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 4045303 – complete Botanisk hage polygon; NHM/UiO and Wikidata Q3116396 identity cross-check",
+    "coordType": "area_center",
+    "coordNote": "Semantisk midtpunkt for arealstedet Botanisk hage, beregnet som det geometriske sentrumet av den komplette navngitte OSM-geometrien way 4045303 (leisure=garden, wikidata=Q3116396). Punktet ligger inne i hagepolygonet og fungerer som display- og innsjekkingsanker for hele hagen, ikke som inngang eller byggpunkt. NHM/UiO bekrefter hageidentiteten, og Wikidata bekrefter etableringen i 1814 samt et uavhengig punkt inne i polygonet 82.6 meter fra sentrum. Den tidligere markøren lå 267.8 meter unna og utenfor hagen. Radius økes fra 220 til 340 meter fordi største avstand fra sentrum til et polygonhjørne er 339 meter."
+  },
+  "identity": {
+    "currentName": "Botanisk hage",
+    "resolvedIdentity": "Botanisk hage ved Naturhistorisk museum, Universitetet i Oslo, grunnlagt i 1814 på Tøyen",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "komplett navngitt hagegeometri",
+    "institusjonell identitet",
+    "uavhengig strukturert geometri- og historikkryssjekk"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Naturhistorisk museum / UiO – Botanisk hage",
+      "sourceUrl": "https://www.nhm.uio.no/utstillinger/botanisk-hage/index.html",
+      "sourceObjectId": "nhm-uio:botanisk-hage",
+      "sourceQuality": "official_institution_identity",
+      "finding": "NHM/UiO identifiserer Botanisk hage som del av Naturhistorisk museum og Universitetet i Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Autoritativ identitet og institusjonell kontekst; polygonet leveres av OSM."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 4045303 – Botanisk hage",
+      "sourceUrl": "https://www.openstreetmap.org/way/4045303",
+      "sourceObjectId": "osm-way:4045303",
+      "sourceQuality": "complete_named_garden_geometry",
+      "finding": "Komplett lukket leisure=garden-geometri med 22 polygonpunkter og wikidata=Q3116396. Det semantiske midtpunktet ligger inne i polygonet.",
+      "canVerifyCoordinate": true,
+      "reason": "Arealstedet representeres av et eksplisitt semantisk midtpunkt beregnet fra den komplette navngitte hagegeometrien."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q3116396 – University Botanical Garden, Oslo",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q3116396",
+      "sourceObjectId": "wikidata:Q3116396",
+      "sourceQuality": "structured_identity_history_and_coordinate_crosscheck",
+      "finding": "Dedikert botanisk-hageobjekt, etablert i 1814, med punkt inne i OSM-polygonet og 82.6 meter fra det semantiske midtpunktet.",
+      "canVerifyCoordinate": true,
+      "reason": "Uavhengig strukturert identitets-, historikk- og geometrikryssjekk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Sars' gate 1, 0562 Oslo",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "nhm-uio:botanisk-hage",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4045303",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q3116396",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4045303",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4045303",
+      "lat": 59.91817656,
+      "lon": 10.77042737,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Det semantiske midtpunktet og geometribaserte radiusen er anvendt på canonical place."
+  },
+  "notes": [
+    "Semantisk midtpunkt for arealstedet Botanisk hage, beregnet som det geometriske sentrumet av den komplette navngitte OSM-geometrien way 4045303 (leisure=garden, wikidata=Q3116396). Punktet ligger inne i hagepolygonet og fungerer som display- og innsjekkingsanker for hele hagen, ikke som inngang eller byggpunkt. NHM/UiO bekrefter hageidentiteten, og Wikidata bekrefter etableringen i 1814 samt et uavhengig punkt inne i polygonet 82.6 meter fra sentrum. Den tidligere markøren lå 267.8 meter unna og utenfor hagen. Radius økes fra 220 til 340 meter fordi største avstand fra sentrum til et polygonhjørne er 339 meter.",
+    "Research report: reports/oslo-coordinate-botanisk-hage-research-post-195/summary.json"
+  ]
+}
