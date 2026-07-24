@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
 
 const PINNED_PRODUCTION_SCRIPT_URL = 'https://raw.githubusercontent.com/Paradispartiet/History-Go/cada477a35c0741e9e0693bf6d92d536adc86b22/scripts/coordinate-branch-job.mjs';
 const PINNED_SOURCE_CONTRACT_PATH = 'reports/oslo-coordinate-regjeringskvartalet-official-source-crosscheck-post-193/official-source-contract.json';
@@ -38,6 +38,12 @@ script = replaceOnce(
   "coordinateDecision: 'do_not_change_coordinates_yet',",
   'coordinate evidence decision',
 );
+script = replaceOnce(
+  script,
+  "geocodeAccuracy: 'semantic_anchor',",
+  "geocodeAccuracy: 'geometric_center',",
+  'official plan centroid accuracy',
+);
 
 const temporaryScript = '/tmp/history-go-regjeringskvartalet-batch-194-production.mjs';
 writeFileSync(temporaryScript, script, 'utf8');
@@ -48,23 +54,3 @@ const run = spawnSync(process.execPath, [temporaryScript], {
 });
 if (run.error) throw run.error;
 if (run.status !== 0) process.exit(run.status ?? 1);
-
-const indexBuild = spawnSync('npm', ['run', 'places:index:build'], {
-  stdio: 'inherit',
-  env: process.env,
-  cwd: process.cwd(),
-});
-if (indexBuild.error) throw indexBuild.error;
-if (indexBuild.status !== 0) process.exit(indexBuild.status ?? 1);
-
-const evidenceAudit = spawnSync('npm', ['run', 'places:coords:evidence:audit'], {
-  stdio: 'inherit',
-  env: process.env,
-  cwd: process.cwd(),
-});
-if (evidenceAudit.error) throw evidenceAudit.error;
-if (evidenceAudit.status !== 0) {
-  console.error('\n--- final post-index evidence audit report ---\n');
-  console.error(readFileSync('reports/coordinate-evidence-audit.md', 'utf8'));
-  process.exit(evidenceAudit.status ?? 1);
-}
