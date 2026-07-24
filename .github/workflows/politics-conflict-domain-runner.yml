@@ -46,7 +46,7 @@ jobs:
           set -euo pipefail
           mkdir -p reports/politikk-canonical-migration
           cat tools/apply-politikk-konflikt-vertical.part-* > /tmp/apply-politikk-konflikt-vertical.py.gz.b64
-          echo 'EXPECTED_SHA_PLACEHOLDER  /tmp/apply-politikk-konflikt-vertical.py.gz.b64' | sha256sum -c -
+          echo 'bb37c0c98454c2789f5a7b3f4d63723df8af086c4861676e90948dc066d487d8  /tmp/apply-politikk-konflikt-vertical.py.gz.b64' | sha256sum -c -
           base64 -d /tmp/apply-politikk-konflikt-vertical.py.gz.b64 | gunzip > tools/apply-politikk-konflikt-vertical.py
           python -m py_compile tools/apply-politikk-konflikt-vertical.py 2>&1 | tee reports/politikk-canonical-migration/konflikt-makt-migration-syntax.txt
           python tools/apply-politikk-konflikt-vertical.py 2>&1 | tee reports/politikk-canonical-migration/konflikt-makt-vertical-chain-validation.txt
@@ -57,7 +57,7 @@ jobs:
           git diff --check 2>&1 | tee -a reports/politikk-canonical-migration/konflikt-makt-vertical-chain-validation.txt
           echo "PASS | git diff --check" | tee -a reports/politikk-canonical-migration/konflikt-makt-vertical-chain-validation.txt
           rm -f tools/apply-politikk-konflikt-vertical.py tools/apply-politikk-konflikt-vertical.part-*
-          rm -f reports/politikk-canonical-migration/konflikt-domain-work-marker.txt
+          rm -f reports/politikk-canonical-migration/konflikt-domain-work-marker*.txt
           rm -f reports/politikk-canonical-migration/konflikt-makt-migration-syntax.txt
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
