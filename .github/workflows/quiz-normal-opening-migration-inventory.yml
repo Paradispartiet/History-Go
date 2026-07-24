@@ -28,8 +28,10 @@ jobs:
         run: |
           set -euo pipefail
           node --check tools/build-quiz-normal-opening-migration-inventory.mjs
+          node --check tools/compact-quiz-normal-opening-migration-reports.mjs
           node --check tools/validate-quiz-normal-opening-migration-inventory.mjs
           node tools/build-quiz-normal-opening-migration-inventory.mjs
+          node tools/compact-quiz-normal-opening-migration-reports.mjs
           node tools/validate-quiz-normal-opening-migration-inventory.mjs \
             | tee reports/quiz-normal-opening-migration-inventory-validation.txt
           git diff --check
@@ -49,7 +51,12 @@ jobs:
             reports/quiz-normal-opening-migration-inventory.json
             reports/quiz-normal-opening-migration-inventory.md
             reports/quiz-normal-opening-migration-inventory-validation.txt
-            ${{ runner.temp }}/quiz-inventory-sizes.txt
+          if-no-files-found: warn
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quiz-normal-opening-migration-inventory-sizes
+          path: ${{ runner.temp }}/quiz-inventory-sizes.txt
           if-no-files-found: warn
       - name: Commit generated inventory
         id: publish
