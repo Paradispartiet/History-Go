@@ -17,9 +17,9 @@ const emneIds=["em_pol_allianser_avskrekking", "em_pol_begreper_operasjonaliseri
 const methodIds=["met_pol_implementeringsanalyse", "met_pol_internasjonal_politisk_analyse", "met_pol_kausalt_forskningsdesign", "met_pol_komparativ_institusjonsanalyse", "met_pol_komparativt_forskningsdesign", "met_pol_partisystemanalyse", "met_pol_policy_design_og_virkemiddelanalyse", "met_pol_policy_evaluering", "met_pol_policyprosessanalyse", "met_pol_politisk_okonomianalyse", "met_pol_prosessporing", "met_pol_regime_og_demokratiseringsanalyse", "met_pol_regjerings_og_koalisjonsanalyse", "met_pol_survey_og_valgdataanalyse", "met_pol_utenrikspolitisk_analyse", "met_pol_valgsystemanalyse", "met_pol_velgeratferdsanalyse"];
 ok(fagkart.meta.disciplinary_profile.includes('statsvitenskapelig hovedpensum'),'Fagkart har eksplisitt statsvitenskapelig hovedprofil');
 ok(pensum.disciplinary_profile.primary_discipline==='statsvitenskap','Pensum har statsvitenskap som primærdisiplin');
-ok(pensum.summary.domain_count===12,'Pensum har 12 domener');
+ok(pensum.summary.domain_count===fagkart.categories.length,'Pensumets domeneantall matcher fagkartet: '+fagkart.categories.length);
 ok(pensum.summary.topic_hook_count===fagkart.categories.reduce((sum,d)=>sum+(d.topic_hooks?.length||0),0),'Pensumets hook-antall matcher fagkartet');
-ok(pensum.summary.political_science_core_domain_count===8,'Åtte domener er statsvitenskapelig kjerne');
+ok(pensum.summary.political_science_core_domain_count===pensum.domains.filter(d=>d.disciplinary_role==='political_science_core').length,'Antall statsvitenskapelige kjernedomener matcher registeret');
 ok(generator.political_science_core_contract.required_core_share===0.67,'Generator krever minst to tredeler statsvitenskapelig kjerne');
 for(const id of domains){
  const c=fagkart.categories.find(x=>x.id===id); ok(!!c,'Fagkart har '+id); ok(c.disciplinary_role==='political_science_core',id+' er statsvitenskapelig kjerne'); ok(c.topic_hooks.length===(id==='komparativ_politikk_regimer_institusjoner'?20:10),id+' har forventet hook-antall'); ok(c.quality_revision===(id==='komparativ_politikk_regimer_institusjoner'?P1:R),id+' har forventet revisjon');
@@ -37,6 +37,6 @@ ok(pensum.learning_outcomes.knowledge.length>=2,'Pensum har kunnskapsmål');
 ok(pensum.learning_outcomes.skills.length>=3,'Pensum har ferdighetsmål');
 ok(pensum.learning_outcomes.general_competence.length>=3,'Pensum har generell kompetanse');
 ok(methods.political_science_method_core.length>=23,'Metodekatalogen beholder minst 23 statsvitenskapelige kjernemetoder');
-const coreBlueprints=blueprints.filter(b=>!b.blueprint_id.startsWith('pol_theory_phase2_')); ok(coreBlueprints.length===40,'Det finnes fortsatt 40 kjerne- og fase-1-planer'); for(const b of coreBlueprints){ok(domains.includes(b.domain_id),b.blueprint_id+' har gyldig domene');ok(emneIds.includes(b.emne_id)||(b.blueprint_id.startsWith('pol_institutions_phase1_')&&emner.some(e=>e.emne_id===b.emne_id)),b.blueprint_id+' har gyldig emne');ok(methods.methods.some(m=>m.method_id===b.method_id),b.blueprint_id+' har gyldig metode');ok(b.answer_requirements.length===6,b.blueprint_id+' har seks svarskrav');}
+const coreBlueprints=blueprints.filter(b=>!b.blueprint_id.startsWith('pol_theory_phase2_')&&!b.blueprint_id.startsWith('pol_norsk_phase3_')); ok(coreBlueprints.length===40,'Det finnes fortsatt 40 kjerne- og fase-1-planer'); for(const b of coreBlueprints){ok(domains.includes(b.domain_id),b.blueprint_id+' har gyldig domene');ok(emneIds.includes(b.emne_id)||(b.blueprint_id.startsWith('pol_institutions_phase1_')&&emner.some(e=>e.emne_id===b.emne_id)),b.blueprint_id+' har gyldig emne');ok(methods.methods.some(m=>m.method_id===b.method_id),b.blueprint_id+' har gyldig metode');ok(b.answer_requirements.length===6,b.blueprint_id+' har seks svarskrav');}
 ok(!fs.existsSync(path.join(BASE,'kvalitetslag_v1')),'Ingen kvalitetslag-overlay finnes');
 console.log('PASS: '+pass); console.log('RESULTAT: PASS');

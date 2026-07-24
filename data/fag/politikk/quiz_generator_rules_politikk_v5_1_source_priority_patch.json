@@ -10,11 +10,11 @@
     "emner": "emner_politikk_canonical_v4_5.json",
     "emnemapping": "emnemapping_politikk_canonical_v4_5.json",
     "pensum": "politikkpensum_canonical_v4_5.json",
-    "domain_count": 12,
-    "emne_count": 111,
-    "method_count": 65,
-    "mapping_count": 109,
-    "topic_hook_count": 140
+    "domain_count": 13,
+    "emne_count": 123,
+    "method_count": 71,
+    "mapping_count": 121,
+    "topic_hook_count": 152
   },
   "hard_rules": {
     "source_dominance_rule": "Eksterne politiske, rettslige, forvaltningsmessige, statistiske, historiske og samfunnsfaglige kilder, konkrete institusjoner, lover, reformer, vedtak, budsjett, reguleringsplaner, rettsbygg, offentlige tjenester, demokratiske arenaer, konflikter, protester, normsystemer, fordelingsdata, levekårsdata, demografi, arkiver, utredninger og dokumenterte samfunnsprosesser skal dominere det synlige faktainnholdet i politikkquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
@@ -107,7 +107,13 @@
     "normative_claims_must_not_be_presented_as_empirical_facts": true,
     "normative_questions_require_explicit_premise_argument_counterargument_and_consequence": true,
     "empirical_premises_in_normative_questions_require_external_source": true,
-    "ideology_may_not_be_reduced_to_party_label": true
+    "ideology_may_not_be_reduced_to_party_label": true,
+    "norwegian_politics_claims_require_official_source_and_institutional_level": true,
+    "norwegian_institution_claims_require_actor_competence_and_document_chain": true,
+    "multilevel_governance_claims_require_competence_finance_and_implementation_chain": true,
+    "eos_eu_claims_require_european_decision_incorporation_and_national_implementation_chain": true,
+    "indigenous_politics_claims_require_legal_basis_representation_and_consultation_context": true,
+    "current_office_holder_or_rule_claims_require_current_external_verification": true
   },
   "soft_preferences": {
     "preferred_external_source_mix_per_place": [
@@ -2457,6 +2463,180 @@
         "avvis kausal påstand uten design eller mekanisme",
         "avvis generalisering uten scope condition"
       ]
+    },
+    "norsk_politikk_eos_flernivastyring": {
+      "status": "complete_revised",
+      "quality_revision": "politikk-norsk-eos-vertical-phase-3-2026-07-24",
+      "required_question_chain": [
+        "external_source",
+        "unit_of_analysis",
+        "defined_outcome",
+        "mechanism_or_institutional_rule",
+        "method_or_design",
+        "competing_explanation_or_critical_distinction",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "required_mapping_fields": [
+        "recommended_method_ids",
+        "mechanism_options",
+        "critical_distinction_options",
+        "theory_lenses",
+        "required_anchor_types"
+      ],
+      "revised_method_ids": [
+        "met_pol_norsk_institusjonskjedeanalyse",
+        "met_pol_parlamentarisk_kontrollanalyse_norge",
+        "met_pol_norsk_parti_skillelinjeanalyse",
+        "met_pol_flerniva_kommunestyringsanalyse",
+        "met_pol_eos_eu_implementeringsanalyse",
+        "met_pol_korporativ_interesseanalyse_norge"
+      ],
+      "hook_count": 12,
+      "method_selection_rule": "Metoden velges etter påstand, analyseenhet, datakilde og inferensbehov.",
+      "theory_rule": "Teori kommer etter ekstern dokumentasjon og metode, og må forklare eller sammenligne mekanismen.",
+      "rejection_rules": [
+        "avvis teoretikernavn som løsrevet svar",
+        "avvis komparasjon uten sammenlignbare indikatorer",
+        "avvis kausal påstand uten design eller mekanisme",
+        "avvis generalisering uten scope condition"
+      ],
+      "required_hook_ids": [
+        "norsk_politikk_styringsorganer_maktkjede",
+        "norsk_politikk_mindretallsparlamentarisme_kontroll",
+        "norsk_politikk_partisystem_skillelinjer",
+        "norsk_politikk_kommuner_fylker_lokaldemokrati",
+        "norsk_politikk_stat_kommune_flernivastyring",
+        "norsk_politikk_sametinget_urfolk_konsultasjon",
+        "norsk_politikk_eos_eu_integrasjon",
+        "norsk_politikk_europeiske_regler_gjennomforing",
+        "norsk_politikk_utenriks_sikkerhetspolitikk",
+        "norsk_politikk_korporatisme_trepart_interesser",
+        "norsk_politikk_utredning_horing_lovprosess",
+        "norsk_politikk_statsbudsjett_kommunefinansiering"
+      ],
+      "required_method_ids": [
+        "met_pol_norsk_institusjonskjedeanalyse",
+        "met_pol_parlamentarisk_kontrollanalyse_norge",
+        "met_pol_norsk_parti_skillelinjeanalyse",
+        "met_pol_flerniva_kommunestyringsanalyse",
+        "met_pol_eos_eu_implementeringsanalyse",
+        "met_pol_korporativ_interesseanalyse_norge"
+      ],
+      "vertical_depth_phase_1": {
+        "revision": "politikk-institusjoner-vertical-phase-1-2026-07-24",
+        "hook_ids": [
+          "parlamentarisme_og_presidentstyre",
+          "flertalls_og_konsensusdemokrati",
+          "enhetsstat_foderalisme_territorial_makt",
+          "ett_og_tokammersystemer",
+          "koalisjoner_og_mindretallsregjeringer",
+          "mistillit_kabinett_opplosning",
+          "vetospillere_og_beslutningskapasitet",
+          "domstolskontroll_og_konstitusjonsdomstoler",
+          "utovende_og_lovgivende_makt",
+          "demokratisk_tilbakegang_og_institusjonell_uthuling"
+        ],
+        "emne_ids": [
+          "em_pol_institusjonsfordypning_parlamentarisme_presidentstyre",
+          "em_pol_institusjonsfordypning_flertalls_konsensusdemokrati",
+          "em_pol_institusjonsfordypning_enhetsstat_foderalisme",
+          "em_pol_institusjonsfordypning_ett_tokammersystem",
+          "em_pol_institusjonsfordypning_koalisjoner_mindretallsregjeringer",
+          "em_pol_institusjonsfordypning_mistillit_opplosningsrett",
+          "em_pol_institusjonsfordypning_vetospillere_beslutningskapasitet",
+          "em_pol_institusjonsfordypning_domstolskontroll_konstitusjonsdomstoler",
+          "em_pol_institusjonsfordypning_utovende_lovgivende_makt",
+          "em_pol_institusjonsfordypning_demokratisk_tilbakegang"
+        ],
+        "method_ids": [
+          "met_pol_parlamentarisk_ansvarlighetsanalyse",
+          "met_pol_vetospilleranalyse",
+          "met_pol_foderalisme_og_flernivaanalyse",
+          "met_pol_konstitusjonell_domstolsanalyse",
+          "met_pol_institusjonell_tilbakegangsanalyse",
+          "met_pol_lovgivningsstruktur_analyse"
+        ],
+        "question_blueprint_count": 10,
+        "status": "complete_revised"
+      },
+      "profile_id": "norsk_politikk_eos_flernivastyring",
+      "domain_id": "norsk_politikk_eos_flernivastyring",
+      "label": "Norsk politikk, EØS/EU og flernivåstyring",
+      "revised_hook_ids": [
+        "norsk_politikk_styringsorganer_maktkjede",
+        "norsk_politikk_mindretallsparlamentarisme_kontroll",
+        "norsk_politikk_partisystem_skillelinjer",
+        "norsk_politikk_kommuner_fylker_lokaldemokrati",
+        "norsk_politikk_stat_kommune_flernivastyring",
+        "norsk_politikk_sametinget_urfolk_konsultasjon",
+        "norsk_politikk_eos_eu_integrasjon",
+        "norsk_politikk_europeiske_regler_gjennomforing",
+        "norsk_politikk_utenriks_sikkerhetspolitikk",
+        "norsk_politikk_korporatisme_trepart_interesser",
+        "norsk_politikk_utredning_horing_lovprosess",
+        "norsk_politikk_statsbudsjett_kommunefinansiering"
+      ],
+      "revised_emne_ids": [
+        "em_pol_norsk_politikk_styringsorganer_maktkjede",
+        "em_pol_norsk_politikk_mindretallsparlamentarisme_kontroll",
+        "em_pol_norsk_politikk_partisystem_skillelinjer",
+        "em_pol_norsk_politikk_kommuner_fylker_lokaldemokrati",
+        "em_pol_norsk_politikk_stat_kommune_flernivastyring",
+        "em_pol_norsk_politikk_sametinget_urfolk_konsultasjon",
+        "em_pol_norsk_politikk_eos_eu_integrasjon",
+        "em_pol_norsk_politikk_europeiske_regler_gjennomforing",
+        "em_pol_norsk_politikk_utenriks_sikkerhetspolitikk",
+        "em_pol_norsk_politikk_korporatisme_trepart_interesser",
+        "em_pol_norsk_politikk_utredning_horing_lovprosess",
+        "em_pol_norsk_politikk_statsbudsjett_kommunefinansiering"
+      ],
+      "sequence": [
+        "external_source",
+        "institutional_level",
+        "actors_and_competence",
+        "document_or_decision_chain",
+        "defined_outcome",
+        "mechanism",
+        "critical_distinction_or_competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "hard_requirements": {
+        "require_external_claim_basis": true,
+        "require_named_institutional_level": true,
+        "require_actor_and_competence_identification": true,
+        "require_document_or_decision_chain": true,
+        "require_defined_outcome": true,
+        "require_mechanism_explanation": true,
+        "require_critical_distinction_or_competing_explanation": true,
+        "require_method_match_to_claim": true,
+        "require_scope_condition": true,
+        "ban_theorist_name_as_answer_without_concept": true,
+        "ban_formal_rule_as_complete_description_of_practice": true,
+        "ban_canonical_file_as_fact_source": true
+      },
+      "source_requirements": [
+        "offisiell norsk, samisk, kommunal, EØS- eller EU-kilde",
+        "lov, forskrift, proposisjon, stortingsdokument, budsjett, NOU, høring eller forvaltningsdokument",
+        "valg-, økonomi-, tjeneste- eller implementeringsdata",
+        "fagfellevurdert statsvitenskapelig forskning",
+        "canonical-filer som styring – aldri som faktakilde"
+      ],
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_named_institutional_level": true,
+        "require_actor_and_competence_identification": true,
+        "require_document_or_decision_chain": true,
+        "require_defined_outcome": true,
+        "require_mechanism_explanation": true,
+        "require_critical_distinction_or_competing_explanation": true,
+        "require_method_match_to_claim": true,
+        "require_scope_condition": true,
+        "ban_theorist_name_as_answer_without_concept": true,
+        "ban_formal_rule_as_complete_description_of_practice": true,
+        "ban_canonical_file_as_fact_source": true
+      }
     }
   },
   "opening_normal_quiz_contract": {
@@ -2674,6 +2854,46 @@
       "ban_theorist_name_as_answer_without_concept": true,
       "ban_ideology_as_party_label_only": true,
       "theory_forbidden_in_opening_sets": true
+    }
+  },
+  "norwegian_politics_contract": {
+    "status": "active",
+    "quality_revision": "politikk-norsk-eos-vertical-phase-3-2026-07-24",
+    "domain_id": "norsk_politikk_eos_flernivastyring",
+    "required_institution_levels": [
+      "europeisk",
+      "nasjonal",
+      "samisk",
+      "regional",
+      "kommunal",
+      "bydel",
+      "organisert_interesse"
+    ],
+    "required_chain": [
+      "external_source",
+      "institutional_level",
+      "actors_and_competence",
+      "document_or_decision_chain",
+      "defined_outcome",
+      "mechanism",
+      "critical_distinction_or_competing_explanation",
+      "scope_condition",
+      "optional_theory"
+    ],
+    "institution_map": "reports/politikk-canonical-migration/norsk-politikk-institusjonskart.json",
+    "hard_rules": {
+      "require_external_claim_basis": true,
+      "require_named_institutional_level": true,
+      "require_actor_and_competence_identification": true,
+      "require_document_or_decision_chain": true,
+      "require_defined_outcome": true,
+      "require_mechanism_explanation": true,
+      "require_critical_distinction_or_competing_explanation": true,
+      "require_method_match_to_claim": true,
+      "require_scope_condition": true,
+      "ban_theorist_name_as_answer_without_concept": true,
+      "ban_formal_rule_as_complete_description_of_practice": true,
+      "ban_canonical_file_as_fact_source": true
     }
   }
 }
