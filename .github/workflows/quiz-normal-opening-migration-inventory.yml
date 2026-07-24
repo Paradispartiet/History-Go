@@ -1,0 +1,51 @@
+name: Quiz normal opening migration inventory
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: quiz-normal-opening-inventory-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build-inventory:
+    if: startsWith(github.head_ref, 'agent/quiz-normal-opening-migration-inventory') && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Build full migration inventory
+        run: |
+          set -euo pipefail
+          node --check tools/build-quiz-normal-opening-migration-inventory.mjs
+          node --check tools/validate-quiz-normal-opening-migration-inventory.mjs
+          node tools/build-quiz-normal-opening-migration-inventory.mjs
+          node tools/validate-quiz-normal-opening-migration-inventory.mjs \
+            | tee reports/quiz-normal-opening-migration-inventory-validation.txt
+          git diff --check
+      - name: Commit generated inventory
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add reports/quiz-content-quality.json
+          git add reports/quiz-normal-opening-migration-inventory.json
+          git add reports/quiz-normal-opening-migration-inventory.md
+          git add reports/quiz-normal-opening-migration-inventory-validation.txt
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'Inventaret er allerede oppdatert.'
+          else
+            git commit -m 'Quiz: bygg full migreringskø for normalåpning'
+            git push origin HEAD:${{ github.head_ref }}
+          fi
