@@ -1,0 +1,69 @@
+name: Politikk konflikt vertical materialize
+
+on:
+  push:
+    branches:
+      - agent/politikk-konflikt-vertical-chain
+    paths:
+      - 'tools/apply-politikk-konflikt-vertical.mjs'
+      - 'tools/validate-politikk-konflikt-vertical.mjs'
+      - '.github/workflows/politikk-konflikt-vertical-materialize.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: politikk-konflikt-vertical-materialize
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out latest branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/politikk-konflikt-vertical-chain
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Materialize canonical conflict domain
+        run: node tools/apply-politikk-konflikt-vertical.mjs
+
+      - name: Validate vertical chain
+        run: |
+          node tools/validate-politikk-konflikt-vertical.mjs \
+            | tee reports/politikk-canonical-migration/konflikt-makt-vertical-chain-validation.txt
+
+      - name: Parse active JSON files
+        run: |
+          node -e 'const fs=require("fs"); for (const p of ["data/fag/politikk/fagkart_politikk_canonical_v4_5.json","data/fag/politikk/emner_politikk_canonical_v4_5.json","data/fag/politikk/methods_politikk_canonical_v4_5.json","data/fag/politikk/emnemapping_politikk_canonical_v4_5.json","data/fag/politikk/politikkpensum_canonical_v4_5.json","data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json","reports/politikk-canonical-migration/konflikt-makt-question-blueprints.json"]) JSON.parse(fs.readFileSync(p,"utf8")); console.log("JSON parse: PASS");'
+
+      - name: Check diff and remove temporary materializer
+        run: |
+          git diff --check
+          rm tools/apply-politikk-konflikt-vertical.mjs
+          rm .github/workflows/politikk-konflikt-vertical-materialize.yml
+
+      - name: Commit canonical result
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fag/politikk/fagkart_politikk_canonical_v4_5.json
+          git add data/fag/politikk/emner_politikk_canonical_v4_5.json
+          git add data/fag/politikk/methods_politikk_canonical_v4_5.json
+          git add data/fag/politikk/emnemapping_politikk_canonical_v4_5.json
+          git add data/fag/politikk/politikkpensum_canonical_v4_5.json
+          git add data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json
+          git add reports/politikk-canonical-migration/konflikt-makt-question-blueprints.json
+          git add reports/politikk-canonical-migration/konflikt-makt-vertical-chain-validation.txt
+          git add reports/politikk-canonical-migration/konflikt-makt-vertical-chain.md
+          git add tools/validate-politikk-konflikt-vertical.mjs
+          git add -u tools/apply-politikk-konflikt-vertical.mjs .github/workflows/politikk-konflikt-vertical-materialize.yml
+          git diff --cached --check
+          git commit -m 'Politikk: fullfør konfliktdomenets vertikale kvalitetskjede'
+          git push origin HEAD:agent/politikk-konflikt-vertical-chain
