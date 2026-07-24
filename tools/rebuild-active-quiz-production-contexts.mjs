@@ -1,7 +1,9 @@
 import fs from 'node:fs';
+import path from 'node:path';
 import { runBuildQuizProductionContext } from '../scripts/build-quiz-production-context.mjs';
 
 const manifest = JSON.parse(fs.readFileSync('data/fag/fag_manifest.json', 'utf8'));
+const manifestDirectory = path.join('data', 'fag');
 let count = 0;
 
 for (const [categoryId, entry] of Object.entries(manifest)) {
@@ -9,9 +11,14 @@ for (const [categoryId, entry] of Object.entries(manifest)) {
   if (!targets || typeof targets !== 'object' || Array.isArray(targets)) continue;
 
   for (const [targetId, target] of Object.entries(targets)) {
-    const outputPath = target?.context_artifact;
-    if (!outputPath) {
+    const manifestRelativePath = target?.context_artifact;
+    if (!manifestRelativePath) {
       throw new Error(`Mangler context_artifact for ${categoryId}/${targetId}`);
+    }
+
+    const outputPath = path.normalize(path.join(manifestDirectory, manifestRelativePath));
+    if (!outputPath.startsWith(path.join('data', 'quiz', 'production_context') + path.sep)) {
+      throw new Error(`Ugyldig context_artifact-bane for ${categoryId}/${targetId}: ${outputPath}`);
     }
 
     await runBuildQuizProductionContext({
