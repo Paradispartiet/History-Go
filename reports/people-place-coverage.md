@@ -1,6 +1,6 @@
 # People-place coverage audit
 
-Generert: 2026-07-24T10:32:50.736Z
+Generert: 2026-07-24T10:34:27.110Z
 
 ## Sammendrag
 
