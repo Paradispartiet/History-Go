@@ -6,7 +6,7 @@ Revisjon: `politikk-vertical-depth-plan-2026-07-24`
 
 Politikkpensumet skal utvikles fra et bredt statsvitenskapelig fagkart til et vertikalt, progresjonsbasert bachelorpensum. Utvidelsen skal skje i aktive canonical-filer, uten overlay, parallell runtime eller løsrevne teorilister.
 
-**Samlet status:** Alle tre faser er gjennomført. Fase 3 er ferdig materialisert i PR #3686 og avventer bare ordinær Data- og TypeScript-sluttkontroll før merge.
+**Samlet status:** Alle tre faser er gjennomført, validert og merget.
 
 ## Prinsipper
 
@@ -76,7 +76,7 @@ Leveranse:
 
 ## Fase 3 — Norsk politikk, EØS/EU og flernivåstyring
 
-**Status:** Fullført på arbeidsbranch i PR #3686; ordinær CI er sluttport før merge.
+**Status:** Fullført og merget i PR #3686.
 
 **Formål:** Gjøre pensumet direkte anvendelig på norske steder, institusjoner og politiske prosesser, samtidig som norske case kobles til komparative, europeiske og kausale spørsmål.
 
@@ -119,7 +119,7 @@ Leveranse:
 
 ## Kvalitetsporter
 
-Alle faser skal bestå:
+Alle faser har bestått:
 
 - canonical JSON-parsing
 - referanseintegritet mellom fagkart, emner, metoder, mappinger, pensum og generator
