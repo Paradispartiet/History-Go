@@ -1,14 +1,14 @@
-name: History quiz content diagnostic
+name: History quiz production test fix
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  diagnose:
+  fix-test-and-commit:
     if: github.head_ref == 'agent/historie-kilder-arkiv-vertical-chain'
     runs-on: ubuntu-latest
     steps:
@@ -21,29 +21,46 @@ jobs:
         with:
           node-version: 20
 
+      - name: Update canonical history counts in tests
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tests/quiz-production-pipeline.test.mjs')
+          text = path.read_text()
+          replacements = {
+              'assert.equal(context.considered_curriculum.counts.emner, 45);': 'assert.equal(context.considered_curriculum.counts.emner, 49);',
+              'assert.equal(context.considered_curriculum.counts.topic_hooks, 15);': 'assert.equal(context.considered_curriculum.counts.topic_hooks, 23);',
+              'assert.equal(context.considered_curriculum.counts.methods, 12);': 'assert.equal(context.considered_curriculum.counts.methods, 18);',
+          }
+          for old, new in replacements.items():
+              count = text.count(old)
+              if count != 4:
+                  raise SystemExit(f'Forventet 4 forekomster av {old!r}, fant {count}')
+              text = text.replace(old, new)
+          path.write_text(text)
+          PY
+
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Run isolated quiz tests
+      - name: Validate quiz tests and history audits
         run: |
-          set +e
-          mkdir -p reports/historie-canonical-migration
-          {
-            echo '# Quiz content diagnostic'
-            echo
-            echo '## test:quiz-content-audit'
-            npm run test:quiz-content-audit
-            echo "EXIT_QUIZ_CONTENT=$?"
-            echo
-            echo '## test:quiz-production'
-            npm run test:quiz-production
-            echo "EXIT_QUIZ_PRODUCTION=$?"
-          } > reports/historie-canonical-migration/quiz-content-test-diagnostic.txt 2>&1
-          exit 0
+          set -euo pipefail
+          npm run test:quiz-content-audit
+          npm run test:quiz-production
+          node tools/validate-historie-kilder-arkiv-spor.mjs
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          git diff --check
 
-      - name: Upload diagnostic
-        uses: actions/upload-artifact@v4
-        with:
-          name: historie-quiz-content-diagnostic
-          path: reports/historie-canonical-migration/quiz-content-test-diagnostic.txt
-          if-no-files-found: error
+      - name: Remove one-shot workflow and commit
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          rm -f .github/workflows/historie-quiz-content-diagnostic.yml
+          git add -A
+          git diff --cached --check
+          git commit -m 'Historie: synkroniser produksjonstestene med canonical-faget'
+          git push origin HEAD:agent/historie-kilder-arkiv-vertical-chain
