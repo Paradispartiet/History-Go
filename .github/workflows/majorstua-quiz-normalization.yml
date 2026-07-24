@@ -1,0 +1,80 @@
+name: Majorstua quiz normalization
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: majorstua-quiz-normalization-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  normalize:
+    if: startsWith(github.head_ref, 'agent/quiz-majorstua-normal-opening') && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Materialize and validate Majorstua
+        run: |
+          set -euo pipefail
+          node tools/apply-majorstua-quiz-normalization.mjs
+          npm run knowledge:canonical:write
+          node tools/build-quiz-normal-opening-migration-inventory.mjs
+          node tools/compact-quiz-normal-opening-migration-reports.mjs
+          node tools/validate-quiz-normal-opening-migration-inventory.mjs \
+            | tee reports/quiz-normal-opening-migration-inventory-validation.txt
+          node tools/validate-majorstua-quiz-normalization.mjs \
+            | tee reports/majorstua-quiz-repair-validation.txt
+          npm run knowledge:canonical:check
+          npm run audit:quiz-production-context
+          cat > reports/majorstua-quiz-repair.md <<'EOF'
+          # Majorstua: normalisert quiz
+
+          Majorstua er første reparasjonsbatch fra den globale 2 × 7-migreringskøen.
+
+          - åpningen er endret fra 6 + 6 til 7 + 7 normale spørsmål
+          - to nye kildebaserte spørsmål dekker Majorstuen skole i 1908 og Smestadbanen i 1912
+          - 14 registrerte malbrudd er fjernet
+          - øvrige skjulte teoretiker-, metode-, emne- og canonical-spørsmål er også omskrevet
+          - fagmetadata og forklarende teori er bevart bak den synlige quizflaten
+          - balansen er 22 fakta, 12 sammenheng og 10 teori
+          - svaralternativene har ingen registrerte svarlengdesignaler
+          - Majorstua er fortsatt manifestregistrert legacy-fil og aktiveres ikke som produksjonsmål i denne batchen
+          - Knowledge-koblinger og den globale migreringskøen er regenerert
+          EOF
+          git diff --check
+      - name: Commit Majorstua repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm tools/apply-majorstua-quiz-normalization.mjs
+          rm -f reports/majorstua-quiz-repair-status.md
+
+          changed_paths=$(git status --porcelain | sed -E 's/^.. //')
+          unexpected=$(printf '%s\n' "$changed_paths" | grep -Ev '^(data/quiz/by/majorstua_sets\.json|data/knowledge/(knowledge_units|concepts|terms|stories|knowledge_emne_review_queue)\.generated\.json|reports/(knowledge-id-backfill|quiz-content-quality|quiz-normal-opening-migration-inventory)\.json|reports/quiz-normal-opening-migration-inventory\.md|reports/quiz-normal-opening-migration-inventory-validation\.txt|reports/majorstua-quiz-repair\.md|reports/majorstua-quiz-repair-validation\.txt|reports/majorstua-quiz-repair-status\.md|tools/apply-majorstua-quiz-normalization\.mjs|tools/validate-majorstua-quiz-normalization\.mjs)$' || true)
+          if [[ -n "$unexpected" ]]; then
+            echo 'Uventede filer i Majorstua-reparasjonen:'
+            printf '%s\n' "$unexpected"
+            exit 1
+          fi
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git diff --cached --check
+          git diff --cached --stat
+          git commit -m 'Quiz: normaliser Majorstua til 2x7'
+          git push origin HEAD:${{ github.head_ref }}
