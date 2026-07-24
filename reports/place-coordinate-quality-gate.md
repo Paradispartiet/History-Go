@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-24T18:51:51.797Z
+Generert: 2026-07-24T18:56:09.333Z
 
 ## Oppsummering
 - Aktive filer validert: **690**
 - Antall steder validert: **1291**
 - Harde feil: **0**
-- Varsler: **509**
-- Coordinate review candidates: **770** signaler fordelt på **648** steder
+- Varsler: **510**
+- Coordinate review candidates: **771** signaler fordelt på **648** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -1047,6 +1047,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/vitenskap/oslo/places_vitenskap.json#rikshospitalet: lav koordinatpresisjon (<4 desimaler)
 - data/places/vitenskap/oslo/places_vitenskap.json#radiumhospitalet: lav koordinatpresisjon (<4 desimaler)
 - data/places/vitenskap/oslo/places_vitenskap.json#meteorologisk_institutt: lineært sted uten anchors
+- data/places/vitenskap/oslo/places_vitenskap.json#meteorologisk_institutt: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#arkitektur_og_designhogskolen: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#bi_nydalen: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json#nobelinstituttet: lineært sted uten anchors
@@ -1225,13 +1226,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 770 signaler fordelt på 648 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 771 signaler fordelt på 648 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 228 |
+| coordStatus=verified uten coordPrecisionM | 229 |
 | lineært sted uten anchors | 80 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 68 |
 | lav koordinatpresisjon (<4 desimaler) | 73 |
@@ -1241,7 +1242,7 @@ Totalt 770 signaler fordelt på 648 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 8 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (228)
+### coordStatus=verified uten coordPrecisionM (229)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1359,6 +1360,7 @@ Totalt 770 signaler fordelt på 648 steder. Et sted kan ha flere signaler. Kandi
 | motestedet_tollbugata | Møtestedet – Tollbugata | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.90976205545865 | 10.747280208188046 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | universitetets_gamle_kjemi | Universitetets gamle kjemibygning | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.917023156193885 | 10.73472914137377 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamlebyen_skole | Gamlebyen skole | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.90681241 | 10.77044366 | 150 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| meteorologisk_institutt | Meteorologisk institutt | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.94270614863892 | 10.720621900236225 | 150 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | arkitektur_og_designhogskolen | Arkitektur- og designhøgskolen i Oslo | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.92481402 | 10.75073759 | 160 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | bi_nydalen | BI i Nydalen | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.94887042 | 10.76820661 | 180 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | grannar_redaksjon_etne | Grannar-redaksjonen i Etne | media | data/places/media/vestland/etne/grannar_redaksjon_etne.json | 59.66414439895677 | 5.940649457868514 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1537,7 +1539,7 @@ Totalt 770 signaler fordelt på 648 steder. Et sted kan ha flere signaler. Kandi
 | kuba_akselpassasjer | Kuba-passasjene ved Akerselva | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9236 | 10.7558 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | brenneriveien_ingens_gate | Brenneriveien / Ingens gate | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9186 | 10.757 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | helvete_neseblod_records | Helvete / Neseblod Records | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.908405 | 10.769545 | 80 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| meteorologisk_institutt | Meteorologisk institutt | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.9429 | 10.7188 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| meteorologisk_institutt | Meteorologisk institutt | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.94270614863892 | 10.720621900236225 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | nobelinstituttet | Nobelinstituttet | vitenskap | data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json | 59.9198 | 10.7489 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | psykologisk_institutt_uio | Psykologisk institutt, UiO | psykologi | data/places/psykologi/oslo/places_psykologi.json | 59.9419 | 10.7229 | 160 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | lisbon_tribunal_constitucional | Tribunal Constitucional / Palácio Ratton | politikk | data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json | 38.7227 | -9.1421 | 100 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
