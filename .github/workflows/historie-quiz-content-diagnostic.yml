@@ -1,0 +1,56 @@
+name: History quiz content diagnostic
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose-and-commit:
+    if: github.head_ref == 'agent/historie-kilder-arkiv-vertical-chain'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/historie-kilder-arkiv-vertical-chain
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Run isolated quiz tests
+        id: tests
+        continue-on-error: true
+        run: |
+          set +e
+          mkdir -p reports/historie-canonical-migration
+          {
+            echo '# Quiz content diagnostic'
+            echo
+            echo '## test:quiz-content-audit'
+            npm run test:quiz-content-audit
+            echo "EXIT_QUIZ_CONTENT=$?"
+            echo
+            echo '## test:quiz-production'
+            npm run test:quiz-production
+            echo "EXIT_QUIZ_PRODUCTION=$?"
+          } > reports/historie-canonical-migration/quiz-content-test-diagnostic.txt 2>&1
+          exit 0
+
+      - name: Remove workflow and commit diagnostic
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          rm -f .github/workflows/historie-quiz-content-diagnostic.yml
+          git add -A .github/workflows/historie-quiz-content-diagnostic.yml reports/historie-canonical-migration/quiz-content-test-diagnostic.txt
+          git diff --cached --check
+          git commit -m 'Historie: dokumenter siste quizinnholdstest'
+          git push origin HEAD:agent/historie-kilder-arkiv-vertical-chain
