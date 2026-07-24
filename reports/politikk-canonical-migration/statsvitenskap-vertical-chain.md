@@ -48,3 +48,10 @@ Statsvitenskap er nå fagets eksplisitte hoveddisiplin. Politisk sosiologi, rett
 - Politisk-økonomiske analyser angir fordelingsvirkning.
 - Teoretikernavn er aldri tilstrekkelig svar.
 - Canonical-filene er aldri faktakilde.
+
+## Sluttkontroll
+
+- Permanent domenekontroll: 1055 PASS, 0 feil.
+- Alle seks aktive canonical JSON-filer og spørsmålsplanene parser.
+- `git diff --check` består.
+- Ingen `kvalitetslag_v1`, overlay eller parallell runtime-sidekanal er innført.
