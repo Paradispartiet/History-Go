@@ -47,7 +47,7 @@ Leveranse:
 
 ## Fase 2 — Litteraturhistorie, verdenslitteratur, oversettelse og medieformer
 
-**Status:** Neste fase.
+**Status:** Materialisert og faglig validert med 387 fasekontroller i PR #3706; ordinær Data-/TypeScript-CI er sluttport før merge.
 
 **Formål:** Bygge historisk, komparativ og transnasjonal dybde fra antikkens sjangre til digitale og multimodale tekster.
 
@@ -76,7 +76,7 @@ Leveranse:
 
 ## Fase 3 — Norsk, nordisk og samisk litteratur; institusjoner, lesere og steder
 
-**Status:** Planlagt etter fase 2.
+**Status:** Neste fase etter at fase 2 er merget og sluttkontrollert på `main`.
 
 **Formål:** Gjøre pensumet direkte anvendelig på norske og nordiske verk, språk, institusjoner og litterære steder uten nasjonal selvtilstrekkelighet.
 
