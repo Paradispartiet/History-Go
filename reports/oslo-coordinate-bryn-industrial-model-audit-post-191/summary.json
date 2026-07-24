@@ -1,0 +1,839 @@
+{
+  "version": "2026-07-23",
+  "purpose": "Determine whether Bryn industriområde is already covered by a canonical Bryn area/place or still requires separately documented geometry.",
+  "legacy": {
+    "id": "bryn_industriomrade",
+    "name": "Bryn industriområde",
+    "lat": 59.9129,
+    "lon": 10.8251,
+    "r": 250,
+    "category": "naeringsliv",
+    "year": 1880,
+    "desc": "Et av de eldste industriområdene i Oslo øst – fabrikkhaller, lager og jernbane i tett samspill.",
+    "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/bryn_industriomrade.json"
+  },
+  "evidence": {
+    "placeId": "bryn_industriomrade",
+    "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+    "evidenceStatus": "needs_research",
+    "coordinateDecision": "needs_geometry",
+    "currentCoordinate": {
+      "lat": 59.9129,
+      "lon": 10.8251,
+      "r": 250,
+      "coordStatus": "",
+      "coordSource": "",
+      "coordType": "",
+      "coordNote": ""
+    },
+    "identity": {
+      "currentName": "Bryn industriområde",
+      "resolvedIdentity": "det brede industri- og boligstrøket Bryn rundt Brynsfossen, Hovedbanen og flere historiske fabrikkmiljøer",
+      "identityStatus": "resolved_broad_area",
+      "identityProblem": "Kildene dokumenterer Bryn som et stort strøk med flere industriområder og virksomheter på tvers av bydeler. Den aktive recorden har bare ett punkt og ingen avgrenset industriområdegeometri.",
+      "locatorTypeCandidate": "linear_area",
+      "requiresSplit": false,
+      "splitReason": "Stedet kan beholdes som område, men må få dokumentert scope og geometri/anchors."
+    },
+    "requiredEvidence": [
+      "avgrensning av hvilket Bryn-industriområde recorden mener",
+      "offisiell områdegeometri eller flere kildebelagte area-ankre",
+      "overlap-audit mot konkrete Bryn-fabrikker og stasjoner"
+    ],
+    "evidence": [
+      {
+        "sourceProvider": "manual_research",
+        "sourceName": "Oslo byleksikon – Bryn (strøk)",
+        "sourceUrl": "https://oslobyleksikon.no/side/Bryn_%28str%C3%B8k%29",
+        "sourceObjectId": "oslobyleksikon:bryn-strok",
+        "sourceQuality": "documented_area_identity",
+        "finding": "Kilden beskriver Bryn som et stort industri- og boligstrøk i flere bydeler, med industri utviklet rundt Brynsfossen og Hovedbanen.",
+        "canVerifyCoordinate": false,
+        "reason": "Kilden bekrefter bred områdeidentitet, men ikke ett entydig industriområdepolygon eller hovedanker."
+      }
+    ],
+    "addressCandidates": [],
+    "sourceObjectCandidates": [],
+    "geometryCandidates": [],
+    "coordinateCandidates": [],
+    "decision": {
+      "canBecomeVerified": false,
+      "blockedReason": "Bredt og uavgrenset industriområde mangler kildebelagt geometri/anchors.",
+      "nextAction": "Definer fysisk scope og hent offisiell områdegeometri eller flere area-ankre før canonical koordinat kan godkjennes."
+    },
+    "notes": [
+      "Ingen koordinatendring i batch 25."
+    ]
+  },
+  "brynCandidates": [
+    {
+      "id": "alnaelvstien",
+      "name": "Alnastien – Svartdalen og Bryn",
+      "category": "natur",
+      "lat": 59.9059364,
+      "lon": 10.8030114,
+      "r": 250,
+      "coordStatus": "verified_geometry",
+      "coordType": "multi_segment_route_display_anchor",
+      "locatorType": "route",
+      "sourceObjectId": "osm-way:113281394",
+      "sourceFile": "places/natur/oslo/places_oslo_alna/alnaelvstien.json",
+      "distanceFromLegacyMeters": 1454.64,
+      "desc": "Sammenhengende Alnastien-strekning gjennom Svartdalen og Bryn, eksplisitt modellert som elleve navngitte OSM-segmenter."
+    },
+    {
+      "id": "alna_bryn",
+      "name": "Alna ved Bryn",
+      "category": "natur",
+      "lat": 59.9059447,
+      "lon": 10.8029785,
+      "r": 160,
+      "coordStatus": "verified_geometry",
+      "coordType": "river_segment_anchor",
+      "locatorType": "route",
+      "sourceObjectId": "osm-way:112543919",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute/alna_bryn.json",
+      "distanceFromLegacyMeters": 1455.71,
+      "desc": "Alna ved Bryn i overgangen mellom Brynsfossen, industrihistorie, jernbane, veier, Alnastien og en smal byøkologisk elvekorridor."
+    }
+  ],
+  "areaCandidates": [],
+  "verifiedBroadCandidate": null,
+  "exactPhysicalDuplicateCandidate": null,
+  "nearbyCanonicalWithin2km": [
+    {
+      "id": "nordre_skoyen_hovedgard",
+      "name": "Nordre Skøyen hovedgård",
+      "category": "historie",
+      "distanceMeters": 603.61,
+      "coordStatus": "verified"
+    },
+    {
+      "id": "tveten_gard",
+      "name": "Tveten gård",
+      "category": "historie",
+      "distanceMeters": 658.04,
+      "coordStatus": "verified"
+    },
+    {
+      "id": "alnaelva",
+      "name": "Alnaelva",
+      "category": "natur",
+      "distanceMeters": 701.12,
+      "coordStatus": "verified_geometry"
+    },
+    {
+      "id": "alna_smalvoll",
+      "name": "Alna ved Smalvoll",
+      "category": "natur",
+      "distanceMeters": 701.12,
+      "coordStatus": "verified_geometry"
+    },
+    {
+      "id": "intility_arena",
+      "name": "Intility Arena",
+      "category": "sport",
+      "distanceMeters": 1173.55,
+      "coordStatus": "verified_geometry"
+    },
+    {
+      "id": "hellerud_gard",
+      "name": "Nedre Hellerud – historisk gårdssted",
+      "category": "historie",
+      "distanceMeters": 1247.98,
+      "coordStatus": "verified_historical_source"
+    },
+    {
+      "id": "valle_hovin_stadion",
+      "name": "Valle Hovin stadion",
+      "category": "sport",
+      "distanceMeters": 1313.46,
+      "coordStatus": "verified_geometry"
+    },
+    {
+      "id": "helsfyr",
+      "name": "Helsfyr",
+      "category": "by",
+      "distanceMeters": 1343,
+      "coordStatus": "verified_geometry"
+    },
+    {
+      "id": "vallhall_arena",
+      "name": "Vallhall Arena",
+      "category": "sport",
+      "distanceMeters": 1355.08,
+      "coordStatus": "verified_geometry"
+    },
+    {
+      "id": "alnaelvstien",
+      "name": "Alnastien – Svartdalen og Bryn",
+      "category": "natur",
+      "distanceMeters": 1454.64,
+      "coordStatus": "verified_geometry"
+    },
+    {
+      "id": "alna_bryn",
+      "name": "Alna ved Bryn",
+      "category": "natur",
+      "distanceMeters": 1455.71,
+      "coordStatus": "verified_geometry"
+    },
+    {
+      "id": "ulven_handelspark",
+      "name": "Construction City",
+      "category": "naeringsliv",
+      "distanceMeters": 1489.88,
+      "coordStatus": "verified"
+    },
+    {
+      "id": "ostensjovannet_nord",
+      "name": "Vadedammen",
+      "category": "natur",
+      "distanceMeters": 1716.84,
+      "coordStatus": "verified_geometry"
+    },
+    {
+      "id": "kloden_teater_pilotscenen",
+      "name": "Kloden teater – Pilotscenen",
+      "category": "scenekunst",
+      "distanceMeters": 1719.81,
+      "coordStatus": "verified_geometry"
+    },
+    {
+      "id": "svartdalen",
+      "name": "Svartdalen",
+      "category": "natur",
+      "distanceMeters": 1860.3,
+      "coordStatus": "verified_geometry"
+    },
+    {
+      "id": "inger_hagerups_plass",
+      "name": "Inger Hagerups plass",
+      "category": "litteratur",
+      "distanceMeters": 1901.17,
+      "coordStatus": "verified"
+    },
+    {
+      "id": "etterstadgata_6",
+      "name": "Etterstadgata 6",
+      "category": "naeringsliv",
+      "distanceMeters": 1903.21,
+      "coordStatus": "verified"
+    },
+    {
+      "id": "frigo_friluftssenteret",
+      "name": "FRIGO – Friluftssenteret i Gamle Oslo",
+      "category": "sport",
+      "distanceMeters": 1977.2,
+      "coordStatus": "verified"
+    },
+    {
+      "id": "bla_skilt_aud_schonemann_vetlandsveien_69d",
+      "name": "Blått skilt: Aud Schønemann",
+      "category": "populaerkultur",
+      "distanceMeters": 1992.28,
+      "coordStatus": "verified"
+    }
+  ],
+  "referenceInventory": {
+    "count": 76,
+    "fileCount": 12,
+    "files": [
+      "data/Civication/map/historyGoPlaceMapping.naeringsliv.json",
+      "data/coordinate-evidence/oslo/naeringsliv/bryn_industriomrade.json",
+      "data/i18n/content/places/en.json",
+      "data/i18n/content/places/es.json",
+      "data/i18n/content/places/pt.json",
+      "data/places/naeringsliv/oslo/places_naeringsliv.json",
+      "data/places/naeringsliv/oslo/places_naeringsliv/bryn_industriomrade.json",
+      "data/places/naeringsliv/oslo/places_naeringsliv_index.json",
+      "data/places/naeringsliv/oslo/places_naeringsliv_manifest.json",
+      "data/places/places_index.json",
+      "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+      "data/quiz/quiz_naeringsliv.json"
+    ],
+    "refs": [
+      {
+        "file": "data/Civication/map/historyGoPlaceMapping.naeringsliv.json",
+        "line": 808,
+        "text": "\"historyGoPlaceId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/coordinate-evidence/oslo/naeringsliv/bryn_industriomrade.json",
+        "line": 2,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/i18n/content/places/en.json",
+        "line": 898,
+        "text": "\"bryn_industriomrade\": {"
+      },
+      {
+        "file": "data/i18n/content/places/es.json",
+        "line": 1612,
+        "text": "\"bryn_industriomrade\": {"
+      },
+      {
+        "file": "data/i18n/content/places/pt.json",
+        "line": 2424,
+        "text": "\"bryn_industriomrade\": {"
+      },
+      {
+        "file": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+        "line": 1662,
+        "text": "\"id\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/places/naeringsliv/oslo/places_naeringsliv/bryn_industriomrade.json",
+        "line": 2,
+        "text": "\"id\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/places/naeringsliv/oslo/places_naeringsliv_index.json",
+        "line": 468,
+        "text": "\"id\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/places/naeringsliv/oslo/places_naeringsliv_manifest.json",
+        "line": 194,
+        "text": "\"id\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/places/places_index.json",
+        "line": 10779,
+        "text": "\"id\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 2,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 61,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 64,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 134,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 137,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 207,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 210,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 277,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 280,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 349,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 352,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 421,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 424,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 504,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 507,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 575,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 578,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 645,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 648,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 716,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 719,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 786,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 789,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 857,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 860,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 936,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 939,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1007,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1010,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1077,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1080,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1149,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1152,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1219,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1222,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1289,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1292,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1368,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1371,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1438,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1441,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1509,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1512,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1579,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1582,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1649,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1652,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1719,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1722,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1800,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1803,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1871,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1874,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1941,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 1944,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 2011,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 2014,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 2083,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 2086,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 2157,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/naeringsliv/bryn_industriomrade_sets_merged.json",
+        "line": 2160,
+        "text": "\"targetId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/quiz_naeringsliv.json",
+        "line": 125,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/quiz_naeringsliv.json",
+        "line": 137,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/quiz_naeringsliv.json",
+        "line": 149,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/quiz_naeringsliv.json",
+        "line": 161,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      },
+      {
+        "file": "data/quiz/quiz_naeringsliv.json",
+        "line": 173,
+        "text": "\"placeId\": \"bryn_industriomrade\","
+      }
+    ]
+  },
+  "sourceOccurrences": [
+    {
+      "file": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+      "path": [
+        22
+      ],
+      "snapshot": {
+        "id": "bryn_industriomrade",
+        "name": "Bryn industriområde",
+        "lat": 59.9129,
+        "lon": 10.8251,
+        "r": 250,
+        "category": "naeringsliv",
+        "year": 1880,
+        "desc": "Et av de eldste industriområdene i Oslo øst – fabrikkhaller, lager og jernbane i tett samspill.",
+        "popupDesc": "Bryn industriområde utviklet seg som en østlig produksjons- og logistikkone med nærhet til jernbane og hovedveier. Her ble fabrikk, lager og transport samlet i en effektiv næringsstruktur.\n\nI History Go brukes området for å spørre hvordan infrastruktur styrer hvor industri og arbeid plasseres i byen.",
+        "emne_ids": [
+          "em_naer_felt_arbeid_verdiskaping",
+          "em_naer_geografi_infrastruktur",
+          "em_his_industriby_1900"
+        ],
+        "quiz_profile": {
+          "place_type": "anlegg",
+          "subtype": "industri_produksjon",
+          "signature_features": [
+            "Bryn industriområde",
+            "Et av de eldste industriområdene i Oslo øst – fabrikkhaller, lager og jernbane i tett sams",
+            "knyttet til næringslivets infrastruktur"
+          ],
+          "primary_angles": [
+            "historie",
+            "arbeid",
+            "teknikk",
+            "konflikt_forandring"
+          ],
+          "question_families": [
+            "historisk_endring",
+            "funksjon_i_byokonomi",
+            "arbeid_og_produksjon",
+            "kontrast"
+          ],
+          "avoid_angles": [
+            "kun_arkitektur",
+            "generisk_turistsporsmal"
+          ],
+          "must_include": [
+            "konkret funksjon i vare-, energi- eller informasjonsflyt",
+            "kobling mellom sted og byutvikling"
+          ],
+          "contrast_targets": [
+            "akerselva",
+            "jernbanetorget",
+            "barcode"
+          ],
+          "notes": "Spør stedet gjennom arbeid, infrastruktur og byøkonomi, ikke bare bygningens utseende."
+        },
+        "underbadge_ids": [
+          "industri"
+        ]
+      }
+    },
+    {
+      "file": "data/places/naeringsliv/oslo/places_naeringsliv/bryn_industriomrade.json",
+      "path": [],
+      "snapshot": {
+        "id": "bryn_industriomrade",
+        "name": "Bryn industriområde",
+        "lat": 59.9129,
+        "lon": 10.8251,
+        "r": 250,
+        "category": "naeringsliv",
+        "year": 1880,
+        "desc": "Et av de eldste industriområdene i Oslo øst – fabrikkhaller, lager og jernbane i tett samspill.",
+        "popupDesc": "Bryn industriområde utviklet seg som en østlig produksjons- og logistikkone med nærhet til jernbane og hovedveier. Her ble fabrikk, lager og transport samlet i en effektiv næringsstruktur.\n\nI History Go brukes området for å spørre hvordan infrastruktur styrer hvor industri og arbeid plasseres i byen.",
+        "emne_ids": [
+          "em_naer_felt_arbeid_verdiskaping",
+          "em_naer_geografi_infrastruktur",
+          "em_his_industriby_1900"
+        ],
+        "quiz_profile": {
+          "place_type": "anlegg",
+          "subtype": "industri_produksjon",
+          "signature_features": [
+            "Bryn industriområde",
+            "Et av de eldste industriområdene i Oslo øst – fabrikkhaller, lager og jernbane i tett sams",
+            "knyttet til næringslivets infrastruktur"
+          ],
+          "primary_angles": [
+            "historie",
+            "arbeid",
+            "teknikk",
+            "konflikt_forandring"
+          ],
+          "question_families": [
+            "historisk_endring",
+            "funksjon_i_byokonomi",
+            "arbeid_og_produksjon",
+            "kontrast"
+          ],
+          "avoid_angles": [
+            "kun_arkitektur",
+            "generisk_turistsporsmal"
+          ],
+          "must_include": [
+            "konkret funksjon i vare-, energi- eller informasjonsflyt",
+            "kobling mellom sted og byutvikling"
+          ],
+          "contrast_targets": [
+            "akerselva",
+            "jernbanetorget",
+            "barcode"
+          ],
+          "notes": "Spør stedet gjennom arbeid, infrastruktur og byøkonomi, ikke bare bygningens utseende."
+        },
+        "underbadge_ids": [
+          "industri"
+        ]
+      }
+    },
+    {
+      "file": "data/places/naeringsliv/oslo/places_naeringsliv_index.json",
+      "path": [
+        22
+      ],
+      "snapshot": {
+        "id": "bryn_industriomrade",
+        "name": "Bryn industriområde",
+        "category": "naeringsliv",
+        "lat": 59.9129,
+        "lon": 10.8251,
+        "r": 250,
+        "year": 1880,
+        "file": "places_naeringsliv/bryn_industriomrade.json"
+      }
+    },
+    {
+      "file": "data/places/naeringsliv/oslo/places_naeringsliv_manifest.json",
+      "path": [
+        "places",
+        22
+      ],
+      "snapshot": {
+        "id": "bryn_industriomrade",
+        "name": "Bryn industriområde",
+        "category": "naeringsliv",
+        "file": "places_naeringsliv/bryn_industriomrade.json",
+        "order": 22,
+        "sha256": "2d83a0f37f842173e2f94897039133af007c4ec5f3d2fe3cea44294961393d09"
+      }
+    },
+    {
+      "file": "data/places/places_index.json",
+      "path": [
+        741
+      ],
+      "snapshot": {
+        "id": "bryn_industriomrade",
+        "name": "Bryn industriområde",
+        "lat": 59.9129,
+        "lon": 10.8251,
+        "r": 250,
+        "category": "naeringsliv",
+        "year": 1880,
+        "desc": "Et av de eldste industriområdene i Oslo øst – fabrikkhaller, lager og jernbane i tett samspill.",
+        "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/bryn_industriomrade.json"
+      }
+    }
+  ],
+  "conclusion": "No verified broad canonical Bryn area exists. The verified Alna/Alnastien records are route context through Bryn, not substitutes for a Bryn industrial-area geometry. Keep bryn_industriomrade unresolved until a source-backed industrial-area scope/geometry or a deliberately redefined concrete physical identity is documented.",
+  "contextualRouteCandidates": [
+    {
+      "id": "alnaelvstien",
+      "name": "Alnastien – Svartdalen og Bryn",
+      "category": "natur",
+      "lat": 59.9059364,
+      "lon": 10.8030114,
+      "r": 250,
+      "coordStatus": "verified_geometry",
+      "coordType": "multi_segment_route_display_anchor",
+      "locatorType": "route",
+      "sourceObjectId": "osm-way:113281394",
+      "sourceFile": "places/natur/oslo/places_oslo_alna/alnaelvstien.json",
+      "distanceFromLegacyMeters": 1454.64,
+      "desc": "Sammenhengende Alnastien-strekning gjennom Svartdalen og Bryn, eksplisitt modellert som elleve navngitte OSM-segmenter."
+    },
+    {
+      "id": "alna_bryn",
+      "name": "Alna ved Bryn",
+      "category": "natur",
+      "lat": 59.9059447,
+      "lon": 10.8029785,
+      "r": 160,
+      "coordStatus": "verified_geometry",
+      "coordType": "river_segment_anchor",
+      "locatorType": "route",
+      "sourceObjectId": "osm-way:112543919",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute/alna_bryn.json",
+      "distanceFromLegacyMeters": 1455.71,
+      "desc": "Alna ved Bryn i overgangen mellom Brynsfossen, industrihistorie, jernbane, veier, Alnastien og en smal byøkologisk elvekorridor."
+    }
+  ]
+}
