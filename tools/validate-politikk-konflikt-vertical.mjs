@@ -21,8 +21,8 @@ function check(ok, label) {
 const category = fag.categories.find(x => x.id === domainId);
 check(Boolean(category), "Domenet finnes");
 check(category?.quality_revision === revision, "Domenet har ny revisjon");
-check(category?.topic_hooks?.length === 10, "Domenet har 10 hooks");
-for (const hook of category.topic_hooks) {
+check(category?.topic_hooks?.length >= 10, "Domenet beholder minst 10 opprinnelige hooks");
+for (const hook of category.topic_hooks.filter(h => h.quality_revision === revision)) {
   check(hook.quality_revision === revision, `Hook ${hook.id} har ny revisjon`);
   check(Boolean(hook.definition && hook.core_problem), `Hook ${hook.id} har definisjon og kjerneproblem`);
   check(hook.mechanisms?.length >= 5, `Hook ${hook.id} har mekanismer`);
@@ -50,7 +50,7 @@ for (const m of methods.methods.filter(x => domainMethods.has(x.method_id))) {
 let targetMappings = [];
 for (const record of maps) {
   for (const mapping of record.mappings || []) {
-    if (mapping.fagkart_kategori === domainId) targetMappings.push(mapping);
+    if (mapping.fagkart_kategori === domainId && mapping.quality_revision === revision) targetMappings.push(mapping);
   }
 }
 check(targetMappings.length === 20, "Domenet har 20 mappinger");

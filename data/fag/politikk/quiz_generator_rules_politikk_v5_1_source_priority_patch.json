@@ -11,10 +11,10 @@
     "emnemapping": "emnemapping_politikk_canonical_v4_5.json",
     "pensum": "politikkpensum_canonical_v4_5.json",
     "domain_count": 12,
-    "emne_count": 101,
-    "method_count": 61,
-    "mapping_count": 99,
-    "topic_hook_count": 130
+    "emne_count": 111,
+    "method_count": 65,
+    "mapping_count": 109,
+    "topic_hook_count": 140
   },
   "hard_rules": {
     "source_dominance_rule": "Eksterne politiske, rettslige, forvaltningsmessige, statistiske, historiske og samfunnsfaglige kilder, konkrete institusjoner, lover, reformer, vedtak, budsjett, reguleringsplaner, rettsbygg, offentlige tjenester, demokratiske arenaer, konflikter, protester, normsystemer, fordelingsdata, levekårsdata, demografi, arkiver, utredninger og dokumenterte samfunnsprosesser skal dominere det synlige faktainnholdet i politikkquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
@@ -103,7 +103,11 @@
     "method_claims_require_scope_and_uncertainty": true,
     "constitutional_claims_require_rule_actor_mechanism_and_outcome": true,
     "executive_legislative_claims_require_accountability_or_agenda_mechanism": true,
-    "democratic_backsliding_claims_require_baseline_sequence_and_institutional_indicator": true
+    "democratic_backsliding_claims_require_baseline_sequence_and_institutional_indicator": true,
+    "normative_claims_must_not_be_presented_as_empirical_facts": true,
+    "normative_questions_require_explicit_premise_argument_counterargument_and_consequence": true,
+    "empirical_premises_in_normative_questions_require_external_source": true,
+    "ideology_may_not_be_reduced_to_party_label": true
   },
   "soft_preferences": {
     "preferred_external_source_mix_per_place": [
@@ -923,7 +927,40 @@
             }
           ]
         }
-      }
+      },
+      "normative_theory_extension": {
+        "revision": "politikk-teori-vertical-phase-2-2026-07-24",
+        "hook_ids": [
+          "politisk_teori_republikanisme_ikke_dominans",
+          "politisk_teori_populisme_folkebegrepet",
+          "politisk_teori_frihet_likhet_autoritet_legitimitet",
+          "politisk_teori_demokrati_normativt_ideal",
+          "politisk_teori_sivil_ulydighet_politisk_forpliktelse"
+        ],
+        "emne_ids": [
+          "em_pol_teorifordypning_republikanisme_ikke_dominans",
+          "em_pol_teorifordypning_populisme_folkebegrepet",
+          "em_pol_teorifordypning_frihet_likhet_autoritet_legitimitet",
+          "em_pol_teorifordypning_demokrati_normativt_ideal",
+          "em_pol_teorifordypning_sivil_ulydighet_politisk_forpliktelse"
+        ],
+        "method_ids": [
+          "met_pol_normativ_argumentasjonsanalyse",
+          "met_pol_ideologisk_sammenligningsanalyse",
+          "met_pol_politisk_begrepsanalyse",
+          "met_pol_normativ_institusjonsvurdering"
+        ],
+        "required_sequence": [
+          "external_case_or_text",
+          "empirical_context",
+          "explicit_normative_premise",
+          "argument",
+          "counterargument",
+          "normative_consequence",
+          "scope_condition"
+        ]
+      },
+      "hook_count": 15
     },
     "rett_lov_rettssikkerhet": {
       "profile_id": "rett_lov_rettssikkerhet",
@@ -2021,7 +2058,40 @@
             "Regjeringskvartalet"
           ]
         }
-      }
+      },
+      "normative_theory_extension": {
+        "revision": "politikk-teori-vertical-phase-2-2026-07-24",
+        "hook_ids": [
+          "politisk_teori_ideologiske_hovedtradisjoner",
+          "politisk_teori_sosialdemokrati_demokratisk_sosialisme",
+          "politisk_teori_feminisme_politisk_likhet",
+          "politisk_teori_gronn_politisk_teori",
+          "politisk_teori_nasjonalisme_statsborgerskap"
+        ],
+        "emne_ids": [
+          "em_pol_teorifordypning_ideologiske_hovedtradisjoner",
+          "em_pol_teorifordypning_sosialdemokrati_demokratisk_sosialisme",
+          "em_pol_teorifordypning_feminisme_politisk_likhet",
+          "em_pol_teorifordypning_gronn_politisk_teori",
+          "em_pol_teorifordypning_nasjonalisme_statsborgerskap"
+        ],
+        "method_ids": [
+          "met_pol_normativ_argumentasjonsanalyse",
+          "met_pol_ideologisk_sammenligningsanalyse",
+          "met_pol_politisk_begrepsanalyse",
+          "met_pol_normativ_institusjonsvurdering"
+        ],
+        "required_sequence": [
+          "external_case_or_text",
+          "empirical_context",
+          "explicit_normative_premise",
+          "argument",
+          "counterargument",
+          "normative_consequence",
+          "scope_condition"
+        ]
+      },
+      "hook_count": 15
     },
     "normer_identitet_hverdagsliv": {
       "status": "complete_revised",
@@ -2547,6 +2617,63 @@
         "met_pol_institusjonell_tilbakegangsanalyse",
         "met_pol_lovgivningsstruktur_analyse"
       ]
+    }
+  },
+  "normative_political_theory_contract": {
+    "revision": "politikk-teori-vertical-phase-2-2026-07-24",
+    "status": "active",
+    "domains": [
+      "demokrati_representasjon_offentlighet",
+      "konflikt_makt_sivilsamfunn"
+    ],
+    "hook_ids": [
+      "politisk_teori_ideologiske_hovedtradisjoner",
+      "politisk_teori_sosialdemokrati_demokratisk_sosialisme",
+      "politisk_teori_republikanisme_ikke_dominans",
+      "politisk_teori_feminisme_politisk_likhet",
+      "politisk_teori_gronn_politisk_teori",
+      "politisk_teori_nasjonalisme_statsborgerskap",
+      "politisk_teori_populisme_folkebegrepet",
+      "politisk_teori_frihet_likhet_autoritet_legitimitet",
+      "politisk_teori_demokrati_normativt_ideal",
+      "politisk_teori_sivil_ulydighet_politisk_forpliktelse"
+    ],
+    "emne_ids": [
+      "em_pol_teorifordypning_ideologiske_hovedtradisjoner",
+      "em_pol_teorifordypning_sosialdemokrati_demokratisk_sosialisme",
+      "em_pol_teorifordypning_republikanisme_ikke_dominans",
+      "em_pol_teorifordypning_feminisme_politisk_likhet",
+      "em_pol_teorifordypning_gronn_politisk_teori",
+      "em_pol_teorifordypning_nasjonalisme_statsborgerskap",
+      "em_pol_teorifordypning_populisme_folkebegrepet",
+      "em_pol_teorifordypning_frihet_likhet_autoritet_legitimitet",
+      "em_pol_teorifordypning_demokrati_normativt_ideal",
+      "em_pol_teorifordypning_sivil_ulydighet_politisk_forpliktelse"
+    ],
+    "method_ids": [
+      "met_pol_normativ_argumentasjonsanalyse",
+      "met_pol_ideologisk_sammenligningsanalyse",
+      "met_pol_politisk_begrepsanalyse",
+      "met_pol_normativ_institusjonsvurdering"
+    ],
+    "required_sequence": [
+      "external_case_or_text",
+      "empirical_context",
+      "explicit_normative_premise",
+      "argument",
+      "counterargument",
+      "normative_consequence",
+      "scope_condition"
+    ],
+    "hard_rules": {
+      "require_external_source_for_empirical_premise": true,
+      "require_explicit_normative_premise": true,
+      "require_argument_and_counterargument": true,
+      "require_normative_consequence": true,
+      "ban_normative_claim_as_empirical_fact": true,
+      "ban_theorist_name_as_answer_without_concept": true,
+      "ban_ideology_as_party_label_only": true,
+      "theory_forbidden_in_opening_sets": true
     }
   }
 }

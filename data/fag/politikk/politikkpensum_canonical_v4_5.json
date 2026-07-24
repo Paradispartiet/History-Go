@@ -16,10 +16,10 @@
   },
   "summary": {
     "domain_count": 12,
-    "emne_count": 101,
-    "method_count": 61,
-    "mapping_count": 99,
-    "topic_hook_count": 130,
+    "emne_count": 111,
+    "method_count": 65,
+    "mapping_count": 109,
+    "topic_hook_count": 140,
     "all_emner_have_mapping": true,
     "all_method_refs_valid": true,
     "political_science_core_domain_count": 8,
@@ -223,9 +223,9 @@
       "definition": "Domenet undersøker hvordan politiske krav blir uttrykt, aggregert, representert og gjort bindende, hvordan offentlig debatt og organisering påvirker dagsorden og ansvarlighet, og hvordan majoritetsstyre, minoritetsvern, tillit og adgang til politiske rom former demokratisk likhet.",
       "question_role": "Start i et dokumenterbart valg, mandat, institusjonelt ansvar, offentlig ordskifte, organisasjon, konflikt, symbol eller politisk rom. Identifiser hvem som kan delta eller representere, hvilken mekanisme som omsetter krav til innflytelse, og hvilken demokratisk distinksjon caset faktisk tester.",
       "status": "complete_revised",
-      "emne_count": 8,
-      "hook_count": 10,
-      "method_count": 19,
+      "emne_count": 13,
+      "hook_count": 15,
+      "method_count": 23,
       "emne_ids": [
         "em_pol_demokrati_representasjon",
         "em_pol_offentlighet_debatt",
@@ -234,7 +234,12 @@
         "em_pol_sivilsamfunn_organisering",
         "em_pol_symbolsk_makt",
         "em_pol_valg_deltakelse",
-        "em_pol_ytringsfrihet"
+        "em_pol_ytringsfrihet",
+        "em_pol_teorifordypning_republikanisme_ikke_dominans",
+        "em_pol_teorifordypning_populisme_folkebegrepet",
+        "em_pol_teorifordypning_frihet_likhet_autoritet_legitimitet",
+        "em_pol_teorifordypning_demokrati_normativt_ideal",
+        "em_pol_teorifordypning_sivil_ulydighet_politisk_forpliktelse"
       ],
       "hook_ids": [
         "representasjon",
@@ -246,7 +251,12 @@
         "debattarenaer",
         "majoritet_minoritet",
         "politisk_tillit",
-        "demokratiets_rom"
+        "demokratiets_rom",
+        "politisk_teori_republikanisme_ikke_dominans",
+        "politisk_teori_populisme_folkebegrepet",
+        "politisk_teori_frihet_likhet_autoritet_legitimitet",
+        "politisk_teori_demokrati_normativt_ideal",
+        "politisk_teori_sivil_ulydighet_politisk_forpliktelse"
       ],
       "method_ids": [
         "met_pol_demokratianalyse",
@@ -267,7 +277,11 @@
         "met_pol_sivilsamfunnsanalyse",
         "met_pol_politisk_historisk_analyse",
         "met_pol_minoritet_og_representasjonsanalyse",
-        "met_pol_fordelingsanalyse"
+        "met_pol_fordelingsanalyse",
+        "met_pol_normativ_argumentasjonsanalyse",
+        "met_pol_ideologisk_sammenligningsanalyse",
+        "met_pol_politisk_begrepsanalyse",
+        "met_pol_normativ_institusjonsvurdering"
       ],
       "recommended_oslo_cases": [
         "Stortinget",
@@ -756,9 +770,9 @@
       "definition": "Domenet undersøker hvordan interesser blir organisert, hvordan maktressurser og ideologiske rammer fordeles, hvordan protester, bevegelser, arbeidslivsaktører og sivilsamfunn mobiliserer, og hvordan institusjoner, offentligheter og rom former respons og utfall.",
       "question_role": "Start i en ekstern kilde eller et dokumenterbart konfliktcase. Fastslå aktører, krav, ressurser og arena; forklar en konflikt-, makt- eller mobiliseringsmekanisme; test en reell distinksjon; bruk teori bare som forklaring eller sammenligning.",
       "status": "complete_revised",
-      "emne_count": 8,
-      "hook_count": 10,
-      "method_count": 13,
+      "emne_count": 13,
+      "hook_count": 15,
+      "method_count": 17,
       "emne_ids": [
         "em_pol_arbeidsliv_kollektiv_kamp",
         "em_pol_demonstrasjoner_protest",
@@ -767,7 +781,12 @@
         "em_pol_makt_interesser",
         "em_pol_miljopolitikk_samfunn",
         "em_pol_minnesteder_politisk_kamp",
-        "em_pol_polarisering_tillit"
+        "em_pol_polarisering_tillit",
+        "em_pol_teorifordypning_ideologiske_hovedtradisjoner",
+        "em_pol_teorifordypning_sosialdemokrati_demokratisk_sosialisme",
+        "em_pol_teorifordypning_feminisme_politisk_likhet",
+        "em_pol_teorifordypning_gronn_politisk_teori",
+        "em_pol_teorifordypning_nasjonalisme_statsborgerskap"
       ],
       "hook_ids": [
         "makt_og_interesser",
@@ -779,7 +798,12 @@
         "miljopolitisk_konflikt",
         "minne_og_makt",
         "polarisering",
-        "konfliktens_rom"
+        "konfliktens_rom",
+        "politisk_teori_ideologiske_hovedtradisjoner",
+        "politisk_teori_sosialdemokrati_demokratisk_sosialisme",
+        "politisk_teori_feminisme_politisk_likhet",
+        "politisk_teori_gronn_politisk_teori",
+        "politisk_teori_nasjonalisme_statsborgerskap"
       ],
       "method_ids": [
         "met_pol_konfliktanalyse",
@@ -794,7 +818,11 @@
         "met_pol_sivilsamfunnsanalyse",
         "met_pol_symbolanalyse",
         "met_pol_politisk_historisk_analyse",
-        "met_pol_legitimitetsanalyse"
+        "met_pol_legitimitetsanalyse",
+        "met_pol_normativ_argumentasjonsanalyse",
+        "met_pol_ideologisk_sammenligningsanalyse",
+        "met_pol_politisk_begrepsanalyse",
+        "met_pol_normativ_institusjonsvurdering"
       ],
       "recommended_oslo_cases": [
         "Youngstorget",
@@ -2033,17 +2061,20 @@
   "learning_outcomes": {
     "knowledge": [
       "forklare sentrale institusjoner, regimetyper, valgsystemer, policyprosesser, internasjonale mekanismer og politisk-økonomiske sammenhenger",
-      "skille sentrale statsvitenskapelige begreper og analysenivåer"
+      "skille sentrale statsvitenskapelige begreper og analysenivåer",
+      "kan skille sentrale ideologiske og normative tradisjoner etter grunnbegreper, argumentstruktur og institusjonelle konsekvenser"
     ],
     "skills": [
       "formulere sammenlignbare og kausalt presise spørsmål",
       "velge metode etter påstand og datagrunnlag",
-      "analysere politiske utfall gjennom institusjoner, aktører, interesser og mekanismer"
+      "analysere politiske utfall gjennom institusjoner, aktører, interesser og mekanismer",
+      "kan skille empiriske premisser fra normative premisser og rekonstruere argument, motargument og normativ konsekvens"
     ],
     "general_competence": [
       "vurdere kildegrunnlag, usikkerhet og generaliserbarhet",
       "skille empiriske, kausale og normative påstander",
-      "anvende teori uten å erstatte dokumentasjon med teoretikernavn"
+      "anvende teori uten å erstatte dokumentasjon med teoretikernavn",
+      "kan diskutere politisk uenighet presist uten å fremstille normative standpunkter som empiriske fakta"
     ]
   },
   "vertical_depth_plan": {
@@ -2073,5 +2104,46 @@
         "met_pol_lovgivningsstruktur_analyse"
       ]
     }
+  },
+  "normative_theory_axis": {
+    "revision": "politikk-teori-vertical-phase-2-2026-07-24",
+    "status": "complete_revised",
+    "purpose": "Skiller empirisk forklaring fra normativ begrunnelse og gir eksplisitt progresjon i politisk teori og ideologier.",
+    "domains": [
+      "demokrati_representasjon_offentlighet",
+      "konflikt_makt_sivilsamfunn"
+    ],
+    "hook_ids": [
+      "politisk_teori_ideologiske_hovedtradisjoner",
+      "politisk_teori_sosialdemokrati_demokratisk_sosialisme",
+      "politisk_teori_republikanisme_ikke_dominans",
+      "politisk_teori_feminisme_politisk_likhet",
+      "politisk_teori_gronn_politisk_teori",
+      "politisk_teori_nasjonalisme_statsborgerskap",
+      "politisk_teori_populisme_folkebegrepet",
+      "politisk_teori_frihet_likhet_autoritet_legitimitet",
+      "politisk_teori_demokrati_normativt_ideal",
+      "politisk_teori_sivil_ulydighet_politisk_forpliktelse"
+    ],
+    "emne_ids": [
+      "em_pol_teorifordypning_ideologiske_hovedtradisjoner",
+      "em_pol_teorifordypning_sosialdemokrati_demokratisk_sosialisme",
+      "em_pol_teorifordypning_republikanisme_ikke_dominans",
+      "em_pol_teorifordypning_feminisme_politisk_likhet",
+      "em_pol_teorifordypning_gronn_politisk_teori",
+      "em_pol_teorifordypning_nasjonalisme_statsborgerskap",
+      "em_pol_teorifordypning_populisme_folkebegrepet",
+      "em_pol_teorifordypning_frihet_likhet_autoritet_legitimitet",
+      "em_pol_teorifordypning_demokrati_normativt_ideal",
+      "em_pol_teorifordypning_sivil_ulydighet_politisk_forpliktelse"
+    ],
+    "method_ids": [
+      "met_pol_normativ_argumentasjonsanalyse",
+      "met_pol_ideologisk_sammenligningsanalyse",
+      "met_pol_politisk_begrepsanalyse",
+      "met_pol_normativ_institusjonsvurdering"
+    ],
+    "blueprint_count": 10,
+    "hard_distinction": "Normative konklusjoner begrunnes med premisser og argumenter; empiriske påstander krever ekstern kilde og metode."
   }
 }
