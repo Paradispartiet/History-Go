@@ -31,25 +31,26 @@
     {
       "id": "his_tid_periodisering",
       "title": "Historisk tid og periodisering",
-      "tagline": "Hvordan tid deles inn og får mening",
-      "definition": "Dette området handler om hvordan fortiden ordnes i epoker, brudd, kontinuiteter og samtidige tidslag. Historisk tid er ikke bare kalenderår, men måter å forstå endring, rytme, langsom utvikling og dramatiske vendepunkter på.",
+      "tagline": "Hvordan tid deles inn, erfares og forklares",
+      "definition": "Historiefagets tidslige grunnmur: hvordan kronologi, datering, epoker, brudd, kontinuitet, lang varighet, samtidige tidslag og historiske forventninger organiserer forklaringen av fortiden.",
       "focus": [
-        "epoker og periodisering",
-        "brudd og kontinuitet",
-        "samtidens blikk vs ettertidens fortelling",
-        "tidslag i byrom og institusjoner"
+        "kronologi, datering og tidsmessig usikkerhet",
+        "periodisering, epoker og anakronisme",
+        "brudd, kontinuitet og hendelsesforløp",
+        "lang varighet, rytmer og ulike endringstempo",
+        "samtidige erfaringer, forventninger og ettertidens fortelling"
       ],
       "topic_hooks": [
         {
           "id": "his_periodisering_epoker",
-          "title": "Periodisering og epoker",
+          "title": "Periodisering, epoker og analytiske grenser",
           "canon": {
             "thinkers": [
               {
                 "id": "reinhart_koselleck",
                 "name": "Reinhart Koselleck",
-                "why": "Begrepshistorie, historisk tid og forholdet mellom erfaringsrom og forventningshorisont",
-                "tier": "advanced",
+                "why": "Historisk tid, begrepsendring og forholdet mellom erfaringsrom og forventningshorisont",
+                "tier": "core",
                 "works": [
                   "Futures Past"
                 ]
@@ -57,7 +58,7 @@
               {
                 "id": "fernand_braudel",
                 "name": "Fernand Braudel",
-                "why": "Lang varighet, strukturer og forskjellen mellom hendelse og dypt historisk tidslag",
+                "why": "Lang varighet, strukturer og samtidige historiske rytmer",
                 "tier": "core",
                 "works": [
                   "The Mediterranean and the Mediterranean World"
@@ -66,7 +67,7 @@
               {
                 "id": "jacques_le_goff",
                 "name": "Jacques Le Goff",
-                "why": "Middelalderens tidsforståelse og hvordan epoker konstrueres",
+                "why": "Periodisering, middelalderens tidsordener og historiske epokebegreper",
                 "tier": "advanced",
                 "works": [
                   "Time, Work, and Culture in the Middle Ages"
@@ -75,7 +76,7 @@
               {
                 "id": "knut_kjeldstadli",
                 "name": "Knut Kjeldstadli",
-                "why": "Norsk historiefaglig formidling av tid, samfunnsendring og hverdagslige strukturer",
+                "why": "Norsk historiefaglig metode, samfunnsendring og presis bruk av tidslige forklaringer",
                 "tier": "core",
                 "works": [
                   "Fortida er ikke hva den en gang var"
@@ -84,21 +85,18 @@
             ]
           },
           "emne_ids": [
-            "em_his_tid_periodisering_epoker",
-            "em_his_historiske_lag_i_byrom",
-            "em_his_samtid_ettertid_fortelling"
+            "em_his_tid_periodisering_epoker"
           ],
           "best_place_types": [
             "kulturmiljo",
             "ruinomrade",
             "institusjonsbygg",
+            "historical_site",
             "gate",
-            "plass",
             "omrade"
           ],
           "avoid_place_types": [
-            "ren_natur",
-            "kommersielt_sted_uten_historisk_spor"
+            "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
           ],
           "set_phase_fit": [
             "bridge_facts_theory",
@@ -108,14 +106,16 @@
           "fact_anchor_required": true,
           "history_anchor_required": true,
           "avoid_surface_forms": [
-            "Hvilken epoke passer best uten stedlig belegg",
-            "Hva er periodisering generelt"
+            "Hvilken epoke passer best uten dokumentert kronologi",
+            "Er dette et brudd uten å angi hva som endret seg",
+            "Hvilken teoretiker forklarer tiden",
+            "Generisk tidsbegrep uten sted, kilde eller hendelse"
           ],
           "preferred_question_moves": [
-            "connect dated fact to broader period",
-            "compare continuity and rupture",
-            "read visible layer as historical time",
-            "separate event from long-term structure"
+            "state the period boundary and its evidence",
+            "compare calendar boundary with lived continuity",
+            "test a national period label against a local sequence",
+            "identify what the chosen periodisation excludes"
           ],
           "comparison_pairs": [
             [
@@ -132,40 +132,50 @@
           ],
           "recommended_oslo_cases": [
             "Middelalderbyen Oslo",
-            "Gamle Aker kirke",
-            "Akershus festning",
+            "Eidsvollsbygningen",
+            "Regjeringskvartalet",
             "Bjørvika"
           ],
           "recommended_method_ids": [
             "met_periodisering",
-            "met_for_etter_historisk",
-            "met_sporlesning"
+            "met_kronologisk_rekonstruksjon",
+            "met_begrepshistorie"
           ],
           "canonical_status": "canonical",
           "registry_version": "historiepensum_v4_5",
-          "min_recommended_oslo_cases": 2,
-          "min_recommended_methods": 1,
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
           "case_gate_required": true,
           "method_gate_required": true,
           "theory_rotation_required": true,
           "canonical_file_role": "active",
           "generator_constraints": {
-            "min_case_count": 2,
-            "min_method_count": 1,
+            "min_case_count": 4,
+            "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
             "rotate_theorists": true
-          }
+          },
+          "definition": "Undersøker hvordan epoker og faser konstrueres, hvilke kriterier som brukes, og hva som blir skjult når en kalendergrense behandles som et naturlig historisk brudd.",
+          "critical_distinctions": [
+            "epokenavn vs samtidig erfaring",
+            "analytisk periodisering vs aktørenes egne begreper",
+            "kalendergrense vs historisk prosess",
+            "nasjonal periodisering vs lokal tidslinje"
+          ]
         },
         {
           "id": "his_brudd_kontinuitet",
-          "title": "Brudd og kontinuitet",
+          "title": "Brudd, kontinuitet og omforming",
           "canon": {
             "thinkers": [
               {
                 "id": "marc_bloch",
                 "name": "Marc Bloch",
-                "why": "Sammenlignende historie og kritisk arbeid med endring over tid",
+                "why": "Sammenlignende historie, kildekritikk og analyse av endring over tid",
                 "tier": "core",
                 "works": [
                   "The Historian's Craft"
@@ -174,7 +184,7 @@
               {
                 "id": "eric_hobsbawm",
                 "name": "Eric Hobsbawm",
-                "why": "Modernisering, revolusjon, tradisjon og historiske brudd i samfunnsendring",
+                "why": "Revolusjon, modernisering, tradisjon og historiske brudd",
                 "tier": "core",
                 "works": [
                   "The Age of Revolution",
@@ -182,20 +192,27 @@
                 ]
               },
               {
-                "id": "paul_ricoeur",
-                "name": "Paul Ricoeur",
-                "why": "Fortelling, tid og hvordan historie gis narrativ sammenheng",
-                "tier": "advanced",
+                "id": "fernand_braudel",
+                "name": "Fernand Braudel",
+                "why": "Lang varighet, strukturer og samtidige historiske rytmer",
+                "tier": "core",
                 "works": [
-                  "Time and Narrative"
+                  "The Mediterranean and the Mediterranean World"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk historiefaglig metode, samfunnsendring og presis bruk av tidslige forklaringer",
+                "tier": "core",
+                "works": [
+                  "Fortida er ikke hva den en gang var"
                 ]
               }
             ]
           },
           "emne_ids": [
-            "em_his_brudd_kontinuitet",
-            "em_his_modernisering_1800",
-            "em_his_samtidshistorie_brudd"
+            "em_his_brudd_kontinuitet"
           ],
           "best_place_types": [
             "transformasjonsomrade",
@@ -205,7 +222,7 @@
             "omrade"
           ],
           "avoid_place_types": [
-            "sted_uten_dokumentert_endring"
+            "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
           ],
           "set_phase_fit": [
             "bridge_facts_theory",
@@ -215,13 +232,16 @@
           "fact_anchor_required": true,
           "history_anchor_required": true,
           "avoid_surface_forms": [
-            "Er dette et brudd eller kontinuitet uten konkret hendelse"
+            "Hvilken epoke passer best uten dokumentert kronologi",
+            "Er dette et brudd uten å angi hva som endret seg",
+            "Hvilken teoretiker forklarer tiden",
+            "Generisk tidsbegrep uten sted, kilde eller hendelse"
           ],
           "preferred_question_moves": [
-            "identify what changed and what remained",
-            "connect event to institutional consequence",
-            "compare before and after",
-            "use material trace to show continuity"
+            "identify the documented change",
+            "name what persisted across the change",
+            "separate formal reform from practical consequence",
+            "compare short-term rupture with long-term continuity"
           ],
           "comparison_pairs": [
             [
@@ -229,39 +249,1057 @@
               "eric_hobsbawm"
             ],
             [
-              "paul_ricoeur",
-              "reinhart_koselleck"
+              "fernand_braudel",
+              "knut_kjeldstadli"
             ]
           ],
-          "norwegian_thinker_ids": [],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
           "recommended_oslo_cases": [
             "Regjeringskvartalet",
-            "Bispelokket",
+            "Møllergata 19",
             "Aker Brygge",
-            "Møllergata 19"
+            "Bispelokket"
           ],
           "recommended_method_ids": [
             "met_for_etter_historisk",
-            "met_institusjonshistorisk_analyse",
-            "met_arkivlesning"
+            "met_hendelsesforlop_analyse",
+            "met_komparativ_historie"
           ],
           "canonical_status": "canonical",
           "registry_version": "historiepensum_v4_5",
-          "min_recommended_oslo_cases": 2,
-          "min_recommended_methods": 1,
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
           "case_gate_required": true,
           "method_gate_required": true,
           "theory_rotation_required": true,
           "canonical_file_role": "active",
           "generator_constraints": {
-            "min_case_count": 2,
-            "min_method_count": 1,
+            "min_case_count": 4,
+            "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
             "rotate_theorists": true
-          }
+          },
+          "definition": "Skiller mellom det som endres raskt, det som omformes gradvis og det som fortsetter gjennom reformer, kriser og synlige vendepunkter.",
+          "critical_distinctions": [
+            "hendelse vs prosess",
+            "formell reform vs praktisk kontinuitet",
+            "synlig endring vs institusjonell varighet",
+            "datert vendepunkt vs gradvis omforming"
+          ]
+        },
+        {
+          "id": "his_tidslag_samtidighet",
+          "title": "Tidslag og samtidighet i sted",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "fernand_braudel",
+                "name": "Fernand Braudel",
+                "why": "Lang varighet, strukturer og samtidige historiske rytmer",
+                "tier": "core",
+                "works": [
+                  "The Mediterranean and the Mediterranean World"
+                ]
+              },
+              {
+                "id": "jacques_le_goff",
+                "name": "Jacques Le Goff",
+                "why": "Periodisering, middelalderens tidsordener og historiske epokebegreper",
+                "tier": "advanced",
+                "works": [
+                  "Time, Work, and Culture in the Middle Ages"
+                ]
+              },
+              {
+                "id": "reinhart_koselleck",
+                "name": "Reinhart Koselleck",
+                "why": "Historisk tid, begrepsendring og forholdet mellom erfaringsrom og forventningshorisont",
+                "tier": "core",
+                "works": [
+                  "Futures Past"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk historiefaglig metode, samfunnsendring og presis bruk av tidslige forklaringer",
+                "tier": "core",
+                "works": [
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_historiske_lag_i_byrom"
+          ],
+          "best_place_types": [
+            "kulturmiljo",
+            "ruinomrade",
+            "kirke",
+            "festning",
+            "gate",
+            "omrade"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "trace-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken epoke passer best uten dokumentert kronologi",
+            "Er dette et brudd uten å angi hva som endret seg",
+            "Hvilken teoretiker forklarer tiden",
+            "Generisk tidsbegrep uten sted, kilde eller hendelse"
+          ],
+          "preferred_question_moves": [
+            "identify the surviving layer",
+            "date reuse and alteration separately",
+            "compare physical sequence with public narrative",
+            "state which layers are absent or reconstructed"
+          ],
+          "comparison_pairs": [
+            [
+              "fernand_braudel",
+              "jacques_le_goff"
+            ],
+            [
+              "reinhart_koselleck",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Middelalderbyen Oslo",
+            "Gamle Aker kirke",
+            "Akershus festning",
+            "Bjørvika"
+          ],
+          "recommended_method_ids": [
+            "met_tidslagsanalyse",
+            "met_sporlesning",
+            "met_periodisering"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Leser hvordan spor fra flere perioder eksisterer samtidig i samme sted, og skiller fysisk lagdeling, ombruk og senere historiefortelling.",
+          "critical_distinctions": [
+            "bevart lag vs opprinnelig helhet",
+            "samtidighet vs kronologisk rekkefølge",
+            "ombruk vs kontinuitet",
+            "arkeologisk lag vs fortalt epoke"
+          ]
+        },
+        {
+          "id": "his_lang_varighet_strukturer",
+          "title": "Lang varighet og strukturell endring",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "fernand_braudel",
+                "name": "Fernand Braudel",
+                "why": "Lang varighet, strukturer og samtidige historiske rytmer",
+                "tier": "core",
+                "works": [
+                  "The Mediterranean and the Mediterranean World"
+                ]
+              },
+              {
+                "id": "marc_bloch",
+                "name": "Marc Bloch",
+                "why": "Sammenlignende historie, kildekritikk og analyse av endring over tid",
+                "tier": "core",
+                "works": [
+                  "The Historian's Craft"
+                ]
+              },
+              {
+                "id": "eric_hobsbawm",
+                "name": "Eric Hobsbawm",
+                "why": "Revolusjon, modernisering, tradisjon og historiske brudd",
+                "tier": "core",
+                "works": [
+                  "The Age of Revolution",
+                  "The Invention of Tradition"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk historiefaglig metode, samfunnsendring og presis bruk av tidslige forklaringer",
+                "tier": "core",
+                "works": [
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_lang_varighet_strukturer"
+          ],
+          "best_place_types": [
+            "kulturmiljo",
+            "institusjonsbygg",
+            "industriomrade",
+            "bydel",
+            "infrastruktur",
+            "historical_site"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "process-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken epoke passer best uten dokumentert kronologi",
+            "Er dette et brudd uten å angi hva som endret seg",
+            "Hvilken teoretiker forklarer tiden",
+            "Generisk tidsbegrep uten sted, kilde eller hendelse"
+          ],
+          "preferred_question_moves": [
+            "define the long time span",
+            "identify a stable structure and its indicators",
+            "compare several dated observations",
+            "avoid explaining a long process with a single event"
+          ],
+          "comparison_pairs": [
+            [
+              "fernand_braudel",
+              "marc_bloch"
+            ],
+            [
+              "eric_hobsbawm",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Akerselva",
+            "Oslo Hospital",
+            "Akershus festning",
+            "Grønland"
+          ],
+          "recommended_method_ids": [
+            "met_langvarighetsanalyse",
+            "met_seriell_kildeanalyse",
+            "met_komparativ_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Analyserer langsomme endringer i institusjoner, bosetting, arbeid, infrastruktur og sosiale mønstre som ikke kan forklares av én hendelse.",
+          "critical_distinctions": [
+            "struktur vs hendelse",
+            "langsom endring vs stillstand",
+            "tidsserie vs årsaksforklaring",
+            "institusjonell varighet vs uendret praksis"
+          ]
+        },
+        {
+          "id": "his_hendelse_prosess",
+          "title": "Hendelse, forløp og konsekvens",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "marc_bloch",
+                "name": "Marc Bloch",
+                "why": "Sammenlignende historie, kildekritikk og analyse av endring over tid",
+                "tier": "core",
+                "works": [
+                  "The Historian's Craft"
+                ]
+              },
+              {
+                "id": "e_h_carr",
+                "name": "E. H. Carr",
+                "why": "Historisk forklaring, utvalg av fakta og forholdet mellom samtid og ettertid",
+                "tier": "core",
+                "works": [
+                  "What Is History?"
+                ]
+              },
+              {
+                "id": "paul_ricoeur",
+                "name": "Paul Ricoeur",
+                "why": "Forholdet mellom tid, hendelsesforløp og historisk fortelling",
+                "tier": "advanced",
+                "works": [
+                  "Time and Narrative"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk historiefaglig metode, samfunnsendring og presis bruk av tidslige forklaringer",
+                "tier": "core",
+                "works": [
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_hendelse_prosess_tidsforlop"
+          ],
+          "best_place_types": [
+            "minnested",
+            "institusjonsbygg",
+            "festning",
+            "historical_site",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "event-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken epoke passer best uten dokumentert kronologi",
+            "Er dette et brudd uten å angi hva som endret seg",
+            "Hvilken teoretiker forklarer tiden",
+            "Generisk tidsbegrep uten sted, kilde eller hendelse"
+          ],
+          "preferred_question_moves": [
+            "order independently sourced events",
+            "separate trigger from background conditions",
+            "trace immediate and later consequences",
+            "mark uncertainty in the sequence"
+          ],
+          "comparison_pairs": [
+            [
+              "marc_bloch",
+              "e_h_carr"
+            ],
+            [
+              "paul_ricoeur",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "22. juli-senteret",
+            "Eidsvollsbygningen",
+            "Oscarsborg festning",
+            "Regjeringskvartalet"
+          ],
+          "recommended_method_ids": [
+            "met_hendelsesforlop_analyse",
+            "met_kronologisk_rekonstruksjon",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Rekonstruerer rekkefølgen mellom aktører, beslutninger og konsekvenser, og skiller en datert hendelse fra prosessen som leder fram til og følger etter.",
+          "critical_distinctions": [
+            "hendelse vs forløp",
+            "utløsende faktor vs bakgrunnsbetingelse",
+            "umiddelbar virkning vs langsiktig konsekvens",
+            "kronologi vs kausalitet"
+          ]
+        },
+        {
+          "id": "his_rytmer_tempo",
+          "title": "Historiske rytmer, tempo og modernisering",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "eric_hobsbawm",
+                "name": "Eric Hobsbawm",
+                "why": "Revolusjon, modernisering, tradisjon og historiske brudd",
+                "tier": "core",
+                "works": [
+                  "The Age of Revolution",
+                  "The Invention of Tradition"
+                ]
+              },
+              {
+                "id": "fernand_braudel",
+                "name": "Fernand Braudel",
+                "why": "Lang varighet, strukturer og samtidige historiske rytmer",
+                "tier": "core",
+                "works": [
+                  "The Mediterranean and the Mediterranean World"
+                ]
+              },
+              {
+                "id": "reinhart_koselleck",
+                "name": "Reinhart Koselleck",
+                "why": "Historisk tid, begrepsendring og forholdet mellom erfaringsrom og forventningshorisont",
+                "tier": "core",
+                "works": [
+                  "Futures Past"
+                ]
+              },
+              {
+                "id": "francis_sejersted",
+                "name": "Francis Sejersted",
+                "why": "Institusjonell endring, modernisering og norsk samfunnsutvikling",
+                "tier": "core",
+                "works": [
+                  "Demokratisk kapitalisme"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_modernisering_1800"
+          ],
+          "best_place_types": [
+            "industriomrade",
+            "skole",
+            "institusjonsbygg",
+            "infrastruktur",
+            "transformasjonsomrade"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "change-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken epoke passer best uten dokumentert kronologi",
+            "Er dette et brudd uten å angi hva som endret seg",
+            "Hvilken teoretiker forklarer tiden",
+            "Generisk tidsbegrep uten sted, kilde eller hendelse"
+          ],
+          "preferred_question_moves": [
+            "compare the pace of two changes",
+            "identify who experienced change first",
+            "separate technical introduction from social adoption",
+            "use dated series to test acceleration"
+          ],
+          "comparison_pairs": [
+            [
+              "eric_hobsbawm",
+              "fernand_braudel"
+            ],
+            [
+              "reinhart_koselleck",
+              "francis_sejersted"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "francis_sejersted"
+          ],
+          "recommended_oslo_cases": [
+            "Akerselva",
+            "Sagene skole",
+            "Bjørvika",
+            "Stortinget"
+          ],
+          "recommended_method_ids": [
+            "met_temporalitetsanalyse",
+            "met_seriell_kildeanalyse",
+            "met_for_etter_historisk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Sammenligner raske teknologiske eller institusjonelle endringer med langsommere sosiale og hverdagslige tilpasninger.",
+          "critical_distinctions": [
+            "teknisk innføring vs sosial bruk",
+            "akselerasjon vs samtidens opplevelse",
+            "ulik rytme vs forsinkelse",
+            "modernisering vs lineær framgang"
+          ]
+        },
+        {
+          "id": "his_erfaringsrom_forventningshorisont",
+          "title": "Erfaringsrom og forventningshorisont",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "reinhart_koselleck",
+                "name": "Reinhart Koselleck",
+                "why": "Historisk tid, begrepsendring og forholdet mellom erfaringsrom og forventningshorisont",
+                "tier": "core",
+                "works": [
+                  "Futures Past"
+                ]
+              },
+              {
+                "id": "paul_ricoeur",
+                "name": "Paul Ricoeur",
+                "why": "Forholdet mellom tid, hendelsesforløp og historisk fortelling",
+                "tier": "advanced",
+                "works": [
+                  "Time and Narrative"
+                ]
+              },
+              {
+                "id": "eric_hobsbawm",
+                "name": "Eric Hobsbawm",
+                "why": "Revolusjon, modernisering, tradisjon og historiske brudd",
+                "tier": "core",
+                "works": [
+                  "The Age of Revolution",
+                  "The Invention of Tradition"
+                ]
+              },
+              {
+                "id": "francis_sejersted",
+                "name": "Francis Sejersted",
+                "why": "Institusjonell endring, modernisering og norsk samfunnsutvikling",
+                "tier": "core",
+                "works": [
+                  "Demokratisk kapitalisme"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_samtidshistorie_brudd"
+          ],
+          "best_place_types": [
+            "institusjonsbygg",
+            "minnested",
+            "historical_site",
+            "museum",
+            "plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "actor-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken epoke passer best uten dokumentert kronologi",
+            "Er dette et brudd uten å angi hva som endret seg",
+            "Hvilken teoretiker forklarer tiden",
+            "Generisk tidsbegrep uten sted, kilde eller hendelse"
+          ],
+          "preferred_question_moves": [
+            "identify an actor's available experience",
+            "document a contemporary expectation",
+            "separate expectation from later outcome",
+            "compare competing future horizons"
+          ],
+          "comparison_pairs": [
+            [
+              "reinhart_koselleck",
+              "paul_ricoeur"
+            ],
+            [
+              "eric_hobsbawm",
+              "francis_sejersted"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "francis_sejersted"
+          ],
+          "recommended_oslo_cases": [
+            "Eidsvollsbygningen",
+            "Stortinget",
+            "Regjeringskvartalet",
+            "22. juli-senteret"
+          ],
+          "recommended_method_ids": [
+            "met_temporalitetsanalyse",
+            "met_begrepshistorie",
+            "met_institusjonshistorisk_analyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan historiske aktører brukte tidligere erfaringer til å forestille seg framtiden, uten å lese senere utfall tilbake i deres samtid.",
+          "critical_distinctions": [
+            "samtidig forventning vs kjent utfall",
+            "erfaring vs prognose",
+            "mulig framtid vs senere nødvendighetsfortelling",
+            "aktørbegrep vs ettertidsbegrep"
+          ]
+        },
+        {
+          "id": "his_kronologi_datering",
+          "title": "Kronologi, datering og usikkerhet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "marc_bloch",
+                "name": "Marc Bloch",
+                "why": "Sammenlignende historie, kildekritikk og analyse av endring over tid",
+                "tier": "core",
+                "works": [
+                  "The Historian's Craft"
+                ]
+              },
+              {
+                "id": "jacques_le_goff",
+                "name": "Jacques Le Goff",
+                "why": "Periodisering, middelalderens tidsordener og historiske epokebegreper",
+                "tier": "advanced",
+                "works": [
+                  "Time, Work, and Culture in the Middle Ages"
+                ]
+              },
+              {
+                "id": "carlo_ginzburg",
+                "name": "Carlo Ginzburg",
+                "why": "Indisier, datering og slutninger fra ufullstendige historiske spor",
+                "tier": "advanced",
+                "works": [
+                  "Clues, Myths, and the Historical Method"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk historiefaglig metode, samfunnsendring og presis bruk av tidslige forklaringer",
+                "tier": "core",
+                "works": [
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_kronologi_datering_usikkerhet"
+          ],
+          "best_place_types": [
+            "ruinomrade",
+            "kirke",
+            "kloster",
+            "festning",
+            "arkiv",
+            "historical_site"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken epoke passer best uten dokumentert kronologi",
+            "Er dette et brudd uten å angi hva som endret seg",
+            "Hvilken teoretiker forklarer tiden",
+            "Generisk tidsbegrep uten sted, kilde eller hendelse"
+          ],
+          "preferred_question_moves": [
+            "state the dating basis",
+            "separate exact from approximate date",
+            "order relative phases",
+            "record conflicting dates without false precision"
+          ],
+          "comparison_pairs": [
+            [
+              "marc_bloch",
+              "carlo_ginzburg"
+            ],
+            [
+              "jacques_le_goff",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Middelalderbyen Oslo",
+            "Gamle Aker kirke",
+            "Hovedøya kloster",
+            "Akershus festning"
+          ],
+          "recommended_method_ids": [
+            "met_kronologisk_rekonstruksjon",
+            "met_kildekritikk",
+            "met_periodisering"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Bygger etterprøvbare tidsrekker fra kilder og spor, skiller sikre, omtrentlige og relative dateringer, og gjør usikkerheten synlig.",
+          "critical_distinctions": [
+            "eksakt datering vs omtrentlig datering",
+            "absolutt datering vs relativ rekkefølge",
+            "første omtale vs oppføringstid",
+            "kildedato vs hendelsesdato"
+          ]
+        },
+        {
+          "id": "his_anakronisme_begrepsbruk",
+          "title": "Anakronisme og historisk begrepsbruk",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "reinhart_koselleck",
+                "name": "Reinhart Koselleck",
+                "why": "Historisk tid, begrepsendring og forholdet mellom erfaringsrom og forventningshorisont",
+                "tier": "core",
+                "works": [
+                  "Futures Past"
+                ]
+              },
+              {
+                "id": "e_h_carr",
+                "name": "E. H. Carr",
+                "why": "Historisk forklaring, utvalg av fakta og forholdet mellom samtid og ettertid",
+                "tier": "core",
+                "works": [
+                  "What Is History?"
+                ]
+              },
+              {
+                "id": "marc_bloch",
+                "name": "Marc Bloch",
+                "why": "Sammenlignende historie, kildekritikk og analyse av endring over tid",
+                "tier": "core",
+                "works": [
+                  "The Historian's Craft"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk historiefaglig metode, samfunnsendring og presis bruk av tidslige forklaringer",
+                "tier": "core",
+                "works": [
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_anakronisme_historiske_begreper"
+          ],
+          "best_place_types": [
+            "institusjonsbygg",
+            "skole",
+            "hospital",
+            "historical_site",
+            "arkiv"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "concept-after-fact",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken epoke passer best uten dokumentert kronologi",
+            "Er dette et brudd uten å angi hva som endret seg",
+            "Hvilken teoretiker forklarer tiden",
+            "Generisk tidsbegrep uten sted, kilde eller hendelse"
+          ],
+          "preferred_question_moves": [
+            "identify the contemporary term",
+            "compare later and earlier meanings",
+            "test whether the category existed for the actor",
+            "rewrite the claim without hindsight"
+          ],
+          "comparison_pairs": [
+            [
+              "reinhart_koselleck",
+              "e_h_carr"
+            ],
+            [
+              "marc_bloch",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Stortinget",
+            "Eidsvollsbygningen",
+            "Oslo Hospital",
+            "Sagene skole"
+          ],
+          "recommended_method_ids": [
+            "met_begrepshistorie",
+            "met_temporalitetsanalyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Kontrollerer at nåtidige kategorier ikke uten videre legges på fortidens aktører, institusjoner og konflikter, og følger hvordan begreper skifter mening.",
+          "critical_distinctions": [
+            "aktørbegrep vs analysebegrep",
+            "samtidig betydning vs senere betydning",
+            "likt ord vs likt fenomen",
+            "etterpåklokskap vs dokumentert forventning"
+          ]
+        },
+        {
+          "id": "his_samtid_ettertid_fortelling",
+          "title": "Samtid, ettertid og historisk fortelling",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "paul_ricoeur",
+                "name": "Paul Ricoeur",
+                "why": "Forholdet mellom tid, hendelsesforløp og historisk fortelling",
+                "tier": "advanced",
+                "works": [
+                  "Time and Narrative"
+                ]
+              },
+              {
+                "id": "e_h_carr",
+                "name": "E. H. Carr",
+                "why": "Historisk forklaring, utvalg av fakta og forholdet mellom samtid og ettertid",
+                "tier": "core",
+                "works": [
+                  "What Is History?"
+                ]
+              },
+              {
+                "id": "reinhart_koselleck",
+                "name": "Reinhart Koselleck",
+                "why": "Historisk tid, begrepsendring og forholdet mellom erfaringsrom og forventningshorisont",
+                "tier": "core",
+                "works": [
+                  "Futures Past"
+                ]
+              },
+              {
+                "id": "eric_hobsbawm",
+                "name": "Eric Hobsbawm",
+                "why": "Revolusjon, modernisering, tradisjon og historiske brudd",
+                "tier": "core",
+                "works": [
+                  "The Age of Revolution",
+                  "The Invention of Tradition"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_samtid_ettertid_fortelling"
+          ],
+          "best_place_types": [
+            "museum",
+            "minnested",
+            "gravlund",
+            "historical_site",
+            "institusjonsbygg"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_tidsforlop_eller_historisk_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken epoke passer best uten dokumentert kronologi",
+            "Er dette et brudd uten å angi hva som endret seg",
+            "Hvilken teoretiker forklarer tiden",
+            "Generisk tidsbegrep uten sted, kilde eller hendelse"
+          ],
+          "preferred_question_moves": [
+            "compare contemporary and later accounts",
+            "identify the chosen beginning and ending",
+            "separate chronology from narrative coherence",
+            "trace how later knowledge changes emphasis"
+          ],
+          "comparison_pairs": [
+            [
+              "paul_ricoeur",
+              "e_h_carr"
+            ],
+            [
+              "reinhart_koselleck",
+              "eric_hobsbawm"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Villa Grande",
+            "Vår Frelsers gravlund",
+            "22. juli-senteret",
+            "Eidsvollsbygningen"
+          ],
+          "recommended_method_ids": [
+            "met_temporalitetsanalyse",
+            "met_minneanalyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Skiller samtidige beskrivelser fra senere sammenhengsskapende fortellinger og undersøker hvordan utvalg, kronologi og sluttpunkt former historien.",
+          "critical_distinctions": [
+            "samtidskilde vs ettertidsfortelling",
+            "kronologi vs narrativ sammenheng",
+            "utfall vs samtidige muligheter",
+            "minnepraksis vs hendelsesreferat"
+          ]
         }
-      ]
+      ],
+      "status": "complete_revised"
     },
     {
       "id": "his_kilder_arkiv_spor",

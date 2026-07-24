@@ -11,9 +11,9 @@
     "emnemapping": "emnemapping_historie_canonical_v4_5.json",
     "pensum": "historiepensum_canonical_v4_5.json",
     "domain_count": 12,
-    "emne_count": 49,
-    "method_count": 18,
-    "mapping_count": 49
+    "emne_count": 53,
+    "method_count": 23,
+    "mapping_count": 53
   },
   "hard_rules": {
     "source_dominance_rule": "External historical/local sources must dominate the factual substance of every history quiz. Canonical files may guide emne choice, method choice, theory choice, set progression and risk control, but may not be the main source of visible question content.",
@@ -243,7 +243,12 @@
       "material_source",
       "person_place_link",
       "memory_practice",
-      "before_after_change"
+      "before_after_change",
+      "documented_chronology",
+      "period_boundary",
+      "historical_layer",
+      "long_duration_process",
+      "temporal_concept_shift"
     ],
     "claim_basis_definition": "The concrete historical/place/person claim from an external, archival, institutional, literature or observed source.",
     "guidance_basis_definition": "Which em_his_*/hook/method/theory helped shape the question without supplying the visible factual content.",
@@ -347,6 +352,64 @@
         "digitalt søketreff som representativt utvalg",
         "fotografi som nøytral avbildning",
         "muntlig minne som uredigert hendelsesreferat"
+      ]
+    },
+    "his_tid_periodisering": {
+      "status": "complete_revised",
+      "purpose": "Bygge tidslige historiske spørsmål fra dokumenterte datoer, sekvenser, tidslag og endringsforløp uten å gjøre epokenavn eller teori til løs fasit.",
+      "required_chain": [
+        "ekstern kilde, datert hendelse eller synlig tidslag",
+        "presis claim_basis",
+        "kronologi eller eksplisitt tidslig påstand",
+        "avgrenset tidsrom og relevant skala",
+        "egnet historisk metode",
+        "usikkerhet eller kildebegrensning",
+        "kritisk tidslig distinksjon",
+        "eventuelt teoribegrep etter at tidsforløpet er etablert"
+      ],
+      "hook_ids": [
+        "his_periodisering_epoker",
+        "his_brudd_kontinuitet",
+        "his_tidslag_samtidighet",
+        "his_lang_varighet_strukturer",
+        "his_hendelse_prosess",
+        "his_rytmer_tempo",
+        "his_erfaringsrom_forventningshorisont",
+        "his_kronologi_datering",
+        "his_anakronisme_begrepsbruk",
+        "his_samtid_ettertid_fortelling"
+      ],
+      "emne_ids": [
+        "em_his_tid_periodisering_epoker",
+        "em_his_brudd_kontinuitet",
+        "em_his_historiske_lag_i_byrom",
+        "em_his_lang_varighet_strukturer",
+        "em_his_hendelse_prosess_tidsforlop",
+        "em_his_modernisering_1800",
+        "em_his_samtidshistorie_brudd",
+        "em_his_kronologi_datering_usikkerhet",
+        "em_his_anakronisme_historiske_begreper",
+        "em_his_samtid_ettertid_fortelling"
+      ],
+      "method_ids": [
+        "met_periodisering",
+        "met_for_etter_historisk",
+        "met_sporlesning",
+        "met_komparativ_historie",
+        "met_begrepshistorie",
+        "met_kronologisk_rekonstruksjon",
+        "met_tidslagsanalyse",
+        "met_langvarighetsanalyse",
+        "met_hendelsesforlop_analyse",
+        "met_temporalitetsanalyse"
+      ],
+      "forbidden_shortcuts": [
+        "epokenavn som faktakilde",
+        "ett årstall som full årsaksforklaring",
+        "kronologisk rekkefølge som automatisk kausalitet",
+        "senere utfall som nødvendig for samtidens aktører",
+        "synlig ombygging som bevis for fullstendig institusjonelt brudd",
+        "teoretikernavn som tilstrekkelig svar"
       ]
     }
   }
