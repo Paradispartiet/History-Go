@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build-and-validate:
-    if: ${{ !contains(github.event.head_commit.message, '[phase3-build]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[phase3-build]') && !contains(github.event.head_commit.message, '[phase3-diagnostic]') }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out production branch
@@ -24,19 +24,33 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
       - name: Decode and verify builder
+        id: decode
+        continue-on-error: true
         shell: bash
         run: |
+          set -o pipefail
           base64 -d tools/.build-historie-makt-phase3.py.gz.b64 | gzip -d > tools/build-historie-makt-phase3.py
-          python -m py_compile tools/build-historie-makt-phase3.py
+          python -m py_compile tools/build-historie-makt-phase3.py 2>&1 | tee /tmp/phase3-decode.log
 
-      - name: Build phase 3 canonical package
-        run: python tools/build-historie-makt-phase3.py
+      - name: Build canonical phase 3 package
+        id: build
+        continue-on-error: true
+        shell: bash
+        run: python tools/build-historie-makt-phase3.py 2>&1 | tee /tmp/phase3-build.log
 
       - name: Synchronize production test counts
+        id: counts
+        continue-on-error: true
         shell: bash
         run: |
-          python - <<'PY'
+          python - <<'PY' 2>&1 | tee /tmp/phase3-counts.log
           from pathlib import Path
 
           path = Path('tests/quiz-production-pipeline.test.mjs')
@@ -55,13 +69,18 @@ jobs:
                   raise SystemExit(f'Expected 4 occurrences of {old!r}, found {count}')
               text = text.replace(old, new)
           path.write_text(text, encoding='utf-8')
+          print('Updated four History production test blocks.')
           PY
 
-      - name: Validate JSON and permanent domain guard
+      - name: Validate canonical domain structure
+        id: validate
+        continue-on-error: true
         shell: bash
         run: |
-          node --check tools/validate-historie-makt-stat-institusjoner.mjs
-          node --input-type=module <<'NODE'
+          set -o pipefail
+          {
+            node --check tools/validate-historie-makt-stat-institusjoner.mjs
+            node --input-type=module <<'NODE'
           import fs from 'node:fs';
           const paths = [
             'data/fag/historie/fagkart_historie_canonical_v4_5.json',
@@ -75,23 +94,24 @@ jobs:
           for (const path of paths) JSON.parse(fs.readFileSync(path, 'utf8'));
           console.log(`JSON OK | ${paths.length} files`);
           NODE
-          node tools/validate-historie-makt-stat-institusjoner.mjs | tee reports/historie-canonical-migration/makt-stat-institusjoner-vertical-chain-validation.txt
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: npm
+            node tools/validate-historie-makt-stat-institusjoner.mjs | tee reports/historie-canonical-migration/makt-stat-institusjoner-vertical-chain-validation.txt
+          } 2>&1 | tee /tmp/phase3-validate.log
 
       - name: Install dependencies
-        run: npm ci --no-audit --no-fund
+        id: install
+        continue-on-error: true
+        shell: bash
+        run: npm ci --no-audit --no-fund 2>&1 | tee /tmp/phase3-install.log
 
-      - name: Regenerate canonical Knowledge data
-        run: npm run knowledge:canonical:write
-
-      - name: Rebuild History production contexts
+      - name: Regenerate derived contracts
+        id: derive
+        continue-on-error: true
+        shell: bash
         run: |
-          node --input-type=module <<'NODE'
+          set -o pipefail
+          {
+            npm run knowledge:canonical:write
+            node --input-type=module <<'NODE'
           import fs from 'node:fs/promises';
           import path from 'node:path';
           import { runBuildQuizProductionContext } from './scripts/build-quiz-production-context.mjs';
@@ -109,29 +129,68 @@ jobs:
             console.log(`Rebuilt ${targetId}: ${path.relative(process.cwd(), outputPath)}`);
           }
           NODE
+          } 2>&1 | tee /tmp/phase3-derive.log
 
       - name: Run phase 3 contract suite
+        id: tests
+        continue-on-error: true
         shell: bash
         run: |
-          node tools/validate-historie-makt-stat-institusjoner.mjs | tee reports/historie-canonical-migration/makt-stat-institusjoner-vertical-chain-validation.txt
-          npm run knowledge:canonical:check
-          npm run knowledge:legacy:check
-          npm run audit:knowledge
-          npm run test:quiz-content-audit
-          npm run test:quiz-production
-          npm run audit:quiz-production-context
-          npm run audit:quiz-progression
-          npm run audit:quiz-theory-binding
-          git diff --check
+          set -o pipefail
+          {
+            node tools/validate-historie-makt-stat-institusjoner.mjs | tee reports/historie-canonical-migration/makt-stat-institusjoner-vertical-chain-validation.txt
+            npm run knowledge:canonical:check
+            npm run knowledge:legacy:check
+            npm run audit:knowledge
+            npm run test:quiz-content-audit
+            npm run test:quiz-production
+            npm run audit:quiz-production-context
+            npm run audit:quiz-progression
+            npm run audit:quiz-theory-binding
+            git diff --check
+          } 2>&1 | tee /tmp/phase3-tests.log
+
+      - name: Commit diagnostic on failure
+        if: ${{ always() && (steps.decode.outcome != 'success' || steps.build.outcome != 'success' || steps.counts.outcome != 'success' || steps.validate.outcome != 'success' || steps.install.outcome != 'success' || steps.derive.outcome != 'success' || steps.tests.outcome != 'success') }}
+        shell: bash
+        run: |
+          mkdir -p reports/historie-canonical-migration
+          {
+            echo '# History phase 3 build diagnostic'
+            echo
+            echo '- decode: ${{ steps.decode.outcome }}'
+            echo '- build: ${{ steps.build.outcome }}'
+            echo '- counts: ${{ steps.counts.outcome }}'
+            echo '- validate: ${{ steps.validate.outcome }}'
+            echo '- install: ${{ steps.install.outcome }}'
+            echo '- derive: ${{ steps.derive.outcome }}'
+            echo '- tests: ${{ steps.tests.outcome }}'
+            for file in /tmp/phase3-decode.log /tmp/phase3-build.log /tmp/phase3-counts.log /tmp/phase3-validate.log /tmp/phase3-install.log /tmp/phase3-derive.log /tmp/phase3-tests.log; do
+              echo
+              echo "## $(basename "$file")"
+              echo '```text'
+              test -f "$file" && cat "$file"
+              echo '```'
+            done
+          } > reports/historie-canonical-migration/makt-stat-phase3-build-diagnostic.md
+          git add reports/historie-canonical-migration/makt-stat-phase3-build-diagnostic.md
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Historie: fang fase 3-byggefeil [phase3-diagnostic]'
+          git push origin HEAD:${{ github.ref_name }}
+          exit 1
 
       - name: Remove one-shot build artifacts
+        if: ${{ steps.decode.outcome == 'success' && steps.build.outcome == 'success' && steps.counts.outcome == 'success' && steps.validate.outcome == 'success' && steps.install.outcome == 'success' && steps.derive.outcome == 'success' && steps.tests.outcome == 'success' }}
         run: |
           rm .github/workflows/history-phase3-build.yml
           rm tools/.build-historie-makt-phase3.py.gz.b64
           rm tools/build-historie-makt-phase3.py
           rm reports/historie-canonical-migration/makt-stat-phase3-research.json
+          rm -f reports/historie-canonical-migration/makt-stat-phase3-build-diagnostic.md
 
       - name: Commit final phase 3 package
+        if: ${{ steps.decode.outcome == 'success' && steps.build.outcome == 'success' && steps.counts.outcome == 'success' && steps.validate.outcome == 'success' && steps.install.outcome == 'success' && steps.derive.outcome == 'success' && steps.tests.outcome == 'success' }}
         shell: bash
         run: |
           git add -A
