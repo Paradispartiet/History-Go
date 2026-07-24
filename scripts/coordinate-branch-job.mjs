@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 
+const PLACE_ID = 'bygdoy_natur';
 const REPORT_DIR = 'reports/oslo-coordinate-bygdoy-gulliste-scope-research-post-195-v4';
 const WFS = 'https://od2.pbe.oslo.kommune.no/cgi-bin/wms';
 const FACTS = 'https://od2.pbe.oslo.kommune.no/pages/vedlegg/gulliste.html';
