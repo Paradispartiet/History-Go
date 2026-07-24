@@ -1,37 +1,38 @@
-# Sigrid Undset exact OSM-linked image crosscheck after batch 194
+# Sigrid Undset exact-object visual crosscheck after batch 194
 
 Date: 2026-07-24
 
-This is a research-only pass. No canonical coordinate or evidence state is changed.
+This is a research-only result. No canonical coordinate, evidence state or protocol batch is changed.
 
-## Authoritative object identity
+## Authoritative identity
 
-The sculptor's own portfolio identifies the work as **S. Undset – Styrke** (1991), granite, 282 cm high without the base, purchased by Oslo municipality and installed in Stensparken. Oslo municipality independently identifies Sigrid Undset's sculpture in Stensparken as an official wreath-laying monument.
+The sculptor's official portfolio identifies the Stensparken work as **S. Undset – Styrke** (1991): granite, 282 cm high without the base, purchased by Oslo municipality and installed in Stensparken. Oslo municipality independently identifies the Sigrid Undset sculpture in Stensparken.
 
-## Exact OSM candidate
+## Exact OSM candidate tested
 
-- node: `7596280553`
+- object: `osm-node:7596280553`
 - coordinate: `59.9242367, 10.7294736`
 - distance from legacy marker: `13.26 m`
-- linked Google Photos image: `https://photos.app.goo.gl/JrhcnKr6gwFmcEtu5`
-- linked Mapillary key: `227628268720356`
 - OSM material tag: `bronze`
+- direct Google Photos link carried by the node: `https://photos.app.goo.gl/JrhcnKr6gwFmcEtu5`
+- direct Mapillary key carried by the node: `227628268720356`
 
-The OSM material tag conflicts with the authoritative granite description. It is not used as proof of identity.
+The album linked by the exact node was fetched. Two independent source photographs were reduced to durable review previews and inspected manually.
 
-## Decision
+## Manual visual decision
 
-`manual_visual_crosscheck_of_exact_osm_linked_image_required`
+Both photographs depict a different artwork: a relatively small dark metal female figure in a detailed draped dress on a black polished plinth, beside a building and picnic benches. The official Sigrid Undset work is a 282 cm elongated minimalist granite figure on a granite pedestal in Stensparken.
 
-At least one image linked from the exact OSM node was downloaded into this report for manual visual identity review.
+The mismatch is decisive across material, form, scale, pedestal and setting. The OSM node is therefore not an imprecisely tagged version of the correct sculpture; it is the wrong physical object.
 
-Production remains forbidden until the exact linked image is visually confirmed as the official granite monument.
-## Full-resolution inscription crosscheck
+## Result
 
-Two full-resolution images were downloaded from the exact Google Photos album linked by OSM node 7596280553. OCR was run against originals, enhanced copies and lower-image crops with multiple page-segmentation modes.
+`reject_exact_osm_node_visual_mismatch`
 
-- exact inscription confirmed: `false`
-- partial inscription evidence: `false`
-- decision: `ocr_did_not_resolve_identity_manual_visual_review_still_required`
+- node `7596280553` is permanently rejected for `sigrid_undset_statue`
+- proximity to the legacy marker is not accepted as evidence
+- the canonical place remains `needs_source`
+- no batch 195 is allocated to this candidate
+- next research must find another exact georeferenced monument object or an official public-art geometry
 
-Detailed OCR output and image provenance are stored in `inscription-crosscheck.json`.
+The two review images and their SHA-256 hashes are recorded in `manual-visual-review.json`.

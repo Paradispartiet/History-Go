@@ -117,16 +117,23 @@
   },
   "imageAvailableForManualReview": true,
   "canPromoteAutomatically": false,
-  "decision": "ocr_did_not_resolve_identity_manual_visual_review_still_required",
-  "productionConditions": [
-    "A downloaded image linked directly from exact OSM node 7596280553 must visibly depict the official granite S. Undset – Styrke monument, including a distinctive match such as the elongated figure and/or Sigrid Undset pedestal inscription.",
-    "The bronze material tag must be corrected or explicitly overridden by authoritative artist evidence; it cannot be silently accepted.",
-    "A production batch must re-fetch the exact live node, preserve the official artist and Oslo municipality identity chain, and pass canonical collision checks."
-  ],
+  "decision": "reject_exact_osm_node_visual_mismatch",
+  "productionConditions": [],
   "inscriptionCrosscheck": {
     "report": "reports/oslo-coordinate-sigrid-undset-visual-crosscheck-post-194/inscription-crosscheck.json",
     "inscriptionConfirmed": false,
     "partialInscriptionEvidence": false,
-    "decision": "ocr_did_not_resolve_identity_manual_visual_review_still_required"
-  }
+    "decision": "ocr_did_not_resolve_identity"
+  },
+  "canPromote": false,
+  "manualVisualReview": {
+    "report": "reports/oslo-coordinate-sigrid-undset-visual-crosscheck-post-194/manual-visual-review.json",
+    "candidateMatchesOfficialObject": false,
+    "rejectCandidate": true,
+    "reviewedPreviewSha256": [
+      "66c8b2f886b8ec94a609745c78ed2ef7541ce39d5ca534dbc331b98e3ec23338",
+      "db48ddfc3c9d7ea1b070634ca3de9d80ba6c5c1cb0668b4c21d051993d35a647"
+    ]
+  },
+  "nextAction": "Keep needs_source and find a different exact georeferenced monument object. OSM node 7596280553 is permanently rejected for this canonical place."
 }
