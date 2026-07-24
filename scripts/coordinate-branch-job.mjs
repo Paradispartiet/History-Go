@@ -106,12 +106,12 @@ async function fetchOverpass(query) {
         headers: { 'content-type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({ data: query }).toString(),
       }, 1);
-      return { ...result, endpoint };
+      return { ...result, endpoint, failures };
     } catch (error) {
       failures.push({ endpoint, error: String(error) });
     }
   }
-  throw new Error(`All Overpass endpoints failed: ${JSON.stringify(failures)}`);
+  return { text: null, endpoint: null, failures };
 }
 
 function extractSsrRows(payload) {
@@ -192,18 +192,16 @@ const nominatim = JSON.parse(nominatimResponse.text);
 const ssrRows = extractSsrRows(ssrPayload);
 const addressRows = extractAddressRows(addressPayload);
 
-const exactNameQuery = `[out:json][timeout:90];\n(\n  nwr["name"~"^Frognerstranda$",i]${BBOX};\n  nwr["official_name"~"^Frognerstranda$",i]${BBOX};\n  nwr["alt_name"~"Frognerstranda",i]${BBOX};\n  nwr["loc_name"~"Frognerstranda",i]${BBOX};\n);\nout tags center geom;`;
-const contextQuery = `[out:json][timeout:120];\n(\n  way["highway"~"footway|cycleway|path|pedestrian"]${BBOX};\n  relation["highway"~"footway|cycleway|path|pedestrian"]${BBOX};\n  nwr["footway"="promenade"]${BBOX};\n  nwr["leisure"~"park|recreation_ground"]${BBOX};\n  nwr["natural"~"beach|coastline|wetland"]${BBOX};\n  nwr["landuse"~"grass|recreation_ground"]${BBOX};\n  nwr["name"~"Frognerkilen|Skarpsno|Filipstad|Frognerstranda",i]${BBOX};\n);\nout tags center geom;`;
-const [exactOverpass, contextOverpass] = await Promise.all([
-  fetchOverpass(exactNameQuery),
-  fetchOverpass(contextQuery),
-]);
-writeFileSync(`${REPORT_DIR}/overpass-exact-name.json`, exactOverpass.text, 'utf8');
-writeFileSync(`${REPORT_DIR}/overpass-context.json`, contextOverpass.text, 'utf8');
-writeFileSync(`${REPORT_DIR}/overpass-endpoints.json`, `${JSON.stringify({ exact: exactOverpass.endpoint, context: contextOverpass.endpoint }, null, 2)}\n`, 'utf8');
+const exactNameQuery = `[out:json][timeout:45];\n(\n  node["name"~"^Frognerstranda$",i]${BBOX};\n  way["name"~"^Frognerstranda$",i]${BBOX};\n  relation["name"~"^Frognerstranda$",i]${BBOX};\n);\nout tags center geom;`;
+const contextQuery = `[out:json][timeout:60];\n(\n  way["footway"="promenade"]${BBOX};\n  way["natural"~"beach|coastline"]${BBOX};\n  way["name"~"Frognerkilen|Skarpsno|Filipstad|Frognerstranda",i]${BBOX};\n  relation["name"~"Frognerkilen|Skarpsno|Filipstad|Frognerstranda",i]${BBOX};\n);\nout tags center geom;`;
+const exactOverpass = await fetchOverpass(exactNameQuery);
+const contextOverpass = await fetchOverpass(contextQuery);
+if (exactOverpass.text) writeFileSync(`${REPORT_DIR}/overpass-exact-name.json`, exactOverpass.text, 'utf8');
+if (contextOverpass.text) writeFileSync(`${REPORT_DIR}/overpass-context.json`, contextOverpass.text, 'utf8');
+writeFileSync(`${REPORT_DIR}/overpass-status.json`, `${JSON.stringify({ exact: { endpoint: exactOverpass.endpoint, failures: exactOverpass.failures }, context: { endpoint: contextOverpass.endpoint, failures: contextOverpass.failures } }, null, 2)}\n`, 'utf8');
 
-const exactElements = (JSON.parse(exactOverpass.text).elements || []).map(osmSummary);
-const contextElements = (JSON.parse(contextOverpass.text).elements || []).map(osmSummary);
+const exactElements = exactOverpass.text ? (JSON.parse(exactOverpass.text).elements || []).map(osmSummary) : [];
+const contextElements = contextOverpass.text ? (JSON.parse(contextOverpass.text).elements || []).map(osmSummary) : [];
 const exactNamedPhysical = exactElements.filter((candidate) => normalizeName(candidate.tags?.name) === 'frognerstranda');
 const exactAreaCandidates = exactNamedPhysical.filter((candidate) => candidate.isClosed && candidate.approximateAreaSquareMeters > 0);
 const exactLinearCandidates = exactNamedPhysical.filter((candidate) => !candidate.isClosed && candidate.geometryPointCount > 1);
@@ -221,6 +219,7 @@ const nominatimExact = nominatim.filter((row) => normalizeName(row?.namedetails?
 const nominatimGeometry = nominatimExact.map((row) => ({
   osmType: row.osm_type || null,
   osmId: row.osm_id || null,
+  osmObjectId: row.osm_type && row.osm_id ? `osm-${row.osm_type}:${row.osm_id}` : null,
   category: row.category || null,
   type: row.type || null,
   class: row.class || null,
@@ -231,6 +230,8 @@ const nominatimGeometry = nominatimExact.map((row) => ({
   geojson: row.geojson || null,
   distanceFromLegacyMeters: Number(distanceMeters(LEGACY, { lat: Number(row.lat), lon: Number(row.lon) }).toFixed(2)),
 }));
+const nominatimAreaCandidates = nominatimGeometry.filter((row) => /Polygon/.test(row.geojsonType || ''));
+const nominatimLinearCandidates = nominatimGeometry.filter((row) => /LineString/.test(row.geojsonType || ''));
 
 const officialToponymTypes = ssrExactRows.map((row) => ({
   skrivemåte: row?.skrivemåte || row?.stedsnavn || row?.navn || null,
@@ -242,20 +243,26 @@ const officialToponymTypes = ssrExactRows.map((row) => ({
   raw: row,
 }));
 
+const officialTypeText = officialToponymTypes.map((row) => `${row.navneobjekttype || ''} ${row.navneobjekttypekode || ''}`).join(' ');
+const allAreaCandidates = [...exactAreaCandidates.map((row) => ({ source: 'overpass', ...row })), ...nominatimAreaCandidates.map((row) => ({ source: 'nominatim', ...row }))];
+const allLinearCandidates = [...exactLinearCandidates.map((row) => ({ source: 'overpass', ...row })), ...nominatimLinearCandidates.map((row) => ({ source: 'nominatim', ...row }))];
 let decision = 'needs_scope_research';
 let productionModel = null;
 let reason = 'No exact official or OSM geometry has yet been shown to represent the broad Frognerstranda waterfront identity.';
-if (exactAreaCandidates.length === 1 && officialToponymTypes.some((row) => /strand|kyst|område|park/i.test(`${row.navneobjekttype || ''} ${row.navneobjekttypekode || ''}`))) {
+if (allAreaCandidates.length === 1 && /strand|kyst|område|park/i.test(officialTypeText)) {
   decision = 'exact_named_area_candidate_found';
-  productionModel = { type: 'area', sourceObjectId: exactAreaCandidates[0].osmObjectId };
+  productionModel = { type: 'area', sourceObjectId: allAreaCandidates[0].osmObjectId || null, source: allAreaCandidates[0].source };
   reason = 'One exact named area geometry matches an official Frognerstranda place-name type compatible with the waterfront scope.';
-} else if (exactLinearCandidates.length > 0 && officialToponymTypes.some((row) => /veg|gate|sti|strand|kyst/i.test(`${row.navneobjekttype || ''} ${row.navneobjekttypekode || ''}`))) {
+} else if (allLinearCandidates.length > 0 && /veg|gate|sti|strand|kyst/i.test(officialTypeText)) {
   decision = 'linear_name_candidate_requires_topology_reconciliation';
-  productionModel = { type: 'linear_candidate_set', sourceObjectIds: exactLinearCandidates.map((candidate) => candidate.osmObjectId) };
-  reason = 'Exact named linear geometries exist, but they must be reconciled with the official place-name type and the record’s waterfront/promenade scope before production.';
+  productionModel = { type: 'linear_candidate_set', sourceObjectIds: allLinearCandidates.map((candidate) => candidate.osmObjectId).filter(Boolean) };
+  reason = 'Exact named linear geometry exists, but it must be reconciled with the official place-name type and the record’s waterfront/promenade scope before production.';
 } else if (officialToponymTypes.length > 0) {
   decision = 'official_toponym_found_without_applicable_geometry';
   reason = 'Kartverket confirms an official Frognerstranda name, but no exact matching geometry currently supports the broad waterfront record.';
+} else if (allAreaCandidates.length || allLinearCandidates.length) {
+  decision = 'osm_identity_found_without_official_toponym_classification';
+  reason = 'An exact OSM/Nominatim geometry exists, but Kartverket did not return a matching official object classification in this pass.';
 }
 
 const summary = {
@@ -275,10 +282,14 @@ const summary = {
     url: NOMINATIM_URL,
     exactCount: nominatimExact.length,
     exactGeometry: nominatimGeometry,
+    areaCandidateCount: nominatimAreaCandidates.length,
+    linearCandidateCount: nominatimLinearCandidates.length,
   },
   osm: {
     exactNameQuery,
     contextQuery,
+    exactOverpassAvailable: Boolean(exactOverpass.text),
+    contextOverpassAvailable: Boolean(contextOverpass.text),
     exactCandidateCount: exactElements.length,
     exactNamedPhysicalCount: exactNamedPhysical.length,
     exactAreaCandidateCount: exactAreaCandidates.length,
@@ -295,13 +306,13 @@ const summary = {
   nextAction: decision === 'exact_named_area_candidate_found'
     ? 'Run a source-first production pass after independent scope confirmation.'
     : decision === 'linear_name_candidate_requires_topology_reconciliation'
-      ? 'Trace endpoint connectivity and determine whether the official Frognerstranda identity is a road, promenade, shoreline or combined linear waterfront before production.'
+      ? 'Fetch the exact OSM objects directly and trace endpoint connectivity; determine whether the official Frognerstranda identity is a road, promenade, shoreline or combined linear waterfront before production.'
       : 'Do not promote the legacy marker. Obtain explicit official area geometry or a documented multi-anchor waterfront model.',
 };
 
 writeFileSync(`${REPORT_DIR}/summary.json`, `${JSON.stringify(summary, null, 2)}\n`, 'utf8');
-writeFileSync(`${REPORT_DIR}/README.md`, `# Frognerstranda physical-scope research\n\nDate: 2026-07-24\n\n- Kartverket exact-name rows: ${ssrExactRows.length}\n- Geonorge address rows: ${addressRows.length}\n- exact named OSM physical objects: ${exactNamedPhysical.length}\n- exact named area candidates: ${exactAreaCandidates.length}\n- exact named linear candidates: ${exactLinearCandidates.length}\n- nearby promenade candidates: ${nearbyPromenadeCandidates.length}\n- nearby coastline/beach candidates: ${nearbyCoastCandidates.length}\n\nDecision: **${decision}**\n\n${reason}\n\n${summary.nextAction}\n`, 'utf8');
+writeFileSync(`${REPORT_DIR}/README.md`, `# Frognerstranda physical-scope research\n\nDate: 2026-07-24\n\n- Kartverket exact-name rows: ${ssrExactRows.length}\n- Geonorge address rows: ${addressRows.length}\n- Nominatim exact rows: ${nominatimExact.length}\n- exact named OSM physical objects: ${exactNamedPhysical.length}\n- exact named area candidates: ${allAreaCandidates.length}\n- exact named linear candidates: ${allLinearCandidates.length}\n- nearby promenade candidates: ${nearbyPromenadeCandidates.length}\n- nearby coastline/beach candidates: ${nearbyCoastCandidates.length}\n- exact Overpass available: ${Boolean(exactOverpass.text)}\n- context Overpass available: ${Boolean(contextOverpass.text)}\n\nDecision: **${decision}**\n\n${reason}\n\n${summary.nextAction}\n`, 'utf8');
 
 const grep = spawnSync('git', ['grep', '-n', '-F', `"${PLACE_ID}"`, '--', 'data'], { encoding: 'utf8' });
 writeFileSync(`${REPORT_DIR}/repo-references.txt`, grep.stdout || '', 'utf8');
-console.log(JSON.stringify({ reportDir: REPORT_DIR, decision, kartverketExact: ssrExactRows.length, exactNamedOsm: exactNamedPhysical.length }, null, 2));
+console.log(JSON.stringify({ reportDir: REPORT_DIR, decision, kartverketExact: ssrExactRows.length, nominatimExact: nominatimExact.length, exactNamedOsm: exactNamedPhysical.length, exactOverpassAvailable: Boolean(exactOverpass.text) }, null, 2));
