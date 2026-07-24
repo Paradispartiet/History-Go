@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "bi_nydalen",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/bi_nydalen.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_official_address_point",
+  "currentCoordinate": {
+    "lat": 59.94887042,
+    "lon": 10.76820661,
+    "r": 180,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Kartverket/Geonorge for Nydalsveien 37, 0484 Oslo. Handelshøyskolen BIs egne campus- og kontaktsider og Brønnøysundregistrene oppgir samme besøksadresse og organisasjonsnummer 971228865. Punktet ligger inne i den navngitte OSM-campusgeometrien way 38316703, som er amenity=college, building=university og koblet til Wikidata Q604629. Den tidligere markøren lå 105.7 meter unna og utenfor campusbygget; radius 180 meter beholdes for campusdekning."
+  },
+  "identity": {
+    "currentName": "BI i Nydalen",
+    "resolvedIdentity": "Handelshøyskolen BI, Campus Oslo, organisasjonsnummer 971228865, Nydalsveien 37, 0484 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt offisiell besøksadresse",
+    "institusjonsidentitet og organisasjonsnummer",
+    "geometrisk campuskryssjekk"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1 – Nydalsveien 37",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Nydalsveien%2037%20Oslo&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15229:37",
+      "sourceQuality": "official_address",
+      "finding": "Ett unikt offisielt adressepunkt for Nydalsveien 37, 0484 Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Kartverkets offisielle adressepunkt brukes som canonical display-marker for BI Campus Oslo."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Handelshøyskolen BI – Campus Oslo",
+      "sourceUrl": "https://www.bi.no/studere-ved-bi/campus-oslo/praktisk-informasjon/",
+      "sourceObjectId": "bi:campus-oslo",
+      "sourceQuality": "official_current_site",
+      "finding": "BI oppgir Nydalsveien 37, 0484 Oslo som besøksadresse for Campus Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell institusjons- og besøksadresse; koordinaten leveres av Kartverket."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Handelshøyskolen BI – kontakt oss",
+      "sourceUrl": "https://www.bi.no/om-bi/kontakt-oss/",
+      "sourceObjectId": "bi:contact",
+      "sourceQuality": "official_institution_identity",
+      "finding": "BI bekrefter besøksadressen i Oslo og organisasjonsnummer 971228865.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell identitets- og organisasjonsnummerkryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – Stiftelsen Handelshøyskolen BI",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/enheter/971228865",
+      "sourceObjectId": "brreg-enhet:971228865",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Brønnøysund oppgir Stiftelsen Handelshøyskolen BI, organisasjonsnummer 971228865, med forretningsadresse Nydalsveien 37, 0484 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Uavhengig offentlig institusjons- og adressekryssjekk."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 38316703 – Handelshøyskolen BI",
+      "sourceUrl": "https://www.openstreetmap.org/way/38316703",
+      "sourceObjectId": "osm-way:38316703",
+      "sourceQuality": "named_institution_building_geometry",
+      "finding": "Navngitt amenity=college- og building=university-geometri koblet til Wikidata Q604629. Det offisielle adressepunktet ligger inne i geometrien og 76.5 meter fra områdets referansepunkt.",
+      "canVerifyCoordinate": true,
+      "reason": "Bygningsgeometrien bekrefter at Kartverkets adressepunkt ligger på BI-campus, mens den tidligere markøren lå utenfor."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q604629 – BI Norwegian Business School",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q604629",
+      "sourceObjectId": "wikidata:Q604629",
+      "sourceQuality": "structured_identity_crosscheck",
+      "finding": "Dedikert institusjonsobjekt for Handelshøyskolen BI med organisasjonsnummer 971228865.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og organisasjonsnummerkryssjekk; Kartverket er koordinatkilden."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Nydalsveien 37, 0484 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15229:37",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15229:37",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:38316703",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q604629",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:38316703",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.94887042,
+      "lon": 10.76820661,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15229:37",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Nydalsveien 37 er anvendt som canonical display-marker."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Kartverket/Geonorge for Nydalsveien 37, 0484 Oslo. Handelshøyskolen BIs egne campus- og kontaktsider og Brønnøysundregistrene oppgir samme besøksadresse og organisasjonsnummer 971228865. Punktet ligger inne i den navngitte OSM-campusgeometrien way 38316703, som er amenity=college, building=university og koblet til Wikidata Q604629. Den tidligere markøren lå 105.7 meter unna og utenfor campusbygget; radius 180 meter beholdes for campusdekning.",
+    "Research report: reports/oslo-coordinate-bi-nydalen-research-post-195/summary.json"
+  ]
+}
