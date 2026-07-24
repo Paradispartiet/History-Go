@@ -57,12 +57,15 @@ else requireSame("place policy runtime ids", placeOfficial, contract.runtimeCate
 
 requireSame("category UI runtime ids", categoryUiIds, contract.runtimeCategories);
 
-for (const forbidden of ["kultur", "filosofi", "teater", "film", "tv", "journalistikk"]) {
+for (const forbidden of ["kultur", "teater", "film", "tv", "journalistikk"]) {
   if (contract.runtimeCategories.includes(forbidden) || contract.fagSubjects.includes(forbidden)) {
     failures.push({ name: "forbidden top-level alias", id: forbidden });
   }
 }
 
+if (!contract.runtimeCategories.includes("filosofi")) failures.push({ name: "filosofi", reason: "missing runtime category" });
+if (contract.fagSubjects.includes("filosofi")) failures.push({ name: "filosofi", reason: "must use vitenskap fag foundation until separate fagkart exists" });
+if (contract.runtimeToFag?.filosofi !== "vitenskap") failures.push({ name: "filosofi", reason: "runtimeToFag must map to vitenskap" });
 if (!contract.runtimeCategories.includes("scenekunst")) failures.push({ name: "scenekunst", reason: "missing runtime category" });
 if (!contract.fagSubjects.includes("scenekunst")) failures.push({ name: "scenekunst", reason: "missing fag subject" });
 if (contract.runtimeCategories.includes("sosial_laering")) failures.push({ name: "sosial_laering", reason: "must remain non-place badge" });
