@@ -62,11 +62,13 @@ function placesFor(person) {
 }
 
 function isArchitect(person) {
+  const designCode = String(person.visual?.designCode || "").toLowerCase();
   const desc = String(person.desc || "").trim().toLowerCase();
   const period = String(person.period || "").toLowerCase();
   const popup = String(person.popupDesc || "").toLowerCase();
 
-  return /^(?:hoved)?arkitekt(?:en|assistent)?\b/.test(desc)
+  return designCode === "person_architect_miniature"
+    || /^(?:hoved)?arkitekt(?:en|assistent)?\b/.test(desc)
     || period.includes("arkitekt")
     || /\b(?:var|som) (?:hoved)?arkitekt\b/.test(popup);
 }
