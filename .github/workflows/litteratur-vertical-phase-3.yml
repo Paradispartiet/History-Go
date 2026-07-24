@@ -1,0 +1,117 @@
+name: Literature vertical depth phase 3
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  build-and-validate:
+    if: github.head_ref == 'agent/litteratur-vertikal-fase-3-nordisk-institusjon-sted'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/litteratur-vertikal-fase-3-nordisk-institusjon-sted
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build and validate literature phase 3
+        id: build
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          mkdir -p reports/litteratur-canonical-migration
+          exec > >(tee reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-full-run.log) 2>&1
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+          echo '158d7d73a27c116bd7fc30d6016f7163762f5c030dd3b2954c2790cba8499a10  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part00' | sha256sum -c -
+          echo '4951b7999bc8288e88facceb2df5f2195d9c2bb0467064353269bb95dfb899d7  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part01' | sha256sum -c -
+          echo '73d750509792c5017880b270c254151b9952ec7fb139c408c046d4234d017cdc  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part02' | sha256sum -c -
+          echo 'a380b4d8e802a90473326166188733bc9af16b97894a93cb7dcfe0fbdc0aef10  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part03' | sha256sum -c -
+          echo 'c1c33625ea2c4647561bc7876d098b75ec3ef45a395946c3681562a08b7d832e  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part04' | sha256sum -c -
+          cat tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part00 \
+              tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part01 \
+              tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part02 \
+              tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part03 \
+              tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part04 \
+              > tools/build-litteratur-vertical-phase-3.mjs.gz.b64
+          echo '4f08eb7ba6d2f930c746dec33012458e4c37b3813f76c3cbb7a58bb7b3cd02bc  tools/build-litteratur-vertical-phase-3.mjs.gz.b64' \
+            | sha256sum -c - \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-builder-checksum.txt
+
+          base64 -d tools/build-litteratur-vertical-phase-3.mjs.gz.b64 \
+            | gzip -d > tools/build-litteratur-vertical-phase-3.mjs
+          echo 'bfafb4f50121ca521313162aa35d0a9141fe82f1376fd499010779b7ce50ec64  tools/build-litteratur-vertical-phase-3.mjs' \
+            | sha256sum -c - \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-source-checksum.txt
+          node --check tools/build-litteratur-vertical-phase-3.mjs \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-builder-syntax.txt
+          node tools/build-litteratur-vertical-phase-3.mjs \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-builder-output.txt
+
+          rm -f tools/build-litteratur-vertical-phase-3.mjs
+          rm -f tools/build-litteratur-vertical-phase-3.mjs.gz.b64
+          rm -f tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part00
+          rm -f tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part01
+          rm -f tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part02
+          rm -f tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part03
+          rm -f tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part04
+          rm -f .github/workflows/litteratur-vertical-phase-3.yml
+          rm -f reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-builder-checksum.txt
+          rm -f reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-source-checksum.txt
+          rm -f reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-builder-syntax.txt
+          rm -f reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-builder-output.txt
+          rm -f reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-full-run.log
+
+          node tools/validate-litteratur-nordisk-institusjon-sted-phase-3.mjs \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-validation.txt
+          node tools/validate-litteratur-historie-verden-phase-2.mjs \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-validation.txt
+          node tools/validate-litteratur-poetikk-phase-1.mjs \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-poetikk-phase-1-validation.txt
+
+          for file in \
+            data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json \
+            data/fag/litteratur/emner_litteratur_canonical_v4_5.json \
+            data/fag/litteratur/methods_litteratur_canonical_v4_5.json \
+            data/fag/litteratur/emnemapping_litteratur_canonical_v4_5.json \
+            data/fag/litteratur/litteraturpensum_canonical_v4_5.json \
+            data/fag/litteratur/quiz_generator_rules_litteratur_v5_1_source_priority_patch.json \
+            reports/litteratur-canonical-migration/litteratur-question-blueprints.json \
+            reports/litteratur-canonical-migration/nordisk-litteratur-institusjonskart.json; do
+              node -e 'JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log("PASS | Gyldig JSON: "+process.argv[1])' "$file" \
+                2>&1 | tee -a reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-validation.txt
+          done
+
+          git diff --check \
+            2>&1 | tee -a reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-validation.txt
+          echo 'PASS | git diff --check' \
+            | tee -a reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-validation.txt
+
+          git add -A data/fag/litteratur reports/litteratur-canonical-migration tools .github/workflows
+          git diff --cached --check
+          git commit -m 'Litteratur: bygg nordisk litteratur-, institusjons- og stedsakse'
+          git push --force-with-lease origin HEAD:agent/litteratur-vertikal-fase-3-nordisk-institusjon-sted
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: literature-nordic-institutions-phase-3-diagnostics
+          path: |
+            reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-*
+            reports/litteratur-canonical-migration/litteratur-historie-verden-phase-2-validation.txt
+            reports/litteratur-canonical-migration/litteratur-poetikk-phase-1-validation.txt
+          if-no-files-found: warn
+
+      - name: Propagate build failure
+        if: steps.build.outcome == 'failure'
+        run: exit 1
