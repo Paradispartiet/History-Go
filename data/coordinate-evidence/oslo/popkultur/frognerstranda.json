@@ -2,57 +2,112 @@
   "schemaVersion": "1.0",
   "placeId": "frognerstranda",
   "placeFile": "data/places/popkultur/oslo/places_oslo_populaerkultur.json",
-  "evidenceStatus": "needs_research",
-  "coordinateDecision": "needs_geometry",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9129,
-    "lon": 10.7098,
+    "lat": 59.914216695341,
+    "lon": 10.698684277702,
     "r": 180,
-    "coordStatus": "needs_source",
-    "coordSource": "frognerstranda_canonical_geometry_unresolved",
-    "coordType": "legacy_unverified",
-    "coordNote": "Kontrollen fant ikke ett eksakt navngitt strand-/områdefysisk objekt med stabil polygongeometri (no_exact_semantic_candidate). En vei eller tilfeldig fjordkantlinje med samme navn kan ikke brukes som proxy for den brede popkulturelle strandsonen."
+    "coordStatus": "verified_geometry",
+    "coordSource": "Oslo kommune – Frognerstranda embedded GeoJSON LineString",
+    "coordType": "official_linear_coastal_zone_midpoint",
+    "coordNote": "Oslo kommune definerer Frognerstranda som en strandlinje fra innerste Frognerkilen/Bygdøy i vest til Hjortnes/Framnes i øst og publiserer samme scope som en maskinlesbar 12-punkts GeoJSON LineString på den offisielle Frognerstranda-siden. Canonical lat/lon er det deterministiske lengdemidtpunktet langs denne kommunale linjen (ca. 1,63 km). Det separate kartpunktet på siden, E18, jernbane, tilfeldige coastline-segmenter og den kortere OSM-fotveien brukes ikke som koordinatproxy."
   },
   "identity": {
     "currentName": "Frognerstranda",
-    "resolvedIdentity": "Frognerstranda som fjordnær strandsone og byrom",
+    "resolvedIdentity": "Frognerstranda som den kommunalt avgrensede lineære strandsonen fra Frognerkilen/Bygdøy til Hjortnes/Framnes",
     "identityStatus": "resolved",
-    "identityProblem": "Kontrollen fant ikke ett eksakt navngitt strand-/områdefysisk objekt med stabil polygongeometri (no_exact_semantic_candidate). En vei eller tilfeldig fjordkantlinje med samme navn kan ikke brukes som proxy for den brede popkulturelle strandsonen.",
-    "locatorTypeCandidate": "natural_area",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
     "requiresSplit": false,
     "splitReason": ""
   },
   "requiredEvidence": [
-    "Dokumenter en eksplisitt Frognerstranda-områdegeometri eller flere kildebelagte strand-/promenadeankre før ett canonical representasjonspunkt godkjennes."
+    "offisiell maskinsporbar geometri for hele Frognerstranda-scope-et",
+    "offisiell vest- og østgrense for strandsonen",
+    "deterministisk line-anchor avledet fra samme geometri"
   ],
   "evidence": [
     {
+      "sourceProvider": "municipality",
+      "sourceName": "Oslo kommune – Frognerstranda, Fjordbyen",
+      "sourceUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/frognerstranda/",
+      "sourceObjectId": "oslo-kommune:frognerstranda:embedded-geojson-line",
+      "sourceQuality": "official_exact_linear_scope_geometry",
+      "finding": "Oslo kommune defines Frognerstranda as the shoreline from the inner Frognerkilen/Bygdøy in the west to Hjortnes/Framnes in the east and embeds one 12-point GeoJSON LineString covering that full scope.",
+      "canVerifyCoordinate": true,
+      "reason": "Oslo kommune definerer Frognerstranda som en strandlinje fra innerste Frognerkilen/Bygdøy i vest til Hjortnes/Framnes i øst og publiserer samme scope som en maskinlesbar 12-punkts GeoJSON LineString på den offisielle Frognerstranda-siden. Canonical lat/lon er det deterministiske lengdemidtpunktet langs denne kommunale linjen (ca. 1,63 km). Det separate kartpunktet på siden, E18, jernbane, tilfeldige coastline-segmenter og den kortere OSM-fotveien brukes ikke som koordinatproxy."
+    },
+    {
       "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap bounded exact-name candidate audit",
-      "sourceUrl": "https://www.openstreetmap.org/search?query=Frognerstranda%20Oslo",
-      "sourceObjectId": "osm-search-audit:frognerstranda",
-      "sourceQuality": "candidate_search_without_unique_applicable_object",
-      "finding": "Kontrollen fant ikke ett eksakt navngitt strand-/områdefysisk objekt med stabil polygongeometri (no_exact_semantic_candidate). En vei eller tilfeldig fjordkantlinje med samme navn kan ikke brukes som proxy for den brede popkulturelle strandsonen.",
+      "sourceName": "OpenStreetMap exact named Frognerstranda footway",
+      "sourceUrl": "https://www.openstreetmap.org/way/71423688",
+      "sourceObjectId": "osm-way:71423688",
+      "sourceQuality": "exact_named_partial_segment_not_primary_geometry",
+      "finding": "The exact named 918.4 m footway covers only the western strandpromenade segment and does not reach the official Hjortnes/Framnes boundary.",
       "canVerifyCoordinate": false,
-      "reason": "Kontrollen fant ikke ett eksakt navngitt strand-/områdefysisk objekt med stabil polygongeometri (no_exact_semantic_candidate). En vei eller tilfeldig fjordkantlinje med samme navn kan ikke brukes som proxy for den brede popkulturelle strandsonen."
+      "reason": "A partial OSM footway cannot proxy the full municipal Frognerstranda shoreline. It is retained only as a contextual crosscheck."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:frognerstranda:embedded-geojson-line",
+      "canApplyToPlace": true
+    },
+    {
       "sourceProvider": "osm",
-      "sourceObjectId": "osm-search-audit:frognerstranda",
+      "sourceObjectId": "osm-way:71423688",
       "canApplyToPlace": false
     }
   ],
-  "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "municipality",
+      "sourceObjectId": "oslo-kommune:frognerstranda:embedded-geojson-line",
+      "geometryType": "LineString",
+      "pointCount": 12,
+      "lengthMeters": 1633.66,
+      "westBoundary": {
+        "id": "frognerstranda_west_boundary",
+        "name": "Frognerstranda – vestgrense",
+        "type": "line_endpoint",
+        "role": "west_boundary",
+        "lat": 59.917656,
+        "lon": 10.687466,
+        "r": 60
+      },
+      "eastBoundary": {
+        "id": "frognerstranda_east_boundary",
+        "name": "Frognerstranda – østgrense",
+        "type": "line_endpoint",
+        "role": "east_boundary",
+        "lat": 59.909825,
+        "lon": 10.70858,
+        "r": 60
+      },
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.914216695341,
+      "lon": 10.698684277702,
+      "coordRole": "line_anchor",
+      "sourceObjectId": "oslo-kommune:frognerstranda:embedded-geojson-line",
+      "derivation": "geodesic_length_midpoint",
+      "canApplyToPlace": true
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Kontrollen fant ikke ett eksakt navngitt strand-/områdefysisk objekt med stabil polygongeometri (no_exact_semantic_candidate). En vei eller tilfeldig fjordkantlinje med samme navn kan ikke brukes som proxy for den brede popkulturelle strandsonen.",
-    "nextAction": "Dokumenter en eksplisitt Frognerstranda-områdegeometri eller flere kildebelagte strand-/promenadeankre før ett canonical representasjonspunkt godkjennes."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "The official municipal line geometry and deterministic midpoint are applied to canonical Frognerstranda."
   },
   "notes": [
-    "Kontrollen fant ikke ett eksakt navngitt strand-/områdefysisk objekt med stabil polygongeometri (no_exact_semantic_candidate). En vei eller tilfeldig fjordkantlinje med samme navn kan ikke brukes som proxy for den brede popkulturelle strandsonen."
+    "Oslo kommune definerer Frognerstranda som en strandlinje fra innerste Frognerkilen/Bygdøy i vest til Hjortnes/Framnes i øst og publiserer samme scope som en maskinlesbar 12-punkts GeoJSON LineString på den offisielle Frognerstranda-siden. Canonical lat/lon er det deterministiske lengdemidtpunktet langs denne kommunale linjen (ca. 1,63 km). Det separate kartpunktet på siden, E18, jernbane, tilfeldige coastline-segmenter og den kortere OSM-fotveien brukes ikke som koordinatproxy.",
+    "The official page also embeds a separate point at 59.915451, 10.694761; batch 195 does not use that point because the full LineString provides the stronger canonical geometry.",
+    "OSM way 71423688 remains a partial western crosscheck and is not the primary source object."
   ]
 }

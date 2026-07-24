@@ -1,8 +1,8 @@
 {
   "id": "frognerstranda",
   "name": "Frognerstranda",
-  "lat": 59.9129,
-  "lon": 10.7098,
+  "lat": 59.914216695341,
+  "lon": 10.698684277702,
   "r": 180,
   "category": "populaerkultur",
   "desc": "Sesongbasert kjendissone brukt i sladder- og livsstilsmedier.",
@@ -49,10 +49,96 @@
   "visual": {
     "designCode": "waterfront_miniature"
   },
-  "locatorType": "natural_area",
-  "coordType": "legacy_unverified",
-  "coordStatus": "needs_source",
-  "coordSource": "frognerstranda_canonical_geometry_unresolved",
-  "coordVerifiedAt": "2026-07-21",
-  "coordNote": "Kontrollen fant ikke ett eksakt navngitt strand-/områdefysisk objekt med stabil polygongeometri (no_exact_semantic_candidate). En vei eller tilfeldig fjordkantlinje med samme navn kan ikke brukes som proxy for den brede popkulturelle strandsonen."
+  "locatorType": "linear_area",
+  "coordType": "official_linear_coastal_zone_midpoint",
+  "coordStatus": "verified_geometry",
+  "coordSource": "Oslo kommune – Frognerstranda embedded GeoJSON LineString",
+  "coordVerifiedAt": "2026-07-24",
+  "coordNote": "Oslo kommune definerer Frognerstranda som en strandlinje fra innerste Frognerkilen/Bygdøy i vest til Hjortnes/Framnes i øst og publiserer samme scope som en maskinlesbar 12-punkts GeoJSON LineString på den offisielle Frognerstranda-siden. Canonical lat/lon er det deterministiske lengdemidtpunktet langs denne kommunale linjen (ca. 1,63 km). Det separate kartpunktet på siden, E18, jernbane, tilfeldige coastline-segmenter og den kortere OSM-fotveien brukes ikke som koordinatproxy.",
+  "sourceProvider": "municipality",
+  "sourceObjectId": "oslo-kommune:frognerstranda:embedded-geojson-line",
+  "geocodeAccuracy": "geometric_center",
+  "coordRole": "line_anchor",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        10.687466,
+        59.917656
+      ],
+      [
+        10.689268,
+        59.918
+      ],
+      [
+        10.690899,
+        59.917183
+      ],
+      [
+        10.692959,
+        59.915634
+      ],
+      [
+        10.696049,
+        59.915419
+      ],
+      [
+        10.698195,
+        59.914558
+      ],
+      [
+        10.700169,
+        59.913181
+      ],
+      [
+        10.704889,
+        59.910255
+      ],
+      [
+        10.706091,
+        59.910513
+      ],
+      [
+        10.707378,
+        59.910298
+      ],
+      [
+        10.707293,
+        59.909997
+      ],
+      [
+        10.70858,
+        59.909825
+      ]
+    ]
+  },
+  "anchors": [
+    {
+      "id": "frognerstranda_west_boundary",
+      "name": "Frognerstranda – vestgrense",
+      "type": "line_endpoint",
+      "role": "west_boundary",
+      "lat": 59.917656,
+      "lon": 10.687466,
+      "r": 60
+    },
+    {
+      "id": "frognerstranda_line_midpoint",
+      "name": "Frognerstranda – linjemidtpunkt",
+      "type": "line_midpoint",
+      "role": "line_midpoint",
+      "lat": 59.914216695341,
+      "lon": 10.698684277702,
+      "r": 60
+    },
+    {
+      "id": "frognerstranda_east_boundary",
+      "name": "Frognerstranda – østgrense",
+      "type": "line_endpoint",
+      "role": "east_boundary",
+      "lat": 59.909825,
+      "lon": 10.70858,
+      "r": 60
+    }
+  ]
 }
