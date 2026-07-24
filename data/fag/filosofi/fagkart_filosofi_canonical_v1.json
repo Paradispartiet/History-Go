@@ -3,72 +3,4712 @@
   "subject_title": "Filosofi",
   "scope": "global_med_lokale_stedsankre",
   "type": "fagkart",
-  "version": "1.0",
+  "version": "2.0",
   "updated_at": "2026-07-24",
   "principles": {
     "argument_first": true,
     "conceptual_precision": true,
     "charitable_interpretation": true,
+    "global_canon_without_tokenism": true,
     "historical_claims_require_sources": true,
     "place_relevance_requires_documented_anchor": true,
-    "personal_opinion_is_not_scored_knowledge": true
+    "personal_opinion_is_not_scored_knowledge": true,
+    "theory_rotation_required": true,
+    "core_rule": "Filosofioppgaver skal starte i et eksplisitt problem, argument, begrep, verk eller dokumentert stedlig forhold. Teoretikernavn alene er ikke kunnskap."
+  },
+  "registries": {
+    "thinkers": "teoretikere_filosofi_canonical_v2.json",
+    "concepts": "begreper_filosofi_canonical_v2.json",
+    "methods": "methods_filosofi_canonical_v1.json"
   },
   "categories": [
     {
       "id": "argumentasjon_logikk",
       "title": "Argumentasjon og logikk",
-      "definition": "Hvordan påstander begrunnes, slutninger vurderes og innvendinger formuleres presist.",
-      "emne_ids": ["em_filosofi_argument_premiss_konklusjon", "em_filosofi_gyldighet_holdbarhet", "em_filosofi_feilslutninger_motargument"],
-      "best_place_types": ["universitet", "bibliotek", "debattarena", "rettsinstitusjon", "offentlig_rom"]
+      "tagline": "Hvordan argumenter bygges, slutninger vurderes og uenighet behandles presist.",
+      "definition": "Hvordan argumenter bygges, slutninger vurderes og uenighet behandles presist.",
+      "focus": [
+        "Premiss, konklusjon og argument",
+        "Gyldighet, holdbarhet og slutningsform",
+        "Uformell logikk og feilslutninger",
+        "Dialog, uenighet og intellektuell redelighet"
+      ],
+      "emne_ids": [
+        "em_filosofi_argument_premiss_konklusjon",
+        "em_filosofi_gyldighet_holdbarhet",
+        "em_filosofi_uformell_logikk_feilslutninger",
+        "em_filosofi_dialog_uenighet"
+      ],
+      "best_place_types": [
+        "universitet",
+        "bibliotek",
+        "debattarena",
+        "rettsinstitusjon",
+        "offentlig_rom"
+      ],
+      "topic_hooks": [
+        {
+          "id": "fil_argumentasjon_logikk_01",
+          "title": "Premiss, konklusjon og argument / Dialog, uenighet og intellektuell redelighet",
+          "definition": "Hvordan påstander settes sammen til begrunnelser. Hvordan motparter tolkes velvillig og kritiseres presist.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "aristoteles",
+                "name": "Aristoteles",
+                "why": "Aristoteles er relevant for argumentasjon og logikk gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Organon",
+                  "Den nikomakiske etikk"
+                ]
+              },
+              {
+                "id": "bertrand_russell",
+                "name": "Bertrand Russell",
+                "why": "Bertrand Russell er relevant for argumentasjon og logikk gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Principia Mathematica",
+                  "On Denoting"
+                ]
+              },
+              {
+                "id": "kurt_godel",
+                "name": "Kurt Gödel",
+                "why": "Kurt Gödel er relevant for argumentasjon og logikk gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "On Formally Undecidable Propositions"
+                ]
+              },
+              {
+                "id": "stephen_toulmin",
+                "name": "Stephen Toulmin",
+                "why": "Stephen Toulmin er relevant for argumentasjon og logikk gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Uses of Argument"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_argument_premiss_konklusjon",
+            "em_filosofi_dialog_uenighet"
+          ],
+          "concept_ids": [
+            "argument",
+            "intellektuell_ydmykhet",
+            "konklusjon",
+            "premiss",
+            "uenighetskompetanse",
+            "velvillig_fortolkning"
+          ],
+          "best_place_types": [
+            "universitet",
+            "bibliotek",
+            "debattarena",
+            "rettsinstitusjon",
+            "offentlig_rom"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "aristoteles",
+              "bertrand_russell"
+            ],
+            [
+              "kurt_godel",
+              "stephen_toulmin"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_argumentrekonstruksjon",
+            "met_filosofi_deduktiv_analyse",
+            "met_filosofi_premissproving"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_argumentasjon_logikk_02",
+          "title": "Gyldighet, holdbarhet og slutningsform",
+          "definition": "Forskjellen mellom logisk følge og sanne eller rimelige premisser.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "chrysippos",
+                "name": "Chrysippos",
+                "why": "Chrysippos er relevant for argumentasjon og logikk gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Fragmenter om stoisk logikk"
+                ]
+              },
+              {
+                "id": "ludwig_wittgenstein",
+                "name": "Ludwig Wittgenstein",
+                "why": "Ludwig Wittgenstein er relevant for argumentasjon og logikk gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Tractatus Logico-Philosophicus",
+                  "Philosophical Investigations"
+                ]
+              },
+              {
+                "id": "willard_van_orman_quine",
+                "name": "W. V. O. Quine",
+                "why": "W. V. O. Quine er relevant for argumentasjon og logikk gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Two Dogmas of Empiricism",
+                  "Word and Object"
+                ]
+              },
+              {
+                "id": "chaim_perelman",
+                "name": "Chaïm Perelman",
+                "why": "Chaïm Perelman er relevant for argumentasjon og logikk gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The New Rhetoric"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_gyldighet_holdbarhet"
+          ],
+          "concept_ids": [
+            "gyldighet",
+            "holdbarhet",
+            "logisk_folge"
+          ],
+          "best_place_types": [
+            "universitet",
+            "bibliotek",
+            "debattarena",
+            "rettsinstitusjon",
+            "offentlig_rom"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "chrysippos",
+              "ludwig_wittgenstein"
+            ],
+            [
+              "willard_van_orman_quine",
+              "chaim_perelman"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_argumentrekonstruksjon",
+            "met_filosofi_deduktiv_analyse",
+            "met_filosofi_premissproving"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_argumentasjon_logikk_03",
+          "title": "Uformell logikk og feilslutninger",
+          "definition": "Hvordan retoriske og strukturelle feil svekker argumenter.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "gottlob_frege",
+                "name": "Gottlob Frege",
+                "why": "Gottlob Frege er relevant for argumentasjon og logikk gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Begriffsschrift",
+                  "Über Sinn und Bedeutung"
+                ]
+              },
+              {
+                "id": "alfred_tarski",
+                "name": "Alfred Tarski",
+                "why": "Alfred Tarski er relevant for argumentasjon og logikk gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Concept of Truth in Formalized Languages"
+                ]
+              },
+              {
+                "id": "elizabeth_anscombe",
+                "name": "G. E. M. Anscombe",
+                "why": "G. E. M. Anscombe er relevant for argumentasjon og logikk gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Intention",
+                  "Modern Moral Philosophy"
+                ]
+              },
+              {
+                "id": "susan_haack",
+                "name": "Susan Haack",
+                "why": "Susan Haack er relevant for argumentasjon og logikk gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Evidence and Inquiry",
+                  "Manifesto of a Passionate Moderate"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_uformell_logikk_feilslutninger"
+          ],
+          "concept_ids": [
+            "feilslutning",
+            "sirkelargument",
+            "stramann"
+          ],
+          "best_place_types": [
+            "universitet",
+            "bibliotek",
+            "debattarena",
+            "rettsinstitusjon",
+            "offentlig_rom"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "gottlob_frege",
+              "alfred_tarski"
+            ],
+            [
+              "elizabeth_anscombe",
+              "susan_haack"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_argumentrekonstruksjon",
+            "met_filosofi_deduktiv_analyse",
+            "met_filosofi_premissproving"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        }
+      ],
+      "canonical_status": "canonical"
     },
     {
-      "id": "erkjennelse_vitenskap",
-      "title": "Erkjennelse og vitenskap",
-      "definition": "Kunnskap, sannhet, skepsis, evidens, forklaring og grensene for vitenskapelig metode.",
-      "emne_ids": ["em_filosofi_kunnskap_begrunnelse_sannhet", "em_filosofi_skepsis_sikkerhet", "em_filosofi_vitenskapsfilosofi_avgrensning", "em_filosofi_forklaring_modell_evidens", "em_filosofi_teknologi_kunnskapsinstitusjoner"],
-      "best_place_types": ["universitet", "forskningsinstitusjon", "museum", "laboratorium", "teknologiinstitusjon"]
+      "id": "erkjennelse_sannhet",
+      "title": "Erkjennelse, sannhet og kunnskapsmakt",
+      "tagline": "Hva kunnskap er, hvordan den begrunnes, og hvordan tillit, perspektiv og institusjoner påvirker hvem som blir trodd.",
+      "definition": "Hva kunnskap er, hvordan den begrunnes, og hvordan tillit, perspektiv og institusjoner påvirker hvem som blir trodd.",
+      "focus": [
+        "Kunnskap, begrunnelse og sannhet",
+        "Skepsis, tvil og feilbarlighet",
+        "Vitnesbyrd, ekspertise og tillit",
+        "Epistemisk urettferdighet og situert kunnskap"
+      ],
+      "emne_ids": [
+        "em_filosofi_kunnskap_begrunnelse_sannhet",
+        "em_filosofi_skepsis_feilbarlighet",
+        "em_filosofi_vitnesbyrd_ekspertise_tillit",
+        "em_filosofi_epistemisk_urettferdighet_standpunkt"
+      ],
+      "best_place_types": [
+        "universitet",
+        "bibliotek",
+        "arkiv",
+        "forskningsinstitusjon",
+        "redaksjon"
+      ],
+      "topic_hooks": [
+        {
+          "id": "fil_erkjennelse_sannhet_01",
+          "title": "Kunnskap, begrunnelse og sannhet / Epistemisk urettferdighet og situert kunnskap",
+          "definition": "Forholdet mellom tro, sannhet, evidens og begrunnelse. Hvordan makt påvirker hvem som blir hørt og hva som teller som kunnskap.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "platon",
+                "name": "Platon",
+                "why": "Platon er relevant for erkjennelse, sannhet og kunnskapsmakt gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Theaitetos",
+                  "Staten"
+                ]
+              },
+              {
+                "id": "immanuel_kant",
+                "name": "Immanuel Kant",
+                "why": "Immanuel Kant er relevant for erkjennelse, sannhet og kunnskapsmakt gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Critique of Pure Reason",
+                  "Groundwork of the Metaphysics of Morals"
+                ]
+              },
+              {
+                "id": "linda_zagzebski",
+                "name": "Linda Zagzebski",
+                "why": "Linda Zagzebski er relevant for erkjennelse, sannhet og kunnskapsmakt gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Virtues of the Mind"
+                ]
+              },
+              {
+                "id": "sandra_harding",
+                "name": "Sandra Harding",
+                "why": "Sandra Harding er relevant for erkjennelse, sannhet og kunnskapsmakt gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Whose Science? Whose Knowledge?"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_kunnskap_begrunnelse_sannhet",
+            "em_filosofi_epistemisk_urettferdighet_standpunkt"
+          ],
+          "concept_ids": [
+            "begrunnelse",
+            "epistemisk_urettferdighet",
+            "kunnskap",
+            "sannhet",
+            "situert_kunnskap",
+            "standpunktsteori"
+          ],
+          "best_place_types": [
+            "universitet",
+            "bibliotek",
+            "arkiv",
+            "forskningsinstitusjon",
+            "redaksjon"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "platon",
+              "immanuel_kant"
+            ],
+            [
+              "linda_zagzebski",
+              "sandra_harding"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_begrepsanalyse",
+            "met_filosofi_moteksempel",
+            "met_filosofi_standpunktanalyse"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_erkjennelse_sannhet_02",
+          "title": "Skepsis, tvil og feilbarlighet",
+          "definition": "Hvor sikkert vi kan vite, og hvordan tvil kan være metodisk.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "rene_descartes",
+                "name": "René Descartes",
+                "why": "René Descartes er relevant for erkjennelse, sannhet og kunnskapsmakt gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Meditations on First Philosophy",
+                  "Discourse on the Method"
+                ]
+              },
+              {
+                "id": "edmund_gettier",
+                "name": "Edmund Gettier",
+                "why": "Edmund Gettier er relevant for erkjennelse, sannhet og kunnskapsmakt gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Is Justified True Belief Knowledge?"
+                ]
+              },
+              {
+                "id": "miranda_fricker",
+                "name": "Miranda Fricker",
+                "why": "Miranda Fricker er relevant for erkjennelse, sannhet og kunnskapsmakt gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Epistemic Injustice"
+                ]
+              },
+              {
+                "id": "lorraine_code",
+                "name": "Lorraine Code",
+                "why": "Lorraine Code er relevant for erkjennelse, sannhet og kunnskapsmakt gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "What Can She Know?"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_skepsis_feilbarlighet"
+          ],
+          "concept_ids": [
+            "feilbarlighet",
+            "metodisk_tvil",
+            "skepsis"
+          ],
+          "best_place_types": [
+            "universitet",
+            "bibliotek",
+            "arkiv",
+            "forskningsinstitusjon",
+            "redaksjon"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "rene_descartes",
+              "edmund_gettier"
+            ],
+            [
+              "miranda_fricker",
+              "lorraine_code"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_begrepsanalyse",
+            "met_filosofi_moteksempel",
+            "met_filosofi_standpunktanalyse"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_erkjennelse_sannhet_03",
+          "title": "Vitnesbyrd, ekspertise og tillit",
+          "definition": "Hvordan kunnskap overføres mellom personer og institusjoner.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "david_hume",
+                "name": "David Hume",
+                "why": "David Hume er relevant for erkjennelse, sannhet og kunnskapsmakt gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "An Enquiry Concerning Human Understanding",
+                  "A Treatise of Human Nature"
+                ]
+              },
+              {
+                "id": "alvin_goldman",
+                "name": "Alvin Goldman",
+                "why": "Alvin Goldman er relevant for erkjennelse, sannhet og kunnskapsmakt gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Epistemology and Cognition",
+                  "Knowledge in a Social World"
+                ]
+              },
+              {
+                "id": "helen_longino",
+                "name": "Helen Longino",
+                "why": "Helen Longino er relevant for erkjennelse, sannhet og kunnskapsmakt gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Science as Social Knowledge"
+                ]
+              },
+              {
+                "id": "jose_medina",
+                "name": "José Medina",
+                "why": "José Medina er relevant for erkjennelse, sannhet og kunnskapsmakt gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Epistemology of Resistance"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_vitnesbyrd_ekspertise_tillit"
+          ],
+          "concept_ids": [
+            "ekspertise",
+            "epistemisk_tillit",
+            "vitnesbyrd"
+          ],
+          "best_place_types": [
+            "universitet",
+            "bibliotek",
+            "arkiv",
+            "forskningsinstitusjon",
+            "redaksjon"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "david_hume",
+              "alvin_goldman"
+            ],
+            [
+              "helen_longino",
+              "jose_medina"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_begrepsanalyse",
+            "met_filosofi_moteksempel",
+            "met_filosofi_standpunktanalyse"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        }
+      ],
+      "canonical_status": "canonical"
     },
     {
-      "id": "virkelighet_bevissthet",
-      "title": "Virkelighet, bevissthet og identitet",
-      "definition": "Hva som finnes, hvordan subjektiv erfaring forstås, og hva som gjør personer og handlinger sammenhengende over tid.",
-      "emne_ids": ["em_filosofi_metafysikk_ontologi", "em_filosofi_bevissthet_kropp_sinn", "em_filosofi_person_identitet_frihet"],
-      "best_place_types": ["universitet", "medisinsk_institusjon", "minnested", "arkiv", "tenkested"]
+      "id": "metafysikk_virkelighet",
+      "title": "Metafysikk, virkelighet og tid",
+      "tagline": "Hva som finnes, hvordan virkeligheten er strukturert, og hvordan mulighet, årsak, tid og identitet kan forstås.",
+      "definition": "Hva som finnes, hvordan virkeligheten er strukturert, og hvordan mulighet, årsak, tid og identitet kan forstås.",
+      "focus": [
+        "Ontologi, substans og relasjon",
+        "Årsak, nødvendighet og mulighet",
+        "Tid, endring og prosess",
+        "Realisme og antirealisme"
+      ],
+      "emne_ids": [
+        "em_filosofi_ontologi_substans_relajson",
+        "em_filosofi_arsak_nodvendighet_mulighet",
+        "em_filosofi_tid_endring_prosess",
+        "em_filosofi_realisme_antirealisme"
+      ],
+      "best_place_types": [
+        "universitet",
+        "museum",
+        "arkiv",
+        "minnested",
+        "tenkested"
+      ],
+      "topic_hooks": [
+        {
+          "id": "fil_metafysikk_virkelighet_01",
+          "title": "Ontologi, substans og relasjon / Realisme og antirealisme",
+          "definition": "Hva som finnes og hvilke grunnkategorier virkeligheten består av. Om virkelighet og sannhet er uavhengige av våre begreper.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "parmenides",
+                "name": "Parmenides",
+                "why": "Parmenides er relevant for metafysikk, virkelighet og tid gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Om naturen"
+                ]
+              },
+              {
+                "id": "thomas_aquinas",
+                "name": "Thomas Aquinas",
+                "why": "Thomas Aquinas er relevant for metafysikk, virkelighet og tid gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Summa Theologiae",
+                  "On Being and Essence"
+                ]
+              },
+              {
+                "id": "john_locke",
+                "name": "John Locke",
+                "why": "John Locke er relevant for metafysikk, virkelighet og tid gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "An Essay Concerning Human Understanding",
+                  "Two Treatises of Government"
+                ]
+              },
+              {
+                "id": "saul_kripke",
+                "name": "Saul Kripke",
+                "why": "Saul Kripke er relevant for metafysikk, virkelighet og tid gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Naming and Necessity"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_ontologi_substans_relajson",
+            "em_filosofi_realisme_antirealisme"
+          ],
+          "concept_ids": [
+            "antirealisme",
+            "begrepsskjema",
+            "ontologi",
+            "realisme",
+            "relasjonell_ontologi",
+            "substans"
+          ],
+          "best_place_types": [
+            "universitet",
+            "museum",
+            "arkiv",
+            "minnested",
+            "tenkested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "parmenides",
+              "thomas_aquinas"
+            ],
+            [
+              "john_locke",
+              "saul_kripke"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_begrepsanalyse",
+            "met_filosofi_distinksjon_definisjon",
+            "met_filosofi_tankeeksperiment"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_metafysikk_virkelighet_02",
+          "title": "Årsak, nødvendighet og mulighet",
+          "definition": "Hvordan årsaksforhold og modalitet kan forstås.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "heraklit",
+                "name": "Heraklit",
+                "why": "Heraklit er relevant for metafysikk, virkelighet og tid gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Fragmenter"
+                ]
+              },
+              {
+                "id": "baruch_spinoza",
+                "name": "Baruch Spinoza",
+                "why": "Baruch Spinoza er relevant for metafysikk, virkelighet og tid gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Ethics"
+                ]
+              },
+              {
+                "id": "georg_hegel",
+                "name": "G. W. F. Hegel",
+                "why": "G. W. F. Hegel er relevant for metafysikk, virkelighet og tid gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Phenomenology of Spirit",
+                  "Science of Logic"
+                ]
+              },
+              {
+                "id": "david_lewis",
+                "name": "David Lewis",
+                "why": "David Lewis er relevant for metafysikk, virkelighet og tid gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "On the Plurality of Worlds"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_arsak_nodvendighet_mulighet"
+          ],
+          "concept_ids": [
+            "arsak",
+            "mulig_verden",
+            "nodvendighet"
+          ],
+          "best_place_types": [
+            "universitet",
+            "museum",
+            "arkiv",
+            "minnested",
+            "tenkested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "heraklit",
+              "baruch_spinoza"
+            ],
+            [
+              "georg_hegel",
+              "david_lewis"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_begrepsanalyse",
+            "met_filosofi_distinksjon_definisjon",
+            "met_filosofi_tankeeksperiment"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_metafysikk_virkelighet_03",
+          "title": "Tid, endring og prosess",
+          "definition": "Om tid er strøm, orden, erfaring eller struktur.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "avicenna",
+                "name": "Avicenna (Ibn Sina)",
+                "why": "Avicenna (Ibn Sina) er relevant for metafysikk, virkelighet og tid gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "The Book of Healing",
+                  "The Metaphysics of The Healing"
+                ]
+              },
+              {
+                "id": "gottfried_leibniz",
+                "name": "Gottfried Wilhelm Leibniz",
+                "why": "Gottfried Wilhelm Leibniz er relevant for metafysikk, virkelighet og tid gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Monadology",
+                  "Discourse on Metaphysics"
+                ]
+              },
+              {
+                "id": "alfred_north_whitehead",
+                "name": "Alfred North Whitehead",
+                "why": "Alfred North Whitehead er relevant for metafysikk, virkelighet og tid gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Process and Reality"
+                ]
+              },
+              {
+                "id": "kit_fine",
+                "name": "Kit Fine",
+                "why": "Kit Fine er relevant for metafysikk, virkelighet og tid gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Essence and Modality"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_tid_endring_prosess"
+          ],
+          "concept_ids": [
+            "endring",
+            "prosessontologi",
+            "tid"
+          ],
+          "best_place_types": [
+            "universitet",
+            "museum",
+            "arkiv",
+            "minnested",
+            "tenkested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "avicenna",
+              "gottfried_leibniz"
+            ],
+            [
+              "alfred_north_whitehead",
+              "kit_fine"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_begrepsanalyse",
+            "met_filosofi_distinksjon_definisjon",
+            "met_filosofi_tankeeksperiment"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        }
+      ],
+      "canonical_status": "canonical"
     },
     {
-      "id": "etikk_ansvar",
-      "title": "Etikk og ansvar",
-      "definition": "Prinsipper for rett og galt og deres bruk i konkrete konflikter om skade, samtykke, omsorg og ansvar.",
-      "emne_ids": ["em_filosofi_normativ_etikk", "em_filosofi_anvendt_etikk_ansvar"],
-      "best_place_types": ["sykehus", "minnested", "rettsinstitusjon", "offentlig_institusjon", "teknologiinstitusjon"]
+      "id": "sinn_bevissthet_identitet",
+      "title": "Sinn, bevissthet og personlig identitet",
+      "tagline": "Forholdet mellom kropp, hjerne, erfaring, språk, selv og ansvar.",
+      "definition": "Forholdet mellom kropp, hjerne, erfaring, språk, selv og ansvar.",
+      "focus": [
+        "Kropp, sinn og bevissthet",
+        "Intentionalitet og mental representasjon",
+        "Personlig identitet og selv",
+        "Fri vilje, determinisme og ansvar"
+      ],
+      "emne_ids": [
+        "em_filosofi_kropp_sinn_bevissthet",
+        "em_filosofi_intentionalitet_representasjon",
+        "em_filosofi_personlig_identitet_selv",
+        "em_filosofi_fri_vilje_ansvar"
+      ],
+      "best_place_types": [
+        "universitet",
+        "sykehus",
+        "forskningsinstitusjon",
+        "minnested",
+        "teknologiinstitusjon"
+      ],
+      "topic_hooks": [
+        {
+          "id": "fil_sinn_bevissthet_identitet_01",
+          "title": "Kropp, sinn og bevissthet / Fri vilje, determinisme og ansvar",
+          "definition": "Hvordan subjektiv erfaring forholder seg til kropp og hjerne. Når handlinger kan regnes som frie og ansvarlige.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "gilbert_ryle",
+                "name": "Gilbert Ryle",
+                "why": "Gilbert Ryle er relevant for sinn, bevissthet og personlig identitet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Concept of Mind"
+                ]
+              },
+              {
+                "id": "david_chalmers",
+                "name": "David Chalmers",
+                "why": "David Chalmers er relevant for sinn, bevissthet og personlig identitet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Conscious Mind"
+                ]
+              },
+              {
+                "id": "patricia_churchland",
+                "name": "Patricia Churchland",
+                "why": "Patricia Churchland er relevant for sinn, bevissthet og personlig identitet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Neurophilosophy"
+                ]
+              },
+              {
+                "id": "harry_frankfurt",
+                "name": "Harry Frankfurt",
+                "why": "Harry Frankfurt er relevant for sinn, bevissthet og personlig identitet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Freedom of the Will and the Concept of a Person"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_kropp_sinn_bevissthet",
+            "em_filosofi_fri_vilje_ansvar"
+          ],
+          "concept_ids": [
+            "bevissthet",
+            "determinisme",
+            "dualisme",
+            "fri_vilje",
+            "fysikalisme",
+            "kompatibilisme"
+          ],
+          "best_place_types": [
+            "universitet",
+            "sykehus",
+            "forskningsinstitusjon",
+            "minnested",
+            "teknologiinstitusjon"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "gilbert_ryle",
+              "david_chalmers"
+            ],
+            [
+              "patricia_churchland",
+              "harry_frankfurt"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_tankeeksperiment",
+            "met_filosofi_fenomenologisk_beskrivelse",
+            "met_filosofi_begrepsanalyse"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_sinn_bevissthet_identitet_02",
+          "title": "Intentionalitet og mental representasjon",
+          "definition": "Hvordan tanker kan være rettet mot eller representere noe.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "hilary_putnam",
+                "name": "Hilary Putnam",
+                "why": "Hilary Putnam er relevant for sinn, bevissthet og personlig identitet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Reason, Truth and History",
+                  "Representation and Reality"
+                ]
+              },
+              {
+                "id": "daniel_dennett",
+                "name": "Daniel Dennett",
+                "why": "Daniel Dennett er relevant for sinn, bevissthet og personlig identitet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Consciousness Explained",
+                  "Elbow Room"
+                ]
+              },
+              {
+                "id": "maurice_merleau_ponty",
+                "name": "Maurice Merleau-Ponty",
+                "why": "Maurice Merleau-Ponty er relevant for sinn, bevissthet og personlig identitet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Phenomenology of Perception"
+                ]
+              },
+              {
+                "id": "susan_wolf",
+                "name": "Susan Wolf",
+                "why": "Susan Wolf er relevant for sinn, bevissthet og personlig identitet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Freedom Within Reason",
+                  "Meaning in Life and Why It Matters"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_intentionalitet_representasjon"
+          ],
+          "concept_ids": [
+            "funksjonalisme",
+            "intentionalitet",
+            "mental_representasjon"
+          ],
+          "best_place_types": [
+            "universitet",
+            "sykehus",
+            "forskningsinstitusjon",
+            "minnested",
+            "teknologiinstitusjon"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "hilary_putnam",
+              "daniel_dennett"
+            ],
+            [
+              "maurice_merleau_ponty",
+              "susan_wolf"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_tankeeksperiment",
+            "met_filosofi_fenomenologisk_beskrivelse",
+            "met_filosofi_begrepsanalyse"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_sinn_bevissthet_identitet_03",
+          "title": "Personlig identitet og selv",
+          "definition": "Hva som gjør en person til den samme over tid.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "thomas_nagel",
+                "name": "Thomas Nagel",
+                "why": "Thomas Nagel er relevant for sinn, bevissthet og personlig identitet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "What Is It Like to Be a Bat?",
+                  "The View from Nowhere"
+                ]
+              },
+              {
+                "id": "john_searle",
+                "name": "John Searle",
+                "why": "John Searle er relevant for sinn, bevissthet og personlig identitet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Minds, Brains, and Programs",
+                  "The Rediscovery of the Mind"
+                ]
+              },
+              {
+                "id": "derek_parfit",
+                "name": "Derek Parfit",
+                "why": "Derek Parfit er relevant for sinn, bevissthet og personlig identitet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Reasons and Persons",
+                  "On What Matters"
+                ]
+              },
+              {
+                "id": "shaun_gallagher",
+                "name": "Shaun Gallagher",
+                "why": "Shaun Gallagher er relevant for sinn, bevissthet og personlig identitet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "How the Body Shapes the Mind"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_personlig_identitet_selv"
+          ],
+          "concept_ids": [
+            "personlig_identitet",
+            "psykologisk_kontinuitet",
+            "selv"
+          ],
+          "best_place_types": [
+            "universitet",
+            "sykehus",
+            "forskningsinstitusjon",
+            "minnested",
+            "teknologiinstitusjon"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "thomas_nagel",
+              "john_searle"
+            ],
+            [
+              "derek_parfit",
+              "shaun_gallagher"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_tankeeksperiment",
+            "met_filosofi_fenomenologisk_beskrivelse",
+            "met_filosofi_begrepsanalyse"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        }
+      ],
+      "canonical_status": "canonical"
     },
     {
-      "id": "politisk_filosofi_offentlighet",
-      "title": "Politisk filosofi og offentlighet",
-      "definition": "Makt, legitimitet, frihet, likhet, rettferdighet og vilkårene for demokratisk begrunnelse.",
-      "emne_ids": ["em_filosofi_makt_autoritet_legitimitet", "em_filosofi_rettferdighet_likhet_frihet", "em_filosofi_demokrati_offentlig_fornuft"],
-      "best_place_types": ["parlament", "rådhus", "rettsbygning", "demonstrasjonssted", "debattarena", "minnested"]
+      "id": "etikk_moralpsykologi",
+      "title": "Etikk, dyd og moralsk ansvar",
+      "tagline": "Hva som gjør handlinger riktige eller gale, hvordan karakter og relasjoner betyr noe, og når ansvar kan tilskrives.",
+      "definition": "Hva som gjør handlinger riktige eller gale, hvordan karakter og relasjoner betyr noe, og når ansvar kan tilskrives.",
+      "focus": [
+        "Normativ etikk",
+        "Metaetikk og moralsk sannhet",
+        "Omsorg, relasjon og sårbarhet",
+        "Anvendt etikk og ansvar"
+      ],
+      "emne_ids": [
+        "em_filosofi_normativ_etikk",
+        "em_filosofi_metaetikk_moralsk_sannhet",
+        "em_filosofi_omsorg_relasjon_sarbarhet",
+        "em_filosofi_anvendt_etikk_ansvar"
+      ],
+      "best_place_types": [
+        "sykehus",
+        "rettsinstitusjon",
+        "minnested",
+        "omsorgsinstitusjon",
+        "offentlig_institusjon"
+      ],
+      "topic_hooks": [
+        {
+          "id": "fil_etikk_moralpsykologi_01",
+          "title": "Normativ etikk / Anvendt etikk og ansvar",
+          "definition": "Konsekvensetikk, pliktetikk, dydsetikk og andre normative modeller. Konkrete konflikter om helse, teknologi, arbeid, dyr og miljø.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "sokrates",
+                "name": "Sokrates",
+                "why": "Sokrates er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Platons sokratiske dialoger"
+                ]
+              },
+              {
+                "id": "konfucius",
+                "name": "Konfucius",
+                "why": "Konfucius er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Samtalene"
+                ]
+              },
+              {
+                "id": "john_stuart_mill",
+                "name": "John Stuart Mill",
+                "why": "John Stuart Mill er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Utilitarianism",
+                  "On Liberty"
+                ]
+              },
+              {
+                "id": "bernard_williams",
+                "name": "Bernard Williams",
+                "why": "Bernard Williams er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Ethics and the Limits of Philosophy"
+                ]
+              },
+              {
+                "id": "martha_nussbaum",
+                "name": "Martha Nussbaum",
+                "why": "Martha Nussbaum er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "The Fragility of Goodness",
+                  "Creating Capabilities"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_normativ_etikk",
+            "em_filosofi_anvendt_etikk_ansvar"
+          ],
+          "concept_ids": [
+            "dydsetikk",
+            "konsekvensetikk",
+            "moralsk_ansvar",
+            "pliktetikk",
+            "samtykke",
+            "skadeprinsipp"
+          ],
+          "best_place_types": [
+            "sykehus",
+            "rettsinstitusjon",
+            "minnested",
+            "omsorgsinstitusjon",
+            "offentlig_institusjon"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "sokrates",
+              "konfucius"
+            ],
+            [
+              "john_stuart_mill",
+              "bernard_williams"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_normativ_sammenligning",
+            "met_filosofi_reflektiv_likevekt",
+            "met_filosofi_casebasert_etikk"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_etikk_moralpsykologi_02",
+          "title": "Metaetikk og moralsk sannhet",
+          "definition": "Hva moralske påstander betyr og om de kan være sanne.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "epikur",
+                "name": "Epikur",
+                "why": "Epikur er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Brev til Menoikeus",
+                  "Hovedlæresetninger"
+                ]
+              },
+              {
+                "id": "mencius",
+                "name": "Mencius",
+                "why": "Mencius er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Mencius"
+                ]
+              },
+              {
+                "id": "henry_sidgwick",
+                "name": "Henry Sidgwick",
+                "why": "Henry Sidgwick er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Methods of Ethics"
+                ]
+              },
+              {
+                "id": "alasdair_macintyre",
+                "name": "Alasdair MacIntyre",
+                "why": "Alasdair MacIntyre er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "After Virtue"
+                ]
+              },
+              {
+                "id": "peter_singer",
+                "name": "Peter Singer",
+                "why": "Peter Singer er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Animal Liberation",
+                  "Practical Ethics"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_metaetikk_moralsk_sannhet"
+          ],
+          "concept_ids": [
+            "ekspressivisme",
+            "moralsk_realisme",
+            "moralsk_relativisme"
+          ],
+          "best_place_types": [
+            "sykehus",
+            "rettsinstitusjon",
+            "minnested",
+            "omsorgsinstitusjon",
+            "offentlig_institusjon"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "epikur",
+              "mencius"
+            ],
+            [
+              "henry_sidgwick",
+              "alasdair_macintyre"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_normativ_sammenligning",
+            "met_filosofi_reflektiv_likevekt",
+            "met_filosofi_casebasert_etikk"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_etikk_moralpsykologi_03",
+          "title": "Omsorg, relasjon og sårbarhet",
+          "definition": "Moralsk betydning av avhengighet, omsorg og relasjoner.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "epiktet",
+                "name": "Epiktet",
+                "why": "Epiktet er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Encheiridion",
+                  "Discourses"
+                ]
+              },
+              {
+                "id": "jeremy_bentham",
+                "name": "Jeremy Bentham",
+                "why": "Jeremy Bentham er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "An Introduction to the Principles of Morals and Legislation"
+                ]
+              },
+              {
+                "id": "philippa_foot",
+                "name": "Philippa Foot",
+                "why": "Philippa Foot er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Virtues and Vices",
+                  "Natural Goodness"
+                ]
+              },
+              {
+                "id": "carol_gilligan",
+                "name": "Carol Gilligan",
+                "why": "Carol Gilligan er relevant for etikk, dyd og moralsk ansvar gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "In a Different Voice"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_omsorg_relasjon_sarbarhet"
+          ],
+          "concept_ids": [
+            "omsorgsetikk",
+            "relasjonell_autonomi",
+            "sarbarhet"
+          ],
+          "best_place_types": [
+            "sykehus",
+            "rettsinstitusjon",
+            "minnested",
+            "omsorgsinstitusjon",
+            "offentlig_institusjon"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "epiktet",
+              "jeremy_bentham"
+            ],
+            [
+              "philippa_foot",
+              "carol_gilligan"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_normativ_sammenligning",
+            "met_filosofi_reflektiv_likevekt",
+            "met_filosofi_casebasert_etikk"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        }
+      ],
+      "canonical_status": "canonical"
+    },
+    {
+      "id": "politisk_filosofi_rettferdighet",
+      "title": "Politisk filosofi, frihet og rettferdighet",
+      "tagline": "Stat, rettigheter, legitimitet, fordeling, demokrati og vilkårene for et fritt samfunn.",
+      "definition": "Stat, rettigheter, legitimitet, fordeling, demokrati og vilkårene for et fritt samfunn.",
+      "focus": [
+        "Stat, samfunnskontrakt og legitimitet",
+        "Frihet, rettigheter og tvang",
+        "Rettferdighet, likhet og fordeling",
+        "Demokrati og offentlig fornuft"
+      ],
+      "emne_ids": [
+        "em_filosofi_stat_samfunnskontrakt_legitimitet",
+        "em_filosofi_frihet_rettigheter_tvang",
+        "em_filosofi_rettferdighet_likhet_fordeling",
+        "em_filosofi_demokrati_offentlig_fornuft"
+      ],
+      "best_place_types": [
+        "parlament",
+        "rådhus",
+        "rettsbygning",
+        "demonstrasjonssted",
+        "debattarena"
+      ],
+      "topic_hooks": [
+        {
+          "id": "fil_politisk_filosofi_rettferdighet_01",
+          "title": "Stat, samfunnskontrakt og legitimitet / Demokrati og offentlig fornuft",
+          "definition": "Hvorfor politisk makt kan være rettmessig. Hvordan bindende beslutninger kan begrunnes under uenighet.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "thomas_hobbes",
+                "name": "Thomas Hobbes",
+                "why": "Thomas Hobbes er relevant for politisk filosofi, frihet og rettferdighet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Leviathan"
+                ]
+              },
+              {
+                "id": "karl_marx",
+                "name": "Karl Marx",
+                "why": "Karl Marx er relevant for politisk filosofi, frihet og rettferdighet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Capital",
+                  "Economic and Philosophic Manuscripts of 1844"
+                ]
+              },
+              {
+                "id": "hannah_arendt",
+                "name": "Hannah Arendt",
+                "why": "Hannah Arendt er relevant for politisk filosofi, frihet og rettferdighet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "The Human Condition",
+                  "The Origins of Totalitarianism"
+                ]
+              },
+              {
+                "id": "philip_pettit",
+                "name": "Philip Pettit",
+                "why": "Philip Pettit er relevant for politisk filosofi, frihet og rettferdighet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Republicanism"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_stat_samfunnskontrakt_legitimitet",
+            "em_filosofi_demokrati_offentlig_fornuft"
+          ],
+          "concept_ids": [
+            "deliberativt_demokrati",
+            "offentlig_fornuft",
+            "politisk_legitimitet",
+            "politisk_pluralisme",
+            "samfunnskontrakt",
+            "suverenitet"
+          ],
+          "best_place_types": [
+            "parlament",
+            "rådhus",
+            "rettsbygning",
+            "demonstrasjonssted",
+            "debattarena"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "thomas_hobbes",
+              "karl_marx"
+            ],
+            [
+              "hannah_arendt",
+              "philip_pettit"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_normativ_sammenligning",
+            "met_filosofi_reflektiv_likevekt",
+            "met_filosofi_argumentrekonstruksjon"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_politisk_filosofi_rettferdighet_02",
+          "title": "Frihet, rettigheter og tvang",
+          "definition": "Negativ og positiv frihet, rettigheter og legitim begrensning.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "jean_jacques_rousseau",
+                "name": "Jean-Jacques Rousseau",
+                "why": "Jean-Jacques Rousseau er relevant for politisk filosofi, frihet og rettferdighet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "The Social Contract",
+                  "Discourse on Inequality"
+                ]
+              },
+              {
+                "id": "john_rawls",
+                "name": "John Rawls",
+                "why": "John Rawls er relevant for politisk filosofi, frihet og rettferdighet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "A Theory of Justice",
+                  "Political Liberalism"
+                ]
+              },
+              {
+                "id": "jurgen_habermas",
+                "name": "Jürgen Habermas",
+                "why": "Jürgen Habermas er relevant for politisk filosofi, frihet og rettferdighet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Between Facts and Norms",
+                  "The Structural Transformation of the Public Sphere"
+                ]
+              },
+              {
+                "id": "amartya_sen",
+                "name": "Amartya Sen",
+                "why": "Amartya Sen er relevant for politisk filosofi, frihet og rettferdighet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "The Idea of Justice",
+                  "Development as Freedom"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_frihet_rettigheter_tvang"
+          ],
+          "concept_ids": [
+            "negativ_frihet",
+            "positiv_frihet",
+            "rettighet"
+          ],
+          "best_place_types": [
+            "parlament",
+            "rådhus",
+            "rettsbygning",
+            "demonstrasjonssted",
+            "debattarena"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "jean_jacques_rousseau",
+              "john_rawls"
+            ],
+            [
+              "jurgen_habermas",
+              "amartya_sen"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_normativ_sammenligning",
+            "met_filosofi_reflektiv_likevekt",
+            "met_filosofi_argumentrekonstruksjon"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_politisk_filosofi_rettferdighet_03",
+          "title": "Rettferdighet, likhet og fordeling",
+          "definition": "Hvordan goder, byrder og muligheter bør fordeles.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "mary_wollstonecraft",
+                "name": "Mary Wollstonecraft",
+                "why": "Mary Wollstonecraft er relevant for politisk filosofi, frihet og rettferdighet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "A Vindication of the Rights of Woman"
+                ]
+              },
+              {
+                "id": "robert_nozick",
+                "name": "Robert Nozick",
+                "why": "Robert Nozick er relevant for politisk filosofi, frihet og rettferdighet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Anarchy, State, and Utopia"
+                ]
+              },
+              {
+                "id": "isaiah_berlin",
+                "name": "Isaiah Berlin",
+                "why": "Isaiah Berlin er relevant for politisk filosofi, frihet og rettferdighet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Two Concepts of Liberty"
+                ]
+              },
+              {
+                "id": "iris_marion_young",
+                "name": "Iris Marion Young",
+                "why": "Iris Marion Young er relevant for politisk filosofi, frihet og rettferdighet gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Justice and the Politics of Difference",
+                  "Inclusion and Democracy"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_rettferdighet_likhet_fordeling"
+          ],
+          "concept_ids": [
+            "fordelingsrettferdighet",
+            "kapabilitet",
+            "likhet"
+          ],
+          "best_place_types": [
+            "parlament",
+            "rådhus",
+            "rettsbygning",
+            "demonstrasjonssted",
+            "debattarena"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "mary_wollstonecraft",
+              "robert_nozick"
+            ],
+            [
+              "isaiah_berlin",
+              "iris_marion_young"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_normativ_sammenligning",
+            "met_filosofi_reflektiv_likevekt",
+            "met_filosofi_argumentrekonstruksjon"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        }
+      ],
+      "canonical_status": "canonical"
+    },
+    {
+      "id": "sosial_filosofi_makt",
+      "title": "Sosial filosofi, makt og frigjøring",
+      "tagline": "Hvordan makt, kjønn, rase, klasse, kolonialitet, språk og institusjoner former handlingsrom og erfaring.",
+      "definition": "Hvordan makt, kjønn, rase, klasse, kolonialitet, språk og institusjoner former handlingsrom og erfaring.",
+      "focus": [
+        "Makt, disiplin og hegemoni",
+        "Rase, kolonialitet og dekolonisering",
+        "Kjønn, performativitet og feminisme",
+        "Anerkjennelse, fremmedgjøring og frigjøring"
+      ],
+      "emne_ids": [
+        "em_filosofi_makt_disiplin_hegemoni",
+        "em_filosofi_rase_kolonialitet_dekolonisering",
+        "em_filosofi_kjonn_performativitet_feminisme",
+        "em_filosofi_anerkjennelse_fremmedgjoring_frigjoring"
+      ],
+      "best_place_types": [
+        "arbeidsplass",
+        "minnested",
+        "demonstrasjonssted",
+        "museum",
+        "utdanningsinstitusjon"
+      ],
+      "topic_hooks": [
+        {
+          "id": "fil_sosial_filosofi_makt_01",
+          "title": "Makt, disiplin og hegemoni / Anerkjennelse, fremmedgjøring og frigjøring",
+          "definition": "Hvordan makt virker gjennom institusjoner, normer og kunnskap. Hvordan sosial identitet, arbeid og fellesskap påvirker frihet.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "friedrich_nietzsche",
+                "name": "Friedrich Nietzsche",
+                "why": "Friedrich Nietzsche er relevant for sosial filosofi, makt og frigjøring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "On the Genealogy of Morality",
+                  "Beyond Good and Evil"
+                ]
+              },
+              {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "why": "Michel Foucault er relevant for sosial filosofi, makt og frigjøring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Discipline and Punish",
+                  "The History of Sexuality"
+                ]
+              },
+              {
+                "id": "gayatri_spivak",
+                "name": "Gayatri Chakravorty Spivak",
+                "why": "Gayatri Chakravorty Spivak er relevant for sosial filosofi, makt og frigjøring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Can the Subaltern Speak?"
+                ]
+              },
+              {
+                "id": "achille_mbembe",
+                "name": "Achille Mbembe",
+                "why": "Achille Mbembe er relevant for sosial filosofi, makt og frigjøring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Necropolitics",
+                  "On the Postcolony"
+                ]
+              },
+              {
+                "id": "paulo_freire",
+                "name": "Paulo Freire",
+                "why": "Paulo Freire er relevant for sosial filosofi, makt og frigjøring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "contextual",
+                "works": [
+                  "Pedagogy of the Oppressed"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_makt_disiplin_hegemoni",
+            "em_filosofi_anerkjennelse_fremmedgjoring_frigjoring"
+          ],
+          "concept_ids": [
+            "anerkjennelse",
+            "disiplin",
+            "fremmedgjoring",
+            "frigjoring",
+            "hegemoni",
+            "makt"
+          ],
+          "best_place_types": [
+            "arbeidsplass",
+            "minnested",
+            "demonstrasjonssted",
+            "museum",
+            "utdanningsinstitusjon"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "friedrich_nietzsche",
+              "michel_foucault"
+            ],
+            [
+              "gayatri_spivak",
+              "achille_mbembe"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_kritisk_teori",
+            "met_filosofi_diskursanalyse",
+            "met_filosofi_standpunktanalyse"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_sosial_filosofi_makt_02",
+          "title": "Rase, kolonialitet og dekolonisering",
+          "definition": "Hvordan koloniale kategorier og hierarkier opprettholdes og utfordres.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "web_du_bois",
+                "name": "W. E. B. Du Bois",
+                "why": "W. E. B. Du Bois er relevant for sosial filosofi, makt og frigjøring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Souls of Black Folk"
+                ]
+              },
+              {
+                "id": "judith_butler",
+                "name": "Judith Butler",
+                "why": "Judith Butler er relevant for sosial filosofi, makt og frigjøring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Gender Trouble",
+                  "Bodies That Matter"
+                ]
+              },
+              {
+                "id": "edward_said",
+                "name": "Edward Said",
+                "why": "Edward Said er relevant for sosial filosofi, makt og frigjøring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Orientalism"
+                ]
+              },
+              {
+                "id": "pierre_bourdieu",
+                "name": "Pierre Bourdieu",
+                "why": "Pierre Bourdieu er relevant for sosial filosofi, makt og frigjøring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Distinction",
+                  "Outline of a Theory of Practice"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_rase_kolonialitet_dekolonisering"
+          ],
+          "concept_ids": [
+            "dekolonisering",
+            "kolonialitet",
+            "rasialisering"
+          ],
+          "best_place_types": [
+            "arbeidsplass",
+            "minnested",
+            "demonstrasjonssted",
+            "museum",
+            "utdanningsinstitusjon"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "web_du_bois",
+              "judith_butler"
+            ],
+            [
+              "edward_said",
+              "pierre_bourdieu"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_kritisk_teori",
+            "met_filosofi_diskursanalyse",
+            "met_filosofi_standpunktanalyse"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_sosial_filosofi_makt_03",
+          "title": "Kjønn, performativitet og feminisme",
+          "definition": "Hvordan kjønn formes sosialt og politisk.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "simone_de_beauvoir",
+                "name": "Simone de Beauvoir",
+                "why": "Simone de Beauvoir er relevant for sosial filosofi, makt og frigjøring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "The Second Sex",
+                  "The Ethics of Ambiguity"
+                ]
+              },
+              {
+                "id": "bell_hooks",
+                "name": "bell hooks",
+                "why": "bell hooks er relevant for sosial filosofi, makt og frigjøring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Ain't I a Woman?",
+                  "Teaching to Transgress"
+                ]
+              },
+              {
+                "id": "charles_mills",
+                "name": "Charles W. Mills",
+                "why": "Charles W. Mills er relevant for sosial filosofi, makt og frigjøring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Racial Contract"
+                ]
+              },
+              {
+                "id": "antonio_gramsci",
+                "name": "Antonio Gramsci",
+                "why": "Antonio Gramsci er relevant for sosial filosofi, makt og frigjøring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Prison Notebooks"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_kjonn_performativitet_feminisme"
+          ],
+          "concept_ids": [
+            "interseksjonalitet",
+            "kjonn",
+            "performativitet"
+          ],
+          "best_place_types": [
+            "arbeidsplass",
+            "minnested",
+            "demonstrasjonssted",
+            "museum",
+            "utdanningsinstitusjon"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "simone_de_beauvoir",
+              "bell_hooks"
+            ],
+            [
+              "charles_mills",
+              "antonio_gramsci"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_kritisk_teori",
+            "met_filosofi_diskursanalyse",
+            "met_filosofi_standpunktanalyse"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        }
+      ],
+      "canonical_status": "canonical"
     },
     {
       "id": "estetikk_fortolkning",
-      "title": "Estetikk og fortolkning",
-      "definition": "Kunsterfaring, skjønnhet, kunststatus og hvordan mening formes gjennom verk, kontekst og fortolker.",
-      "emne_ids": ["em_filosofi_estetikk_kunsterfaring", "em_filosofi_fortolkning_hermeneutikk"],
-      "best_place_types": ["museum", "galleri", "teater", "arkitekturverk", "monument", "bibliotek"]
+      "title": "Estetikk, kunst og fortolkning",
+      "tagline": "Kunsterfaring, skjønnhet, smak, kunststatus og hvordan mening oppstår i møte mellom verk, kontekst og fortolker.",
+      "definition": "Kunsterfaring, skjønnhet, smak, kunststatus og hvordan mening oppstår i møte mellom verk, kontekst og fortolker.",
+      "focus": [
+        "Skjønnhet, smak og estetisk dom",
+        "Kunstverk, kunststatus og institusjon",
+        "Hermeneutikk og fortolkning",
+        "Kunst, politikk og offentlighet"
+      ],
+      "emne_ids": [
+        "em_filosofi_skjonnhet_smak_dom",
+        "em_filosofi_kunstverk_kunststatus_institusjon",
+        "em_filosofi_hermeneutikk_fortolkning",
+        "em_filosofi_kunst_politikk_offentlighet"
+      ],
+      "best_place_types": [
+        "museum",
+        "galleri",
+        "teater",
+        "arkitekturverk",
+        "monument",
+        "bibliotek"
+      ],
+      "topic_hooks": [
+        {
+          "id": "fil_estetikk_fortolkning_01",
+          "title": "Skjønnhet, smak og estetisk dom / Hermeneutikk og fortolkning",
+          "definition": "Hvordan estetiske vurderinger begrunnes. Hvordan mening oppstår i møtet mellom verk, kontekst og fortolker.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "friedrich_schiller",
+                "name": "Friedrich Schiller",
+                "why": "Friedrich Schiller er relevant for estetikk, kunst og fortolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "On the Aesthetic Education of Man"
+                ]
+              },
+              {
+                "id": "walter_benjamin",
+                "name": "Walter Benjamin",
+                "why": "Walter Benjamin er relevant for estetikk, kunst og fortolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Work of Art in the Age of Mechanical Reproduction"
+                ]
+              },
+              {
+                "id": "hans_georg_gadamer",
+                "name": "Hans-Georg Gadamer",
+                "why": "Hans-Georg Gadamer er relevant for estetikk, kunst og fortolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Truth and Method"
+                ]
+              },
+              {
+                "id": "arthur_danto",
+                "name": "Arthur Danto",
+                "why": "Arthur Danto er relevant for estetikk, kunst og fortolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Transfiguration of the Commonplace"
+                ]
+              },
+              {
+                "id": "jacques_ranciere",
+                "name": "Jacques Rancière",
+                "why": "Jacques Rancière er relevant for estetikk, kunst og fortolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Politics of Aesthetics"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_skjonnhet_smak_dom",
+            "em_filosofi_hermeneutikk_fortolkning"
+          ],
+          "concept_ids": [
+            "estetisk_dom",
+            "forforstaelse",
+            "hermeneutikk",
+            "hermeneutisk_sirkel",
+            "skjonnhet",
+            "smak"
+          ],
+          "best_place_types": [
+            "museum",
+            "galleri",
+            "teater",
+            "arkitekturverk",
+            "monument",
+            "bibliotek"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "friedrich_schiller",
+              "walter_benjamin"
+            ],
+            [
+              "hans_georg_gadamer",
+              "arthur_danto"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_hermeneutisk_lesning",
+            "met_filosofi_fenomenologisk_beskrivelse",
+            "met_filosofi_kildekritisk_verklesning"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_estetikk_fortolkning_02",
+          "title": "Kunstverk, kunststatus og institusjon / Kunst, politikk og offentlighet",
+          "definition": "Hva som gjør noe til kunst. Hvordan kunst former sansning, kritikk og kollektiv erfaring.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "john_dewey",
+                "name": "John Dewey",
+                "why": "John Dewey er relevant for estetikk, kunst og fortolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Art as Experience"
+                ]
+              },
+              {
+                "id": "theodor_adorno",
+                "name": "Theodor W. Adorno",
+                "why": "Theodor W. Adorno er relevant for estetikk, kunst og fortolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Aesthetic Theory"
+                ]
+              },
+              {
+                "id": "paul_ricoeur",
+                "name": "Paul Ricoeur",
+                "why": "Paul Ricoeur er relevant for estetikk, kunst og fortolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Interpretation Theory",
+                  "Time and Narrative"
+                ]
+              },
+              {
+                "id": "susan_sontag",
+                "name": "Susan Sontag",
+                "why": "Susan Sontag er relevant for estetikk, kunst og fortolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "contextual",
+                "works": [
+                  "Against Interpretation",
+                  "On Photography"
+                ]
+              },
+              {
+                "id": "elaine_scarry",
+                "name": "Elaine Scarry",
+                "why": "Elaine Scarry er relevant for estetikk, kunst og fortolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "On Beauty and Being Just"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_kunstverk_kunststatus_institusjon",
+            "em_filosofi_kunst_politikk_offentlighet"
+          ],
+          "concept_ids": [
+            "aura",
+            "estetisk_regime",
+            "kritisk_kunst",
+            "kunstinstitusjon",
+            "kunststatus",
+            "kunstverk"
+          ],
+          "best_place_types": [
+            "museum",
+            "galleri",
+            "teater",
+            "arkitekturverk",
+            "monument",
+            "bibliotek"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "john_dewey",
+              "theodor_adorno"
+            ],
+            [
+              "paul_ricoeur",
+              "susan_sontag"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_hermeneutisk_lesning",
+            "met_filosofi_fenomenologisk_beskrivelse",
+            "met_filosofi_kildekritisk_verklesning"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        }
+      ],
+      "canonical_status": "canonical"
     },
     {
-      "id": "eksistens_erfaring_miljo",
-      "title": "Eksistens, erfaring og miljø",
-      "definition": "Mening, frihet, levd erfaring og menneskets normative og ontologiske forhold til naturen.",
-      "emne_ids": ["em_filosofi_eksistens_mening", "em_filosofi_fenomenologi_erfaring", "em_filosofi_miljofilosofi_dypokologi"],
-      "best_place_types": ["tenkested", "fjellhytte", "natursted", "pilegrimsrute", "minnested", "atelier"]
+      "id": "vitenskapsfilosofi",
+      "title": "Vitenskapsfilosofi og forklaring",
+      "tagline": "Hva som skiller vitenskap fra andre kunnskapsformer, og hvordan evidens, modeller, forklaring og teori virker.",
+      "definition": "Hva som skiller vitenskap fra andre kunnskapsformer, og hvordan evidens, modeller, forklaring og teori virker.",
+      "focus": [
+        "Demarkasjon og falsifikasjon",
+        "Paradigmer og forskningsprogrammer",
+        "Evidens, forklaring og modell",
+        "Verdier, objektivitet og vitenskap"
+      ],
+      "emne_ids": [
+        "em_filosofi_demarkasjon_falsifikasjon",
+        "em_filosofi_paradigmer_forskningsprogrammer",
+        "em_filosofi_evidens_forklaring_modell",
+        "em_filosofi_verdier_objektivitet_vitenskap"
+      ],
+      "best_place_types": [
+        "universitet",
+        "forskningsinstitusjon",
+        "laboratorium",
+        "museum",
+        "observatorium"
+      ],
+      "topic_hooks": [
+        {
+          "id": "fil_vitenskapsfilosofi_01",
+          "title": "Demarkasjon og falsifikasjon / Verdier, objektivitet og vitenskap",
+          "definition": "Hva som skiller vitenskap fra pseudovitenskap. Hvordan sosiale og normative verdier virker i forskning.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "francis_bacon",
+                "name": "Francis Bacon",
+                "why": "Francis Bacon er relevant for vitenskapsfilosofi og forklaring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Novum Organum"
+                ]
+              },
+              {
+                "id": "imre_lakatos",
+                "name": "Imre Lakatos",
+                "why": "Imre Lakatos er relevant for vitenskapsfilosofi og forklaring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Methodology of Scientific Research Programmes"
+                ]
+              },
+              {
+                "id": "bas_van_fraassen",
+                "name": "Bas van Fraassen",
+                "why": "Bas van Fraassen er relevant for vitenskapsfilosofi og forklaring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Scientific Image"
+                ]
+              },
+              {
+                "id": "robert_merton",
+                "name": "Robert K. Merton",
+                "why": "Robert K. Merton er relevant for vitenskapsfilosofi og forklaring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "contextual",
+                "works": [
+                  "The Sociology of Science"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_demarkasjon_falsifikasjon",
+            "em_filosofi_verdier_objektivitet_vitenskap"
+          ],
+          "concept_ids": [
+            "demarkasjon",
+            "falsifiserbarhet",
+            "objektivitet",
+            "pseudovitenskap",
+            "underdeterminering",
+            "verdiladet_vitenskap"
+          ],
+          "best_place_types": [
+            "universitet",
+            "forskningsinstitusjon",
+            "laboratorium",
+            "museum",
+            "observatorium"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "francis_bacon",
+              "imre_lakatos"
+            ],
+            [
+              "bas_van_fraassen",
+              "robert_merton"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_vitenskapsfilosofisk_case",
+            "met_filosofi_abduktiv_vurdering",
+            "met_filosofi_premissproving"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_vitenskapsfilosofi_02",
+          "title": "Paradigmer og forskningsprogrammer",
+          "definition": "Hvordan vitenskap utvikler seg gjennom normalitet, kriser og konkurrerende programmer.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "karl_popper",
+                "name": "Karl Popper",
+                "why": "Karl Popper er relevant for vitenskapsfilosofi og forklaring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "The Logic of Scientific Discovery",
+                  "Conjectures and Refutations"
+                ]
+              },
+              {
+                "id": "paul_feyerabend",
+                "name": "Paul Feyerabend",
+                "why": "Paul Feyerabend er relevant for vitenskapsfilosofi og forklaring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Against Method"
+                ]
+              },
+              {
+                "id": "nancy_cartwright",
+                "name": "Nancy Cartwright",
+                "why": "Nancy Cartwright er relevant for vitenskapsfilosofi og forklaring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "How the Laws of Physics Lie"
+                ]
+              },
+              {
+                "id": "donna_haraway",
+                "name": "Donna Haraway",
+                "why": "Donna Haraway er relevant for vitenskapsfilosofi og forklaring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Situated Knowledges",
+                  "Staying with the Trouble"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_paradigmer_forskningsprogrammer"
+          ],
+          "concept_ids": [
+            "forskningsprogram",
+            "normalvitenskap",
+            "paradigme"
+          ],
+          "best_place_types": [
+            "universitet",
+            "forskningsinstitusjon",
+            "laboratorium",
+            "museum",
+            "observatorium"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "karl_popper",
+              "paul_feyerabend"
+            ],
+            [
+              "nancy_cartwright",
+              "donna_haraway"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_vitenskapsfilosofisk_case",
+            "met_filosofi_abduktiv_vurdering",
+            "met_filosofi_premissproving"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_vitenskapsfilosofi_03",
+          "title": "Evidens, forklaring og modell",
+          "definition": "Hvordan data og modeller støtter teorier.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "thomas_kuhn",
+                "name": "Thomas Kuhn",
+                "why": "Thomas Kuhn er relevant for vitenskapsfilosofi og forklaring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Structure of Scientific Revolutions"
+                ]
+              },
+              {
+                "id": "carl_hempel",
+                "name": "Carl Hempel",
+                "why": "Carl Hempel er relevant for vitenskapsfilosofi og forklaring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Aspects of Scientific Explanation"
+                ]
+              },
+              {
+                "id": "pierre_duhem",
+                "name": "Pierre Duhem",
+                "why": "Pierre Duhem er relevant for vitenskapsfilosofi og forklaring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Aim and Structure of Physical Theory"
+                ]
+              },
+              {
+                "id": "philip_kitcher",
+                "name": "Philip Kitcher",
+                "why": "Philip Kitcher er relevant for vitenskapsfilosofi og forklaring gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Science, Truth, and Democracy"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_evidens_forklaring_modell"
+          ],
+          "concept_ids": [
+            "evidens",
+            "modell",
+            "vitenskapelig_forklaring"
+          ],
+          "best_place_types": [
+            "universitet",
+            "forskningsinstitusjon",
+            "laboratorium",
+            "museum",
+            "observatorium"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "thomas_kuhn",
+              "carl_hempel"
+            ],
+            [
+              "pierre_duhem",
+              "philip_kitcher"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_vitenskapsfilosofisk_case",
+            "met_filosofi_abduktiv_vurdering",
+            "met_filosofi_premissproving"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        }
+      ],
+      "canonical_status": "canonical"
     },
     {
-      "id": "idehistorie_tradisjoner_steder",
-      "title": "Idéhistorie, tradisjoner og steder",
-      "definition": "Hvordan filosofiske tekster, begreper og konflikter overføres, oversettes og institusjonaliseres.",
-      "emne_ids": ["em_filosofi_idehistorie_tradisjon_resepsjon"],
-      "best_place_types": ["universitet", "bibliotek", "arkiv", "forlag", "foreningslokale", "monument", "personhjem"]
+      "id": "teknologi_ai",
+      "title": "Teknologi, digitalitet og kunstig intelligens",
+      "tagline": "Hvordan tekniske systemer former kunnskap, arbeid, ansvar, makt og menneskesyn.",
+      "definition": "Hvordan tekniske systemer former kunnskap, arbeid, ansvar, makt og menneskesyn.",
+      "focus": [
+        "Teknologi, makt og infrastruktur",
+        "Kunstig intelligens, intelligens og personskap",
+        "Algoritmisk rettferdighet og ansvar",
+        "Data, personvern og overvåking"
+      ],
+      "emne_ids": [
+        "em_filosofi_teknologi_makt_infrastruktur",
+        "em_filosofi_ai_intelligens_personskap",
+        "em_filosofi_algoritmisk_rettferdighet_ansvar",
+        "em_filosofi_data_personvern_overvaking"
+      ],
+      "best_place_types": [
+        "teknologiinstitusjon",
+        "infrastruktur",
+        "datasenter",
+        "museum",
+        "arbeidsplass"
+      ],
+      "topic_hooks": [
+        {
+          "id": "fil_teknologi_ai_01",
+          "title": "Teknologi, makt og infrastruktur / Data, personvern og overvåking",
+          "definition": "Hvordan tekniske systemer fordeler handlingsrom og autoritet. Hva kontroll over informasjon betyr for frihet og demokrati.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "martin_heidegger",
+                "name": "Martin Heidegger",
+                "why": "Martin Heidegger er relevant for teknologi, digitalitet og kunstig intelligens gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "The Question Concerning Technology",
+                  "Being and Time"
+                ]
+              },
+              {
+                "id": "lewis_mumford",
+                "name": "Lewis Mumford",
+                "why": "Lewis Mumford er relevant for teknologi, digitalitet og kunstig intelligens gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "The Myth of the Machine",
+                  "Technics and Civilization"
+                ]
+              },
+              {
+                "id": "hans_jonas",
+                "name": "Hans Jonas",
+                "why": "Hans Jonas er relevant for teknologi, digitalitet og kunstig intelligens gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Imperative of Responsibility"
+                ]
+              },
+              {
+                "id": "cathy_oneil",
+                "name": "Cathy O'Neil",
+                "why": "Cathy O'Neil er relevant for teknologi, digitalitet og kunstig intelligens gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "contextual",
+                "works": [
+                  "Weapons of Math Destruction"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_teknologi_makt_infrastruktur",
+            "em_filosofi_data_personvern_overvaking"
+          ],
+          "concept_ids": [
+            "informasjonsautonomi",
+            "infrastruktur",
+            "overvaking",
+            "personvern",
+            "teknologisk_determinisme",
+            "teknologisk_makt"
+          ],
+          "best_place_types": [
+            "teknologiinstitusjon",
+            "infrastruktur",
+            "datasenter",
+            "museum",
+            "arbeidsplass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "martin_heidegger",
+              "lewis_mumford"
+            ],
+            [
+              "hans_jonas",
+              "cathy_oneil"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_teknologisk_medisiering",
+            "met_filosofi_algoritmisk_audit",
+            "met_filosofi_casebasert_etikk"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_teknologi_ai_02",
+          "title": "Kunstig intelligens, intelligens og personskap",
+          "definition": "Hva intelligens, forståelse og moralsk status innebærer.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "jacques_ellul",
+                "name": "Jacques Ellul",
+                "why": "Jacques Ellul er relevant for teknologi, digitalitet og kunstig intelligens gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Technological Society"
+                ]
+              },
+              {
+                "id": "langdon_winner",
+                "name": "Langdon Winner",
+                "why": "Langdon Winner er relevant for teknologi, digitalitet og kunstig intelligens gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Whale and the Reactor"
+                ]
+              },
+              {
+                "id": "luciano_floridi",
+                "name": "Luciano Floridi",
+                "why": "Luciano Floridi er relevant for teknologi, digitalitet og kunstig intelligens gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Ethics of Information"
+                ]
+              },
+              {
+                "id": "ruha_benjamin",
+                "name": "Ruha Benjamin",
+                "why": "Ruha Benjamin er relevant for teknologi, digitalitet og kunstig intelligens gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Race After Technology"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_ai_intelligens_personskap"
+          ],
+          "concept_ids": [
+            "forstaelse",
+            "kunstig_intelligens",
+            "personskap"
+          ],
+          "best_place_types": [
+            "teknologiinstitusjon",
+            "infrastruktur",
+            "datasenter",
+            "museum",
+            "arbeidsplass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "jacques_ellul",
+              "langdon_winner"
+            ],
+            [
+              "luciano_floridi",
+              "ruha_benjamin"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_teknologisk_medisiering",
+            "met_filosofi_algoritmisk_audit",
+            "met_filosofi_casebasert_etikk"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_teknologi_ai_03",
+          "title": "Algoritmisk rettferdighet og ansvar",
+          "definition": "Skjevhet, forklarbarhet og ansvar i automatiserte systemer.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "gilbert_simondon",
+                "name": "Gilbert Simondon",
+                "why": "Gilbert Simondon er relevant for teknologi, digitalitet og kunstig intelligens gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "On the Mode of Existence of Technical Objects"
+                ]
+              },
+              {
+                "id": "andrew_feenberg",
+                "name": "Andrew Feenberg",
+                "why": "Andrew Feenberg er relevant for teknologi, digitalitet og kunstig intelligens gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Transforming Technology"
+                ]
+              },
+              {
+                "id": "shannon_vallor",
+                "name": "Shannon Vallor",
+                "why": "Shannon Vallor er relevant for teknologi, digitalitet og kunstig intelligens gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Technology and the Virtues"
+                ]
+              },
+              {
+                "id": "kate_crawford",
+                "name": "Kate Crawford",
+                "why": "Kate Crawford er relevant for teknologi, digitalitet og kunstig intelligens gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "contextual",
+                "works": [
+                  "Atlas of AI"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_algoritmisk_rettferdighet_ansvar"
+          ],
+          "concept_ids": [
+            "algoritmisk_skjevhet",
+            "ansvarsgap",
+            "forklarbarhet"
+          ],
+          "best_place_types": [
+            "teknologiinstitusjon",
+            "infrastruktur",
+            "datasenter",
+            "museum",
+            "arbeidsplass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "gilbert_simondon",
+              "andrew_feenberg"
+            ],
+            [
+              "shannon_vallor",
+              "kate_crawford"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_teknologisk_medisiering",
+            "met_filosofi_algoritmisk_audit",
+            "met_filosofi_casebasert_etikk"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        }
+      ],
+      "canonical_status": "canonical"
+    },
+    {
+      "id": "eksistens_fenomenologi",
+      "title": "Eksistens, fenomenologi og livstolkning",
+      "tagline": "Frihet, angst, mening, dødelighet, kroppslig erfaring og møtet med andre.",
+      "definition": "Frihet, angst, mening, dødelighet, kroppslig erfaring og møtet med andre.",
+      "focus": [
+        "Eksistens, mening og autentisitet",
+        "Angst, absurditet og dødelighet",
+        "Fenomenologi, livsverden og kropp",
+        "Den andre, ansiktet og ansvar"
+      ],
+      "emne_ids": [
+        "em_filosofi_eksistens_mening_autentisitet",
+        "em_filosofi_angst_absurditet_dodelighet",
+        "em_filosofi_fenomenologi_livsverden_kropp",
+        "em_filosofi_den_andre_ansikt_ansvar"
+      ],
+      "best_place_types": [
+        "tenkested",
+        "minnested",
+        "pilegrimsrute",
+        "personhjem",
+        "sykehus"
+      ],
+      "topic_hooks": [
+        {
+          "id": "fil_eksistens_fenomenologi_01",
+          "title": "Eksistens, mening og autentisitet / Fenomenologi, livsverden og kropp",
+          "definition": "Hvordan mennesker forholder seg til valg, ansvar og mening. Hvordan erfaring beskrives før den forklares.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "soren_kierkegaard",
+                "name": "Søren Kierkegaard",
+                "why": "Søren Kierkegaard er relevant for eksistens, fenomenologi og livstolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Either/Or",
+                  "The Concept of Anxiety"
+                ]
+              },
+              {
+                "id": "jean_paul_sartre",
+                "name": "Jean-Paul Sartre",
+                "why": "Jean-Paul Sartre er relevant for eksistens, fenomenologi og livstolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Being and Nothingness",
+                  "Existentialism Is a Humanism"
+                ]
+              },
+              {
+                "id": "emmanuel_levinas",
+                "name": "Emmanuel Levinas",
+                "why": "Emmanuel Levinas er relevant for eksistens, fenomenologi og livstolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Totality and Infinity"
+                ]
+              },
+              {
+                "id": "keiji_nishitani",
+                "name": "Keiji Nishitani",
+                "why": "Keiji Nishitani er relevant for eksistens, fenomenologi og livstolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Religion and Nothingness"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_eksistens_mening_autentisitet",
+            "em_filosofi_fenomenologi_livsverden_kropp"
+          ],
+          "concept_ids": [
+            "autentisitet",
+            "eksistens",
+            "fenomenologi",
+            "levd_kropp",
+            "livsverden",
+            "mening"
+          ],
+          "best_place_types": [
+            "tenkested",
+            "minnested",
+            "pilegrimsrute",
+            "personhjem",
+            "sykehus"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "soren_kierkegaard",
+              "jean_paul_sartre"
+            ],
+            [
+              "emmanuel_levinas",
+              "keiji_nishitani"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_fenomenologisk_beskrivelse",
+            "met_filosofi_hermeneutisk_lesning",
+            "met_filosofi_tankeeksperiment"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_eksistens_fenomenologi_02",
+          "title": "Angst, absurditet og dødelighet / Den andre, ansiktet og ansvar",
+          "definition": "Hvordan grensetilstander avdekker menneskelig eksistens. Hvordan møtet med andre etablerer etiske krav.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "edmund_husserl",
+                "name": "Edmund Husserl",
+                "why": "Edmund Husserl er relevant for eksistens, fenomenologi og livstolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Ideas Pertaining to a Pure Phenomenology",
+                  "The Crisis of European Sciences"
+                ]
+              },
+              {
+                "id": "albert_camus",
+                "name": "Albert Camus",
+                "why": "Albert Camus er relevant for eksistens, fenomenologi og livstolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "The Myth of Sisyphus",
+                  "The Rebel"
+                ]
+              },
+              {
+                "id": "viktor_frankl",
+                "name": "Viktor Frankl",
+                "why": "Viktor Frankl er relevant for eksistens, fenomenologi og livstolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "contextual",
+                "works": [
+                  "Man's Search for Meaning"
+                ]
+              },
+              {
+                "id": "maria_zambrano",
+                "name": "María Zambrano",
+                "why": "María Zambrano er relevant for eksistens, fenomenologi og livstolkning gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Claros del bosque"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_angst_absurditet_dodelighet",
+            "em_filosofi_den_andre_ansikt_ansvar"
+          ],
+          "concept_ids": [
+            "absurditet",
+            "angst",
+            "ansikt",
+            "den_andre",
+            "dodelighet",
+            "uendelig_ansvar"
+          ],
+          "best_place_types": [
+            "tenkested",
+            "minnested",
+            "pilegrimsrute",
+            "personhjem",
+            "sykehus"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "edmund_husserl",
+              "albert_camus"
+            ],
+            [
+              "viktor_frankl",
+              "maria_zambrano"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_fenomenologisk_beskrivelse",
+            "met_filosofi_hermeneutisk_lesning",
+            "met_filosofi_tankeeksperiment"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        }
+      ],
+      "canonical_status": "canonical"
+    },
+    {
+      "id": "miljo_dyr_klima",
+      "title": "Miljø-, dyre- og klimafilosofi",
+      "tagline": "Naturens verdi, dyrs moralske status, økologisk ansvar, generasjoner og rettferdig omstilling.",
+      "definition": "Naturens verdi, dyrs moralske status, økologisk ansvar, generasjoner og rettferdig omstilling.",
+      "focus": [
+        "Naturens egenverdi og dypøkologi",
+        "Dyrs moralske status",
+        "Klimarettferdighet og generasjoner",
+        "Økofeminisme og urfolkskunnskap"
+      ],
+      "emne_ids": [
+        "em_filosofi_natur_egenverdi_dypokologi",
+        "em_filosofi_dyr_moralsk_status",
+        "em_filosofi_klimarettferdighet_generasjoner",
+        "em_filosofi_okofeminisme_urfolkskunnskap"
+      ],
+      "best_place_types": [
+        "natursted",
+        "verneområde",
+        "gård",
+        "forskningsinstitusjon",
+        "energianlegg"
+      ],
+      "topic_hooks": [
+        {
+          "id": "fil_miljo_dyr_klima_01",
+          "title": "Naturens egenverdi og dypøkologi / Klimarettferdighet og generasjoner",
+          "definition": "Om naturen har verdi uavhengig av menneskelig nytte. Fordeling av risiko, ansvar og byrder over tid og sted.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "arne_naess",
+                "name": "Arne Næss",
+                "why": "Arne Næss er relevant for miljø-, dyre- og klimafilosofi gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Ecology, Community and Lifestyle"
+                ]
+              },
+              {
+                "id": "aldo_leopold",
+                "name": "Aldo Leopold",
+                "why": "Aldo Leopold er relevant for miljø-, dyre- og klimafilosofi gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "A Sand County Almanac"
+                ]
+              },
+              {
+                "id": "val_plumwood",
+                "name": "Val Plumwood",
+                "why": "Val Plumwood er relevant for miljø-, dyre- og klimafilosofi gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Feminism and the Mastery of Nature"
+                ]
+              },
+              {
+                "id": "robin_wall_kimmerer",
+                "name": "Robin Wall Kimmerer",
+                "why": "Robin Wall Kimmerer er relevant for miljø-, dyre- og klimafilosofi gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "contextual",
+                "works": [
+                  "Braiding Sweetgrass"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_natur_egenverdi_dypokologi",
+            "em_filosofi_klimarettferdighet_generasjoner"
+          ],
+          "concept_ids": [
+            "dypokologi",
+            "egenverdi",
+            "generasjonsrettferdighet",
+            "historisk_ansvar",
+            "klimarettferdighet",
+            "okologisk_selv"
+          ],
+          "best_place_types": [
+            "natursted",
+            "verneområde",
+            "gård",
+            "forskningsinstitusjon",
+            "energianlegg"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "arne_naess",
+              "aldo_leopold"
+            ],
+            [
+              "val_plumwood",
+              "robin_wall_kimmerer"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_normativ_sammenligning",
+            "met_filosofi_casebasert_etikk",
+            "met_filosofi_standpunktanalyse"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_miljo_dyr_klima_02",
+          "title": "Dyrs moralske status / Økofeminisme og urfolkskunnskap",
+          "definition": "Hvilke egenskaper og relasjoner som begrunner hensyn til dyr. Sammenhenger mellom natur, makt, omsorg og situert kunnskap.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "rachel_carson",
+                "name": "Rachel Carson",
+                "why": "Rachel Carson er relevant for miljø-, dyre- og klimafilosofi gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "contextual",
+                "works": [
+                  "Silent Spring"
+                ]
+              },
+              {
+                "id": "tom_regan",
+                "name": "Tom Regan",
+                "why": "Tom Regan er relevant for miljø-, dyre- og klimafilosofi gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Case for Animal Rights"
+                ]
+              },
+              {
+                "id": "holmes_rolston",
+                "name": "Holmes Rolston III",
+                "why": "Holmes Rolston III er relevant for miljø-, dyre- og klimafilosofi gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Environmental Ethics"
+                ]
+              },
+              {
+                "id": "kyle_whyte",
+                "name": "Kyle Powys Whyte",
+                "why": "Kyle Powys Whyte er relevant for miljø-, dyre- og klimafilosofi gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Indigenous Climate Change Studies"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_dyr_moralsk_status",
+            "em_filosofi_okofeminisme_urfolkskunnskap"
+          ],
+          "concept_ids": [
+            "artsdiskriminering",
+            "gjensidighet",
+            "moralsk_status",
+            "okofeminisme",
+            "sentiens",
+            "urfolkskunnskap"
+          ],
+          "best_place_types": [
+            "natursted",
+            "verneområde",
+            "gård",
+            "forskningsinstitusjon",
+            "energianlegg"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": false,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "rachel_carson",
+              "tom_regan"
+            ],
+            [
+              "holmes_rolston",
+              "kyle_whyte"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_normativ_sammenligning",
+            "met_filosofi_casebasert_etikk",
+            "met_filosofi_standpunktanalyse"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        }
+      ],
+      "canonical_status": "canonical"
+    },
+    {
+      "id": "globale_tradisjoner",
+      "title": "Globale tradisjoner og filosofihistorie",
+      "tagline": "Filosofiske tradisjoner som har utviklet ulike begreper om kunnskap, virkelighet, etikk, fellesskap og frigjøring.",
+      "definition": "Filosofiske tradisjoner som har utviklet ulike begreper om kunnskap, virkelighet, etikk, fellesskap og frigjøring.",
+      "focus": [
+        "Antikk, middelalder og modernitet",
+        "Kinesisk filosofi",
+        "Indisk og buddhistisk filosofi",
+        "Islamsk og jødisk filosofi",
+        "Afrikansk filosofi og ubuntu",
+        "Latinamerikansk frigjørings- og dekolonial filosofi"
+      ],
+      "emne_ids": [
+        "em_filosofi_antikk_middelalder_modernitet",
+        "em_filosofi_kinesisk_filosofi",
+        "em_filosofi_indisk_buddhistisk_filosofi",
+        "em_filosofi_islamsk_jodisk_filosofi",
+        "em_filosofi_afrikansk_filosofi_ubuntu",
+        "em_filosofi_latinamerikansk_dekolonial_filosofi"
+      ],
+      "best_place_types": [
+        "universitet",
+        "bibliotek",
+        "arkiv",
+        "trossamfunn",
+        "museum",
+        "personhjem"
+      ],
+      "topic_hooks": [
+        {
+          "id": "fil_globale_tradisjoner_01",
+          "title": "Antikk, middelalder og modernitet / Afrikansk filosofi og ubuntu",
+          "definition": "Kontinuiteter og brudd i europeisk og middelhavsk filosofi. Person, fellesskap, muntlighet, modernitet og dekolonisering.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "laozi",
+                "name": "Laozi",
+                "why": "Laozi er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Daodejing"
+                ]
+              },
+              {
+                "id": "shankara",
+                "name": "Śaṅkara",
+                "why": "Śaṅkara er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Brahma Sutra Bhashya"
+                ]
+              },
+              {
+                "id": "al_farabi",
+                "name": "Al-Fārābī",
+                "why": "Al-Fārābī er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Virtuous City"
+                ]
+              },
+              {
+                "id": "maimonides",
+                "name": "Moses Maimonides",
+                "why": "Moses Maimonides er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "The Guide for the Perplexed"
+                ]
+              },
+              {
+                "id": "sophie_oluwole",
+                "name": "Sophie Oluwole",
+                "why": "Sophie Oluwole er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Socrates and Ọ̀rúnmìlà"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_antikk_middelalder_modernitet",
+            "em_filosofi_afrikansk_filosofi_ubuntu"
+          ],
+          "concept_ids": [
+            "filosofisk_kanon",
+            "konseptuell_avkolonisering",
+            "modernitet",
+            "person_gjennom_fellesskap",
+            "resepsjon",
+            "ubuntu"
+          ],
+          "best_place_types": [
+            "universitet",
+            "bibliotek",
+            "arkiv",
+            "trossamfunn",
+            "museum",
+            "personhjem"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "laozi",
+              "shankara"
+            ],
+            [
+              "al_farabi",
+              "maimonides"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_komparativ_filosofi",
+            "met_filosofi_kildekritisk_verklesning",
+            "met_filosofi_dekolonial_lesning"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_globale_tradisjoner_02",
+          "title": "Kinesisk filosofi / Latinamerikansk frigjørings- og dekolonial filosofi",
+          "definition": "Konfucianske, daoistiske og nykonfucianske forståelser av liv og orden. Kolonialitet, avhengighet og frigjøring fra periferien.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "zhuangzi",
+                "name": "Zhuangzi",
+                "why": "Zhuangzi er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Zhuangzi"
+                ]
+              },
+              {
+                "id": "ramanuja",
+                "name": "Rāmānuja",
+                "why": "Rāmānuja er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Śrībhāṣya"
+                ]
+              },
+              {
+                "id": "ibn_rushd",
+                "name": "Ibn Rushd (Averroes)",
+                "why": "Ibn Rushd (Averroes) er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "The Incoherence of the Incoherence",
+                  "Decisive Treatise"
+                ]
+              },
+              {
+                "id": "anton_wilhelm_amo",
+                "name": "Anton Wilhelm Amo",
+                "why": "Anton Wilhelm Amo er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "On the Impassivity of the Human Mind"
+                ]
+              },
+              {
+                "id": "enrique_dussel",
+                "name": "Enrique Dussel",
+                "why": "Enrique Dussel er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Philosophy of Liberation"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_kinesisk_filosofi",
+            "em_filosofi_latinamerikansk_dekolonial_filosofi"
+          ],
+          "concept_ids": [
+            "dao",
+            "frigjoringsfilosofi",
+            "li",
+            "maktens_kolonialitet",
+            "ren",
+            "transmodernitet"
+          ],
+          "best_place_types": [
+            "universitet",
+            "bibliotek",
+            "arkiv",
+            "trossamfunn",
+            "museum",
+            "personhjem"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "zhuangzi",
+              "ramanuja"
+            ],
+            [
+              "ibn_rushd",
+              "anton_wilhelm_amo"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_komparativ_filosofi",
+            "met_filosofi_kildekritisk_verklesning",
+            "met_filosofi_dekolonial_lesning"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_globale_tradisjoner_03",
+          "title": "Indisk og buddhistisk filosofi",
+          "definition": "Selv, bevissthet, språk, lidelse og frigjøring.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "nagarjuna",
+                "name": "Nāgārjuna",
+                "why": "Nāgārjuna er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Mūlamadhyamakakārikā"
+                ]
+              },
+              {
+                "id": "dharmakirti",
+                "name": "Dharmakīrti",
+                "why": "Dharmakīrti er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Pramāṇavārttika"
+                ]
+              },
+              {
+                "id": "al_ghazali",
+                "name": "Al-Ghazālī",
+                "why": "Al-Ghazālī er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "The Incoherence of the Philosophers",
+                  "Deliverance from Error"
+                ]
+              },
+              {
+                "id": "kwasi_wiredu",
+                "name": "Kwasi Wiredu",
+                "why": "Kwasi Wiredu er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Philosophy and an African Culture"
+                ]
+              },
+              {
+                "id": "anibal_quijano",
+                "name": "Aníbal Quijano",
+                "why": "Aníbal Quijano er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Coloniality of Power, Eurocentrism, and Latin America"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_indisk_buddhistisk_filosofi"
+          ],
+          "concept_ids": [
+            "anatman",
+            "pramana",
+            "sunyata"
+          ],
+          "best_place_types": [
+            "universitet",
+            "bibliotek",
+            "arkiv",
+            "trossamfunn",
+            "museum",
+            "personhjem"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "nagarjuna",
+              "dharmakirti"
+            ],
+            [
+              "al_ghazali",
+              "kwasi_wiredu"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_komparativ_filosofi",
+            "met_filosofi_kildekritisk_verklesning",
+            "met_filosofi_dekolonial_lesning"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        },
+        {
+          "id": "fil_globale_tradisjoner_04",
+          "title": "Islamsk og jødisk filosofi",
+          "definition": "Fornuft, åpenbaring, metafysikk og politisk orden.",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "vasubandhu",
+                "name": "Vasubandhu",
+                "why": "Vasubandhu er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "core",
+                "works": [
+                  "Abhidharmakośabhāṣya",
+                  "Twenty Verses"
+                ]
+              },
+              {
+                "id": "dogen",
+                "name": "Dōgen",
+                "why": "Dōgen er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Shōbōgenzō"
+                ]
+              },
+              {
+                "id": "ibn_khaldun",
+                "name": "Ibn Khaldūn",
+                "why": "Ibn Khaldūn er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Muqaddimah"
+                ]
+              },
+              {
+                "id": "john_mbiti",
+                "name": "John S. Mbiti",
+                "why": "John S. Mbiti er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "African Religions and Philosophy"
+                ]
+              },
+              {
+                "id": "sylvia_wynter",
+                "name": "Sylvia Wynter",
+                "why": "Sylvia Wynter er relevant for globale tradisjoner og filosofihistorie gjennom sentrale argumenter, distinksjoner eller problemstillinger som kan knyttes til konkrete tekster, institusjoner og steder.",
+                "tier": "advanced",
+                "works": [
+                  "Unsettling the Coloniality of Being/Power/Truth/Freedom"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_filosofi_islamsk_jodisk_filosofi"
+          ],
+          "concept_ids": [
+            "dobbel_sannhet",
+            "fornuft_apenbaring",
+            "nodvendig_vaerende"
+          ],
+          "best_place_types": [
+            "universitet",
+            "bibliotek",
+            "arkiv",
+            "trossamfunn",
+            "museum",
+            "personhjem"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_filosofisk_eller_institusjonell_relevans"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "problem-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken filosof passer best uten at et argument eller verk er oppgitt",
+            "Hva mener du personlig uten krav til begrunnelse",
+            "Hvilken tradisjon er riktig uten presis problemstilling"
+          ],
+          "preferred_question_moves": [
+            "rekonstruer et argument fra et dokumentert utsagn",
+            "skill mellom to nærliggende begreper",
+            "sammenlign teoretikere på samme eksplisitte problem",
+            "anvend teori på et konkret sted eller institusjon"
+          ],
+          "comparison_pairs": [
+            [
+              "vasubandhu",
+              "dogen"
+            ],
+            [
+              "ibn_khaldun",
+              "john_mbiti"
+            ]
+          ],
+          "recommended_oslo_cases": [
+            "Universitetet i Oslo",
+            "Deichman Bjørvika",
+            "Nasjonalbiblioteket",
+            "Eidsvolls plass"
+          ],
+          "recommended_method_ids": [
+            "met_filosofi_komparativ_filosofi",
+            "met_filosofi_kildekritisk_verklesning",
+            "met_filosofi_dekolonial_lesning"
+          ],
+          "canonical_status": "canonical",
+          "theory_rotation_required": true,
+          "generator_constraints": {
+            "min_thinker_count": 4,
+            "require_argument_or_concept_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "avoid_name_guessing": true
+          }
+        }
+      ],
+      "canonical_status": "canonical"
     }
   ]
 }

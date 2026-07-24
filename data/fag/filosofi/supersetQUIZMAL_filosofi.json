@@ -1,5 +1,5 @@
 {
-  "version": "2.0",
+  "version": "3.0",
   "status": "canonical_category_profile",
   "type": "category_quiz_profile",
   "categoryId": "filosofi",
@@ -13,31 +13,90 @@
   },
   "required_emne_prefix": "em_filosofi_",
   "content_priorities": [
-    "premisser, konklusjoner, gyldighet og begrunnelse",
-    "kunnskap, sannhet, skepsis og vitenskapsfilosofi",
-    "etikk, ansvar, rettferdighet og politisk legitimitet",
-    "bevissthet, identitet, fri vilje og eksistens",
-    "estetikk, fortolkning, idéhistorie og miljøfilosofi"
+    "argumenter, premisser, slutninger og motargumenter",
+    "begrepsdefinisjon, distinksjon og avgrensning",
+    "erkjennelse, vitnesbyrd, ekspertise og epistemisk urettferdighet",
+    "metafysikk, bevissthet, identitet og fri vilje",
+    "normativ etikk, metaetikk, omsorg og anvendt ansvar",
+    "frihet, legitimitet, rettferdighet, demokrati og makt",
+    "feministisk, dekolonial og kritisk sosial filosofi",
+    "estetikk, hermeneutikk og kunstens offentlighet",
+    "vitenskapsfilosofi, teknologi, data og kunstig intelligens",
+    "eksistens, fenomenologi, miljø, dyr og klima",
+    "kinesiske, indiske, buddhistiske, islamske, jødiske, afrikanske og latinamerikanske tradisjoner"
   ],
   "essential_concepts": [
     "argument",
     "premiss",
     "konklusjon",
     "gyldighet",
+    "holdbarhet",
+    "logisk_folge",
+    "feilslutning",
+    "stramann",
+    "sirkelargument",
+    "velvillig_fortolkning",
+    "uenighetskompetanse",
+    "intellektuell_ydmykhet",
     "kunnskap",
     "begrunnelse",
-    "etikk",
-    "ansvar",
-    "rettferdighet",
-    "legitimitet",
+    "sannhet",
+    "skepsis",
+    "feilbarlighet",
+    "metodisk_tvil",
+    "vitnesbyrd",
+    "ekspertise",
+    "epistemisk_tillit",
+    "epistemisk_urettferdighet",
+    "standpunktsteori",
+    "situert_kunnskap",
+    "ontologi",
+    "substans",
+    "relasjonell_ontologi",
+    "arsak",
+    "nodvendighet",
+    "mulig_verden",
+    "tid",
+    "endring",
+    "prosessontologi",
+    "realisme",
+    "antirealisme",
+    "begrepsskjema",
     "bevissthet",
-    "egenverdi"
+    "dualisme",
+    "fysikalisme",
+    "intentionalitet"
   ],
   "preferred_source_types": [
-    "filosofiske primærtekster i pålitelige utgaver",
+    "filosofiske primærtekster i pålitelige og identifiserbare utgaver",
     "fagfellevurdert filosofi og idéhistorie",
+    "Stanford Encyclopedia of Philosophy og Internet Encyclopedia of Philosophy som orienterende sekundærkilder",
     "universitets- og forskningsinstitusjoners fagressurser",
     "arkiv, biografier og dokumentasjon av konkrete filosofiske steder"
   ],
-  "good_concept_question_example": "Hva kalles påstanden som et argument forsøker å begrunne?"
+  "question_design": {
+    "required_moves": [
+      "problem-first",
+      "concept-before-name",
+      "argument-reconstruction",
+      "explicit-comparison-basis",
+      "documented-place-anchor"
+    ],
+    "blocked_moves": [
+      "teoretiker som løs navnegjetting",
+      "personlig meningsmåling uten begrunnelse",
+      "tradisjon brukt tokenistisk",
+      "teori uten påstand eller kilde"
+    ],
+    "theory_binding_fields": [
+      "topic_hook_id",
+      "thinker_id",
+      "work",
+      "theory_ref",
+      "claim_basis",
+      "guidance_basis"
+    ]
+  },
+  "good_concept_question_example": "Hva skiller gyldighet fra holdbarhet i dette argumentet?",
+  "good_theory_question_example": "Hvilket premiss hos Rawls og Nozick skaper den tydeligste forskjellen i vurderingen av denne fordelingsordningen?"
 }
