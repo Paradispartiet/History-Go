@@ -1,0 +1,109 @@
+name: Literature vertical depth phase 2
+
+on:
+  push:
+    branches:
+      - agent/litteratur-vertikal-fase-2-historie
+
+permissions:
+  contents: write
+
+concurrency:
+  group: litteratur-vertical-phase-2
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout phase branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/litteratur-vertikal-fase-2-historie
+          fetch-depth: 0
+
+      - name: Configure Git
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+      - name: Verify and decode builder
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/litteratur-canonical-migration
+          echo 'e8ac1846d413982f723911954ea345636f677576aaf01b1af3f0fb00bd1b23e8  tools/build-litteratur-vertical-phase-2.mjs.gz.b64' \
+            | sha256sum -c - \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-phase-2-builder-checksum.txt
+          base64 --decode tools/build-litteratur-vertical-phase-2.mjs.gz.b64 \
+            | gzip --decompress > tools/build-litteratur-vertical-phase-2.mjs
+          echo 'efeea994c6fecf86d26762224449571af23c87582090b767078c6fbd9da49f65  tools/build-litteratur-vertical-phase-2.mjs' \
+            | sha256sum -c - \
+            2>&1 | tee -a reports/litteratur-canonical-migration/litteratur-phase-2-builder-checksum.txt
+          node --check tools/build-litteratur-vertical-phase-2.mjs \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-phase-2-builder-syntax.txt
+
+      - name: Materialize canonical phase 2
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/build-litteratur-vertical-phase-2.mjs \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-phase-2-materialization.txt
+
+      - name: Remove temporary artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f tools/build-litteratur-vertical-phase-2.mjs
+          rm -f tools/build-litteratur-vertical-phase-2.mjs.gz.b64
+          rm -f .github/workflows/litteratur-vertical-phase-2.yml
+          rm -f reports/litteratur-canonical-migration/litteratur-phase-2-builder-checksum.txt
+          rm -f reports/litteratur-canonical-migration/litteratur-phase-2-builder-syntax.txt
+          rm -f reports/litteratur-canonical-migration/litteratur-phase-2-materialization.txt
+
+      - name: Validate phase 2 and phase 1 regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/validate-litteratur-historie-phase-2.mjs \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-historie-phase-2-validation.txt
+          node tools/validate-litteratur-poetikk-phase-1.mjs \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-poetikk-phase-1-regression.txt
+          for file in \
+            data/fag/litteratur/fagkart_litteratur_canonical_v4_5.json \
+            data/fag/litteratur/emner_litteratur_canonical_v4_5.json \
+            data/fag/litteratur/methods_litteratur_canonical_v4_5.json \
+            data/fag/litteratur/emnemapping_litteratur_canonical_v4_5.json \
+            data/fag/litteratur/litteraturpensum_canonical_v4_5.json \
+            data/fag/litteratur/quiz_generator_rules_litteratur_v5_1_source_priority_patch.json \
+            reports/litteratur-canonical-migration/litteratur-question-blueprints.json; do
+            node -e 'JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log("PASS | Gyldig JSON: "+process.argv[1])' "$file" \
+              | tee -a reports/litteratur-canonical-migration/litteratur-historie-phase-2-validation.txt
+          done
+          git diff --check \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-phase-2-diff-check.txt
+
+      - name: Commit materialized phase
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A -- \
+            data/fag/litteratur \
+            reports/litteratur-canonical-migration \
+            tools/validate-litteratur-historie-phase-2.mjs \
+            tools/build-litteratur-vertical-phase-2.mjs \
+            tools/build-litteratur-vertical-phase-2.mjs.gz.b64 \
+            .github/workflows/litteratur-vertical-phase-2.yml
+          git diff --cached --check
+          git commit -m 'Litteratur: bygg historisk og verdenslitterær akse'
+          git push origin HEAD:agent/litteratur-vertikal-fase-2-historie
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: literature-phase-2-diagnostics-${{ github.run_id }}
+          path: reports/litteratur-canonical-migration/
+          if-no-files-found: warn
