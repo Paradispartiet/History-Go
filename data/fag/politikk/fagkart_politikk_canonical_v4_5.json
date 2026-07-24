@@ -1840,59 +1840,160 @@
     {
       "id": "demokrati_representasjon_offentlighet",
       "title": "Demokrati, representasjon og offentlighet",
-      "tagline": "Hvordan valg, representasjon, offentlig debatt og politiske rom gjør fellesskapet styrbart og synlig.",
-      "definition": "Domenet dekker demokrati, valg, representasjon, parlamentarisme, lokaldemokrati, offentlighet, debatt, politiske symboler og politiske møteplasser.",
+      "tagline": "Hvordan borgere, grupper og institusjoner blir representert, hørt og ansvarliggjort gjennom valg, parlamentarisme, offentlighet, organisering og politiske rom.",
+      "definition": "Domenet undersøker hvordan politiske krav blir uttrykt, aggregert, representert og gjort bindende, hvordan offentlig debatt og organisering påvirker dagsorden og ansvarlighet, og hvordan majoritetsstyre, minoritetsvern, tillit og adgang til politiske rom former demokratisk likhet.",
       "focus": [
-        "demokrati",
-        "valg",
-        "representasjon",
-        "offentlighet",
-        "debatt",
-        "parlamentarisme"
+        "politisk representasjon",
+        "valg og deltakelse",
+        "parlamentarisk ansvarlighet",
+        "offentlighet og dagsorden",
+        "partier og bevegelser",
+        "majoritetsstyre og minoritetsvern",
+        "politisk tillit",
+        "demokratiske rom"
       ],
       "oslo": {
         "core_cases": [
           "Stortinget",
           "Oslo rådhus",
           "Eidsvolls plass",
+          "Valglokale i Oslo",
           "Youngstorget",
+          "Litteraturhuset",
           "Universitetsplassen",
+          "Regjeringskvartalet",
           "Rådhusplassen",
-          "Litteraturhuset"
+          "LO-bygget"
         ],
-        "place_logic": "Bruk Oslo-steder bare når de har dokumenterbar kobling til styring, institusjon, forvaltning, lov, rett, demokrati, offentlighet, fordeling, velferd, konflikt, normer eller sosial prosess."
+        "place_logic": "Bruk stedet når en ekstern kilde dokumenterer representasjon, valg, parlamentarisk ansvar, offentlig debatt, organisering, minoritetsvern, tillit eller politisk bruk av rommet."
       },
       "canon": {
         "thinkers": [
           {
-            "id": "jurgen_habermas",
-            "name": "Jürgen Habermas",
-            "role": "offentlighet og deliberasjon",
+            "id": "hanna_pitkin",
+            "name": "Hanna Fenichel Pitkin",
+            "role": "representasjon som autorisasjon, ansvarlighet, stå-for og handle-for",
             "tier": "core"
           },
           {
-            "id": "hannah_arendt",
-            "name": "Hannah Arendt",
-            "role": "politisk handling og offentlig rom",
-            "tier": "core"
-          },
-          {
-            "id": "alexis_de_tocqueville",
-            "name": "Alexis de Tocqueville",
-            "role": "demokrati og sivilsamfunn",
+            "id": "jane_mansbridge",
+            "name": "Jane Mansbridge",
+            "role": "ulike representasjonsformer, responsivitet og representativ ulikhet",
             "tier": "core"
           },
           {
             "id": "robert_dahl",
             "name": "Robert Dahl",
-            "role": "demokrati og pluralisme",
+            "role": "polyarki, deltakelse, opposisjon og politisk likhet",
+            "tier": "core"
+          },
+          {
+            "id": "sidney_verba",
+            "name": "Sidney Verba",
+            "role": "politisk deltakelse, ressurser og skjev representasjon",
+            "tier": "supplementary"
+          },
+          {
+            "id": "stein_rokkan",
+            "name": "Stein Rokkan",
+            "role": "konfliktlinjer, mobilisering, sentrum–periferi og partisystem",
+            "tier": "norwegian"
+          },
+          {
+            "id": "jurgen_habermas",
+            "name": "Jürgen Habermas",
+            "role": "offentlighet, begrunnelse og deliberativ legitimitet",
+            "tier": "core"
+          },
+          {
+            "id": "nancy_fraser",
+            "name": "Nancy Fraser",
+            "role": "motoffentligheter, deltakelsesparitet og offentlig ulikhet",
+            "tier": "core"
+          },
+          {
+            "id": "hannah_arendt",
+            "name": "Hannah Arendt",
+            "role": "politisk handling, pluralitet og offentlig fremtredelsesrom",
+            "tier": "core"
+          },
+          {
+            "id": "kaare_strom",
+            "name": "Kåre Strøm",
+            "role": "parlamentarisk delegasjon, ansvarlighet og mindretallsregjering",
+            "tier": "norwegian"
+          },
+          {
+            "id": "arend_lijphart",
+            "name": "Arend Lijphart",
+            "role": "flertalls- og konsensusdemokrati, maktdeling og minoritetsvern",
+            "tier": "core"
+          },
+          {
+            "id": "max_weber",
+            "name": "Max Weber",
+            "role": "parlamentarisk lederskap, autoritet og politisk ansvar",
+            "tier": "core"
+          },
+          {
+            "id": "pierre_bourdieu",
+            "name": "Pierre Bourdieu",
+            "role": "symbolsk makt, klassifikasjon og legitim representasjon",
+            "tier": "core"
+          },
+          {
+            "id": "murray_edelman",
+            "name": "Murray Edelman",
+            "role": "politikkens symbolske bruk, ritualer og iscenesettelse",
+            "tier": "supplementary"
+          },
+          {
+            "id": "benedict_anderson",
+            "name": "Benedict Anderson",
+            "role": "forestilte fellesskap, nasjonale symboler og politisk tilhørighet",
+            "tier": "supplementary"
+          },
+          {
+            "id": "charles_tilly",
+            "name": "Charles Tilly",
+            "role": "kollektiv handling, kravsframsetting og repertoarer",
+            "tier": "core"
+          },
+          {
+            "id": "sidney_tarrow",
+            "name": "Sidney Tarrow",
+            "role": "politiske mulighetsstrukturer, mobilisering og bevegelsesdynamikk",
             "tier": "core"
           },
           {
             "id": "chantal_mouffe",
             "name": "Chantal Mouffe",
-            "role": "agonisme og demokratiske konflikter",
+            "role": "agonisme, demokratisk konflikt og motsetningers institusjonalisering",
             "tier": "core"
+          },
+          {
+            "id": "anne_phillips",
+            "name": "Anne Phillips",
+            "role": "tilstedeværelsens politikk, kjønnet og sosial representasjon",
+            "tier": "core"
+          },
+          {
+            "id": "david_easton",
+            "name": "David Easton",
+            "role": "spesifikk og diffus politisk støtte",
+            "tier": "supplementary"
+          },
+          {
+            "id": "fritz_scharpf",
+            "name": "Fritz W. Scharpf",
+            "role": "input-, throughput- og output-legitimitet",
+            "tier": "supplementary"
+          },
+          {
+            "id": "henri_lefebvre",
+            "name": "Henri Lefebvre",
+            "role": "produksjon av rom og retten til byen",
+            "tier": "supplementary"
           }
         ]
       },
@@ -1903,33 +2004,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "jurgen_habermas",
-                "name": "Jürgen Habermas",
-                "role": "offentlighet og deliberasjon",
+                "id": "hanna_pitkin",
+                "name": "Hanna Fenichel Pitkin",
+                "role": "representasjon som autorisasjon, ansvarlighet, stå-for og handle-for; brukt her som stå-for, handle-for, autorisasjon og ansvarlighet",
                 "tier": "core"
               },
               {
-                "id": "hannah_arendt",
-                "name": "Hannah Arendt",
-                "role": "politisk handling og offentlig rom",
-                "tier": "core"
-              },
-              {
-                "id": "alexis_de_tocqueville",
-                "name": "Alexis de Tocqueville",
-                "role": "demokrati og sivilsamfunn",
+                "id": "jane_mansbridge",
+                "name": "Jane Mansbridge",
+                "role": "ulike representasjonsformer, responsivitet og representativ ulikhet; brukt her som promissorisk, anticipatorisk og gyroskopisk representasjon",
                 "tier": "core"
               },
               {
                 "id": "robert_dahl",
                 "name": "Robert Dahl",
-                "role": "demokrati og pluralisme",
-                "tier": "core"
-              },
-              {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og demokratiske konflikter",
+                "role": "polyarki, deltakelse, opposisjon og politisk likhet; brukt her som politisk likhet og effektiv deltakelse",
                 "tier": "core"
               }
             ]
@@ -1958,7 +2047,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "democracy-public-sphere-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -1971,37 +2060,29 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_who_authorizes_whom_and_for_what",
+            "compare_descriptive_presence_with_substantive_action",
+            "trace_claim_responsiveness_and_accountability"
           ],
           "comparison_pairs": [
             [
-              "jurgen_habermas",
-              "hannah_arendt"
+              "hanna_pitkin",
+              "jane_mansbridge"
             ],
             [
-              "alexis_de_tocqueville",
+              "jane_mansbridge",
               "robert_dahl"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
             "Stortinget",
             "Oslo rådhus",
-            "Eidsvolls plass",
-            "Youngstorget",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "Litteraturhuset"
+            "Eidsvolls plass"
           ],
           "recommended_method_ids": [
-            "met_pol_demokratianalyse",
-            "met_pol_representasjonsanalyse"
+            "met_pol_representasjonsanalyse",
+            "met_pol_demokratianalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
@@ -2019,15 +2100,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare cases og mekanismer for Representasjon. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Politisk representasjon er forholdet der noen autoriseres eller hevder å tale og handle på vegne av andre, og kan vurderes etter hvem som er til stede, hvilke interesser som fremmes og hvordan representanten ansvarliggjøres.",
+          "core_problem": "Hvordan kan borgere styre gjennom representanter uten at avstanden mellom velgere, grupper og beslutningstakere gjør representasjonen tom eller skjev?",
+          "mechanisms": [
+            "autorisasjon",
+            "delegasjon",
+            "kravsframsetting",
+            "responsivitet",
+            "ansvarliggjøring",
+            "deskriptiv tilstedeværelse"
+          ],
+          "critical_distinctions": [
+            "deskriptiv vs substansiell representasjon",
+            "delegat vs tillitsrepresentant",
+            "autorisasjon vs ansvarliggjøring",
+            "representasjon av interesser vs representasjon av identiteter"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "hanna_pitkin",
+              "concept": "stå-for, handle-for, autorisasjon og ansvarlighet"
+            },
+            {
+              "thinker_id": "jane_mansbridge",
+              "concept": "promissorisk, anticipatorisk og gyroskopisk representasjon"
+            },
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "politisk likhet og effektiv deltakelse"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Oslo rådhus",
+            "Eidsvolls plass"
+          ],
+          "anti_reduction": [
+            "Ikke reduser representasjon til at en valgt person fysisk er til stede.",
+            "Ikke anta at felles identitet automatisk gir felles interesser.",
+            "Ikke likestill valgseier med varig demokratisk ansvarlighet."
+          ],
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
         },
         {
           "id": "valg_og_deltakelse",
@@ -2035,34 +2161,22 @@
           "canon": {
             "thinkers": [
               {
-                "id": "jurgen_habermas",
-                "name": "Jürgen Habermas",
-                "role": "offentlighet og deliberasjon",
-                "tier": "core"
-              },
-              {
-                "id": "hannah_arendt",
-                "name": "Hannah Arendt",
-                "role": "politisk handling og offentlig rom",
-                "tier": "core"
-              },
-              {
-                "id": "alexis_de_tocqueville",
-                "name": "Alexis de Tocqueville",
-                "role": "demokrati og sivilsamfunn",
-                "tier": "core"
-              },
-              {
                 "id": "robert_dahl",
                 "name": "Robert Dahl",
-                "role": "demokrati og pluralisme",
+                "role": "polyarki, deltakelse, opposisjon og politisk likhet; brukt her som effektiv deltakelse og stemmelikhet",
                 "tier": "core"
               },
               {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og demokratiske konflikter",
-                "tier": "core"
+                "id": "sidney_verba",
+                "name": "Sidney Verba",
+                "role": "politisk deltakelse, ressurser og skjev representasjon; brukt her som ressurser, motivasjon og rekruttering",
+                "tier": "supplementary"
+              },
+              {
+                "id": "stein_rokkan",
+                "name": "Stein Rokkan",
+                "role": "konfliktlinjer, mobilisering, sentrum–periferi og partisystem; brukt her som mobilisering, konfliktlinjer og partisystem",
+                "tier": "norwegian"
               }
             ]
           },
@@ -2090,7 +2204,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "democracy-public-sphere-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -2103,33 +2217,27 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_formal_rights_resources_and_participation_barriers",
+            "compare_turnout_with_representativeness_and_influence",
+            "trace_mobilization_recruitment_and_selection_effects"
           ],
           "comparison_pairs": [
             [
-              "jurgen_habermas",
-              "hannah_arendt"
+              "robert_dahl",
+              "sidney_verba"
             ],
             [
-              "alexis_de_tocqueville",
-              "robert_dahl"
+              "sidney_verba",
+              "stein_rokkan"
             ]
           ],
           "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
+            "stein_rokkan"
           ],
           "recommended_oslo_cases": [
+            "Valglokale i Oslo",
             "Stortinget",
-            "Oslo rådhus",
-            "Eidsvolls plass",
-            "Youngstorget",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "Litteraturhuset"
+            "Youngstorget"
           ],
           "recommended_method_ids": [
             "met_pol_valg_og_deltakelsesanalyse",
@@ -2151,15 +2259,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare cases og mekanismer for Valg og deltakelse. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Valg og politisk deltakelse omfatter institusjonelle rettigheter, mobilisering, ressurser og barrierer som avgjør hvem som stemmer, organiserer seg, kontakter myndigheter eller på andre måter påvirker politiske beslutninger.",
+          "core_problem": "Hvordan kan formelt lik stemmerett gi politisk likhet når deltakelse, informasjon, tid, penger og organisasjonsressurser er ulikt fordelt?",
+          "mechanisms": [
+            "stemmerett og valgbarhet",
+            "valgsystem og mandatfordeling",
+            "mobilisering",
+            "ressursulikhet",
+            "deltakelsesterskler",
+            "politisk rekruttering"
+          ],
+          "critical_distinctions": [
+            "valgdeltakelse vs bred politisk deltakelse",
+            "formell rett vs faktisk kapasitet",
+            "oppslutning vs representativitet",
+            "mobilisering vs selvseleksjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "effektiv deltakelse og stemmelikhet"
+            },
+            {
+              "thinker_id": "sidney_verba",
+              "concept": "ressurser, motivasjon og rekruttering"
+            },
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "mobilisering, konfliktlinjer og partisystem"
+            }
+          ],
+          "case_anchors": [
+            "Valglokale i Oslo",
+            "Stortinget",
+            "Youngstorget"
+          ],
+          "anti_reduction": [
+            "Ikke bruk valgdeltakelse alene som mål på demokratisk kvalitet.",
+            "Ikke anta at fravær fra valg betyr politisk likegyldighet.",
+            "Ikke forveksle antall stemmer med lik mulighet til å påvirke."
+          ],
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
         },
         {
           "id": "offentlighet",
@@ -2169,31 +2322,19 @@
               {
                 "id": "jurgen_habermas",
                 "name": "Jürgen Habermas",
-                "role": "offentlighet og deliberasjon",
+                "role": "offentlighet, begrunnelse og deliberativ legitimitet; brukt her som offentlig begrunnelse og deliberasjon",
+                "tier": "core"
+              },
+              {
+                "id": "nancy_fraser",
+                "name": "Nancy Fraser",
+                "role": "motoffentligheter, deltakelsesparitet og offentlig ulikhet; brukt her som motoffentligheter og deltakelsesparitet",
                 "tier": "core"
               },
               {
                 "id": "hannah_arendt",
                 "name": "Hannah Arendt",
-                "role": "politisk handling og offentlig rom",
-                "tier": "core"
-              },
-              {
-                "id": "alexis_de_tocqueville",
-                "name": "Alexis de Tocqueville",
-                "role": "demokrati og sivilsamfunn",
-                "tier": "core"
-              },
-              {
-                "id": "robert_dahl",
-                "name": "Robert Dahl",
-                "role": "demokrati og pluralisme",
-                "tier": "core"
-              },
-              {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og demokratiske konflikter",
+                "role": "politisk handling, pluralitet og offentlig fremtredelsesrom; brukt her som offentlig fremtredelse og pluralitet",
                 "tier": "core"
               }
             ]
@@ -2222,7 +2363,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "democracy-public-sphere-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -2235,33 +2376,25 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_access_gatekeeping_agenda_and_circulation",
+            "compare_visibility_with_effective_voice",
+            "test_deliberation_counterpublic_and_strategic_communication"
           ],
           "comparison_pairs": [
             [
               "jurgen_habermas",
-              "hannah_arendt"
+              "nancy_fraser"
             ],
             [
-              "alexis_de_tocqueville",
-              "robert_dahl"
+              "nancy_fraser",
+              "hannah_arendt"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Stortinget",
-            "Oslo rådhus",
             "Eidsvolls plass",
-            "Youngstorget",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "Litteraturhuset"
+            "Litteraturhuset",
+            "Universitetsplassen"
           ],
           "recommended_method_ids": [
             "met_pol_offentlighetsanalyse",
@@ -2283,15 +2416,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare cases og mekanismer for Offentlighet. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Politisk offentlighet er de arenaene, institusjonene og medierte kretsløpene der saker blir synlige, fortolket og bestridt, og der borgere og makthavere må forholde seg til offentlige krav og begrunnelser.",
+          "core_problem": "Når blir offentlig synlighet til demokratisk innflytelse, og hvem kontrollerer adgang, språk, dagsorden og sirkulasjon i offentligheten?",
+          "mechanisms": [
+            "dagsordensetting",
+            "portvokting",
+            "sirkulasjon",
+            "begrunnelseskrav",
+            "mediering",
+            "motoffentlig organisering"
+          ],
+          "critical_distinctions": [
+            "offentlighet vs publikum",
+            "synlighet vs innflytelse",
+            "felles offentlighet vs motoffentligheter",
+            "deliberasjon vs strategisk kommunikasjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "offentlig begrunnelse og deliberasjon"
+            },
+            {
+              "thinker_id": "nancy_fraser",
+              "concept": "motoffentligheter og deltakelsesparitet"
+            },
+            {
+              "thinker_id": "hannah_arendt",
+              "concept": "offentlig fremtredelse og pluralitet"
+            }
+          ],
+          "case_anchors": [
+            "Eidsvolls plass",
+            "Litteraturhuset",
+            "Universitetsplassen"
+          ],
+          "anti_reduction": [
+            "Ikke likestill medieoppmerksomhet med demokratisk gjennomslag.",
+            "Ikke anta at én offentlighet er sosialt nøytral eller åpen for alle.",
+            "Ikke reduser offentlig debatt til utveksling av private meninger."
+          ],
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
         },
         {
           "id": "parlamentarisme",
@@ -2299,33 +2477,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "jurgen_habermas",
-                "name": "Jürgen Habermas",
-                "role": "offentlighet og deliberasjon",
+                "id": "kaare_strom",
+                "name": "Kåre Strøm",
+                "role": "parlamentarisk delegasjon, ansvarlighet og mindretallsregjering; brukt her som delegasjon, parlamentarisk ansvarlighet og mindretallsregjering",
+                "tier": "norwegian"
+              },
+              {
+                "id": "arend_lijphart",
+                "name": "Arend Lijphart",
+                "role": "flertalls- og konsensusdemokrati, maktdeling og minoritetsvern; brukt her som flertalls- og konsensusdemokrati",
                 "tier": "core"
               },
               {
-                "id": "hannah_arendt",
-                "name": "Hannah Arendt",
-                "role": "politisk handling og offentlig rom",
-                "tier": "core"
-              },
-              {
-                "id": "alexis_de_tocqueville",
-                "name": "Alexis de Tocqueville",
-                "role": "demokrati og sivilsamfunn",
-                "tier": "core"
-              },
-              {
-                "id": "robert_dahl",
-                "name": "Robert Dahl",
-                "role": "demokrati og pluralisme",
-                "tier": "core"
-              },
-              {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og demokratiske konflikter",
+                "id": "max_weber",
+                "name": "Max Weber",
+                "role": "parlamentarisk lederskap, autoritet og politisk ansvar; brukt her som parlamentarisk lederskap og ansvarsetikk",
                 "tier": "core"
               }
             ]
@@ -2354,7 +2520,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "democracy-public-sphere-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -2367,37 +2533,31 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "trace_delegation_confidence_control_and_removal",
+            "compare_formal_competence_with_parliamentary_support",
+            "distinguish_majority_government_minority_government_and_consensus"
           ],
           "comparison_pairs": [
             [
-              "jurgen_habermas",
-              "hannah_arendt"
+              "kaare_strom",
+              "arend_lijphart"
             ],
             [
-              "alexis_de_tocqueville",
-              "robert_dahl"
+              "kaare_strom",
+              "max_weber"
             ]
           ],
           "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
+            "kaare_strom"
           ],
           "recommended_oslo_cases": [
             "Stortinget",
-            "Oslo rådhus",
-            "Eidsvolls plass",
-            "Youngstorget",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "Litteraturhuset"
+            "Regjeringskvartalet",
+            "Eidsvolls plass"
           ],
           "recommended_method_ids": [
-            "met_pol_institusjonsanalyse",
-            "met_pol_maktbalanseanalyse"
+            "met_pol_maktbalanseanalyse",
+            "met_pol_institusjonsanalyse"
           ],
           "overused_thinker_ids": [],
           "underused_thinker_ids": [
@@ -2415,15 +2575,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare cases og mekanismer for Parlamentarisme. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Parlamentarisme er et styringsforhold der regjeringen må kunne tolereres av parlamentets flertall og står politisk ansvarlig overfor det gjennom tillit, kontroll, komitearbeid og muligheten for avsettelse.",
+          "core_problem": "Hvordan fordeles styring og kontroll mellom regjering og parlament når flertall, partier, komiteer og delegasjonskjeder kan trekke i ulike retninger?",
+          "mechanisms": [
+            "tillitsforhold",
+            "regjeringsdannelse",
+            "partidisiplin",
+            "komitékontroll",
+            "delegasjon",
+            "mistillit og kabinettspørsmål"
+          ],
+          "critical_distinctions": [
+            "parlamentarisme vs maktseparasjon",
+            "rettslig kompetanse vs politisk tillit",
+            "flertallsregjering vs mindretallsregjering",
+            "regjeringens styring vs parlamentets kontroll"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "kaare_strom",
+              "concept": "delegasjon, parlamentarisk ansvarlighet og mindretallsregjering"
+            },
+            {
+              "thinker_id": "arend_lijphart",
+              "concept": "flertalls- og konsensusdemokrati"
+            },
+            {
+              "thinker_id": "max_weber",
+              "concept": "parlamentarisk lederskap og ansvarsetikk"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Regjeringskvartalet",
+            "Eidsvolls plass"
+          ],
+          "anti_reduction": [
+            "Ikke beskriv parlamentarisme som full maktseparasjon.",
+            "Ikke forveksle formell lovmyndighet med løpende politisk styring.",
+            "Ikke anta at mindretallsregjering betyr fravær av styringsevne."
+          ],
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
         },
         {
           "id": "politiske_symboler",
@@ -2431,34 +2636,22 @@
           "canon": {
             "thinkers": [
               {
-                "id": "jurgen_habermas",
-                "name": "Jürgen Habermas",
-                "role": "offentlighet og deliberasjon",
+                "id": "pierre_bourdieu",
+                "name": "Pierre Bourdieu",
+                "role": "symbolsk makt, klassifikasjon og legitim representasjon; brukt her som symbolsk makt og legitim klassifikasjon",
                 "tier": "core"
               },
               {
-                "id": "hannah_arendt",
-                "name": "Hannah Arendt",
-                "role": "politisk handling og offentlig rom",
-                "tier": "core"
+                "id": "murray_edelman",
+                "name": "Murray Edelman",
+                "role": "politikkens symbolske bruk, ritualer og iscenesettelse; brukt her som symbolsk iscenesettelse og politisk beroligelse",
+                "tier": "supplementary"
               },
               {
-                "id": "alexis_de_tocqueville",
-                "name": "Alexis de Tocqueville",
-                "role": "demokrati og sivilsamfunn",
-                "tier": "core"
-              },
-              {
-                "id": "robert_dahl",
-                "name": "Robert Dahl",
-                "role": "demokrati og pluralisme",
-                "tier": "core"
-              },
-              {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og demokratiske konflikter",
-                "tier": "core"
+                "id": "benedict_anderson",
+                "name": "Benedict Anderson",
+                "role": "forestilte fellesskap, nasjonale symboler og politisk tilhørighet; brukt her som forestilte fellesskap og nasjonal tilhørighet",
+                "tier": "supplementary"
               }
             ]
           },
@@ -2486,7 +2679,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "democracy-public-sphere-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -2499,33 +2692,25 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_actor_audience_ritual_and_authorized_meaning",
+            "compare_symbolic_recognition_with_material_or_institutional_effect",
+            "trace_inclusion_exclusion_memory_and_legitimation"
           ],
           "comparison_pairs": [
             [
-              "jurgen_habermas",
-              "hannah_arendt"
+              "pierre_bourdieu",
+              "murray_edelman"
             ],
             [
-              "alexis_de_tocqueville",
-              "robert_dahl"
+              "murray_edelman",
+              "benedict_anderson"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
             "Stortinget",
-            "Oslo rådhus",
             "Eidsvolls plass",
-            "Youngstorget",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "Litteraturhuset"
+            "Rådhusplassen"
           ],
           "recommended_method_ids": [
             "met_pol_symbolanalyse",
@@ -2547,15 +2732,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare cases og mekanismer for Politiske symboler. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Politiske symboler er tegn, ritualer, bygninger, fortellinger og markeringer som gjør fellesskap, autoritet, konflikt og tilhørighet synlige og følelsesmessig forståelige.",
+          "core_problem": "Hvordan kan symboler skape legitimitet og fellesskap samtidig som de skjuler fordelingskonflikter eller ekskluderer alternative historier?",
+          "mechanisms": [
+            "klassifikasjon",
+            "ritualisering",
+            "minnepolitikk",
+            "grensedragning",
+            "personifisering",
+            "symbolsk legitimering"
+          ],
+          "critical_distinctions": [
+            "symbol vs institusjon",
+            "anerkjennelse vs omfordeling",
+            "nasjonalt symbol vs partisymbol",
+            "minnemarkering vs mobilisering"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "symbolsk makt og legitim klassifikasjon"
+            },
+            {
+              "thinker_id": "murray_edelman",
+              "concept": "symbolsk iscenesettelse og politisk beroligelse"
+            },
+            {
+              "thinker_id": "benedict_anderson",
+              "concept": "forestilte fellesskap og nasjonal tilhørighet"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Eidsvolls plass",
+            "Rådhusplassen"
+          ],
+          "anti_reduction": [
+            "Ikke behandle symboler som ren dekorasjon.",
+            "Ikke anta at et symbol betyr det samme for alle grupper.",
+            "Ikke la symbolanalysen erstatte spørsmålet om institusjonell eller materiell makt."
+          ],
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
         },
         {
           "id": "partier_og_bevegelser",
@@ -2563,33 +2793,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "jurgen_habermas",
-                "name": "Jürgen Habermas",
-                "role": "offentlighet og deliberasjon",
+                "id": "stein_rokkan",
+                "name": "Stein Rokkan",
+                "role": "konfliktlinjer, mobilisering, sentrum–periferi og partisystem; brukt her som konfliktlinjer og partisystem",
+                "tier": "norwegian"
+              },
+              {
+                "id": "charles_tilly",
+                "name": "Charles Tilly",
+                "role": "kollektiv handling, kravsframsetting og repertoarer; brukt her som kravsframsetting og kollektiv handling",
                 "tier": "core"
               },
               {
-                "id": "hannah_arendt",
-                "name": "Hannah Arendt",
-                "role": "politisk handling og offentlig rom",
-                "tier": "core"
-              },
-              {
-                "id": "alexis_de_tocqueville",
-                "name": "Alexis de Tocqueville",
-                "role": "demokrati og sivilsamfunn",
-                "tier": "core"
-              },
-              {
-                "id": "robert_dahl",
-                "name": "Robert Dahl",
-                "role": "demokrati og pluralisme",
-                "tier": "core"
-              },
-              {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og demokratiske konflikter",
+                "id": "sidney_tarrow",
+                "name": "Sidney Tarrow",
+                "role": "politiske mulighetsstrukturer, mobilisering og bevegelsesdynamikk; brukt her som politiske muligheter og mobiliseringssykluser",
                 "tier": "core"
               }
             ]
@@ -2618,7 +2836,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "democracy-public-sphere-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -2631,33 +2849,27 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "trace_grievance_organization_mobilization_and_access",
+            "compare_party_movement_network_and_membership",
+            "identify_cleavage_frame_resource_and_opportunity_structure"
           ],
           "comparison_pairs": [
             [
-              "jurgen_habermas",
-              "hannah_arendt"
+              "stein_rokkan",
+              "charles_tilly"
             ],
             [
-              "alexis_de_tocqueville",
-              "robert_dahl"
+              "charles_tilly",
+              "sidney_tarrow"
             ]
           ],
           "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
+            "stein_rokkan"
           ],
           "recommended_oslo_cases": [
-            "Stortinget",
-            "Oslo rådhus",
-            "Eidsvolls plass",
             "Youngstorget",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "Litteraturhuset"
+            "LO-bygget",
+            "Stortinget"
           ],
           "recommended_method_ids": [
             "met_pol_parti_og_bevegelsesanalyse",
@@ -2679,15 +2891,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare cases og mekanismer for Partier og bevegelser. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Partier og bevegelser er ulike organisasjonsformer som samler krav, rekrutterer deltakere, bygger identiteter og forsøker å påvirke valg, dagsorden, institusjoner eller offentlig praksis.",
+          "core_problem": "Hvordan blir spredte interesser og misnøye omformet til varig organisasjon, politiske krav og institusjonell innflytelse?",
+          "mechanisms": [
+            "interesseaggregering",
+            "kandidatrekruttering",
+            "mobilisering",
+            "innramming",
+            "koalisjonsbygging",
+            "politiske mulighetsstrukturer"
+          ],
+          "critical_distinctions": [
+            "parti vs sosial bevegelse",
+            "medlemskap vs velgergrunnlag",
+            "organisasjon vs nettverk",
+            "ideologi vs sakseierskap"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "konfliktlinjer og partisystem"
+            },
+            {
+              "thinker_id": "charles_tilly",
+              "concept": "kravsframsetting og kollektiv handling"
+            },
+            {
+              "thinker_id": "sidney_tarrow",
+              "concept": "politiske muligheter og mobiliseringssykluser"
+            }
+          ],
+          "case_anchors": [
+            "Youngstorget",
+            "LO-bygget",
+            "Stortinget"
+          ],
+          "anti_reduction": [
+            "Ikke reduser partier til partiprogrammer eller bevegelser til enkeltdemonstrasjoner.",
+            "Ikke anta at stor synlighet betyr sterk organisasjon.",
+            "Ikke forveksle ideologisk språk med faktisk koalisjon eller ressursbase."
+          ],
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
         },
         {
           "id": "debattarenaer",
@@ -2697,31 +2954,19 @@
               {
                 "id": "jurgen_habermas",
                 "name": "Jürgen Habermas",
-                "role": "offentlighet og deliberasjon",
-                "tier": "core"
-              },
-              {
-                "id": "hannah_arendt",
-                "name": "Hannah Arendt",
-                "role": "politisk handling og offentlig rom",
-                "tier": "core"
-              },
-              {
-                "id": "alexis_de_tocqueville",
-                "name": "Alexis de Tocqueville",
-                "role": "demokrati og sivilsamfunn",
-                "tier": "core"
-              },
-              {
-                "id": "robert_dahl",
-                "name": "Robert Dahl",
-                "role": "demokrati og pluralisme",
+                "role": "offentlighet, begrunnelse og deliberativ legitimitet; brukt her som deliberasjon og begrunnelseskrav",
                 "tier": "core"
               },
               {
                 "id": "chantal_mouffe",
                 "name": "Chantal Mouffe",
-                "role": "agonisme og demokratiske konflikter",
+                "role": "agonisme, demokratisk konflikt og motsetningers institusjonalisering; brukt her som agonistisk konflikt",
+                "tier": "core"
+              },
+              {
+                "id": "nancy_fraser",
+                "name": "Nancy Fraser",
+                "role": "motoffentligheter, deltakelsesparitet og offentlig ulikhet; brukt her som motoffentligheter og deltakelsesparitet",
                 "tier": "core"
               }
             ]
@@ -2750,7 +2995,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "democracy-public-sphere-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -2763,33 +3008,25 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_access_format_moderation_and_agenda_control",
+            "compare_debate_deliberation_and_agonistic_conflict",
+            "trace_whose_claims_circulate_and_gain_response"
           ],
           "comparison_pairs": [
             [
               "jurgen_habermas",
-              "hannah_arendt"
+              "chantal_mouffe"
             ],
             [
-              "alexis_de_tocqueville",
-              "robert_dahl"
+              "jurgen_habermas",
+              "nancy_fraser"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Stortinget",
-            "Oslo rådhus",
-            "Eidsvolls plass",
-            "Youngstorget",
+            "Litteraturhuset",
             "Universitetsplassen",
-            "Rådhusplassen",
-            "Litteraturhuset"
+            "Eidsvolls plass"
           ],
           "recommended_method_ids": [
             "met_pol_offentlighetsanalyse",
@@ -2811,15 +3048,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare cases og mekanismer for Debattarenaer. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Debattarenaer er organiserte eller uformelle rom der politiske påstander framføres, utfordres og sirkuleres, og der adgang, format, moderering og publikum former hvem som blir hørt.",
+          "core_problem": "Når fremmer en debattarena gjensidig begrunnelse og læring, og når belønner den først og fremst synlighet, posisjonering eller allerede sterke stemmer?",
+          "mechanisms": [
+            "adgangsregulering",
+            "moderering",
+            "dagsordensetting",
+            "innramming",
+            "talefordeling",
+            "publisering og sirkulasjon"
+          ],
+          "critical_distinctions": [
+            "debatt vs deliberasjon",
+            "åpen adgang vs effektiv deltakelse",
+            "synlighet vs dagsordenkontroll",
+            "begrunnelse vs politisk framføring"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "deliberasjon og begrunnelseskrav"
+            },
+            {
+              "thinker_id": "chantal_mouffe",
+              "concept": "agonistisk konflikt"
+            },
+            {
+              "thinker_id": "nancy_fraser",
+              "concept": "motoffentligheter og deltakelsesparitet"
+            }
+          ],
+          "case_anchors": [
+            "Litteraturhuset",
+            "Universitetsplassen",
+            "Eidsvolls plass"
+          ],
+          "anti_reduction": [
+            "Ikke anta at åpne dører gir lik taletid eller innflytelse.",
+            "Ikke mål debattkvalitet bare i fravær av konflikt.",
+            "Ikke forveksle publikumsstørrelse med demokratisk representativitet."
+          ],
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
         },
         {
           "id": "majoritet_minoritet",
@@ -2827,33 +3109,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "jurgen_habermas",
-                "name": "Jürgen Habermas",
-                "role": "offentlighet og deliberasjon",
-                "tier": "core"
-              },
-              {
-                "id": "hannah_arendt",
-                "name": "Hannah Arendt",
-                "role": "politisk handling og offentlig rom",
-                "tier": "core"
-              },
-              {
-                "id": "alexis_de_tocqueville",
-                "name": "Alexis de Tocqueville",
-                "role": "demokrati og sivilsamfunn",
-                "tier": "core"
-              },
-              {
                 "id": "robert_dahl",
                 "name": "Robert Dahl",
-                "role": "demokrati og pluralisme",
+                "role": "polyarki, deltakelse, opposisjon og politisk likhet; brukt her som politisk likhet og minoriteters opposisjonsrett",
                 "tier": "core"
               },
               {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og demokratiske konflikter",
+                "id": "arend_lijphart",
+                "name": "Arend Lijphart",
+                "role": "flertalls- og konsensusdemokrati, maktdeling og minoritetsvern; brukt her som konsensusdemokrati og maktdeling",
+                "tier": "core"
+              },
+              {
+                "id": "anne_phillips",
+                "name": "Anne Phillips",
+                "role": "tilstedeværelsens politikk, kjønnet og sosial representasjon; brukt her som tilstedeværelsens politikk",
                 "tier": "core"
               }
             ]
@@ -2882,7 +3152,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "democracy-public-sphere-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -2895,33 +3165,25 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_majority_rule_veto_rights_and_representation",
+            "compare_numerical_majority_with_structural_dominance",
+            "test_equal_treatment_presence_and_minoritet_protection"
           ],
           "comparison_pairs": [
             [
-              "jurgen_habermas",
-              "hannah_arendt"
+              "robert_dahl",
+              "arend_lijphart"
             ],
             [
-              "alexis_de_tocqueville",
-              "robert_dahl"
+              "arend_lijphart",
+              "anne_phillips"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
             "Stortinget",
             "Oslo rådhus",
-            "Eidsvolls plass",
-            "Youngstorget",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "Litteraturhuset"
+            "Eidsvolls plass"
           ],
           "recommended_method_ids": [
             "met_pol_minoritet_og_representasjonsanalyse",
@@ -2943,15 +3205,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare cases og mekanismer for Majoritet og minoritet. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Forholdet mellom majoritet og minoritet handler om hvordan flertallsavgjørelser kombineres med politisk likhet, rettighetsvern, representasjon og institusjoner som hindrer varig dominans.",
+          "core_problem": "Hvordan kan flertallet beslutte uten at numerisk styrke blir til permanent kontroll over grupper med svakere representasjon eller beskyttelse?",
+          "mechanisms": [
+            "flertallsregel",
+            "valgterskler",
+            "koalisjonsdannelse",
+            "vetopunkter",
+            "rettighetsvern",
+            "makt- og posisjonsdeling"
+          ],
+          "critical_distinctions": [
+            "numerisk flertall vs dominerende gruppe",
+            "flertallsregel vs majoritetsdominans",
+            "lik behandling vs minoritetsvern",
+            "integrasjon vs assimilering"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "politisk likhet og minoriteters opposisjonsrett"
+            },
+            {
+              "thinker_id": "arend_lijphart",
+              "concept": "konsensusdemokrati og maktdeling"
+            },
+            {
+              "thinker_id": "anne_phillips",
+              "concept": "tilstedeværelsens politikk"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Oslo rådhus",
+            "Eidsvolls plass"
+          ],
+          "anti_reduction": [
+            "Ikke anta at et numerisk flertall er sosialt homogent.",
+            "Ikke framstill minoritetsvern som unntak fra demokrati uten å analysere politisk likhet.",
+            "Ikke likestill formell likebehandling med likeverdig representasjon."
+          ],
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
         },
         {
           "id": "politisk_tillit",
@@ -2959,33 +3266,21 @@
           "canon": {
             "thinkers": [
               {
+                "id": "david_easton",
+                "name": "David Easton",
+                "role": "spesifikk og diffus politisk støtte; brukt her som spesifikk og diffus støtte",
+                "tier": "supplementary"
+              },
+              {
+                "id": "fritz_scharpf",
+                "name": "Fritz W. Scharpf",
+                "role": "input-, throughput- og output-legitimitet; brukt her som input-, throughput- og output-legitimitet",
+                "tier": "supplementary"
+              },
+              {
                 "id": "jurgen_habermas",
                 "name": "Jürgen Habermas",
-                "role": "offentlighet og deliberasjon",
-                "tier": "core"
-              },
-              {
-                "id": "hannah_arendt",
-                "name": "Hannah Arendt",
-                "role": "politisk handling og offentlig rom",
-                "tier": "core"
-              },
-              {
-                "id": "alexis_de_tocqueville",
-                "name": "Alexis de Tocqueville",
-                "role": "demokrati og sivilsamfunn",
-                "tier": "core"
-              },
-              {
-                "id": "robert_dahl",
-                "name": "Robert Dahl",
-                "role": "demokrati og pluralisme",
-                "tier": "core"
-              },
-              {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og demokratiske konflikter",
+                "role": "offentlighet, begrunnelse og deliberativ legitimitet; brukt her som legitimitet gjennom offentlig begrunnelse",
                 "tier": "core"
               }
             ]
@@ -3014,7 +3309,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "democracy-public-sphere-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -3027,33 +3322,25 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "separate_specific_support_diffuse_support_trust_and_legitimacy",
+            "identify_performance_procedure_transparency_and_responsiveness",
+            "trace_accountability_failure_and_trust_transfer"
           ],
           "comparison_pairs": [
             [
-              "jurgen_habermas",
-              "hannah_arendt"
+              "david_easton",
+              "fritz_scharpf"
             ],
             [
-              "alexis_de_tocqueville",
-              "robert_dahl"
+              "fritz_scharpf",
+              "jurgen_habermas"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
             "Stortinget",
             "Oslo rådhus",
-            "Eidsvolls plass",
-            "Youngstorget",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "Litteraturhuset"
+            "Regjeringskvartalet"
           ],
           "recommended_method_ids": [
             "met_pol_legitimitetsanalyse",
@@ -3075,15 +3362,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare cases og mekanismer for Politisk tillit. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Politisk tillit er borgernes forventning om at institusjoner og aktører vil handle kompetent, rimelig og innenfor legitime regler, mens demokratisk legitimitet gjelder hvorfor deres beslutninger bør aksepteres.",
+          "core_problem": "Hvordan kan institusjoner opprettholde nødvendig tillit uten at tillit blir ukritisk lydighet eller erstatter kontroll, opposisjon og ansvarlighet?",
+          "mechanisms": [
+            "resultatvurdering",
+            "prosedyrerettferdighet",
+            "åpenhet",
+            "responsivitet",
+            "ansvarsplassering",
+            "tillitsspredning mellom institusjoner"
+          ],
+          "critical_distinctions": [
+            "tillit vs legitimitet",
+            "spesifikk vs diffus støtte",
+            "institusjonell vs mellommenneskelig tillit",
+            "etterlevelse vs tillit"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "david_easton",
+              "concept": "spesifikk og diffus støtte"
+            },
+            {
+              "thinker_id": "fritz_scharpf",
+              "concept": "input-, throughput- og output-legitimitet"
+            },
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "legitimitet gjennom offentlig begrunnelse"
+            }
+          ],
+          "case_anchors": [
+            "Stortinget",
+            "Oslo rådhus",
+            "Regjeringskvartalet"
+          ],
+          "anti_reduction": [
+            "Ikke bruk høy tillit som automatisk bevis på høy demokratisk kvalitet.",
+            "Ikke forveksle tilfredshet med én beslutning med støtte til institusjonen.",
+            "Ikke framstill kritikk og mistillit som udemokratisk i seg selv."
+          ],
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
         },
         {
           "id": "demokratiets_rom",
@@ -3091,33 +3423,21 @@
           "canon": {
             "thinkers": [
               {
-                "id": "jurgen_habermas",
-                "name": "Jürgen Habermas",
-                "role": "offentlighet og deliberasjon",
-                "tier": "core"
-              },
-              {
                 "id": "hannah_arendt",
                 "name": "Hannah Arendt",
-                "role": "politisk handling og offentlig rom",
+                "role": "politisk handling, pluralitet og offentlig fremtredelsesrom; brukt her som fremtredelsesrom og politisk handling",
                 "tier": "core"
               },
               {
-                "id": "alexis_de_tocqueville",
-                "name": "Alexis de Tocqueville",
-                "role": "demokrati og sivilsamfunn",
-                "tier": "core"
+                "id": "henri_lefebvre",
+                "name": "Henri Lefebvre",
+                "role": "produksjon av rom og retten til byen; brukt her som produksjon av rom og retten til byen",
+                "tier": "supplementary"
               },
               {
-                "id": "robert_dahl",
-                "name": "Robert Dahl",
-                "role": "demokrati og pluralisme",
-                "tier": "core"
-              },
-              {
-                "id": "chantal_mouffe",
-                "name": "Chantal Mouffe",
-                "role": "agonisme og demokratiske konflikter",
+                "id": "charles_tilly",
+                "name": "Charles Tilly",
+                "role": "kollektiv handling, kravsframsetting og repertoarer; brukt her som repertoarer og offentlig kravsframsetting",
                 "tier": "core"
               }
             ]
@@ -3146,7 +3466,7 @@
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "democracy-public-sphere-first",
+          "question_surface_mode": "case-mechanism-distinction-theory",
           "fact_anchor_required": true,
           "politics_anchor_required": true,
           "institution_law_conflict_or_social_process_anchor_required": true,
@@ -3159,33 +3479,25 @@
             "Påstand hentet bare fra emnenavn eller teori"
           ],
           "preferred_question_moves": [
-            "start_with_concrete_institution_law_conflict_policy_or_social_process",
-            "connect_visible_place_to_power_norm_or_decision",
-            "identify_distribution_legitimacy_rights_or_governance",
-            "avoid_party_opinion_as_default"
+            "identify_access_assembly_visibility_regulation_and_control",
+            "compare_public_ownership_with_effective_public_use",
+            "trace_spatial_appropriation_claim_making_and_response"
           ],
           "comparison_pairs": [
             [
-              "jurgen_habermas",
-              "hannah_arendt"
+              "hannah_arendt",
+              "henri_lefebvre"
             ],
             [
-              "alexis_de_tocqueville",
-              "robert_dahl"
+              "henri_lefebvre",
+              "charles_tilly"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "stein_rokkan",
-            "gudmund_hernes"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
-            "Stortinget",
-            "Oslo rådhus",
             "Eidsvolls plass",
             "Youngstorget",
-            "Universitetsplassen",
-            "Rådhusplassen",
-            "Litteraturhuset"
+            "Rådhusplassen"
           ],
           "recommended_method_ids": [
             "met_pol_romlig_maktanalyse",
@@ -3207,15 +3519,60 @@
           "theory_rotation_required": true,
           "case_rotation_required": true,
           "canonical_file_role": "active",
-          "rotation_note": "Roter institusjoner, rettskilder, offentlige rom, konflikter, velferdscaser, normer, sosiale prosesser og metoder slik at politikkspørsmål ikke blir bare partifakta eller generell samfunnsmoral.",
+          "rotation_note": "Roter dokumenterbare cases og mekanismer for Demokratiets rom. Teori brukes for å forklare eller sammenligne, ikke som navnequiz.",
           "generator_constraints": {
             "min_case_count": 2,
             "min_method_count": 1,
             "require_institution_law_conflict_or_social_process_anchor": true,
             "require_external_claim_basis": true,
             "rotate_theorists": true,
-            "do_not_generate_from_hook_label_only": true
-          }
+            "do_not_generate_from_hook_label_only": true,
+            "require_case_specific_question": true,
+            "require_mechanism_explanation": true,
+            "require_critical_distinction": true,
+            "ban_theorist_name_as_answer_without_concept": true
+          },
+          "definition": "Demokratiets rom er fysiske og institusjonelle steder der borgere kan samles, framføre krav, bli sett og møte myndighet, men der adgang, utforming, eierskap, politi og regulering også former den politiske bruken.",
+          "core_problem": "Når fungerer et offentlig rom som demokratisk infrastruktur, og når begrenser kontroll, design eller sosial ulikhet hvem som kan møtes og gjøre krav synlige?",
+          "mechanisms": [
+            "romlig adgang",
+            "forsamlingsmulighet",
+            "synliggjøring",
+            "politiregulering",
+            "symbolsk okkupasjon",
+            "infrastrukturell tilrettelegging"
+          ],
+          "critical_distinctions": [
+            "offentlig eierskap vs offentlig tilgjengelighet",
+            "synlighet vs innflytelse",
+            "forsamlingsfrihet vs ordensregulering",
+            "planlagt bruk vs politisk appropriasjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "hannah_arendt",
+              "concept": "fremtredelsesrom og politisk handling"
+            },
+            {
+              "thinker_id": "henri_lefebvre",
+              "concept": "produksjon av rom og retten til byen"
+            },
+            {
+              "thinker_id": "charles_tilly",
+              "concept": "repertoarer og offentlig kravsframsetting"
+            }
+          ],
+          "case_anchors": [
+            "Eidsvolls plass",
+            "Youngstorget",
+            "Rådhusplassen"
+          ],
+          "anti_reduction": [
+            "Ikke kall et rom demokratisk bare fordi det er offentlig eid.",
+            "Ikke reduser demonstrasjonssteder til historiske kulisser.",
+            "Ikke anta at fysisk adgang gir lik trygghet, synlighet eller påvirkning."
+          ],
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
         }
       ],
       "best_place_types": [
@@ -3227,7 +3584,7 @@
         "valglokale",
         "offentlig_rom"
       ],
-      "question_role": "Starter i konkret institusjon, lov, offentlig rom, reform, konflikt, fordeling, velferdstjeneste, norm eller sosial prosess før teori løftes inn.",
+      "question_role": "Start i et dokumenterbart valg, mandat, institusjonelt ansvar, offentlig ordskifte, organisasjon, konflikt, symbol eller politisk rom. Identifiser hvem som kan delta eller representere, hvilken mekanisme som omsetter krav til innflytelse, og hvilken demokratisk distinksjon caset faktisk tester.",
       "source_priority": [
         "konkret institusjon, lov, reform, beslutning, offentlig tjeneste, demokratisk arena, rettsbygg, konflikt, protest, normsystem eller sosial prosess",
         "offisiell kommune-, stat-, Storting-, domstol-, lovdata-, SSB-, arkiv-, partiprogram-, utrednings-, rapport- eller institusjonskilde",
@@ -3239,7 +3596,37 @@
         "Ikke spør generisk om politikk uten institusjon, lov, konflikt, fordeling, norm, offentlighet, sted eller kilde.",
         "Ikke bruk politikk som kategori hvis hovedpoenget egentlig er byarkitektur, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap.",
         "Ikke gjør et sted til politikk bare fordi det ligger nær maktbygg eller har en vag samfunnsvinkel, uten dokumentert institusjons-, lov-, fordelings-, konflikt-, norm- eller forvaltningsvinkel."
-      ]
+      ],
+      "core_problems": [
+        "Hvordan blir borgernes interesser, erfaringer og krav omformet til autoriserte beslutninger?",
+        "Hvem får delta, bli synlig og sette dagsorden, og hvilke sosiale eller institusjonelle skjevheter begrenser politisk likhet?",
+        "Hvordan kan demokratisk konflikt organiseres slik at beslutninger både er bindende, ansvarliggjorte og åpne for kritikk?"
+      ],
+      "mechanism_families": [
+        "autorisasjon",
+        "aggregering",
+        "delegasjon",
+        "ansvarliggjøring",
+        "mobilisering",
+        "dagsordensetting",
+        "portvokting",
+        "deliberasjon",
+        "majoritetsdannelse",
+        "minoritetsvern",
+        "symbolsk legitimering",
+        "romlig adgangskontroll"
+      ],
+      "critical_distinctions": [
+        "deskriptiv vs substansiell representasjon",
+        "deltakelse vs faktisk innflytelse",
+        "offentlig synlighet vs dagsordenmakt",
+        "majoritetsregel vs majoritetsdominans",
+        "debatt vs deliberasjon",
+        "politisk tillit vs demokratisk legitimitet"
+      ],
+      "source_rule": "Påstander om valg, representasjon, parlamentariske prosesser, organisasjoner, offentlige debatter, tillit, protester eller konkrete politiske rom må bygge på eksterne kilder. Canonical-filene styrer analysen, men leverer ikke faktapåstanden.",
+      "generator_rule": "Et demokratisk spørsmål må inneholde et dokumenterbart case, en mekanisme og en reell distinksjon. Teoretikernavn alene er aldri gyldig fasit.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "id": "rett_lov_rettssikkerhet",

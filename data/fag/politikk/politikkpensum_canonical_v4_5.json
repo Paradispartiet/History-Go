@@ -203,13 +203,13 @@
     {
       "domain_id": "demokrati_representasjon_offentlighet",
       "label": "Demokrati, representasjon og offentlighet",
-      "tagline": "Hvordan valg, representasjon, offentlig debatt og politiske rom gjør fellesskapet styrbart og synlig.",
-      "definition": "Domenet dekker demokrati, valg, representasjon, parlamentarisme, lokaldemokrati, offentlighet, debatt, politiske symboler og politiske møteplasser.",
-      "question_role": "Starter i konkret institusjon, lov, offentlig rom, reform, konflikt, fordeling, velferdstjeneste, norm eller sosial prosess før teori løftes inn.",
-      "status": "strong",
+      "tagline": "Hvordan borgere, grupper og institusjoner blir representert, hørt og ansvarliggjort gjennom valg, parlamentarisme, offentlighet, organisering og politiske rom.",
+      "definition": "Domenet undersøker hvordan politiske krav blir uttrykt, aggregert, representert og gjort bindende, hvordan offentlig debatt og organisering påvirker dagsorden og ansvarlighet, og hvordan majoritetsstyre, minoritetsvern, tillit og adgang til politiske rom former demokratisk likhet.",
+      "question_role": "Start i et dokumenterbart valg, mandat, institusjonelt ansvar, offentlig ordskifte, organisasjon, konflikt, symbol eller politisk rom. Identifiser hvem som kan delta eller representere, hvilken mekanisme som omsetter krav til innflytelse, og hvilken demokratisk distinksjon caset faktisk tester.",
+      "status": "complete_revised",
       "emne_count": 8,
       "hook_count": 10,
-      "method_count": 17,
+      "method_count": 19,
       "emne_ids": [
         "em_pol_demokrati_representasjon",
         "em_pol_offentlighet_debatt",
@@ -249,33 +249,46 @@
         "met_pol_parti_og_bevegelsesanalyse",
         "met_pol_ideologianalyse",
         "met_pol_sivilsamfunnsanalyse",
-        "met_pol_politisk_historisk_analyse"
+        "met_pol_politisk_historisk_analyse",
+        "met_pol_minoritet_og_representasjonsanalyse",
+        "met_pol_fordelingsanalyse"
       ],
       "recommended_oslo_cases": [
         "Stortinget",
         "Oslo rådhus",
         "Eidsvolls plass",
+        "Valglokale i Oslo",
         "Youngstorget",
-        "Universitetsplassen",
-        "Rådhusplassen",
         "Litteraturhuset",
-        "LO-bygget",
-        "Regjeringskvartalet"
+        "Universitetsplassen",
+        "Regjeringskvartalet",
+        "Rådhusplassen",
+        "LO-bygget"
       ],
       "canonical_thinker_ids": [
-        "jurgen_habermas",
-        "hannah_arendt",
-        "alexis_de_tocqueville",
+        "hanna_pitkin",
+        "jane_mansbridge",
         "robert_dahl",
-        "chantal_mouffe",
-        "karl_marx",
-        "antonio_gramsci",
+        "sidney_verba",
+        "jurgen_habermas",
+        "nancy_fraser",
+        "hannah_arendt",
+        "arend_lijphart",
+        "max_weber",
+        "pierre_bourdieu",
+        "murray_edelman",
+        "benedict_anderson",
         "charles_tilly",
-        "sidney_tarrow"
+        "sidney_tarrow",
+        "chantal_mouffe",
+        "anne_phillips",
+        "david_easton",
+        "fritz_scharpf",
+        "henri_lefebvre"
       ],
       "norwegian_thinker_ids": [
         "stein_rokkan",
-        "gudmund_hernes"
+        "kaare_strom"
       ],
       "best_place_types": [
         "storting",
@@ -298,7 +311,82 @@
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "institution_law_conflict_or_social_process_anchor_required": true
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "core_problems": [
+        "Hvordan blir borgernes interesser, erfaringer og krav omformet til autoriserte beslutninger?",
+        "Hvem får delta, bli synlig og sette dagsorden, og hvilke sosiale eller institusjonelle skjevheter begrenser politisk likhet?",
+        "Hvordan kan demokratisk konflikt organiseres slik at beslutninger både er bindende, ansvarliggjorte og åpne for kritikk?"
+      ],
+      "mechanism_families": [
+        "autorisasjon",
+        "aggregering",
+        "delegasjon",
+        "ansvarliggjøring",
+        "mobilisering",
+        "dagsordensetting",
+        "portvokting",
+        "deliberasjon",
+        "majoritetsdannelse",
+        "minoritetsvern",
+        "symbolsk legitimering",
+        "romlig adgangskontroll"
+      ],
+      "critical_distinctions": [
+        "deskriptiv vs substansiell representasjon",
+        "deltakelse vs faktisk innflytelse",
+        "offentlig synlighet vs dagsordenmakt",
+        "majoritetsregel vs majoritetsdominans",
+        "debatt vs deliberasjon",
+        "politisk tillit vs demokratisk legitimitet"
+      ],
+      "generator_rule": "Et demokratisk spørsmål må inneholde et dokumenterbart case, en mekanisme og en reell distinksjon. Teoretikernavn alene er aldri gyldig fasit.",
+      "source_rule": "Påstander om valg, representasjon, parlamentariske prosesser, organisasjoner, offentlige debatter, tillit, protester eller konkrete politiske rom må bygge på eksterne kilder. Canonical-filene styrer analysen, men leverer ikke faktapåstanden.",
+      "active_generator_profile": {
+        "profile_id": "demokrati_representasjon_offentlighet",
+        "revision": "politikk-demokrati-vertical-2026-07-24",
+        "sequence": [
+          "external_case_or_source",
+          "claim_basis",
+          "mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "required_hook_ids": [
+          "representasjon",
+          "valg_og_deltakelse",
+          "offentlighet",
+          "parlamentarisme",
+          "politiske_symboler",
+          "partier_og_bevegelser",
+          "debattarenaer",
+          "majoritet_minoritet",
+          "politisk_tillit",
+          "demokratiets_rom"
+        ],
+        "required_method_ids": [
+          "met_pol_demokratianalyse",
+          "met_pol_representasjonsanalyse",
+          "met_pol_valg_og_deltakelsesanalyse",
+          "met_pol_statistikk_og_fordelingsanalyse",
+          "met_pol_symbolanalyse",
+          "met_pol_legitimitetsanalyse",
+          "met_pol_offentlighetsanalyse",
+          "met_pol_diskursanalyse",
+          "met_pol_praksisanalyse",
+          "met_pol_romlig_maktanalyse",
+          "met_pol_protest_og_bevegelsesanalyse",
+          "met_pol_institusjonsanalyse",
+          "met_pol_maktbalanseanalyse",
+          "met_pol_parti_og_bevegelsesanalyse",
+          "met_pol_ideologianalyse",
+          "met_pol_sivilsamfunnsanalyse",
+          "met_pol_politisk_historisk_analyse",
+          "met_pol_minoritet_og_representasjonsanalyse",
+          "met_pol_fordelingsanalyse"
+        ],
+        "ban_theorist_name_as_answer_without_concept": true
+      },
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "domain_id": "rett_lov_rettssikkerhet",

@@ -153,16 +153,19 @@
     },
     "3": {
       "name": "demokrati_representasjon_offentlighet",
-      "dominant_driver": "valg, representasjon, Storting, rådhus, offentlig debatt, demokratisk arena, politisk symbol, parti eller bevegelse",
-      "canonical_role": "høy metode- og emnestyring tillatt",
+      "dominant_driver": "dokumenterbart valg, mandat, representasjonskrav, parlamentarisk ansvar, offentlig debatt, organisasjon, majoritet–minoritet-forhold, tillitsdata eller politisk rom",
+      "canonical_role": "høy metode- og emnestyring, men faktapåstanden skal være ekstern",
       "allowed_methods": [
         "met_pol_demokratianalyse",
         "met_pol_representasjonsanalyse",
         "met_pol_valg_og_deltakelsesanalyse",
         "met_pol_offentlighetsanalyse",
-        "met_pol_parti_og_bevegelsesanalyse"
+        "met_pol_maktbalanseanalyse",
+        "met_pol_parti_og_bevegelsesanalyse",
+        "met_pol_minoritet_og_representasjonsanalyse",
+        "met_pol_symbolanalyse"
       ],
-      "question_style": "demokrati, valg, representasjon, offentlighet, parlamentarisme, politiske symboler, partier, bevegelser og tillit"
+      "question_style": "case, aktør og demokratisk mekanisme først; deretter distinksjon og eventuelt målrettet teori"
     },
     "4": {
       "name": "rett_lov_rettssikkerhet",
@@ -259,7 +262,10 @@
     "Avvis styringsspørsmål uten eksplisitt mekanisme.",
     "Avvis styringsspørsmål der valgt metode ikke passer mekanismen eller kildetypen.",
     "Avvis teorispørsmål uten reell begrepsdistinksjon eller sammenligning.",
-    "Avvis teoretikernavn som svar når begrep og mekanisme ikke er del av spørsmålet."
+    "Avvis teoretikernavn som svar når begrep og mekanisme ikke er del av spørsmålet.",
+    "Avvis demokratspørsmål uten dokumenterbart valg, mandat, institusjonelt ansvar, offentlig ordskifte, organisasjon, konflikt, tillitsgrunnlag eller politisk rom.",
+    "Avvis spørsmål som likestiller deltakelse med innflytelse, synlighet med dagsordenmakt eller flertallsregel med legitim majoritetsdominans.",
+    "Avvis teorispørsmål der teoretikernavn kan besvares uten at et begrep forklarer en dokumentert mekanisme."
   ],
   "generation_metadata_additions": {
     "required_per_question_fields_recommended": [
@@ -385,6 +391,470 @@
         "avvis spørsmål uten mekanisme",
         "avvis spørsmål uten reell distinksjon når teori brukes"
       ]
+    },
+    "demokrati_representasjon_offentlighet": {
+      "profile_id": "demokrati_representasjon_offentlighet",
+      "revision": "politikk-demokrati-vertical-2026-07-24",
+      "status": "complete_revised",
+      "required_hook_ids": [
+        "representasjon",
+        "valg_og_deltakelse",
+        "offentlighet",
+        "parlamentarisme",
+        "politiske_symboler",
+        "partier_og_bevegelser",
+        "debattarenaer",
+        "majoritet_minoritet",
+        "politisk_tillit",
+        "demokratiets_rom"
+      ],
+      "required_method_ids": [
+        "met_pol_demokratianalyse",
+        "met_pol_representasjonsanalyse",
+        "met_pol_valg_og_deltakelsesanalyse",
+        "met_pol_statistikk_og_fordelingsanalyse",
+        "met_pol_symbolanalyse",
+        "met_pol_legitimitetsanalyse",
+        "met_pol_offentlighetsanalyse",
+        "met_pol_diskursanalyse",
+        "met_pol_praksisanalyse",
+        "met_pol_romlig_maktanalyse",
+        "met_pol_protest_og_bevegelsesanalyse",
+        "met_pol_institusjonsanalyse",
+        "met_pol_maktbalanseanalyse",
+        "met_pol_parti_og_bevegelsesanalyse",
+        "met_pol_ideologianalyse",
+        "met_pol_sivilsamfunnsanalyse",
+        "met_pol_politisk_historisk_analyse",
+        "met_pol_minoritet_og_representasjonsanalyse",
+        "met_pol_fordelingsanalyse"
+      ],
+      "generation_sequence": [
+        "external_case_or_source",
+        "claim_basis",
+        "mechanism",
+        "critical_distinction",
+        "optional_theory_lens"
+      ],
+      "hard_requirements": {
+        "require_external_claim_basis": true,
+        "require_case_specific_question": true,
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "require_method_match_to_mechanism": true,
+        "ban_theorist_name_as_answer_without_concept": true,
+        "canonical_files_are_guides_not_fact_sources": true
+      },
+      "forbidden_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk demokratiholdning uten dokumentert case",
+        "valg som eneste mål på demokratisk kvalitet",
+        "synlighet likestilt med innflytelse",
+        "flertall likestilt med legitim dominans"
+      ],
+      "source_rule": "Påstander om valg, representasjon, parlamentariske prosesser, organisasjoner, offentlige debatter, tillit, protester eller konkrete politiske rom må bygge på eksterne kilder. Canonical-filene styrer analysen, men leverer ikke faktapåstanden.",
+      "hook_profiles": {
+        "representasjon": {
+          "required_methods": [
+            "met_pol_representasjonsanalyse",
+            "met_pol_demokratianalyse"
+          ],
+          "mechanisms": [
+            "autorisasjon",
+            "delegasjon",
+            "kravsframsetting",
+            "responsivitet",
+            "ansvarliggjøring",
+            "deskriptiv tilstedeværelse"
+          ],
+          "critical_distinctions": [
+            "deskriptiv vs substansiell representasjon",
+            "delegat vs tillitsrepresentant",
+            "autorisasjon vs ansvarliggjøring",
+            "representasjon av interesser vs representasjon av identiteter"
+          ],
+          "anchor_types": [
+            "representation",
+            "election",
+            "parliament",
+            "city_hall"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "hanna_pitkin",
+              "concept": "stå-for, handle-for, autorisasjon og ansvarlighet"
+            },
+            {
+              "thinker_id": "jane_mansbridge",
+              "concept": "promissorisk, anticipatorisk og gyroskopisk representasjon"
+            },
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "politisk likhet og effektiv deltakelse"
+            }
+          ]
+        },
+        "valg_og_deltakelse": {
+          "required_methods": [
+            "met_pol_valg_og_deltakelsesanalyse",
+            "met_pol_statistikk_og_fordelingsanalyse"
+          ],
+          "mechanisms": [
+            "stemmerett og valgbarhet",
+            "valgsystem og mandatfordeling",
+            "mobilisering",
+            "ressursulikhet",
+            "deltakelsesterskler",
+            "politisk rekruttering"
+          ],
+          "critical_distinctions": [
+            "valgdeltakelse vs bred politisk deltakelse",
+            "formell rett vs faktisk kapasitet",
+            "oppslutning vs representativitet",
+            "mobilisering vs selvseleksjon"
+          ],
+          "anchor_types": [
+            "election",
+            "statistics",
+            "representation",
+            "party"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "effektiv deltakelse og stemmelikhet"
+            },
+            {
+              "thinker_id": "sidney_verba",
+              "concept": "ressurser, motivasjon og rekruttering"
+            },
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "mobilisering, konfliktlinjer og partisystem"
+            }
+          ]
+        },
+        "offentlighet": {
+          "required_methods": [
+            "met_pol_offentlighetsanalyse",
+            "met_pol_diskursanalyse"
+          ],
+          "mechanisms": [
+            "dagsordensetting",
+            "portvokting",
+            "sirkulasjon",
+            "begrunnelseskrav",
+            "mediering",
+            "motoffentlig organisering"
+          ],
+          "critical_distinctions": [
+            "offentlighet vs publikum",
+            "synlighet vs innflytelse",
+            "felles offentlighet vs motoffentligheter",
+            "deliberasjon vs strategisk kommunikasjon"
+          ],
+          "anchor_types": [
+            "public_sphere",
+            "debate_arena",
+            "official_report",
+            "movement"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "offentlig begrunnelse og deliberasjon"
+            },
+            {
+              "thinker_id": "nancy_fraser",
+              "concept": "motoffentligheter og deltakelsesparitet"
+            },
+            {
+              "thinker_id": "hannah_arendt",
+              "concept": "offentlig fremtredelse og pluralitet"
+            }
+          ]
+        },
+        "parlamentarisme": {
+          "required_methods": [
+            "met_pol_maktbalanseanalyse",
+            "met_pol_institusjonsanalyse"
+          ],
+          "mechanisms": [
+            "tillitsforhold",
+            "regjeringsdannelse",
+            "partidisiplin",
+            "komitékontroll",
+            "delegasjon",
+            "mistillit og kabinettspørsmål"
+          ],
+          "critical_distinctions": [
+            "parlamentarisme vs maktseparasjon",
+            "rettslig kompetanse vs politisk tillit",
+            "flertallsregjering vs mindretallsregjering",
+            "regjeringens styring vs parlamentets kontroll"
+          ],
+          "anchor_types": [
+            "parliament",
+            "institution",
+            "government_building",
+            "representation"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "kaare_strom",
+              "concept": "delegasjon, parlamentarisk ansvarlighet og mindretallsregjering"
+            },
+            {
+              "thinker_id": "arend_lijphart",
+              "concept": "flertalls- og konsensusdemokrati"
+            },
+            {
+              "thinker_id": "max_weber",
+              "concept": "parlamentarisk lederskap og ansvarsetikk"
+            }
+          ]
+        },
+        "politiske_symboler": {
+          "required_methods": [
+            "met_pol_symbolanalyse",
+            "met_pol_representasjonsanalyse"
+          ],
+          "mechanisms": [
+            "klassifikasjon",
+            "ritualisering",
+            "minnepolitikk",
+            "grensedragning",
+            "personifisering",
+            "symbolsk legitimering"
+          ],
+          "critical_distinctions": [
+            "symbol vs institusjon",
+            "anerkjennelse vs omfordeling",
+            "nasjonalt symbol vs partisymbol",
+            "minnemarkering vs mobilisering"
+          ],
+          "anchor_types": [
+            "political_symbol",
+            "parliament",
+            "public_sphere",
+            "representation"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "symbolsk makt og legitim klassifikasjon"
+            },
+            {
+              "thinker_id": "murray_edelman",
+              "concept": "symbolsk iscenesettelse og politisk beroligelse"
+            },
+            {
+              "thinker_id": "benedict_anderson",
+              "concept": "forestilte fellesskap og nasjonal tilhørighet"
+            }
+          ]
+        },
+        "partier_og_bevegelser": {
+          "required_methods": [
+            "met_pol_parti_og_bevegelsesanalyse",
+            "met_pol_ideologianalyse"
+          ],
+          "mechanisms": [
+            "interesseaggregering",
+            "kandidatrekruttering",
+            "mobilisering",
+            "innramming",
+            "koalisjonsbygging",
+            "politiske mulighetsstrukturer"
+          ],
+          "critical_distinctions": [
+            "parti vs sosial bevegelse",
+            "medlemskap vs velgergrunnlag",
+            "organisasjon vs nettverk",
+            "ideologi vs sakseierskap"
+          ],
+          "anchor_types": [
+            "party",
+            "movement",
+            "civil_society",
+            "protest"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "konfliktlinjer og partisystem"
+            },
+            {
+              "thinker_id": "charles_tilly",
+              "concept": "kravsframsetting og kollektiv handling"
+            },
+            {
+              "thinker_id": "sidney_tarrow",
+              "concept": "politiske muligheter og mobiliseringssykluser"
+            }
+          ]
+        },
+        "debattarenaer": {
+          "required_methods": [
+            "met_pol_offentlighetsanalyse",
+            "met_pol_praksisanalyse"
+          ],
+          "mechanisms": [
+            "adgangsregulering",
+            "moderering",
+            "dagsordensetting",
+            "innramming",
+            "talefordeling",
+            "publisering og sirkulasjon"
+          ],
+          "critical_distinctions": [
+            "debatt vs deliberasjon",
+            "åpen adgang vs effektiv deltakelse",
+            "synlighet vs dagsordenkontroll",
+            "begrunnelse vs politisk framføring"
+          ],
+          "anchor_types": [
+            "debate_arena",
+            "public_sphere",
+            "civil_society",
+            "movement"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "deliberasjon og begrunnelseskrav"
+            },
+            {
+              "thinker_id": "chantal_mouffe",
+              "concept": "agonistisk konflikt"
+            },
+            {
+              "thinker_id": "nancy_fraser",
+              "concept": "motoffentligheter og deltakelsesparitet"
+            }
+          ]
+        },
+        "majoritet_minoritet": {
+          "required_methods": [
+            "met_pol_minoritet_og_representasjonsanalyse",
+            "met_pol_fordelingsanalyse"
+          ],
+          "mechanisms": [
+            "flertallsregel",
+            "valgterskler",
+            "koalisjonsdannelse",
+            "vetopunkter",
+            "rettighetsvern",
+            "makt- og posisjonsdeling"
+          ],
+          "critical_distinctions": [
+            "numerisk flertall vs dominerende gruppe",
+            "flertallsregel vs majoritetsdominans",
+            "lik behandling vs minoritetsvern",
+            "integrasjon vs assimilering"
+          ],
+          "anchor_types": [
+            "majority",
+            "minority",
+            "representation",
+            "legal_right"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "politisk likhet og minoriteters opposisjonsrett"
+            },
+            {
+              "thinker_id": "arend_lijphart",
+              "concept": "konsensusdemokrati og maktdeling"
+            },
+            {
+              "thinker_id": "anne_phillips",
+              "concept": "tilstedeværelsens politikk"
+            }
+          ]
+        },
+        "politisk_tillit": {
+          "required_methods": [
+            "met_pol_legitimitetsanalyse",
+            "met_pol_demokratianalyse"
+          ],
+          "mechanisms": [
+            "resultatvurdering",
+            "prosedyrerettferdighet",
+            "åpenhet",
+            "responsivitet",
+            "ansvarsplassering",
+            "tillitsspredning mellom institusjoner"
+          ],
+          "critical_distinctions": [
+            "tillit vs legitimitet",
+            "spesifikk vs diffus støtte",
+            "institusjonell vs mellommenneskelig tillit",
+            "etterlevelse vs tillit"
+          ],
+          "anchor_types": [
+            "trust",
+            "legitimacy",
+            "institution",
+            "official_report"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "david_easton",
+              "concept": "spesifikk og diffus støtte"
+            },
+            {
+              "thinker_id": "fritz_scharpf",
+              "concept": "input-, throughput- og output-legitimitet"
+            },
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "legitimitet gjennom offentlig begrunnelse"
+            }
+          ]
+        },
+        "demokratiets_rom": {
+          "required_methods": [
+            "met_pol_romlig_maktanalyse",
+            "met_pol_offentlighetsanalyse"
+          ],
+          "mechanisms": [
+            "romlig adgang",
+            "forsamlingsmulighet",
+            "synliggjøring",
+            "politiregulering",
+            "symbolsk okkupasjon",
+            "infrastrukturell tilrettelegging"
+          ],
+          "critical_distinctions": [
+            "offentlig eierskap vs offentlig tilgjengelighet",
+            "synlighet vs innflytelse",
+            "forsamlingsfrihet vs ordensregulering",
+            "planlagt bruk vs politisk appropriasjon"
+          ],
+          "anchor_types": [
+            "public_sphere",
+            "protest",
+            "debate_arena",
+            "political_symbol"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "hannah_arendt",
+              "concept": "fremtredelsesrom og politisk handling"
+            },
+            {
+              "thinker_id": "henri_lefebvre",
+              "concept": "produksjon av rom og retten til byen"
+            },
+            {
+              "thinker_id": "charles_tilly",
+              "concept": "repertoarer og offentlig kravsframsetting"
+            }
+          ]
+        }
+      }
     }
   }
 }

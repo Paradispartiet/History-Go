@@ -221,7 +221,7 @@
       "method_id": "met_pol_demokratianalyse",
       "title": "Demokratianalyse",
       "short_label": "Demokrati",
-      "description": "Analyse av demokrati, valg, representasjon, parlamentarisme, offentlighet, politiske symboler og politiske rom. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer om institusjoner og prosesser gir politisk likhet, effektiv deltakelse, opposisjonsmulighet og ansvarliggjøring.",
       "best_for_emne_kinds": [
         "demokrati_representasjon_offentlighet"
       ],
@@ -279,13 +279,116 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer om institusjoner og prosesser gir politisk likhet, effektiv deltakelse, opposisjonsmulighet og ansvarliggjøring.",
+          "analytical_question": "Hvem kan delta, få sine preferanser vurdert og holde beslutningstakere ansvarlige?",
+          "evidence_inputs": [
+            "valgresultat",
+            "institusjonelle regler",
+            "deltakelsesdata",
+            "kontroll- eller høringsdokument"
+          ],
+          "mechanism_focus": [
+            "inkludering",
+            "deltakelse",
+            "konkurranse",
+            "ansvarliggjøring"
+          ],
+          "critical_distinctions": [
+            "formell demokratisk regel vs faktisk politisk likhet",
+            "deltakelse vs innflytelse",
+            "flertallsvedtak vs legitimt demokrati"
+          ],
+          "compatible_anchor_types": [
+            "election",
+            "representation",
+            "institution",
+            "public_sphere"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer om institusjoner og prosesser gir politisk likhet, effektiv deltakelse, opposisjonsmulighet og ansvarliggjøring.",
+      "analytical_question": "Hvem kan delta, få sine preferanser vurdert og holde beslutningstakere ansvarlige?",
+      "evidence_inputs": [
+        "valgresultat",
+        "institusjonelle regler",
+        "deltakelsesdata",
+        "kontroll- eller høringsdokument"
+      ],
+      "mechanism_focus": [
+        "inkludering",
+        "deltakelse",
+        "konkurranse",
+        "ansvarliggjøring"
+      ],
+      "critical_distinctions": [
+        "formell demokratisk regel vs faktisk politisk likhet",
+        "deltakelse vs innflytelse",
+        "flertallsvedtak vs legitimt demokrati"
+      ],
+      "compatible_anchor_types": [
+        "election",
+        "representation",
+        "institution",
+        "public_sphere"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_diskursanalyse",
       "title": "Diskursanalyse",
       "short_label": "Diskurs",
-      "description": "Analyse av makt, interesser, protest, sivilsamfunn, bevegelser, ideologi, polarisering og konfliktens rom, normer, normalitet, minoritet, majoritet, identitet, kjønn, familie, migrasjon og hverdagsliv. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan språk, kategorier og problemframstillinger gjør enkelte politiske løsninger og aktører mer legitime eller synlige enn andre.",
       "best_for_emne_kinds": [
         "konflikt_makt_sivilsamfunn",
         "normer_identitet_hverdagsliv",
@@ -361,7 +464,110 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvordan språk, kategorier og problemframstillinger gjør enkelte politiske løsninger og aktører mer legitime eller synlige enn andre.",
+          "analytical_question": "Hvordan defineres problemet, hvilke kategorier tas for gitt, og hvilke alternativer eller stemmer marginaliseres?",
+          "evidence_inputs": [
+            "tale eller debatt",
+            "partiprogram",
+            "saksframlegg",
+            "offentlig kampanjemateriale"
+          ],
+          "mechanism_focus": [
+            "problemdefinisjon",
+            "innramming",
+            "klassifikasjon",
+            "normalisering"
+          ],
+          "critical_distinctions": [
+            "ordbruk vs underliggende mekanisme",
+            "uenighet om fakta vs uenighet om problemramme",
+            "synlighet vs definisjonsmakt"
+          ],
+          "compatible_anchor_types": [
+            "public_sphere",
+            "debate_arena",
+            "official_report",
+            "political_symbol"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan språk, kategorier og problemframstillinger gjør enkelte politiske løsninger og aktører mer legitime eller synlige enn andre.",
+      "analytical_question": "Hvordan defineres problemet, hvilke kategorier tas for gitt, og hvilke alternativer eller stemmer marginaliseres?",
+      "evidence_inputs": [
+        "tale eller debatt",
+        "partiprogram",
+        "saksframlegg",
+        "offentlig kampanjemateriale"
+      ],
+      "mechanism_focus": [
+        "problemdefinisjon",
+        "innramming",
+        "klassifikasjon",
+        "normalisering"
+      ],
+      "critical_distinctions": [
+        "ordbruk vs underliggende mekanisme",
+        "uenighet om fakta vs uenighet om problemramme",
+        "synlighet vs definisjonsmakt"
+      ],
+      "compatible_anchor_types": [
+        "public_sphere",
+        "debate_arena",
+        "official_report",
+        "political_symbol"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_dokumentanalyse",
@@ -492,7 +698,7 @@
       "method_id": "met_pol_fordelingsanalyse",
       "title": "Fordelingsanalyse",
       "short_label": "Fordeling",
-      "description": "Analyse av fordeling, velferd, levekår, klasse, bolig, helse, utdanning, demografi og ulikhet, styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan demokratiske regler og beslutninger fordeler politisk adgang, representasjon, rettigheter, byrder og goder mellom grupper.",
       "best_for_emne_kinds": [
         "fordeling_velferd_ulikhet",
         "styring_institusjoner_forvaltning",
@@ -577,7 +783,110 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvordan demokratiske regler og beslutninger fordeler politisk adgang, representasjon, rettigheter, byrder og goder mellom grupper.",
+          "analytical_question": "Hvem får hva, hvem bærer kostnaden, og hvilken mekanisme skaper eller begrenser den skjeve fordelingen?",
+          "evidence_inputs": [
+            "representasjonsdata",
+            "budsjett eller fordelingsvedtak",
+            "valgdata",
+            "rettighets- eller tjenestedata"
+          ],
+          "mechanism_focus": [
+            "ressursfordeling",
+            "seleksjon",
+            "terskler",
+            "kompensasjon"
+          ],
+          "critical_distinctions": [
+            "lik behandling vs likeverdig virkning",
+            "universell regel vs gruppevirkning",
+            "numerisk fordeling vs politisk makt"
+          ],
+          "compatible_anchor_types": [
+            "distribution",
+            "statistics",
+            "minority",
+            "representation"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan demokratiske regler og beslutninger fordeler politisk adgang, representasjon, rettigheter, byrder og goder mellom grupper.",
+      "analytical_question": "Hvem får hva, hvem bærer kostnaden, og hvilken mekanisme skaper eller begrenser den skjeve fordelingen?",
+      "evidence_inputs": [
+        "representasjonsdata",
+        "budsjett eller fordelingsvedtak",
+        "valgdata",
+        "rettighets- eller tjenestedata"
+      ],
+      "mechanism_focus": [
+        "ressursfordeling",
+        "seleksjon",
+        "terskler",
+        "kompensasjon"
+      ],
+      "critical_distinctions": [
+        "lik behandling vs likeverdig virkning",
+        "universell regel vs gruppevirkning",
+        "numerisk fordeling vs politisk makt"
+      ],
+      "compatible_anchor_types": [
+        "distribution",
+        "statistics",
+        "minority",
+        "representation"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_forvaltningsanalyse",
@@ -710,7 +1019,7 @@
       "method_id": "met_pol_ideologianalyse",
       "title": "Ideologianalyse",
       "short_label": "Ideologi",
-      "description": "Analyse av makt, interesser, protest, sivilsamfunn, bevegelser, ideologi, polarisering og konfliktens rom, demokrati, valg, representasjon, parlamentarisme, offentlighet, politiske symboler og politiske rom. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan verdier, samfunnsbilder og konfliktlinjer bindes sammen til politiske problemforståelser og handlingsprogrammer.",
       "best_for_emne_kinds": [
         "konflikt_makt_sivilsamfunn",
         "demokrati_representasjon_offentlighet"
@@ -776,7 +1085,110 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvordan verdier, samfunnsbilder og konfliktlinjer bindes sammen til politiske problemforståelser og handlingsprogrammer.",
+          "analytical_question": "Hvilke antakelser om samfunn, makt og rettferdighet organiserer argumentet, og hvilken konfliktlinje aktiveres?",
+          "evidence_inputs": [
+            "partiprogram",
+            "politisk tale",
+            "manifest",
+            "kampanje eller organisasjonsdokument"
+          ],
+          "mechanism_focus": [
+            "artikulasjon",
+            "problemdefinisjon",
+            "identitetsbygging",
+            "hegemoni"
+          ],
+          "critical_distinctions": [
+            "ideologi vs enkeltstandpunkt",
+            "verdi vs empirisk påstand",
+            "konfliktlinje vs midlertidig sak"
+          ],
+          "compatible_anchor_types": [
+            "party",
+            "movement",
+            "public_sphere",
+            "political_symbol"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan verdier, samfunnsbilder og konfliktlinjer bindes sammen til politiske problemforståelser og handlingsprogrammer.",
+      "analytical_question": "Hvilke antakelser om samfunn, makt og rettferdighet organiserer argumentet, og hvilken konfliktlinje aktiveres?",
+      "evidence_inputs": [
+        "partiprogram",
+        "politisk tale",
+        "manifest",
+        "kampanje eller organisasjonsdokument"
+      ],
+      "mechanism_focus": [
+        "artikulasjon",
+        "problemdefinisjon",
+        "identitetsbygging",
+        "hegemoni"
+      ],
+      "critical_distinctions": [
+        "ideologi vs enkeltstandpunkt",
+        "verdi vs empirisk påstand",
+        "konfliktlinje vs midlertidig sak"
+      ],
+      "compatible_anchor_types": [
+        "party",
+        "movement",
+        "public_sphere",
+        "political_symbol"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_institusjonsanalyse",
@@ -924,7 +1336,63 @@
       "mechanism_explanation_required": true,
       "critical_distinction_required": true,
       "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
-      "quality_revision": "politikk-styring-vertical-2026-07-24"
+      "quality_revision": "politikk-styring-vertical-2026-07-24",
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer demokratiske institusjoners regler, roller og ansvarskjeder uten å redusere institusjonen til bygningen eller formell kompetanse.",
+          "analytical_question": "Hvordan fordeler institusjonen autorisasjon, representasjon, kontroll og ansvar mellom aktørene?",
+          "evidence_inputs": [
+            "institusjonsregel",
+            "mandat eller delegasjon",
+            "kontrollsak",
+            "dokumentert beslutningsprosess"
+          ],
+          "mechanism_focus": [
+            "autorisasjon",
+            "delegasjon",
+            "ansvarliggjøring",
+            "stiavhengighet"
+          ],
+          "critical_distinctions": [
+            "institusjon vs organisasjon",
+            "formell kompetanse vs politisk innflytelse",
+            "regel vs praksis"
+          ],
+          "compatible_anchor_types": [
+            "institution",
+            "parliament",
+            "city_hall",
+            "representation"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-styring-vertical-2026-07-24",
+        "politikk-demokrati-vertical-2026-07-24"
+      ]
     },
     {
       "method_id": "met_pol_integreringsanalyse",
@@ -1324,7 +1792,63 @@
       "mechanism_explanation_required": true,
       "critical_distinction_required": true,
       "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
-      "quality_revision": "politikk-styring-vertical-2026-07-24"
+      "quality_revision": "politikk-styring-vertical-2026-07-24",
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvorfor demokratiske beslutninger aksepteres eller bestrides gjennom representasjon, prosedyre, offentlig begrunnelse og resultater.",
+          "analytical_question": "Hvilken type støtte eller legitimitet er dokumentert, og hvor i input-, throughput- eller output-kjeden oppstår styrken eller svikten?",
+          "evidence_inputs": [
+            "tillitsdata",
+            "prosedyre- eller kontrollkilde",
+            "offentlig begrunnelse",
+            "resultat- eller responsdata"
+          ],
+          "mechanism_focus": [
+            "representativ input",
+            "prosedyrerettferdighet",
+            "responsivitet",
+            "resultatvurdering"
+          ],
+          "critical_distinctions": [
+            "tillit vs legitimitet",
+            "spesifikk vs diffus støtte",
+            "legalitet vs demokratisk begrunnelse"
+          ],
+          "compatible_anchor_types": [
+            "trust",
+            "legitimacy",
+            "institution",
+            "official_report"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-styring-vertical-2026-07-24",
+        "politikk-demokrati-vertical-2026-07-24"
+      ]
     },
     {
       "method_id": "met_pol_levekarsanalyse",
@@ -1719,7 +2243,7 @@
       "method_id": "met_pol_maktbalanseanalyse",
       "title": "Maktbalanseanalyse",
       "short_label": "Maktbalanse",
-      "description": "Analyse av demokrati, valg, representasjon, parlamentarisme, offentlighet, politiske symboler og politiske rom, rettsstat, domstoler, lover, rettigheter, plikter, straff, kontroll og forholdet mellom borger og stat. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan kompetanse, delegasjon, kontroll, veto og politisk støtte fordeles mellom demokratiske institusjoner og aktører.",
       "best_for_emne_kinds": [
         "demokrati_representasjon_offentlighet",
         "rett_lov_rettssikkerhet"
@@ -1787,13 +2311,116 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvordan kompetanse, delegasjon, kontroll, veto og politisk støtte fordeles mellom demokratiske institusjoner og aktører.",
+          "analytical_question": "Hvem kan beslutte, blokkere, kontrollere eller avsette hvem, og på hvilket formelt eller politisk grunnlag?",
+          "evidence_inputs": [
+            "grunnlov eller lov",
+            "parlamentarisk vedtak",
+            "komitédokument",
+            "regjerings- eller kontrollsak"
+          ],
+          "mechanism_focus": [
+            "delegasjon",
+            "kontroll",
+            "veto",
+            "tillit"
+          ],
+          "critical_distinctions": [
+            "formell kompetanse vs politisk støtte",
+            "maktseparasjon vs parlamentarisme",
+            "kontroll vs medstyring"
+          ],
+          "compatible_anchor_types": [
+            "parliament",
+            "institution",
+            "government_building",
+            "legal_source"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan kompetanse, delegasjon, kontroll, veto og politisk støtte fordeles mellom demokratiske institusjoner og aktører.",
+      "analytical_question": "Hvem kan beslutte, blokkere, kontrollere eller avsette hvem, og på hvilket formelt eller politisk grunnlag?",
+      "evidence_inputs": [
+        "grunnlov eller lov",
+        "parlamentarisk vedtak",
+        "komitédokument",
+        "regjerings- eller kontrollsak"
+      ],
+      "mechanism_focus": [
+        "delegasjon",
+        "kontroll",
+        "veto",
+        "tillit"
+      ],
+      "critical_distinctions": [
+        "formell kompetanse vs politisk støtte",
+        "maktseparasjon vs parlamentarisme",
+        "kontroll vs medstyring"
+      ],
+      "compatible_anchor_types": [
+        "parliament",
+        "institution",
+        "government_building",
+        "legal_source"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_minoritet_og_representasjonsanalyse",
       "title": "Minoritet- og representasjonsanalyse",
       "short_label": "Minoritet/representasjon",
-      "description": "Analyse av normer, normalitet, minoritet, majoritet, identitet, kjønn, familie, migrasjon og hverdagsliv, demokrati, valg, representasjon, parlamentarisme, offentlighet, politiske symboler og politiske rom. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer om minoriteter og underrepresenterte grupper har reell tilstedeværelse, opposisjonsmulighet, rettighetsvern og respons i demokratiske institusjoner.",
       "best_for_emne_kinds": [
         "normer_identitet_hverdagsliv",
         "demokrati_representasjon_offentlighet",
@@ -1866,7 +2493,110 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer om minoriteter og underrepresenterte grupper har reell tilstedeværelse, opposisjonsmulighet, rettighetsvern og respons i demokratiske institusjoner.",
+          "analytical_question": "Hvilken gruppe er marginalisert i hvilket ledd, og hvilken representasjons- eller vernemekanisme påvirker utfallet?",
+          "evidence_inputs": [
+            "representasjonsstatistikk",
+            "valg- eller kandidatliste",
+            "rettighetsregel",
+            "hørings- eller beslutningsdokument"
+          ],
+          "mechanism_focus": [
+            "seleksjon",
+            "tilstedeværelse",
+            "veto eller vern",
+            "ulik responsivitet"
+          ],
+          "critical_distinctions": [
+            "numerisk minoritet vs politisk marginalisering",
+            "tilstedeværelse vs substansiell representasjon",
+            "likebehandling vs minoritetsvern"
+          ],
+          "compatible_anchor_types": [
+            "minority",
+            "majority",
+            "representation",
+            "legal_right"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer om minoriteter og underrepresenterte grupper har reell tilstedeværelse, opposisjonsmulighet, rettighetsvern og respons i demokratiske institusjoner.",
+      "analytical_question": "Hvilken gruppe er marginalisert i hvilket ledd, og hvilken representasjons- eller vernemekanisme påvirker utfallet?",
+      "evidence_inputs": [
+        "representasjonsstatistikk",
+        "valg- eller kandidatliste",
+        "rettighetsregel",
+        "hørings- eller beslutningsdokument"
+      ],
+      "mechanism_focus": [
+        "seleksjon",
+        "tilstedeværelse",
+        "veto eller vern",
+        "ulik responsivitet"
+      ],
+      "critical_distinctions": [
+        "numerisk minoritet vs politisk marginalisering",
+        "tilstedeværelse vs substansiell representasjon",
+        "likebehandling vs minoritetsvern"
+      ],
+      "compatible_anchor_types": [
+        "minority",
+        "majority",
+        "representation",
+        "legal_right"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_normanalyse",
@@ -1954,7 +2684,7 @@
       "method_id": "met_pol_offentlighetsanalyse",
       "title": "Offentlighetsanalyse",
       "short_label": "Offentlighet",
-      "description": "Analyse av demokrati, valg, representasjon, parlamentarisme, offentlighet, politiske symboler og politiske rom, makt, interesser, protest, sivilsamfunn, bevegelser, ideologi, polarisering og konfliktens rom. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvem som får adgang, oppmerksomhet, troverdighet og gjensvar i politiske offentligheter og debattarenaer.",
       "best_for_emne_kinds": [
         "demokrati_representasjon_offentlighet",
         "konflikt_makt_sivilsamfunn"
@@ -2022,13 +2752,116 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvem som får adgang, oppmerksomhet, troverdighet og gjensvar i politiske offentligheter og debattarenaer.",
+          "analytical_question": "Hvordan formes dagsorden og deltakelsesvilkår, og blir synlighet omdannet til offentlig begrunnelse eller respons?",
+          "evidence_inputs": [
+            "debatt eller høring",
+            "mediert offentlig materiale",
+            "møteprogram eller deltakerliste",
+            "offentlig uttalelse eller respons"
+          ],
+          "mechanism_focus": [
+            "adgang",
+            "portvokting",
+            "dagsordensetting",
+            "sirkulasjon"
+          ],
+          "critical_distinctions": [
+            "offentlighet vs publikum",
+            "synlighet vs innflytelse",
+            "debatt vs deliberasjon"
+          ],
+          "compatible_anchor_types": [
+            "public_sphere",
+            "debate_arena",
+            "movement",
+            "official_report"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvem som får adgang, oppmerksomhet, troverdighet og gjensvar i politiske offentligheter og debattarenaer.",
+      "analytical_question": "Hvordan formes dagsorden og deltakelsesvilkår, og blir synlighet omdannet til offentlig begrunnelse eller respons?",
+      "evidence_inputs": [
+        "debatt eller høring",
+        "mediert offentlig materiale",
+        "møteprogram eller deltakerliste",
+        "offentlig uttalelse eller respons"
+      ],
+      "mechanism_focus": [
+        "adgang",
+        "portvokting",
+        "dagsordensetting",
+        "sirkulasjon"
+      ],
+      "critical_distinctions": [
+        "offentlighet vs publikum",
+        "synlighet vs innflytelse",
+        "debatt vs deliberasjon"
+      ],
+      "compatible_anchor_types": [
+        "public_sphere",
+        "debate_arena",
+        "movement",
+        "official_report"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_parti_og_bevegelsesanalyse",
       "title": "Parti- og bevegelsesanalyse",
       "short_label": "Parti/bevegelse",
-      "description": "Analyse av demokrati, valg, representasjon, parlamentarisme, offentlighet, politiske symboler og politiske rom, makt, interesser, protest, sivilsamfunn, bevegelser, ideologi, polarisering og konfliktens rom. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan partier og bevegelser samler krav, rekrutterer deltakere, mobiliserer ressurser og søker institusjonell eller offentlig innflytelse.",
       "best_for_emne_kinds": [
         "demokrati_representasjon_offentlighet",
         "konflikt_makt_sivilsamfunn"
@@ -2092,7 +2925,110 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvordan partier og bevegelser samler krav, rekrutterer deltakere, mobiliserer ressurser og søker institusjonell eller offentlig innflytelse.",
+          "analytical_question": "Hvordan blir en konflikt eller sak omformet til organisasjon, kollektiv identitet og politisk strategi?",
+          "evidence_inputs": [
+            "vedtekter eller program",
+            "medlems- og organisasjonsdata",
+            "kampanje- eller protestmateriale",
+            "dokumentert forhandlings- eller påvirkningsaktivitet"
+          ],
+          "mechanism_focus": [
+            "aggregering",
+            "mobilisering",
+            "innramming",
+            "koalisjonsbygging"
+          ],
+          "critical_distinctions": [
+            "parti vs bevegelse",
+            "medlemskap vs velgergrunnlag",
+            "organisasjon vs nettverk"
+          ],
+          "compatible_anchor_types": [
+            "party",
+            "movement",
+            "civil_society",
+            "protest"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan partier og bevegelser samler krav, rekrutterer deltakere, mobiliserer ressurser og søker institusjonell eller offentlig innflytelse.",
+      "analytical_question": "Hvordan blir en konflikt eller sak omformet til organisasjon, kollektiv identitet og politisk strategi?",
+      "evidence_inputs": [
+        "vedtekter eller program",
+        "medlems- og organisasjonsdata",
+        "kampanje- eller protestmateriale",
+        "dokumentert forhandlings- eller påvirkningsaktivitet"
+      ],
+      "mechanism_focus": [
+        "aggregering",
+        "mobilisering",
+        "innramming",
+        "koalisjonsbygging"
+      ],
+      "critical_distinctions": [
+        "parti vs bevegelse",
+        "medlemskap vs velgergrunnlag",
+        "organisasjon vs nettverk"
+      ],
+      "compatible_anchor_types": [
+        "party",
+        "movement",
+        "civil_society",
+        "protest"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_plan_og_reguleringsanalyse",
@@ -2223,7 +3159,7 @@
       "method_id": "met_pol_politisk_historisk_analyse",
       "title": "Politisk-historisk analyse",
       "short_label": "Politisk historie",
-      "description": "Analyse av rettsstat, domstoler, lover, rettigheter, plikter, straff, kontroll og forholdet mellom borger og stat, makt, interesser, protest, sivilsamfunn, bevegelser, ideologi, polarisering og konfliktens rom. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan demokratiske institusjoner, rettigheter, konfliktlinjer og repertoarer er blitt til gjennom sekvenser, brudd og stiavhengighet.",
       "best_for_emne_kinds": [
         "rett_lov_rettssikkerhet",
         "konflikt_makt_sivilsamfunn"
@@ -2291,7 +3227,110 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvordan demokratiske institusjoner, rettigheter, konfliktlinjer og repertoarer er blitt til gjennom sekvenser, brudd og stiavhengighet.",
+          "analytical_question": "Hvilken historisk prosess skapte dagens institusjon eller konflikt, og hvilke alternativer ble lukket eller bevart?",
+          "evidence_inputs": [
+            "arkivkilde",
+            "lov- eller institusjonshistorikk",
+            "historisk valgdata",
+            "dokumentert reformsekvens"
+          ],
+          "mechanism_focus": [
+            "stiavhengighet",
+            "kritisk vendepunkt",
+            "institusjonalisering",
+            "mobilisering"
+          ],
+          "critical_distinctions": [
+            "opprinnelse vs senere funksjon",
+            "kontinuitet vs brudd",
+            "hendelse vs langsiktig prosess"
+          ],
+          "compatible_anchor_types": [
+            "archive",
+            "legal_source",
+            "institution",
+            "movement"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan demokratiske institusjoner, rettigheter, konfliktlinjer og repertoarer er blitt til gjennom sekvenser, brudd og stiavhengighet.",
+      "analytical_question": "Hvilken historisk prosess skapte dagens institusjon eller konflikt, og hvilke alternativer ble lukket eller bevart?",
+      "evidence_inputs": [
+        "arkivkilde",
+        "lov- eller institusjonshistorikk",
+        "historisk valgdata",
+        "dokumentert reformsekvens"
+      ],
+      "mechanism_focus": [
+        "stiavhengighet",
+        "kritisk vendepunkt",
+        "institusjonalisering",
+        "mobilisering"
+      ],
+      "critical_distinctions": [
+        "opprinnelse vs senere funksjon",
+        "kontinuitet vs brudd",
+        "hendelse vs langsiktig prosess"
+      ],
+      "compatible_anchor_types": [
+        "archive",
+        "legal_source",
+        "institution",
+        "movement"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_praksisanalyse",
@@ -2423,13 +3462,69 @@
       "mechanism_explanation_required": true,
       "critical_distinction_required": true,
       "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
-      "quality_revision": "politikk-styring-vertical-2026-07-24"
+      "quality_revision": "politikk-styring-vertical-2026-07-24",
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvordan faktiske debatt-, møte- og organisasjonspraksiser fordeler taletid, adgang, respons og uformell autoritet.",
+          "analytical_question": "Hvordan utføres deltakelsen i praksis, og hvor avviker den fra formelle regler om åpenhet og likhet?",
+          "evidence_inputs": [
+            "møteobservasjon eller referat",
+            "debattformat",
+            "deltaker- eller taletidsdata",
+            "dokumentert organisasjonspraksis"
+          ],
+          "mechanism_focus": [
+            "rutinisering",
+            "uformell portvokting",
+            "talefordeling",
+            "sosial kompetanse"
+          ],
+          "critical_distinctions": [
+            "regel vs praksis",
+            "åpen adgang vs effektiv deltakelse",
+            "formell likhet vs uformell status"
+          ],
+          "compatible_anchor_types": [
+            "debate_arena",
+            "civil_society",
+            "public_sphere",
+            "institution"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-styring-vertical-2026-07-24",
+        "politikk-demokrati-vertical-2026-07-24"
+      ]
     },
     {
       "method_id": "met_pol_protest_og_bevegelsesanalyse",
       "title": "Protest- og bevegelsesanalyse",
       "short_label": "Protest/bevegelse",
-      "description": "Analyse av makt, interesser, protest, sivilsamfunn, bevegelser, ideologi, polarisering og konfliktens rom. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan kollektive aktører framfører krav gjennom protest, demonstrasjon og andre repertoarer, og hvordan myndigheter og offentligheter svarer.",
       "best_for_emne_kinds": [
         "konflikt_makt_sivilsamfunn"
       ],
@@ -2489,13 +3584,116 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvordan kollektive aktører framfører krav gjennom protest, demonstrasjon og andre repertoarer, og hvordan myndigheter og offentligheter svarer.",
+          "analytical_question": "Hvilke krav, ressurser, muligheter og reaksjoner former protestens form og politiske virkning?",
+          "evidence_inputs": [
+            "demonstrasjonsmateriale",
+            "organisasjonskilde",
+            "myndighetsrespons",
+            "mediert eller historisk dokumentasjon"
+          ],
+          "mechanism_focus": [
+            "mobilisering",
+            "repertoarvalg",
+            "politisk mulighet",
+            "repressiv eller responsiv reaksjon"
+          ],
+          "critical_distinctions": [
+            "protesthendelse vs sosial bevegelse",
+            "synlighet vs innflytelse",
+            "ordensbrudd vs politisk krav"
+          ],
+          "compatible_anchor_types": [
+            "protest",
+            "movement",
+            "public_sphere",
+            "civil_society"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan kollektive aktører framfører krav gjennom protest, demonstrasjon og andre repertoarer, og hvordan myndigheter og offentligheter svarer.",
+      "analytical_question": "Hvilke krav, ressurser, muligheter og reaksjoner former protestens form og politiske virkning?",
+      "evidence_inputs": [
+        "demonstrasjonsmateriale",
+        "organisasjonskilde",
+        "myndighetsrespons",
+        "mediert eller historisk dokumentasjon"
+      ],
+      "mechanism_focus": [
+        "mobilisering",
+        "repertoarvalg",
+        "politisk mulighet",
+        "repressiv eller responsiv reaksjon"
+      ],
+      "critical_distinctions": [
+        "protesthendelse vs sosial bevegelse",
+        "synlighet vs innflytelse",
+        "ordensbrudd vs politisk krav"
+      ],
+      "compatible_anchor_types": [
+        "protest",
+        "movement",
+        "public_sphere",
+        "civil_society"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_representasjonsanalyse",
       "title": "Representasjonsanalyse",
       "short_label": "Representasjon",
-      "description": "Analyse av demokrati, valg, representasjon, parlamentarisme, offentlighet, politiske symboler og politiske rom. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvem som autoriseres eller hevder å representere hvem, hvilke interesser eller identiteter som gjøres nærværende, og hvordan representanten ansvarliggjøres.",
       "best_for_emne_kinds": [
         "demokrati_representasjon_offentlighet"
       ],
@@ -2553,7 +3751,110 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvem som autoriseres eller hevder å representere hvem, hvilke interesser eller identiteter som gjøres nærværende, og hvordan representanten ansvarliggjøres.",
+          "analytical_question": "Hvem representerer hvem, på hvilket mandat, gjennom hvilken handling og med hvilken mulighet for kontroll?",
+          "evidence_inputs": [
+            "valg- eller mandatdata",
+            "representantuttalelse eller vedtak",
+            "kandidatliste",
+            "dokumentert krav fra berørt gruppe"
+          ],
+          "mechanism_focus": [
+            "autorisasjon",
+            "delegasjon",
+            "responsivitet",
+            "ansvarliggjøring"
+          ],
+          "critical_distinctions": [
+            "deskriptiv vs substansiell representasjon",
+            "delegat vs tillitsrepresentant",
+            "tilstedeværelse vs respons"
+          ],
+          "compatible_anchor_types": [
+            "representation",
+            "election",
+            "parliament",
+            "city_hall"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvem som autoriseres eller hevder å representere hvem, hvilke interesser eller identiteter som gjøres nærværende, og hvordan representanten ansvarliggjøres.",
+      "analytical_question": "Hvem representerer hvem, på hvilket mandat, gjennom hvilken handling og med hvilken mulighet for kontroll?",
+      "evidence_inputs": [
+        "valg- eller mandatdata",
+        "representantuttalelse eller vedtak",
+        "kandidatliste",
+        "dokumentert krav fra berørt gruppe"
+      ],
+      "mechanism_focus": [
+        "autorisasjon",
+        "delegasjon",
+        "responsivitet",
+        "ansvarliggjøring"
+      ],
+      "critical_distinctions": [
+        "deskriptiv vs substansiell representasjon",
+        "delegat vs tillitsrepresentant",
+        "tilstedeværelse vs respons"
+      ],
+      "compatible_anchor_types": [
+        "representation",
+        "election",
+        "parliament",
+        "city_hall"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_rettighetsanalyse",
@@ -2898,13 +4199,69 @@
       "mechanism_explanation_required": true,
       "critical_distinction_required": true,
       "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
-      "quality_revision": "politikk-styring-vertical-2026-07-24"
+      "quality_revision": "politikk-styring-vertical-2026-07-24",
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvordan politiske roms plassering, utforming, tilgang og regulering påvirker forsamling, synlighet og møte mellom borgere og myndighet.",
+          "analytical_question": "Hvem kan bruke rommet til hvilke politiske handlinger, og hvordan virker design, kontroll og sosial posisjon på den faktiske adgangen?",
+          "evidence_inputs": [
+            "kart eller plan",
+            "adgangs- eller ordensregel",
+            "dokumentert demonstrasjon eller møte",
+            "observasjon av fysisk tilrettelegging"
+          ],
+          "mechanism_focus": [
+            "adgangskontroll",
+            "synliggjøring",
+            "forsamling",
+            "symbolsk appropriasjon"
+          ],
+          "critical_distinctions": [
+            "offentlig eierskap vs offentlig bruk",
+            "synlighet vs innflytelse",
+            "tilgang vs trygg deltakelse"
+          ],
+          "compatible_anchor_types": [
+            "public_sphere",
+            "protest",
+            "debate_arena",
+            "political_symbol"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-styring-vertical-2026-07-24",
+        "politikk-demokrati-vertical-2026-07-24"
+      ]
     },
     {
       "method_id": "met_pol_sivilsamfunnsanalyse",
       "title": "Sivilsamfunnsanalyse",
       "short_label": "Sivilsamfunn",
-      "description": "Analyse av makt, interesser, protest, sivilsamfunn, bevegelser, ideologi, polarisering og konfliktens rom. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan frivillige organisasjoner og nettverk bygger kollektiv kapasitet, artikulerer krav og forholder seg til stat og marked.",
       "best_for_emne_kinds": [
         "konflikt_makt_sivilsamfunn"
       ],
@@ -2963,13 +4320,116 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvordan frivillige organisasjoner og nettverk bygger kollektiv kapasitet, artikulerer krav og forholder seg til stat og marked.",
+          "analytical_question": "Hvem organiseres, hvilke ressurser og normer bygges, og hvordan omsettes dette til offentlig eller institusjonell påvirkning?",
+          "evidence_inputs": [
+            "vedtekter eller medlemsdata",
+            "aktivitets- og finansieringskilde",
+            "høringsinnspill",
+            "dokumentert samarbeids- eller påvirkningsarbeid"
+          ],
+          "mechanism_focus": [
+            "rekruttering",
+            "ressurssamling",
+            "tillitsbygging",
+            "kravsframsetting"
+          ],
+          "critical_distinctions": [
+            "sivilsamfunn vs stat",
+            "frivillighet vs profesjonalisering",
+            "intern deltakelse vs ekstern representasjon"
+          ],
+          "compatible_anchor_types": [
+            "civil_society",
+            "movement",
+            "public_sphere",
+            "interest_group"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan frivillige organisasjoner og nettverk bygger kollektiv kapasitet, artikulerer krav og forholder seg til stat og marked.",
+      "analytical_question": "Hvem organiseres, hvilke ressurser og normer bygges, og hvordan omsettes dette til offentlig eller institusjonell påvirkning?",
+      "evidence_inputs": [
+        "vedtekter eller medlemsdata",
+        "aktivitets- og finansieringskilde",
+        "høringsinnspill",
+        "dokumentert samarbeids- eller påvirkningsarbeid"
+      ],
+      "mechanism_focus": [
+        "rekruttering",
+        "ressurssamling",
+        "tillitsbygging",
+        "kravsframsetting"
+      ],
+      "critical_distinctions": [
+        "sivilsamfunn vs stat",
+        "frivillighet vs profesjonalisering",
+        "intern deltakelse vs ekstern representasjon"
+      ],
+      "compatible_anchor_types": [
+        "civil_society",
+        "movement",
+        "public_sphere",
+        "interest_group"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_statistikk_og_fordelingsanalyse",
       "title": "Statistikk- og fordelingsanalyse",
       "short_label": "Statistikk/fordeling",
-      "description": "Analyse av fordeling, velferd, levekår, klasse, bolig, helse, utdanning, demografi og ulikhet, styring, institusjoner, forvaltning, byråkrati, offentlige tjenester, budsjett, regulering og legitimitet. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer mønstre i valgdeltakelse, representasjon, tillit og politisk ressursfordeling uten å forveksle statistisk sammenheng med demokratisk mekanisme.",
       "best_for_emne_kinds": [
         "fordeling_velferd_ulikhet",
         "styring_institusjoner_forvaltning",
@@ -3052,13 +4512,116 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer mønstre i valgdeltakelse, representasjon, tillit og politisk ressursfordeling uten å forveksle statistisk sammenheng med demokratisk mekanisme.",
+          "analytical_question": "Hvilket mønster dokumenteres, hvilke grupper eller geografier skiller seg ut, og hvilken mekanisme kan eller kan ikke underbygges?",
+          "evidence_inputs": [
+            "valgstatistikk",
+            "representasjonsdata",
+            "tillitsundersøkelse",
+            "demografisk eller geografisk fordelingsdata"
+          ],
+          "mechanism_focus": [
+            "måling",
+            "sammenligning",
+            "seleksjon",
+            "ulik eksponering eller ressurs"
+          ],
+          "critical_distinctions": [
+            "andel vs antall",
+            "korrelasjon vs mekanisme",
+            "utvalg vs befolkning"
+          ],
+          "compatible_anchor_types": [
+            "statistics",
+            "election",
+            "representation",
+            "trust"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer mønstre i valgdeltakelse, representasjon, tillit og politisk ressursfordeling uten å forveksle statistisk sammenheng med demokratisk mekanisme.",
+      "analytical_question": "Hvilket mønster dokumenteres, hvilke grupper eller geografier skiller seg ut, og hvilken mekanisme kan eller kan ikke underbygges?",
+      "evidence_inputs": [
+        "valgstatistikk",
+        "representasjonsdata",
+        "tillitsundersøkelse",
+        "demografisk eller geografisk fordelingsdata"
+      ],
+      "mechanism_focus": [
+        "måling",
+        "sammenligning",
+        "seleksjon",
+        "ulik eksponering eller ressurs"
+      ],
+      "critical_distinctions": [
+        "andel vs antall",
+        "korrelasjon vs mekanisme",
+        "utvalg vs befolkning"
+      ],
+      "compatible_anchor_types": [
+        "statistics",
+        "election",
+        "representation",
+        "trust"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_symbolanalyse",
       "title": "Symbolanalyse",
       "short_label": "Symbol",
-      "description": "Analyse av demokrati, valg, representasjon, parlamentarisme, offentlighet, politiske symboler og politiske rom, makt, interesser, protest, sivilsamfunn, bevegelser, ideologi, polarisering og konfliktens rom. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan tegn, ritualer, monumenter og fortellinger produserer politisk mening, legitimitet, tilhørighet og grensedragning.",
       "best_for_emne_kinds": [
         "demokrati_representasjon_offentlighet",
         "konflikt_makt_sivilsamfunn"
@@ -3122,7 +4685,110 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvordan tegn, ritualer, monumenter og fortellinger produserer politisk mening, legitimitet, tilhørighet og grensedragning.",
+          "analytical_question": "Hvem autoriserer symbolet, hvilken fortelling eller kategori gjør det naturlig, og hvilke grupper inkluderes eller utelates?",
+          "evidence_inputs": [
+            "monument eller visuelt symbol",
+            "ritual eller seremoni",
+            "offisiell symbolbruk",
+            "minne- eller navnepolitisk dokumentasjon"
+          ],
+          "mechanism_focus": [
+            "klassifikasjon",
+            "ritualisering",
+            "personifisering",
+            "symbolsk legitimering"
+          ],
+          "critical_distinctions": [
+            "symbol vs institusjon",
+            "anerkjennelse vs omfordeling",
+            "minne vs mobilisering"
+          ],
+          "compatible_anchor_types": [
+            "political_symbol",
+            "public_sphere",
+            "institution",
+            "representation"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan tegn, ritualer, monumenter og fortellinger produserer politisk mening, legitimitet, tilhørighet og grensedragning.",
+      "analytical_question": "Hvem autoriserer symbolet, hvilken fortelling eller kategori gjør det naturlig, og hvilke grupper inkluderes eller utelates?",
+      "evidence_inputs": [
+        "monument eller visuelt symbol",
+        "ritual eller seremoni",
+        "offisiell symbolbruk",
+        "minne- eller navnepolitisk dokumentasjon"
+      ],
+      "mechanism_focus": [
+        "klassifikasjon",
+        "ritualisering",
+        "personifisering",
+        "symbolsk legitimering"
+      ],
+      "critical_distinctions": [
+        "symbol vs institusjon",
+        "anerkjennelse vs omfordeling",
+        "minne vs mobilisering"
+      ],
+      "compatible_anchor_types": [
+        "political_symbol",
+        "public_sphere",
+        "institution",
+        "representation"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_teknokrati_og_ekspertanalyse",
@@ -3242,7 +4908,7 @@
       "method_id": "met_pol_valg_og_deltakelsesanalyse",
       "title": "Valg- og deltakelsesanalyse",
       "short_label": "Valg/deltakelse",
-      "description": "Analyse av demokrati, valg, representasjon, parlamentarisme, offentlighet, politiske symboler og politiske rom. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan valgregler, mobilisering, ressurser og barrierer former hvem som deltar og hvordan deltakelsen omsettes til representasjon og innflytelse.",
       "best_for_emne_kinds": [
         "demokrati_representasjon_offentlighet"
       ],
@@ -3298,7 +4964,110 @@
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
         "require_emne_prefix": "em_pol_"
-      }
+      },
+      "domain_profiles": {
+        "demokrati_representasjon_offentlighet": {
+          "definition": "Analyserer hvordan valgregler, mobilisering, ressurser og barrierer former hvem som deltar og hvordan deltakelsen omsettes til representasjon og innflytelse.",
+          "analytical_question": "Hvilke rettigheter, regler, ressurser og rekrutteringsmekanismer forklarer deltakelsesmønsteret og dets demokratiske konsekvens?",
+          "evidence_inputs": [
+            "valgresultat og frammøte",
+            "valgregel eller mandatberegning",
+            "deltakelsesundersøkelse",
+            "mobiliserings- eller rekrutteringskilde"
+          ],
+          "mechanism_focus": [
+            "mobilisering",
+            "seleksjon",
+            "mandatfordeling",
+            "deltakelsesterskel"
+          ],
+          "critical_distinctions": [
+            "stemmerett vs faktisk tilgang",
+            "deltakelse vs innflytelse",
+            "oppslutning vs representativitet"
+          ],
+          "compatible_anchor_types": [
+            "election",
+            "statistics",
+            "party",
+            "representation"
+          ],
+          "question_build_sequence": [
+            "documented_case_or_source",
+            "precise_claim_basis",
+            "identified_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbart case eller kildegrunnlag",
+            "forklar minst én mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk holdningsspørsmål uten dokumentert case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+          "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-demokrati-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan valgregler, mobilisering, ressurser og barrierer former hvem som deltar og hvordan deltakelsen omsettes til representasjon og innflytelse.",
+      "analytical_question": "Hvilke rettigheter, regler, ressurser og rekrutteringsmekanismer forklarer deltakelsesmønsteret og dets demokratiske konsekvens?",
+      "evidence_inputs": [
+        "valgresultat og frammøte",
+        "valgregel eller mandatberegning",
+        "deltakelsesundersøkelse",
+        "mobiliserings- eller rekrutteringskilde"
+      ],
+      "mechanism_focus": [
+        "mobilisering",
+        "seleksjon",
+        "mandatfordeling",
+        "deltakelsesterskel"
+      ],
+      "critical_distinctions": [
+        "stemmerett vs faktisk tilgang",
+        "deltakelse vs innflytelse",
+        "oppslutning vs representativitet"
+      ],
+      "compatible_anchor_types": [
+        "election",
+        "statistics",
+        "party",
+        "representation"
+      ],
+      "question_build_sequence": [
+        "documented_case_or_source",
+        "precise_claim_basis",
+        "identified_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbart case eller kildegrunnlag",
+        "forklar minst én mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk holdningsspørsmål uten dokumentert case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
+      "quality_revision": "politikk-demokrati-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_velferdsstatlig_analyse",
