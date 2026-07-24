@@ -1,0 +1,75 @@
+{
+  "version": "2026-07-24",
+  "protocolMaxBatch": 195,
+  "researchOnly": true,
+  "canonicalChanged": false,
+  "sourceQueueReport": "reports/oslo-coordinate-unresolved-queue-audit-post-195/summary.json",
+  "exhaustedResearchCount": 4,
+  "exhausted": [
+    {
+      "placeId": "bryn_industriomrade",
+      "name": "Bryn industriområde",
+      "researchPr": 3630,
+      "decision": "keep_needs_source",
+      "reason": "No explicit official geometry was tied to the broad historical industrial-area identity."
+    },
+    {
+      "placeId": "bygdoy_natur",
+      "name": "Bygdøy natur- og kulturmiljø",
+      "researchPr": 3637,
+      "decision": "official_bygdoy_cultural_environment_is_partial_scope_keep_needs_source",
+      "reason": "The official cultural-environment component covers 4/10 locked peninsula anchors and omits material scope."
+    },
+    {
+      "placeId": "frysja_industriomrade",
+      "name": "Frysja industriområde",
+      "researchPr": 3567,
+      "decision": "keep_needs_source",
+      "reason": "Bredt område mangler kildebelagt geometri/anchors; dagens manual_map_check er ikke nok."
+    },
+    {
+      "placeId": "sigrid_undset_statue",
+      "name": "Sigrid Undset-statuen",
+      "researchPr": 3628,
+      "decision": "keep_needs_source",
+      "reason": "Exact identity is documented, but no source-backed monument coordinate or geometry was found."
+    }
+  ],
+  "remainingQueueCount": 3,
+  "remainingQueue": [
+    {
+      "position": 1,
+      "placeId": "bygdoy_roykenvika",
+      "name": "Bygdøy Røykensvika",
+      "bucket": "identity_resolution",
+      "identityStatus": "unresolved",
+      "blockedReason": "Kontrollen fant ingen troverdig uavhengig kilde som dokumenterer et sted kalt Røykensvika på Bygdøy. Søketreff for Røykensvik/Røykensvika peker i hovedsak til andre geografiske områder. Den gamle OpenStreetMap/Mapcarta-statusen demoteres derfor til needs_source; place-identiteten må avklares før koordinat kan godkjennes.",
+      "nextAction": "uavhengig troverdig kilde som dokumenterer lokal stedsidentitet på Bygdøy"
+    },
+    {
+      "position": 2,
+      "placeId": "bygdoy_kongsgard_salamanderdam",
+      "name": "Bygdøy Kongsgård salamanderdam",
+      "bucket": "sensitive_or_thematic_model_decision",
+      "identityStatus": "resolved",
+      "blockedReason": "Kilderecorden dokumenterer salamanderforekomst i dam ved Bygdøy Kongsgård, men dagens koordinat er uttrykkelig et offentlig områdeanker og ikke en dokumentert koordinat for selve dammen. Å bruke Kongsgårdens områdepunkt som verified salamanderdam ville gjøre et pedagogisk proxy-anker til et falskt fysisk sted og overlappe den bredere Kongsgård-identiteten.",
+      "nextAction": "Dokumenter en offentlig og ikke-sensitiv damgeometri dersom lokaliteten skal være et eget place; ellers modeller salamanderforekomsten som tematisk naturrelation til Bygdøy Kongsgård uten separat koordinatmarkør."
+    },
+    {
+      "position": 3,
+      "placeId": "ostensjovannet_sivbelte",
+      "name": "Østensjøvannet sivbelte",
+      "bucket": "sensitive_or_thematic_model_decision",
+      "identityStatus": "resolved",
+      "blockedReason": "Recorden beskriver et habitatbelte med skiftende utstrekning, ikke ett dokumentert navngitt fysisk objekt med stabil grense. Reservatets samlede polygon kan ikke verifisere ett vilkårlig sivbelte-midpunkt.",
+      "nextAction": "Dokumenter eksplisitt kartlagt siv-/våtmarksgeometri eller flere kildebelagte habitatankre før et canonical punkt godkjennes."
+    }
+  ],
+  "nextCandidate": {
+    "placeId": "bygdoy_roykenvika",
+    "name": "Bygdøy Røykensvika",
+    "bucket": "identity_resolution",
+    "decision": "research_identity_before_coordinate",
+    "hardConstraint": "No coordinate or geometry may be selected until an independent credible source confirms a Bygdøy place identity named Røykensvika/Røykensvik."
+  }
+}
