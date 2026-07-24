@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   materialize:
-    if: github.head_ref == 'agent/politikk-vertikal-fase-2' && hashFiles('tools/politikk-phase-2-builder-ready.txt') != ''
+    if: github.head_ref == 'agent/politikk-vertikal-fase-2'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,6 +23,7 @@ jobs:
           node-version: 20
 
       - name: Build and validate political theory phase 2
+        if: hashFiles('tools/politikk-phase-2-builder-ready.txt') != ''
         run: |
           set -euo pipefail
           mkdir -p reports/politikk-canonical-migration
