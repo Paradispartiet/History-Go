@@ -33,6 +33,27 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
+          cat > reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-part-checksums.expected <<'SUMS'
+          158d7d73a27c116bd7fc30d6016f7163762f5c030dd3b2954c2790cba8499a10  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part00
+          4951b7999bc8288e88facceb2df5f2195d9c2bb0467064353269bb95dfb899d7  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part01
+          73d750509792c5017880b270c254151b9952ec7fb139c408c046d4234d017cdc  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part02
+          cf87ab0f1858f0bdf7d19fe44e0cd53cd350508c4ecce402448914182cae97cd  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part03
+          837005e671d38b8ac1b07797691901712f1f714aef61e0640788a4ab1f3a895a  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part04
+          0ee62af2eadab90b9e2e54ab42e030a5eb7e87543e28ece90de16ede3404d4fe  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part05
+          9ae711767b1941b892f80d865c9c2ca1148fbf42dcd5288411a7b9166bbbae42  tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part06
+          SUMS
+
+          sha256sum tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part* \
+            | tee reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-part-checksums.actual
+          sha256sum -c reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-part-checksums.expected \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-part-checksums.txt
+
+          cat tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part* \
+            > tools/build-litteratur-vertical-phase-3.mjs.gz.b64
+          echo '4f08eb7ba6d2f930c746dec33012458e4c37b3813f76c3cbb7a58bb7b3cd02bc  tools/build-litteratur-vertical-phase-3.mjs.gz.b64' \
+            | sha256sum -c - \
+            2>&1 | tee reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-builder-checksum.txt
+
           base64 -d tools/build-litteratur-vertical-phase-3.mjs.gz.b64 \
             | gzip -d > tools/build-litteratur-vertical-phase-3.mjs
           echo 'bfafb4f50121ca521313162aa35d0a9141fe82f1376fd499010779b7ce50ec64  tools/build-litteratur-vertical-phase-3.mjs' \
@@ -45,7 +66,12 @@ jobs:
 
           rm -f tools/build-litteratur-vertical-phase-3.mjs
           rm -f tools/build-litteratur-vertical-phase-3.mjs.gz.b64
+          rm -f tools/build-litteratur-vertical-phase-3.mjs.gz.b64.part*
           rm -f .github/workflows/litteratur-vertical-phase-3.yml
+          rm -f reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-part-checksums.expected
+          rm -f reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-part-checksums.actual
+          rm -f reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-part-checksums.txt
+          rm -f reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-builder-checksum.txt
           rm -f reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-source-checksum.txt
           rm -f reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-builder-syntax.txt
           rm -f reports/litteratur-canonical-migration/litteratur-nordisk-institusjon-sted-phase-3-builder-output.txt
