@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "oslo_met_pilestredet",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/oslo_met_pilestredet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_official_address_point",
+  "currentCoordinate": {
+    "lat": 59.92110512950236,
+    "lon": 10.733028013329037,
+    "r": 270,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Kartverket/Geonorge for hovedresepsjonen i Clara Holsts hus, Pilestredet 46, 0167 Oslo. OsloMets norske campusside oppgir Pilestredet 32–52, mens den engelske oppgir Pilestredet 32–54; campus representeres som ett flerbyggområde med markør ved hovedresepsjonen. Punktet ligger inne i OSM way 115396392, P46 - OsloMet, building=university. Dokumenterte aktive OsloMet-bygg i Pilestredet 32, 35, 40, 42, 44, 46, 48, 50 og 52 ligger opptil 221,3 meter fra markøren; radius 270 meter dekker ytterpunktet med 40 meters bygningsbuffer. Den tidligere markøren lå 124,4 meter unna. År 1994 beholdes."
+  },
+  "identity": {
+    "currentName": "OsloMet, Pilestredet",
+    "resolvedIdentity": "OsloMet – storbyuniversitetet, org.nr. 997058925, underenhet 974647648, hovedresepsjon i Clara Holsts hus, Pilestredet 46, 0167 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt adressepunkt",
+    "riktig bygg",
+    "flerbyggcampus",
+    "målt radius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket/Geonorge – Pilestredet 46",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Pilestredet&nummer=46&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15670:46:59.92110513,10.73302801",
+      "sourceQuality": "official_address",
+      "finding": "Ett unikt adressepunkt: 59.92110512950236, 10.733028013329037.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical display-marker."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "OsloMet – kontakt",
+      "sourceUrl": "https://www.oslomet.no/om/kontakt",
+      "sourceObjectId": "oslomet:contact",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Pilestredet 46 og organisasjonsnummer 997058925.",
+      "canVerifyCoordinate": false,
+      "reason": "Adresse- og identitetskryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "OsloMet – Pilestredet (norsk)",
+      "sourceUrl": "https://www.oslomet.no/om/studiested-pilestredet",
+      "sourceObjectId": "oslomet:pilestredet:nb",
+      "sourceQuality": "official_current_site",
+      "finding": "Pilestredet 32–52; hovedresepsjon i Clara Holsts hus, P46.",
+      "canVerifyCoordinate": false,
+      "reason": "Campus og hovedresepsjon."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "OsloMet – Pilestredet (English)",
+      "sourceUrl": "https://www.oslomet.no/en/about/pilestredet-campus",
+      "sourceObjectId": "oslomet:pilestredet:en",
+      "sourceQuality": "official_current_site",
+      "finding": "Pilestredet 32–54; main reception at P46.",
+      "canVerifyCoordinate": false,
+      "reason": "Dokumenterer språkavviket."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – OsloMet",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/enheter/997058925",
+      "sourceObjectId": "brreg-enhet:997058925",
+      "sourceQuality": "official_institution_identity",
+      "finding": "OsloMet, org.nr. 997058925, Pilestredet 46.",
+      "canVerifyCoordinate": false,
+      "reason": "Offentlig identitetskryssjekk."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 115396392 – P46 OsloMet",
+      "sourceUrl": "https://www.openstreetmap.org/way/115396392",
+      "sourceObjectId": "osm-way:115396392",
+      "sourceQuality": "named_institution_building_geometry",
+      "finding": "Adressepunktet ligger inne i P46 - OsloMet, building=university.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter riktig bygg."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go research report",
+      "sourceUrl": "reports/oslo-coordinate-oslomet-pilestredet-research-post-195/summary.json",
+      "sourceObjectId": "history-go-research:oslomet-pilestredet-post-195",
+      "sourceQuality": "reproducible_multi_source_research",
+      "finding": "Maksimal aktiv-byggavstand 221,3 m + 40 m buffer gir radius 270 m.",
+      "canVerifyCoordinate": true,
+      "reason": "Reproduserbar radiusberegning."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Pilestredet 46, 0167 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15670:46:59.92110513,10.73302801",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15670:46:59.92110513,10.73302801",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:115396392",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:115396392",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.92110512950236,
+      "lon": 10.733028013329037,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15670:46:59.92110513,10.73302801",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Pilestredet 46 er anvendt med radius 270 meter."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Kartverket/Geonorge for hovedresepsjonen i Clara Holsts hus, Pilestredet 46, 0167 Oslo. OsloMets norske campusside oppgir Pilestredet 32–52, mens den engelske oppgir Pilestredet 32–54; campus representeres som ett flerbyggområde med markør ved hovedresepsjonen. Punktet ligger inne i OSM way 115396392, P46 - OsloMet, building=university. Dokumenterte aktive OsloMet-bygg i Pilestredet 32, 35, 40, 42, 44, 46, 48, 50 og 52 ligger opptil 221,3 meter fra markøren; radius 270 meter dekker ytterpunktet med 40 meters bygningsbuffer. Den tidligere markøren lå 124,4 meter unna. År 1994 beholdes.",
+    "Research report: reports/oslo-coordinate-oslomet-pilestredet-research-post-195/summary.json"
+  ]
+}
