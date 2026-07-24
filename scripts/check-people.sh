@@ -173,4 +173,7 @@ node tests/oslo-politikk-people-full-coverage.test.js
 echo "== Oslo politics remaining-place expansion =="
 node tests/oslo-politikk-remaining-people-expansion.test.js
 
+echo "== Oslo politics final People expansion =="
+node tests/oslo-politikk-final-people-expansion.test.js
+
 echo "== People check complete =="

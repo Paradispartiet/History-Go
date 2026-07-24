@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-07-24T06:58:49.950Z
+Generert: 2026-07-24T11:18:16.441Z
 
 ## Sammendrag
 
-- People totalt: **1247**
-- Places totalt: **1285**
-- Places med people: **327**
-- Places uten people: **958**
-- People-place-lenker: **1446**
-- People koblet til flere gyldige steder: **241**
+- People totalt: **1293**
+- Places totalt: **1292**
+- Places med people: **337**
+- Places uten people: **955**
+- People-place-lenker: **1517**
+- People koblet til flere gyldige steder: **254**
 - People uten gyldig sted: **122**
 - Ugyldige place-referanser: **50**
-- Duplikate place-referanser inne på people: **1166**
-- People uten image: **906**
-- People uten cardImage: **907**
+- Duplikate place-referanser inne på people: **1212**
+- People uten image: **952**
+- People uten cardImage: **953**
 - People uten popupDesc: **105**
 
 ## Dekning per place-kategori
@@ -30,7 +30,7 @@ Generert: 2026-07-24T06:58:49.950Z
 | musikk | 15 | 13 | 2 | 30 | 22 |
 | naeringsliv | 144 | 35 | 109 | 75 | 69 |
 | natur | 99 | 8 | 91 | 18 | 18 |
-| politikk | 28 | 13 | 15 | 137 | 120 |
+| politikk | 35 | 23 | 12 | 208 | 172 |
 | populaerkultur | 17 | 2 | 15 | 2 | 2 |
 | psykologi | 3 | 2 | 1 | 2 | 1 |
 | religion | 3 | 0 | 3 | 0 | 0 |
@@ -42,21 +42,21 @@ Generert: 2026-07-24T06:58:49.950Z
 ## People tags
 
 - sport: 245
-- historie: 237
+- historie: 241
 - teater: 202
 - scenekunst: 193
-- litteratur: 177
+- litteratur: 178
 - skuespiller: 147
+- politikk: 129
 - musikk: 121
-- politikk: 106
 - holmenkollen: 105
 - holmenkollrennet: 80
+- kunst: 76
+- arkitektur: 66
 - subkultur: 64
-- kunst: 62
-- naeringsliv: 56
+- by: 60
+- naeringsliv: 58
 - regissor: 56
-- arkitektur: 53
-- by: 50
 - langrenn: 49
 - fotball: 47
 - teatersjef: 47
@@ -78,6 +78,7 @@ Generert: 2026-07-24T06:58:49.950Z
 - skihopping: 28
 - bislett_games: 27
 - akershus_festning: 25
+- modernisme: 25
 - natur: 25
 - popkultur: 25
 - sanger: 24
@@ -85,12 +86,11 @@ Generert: 2026-07-24T06:58:49.950Z
 - skihopp: 24
 - film_tv: 23
 - seriemester: 23
-- modernisme: 22
 - etterkrigstid: 21
+- offentlig_kunst: 21
 - torshovteatret: 20
 - verdenscup: 19
 - industri: 18
-- middelalder: 18
 
 ## Steder med flest people
 
@@ -100,25 +100,25 @@ Generert: 2026-07-24T06:58:49.950Z
 - det_norske_teatret (Det Norske Teatret) – 80
 - akershus_festning (Akershus festning) – 45
 - eidsvollsbygningen (Eidsvollsbygningen) – 42
-- stortinget (Stortinget) – 30
+- stortinget (Stortinget) – 32
 - middelalder_oslo (Middelalderparken) – 24
 - universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning) – 23
+- youngstorget (Youngstorget) – 22
 - edderkoppen_scene (Edderkoppen Scene) – 21
-- youngstorget (Youngstorget) – 21
 - universitetsplassen (Universitetsplassen) – 19
+- oslo_radhus (Oslo rådhus) – 17
 - karl_johan (Karl Johans gate) – 16
-- oslo_radhus (Oslo rådhus) – 16
 - oslo_domkirke (Oslo domkirke) – 15
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 15
+- eidsvolls_plass (Eidsvolls plass) – 13
 - gamle_deichman (Gamle Deichman) – 13
 - lisbon_cinemateca_portuguesa (Cinemateca Portuguesa) – 13
 - nidaros_erkebispegarden (Erkebispegården i Nidaros) – 13
+- victoria_terrasse (Victoria terrasse) – 13
 - torggata (Torggata) – 12
 - ullevaal_stadion (Ullevaal Stadion) – 12
 - chat_noir (Chat Noir) – 11
 - jordal_amfi (Jordal Amfi) – 11
-- cinemateket_oslo (Cinemateket i Oslo) – 10
-- kristkirken_bergenhus (Kristkirken på Bergenhus) – 10
 
 ## Ugyldige place-referanser
 
@@ -275,7 +275,7 @@ Generert: 2026-07-24T06:58:49.950Z
 - haakon_v_magnusson (Håkon V Magnusson) -> akershus_festning
 - st_hallvard (St. Hallvard) -> middelalder_oslo
 - harald_hardrade (Harald Hardråde) -> middelalder_oslo
-- ... 1066 flere
+- ... 1112 flere
 
 ## Anbefalt første people-batch
 
