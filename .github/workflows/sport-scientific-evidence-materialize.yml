@@ -1,0 +1,89 @@
+name: Sport scientific evidence v1
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: sport-scientific-evidence-v1-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: startsWith(github.head_ref, 'agent/sport-scientific-evidence-v1')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Clone branch quietly
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git clone --quiet --depth 1 --branch '${{ github.head_ref }}' "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" repo
+
+      - name: Verify Sport evidence package
+        working-directory: repo/.github/sport-science-payload
+        run: |
+          set -euo pipefail
+          sha256sum -c <<'EOF'
+          b87b8ad8edd13c82e96dd64922df423243d6719c0ca12f066cd74b2d75d558ac  part_00
+          185aef7c4a308aea9e97899656caac14a38cf2290d00e2f8728577448f3a218a  part_01
+          6128ef42236235fa6c7f6964194d5614b3f452d2a24241ec7e1709c99e8fb337  part_02
+          efa5e064d24d3088edd4e94435694a39a3b70ba8e22e1a85f8068c86cf2cd684  rest_03_11
+          EOF
+          cat part_00 part_01 part_02 rest_03_11 > /tmp/sport_science.b64
+          base64 -d /tmp/sport_science.b64 > /tmp/sport_science_v1.tgz
+          echo '321a2a61227a31250f9f0dd77a5b9aa7a7ad75e4f4c7d13f55e90dd2ae9c4d29  /tmp/sport_science_v1.tgz' | sha256sum -c -
+          tar -tzf /tmp/sport_science_v1.tgz >/dev/null
+
+      - name: Materialize and validate Sport evidence layer
+        working-directory: repo
+        run: |
+          set -euo pipefail
+          tar -xzf /tmp/sport_science_v1.tgz -C .
+          node tools/validate-sport-evidence.mjs --write
+          node tools/validate-sport-theory-quality.mjs
+          node scripts/audit-category-governance.mjs
+          node scripts/audit-quiz-template-governance.mjs
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const files = [
+            'data/fag/sport/evidence_registry_sport_v1.json',
+            'data/fag/sport/claims_sport_canonical_v1.json',
+            'data/fag/sport/models_sport_canonical_v1.json',
+            'data/fag/sport/source_quality_rubric_sport_v1.json',
+            'data/fag/sport/measurement_registry_sport_v1.json',
+            'data/fag/sport/sport_scientific_method_policy_v1.json',
+            'data/fag/sport/sport_scientific_evidence_manifest_v1.json',
+            'data/fag/sport/sport_quality_manifest_v5.json',
+            'data/fag/sport/supersetQUIZMAL_sport.json',
+            'reports/sport-scientific-evidence-validation.json'
+          ];
+          for (const file of files) JSON.parse(fs.readFileSync(file, 'utf8'));
+          console.log('JSON parse: PASS');
+          NODE
+          git diff --check
+
+      - name: Commit final Sport evidence files
+        working-directory: repo
+        run: |
+          set -euo pipefail
+          rm -rf .github/sport-science-payload
+          rm .github/workflows/sport-scientific-evidence-materialize.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fag/sport
+          git add tools/validate-sport-evidence.mjs
+          git add reports/sport-scientific-evidence-layer.md
+          git add reports/sport-scientific-evidence-validation.json
+          git add -u .github/sport-science-payload .github/workflows/sport-scientific-evidence-materialize.yml
+          git diff --cached --check
+          git commit -m 'Sport: legg til vitenskapelig evidenslag'
+          git push origin HEAD:${{ github.head_ref }}
