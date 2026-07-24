@@ -1,0 +1,101 @@
+{
+  "generatedAt": "2026-07-24T10:14:41.855Z",
+  "placeId": "frognerstranda",
+  "mode": "diagnostic_only_no_canonical_changes",
+  "passed": 8,
+  "failed": 2,
+  "checks": [
+    {
+      "name": "protocol_max_194",
+      "ok": true,
+      "detail": {
+        "maxBatch": 194
+      }
+    },
+    {
+      "name": "merged_research_ready",
+      "ok": true,
+      "detail": {
+        "placeId": "frognerstranda",
+        "coordinateMaxBatch": 194,
+        "decision": "ordered_multi_anchor_chain_ready_for_fresh_production_batch",
+        "canBuildProductionModel": true,
+        "west": "osm-way:118364891",
+        "middle": "osm-way:71423688",
+        "east": "osm-way:1205417997",
+        "interpretation": "full_linear_waterfront_area"
+      }
+    },
+    {
+      "name": "aggregate_and_split_state",
+      "ok": false,
+      "error": "Aggregate/split mismatch: [].",
+      "stack": "Error: Aggregate/split mismatch: [].\n    at file:///home/runner/work/History-Go/History-Go/scripts/coordinate-branch-job.mjs:99:11\n    at async check (file:///home/runner/work/History-Go/History-Go/scripts/coordinate-branch-job.mjs:11:20)\n    at async file:///home/runner/work/History-Go/History-Go/scripts/coordinate-branch-job.mjs:89:1"
+    },
+    {
+      "name": "coordinate_evidence_state",
+      "ok": true,
+      "detail": {
+        "evidenceStatus": "needs_research",
+        "coordinateDecision": "needs_geometry"
+      }
+    },
+    {
+      "name": "official_scope_live",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "finalUrl": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/frognerstranda/",
+        "bytes": 18180
+      }
+    },
+    {
+      "name": "byleksikon_scope_live",
+      "ok": false,
+      "error": "Missing byleksikon phrases: [\"fra Filipstad til Sjølystveien\"].",
+      "stack": "Error: Missing byleksikon phrases: [\"fra Filipstad til Sjølystveien\"].\n    at file:///home/runner/work/History-Go/History-Go/scripts/coordinate-branch-job.mjs:130:29\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async check (file:///home/runner/work/History-Go/History-Go/scripts/coordinate-branch-job.mjs:11:20)\n    at async file:///home/runner/work/History-Go/History-Go/scripts/coordinate-branch-job.mjs:126:1"
+    },
+    {
+      "name": "west_osm",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "version": 16,
+        "timestamp": "2026-03-07T12:59:31Z",
+        "nodeCount": 56
+      }
+    },
+    {
+      "name": "middle_osm",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "version": 7,
+        "timestamp": "2025-05-15T14:09:22Z",
+        "nodeCount": 41
+      }
+    },
+    {
+      "name": "east_osm",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "version": 1,
+        "timestamp": "2023-09-06T07:59:21Z",
+        "nodeCount": 86,
+        "tags": {
+          "landuse": "commercial",
+          "name": "Hjortneskaia"
+        }
+      }
+    },
+    {
+      "name": "civication_legacy_state",
+      "ok": true,
+      "detail": {
+        "lat": 59.9129,
+        "lon": 10.7098
+      }
+    }
+  ]
+}
