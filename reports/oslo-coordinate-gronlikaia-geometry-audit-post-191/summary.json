@@ -1,0 +1,4682 @@
+{
+  "version": "2026-07-24",
+  "purpose": "Determine whether Grønlikaia can be modeled from exact quay/port geometry instead of a generic legacy point.",
+  "legacy": {
+    "id": "gronlikaia",
+    "name": "Grønlikaia",
+    "lat": 59.9001,
+    "lon": 10.7579,
+    "r": 220,
+    "category": "naeringsliv",
+    "year": 1960,
+    "desc": "Tidligere container- og havneområde – symbol på byens moderne logistikk og transport.",
+    "sourceFile": "places/naeringsliv/oslo/places_naeringsliv/gronlikaia.json"
+  },
+  "evidence": {
+    "placeId": "gronlikaia",
+    "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+    "evidenceStatus": "needs_research",
+    "coordinateDecision": "needs_geometry",
+    "currentCoordinate": {
+      "lat": 59.9001,
+      "lon": 10.7579,
+      "r": 220,
+      "coordStatus": "",
+      "coordSource": "",
+      "coordType": "",
+      "coordNote": ""
+    },
+    "identity": {
+      "currentName": "Grønlikaia",
+      "resolvedIdentity": "bredt tidligere havne-/containerområde og dagens utviklingsområde på Grønlia",
+      "identityStatus": "resolved_broad_area",
+      "identityProblem": "Offisielle kilder dokumenterer Grønlikaia som et større utviklings- og havneområde. OSM-søket ga bare serviceveier med navnet Grønlikaia, ikke en arealgeometri som kan bære verified-status for hele stedet.",
+      "locatorTypeCandidate": "quay",
+      "requiresSplit": false,
+      "splitReason": "Området kan beholdes, men trenger dokumentert quay-/områdegeometri eller flere area-ankre."
+    },
+    "requiredEvidence": [
+      "offisiell plan-/havnegeometri",
+      "eller flere kildebelagte area-/quay-ankre"
+    ],
+    "evidence": [
+      {
+        "sourceProvider": "municipality",
+        "sourceName": "Oslo kommune – utvikling av Grønlikaia",
+        "sourceUrl": "https://aktuelt.oslo.kommune.no/feil-retning-i-utviklingen-av-gronlikaia",
+        "sourceObjectId": "oslo-kommune:plan:gronlikaia",
+        "sourceQuality": "official_area_identity",
+        "finding": "Oslo kommune dokumenterer Grønlikaia som et større plan- og utviklingsområde knyttet til tidligere havnearealer.",
+        "canVerifyCoordinate": false,
+        "reason": "Områdeidentitet er dokumentert, men batchen har ikke maskinsporbar arealgeometri."
+      }
+    ],
+    "addressCandidates": [],
+    "sourceObjectCandidates": [
+      {
+        "sourceProvider": "municipality",
+        "sourceObjectId": "oslo-kommune:plan:gronlikaia",
+        "canApplyToPlace": false
+      }
+    ],
+    "geometryCandidates": [],
+    "coordinateCandidates": [],
+    "decision": {
+      "canBecomeVerified": false,
+      "blockedReason": "Offisielle kilder dokumenterer Grønlikaia som et større utviklings- og havneområde. OSM-søket ga bare serviceveier med navnet Grønlikaia, ikke en arealgeometri som kan bære verified-status for hele stedet.",
+      "nextAction": "Hent offisiell plan-/havnegeometri eller flere dokumenterte quay-/area-ankre før verified coordinate contract."
+    },
+    "notes": [
+      "Ingen koordinatendring i batch 26."
+    ]
+  },
+  "officialSources": {
+    "port": "https://www.oslohavn.no/no/meny/fjordbyen/havnepromenaden/",
+    "municipality": "https://aktuelt.oslo.kommune.no/feil-retning-i-utviklingen-av-gronlikaia",
+    "checks": {
+      "portMentionsGrønlikaia": false,
+      "portMentionsHavnepromenade": true,
+      "portMentionsAlnaBoundary": false,
+      "municipalityMentionsGrønlikaia": true,
+      "municipalityCallsDevelopmentArea": true
+    }
+  },
+  "repoCandidates": [],
+  "referenceLineCount": 84,
+  "references": [
+    "data/Civication/map/historyGoPlaceMapping.naeringsliv.json:839:      \"historyGoPlaceId\": \"gronlikaia\",",
+    "data/coordinate-evidence/oslo/naeringsliv/gronlikaia.json:2:  \"placeId\": \"gronlikaia\",",
+    "data/i18n/content/places/en.json:905:  \"gronlikaia\": {",
+    "data/i18n/content/places/es.json:1619:  \"gronlikaia\": {",
+    "data/i18n/content/places/pt.json:2431:  \"gronlikaia\": {",
+    "data/places/naeringsliv/oslo/places_naeringsliv.json:1716:    \"id\": \"gronlikaia\",",
+    "data/places/naeringsliv/oslo/places_naeringsliv/gronlikaia.json:2:  \"id\": \"gronlikaia\",",
+    "data/places/naeringsliv/oslo/places_naeringsliv_index.json:478:    \"id\": \"gronlikaia\",",
+    "data/places/naeringsliv/oslo/places_naeringsliv_manifest.json:202:      \"id\": \"gronlikaia\",",
+    "data/places/places_index.json:10790:    \"id\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:2:  \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:62:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:65:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:99:            \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:133:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:136:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:203:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:206:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:242:            \"gronlikaia\"",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:273:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:276:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:343:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:346:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:413:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:416:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:494:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:497:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:533:            \"gronlikaia\"",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:564:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:567:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:634:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:637:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:704:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:707:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:774:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:777:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:844:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:847:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:924:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:927:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:995:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:998:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1065:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1068:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1136:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1139:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1208:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1211:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1278:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1281:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1359:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1362:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1430:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1433:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1501:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1504:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1574:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1577:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1646:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1649:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1718:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1721:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1798:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1801:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1837:            \"gronlikaia\"",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1870:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1873:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1909:            \"gronlikaia\"",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1940:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:1943:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:2010:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:2013:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:2082:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:2085:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:2155:          \"placeId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:2158:          \"targetId\": \"gronlikaia\",",
+    "data/quiz/naeringsliv/gronlikaia_sets_merged.json:2193:            \"gronlikaia\",",
+    "data/quiz/quiz_naeringsliv.json:185:    \"placeId\": \"gronlikaia\",",
+    "data/quiz/quiz_naeringsliv.json:197:    \"placeId\": \"gronlikaia\",",
+    "data/quiz/quiz_naeringsliv.json:209:    \"placeId\": \"gronlikaia\",",
+    "data/quiz/quiz_naeringsliv.json:221:    \"placeId\": \"gronlikaia\",",
+    "data/quiz/quiz_naeringsliv.json:233:    \"placeId\": \"gronlikaia\",",
+    "data/routes/historical/routes_historical_oslo.json:333:          \"placeId\": \"gronlikaia\",",
+    "data/routes/historical/routes_historical_oslo.json:337:        \"placeId\": \"gronlikaia\""
+  ],
+  "osm": {
+    "query": "[out:json][timeout:90];\n(\n  way[\"man_made\"=\"quay\"](59.893,10.744,59.907,10.779);\n  relation[\"man_made\"=\"quay\"](59.893,10.744,59.907,10.779);\n  way[\"landuse\"=\"port\"](59.893,10.744,59.907,10.779);\n  relation[\"landuse\"=\"port\"](59.893,10.744,59.907,10.779);\n  nwr[\"harbour\"=\"yes\"](59.893,10.744,59.907,10.779);\n  nwr[\"name\"~\"Grønlikaia|Grønlia|Grønlikaien|Kongshavn\",i](59.893,10.744,59.907,10.779);\n);\nout tags center geom;",
+    "candidateCount": 58,
+    "quayCandidateCount": 9,
+    "portAreaCandidateCount": 0,
+    "namedCandidateCount": 7,
+    "coherentQuaySetCount": 9,
+    "namedExactGeometry": [
+      {
+        "type": "way",
+        "id": 722866067,
+        "osmObjectId": "osm-way:722866067",
+        "tags": {
+          "access": "private",
+          "highway": "service",
+          "name": "Grønlikaia",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.90096723571427,
+          "lon": 10.757908650000001
+        },
+        "distanceFromLegacyMeters": 96.43,
+        "geometryPointCount": 14,
+        "geometryLengthMeters": 104.23,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9006961,
+            "lon": 10.7581146
+          },
+          {
+            "lat": 59.9007359,
+            "lon": 10.7580412
+          },
+          {
+            "lat": 59.900755,
+            "lon": 10.758008
+          },
+          {
+            "lat": 59.9007973,
+            "lon": 10.7579333
+          },
+          {
+            "lat": 59.90083,
+            "lon": 10.757864
+          },
+          {
+            "lat": 59.900876,
+            "lon": 10.757804
+          },
+          {
+            "lat": 59.900915,
+            "lon": 10.757769
+          },
+          {
+            "lat": 59.900966,
+            "lon": 10.757731
+          },
+          {
+            "lat": 59.901002,
+            "lon": 10.757717
+          },
+          {
+            "lat": 59.90104,
+            "lon": 10.75773
+          },
+          {
+            "lat": 59.901091,
+            "lon": 10.757771
+          },
+          {
+            "lat": 59.90113,
+            "lon": 10.75782
+          },
+          {
+            "lat": 59.901261,
+            "lon": 10.758032
+          },
+          {
+            "lat": 59.901446,
+            "lon": 10.758386
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865222822,
+        "osmObjectId": "osm-way:865222822",
+        "tags": {
+          "man_made": "quay",
+          "name": "Grønlikaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.9001854,
+          "lon": 10.7555601
+        },
+        "distanceFromLegacyMeters": 130.83,
+        "geometryPointCount": 2,
+        "geometryLengthMeters": 241.15,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.901199,
+            "lon": 10.7563283
+          },
+          {
+            "lat": 59.8991718,
+            "lon": 10.7547919
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1255161933,
+        "osmObjectId": "osm-way:1255161933",
+        "tags": {
+          "access": "private",
+          "highway": "service",
+          "name": "Grønlikaia"
+        },
+        "center": {
+          "lat": 59.900039,
+          "lon": 10.756218666666667
+        },
+        "distanceFromLegacyMeters": 94.01,
+        "geometryPointCount": 3,
+        "geometryLengthMeters": 46.89,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.900288,
+            "lon": 10.756435
+          },
+          {
+            "lat": 59.899928,
+            "lon": 10.756113
+          },
+          {
+            "lat": 59.899901,
+            "lon": 10.756108
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1255161934,
+        "osmObjectId": "osm-way:1255161934",
+        "tags": {
+          "access": "private",
+          "highway": "service",
+          "name": "Grønlikaia"
+        },
+        "center": {
+          "lat": 59.899727999999996,
+          "lon": 10.755872
+        },
+        "distanceFromLegacyMeters": 120.42,
+        "geometryPointCount": 2,
+        "geometryLengthMeters": 41.05,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.899892,
+            "lon": 10.756041
+          },
+          {
+            "lat": 59.899564,
+            "lon": 10.755703
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1255161935,
+        "osmObjectId": "osm-way:1255161935",
+        "tags": {
+          "access": "private",
+          "highway": "service",
+          "name": "Grønlikaia"
+        },
+        "center": {
+          "lat": 59.900353891304356,
+          "lon": 10.756706569565216
+        },
+        "distanceFromLegacyMeters": 72.29,
+        "geometryPointCount": 23,
+        "geometryLengthMeters": 191.9,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.899953,
+            "lon": 10.755684
+          },
+          {
+            "lat": 59.8999237,
+            "lon": 10.7558255
+          },
+          {
+            "lat": 59.899895,
+            "lon": 10.755964
+          },
+          {
+            "lat": 59.899892,
+            "lon": 10.756041
+          },
+          {
+            "lat": 59.899901,
+            "lon": 10.756108
+          },
+          {
+            "lat": 59.89991,
+            "lon": 10.756164
+          },
+          {
+            "lat": 59.899981,
+            "lon": 10.756374
+          },
+          {
+            "lat": 59.900117,
+            "lon": 10.756657
+          },
+          {
+            "lat": 59.900336,
+            "lon": 10.757004
+          },
+          {
+            "lat": 59.900424,
+            "lon": 10.757123
+          },
+          {
+            "lat": 59.9004988,
+            "lon": 10.7571836
+          },
+          {
+            "lat": 59.900515,
+            "lon": 10.757197
+          },
+          {
+            "lat": 59.900555,
+            "lon": 10.757211
+          },
+          {
+            "lat": 59.900599,
+            "lon": 10.757211
+          },
+          {
+            "lat": 59.900627,
+            "lon": 10.757198
+          },
+          {
+            "lat": 59.900664,
+            "lon": 10.757154
+          },
+          {
+            "lat": 59.900682,
+            "lon": 10.757107
+          },
+          {
+            "lat": 59.900689,
+            "lon": 10.757056
+          },
+          {
+            "lat": 59.900689,
+            "lon": 10.756981
+          },
+          {
+            "lat": 59.900681,
+            "lon": 10.756913
+          },
+          {
+            "lat": 59.900657,
+            "lon": 10.756851
+          },
+          {
+            "lat": 59.900583,
+            "lon": 10.756737
+          },
+          {
+            "lat": 59.900367,
+            "lon": 10.756507
+          }
+        ]
+      }
+    ],
+    "coherentQuaySet": [
+      {
+        "type": "way",
+        "id": 865222822,
+        "osmObjectId": "osm-way:865222822",
+        "tags": {
+          "man_made": "quay",
+          "name": "Grønlikaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.9001854,
+          "lon": 10.7555601
+        },
+        "distanceFromLegacyMeters": 130.83,
+        "geometryPointCount": 2,
+        "geometryLengthMeters": 241.15,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.901199,
+            "lon": 10.7563283
+          },
+          {
+            "lat": 59.8991718,
+            "lon": 10.7547919
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865222824,
+        "osmObjectId": "osm-way:865222824",
+        "tags": {
+          "man_made": "quay",
+          "name": "Loengkaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.90177069999999,
+          "lon": 10.757053066666666
+        },
+        "distanceFromLegacyMeters": 191.68,
+        "geometryPointCount": 3,
+        "geometryLengthMeters": 156.42,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9023861,
+            "lon": 10.7578332
+          },
+          {
+            "lat": 59.901727,
+            "lon": 10.7569977
+          },
+          {
+            "lat": 59.901199,
+            "lon": 10.7563283
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865222821,
+        "osmObjectId": "osm-way:865222821",
+        "tags": {
+          "alt_name": "Grønli utstikker",
+          "man_made": "quay",
+          "name": "Grønliutstikkeren",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.89778633333333,
+          "lon": 10.753273933333332
+        },
+        "distanceFromLegacyMeters": 364.34,
+        "geometryPointCount": 3,
+        "geometryLengthMeters": 294.91,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8991718,
+            "lon": 10.7547919
+          },
+          {
+            "lat": 59.8971728,
+            "lon": 10.7522751
+          },
+          {
+            "lat": 59.8970144,
+            "lon": 10.7527548
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 866192883,
+        "osmObjectId": "osm-way:866192883",
+        "tags": {
+          "alt_name": "Bjørviksutstikkeren",
+          "man_made": "quay",
+          "name": "Sukkerbiten",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.905047437499995,
+          "lon": 10.7523526625
+        },
+        "distanceFromLegacyMeters": 631.13,
+        "geometryPointCount": 8,
+        "geometryLengthMeters": 240.46,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9052503,
+            "lon": 10.7536637
+          },
+          {
+            "lat": 59.9055493,
+            "lon": 10.752148
+          },
+          {
+            "lat": 59.9054847,
+            "lon": 10.7521135
+          },
+          {
+            "lat": 59.9049054,
+            "lon": 10.7518042
+          },
+          {
+            "lat": 59.9048554,
+            "lon": 10.7517775
+          },
+          {
+            "lat": 59.9048281,
+            "lon": 10.7517941
+          },
+          {
+            "lat": 59.9047001,
+            "lon": 10.7527388
+          },
+          {
+            "lat": 59.9048062,
+            "lon": 10.7527815
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 810259713,
+        "osmObjectId": "osm-way:810259713",
+        "tags": {
+          "image": "https://photos.app.goo.gl/LA6AAAMqUYk1Nh6e9",
+          "man_made": "quay",
+          "name": "Bjørviksutstikkeren",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.905763575,
+          "lon": 10.7532791
+        },
+        "distanceFromLegacyMeters": 680.43,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 96.55,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.905954,
+            "lon": 10.7523169
+          },
+          {
+            "lat": 59.9057673,
+            "lon": 10.7532646
+          },
+          {
+            "lat": 59.9056982,
+            "lon": 10.7536076
+          },
+          {
+            "lat": 59.9056348,
+            "lon": 10.7539273
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865170289,
+        "osmObjectId": "osm-way:865170289",
+        "tags": {
+          "man_made": "quay",
+          "name": "Utstikker 2",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.90240153999999,
+          "lon": 10.74355496
+        },
+        "distanceFromLegacyMeters": 839.87,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 373.45,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9027364,
+            "lon": 10.7428037
+          },
+          {
+            "lat": 59.9016817,
+            "lon": 10.7434454
+          },
+          {
+            "lat": 59.9016719,
+            "lon": 10.7436539
+          },
+          {
+            "lat": 59.9022611,
+            "lon": 10.7443681
+          },
+          {
+            "lat": 59.9036566,
+            "lon": 10.7435037
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865183366,
+        "osmObjectId": "osm-way:865183366",
+        "tags": {
+          "man_made": "quay",
+          "name": "Utstikker 1",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.90365147999999,
+          "lon": 10.7445082
+        },
+        "distanceFromLegacyMeters": 844.75,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 69.51,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9038587,
+            "lon": 10.7440851
+          },
+          {
+            "lat": 59.9037406,
+            "lon": 10.7442923
+          },
+          {
+            "lat": 59.9036956,
+            "lon": 10.7443741
+          },
+          {
+            "lat": 59.9035026,
+            "lon": 10.7447737
+          },
+          {
+            "lat": 59.9034599,
+            "lon": 10.7450158
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865183365,
+        "osmObjectId": "osm-way:865183365",
+        "tags": {
+          "image": "https://photos.app.goo.gl/BoLyCACc63F6zvZBA",
+          "man_made": "quay",
+          "name": "Revierkaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.905833324999996,
+          "lon": 10.74652935
+        },
+        "distanceFromLegacyMeters": 899.12,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 404.72,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9034599,
+            "lon": 10.7450158
+          },
+          {
+            "lat": 59.9064019,
+            "lon": 10.7470541
+          },
+          {
+            "lat": 59.9066345,
+            "lon": 10.7472152
+          },
+          {
+            "lat": 59.906837,
+            "lon": 10.7468323
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865183364,
+        "osmObjectId": "osm-way:865183364",
+        "tags": {
+          "man_made": "quay",
+          "name": "Langkaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.90791770000001,
+          "lon": 10.748971933333332
+        },
+        "distanceFromLegacyMeters": 1001.74,
+        "geometryPointCount": 9,
+        "geometryLengthMeters": 296.48,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.906837,
+            "lon": 10.7468323
+          },
+          {
+            "lat": 59.9073417,
+            "lon": 10.7478844
+          },
+          {
+            "lat": 59.90742,
+            "lon": 10.7480401
+          },
+          {
+            "lat": 59.9075445,
+            "lon": 10.7482878
+          },
+          {
+            "lat": 59.9080364,
+            "lon": 10.7493153
+          },
+          {
+            "lat": 59.9082326,
+            "lon": 10.7497298
+          },
+          {
+            "lat": 59.9083484,
+            "lon": 10.7499594
+          },
+          {
+            "lat": 59.9087114,
+            "lon": 10.7503117
+          },
+          {
+            "lat": 59.9087873,
+            "lon": 10.7503866
+          }
+        ]
+      }
+    ],
+    "quayCandidates": [
+      {
+        "type": "way",
+        "id": 865222822,
+        "osmObjectId": "osm-way:865222822",
+        "tags": {
+          "man_made": "quay",
+          "name": "Grønlikaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.9001854,
+          "lon": 10.7555601
+        },
+        "distanceFromLegacyMeters": 130.83,
+        "geometryPointCount": 2,
+        "geometryLengthMeters": 241.15,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.901199,
+            "lon": 10.7563283
+          },
+          {
+            "lat": 59.8991718,
+            "lon": 10.7547919
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865222824,
+        "osmObjectId": "osm-way:865222824",
+        "tags": {
+          "man_made": "quay",
+          "name": "Loengkaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.90177069999999,
+          "lon": 10.757053066666666
+        },
+        "distanceFromLegacyMeters": 191.68,
+        "geometryPointCount": 3,
+        "geometryLengthMeters": 156.42,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9023861,
+            "lon": 10.7578332
+          },
+          {
+            "lat": 59.901727,
+            "lon": 10.7569977
+          },
+          {
+            "lat": 59.901199,
+            "lon": 10.7563283
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865222821,
+        "osmObjectId": "osm-way:865222821",
+        "tags": {
+          "alt_name": "Grønli utstikker",
+          "man_made": "quay",
+          "name": "Grønliutstikkeren",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.89778633333333,
+          "lon": 10.753273933333332
+        },
+        "distanceFromLegacyMeters": 364.34,
+        "geometryPointCount": 3,
+        "geometryLengthMeters": 294.91,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8991718,
+            "lon": 10.7547919
+          },
+          {
+            "lat": 59.8971728,
+            "lon": 10.7522751
+          },
+          {
+            "lat": 59.8970144,
+            "lon": 10.7527548
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 866192883,
+        "osmObjectId": "osm-way:866192883",
+        "tags": {
+          "alt_name": "Bjørviksutstikkeren",
+          "man_made": "quay",
+          "name": "Sukkerbiten",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.905047437499995,
+          "lon": 10.7523526625
+        },
+        "distanceFromLegacyMeters": 631.13,
+        "geometryPointCount": 8,
+        "geometryLengthMeters": 240.46,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9052503,
+            "lon": 10.7536637
+          },
+          {
+            "lat": 59.9055493,
+            "lon": 10.752148
+          },
+          {
+            "lat": 59.9054847,
+            "lon": 10.7521135
+          },
+          {
+            "lat": 59.9049054,
+            "lon": 10.7518042
+          },
+          {
+            "lat": 59.9048554,
+            "lon": 10.7517775
+          },
+          {
+            "lat": 59.9048281,
+            "lon": 10.7517941
+          },
+          {
+            "lat": 59.9047001,
+            "lon": 10.7527388
+          },
+          {
+            "lat": 59.9048062,
+            "lon": 10.7527815
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 810259713,
+        "osmObjectId": "osm-way:810259713",
+        "tags": {
+          "image": "https://photos.app.goo.gl/LA6AAAMqUYk1Nh6e9",
+          "man_made": "quay",
+          "name": "Bjørviksutstikkeren",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.905763575,
+          "lon": 10.7532791
+        },
+        "distanceFromLegacyMeters": 680.43,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 96.55,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.905954,
+            "lon": 10.7523169
+          },
+          {
+            "lat": 59.9057673,
+            "lon": 10.7532646
+          },
+          {
+            "lat": 59.9056982,
+            "lon": 10.7536076
+          },
+          {
+            "lat": 59.9056348,
+            "lon": 10.7539273
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865170289,
+        "osmObjectId": "osm-way:865170289",
+        "tags": {
+          "man_made": "quay",
+          "name": "Utstikker 2",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.90240153999999,
+          "lon": 10.74355496
+        },
+        "distanceFromLegacyMeters": 839.87,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 373.45,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9027364,
+            "lon": 10.7428037
+          },
+          {
+            "lat": 59.9016817,
+            "lon": 10.7434454
+          },
+          {
+            "lat": 59.9016719,
+            "lon": 10.7436539
+          },
+          {
+            "lat": 59.9022611,
+            "lon": 10.7443681
+          },
+          {
+            "lat": 59.9036566,
+            "lon": 10.7435037
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865183366,
+        "osmObjectId": "osm-way:865183366",
+        "tags": {
+          "man_made": "quay",
+          "name": "Utstikker 1",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.90365147999999,
+          "lon": 10.7445082
+        },
+        "distanceFromLegacyMeters": 844.75,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 69.51,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9038587,
+            "lon": 10.7440851
+          },
+          {
+            "lat": 59.9037406,
+            "lon": 10.7442923
+          },
+          {
+            "lat": 59.9036956,
+            "lon": 10.7443741
+          },
+          {
+            "lat": 59.9035026,
+            "lon": 10.7447737
+          },
+          {
+            "lat": 59.9034599,
+            "lon": 10.7450158
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865183365,
+        "osmObjectId": "osm-way:865183365",
+        "tags": {
+          "image": "https://photos.app.goo.gl/BoLyCACc63F6zvZBA",
+          "man_made": "quay",
+          "name": "Revierkaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.905833324999996,
+          "lon": 10.74652935
+        },
+        "distanceFromLegacyMeters": 899.12,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 404.72,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9034599,
+            "lon": 10.7450158
+          },
+          {
+            "lat": 59.9064019,
+            "lon": 10.7470541
+          },
+          {
+            "lat": 59.9066345,
+            "lon": 10.7472152
+          },
+          {
+            "lat": 59.906837,
+            "lon": 10.7468323
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865183364,
+        "osmObjectId": "osm-way:865183364",
+        "tags": {
+          "man_made": "quay",
+          "name": "Langkaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.90791770000001,
+          "lon": 10.748971933333332
+        },
+        "distanceFromLegacyMeters": 1001.74,
+        "geometryPointCount": 9,
+        "geometryLengthMeters": 296.48,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.906837,
+            "lon": 10.7468323
+          },
+          {
+            "lat": 59.9073417,
+            "lon": 10.7478844
+          },
+          {
+            "lat": 59.90742,
+            "lon": 10.7480401
+          },
+          {
+            "lat": 59.9075445,
+            "lon": 10.7482878
+          },
+          {
+            "lat": 59.9080364,
+            "lon": 10.7493153
+          },
+          {
+            "lat": 59.9082326,
+            "lon": 10.7497298
+          },
+          {
+            "lat": 59.9083484,
+            "lon": 10.7499594
+          },
+          {
+            "lat": 59.9087114,
+            "lon": 10.7503117
+          },
+          {
+            "lat": 59.9087873,
+            "lon": 10.7503866
+          }
+        ]
+      }
+    ],
+    "portAreaCandidates": [],
+    "namedCandidates": [
+      {
+        "type": "node",
+        "id": 1881668790,
+        "osmObjectId": "osm-node:1881668790",
+        "tags": {
+          "name": "Grønlia",
+          "place": "quarter",
+          "wikidata": "Q4574354",
+          "wikipedia": "en:Grønlia"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "geometryLengthMeters": null,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 11172579968,
+        "osmObjectId": "osm-node:11172579968",
+        "tags": {
+          "access": "yes",
+          "amenity": "charging_station",
+          "brand": "Recharge",
+          "capacity": "6",
+          "name": "Recharge Grønlia",
+          "note": "HGV only",
+          "parking:fee": "no",
+          "ref:nobil": "43674",
+          "ref:nobil_ocpi": "NO#REC#946",
+          "socket:chademo": "1",
+          "socket:chademo:output": "62 kW",
+          "socket:type2_combo": "6",
+          "socket:type2_combo:output": "300 kW"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "geometryLengthMeters": null,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": []
+      },
+      {
+        "type": "way",
+        "id": 722866067,
+        "osmObjectId": "osm-way:722866067",
+        "tags": {
+          "access": "private",
+          "highway": "service",
+          "name": "Grønlikaia",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.90096723571427,
+          "lon": 10.757908650000001
+        },
+        "distanceFromLegacyMeters": 96.43,
+        "geometryPointCount": 14,
+        "geometryLengthMeters": 104.23,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9006961,
+            "lon": 10.7581146
+          },
+          {
+            "lat": 59.9007359,
+            "lon": 10.7580412
+          },
+          {
+            "lat": 59.900755,
+            "lon": 10.758008
+          },
+          {
+            "lat": 59.9007973,
+            "lon": 10.7579333
+          },
+          {
+            "lat": 59.90083,
+            "lon": 10.757864
+          },
+          {
+            "lat": 59.900876,
+            "lon": 10.757804
+          },
+          {
+            "lat": 59.900915,
+            "lon": 10.757769
+          },
+          {
+            "lat": 59.900966,
+            "lon": 10.757731
+          },
+          {
+            "lat": 59.901002,
+            "lon": 10.757717
+          },
+          {
+            "lat": 59.90104,
+            "lon": 10.75773
+          },
+          {
+            "lat": 59.901091,
+            "lon": 10.757771
+          },
+          {
+            "lat": 59.90113,
+            "lon": 10.75782
+          },
+          {
+            "lat": 59.901261,
+            "lon": 10.758032
+          },
+          {
+            "lat": 59.901446,
+            "lon": 10.758386
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865222822,
+        "osmObjectId": "osm-way:865222822",
+        "tags": {
+          "man_made": "quay",
+          "name": "Grønlikaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.9001854,
+          "lon": 10.7555601
+        },
+        "distanceFromLegacyMeters": 130.83,
+        "geometryPointCount": 2,
+        "geometryLengthMeters": 241.15,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.901199,
+            "lon": 10.7563283
+          },
+          {
+            "lat": 59.8991718,
+            "lon": 10.7547919
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1255161933,
+        "osmObjectId": "osm-way:1255161933",
+        "tags": {
+          "access": "private",
+          "highway": "service",
+          "name": "Grønlikaia"
+        },
+        "center": {
+          "lat": 59.900039,
+          "lon": 10.756218666666667
+        },
+        "distanceFromLegacyMeters": 94.01,
+        "geometryPointCount": 3,
+        "geometryLengthMeters": 46.89,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.900288,
+            "lon": 10.756435
+          },
+          {
+            "lat": 59.899928,
+            "lon": 10.756113
+          },
+          {
+            "lat": 59.899901,
+            "lon": 10.756108
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1255161934,
+        "osmObjectId": "osm-way:1255161934",
+        "tags": {
+          "access": "private",
+          "highway": "service",
+          "name": "Grønlikaia"
+        },
+        "center": {
+          "lat": 59.899727999999996,
+          "lon": 10.755872
+        },
+        "distanceFromLegacyMeters": 120.42,
+        "geometryPointCount": 2,
+        "geometryLengthMeters": 41.05,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.899892,
+            "lon": 10.756041
+          },
+          {
+            "lat": 59.899564,
+            "lon": 10.755703
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1255161935,
+        "osmObjectId": "osm-way:1255161935",
+        "tags": {
+          "access": "private",
+          "highway": "service",
+          "name": "Grønlikaia"
+        },
+        "center": {
+          "lat": 59.900353891304356,
+          "lon": 10.756706569565216
+        },
+        "distanceFromLegacyMeters": 72.29,
+        "geometryPointCount": 23,
+        "geometryLengthMeters": 191.9,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.899953,
+            "lon": 10.755684
+          },
+          {
+            "lat": 59.8999237,
+            "lon": 10.7558255
+          },
+          {
+            "lat": 59.899895,
+            "lon": 10.755964
+          },
+          {
+            "lat": 59.899892,
+            "lon": 10.756041
+          },
+          {
+            "lat": 59.899901,
+            "lon": 10.756108
+          },
+          {
+            "lat": 59.89991,
+            "lon": 10.756164
+          },
+          {
+            "lat": 59.899981,
+            "lon": 10.756374
+          },
+          {
+            "lat": 59.900117,
+            "lon": 10.756657
+          },
+          {
+            "lat": 59.900336,
+            "lon": 10.757004
+          },
+          {
+            "lat": 59.900424,
+            "lon": 10.757123
+          },
+          {
+            "lat": 59.9004988,
+            "lon": 10.7571836
+          },
+          {
+            "lat": 59.900515,
+            "lon": 10.757197
+          },
+          {
+            "lat": 59.900555,
+            "lon": 10.757211
+          },
+          {
+            "lat": 59.900599,
+            "lon": 10.757211
+          },
+          {
+            "lat": 59.900627,
+            "lon": 10.757198
+          },
+          {
+            "lat": 59.900664,
+            "lon": 10.757154
+          },
+          {
+            "lat": 59.900682,
+            "lon": 10.757107
+          },
+          {
+            "lat": 59.900689,
+            "lon": 10.757056
+          },
+          {
+            "lat": 59.900689,
+            "lon": 10.756981
+          },
+          {
+            "lat": 59.900681,
+            "lon": 10.756913
+          },
+          {
+            "lat": 59.900657,
+            "lon": 10.756851
+          },
+          {
+            "lat": 59.900583,
+            "lon": 10.756737
+          },
+          {
+            "lat": 59.900367,
+            "lon": 10.756507
+          }
+        ]
+      }
+    ],
+    "allCandidates": [
+      {
+        "type": "node",
+        "id": 1881668790,
+        "osmObjectId": "osm-node:1881668790",
+        "tags": {
+          "name": "Grønlia",
+          "place": "quarter",
+          "wikidata": "Q4574354",
+          "wikipedia": "en:Grønlia"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "geometryLengthMeters": null,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 1881668795,
+        "osmObjectId": "osm-node:1881668795",
+        "tags": {
+          "name": "Kongshavn",
+          "place": "locality"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "geometryLengthMeters": null,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 2613724116,
+        "osmObjectId": "osm-node:2613724116",
+        "tags": {
+          "bus": "yes",
+          "name": "Kongshavn",
+          "network": "Ruter",
+          "public_transport": "stop_position",
+          "source": "Vegvesen",
+          "source:url": "http://www.vegvesen.no/_attachment/459784/binary/756667?fast_title=Gjennomf%C3%B8ringsplan.pdf"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "geometryLengthMeters": null,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 2613724133,
+        "osmObjectId": "osm-node:2613724133",
+        "tags": {
+          "bus": "yes",
+          "name": "Kongshavn",
+          "network": "Ruter",
+          "public_transport": "stop_position",
+          "source": "Vegvesen",
+          "source:url": "http://www.vegvesen.no/_attachment/459784/binary/756667?fast_title=Gjennomf%C3%B8ringsplan.pdf"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "geometryLengthMeters": null,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6066506160,
+        "osmObjectId": "osm-node:6066506160",
+        "tags": {
+          "amenity": "fuel",
+          "automated": "yes",
+          "branch": "Kongshavn",
+          "brand": "Circle K",
+          "fuel:HGV_diesel": "yes",
+          "fuel:adblue": "yes",
+          "fuel:biodiesel": "yes",
+          "fuel:diesel": "yes",
+          "fuel:taxfree_diesel": "yes",
+          "hgv": "yes",
+          "name": "Circle K Truck Kongshavn",
+          "phone": "+4722962530",
+          "ref:circlek": "56074"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "geometryLengthMeters": null,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6083185939,
+        "osmObjectId": "osm-node:6083185939",
+        "tags": {
+          "amenity": "fuel",
+          "automated": "yes",
+          "branch": "Truck Kongshavn",
+          "brand": "St1",
+          "brand:wikidata": "Q7592214",
+          "fuel:HGV_diesel": "yes",
+          "fuel:adblue": "yes",
+          "fuel:diesel": "yes",
+          "fuel:taxfree_diesel": "yes",
+          "hgv": "yes",
+          "name": "St1 Truck Kongshavn",
+          "phone": "+47 22665600",
+          "ref:st1": "9498",
+          "website": "https://st1.no/stasjon/truck-kongshavn"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "geometryLengthMeters": null,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6121775859,
+        "osmObjectId": "osm-node:6121775859",
+        "tags": {
+          "amenity": "fuel",
+          "branch": "Kongshavn",
+          "brand": "YX Truck",
+          "email": "anne@stasjonservice.no",
+          "fuel:HGV_diesel": "yes",
+          "fuel:adblue": "yes",
+          "fuel:biodiesel": "yes",
+          "fuel:diesel": "yes",
+          "hgv": "yes",
+          "name": "YX Truck Kongshavn",
+          "phone": "+47 90916080",
+          "ref:yx": "10501045"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "geometryLengthMeters": null,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6373813358,
+        "osmObjectId": "osm-node:6373813358",
+        "tags": {
+          "bench": "yes",
+          "bin": "yes",
+          "highway": "bus_stop",
+          "name": "Kongshavn",
+          "ref:nsrq": "12149",
+          "shelter": "yes"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "geometryLengthMeters": null,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 6373813359,
+        "osmObjectId": "osm-node:6373813359",
+        "tags": {
+          "bench": "yes",
+          "highway": "bus_stop",
+          "name": "Kongshavn",
+          "ref:nsrq": "12148",
+          "shelter": "yes"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "geometryLengthMeters": null,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": []
+      },
+      {
+        "type": "node",
+        "id": 11172579968,
+        "osmObjectId": "osm-node:11172579968",
+        "tags": {
+          "access": "yes",
+          "amenity": "charging_station",
+          "brand": "Recharge",
+          "capacity": "6",
+          "name": "Recharge Grønlia",
+          "note": "HGV only",
+          "parking:fee": "no",
+          "ref:nobil": "43674",
+          "ref:nobil_ocpi": "NO#REC#946",
+          "socket:chademo": "1",
+          "socket:chademo:output": "62 kW",
+          "socket:type2_combo": "6",
+          "socket:type2_combo:output": "300 kW"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "geometryLengthMeters": null,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": []
+      },
+      {
+        "type": "way",
+        "id": 27843026,
+        "osmObjectId": "osm-way:27843026",
+        "tags": {
+          "access": "no",
+          "highway": "service",
+          "layer": "-1",
+          "name": "Kongshavntunnelen",
+          "tunnel": "yes"
+        },
+        "center": {
+          "lat": 59.892101669565214,
+          "lon": 10.760850104347826
+        },
+        "distanceFromLegacyMeters": 904.46,
+        "geometryPointCount": 23,
+        "geometryLengthMeters": 264.91,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8910569,
+            "lon": 10.7609172
+          },
+          {
+            "lat": 59.8911827,
+            "lon": 10.761049
+          },
+          {
+            "lat": 59.891312,
+            "lon": 10.761173
+          },
+          {
+            "lat": 59.8914144,
+            "lon": 10.7612673
+          },
+          {
+            "lat": 59.8914748,
+            "lon": 10.7613083
+          },
+          {
+            "lat": 59.891528,
+            "lon": 10.7613403
+          },
+          {
+            "lat": 59.8915964,
+            "lon": 10.7613749
+          },
+          {
+            "lat": 59.8916876,
+            "lon": 10.7614008
+          },
+          {
+            "lat": 59.8917773,
+            "lon": 10.7614105
+          },
+          {
+            "lat": 59.8918637,
+            "lon": 10.7613993
+          },
+          {
+            "lat": 59.89194,
+            "lon": 10.7613741
+          },
+          {
+            "lat": 59.892017,
+            "lon": 10.7613415
+          },
+          {
+            "lat": 59.8921243,
+            "lon": 10.7612569
+          },
+          {
+            "lat": 59.8922259,
+            "lon": 10.7611567
+          },
+          {
+            "lat": 59.8923219,
+            "lon": 10.7610261
+          },
+          {
+            "lat": 59.8924116,
+            "lon": 10.7608836
+          },
+          {
+            "lat": 59.8925666,
+            "lon": 10.7606297
+          },
+          {
+            "lat": 59.8928751,
+            "lon": 10.7601184
+          },
+          {
+            "lat": 59.8929337,
+            "lon": 10.7600034
+          },
+          {
+            "lat": 59.8929667,
+            "lon": 10.7599264
+          },
+          {
+            "lat": 59.8929946,
+            "lon": 10.7598319
+          },
+          {
+            "lat": 59.8930188,
+            "lon": 10.7597448
+          },
+          {
+            "lat": 59.8930484,
+            "lon": 10.7596183
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 38991477,
+        "osmObjectId": "osm-way:38991477",
+        "tags": {
+          "highway": "unclassified",
+          "lane_markings": "no",
+          "name": "Kongshavnveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.89760815625001,
+          "lon": 10.7551686375
+        },
+        "distanceFromLegacyMeters": 316.19,
+        "geometryPointCount": 16,
+        "geometryLengthMeters": 221.61,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8965864,
+            "lon": 10.7554016
+          },
+          {
+            "lat": 59.896656,
+            "lon": 10.7553653
+          },
+          {
+            "lat": 59.8967967,
+            "lon": 10.7553007
+          },
+          {
+            "lat": 59.8969591,
+            "lon": 10.7552335
+          },
+          {
+            "lat": 59.897103,
+            "lon": 10.7551854
+          },
+          {
+            "lat": 59.8972576,
+            "lon": 10.7551449
+          },
+          {
+            "lat": 59.897468,
+            "lon": 10.7551051
+          },
+          {
+            "lat": 59.8975957,
+            "lon": 10.7550875
+          },
+          {
+            "lat": 59.8977018,
+            "lon": 10.7550728
+          },
+          {
+            "lat": 59.8978574,
+            "lon": 10.755064
+          },
+          {
+            "lat": 59.8980012,
+            "lon": 10.7550685
+          },
+          {
+            "lat": 59.8981412,
+            "lon": 10.7550848
+          },
+          {
+            "lat": 59.8982438,
+            "lon": 10.7551034
+          },
+          {
+            "lat": 59.8983528,
+            "lon": 10.7551291
+          },
+          {
+            "lat": 59.898449,
+            "lon": 10.7551558
+          },
+          {
+            "lat": 59.8985608,
+            "lon": 10.7551958
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 172520789,
+        "osmObjectId": "osm-way:172520789",
+        "tags": {
+          "highway": "tertiary",
+          "lanes": "1",
+          "lit": "yes",
+          "maxspeed": "30",
+          "name": "Kongshavnveien",
+          "note": "Hører til Kongshavnveien ifølge Elveg. Ikke synfart.",
+          "oneway": "yes",
+          "surface": "asphalt",
+          "width": "4"
+        },
+        "center": {
+          "lat": 59.90143195999999,
+          "lon": 10.759127139999999
+        },
+        "distanceFromLegacyMeters": 163.15,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 34.67,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9013145,
+            "lon": 10.7592378
+          },
+          {
+            "lat": 59.9013653,
+            "lon": 10.7591858
+          },
+          {
+            "lat": 59.9014159,
+            "lon": 10.7591335
+          },
+          {
+            "lat": 59.9014656,
+            "lon": 10.759096
+          },
+          {
+            "lat": 59.9015985,
+            "lon": 10.7589826
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 172520790,
+        "osmObjectId": "osm-way:172520790",
+        "tags": {
+          "highway": "trunk",
+          "maxspeed": "50",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "ref": "162;Ring 1",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.90103806666667,
+          "lon": 10.758997483333333
+        },
+        "distanceFromLegacyMeters": 120.94,
+        "geometryPointCount": 6,
+        "geometryLengthMeters": 42.1,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9009286,
+            "lon": 10.7586991
+          },
+          {
+            "lat": 59.9009712,
+            "lon": 10.7588563
+          },
+          {
+            "lat": 59.9009922,
+            "lon": 10.7589178
+          },
+          {
+            "lat": 59.9010489,
+            "lon": 10.7590507
+          },
+          {
+            "lat": 59.9011178,
+            "lon": 10.7591893
+          },
+          {
+            "lat": 59.9011697,
+            "lon": 10.7592717
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 172520792,
+        "osmObjectId": "osm-way:172520792",
+        "tags": {
+          "highway": "trunk",
+          "maxspeed": "50",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "ref": "162;Ring 1",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.901085916666666,
+          "lon": 10.758895383333334
+        },
+        "distanceFromLegacyMeters": 122.88,
+        "geometryPointCount": 6,
+        "geometryLengthMeters": 38.86,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9012296,
+            "lon": 10.7590484
+          },
+          {
+            "lat": 59.9011694,
+            "lon": 10.7589911
+          },
+          {
+            "lat": 59.9011333,
+            "lon": 10.7589608
+          },
+          {
+            "lat": 59.901054,
+            "lon": 10.7588757
+          },
+          {
+            "lat": 59.9010006,
+            "lon": 10.7587972
+          },
+          {
+            "lat": 59.9009286,
+            "lon": 10.7586991
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 172520793,
+        "osmObjectId": "osm-way:172520793",
+        "tags": {
+          "cycleway:right": "no",
+          "highway": "tertiary",
+          "lanes": "1",
+          "lit": "yes",
+          "maxspeed": "30",
+          "name": "Kongshavnveien",
+          "note": "Hører til Kongshavnveien ifølge Elveg. Ikke synfart.",
+          "oneway": "yes",
+          "surface": "asphalt",
+          "width": "4"
+        },
+        "center": {
+          "lat": 59.901409820000005,
+          "lon": 10.75901498
+        },
+        "distanceFromLegacyMeters": 158.36,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 36.83,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9015985,
+            "lon": 10.7589826
+          },
+          {
+            "lat": 59.9014544,
+            "lon": 10.7589942
+          },
+          {
+            "lat": 59.9013965,
+            "lon": 10.759006
+          },
+          {
+            "lat": 59.901329,
+            "lon": 10.7590313
+          },
+          {
+            "lat": 59.9012707,
+            "lon": 10.7590608
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 172520796,
+        "osmObjectId": "osm-way:172520796",
+        "tags": {
+          "highway": "trunk",
+          "lanes": "1",
+          "lit": "yes",
+          "maxspeed": "50",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "ref": "162;Ring 1",
+          "sidewalk:left": "no",
+          "sidewalk:right": "separate",
+          "surface": "asphalt",
+          "width": "4"
+        },
+        "center": {
+          "lat": 59.901519400000005,
+          "lon": 10.760127166666665
+        },
+        "distanceFromLegacyMeters": 200.84,
+        "geometryPointCount": 3,
+        "geometryLengthMeters": 21.46,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9015871,
+            "lon": 10.7602532
+          },
+          {
+            "lat": 59.9015287,
+            "lon": 10.760127
+          },
+          {
+            "lat": 59.9014424,
+            "lon": 10.7600013
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 172520798,
+        "osmObjectId": "osm-way:172520798",
+        "tags": {
+          "highway": "trunk",
+          "lanes": "1",
+          "lit": "yes",
+          "maxspeed": "50",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "ref": "162;Ring 1",
+          "sidewalk": "separate",
+          "surface": "asphalt",
+          "width": "4"
+        },
+        "center": {
+          "lat": 59.901254300000005,
+          "lon": 10.759534675
+        },
+        "distanceFromLegacyMeters": 157.43,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 29.66,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9011808,
+            "lon": 10.7593045
+          },
+          {
+            "lat": 59.9012236,
+            "lon": 10.7594779
+          },
+          {
+            "lat": 59.9012772,
+            "lon": 10.7596267
+          },
+          {
+            "lat": 59.9013356,
+            "lon": 10.7597296
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 255703502,
+        "osmObjectId": "osm-way:255703502",
+        "tags": {
+          "bridge": "yes",
+          "highway": "unclassified",
+          "layer": "1",
+          "name": "Kongshavnveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.89595465,
+          "lon": 10.75581845
+        },
+        "distanceFromLegacyMeters": 475.33,
+        "geometryPointCount": 2,
+        "geometryLengthMeters": 21.63,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.896047,
+            "lon": 10.7557577
+          },
+          {
+            "lat": 59.8958623,
+            "lon": 10.7558792
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 255703503,
+        "osmObjectId": "osm-way:255703503",
+        "tags": {
+          "highway": "unclassified",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.8953253,
+          "lon": 10.756084525
+        },
+        "distanceFromLegacyMeters": 540.49,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 20.25,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8952228,
+            "lon": 10.75614
+          },
+          {
+            "lat": 59.8953259,
+            "lon": 10.7560932
+          },
+          {
+            "lat": 59.8953565,
+            "lon": 10.7560715
+          },
+          {
+            "lat": 59.895396,
+            "lon": 10.7560334
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 255703504,
+        "osmObjectId": "osm-way:255703504",
+        "tags": {
+          "highway": "unclassified",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.895311660000004,
+          "lon": 10.755984660000001
+        },
+        "distanceFromLegacyMeters": 543.05,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 21.45,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.895396,
+            "lon": 10.7560334
+          },
+          {
+            "lat": 59.8953555,
+            "lon": 10.7560052
+          },
+          {
+            "lat": 59.895324,
+            "lon": 10.7559828
+          },
+          {
+            "lat": 59.8952734,
+            "lon": 10.7559612
+          },
+          {
+            "lat": 59.8952094,
+            "lon": 10.7559407
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 255703505,
+        "osmObjectId": "osm-way:255703505",
+        "tags": {
+          "highway": "unclassified",
+          "lane_markings": "no",
+          "name": "Kongshavnveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.89633428,
+          "lon": 10.75556226
+        },
+        "distanceFromLegacyMeters": 438.56,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 63.2,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8965864,
+            "lon": 10.7554016
+          },
+          {
+            "lat": 59.896509,
+            "lon": 10.7554455
+          },
+          {
+            "lat": 59.8963458,
+            "lon": 10.7555472
+          },
+          {
+            "lat": 59.8961832,
+            "lon": 10.7556593
+          },
+          {
+            "lat": 59.896047,
+            "lon": 10.7557577
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 255703506,
+        "osmObjectId": "osm-way:255703506",
+        "tags": {
+          "highway": "unclassified",
+          "lane_markings": "no",
+          "name": "Kongshavnveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.895648333333334,
+          "lon": 10.755966
+        },
+        "distanceFromLegacyMeters": 506.62,
+        "geometryPointCount": 6,
+        "geometryLengthMeters": 52.71,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8958623,
+            "lon": 10.7558792
+          },
+          {
+            "lat": 59.8958123,
+            "lon": 10.755908
+          },
+          {
+            "lat": 59.8957029,
+            "lon": 10.7559617
+          },
+          {
+            "lat": 59.8955976,
+            "lon": 10.7559965
+          },
+          {
+            "lat": 59.8955189,
+            "lon": 10.7560172
+          },
+          {
+            "lat": 59.895396,
+            "lon": 10.7560334
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 255703530,
+        "osmObjectId": "osm-way:255703530",
+        "tags": {
+          "highway": "unclassified",
+          "name": "Kongshavnveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.894989893333346,
+          "lon": 10.756669453333334
+        },
+        "distanceFromLegacyMeters": 572.35,
+        "geometryPointCount": 15,
+        "geometryLengthMeters": 100.14,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8945499,
+            "lon": 10.7572124
+          },
+          {
+            "lat": 59.8946078,
+            "lon": 10.7571719
+          },
+          {
+            "lat": 59.8946921,
+            "lon": 10.7570961
+          },
+          {
+            "lat": 59.8947686,
+            "lon": 10.7570188
+          },
+          {
+            "lat": 59.8948699,
+            "lon": 10.7569062
+          },
+          {
+            "lat": 59.894966,
+            "lon": 10.7567923
+          },
+          {
+            "lat": 59.8950272,
+            "lon": 10.7567126
+          },
+          {
+            "lat": 59.8950704,
+            "lon": 10.7566491
+          },
+          {
+            "lat": 59.8951335,
+            "lon": 10.7565341
+          },
+          {
+            "lat": 59.8951555,
+            "lon": 10.7564806
+          },
+          {
+            "lat": 59.8951742,
+            "lon": 10.7564259
+          },
+          {
+            "lat": 59.8951888,
+            "lon": 10.756374
+          },
+          {
+            "lat": 59.8952035,
+            "lon": 10.756313
+          },
+          {
+            "lat": 59.8952182,
+            "lon": 10.7562148
+          },
+          {
+            "lat": 59.8952228,
+            "lon": 10.75614
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 255787186,
+        "osmObjectId": "osm-way:255787186",
+        "tags": {
+          "highway": "unclassified",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.898680160000005,
+          "lon": 10.7551955
+        },
+        "distanceFromLegacyMeters": 218.34,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 25.15,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8987861,
+            "lon": 10.755206
+          },
+          {
+            "lat": 59.8987357,
+            "lon": 10.7552015
+          },
+          {
+            "lat": 59.8986931,
+            "lon": 10.7551926
+          },
+          {
+            "lat": 59.8986251,
+            "lon": 10.7551816
+          },
+          {
+            "lat": 59.8985608,
+            "lon": 10.7551958
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 255787187,
+        "osmObjectId": "osm-way:255787187",
+        "tags": {
+          "foot": "no",
+          "highway": "unclassified",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.89865946,
+          "lon": 10.755306639999999
+        },
+        "distanceFromLegacyMeters": 215.81,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 23.33,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8985608,
+            "lon": 10.7551958
+          },
+          {
+            "lat": 59.8986208,
+            "lon": 10.7552711
+          },
+          {
+            "lat": 59.8986704,
+            "lon": 10.7553153
+          },
+          {
+            "lat": 59.8987023,
+            "lon": 10.7553494
+          },
+          {
+            "lat": 59.898743,
+            "lon": 10.7554016
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 255787194,
+        "osmObjectId": "osm-way:255787194",
+        "tags": {
+          "highway": "trunk",
+          "maxspeed": "50",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "ref": "162;Ring 1",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.899368319999994,
+          "lon": 10.7558323
+        },
+        "distanceFromLegacyMeters": 141.12,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 24.7,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8994531,
+            "lon": 10.7559983
+          },
+          {
+            "lat": 59.8993891,
+            "lon": 10.7558651
+          },
+          {
+            "lat": 59.8993675,
+            "lon": 10.7558271
+          },
+          {
+            "lat": 59.8993386,
+            "lon": 10.7557797
+          },
+          {
+            "lat": 59.8992933,
+            "lon": 10.7556913
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 255787195,
+        "osmObjectId": "osm-way:255787195",
+        "tags": {
+          "destination": "Sentrum Ø;Sentralstasjonen",
+          "destination:ref": "Ring 1",
+          "foot": "no",
+          "highway": "trunk",
+          "maxspeed": "50",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "ref": "162;Ring 1",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.89933674,
+          "lon": 10.75593884
+        },
+        "distanceFromLegacyMeters": 138.43,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 23.82,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.899245,
+            "lon": 10.7559004
+          },
+          {
+            "lat": 59.8992876,
+            "lon": 10.7559114
+          },
+          {
+            "lat": 59.8993269,
+            "lon": 10.755928
+          },
+          {
+            "lat": 59.8993711,
+            "lon": 10.7559561
+          },
+          {
+            "lat": 59.8994531,
+            "lon": 10.7559983
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 255787196,
+        "osmObjectId": "osm-way:255787196",
+        "tags": {
+          "highway": "trunk",
+          "maxspeed": "50",
+          "name": "Kongshavnveien",
+          "ref": "162;Ring 1",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.90044083571428,
+          "lon": 10.757657542857142
+        },
+        "distanceFromLegacyMeters": 40.24,
+        "geometryPointCount": 14,
+        "geometryLengthMeters": 223.98,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8994531,
+            "lon": 10.7559983
+          },
+          {
+            "lat": 59.899469,
+            "lon": 10.7560223
+          },
+          {
+            "lat": 59.9002261,
+            "lon": 10.7571758
+          },
+          {
+            "lat": 59.9003099,
+            "lon": 10.7573078
+          },
+          {
+            "lat": 59.9003915,
+            "lon": 10.7574472
+          },
+          {
+            "lat": 59.9004695,
+            "lon": 10.7575951
+          },
+          {
+            "lat": 59.9005439,
+            "lon": 10.75775
+          },
+          {
+            "lat": 59.9005797,
+            "lon": 10.7578305
+          },
+          {
+            "lat": 59.9006477,
+            "lon": 10.7579926
+          },
+          {
+            "lat": 59.9006961,
+            "lon": 10.7581146
+          },
+          {
+            "lat": 59.9007138,
+            "lon": 10.7581581
+          },
+          {
+            "lat": 59.9008461,
+            "lon": 10.7584942
+          },
+          {
+            "lat": 59.9008967,
+            "lon": 10.75862
+          },
+          {
+            "lat": 59.9009286,
+            "lon": 10.7586991
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 257618808,
+        "osmObjectId": "osm-way:257618808",
+        "tags": {
+          "highway": "trunk",
+          "lanes": "2",
+          "lit": "yes",
+          "maxspeed": "50",
+          "name": "Kongshavnveien",
+          "overtaking": "no",
+          "ref": "162;Ring 1",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.90139236666667,
+          "lon": 10.759873633333333
+        },
+        "distanceFromLegacyMeters": 181.01,
+        "geometryPointCount": 3,
+        "geometryLengthMeters": 19.25,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9014424,
+            "lon": 10.7600013
+          },
+          {
+            "lat": 59.9013991,
+            "lon": 10.75989
+          },
+          {
+            "lat": 59.9013356,
+            "lon": 10.7597296
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 257618809,
+        "osmObjectId": "osm-way:257618809",
+        "tags": {
+          "highway": "trunk",
+          "lanes": "1",
+          "lit": "yes",
+          "maxheight": "default",
+          "maxspeed": "50",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "ref": "162;Ring 1",
+          "sidewalk": "separate",
+          "surface": "asphalt",
+          "width": "4"
+        },
+        "center": {
+          "lat": 59.901492274999995,
+          "lon": 10.760213349999999
+        },
+        "distanceFromLegacyMeters": 201.52,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 23.65,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9014424,
+            "lon": 10.7600013
+          },
+          {
+            "lat": 59.9014837,
+            "lon": 10.7601912
+          },
+          {
+            "lat": 59.9015073,
+            "lon": 10.7602789
+          },
+          {
+            "lat": 59.9015357,
+            "lon": 10.760382
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 257618810,
+        "osmObjectId": "osm-way:257618810",
+        "tags": {
+          "highway": "trunk",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "ref": "162;Ring 1",
+          "surface": "asphalt",
+          "width": "4"
+        },
+        "center": {
+          "lat": 59.901308650000004,
+          "lon": 10.759509275
+        },
+        "distanceFromLegacyMeters": 161.6,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 23.43,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9013356,
+            "lon": 10.7597296
+          },
+          {
+            "lat": 59.9013124,
+            "lon": 10.7595723
+          },
+          {
+            "lat": 59.9012975,
+            "lon": 10.7594149
+          },
+          {
+            "lat": 59.9012891,
+            "lon": 10.7593203
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 258334865,
+        "osmObjectId": "osm-way:258334865",
+        "tags": {
+          "building": "school",
+          "building:levels": "4",
+          "email": "postmottak.kongshavn.vgs@osloskolen.no",
+          "fee": "no",
+          "grades": "11-13",
+          "image": "https://photos.app.goo.gl/tNwhaR7iT2KxEihN9",
+          "isced:level": "3",
+          "name": "Kongshavn videregående skole",
+          "old_name": "Sjømannsskolen;Sjømannskolen",
+          "operator": "Oslo kommune",
+          "operator:type": "public",
+          "phone": "+47 23 38 15 00",
+          "ref:NO:orgnr": "999173926",
+          "ref:bygningsnr": "80610572",
+          "ref:udir_nsr": "999173926",
+          "roof:shape": "flat",
+          "url": "https://youtu.be/jMqKV0bH0XY",
+          "website": "https://kongshavn.vgs.no/",
+          "wikidata": "Q19323459",
+          "wikimedia_commons": "Category:Kongshavn videregående skole"
+        },
+        "center": {
+          "lat": 59.89725563636364,
+          "lon": 10.758466772727271
+        },
+        "distanceFromLegacyMeters": 317.85,
+        "geometryPointCount": 22,
+        "geometryLengthMeters": 163.32,
+        "approxAreaSquareMeters": 1311,
+        "isClosed": true,
+        "geometry": [
+          {
+            "lat": 59.897403,
+            "lon": 10.758208
+          },
+          {
+            "lat": 59.89743,
+            "lon": 10.758205
+          },
+          {
+            "lat": 59.897425,
+            "lon": 10.758065
+          },
+          {
+            "lat": 59.897078,
+            "lon": 10.758125
+          },
+          {
+            "lat": 59.897083,
+            "lon": 10.758269
+          },
+          {
+            "lat": 59.897088,
+            "lon": 10.758269
+          },
+          {
+            "lat": 59.897102,
+            "lon": 10.758618
+          },
+          {
+            "lat": 59.8971,
+            "lon": 10.75862
+          },
+          {
+            "lat": 59.897101,
+            "lon": 10.758644
+          },
+          {
+            "lat": 59.897072,
+            "lon": 10.75865
+          },
+          {
+            "lat": 59.897076,
+            "lon": 10.758721
+          },
+          {
+            "lat": 59.897105,
+            "lon": 10.758748
+          },
+          {
+            "lat": 59.897106,
+            "lon": 10.758751
+          },
+          {
+            "lat": 59.897106,
+            "lon": 10.758764
+          },
+          {
+            "lat": 59.897453,
+            "lon": 10.758704
+          },
+          {
+            "lat": 59.897446,
+            "lon": 10.758559
+          },
+          {
+            "lat": 59.897421,
+            "lon": 10.758564
+          },
+          {
+            "lat": 59.897419,
+            "lon": 10.758511
+          },
+          {
+            "lat": 59.897406,
+            "lon": 10.758514
+          },
+          {
+            "lat": 59.897395,
+            "lon": 10.758277
+          },
+          {
+            "lat": 59.897406,
+            "lon": 10.758275
+          },
+          {
+            "lat": 59.897403,
+            "lon": 10.758208
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 309960874,
+        "osmObjectId": "osm-way:309960874",
+        "tags": {
+          "highway": "service",
+          "lanes": "3",
+          "lanes:backward": "1",
+          "lanes:forward": "2",
+          "name": "Kongshavnveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.89273709285714,
+          "lon": 10.758715200000001
+        },
+        "distanceFromLegacyMeters": 819.98,
+        "geometryPointCount": 14,
+        "geometryLengthMeters": 327.83,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8939986,
+            "lon": 10.7577666
+          },
+          {
+            "lat": 59.8938345,
+            "lon": 10.7579052
+          },
+          {
+            "lat": 59.8936667,
+            "lon": 10.7580359
+          },
+          {
+            "lat": 59.8934804,
+            "lon": 10.7581828
+          },
+          {
+            "lat": 59.8933066,
+            "lon": 10.7583055
+          },
+          {
+            "lat": 59.8931808,
+            "lon": 10.7583868
+          },
+          {
+            "lat": 59.8927699,
+            "lon": 10.7586545
+          },
+          {
+            "lat": 59.8926236,
+            "lon": 10.7587554
+          },
+          {
+            "lat": 59.8924531,
+            "lon": 10.7588882
+          },
+          {
+            "lat": 59.8922156,
+            "lon": 10.7590855
+          },
+          {
+            "lat": 59.8921408,
+            "lon": 10.7591465
+          },
+          {
+            "lat": 59.891737,
+            "lon": 10.7594834
+          },
+          {
+            "lat": 59.8916637,
+            "lon": 10.759542
+          },
+          {
+            "lat": 59.891248,
+            "lon": 10.7598745
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 309960878,
+        "osmObjectId": "osm-way:309960878",
+        "tags": {
+          "layer": "1",
+          "man_made": "bridge",
+          "name": "Kongshavn bru"
+        },
+        "center": {
+          "lat": 59.89463439444444,
+          "lon": 10.756686004166669
+        },
+        "distanceFromLegacyMeters": 611.51,
+        "geometryPointCount": 72,
+        "geometryLengthMeters": 491.41,
+        "approxAreaSquareMeters": 3323,
+        "isClosed": true,
+        "geometry": [
+          {
+            "lat": 59.8950877,
+            "lon": 10.7557735
+          },
+          {
+            "lat": 59.8951204,
+            "lon": 10.7556906
+          },
+          {
+            "lat": 59.8951598,
+            "lon": 10.7555804
+          },
+          {
+            "lat": 59.8951763,
+            "lon": 10.7555371
+          },
+          {
+            "lat": 59.8950968,
+            "lon": 10.7554528
+          },
+          {
+            "lat": 59.8950411,
+            "lon": 10.7554119
+          },
+          {
+            "lat": 59.8949845,
+            "lon": 10.7553925
+          },
+          {
+            "lat": 59.8949289,
+            "lon": 10.7553964
+          },
+          {
+            "lat": 59.8948693,
+            "lon": 10.7554139
+          },
+          {
+            "lat": 59.8948107,
+            "lon": 10.7554441
+          },
+          {
+            "lat": 59.8947507,
+            "lon": 10.7554879
+          },
+          {
+            "lat": 59.8946818,
+            "lon": 10.755555
+          },
+          {
+            "lat": 59.8946188,
+            "lon": 10.75563
+          },
+          {
+            "lat": 59.8945622,
+            "lon": 10.7557146
+          },
+          {
+            "lat": 59.8945124,
+            "lon": 10.7558091
+          },
+          {
+            "lat": 59.8944616,
+            "lon": 10.755922
+          },
+          {
+            "lat": 59.8944157,
+            "lon": 10.7560553
+          },
+          {
+            "lat": 59.8943801,
+            "lon": 10.7561741
+          },
+          {
+            "lat": 59.8943474,
+            "lon": 10.7563317
+          },
+          {
+            "lat": 59.8943249,
+            "lon": 10.7564923
+          },
+          {
+            "lat": 59.8943108,
+            "lon": 10.7566802
+          },
+          {
+            "lat": 59.8943113,
+            "lon": 10.7568797
+          },
+          {
+            "lat": 59.8943201,
+            "lon": 10.7570861
+          },
+          {
+            "lat": 59.8943357,
+            "lon": 10.7572574
+          },
+          {
+            "lat": 59.8943581,
+            "lon": 10.7574258
+          },
+          {
+            "lat": 59.8943947,
+            "lon": 10.7576243
+          },
+          {
+            "lat": 59.8944128,
+            "lon": 10.7577421
+          },
+          {
+            "lat": 59.8944157,
+            "lon": 10.7578141
+          },
+          {
+            "lat": 59.8944104,
+            "lon": 10.7578754
+          },
+          {
+            "lat": 59.8943899,
+            "lon": 10.7579504
+          },
+          {
+            "lat": 59.89437,
+            "lon": 10.7580087
+          },
+          {
+            "lat": 59.8943449,
+            "lon": 10.7580682
+          },
+          {
+            "lat": 59.8943161,
+            "lon": 10.7581168
+          },
+          {
+            "lat": 59.8942878,
+            "lon": 10.7581578
+          },
+          {
+            "lat": 59.89429,
+            "lon": 10.758169
+          },
+          {
+            "lat": 59.8943984,
+            "lon": 10.7580596
+          },
+          {
+            "lat": 59.8945112,
+            "lon": 10.7579444
+          },
+          {
+            "lat": 59.8946429,
+            "lon": 10.7578094
+          },
+          {
+            "lat": 59.8947336,
+            "lon": 10.7577166
+          },
+          {
+            "lat": 59.8948175,
+            "lon": 10.7576327
+          },
+          {
+            "lat": 59.894816,
+            "lon": 10.7576262
+          },
+          {
+            "lat": 59.8947804,
+            "lon": 10.7576545
+          },
+          {
+            "lat": 59.8947443,
+            "lon": 10.7576779
+          },
+          {
+            "lat": 59.8947136,
+            "lon": 10.7576769
+          },
+          {
+            "lat": 59.8946857,
+            "lon": 10.7576672
+          },
+          {
+            "lat": 59.8946623,
+            "lon": 10.7576477
+          },
+          {
+            "lat": 59.894634,
+            "lon": 10.7576156
+          },
+          {
+            "lat": 59.8946101,
+            "lon": 10.7575786
+          },
+          {
+            "lat": 59.8945764,
+            "lon": 10.7575202
+          },
+          {
+            "lat": 59.8945446,
+            "lon": 10.7574433
+          },
+          {
+            "lat": 59.8945134,
+            "lon": 10.7573518
+          },
+          {
+            "lat": 59.8944919,
+            "lon": 10.7572545
+          },
+          {
+            "lat": 59.8944738,
+            "lon": 10.7571571
+          },
+          {
+            "lat": 59.8944563,
+            "lon": 10.7570111
+          },
+          {
+            "lat": 59.894446,
+            "lon": 10.756833
+          },
+          {
+            "lat": 59.8944475,
+            "lon": 10.7566763
+          },
+          {
+            "lat": 59.8944631,
+            "lon": 10.7565274
+          },
+          {
+            "lat": 59.8944846,
+            "lon": 10.7563921
+          },
+          {
+            "lat": 59.8945114,
+            "lon": 10.7562685
+          },
+          {
+            "lat": 59.894549,
+            "lon": 10.756141
+          },
+          {
+            "lat": 59.8945939,
+            "lon": 10.7560339
+          },
+          {
+            "lat": 59.8946486,
+            "lon": 10.755921
+          },
+          {
+            "lat": 59.8947009,
+            "lon": 10.755848
+          },
+          {
+            "lat": 59.8947389,
+            "lon": 10.7558013
+          },
+          {
+            "lat": 59.8947887,
+            "lon": 10.7557565
+          },
+          {
+            "lat": 59.8948424,
+            "lon": 10.7557176
+          },
+          {
+            "lat": 59.8948986,
+            "lon": 10.7556903
+          },
+          {
+            "lat": 59.8949552,
+            "lon": 10.7556884
+          },
+          {
+            "lat": 59.8950085,
+            "lon": 10.7556947
+          },
+          {
+            "lat": 59.8950405,
+            "lon": 10.755719
+          },
+          {
+            "lat": 59.8950651,
+            "lon": 10.7557433
+          },
+          {
+            "lat": 59.8950877,
+            "lon": 10.7557735
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 397350070,
+        "osmObjectId": "osm-way:397350070",
+        "tags": {
+          "highway": "unclassified",
+          "name": "Kongshavnveien",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.895217875,
+          "lon": 10.756042375
+        },
+        "distanceFromLegacyMeters": 552.66,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 11.25,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8952228,
+            "lon": 10.75614
+          },
+          {
+            "lat": 59.8952216,
+            "lon": 10.7560809
+          },
+          {
+            "lat": 59.8952177,
+            "lon": 10.7560079
+          },
+          {
+            "lat": 59.8952094,
+            "lon": 10.7559407
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 436998874,
+        "osmObjectId": "osm-way:436998874",
+        "tags": {
+          "amenity": "school",
+          "email": "postmottak.kongshavn.vgs@osloskolen.no",
+          "fee": "no",
+          "grades": "11-13",
+          "isced:level": "3",
+          "name": "Kongshavn videregående skole",
+          "old_name": "Sjømannsskolen;Sjømannskolen",
+          "operator": "Oslo kommune",
+          "operator:type": "public",
+          "phone": "+47 23 38 15 00",
+          "ref:NO:orgnr": "999173926",
+          "ref:udir_nsr": "999173926",
+          "website": "https://kongshavn.vgs.no/",
+          "wikidata": "Q19323459",
+          "wikimedia_commons": "Category:Kongshavn videregående skole"
+        },
+        "center": {
+          "lat": 59.89742287777778,
+          "lon": 10.758471092592595
+        },
+        "distanceFromLegacyMeters": 299.38,
+        "geometryPointCount": 27,
+        "geometryLengthMeters": 363.85,
+        "approxAreaSquareMeters": 9341,
+        "isClosed": true,
+        "geometry": [
+          {
+            "lat": 59.8978742,
+            "lon": 10.7584651
+          },
+          {
+            "lat": 59.8978369,
+            "lon": 10.7581062
+          },
+          {
+            "lat": 59.8978052,
+            "lon": 10.7578682
+          },
+          {
+            "lat": 59.8977602,
+            "lon": 10.7577023
+          },
+          {
+            "lat": 59.8977093,
+            "lon": 10.757583
+          },
+          {
+            "lat": 59.897608,
+            "lon": 10.7575139
+          },
+          {
+            "lat": 59.8975191,
+            "lon": 10.757499
+          },
+          {
+            "lat": 59.8973569,
+            "lon": 10.7575016
+          },
+          {
+            "lat": 59.8972315,
+            "lon": 10.7575527
+          },
+          {
+            "lat": 59.8971059,
+            "lon": 10.7577141
+          },
+          {
+            "lat": 59.8970224,
+            "lon": 10.7579348
+          },
+          {
+            "lat": 59.8969901,
+            "lon": 10.7581075
+          },
+          {
+            "lat": 59.8969373,
+            "lon": 10.7582266
+          },
+          {
+            "lat": 59.8969137,
+            "lon": 10.7583451
+          },
+          {
+            "lat": 59.896916,
+            "lon": 10.7587266
+          },
+          {
+            "lat": 59.8968728,
+            "lon": 10.7591992
+          },
+          {
+            "lat": 59.8970086,
+            "lon": 10.7593843
+          },
+          {
+            "lat": 59.8973345,
+            "lon": 10.7595526
+          },
+          {
+            "lat": 59.8973624,
+            "lon": 10.7595559
+          },
+          {
+            "lat": 59.8974236,
+            "lon": 10.7595485
+          },
+          {
+            "lat": 59.8974848,
+            "lon": 10.7594976
+          },
+          {
+            "lat": 59.8975995,
+            "lon": 10.7592488
+          },
+          {
+            "lat": 59.8976735,
+            "lon": 10.7591791
+          },
+          {
+            "lat": 59.8976816,
+            "lon": 10.7589752
+          },
+          {
+            "lat": 59.8977176,
+            "lon": 10.7587097
+          },
+          {
+            "lat": 59.8977979,
+            "lon": 10.7585568
+          },
+          {
+            "lat": 59.8978742,
+            "lon": 10.7584651
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 704220516,
+        "osmObjectId": "osm-way:704220516",
+        "tags": {
+          "highway": "service",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.89416838333333,
+          "lon": 10.757630433333334
+        },
+        "distanceFromLegacyMeters": 659.74,
+        "geometryPointCount": 6,
+        "geometryLengthMeters": 35.32,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8939986,
+            "lon": 10.7577666
+          },
+          {
+            "lat": 59.8941386,
+            "lon": 10.7576944
+          },
+          {
+            "lat": 59.8941813,
+            "lon": 10.7576467
+          },
+          {
+            "lat": 59.894203,
+            "lon": 10.7576182
+          },
+          {
+            "lat": 59.8942208,
+            "lon": 10.7575846
+          },
+          {
+            "lat": 59.894268,
+            "lon": 10.7574721
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 722789814,
+        "osmObjectId": "osm-way:722789814",
+        "tags": {
+          "highway": "unclassified",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.894419525,
+          "lon": 10.7573274
+        },
+        "distanceFromLegacyMeters": 632.45,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 26.11,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.894334,
+            "lon": 10.7573745
+          },
+          {
+            "lat": 59.894374,
+            "lon": 10.7573686
+          },
+          {
+            "lat": 59.8944202,
+            "lon": 10.7573541
+          },
+          {
+            "lat": 59.8945499,
+            "lon": 10.7572124
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 722789816,
+        "osmObjectId": "osm-way:722789816",
+        "tags": {
+          "highway": "unclassified",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.894440233333334,
+          "lon": 10.75721
+        },
+        "distanceFromLegacyMeters": 630.51,
+        "geometryPointCount": 3,
+        "geometryLengthMeters": 23.63,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8945499,
+            "lon": 10.7572124
+          },
+          {
+            "lat": 59.8944333,
+            "lon": 10.7572135
+          },
+          {
+            "lat": 59.8943375,
+            "lon": 10.7572041
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 722789821,
+        "osmObjectId": "osm-way:722789821",
+        "tags": {
+          "highway": "service",
+          "name": "Kongshavnveien",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.8940921,
+          "lon": 10.757569924999999
+        },
+        "distanceFromLegacyMeters": 668.3,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 28.14,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8941694,
+            "lon": 10.7573953
+          },
+          {
+            "lat": 59.8941129,
+            "lon": 10.7575253
+          },
+          {
+            "lat": 59.8940875,
+            "lon": 10.7575925
+          },
+          {
+            "lat": 59.8939986,
+            "lon": 10.7577666
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 722866067,
+        "osmObjectId": "osm-way:722866067",
+        "tags": {
+          "access": "private",
+          "highway": "service",
+          "name": "Grønlikaia",
+          "surface": "asphalt"
+        },
+        "center": {
+          "lat": 59.90096723571427,
+          "lon": 10.757908650000001
+        },
+        "distanceFromLegacyMeters": 96.43,
+        "geometryPointCount": 14,
+        "geometryLengthMeters": 104.23,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9006961,
+            "lon": 10.7581146
+          },
+          {
+            "lat": 59.9007359,
+            "lon": 10.7580412
+          },
+          {
+            "lat": 59.900755,
+            "lon": 10.758008
+          },
+          {
+            "lat": 59.9007973,
+            "lon": 10.7579333
+          },
+          {
+            "lat": 59.90083,
+            "lon": 10.757864
+          },
+          {
+            "lat": 59.900876,
+            "lon": 10.757804
+          },
+          {
+            "lat": 59.900915,
+            "lon": 10.757769
+          },
+          {
+            "lat": 59.900966,
+            "lon": 10.757731
+          },
+          {
+            "lat": 59.901002,
+            "lon": 10.757717
+          },
+          {
+            "lat": 59.90104,
+            "lon": 10.75773
+          },
+          {
+            "lat": 59.901091,
+            "lon": 10.757771
+          },
+          {
+            "lat": 59.90113,
+            "lon": 10.75782
+          },
+          {
+            "lat": 59.901261,
+            "lon": 10.758032
+          },
+          {
+            "lat": 59.901446,
+            "lon": 10.758386
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 810259713,
+        "osmObjectId": "osm-way:810259713",
+        "tags": {
+          "image": "https://photos.app.goo.gl/LA6AAAMqUYk1Nh6e9",
+          "man_made": "quay",
+          "name": "Bjørviksutstikkeren",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.905763575,
+          "lon": 10.7532791
+        },
+        "distanceFromLegacyMeters": 680.43,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 96.55,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.905954,
+            "lon": 10.7523169
+          },
+          {
+            "lat": 59.9057673,
+            "lon": 10.7532646
+          },
+          {
+            "lat": 59.9056982,
+            "lon": 10.7536076
+          },
+          {
+            "lat": 59.9056348,
+            "lon": 10.7539273
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865170289,
+        "osmObjectId": "osm-way:865170289",
+        "tags": {
+          "man_made": "quay",
+          "name": "Utstikker 2",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.90240153999999,
+          "lon": 10.74355496
+        },
+        "distanceFromLegacyMeters": 839.87,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 373.45,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9027364,
+            "lon": 10.7428037
+          },
+          {
+            "lat": 59.9016817,
+            "lon": 10.7434454
+          },
+          {
+            "lat": 59.9016719,
+            "lon": 10.7436539
+          },
+          {
+            "lat": 59.9022611,
+            "lon": 10.7443681
+          },
+          {
+            "lat": 59.9036566,
+            "lon": 10.7435037
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865183364,
+        "osmObjectId": "osm-way:865183364",
+        "tags": {
+          "man_made": "quay",
+          "name": "Langkaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.90791770000001,
+          "lon": 10.748971933333332
+        },
+        "distanceFromLegacyMeters": 1001.74,
+        "geometryPointCount": 9,
+        "geometryLengthMeters": 296.48,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.906837,
+            "lon": 10.7468323
+          },
+          {
+            "lat": 59.9073417,
+            "lon": 10.7478844
+          },
+          {
+            "lat": 59.90742,
+            "lon": 10.7480401
+          },
+          {
+            "lat": 59.9075445,
+            "lon": 10.7482878
+          },
+          {
+            "lat": 59.9080364,
+            "lon": 10.7493153
+          },
+          {
+            "lat": 59.9082326,
+            "lon": 10.7497298
+          },
+          {
+            "lat": 59.9083484,
+            "lon": 10.7499594
+          },
+          {
+            "lat": 59.9087114,
+            "lon": 10.7503117
+          },
+          {
+            "lat": 59.9087873,
+            "lon": 10.7503866
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865183365,
+        "osmObjectId": "osm-way:865183365",
+        "tags": {
+          "image": "https://photos.app.goo.gl/BoLyCACc63F6zvZBA",
+          "man_made": "quay",
+          "name": "Revierkaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.905833324999996,
+          "lon": 10.74652935
+        },
+        "distanceFromLegacyMeters": 899.12,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 404.72,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9034599,
+            "lon": 10.7450158
+          },
+          {
+            "lat": 59.9064019,
+            "lon": 10.7470541
+          },
+          {
+            "lat": 59.9066345,
+            "lon": 10.7472152
+          },
+          {
+            "lat": 59.906837,
+            "lon": 10.7468323
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865183366,
+        "osmObjectId": "osm-way:865183366",
+        "tags": {
+          "man_made": "quay",
+          "name": "Utstikker 1",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.90365147999999,
+          "lon": 10.7445082
+        },
+        "distanceFromLegacyMeters": 844.75,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 69.51,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9038587,
+            "lon": 10.7440851
+          },
+          {
+            "lat": 59.9037406,
+            "lon": 10.7442923
+          },
+          {
+            "lat": 59.9036956,
+            "lon": 10.7443741
+          },
+          {
+            "lat": 59.9035026,
+            "lon": 10.7447737
+          },
+          {
+            "lat": 59.9034599,
+            "lon": 10.7450158
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865222821,
+        "osmObjectId": "osm-way:865222821",
+        "tags": {
+          "alt_name": "Grønli utstikker",
+          "man_made": "quay",
+          "name": "Grønliutstikkeren",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.89778633333333,
+          "lon": 10.753273933333332
+        },
+        "distanceFromLegacyMeters": 364.34,
+        "geometryPointCount": 3,
+        "geometryLengthMeters": 294.91,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8991718,
+            "lon": 10.7547919
+          },
+          {
+            "lat": 59.8971728,
+            "lon": 10.7522751
+          },
+          {
+            "lat": 59.8970144,
+            "lon": 10.7527548
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865222822,
+        "osmObjectId": "osm-way:865222822",
+        "tags": {
+          "man_made": "quay",
+          "name": "Grønlikaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.9001854,
+          "lon": 10.7555601
+        },
+        "distanceFromLegacyMeters": 130.83,
+        "geometryPointCount": 2,
+        "geometryLengthMeters": 241.15,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.901199,
+            "lon": 10.7563283
+          },
+          {
+            "lat": 59.8991718,
+            "lon": 10.7547919
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 865222824,
+        "osmObjectId": "osm-way:865222824",
+        "tags": {
+          "man_made": "quay",
+          "name": "Loengkaia",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.90177069999999,
+          "lon": 10.757053066666666
+        },
+        "distanceFromLegacyMeters": 191.68,
+        "geometryPointCount": 3,
+        "geometryLengthMeters": 156.42,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9023861,
+            "lon": 10.7578332
+          },
+          {
+            "lat": 59.901727,
+            "lon": 10.7569977
+          },
+          {
+            "lat": 59.901199,
+            "lon": 10.7563283
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 866192883,
+        "osmObjectId": "osm-way:866192883",
+        "tags": {
+          "alt_name": "Bjørviksutstikkeren",
+          "man_made": "quay",
+          "name": "Sukkerbiten",
+          "natural": "coastline"
+        },
+        "center": {
+          "lat": 59.905047437499995,
+          "lon": 10.7523526625
+        },
+        "distanceFromLegacyMeters": 631.13,
+        "geometryPointCount": 8,
+        "geometryLengthMeters": 240.46,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9052503,
+            "lon": 10.7536637
+          },
+          {
+            "lat": 59.9055493,
+            "lon": 10.752148
+          },
+          {
+            "lat": 59.9054847,
+            "lon": 10.7521135
+          },
+          {
+            "lat": 59.9049054,
+            "lon": 10.7518042
+          },
+          {
+            "lat": 59.9048554,
+            "lon": 10.7517775
+          },
+          {
+            "lat": 59.9048281,
+            "lon": 10.7517941
+          },
+          {
+            "lat": 59.9047001,
+            "lon": 10.7527388
+          },
+          {
+            "lat": 59.9048062,
+            "lon": 10.7527815
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1108042282,
+        "osmObjectId": "osm-way:1108042282",
+        "tags": {
+          "area": "yes",
+          "artist_name": "Bjarte Agdestein;Endre Skandfer;Ronald Kabcek",
+          "artwork_type": "installation",
+          "image": "https://photos.app.goo.gl/3mRzqM7x6ePwqD8a6",
+          "name": "Havnepromenaden infopunkt 14: Kongshavn",
+          "tourism": "artwork"
+        },
+        "center": {
+          "lat": 59.89612457999999,
+          "lon": 10.75523038
+        },
+        "distanceFromLegacyMeters": 466.44,
+        "geometryPointCount": 5,
+        "geometryLengthMeters": 9.72,
+        "approxAreaSquareMeters": 6,
+        "isClosed": true,
+        "geometry": [
+          {
+            "lat": 59.8961298,
+            "lon": 10.755208
+          },
+          {
+            "lat": 59.8961098,
+            "lon": 10.7552208
+          },
+          {
+            "lat": 59.8961168,
+            "lon": 10.755264
+          },
+          {
+            "lat": 59.8961367,
+            "lon": 10.7552511
+          },
+          {
+            "lat": 59.8961298,
+            "lon": 10.755208
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1255161933,
+        "osmObjectId": "osm-way:1255161933",
+        "tags": {
+          "access": "private",
+          "highway": "service",
+          "name": "Grønlikaia"
+        },
+        "center": {
+          "lat": 59.900039,
+          "lon": 10.756218666666667
+        },
+        "distanceFromLegacyMeters": 94.01,
+        "geometryPointCount": 3,
+        "geometryLengthMeters": 46.89,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.900288,
+            "lon": 10.756435
+          },
+          {
+            "lat": 59.899928,
+            "lon": 10.756113
+          },
+          {
+            "lat": 59.899901,
+            "lon": 10.756108
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1255161934,
+        "osmObjectId": "osm-way:1255161934",
+        "tags": {
+          "access": "private",
+          "highway": "service",
+          "name": "Grønlikaia"
+        },
+        "center": {
+          "lat": 59.899727999999996,
+          "lon": 10.755872
+        },
+        "distanceFromLegacyMeters": 120.42,
+        "geometryPointCount": 2,
+        "geometryLengthMeters": 41.05,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.899892,
+            "lon": 10.756041
+          },
+          {
+            "lat": 59.899564,
+            "lon": 10.755703
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1255161935,
+        "osmObjectId": "osm-way:1255161935",
+        "tags": {
+          "access": "private",
+          "highway": "service",
+          "name": "Grønlikaia"
+        },
+        "center": {
+          "lat": 59.900353891304356,
+          "lon": 10.756706569565216
+        },
+        "distanceFromLegacyMeters": 72.29,
+        "geometryPointCount": 23,
+        "geometryLengthMeters": 191.9,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.899953,
+            "lon": 10.755684
+          },
+          {
+            "lat": 59.8999237,
+            "lon": 10.7558255
+          },
+          {
+            "lat": 59.899895,
+            "lon": 10.755964
+          },
+          {
+            "lat": 59.899892,
+            "lon": 10.756041
+          },
+          {
+            "lat": 59.899901,
+            "lon": 10.756108
+          },
+          {
+            "lat": 59.89991,
+            "lon": 10.756164
+          },
+          {
+            "lat": 59.899981,
+            "lon": 10.756374
+          },
+          {
+            "lat": 59.900117,
+            "lon": 10.756657
+          },
+          {
+            "lat": 59.900336,
+            "lon": 10.757004
+          },
+          {
+            "lat": 59.900424,
+            "lon": 10.757123
+          },
+          {
+            "lat": 59.9004988,
+            "lon": 10.7571836
+          },
+          {
+            "lat": 59.900515,
+            "lon": 10.757197
+          },
+          {
+            "lat": 59.900555,
+            "lon": 10.757211
+          },
+          {
+            "lat": 59.900599,
+            "lon": 10.757211
+          },
+          {
+            "lat": 59.900627,
+            "lon": 10.757198
+          },
+          {
+            "lat": 59.900664,
+            "lon": 10.757154
+          },
+          {
+            "lat": 59.900682,
+            "lon": 10.757107
+          },
+          {
+            "lat": 59.900689,
+            "lon": 10.757056
+          },
+          {
+            "lat": 59.900689,
+            "lon": 10.756981
+          },
+          {
+            "lat": 59.900681,
+            "lon": 10.756913
+          },
+          {
+            "lat": 59.900657,
+            "lon": 10.756851
+          },
+          {
+            "lat": 59.900583,
+            "lon": 10.756737
+          },
+          {
+            "lat": 59.900367,
+            "lon": 10.756507
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1268565707,
+        "osmObjectId": "osm-way:1268565707",
+        "tags": {
+          "access": "private",
+          "highway": "service",
+          "name": "Kongshavnveien"
+        },
+        "center": {
+          "lat": 59.89309303333334,
+          "lon": 10.755491166666667
+        },
+        "distanceFromLegacyMeters": 790.64,
+        "geometryPointCount": 3,
+        "geometryLengthMeters": 51.71,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.8930335,
+            "lon": 10.7550727
+          },
+          {
+            "lat": 59.8930946,
+            "lon": 10.7554328
+          },
+          {
+            "lat": 59.893151,
+            "lon": 10.755968
+          }
+        ]
+      },
+      {
+        "type": "way",
+        "id": 1426772901,
+        "osmObjectId": "osm-way:1426772901",
+        "tags": {
+          "highway": "tertiary",
+          "lane_markings": "no",
+          "lit": "yes",
+          "maxspeed": "30",
+          "name": "Kongshavnveien",
+          "note": "Hører til Kongshavnveien ifølge Elveg. Ikke synfart.",
+          "oneway": "no",
+          "surface": "asphalt",
+          "width": "7"
+        },
+        "center": {
+          "lat": 59.90163575,
+          "lon": 10.758964225
+        },
+        "distanceFromLegacyMeters": 180.79,
+        "geometryPointCount": 4,
+        "geometryLengthMeters": 8.87,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": [
+          {
+            "lat": 59.9016736,
+            "lon": 10.7589342
+          },
+          {
+            "lat": 59.9016391,
+            "lon": 10.7589688
+          },
+          {
+            "lat": 59.9016318,
+            "lon": 10.7589713
+          },
+          {
+            "lat": 59.9015985,
+            "lon": 10.7589826
+          }
+        ]
+      },
+      {
+        "type": "relation",
+        "id": 2350377,
+        "osmObjectId": "osm-relation:2350377",
+        "tags": {
+          "Ruter:code": "KOH",
+          "Ruter:id": "3010713",
+          "Ruter:name": "Kongshavn",
+          "Ruter:pay_zone": "1",
+          "bus": "yes",
+          "name": "Kongshavn",
+          "network": "Ruter",
+          "public_transport": "stop_area",
+          "source": "Ruter",
+          "type": "public_transport"
+        },
+        "center": null,
+        "distanceFromLegacyMeters": null,
+        "geometryPointCount": 0,
+        "geometryLengthMeters": null,
+        "approxAreaSquareMeters": null,
+        "isClosed": false,
+        "geometry": []
+      }
+    ]
+  },
+  "nominatim": [
+    {
+      "osm_type": "way",
+      "osm_id": 1255161935,
+      "type": "service",
+      "category": "highway",
+      "display_name": "Grønlikaia, Sørengkaia, Grønlia, Gamle Oslo, Oslo, 0194, Norge",
+      "lat": 59.9002746,
+      "lon": 10.7569067,
+      "distanceFromLegacyMeters": 58.7,
+      "geojsonType": "LineString",
+      "geojson": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.755684,
+            59.899953
+          ],
+          [
+            10.7558255,
+            59.8999237
+          ],
+          [
+            10.755964,
+            59.899895
+          ],
+          [
+            10.756041,
+            59.899892
+          ],
+          [
+            10.756108,
+            59.899901
+          ],
+          [
+            10.756164,
+            59.89991
+          ],
+          [
+            10.756374,
+            59.899981
+          ],
+          [
+            10.756657,
+            59.900117
+          ],
+          [
+            10.757004,
+            59.900336
+          ],
+          [
+            10.757123,
+            59.900424
+          ],
+          [
+            10.7571836,
+            59.9004988
+          ],
+          [
+            10.757197,
+            59.900515
+          ],
+          [
+            10.757211,
+            59.900555
+          ],
+          [
+            10.757211,
+            59.900599
+          ],
+          [
+            10.757198,
+            59.900627
+          ],
+          [
+            10.757154,
+            59.900664
+          ],
+          [
+            10.757107,
+            59.900682
+          ],
+          [
+            10.757056,
+            59.900689
+          ],
+          [
+            10.756981,
+            59.900689
+          ],
+          [
+            10.756913,
+            59.900681
+          ],
+          [
+            10.756851,
+            59.900657
+          ],
+          [
+            10.756737,
+            59.900583
+          ],
+          [
+            10.756507,
+            59.900367
+          ]
+        ]
+      }
+    },
+    {
+      "osm_type": "way",
+      "osm_id": 722866067,
+      "type": "service",
+      "category": "highway",
+      "display_name": "Grønlikaia, Sørengkaia, Sørenga, Gamle Oslo, Oslo, 0194, Norge",
+      "lat": 59.9011194,
+      "lon": 10.7578067,
+      "distanceFromLegacyMeters": 113.47,
+      "geojsonType": "LineString",
+      "geojson": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.7581146,
+            59.9006961
+          ],
+          [
+            10.7580412,
+            59.9007359
+          ],
+          [
+            10.758008,
+            59.900755
+          ],
+          [
+            10.7579333,
+            59.9007973
+          ],
+          [
+            10.757864,
+            59.90083
+          ],
+          [
+            10.757804,
+            59.900876
+          ],
+          [
+            10.757769,
+            59.900915
+          ],
+          [
+            10.757731,
+            59.900966
+          ],
+          [
+            10.757717,
+            59.901002
+          ],
+          [
+            10.75773,
+            59.90104
+          ],
+          [
+            10.757771,
+            59.901091
+          ],
+          [
+            10.75782,
+            59.90113
+          ],
+          [
+            10.758032,
+            59.901261
+          ],
+          [
+            10.758386,
+            59.901446
+          ]
+        ]
+      }
+    }
+  ],
+  "decision": "Multiple quay geometries exist near Grønlikaia (9 candidates). A production model may be possible as an ordered multi-segment quay, but only after endpoint/topology and official-scope reconciliation."
+}
