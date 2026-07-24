@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "gamlebyen_skole",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/gamlebyen_skole.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_official_school_address_point_inside_named_school_geometry",
+  "currentCoordinate": {
+    "lat": 59.90681241,
+    "lon": 10.77044366,
+    "r": 150,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Kartverket/Geonorge for Egedes gate 3, 0192 Oslo. Gamlebyen skoles offisielle Osloskolen-sider og Brønnøysundregistrenes underenhet 973626442 oppgir samme skoleidentitet og adresse. Punktet ligger inne i den komplette, navngitte OSM-skolegeometrien way 263309956, som bærer korrekt organisasjonsnummer 973626442, offisielt nettsted og Wikidata Q17194626. Polygonet består av 8 noder, dekker 5852.5 m², og adressepunktet ligger 40.5 meter fra geometrisk sentrum. Den tidligere markøren lå 402.9 meter unna. Radius 150 meter beholdes og dekker skolepolygonets største målte sentrum-til-hjørne-avstand på 56.2 meter. Osloskolens offisielle profil oppgir grunnleggelse i 1881; canonical year 1799 er ikke endret i denne koordinatmigreringen og må vurderes separat."
+  },
+  "identity": {
+    "currentName": "Gamlebyen skole",
+    "resolvedIdentity": "Gamlebyen skole, kommunal barneskole ved Egedes gate 3, 0192 Oslo, Brønnøysund-underenhet 973626442",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt offisiell besøksadresse",
+    "offisiell skole- og driftsstedsidentitet",
+    "navngitt skolegeometri som omslutter adressepunktet"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Adresser API v1 – Egedes gate 3",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Egedes%20gate&nummer=3&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11412:3:59.90681241,10.77044366",
+      "sourceQuality": "official_address",
+      "finding": "Ett unikt offisielt representasjonspunkt for Egedes gate 3, 0192 Oslo: 59.90681241, 10.77044366.",
+      "canVerifyCoordinate": true,
+      "reason": "Det unike Kartverket-punktet brukes som canonical display-markør fordi det ligger inne i den eksakte navngitte skolegeometrien."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Gamlebyen skole – Osloskolen",
+      "sourceUrl": "https://gamlebyen.osloskolen.no/",
+      "sourceObjectId": "osloskolen:gamlebyen-skole",
+      "sourceQuality": "official_school_identity",
+      "finding": "Offisiell skoleprofil og kontaktside bekrefter Gamlebyen skole ved Egedes gate 3. Profilen oppgir at skolen ble grunnlagt i 1881.",
+      "canVerifyCoordinate": false,
+      "reason": "Autoritativ skole-, adresse- og historikkilde; koordinaten leveres av Kartverket."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – Gamlebyen skole underenhet 973626442",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/underenheter/973626442",
+      "sourceObjectId": "brreg-underenhet:973626442",
+      "sourceQuality": "official_operating_location",
+      "finding": "Underenheten bekrefter Gamlebyen skole og beliggenhetsadresse Egedes gate 3, 0192 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Uavhengig offentlig skole- og adressekryssjekk."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 263309956 – Gamlebyen skole",
+      "sourceUrl": "https://www.openstreetmap.org/way/263309956",
+      "sourceObjectId": "osm-way:263309956",
+      "sourceQuality": "complete_named_school_geometry",
+      "finding": "Komplett amenity=school-polygon med eksakt navn, organisasjonsnummer 973626442, offisielt nettsted og Wikidata Q17194626. Polygonet har 8 noder og dekker 5852.5 m²; Kartverket-punktet ligger inne i geometrien.",
+      "canVerifyCoordinate": true,
+      "reason": "Skolegeometrien bekrefter at Kartverkets adressepunkt faktisk representerer Gamlebyen skole."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q17194626 – Gamlebyen skole",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q17194626",
+      "sourceObjectId": "wikidata:Q17194626",
+      "sourceQuality": "structured_identity_crosscheck",
+      "finding": "Dedikert strukturert identitetsobjekt koblet direkte fra den navngitte OSM-skolegeometrien.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskryssjekk; koordinaten leveres av Kartverket og valideres mot skolepolygonet."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Egedes gate 3, 0192 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11412:3:59.90681241,10.77044366",
+      "lat": 59.90681241,
+      "lon": 10.77044366,
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11412:3:59.90681241,10.77044366",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:263309956",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q17194626",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:263309956",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11412:3:59.90681241,10.77044366",
+      "lat": 59.90681241,
+      "lon": 10.77044366,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Det unike Kartverket-punktet for Egedes gate 3 er anvendt som canonical display-markør etter kontroll mot den navngitte skolegeometrien."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Kartverket/Geonorge for Egedes gate 3, 0192 Oslo. Gamlebyen skoles offisielle Osloskolen-sider og Brønnøysundregistrenes underenhet 973626442 oppgir samme skoleidentitet og adresse. Punktet ligger inne i den komplette, navngitte OSM-skolegeometrien way 263309956, som bærer korrekt organisasjonsnummer 973626442, offisielt nettsted og Wikidata Q17194626. Polygonet består av 8 noder, dekker 5852.5 m², og adressepunktet ligger 40.5 meter fra geometrisk sentrum. Den tidligere markøren lå 402.9 meter unna. Radius 150 meter beholdes og dekker skolepolygonets største målte sentrum-til-hjørne-avstand på 56.2 meter. Osloskolens offisielle profil oppgir grunnleggelse i 1881; canonical year 1799 er ikke endret i denne koordinatmigreringen og må vurderes separat.",
+    "Research report: reports/oslo-coordinate-gamlebyen-skole-research-post-195/summary.json",
+    "Historikkavvik: Osloskolens offisielle profil oppgir 1881, mens canonical year fortsatt er 1799. Årstallet er bevisst ikke endret i denne koordinat-PR-en."
+  ]
+}
