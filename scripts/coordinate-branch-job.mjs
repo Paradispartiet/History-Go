@@ -144,7 +144,10 @@ assert(centralAudit.nextCandidate?.placeId === PLACE_ID, `Central audit next can
 const evidence = await readJson(join(root, 'data/coordinate-evidence/oslo/litteratur/sigrid_undset_statue.json'));
 assert(evidence.placeId === PLACE_ID, 'Unexpected Sigrid Undset evidence file.');
 assert(evidence.evidenceStatus === 'needs_research', `Expected needs_research, got ${evidence.evidenceStatus}.`);
-assert(evidence.coordinateDecision === 'needs_exact_object', `Expected needs_exact_object, got ${evidence.coordinateDecision}.`);
+assert(evidence.coordinateDecision === 'needs_geometry', `Expected needs_geometry, got ${evidence.coordinateDecision}.`);
+assert(evidence.identity?.identityStatus === 'resolved', `Expected resolved identity, got ${evidence.identity?.identityStatus}.`);
+assert(evidence.identity?.locatorTypeCandidate === 'poi', `Expected poi locator candidate, got ${evidence.identity?.locatorTypeCandidate}.`);
+assert((evidence.requiredEvidence ?? []).includes('entydig canonical hovedanker eller eksakt objektgeometri'), 'Exact-object evidence requirement changed.');
 
 const endpoints = [
   `${BASE}/robots.txt`,
