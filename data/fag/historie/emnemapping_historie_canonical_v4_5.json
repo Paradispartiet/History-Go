@@ -5663,492 +5663,6 @@
     }
   },
   {
-    "emne_id": "em_his_arbeiderbevegelse_folkedannelse",
-    "title": "Arbeiderbevegelse og folkedannelse",
-    "mappings": [
-      {
-        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
-        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
-        "topic_hook": "his_industriby_arbeiderliv",
-        "topic_hook_tittel": "Industriby og arbeiderliv",
-        "mapping_tier": "primary",
-        "priority_score": 10,
-        "set_phase_fit": [
-          "facts",
-          "bridge_facts_theory",
-          "late_theory"
-        ],
-        "question_surface_mode": "fact-first",
-        "history_anchor_required": true,
-        "fact_anchor_required": true,
-        "source_anchor_required": true,
-        "external_claim_basis_required": true,
-        "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
-        "tenkere": [
-          "E.P. Thompson",
-          "Eric Hobsbawm",
-          "Gro Hagemann",
-          "Knut Kjeldstadli"
-        ],
-        "thinker_ids": [
-          "e_p_thompson",
-          "eric_hobsbawm",
-          "gro_hagemann",
-          "knut_kjeldstadli"
-        ],
-        "norwegian_thinker_ids": [
-          "gro_hagemann",
-          "knut_kjeldstadli"
-        ],
-        "norwegian_thinkers": [
-          "Gro Hagemann",
-          "Knut Kjeldstadli"
-        ],
-        "comparison_pairs": [
-          [
-            "e_p_thompson",
-            "eric_hobsbawm"
-          ],
-          [
-            "gro_hagemann",
-            "knut_kjeldstadli"
-          ]
-        ],
-        "preferred_question_moves": [
-          "connect production to living conditions",
-          "compare worker and owner perspectives",
-          "read factory trace as social relation",
-          "connect organization to public space"
-        ],
-        "best_place_types": [
-          "industrianlegg",
-          "arbeiderbydel",
-          "gate",
-          "foreningslokale",
-          "skole",
-          "institusjonsbygg"
-        ],
-        "avoid_place_types": [
-          "ren_finansinstitusjon",
-          "ren_representasjonsbygning_uten_arbeidsliv"
-        ],
-        "anti_patterns": [
-          "Generisk industri uten arbeidere eller sted",
-          "Ren næringslivsvinkel uten sosialhistorie",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
-        ],
-        "theory_depth": "high",
-        "recommended_oslo_cases": [
-          "Akerselva",
-          "Sagene skole",
-          "Arbeidersamfunnets plass",
-          "Hjula Væveri"
-        ],
-        "recommended_method_ids": [
-          "met_sporlesning",
-          "met_arkivlesning",
-          "met_mikrohistorisk_analyse",
-          "met_for_etter_historisk"
-        ]
-      }
-    ],
-    "mapping_status": "tiered+canonical",
-    "primary_hooks": [
-      "his_industriby_arbeiderliv"
-    ],
-    "secondary_hooks": [],
-    "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
-    "history_anchor_required": true,
-    "source_anchor_required": true,
-    "external_claim_basis_required": true,
-    "canonical_thinkers": [
-      "E.P. Thompson",
-      "Eric Hobsbawm",
-      "Gro Hagemann",
-      "Knut Kjeldstadli"
-    ],
-    "canonical_thinker_ids": [
-      "e_p_thompson",
-      "eric_hobsbawm",
-      "gro_hagemann",
-      "knut_kjeldstadli"
-    ],
-    "norwegian_thinker_ids": [
-      "gro_hagemann",
-      "knut_kjeldstadli"
-    ],
-    "norwegian_thinkers": [
-      "Gro Hagemann",
-      "Knut Kjeldstadli"
-    ],
-    "theory_diversity_score": 4,
-    "has_norwegian_theory_path": true,
-    "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
-    "recommended_oslo_cases": [
-      "Akerselva",
-      "Sagene skole",
-      "Arbeidersamfunnets plass",
-      "Hjula Væveri"
-    ],
-    "recommended_method_ids": [
-      "met_sporlesning",
-      "met_arkivlesning",
-      "met_mikrohistorisk_analyse",
-      "met_for_etter_historisk"
-    ],
-    "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
-    "theory_overreach_risk": "medium",
-    "progression_stage": "full_ladder",
-    "theory_spread_priority": "spread_more",
-    "canonical_status": "canonical",
-    "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
-    "case_gate_required": true,
-    "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
-    "generator_risk_mode": "guarded",
-    "canonical_file_role": "active",
-    "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
-      "risk_mode": "guarded",
-      "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
-  },
-  {
-    "emne_id": "em_his_industriby_1900",
-    "title": "Industriby og arbeid rundt 1900",
-    "mappings": [
-      {
-        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
-        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
-        "topic_hook": "his_industriby_arbeiderliv",
-        "topic_hook_tittel": "Industriby og arbeiderliv",
-        "mapping_tier": "primary",
-        "priority_score": 10,
-        "set_phase_fit": [
-          "facts",
-          "bridge_facts_theory",
-          "late_theory"
-        ],
-        "question_surface_mode": "fact-first",
-        "history_anchor_required": true,
-        "fact_anchor_required": true,
-        "source_anchor_required": true,
-        "external_claim_basis_required": true,
-        "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
-        "tenkere": [
-          "E.P. Thompson",
-          "Eric Hobsbawm",
-          "Gro Hagemann",
-          "Knut Kjeldstadli"
-        ],
-        "thinker_ids": [
-          "e_p_thompson",
-          "eric_hobsbawm",
-          "gro_hagemann",
-          "knut_kjeldstadli"
-        ],
-        "norwegian_thinker_ids": [
-          "gro_hagemann",
-          "knut_kjeldstadli"
-        ],
-        "norwegian_thinkers": [
-          "Gro Hagemann",
-          "Knut Kjeldstadli"
-        ],
-        "comparison_pairs": [
-          [
-            "e_p_thompson",
-            "eric_hobsbawm"
-          ],
-          [
-            "gro_hagemann",
-            "knut_kjeldstadli"
-          ]
-        ],
-        "preferred_question_moves": [
-          "connect production to living conditions",
-          "compare worker and owner perspectives",
-          "read factory trace as social relation",
-          "connect organization to public space"
-        ],
-        "best_place_types": [
-          "industrianlegg",
-          "arbeiderbydel",
-          "gate",
-          "foreningslokale",
-          "skole",
-          "institusjonsbygg"
-        ],
-        "avoid_place_types": [
-          "ren_finansinstitusjon",
-          "ren_representasjonsbygning_uten_arbeidsliv"
-        ],
-        "anti_patterns": [
-          "Generisk industri uten arbeidere eller sted",
-          "Ren næringslivsvinkel uten sosialhistorie",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
-        ],
-        "theory_depth": "high",
-        "recommended_oslo_cases": [
-          "Akerselva",
-          "Sagene skole",
-          "Arbeidersamfunnets plass",
-          "Hjula Væveri"
-        ],
-        "recommended_method_ids": [
-          "met_sporlesning",
-          "met_arkivlesning",
-          "met_mikrohistorisk_analyse",
-          "met_for_etter_historisk"
-        ]
-      }
-    ],
-    "mapping_status": "tiered+canonical",
-    "primary_hooks": [
-      "his_industriby_arbeiderliv"
-    ],
-    "secondary_hooks": [],
-    "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
-    "history_anchor_required": true,
-    "source_anchor_required": true,
-    "external_claim_basis_required": true,
-    "canonical_thinkers": [
-      "E.P. Thompson",
-      "Eric Hobsbawm",
-      "Gro Hagemann",
-      "Knut Kjeldstadli"
-    ],
-    "canonical_thinker_ids": [
-      "e_p_thompson",
-      "eric_hobsbawm",
-      "gro_hagemann",
-      "knut_kjeldstadli"
-    ],
-    "norwegian_thinker_ids": [
-      "gro_hagemann",
-      "knut_kjeldstadli"
-    ],
-    "norwegian_thinkers": [
-      "Gro Hagemann",
-      "Knut Kjeldstadli"
-    ],
-    "theory_diversity_score": 4,
-    "has_norwegian_theory_path": true,
-    "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
-    "recommended_oslo_cases": [
-      "Akerselva",
-      "Sagene skole",
-      "Arbeidersamfunnets plass",
-      "Hjula Væveri"
-    ],
-    "recommended_method_ids": [
-      "met_sporlesning",
-      "met_arkivlesning",
-      "met_mikrohistorisk_analyse",
-      "met_for_etter_historisk"
-    ],
-    "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
-    "theory_overreach_risk": "medium",
-    "progression_stage": "full_ladder",
-    "theory_spread_priority": "spread_more",
-    "canonical_status": "canonical",
-    "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
-    "case_gate_required": true,
-    "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
-    "generator_risk_mode": "guarded",
-    "canonical_file_role": "active",
-    "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
-      "risk_mode": "guarded",
-      "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
-  },
-  {
-    "emne_id": "em_his_sosialhistorie_hverdagsliv",
-    "title": "Sosialhistorie og hverdagsliv",
-    "mappings": [
-      {
-        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
-        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
-        "topic_hook": "his_industriby_arbeiderliv",
-        "topic_hook_tittel": "Industriby og arbeiderliv",
-        "mapping_tier": "primary",
-        "priority_score": 10,
-        "set_phase_fit": [
-          "facts",
-          "bridge_facts_theory",
-          "late_theory"
-        ],
-        "question_surface_mode": "fact-first",
-        "history_anchor_required": true,
-        "fact_anchor_required": true,
-        "source_anchor_required": true,
-        "external_claim_basis_required": true,
-        "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
-        "tenkere": [
-          "E.P. Thompson",
-          "Eric Hobsbawm",
-          "Gro Hagemann",
-          "Knut Kjeldstadli"
-        ],
-        "thinker_ids": [
-          "e_p_thompson",
-          "eric_hobsbawm",
-          "gro_hagemann",
-          "knut_kjeldstadli"
-        ],
-        "norwegian_thinker_ids": [
-          "gro_hagemann",
-          "knut_kjeldstadli"
-        ],
-        "norwegian_thinkers": [
-          "Gro Hagemann",
-          "Knut Kjeldstadli"
-        ],
-        "comparison_pairs": [
-          [
-            "e_p_thompson",
-            "eric_hobsbawm"
-          ],
-          [
-            "gro_hagemann",
-            "knut_kjeldstadli"
-          ]
-        ],
-        "preferred_question_moves": [
-          "connect production to living conditions",
-          "compare worker and owner perspectives",
-          "read factory trace as social relation",
-          "connect organization to public space"
-        ],
-        "best_place_types": [
-          "industrianlegg",
-          "arbeiderbydel",
-          "gate",
-          "foreningslokale",
-          "skole",
-          "institusjonsbygg"
-        ],
-        "avoid_place_types": [
-          "ren_finansinstitusjon",
-          "ren_representasjonsbygning_uten_arbeidsliv"
-        ],
-        "anti_patterns": [
-          "Generisk industri uten arbeidere eller sted",
-          "Ren næringslivsvinkel uten sosialhistorie",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
-        ],
-        "theory_depth": "high",
-        "recommended_oslo_cases": [
-          "Akerselva",
-          "Sagene skole",
-          "Arbeidersamfunnets plass",
-          "Hjula Væveri"
-        ],
-        "recommended_method_ids": [
-          "met_sporlesning",
-          "met_arkivlesning",
-          "met_mikrohistorisk_analyse",
-          "met_for_etter_historisk"
-        ]
-      }
-    ],
-    "mapping_status": "tiered+canonical",
-    "primary_hooks": [
-      "his_industriby_arbeiderliv"
-    ],
-    "secondary_hooks": [],
-    "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
-    "history_anchor_required": true,
-    "source_anchor_required": true,
-    "external_claim_basis_required": true,
-    "canonical_thinkers": [
-      "E.P. Thompson",
-      "Eric Hobsbawm",
-      "Gro Hagemann",
-      "Knut Kjeldstadli"
-    ],
-    "canonical_thinker_ids": [
-      "e_p_thompson",
-      "eric_hobsbawm",
-      "gro_hagemann",
-      "knut_kjeldstadli"
-    ],
-    "norwegian_thinker_ids": [
-      "gro_hagemann",
-      "knut_kjeldstadli"
-    ],
-    "norwegian_thinkers": [
-      "Gro Hagemann",
-      "Knut Kjeldstadli"
-    ],
-    "theory_diversity_score": 4,
-    "has_norwegian_theory_path": true,
-    "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
-    "recommended_oslo_cases": [
-      "Akerselva",
-      "Sagene skole",
-      "Arbeidersamfunnets plass",
-      "Hjula Væveri"
-    ],
-    "recommended_method_ids": [
-      "met_sporlesning",
-      "met_arkivlesning",
-      "met_mikrohistorisk_analyse",
-      "met_for_etter_historisk"
-    ],
-    "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
-    "theory_overreach_risk": "medium",
-    "progression_stage": "full_ladder",
-    "theory_spread_priority": "spread_more",
-    "canonical_status": "canonical",
-    "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
-    "case_gate_required": true,
-    "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
-    "generator_risk_mode": "guarded",
-    "canonical_file_role": "active",
-    "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
-      "risk_mode": "guarded",
-      "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
-  },
-  {
     "emne_id": "em_his_fangenskap_kontroll",
     "title": "Fangenskap, kontroll og overvåkning",
     "mappings": [
@@ -12092,6 +11606,2802 @@
     "institutional_chain_required": true,
     "authority_or_rule_basis_required": true,
     "implementation_or_consequence_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_industriby_1900",
+    "title": "Industriby og arbeid rundt 1900",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_industriby_arbeiderliv",
+        "topic_hook_tittel": "Industriby, produksjon og arbeiderliv",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "production-trace-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær arbeidsbane: bygg fra konkret kilde eller industrispor.",
+        "tenkere": [
+          "Eric Hobsbawm",
+          "Sidney Pollard",
+          "Knut Kjeldstadli",
+          "Francis Sejersted"
+        ],
+        "thinker_ids": [
+          "eric_hobsbawm",
+          "sidney_pollard",
+          "knut_kjeldstadli",
+          "francis_sejersted"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli",
+          "francis_sejersted"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli",
+          "Francis Sejersted"
+        ],
+        "comparison_pairs": [
+          [
+            "eric_hobsbawm",
+            "sidney_pollard"
+          ],
+          [
+            "knut_kjeldstadli",
+            "francis_sejersted"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify energy and transport inputs",
+          "connect building zones to production flow",
+          "name workforce and output",
+          "compare expansion with worker conditions"
+        ],
+        "best_place_types": [
+          "industrianlegg",
+          "fabrikk",
+          "verksted",
+          "teknisk_anlegg",
+          "elvekorridor",
+          "transportanlegg"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Ren bedrifts- eller merkehistorie uten arbeidere",
+          "Maskin eller bygg behandlet som hele industrialiseringsforklaringen",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Akerselva",
+          "Hjula Væveri",
+          "Nydalen",
+          "Vulkan"
+        ],
+        "recommended_method_ids": [
+          "met_industriell_stedsanalyse",
+          "met_sporlesning",
+          "met_for_etter_historisk"
+        ],
+        "critical_distinctions": [
+          "fabrikkbygning vs virksomhet",
+          "energikilde vs full årsaksforklaring",
+          "produksjonsvekst vs bedre livsvilkår",
+          "industriområde vs homogen arbeiderbefolkning"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_avindustrialisering_ombruk_industriarv",
+        "topic_hook_tittel": "Avindustrialisering, ombruk og industriarv",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "closure-reuse-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær arbeidsbane: krever selvstendig kildegrunnlag og en ny arbeids- eller sosialhistorisk distinksjon.",
+        "tenkere": [
+          "Steven High",
+          "Sharon Zukin",
+          "Raphael Samuel",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "steven_high",
+          "sharon_zukin",
+          "raphael_samuel",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "steven_high",
+            "sharon_zukin"
+          ],
+          [
+            "raphael_samuel",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "date closure and workforce loss",
+          "compare industrial and reused spatial functions",
+          "trace whose memories enter heritage display",
+          "separate preserved facade from continuity of work"
+        ],
+        "best_place_types": [
+          "transformasjonsomrade",
+          "industrianlegg",
+          "kulturmiljo",
+          "arbeiderbydel",
+          "museum",
+          "minnested"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Ombruk behandlet bare som arkitektur eller byutvikling",
+          "Industriarv uten dokumentasjon av produksjon og arbeidsliv",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Vulkan",
+          "Nydalen",
+          "Aker Brygge",
+          "Kværnerbyen"
+        ],
+        "recommended_method_ids": [
+          "met_for_etter_historisk",
+          "met_industriell_stedsanalyse",
+          "met_muntlig_historie"
+        ],
+        "critical_distinctions": [
+          "fabrikknedleggelse vs bred avindustrialisering",
+          "bevaring vs arbeidsminne",
+          "bygningsombruk vs kontinuitet i arbeid",
+          "estetisk industriarv vs sosialt tap"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical+labor-history-profile",
+    "primary_hooks": [
+      "his_industriby_arbeiderliv"
+    ],
+    "secondary_hooks": [
+      "his_avindustrialisering_ombruk_industriarv"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær arbeidsbane først. Sekundær bane krever selvstendig kildegrunnlag, annen dokumentert arbeidsdimensjon og ny kritisk distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Eric Hobsbawm",
+      "Sidney Pollard",
+      "Knut Kjeldstadli",
+      "Francis Sejersted",
+      "Steven High",
+      "Sharon Zukin"
+    ],
+    "canonical_thinker_ids": [
+      "eric_hobsbawm",
+      "sidney_pollard",
+      "knut_kjeldstadli",
+      "francis_sejersted",
+      "steven_high",
+      "sharon_zukin"
+    ],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli",
+      "francis_sejersted"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli",
+      "Francis Sejersted"
+    ],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v3-historie-arbeid",
+    "generator_theory_note": "Teori kommer etter kilde, produksjons-/arbeidsenhet, arbeidsrelasjon, konsekvens, kontroll og begrensning.",
+    "recommended_oslo_cases": [
+      "Akerselva",
+      "Hjula Væveri",
+      "Nydalen",
+      "Vulkan"
+    ],
+    "recommended_method_ids": [
+      "met_industriell_stedsanalyse",
+      "met_sporlesning",
+      "met_for_etter_historisk"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med dokumentert produksjon eller arbeid; ikke la bedrift, velferd, migrasjon, byform eller politikk overta hovedkjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_industrial_or_work_unit": true,
+      "require_labor_relation_or_process": true,
+      "require_worker_or_household_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true
+    },
+    "industrial_or_work_unit_required": true,
+    "labor_relation_or_process_required": true,
+    "worker_or_household_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_arbeiderbevegelse_folkedannelse",
+    "title": "Arbeiderbevegelse og folkedannelse",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_organisering_streik_forhandling",
+        "topic_hook_tittel": "Organisering, streik og forhandling",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "conflict-chronology-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": false,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær arbeidsbane: bygg fra konkret kilde eller industrispor.",
+        "tenkere": [
+          "E.P. Thompson",
+          "Eric Hobsbawm",
+          "Edvard Bull",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "e_p_thompson",
+          "eric_hobsbawm",
+          "edvard_bull",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "edvard_bull",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Edvard Bull",
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "e_p_thompson",
+            "eric_hobsbawm"
+          ],
+          [
+            "edvard_bull",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify parties and demands",
+          "separate long-term cause from immediate trigger",
+          "trace negotiation and collective action",
+          "compare declared outcome with practical consequence"
+        ],
+        "best_place_types": [
+          "foreningslokale",
+          "moteplass",
+          "arbeidsplass",
+          "plass",
+          "arkiv",
+          "museum"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Arbeiderbevegelse redusert til partihistorie",
+          "Streik forklart uten krav, parter, tidslinje og utfall",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Arbeidersamfunnets plass",
+          "Youngstorget",
+          "Folkets Hus",
+          "Arbeidermuseet"
+        ],
+        "recommended_method_ids": [
+          "met_arbeidskonfliktanalyse",
+          "met_arkivlesning",
+          "met_kronologisk_rekonstruksjon"
+        ],
+        "critical_distinctions": [
+          "medlemskap vs bred arbeiderstøtte",
+          "bakgrunnsårsak vs streikeutløsende hendelse",
+          "krav vs oppnådd resultat",
+          "lederuttalelse vs grasroterfaring"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_folkedannelse_arbeideroffentlighet",
+        "topic_hook_tittel": "Folkedannelse og arbeideroffentlighet",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "association-public-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": false,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær arbeidsbane: krever selvstendig kildegrunnlag og en ny arbeids- eller sosialhistorisk distinksjon.",
+        "tenkere": [
+          "Jürgen Habermas",
+          "E.P. Thompson",
+          "Edvard Bull",
+          "Gro Hagemann"
+        ],
+        "thinker_ids": [
+          "jurgen_habermas",
+          "e_p_thompson",
+          "edvard_bull",
+          "gro_hagemann"
+        ],
+        "norwegian_thinker_ids": [
+          "edvard_bull",
+          "gro_hagemann"
+        ],
+        "norwegian_thinkers": [
+          "Edvard Bull",
+          "Gro Hagemann"
+        ],
+        "comparison_pairs": [
+          [
+            "jurgen_habermas",
+            "e_p_thompson"
+          ],
+          [
+            "edvard_bull",
+            "gro_hagemann"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify organiser, audience and medium",
+          "connect education to workplace or movement",
+          "compare official institution with worker-controlled arena",
+          "trace participation beyond party leadership"
+        ],
+        "best_place_types": [
+          "foreningslokale",
+          "bibliotek",
+          "skole",
+          "moteplass",
+          "avisbygg",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Folkedannelse behandlet som skolehistorie alene",
+          "Offentlighet brukt som teorifasit uten dokumentert arena og publikum",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Arbeidersamfunnets plass",
+          "Folkets Hus",
+          "Sagene skole",
+          "Gamle Deichman på Hammersborg"
+        ],
+        "recommended_method_ids": [
+          "met_arkivlesning",
+          "met_mikrohistorisk_analyse",
+          "met_arbeidskonfliktanalyse"
+        ],
+        "critical_distinctions": [
+          "utdanningsinstitusjon vs arbeiderstyrt offentlighet",
+          "leseferdighet vs politisk deltakelse",
+          "partiorganisasjon vs bredere foreningsliv",
+          "offisiell kultur vs hverdagskunnskap"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical+labor-history-profile",
+    "primary_hooks": [
+      "his_organisering_streik_forhandling"
+    ],
+    "secondary_hooks": [
+      "his_folkedannelse_arbeideroffentlighet"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær arbeidsbane først. Sekundær bane krever selvstendig kildegrunnlag, annen dokumentert arbeidsdimensjon og ny kritisk distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "E.P. Thompson",
+      "Eric Hobsbawm",
+      "Edvard Bull",
+      "Knut Kjeldstadli",
+      "Jürgen Habermas",
+      "Gro Hagemann"
+    ],
+    "canonical_thinker_ids": [
+      "e_p_thompson",
+      "eric_hobsbawm",
+      "edvard_bull",
+      "knut_kjeldstadli",
+      "jurgen_habermas",
+      "gro_hagemann"
+    ],
+    "norwegian_thinker_ids": [
+      "edvard_bull",
+      "knut_kjeldstadli",
+      "gro_hagemann"
+    ],
+    "norwegian_thinkers": [
+      "Edvard Bull",
+      "Knut Kjeldstadli",
+      "Gro Hagemann"
+    ],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v3-historie-arbeid",
+    "generator_theory_note": "Teori kommer etter kilde, produksjons-/arbeidsenhet, arbeidsrelasjon, konsekvens, kontroll og begrensning.",
+    "recommended_oslo_cases": [
+      "Arbeidersamfunnets plass",
+      "Youngstorget",
+      "Folkets Hus",
+      "Arbeidermuseet"
+    ],
+    "recommended_method_ids": [
+      "met_arbeidskonfliktanalyse",
+      "met_arkivlesning",
+      "met_kronologisk_rekonstruksjon"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med dokumentert produksjon eller arbeid; ikke la bedrift, velferd, migrasjon, byform eller politikk overta hovedkjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_industrial_or_work_unit": true,
+      "require_labor_relation_or_process": true,
+      "require_worker_or_household_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true
+    },
+    "industrial_or_work_unit_required": true,
+    "labor_relation_or_process_required": true,
+    "worker_or_household_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_sosialhistorie_hverdagsliv",
+    "title": "Sosialhistorie og hverdagsliv",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_arbeiderbolig_hushold_livsvilkar",
+        "topic_hook_tittel": "Arbeiderbolig, hushold og livsvilkår",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "household-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": false,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær arbeidsbane: bygg fra konkret kilde eller industrispor.",
+        "tenkere": [
+          "Louise A. Tilly",
+          "Gro Hagemann",
+          "Knut Kjeldstadli",
+          "E.P. Thompson"
+        ],
+        "thinker_ids": [
+          "louise_tilly",
+          "gro_hagemann",
+          "knut_kjeldstadli",
+          "e_p_thompson"
+        ],
+        "norwegian_thinker_ids": [
+          "gro_hagemann",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Gro Hagemann",
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "louise_tilly",
+            "gro_hagemann"
+          ],
+          [
+            "knut_kjeldstadli",
+            "e_p_thompson"
+          ]
+        ],
+        "preferred_question_moves": [
+          "connect wage to household budget",
+          "compare dwelling type with actual occupancy",
+          "trace work-home distance and care work",
+          "test reform claims against lived conditions"
+        ],
+        "best_place_types": [
+          "arbeiderbolig",
+          "arbeiderbydel",
+          "gårdsrom",
+          "gate",
+          "skole",
+          "museum"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Fattigdom beskrevet uten mål eller kilde",
+          "Boligarkitektur brukt som direkte bevis for husholdets erfaring",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Sagene",
+          "Torshov",
+          "Grünerløkka",
+          "Arbeidermuseet"
+        ],
+        "recommended_method_ids": [
+          "met_livsvilkarsanalyse",
+          "met_mikrohistorisk_analyse",
+          "met_seriell_kildeanalyse"
+        ],
+        "critical_distinctions": [
+          "boligtype vs faktisk trangboddhet",
+          "husholdsinntekt vs individuell lønn",
+          "boligreform vs levd boligforhold",
+          "arbeiderbydel vs ensartet klassemiljø"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_kjonn_arbeidsdeling_lonn",
+        "topic_hook_tittel": "Kjønn, arbeidsdeling og lønn",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "gendered-work-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": false,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær arbeidsbane: krever selvstendig kildegrunnlag og en ny arbeids- eller sosialhistorisk distinksjon.",
+        "tenkere": [
+          "Joan Wallach Scott",
+          "Alice Kessler-Harris",
+          "Gro Hagemann",
+          "Louise A. Tilly"
+        ],
+        "thinker_ids": [
+          "joan_scott",
+          "alice_kessler_harris",
+          "gro_hagemann",
+          "louise_tilly"
+        ],
+        "norwegian_thinker_ids": [
+          "gro_hagemann"
+        ],
+        "norwegian_thinkers": [
+          "Gro Hagemann"
+        ],
+        "comparison_pairs": [
+          [
+            "joan_scott",
+            "alice_kessler_harris"
+          ],
+          [
+            "gro_hagemann",
+            "louise_tilly"
+          ]
+        ],
+        "preferred_question_moves": [
+          "compare task allocation by gender",
+          "test occupation labels against payroll and practice",
+          "include unpaid household work",
+          "trace wage gap and job segregation separately"
+        ],
+        "best_place_types": [
+          "fabrikk",
+          "verksted",
+          "arbeiderbolig",
+          "skole",
+          "arkiv",
+          "museum"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Kjønn lagt på som generell teori uten arbeidskilde",
+          "Kvinners fravær i register behandlet som fravær fra arbeid",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Hjula Væveri",
+          "Freia",
+          "Christiania Seildugsfabrik",
+          "Arbeidermuseet"
+        ],
+        "recommended_method_ids": [
+          "met_livsvilkarsanalyse",
+          "met_arbeidsprosessanalyse",
+          "met_seriell_kildeanalyse"
+        ],
+        "critical_distinctions": [
+          "lønnet vs ulønnet arbeid",
+          "yrkestittel vs faktisk arbeid",
+          "lønnsgap vs yrkessegregering",
+          "husholdsrolle vs arbeidsmarkedsdeltakelse"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical+labor-history-profile",
+    "primary_hooks": [
+      "his_arbeiderbolig_hushold_livsvilkar"
+    ],
+    "secondary_hooks": [
+      "his_kjonn_arbeidsdeling_lonn"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær arbeidsbane først. Sekundær bane krever selvstendig kildegrunnlag, annen dokumentert arbeidsdimensjon og ny kritisk distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Louise A. Tilly",
+      "Gro Hagemann",
+      "Knut Kjeldstadli",
+      "E.P. Thompson",
+      "Joan Wallach Scott",
+      "Alice Kessler-Harris"
+    ],
+    "canonical_thinker_ids": [
+      "louise_tilly",
+      "gro_hagemann",
+      "knut_kjeldstadli",
+      "e_p_thompson",
+      "joan_scott",
+      "alice_kessler_harris"
+    ],
+    "norwegian_thinker_ids": [
+      "gro_hagemann",
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Gro Hagemann",
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v3-historie-arbeid",
+    "generator_theory_note": "Teori kommer etter kilde, produksjons-/arbeidsenhet, arbeidsrelasjon, konsekvens, kontroll og begrensning.",
+    "recommended_oslo_cases": [
+      "Sagene",
+      "Torshov",
+      "Grünerløkka",
+      "Arbeidermuseet"
+    ],
+    "recommended_method_ids": [
+      "met_livsvilkarsanalyse",
+      "met_mikrohistorisk_analyse",
+      "met_seriell_kildeanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med dokumentert produksjon eller arbeid; ikke la bedrift, velferd, migrasjon, byform eller politikk overta hovedkjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_industrial_or_work_unit": true,
+      "require_labor_relation_or_process": true,
+      "require_worker_or_household_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true
+    },
+    "industrial_or_work_unit_required": true,
+    "labor_relation_or_process_required": true,
+    "worker_or_household_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_industri_produksjon_energi",
+    "title": "Industriell produksjon, energi og infrastruktur",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_industriby_arbeiderliv",
+        "topic_hook_tittel": "Industriby, produksjon og arbeiderliv",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "production-trace-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær arbeidsbane: bygg fra konkret kilde eller industrispor.",
+        "tenkere": [
+          "Eric Hobsbawm",
+          "Sidney Pollard",
+          "Knut Kjeldstadli",
+          "Francis Sejersted"
+        ],
+        "thinker_ids": [
+          "eric_hobsbawm",
+          "sidney_pollard",
+          "knut_kjeldstadli",
+          "francis_sejersted"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli",
+          "francis_sejersted"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli",
+          "Francis Sejersted"
+        ],
+        "comparison_pairs": [
+          [
+            "eric_hobsbawm",
+            "sidney_pollard"
+          ],
+          [
+            "knut_kjeldstadli",
+            "francis_sejersted"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify energy and transport inputs",
+          "connect building zones to production flow",
+          "name workforce and output",
+          "compare expansion with worker conditions"
+        ],
+        "best_place_types": [
+          "industrianlegg",
+          "fabrikk",
+          "verksted",
+          "teknisk_anlegg",
+          "elvekorridor",
+          "transportanlegg"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Ren bedrifts- eller merkehistorie uten arbeidere",
+          "Maskin eller bygg behandlet som hele industrialiseringsforklaringen",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Akerselva",
+          "Hjula Væveri",
+          "Nydalen",
+          "Vulkan"
+        ],
+        "recommended_method_ids": [
+          "met_industriell_stedsanalyse",
+          "met_sporlesning",
+          "met_for_etter_historisk"
+        ],
+        "critical_distinctions": [
+          "fabrikkbygning vs virksomhet",
+          "energikilde vs full årsaksforklaring",
+          "produksjonsvekst vs bedre livsvilkår",
+          "industriområde vs homogen arbeiderbefolkning"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_fabrikk_arbeidsorganisering",
+        "topic_hook_tittel": "Fabrikk, arbeidsprosess og organisering",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "workplace-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær arbeidsbane: krever selvstendig kildegrunnlag og en ny arbeids- eller sosialhistorisk distinksjon.",
+        "tenkere": [
+          "E.P. Thompson",
+          "Harry Braverman",
+          "David Montgomery",
+          "Gro Hagemann"
+        ],
+        "thinker_ids": [
+          "e_p_thompson",
+          "harry_braverman",
+          "david_montgomery",
+          "gro_hagemann"
+        ],
+        "norwegian_thinker_ids": [
+          "gro_hagemann"
+        ],
+        "norwegian_thinkers": [
+          "Gro Hagemann"
+        ],
+        "comparison_pairs": [
+          [
+            "e_p_thompson",
+            "harry_braverman"
+          ],
+          [
+            "david_montgomery",
+            "gro_hagemann"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify task and production stage",
+          "compare formal work rule with practice",
+          "trace supervision and worker control",
+          "separate technology from organisation"
+        ],
+        "best_place_types": [
+          "fabrikk",
+          "verksted",
+          "industrianlegg",
+          "produksjonslokale",
+          "arbeidsplass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Teknologi fremstilt som automatisk sosial årsak",
+          "Bedriftens egen fremstilling brukt som eneste kilde",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Hjula Væveri",
+          "Christiania Seildugsfabrik",
+          "Freia",
+          "Christiania Spigerverk"
+        ],
+        "recommended_method_ids": [
+          "met_arbeidsprosessanalyse",
+          "met_arkivlesning",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "maskin vs arbeidsorganisering",
+          "stillingstittel vs faktisk oppgave",
+          "formell regel vs arbeidspraksis",
+          "produktivitet vs arbeidsintensitet"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical+labor-history-profile",
+    "primary_hooks": [
+      "his_industriby_arbeiderliv"
+    ],
+    "secondary_hooks": [
+      "his_fabrikk_arbeidsorganisering"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær arbeidsbane først. Sekundær bane krever selvstendig kildegrunnlag, annen dokumentert arbeidsdimensjon og ny kritisk distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Eric Hobsbawm",
+      "Sidney Pollard",
+      "Knut Kjeldstadli",
+      "Francis Sejersted",
+      "E.P. Thompson",
+      "Harry Braverman"
+    ],
+    "canonical_thinker_ids": [
+      "eric_hobsbawm",
+      "sidney_pollard",
+      "knut_kjeldstadli",
+      "francis_sejersted",
+      "e_p_thompson",
+      "harry_braverman"
+    ],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli",
+      "francis_sejersted",
+      "gro_hagemann"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli",
+      "Francis Sejersted",
+      "Gro Hagemann"
+    ],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v3-historie-arbeid",
+    "generator_theory_note": "Teori kommer etter kilde, produksjons-/arbeidsenhet, arbeidsrelasjon, konsekvens, kontroll og begrensning.",
+    "recommended_oslo_cases": [
+      "Akerselva",
+      "Hjula Væveri",
+      "Nydalen",
+      "Christiania Spigerverk"
+    ],
+    "recommended_method_ids": [
+      "met_industriell_stedsanalyse",
+      "met_sporlesning",
+      "met_tidslagsanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med dokumentert produksjon eller arbeid; ikke la bedrift, velferd, migrasjon, byform eller politikk overta hovedkjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_industrial_or_work_unit": true,
+      "require_labor_relation_or_process": true,
+      "require_worker_or_household_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true
+    },
+    "industrial_or_work_unit_required": true,
+    "labor_relation_or_process_required": true,
+    "worker_or_household_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_fabrikk_arbeidsorganisering",
+    "title": "Fabrikk og arbeidsorganisering",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_fabrikk_arbeidsorganisering",
+        "topic_hook_tittel": "Fabrikk, arbeidsprosess og organisering",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "workplace-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær arbeidsbane: bygg fra konkret kilde eller industrispor.",
+        "tenkere": [
+          "E.P. Thompson",
+          "Harry Braverman",
+          "David Montgomery",
+          "Gro Hagemann"
+        ],
+        "thinker_ids": [
+          "e_p_thompson",
+          "harry_braverman",
+          "david_montgomery",
+          "gro_hagemann"
+        ],
+        "norwegian_thinker_ids": [
+          "gro_hagemann"
+        ],
+        "norwegian_thinkers": [
+          "Gro Hagemann"
+        ],
+        "comparison_pairs": [
+          [
+            "e_p_thompson",
+            "harry_braverman"
+          ],
+          [
+            "david_montgomery",
+            "gro_hagemann"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify task and production stage",
+          "compare formal work rule with practice",
+          "trace supervision and worker control",
+          "separate technology from organisation"
+        ],
+        "best_place_types": [
+          "fabrikk",
+          "verksted",
+          "industrianlegg",
+          "produksjonslokale",
+          "arbeidsplass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Teknologi fremstilt som automatisk sosial årsak",
+          "Bedriftens egen fremstilling brukt som eneste kilde",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Hjula Væveri",
+          "Christiania Seildugsfabrik",
+          "Freia",
+          "Christiania Spigerverk"
+        ],
+        "recommended_method_ids": [
+          "met_arbeidsprosessanalyse",
+          "met_arkivlesning",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "maskin vs arbeidsorganisering",
+          "stillingstittel vs faktisk oppgave",
+          "formell regel vs arbeidspraksis",
+          "produktivitet vs arbeidsintensitet"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_arbeidstid_lonn_ferdighet",
+        "topic_hook_tittel": "Arbeidstid, lønn og ferdighet",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "wage-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær arbeidsbane: krever selvstendig kildegrunnlag og en ny arbeids- eller sosialhistorisk distinksjon.",
+        "tenkere": [
+          "E.P. Thompson",
+          "Harry Braverman",
+          "Gro Hagemann",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "e_p_thompson",
+          "harry_braverman",
+          "gro_hagemann",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "gro_hagemann",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Gro Hagemann",
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "e_p_thompson",
+            "harry_braverman"
+          ],
+          [
+            "gro_hagemann",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "define wage unit and period",
+          "compare nominal and real wage",
+          "connect hours to household economy",
+          "separate occupational title from skill"
+        ],
+        "best_place_types": [
+          "fabrikk",
+          "verksted",
+          "arbeidsplass",
+          "arkiv",
+          "arbeidermuseum"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Lønnstall uten enhet, periode eller prisgrunnlag",
+          "Arbeidstid behandlet uten kontroll av regel mot praksis",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Hjula Væveri",
+          "Freia",
+          "Christiania Spigerverk",
+          "Arbeidermuseet"
+        ],
+        "recommended_method_ids": [
+          "met_arbeidsprosessanalyse",
+          "met_seriell_kildeanalyse",
+          "met_livsvilkarsanalyse"
+        ],
+        "critical_distinctions": [
+          "nominell lønn vs reallønn",
+          "arbeidsdag vs betalte timer",
+          "yrkestittel vs faktisk ferdighet",
+          "gjennomsnitt vs lønnsspredning"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical+labor-history-profile",
+    "primary_hooks": [
+      "his_fabrikk_arbeidsorganisering"
+    ],
+    "secondary_hooks": [
+      "his_arbeidstid_lonn_ferdighet"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær arbeidsbane først. Sekundær bane krever selvstendig kildegrunnlag, annen dokumentert arbeidsdimensjon og ny kritisk distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "E.P. Thompson",
+      "Harry Braverman",
+      "David Montgomery",
+      "Gro Hagemann",
+      "Knut Kjeldstadli"
+    ],
+    "canonical_thinker_ids": [
+      "e_p_thompson",
+      "harry_braverman",
+      "david_montgomery",
+      "gro_hagemann",
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinker_ids": [
+      "gro_hagemann",
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Gro Hagemann",
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v3-historie-arbeid",
+    "generator_theory_note": "Teori kommer etter kilde, produksjons-/arbeidsenhet, arbeidsrelasjon, konsekvens, kontroll og begrensning.",
+    "recommended_oslo_cases": [
+      "Hjula Væveri",
+      "Christiania Seildugsfabrik",
+      "Freia",
+      "Christiania Spigerverk"
+    ],
+    "recommended_method_ids": [
+      "met_arbeidsprosessanalyse",
+      "met_arkivlesning",
+      "met_mikrohistorisk_analyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med dokumentert produksjon eller arbeid; ikke la bedrift, velferd, migrasjon, byform eller politikk overta hovedkjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_industrial_or_work_unit": true,
+      "require_labor_relation_or_process": true,
+      "require_worker_or_household_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true
+    },
+    "industrial_or_work_unit_required": true,
+    "labor_relation_or_process_required": true,
+    "worker_or_household_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_arbeidstid_lonn_ferdighet",
+    "title": "Arbeidstid, lønn og ferdighet",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_arbeidstid_lonn_ferdighet",
+        "topic_hook_tittel": "Arbeidstid, lønn og ferdighet",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "wage-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": false,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær arbeidsbane: bygg fra konkret kilde eller industrispor.",
+        "tenkere": [
+          "E.P. Thompson",
+          "Harry Braverman",
+          "Gro Hagemann",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "e_p_thompson",
+          "harry_braverman",
+          "gro_hagemann",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "gro_hagemann",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Gro Hagemann",
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "e_p_thompson",
+            "harry_braverman"
+          ],
+          [
+            "gro_hagemann",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "define wage unit and period",
+          "compare nominal and real wage",
+          "connect hours to household economy",
+          "separate occupational title from skill"
+        ],
+        "best_place_types": [
+          "fabrikk",
+          "verksted",
+          "arbeidsplass",
+          "arkiv",
+          "arbeidermuseum"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Lønnstall uten enhet, periode eller prisgrunnlag",
+          "Arbeidstid behandlet uten kontroll av regel mot praksis",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Hjula Væveri",
+          "Freia",
+          "Christiania Spigerverk",
+          "Arbeidermuseet"
+        ],
+        "recommended_method_ids": [
+          "met_arbeidsprosessanalyse",
+          "met_seriell_kildeanalyse",
+          "met_livsvilkarsanalyse"
+        ],
+        "critical_distinctions": [
+          "nominell lønn vs reallønn",
+          "arbeidsdag vs betalte timer",
+          "yrkestittel vs faktisk ferdighet",
+          "gjennomsnitt vs lønnsspredning"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_fabrikk_arbeidsorganisering",
+        "topic_hook_tittel": "Fabrikk, arbeidsprosess og organisering",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "workplace-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": false,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær arbeidsbane: krever selvstendig kildegrunnlag og en ny arbeids- eller sosialhistorisk distinksjon.",
+        "tenkere": [
+          "E.P. Thompson",
+          "Harry Braverman",
+          "David Montgomery",
+          "Gro Hagemann"
+        ],
+        "thinker_ids": [
+          "e_p_thompson",
+          "harry_braverman",
+          "david_montgomery",
+          "gro_hagemann"
+        ],
+        "norwegian_thinker_ids": [
+          "gro_hagemann"
+        ],
+        "norwegian_thinkers": [
+          "Gro Hagemann"
+        ],
+        "comparison_pairs": [
+          [
+            "e_p_thompson",
+            "harry_braverman"
+          ],
+          [
+            "david_montgomery",
+            "gro_hagemann"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify task and production stage",
+          "compare formal work rule with practice",
+          "trace supervision and worker control",
+          "separate technology from organisation"
+        ],
+        "best_place_types": [
+          "fabrikk",
+          "verksted",
+          "industrianlegg",
+          "produksjonslokale",
+          "arbeidsplass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Teknologi fremstilt som automatisk sosial årsak",
+          "Bedriftens egen fremstilling brukt som eneste kilde",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Hjula Væveri",
+          "Christiania Seildugsfabrik",
+          "Freia",
+          "Christiania Spigerverk"
+        ],
+        "recommended_method_ids": [
+          "met_arbeidsprosessanalyse",
+          "met_arkivlesning",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "maskin vs arbeidsorganisering",
+          "stillingstittel vs faktisk oppgave",
+          "formell regel vs arbeidspraksis",
+          "produktivitet vs arbeidsintensitet"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical+labor-history-profile",
+    "primary_hooks": [
+      "his_arbeidstid_lonn_ferdighet"
+    ],
+    "secondary_hooks": [
+      "his_fabrikk_arbeidsorganisering"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær arbeidsbane først. Sekundær bane krever selvstendig kildegrunnlag, annen dokumentert arbeidsdimensjon og ny kritisk distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "E.P. Thompson",
+      "Harry Braverman",
+      "Gro Hagemann",
+      "Knut Kjeldstadli",
+      "David Montgomery"
+    ],
+    "canonical_thinker_ids": [
+      "e_p_thompson",
+      "harry_braverman",
+      "gro_hagemann",
+      "knut_kjeldstadli",
+      "david_montgomery"
+    ],
+    "norwegian_thinker_ids": [
+      "gro_hagemann",
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Gro Hagemann",
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v3-historie-arbeid",
+    "generator_theory_note": "Teori kommer etter kilde, produksjons-/arbeidsenhet, arbeidsrelasjon, konsekvens, kontroll og begrensning.",
+    "recommended_oslo_cases": [
+      "Hjula Væveri",
+      "Freia",
+      "Christiania Spigerverk",
+      "Arbeidermuseet"
+    ],
+    "recommended_method_ids": [
+      "met_arbeidsprosessanalyse",
+      "met_seriell_kildeanalyse",
+      "met_livsvilkarsanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med dokumentert produksjon eller arbeid; ikke la bedrift, velferd, migrasjon, byform eller politikk overta hovedkjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_industrial_or_work_unit": true,
+      "require_labor_relation_or_process": true,
+      "require_worker_or_household_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true
+    },
+    "industrial_or_work_unit_required": true,
+    "labor_relation_or_process_required": true,
+    "worker_or_household_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_arbeidsmiljo_risiko_helse",
+    "title": "Arbeidsmiljø, risiko og helse",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_arbeidsmiljo_risiko_helse",
+        "topic_hook_tittel": "Arbeidsmiljø, risiko og helse",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "risk-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": false,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær arbeidsbane: bygg fra konkret kilde eller industrispor.",
+        "tenkere": [
+          "Arthur McIvor",
+          "David Rosner",
+          "Gro Hagemann",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "arthur_mcivor",
+          "david_rosner",
+          "gro_hagemann",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "gro_hagemann",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Gro Hagemann",
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "arthur_mcivor",
+            "david_rosner"
+          ],
+          [
+            "gro_hagemann",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify hazard and exposure path",
+          "compare accident log with worker testimony",
+          "trace regulation and enforcement",
+          "separate acute accident from chronic disease"
+        ],
+        "best_place_types": [
+          "fabrikk",
+          "verksted",
+          "industrianlegg",
+          "hospital",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Sensasjonalisert skade uten arbeidsprosess",
+          "Fravær av ulykkesrapport brukt som bevis for sikkert arbeid",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Christiania Spigerverk",
+          "Hjula Væveri",
+          "Kværner",
+          "Arbeidermuseet"
+        ],
+        "recommended_method_ids": [
+          "met_arbeidsmiljohistorisk_analyse",
+          "met_kildekritikk",
+          "met_seriell_kildeanalyse"
+        ],
+        "critical_distinctions": [
+          "ulykke vs kronisk eksponering",
+          "regel vs håndheving",
+          "registrert skade vs faktisk skade",
+          "farekilde vs dokumentert helseeffekt"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_fabrikk_arbeidsorganisering",
+        "topic_hook_tittel": "Fabrikk, arbeidsprosess og organisering",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "workplace-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": false,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær arbeidsbane: krever selvstendig kildegrunnlag og en ny arbeids- eller sosialhistorisk distinksjon.",
+        "tenkere": [
+          "E.P. Thompson",
+          "Harry Braverman",
+          "David Montgomery",
+          "Gro Hagemann"
+        ],
+        "thinker_ids": [
+          "e_p_thompson",
+          "harry_braverman",
+          "david_montgomery",
+          "gro_hagemann"
+        ],
+        "norwegian_thinker_ids": [
+          "gro_hagemann"
+        ],
+        "norwegian_thinkers": [
+          "Gro Hagemann"
+        ],
+        "comparison_pairs": [
+          [
+            "e_p_thompson",
+            "harry_braverman"
+          ],
+          [
+            "david_montgomery",
+            "gro_hagemann"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify task and production stage",
+          "compare formal work rule with practice",
+          "trace supervision and worker control",
+          "separate technology from organisation"
+        ],
+        "best_place_types": [
+          "fabrikk",
+          "verksted",
+          "industrianlegg",
+          "produksjonslokale",
+          "arbeidsplass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Teknologi fremstilt som automatisk sosial årsak",
+          "Bedriftens egen fremstilling brukt som eneste kilde",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Hjula Væveri",
+          "Christiania Seildugsfabrik",
+          "Freia",
+          "Christiania Spigerverk"
+        ],
+        "recommended_method_ids": [
+          "met_arbeidsprosessanalyse",
+          "met_arkivlesning",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "maskin vs arbeidsorganisering",
+          "stillingstittel vs faktisk oppgave",
+          "formell regel vs arbeidspraksis",
+          "produktivitet vs arbeidsintensitet"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical+labor-history-profile",
+    "primary_hooks": [
+      "his_arbeidsmiljo_risiko_helse"
+    ],
+    "secondary_hooks": [
+      "his_fabrikk_arbeidsorganisering"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær arbeidsbane først. Sekundær bane krever selvstendig kildegrunnlag, annen dokumentert arbeidsdimensjon og ny kritisk distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Arthur McIvor",
+      "David Rosner",
+      "Gro Hagemann",
+      "Knut Kjeldstadli",
+      "E.P. Thompson",
+      "Harry Braverman"
+    ],
+    "canonical_thinker_ids": [
+      "arthur_mcivor",
+      "david_rosner",
+      "gro_hagemann",
+      "knut_kjeldstadli",
+      "e_p_thompson",
+      "harry_braverman"
+    ],
+    "norwegian_thinker_ids": [
+      "gro_hagemann",
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Gro Hagemann",
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v3-historie-arbeid",
+    "generator_theory_note": "Teori kommer etter kilde, produksjons-/arbeidsenhet, arbeidsrelasjon, konsekvens, kontroll og begrensning.",
+    "recommended_oslo_cases": [
+      "Christiania Spigerverk",
+      "Hjula Væveri",
+      "Kværner",
+      "Arbeidermuseet"
+    ],
+    "recommended_method_ids": [
+      "met_arbeidsmiljohistorisk_analyse",
+      "met_kildekritikk",
+      "met_seriell_kildeanalyse"
+    ],
+    "overlap_risk": "high",
+    "overlap_resolution_note": "Avgrens med dokumentert produksjon eller arbeid; ikke la bedrift, velferd, migrasjon, byform eller politikk overta hovedkjeden.",
+    "theory_overreach_risk": "high",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "strict",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "strict",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_industrial_or_work_unit": true,
+      "require_labor_relation_or_process": true,
+      "require_worker_or_household_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true
+    },
+    "industrial_or_work_unit_required": true,
+    "labor_relation_or_process_required": true,
+    "worker_or_household_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_kjonn_arbeidsdeling_lonn",
+    "title": "Kjønn, arbeidsdeling og lønn",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_kjonn_arbeidsdeling_lonn",
+        "topic_hook_tittel": "Kjønn, arbeidsdeling og lønn",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "gendered-work-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": false,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær arbeidsbane: bygg fra konkret kilde eller industrispor.",
+        "tenkere": [
+          "Joan Wallach Scott",
+          "Alice Kessler-Harris",
+          "Gro Hagemann",
+          "Louise A. Tilly"
+        ],
+        "thinker_ids": [
+          "joan_scott",
+          "alice_kessler_harris",
+          "gro_hagemann",
+          "louise_tilly"
+        ],
+        "norwegian_thinker_ids": [
+          "gro_hagemann"
+        ],
+        "norwegian_thinkers": [
+          "Gro Hagemann"
+        ],
+        "comparison_pairs": [
+          [
+            "joan_scott",
+            "alice_kessler_harris"
+          ],
+          [
+            "gro_hagemann",
+            "louise_tilly"
+          ]
+        ],
+        "preferred_question_moves": [
+          "compare task allocation by gender",
+          "test occupation labels against payroll and practice",
+          "include unpaid household work",
+          "trace wage gap and job segregation separately"
+        ],
+        "best_place_types": [
+          "fabrikk",
+          "verksted",
+          "arbeiderbolig",
+          "skole",
+          "arkiv",
+          "museum"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Kjønn lagt på som generell teori uten arbeidskilde",
+          "Kvinners fravær i register behandlet som fravær fra arbeid",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Hjula Væveri",
+          "Freia",
+          "Christiania Seildugsfabrik",
+          "Arbeidermuseet"
+        ],
+        "recommended_method_ids": [
+          "met_livsvilkarsanalyse",
+          "met_arbeidsprosessanalyse",
+          "met_seriell_kildeanalyse"
+        ],
+        "critical_distinctions": [
+          "lønnet vs ulønnet arbeid",
+          "yrkestittel vs faktisk arbeid",
+          "lønnsgap vs yrkessegregering",
+          "husholdsrolle vs arbeidsmarkedsdeltakelse"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_arbeiderbolig_hushold_livsvilkar",
+        "topic_hook_tittel": "Arbeiderbolig, hushold og livsvilkår",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "household-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": false,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær arbeidsbane: krever selvstendig kildegrunnlag og en ny arbeids- eller sosialhistorisk distinksjon.",
+        "tenkere": [
+          "Louise A. Tilly",
+          "Gro Hagemann",
+          "Knut Kjeldstadli",
+          "E.P. Thompson"
+        ],
+        "thinker_ids": [
+          "louise_tilly",
+          "gro_hagemann",
+          "knut_kjeldstadli",
+          "e_p_thompson"
+        ],
+        "norwegian_thinker_ids": [
+          "gro_hagemann",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Gro Hagemann",
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "louise_tilly",
+            "gro_hagemann"
+          ],
+          [
+            "knut_kjeldstadli",
+            "e_p_thompson"
+          ]
+        ],
+        "preferred_question_moves": [
+          "connect wage to household budget",
+          "compare dwelling type with actual occupancy",
+          "trace work-home distance and care work",
+          "test reform claims against lived conditions"
+        ],
+        "best_place_types": [
+          "arbeiderbolig",
+          "arbeiderbydel",
+          "gårdsrom",
+          "gate",
+          "skole",
+          "museum"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Fattigdom beskrevet uten mål eller kilde",
+          "Boligarkitektur brukt som direkte bevis for husholdets erfaring",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Sagene",
+          "Torshov",
+          "Grünerløkka",
+          "Arbeidermuseet"
+        ],
+        "recommended_method_ids": [
+          "met_livsvilkarsanalyse",
+          "met_mikrohistorisk_analyse",
+          "met_seriell_kildeanalyse"
+        ],
+        "critical_distinctions": [
+          "boligtype vs faktisk trangboddhet",
+          "husholdsinntekt vs individuell lønn",
+          "boligreform vs levd boligforhold",
+          "arbeiderbydel vs ensartet klassemiljø"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical+labor-history-profile",
+    "primary_hooks": [
+      "his_kjonn_arbeidsdeling_lonn"
+    ],
+    "secondary_hooks": [
+      "his_arbeiderbolig_hushold_livsvilkar"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær arbeidsbane først. Sekundær bane krever selvstendig kildegrunnlag, annen dokumentert arbeidsdimensjon og ny kritisk distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Joan Wallach Scott",
+      "Alice Kessler-Harris",
+      "Gro Hagemann",
+      "Louise A. Tilly",
+      "Knut Kjeldstadli",
+      "E.P. Thompson"
+    ],
+    "canonical_thinker_ids": [
+      "joan_scott",
+      "alice_kessler_harris",
+      "gro_hagemann",
+      "louise_tilly",
+      "knut_kjeldstadli",
+      "e_p_thompson"
+    ],
+    "norwegian_thinker_ids": [
+      "gro_hagemann",
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Gro Hagemann",
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v3-historie-arbeid",
+    "generator_theory_note": "Teori kommer etter kilde, produksjons-/arbeidsenhet, arbeidsrelasjon, konsekvens, kontroll og begrensning.",
+    "recommended_oslo_cases": [
+      "Hjula Væveri",
+      "Freia",
+      "Christiania Seildugsfabrik",
+      "Arbeidermuseet"
+    ],
+    "recommended_method_ids": [
+      "met_livsvilkarsanalyse",
+      "met_arbeidsprosessanalyse",
+      "met_seriell_kildeanalyse"
+    ],
+    "overlap_risk": "high",
+    "overlap_resolution_note": "Avgrens med dokumentert produksjon eller arbeid; ikke la bedrift, velferd, migrasjon, byform eller politikk overta hovedkjeden.",
+    "theory_overreach_risk": "high",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "strict",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "strict",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_industrial_or_work_unit": true,
+      "require_labor_relation_or_process": true,
+      "require_worker_or_household_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true
+    },
+    "industrial_or_work_unit_required": true,
+    "labor_relation_or_process_required": true,
+    "worker_or_household_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_arbeidsvandring_rekruttering",
+    "title": "Arbeidsvandring og rekruttering",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_arbeidsvandring_rekruttering",
+        "topic_hook_tittel": "Arbeidsvandring, rekruttering og arbeidskraft",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "workforce-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": false,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær arbeidsbane: bygg fra konkret kilde eller industrispor.",
+        "tenkere": [
+          "Marcel van der Linden",
+          "Leslie Page Moch",
+          "Knut Kjeldstadli",
+          "Gro Hagemann"
+        ],
+        "thinker_ids": [
+          "marcel_van_der_linden",
+          "leslie_page_moch",
+          "knut_kjeldstadli",
+          "gro_hagemann"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli",
+          "gro_hagemann"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli",
+          "Gro Hagemann"
+        ],
+        "comparison_pairs": [
+          [
+            "marcel_van_der_linden",
+            "leslie_page_moch"
+          ],
+          [
+            "knut_kjeldstadli",
+            "gro_hagemann"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify birthplace and recruitment channel",
+          "compare workforce list across dates",
+          "connect mobility to occupation and housing",
+          "separate labour recruitment from later belonging"
+        ],
+        "best_place_types": [
+          "arbeiderbydel",
+          "fabrikk",
+          "verksted",
+          "gate",
+          "boligområde",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Migrasjon forklart bare som identitet eller kultur",
+          "Fødested brukt som sikker forklaring på hvorfor personen flyttet",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Akerselva",
+          "Sagene",
+          "Nydalen",
+          "Grünerløkka"
+        ],
+        "recommended_method_ids": [
+          "met_seriell_kildeanalyse",
+          "met_livsvilkarsanalyse",
+          "met_arkivlesning"
+        ],
+        "critical_distinctions": [
+          "fødested vs flyttemotiv",
+          "rekruttering vs varig bosetting",
+          "mobilitet vs tilhørighet",
+          "registrert ansatt vs samlet arbeidsstyrke"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_arbeidstid_lonn_ferdighet",
+        "topic_hook_tittel": "Arbeidstid, lønn og ferdighet",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "wage-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": false,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær arbeidsbane: krever selvstendig kildegrunnlag og en ny arbeids- eller sosialhistorisk distinksjon.",
+        "tenkere": [
+          "E.P. Thompson",
+          "Harry Braverman",
+          "Gro Hagemann",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "e_p_thompson",
+          "harry_braverman",
+          "gro_hagemann",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "gro_hagemann",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Gro Hagemann",
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "e_p_thompson",
+            "harry_braverman"
+          ],
+          [
+            "gro_hagemann",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "define wage unit and period",
+          "compare nominal and real wage",
+          "connect hours to household economy",
+          "separate occupational title from skill"
+        ],
+        "best_place_types": [
+          "fabrikk",
+          "verksted",
+          "arbeidsplass",
+          "arkiv",
+          "arbeidermuseum"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Lønnstall uten enhet, periode eller prisgrunnlag",
+          "Arbeidstid behandlet uten kontroll av regel mot praksis",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Hjula Væveri",
+          "Freia",
+          "Christiania Spigerverk",
+          "Arbeidermuseet"
+        ],
+        "recommended_method_ids": [
+          "met_arbeidsprosessanalyse",
+          "met_seriell_kildeanalyse",
+          "met_livsvilkarsanalyse"
+        ],
+        "critical_distinctions": [
+          "nominell lønn vs reallønn",
+          "arbeidsdag vs betalte timer",
+          "yrkestittel vs faktisk ferdighet",
+          "gjennomsnitt vs lønnsspredning"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical+labor-history-profile",
+    "primary_hooks": [
+      "his_arbeidsvandring_rekruttering"
+    ],
+    "secondary_hooks": [
+      "his_arbeidstid_lonn_ferdighet"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær arbeidsbane først. Sekundær bane krever selvstendig kildegrunnlag, annen dokumentert arbeidsdimensjon og ny kritisk distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Marcel van der Linden",
+      "Leslie Page Moch",
+      "Knut Kjeldstadli",
+      "Gro Hagemann",
+      "E.P. Thompson",
+      "Harry Braverman"
+    ],
+    "canonical_thinker_ids": [
+      "marcel_van_der_linden",
+      "leslie_page_moch",
+      "knut_kjeldstadli",
+      "gro_hagemann",
+      "e_p_thompson",
+      "harry_braverman"
+    ],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli",
+      "gro_hagemann"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli",
+      "Gro Hagemann"
+    ],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v3-historie-arbeid",
+    "generator_theory_note": "Teori kommer etter kilde, produksjons-/arbeidsenhet, arbeidsrelasjon, konsekvens, kontroll og begrensning.",
+    "recommended_oslo_cases": [
+      "Akerselva",
+      "Sagene",
+      "Nydalen",
+      "Grünerløkka"
+    ],
+    "recommended_method_ids": [
+      "met_seriell_kildeanalyse",
+      "met_livsvilkarsanalyse",
+      "met_arkivlesning"
+    ],
+    "overlap_risk": "high",
+    "overlap_resolution_note": "Avgrens med dokumentert produksjon eller arbeid; ikke la bedrift, velferd, migrasjon, byform eller politikk overta hovedkjeden.",
+    "theory_overreach_risk": "high",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "strict",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "strict",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_industrial_or_work_unit": true,
+      "require_labor_relation_or_process": true,
+      "require_worker_or_household_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true
+    },
+    "industrial_or_work_unit_required": true,
+    "labor_relation_or_process_required": true,
+    "worker_or_household_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
+    "title": "Avindustrialisering, ombruk og industriarv",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_avindustrialisering_ombruk_industriarv",
+        "topic_hook_tittel": "Avindustrialisering, ombruk og industriarv",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "closure-reuse-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Primær arbeidsbane: bygg fra konkret kilde eller industrispor.",
+        "tenkere": [
+          "Steven High",
+          "Sharon Zukin",
+          "Raphael Samuel",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "steven_high",
+          "sharon_zukin",
+          "raphael_samuel",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "steven_high",
+            "sharon_zukin"
+          ],
+          [
+            "raphael_samuel",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "date closure and workforce loss",
+          "compare industrial and reused spatial functions",
+          "trace whose memories enter heritage display",
+          "separate preserved facade from continuity of work"
+        ],
+        "best_place_types": [
+          "transformasjonsomrade",
+          "industrianlegg",
+          "kulturmiljo",
+          "arbeiderbydel",
+          "museum",
+          "minnested"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Ombruk behandlet bare som arkitektur eller byutvikling",
+          "Industriarv uten dokumentasjon av produksjon og arbeidsliv",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vulkan",
+          "Nydalen",
+          "Aker Brygge",
+          "Kværnerbyen"
+        ],
+        "recommended_method_ids": [
+          "met_for_etter_historisk",
+          "met_industriell_stedsanalyse",
+          "met_muntlig_historie"
+        ],
+        "critical_distinctions": [
+          "fabrikknedleggelse vs bred avindustrialisering",
+          "bevaring vs arbeidsminne",
+          "bygningsombruk vs kontinuitet i arbeid",
+          "estetisk industriarv vs sosialt tap"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_industri_arbeid_sosialhistorie",
+        "fagkart_kategori_tittel": "Industri, arbeid og sosialhistorie",
+        "topic_hook": "his_industriby_arbeiderliv",
+        "topic_hook_tittel": "Industriby, produksjon og arbeiderliv",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "production-trace-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "industrial_or_work_unit_required": true,
+        "labor_relation_or_process_required": true,
+        "worker_or_household_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Sekundær arbeidsbane: krever selvstendig kildegrunnlag og en ny arbeids- eller sosialhistorisk distinksjon.",
+        "tenkere": [
+          "Eric Hobsbawm",
+          "Sidney Pollard",
+          "Knut Kjeldstadli",
+          "Francis Sejersted"
+        ],
+        "thinker_ids": [
+          "eric_hobsbawm",
+          "sidney_pollard",
+          "knut_kjeldstadli",
+          "francis_sejersted"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli",
+          "francis_sejersted"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli",
+          "Francis Sejersted"
+        ],
+        "comparison_pairs": [
+          [
+            "eric_hobsbawm",
+            "sidney_pollard"
+          ],
+          [
+            "knut_kjeldstadli",
+            "francis_sejersted"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify energy and transport inputs",
+          "connect building zones to production flow",
+          "name workforce and output",
+          "compare expansion with worker conditions"
+        ],
+        "best_place_types": [
+          "industrianlegg",
+          "fabrikk",
+          "verksted",
+          "teknisk_anlegg",
+          "elvekorridor",
+          "transportanlegg"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+        ],
+        "anti_patterns": [
+          "Ren bedrifts- eller merkehistorie uten arbeidere",
+          "Maskin eller bygg behandlet som hele industrialiseringsforklaringen",
+          "Canonical-fil som faktakilde",
+          "Teoretikernavn som tilstrekkelig svar",
+          "Metodenavn som synlig oppgave i sett 1 eller 2"
+        ],
+        "theory_depth": "medium",
+        "recommended_oslo_cases": [
+          "Akerselva",
+          "Hjula Væveri",
+          "Nydalen",
+          "Vulkan"
+        ],
+        "recommended_method_ids": [
+          "met_industriell_stedsanalyse",
+          "met_sporlesning",
+          "met_for_etter_historisk"
+        ],
+        "critical_distinctions": [
+          "fabrikkbygning vs virksomhet",
+          "energikilde vs full årsaksforklaring",
+          "produksjonsvekst vs bedre livsvilkår",
+          "industriområde vs homogen arbeiderbefolkning"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical+labor-history-profile",
+    "primary_hooks": [
+      "his_avindustrialisering_ombruk_industriarv"
+    ],
+    "secondary_hooks": [
+      "his_industriby_arbeiderliv"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær arbeidsbane først. Sekundær bane krever selvstendig kildegrunnlag, annen dokumentert arbeidsdimensjon og ny kritisk distinksjon.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Steven High",
+      "Sharon Zukin",
+      "Raphael Samuel",
+      "Knut Kjeldstadli",
+      "Eric Hobsbawm",
+      "Sidney Pollard"
+    ],
+    "canonical_thinker_ids": [
+      "steven_high",
+      "sharon_zukin",
+      "raphael_samuel",
+      "knut_kjeldstadli",
+      "eric_hobsbawm",
+      "sidney_pollard"
+    ],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli",
+      "francis_sejersted"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli",
+      "Francis Sejersted"
+    ],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v3-historie-arbeid",
+    "generator_theory_note": "Teori kommer etter kilde, produksjons-/arbeidsenhet, arbeidsrelasjon, konsekvens, kontroll og begrensning.",
+    "recommended_oslo_cases": [
+      "Vulkan",
+      "Nydalen",
+      "Aker Brygge",
+      "Kværnerbyen"
+    ],
+    "recommended_method_ids": [
+      "met_for_etter_historisk",
+      "met_industriell_stedsanalyse",
+      "met_muntlig_historie"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med dokumentert produksjon eller arbeid; ikke la bedrift, velferd, migrasjon, byform eller politikk overta hovedkjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_industrial_or_work_unit": true,
+      "require_labor_relation_or_process": true,
+      "require_worker_or_household_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true
+    },
+    "industrial_or_work_unit_required": true,
+    "labor_relation_or_process_required": true,
+    "worker_or_household_consequence_required": true,
+    "source_limitation_required": true,
     "critical_distinction_required": true
   }
 ]

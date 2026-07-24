@@ -4100,98 +4100,364 @@
     {
       "id": "his_industri_arbeid_sosialhistorie",
       "title": "Industri, arbeid og sosialhistorie",
-      "tagline": "Hvordan arbeid endret byen og hverdagslivet",
-      "definition": "Dette området handler om industrialisering, fabrikklandskap, arbeiderliv, klasse, fagorganisering, boligforhold og sosial endring. Det undersøker hvordan produksjon og arbeidsliv formet byens rom, kropper, konflikter og institusjoner.",
+      "tagline": "Hvordan produksjon, arbeid og livsvilkår formet byen",
+      "definition": "Historisk analyse av industri, arbeidsprosesser, lønn, risiko, bolig, kjønn, mobilitet, organisering og avindustrialisering. Feltet starter i konkrete produksjons- og arbeidskilder og skiller arbeidshistorie fra ren bedrifts-, velferds-, migrasjons- eller byutviklingshistorie.",
       "focus": [
-        "industrialisering",
-        "arbeiderliv og klasse",
-        "fagorganisering",
-        "arbeiderboliger og helse",
-        "sosial reform"
+        "produksjon, energi og industriell infrastruktur",
+        "arbeidsprosess, tid, lønn og ferdighet",
+        "arbeidsmiljø, helse og risiko",
+        "bolig, hushold, kjønn og livsvilkår",
+        "arbeidsvandring, organisering og konflikt",
+        "avindustrialisering, ombruk og industriarv"
       ],
       "topic_hooks": [
         {
           "id": "his_industriby_arbeiderliv",
-          "title": "Industriby og arbeiderliv",
+          "title": "Industriby, produksjon og arbeiderliv",
           "canon": {
             "thinkers": [
               {
-                "id": "e_p_thompson",
-                "name": "E.P. Thompson",
-                "why": "Arbeiderklassens tilblivelse, erfaring og sosialhistorisk perspektiv nedenfra",
-                "tier": "core",
-                "works": [
-                  "The Making of the English Working Class"
-                ]
-              },
-              {
                 "id": "eric_hobsbawm",
                 "name": "Eric Hobsbawm",
-                "why": "Industrialisering, klasse og modernitet i lang historisk sammenheng",
+                "why": "Industrialisering, arbeid, klasse og kapitalisme i lang historisk sammenheng",
                 "tier": "core",
                 "works": [
-                  "Industry and Empire"
+                  "Industry and Empire",
+                  "Labouring Men"
                 ]
               },
               {
-                "id": "gro_hagemann",
-                "name": "Gro Hagemann",
-                "why": "Norsk arbeidslivs-, kjønns- og sosialhistorie",
-                "tier": "core",
+                "id": "sidney_pollard",
+                "name": "Sidney Pollard",
+                "why": "Industrialisering som regional, teknologisk og organisatorisk prosess",
+                "tier": "advanced",
                 "works": [
-                  "Kjønn og industrialisering"
+                  "Peaceful Conquest"
                 ]
               },
               {
                 "id": "knut_kjeldstadli",
                 "name": "Knut Kjeldstadli",
-                "why": "Arbeiderhistorie, sosialhistorie og byhistorisk perspektiv i Norge",
+                "why": "Arbeiderhistorie, sosialhistorie, migrasjon og byhistorisk metode i Norge",
                 "tier": "core",
                 "works": [
-                  "Arbeider, bonde, våre hære"
+                  "Arbeider, bonde, våre hære",
+                  "Fortida er ikke hva den en gang var"
+                ]
+              },
+              {
+                "id": "francis_sejersted",
+                "name": "Francis Sejersted",
+                "why": "Norsk demokratisk kapitalisme, bedriftsutvikling og institusjonell modernisering",
+                "tier": "core",
+                "works": [
+                  "Demokratisk kapitalisme"
                 ]
               }
             ]
           },
           "emne_ids": [
             "em_his_industriby_1900",
-            "em_his_arbeiderbevegelse_folkedannelse",
-            "em_his_sosialhistorie_hverdagsliv"
+            "em_his_industri_produksjon_energi"
           ],
           "best_place_types": [
             "industrianlegg",
-            "arbeiderbydel",
-            "gate",
-            "foreningslokale",
-            "skole",
-            "institusjonsbygg"
+            "fabrikk",
+            "verksted",
+            "teknisk_anlegg",
+            "elvekorridor",
+            "transportanlegg"
           ],
           "avoid_place_types": [
-            "ren_finansinstitusjon",
-            "ren_representasjonsbygning_uten_arbeidsliv"
+            "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
           ],
           "set_phase_fit": [
             "facts",
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "fact-first",
+          "question_surface_mode": "production-trace-first",
           "fact_anchor_required": true,
           "history_anchor_required": true,
           "avoid_surface_forms": [
-            "Generisk industri uten arbeidere eller sted",
-            "Ren næringslivsvinkel uten sosialhistorie"
+            "Ren bedrifts- eller merkehistorie uten arbeidere",
+            "Maskin eller bygg behandlet som hele industrialiseringsforklaringen",
+            "Hvilken teori passer best uten arbeidskilde",
+            "Hvilken metode bruker historikeren?"
           ],
           "preferred_question_moves": [
-            "connect production to living conditions",
-            "compare worker and owner perspectives",
-            "read factory trace as social relation",
-            "connect organization to public space"
+            "identify energy and transport inputs",
+            "connect building zones to production flow",
+            "name workforce and output",
+            "compare expansion with worker conditions"
+          ],
+          "comparison_pairs": [
+            [
+              "eric_hobsbawm",
+              "sidney_pollard"
+            ],
+            [
+              "knut_kjeldstadli",
+              "francis_sejersted"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli",
+            "francis_sejersted"
+          ],
+          "recommended_oslo_cases": [
+            "Akerselva",
+            "Hjula Væveri",
+            "Nydalen",
+            "Vulkan"
+          ],
+          "recommended_method_ids": [
+            "met_industriell_stedsanalyse",
+            "met_sporlesning",
+            "met_for_etter_historisk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_industrial_or_work_unit": true,
+            "require_labor_relation_or_process": true,
+            "require_worker_or_household_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan energi, transport, fabrikkbygninger, produksjonsvolum og arbeidskraft sammen skapte industribyen.",
+          "critical_distinctions": [
+            "fabrikkbygning vs virksomhet",
+            "energikilde vs full årsaksforklaring",
+            "produksjonsvekst vs bedre livsvilkår",
+            "industriområde vs homogen arbeiderbefolkning"
+          ]
+        },
+        {
+          "id": "his_fabrikk_arbeidsorganisering",
+          "title": "Fabrikk, arbeidsprosess og organisering",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "e_p_thompson",
+                "name": "E.P. Thompson",
+                "why": "Arbeiderklassens tilblivelse, erfaring, tidsdisiplin og sosialhistorie nedenfra",
+                "tier": "core",
+                "works": [
+                  "The Making of the English Working Class",
+                  "Time, Work-Discipline, and Industrial Capitalism"
+                ]
+              },
+              {
+                "id": "harry_braverman",
+                "name": "Harry Braverman",
+                "why": "Arbeidsprosess, kontroll, ferdighet og organisering av industrielt arbeid",
+                "tier": "advanced",
+                "works": [
+                  "Labor and Monopoly Capital"
+                ]
+              },
+              {
+                "id": "david_montgomery",
+                "name": "David Montgomery",
+                "why": "Arbeiderkontroll, arbeidsplasskonflikt og organisering i industrisamfunnet",
+                "tier": "advanced",
+                "works": [
+                  "Workers' Control in America",
+                  "The Fall of the House of Labor"
+                ]
+              },
+              {
+                "id": "gro_hagemann",
+                "name": "Gro Hagemann",
+                "why": "Norsk arbeidslivs-, kjønns-, skole- og sosialhistorie",
+                "tier": "core",
+                "works": [
+                  "Kjønn og industrialisering",
+                  "Skolefolk"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_fabrikk_arbeidsorganisering"
+          ],
+          "best_place_types": [
+            "fabrikk",
+            "verksted",
+            "industrianlegg",
+            "produksjonslokale",
+            "arbeidsplass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "workplace-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Teknologi fremstilt som automatisk sosial årsak",
+            "Bedriftens egen fremstilling brukt som eneste kilde",
+            "Hvilken teori passer best uten arbeidskilde",
+            "Hvilken metode bruker historikeren?"
+          ],
+          "preferred_question_moves": [
+            "identify task and production stage",
+            "compare formal work rule with practice",
+            "trace supervision and worker control",
+            "separate technology from organisation"
           ],
           "comparison_pairs": [
             [
               "e_p_thompson",
-              "eric_hobsbawm"
+              "harry_braverman"
+            ],
+            [
+              "david_montgomery",
+              "gro_hagemann"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "gro_hagemann"
+          ],
+          "recommended_oslo_cases": [
+            "Hjula Væveri",
+            "Christiania Seildugsfabrik",
+            "Freia",
+            "Christiania Spigerverk"
+          ],
+          "recommended_method_ids": [
+            "met_arbeidsprosessanalyse",
+            "met_arkivlesning",
+            "met_mikrohistorisk_analyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_industrial_or_work_unit": true,
+            "require_labor_relation_or_process": true,
+            "require_worker_or_household_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Rekonstruerer hvordan oppgaver, maskiner, tilsyn, avdelinger og ferdigheter organiserte arbeidet inne i produksjonen.",
+          "critical_distinctions": [
+            "maskin vs arbeidsorganisering",
+            "stillingstittel vs faktisk oppgave",
+            "formell regel vs arbeidspraksis",
+            "produktivitet vs arbeidsintensitet"
+          ]
+        },
+        {
+          "id": "his_arbeidstid_lonn_ferdighet",
+          "title": "Arbeidstid, lønn og ferdighet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "e_p_thompson",
+                "name": "E.P. Thompson",
+                "why": "Arbeiderklassens tilblivelse, erfaring, tidsdisiplin og sosialhistorie nedenfra",
+                "tier": "core",
+                "works": [
+                  "The Making of the English Working Class",
+                  "Time, Work-Discipline, and Industrial Capitalism"
+                ]
+              },
+              {
+                "id": "harry_braverman",
+                "name": "Harry Braverman",
+                "why": "Arbeidsprosess, kontroll, ferdighet og organisering av industrielt arbeid",
+                "tier": "advanced",
+                "works": [
+                  "Labor and Monopoly Capital"
+                ]
+              },
+              {
+                "id": "gro_hagemann",
+                "name": "Gro Hagemann",
+                "why": "Norsk arbeidslivs-, kjønns-, skole- og sosialhistorie",
+                "tier": "core",
+                "works": [
+                  "Kjønn og industrialisering",
+                  "Skolefolk"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Arbeiderhistorie, sosialhistorie, migrasjon og byhistorisk metode i Norge",
+                "tier": "core",
+                "works": [
+                  "Arbeider, bonde, våre hære",
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arbeidstid_lonn_ferdighet"
+          ],
+          "best_place_types": [
+            "fabrikk",
+            "verksted",
+            "arbeidsplass",
+            "arkiv",
+            "arbeidermuseum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "wage-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Lønnstall uten enhet, periode eller prisgrunnlag",
+            "Arbeidstid behandlet uten kontroll av regel mot praksis",
+            "Hvilken teori passer best uten arbeidskilde",
+            "Hvilken metode bruker historikeren?"
+          ],
+          "preferred_question_moves": [
+            "define wage unit and period",
+            "compare nominal and real wage",
+            "connect hours to household economy",
+            "separate occupational title from skill"
+          ],
+          "comparison_pairs": [
+            [
+              "e_p_thompson",
+              "harry_braverman"
             ],
             [
               "gro_hagemann",
@@ -4203,32 +4469,966 @@
             "knut_kjeldstadli"
           ],
           "recommended_oslo_cases": [
-            "Akerselva",
-            "Sagene skole",
-            "Arbeidersamfunnets plass",
-            "Hjula Væveri"
+            "Hjula Væveri",
+            "Freia",
+            "Christiania Spigerverk",
+            "Arbeidermuseet"
           ],
           "recommended_method_ids": [
-            "met_sporlesning",
-            "met_arkivlesning",
-            "met_mikrohistorisk_analyse",
-            "met_for_etter_historisk"
+            "met_arbeidsprosessanalyse",
+            "met_seriell_kildeanalyse",
+            "met_livsvilkarsanalyse"
           ],
           "canonical_status": "canonical",
           "registry_version": "historiepensum_v4_5",
-          "min_recommended_oslo_cases": 2,
-          "min_recommended_methods": 1,
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
           "case_gate_required": true,
           "method_gate_required": true,
           "theory_rotation_required": true,
           "canonical_file_role": "active",
           "generator_constraints": {
-            "min_case_count": 2,
-            "min_method_count": 1,
+            "min_case_count": 4,
+            "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_industrial_or_work_unit": true,
+            "require_labor_relation_or_process": true,
+            "require_worker_or_household_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
             "rotate_theorists": true
-          }
+          },
+          "definition": "Undersøker arbeidstid, lønnsformer, yrkesferdighet, akkord, fravær og hva lønn faktisk kunne kjøpe.",
+          "critical_distinctions": [
+            "nominell lønn vs reallønn",
+            "arbeidsdag vs betalte timer",
+            "yrkestittel vs faktisk ferdighet",
+            "gjennomsnitt vs lønnsspredning"
+          ]
+        },
+        {
+          "id": "his_arbeidsmiljo_risiko_helse",
+          "title": "Arbeidsmiljø, risiko og helse",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "arthur_mcivor",
+                "name": "Arthur McIvor",
+                "why": "Arbeidsmiljø, helse, risiko og arbeidernes erfaringer i industrien",
+                "tier": "advanced",
+                "works": [
+                  "A History of Work in Britain, 1880–1950"
+                ]
+              },
+              {
+                "id": "david_rosner",
+                "name": "David Rosner",
+                "why": "Industriell sykdom, arbeidsmiljø, dokumentasjon og ansvar",
+                "tier": "advanced",
+                "works": [
+                  "Deadly Dust"
+                ]
+              },
+              {
+                "id": "gro_hagemann",
+                "name": "Gro Hagemann",
+                "why": "Norsk arbeidslivs-, kjønns-, skole- og sosialhistorie",
+                "tier": "core",
+                "works": [
+                  "Kjønn og industrialisering",
+                  "Skolefolk"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Arbeiderhistorie, sosialhistorie, migrasjon og byhistorisk metode i Norge",
+                "tier": "core",
+                "works": [
+                  "Arbeider, bonde, våre hære",
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arbeidsmiljo_risiko_helse"
+          ],
+          "best_place_types": [
+            "fabrikk",
+            "verksted",
+            "industrianlegg",
+            "hospital",
+            "arkiv"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "risk-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Sensasjonalisert skade uten arbeidsprosess",
+            "Fravær av ulykkesrapport brukt som bevis for sikkert arbeid",
+            "Hvilken teori passer best uten arbeidskilde",
+            "Hvilken metode bruker historikeren?"
+          ],
+          "preferred_question_moves": [
+            "identify hazard and exposure path",
+            "compare accident log with worker testimony",
+            "trace regulation and enforcement",
+            "separate acute accident from chronic disease"
+          ],
+          "comparison_pairs": [
+            [
+              "arthur_mcivor",
+              "david_rosner"
+            ],
+            [
+              "gro_hagemann",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "gro_hagemann",
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Christiania Spigerverk",
+            "Hjula Væveri",
+            "Kværner",
+            "Arbeidermuseet"
+          ],
+          "recommended_method_ids": [
+            "met_arbeidsmiljohistorisk_analyse",
+            "met_kildekritikk",
+            "met_seriell_kildeanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_industrial_or_work_unit": true,
+            "require_labor_relation_or_process": true,
+            "require_worker_or_household_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker ulykker, kronisk eksponering, hygiene, belastning, vernekrav og hvordan skade ble registrert eller tiet.",
+          "critical_distinctions": [
+            "ulykke vs kronisk eksponering",
+            "regel vs håndheving",
+            "registrert skade vs faktisk skade",
+            "farekilde vs dokumentert helseeffekt"
+          ]
+        },
+        {
+          "id": "his_arbeiderbolig_hushold_livsvilkar",
+          "title": "Arbeiderbolig, hushold og livsvilkår",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "louise_tilly",
+                "name": "Louise A. Tilly",
+                "why": "Familieøkonomi, kvinnearbeid, hushold og industrialisering",
+                "tier": "advanced",
+                "works": [
+                  "Women, Work, and Family"
+                ]
+              },
+              {
+                "id": "gro_hagemann",
+                "name": "Gro Hagemann",
+                "why": "Norsk arbeidslivs-, kjønns-, skole- og sosialhistorie",
+                "tier": "core",
+                "works": [
+                  "Kjønn og industrialisering",
+                  "Skolefolk"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Arbeiderhistorie, sosialhistorie, migrasjon og byhistorisk metode i Norge",
+                "tier": "core",
+                "works": [
+                  "Arbeider, bonde, våre hære",
+                  "Fortida er ikke hva den en gang var"
+                ]
+              },
+              {
+                "id": "e_p_thompson",
+                "name": "E.P. Thompson",
+                "why": "Arbeiderklassens tilblivelse, erfaring, tidsdisiplin og sosialhistorie nedenfra",
+                "tier": "core",
+                "works": [
+                  "The Making of the English Working Class",
+                  "Time, Work-Discipline, and Industrial Capitalism"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_sosialhistorie_hverdagsliv"
+          ],
+          "best_place_types": [
+            "arbeiderbolig",
+            "arbeiderbydel",
+            "gårdsrom",
+            "gate",
+            "skole",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "household-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Fattigdom beskrevet uten mål eller kilde",
+            "Boligarkitektur brukt som direkte bevis for husholdets erfaring",
+            "Hvilken teori passer best uten arbeidskilde",
+            "Hvilken metode bruker historikeren?"
+          ],
+          "preferred_question_moves": [
+            "connect wage to household budget",
+            "compare dwelling type with actual occupancy",
+            "trace work-home distance and care work",
+            "test reform claims against lived conditions"
+          ],
+          "comparison_pairs": [
+            [
+              "louise_tilly",
+              "gro_hagemann"
+            ],
+            [
+              "knut_kjeldstadli",
+              "e_p_thompson"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "gro_hagemann",
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Sagene",
+            "Torshov",
+            "Grünerløkka",
+            "Arbeidermuseet"
+          ],
+          "recommended_method_ids": [
+            "met_livsvilkarsanalyse",
+            "met_mikrohistorisk_analyse",
+            "met_seriell_kildeanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_industrial_or_work_unit": true,
+            "require_labor_relation_or_process": true,
+            "require_worker_or_household_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Kobler bolig, husleie, trangboddhet, inntekt, kosthold, familiearbeid og nærmiljø til arbeidslivet.",
+          "critical_distinctions": [
+            "boligtype vs faktisk trangboddhet",
+            "husholdsinntekt vs individuell lønn",
+            "boligreform vs levd boligforhold",
+            "arbeiderbydel vs ensartet klassemiljø"
+          ]
+        },
+        {
+          "id": "his_kjonn_arbeidsdeling_lonn",
+          "title": "Kjønn, arbeidsdeling og lønn",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "joan_scott",
+                "name": "Joan Wallach Scott",
+                "why": "Kjønn som historisk analysekategori og kjønnet arbeidsdeling",
+                "tier": "advanced",
+                "works": [
+                  "Gender and the Politics of History"
+                ]
+              },
+              {
+                "id": "alice_kessler_harris",
+                "name": "Alice Kessler-Harris",
+                "why": "Kvinners lønnsarbeid, økonomisk medborgerskap og arbeidsmarked",
+                "tier": "advanced",
+                "works": [
+                  "Out to Work"
+                ]
+              },
+              {
+                "id": "gro_hagemann",
+                "name": "Gro Hagemann",
+                "why": "Norsk arbeidslivs-, kjønns-, skole- og sosialhistorie",
+                "tier": "core",
+                "works": [
+                  "Kjønn og industrialisering",
+                  "Skolefolk"
+                ]
+              },
+              {
+                "id": "louise_tilly",
+                "name": "Louise A. Tilly",
+                "why": "Familieøkonomi, kvinnearbeid, hushold og industrialisering",
+                "tier": "advanced",
+                "works": [
+                  "Women, Work, and Family"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_kjonn_arbeidsdeling_lonn",
+            "em_his_sosialhistorie_hverdagsliv"
+          ],
+          "best_place_types": [
+            "fabrikk",
+            "verksted",
+            "arbeiderbolig",
+            "skole",
+            "arkiv",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "gendered-work-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Kjønn lagt på som generell teori uten arbeidskilde",
+            "Kvinners fravær i register behandlet som fravær fra arbeid",
+            "Hvilken teori passer best uten arbeidskilde",
+            "Hvilken metode bruker historikeren?"
+          ],
+          "preferred_question_moves": [
+            "compare task allocation by gender",
+            "test occupation labels against payroll and practice",
+            "include unpaid household work",
+            "trace wage gap and job segregation separately"
+          ],
+          "comparison_pairs": [
+            [
+              "joan_scott",
+              "alice_kessler_harris"
+            ],
+            [
+              "gro_hagemann",
+              "louise_tilly"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "gro_hagemann"
+          ],
+          "recommended_oslo_cases": [
+            "Hjula Væveri",
+            "Freia",
+            "Christiania Seildugsfabrik",
+            "Arbeidermuseet"
+          ],
+          "recommended_method_ids": [
+            "met_livsvilkarsanalyse",
+            "met_arbeidsprosessanalyse",
+            "met_seriell_kildeanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_industrial_or_work_unit": true,
+            "require_labor_relation_or_process": true,
+            "require_worker_or_household_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker kjønnsdelte oppgaver, lønnsforskjeller, hjemmearbeid, omsorg, yrkestitler og kvinners synlighet i kildene.",
+          "critical_distinctions": [
+            "lønnet vs ulønnet arbeid",
+            "yrkestittel vs faktisk arbeid",
+            "lønnsgap vs yrkessegregering",
+            "husholdsrolle vs arbeidsmarkedsdeltakelse"
+          ]
+        },
+        {
+          "id": "his_arbeidsvandring_rekruttering",
+          "title": "Arbeidsvandring, rekruttering og arbeidskraft",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "marcel_van_der_linden",
+                "name": "Marcel van der Linden",
+                "why": "Global arbeidshistorie, arbeidskraftens mobilitet og ulike arbeidsrelasjoner",
+                "tier": "advanced",
+                "works": [
+                  "Workers of the World"
+                ]
+              },
+              {
+                "id": "leslie_page_moch",
+                "name": "Leslie Page Moch",
+                "why": "Arbeidsvandring, urbanisering og europeiske migrasjonsmønstre",
+                "tier": "advanced",
+                "works": [
+                  "Moving Europeans"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Arbeiderhistorie, sosialhistorie, migrasjon og byhistorisk metode i Norge",
+                "tier": "core",
+                "works": [
+                  "Arbeider, bonde, våre hære",
+                  "Fortida er ikke hva den en gang var"
+                ]
+              },
+              {
+                "id": "gro_hagemann",
+                "name": "Gro Hagemann",
+                "why": "Norsk arbeidslivs-, kjønns-, skole- og sosialhistorie",
+                "tier": "core",
+                "works": [
+                  "Kjønn og industrialisering",
+                  "Skolefolk"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arbeidsvandring_rekruttering"
+          ],
+          "best_place_types": [
+            "arbeiderbydel",
+            "fabrikk",
+            "verksted",
+            "gate",
+            "boligområde",
+            "arkiv"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "workforce-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Migrasjon forklart bare som identitet eller kultur",
+            "Fødested brukt som sikker forklaring på hvorfor personen flyttet",
+            "Hvilken teori passer best uten arbeidskilde",
+            "Hvilken metode bruker historikeren?"
+          ],
+          "preferred_question_moves": [
+            "identify birthplace and recruitment channel",
+            "compare workforce list across dates",
+            "connect mobility to occupation and housing",
+            "separate labour recruitment from later belonging"
+          ],
+          "comparison_pairs": [
+            [
+              "marcel_van_der_linden",
+              "leslie_page_moch"
+            ],
+            [
+              "knut_kjeldstadli",
+              "gro_hagemann"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli",
+            "gro_hagemann"
+          ],
+          "recommended_oslo_cases": [
+            "Akerselva",
+            "Sagene",
+            "Nydalen",
+            "Grünerløkka"
+          ],
+          "recommended_method_ids": [
+            "met_seriell_kildeanalyse",
+            "met_livsvilkarsanalyse",
+            "met_arkivlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_industrial_or_work_unit": true,
+            "require_labor_relation_or_process": true,
+            "require_worker_or_household_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvor arbeidskraften kom fra, hvordan den ble rekruttert, flyttet, registrert og knyttet til bolig og arbeidsplass.",
+          "critical_distinctions": [
+            "fødested vs flyttemotiv",
+            "rekruttering vs varig bosetting",
+            "mobilitet vs tilhørighet",
+            "registrert ansatt vs samlet arbeidsstyrke"
+          ]
+        },
+        {
+          "id": "his_organisering_streik_forhandling",
+          "title": "Organisering, streik og forhandling",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "e_p_thompson",
+                "name": "E.P. Thompson",
+                "why": "Arbeiderklassens tilblivelse, erfaring, tidsdisiplin og sosialhistorie nedenfra",
+                "tier": "core",
+                "works": [
+                  "The Making of the English Working Class",
+                  "Time, Work-Discipline, and Industrial Capitalism"
+                ]
+              },
+              {
+                "id": "eric_hobsbawm",
+                "name": "Eric Hobsbawm",
+                "why": "Industrialisering, arbeid, klasse og kapitalisme i lang historisk sammenheng",
+                "tier": "core",
+                "works": [
+                  "Industry and Empire",
+                  "Labouring Men"
+                ]
+              },
+              {
+                "id": "edvard_bull",
+                "name": "Edvard Bull",
+                "why": "Norsk arbeiderhistorie, arbeidsmiljø og arbeiderbevegelsens organisering",
+                "tier": "core",
+                "works": [
+                  "Arbeidermiljø under det industrielle gjennombrudd"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Arbeiderhistorie, sosialhistorie, migrasjon og byhistorisk metode i Norge",
+                "tier": "core",
+                "works": [
+                  "Arbeider, bonde, våre hære",
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arbeiderbevegelse_folkedannelse"
+          ],
+          "best_place_types": [
+            "foreningslokale",
+            "moteplass",
+            "arbeidsplass",
+            "plass",
+            "arkiv",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "conflict-chronology-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Arbeiderbevegelse redusert til partihistorie",
+            "Streik forklart uten krav, parter, tidslinje og utfall",
+            "Hvilken teori passer best uten arbeidskilde",
+            "Hvilken metode bruker historikeren?"
+          ],
+          "preferred_question_moves": [
+            "identify parties and demands",
+            "separate long-term cause from immediate trigger",
+            "trace negotiation and collective action",
+            "compare declared outcome with practical consequence"
+          ],
+          "comparison_pairs": [
+            [
+              "e_p_thompson",
+              "eric_hobsbawm"
+            ],
+            [
+              "edvard_bull",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "edvard_bull",
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Arbeidersamfunnets plass",
+            "Youngstorget",
+            "Folkets Hus",
+            "Arbeidermuseet"
+          ],
+          "recommended_method_ids": [
+            "met_arbeidskonfliktanalyse",
+            "met_arkivlesning",
+            "met_kronologisk_rekonstruksjon"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_industrial_or_work_unit": true,
+            "require_labor_relation_or_process": true,
+            "require_worker_or_household_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Rekonstruerer foreninger, medlemskap, krav, streikeforløp, arbeidsgiversvar, forhandling og dokumenterte resultater.",
+          "critical_distinctions": [
+            "medlemskap vs bred arbeiderstøtte",
+            "bakgrunnsårsak vs streikeutløsende hendelse",
+            "krav vs oppnådd resultat",
+            "lederuttalelse vs grasroterfaring"
+          ]
+        },
+        {
+          "id": "his_folkedannelse_arbeideroffentlighet",
+          "title": "Folkedannelse og arbeideroffentlighet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "jurgen_habermas",
+                "name": "Jürgen Habermas",
+                "why": "Offentlighet, organisasjoner og arenaer for kollektiv meningsdannelse",
+                "tier": "advanced",
+                "works": [
+                  "The Structural Transformation of the Public Sphere"
+                ]
+              },
+              {
+                "id": "e_p_thompson",
+                "name": "E.P. Thompson",
+                "why": "Arbeiderklassens tilblivelse, erfaring, tidsdisiplin og sosialhistorie nedenfra",
+                "tier": "core",
+                "works": [
+                  "The Making of the English Working Class",
+                  "Time, Work-Discipline, and Industrial Capitalism"
+                ]
+              },
+              {
+                "id": "edvard_bull",
+                "name": "Edvard Bull",
+                "why": "Norsk arbeiderhistorie, arbeidsmiljø og arbeiderbevegelsens organisering",
+                "tier": "core",
+                "works": [
+                  "Arbeidermiljø under det industrielle gjennombrudd"
+                ]
+              },
+              {
+                "id": "gro_hagemann",
+                "name": "Gro Hagemann",
+                "why": "Norsk arbeidslivs-, kjønns-, skole- og sosialhistorie",
+                "tier": "core",
+                "works": [
+                  "Kjønn og industrialisering",
+                  "Skolefolk"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arbeiderbevegelse_folkedannelse"
+          ],
+          "best_place_types": [
+            "foreningslokale",
+            "bibliotek",
+            "skole",
+            "moteplass",
+            "avisbygg",
+            "plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "association-public-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Folkedannelse behandlet som skolehistorie alene",
+            "Offentlighet brukt som teorifasit uten dokumentert arena og publikum",
+            "Hvilken teori passer best uten arbeidskilde",
+            "Hvilken metode bruker historikeren?"
+          ],
+          "preferred_question_moves": [
+            "identify organiser, audience and medium",
+            "connect education to workplace or movement",
+            "compare official institution with worker-controlled arena",
+            "trace participation beyond party leadership"
+          ],
+          "comparison_pairs": [
+            [
+              "jurgen_habermas",
+              "e_p_thompson"
+            ],
+            [
+              "edvard_bull",
+              "gro_hagemann"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "edvard_bull",
+            "gro_hagemann"
+          ],
+          "recommended_oslo_cases": [
+            "Arbeidersamfunnets plass",
+            "Folkets Hus",
+            "Sagene skole",
+            "Gamle Deichman på Hammersborg"
+          ],
+          "recommended_method_ids": [
+            "met_arkivlesning",
+            "met_mikrohistorisk_analyse",
+            "met_arbeidskonfliktanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_industrial_or_work_unit": true,
+            "require_labor_relation_or_process": true,
+            "require_worker_or_household_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker bibliotek, aviser, foredrag, foreninger, skoler og møteplasser som ga arbeidere kunnskap og offentlig stemme.",
+          "critical_distinctions": [
+            "utdanningsinstitusjon vs arbeiderstyrt offentlighet",
+            "leseferdighet vs politisk deltakelse",
+            "partiorganisasjon vs bredere foreningsliv",
+            "offisiell kultur vs hverdagskunnskap"
+          ]
+        },
+        {
+          "id": "his_avindustrialisering_ombruk_industriarv",
+          "title": "Avindustrialisering, ombruk og industriarv",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "steven_high",
+                "name": "Steven High",
+                "why": "Avindustrialisering, nedleggelser, arbeidsminne og lokalsamfunn",
+                "tier": "advanced",
+                "works": [
+                  "Industrial Sunset"
+                ]
+              },
+              {
+                "id": "sharon_zukin",
+                "name": "Sharon Zukin",
+                "why": "Industriell ombruk, bytransformasjon og endret økonomisk og kulturell verdi",
+                "tier": "advanced",
+                "works": [
+                  "Loft Living"
+                ]
+              },
+              {
+                "id": "raphael_samuel",
+                "name": "Raphael Samuel",
+                "why": "Folkelig historie, industriarv, minne og hverdagslivets historiske spor",
+                "tier": "advanced",
+                "works": [
+                  "Theatres of Memory"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Arbeiderhistorie, sosialhistorie, migrasjon og byhistorisk metode i Norge",
+                "tier": "core",
+                "works": [
+                  "Arbeider, bonde, våre hære",
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_avindustrialisering_ombruk_industriarv",
+            "em_his_industriby_1900"
+          ],
+          "best_place_types": [
+            "transformasjonsomrade",
+            "industrianlegg",
+            "kulturmiljo",
+            "arbeiderbydel",
+            "museum",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_produksjons_eller_arbeidsspor"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "closure-reuse-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Ombruk behandlet bare som arkitektur eller byutvikling",
+            "Industriarv uten dokumentasjon av produksjon og arbeidsliv",
+            "Hvilken teori passer best uten arbeidskilde",
+            "Hvilken metode bruker historikeren?"
+          ],
+          "preferred_question_moves": [
+            "date closure and workforce loss",
+            "compare industrial and reused spatial functions",
+            "trace whose memories enter heritage display",
+            "separate preserved facade from continuity of work"
+          ],
+          "comparison_pairs": [
+            [
+              "steven_high",
+              "sharon_zukin"
+            ],
+            [
+              "raphael_samuel",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Vulkan",
+            "Nydalen",
+            "Aker Brygge",
+            "Kværnerbyen"
+          ],
+          "recommended_method_ids": [
+            "met_for_etter_historisk",
+            "met_industriell_stedsanalyse",
+            "met_muntlig_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_industrial_or_work_unit": true,
+            "require_labor_relation_or_process": true,
+            "require_worker_or_household_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker nedleggelse, tap av arbeidsplasser, endret arealbruk, ombygging og hvordan industristedets arbeidshistorie bevares eller forsvinner.",
+          "critical_distinctions": [
+            "fabrikknedleggelse vs bred avindustrialisering",
+            "bevaring vs arbeidsminne",
+            "bygningsombruk vs kontinuitet i arbeid",
+            "estetisk industriarv vs sosialt tap"
+          ]
         }
       ]
     },

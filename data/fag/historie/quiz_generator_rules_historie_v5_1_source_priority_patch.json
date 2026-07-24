@@ -11,9 +11,9 @@
     "emnemapping": "emnemapping_historie_canonical_v4_5.json",
     "pensum": "historiepensum_canonical_v4_5.json",
     "domain_count": 12,
-    "emne_count": 57,
-    "method_count": 28,
-    "mapping_count": 57
+    "emne_count": 64,
+    "method_count": 33,
+    "mapping_count": 64
   },
   "hard_rules": {
     "source_dominance_rule": "External historical/local sources must dominate the factual substance of every history quiz. Canonical files may guide emne choice, method choice, theory choice, set progression and risk control, but may not be the main source of visible question content.",
@@ -471,6 +471,74 @@
         "dagens rettsregler brukt som målestokk for fortidens prosess",
         "maktbegrep eller teoretikernavn som tilstrekkelig svar"
       ]
+    },
+    "his_industri_arbeid_sosialhistorie": {
+      "status": "complete_revised",
+      "purpose": "Bygge arbeidshistoriske spørsmål fra dokumenterte produksjonsenheter, arbeidsprosesser, livsvilkår, konflikter og berørte mennesker uten å redusere feltet til bedrift, teori eller gammel fabrikkfasade.",
+      "required_chain": [
+        "ekstern kilde eller synlig industrispor",
+        "navngitt produksjonsenhet, arbeidsplass, hushold eller organisasjon",
+        "datert produksjons- eller arbeidsfase",
+        "arbeidsprosess, arbeidsrelasjon eller livsvilkår",
+        "dokumentert mål, vilkår, konflikt eller endring",
+        "berørt arbeidergruppe eller hushold",
+        "kontrollkilde eller sammenligningsgrunnlag",
+        "kildebegrensning",
+        "kritisk distinksjon",
+        "eventuelt teori etter at arbeidsforholdet er etablert"
+      ],
+      "hook_ids": [
+        "his_industriby_arbeiderliv",
+        "his_fabrikk_arbeidsorganisering",
+        "his_arbeidstid_lonn_ferdighet",
+        "his_arbeidsmiljo_risiko_helse",
+        "his_arbeiderbolig_hushold_livsvilkar",
+        "his_kjonn_arbeidsdeling_lonn",
+        "his_arbeidsvandring_rekruttering",
+        "his_organisering_streik_forhandling",
+        "his_folkedannelse_arbeideroffentlighet",
+        "his_avindustrialisering_ombruk_industriarv"
+      ],
+      "emne_ids": [
+        "em_his_industriby_1900",
+        "em_his_arbeiderbevegelse_folkedannelse",
+        "em_his_sosialhistorie_hverdagsliv",
+        "em_his_industri_produksjon_energi",
+        "em_his_fabrikk_arbeidsorganisering",
+        "em_his_arbeidstid_lonn_ferdighet",
+        "em_his_arbeidsmiljo_risiko_helse",
+        "em_his_kjonn_arbeidsdeling_lonn",
+        "em_his_arbeidsvandring_rekruttering",
+        "em_his_avindustrialisering_ombruk_industriarv"
+      ],
+      "method_ids": [
+        "met_sporlesning",
+        "met_arkivlesning",
+        "met_mikrohistorisk_analyse",
+        "met_for_etter_historisk",
+        "met_seriell_kildeanalyse",
+        "met_industriell_stedsanalyse",
+        "met_arbeidsprosessanalyse",
+        "met_livsvilkarsanalyse",
+        "met_arbeidskonfliktanalyse",
+        "met_arbeidsmiljohistorisk_analyse"
+      ],
+      "forbidden_shortcuts": [
+        "bedriftsnavn eller fabrikkeier som tilstrekkelig arbeidshistorie",
+        "gammel fabrikkfasade som bevis for arbeidsforhold",
+        "ett lønns- eller ulykkestall uten enhet, periode og sammenligning",
+        "manglende registerføring som bevis for manglende arbeid eller skade",
+        "arbeiderbevegelse redusert til partihistorie",
+        "migrasjon, velferd eller bytransformasjon uten dokumentert arbeidskjede",
+        "teoretikernavn som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "naeringsliv": "Bruk historie som hovedfag bare når arbeidere, arbeidsprosess, livsvilkår eller konflikt bærer spørsmålet; bedrift, eier og marked alene hører til næringsliv.",
+        "velferd": "Arbeidsrelaterte helse-, bolig- og reformspor hører hit når arbeidslivet er årsakskjeden; rettighet, omsorgsinstitusjon og livsløp alene hører til velferd.",
+        "migrasjon": "Arbeidsrekruttering og arbeidsstyrkens mobilitet hører hit; tilhørighet, minoritetsposisjon og identitet som hovedsak hører til migrasjon.",
+        "byhistorie": "Produksjon, arbeid og tap av arbeidsplasser hører hit; arealbruk, riving og byform uten arbeidskjede hører til byhistorie.",
+        "politikk": "Historiske foreninger, streiker og forhandlinger hører hit; samtidige partier, programmer og beslutningsprosesser som hovedsak hører til politikk."
+      }
     }
   }
 }
