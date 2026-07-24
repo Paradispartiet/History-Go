@@ -36,4 +36,4 @@ if (count !== 8) {
   throw new Error(`Forventet 8 aktive quizkontekster, fikk ${count}`);
 }
 
-console.log(`Regenererte ${count} aktive quizkontekster.`);
+console.log(`Regenererte og kontraktklargjorde ${count} aktive quizkontekster.`);
