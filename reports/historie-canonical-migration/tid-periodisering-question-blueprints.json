@@ -1,0 +1,478 @@
+{
+  "version": "v1",
+  "subject_id": "historie",
+  "domain_id": "his_tid_periodisering",
+  "blueprint_count": 10,
+  "blueprints": [
+    {
+      "blueprint_id": "historie_tid_his_periodisering_epoker",
+      "domain_id": "his_tid_periodisering",
+      "hook_id": "his_periodisering_epoker",
+      "hook_title": "Periodisering, epoker og analytiske grenser",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted, en datert hendelse, et tidslag eller et dokumentert historisk forløp.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "chronology_or_temporal_claim",
+        "temporal_scope",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "state the period boundary and its evidence",
+        "compare calendar boundary with lived continuity",
+        "test a national period label against a local sequence",
+        "identify what the chosen periodisation excludes"
+      ],
+      "critical_distinctions": [
+        "epokenavn vs samtidig erfaring",
+        "analytisk periodisering vs aktørenes egne begreper",
+        "kalendergrense vs historisk prosess",
+        "nasjonal periodisering vs lokal tidslinje"
+      ],
+      "method_ids": [
+        "met_periodisering",
+        "met_kronologisk_rekonstruksjon",
+        "met_begrepshistorie"
+      ],
+      "recommended_cases": [
+        "Middelalderbyen Oslo",
+        "Eidsvollsbygningen",
+        "Regjeringskvartalet",
+        "Bjørvika"
+      ],
+      "forbidden_surface": [
+        "Hvilken epoke passer best uten dokumentert kronologi",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Er dette et brudd uten å angi hva som endret seg?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_tid_his_brudd_kontinuitet",
+      "domain_id": "his_tid_periodisering",
+      "hook_id": "his_brudd_kontinuitet",
+      "hook_title": "Brudd, kontinuitet og omforming",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted, en datert hendelse, et tidslag eller et dokumentert historisk forløp.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "chronology_or_temporal_claim",
+        "temporal_scope",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify the documented change",
+        "name what persisted across the change",
+        "separate formal reform from practical consequence",
+        "compare short-term rupture with long-term continuity"
+      ],
+      "critical_distinctions": [
+        "hendelse vs prosess",
+        "formell reform vs praktisk kontinuitet",
+        "synlig endring vs institusjonell varighet",
+        "datert vendepunkt vs gradvis omforming"
+      ],
+      "method_ids": [
+        "met_for_etter_historisk",
+        "met_hendelsesforlop_analyse",
+        "met_komparativ_historie"
+      ],
+      "recommended_cases": [
+        "Regjeringskvartalet",
+        "Møllergata 19",
+        "Aker Brygge",
+        "Bispelokket"
+      ],
+      "forbidden_surface": [
+        "Hvilken epoke passer best uten dokumentert kronologi",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Er dette et brudd uten å angi hva som endret seg?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_tid_his_tidslag_samtidighet",
+      "domain_id": "his_tid_periodisering",
+      "hook_id": "his_tidslag_samtidighet",
+      "hook_title": "Tidslag og samtidighet i sted",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted, en datert hendelse, et tidslag eller et dokumentert historisk forløp.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "chronology_or_temporal_claim",
+        "temporal_scope",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify the surviving layer",
+        "date reuse and alteration separately",
+        "compare physical sequence with public narrative",
+        "state which layers are absent or reconstructed"
+      ],
+      "critical_distinctions": [
+        "bevart lag vs opprinnelig helhet",
+        "samtidighet vs kronologisk rekkefølge",
+        "ombruk vs kontinuitet",
+        "arkeologisk lag vs fortalt epoke"
+      ],
+      "method_ids": [
+        "met_tidslagsanalyse",
+        "met_sporlesning",
+        "met_periodisering"
+      ],
+      "recommended_cases": [
+        "Middelalderbyen Oslo",
+        "Gamle Aker kirke",
+        "Akershus festning",
+        "Bjørvika"
+      ],
+      "forbidden_surface": [
+        "Hvilken epoke passer best uten dokumentert kronologi",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Er dette et brudd uten å angi hva som endret seg?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_tid_his_lang_varighet_strukturer",
+      "domain_id": "his_tid_periodisering",
+      "hook_id": "his_lang_varighet_strukturer",
+      "hook_title": "Lang varighet og strukturell endring",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted, en datert hendelse, et tidslag eller et dokumentert historisk forløp.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "chronology_or_temporal_claim",
+        "temporal_scope",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "define the long time span",
+        "identify a stable structure and its indicators",
+        "compare several dated observations",
+        "avoid explaining a long process with a single event"
+      ],
+      "critical_distinctions": [
+        "struktur vs hendelse",
+        "langsom endring vs stillstand",
+        "tidsserie vs årsaksforklaring",
+        "institusjonell varighet vs uendret praksis"
+      ],
+      "method_ids": [
+        "met_langvarighetsanalyse",
+        "met_seriell_kildeanalyse",
+        "met_komparativ_historie"
+      ],
+      "recommended_cases": [
+        "Akerselva",
+        "Oslo Hospital",
+        "Akershus festning",
+        "Grønland"
+      ],
+      "forbidden_surface": [
+        "Hvilken epoke passer best uten dokumentert kronologi",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Er dette et brudd uten å angi hva som endret seg?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_tid_his_hendelse_prosess",
+      "domain_id": "his_tid_periodisering",
+      "hook_id": "his_hendelse_prosess",
+      "hook_title": "Hendelse, forløp og konsekvens",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted, en datert hendelse, et tidslag eller et dokumentert historisk forløp.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "chronology_or_temporal_claim",
+        "temporal_scope",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "order independently sourced events",
+        "separate trigger from background conditions",
+        "trace immediate and later consequences",
+        "mark uncertainty in the sequence"
+      ],
+      "critical_distinctions": [
+        "hendelse vs forløp",
+        "utløsende faktor vs bakgrunnsbetingelse",
+        "umiddelbar virkning vs langsiktig konsekvens",
+        "kronologi vs kausalitet"
+      ],
+      "method_ids": [
+        "met_hendelsesforlop_analyse",
+        "met_kronologisk_rekonstruksjon",
+        "met_kildekritikk"
+      ],
+      "recommended_cases": [
+        "22. juli-senteret",
+        "Eidsvollsbygningen",
+        "Oscarsborg festning",
+        "Regjeringskvartalet"
+      ],
+      "forbidden_surface": [
+        "Hvilken epoke passer best uten dokumentert kronologi",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Er dette et brudd uten å angi hva som endret seg?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_tid_his_rytmer_tempo",
+      "domain_id": "his_tid_periodisering",
+      "hook_id": "his_rytmer_tempo",
+      "hook_title": "Historiske rytmer, tempo og modernisering",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted, en datert hendelse, et tidslag eller et dokumentert historisk forløp.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "chronology_or_temporal_claim",
+        "temporal_scope",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "compare the pace of two changes",
+        "identify who experienced change first",
+        "separate technical introduction from social adoption",
+        "use dated series to test acceleration"
+      ],
+      "critical_distinctions": [
+        "teknisk innføring vs sosial bruk",
+        "akselerasjon vs samtidens opplevelse",
+        "ulik rytme vs forsinkelse",
+        "modernisering vs lineær framgang"
+      ],
+      "method_ids": [
+        "met_temporalitetsanalyse",
+        "met_seriell_kildeanalyse",
+        "met_for_etter_historisk"
+      ],
+      "recommended_cases": [
+        "Akerselva",
+        "Sagene skole",
+        "Bjørvika",
+        "Stortinget"
+      ],
+      "forbidden_surface": [
+        "Hvilken epoke passer best uten dokumentert kronologi",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Er dette et brudd uten å angi hva som endret seg?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_tid_his_erfaringsrom_forventningshorisont",
+      "domain_id": "his_tid_periodisering",
+      "hook_id": "his_erfaringsrom_forventningshorisont",
+      "hook_title": "Erfaringsrom og forventningshorisont",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted, en datert hendelse, et tidslag eller et dokumentert historisk forløp.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "chronology_or_temporal_claim",
+        "temporal_scope",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify an actor's available experience",
+        "document a contemporary expectation",
+        "separate expectation from later outcome",
+        "compare competing future horizons"
+      ],
+      "critical_distinctions": [
+        "samtidig forventning vs kjent utfall",
+        "erfaring vs prognose",
+        "mulig framtid vs senere nødvendighetsfortelling",
+        "aktørbegrep vs ettertidsbegrep"
+      ],
+      "method_ids": [
+        "met_temporalitetsanalyse",
+        "met_begrepshistorie",
+        "met_institusjonshistorisk_analyse"
+      ],
+      "recommended_cases": [
+        "Eidsvollsbygningen",
+        "Stortinget",
+        "Regjeringskvartalet",
+        "22. juli-senteret"
+      ],
+      "forbidden_surface": [
+        "Hvilken epoke passer best uten dokumentert kronologi",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Er dette et brudd uten å angi hva som endret seg?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_tid_his_kronologi_datering",
+      "domain_id": "his_tid_periodisering",
+      "hook_id": "his_kronologi_datering",
+      "hook_title": "Kronologi, datering og usikkerhet",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted, en datert hendelse, et tidslag eller et dokumentert historisk forløp.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "chronology_or_temporal_claim",
+        "temporal_scope",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "state the dating basis",
+        "separate exact from approximate date",
+        "order relative phases",
+        "record conflicting dates without false precision"
+      ],
+      "critical_distinctions": [
+        "eksakt datering vs omtrentlig datering",
+        "absolutt datering vs relativ rekkefølge",
+        "første omtale vs oppføringstid",
+        "kildedato vs hendelsesdato"
+      ],
+      "method_ids": [
+        "met_kronologisk_rekonstruksjon",
+        "met_kildekritikk",
+        "met_periodisering"
+      ],
+      "recommended_cases": [
+        "Middelalderbyen Oslo",
+        "Gamle Aker kirke",
+        "Hovedøya kloster",
+        "Akershus festning"
+      ],
+      "forbidden_surface": [
+        "Hvilken epoke passer best uten dokumentert kronologi",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Er dette et brudd uten å angi hva som endret seg?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_tid_his_anakronisme_begrepsbruk",
+      "domain_id": "his_tid_periodisering",
+      "hook_id": "his_anakronisme_begrepsbruk",
+      "hook_title": "Anakronisme og historisk begrepsbruk",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted, en datert hendelse, et tidslag eller et dokumentert historisk forløp.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "chronology_or_temporal_claim",
+        "temporal_scope",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify the contemporary term",
+        "compare later and earlier meanings",
+        "test whether the category existed for the actor",
+        "rewrite the claim without hindsight"
+      ],
+      "critical_distinctions": [
+        "aktørbegrep vs analysebegrep",
+        "samtidig betydning vs senere betydning",
+        "likt ord vs likt fenomen",
+        "etterpåklokskap vs dokumentert forventning"
+      ],
+      "method_ids": [
+        "met_begrepshistorie",
+        "met_temporalitetsanalyse",
+        "met_kildekritikk"
+      ],
+      "recommended_cases": [
+        "Stortinget",
+        "Eidsvollsbygningen",
+        "Oslo Hospital",
+        "Sagene skole"
+      ],
+      "forbidden_surface": [
+        "Hvilken epoke passer best uten dokumentert kronologi",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Er dette et brudd uten å angi hva som endret seg?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_tid_his_samtid_ettertid_fortelling",
+      "domain_id": "his_tid_periodisering",
+      "hook_id": "his_samtid_ettertid_fortelling",
+      "hook_title": "Samtid, ettertid og historisk fortelling",
+      "visible_question_model": "Normalt quizspørsmål om et konkret sted, en datert hendelse, et tidslag eller et dokumentert historisk forløp.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "chronology_or_temporal_claim",
+        "temporal_scope",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "compare contemporary and later accounts",
+        "identify the chosen beginning and ending",
+        "separate chronology from narrative coherence",
+        "trace how later knowledge changes emphasis"
+      ],
+      "critical_distinctions": [
+        "samtidskilde vs ettertidsfortelling",
+        "kronologi vs narrativ sammenheng",
+        "utfall vs samtidige muligheter",
+        "minnepraksis vs hendelsesreferat"
+      ],
+      "method_ids": [
+        "met_temporalitetsanalyse",
+        "met_minneanalyse",
+        "met_kildekritikk"
+      ],
+      "recommended_cases": [
+        "Villa Grande",
+        "Vår Frelsers gravlund",
+        "22. juli-senteret",
+        "Eidsvollsbygningen"
+      ],
+      "forbidden_surface": [
+        "Hvilken epoke passer best uten dokumentert kronologi",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Er dette et brudd uten å angi hva som endret seg?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    }
+  ]
+}
