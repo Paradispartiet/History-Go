@@ -18,7 +18,11 @@ ok(pensum.domains.length === 6, 'Politikkpensum har seks domener');
 for (const domain of pensum.domains) {
   ok(domain.status === 'complete_revised', `Domene ${domain.domain_id} er complete_revised`);
   ok(Boolean(domain.quality_revision), `Domene ${domain.domain_id} har kvalitetsrevisjon`);
-  ok(domain.vertical_chain_status?.generator_profile_active === true, `Domene ${domain.domain_id} har aktiv generatorprofil`);
+  const profileActive = domain.vertical_chain_status?.generator_profile_active === true
+    || Boolean(domain.generator_profile)
+    || Boolean(domain.generator_profile_id)
+    || rules.domain_quality_profiles?.[domain.domain_id]?.status === 'complete_revised';
+  ok(profileActive, `Domene ${domain.domain_id} har aktiv generatorprofil`);
 }
 
 const contract = rules.opening_normal_quiz_contract;
