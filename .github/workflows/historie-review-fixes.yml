@@ -1,16 +1,15 @@
 name: History review fixes
 
 on:
-  push:
-    branches:
-      - agent/historie-kilder-arkiv-vertical-chain
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
 
 permissions:
   contents: write
 
 jobs:
   fix-validate-and-commit:
-    if: github.ref == 'refs/heads/agent/historie-kilder-arkiv-vertical-chain'
+    if: github.head_ref == 'agent/historie-kilder-arkiv-vertical-chain'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -56,6 +55,11 @@ jobs:
               --output "data/quiz/production_context/historie/$target.json"
           done
 
+      - name: Rebuild canonical Knowledge data
+        run: |
+          npm ci
+          npm run knowledge:canonical:write
+
       - name: Validate review fixes
         run: |
           set -euo pipefail
@@ -64,6 +68,7 @@ jobs:
           node scripts/audit-quiz-theory-binding.mjs
           node scripts/audit-category-governance.mjs
           node scripts/audit-quiz-template-governance.mjs
+          npm run audit:knowledge
           node --test tests/quiz-production-pipeline.test.mjs
           git diff --check
 
@@ -73,14 +78,11 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           rm -f .github/workflows/historie-review-fixes.yml
-          git add -A \
-            data/fag/historie/fagkart_historie_canonical_v4_5.json \
-            data/quiz/production_context/historie \
-            .github/workflows/historie-review-fixes.yml
+          git add -A
           git diff --cached --check
           if git diff --cached --quiet; then
             echo 'Ingen endringer å committe.'
             exit 0
           fi
-          git commit -m 'Historie: rett hookbindinger og regenerer produksjonskontekster'
+          git commit -m 'Historie: rett hookbindinger og regenerer avledede data'
           git push origin HEAD:agent/historie-kilder-arkiv-vertical-chain
