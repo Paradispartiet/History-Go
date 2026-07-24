@@ -1,0 +1,57 @@
+{
+  "subject_id": "sport",
+  "subject_title": "Sport & lek",
+  "type": "quality_layer_manifest",
+  "version": "5.0",
+  "status": "canonical_quality_overlay",
+  "updated_at": "2026-07-24",
+  "compatibility": {
+    "base_registry": "sportpensum_v4_5",
+    "base_files": {
+      "pensum": "sportpensum_canonical_v4_5.json",
+      "emner": "emner_sport_canonical_v4_5.json",
+      "fagkart": "fagkart_sport_canonical_v4_5.json",
+      "methods": "methods_sport_canonical_v4_5.json",
+      "quiz_profile": "supersetQUIZMAL_sport.json"
+    },
+    "rule": "Eksisterende emne- og metode-ID-er beholdes for kompatibilitet. V5-laget skjerper teori, begreper, metoder, kildebruk og produksjonsregler uten å ugyldiggjøre eksisterende quizdata."
+  },
+  "quality_files": {
+    "theory_hooks": "theory_hooks_sport_canonical_v5.json",
+    "thinkers": "teoretikere_sport_canonical_v5.json",
+    "concepts": "begreper_sport_canonical_v5.json",
+    "methods": "methods_sport_quality_v5.json",
+    "curriculum": "sportpensum_extension_canonical_v5.json",
+    "validator": "../../../tools/validate-sport-theory-quality.mjs",
+    "report": "../../../reports/sport-theory-quality-validation.json"
+  },
+  "counts": {
+    "areas": 14,
+    "hooks": 56,
+    "methods": 40,
+    "modules": 18,
+    "thinkers_total": 183,
+    "thinkers_active": 177,
+    "thinkers_contextual": 6,
+    "works": 123,
+    "concepts": 140
+  },
+  "production_invariants": [
+    "Et spørsmål starter i et konkret idrettsanker: arena, kamp, regel, utøver, lag, øvelse, datasett, organisasjon, historisk hendelse eller dokumentert praksis.",
+    "Begrep eller teori skal forklare noe i caset; navnet på en teoretiker er aldri tilstrekkelig spørsmålsoverflate.",
+    "Resultat- og rekordstoff skal forklare vilkår, betydning eller mekanisme, ikke bare be om et tall.",
+    "Taktiske påstander må angi analyseenhet og datagrunnlag.",
+    "Trenings- og helsepåstander må skille gruppefunn fra individuell vurdering.",
+    "Barn og unge skal behandles med safeguarding, medvirkning og utviklingsperspektiv.",
+    "Globale, kjønnede, rasialiserte og funksjonsrelaterte erfaringer skal inngå som selvstendige analysefelt.",
+    "Personlig supporterpreferanse og hvem som er «best» vurderes ikke som fagkunnskap."
+  ],
+  "coverage_balance": {
+    "history_place_and_memory": 0.18,
+    "tactics_skill_and_coaching": 0.22,
+    "physiology_biomechanics_and_data": 0.2,
+    "organization_supporters_and_media": 0.16,
+    "inclusion_ethics_and_safeguarding": 0.14,
+    "health_play_and_environment": 0.1
+  }
+}

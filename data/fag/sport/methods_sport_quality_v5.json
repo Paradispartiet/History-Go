@@ -1,0 +1,936 @@
+{
+  "subject_id": "sport",
+  "subject_title": "Sport & lek",
+  "type": "quality_methods",
+  "version": "5.0",
+  "updated_at": "2026-07-24",
+  "purpose": "Kurert metodekatalog for kildekritikk, feltarbeid, kampanalyse, ferdighetslæring, fysiologi, biomekanikk, psykologi, pedagogikk, styring, kultur, inkludering, etikk og miljø.",
+  "integration_rule": "Quality-metodene brukes som analyseveiledning. Produksjonsquiz beholder en gyldig legacy method_id når global kontrakt krever det, og kan i tillegg lagre analysis_method_v5.",
+  "methods": [
+    {
+      "method_id": "met_sport_v5_kildekritikk",
+      "title": "Idrettshistorisk kildekritikk",
+      "description": "Vurderer opphav, formål, representativitet og samtidighet i klubbarkiv, forbundskilder, aviser, statistikk og minner.",
+      "area_ids": [
+        "sport_historie_modernisering",
+        "sport_arena_geografi_minner"
+      ],
+      "data_forms": [
+        "arkivnotat",
+        "kildematrise",
+        "påstandskjede"
+      ],
+      "outputs": [
+        "arkivnotat",
+        "kildematrise"
+      ],
+      "limitations": "En offisiell kilde kan være presis om regler og resultater, men interessestyrt i egen historiefortelling.",
+      "legacy_method_ids": [
+        "met_sport_idrettshistorisk_analyse"
+      ],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_regelanalyse",
+      "title": "Regel- og spillanalyse",
+      "description": "Skiller konstitutive regler, regulative regler, dommerpraksis og historiske regelendringer.",
+      "area_ids": [
+        "sport_grunnbegreper_lek",
+        "sport_etikk_teknologi"
+      ],
+      "data_forms": [
+        "regelutdrag",
+        "endringslogg",
+        "situasjonscase"
+      ],
+      "outputs": [
+        "regelutdrag",
+        "endringslogg"
+      ],
+      "limitations": "Regeltekst må leses sammen med definisjoner, fortolkning og konkurransens nivå.",
+      "legacy_method_ids": [
+        "met_sport_regelanalyse"
+      ],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_begrepsanalyse",
+      "title": "Begrepsanalyse i sport",
+      "description": "Avgrenser idrettsbegreper gjennom definisjoner, moteksempler og sammenlignbare tilfeller.",
+      "area_ids": [
+        "sport_grunnbegreper_lek",
+        "sport_etikk_teknologi"
+      ],
+      "data_forms": [
+        "begrepsmatrise",
+        "grensetilfeller",
+        "revidert definisjon"
+      ],
+      "outputs": [
+        "begrepsmatrise",
+        "grensetilfeller"
+      ],
+      "limitations": "Begrepet skal ikke løsne fra faktisk praksis, regler og historie.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_komparativ_historie",
+      "title": "Komparativ idrettshistorie",
+      "description": "Sammenligner utviklingsforløp på tvers av idretter, steder eller perioder med eksplisitt sammenligningsgrunnlag.",
+      "area_ids": [
+        "sport_historie_modernisering",
+        "sport_ulikhet_inkludering"
+      ],
+      "data_forms": [
+        "tidslinje",
+        "sammenligningstabell",
+        "institusjonskart"
+      ],
+      "outputs": [
+        "tidslinje",
+        "sammenligningstabell"
+      ],
+      "limitations": "Likhet i sluttform betyr ikke at utviklingsforløpet var likt.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_oral_history",
+      "title": "Muntlig historie",
+      "description": "Bruker intervjuer om arenaer, klubber og praksiser som situerte minner som må trianguleres.",
+      "area_ids": [
+        "sport_arena_geografi_minner",
+        "sport_supportere_media"
+      ],
+      "data_forms": [
+        "intervju",
+        "minnekart",
+        "transkripsjon"
+      ],
+      "outputs": [
+        "intervju",
+        "minnekart"
+      ],
+      "limitations": "Minner er verdifulle fortolkninger, men ikke automatisk presise kronologier.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_arenaanalyse",
+      "title": "Arena- og stedsanalyse",
+      "description": "Analyserer rom, adgang, synlighet, logistikk, bruk og symbolikk ved et idrettssted.",
+      "area_ids": [
+        "sport_arena_geografi_minner"
+      ],
+      "data_forms": [
+        "plantegning",
+        "feltfoto",
+        "brukskart"
+      ],
+      "outputs": [
+        "plantegning",
+        "feltfoto"
+      ],
+      "limitations": "Et arenaobjekt må analyseres sammen med praksis og brukergrupper.",
+      "legacy_method_ids": [
+        "met_sport_arenaanalyse",
+        "met_sport_stedsanalyse"
+      ],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_groundhopper_feltarbeid",
+      "title": "Groundhopper-feltarbeid",
+      "description": "Dokumenterer arenabesøk gjennom observasjon av sted, kampdag, publikum, historie og lokal kontekst.",
+      "area_ids": [
+        "sport_arena_geografi_minner",
+        "sport_supportere_media"
+      ],
+      "data_forms": [
+        "feltlogg",
+        "rute",
+        "bildeprotokoll"
+      ],
+      "outputs": [
+        "feltlogg",
+        "rute"
+      ],
+      "limitations": "Besøket gir nærdata, men må ikke erstatte historiske og institusjonelle kilder.",
+      "legacy_method_ids": [
+        "met_sport_groundhopperanalyse"
+      ],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_romlig_rettferdighet",
+      "title": "Romlig fordelingsanalyse",
+      "description": "Kartlegger anleggsdekning, reisetid, kvalitet og brukerbehov for å vurdere geografisk ulikhet.",
+      "area_ids": [
+        "sport_arena_geografi_minner",
+        "sport_helse_samfunn_miljo"
+      ],
+      "data_forms": [
+        "GIS-kart",
+        "kapasitetsdata",
+        "befolkningsdata"
+      ],
+      "outputs": [
+        "GIS-kart",
+        "kapasitetsdata"
+      ],
+      "limitations": "Antall anlegg alene sier lite uten kapasitet, kvalitet og målgrupper.",
+      "legacy_method_ids": [
+        "met_sport_anleggspolitisk_analyse",
+        "met_sport_kartanalyse"
+      ],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_taktisk_video",
+      "title": "Taktisk videoanalyse",
+      "description": "Koder sekvenser, faser, rom og beslutninger fra video med en eksplisitt analyseenhet.",
+      "area_ids": [
+        "sport_taktikk_spillanalyse"
+      ],
+      "data_forms": [
+        "klippbibliotek",
+        "kodebok",
+        "sekvensnotat"
+      ],
+      "outputs": [
+        "klippbibliotek",
+        "kodebok"
+      ],
+      "limitations": "Utvalg av klipp kan bekrefte forventninger; inkluder negative og avvikende tilfeller.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_notasjon",
+      "title": "Notasjonell kampanalyse",
+      "description": "Registrerer definerte hendelser og mønstre systematisk for å beskrive kampforløp.",
+      "area_ids": [
+        "sport_taktikk_spillanalyse",
+        "sport_biomekanikk_data"
+      ],
+      "data_forms": [
+        "hendelseslogg",
+        "frekvenstabell",
+        "sonekart"
+      ],
+      "outputs": [
+        "hendelseslogg",
+        "frekvenstabell"
+      ],
+      "limitations": "Hendelsesfrekvens må ikke forveksles med kvalitet eller årsak.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_tracking",
+      "title": "Posisjons- og trackinganalyse",
+      "description": "Analyserer bevegelsesbaner, avstander, areal og kollektiv struktur fra posisjonsdata.",
+      "area_ids": [
+        "sport_taktikk_spillanalyse",
+        "sport_biomekanikk_data"
+      ],
+      "data_forms": [
+        "posisjonsserie",
+        "varmekart",
+        "lagflate"
+      ],
+      "outputs": [
+        "posisjonsserie",
+        "varmekart"
+      ],
+      "limitations": "Målekvalitet, sampling og definisjon av ball-/spillerhendelser må dokumenteres.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_nettverksanalyse",
+      "title": "Pasnings- og samhandlingsnettverk",
+      "description": "Modellerer relasjoner mellom spillere eller enheter som noder og forbindelser.",
+      "area_ids": [
+        "sport_taktikk_spillanalyse"
+      ],
+      "data_forms": [
+        "nettverksgraf",
+        "sentralitetsmål",
+        "sekvensdata"
+      ],
+      "outputs": [
+        "nettverksgraf",
+        "sentralitetsmål"
+      ],
+      "limitations": "Høy sentralitet er ikke automatisk positiv og påvirkes av rolle og kampbilde.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_motstanderanalyse",
+      "title": "Motstander- og scenarioanalyse",
+      "description": "Identifiserer stabile mønstre, sårbarheter og situasjonsavhengige variasjoner hos en motstander.",
+      "area_ids": [
+        "sport_taktikk_spillanalyse",
+        "sport_psykologi_coaching"
+      ],
+      "data_forms": [
+        "scenarioark",
+        "klipp",
+        "sannsynlige responser"
+      ],
+      "outputs": [
+        "scenarioark",
+        "klipp"
+      ],
+      "limitations": "Analysen skal støtte fleksible beslutninger, ikke late som motstanderen er deterministisk.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_constraints_design",
+      "title": "Begrensningsstyrt øvelsesdesign",
+      "description": "Manipulerer oppgave, miljø og utøvervilkår for å fremme ønskede informasjons- og handlingskoblinger.",
+      "area_ids": [
+        "sport_ferdighetslaring_motorikk",
+        "sport_pedagogikk_barn"
+      ],
+      "data_forms": [
+        "øvelsesdesign",
+        "constraint-logg",
+        "observasjonskriterier"
+      ],
+      "outputs": [
+        "øvelsesdesign",
+        "constraint-logg"
+      ],
+      "limitations": "En constraint er bare relevant dersom den faktisk endrer handlingsmulighetene.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_representativitet",
+      "title": "Analyse av representativt læringsdesign",
+      "description": "Vurderer om øvelsen bevarer informasjonskilder, beslutninger og handlinger fra konkurransen.",
+      "area_ids": [
+        "sport_ferdighetslaring_motorikk"
+      ],
+      "data_forms": [
+        "oppgaveanalyse",
+        "informasjonskart",
+        "transfer-vurdering"
+      ],
+      "outputs": [
+        "oppgaveanalyse",
+        "informasjonskart"
+      ],
+      "limitations": "Lik visuell overflate er ikke nok dersom beslutningskravet mangler.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_feedback_audit",
+      "title": "Feedback- og oppmerksomhetsaudit",
+      "description": "Kartlegger hvem som får hvilken feedback, når den gis, og om den støtter selvregulering.",
+      "area_ids": [
+        "sport_ferdighetslaring_motorikk",
+        "sport_psykologi_coaching"
+      ],
+      "data_forms": [
+        "feedback-logg",
+        "spørsmålsanalyse",
+        "fokusprofil"
+      ],
+      "outputs": [
+        "feedback-logg",
+        "spørsmålsanalyse"
+      ],
+      "limitations": "Feedbackmengde er ikke det samme som læringskvalitet.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_treningsbelastning",
+      "title": "Treningsbelastningsanalyse",
+      "description": "Kombinerer ytre arbeid, indre respons og kontekst over tid for å vurdere dose og respons.",
+      "area_ids": [
+        "sport_trening_fysiologi",
+        "sport_biomekanikk_data"
+      ],
+      "data_forms": [
+        "økt-RPE",
+        "volum",
+        "intensitet",
+        "velværedata"
+      ],
+      "outputs": [
+        "økt-RPE",
+        "volum"
+      ],
+      "limitations": "Belastningsmål kan beskrive mønstre, men predikerer ikke skade sikkert for enkeltutøvere.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_fysiologisk_testing",
+      "title": "Fysiologisk testanalyse",
+      "description": "Vurderer testprotokoll, reliabilitet, validitet og sportsspesifikk relevans.",
+      "area_ids": [
+        "sport_trening_fysiologi",
+        "sport_biomekanikk_data"
+      ],
+      "data_forms": [
+        "testprotokoll",
+        "kalibrering",
+        "endringsanalyse"
+      ],
+      "outputs": [
+        "testprotokoll",
+        "kalibrering"
+      ],
+      "limitations": "Testresultatet må tolkes mot målefeil, dagsform og konkurransekrav.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_periodisering",
+      "title": "Periodiseringsanalyse",
+      "description": "Sammenholder mål, konkurransekalender, belastning og faktisk respons i planlagte faser.",
+      "area_ids": [
+        "sport_trening_fysiologi"
+      ],
+      "data_forms": [
+        "årsplan",
+        "mesosyklus",
+        "belastningsprofil"
+      ],
+      "outputs": [
+        "årsplan",
+        "mesosyklus"
+      ],
+      "limitations": "Planen er en hypotese og må revideres når responsen avviker.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_restitusjon",
+      "title": "Restitusjons- og helserisikoanalyse",
+      "description": "Triangulerer søvn, symptomer, energitilgjengelighet, belastning og medisinsk vurdering.",
+      "area_ids": [
+        "sport_trening_fysiologi"
+      ],
+      "data_forms": [
+        "søvnlogg",
+        "symptomkart",
+        "helsehenvisning"
+      ],
+      "outputs": [
+        "søvnlogg",
+        "symptomkart"
+      ],
+      "limitations": "Metoden er ikke diagnostikk; røde flagg skal håndteres av kvalifisert helsepersonell.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_biomekanikk",
+      "title": "Biomekanisk teknikkannalyse",
+      "description": "Analyserer kinematikk, krefter og koordinasjon i en avgrenset bevegelsesoppgave.",
+      "area_ids": [
+        "sport_biomekanikk_data"
+      ],
+      "data_forms": [
+        "video",
+        "kraftdata",
+        "leddkinematikk"
+      ],
+      "outputs": [
+        "video",
+        "kraftdata"
+      ],
+      "limitations": "Teknisk endring må vurderes mot oppgave, individuell anatomi og prestasjonsmål.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_malekvalitet",
+      "title": "Målekvalitets- og usikkerhetsanalyse",
+      "description": "Tester validitet, reliabilitet, minste reelle endring og praktisk betydning i data.",
+      "area_ids": [
+        "sport_biomekanikk_data"
+      ],
+      "data_forms": [
+        "måleprotokoll",
+        "feilestimat",
+        "sensitivitetsanalyse"
+      ],
+      "outputs": [
+        "måleprotokoll",
+        "feilestimat"
+      ],
+      "limitations": "Statistisk forskjell er ikke nødvendigvis praktisk relevant.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_skadeepidemiologi",
+      "title": "Skadeepidemiologisk analyse",
+      "description": "Beregner forekomst mot eksponering og vurderer definisjoner, tapstid og usikkerhet.",
+      "area_ids": [
+        "sport_biomekanikk_data",
+        "sport_trening_fysiologi"
+      ],
+      "data_forms": [
+        "skaderegister",
+        "eksponeringstimer",
+        "insidens"
+      ],
+      "outputs": [
+        "skaderegister",
+        "eksponeringstimer"
+      ],
+      "limitations": "Risikofaktor på gruppenivå gir ikke sikker individuell prediksjon.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_motivasjonsklima",
+      "title": "Analyse av motivasjonsklima",
+      "description": "Observerer målstruktur, valg, språk, belønning og sosial sammenligning i treningsmiljøet.",
+      "area_ids": [
+        "sport_psykologi_coaching",
+        "sport_pedagogikk_barn"
+      ],
+      "data_forms": [
+        "observasjon",
+        "utøverintervju",
+        "kommunikasjonslogg"
+      ],
+      "outputs": [
+        "observasjon",
+        "utøverintervju"
+      ],
+      "limitations": "Selvrapport må ses sammen med faktisk praksis og maktforhold.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_prestasjon_under_press",
+      "title": "Prestasjon-under-press-analyse",
+      "description": "Kobler oppmerksomhet, rutiner, aktivering og beslutningskvalitet i krevende situasjoner.",
+      "area_ids": [
+        "sport_psykologi_coaching"
+      ],
+      "data_forms": [
+        "situasjonslogg",
+        "video",
+        "rutineanalyse"
+      ],
+      "outputs": [
+        "situasjonslogg",
+        "video"
+      ],
+      "limitations": "En svak prestasjon skal ikke reduseres til «mentalitet» uten oppgave- og kontekstanalyse.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_lagdynamikk",
+      "title": "Lag- og lederanalyse",
+      "description": "Undersøker roller, kommunikasjon, konflikt, trygghet og koordinering over tid.",
+      "area_ids": [
+        "sport_psykologi_coaching",
+        "sport_organisasjon_okonomi"
+      ],
+      "data_forms": [
+        "sosiogram",
+        "rolleavklaring",
+        "møteobservasjon"
+      ],
+      "outputs": [
+        "sosiogram",
+        "rolleavklaring"
+      ],
+      "limitations": "Harmoniske svar i spørreskjema kan skjule taushet eller maktubalanse.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_pedagogisk_observasjon",
+      "title": "Pedagogisk trenerobservasjon",
+      "description": "Koder instruksjon, spørsmål, ventetid, medvirkning, aktivitet og feedback i økten.",
+      "area_ids": [
+        "sport_pedagogikk_barn"
+      ],
+      "data_forms": [
+        "observasjonsskjema",
+        "tidsbruk",
+        "spørsmålstyper"
+      ],
+      "outputs": [
+        "observasjonsskjema",
+        "tidsbruk"
+      ],
+      "limitations": "At utøvere er aktive betyr ikke at læringsmålet oppnås.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_utviklingslop",
+      "title": "Utviklingsløpsanalyse",
+      "description": "Kartlegger sampling, spesialisering, seleksjon, relative alderseffekter og frafall.",
+      "area_ids": [
+        "sport_pedagogikk_barn",
+        "sport_ulikhet_inkludering"
+      ],
+      "data_forms": [
+        "deltakerhistorikk",
+        "uttaksdata",
+        "frafallsdata"
+      ],
+      "outputs": [
+        "deltakerhistorikk",
+        "uttaksdata"
+      ],
+      "limitations": "Lineære talentmodeller kan skjule sen utvikling og ulik tilgang.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_safeguarding_audit",
+      "title": "Safeguarding-audit",
+      "description": "Vurderer rutiner, rapporteringsveier, rollegrenser, rekruttering og barns medvirkning.",
+      "area_ids": [
+        "sport_pedagogikk_barn",
+        "sport_organisasjon_okonomi"
+      ],
+      "data_forms": [
+        "policy",
+        "intervju",
+        "hendelsesprotokoll"
+      ],
+      "outputs": [
+        "policy",
+        "intervju"
+      ],
+      "limitations": "Papirregler er utilstrekkelige uten kjent praksis og trygge varslingskanaler.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_governance",
+      "title": "Styrings- og institusjonsanalyse",
+      "description": "Kartlegger mandat, beslutningslinjer, habilitet, kontroll og ansvar i klubb eller forbund.",
+      "area_ids": [
+        "sport_organisasjon_okonomi"
+      ],
+      "data_forms": [
+        "vedtekter",
+        "styreprotokoll",
+        "ansvarskart"
+      ],
+      "outputs": [
+        "vedtekter",
+        "styreprotokoll"
+      ],
+      "limitations": "Formell myndighet og faktisk innflytelse kan være forskjellig.",
+      "legacy_method_ids": [
+        "met_sport_organisasjonsanalyse"
+      ],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_okonomi",
+      "title": "Idrettsøkonomisk analyse",
+      "description": "Vurderer inntekter, kostnader, insentiver, konkurransebalanse og alternativ ressursbruk.",
+      "area_ids": [
+        "sport_organisasjon_okonomi"
+      ],
+      "data_forms": [
+        "regnskap",
+        "rettighetsdata",
+        "fordelingsmodell"
+      ],
+      "outputs": [
+        "regnskap",
+        "rettighetsdata"
+      ],
+      "limitations": "Omsetning må ikke forveksles med samfunnsverdi eller sportslig bærekraft.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_megaevent",
+      "title": "Megaarrangementsanalyse",
+      "description": "Sammenligner søknadsløfter, kostnader, styring, fordeling og faktisk etterbruk.",
+      "area_ids": [
+        "sport_organisasjon_okonomi",
+        "sport_helse_samfunn_miljo"
+      ],
+      "data_forms": [
+        "budsjett",
+        "kontrakt",
+        "legacy-indikator"
+      ],
+      "outputs": [
+        "budsjett",
+        "kontrakt"
+      ],
+      "limitations": "Økonomiske ringvirkninger må sammenlignes med realistisk alternativscenario.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_supporteretnografi",
+      "title": "Supporteretnografi",
+      "description": "Studerer ritual, språk, symboler, reiser og intern differensiering gjennom feltarbeid.",
+      "area_ids": [
+        "sport_supportere_media"
+      ],
+      "data_forms": [
+        "feltlogg",
+        "intervju",
+        "symbolkart"
+      ],
+      "outputs": [
+        "feltlogg",
+        "intervju"
+      ],
+      "limitations": "Supportere skal ikke behandles som én homogen gruppe.",
+      "legacy_method_ids": [
+        "met_sport_supporteranalyse",
+        "met_sport_publikumsanalyse"
+      ],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_medieanalyse",
+      "title": "Medie- og plattformanalyse",
+      "description": "Undersøker innramming, sendelogikk, synlighet, rettigheter og plattformmakt.",
+      "area_ids": [
+        "sport_supportere_media",
+        "sport_ulikhet_inkludering"
+      ],
+      "data_forms": [
+        "innholdskoding",
+        "sendeskjema",
+        "plattformvilkår"
+      ],
+      "outputs": [
+        "innholdskoding",
+        "sendeskjema"
+      ],
+      "limitations": "Dekningsmengde alene sier ikke hvordan grupper framstilles.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_interseksjonell_audit",
+      "title": "Interseksjonell deltakelses- og representasjonsaudit",
+      "description": "Analyserer hvordan kjønn, rasisering, klasse, seksualitet og funksjonsevne virker sammen.",
+      "area_ids": [
+        "sport_ulikhet_inkludering"
+      ],
+      "data_forms": [
+        "deltakerdata",
+        "rollefordeling",
+        "erfaringsintervju"
+      ],
+      "outputs": [
+        "deltakerdata",
+        "rollefordeling"
+      ],
+      "limitations": "Kategorier må brukes analytisk og personvernmessig forsvarlig, ikke som stereotype forklaringer.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_tilgjengelighets_audit",
+      "title": "Tilgjengelighetsaudit",
+      "description": "Vurderer hele deltakerreisen fra informasjon og transport til garderobe, aktivitet og publikumsopplevelse.",
+      "area_ids": [
+        "sport_ulikhet_inkludering",
+        "sport_arena_geografi_minner"
+      ],
+      "data_forms": [
+        "reiseanalyse",
+        "barrierekart",
+        "brukertest"
+      ],
+      "outputs": [
+        "reiseanalyse",
+        "barrierekart"
+      ],
+      "limitations": "Minimumskrav i bygg er ikke nødvendigvis reell brukbarhet.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_etisk_case",
+      "title": "Etisk caseanalyse",
+      "description": "Identifiserer berørte parter, regler, verdier, alternativer, konsekvenser og rimelige innvendinger.",
+      "area_ids": [
+        "sport_etikk_teknologi"
+      ],
+      "data_forms": [
+        "case",
+        "prinsippmatrise",
+        "beslutningsbegrunnelse"
+      ],
+      "outputs": [
+        "case",
+        "prinsippmatrise"
+      ],
+      "limitations": "Etisk analyse er mer enn å uttrykke personlig mening.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_personvern_data",
+      "title": "Personvern- og dataforvaltningsanalyse",
+      "description": "Kartlegger datagrunnlag, formål, tilgang, lagring, samtykke og konsekvenser av modellbruk.",
+      "area_ids": [
+        "sport_etikk_teknologi",
+        "sport_biomekanikk_data"
+      ],
+      "data_forms": [
+        "dataflyt",
+        "tilgangsmatrise",
+        "risikovurdering"
+      ],
+      "outputs": [
+        "dataflyt",
+        "tilgangsmatrise"
+      ],
+      "limitations": "Samtykke kan være svakt når trener eller arbeidsgiver kontrollerer uttak og kontrakt.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_folkehelse",
+      "title": "Folkehelse- og deltakelsesanalyse",
+      "description": "Kobler aktivitetsnivå, sosial fordeling, anlegg, kostnader og lokale barrierer.",
+      "area_ids": [
+        "sport_helse_samfunn_miljo"
+      ],
+      "data_forms": [
+        "befolkningsdata",
+        "deltakelsesdata",
+        "barrierekart"
+      ],
+      "outputs": [
+        "befolkningsdata",
+        "deltakelsesdata"
+      ],
+      "limitations": "Individuelle råd forklarer ikke strukturelle forskjeller i deltakelse.",
+      "legacy_method_ids": [
+        "met_sport_folkehelseanalyse",
+        "met_sport_aktivitetsanalyse"
+      ],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    },
+    {
+      "method_id": "met_sport_v5_miljofotavtrykk",
+      "title": "Miljø- og klimafotavtrykksanalyse",
+      "description": "Kartlegger utslipp, areal, energi, reiser, naturinngrep og klimatilpasning.",
+      "area_ids": [
+        "sport_helse_samfunn_miljo",
+        "sport_organisasjon_okonomi"
+      ],
+      "data_forms": [
+        "livsløpsdata",
+        "reiseprofil",
+        "arealkart"
+      ],
+      "outputs": [
+        "livsløpsdata",
+        "reiseprofil"
+      ],
+      "limitations": "Et grønt enkelttiltak må vurderes mot total aktivitet og rebound-effekter.",
+      "legacy_method_ids": [],
+      "evidence_rule": "Påstander skal være sporbare til dokumentert data, kilde eller observasjon. Metoden alene er ikke faktakilde.",
+      "safe_use": "Metoden skal ikke brukes til medisinsk diagnose, sikker individuell skadeprediksjon eller uforsvarlig treningsresept.",
+      "status": "canonical_quality_layer"
+    }
+  ]
+}
