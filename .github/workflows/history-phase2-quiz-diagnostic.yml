@@ -1,0 +1,63 @@
+name: History phase 2 quiz diagnostic
+
+on:
+  push:
+    branches:
+      - agent/historie-tid-periodisering-phase-2-main-refresh
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    if: ${{ !contains(github.event.head_commit.message, '[quiz-diagnostic]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Run quiz tests separately
+        shell: bash
+        run: |
+          set +e
+          npm run test:quiz-content-audit > /tmp/quiz-content-audit.log 2>&1
+          content_exit=$?
+          npm run test:quiz-production > /tmp/quiz-production.log 2>&1
+          production_exit=$?
+          {
+            echo '# History phase 2 quiz diagnostic'
+            echo
+            echo "test:quiz-content-audit exit: ${content_exit}"
+            echo "test:quiz-production exit: ${production_exit}"
+            echo
+            echo '## test:quiz-content-audit'
+            echo '```text'
+            cat /tmp/quiz-content-audit.log
+            echo '```'
+            echo
+            echo '## test:quiz-production'
+            echo '```text'
+            cat /tmp/quiz-production.log
+            echo '```'
+          } > reports/history-phase2-quiz-test-diagnostic.md
+
+      - name: Commit diagnostic report
+        shell: bash
+        run: |
+          git add reports/history-phase2-quiz-test-diagnostic.md
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'test: capture History phase 2 quiz failure [quiz-diagnostic]'
+          git push origin HEAD:${{ github.ref_name }}
