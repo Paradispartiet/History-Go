@@ -1,12 +1,17 @@
 name: Extract Oslo posthus questions
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/oslo-quiz-oslo-posthus-5x7
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
   extract:
+    if: github.head_ref == 'agent/oslo-quiz-oslo-posthus-5x7'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -39,4 +44,3 @@ jobs:
         with:
           name: oslo-posthus-question-inventory
           path: audit-output/oslo-posthus-question-inventory.json
-# branch-scoped extraction only
