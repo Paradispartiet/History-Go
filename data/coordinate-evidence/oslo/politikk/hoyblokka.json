@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hoyblokka",
+  "placeFile": "data/places/politikk/oslo/places_politikk.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "apply_source_backed_coordinate",
+  "currentCoordinate": {
+    "lat": 59.91535161414259,
+    "lon": 10.745903907645276,
+    "r": 55,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 32448081 – Høyblokken",
+    "coordType": "building_geometry_center",
+    "coordNote": "Eksakt navngitt OSM-objekt for Høyblokken. Representasjonspunktet er beregnet deterministisk fra kildegeometrien; ingen nearest/first-hit-kandidat er brukt."
+  },
+  "identity": {
+    "currentName": "Høyblokka",
+    "resolvedIdentity": "Høyblokka som eget canonical politikksted i Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig fysisk eller historisk kildeidentitet",
+    "etterprøvbart representasjonsanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap",
+      "sourceUrl": "https://www.openstreetmap.org/way/32448081",
+      "sourceObjectId": "osm-way:32448081",
+      "sourceQuality": "primary_coordinate_and_identity_source",
+      "finding": "Kilden identifiserer Høyblokka og det lagrede representasjonsankeret.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt OSM-objekt for Høyblokken. Representasjonspunktet er beregnet deterministisk fra kildegeometrien; ingen nearest/first-hit-kandidat er brukt."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:32448081",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:32448081",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91535161414259,
+      "lon": 10.745903907645276,
+      "coordRole": "building_center",
+      "sourceObjectId": "osm-way:32448081",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og koordinat er anvendt på canonical place."
+  },
+  "notes": [
+    "Eksakt navngitt OSM-objekt for Høyblokken. Representasjonspunktet er beregnet deterministisk fra kildegeometrien; ingen nearest/first-hit-kandidat er brukt."
+  ]
+}

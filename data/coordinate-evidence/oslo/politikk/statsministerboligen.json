@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "statsministerboligen",
+  "placeFile": "data/places/politikk/oslo/places_politikk.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "apply_source_backed_coordinate",
+  "currentCoordinate": {
+    "lat": 59.91808030407976,
+    "lon": 10.722602475302931,
+    "r": 60,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Geonorge Adresser API for Inkognitogata 18, Oslo. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som et påstått geometrisk sentrum."
+  },
+  "identity": {
+    "currentName": "Statsministerboligen",
+    "resolvedIdentity": "Statsministerboligen som eget canonical politikksted i Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig fysisk eller historisk kildeidentitet",
+    "etterprøvbart representasjonsanker"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Geonorge Adresser API v1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?sok=Inkognitogata%2018%20Oslo",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13357:18",
+      "sourceQuality": "primary_coordinate_and_identity_source",
+      "finding": "Kilden identifiserer Statsministerboligen og det lagrede representasjonsankeret.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisiell adressekoordinat fra Geonorge Adresser API for Inkognitogata 18, Oslo. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som et påstått geometrisk sentrum."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Inkognitogata 18 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13357:18",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13357:18",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91808030407976,
+      "lon": 10.722602475302931,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13357:18",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kildekontrakt og koordinat er anvendt på canonical place."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Geonorge Adresser API for Inkognitogata 18, Oslo. Punktet er representasjonspunktet for adressen og brukes som display-marker, ikke som et påstått geometrisk sentrum."
+  ]
+}
