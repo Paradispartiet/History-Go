@@ -21,49 +21,176 @@
     "geographicOutOfScope": "The source listing is outside Oslo municipality and is not an Oslo gallery production gap. Existing canonical coverage elsewhere is preserved where applicable."
   },
   "existingCanonical": [
-    { "sourceItem": "Fotografiens Hus", "placeId": "fotografiens_hus" },
-    { "sourceItem": "Fotogalleriet", "placeId": "fotogalleriet" },
-    { "sourceItem": "MUNCH", "placeId": "munch_museet" },
-    { "sourceItem": "Kunstnernes Hus", "placeId": "kunstnernes_hus" },
-    { "sourceItem": "Kunstnerforbundet", "placeId": "kunstnerforbundet" },
-    { "sourceItem": "Astrup Fearnley Museet", "placeId": "astrup_fearnley" },
-    { "sourceItem": "Oslo Prosjektrom", "placeId": "oslo_prosjektrom" },
-    { "sourceItem": "Kunsthall Oslo", "placeId": "kunsthall_oslo" },
-    { "sourceItem": "Galleri MAP", "placeId": "galleri_map" },
-    { "sourceItem": "Galleri Mini", "placeId": "galleri_mini_oslo" },
-    { "sourceItem": "Dronning Sonja KunstStall", "placeId": "dronning_sonja_kunststall" },
-    { "sourceItem": "TBS Gallery", "placeId": "tbs_gallery" },
-    { "sourceItem": "VI, VII", "placeId": "vi_vii_gallery" },
-    { "sourceItem": "Van Etten", "placeId": "van_etten" },
-    { "sourceItem": "KÖSK", "placeId": "kosk_oslo" },
-    { "sourceItem": "Nasjonalmuseet", "placeId": "nasjonalmuseet" },
-    { "sourceItem": "The Oslo Gallery", "placeId": "the_oslo_gallery" },
-    { "sourceItem": "Purenkel", "placeId": "purenkel_galleri", "basis": "Name variant plus exact physical match in the machine audit." }
+    {
+      "sourceItem": "Fotografiens Hus",
+      "placeId": "fotografiens_hus"
+    },
+    {
+      "sourceItem": "Fotogalleriet",
+      "placeId": "fotogalleriet"
+    },
+    {
+      "sourceItem": "MUNCH",
+      "placeId": "munch_museet"
+    },
+    {
+      "sourceItem": "Kunstnernes Hus",
+      "placeId": "kunstnernes_hus"
+    },
+    {
+      "sourceItem": "Kunstnerforbundet",
+      "placeId": "kunstnerforbundet"
+    },
+    {
+      "sourceItem": "Astrup Fearnley Museet",
+      "placeId": "astrup_fearnley"
+    },
+    {
+      "sourceItem": "Oslo Prosjektrom",
+      "placeId": "oslo_prosjektrom"
+    },
+    {
+      "sourceItem": "Kunsthall Oslo",
+      "placeId": "kunsthall_oslo"
+    },
+    {
+      "sourceItem": "Galleri MAP",
+      "placeId": "galleri_map"
+    },
+    {
+      "sourceItem": "Galleri Mini",
+      "placeId": "galleri_mini_oslo"
+    },
+    {
+      "sourceItem": "Dronning Sonja KunstStall",
+      "placeId": "dronning_sonja_kunststall"
+    },
+    {
+      "sourceItem": "TBS Gallery",
+      "placeId": "tbs_gallery"
+    },
+    {
+      "sourceItem": "VI, VII",
+      "placeId": "vi_vii_gallery"
+    },
+    {
+      "sourceItem": "Van Etten",
+      "placeId": "van_etten"
+    },
+    {
+      "sourceItem": "KÖSK",
+      "placeId": "kosk_oslo"
+    },
+    {
+      "sourceItem": "Nasjonalmuseet",
+      "placeId": "nasjonalmuseet"
+    },
+    {
+      "sourceItem": "The Oslo Gallery",
+      "placeId": "the_oslo_gallery"
+    },
+    {
+      "sourceItem": "Purenkel",
+      "placeId": "purenkel_galleri",
+      "basis": "Name variant plus exact physical match in the machine audit."
+    }
   ],
   "parentReuseEnrichment": [
-    { "sourceItem": "Oslo Kunstforening", "parentPlaceId": "radmannsgarden_og_anatomibygget", "status": "completed_parent_enrichment", "basis": "Previously resolved and enriched on the existing Rådmannsgården/Anatomigården parent." },
-    { "sourceItem": "BO Billedkunstnerne i Oslo", "parentPlaceId": "radmannsgarden_og_anatomibygget", "status": "parent_enrichment_required", "basis": "BO is housed at Rådhusgata 19 / Anatomigården; reuse the existing combined physical parent rather than add an overlapping institution marker." },
-    { "sourceItem": "Oslo Glass Studio", "parentPlaceId": "kirkeristen_basarene_brannvakten", "status": "parent_enrichment_required", "basis": "The public glass studio and gallery operates inside the already canonical Kirkeristen complex." },
-    { "sourceItem": "Atelier Nord", "parentPlaceId": "hauges_minde", "status": "parent_enrichment_required", "basis": "Atelier Nord occupies the first floor of Olaf Ryes plass 2, the already canonical Hauges Minde cultural property." }
+    {
+      "sourceItem": "Oslo Kunstforening",
+      "parentPlaceId": "radmannsgarden_og_anatomibygget",
+      "status": "completed_parent_enrichment",
+      "basis": "Previously resolved and enriched on the existing Rådmannsgården/Anatomigården parent."
+    },
+    {
+      "sourceItem": "BO Billedkunstnerne i Oslo",
+      "parentPlaceId": "radmannsgarden_og_anatomibygget",
+      "status": "completed_parent_enrichment",
+      "basis": "BO is housed at Rådhusgata 19 / Anatomigården; reuse the existing combined physical parent rather than add an overlapping institution marker."
+    },
+    {
+      "sourceItem": "Oslo Glass Studio",
+      "parentPlaceId": "kirkeristen_basarene_brannvakten",
+      "status": "completed_parent_enrichment",
+      "basis": "The public glass studio and gallery operates inside the already canonical Kirkeristen complex."
+    },
+    {
+      "sourceItem": "Atelier Nord",
+      "parentPlaceId": "hauges_minde",
+      "status": "completed_parent_enrichment",
+      "basis": "Atelier Nord occupies the first floor of Olaf Ryes plass 2, the already canonical Hauges Minde cultural property."
+    }
   ],
   "coordinateOnlyBacklog": [
-    { "sourceItem": "Soft galleri: Norske tekstilkunstnere", "placeId": "soft_galleri", "status": "approved_scope_coordinate_blocked", "basis": "The ordinary Rådhusgata 20 address point exactly overlaps the institution-specific Fotografiens Hus marker; production still requires a distinct authoritative entrance or visitor anchor." }
+    {
+      "sourceItem": "Soft galleri: Norske tekstilkunstnere",
+      "placeId": "soft_galleri",
+      "status": "approved_scope_coordinate_blocked",
+      "basis": "The ordinary Rådhusgata 20 address point exactly overlaps the institution-specific Fotografiens Hus marker; production still requires a distinct authoritative entrance or visitor anchor."
+    }
   ],
   "geographicOutOfScope": [
-    { "sourceItem": "Blaafarveværket", "existingPlaceId": "blaafarvevaerket_modum", "basis": "Outside Oslo municipality; already canonical in its own geography." },
-    { "sourceItem": "Henie Onstad Kunstsenter", "basis": "Located at Høvikodden in Bærum and therefore not an Oslo-municipality production gap." }
+    {
+      "sourceItem": "Blaafarveværket",
+      "existingPlaceId": "blaafarvevaerket_modum",
+      "basis": "Outside Oslo municipality; already canonical in its own geography."
+    },
+    {
+      "sourceItem": "Henie Onstad Kunstsenter",
+      "basis": "Located at Høvikodden in Bærum and therefore not an Oslo-municipality production gap."
+    }
   ],
   "newCanonicalCandidates": [
-    { "sourceItem": "Edvard Munchs atelier på Ekely", "proposedPlaceId": "edvard_munchs_atelier_ekely", "basis": "Distinct preserved historic studio and public cultural site at Ekely; no canonical identity match found." },
-    { "sourceItem": "Tegnerforbundet - senter for tegnekunst", "proposedPlaceId": "tegnerforbundet", "basis": "Durable professional organisation with a dedicated public exhibition and mediation venue." },
-    { "sourceItem": "Unge Kunstneres Samfund", "proposedPlaceId": "unge_kunstneres_samfund", "basis": "Long-running artist membership organisation and independent exhibition space." },
-    { "sourceItem": "Galleri Norske Grafikere", "proposedPlaceId": "norske_grafikere", "basis": "Long-running artist organisation whose gallery is a core public exhibition and knowledge venue." },
-    { "sourceItem": "Galleri ROM for kunst og arkitektur", "proposedPlaceId": "rom_for_kunst_og_arkitektur", "basis": "Independent foundation and durable interdisciplinary exhibition and meeting place with roots in the late 1980s." },
-    { "sourceItem": "The Mini Bottle Gallery", "proposedPlaceId": "the_mini_bottle_gallery", "basis": "Distinct, durable public specialty museum with an independent physical identity; treat as a museum/cultural-place candidate rather than a commercial art-gallery gap." },
-    { "sourceItem": "Galleri LNM", "proposedPlaceId": "galleri_lnm", "basis": "Independent professional artist organisation and public gallery." },
-    { "sourceItem": "RAM galleri", "proposedPlaceId": "ram_galleri", "basis": "Long-running member society and explicitly non-commercial artist-run exhibition institution." },
-    { "sourceItem": "Galleri Schaeffers Gate 5", "proposedPlaceId": "galleri_schaeffers_gate_5", "basis": "Independent not-for-profit art, music and performance space with a stable identity since 2011." },
-    { "sourceItem": "Grafill", "proposedPlaceId": "grafill", "basis": "Non-profit national professional organisation with a dedicated Oslo space used for exhibitions, lectures, workshops and public activity." }
+    {
+      "sourceItem": "Edvard Munchs atelier på Ekely",
+      "proposedPlaceId": "edvard_munchs_atelier_ekely",
+      "basis": "Distinct preserved historic studio and public cultural site at Ekely; no canonical identity match found."
+    },
+    {
+      "sourceItem": "Tegnerforbundet - senter for tegnekunst",
+      "proposedPlaceId": "tegnerforbundet",
+      "basis": "Durable professional organisation with a dedicated public exhibition and mediation venue."
+    },
+    {
+      "sourceItem": "Unge Kunstneres Samfund",
+      "proposedPlaceId": "unge_kunstneres_samfund",
+      "basis": "Long-running artist membership organisation and independent exhibition space."
+    },
+    {
+      "sourceItem": "Galleri Norske Grafikere",
+      "proposedPlaceId": "norske_grafikere",
+      "basis": "Long-running artist organisation whose gallery is a core public exhibition and knowledge venue."
+    },
+    {
+      "sourceItem": "Galleri ROM for kunst og arkitektur",
+      "proposedPlaceId": "rom_for_kunst_og_arkitektur",
+      "basis": "Independent foundation and durable interdisciplinary exhibition and meeting place with roots in the late 1980s."
+    },
+    {
+      "sourceItem": "The Mini Bottle Gallery",
+      "proposedPlaceId": "the_mini_bottle_gallery",
+      "basis": "Distinct, durable public specialty museum with an independent physical identity; treat as a museum/cultural-place candidate rather than a commercial art-gallery gap."
+    },
+    {
+      "sourceItem": "Galleri LNM",
+      "proposedPlaceId": "galleri_lnm",
+      "basis": "Independent professional artist organisation and public gallery."
+    },
+    {
+      "sourceItem": "RAM galleri",
+      "proposedPlaceId": "ram_galleri",
+      "basis": "Long-running member society and explicitly non-commercial artist-run exhibition institution."
+    },
+    {
+      "sourceItem": "Galleri Schaeffers Gate 5",
+      "proposedPlaceId": "galleri_schaeffers_gate_5",
+      "basis": "Independent not-for-profit art, music and performance space with a stable identity since 2011."
+    },
+    {
+      "sourceItem": "Grafill",
+      "proposedPlaceId": "grafill",
+      "basis": "Non-profit national professional organisation with a dedicated Oslo space used for exhibitions, lectures, workshops and public activity."
+    }
   ],
   "privateCommercialPolicyDeferrals": [
     "Format Oslo",
@@ -116,11 +243,14 @@
       "galleri_schaeffers_gate_5",
       "grafill"
     ],
-    "parentEnrichmentQueue": [
+    "parentEnrichmentQueue": [],
+    "coordinateOnlyBacklog": [
+      "soft_galleri"
+    ],
+    "completedParentEnrichments": [
       "radmannsgarden_og_anatomibygget:BO Billedkunstnerne i Oslo",
       "kirkeristen_basarene_brannvakten:Oslo Glass Studio",
       "hauges_minde:Atelier Nord"
-    ],
-    "coordinateOnlyBacklog": ["soft_galleri"]
+    ]
   }
 }
