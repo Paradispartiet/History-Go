@@ -94,7 +94,7 @@ jobs:
             rm -f reports/majorstua-quiz-repair-status.md
 
             changed_paths=$(git status --porcelain | sed -E 's/^.. //')
-            unexpected=$(printf '%s\n' "$changed_paths" | grep -Ev '^(data/quiz/by/majorstua_sets\.json|data/knowledge/(knowledge_units|concepts|terms|stories|knowledge_emne_review_queue)\.generated\.json|reports/(knowledge-id-backfill|quiz-content-quality|quiz-normal-opening-migration-inventory)\.json|reports/quiz-normal-opening-migration-inventory\.md|reports/quiz-normal-opening-migration-inventory-validation\.txt|reports/majorstua-quiz-repair\.md|reports/majorstua-quiz-repair-validation\.txt|reports/majorstua-quiz-repair-status\.md|tools/apply-majorstua-quiz-normalization\.mjs|tools/validate-majorstua-quiz-normalization\.mjs)$' || true)
+            unexpected=$(printf '%s\n' "$changed_paths" | grep -Ev '^(data/quiz/by/majorstua_sets\.json|data/knowledge/(knowledge_units|concepts|terms|stories|knowledge_emne_review_queue)\.generated\.json|reports/(knowledge-id-backfill|knowledge-contract-audit|quiz-content-quality|quiz-normal-opening-migration-inventory)\.json|reports/quiz-normal-opening-migration-inventory\.md|reports/quiz-normal-opening-migration-inventory-validation\.txt|reports/majorstua-quiz-repair\.md|reports/majorstua-quiz-repair-validation\.txt|reports/majorstua-quiz-repair-status\.md|tools/apply-majorstua-quiz-normalization\.mjs|tools/validate-majorstua-quiz-normalization\.mjs)$' || true)
             if [[ -n "$unexpected" ]]; then
               echo 'Uventede filer i Majorstua-reparasjonen:'
               printf '%s\n' "$unexpected"
