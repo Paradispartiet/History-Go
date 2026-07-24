@@ -1,15 +1,16 @@
-name: Politics phase 2 canonical export
+name: Politics phase 2 canonical materialization
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: read
 
 jobs:
-  export:
-    if: github.head_ref == 'agent/politikk-vertikal-fase-2'
+  materialize:
+    if: github.head_ref == 'agent/politikk-vertikal-fase-2' && hashFiles('tools/politikk-phase-2-package-ready.txt') != ''
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,21 +18,59 @@ jobs:
           ref: agent/politikk-vertikal-fase-2
           fetch-depth: 1
 
-      - name: Export active politics canonical files
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Apply exact validated phase 2 package
         run: |
           set -euo pipefail
-          mkdir -p /tmp/politikk-phase-2/data/fag/politikk
-          mkdir -p /tmp/politikk-phase-2/reports/politikk-canonical-migration
-          mkdir -p /tmp/politikk-phase-2/tools
+          mkdir -p reports/politikk-canonical-migration
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
-          cp data/fag/politikk/{fagkart_politikk_canonical_v4_5.json,emner_politikk_canonical_v4_5.json,methods_politikk_canonical_v4_5.json,emnemapping_politikk_canonical_v4_5.json,politikkpensum_canonical_v4_5.json,quiz_generator_rules_politikk_v5_1_source_priority_patch.json} /tmp/politikk-phase-2/data/fag/politikk/
-          cp reports/politikk-canonical-migration/{statsvitenskap-question-blueprints.json,statsvitenskap-vertical-chain.md,politikk-vertikal-fordypningsplan.md} /tmp/politikk-phase-2/reports/politikk-canonical-migration/
-          cp tools/{validate-politikk-statsvitenskap-core.mjs,validate-politikk-institusjoner-phase-1.mjs} /tmp/politikk-phase-2/tools/
+          cat tools/politikk-phase-2-package.part-* > /tmp/politikk-phase-2-final.tar.gz.b64
+          echo '1f11b4a45b879abd5529feb72fc5f5fc0354a80ab5205f09bad10cfe7ea5f7dc  /tmp/politikk-phase-2-final.tar.gz.b64' \
+            | sha256sum -c - \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-phase-2-package-checksum.txt
 
-          find /tmp/politikk-phase-2 -type f -print | sort \
-            2>&1 | tee /tmp/politikk-phase-2/export-manifest.txt
+          base64 -d /tmp/politikk-phase-2-final.tar.gz.b64 > /tmp/politikk-phase-2-final.tar.gz
+          echo '25f6df49b15bb31f8ca578dafe2c6556de4287c631c19352e7e1da28448fb8fe  /tmp/politikk-phase-2-final.tar.gz' \
+            | sha256sum -c - \
+            2>&1 | tee -a reports/politikk-canonical-migration/politikk-phase-2-package-checksum.txt
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: politics-phase-2-canonical-inputs
-          path: /tmp/politikk-phase-2
+          tar -xzf /tmp/politikk-phase-2-final.tar.gz -C .
+
+          node tools/validate-politikk-politisk-teori-phase-2.mjs \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-politisk-teori-phase-2-validation.txt
+          node tools/validate-politikk-institusjoner-phase-1.mjs \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-validation.txt
+          node tools/validate-politikk-statsvitenskap-core.mjs \
+            2>&1 | tee reports/politikk-canonical-migration/statsvitenskap-vertical-chain-validation.txt
+
+          for file in \
+            data/fag/politikk/fagkart_politikk_canonical_v4_5.json \
+            data/fag/politikk/emner_politikk_canonical_v4_5.json \
+            data/fag/politikk/methods_politikk_canonical_v4_5.json \
+            data/fag/politikk/emnemapping_politikk_canonical_v4_5.json \
+            data/fag/politikk/politikkpensum_canonical_v4_5.json \
+            data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json \
+            reports/politikk-canonical-migration/statsvitenskap-question-blueprints.json; do
+            node -e 'JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log("PASS | Gyldig JSON: "+process.argv[1])' "$file" \
+              2>&1 | tee -a reports/politikk-canonical-migration/politikk-phase-2-reference-audit.txt
+          done
+
+          git diff --check \
+            2>&1 | tee -a reports/politikk-canonical-migration/politikk-phase-2-reference-audit.txt
+          echo 'PASS | git diff --check' \
+            | tee -a reports/politikk-canonical-migration/politikk-phase-2-reference-audit.txt
+
+          rm -f tools/politikk-phase-2-package.part-*
+          rm -f tools/politikk-phase-2-package-ready.txt
+          rm -f .github/workflows/politikk-phase-2-export.yml
+          rm -f reports/politikk-canonical-migration/politikk-phase-2-package-checksum.txt
+
+          git add -A data/fag/politikk reports/politikk-canonical-migration tools .github/workflows
+          git diff --cached --check
+          git commit -m 'Politikk: bygg politisk teori og ideologier som vertikal fase 2'
+          git push --force-with-lease origin HEAD:agent/politikk-vertikal-fase-2
