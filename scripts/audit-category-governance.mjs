@@ -64,8 +64,8 @@ for (const forbidden of ["kultur", "teater", "film", "tv", "journalistikk"]) {
 }
 
 if (!contract.runtimeCategories.includes("filosofi")) failures.push({ name: "filosofi", reason: "missing runtime category" });
-if (contract.fagSubjects.includes("filosofi")) failures.push({ name: "filosofi", reason: "must use vitenskap fag foundation until separate fagkart exists" });
-if (contract.runtimeToFag?.filosofi !== "vitenskap") failures.push({ name: "filosofi", reason: "runtimeToFag must map to vitenskap" });
+if (!contract.fagSubjects.includes("filosofi")) failures.push({ name: "filosofi", reason: "missing fag subject" });
+if (contract.runtimeToFag?.filosofi) failures.push({ name: "filosofi", reason: "must not map to another fag subject" });
 if (!contract.runtimeCategories.includes("scenekunst")) failures.push({ name: "scenekunst", reason: "missing runtime category" });
 if (!contract.fagSubjects.includes("scenekunst")) failures.push({ name: "scenekunst", reason: "missing fag subject" });
 if (contract.runtimeCategories.includes("sosial_laering")) failures.push({ name: "sosial_laering", reason: "must remain non-place badge" });
