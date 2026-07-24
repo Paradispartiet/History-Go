@@ -1,1 +1,1 @@
-Eksporter publisert Majorstua-fil for siste overflatefiks.
+Kjør diagnostisk sluttfiks for Majorstua.
