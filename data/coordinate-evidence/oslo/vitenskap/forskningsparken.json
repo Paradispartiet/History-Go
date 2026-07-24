@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "forskningsparken",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/forskningsparken.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_named_building_multipolygon_centroid",
+  "currentCoordinate": {
+    "lat": 59.94203365,
+    "lon": 10.71662635,
+    "r": 150,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap relation 10322880 – named Forskningsparken university-building multipolygon; official Forskningsparken, Brønnøysund and Kartverket address-context cross-check",
+    "coordType": "building_center",
+    "coordNote": "Canonical markør er et semantisk midtpunkt beregnet som arealvektet geometrisk sentrum av den komplette, navngitte Forskningsparken-multipolygonen OSM relation 10322880 (building=university, name:en=Oslo Science Park, wikidata=Q7107027). Relasjonen består av 4 ytterringer og 101 løste noder, dekker 8761.9 m², og sentrum ligger inne i bygningsgeometrien. Forskningsparken og Brønnøysundregistrene bekrefter Oslotech/Forskningsparken ved Gaustadalléen 21, 0349 Oslo. Kartverket har to offisielle representasjonspunkter for adressen; begge bevares som kontekst og ligger 28.8 og 46.4 meter fra bygningssentrum, uten at ett velges vilkårlig. Kollektivobjektene med samme navn er eksplisitt forkastet. Den tidligere markøren lå 156.6 meter unna. Radius 150 meter beholdes og dekker bygningens største målte sentrum-til-hjørne-avstand på 82.2 meter."
+  },
+  "identity": {
+    "currentName": "Forskningsparken",
+    "resolvedIdentity": "Forskningsparken / Oslo Science Park, drevet av Oslotech AS, organisasjonsnummer 937268815, ved Gaustadalléen 21, 0349 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "navngitt ikke-transport bygningsgeometri",
+    "offisiell institusjons- og adresseidentitet",
+    "alle offisielle adressepunkter bevart uten vilkårlig utvalg"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 10322880 – Forskningsparken",
+      "sourceUrl": "https://www.openstreetmap.org/relation/10322880",
+      "sourceObjectId": "osm-relation:10322880",
+      "sourceQuality": "complete_named_building_multipolygon",
+      "finding": "Navngitt building=university-multipolygon for Forskningsparken / Oslo Science Park, direkte koblet til Wikidata Q7107027 og Oslotech-nettstedet. Fire ytterringer, 101 løste noder og 8761.9 m². Det arealvektede semantiske midtpunktet ligger inne i geometrien.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical display-marker representerer selve navngitte forskningsparkbygget, ikke kollektivholdeplassene med samme navn."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Forskningsparken – offisielle sider",
+      "sourceUrl": "https://www.forskningsparken.no/",
+      "sourceObjectId": "forskningsparken-official:gaustadalleen-21",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Offisielle sider identifiserer Forskningsparken, Oslotech, Gaustadalléen 21, 0349 Oslo og historikken fra 1989.",
+      "canVerifyCoordinate": false,
+      "reason": "Autoritativ identitets-, adresse- og historikkilde; bygningsgeometrien leveres av OSM."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – Oslotech AS hovedenhet",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/enheter/937268815",
+      "sourceObjectId": "brreg-enhet:937268815",
+      "sourceQuality": "official_institution_identity",
+      "finding": "Oslotech AS har organisasjonsnummer 937268815 og forretningsadresse Gaustadalléen 21, 0349 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Offisiell virksomhets- og adresseidentitet."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – Oslotech underenhet",
+      "sourceUrl": "https://virksomhet.brreg.no/nb/oppslag/underenheter/974166194",
+      "sourceObjectId": "brreg-underenhet:974166194",
+      "sourceQuality": "official_operating_location",
+      "finding": "Underenheten bekrefter driftsstedet i Gaustadalléen 21, 0349 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Uavhengig offentlig driftssteds- og adressekryssjekk."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Adresser API – Gaustadalléen 21",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Gaustadall%C3%A9en&nummer=21&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12199:21:59.94228605,10.71674422",
+      "sourceQuality": "official_address_context",
+      "finding": "Offisielt representasjonspunkt 59.94228605, 10.71674422; 28.8 meter fra det valgte bygningssentrumet.",
+      "canVerifyCoordinate": false,
+      "reason": "Begge offisielle adressepunktene bevares som kontekst; ingen velges vilkårlig når en eksakt navngitt bygningsgeometri finnes."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Adresser API – Gaustadalléen 21B",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Gaustadall%C3%A9en&nummer=21&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12199:21B:59.94190814,10.71583142",
+      "sourceQuality": "official_address_context",
+      "finding": "Offisielt representasjonspunkt 59.94190814, 10.71583142; 46.4 meter fra det valgte bygningssentrumet.",
+      "canVerifyCoordinate": false,
+      "reason": "Begge offisielle adressepunktene bevares som kontekst; ingen velges vilkårlig når en eksakt navngitt bygningsgeometri finnes."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q7107027 – Oslo Science Park",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q7107027",
+      "sourceObjectId": "wikidata:Q7107027",
+      "sourceQuality": "structured_identity_crosscheck",
+      "finding": "Dedikert strukturert identitetsobjekt koblet direkte fra den navngitte OSM-bygningsrelasjonen.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitetskryssjekk; geometrien leveres av OSM relation 10322880."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Gaustadalléen 21, 0349 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12199:21:59.94228605,10.71674422",
+      "lat": 59.94228605,
+      "lon": 10.71674422,
+      "canApplyToPlace": false
+    },
+    {
+      "address": "Gaustadalléen 21, 0349 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12199:21B:59.94190814,10.71583142",
+      "lat": 59.94190814,
+      "lon": 10.71583142,
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:10322880",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12199:21:59.94228605,10.71674422",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12199:21B:59.94190814,10.71583142",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q7107027",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:10322880",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:10322880",
+      "lat": 59.94203365,
+      "lon": 10.71662635,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12199:21:59.94228605,10.71674422",
+      "lat": 59.94228605,
+      "lon": 10.71674422,
+      "coordRole": "address_context",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:12199:21B:59.94190814,10.71583142",
+      "lat": 59.94190814,
+      "lon": 10.71583142,
+      "coordRole": "address_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Det arealvektede sentrumet av den navngitte Forskningsparken-multipolygonen er anvendt som canonical display-marker."
+  },
+  "notes": [
+    "Canonical markør er et semantisk midtpunkt beregnet som arealvektet geometrisk sentrum av den komplette, navngitte Forskningsparken-multipolygonen OSM relation 10322880 (building=university, name:en=Oslo Science Park, wikidata=Q7107027). Relasjonen består av 4 ytterringer og 101 løste noder, dekker 8761.9 m², og sentrum ligger inne i bygningsgeometrien. Forskningsparken og Brønnøysundregistrene bekrefter Oslotech/Forskningsparken ved Gaustadalléen 21, 0349 Oslo. Kartverket har to offisielle representasjonspunkter for adressen; begge bevares som kontekst og ligger 28.8 og 46.4 meter fra bygningssentrum, uten at ett velges vilkårlig. Kollektivobjektene med samme navn er eksplisitt forkastet. Den tidligere markøren lå 156.6 meter unna. Radius 150 meter beholdes og dekker bygningens største målte sentrum-til-hjørne-avstand på 82.2 meter.",
+    "Research report: reports/oslo-coordinate-forskningsparken-research-post-195/summary.json"
+  ]
+}

@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-24T17:41:32.743Z
+Generert: 2026-07-24T17:47:03.259Z
 
 ## Oppsummering
 - Aktive filer validert: **690**
 - Antall steder validert: **1291**
 - Harde feil: **0**
 - Varsler: **508**
-- Coordinate review candidates: **770** signaler fordelt på **648** steder
+- Coordinate review candidates: **769** signaler fordelt på **647** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -1224,7 +1224,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 770 signaler fordelt på 648 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 769 signaler fordelt på 647 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -1232,7 +1232,7 @@ Totalt 770 signaler fordelt på 648 steder. Et sted kan ha flere signaler. Kandi
 | --- | --- |
 | coordStatus=verified uten coordPrecisionM | 227 |
 | lineært sted uten anchors | 80 |
-| stasjon/park/gate/torg/elv uten coordinate metadata | 69 |
+| stasjon/park/gate/torg/elv uten coordinate metadata | 68 |
 | lav koordinatpresisjon (<4 desimaler) | 73 |
 | park/stort område uten anchors eller coordNote | 128 |
 | svært stor r (>=500 m) uten coordNote | 66 |
@@ -1557,7 +1557,7 @@ Totalt 770 signaler fordelt på 648 steder. Et sted kan ha flere signaler. Kandi
 | mosneselva_etne | Mosneselva | natur | data/places/natur/vestland/etne/mosneselva_etne.json | 59.86656 | 6.32955 | 1000 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | vaulaelva_vassdraget | Vaulaelva og Vaulovassdraget | natur | data/places/natur/vestland/etne/vaulaelva_vassdraget.json | 59.81337 | 6.35371 | 1400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### stasjon/park/gate/torg/elv uten coordinate metadata (69)
+### stasjon/park/gate/torg/elv uten coordinate metadata (68)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1623,7 +1623,6 @@ Totalt 770 signaler fordelt på 648 steder. Et sted kan ha flere signaler. Kandi
 | hausmannsgate_aksen | Hausmannsgate-aksen | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9189 | 10.7513 | 240 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | schweigaards_gate_lodalen | Schweigaards gate–Lodalen veggakse | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9077 | 10.7725 | 260 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | kuba_akselpassasjer | Kuba-passasjene ved Akerselva | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9236 | 10.7558 | 180 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| forskningsparken | Forskningsparken | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.9426 | 10.7192 | 150 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | lisbon_maat | MAAT / Tejo-kraftstasjonen | kunst | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | 38.6953 | -9.1937 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | lisbon_terminal_de_cruzeiros | Terminal de Cruzeiros de Lisboa | naeringsliv | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | 38.7142 | -9.1242 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | lisbon_santa_apolonia_station | Santa Apolónia Station | naeringsliv | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | 38.714 | -9.1228 | 180 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
