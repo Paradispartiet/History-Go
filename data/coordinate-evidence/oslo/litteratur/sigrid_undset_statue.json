@@ -45,6 +45,16 @@
       "finding": "Kilden oppgir at Kjersti Wexelsen Goksøyrs Sigrid Undset-statue ble avduket i 1991.",
       "canVerifyCoordinate": false,
       "reason": "Historien er dokumentert, men eksakt monumentgeometri mangler."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Exact OSM node 7596280553 – linked-image visual rejection",
+      "sourceUrl": "https://www.openstreetmap.org/node/7596280553",
+      "sourceObjectId": "osm-node:7596280553",
+      "sourceQuality": "exact_candidate_visual_rejection",
+      "finding": "The two images linked directly from the exact OSM node show a dark naturalistic figure on a black plinth beside a stone building and benches. This does not match Kjersti Wexelsen Goksøyrs elongated grey-granite Sigrid Undset monument on a light inscribed pedestal.",
+      "canVerifyCoordinate": false,
+      "reason": "Visual identity mismatch. The OSM node represents another sculpture and is explicitly rejected as a canonical anchor."
     }
   ],
   "addressCandidates": [],
@@ -58,16 +68,22 @@
       "sourceProvider": "manual_research",
       "sourceObjectId": "lokalhistoriewiki:stensparken:sigrid-undset",
       "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "openstreetmap",
+      "sourceObjectId": "osm-node:7596280553",
+      "canApplyToPlace": false
     }
   ],
   "geometryCandidates": [],
   "coordinateCandidates": [],
   "decision": {
     "canBecomeVerified": false,
-    "blockedReason": "Oslo kommune dokumenterer Sigrid Undsets skulptur i Stensparken, og lokalhistorisk kilde dokumenterer avduking i 1991. Ingen konkret adresse eller entydig maskinsporbar sokkelkoordinat er dokumentert i denne passeringen; eksisterende lat/lon er derfor ikke godkjent som verified.",
-    "nextAction": "Do not promote to verified until one exact canonical anchor is documented."
+    "blockedReason": "Official sources resolve the Sigrid Undset monument identity but expose no exact coordinate. The closest exact OSM artwork candidate, node 7596280553, is now visually rejected because its directly linked images show a different sculpture. No verified canonical anchor remains.",
+    "nextAction": "Find an independent exact monument anchor or authoritative coordinate. Do not retry OSM node 7596280553."
   },
   "notes": [
-    "Oslo kommune dokumenterer Sigrid Undsets skulptur i Stensparken, og lokalhistorisk kilde dokumenterer avduking i 1991. Ingen konkret adresse eller entydig maskinsporbar sokkelkoordinat er dokumentert i denne passeringen; eksisterende lat/lon er derfor ikke godkjent som verified."
+    "Oslo kommune dokumenterer Sigrid Undsets skulptur i Stensparken, og lokalhistorisk kilde dokumenterer avduking i 1991. Ingen konkret adresse eller entydig maskinsporbar sokkelkoordinat er dokumentert i denne passeringen; eksisterende lat/lon er derfor ikke godkjent som verified.",
+    "Post-194 visual control explicitly rejects OSM node 7596280553: its directly linked images depict another sculpture. The legacy marker remains needs_source."
   ]
 }
