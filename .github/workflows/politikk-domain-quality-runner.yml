@@ -45,11 +45,11 @@ jobs:
           mkdir -p reports/politikk-canonical-migration
           base64 -d tools/apply-politikk-rett-vertical.py.gz.b64 | gunzip > tools/apply-politikk-rett-vertical.py
           python -m py_compile tools/apply-politikk-rett-vertical.py \
-            > reports/politikk-canonical-migration/rett-lov-migration-syntax.txt 2>&1
+            2>&1 | tee reports/politikk-canonical-migration/rett-lov-migration-syntax.txt
           python tools/apply-politikk-rett-vertical.py \
-            > reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt 2>&1
+            2>&1 | tee reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt
           node tools/validate-politikk-rett-vertical.mjs \
-            >> reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt 2>&1
+            2>&1 | tee -a reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt
           for file in \
             data/fag/politikk/fagkart_politikk_canonical_v4_5.json \
             data/fag/politikk/emner_politikk_canonical_v4_5.json \
@@ -59,12 +59,12 @@ jobs:
             data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json \
             reports/politikk-canonical-migration/rett-lov-question-blueprints.json; do
             node -e 'JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log("PASS | Gyldig JSON: "+process.argv[1])' "$file" \
-              >> reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt 2>&1
+              2>&1 | tee -a reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt
           done
           git diff --check \
-            >> reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt 2>&1
+            2>&1 | tee -a reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt
           echo "PASS | git diff --check" \
-            >> reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt
+            | tee -a reports/politikk-canonical-migration/rett-lov-vertical-chain-validation.txt
           rm -f tools/apply-politikk-rett-vertical.py tools/apply-politikk-rett-vertical.py.gz.b64
           rm -f reports/politikk-canonical-migration/rett-domain-work-marker.txt
           git config user.name github-actions[bot]
