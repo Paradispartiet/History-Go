@@ -11,9 +11,9 @@
     "emnemapping": "emnemapping_historie_canonical_v4_5.json",
     "pensum": "historiepensum_canonical_v4_5.json",
     "domain_count": 12,
-    "emne_count": 53,
-    "method_count": 23,
-    "mapping_count": 53
+    "emne_count": 57,
+    "method_count": 28,
+    "mapping_count": 57
   },
   "hard_rules": {
     "source_dominance_rule": "External historical/local sources must dominate the factual substance of every history quiz. Canonical files may guide emne choice, method choice, theory choice, set progression and risk control, but may not be the main source of visible question content.",
@@ -410,6 +410,66 @@
         "senere utfall som nødvendig for samtidens aktører",
         "synlig ombygging som bevis for fullstendig institusjonelt brudd",
         "teoretikernavn som tilstrekkelig svar"
+      ]
+    },
+    "his_makt_stat_institusjoner": {
+      "status": "complete_revised",
+      "purpose": "Bygge spørsmål om stat og institusjoner fra dokumenterte mandater, regler, beslutningskjeder, praksiser og konsekvenser — ikke fra løse maktbegreper eller teoretikernavn.",
+      "required_chain": [
+        "ekstern kilde eller konkret institusjonelt kildeobjekt",
+        "presis claim_basis",
+        "identifisert institusjon, myndighet eller jurisdiksjon",
+        "kompetanse, mandat eller samtidig regelgrunnlag",
+        "dokumentert beslutning, saksbehandling eller institusjonell praksis",
+        "iverksetting, håndheving eller dokumentert manglende gjennomføring",
+        "berørt gruppe, rettighet, plikt eller konsekvens",
+        "kildebegrensning, motstridende dokumentasjon eller arkivtaushet",
+        "kritisk institusjonell distinksjon",
+        "eventuelt teoribegrep etter at kjeden er etablert"
+      ],
+      "hook_ids": [
+        "his_institusjonsbygging_funksjon",
+        "his_embetsverk_byrakrati",
+        "his_beslutningskjede_kompetanse",
+        "his_statlig_kapasitet_ressurser",
+        "his_rettigheter_borgerskap_forvaltning",
+        "his_lov_domstol_rettsstat",
+        "his_politi_fengsel_straff",
+        "his_register_overvakning_disiplin",
+        "his_krise_unntak_kontinuitet",
+        "his_rettsoppgjor_legitimitet_minne"
+      ],
+      "emne_ids": [
+        "em_his_stat_institusjoner",
+        "em_his_embetsstat_forvaltning",
+        "em_his_styring_krise_kontinuitet",
+        "em_his_rett_politi_fengsel",
+        "em_his_kontroll_overvakning",
+        "em_his_rettsoppgjor",
+        "em_his_beslutningskjeder_kompetanse_ansvar",
+        "em_his_statlig_kapasitet_skatt_infrastruktur",
+        "em_his_rettigheter_borgerskap_forvaltning",
+        "em_his_politi_straff_institusjonshverdag"
+      ],
+      "method_ids": [
+        "met_institusjonshistorisk_analyse",
+        "met_arkivlesning",
+        "met_for_etter_historisk",
+        "met_kildekritikk",
+        "met_minneanalyse",
+        "met_beslutningskjedeanalyse",
+        "met_forvaltningshistorisk_saksanalyse",
+        "met_rettshistorisk_analyse",
+        "met_kontrollregimeanalyse",
+        "met_statskapasitetsanalyse"
+      ],
+      "forbidden_shortcuts": [
+        "bygning behandlet som identisk med institusjon",
+        "formelt mandat behandlet som dokumentert praksis",
+        "vedtak behandlet som bevis for iverksetting eller virkning",
+        "arkivets kategori behandlet som nøytral beskrivelse av personen",
+        "dagens rettsregler brukt som målestokk for fortidens prosess",
+        "maktbegrep eller teoretikernavn som tilstrekkelig svar"
       ]
     }
   }

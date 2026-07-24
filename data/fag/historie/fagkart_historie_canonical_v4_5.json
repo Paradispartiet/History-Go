@@ -2559,17 +2559,18 @@
       "id": "his_makt_stat_institusjoner",
       "title": "Makt, stat og institusjoner",
       "tagline": "Hvordan makt får rom, regler og bygninger",
-      "definition": "Dette området handler om kongemakt, stat, lov, forvaltning, politi, rettsvesen, fengsel og institusjoner. Historien leses gjennom hvordan makt organiseres, legitimeres, håndheves og møter motstand.",
+      "definition": "Historiefaglig analyse av hvordan stat og offentlige institusjoner får mandat, kompetanse, dokumentformer, ressurser og praksiser; hvordan beslutninger iverksettes; og hvordan lov, kontroll, rettigheter, krise og rettsoppgjør virker på konkrete steder.",
       "focus": [
-        "stat og forvaltning",
-        "lov og rett",
-        "fengsel, politi og kontroll",
-        "institusjonell kontinuitet og krise"
+        "institusjonsbygging, embetsverk og beslutningskjeder",
+        "statlig kapasitet, ressurser og gjennomføring",
+        "rettigheter, lov, domstol og rettsstat",
+        "politi, fengsel, registrering og overvåkning",
+        "krisestyring, ansvar, rettsoppgjør og offentlig minne"
       ],
       "topic_hooks": [
         {
-          "id": "his_stat_institusjon",
-          "title": "Stat og institusjonsbygging",
+          "id": "his_institusjonsbygging_funksjon",
+          "title": "Institusjonsbygging, mandat og funksjon",
           "canon": {
             "thinkers": [
               {
@@ -2584,8 +2585,8 @@
               {
                 "id": "charles_tilly",
                 "name": "Charles Tilly",
-                "why": "Statsdannelse, krig, skatt og organisering av makt",
-                "tier": "advanced",
+                "why": "Statsdannelse, tvang, skatt og organisering av statlig kapasitet",
+                "tier": "core",
                 "works": [
                   "Coercion, Capital, and European States"
                 ]
@@ -2593,29 +2594,36 @@
               {
                 "id": "francis_sejersted",
                 "name": "Francis Sejersted",
-                "why": "Norsk modernisering, rettsstat, demokrati og historisk institusjonsforståelse",
+                "why": "Norsk modernisering, rettsstat, demokrati og institusjonell endring",
                 "tier": "core",
                 "works": [
                   "Demokratisk kapitalisme"
+                ]
+              },
+              {
+                "id": "theda_skocpol",
+                "name": "Theda Skocpol",
+                "why": "Stater som organisasjoner med egne ressurser, kapasiteter og historiske handlingsrom",
+                "tier": "advanced",
+                "works": [
+                  "States and Social Revolutions"
                 ]
               }
             ]
           },
           "emne_ids": [
-            "em_his_stat_institusjoner",
-            "em_his_embetsstat_forvaltning",
-            "em_his_styring_krise_kontinuitet"
+            "em_his_stat_institusjoner"
           ],
           "best_place_types": [
             "institusjonsbygg",
             "slott",
             "festning",
             "rådhus",
-            "rettsbygning",
-            "departementsomrade"
+            "departementsomrade",
+            "rettsbygning"
           ],
           "avoid_place_types": [
-            "privat_sted_uten_institusjonsrolle"
+            "privat_sted_uten_dokumentert_institusjonsrolle"
           ],
           "set_phase_fit": [
             "bridge_facts_theory",
@@ -2625,13 +2633,16 @@
           "fact_anchor_required": true,
           "history_anchor_required": true,
           "avoid_surface_forms": [
-            "Hva er staten generelt uten stedlig institusjon"
+            "Hvilken institusjonsteori passer best uten dokumentert sak",
+            "Hvem hadde makten generelt uten kompetanse- eller beslutningsspor",
+            "Hvilken metode bruker historikeren?",
+            "Hvilken teoretiker passer best?"
           ],
           "preferred_question_moves": [
-            "connect building to state function",
-            "show how institution changes over time",
-            "compare symbolic and practical power",
-            "read crisis through institutional continuity"
+            "identify formal mandate and founding act",
+            "connect building to operational function",
+            "compare stated purpose with documented practice",
+            "trace institutional change and persistence"
           ],
           "comparison_pairs": [
             [
@@ -2640,7 +2651,7 @@
             ],
             [
               "francis_sejersted",
-              "reinhart_koselleck"
+              "theda_skocpol"
             ]
           ],
           "norwegian_thinker_ids": [
@@ -2654,34 +2665,682 @@
           ],
           "recommended_method_ids": [
             "met_institusjonshistorisk_analyse",
-            "met_arkivlesning",
-            "met_for_etter_historisk"
+            "met_beslutningskjedeanalyse",
+            "met_statskapasitetsanalyse"
           ],
           "canonical_status": "canonical",
           "registry_version": "historiepensum_v4_5",
-          "min_recommended_oslo_cases": 2,
-          "min_recommended_methods": 1,
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
           "case_gate_required": true,
           "method_gate_required": true,
           "theory_rotation_required": true,
           "canonical_file_role": "active",
           "generator_constraints": {
-            "min_case_count": 2,
-            "min_method_count": 1,
+            "min_case_count": 4,
+            "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_institutional_chain": true,
+            "require_authority_or_rule_basis": true,
+            "require_implementation_or_consequence": true,
+            "require_critical_distinction": true,
             "rotate_theorists": true
-          }
+          },
+          "definition": "Undersøker hvordan en offentlig institusjon oppstår, får mandat, organiseres, materialiseres i sted og endrer faktisk funksjon over tid.",
+          "critical_distinctions": [
+            "bygning vs institusjon",
+            "formelt mandat vs faktisk praksis",
+            "symbolsk makt vs operativ kapasitet",
+            "opprettelse vs senere funksjon"
+          ]
         },
         {
-          "id": "his_rett_kontroll",
-          "title": "Rett, politi og kontroll",
+          "id": "his_embetsverk_byrakrati",
+          "title": "Embetsverk, kontor og byråkrati",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "max_weber",
+                "name": "Max Weber",
+                "why": "Stat, byråkrati, legitimitet og institusjonell rasjonalitet",
+                "tier": "core",
+                "works": [
+                  "Economy and Society"
+                ]
+              },
+              {
+                "id": "jens_arup_seip",
+                "name": "Jens Arup Seip",
+                "why": "Embetsmannsstat, norsk statsutvikling og forholdet mellom forvaltning og politisk makt",
+                "tier": "core",
+                "works": [
+                  "Utsikt over Norges historie"
+                ]
+              },
+              {
+                "id": "rune_slagstad",
+                "name": "Rune Slagstad",
+                "why": "Kunnskapsregimer, profesjoner og institusjonelle strategier i norsk historie",
+                "tier": "core",
+                "works": [
+                  "De nasjonale strateger"
+                ]
+              },
+              {
+                "id": "francis_sejersted",
+                "name": "Francis Sejersted",
+                "why": "Norsk modernisering, rettsstat, demokrati og institusjonell endring",
+                "tier": "core",
+                "works": [
+                  "Demokratisk kapitalisme"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_embetsstat_forvaltning"
+          ],
+          "best_place_types": [
+            "departementsomrade",
+            "rådhus",
+            "arkiv",
+            "institusjonsbygg",
+            "kontorbygg"
+          ],
+          "avoid_place_types": [
+            "kontorbygg_uten_dokumentert_forvaltningshistorie"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "document-institution-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken institusjonsteori passer best uten dokumentert sak",
+            "Hvem hadde makten generelt uten kompetanse- eller beslutningsspor",
+            "Hvilken metode bruker historikeren?",
+            "Hvilken teoretiker passer best?"
+          ],
+          "preferred_question_moves": [
+            "identify office and jurisdiction",
+            "trace a case through administrative stages",
+            "separate professional expertise from political authority",
+            "compare rule-bound procedure with discretionary practice"
+          ],
+          "comparison_pairs": [
+            [
+              "max_weber",
+              "jens_arup_seip"
+            ],
+            [
+              "rune_slagstad",
+              "francis_sejersted"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "jens_arup_seip",
+            "rune_slagstad",
+            "francis_sejersted"
+          ],
+          "recommended_oslo_cases": [
+            "Regjeringskvartalet",
+            "Oslo rådhus",
+            "Riksarkivet",
+            "Stortinget"
+          ],
+          "recommended_method_ids": [
+            "met_forvaltningshistorisk_saksanalyse",
+            "met_arkivlesning",
+            "met_institusjonshistorisk_analyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_institutional_chain": true,
+            "require_authority_or_rule_basis": true,
+            "require_implementation_or_consequence": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker embeter, kontorer, profesjoner, saksrutiner og dokumentformer som historiske redskaper for styring.",
+          "critical_distinctions": [
+            "embete vs person",
+            "regelstyring vs skjønn",
+            "politisk beslutning vs administrativ behandling",
+            "arkivspor vs faktisk praksis"
+          ]
+        },
+        {
+          "id": "his_beslutningskjede_kompetanse",
+          "title": "Beslutningskjede, kompetanse og ansvar",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "max_weber",
+                "name": "Max Weber",
+                "why": "Stat, byråkrati, legitimitet og institusjonell rasjonalitet",
+                "tier": "core",
+                "works": [
+                  "Economy and Society"
+                ]
+              },
+              {
+                "id": "francis_sejersted",
+                "name": "Francis Sejersted",
+                "why": "Norsk modernisering, rettsstat, demokrati og institusjonell endring",
+                "tier": "core",
+                "works": [
+                  "Demokratisk kapitalisme"
+                ]
+              },
+              {
+                "id": "hannah_arendt",
+                "name": "Hannah Arendt",
+                "why": "Byråkrati, ansvar, autoritet og politisk makt under krise og sammenbrudd",
+                "tier": "core",
+                "works": [
+                  "The Origins of Totalitarianism"
+                ]
+              },
+              {
+                "id": "charles_tilly",
+                "name": "Charles Tilly",
+                "why": "Statsdannelse, tvang, skatt og organisering av statlig kapasitet",
+                "tier": "core",
+                "works": [
+                  "Coercion, Capital, and European States"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_beslutningskjeder_kompetanse_ansvar"
+          ],
+          "best_place_types": [
+            "institusjonsbygg",
+            "departementsomrade",
+            "rådhus",
+            "rettsbygning",
+            "arkiv"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_beslutningsspor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "decision-chain-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken institusjonsteori passer best uten dokumentert sak",
+            "Hvem hadde makten generelt uten kompetanse- eller beslutningsspor",
+            "Hvilken metode bruker historikeren?",
+            "Hvilken teoretiker passer best?"
+          ],
+          "preferred_question_moves": [
+            "name initiating actor and legal competence",
+            "follow documents through decision stages",
+            "separate decision from implementation",
+            "locate responsibility, review and appeal"
+          ],
+          "comparison_pairs": [
+            [
+              "max_weber",
+              "hannah_arendt"
+            ],
+            [
+              "francis_sejersted",
+              "charles_tilly"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "francis_sejersted"
+          ],
+          "recommended_oslo_cases": [
+            "Stortinget",
+            "Regjeringskvartalet",
+            "Oslo rådhus",
+            "Høyesteretts hus"
+          ],
+          "recommended_method_ids": [
+            "met_beslutningskjedeanalyse",
+            "met_forvaltningshistorisk_saksanalyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_institutional_chain": true,
+            "require_authority_or_rule_basis": true,
+            "require_implementation_or_consequence": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Rekonstruerer hvem som kunne foreslå, utrede, beslutte, iverksette, kontrollere og påklage en offentlig handling.",
+          "critical_distinctions": [
+            "kompetanse vs innflytelse",
+            "forslag vs vedtak",
+            "vedtak vs iverksetting",
+            "formelt ansvar vs praktisk kontroll"
+          ]
+        },
+        {
+          "id": "his_statlig_kapasitet_ressurser",
+          "title": "Statlig kapasitet, ressurser og gjennomføring",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "charles_tilly",
+                "name": "Charles Tilly",
+                "why": "Statsdannelse, tvang, skatt og organisering av statlig kapasitet",
+                "tier": "core",
+                "works": [
+                  "Coercion, Capital, and European States"
+                ]
+              },
+              {
+                "id": "theda_skocpol",
+                "name": "Theda Skocpol",
+                "why": "Stater som organisasjoner med egne ressurser, kapasiteter og historiske handlingsrom",
+                "tier": "advanced",
+                "works": [
+                  "States and Social Revolutions"
+                ]
+              },
+              {
+                "id": "michael_mann",
+                "name": "Michael Mann",
+                "why": "Despotisk og infrastrukturell makt, administrasjon og statlig gjennomføringsevne",
+                "tier": "advanced",
+                "works": [
+                  "The Sources of Social Power"
+                ]
+              },
+              {
+                "id": "francis_sejersted",
+                "name": "Francis Sejersted",
+                "why": "Norsk modernisering, rettsstat, demokrati og institusjonell endring",
+                "tier": "core",
+                "works": [
+                  "Demokratisk kapitalisme"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_statlig_kapasitet_skatt_infrastruktur"
+          ],
+          "best_place_types": [
+            "festning",
+            "tollbod",
+            "departementsomrade",
+            "rådhus",
+            "teknisk_anlegg",
+            "institusjonsbygg"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_statlig_ressurs_eller_iverksetting"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "capacity-evidence-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken institusjonsteori passer best uten dokumentert sak",
+            "Hvem hadde makten generelt uten kompetanse- eller beslutningsspor",
+            "Hvilken metode bruker historikeren?",
+            "Hvilken teoretiker passer best?"
+          ],
+          "preferred_question_moves": [
+            "identify resources and administrative reach",
+            "connect revenue or personnel to implementation",
+            "compare planned measure with actual coverage",
+            "show where capacity failed or met resistance"
+          ],
+          "comparison_pairs": [
+            [
+              "charles_tilly",
+              "theda_skocpol"
+            ],
+            [
+              "michael_mann",
+              "francis_sejersted"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "francis_sejersted"
+          ],
+          "recommended_oslo_cases": [
+            "Akershus festning",
+            "Tollboden",
+            "Regjeringskvartalet",
+            "Oslo rådhus"
+          ],
+          "recommended_method_ids": [
+            "met_statskapasitetsanalyse",
+            "met_institusjonshistorisk_analyse",
+            "met_for_etter_historisk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_institutional_chain": true,
+            "require_authority_or_rule_basis": true,
+            "require_implementation_or_consequence": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan skatt, personell, kunnskap, logistikk, bygg og infrastruktur gjorde staten i stand til å handle — eller viste grensene for dens kapasitet.",
+          "critical_distinctions": [
+            "vedtak vs gjennomføringsevne",
+            "ressurs vs resultat",
+            "sentral kontroll vs lokal kapasitet",
+            "formell tilstedeværelse vs faktisk rekkevidde"
+          ]
+        },
+        {
+          "id": "his_rettigheter_borgerskap_forvaltning",
+          "title": "Rettigheter, medborgerskap og forvaltning",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "t_h_marshall",
+                "name": "T. H. Marshall",
+                "why": "Sivile, politiske og sosiale rettigheter som historisk utviklede former for medborgerskap",
+                "tier": "advanced",
+                "works": [
+                  "Citizenship and Social Class"
+                ]
+              },
+              {
+                "id": "anne_lise_seip",
+                "name": "Anne-Lise Seip",
+                "why": "Norsk sosialpolitikk, velferdsinstitusjoner og forholdet mellom rett, hjelp og forvaltning",
+                "tier": "core",
+                "works": [
+                  "Sosialhjelpstaten blir til"
+                ]
+              },
+              {
+                "id": "e_p_thompson",
+                "name": "E. P. Thompson",
+                "why": "Lov, rettspraksis, makt og historiske konflikter mellom myndighet og undersåtter",
+                "tier": "core",
+                "works": [
+                  "Whigs and Hunters"
+                ]
+              },
+              {
+                "id": "francis_sejersted",
+                "name": "Francis Sejersted",
+                "why": "Norsk modernisering, rettsstat, demokrati og institusjonell endring",
+                "tier": "core",
+                "works": [
+                  "Demokratisk kapitalisme"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_rettigheter_borgerskap_forvaltning"
+          ],
+          "best_place_types": [
+            "rådhus",
+            "rettsbygning",
+            "institusjonsbygg",
+            "arkiv",
+            "skole",
+            "hospital"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_rettighets_eller_forvaltningssak"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "right-case-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken institusjonsteori passer best uten dokumentert sak",
+            "Hvem hadde makten generelt uten kompetanse- eller beslutningsspor",
+            "Hvilken metode bruker historikeren?",
+            "Hvilken teoretiker passer best?"
+          ],
+          "preferred_question_moves": [
+            "identify claimed right or imposed duty",
+            "name authority and applicable rule",
+            "trace application, decision and appeal",
+            "show who was included, excluded or treated differently"
+          ],
+          "comparison_pairs": [
+            [
+              "t_h_marshall",
+              "anne_lise_seip"
+            ],
+            [
+              "e_p_thompson",
+              "francis_sejersted"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "anne_lise_seip",
+            "francis_sejersted"
+          ],
+          "recommended_oslo_cases": [
+            "Stortinget",
+            "Oslo rådhus",
+            "Høyesteretts hus",
+            "Oslo byarkiv"
+          ],
+          "recommended_method_ids": [
+            "met_rettshistorisk_analyse",
+            "met_forvaltningshistorisk_saksanalyse",
+            "met_arkivlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_institutional_chain": true,
+            "require_authority_or_rule_basis": true,
+            "require_implementation_or_consequence": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan rettigheter, plikter, adgang, klage og offentlig hjelp ble definert, fordelt og avgrenset gjennom institusjoner.",
+          "critical_distinctions": [
+            "rettighet vs ytelse",
+            "formell likhet vs praktisk adgang",
+            "borgerstatus vs faktisk tilhørighet",
+            "regel vs individuell avgjørelse"
+          ]
+        },
+        {
+          "id": "his_lov_domstol_rettsstat",
+          "title": "Lov, domstol og rettsstat",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "e_p_thompson",
+                "name": "E. P. Thompson",
+                "why": "Lov, rettspraksis, makt og historiske konflikter mellom myndighet og undersåtter",
+                "tier": "core",
+                "works": [
+                  "Whigs and Hunters"
+                ]
+              },
+              {
+                "id": "max_weber",
+                "name": "Max Weber",
+                "why": "Stat, byråkrati, legitimitet og institusjonell rasjonalitet",
+                "tier": "core",
+                "works": [
+                  "Economy and Society"
+                ]
+              },
+              {
+                "id": "nils_christie",
+                "name": "Nils Christie",
+                "why": "Straff, konflikt, institusjoner og kontrollkritikk",
+                "tier": "core",
+                "works": [
+                  "Limits to Pain",
+                  "Conflict as Property"
+                ]
+              },
+              {
+                "id": "francis_sejersted",
+                "name": "Francis Sejersted",
+                "why": "Norsk modernisering, rettsstat, demokrati og institusjonell endring",
+                "tier": "core",
+                "works": [
+                  "Demokratisk kapitalisme"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_rett_politi_fengsel"
+          ],
+          "best_place_types": [
+            "rettsbygning",
+            "fengsel",
+            "festning",
+            "politistasjon",
+            "arkiv"
+          ],
+          "avoid_place_types": [
+            "sted_uten_lovtekst_dom_eller_dokumentert_rettspraksis"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "legal-source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken institusjonsteori passer best uten dokumentert sak",
+            "Hvem hadde makten generelt uten kompetanse- eller beslutningsspor",
+            "Hvilken metode bruker historikeren?",
+            "Hvilken teoretiker passer best?"
+          ],
+          "preferred_question_moves": [
+            "identify contemporaneous rule and jurisdiction",
+            "separate charge, procedure and judgment",
+            "compare legal norm with enforcement",
+            "test legal certainty against documented exceptions"
+          ],
+          "comparison_pairs": [
+            [
+              "e_p_thompson",
+              "max_weber"
+            ],
+            [
+              "nils_christie",
+              "francis_sejersted"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "nils_christie",
+            "francis_sejersted"
+          ],
+          "recommended_oslo_cases": [
+            "Høyesteretts hus",
+            "Møllergata 19",
+            "Akershus festning",
+            "Stortinget"
+          ],
+          "recommended_method_ids": [
+            "met_rettshistorisk_analyse",
+            "met_kildekritikk",
+            "met_beslutningskjedeanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_institutional_chain": true,
+            "require_authority_or_rule_basis": true,
+            "require_implementation_or_consequence": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker historiske lover, jurisdiksjon, prosedyre, dom, rettssikkerhet og forholdet mellom lovtekst og håndheving.",
+          "critical_distinctions": [
+            "lovtekst vs rettspraksis",
+            "anklage vs dom",
+            "jurisdiksjon vs fysisk kontroll",
+            "rettssikkerhet vs formell prosedyre"
+          ]
+        },
+        {
+          "id": "his_politi_fengsel_straff",
+          "title": "Politi, fengsel og strafferegime",
           "canon": {
             "thinkers": [
               {
                 "id": "michel_foucault",
                 "name": "Michel Foucault",
-                "why": "Fengsel, disiplin, overvåkning og institusjonell kontroll",
+                "why": "Fengsel, disiplin, registrering, overvåkning og institusjonell normalisering",
                 "tier": "core",
                 "works": [
                   "Discipline and Punish"
@@ -2690,7 +3349,7 @@
               {
                 "id": "nils_christie",
                 "name": "Nils Christie",
-                "why": "Straff, konflikt, institusjoner og kontrollkritikk i norsk og internasjonal kriminologi",
+                "why": "Straff, konflikt, institusjoner og kontrollkritikk",
                 "tier": "core",
                 "works": [
                   "Limits to Pain",
@@ -2700,45 +3359,54 @@
               {
                 "id": "david_garland",
                 "name": "David Garland",
-                "why": "Straff, kontrollkultur og moderne rettsstat",
+                "why": "Straffens institusjoner, kontrollkultur og moderne statsdannelse",
                 "tier": "advanced",
                 "works": [
-                  "The Culture of Control"
+                  "Punishment and Modern Society"
+                ]
+              },
+              {
+                "id": "erving_goffman",
+                "name": "Erving Goffman",
+                "why": "Institusjonshverdag, roller og makt i lukkede institusjoner",
+                "tier": "advanced",
+                "works": [
+                  "Asylums"
                 ]
               }
             ]
           },
           "emne_ids": [
-            "em_his_rett_politi_fengsel",
-            "em_his_kontroll_overvakning",
-            "em_his_rettsoppgjor"
+            "em_his_politi_straff_institusjonshverdag"
           ],
           "best_place_types": [
             "fengsel",
             "politistasjon",
-            "rettsbygning",
-            "minnested",
-            "institusjonsbygg"
+            "festning",
+            "fangeleir",
+            "rettsbygning"
           ],
           "avoid_place_types": [
-            "ren_seremoniplass_uten_kontrollhistorie"
+            "sensasjonalisert_sted_uten_dokumentert_institusjonspraksis"
           ],
           "set_phase_fit": [
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "place-first_then_named_theorist",
+          "question_surface_mode": "institutional-practice-first",
           "fact_anchor_required": true,
           "history_anchor_required": true,
           "avoid_surface_forms": [
-            "Sensasjonalisert vold eller tortur",
-            "Generisk fengselshistorie uten sted"
+            "Hvilken institusjonsteori passer best uten dokumentert sak",
+            "Hvem hadde makten generelt uten kompetanse- eller beslutningsspor",
+            "Hvilken metode bruker historikeren?",
+            "Hvilken teoretiker passer best?"
           ],
           "preferred_question_moves": [
-            "connect institution to control practice",
-            "compare legal and coercive power",
-            "read site through ordinary routines",
-            "ask how memory treats punishment"
+            "identify institution and formal function",
+            "reconstruct routine, custody and sanction",
+            "compare regulation with lived institutional practice",
+            "show who was controlled and with what documented consequence"
           ],
           "comparison_pairs": [
             [
@@ -2747,7 +3415,134 @@
             ],
             [
               "david_garland",
-              "michel_foucault"
+              "erving_goffman"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "nils_christie"
+          ],
+          "recommended_oslo_cases": [
+            "Botsfengselet",
+            "Møllergata 19",
+            "Akershus festning",
+            "Grini fangeleir"
+          ],
+          "recommended_method_ids": [
+            "met_kontrollregimeanalyse",
+            "met_institusjonshistorisk_analyse",
+            "met_minneanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_institutional_chain": true,
+            "require_authority_or_rule_basis": true,
+            "require_implementation_or_consequence": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker politiarbeid, fengsel, varetekt, straff, institusjonshverdag og forskjellen mellom formelt reglement og levd praksis.",
+          "critical_distinctions": [
+            "varetekt vs straff",
+            "reglement vs institusjonshverdag",
+            "domstol vs fengselsforvaltning",
+            "sikkerhet vs disiplin"
+          ]
+        },
+        {
+          "id": "his_register_overvakning_disiplin",
+          "title": "Register, overvåkning og disiplin",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "why": "Fengsel, disiplin, registrering, overvåkning og institusjonell normalisering",
+                "tier": "core",
+                "works": [
+                  "Discipline and Punish"
+                ]
+              },
+              {
+                "id": "james_c_scott",
+                "name": "James C. Scott",
+                "why": "Statlig lesbarhet, kategorisering, registre og forenkling av samfunn",
+                "tier": "core",
+                "works": [
+                  "Seeing Like a State"
+                ]
+              },
+              {
+                "id": "hannah_arendt",
+                "name": "Hannah Arendt",
+                "why": "Byråkrati, ansvar, autoritet og politisk makt under krise og sammenbrudd",
+                "tier": "core",
+                "works": [
+                  "The Origins of Totalitarianism"
+                ]
+              },
+              {
+                "id": "nils_christie",
+                "name": "Nils Christie",
+                "why": "Straff, konflikt, institusjoner og kontrollkritikk",
+                "tier": "core",
+                "works": [
+                  "Limits to Pain",
+                  "Conflict as Property"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_kontroll_overvakning"
+          ],
+          "best_place_types": [
+            "arkiv",
+            "politistasjon",
+            "fengsel",
+            "institusjonsbygg",
+            "okkupasjonssted"
+          ],
+          "avoid_place_types": [
+            "sted_uten_register_kilde_eller_dokumentert_kontrollpraksis"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "record-control-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken institusjonsteori passer best uten dokumentert sak",
+            "Hvem hadde makten generelt uten kompetanse- eller beslutningsspor",
+            "Hvilken metode bruker historikeren?",
+            "Hvilken teoretiker passer best?"
+          ],
+          "preferred_question_moves": [
+            "identify register, category and producing authority",
+            "trace how information enabled intervention",
+            "test omissions and category bias",
+            "separate recorded suspicion from documented action"
+          ],
+          "comparison_pairs": [
+            [
+              "michel_foucault",
+              "james_c_scott"
+            ],
+            [
+              "hannah_arendt",
+              "nils_christie"
             ]
           ],
           "norwegian_thinker_ids": [
@@ -2755,30 +3550,295 @@
           ],
           "recommended_oslo_cases": [
             "Møllergata 19",
-            "Grini fangeleir",
-            "Akershus festning",
-            "Botsfengselet"
+            "Riksarkivet",
+            "Oslo byarkiv",
+            "Victoria terrasse"
           ],
           "recommended_method_ids": [
-            "met_institusjonshistorisk_analyse",
-            "met_kildekritikk",
-            "met_minneanalyse"
+            "met_kontrollregimeanalyse",
+            "met_forvaltningshistorisk_saksanalyse",
+            "met_kildekritikk"
           ],
           "canonical_status": "canonical",
           "registry_version": "historiepensum_v4_5",
-          "min_recommended_oslo_cases": 2,
-          "min_recommended_methods": 1,
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
           "case_gate_required": true,
           "method_gate_required": true,
           "theory_rotation_required": true,
           "canonical_file_role": "active",
           "generator_constraints": {
-            "min_case_count": 2,
-            "min_method_count": 1,
+            "min_case_count": 4,
+            "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_institutional_chain": true,
+            "require_authority_or_rule_basis": true,
+            "require_implementation_or_consequence": true,
+            "require_critical_distinction": true,
             "rotate_theorists": true
-          }
+          },
+          "definition": "Undersøker hvordan registre, kategorier, identifikasjon, rapportering og observasjon gjorde mennesker og handlinger lesbare for myndigheter.",
+          "critical_distinctions": [
+            "registrering vs overvåkning",
+            "kategori vs person",
+            "opplysning vs bevis",
+            "synlighet for staten vs faktisk kontroll"
+          ]
+        },
+        {
+          "id": "his_krise_unntak_kontinuitet",
+          "title": "Krise, unntak og institusjonell kontinuitet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "reinhart_koselleck",
+                "name": "Reinhart Koselleck",
+                "why": "Krise, historisk tid og forholdet mellom erfaring og forventning",
+                "tier": "core",
+                "works": [
+                  "Futures Past"
+                ]
+              },
+              {
+                "id": "hannah_arendt",
+                "name": "Hannah Arendt",
+                "why": "Byråkrati, ansvar, autoritet og politisk makt under krise og sammenbrudd",
+                "tier": "core",
+                "works": [
+                  "The Origins of Totalitarianism"
+                ]
+              },
+              {
+                "id": "charles_tilly",
+                "name": "Charles Tilly",
+                "why": "Statsdannelse, tvang, skatt og organisering av statlig kapasitet",
+                "tier": "core",
+                "works": [
+                  "Coercion, Capital, and European States"
+                ]
+              },
+              {
+                "id": "francis_sejersted",
+                "name": "Francis Sejersted",
+                "why": "Norsk modernisering, rettsstat, demokrati og institusjonell endring",
+                "tier": "core",
+                "works": [
+                  "Demokratisk kapitalisme"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_styring_krise_kontinuitet"
+          ],
+          "best_place_types": [
+            "departementsomrade",
+            "festning",
+            "rådhus",
+            "politistasjon",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "krisested_uten_dokumentert_styrings_eller_beslutningsspor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "crisis-decision-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken institusjonsteori passer best uten dokumentert sak",
+            "Hvem hadde makten generelt uten kompetanse- eller beslutningsspor",
+            "Hvilken metode bruker historikeren?",
+            "Hvilken teoretiker passer best?"
+          ],
+          "preferred_question_moves": [
+            "identify declared or practical crisis condition",
+            "trace temporary authority and decision chain",
+            "compare emergency measure with ordinary rule",
+            "show what continued, changed and became permanent"
+          ],
+          "comparison_pairs": [
+            [
+              "reinhart_koselleck",
+              "hannah_arendt"
+            ],
+            [
+              "charles_tilly",
+              "francis_sejersted"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "francis_sejersted"
+          ],
+          "recommended_oslo_cases": [
+            "Regjeringskvartalet",
+            "Akershus festning",
+            "Møllergata 19",
+            "Oslo rådhus"
+          ],
+          "recommended_method_ids": [
+            "met_beslutningskjedeanalyse",
+            "met_statskapasitetsanalyse",
+            "met_for_etter_historisk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_institutional_chain": true,
+            "require_authority_or_rule_basis": true,
+            "require_implementation_or_consequence": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan institusjoner endrer kompetanse, rutiner, lokalisering og ansvar under krig, terror, brann eller politisk krise.",
+          "critical_distinctions": [
+            "krise vs varig ordning",
+            "midlertidig fullmakt vs ordinær kompetanse",
+            "institusjonell kontinuitet vs uendret praksis",
+            "beredskap vs faktisk gjennomføring"
+          ]
+        },
+        {
+          "id": "his_rettsoppgjor_legitimitet_minne",
+          "title": "Rettsoppgjør, legitimitet og minne",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "hannah_arendt",
+                "name": "Hannah Arendt",
+                "why": "Byråkrati, ansvar, autoritet og politisk makt under krise og sammenbrudd",
+                "tier": "core",
+                "works": [
+                  "The Origins of Totalitarianism"
+                ]
+              },
+              {
+                "id": "nils_christie",
+                "name": "Nils Christie",
+                "why": "Straff, konflikt, institusjoner og kontrollkritikk",
+                "tier": "core",
+                "works": [
+                  "Limits to Pain",
+                  "Conflict as Property"
+                ]
+              },
+              {
+                "id": "e_p_thompson",
+                "name": "E. P. Thompson",
+                "why": "Lov, rettspraksis, makt og historiske konflikter mellom myndighet og undersåtter",
+                "tier": "core",
+                "works": [
+                  "Whigs and Hunters"
+                ]
+              },
+              {
+                "id": "jorunn_sem_fure",
+                "name": "Jorunn Sem Fure",
+                "why": "Okkupasjon, rettsoppgjør, institusjonell konflikt og norsk samtidshistorie",
+                "tier": "core",
+                "works": [
+                  "Universitetet i kamp"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_rettsoppgjor"
+          ],
+          "best_place_types": [
+            "rettsbygning",
+            "fengsel",
+            "festning",
+            "minnested",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "minnested_uten_dokumentert_rettslig_prosess"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "legal-process-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken institusjonsteori passer best uten dokumentert sak",
+            "Hvem hadde makten generelt uten kompetanse- eller beslutningsspor",
+            "Hvilken metode bruker historikeren?",
+            "Hvilken teoretiker passer best?"
+          ],
+          "preferred_question_moves": [
+            "identify legal basis and historical jurisdiction",
+            "separate investigation, charge, judgment and punishment",
+            "test contemporaneous legitimacy against later memory",
+            "identify groups, exceptions and unresolved cases"
+          ],
+          "comparison_pairs": [
+            [
+              "hannah_arendt",
+              "nils_christie"
+            ],
+            [
+              "e_p_thompson",
+              "jorunn_sem_fure"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "nils_christie",
+            "jorunn_sem_fure"
+          ],
+          "recommended_oslo_cases": [
+            "Møllergata 19",
+            "Akershus festning",
+            "Villa Grande",
+            "Høyesteretts hus"
+          ],
+          "recommended_method_ids": [
+            "met_rettshistorisk_analyse",
+            "met_kildekritikk",
+            "met_minneanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_institutional_chain": true,
+            "require_authority_or_rule_basis": true,
+            "require_implementation_or_consequence": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker rettsoppgjør som kjeder av lovgrunnlag, etterforskning, dom, straff, politisk legitimering og senere offentlig minne.",
+          "critical_distinctions": [
+            "rettsoppgjør vs hevn",
+            "samtidig lovgrunnlag vs tilbakevirkning",
+            "individuelt ansvar vs kollektiv kategori",
+            "domshistorie vs minnekultur"
+          ]
         }
       ]
     },
