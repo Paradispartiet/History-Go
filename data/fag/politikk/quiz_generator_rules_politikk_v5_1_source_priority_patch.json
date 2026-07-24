@@ -1,5 +1,5 @@
 {
-  "version": "v5.2-styring-vertical-chain",
+  "version": "v5.5-konflikt-vertical-chain",
   "subject_id": "politikk",
   "subject_title": "Politikk & samfunn",
   "scope": "oslo_og_omegn",
@@ -362,7 +362,7 @@
   "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For politikk skal konkrete institusjoner, lover, vedtak, reformer, offentlige rom, rettsbygg, forvaltningssteder, demokratiske arenaer, velferdstjenester, konflikter, proteststeder, normsystemer, fordelingsdata, rettskilder, budsjett, reguleringsplaner, statistikk og samfunnsfaglige kilder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
   "migration_note": "Eksisterende places_politikk og people_politikk bør migreres til em_pol_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er politikk og ikke by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller annet fag.",
   "updated_at": "2026-07-24",
-  "quality_revision": "politikk-fordeling-vertical-2026-07-24",
+  "quality_revision": "politikk-konflikt-vertical-2026-07-24",
   "domain_quality_profiles": {
     "styring_institusjoner_forvaltning": {
       "status": "complete_revised",
@@ -1382,22 +1382,10 @@
       ]
     },
     "konflikt_makt_sivilsamfunn": {
+      "profile_id": "konflikt_makt_sivilsamfunn",
+      "revision": "politikk-konflikt-vertical-2026-07-24",
       "status": "complete_revised",
-      "quality_revision": "politikk-konflikt-vertical-2026-07-24",
-      "domain_id": "konflikt_makt_sivilsamfunn",
-      "question_surface_mode": "conflict-case-actor-mechanism-distinction-theory",
-      "required_chain": [
-        "external_conflict_case_or_source",
-        "claim_basis",
-        "actor_claim_and_target",
-        "power_mobilisation_or_influence_mechanism",
-        "critical_distinction",
-        "optional_theory_lens"
-      ],
-      "source_anchor_required": true,
-      "external_claim_basis_required": true,
-      "actor_and_claim_required": true,
-      "revised_hook_ids": [
+      "required_hook_ids": [
         "makt_og_interesser",
         "demonstrasjoner",
         "sivilsamfunn",
@@ -1409,17 +1397,7 @@
         "polarisering",
         "konfliktens_rom"
       ],
-      "revised_emne_ids": [
-        "em_pol_makt_interesser",
-        "em_pol_demonstrasjoner_protest",
-        "em_pol_interessegrupper_organisasjoner",
-        "em_pol_ideologi_konfliktlinjer",
-        "em_pol_arbeidsliv_kollektiv_kamp",
-        "em_pol_miljopolitikk_samfunn",
-        "em_pol_minnesteder_politisk_kamp",
-        "em_pol_polarisering_tillit"
-      ],
-      "revised_method_ids": [
+      "required_method_ids": [
         "met_pol_konfliktanalyse",
         "met_pol_fordelingsanalyse",
         "met_pol_protest_og_bevegelsesanalyse",
@@ -1434,19 +1412,559 @@
         "met_pol_politisk_historisk_analyse",
         "met_pol_legitimitetsanalyse"
       ],
-      "global_bans": [
-        "teoretikernavn som løsrevet fasit",
-        "generisk moralsk holdningsspørsmål",
-        "påstand hentet bare fra emne- eller hooknavn",
-        "sted uten dokumentert aktør, krav eller konfliktprosess"
+      "generation_sequence": [
+        "external_conflict_case_or_source",
+        "claim_basis",
+        "actors_claims_resources_and_arena",
+        "conflict_or_power_mechanism",
+        "critical_distinction",
+        "optional_theory_lens"
       ],
-      "generator_constraints": {
-        "require_external_claim_basis": true,
-        "require_actor_and_claim_identification": true,
-        "require_mechanism_explanation": true,
-        "require_critical_distinction": true,
-        "require_method_match_to_mechanism": true,
+      "hard_requirements": {
+        "external_claim_basis_required": true,
+        "case_specific_question_required": true,
+        "actors_claims_resources_required": true,
+        "mechanism_explanation_required": true,
+        "critical_distinction_required": true,
+        "method_match_to_mechanism_required": true,
         "ban_theorist_name_as_answer_without_concept": true
+      },
+      "forbidden_patterns": [
+        "generisk uenighet uten dokumentert konflikt",
+        "teoretikernavn som løsrevet fasit",
+        "organisasjons- eller stedsnavn uten aktør-, krav- og responsanalyse",
+        "canonical-fil brukt som faktakilde"
+      ],
+      "source_rule": "Konkrete påstander må bygge på ekstern kilde: vedtak, høring, arkiv, organisasjonskilde, protestforløp, tariff- eller arbeidslivskilde, plan, statistikk, meningsdata eller dokumentert offentlig konflikt.",
+      "hook_profiles": {
+        "makt_og_interesser": {
+          "required_emne_ids": [
+            "em_pol_makt_interesser",
+            "em_pol_ideologi_konfliktlinjer"
+          ],
+          "required_method_ids": [
+            "met_pol_makt_og_interesseanalyse",
+            "met_pol_konfliktanalyse",
+            "met_pol_institusjonsanalyse"
+          ],
+          "mechanism_options": [
+            "ressursasymmetri",
+            "dagsordenkontroll",
+            "vetoposisjon",
+            "nettverkstilgang",
+            "probleminnramming",
+            "strukturell avhengighet"
+          ],
+          "critical_distinction_options": [
+            "formell myndighet vs faktisk innflytelse",
+            "beslutningsmakt vs dagsordenmakt",
+            "uttalt preferanse vs institusjonelt interesseutfall",
+            "makt over vs makt til"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "pluralistisk konkurranse og observerbar beslutningsmakt"
+            },
+            {
+              "thinker_id": "karl_marx",
+              "concept": "klasseinteresser og strukturell makt"
+            },
+            {
+              "thinker_id": "antonio_gramsci",
+              "concept": "hegemoni og samtykke"
+            }
+          ],
+          "required_anchor_types": [
+            "public_decision",
+            "interest_organisation",
+            "hearing",
+            "budget_or_policy_document"
+          ],
+          "recommended_oslo_cases": [
+            "Stortinget",
+            "Regjeringskvartalet",
+            "Oslo rådhus",
+            "LO-bygget",
+            "Youngstorget"
+          ]
+        },
+        "demonstrasjoner": {
+          "required_emne_ids": [
+            "em_pol_demonstrasjoner_protest",
+            "em_pol_offentlighet_debatt"
+          ],
+          "required_method_ids": [
+            "met_pol_protest_og_bevegelsesanalyse",
+            "met_pol_konfliktanalyse",
+            "met_pol_offentlighetsanalyse"
+          ],
+          "mechanism_options": [
+            "mobilisering",
+            "rammefortolkning",
+            "handlingsrepertoar",
+            "politisk mulighetsstruktur",
+            "mediesynlighet",
+            "politi- og myndighetsrespons"
+          ],
+          "critical_distinction_options": [
+            "demonstrasjon vs sivil ulydighet",
+            "protesthendelse vs sosial bevegelse",
+            "lovlig adgang vs faktisk politisk effekt",
+            "deltakelse vs forstyrrelse"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "charles_tilly",
+              "concept": "repertoarer for kollektiv handling"
+            },
+            {
+              "thinker_id": "sidney_tarrow",
+              "concept": "politiske muligheter og mobilisering"
+            },
+            {
+              "thinker_id": "chantal_mouffe",
+              "concept": "agonistisk konflikt"
+            }
+          ],
+          "required_anchor_types": [
+            "demonstration",
+            "protest_archive",
+            "police_or_permit_document",
+            "movement_source"
+          ],
+          "recommended_oslo_cases": [
+            "Eidsvolls plass",
+            "Youngstorget",
+            "Rådhusplassen",
+            "Universitetsplassen",
+            "Regjeringskvartalet"
+          ]
+        },
+        "sivilsamfunn": {
+          "required_emne_ids": [
+            "em_pol_sivilsamfunn_organisering",
+            "em_pol_partier_bevegelser"
+          ],
+          "required_method_ids": [
+            "met_pol_sivilsamfunnsanalyse",
+            "met_pol_parti_og_bevegelsesanalyse",
+            "met_pol_offentlighetsanalyse"
+          ],
+          "mechanism_options": [
+            "foreningsdannelse",
+            "medlemsmobilisering",
+            "tjenesteproduksjon",
+            "interesseartikulasjon",
+            "motöffentlichhet",
+            "ressursavhengighet"
+          ],
+          "critical_distinction_options": [
+            "sivilsamfunn vs stat og marked",
+            "medlemskap vs representativt mandat",
+            "tjenesteyting vs politisk påvirkning",
+            "brobyggende vs avgrensende fellesskap"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "alexis_de_tocqueville",
+              "concept": "foreningsliv og demokratisk læring"
+            },
+            {
+              "thinker_id": "antonio_gramsci",
+              "concept": "sivilsamfunn og hegemoni"
+            },
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "offentlighet og kommunikativ innflytelse"
+            }
+          ],
+          "required_anchor_types": [
+            "civil_society_organisation",
+            "membership_source",
+            "grant_or_service_agreement",
+            "public_campaign"
+          ],
+          "recommended_oslo_cases": [
+            "Litteraturhuset",
+            "Youngstorget",
+            "Frivillighetens hus",
+            "Oslo rådhus",
+            "Eidsvolls plass"
+          ]
+        },
+        "interessegrupper": {
+          "required_emne_ids": [
+            "em_pol_interessegrupper_organisasjoner",
+            "em_pol_makt_interesser"
+          ],
+          "required_method_ids": [
+            "met_pol_makt_og_interesseanalyse",
+            "met_pol_sivilsamfunnsanalyse",
+            "met_pol_institusjonsanalyse"
+          ],
+          "mechanism_options": [
+            "lobbytilgang",
+            "ekspertisekontroll",
+            "høringsdeltakelse",
+            "korporativ representasjon",
+            "koalisjonsbygging",
+            "innsider- og outsiderstrategi"
+          ],
+          "critical_distinction_options": [
+            "interesserepresentasjon vs demokratisk representasjon",
+            "høring vs beslutning",
+            "innsiderstrategi vs offentlig mobilisering",
+            "pluralisme vs korporatisme"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "organisert pluralisme"
+            },
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "korporative kanaler og konfliktstruktur"
+            },
+            {
+              "thinker_id": "antonio_gramsci",
+              "concept": "organisert hegemoni"
+            }
+          ],
+          "required_anchor_types": [
+            "hearing",
+            "lobby_register_or_meeting",
+            "interest_organisation",
+            "policy_process"
+          ],
+          "recommended_oslo_cases": [
+            "Stortinget",
+            "Regjeringskvartalet",
+            "LO-bygget",
+            "Oslo rådhus",
+            "Youngstorget"
+          ]
+        },
+        "ideologi": {
+          "required_emne_ids": [
+            "em_pol_ideologi_konfliktlinjer",
+            "em_pol_normer_doxa"
+          ],
+          "required_method_ids": [
+            "met_pol_ideologianalyse",
+            "met_pol_diskursanalyse",
+            "met_pol_makt_og_interesseanalyse"
+          ],
+          "mechanism_options": [
+            "problemdefinisjon",
+            "begrepskobling",
+            "identitetsbygging",
+            "normalisering",
+            "grensedragning",
+            "politisk legitimering"
+          ],
+          "critical_distinction_options": [
+            "ideologi vs enkeltstandpunkt",
+            "beskrivende påstand vs normativ premiss",
+            "partiprogram vs bredere verdensbilde",
+            "konsensus vs hegemoni"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "karl_marx",
+              "concept": "ideologi og materielle interesser"
+            },
+            {
+              "thinker_id": "antonio_gramsci",
+              "concept": "hegemoni og sunn fornuft"
+            },
+            {
+              "thinker_id": "chantal_mouffe",
+              "concept": "artikulasjon og agonistisk grense"
+            }
+          ],
+          "required_anchor_types": [
+            "party_program",
+            "speech_or_manifesto",
+            "policy_document",
+            "public_debate"
+          ],
+          "recommended_oslo_cases": [
+            "Stortinget",
+            "Youngstorget",
+            "Eidsvolls plass",
+            "Litteraturhuset",
+            "Regjeringskvartalet"
+          ]
+        },
+        "arbeidslivspolitikk": {
+          "required_emne_ids": [
+            "em_pol_arbeidsliv_kollektiv_kamp",
+            "em_pol_fordeling_ressurser"
+          ],
+          "required_method_ids": [
+            "met_pol_konfliktanalyse",
+            "met_pol_fordelingsanalyse",
+            "met_pol_makt_og_interesseanalyse"
+          ],
+          "mechanism_options": [
+            "fagorganisering",
+            "kollektive forhandlinger",
+            "tariffbinding",
+            "streik",
+            "lockout",
+            "trepartssamarbeid",
+            "lønnsdannelse"
+          ],
+          "critical_distinction_options": [
+            "individuell arbeidsavtale vs tariffavtale",
+            "arbeidskamp vs generell politisk protest",
+            "formell streikerett vs faktisk forhandlingsmakt",
+            "medlemsmandat vs organisasjonsledelse"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "karl_marx",
+              "concept": "arbeidsforhold og klassekonflikt"
+            },
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "organiserte konfliktlinjer og korporatisme"
+            },
+            {
+              "thinker_id": "charles_tilly",
+              "concept": "kollektiv handling og mobilisering"
+            }
+          ],
+          "required_anchor_types": [
+            "collective_agreement",
+            "strike_or_lockout",
+            "labour_law_or_decision",
+            "union_or_employer_source"
+          ],
+          "recommended_oslo_cases": [
+            "Youngstorget",
+            "LO-bygget",
+            "Stortinget",
+            "Regjeringskvartalet",
+            "Oslo rådhus"
+          ]
+        },
+        "miljopolitisk_konflikt": {
+          "required_emne_ids": [
+            "em_pol_miljopolitikk_samfunn",
+            "em_pol_demonstrasjoner_protest"
+          ],
+          "required_method_ids": [
+            "met_pol_konfliktanalyse",
+            "met_pol_protest_og_bevegelsesanalyse",
+            "met_pol_plan_og_reguleringsanalyse"
+          ],
+          "mechanism_options": [
+            "kostnads- og risikofordeling",
+            "arealprioritering",
+            "ekspertinnramming",
+            "høring og medvirkning",
+            "vetoposisjon",
+            "skalaforskyvning",
+            "tidsdiskontering"
+          ],
+          "critical_distinction_options": [
+            "miljømål vs virkemiddel",
+            "lokal belastning vs kollektiv gevinst",
+            "vitenskapelig usikkerhet vs politisk verdikonflikt",
+            "medvirkning vs samtykke"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "charles_tilly",
+              "concept": "mobilisering og konfliktforløp"
+            },
+            {
+              "thinker_id": "chantal_mouffe",
+              "concept": "legitim politisk konflikt"
+            },
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "offentlig begrunnelse og deltakelse"
+            }
+          ],
+          "required_anchor_types": [
+            "environmental_plan",
+            "impact_assessment",
+            "hearing",
+            "protest_or_campaign",
+            "public_decision"
+          ],
+          "recommended_oslo_cases": [
+            "Oslo rådhus",
+            "Rådhusplassen",
+            "Eidsvolls plass",
+            "Maridalen",
+            "Bjørvika"
+          ]
+        },
+        "minne_og_makt": {
+          "required_emne_ids": [
+            "em_pol_minnesteder_politisk_kamp",
+            "em_pol_symbolsk_makt"
+          ],
+          "required_method_ids": [
+            "met_pol_symbolanalyse",
+            "met_pol_politisk_historisk_analyse",
+            "met_pol_diskursanalyse"
+          ],
+          "mechanism_options": [
+            "utvelgelse",
+            "navngiving",
+            "ritualisering",
+            "symbolsk legitimering",
+            "utelatelse",
+            "motminne",
+            "institusjonell kuratering"
+          ],
+          "critical_distinction_options": [
+            "historie vs kollektivt minne",
+            "minne vs feiring",
+            "anerkjennelse vs omfordeling",
+            "monument som kilde vs monument som politisk handling"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "symbolsk makt og klassifikasjon"
+            },
+            {
+              "thinker_id": "antonio_gramsci",
+              "concept": "hegemoni og motminne"
+            },
+            {
+              "thinker_id": "hannah_arendt",
+              "concept": "offentlig handling og felles verden"
+            }
+          ],
+          "required_anchor_types": [
+            "memorial",
+            "commemoration_decision",
+            "archive",
+            "naming_process",
+            "counter_memory_action"
+          ],
+          "recommended_oslo_cases": [
+            "22. juli-senteret",
+            "Eidsvolls plass",
+            "Universitetsplassen",
+            "Youngstorget",
+            "Rådhusplassen"
+          ]
+        },
+        "polarisering": {
+          "required_emne_ids": [
+            "em_pol_polarisering_tillit",
+            "em_pol_offentlighet_debatt"
+          ],
+          "required_method_ids": [
+            "met_pol_diskursanalyse",
+            "met_pol_legitimitetsanalyse",
+            "met_pol_konfliktanalyse"
+          ],
+          "mechanism_options": [
+            "elite-signalisering",
+            "sosial sortering",
+            "identitetsgrensedragning",
+            "medieforsterkning",
+            "negativ partiskhet",
+            "mistillitsdannelse"
+          ],
+          "critical_distinction_options": [
+            "uenighet vs polarisering",
+            "sakspolarisering vs affektiv polarisering",
+            "kritisk mistillit vs systemdelegitimering",
+            "motstander vs fiende"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "chantal_mouffe",
+              "concept": "agonisme og antagonisme"
+            },
+            {
+              "thinker_id": "jurgen_habermas",
+              "concept": "offentlig begrunnelse og kommunikativ konflikt"
+            },
+            {
+              "thinker_id": "robert_dahl",
+              "concept": "demokratisk opposisjon og toleranse"
+            }
+          ],
+          "required_anchor_types": [
+            "survey_or_election_data",
+            "public_debate",
+            "party_or_elite_statement",
+            "media_analysis",
+            "trust_measurement"
+          ],
+          "recommended_oslo_cases": [
+            "Stortinget",
+            "Eidsvolls plass",
+            "Litteraturhuset",
+            "Youngstorget",
+            "Universitetsplassen"
+          ]
+        },
+        "konfliktens_rom": {
+          "required_emne_ids": [
+            "em_pol_maktens_geografi",
+            "em_pol_demonstrasjoner_protest"
+          ],
+          "required_method_ids": [
+            "met_pol_romlig_maktanalyse",
+            "met_pol_protest_og_bevegelsesanalyse",
+            "met_pol_konfliktanalyse"
+          ],
+          "mechanism_options": [
+            "adgangskontroll",
+            "tillatelsesregime",
+            "politi- og sikkerhetsstyring",
+            "synlighetskonsentrasjon",
+            "symbolsk okkupasjon",
+            "overvåking",
+            "romlig fortrengning"
+          ],
+          "critical_distinction_options": [
+            "offentlig rom vs offentlig tilgjengelig rom",
+            "juridisk adgang vs praktisk adgang",
+            "tilstedeværelse vs politisk innflytelse",
+            "hendelsessted vs bevegelsesinfrastruktur"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "hannah_arendt",
+              "concept": "offentlig rom og politisk fremtreden"
+            },
+            {
+              "thinker_id": "charles_tilly",
+              "concept": "repertoar, arena og myndighetsrespons"
+            },
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "symbolsk og romlig makt"
+            }
+          ],
+          "required_anchor_types": [
+            "public_space",
+            "permit_or_police_document",
+            "demonstration_route",
+            "security_measure",
+            "spatial_plan"
+          ],
+          "recommended_oslo_cases": [
+            "Eidsvolls plass",
+            "Youngstorget",
+            "Rådhusplassen",
+            "Universitetsplassen",
+            "Regjeringskvartalet"
+          ]
+        }
       }
     }
   }

@@ -1,172 +1,302 @@
 [
   {
-    "blueprint_id": "pol_konflikt_01_makt_og_interesser",
+    "blueprint_id": "pol-konflikt-01-makt_og_interesser",
     "domain_id": "konflikt_makt_sivilsamfunn",
-    "topic_hook": "makt_og_interesser",
+    "hook_id": "makt_og_interesser",
     "emne_id": "em_pol_makt_interesser",
-    "source_anchor": "decision",
-    "claim_basis": "Dokumenter en konkret decision-kilde som identifiserer aktør, krav, mål eller utfall.",
+    "source_requirement": "public_decision",
+    "claim_basis_requirement": "Ekstern kilde skal dokumentere aktører, krav, arena og minst ett ledd i konfliktforløpet eller påvirkningsprosessen.",
     "method_id": "met_pol_makt_og_interesseanalyse",
-    "mechanism": "ressurskontroll",
-    "critical_distinction": "maktressurs vs faktisk gjennomslag",
-    "theory_lens": {
+    "mechanism": "ressursasymmetri",
+    "critical_distinction": "formell myndighet vs faktisk innflytelse",
+    "theory_concept": {
       "thinker_id": "robert_dahl",
-      "concept": "beslutningsmakt og observerbar innflytelse"
+      "concept": "pluralistisk konkurranse og observerbar beslutningsmakt"
     },
-    "question_plan": "Start i det dokumenterte caset, identifiser aktør og krav, forklar ressurskontroll, og test forskjellen mellom maktressurs vs faktisk gjennomslag.",
-    "answer_rule": "Riktig svar må forklare den dokumenterte mekanismen. Teoribegrepet er bare gyldig når det presiserer caset."
+    "case_anchor": "Stortinget",
+    "question_build_sequence": [
+      "source_case",
+      "precise_claim_basis",
+      "actors_claims_resources_and_response",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_concept"
+    ],
+    "answer_requirements": [
+      "identifiser dokumentert aktør og krav",
+      "forklar valgt konflikt- eller maktmekanisme",
+      "bruk distinksjonen presist",
+      "bruk teoribegrepet bare hvis det forklarer mekanismen"
+    ]
   },
   {
-    "blueprint_id": "pol_konflikt_02_demonstrasjoner",
+    "blueprint_id": "pol-konflikt-02-demonstrasjoner",
     "domain_id": "konflikt_makt_sivilsamfunn",
-    "topic_hook": "demonstrasjoner",
+    "hook_id": "demonstrasjoner",
     "emne_id": "em_pol_demonstrasjoner_protest",
-    "source_anchor": "demonstration_record",
-    "claim_basis": "Dokumenter en konkret demonstration_record-kilde som identifiserer aktør, krav, mål eller utfall.",
+    "source_requirement": "demonstration",
+    "claim_basis_requirement": "Ekstern kilde skal dokumentere aktører, krav, arena og minst ett ledd i konfliktforløpet eller påvirkningsprosessen.",
     "method_id": "met_pol_protest_og_bevegelsesanalyse",
     "mechanism": "mobilisering",
-    "critical_distinction": "deltakelse vs representativitet",
-    "theory_lens": {
+    "critical_distinction": "demonstrasjon vs sivil ulydighet",
+    "theory_concept": {
       "thinker_id": "charles_tilly",
-      "concept": "protestrepertoarer og kollektiv handling"
+      "concept": "repertoarer for kollektiv handling"
     },
-    "question_plan": "Start i det dokumenterte caset, identifiser aktør og krav, forklar mobilisering, og test forskjellen mellom deltakelse vs representativitet.",
-    "answer_rule": "Riktig svar må forklare den dokumenterte mekanismen. Teoribegrepet er bare gyldig når det presiserer caset."
+    "case_anchor": "Eidsvolls plass",
+    "question_build_sequence": [
+      "source_case",
+      "precise_claim_basis",
+      "actors_claims_resources_and_response",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_concept"
+    ],
+    "answer_requirements": [
+      "identifiser dokumentert aktør og krav",
+      "forklar valgt konflikt- eller maktmekanisme",
+      "bruk distinksjonen presist",
+      "bruk teoribegrepet bare hvis det forklarer mekanismen"
+    ]
   },
   {
-    "blueprint_id": "pol_konflikt_03_sivilsamfunn",
+    "blueprint_id": "pol-konflikt-03-sivilsamfunn",
     "domain_id": "konflikt_makt_sivilsamfunn",
-    "topic_hook": "sivilsamfunn",
-    "emne_id": "em_pol_interessegrupper_organisasjoner",
-    "source_anchor": "organisation_statutes",
-    "claim_basis": "Dokumenter en konkret organisation_statutes-kilde som identifiserer aktør, krav, mål eller utfall.",
+    "hook_id": "sivilsamfunn",
+    "emne_id": "em_pol_sivilsamfunn_organisering",
+    "source_requirement": "civil_society_organisation",
+    "claim_basis_requirement": "Ekstern kilde skal dokumentere aktører, krav, arena og minst ett ledd i konfliktforløpet eller påvirkningsprosessen.",
     "method_id": "met_pol_sivilsamfunnsanalyse",
-    "mechanism": "medlemsorganisering",
-    "critical_distinction": "medlemsmakt vs profesjonell ledelse",
-    "theory_lens": {
+    "mechanism": "foreningsdannelse",
+    "critical_distinction": "sivilsamfunn vs stat og marked",
+    "theory_concept": {
       "thinker_id": "alexis_de_tocqueville",
-      "concept": "foreningsliv som demokratisk skole"
+      "concept": "foreningsliv og demokratisk læring"
     },
-    "question_plan": "Start i det dokumenterte caset, identifiser aktør og krav, forklar medlemsorganisering, og test forskjellen mellom medlemsmakt vs profesjonell ledelse.",
-    "answer_rule": "Riktig svar må forklare den dokumenterte mekanismen. Teoribegrepet er bare gyldig når det presiserer caset."
+    "case_anchor": "Litteraturhuset",
+    "question_build_sequence": [
+      "source_case",
+      "precise_claim_basis",
+      "actors_claims_resources_and_response",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_concept"
+    ],
+    "answer_requirements": [
+      "identifiser dokumentert aktør og krav",
+      "forklar valgt konflikt- eller maktmekanisme",
+      "bruk distinksjonen presist",
+      "bruk teoribegrepet bare hvis det forklarer mekanismen"
+    ]
   },
   {
-    "blueprint_id": "pol_konflikt_04_interessegrupper",
+    "blueprint_id": "pol-konflikt-04-interessegrupper",
     "domain_id": "konflikt_makt_sivilsamfunn",
-    "topic_hook": "interessegrupper",
+    "hook_id": "interessegrupper",
     "emne_id": "em_pol_interessegrupper_organisasjoner",
-    "source_anchor": "hearing_submission",
-    "claim_basis": "Dokumenter en konkret hearing_submission-kilde som identifiserer aktør, krav, mål eller utfall.",
+    "source_requirement": "hearing",
+    "claim_basis_requirement": "Ekstern kilde skal dokumentere aktører, krav, arena og minst ett ledd i konfliktforløpet eller påvirkningsprosessen.",
     "method_id": "met_pol_makt_og_interesseanalyse",
-    "mechanism": "høringsdeltakelse",
-    "critical_distinction": "interessegruppe vs politisk parti",
-    "theory_lens": {
+    "mechanism": "lobbytilgang",
+    "critical_distinction": "interesserepresentasjon vs demokratisk representasjon",
+    "theory_concept": {
       "thinker_id": "robert_dahl",
-      "concept": "pluralistisk konkurranse mellom organiserte interesser"
+      "concept": "organisert pluralisme"
     },
-    "question_plan": "Start i det dokumenterte caset, identifiser aktør og krav, forklar høringsdeltakelse, og test forskjellen mellom interessegruppe vs politisk parti.",
-    "answer_rule": "Riktig svar må forklare den dokumenterte mekanismen. Teoribegrepet er bare gyldig når det presiserer caset."
+    "case_anchor": "Stortinget",
+    "question_build_sequence": [
+      "source_case",
+      "precise_claim_basis",
+      "actors_claims_resources_and_response",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_concept"
+    ],
+    "answer_requirements": [
+      "identifiser dokumentert aktør og krav",
+      "forklar valgt konflikt- eller maktmekanisme",
+      "bruk distinksjonen presist",
+      "bruk teoribegrepet bare hvis det forklarer mekanismen"
+    ]
   },
   {
-    "blueprint_id": "pol_konflikt_05_ideologi",
+    "blueprint_id": "pol-konflikt-05-ideologi",
     "domain_id": "konflikt_makt_sivilsamfunn",
-    "topic_hook": "ideologi",
+    "hook_id": "ideologi",
     "emne_id": "em_pol_ideologi_konfliktlinjer",
-    "source_anchor": "party_programme",
-    "claim_basis": "Dokumenter en konkret party_programme-kilde som identifiserer aktør, krav, mål eller utfall.",
+    "source_requirement": "party_program",
+    "claim_basis_requirement": "Ekstern kilde skal dokumentere aktører, krav, arena og minst ett ledd i konfliktforløpet eller påvirkningsprosessen.",
     "method_id": "met_pol_ideologianalyse",
     "mechanism": "problemdefinisjon",
     "critical_distinction": "ideologi vs enkeltstandpunkt",
-    "theory_lens": {
-      "thinker_id": "antonio_gramsci",
-      "concept": "hegemoni og common sense"
-    },
-    "question_plan": "Start i det dokumenterte caset, identifiser aktør og krav, forklar problemdefinisjon, og test forskjellen mellom ideologi vs enkeltstandpunkt.",
-    "answer_rule": "Riktig svar må forklare den dokumenterte mekanismen. Teoribegrepet er bare gyldig når det presiserer caset."
-  },
-  {
-    "blueprint_id": "pol_konflikt_06_arbeidslivspolitikk",
-    "domain_id": "konflikt_makt_sivilsamfunn",
-    "topic_hook": "arbeidslivspolitikk",
-    "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
-    "source_anchor": "collective_agreement",
-    "claim_basis": "Dokumenter en konkret collective_agreement-kilde som identifiserer aktør, krav, mål eller utfall.",
-    "method_id": "met_pol_konfliktanalyse",
-    "mechanism": "tariffavtale",
-    "critical_distinction": "individuell kontrakt vs kollektiv avtale",
-    "theory_lens": {
+    "theory_concept": {
       "thinker_id": "karl_marx",
-      "concept": "arbeidsforhold, klasse og konflikt"
+      "concept": "ideologi og materielle interesser"
     },
-    "question_plan": "Start i det dokumenterte caset, identifiser aktør og krav, forklar tariffavtale, og test forskjellen mellom individuell kontrakt vs kollektiv avtale.",
-    "answer_rule": "Riktig svar må forklare den dokumenterte mekanismen. Teoribegrepet er bare gyldig når det presiserer caset."
+    "case_anchor": "Stortinget",
+    "question_build_sequence": [
+      "source_case",
+      "precise_claim_basis",
+      "actors_claims_resources_and_response",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_concept"
+    ],
+    "answer_requirements": [
+      "identifiser dokumentert aktør og krav",
+      "forklar valgt konflikt- eller maktmekanisme",
+      "bruk distinksjonen presist",
+      "bruk teoribegrepet bare hvis det forklarer mekanismen"
+    ]
   },
   {
-    "blueprint_id": "pol_konflikt_07_miljopolitisk_konflikt",
+    "blueprint_id": "pol-konflikt-06-arbeidslivspolitikk",
     "domain_id": "konflikt_makt_sivilsamfunn",
-    "topic_hook": "miljopolitisk_konflikt",
-    "emne_id": "em_pol_miljopolitikk_samfunn",
-    "source_anchor": "environmental_assessment",
-    "claim_basis": "Dokumenter en konkret environmental_assessment-kilde som identifiserer aktør, krav, mål eller utfall.",
+    "hook_id": "arbeidslivspolitikk",
+    "emne_id": "em_pol_arbeidsliv_kollektiv_kamp",
+    "source_requirement": "collective_agreement",
+    "claim_basis_requirement": "Ekstern kilde skal dokumentere aktører, krav, arena og minst ett ledd i konfliktforløpet eller påvirkningsprosessen.",
     "method_id": "met_pol_konfliktanalyse",
-    "mechanism": "konsekvensutredning",
-    "critical_distinction": "vitenskapelig usikkerhet vs politisk uenighet",
-    "theory_lens": {
-      "thinker_id": "chantal_mouffe",
-      "concept": "legitim agonistisk konflikt"
+    "mechanism": "fagorganisering",
+    "critical_distinction": "individuell arbeidsavtale vs tariffavtale",
+    "theory_concept": {
+      "thinker_id": "karl_marx",
+      "concept": "arbeidsforhold og klassekonflikt"
     },
-    "question_plan": "Start i det dokumenterte caset, identifiser aktør og krav, forklar konsekvensutredning, og test forskjellen mellom vitenskapelig usikkerhet vs politisk uenighet.",
-    "answer_rule": "Riktig svar må forklare den dokumenterte mekanismen. Teoribegrepet er bare gyldig når det presiserer caset."
+    "case_anchor": "Youngstorget",
+    "question_build_sequence": [
+      "source_case",
+      "precise_claim_basis",
+      "actors_claims_resources_and_response",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_concept"
+    ],
+    "answer_requirements": [
+      "identifiser dokumentert aktør og krav",
+      "forklar valgt konflikt- eller maktmekanisme",
+      "bruk distinksjonen presist",
+      "bruk teoribegrepet bare hvis det forklarer mekanismen"
+    ]
   },
   {
-    "blueprint_id": "pol_konflikt_08_minne_og_makt",
+    "blueprint_id": "pol-konflikt-07-miljopolitisk_konflikt",
     "domain_id": "konflikt_makt_sivilsamfunn",
-    "topic_hook": "minne_og_makt",
+    "hook_id": "miljopolitisk_konflikt",
+    "emne_id": "em_pol_miljopolitikk_samfunn",
+    "source_requirement": "environmental_plan",
+    "claim_basis_requirement": "Ekstern kilde skal dokumentere aktører, krav, arena og minst ett ledd i konfliktforløpet eller påvirkningsprosessen.",
+    "method_id": "met_pol_konfliktanalyse",
+    "mechanism": "kostnads- og risikofordeling",
+    "critical_distinction": "miljømål vs virkemiddel",
+    "theory_concept": {
+      "thinker_id": "charles_tilly",
+      "concept": "mobilisering og konfliktforløp"
+    },
+    "case_anchor": "Oslo rådhus",
+    "question_build_sequence": [
+      "source_case",
+      "precise_claim_basis",
+      "actors_claims_resources_and_response",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_concept"
+    ],
+    "answer_requirements": [
+      "identifiser dokumentert aktør og krav",
+      "forklar valgt konflikt- eller maktmekanisme",
+      "bruk distinksjonen presist",
+      "bruk teoribegrepet bare hvis det forklarer mekanismen"
+    ]
+  },
+  {
+    "blueprint_id": "pol-konflikt-08-minne_og_makt",
+    "domain_id": "konflikt_makt_sivilsamfunn",
+    "hook_id": "minne_og_makt",
     "emne_id": "em_pol_minnesteder_politisk_kamp",
-    "source_anchor": "memorial_or_monument",
-    "claim_basis": "Dokumenter en konkret memorial_or_monument-kilde som identifiserer aktør, krav, mål eller utfall.",
+    "source_requirement": "memorial",
+    "claim_basis_requirement": "Ekstern kilde skal dokumentere aktører, krav, arena og minst ett ledd i konfliktforløpet eller påvirkningsprosessen.",
     "method_id": "met_pol_symbolanalyse",
-    "mechanism": "kanonisering",
-    "critical_distinction": "historisk hendelse vs offentlig minne",
-    "theory_lens": {
-      "thinker_id": "hannah_arendt",
-      "concept": "offentlig handling og politisk erindring"
+    "mechanism": "utvelgelse",
+    "critical_distinction": "historie vs kollektivt minne",
+    "theory_concept": {
+      "thinker_id": "pierre_bourdieu",
+      "concept": "symbolsk makt og klassifikasjon"
     },
-    "question_plan": "Start i det dokumenterte caset, identifiser aktør og krav, forklar kanonisering, og test forskjellen mellom historisk hendelse vs offentlig minne.",
-    "answer_rule": "Riktig svar må forklare den dokumenterte mekanismen. Teoribegrepet er bare gyldig når det presiserer caset."
+    "case_anchor": "22. juli-senteret",
+    "question_build_sequence": [
+      "source_case",
+      "precise_claim_basis",
+      "actors_claims_resources_and_response",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_concept"
+    ],
+    "answer_requirements": [
+      "identifiser dokumentert aktør og krav",
+      "forklar valgt konflikt- eller maktmekanisme",
+      "bruk distinksjonen presist",
+      "bruk teoribegrepet bare hvis det forklarer mekanismen"
+    ]
   },
   {
-    "blueprint_id": "pol_konflikt_09_polarisering",
+    "blueprint_id": "pol-konflikt-09-polarisering",
     "domain_id": "konflikt_makt_sivilsamfunn",
-    "topic_hook": "polarisering",
+    "hook_id": "polarisering",
     "emne_id": "em_pol_polarisering_tillit",
-    "source_anchor": "survey_or_time_series",
-    "claim_basis": "Dokumenter en konkret survey_or_time_series-kilde som identifiserer aktør, krav, mål eller utfall.",
+    "source_requirement": "survey_or_election_data",
+    "claim_basis_requirement": "Ekstern kilde skal dokumentere aktører, krav, arena og minst ett ledd i konfliktforløpet eller påvirkningsprosessen.",
     "method_id": "met_pol_diskursanalyse",
-    "mechanism": "partipolitisk sortering",
-    "critical_distinction": "ideologisk vs affektiv polarisering",
-    "theory_lens": {
+    "mechanism": "elite-signalisering",
+    "critical_distinction": "uenighet vs polarisering",
+    "theory_concept": {
       "thinker_id": "chantal_mouffe",
-      "concept": "agonisme vs antagonisme"
+      "concept": "agonisme og antagonisme"
     },
-    "question_plan": "Start i det dokumenterte caset, identifiser aktør og krav, forklar partipolitisk sortering, og test forskjellen mellom ideologisk vs affektiv polarisering.",
-    "answer_rule": "Riktig svar må forklare den dokumenterte mekanismen. Teoribegrepet er bare gyldig når det presiserer caset."
+    "case_anchor": "Stortinget",
+    "question_build_sequence": [
+      "source_case",
+      "precise_claim_basis",
+      "actors_claims_resources_and_response",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_concept"
+    ],
+    "answer_requirements": [
+      "identifiser dokumentert aktør og krav",
+      "forklar valgt konflikt- eller maktmekanisme",
+      "bruk distinksjonen presist",
+      "bruk teoribegrepet bare hvis det forklarer mekanismen"
+    ]
   },
   {
-    "blueprint_id": "pol_konflikt_10_konfliktens_rom",
+    "blueprint_id": "pol-konflikt-10-konfliktens_rom",
     "domain_id": "konflikt_makt_sivilsamfunn",
-    "topic_hook": "konfliktens_rom",
-    "emne_id": "em_pol_demonstrasjoner_protest",
-    "source_anchor": "place_and_access_rule",
-    "claim_basis": "Dokumenter en konkret place_and_access_rule-kilde som identifiserer aktør, krav, mål eller utfall.",
+    "hook_id": "konfliktens_rom",
+    "emne_id": "em_pol_maktens_geografi",
+    "source_requirement": "public_space",
+    "claim_basis_requirement": "Ekstern kilde skal dokumentere aktører, krav, arena og minst ett ledd i konfliktforløpet eller påvirkningsprosessen.",
     "method_id": "met_pol_romlig_maktanalyse",
-    "mechanism": "romlig nærhet til beslutningstaker",
-    "critical_distinction": "offentlig eid vs offentlig tilgjengelig",
-    "theory_lens": {
+    "mechanism": "adgangskontroll",
+    "critical_distinction": "offentlig rom vs offentlig tilgjengelig rom",
+    "theory_concept": {
       "thinker_id": "hannah_arendt",
-      "concept": "offentlig rom som handlingsrom"
+      "concept": "offentlig rom og politisk fremtreden"
     },
-    "question_plan": "Start i det dokumenterte caset, identifiser aktør og krav, forklar romlig nærhet til beslutningstaker, og test forskjellen mellom offentlig eid vs offentlig tilgjengelig.",
-    "answer_rule": "Riktig svar må forklare den dokumenterte mekanismen. Teoribegrepet er bare gyldig når det presiserer caset."
+    "case_anchor": "Eidsvolls plass",
+    "question_build_sequence": [
+      "source_case",
+      "precise_claim_basis",
+      "actors_claims_resources_and_response",
+      "mechanism",
+      "critical_distinction",
+      "optional_theory_concept"
+    ],
+    "answer_requirements": [
+      "identifiser dokumentert aktør og krav",
+      "forklar valgt konflikt- eller maktmekanisme",
+      "bruk distinksjonen presist",
+      "bruk teoribegrepet bare hvis det forklarer mekanismen"
+    ]
   }
 ]

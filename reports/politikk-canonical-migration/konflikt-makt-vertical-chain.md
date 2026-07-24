@@ -1,26 +1,23 @@
-# Politikk: konflikt, makt og sivilsamfunn – vertikal kvalitetskjede
+# Politikk – vertikal kvalitetskjede for konflikt, makt og sivilsamfunn
 
-## Resultat
+- Revisjon: `politikk-konflikt-vertical-2026-07-24`
+- Dato: 2026-07-24
+- Direkte reviderte hooks: 10
+- Direkte reviderte emner: 8
+- Bevarte sterke, delte emner: 7
+- Direkte reviderte metoder: 2
+- Kanoniske metodeprofiler: 13
+- Direkte reviderte mappinger: 20
+- Generatorprofil: `konflikt_makt_sivilsamfunn`
+- Validerte spørsmålsplaner: 10
 
-Domenet `konflikt_makt_sivilsamfunn` er revidert direkte i de aktive kanoniske filene. Ingen overlay eller runtime-sidekanal er opprettet.
+## Kvalitetsrekkefølge
 
-## Omfang
+1. Ekstern konfliktkilde eller dokumenterbart case
+2. Presis `claim_basis`
+3. Aktører, krav, ressurser, arena og respons
+4. Identifisert konflikt-, makt- eller mobiliseringsmekanisme
+5. Testet kritisk distinksjon
+6. Valgfritt teoribegrep som forklarer eller sammenligner
 
-- 10 topic hooks med presise definisjoner, mekanismer, distinksjoner, teorispor, caseankre og antireduksjon
-- 8 emner direkte revidert
-- 13 kanoniske metoder med domenespesifikk konfliktprofil
-- 20 emnemappinger med aktør, krav, kildegrunnlag, mekanisme, distinksjon og metode
-- 10 representative spørsmålsplaner
-
-## Fast spørsmålsrekkefølge
-
-1. ekstern dokumentasjon av organisasjon, avtale, vedtak, protest, konflikt, måling eller hendelse
-2. presis claim basis
-3. aktør, krav og målgruppe
-4. makt-, mobiliserings- eller påvirkningsmekanisme
-5. kritisk distinksjon
-6. valgfritt teoribegrep
-
-## Kvalitetsregel
-
-Teoretikernavn alene er aldri gyldig fasit. Sted, person eller organisasjon er heller ikke nok: spørsmålet må bygge på en dokumentert konfliktprosess og teste hva aktørene gjør, hvilke ressurser eller regler som virker, og hvilken distinksjon caset krever.
+Teoretikernavn alene er ikke gyldig svar. Canonical-filene styrer analyseformen, men leverer ikke konfliktforløp, aktørpåstander eller faktagrunnlag.

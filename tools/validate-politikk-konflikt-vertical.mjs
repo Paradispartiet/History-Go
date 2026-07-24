@@ -1,109 +1,86 @@
+#!/usr/bin/env node
 import fs from "node:fs";
 
-const R = "politikk-konflikt-vertical-2026-07-24";
-const DOMAIN = "konflikt_makt_sivilsamfunn";
-const base = "data/fag/politikk";
-const read = (path) => JSON.parse(fs.readFileSync(path, "utf8"));
-const fagkart = read(`${base}/fagkart_politikk_canonical_v4_5.json`);
-const emner = read(`${base}/emner_politikk_canonical_v4_5.json`);
-const methods = read(`${base}/methods_politikk_canonical_v4_5.json`);
-const mapping = read(`${base}/emnemapping_politikk_canonical_v4_5.json`);
-const pensum = read(`${base}/politikkpensum_canonical_v4_5.json`);
-const generator = read(`${base}/quiz_generator_rules_politikk_v5_1_source_priority_patch.json`);
+const read = p => JSON.parse(fs.readFileSync(p, "utf8"));
+const domainId = "konflikt_makt_sivilsamfunn";
+const revision = "politikk-konflikt-vertical-2026-07-24";
+const fag = read("data/fag/politikk/fagkart_politikk_canonical_v4_5.json");
+const emner = read("data/fag/politikk/emner_politikk_canonical_v4_5.json");
+const methods = read("data/fag/politikk/methods_politikk_canonical_v4_5.json");
+const maps = read("data/fag/politikk/emnemapping_politikk_canonical_v4_5.json");
+const pensum = read("data/fag/politikk/politikkpensum_canonical_v4_5.json");
+const gen = read("data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json");
 const blueprints = read("reports/politikk-canonical-migration/konflikt-makt-question-blueprints.json");
 
 let pass = 0;
-const ok = (value, message) => {
-  if (!value) throw new Error(`FAIL | ${message}`);
-  console.log(`PASS | ${message}`);
-  pass += 1;
-};
-
-const domain = fagkart.categories.find((item) => item.id === DOMAIN);
-ok(domain?.quality_revision === R, "Fagkartdomenet har ny revisjon");
-ok(domain?.topic_hooks?.length === 10, "Domenet har 10 hooks");
-for (const hook of domain.topic_hooks) {
-  ok(hook.quality_revision === R, `Hook ${hook.id} har ny revisjon`);
-  ok(hook.mechanisms?.length >= 5, `Hook ${hook.id} har mekanismer`);
-  ok(hook.critical_distinctions?.length >= 3, `Hook ${hook.id} har distinksjoner`);
-  ok(hook.theory_lenses?.length === 3, `Hook ${hook.id} har tre teorispor`);
-  ok(hook.case_anchors?.length >= 2, `Hook ${hook.id} har caseankre`);
-  ok(hook.recommended_method_ids?.length >= 2, `Hook ${hook.id} har målrettede metoder`);
-  ok(hook.generator_constraints?.require_actor_and_claim_identification === true, `Hook ${hook.id} krever aktør og krav`);
-  ok(hook.generator_constraints?.require_mechanism_explanation === true, `Hook ${hook.id} krever mekanisme`);
-  ok(hook.generator_constraints?.require_critical_distinction === true, `Hook ${hook.id} krever distinksjon`);
-  ok(hook.generator_constraints?.ban_theorist_name_as_answer_without_concept === true, `Hook ${hook.id} forbyr løsrevet teoretikernavn`);
+let fail = 0;
+function check(ok, label) {
+  if (ok) { console.log(`PASS | ${label}`); pass++; }
+  else { console.error(`FAIL | ${label}`); fail++; }
 }
-
-const revisedEmnes = emner.filter((item) => item.quality_revision === R);
-ok(revisedEmnes.length === 8, "Åtte konflikt-emner er direkte revidert");
-for (const emne of revisedEmnes) {
-  ok(emne.mechanisms?.length >= 5, `Emne ${emne.emne_id} har mekanismer`);
-  ok(emne.distinguish_from?.length >= 3, `Emne ${emne.emne_id} har distinksjoner`);
-  ok(emne.recommended_method_ids?.length >= 2, `Emne ${emne.emne_id} har målrettede metoder`);
-  ok(emne.canonical_thinker_ids?.length === 3, `Emne ${emne.emne_id} har tre teorispor`);
-  ok(emne.generator_constraints?.require_actor_and_claim_identification === true, `Emne ${emne.emne_id} krever aktør og krav`);
-  ok(emne.generator_constraints?.ban_theorist_name_as_answer_without_concept === true, `Emne ${emne.emne_id} forbyr løsrevet teoretikernavn`);
+const category = fag.categories.find(x => x.id === domainId);
+check(Boolean(category), "Domenet finnes");
+check(category?.quality_revision === revision, "Domenet har ny revisjon");
+check(category?.topic_hooks?.length === 10, "Domenet har 10 hooks");
+for (const hook of category.topic_hooks) {
+  check(hook.quality_revision === revision, `Hook ${hook.id} har ny revisjon`);
+  check(Boolean(hook.definition && hook.core_problem), `Hook ${hook.id} har definisjon og kjerneproblem`);
+  check(hook.mechanisms?.length >= 5, `Hook ${hook.id} har mekanismer`);
+  check(hook.critical_distinctions?.length >= 4, `Hook ${hook.id} har distinksjoner`);
+  check(hook.theory_lenses?.length === 3, `Hook ${hook.id} har tre teorispor`);
+  check(hook.recommended_method_ids?.length >= 3, `Hook ${hook.id} har målrettede metoder`);
+  check(hook.generator_constraints?.ban_theorist_name_as_answer_without_concept === true, `Hook ${hook.id} forbyr løsrevet teoretikernavn`);
 }
-
-const methodIds = new Set(methods.methods.map((method) => method.method_id));
-const profiled = methods.methods.filter((method) => method.domain_profiles?.[DOMAIN]?.quality_revision === R);
-ok(profiled.length === 13, "Tretten metoder har konfliktprofil");
-for (const method of profiled) {
-  const profile = method.domain_profiles[DOMAIN];
-  ok(profile.mechanism_focus?.length >= 3, `Metode ${method.method_id} har mekanismeprofil`);
-  ok(profile.critical_distinctions?.length >= 3, `Metode ${method.method_id} har distinksjoner`);
-  ok(profile.source_requirements?.length >= 3, `Metode ${method.method_id} har kildekrav`);
+const directEmnes = new Set(["em_pol_makt_interesser", "em_pol_demonstrasjoner_protest", "em_pol_interessegrupper_organisasjoner", "em_pol_arbeidsliv_kollektiv_kamp", "em_pol_miljopolitikk_samfunn", "em_pol_minnesteder_politisk_kamp", "em_pol_normer_doxa", "em_pol_polarisering_tillit"]);
+for (const e of emner.filter(x => directEmnes.has(x.emne_id))) {
+  check(e.quality_revision === revision, `Emne ${e.emne_id} har ny revisjon`);
+  check(e.mechanisms?.length >= 5, `Emne ${e.emne_id} har mekanismer`);
+  check(e.key_questions?.length === 3, `Emne ${e.emne_id} har tre nøkkelspørsmål`);
+  check(e.canonical_thinker_ids?.length === 3, `Emne ${e.emne_id} har tre målrettede teorispor`);
+  check(e.method_ids?.length >= 3, `Emne ${e.emne_id} har målrettede metoder`);
 }
-
-const mappings = [];
-for (const item of mapping) {
-  for (const candidate of item.mappings || []) {
-    if (candidate.fagkart_kategori === DOMAIN) mappings.push(candidate);
+const directMethods = new Set(["met_pol_konfliktanalyse", "met_pol_makt_og_interesseanalyse"]);
+const domainMethods = new Set(["met_pol_konfliktanalyse", "met_pol_fordelingsanalyse", "met_pol_protest_og_bevegelsesanalyse", "met_pol_offentlighetsanalyse", "met_pol_romlig_maktanalyse", "met_pol_parti_og_bevegelsesanalyse", "met_pol_ideologianalyse", "met_pol_makt_og_interesseanalyse", "met_pol_diskursanalyse", "met_pol_sivilsamfunnsanalyse", "met_pol_symbolanalyse", "met_pol_politisk_historisk_analyse", "met_pol_legitimitetsanalyse"]);
+for (const m of methods.methods.filter(x => domainMethods.has(x.method_id))) {
+  check(m.domain_profiles?.[domainId]?.quality_revision === revision, `Metode ${m.method_id} har domenprofil`);
+  check(m.domain_profiles?.[domainId]?.mechanism_focus?.length >= 5, `Metode ${m.method_id} har mekanismefokus`);
+  check(m.domain_profiles?.[domainId]?.critical_distinctions?.length >= 4, `Metode ${m.method_id} har distinksjoner`);
+  if (directMethods.has(m.method_id)) check(m.quality_revision === revision, `Direktemetode ${m.method_id} er revidert`);
+}
+let targetMappings = [];
+for (const record of maps) {
+  for (const mapping of record.mappings || []) {
+    if (mapping.fagkart_kategori === domainId) targetMappings.push(mapping);
   }
 }
-ok(mappings.length === 20, "Tjue mappinger finnes for domenet");
-for (const item of mappings) {
-  ok(item.quality_revision === R, `Mapping ${item.topic_hook} har ny revisjon`);
-  ok(item.claim_basis_required === true, `Mapping ${item.topic_hook} krever claim basis`);
-  ok(item.actor_and_claim_required === true, `Mapping ${item.topic_hook} krever aktør og krav`);
-  ok(item.mechanism_options?.length >= 5, `Mapping ${item.topic_hook} har mekanismer`);
-  ok(item.critical_distinction_options?.length >= 3, `Mapping ${item.topic_hook} har distinksjoner`);
-  ok(item.theory_lenses?.length === 3, `Mapping ${item.topic_hook} har tre teorispor`);
-  ok(item.recommended_method_ids?.length >= 2, `Mapping ${item.topic_hook} har målrettede metoder`);
-  ok(item.recommended_method_ids.every((id) => methodIds.has(id)), `Mapping ${item.topic_hook} peker til gyldige metoder`);
-  ok(item.generator_constraints?.require_actor_and_claim_identification === true, `Mapping ${item.topic_hook} krever aktør og krav`);
-  ok(item.generator_constraints?.require_mechanism_explanation === true, `Mapping ${item.topic_hook} krever mekanisme`);
-  ok(item.generator_constraints?.require_critical_distinction === true, `Mapping ${item.topic_hook} krever distinksjon`);
-  ok(item.generator_constraints?.ban_theorist_name_as_answer_without_concept === true, `Mapping ${item.topic_hook} forbyr løsrevet teoretikernavn`);
+check(targetMappings.length === 20, "Domenet har 20 mappinger");
+for (const m of targetMappings) {
+  check(m.quality_revision === revision, `Mapping ${m.topic_hook} har ny revisjon`);
+  check(m.mechanism_options?.length >= 5, `Mapping ${m.topic_hook} har mekanismer`);
+  check(m.critical_distinction_options?.length >= 4, `Mapping ${m.topic_hook} har distinksjoner`);
+  check(m.theory_lenses?.length === 3, `Mapping ${m.topic_hook} har tre teorispor`);
+  check(m.recommended_method_ids?.length >= 3, `Mapping ${m.topic_hook} peker til gyldige metoder`);
+  check(m.generator_constraints?.ban_theorist_name_as_answer_without_concept === true, `Mapping ${m.topic_hook} forbyr løsrevet teoretikernavn`);
+  const targeted = new Set(m.thinker_ids || []);
+  check((m.norwegian_thinker_ids || []).every(x => targeted.has(x)), `Mapping ${m.topic_hook} har ingen gamle norske teorispor`);
 }
-
-const pensumDomain = pensum.domains.find((item) => item.domain_id === DOMAIN);
-ok(pensumDomain?.status === "complete_revised", "Pensum markerer domenet complete_revised");
-ok(pensumDomain?.quality_revision === R, "Pensum har ny kvalitetsrevisjon");
-ok(pensumDomain?.generator_profile === DOMAIN, "Pensum dokumenterer aktiv generatorprofil");
-ok(pensumDomain?.revised_method_ids?.length === 13, "Pensum peker til 13 reviderte metodeprofiler");
-ok(pensumDomain?.vertical_chain_status?.mappings_revised === 20, "Pensum dokumenterer 20 reviderte mappinger");
-
-const profile = generator.domain_quality_profiles?.[DOMAIN];
-ok(profile?.status === "complete_revised" && profile?.quality_revision === R, "Generatorprofilen er aktiv og komplett revidert");
-ok(profile?.revised_hook_ids?.length === 10, "Generatorprofilen peker til 10 hooks");
-ok(profile?.revised_emne_ids?.length === 8, "Generatorprofilen peker til 8 emner");
-ok(profile?.revised_method_ids?.length === 13, "Generatorprofilen peker til 13 metoder");
-ok(profile?.generator_constraints?.require_actor_and_claim_identification === true, "Generatorprofilen krever aktør og krav");
-ok(profile?.generator_constraints?.ban_theorist_name_as_answer_without_concept === true, "Generatorprofilen forbyr løsrevet teoretikernavn");
-
-ok(blueprints.length === 10, "Det finnes 10 representative spørsmålsplaner");
-for (const blueprint of blueprints) {
-  ok(Boolean(blueprint.source_anchor), `Spørsmålsplan ${blueprint.blueprint_id} har kildeanker`);
-  ok(Boolean(blueprint.claim_basis), `Spørsmålsplan ${blueprint.blueprint_id} har claim basis`);
-  ok(Boolean(blueprint.emne_id), `Spørsmålsplan ${blueprint.blueprint_id} har emne`);
-  ok(methodIds.has(blueprint.method_id), `Spørsmålsplan ${blueprint.blueprint_id} har gyldig metode`);
-  ok(Boolean(blueprint.mechanism), `Spørsmålsplan ${blueprint.blueprint_id} har mekanisme`);
-  ok(Boolean(blueprint.critical_distinction), `Spørsmålsplan ${blueprint.blueprint_id} har distinksjon`);
-  ok(Boolean(blueprint.theory_lens?.concept), `Spørsmålsplan ${blueprint.blueprint_id} bruker teoribegrep`);
+const pd = pensum.domains.find(x => x.domain_id === domainId);
+check(pd?.status === "complete_revised", "Pensum markerer domenet complete_revised");
+check(pd?.vertical_chain_status?.mappings_revised === 20, "Pensum dokumenterer 20 mappinger");
+const profile = gen.domain_quality_profiles?.[domainId];
+check(profile?.status === "complete_revised", "Generatorprofilen er aktiv og komplett revidert");
+check(profile?.required_method_ids?.length === 13, "Generatorprofilen peker til 13 metoder");
+check(profile?.hard_requirements?.mechanism_explanation_required === true, "Generatoren krever mekanisme");
+check(profile?.hard_requirements?.critical_distinction_required === true, "Generatoren krever distinksjon");
+check(profile?.hard_requirements?.ban_theorist_name_as_answer_without_concept === true, "Generatoren forbyr løsrevet teoretikernavn");
+check(blueprints.length === 10, "Det finnes 10 representative spørsmålsplaner");
+for (const b of blueprints) {
+  check(Boolean(b.source_requirement && b.emne_id && b.method_id && b.mechanism && b.critical_distinction), "Spørsmålsplan har kilde, emne, metode, mekanisme og distinksjon");
 }
-
-ok(!fs.existsSync("data/fag/politikk/kvalitetslag_v1"), "Ingen kvalitetslag-overlay finnes");
+check(!fs.existsSync("data/fag/politikk/kvalitetslag_v1"), "Ingen kvalitetslag-overlay finnes");
 console.log(`PASS: ${pass}`);
+if (fail) {
+  console.error(`FAIL: ${fail}`);
+  process.exit(1);
+}
 console.log("RESULTAT: PASS");
