@@ -4,7 +4,7 @@
   "scope": "oslo_og_omegn",
   "type": "fagkart",
   "version": "v4.5-canonical-draft-1",
-  "updated_at": "2026-05-02",
+  "updated_at": "2026-07-24",
   "canonical_registry_version": "litteraturpensum_v4_5",
   "purpose": "Kanonisk fagkart for Litteratur i History Go. Fagkartet styrer litteraturfaglige emner, metoder, teori, stedstyper, spørsmålsflater og kildekrav. Det skal brukes som styringslag, ikke som erstatning for eksterne kilder om konkrete verk, forfattere, steder, publikasjoner, institusjoner eller litterære miljøer.",
   "principles": {
@@ -1362,6 +1362,906 @@
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
           }
+        },
+        {
+          "id": "poetikk_plot_hendelse_narrativ_organisering",
+          "title": "Plot, hendelse og narrativ organisering",
+          "definition": "Analyserer hvordan hendelser velges, ordnes, kobles og gis retning i en konkret fortelling, uten å forveksle kronologisk rekkefølge med plot eller årsak.",
+          "core_problem": "Hvordan skaper tekstens organisering forventning, kausalitet, vendepunkt og avslutning, og hvilke alternative ordninger kunne gitt en annen mening?",
+          "observation_units": [
+            "ordvalg",
+            "syntaks",
+            "komposisjon",
+            "stemme",
+            "perspektiv",
+            "rytme",
+            "gjentakelse",
+            "tekstlig avvik"
+          ],
+          "mechanisms": [
+            "seleksjon av hendelser",
+            "rekkefølge og tilbakeholdelse",
+            "kausal kobling",
+            "vendepunkt",
+            "forvarsling",
+            "avslutningsstruktur"
+          ],
+          "critical_distinctions": [
+            "historie vs plot",
+            "rekkefølge vs årsak",
+            "hendelse vs tilstand",
+            "åpen vs lukket avslutning"
+          ],
+          "evidence_requirements": [
+            "navngitt tekst eller verk",
+            "presist sitat, teksttrekk eller side-/sekvensreferanse",
+            "skille mellom observasjon og tolkning",
+            "minst én konkurrerende lesning",
+            "avgrenset konklusjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "peter_brooks",
+              "thinker_name": "Peter Brooks",
+              "concept": "plot, begjær og avslutning"
+            },
+            {
+              "thinker_id": "gerard_genette",
+              "thinker_name": "Gérard Genette",
+              "concept": "orden, varighet og frekvens"
+            },
+            {
+              "thinker_id": "paul_ricoeur",
+              "thinker_name": "Paul Ricoeur",
+              "concept": "tid og narrativ konfigurasjon"
+            }
+          ],
+          "canon": {
+            "thinkers": [
+              {
+                "id": "peter_brooks",
+                "name": "Peter Brooks",
+                "role": "plot, begjær og avslutning",
+                "tier": "core"
+              },
+              {
+                "id": "gerard_genette",
+                "name": "Gérard Genette",
+                "role": "orden, varighet og frekvens",
+                "tier": "core"
+              },
+              {
+                "id": "paul_ricoeur",
+                "name": "Paul Ricoeur",
+                "role": "tid og narrativ konfigurasjon",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_lit_poetikk_plot_hendelse_narrativ_organisering"
+          ],
+          "best_place_types": [
+            "bibliotek",
+            "forfatterhjem",
+            "arkiv",
+            "litteraert_sted",
+            "museum",
+            "lesesal",
+            "scene"
+          ],
+          "avoid_place_types": [
+            "sted_uten_tekst_verk_forfatter_institusjon_eller_leserankring"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "text-evidence-first",
+          "fact_anchor_required": true,
+          "text_anchor_required": true,
+          "source_anchor_required": true,
+          "external_claim_basis_required": true,
+          "visible_text_or_context_required": true,
+          "preferred_question_moves": [
+            "identify_textual_feature",
+            "separate_observation_and_interpretation",
+            "compare_plausible_readings",
+            "state_scope_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "peter_brooks",
+              "gerard_genette"
+            ],
+            [
+              "gerard_genette",
+              "paul_ricoeur"
+            ]
+          ],
+          "recommended_method_ids": [
+            "met_lit_narrativ_sekvens_og_plotanalyse",
+            "met_lit_tidsstruktur_analyse",
+            "met_lit_naerlesning"
+          ],
+          "recommended_oslo_cases": [
+            "Nasjonalbiblioteket",
+            "Deichman Bjørvika",
+            "Litteraturhuset",
+            "Ibsenmuseet",
+            "Nationaltheatret som tekst- og resepsjonssted"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "litteraturpensum_v4_5",
+          "canonical_file_role": "active",
+          "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "generator_constraints": {
+            "require_concrete_text_work_author_place_or_institution": true,
+            "require_external_claim_basis": true,
+            "require_visible_textual_evidence": true,
+            "require_observation_before_interpretation": true,
+            "require_competing_interpretation": true,
+            "require_scope_or_uncertainty_statement": true,
+            "ban_author_intention_without_source": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "do_not_generate_from_hook_label_only": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_lit_"
+          }
+        },
+        {
+          "id": "poetikk_fokalisering_upalitelig_forteller",
+          "title": "Fokalisering, forteller og upålitelighet",
+          "definition": "Skiller hvem som forteller fra hvem som sanser, vet og vurderer, og undersøker hvordan tekstlige avvik kan gjøre en forteller begrenset eller upålitelig.",
+          "core_problem": "Hvilke konkrete tekstsignaler avgrenser kunnskap og troverdighet, og hvordan påvirker de leserens vurdering av det fortalte?",
+          "observation_units": [
+            "ordvalg",
+            "syntaks",
+            "komposisjon",
+            "stemme",
+            "perspektiv",
+            "rytme",
+            "gjentakelse",
+            "tekstlig avvik"
+          ],
+          "mechanisms": [
+            "informasjonsbegrensning",
+            "perspektivskifte",
+            "selvmotsigelse",
+            "ironisk distanse",
+            "verdikonflikt",
+            "leserens inferens"
+          ],
+          "critical_distinctions": [
+            "forteller vs fokalisator",
+            "begrenset vs upålitelig",
+            "forfatter vs forteller",
+            "tekstsignal vs lesergjetning"
+          ],
+          "evidence_requirements": [
+            "navngitt tekst eller verk",
+            "presist sitat, teksttrekk eller side-/sekvensreferanse",
+            "skille mellom observasjon og tolkning",
+            "minst én konkurrerende lesning",
+            "avgrenset konklusjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "gerard_genette",
+              "thinker_name": "Gérard Genette",
+              "concept": "fokalisering og fortellernivå"
+            },
+            {
+              "thinker_id": "wayne_c_booth",
+              "thinker_name": "Wayne C. Booth",
+              "concept": "upålitelig fortelling og normer"
+            },
+            {
+              "thinker_id": "james_phelan",
+              "thinker_name": "James Phelan",
+              "concept": "retorisk narratologi"
+            }
+          ],
+          "canon": {
+            "thinkers": [
+              {
+                "id": "gerard_genette",
+                "name": "Gérard Genette",
+                "role": "fokalisering og fortellernivå",
+                "tier": "core"
+              },
+              {
+                "id": "wayne_c_booth",
+                "name": "Wayne C. Booth",
+                "role": "upålitelig fortelling og normer",
+                "tier": "core"
+              },
+              {
+                "id": "james_phelan",
+                "name": "James Phelan",
+                "role": "retorisk narratologi",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_lit_poetikk_fokalisering_upalitelig_forteller"
+          ],
+          "best_place_types": [
+            "bibliotek",
+            "forfatterhjem",
+            "arkiv",
+            "litteraert_sted",
+            "museum",
+            "lesesal",
+            "scene"
+          ],
+          "avoid_place_types": [
+            "sted_uten_tekst_verk_forfatter_institusjon_eller_leserankring"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "text-evidence-first",
+          "fact_anchor_required": true,
+          "text_anchor_required": true,
+          "source_anchor_required": true,
+          "external_claim_basis_required": true,
+          "visible_text_or_context_required": true,
+          "preferred_question_moves": [
+            "identify_textual_feature",
+            "separate_observation_and_interpretation",
+            "compare_plausible_readings",
+            "state_scope_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "gerard_genette",
+              "wayne_c_booth"
+            ],
+            [
+              "wayne_c_booth",
+              "james_phelan"
+            ]
+          ],
+          "recommended_method_ids": [
+            "met_lit_fokalisering_og_upalitelighetsanalyse",
+            "met_lit_perspektiv_stemme_analyse",
+            "met_lit_retorisk_leserhenvendelsesanalyse"
+          ],
+          "recommended_oslo_cases": [
+            "Nasjonalbiblioteket",
+            "Deichman Bjørvika",
+            "Litteraturhuset",
+            "Ibsenmuseet",
+            "Nationaltheatret som tekst- og resepsjonssted"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "litteraturpensum_v4_5",
+          "canonical_file_role": "active",
+          "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "generator_constraints": {
+            "require_concrete_text_work_author_place_or_institution": true,
+            "require_external_claim_basis": true,
+            "require_visible_textual_evidence": true,
+            "require_observation_before_interpretation": true,
+            "require_competing_interpretation": true,
+            "require_scope_or_uncertainty_statement": true,
+            "ban_author_intention_without_source": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "do_not_generate_from_hook_label_only": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_lit_"
+          }
+        },
+        {
+          "id": "poetikk_bevissthetsfremstilling_polyfoni",
+          "title": "Bevissthetsfremstilling, fri indirekte diskurs og polyfoni",
+          "definition": "Analyserer hvordan en tekst fremstiller tanker, tale og indre liv gjennom direkte, indirekte og fri indirekte diskurs samt flerstemmige komposisjoner.",
+          "core_problem": "Hvordan fordeles språklig autoritet mellom forteller og figur, og hvor oppstår friksjon mellom stemmene?",
+          "observation_units": [
+            "ordvalg",
+            "syntaks",
+            "komposisjon",
+            "stemme",
+            "perspektiv",
+            "rytme",
+            "gjentakelse",
+            "tekstlig avvik"
+          ],
+          "mechanisms": [
+            "fri indirekte diskurs",
+            "indre monolog",
+            "sitert tanke",
+            "stemmeblanding",
+            "dialogisme",
+            "språklig friksjon"
+          ],
+          "critical_distinctions": [
+            "tanke vs fortellerreferat",
+            "stemmeblanding vs uklarhet",
+            "polyfoni vs mange personer",
+            "språklig markør vs psykologisk antakelse"
+          ],
+          "evidence_requirements": [
+            "navngitt tekst eller verk",
+            "presist sitat, teksttrekk eller side-/sekvensreferanse",
+            "skille mellom observasjon og tolkning",
+            "minst én konkurrerende lesning",
+            "avgrenset konklusjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "dorrit_cohn",
+              "thinker_name": "Dorrit Cohn",
+              "concept": "fremstilling av bevissthet"
+            },
+            {
+              "thinker_id": "mikhail_bakhtin",
+              "thinker_name": "Mikhail Bakhtin",
+              "concept": "dialogisme og polyfoni"
+            },
+            {
+              "thinker_id": "monika_fludernik",
+              "thinker_name": "Monika Fludernik",
+              "concept": "erfaringsnær narrativitet"
+            }
+          ],
+          "canon": {
+            "thinkers": [
+              {
+                "id": "dorrit_cohn",
+                "name": "Dorrit Cohn",
+                "role": "fremstilling av bevissthet",
+                "tier": "core"
+              },
+              {
+                "id": "mikhail_bakhtin",
+                "name": "Mikhail Bakhtin",
+                "role": "dialogisme og polyfoni",
+                "tier": "core"
+              },
+              {
+                "id": "monika_fludernik",
+                "name": "Monika Fludernik",
+                "role": "erfaringsnær narrativitet",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_lit_poetikk_bevissthetsfremstilling_polyfoni"
+          ],
+          "best_place_types": [
+            "bibliotek",
+            "forfatterhjem",
+            "arkiv",
+            "litteraert_sted",
+            "museum",
+            "lesesal",
+            "scene"
+          ],
+          "avoid_place_types": [
+            "sted_uten_tekst_verk_forfatter_institusjon_eller_leserankring"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "text-evidence-first",
+          "fact_anchor_required": true,
+          "text_anchor_required": true,
+          "source_anchor_required": true,
+          "external_claim_basis_required": true,
+          "visible_text_or_context_required": true,
+          "preferred_question_moves": [
+            "identify_textual_feature",
+            "separate_observation_and_interpretation",
+            "compare_plausible_readings",
+            "state_scope_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "dorrit_cohn",
+              "mikhail_bakhtin"
+            ],
+            [
+              "mikhail_bakhtin",
+              "monika_fludernik"
+            ]
+          ],
+          "recommended_method_ids": [
+            "met_lit_bevissthets_og_polyfonianalyse",
+            "met_lit_perspektiv_stemme_analyse",
+            "met_lit_stilistisk_analyse"
+          ],
+          "recommended_oslo_cases": [
+            "Nasjonalbiblioteket",
+            "Deichman Bjørvika",
+            "Litteraturhuset",
+            "Ibsenmuseet",
+            "Nationaltheatret som tekst- og resepsjonssted"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "litteraturpensum_v4_5",
+          "canonical_file_role": "active",
+          "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "generator_constraints": {
+            "require_concrete_text_work_author_place_or_institution": true,
+            "require_external_claim_basis": true,
+            "require_visible_textual_evidence": true,
+            "require_observation_before_interpretation": true,
+            "require_competing_interpretation": true,
+            "require_scope_or_uncertainty_statement": true,
+            "ban_author_intention_without_source": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "do_not_generate_from_hook_label_only": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_lit_"
+          }
+        },
+        {
+          "id": "poetikk_narrativ_tid_minnestruktur",
+          "title": "Narrativ tid, minne og temporal struktur",
+          "definition": "Undersøker orden, varighet, frekvens, gjentakelse og minne som tekstlige former, ikke bare som kronologisk innhold.",
+          "core_problem": "Hvordan omformer teksten tidserfaring gjennom tilbakeblikk, frempek, pause, ellipse, repetisjon og minne?",
+          "observation_units": [
+            "ordvalg",
+            "syntaks",
+            "komposisjon",
+            "stemme",
+            "perspektiv",
+            "rytme",
+            "gjentakelse",
+            "tekstlig avvik"
+          ],
+          "mechanisms": [
+            "analepsis",
+            "prolepsis",
+            "ellipse",
+            "pause",
+            "scenisk varighet",
+            "iterativ fortelling"
+          ],
+          "critical_distinctions": [
+            "fortalt tid vs fortellingstid",
+            "minne vs kronologisk referat",
+            "gjentakelse vs frekvens",
+            "temporal effekt vs historisk datering"
+          ],
+          "evidence_requirements": [
+            "navngitt tekst eller verk",
+            "presist sitat, teksttrekk eller side-/sekvensreferanse",
+            "skille mellom observasjon og tolkning",
+            "minst én konkurrerende lesning",
+            "avgrenset konklusjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "gerard_genette",
+              "thinker_name": "Gérard Genette",
+              "concept": "narrativ tid"
+            },
+            {
+              "thinker_id": "paul_ricoeur",
+              "thinker_name": "Paul Ricoeur",
+              "concept": "tid og fortelling"
+            },
+            {
+              "thinker_id": "mikhail_bakhtin",
+              "thinker_name": "Mikhail Bakhtin",
+              "concept": "kronotop"
+            }
+          ],
+          "canon": {
+            "thinkers": [
+              {
+                "id": "gerard_genette",
+                "name": "Gérard Genette",
+                "role": "narrativ tid",
+                "tier": "core"
+              },
+              {
+                "id": "paul_ricoeur",
+                "name": "Paul Ricoeur",
+                "role": "tid og fortelling",
+                "tier": "core"
+              },
+              {
+                "id": "mikhail_bakhtin",
+                "name": "Mikhail Bakhtin",
+                "role": "kronotop",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_lit_poetikk_narrativ_tid_minnestruktur"
+          ],
+          "best_place_types": [
+            "bibliotek",
+            "forfatterhjem",
+            "arkiv",
+            "litteraert_sted",
+            "museum",
+            "lesesal",
+            "scene"
+          ],
+          "avoid_place_types": [
+            "sted_uten_tekst_verk_forfatter_institusjon_eller_leserankring"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "text-evidence-first",
+          "fact_anchor_required": true,
+          "text_anchor_required": true,
+          "source_anchor_required": true,
+          "external_claim_basis_required": true,
+          "visible_text_or_context_required": true,
+          "preferred_question_moves": [
+            "identify_textual_feature",
+            "separate_observation_and_interpretation",
+            "compare_plausible_readings",
+            "state_scope_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "gerard_genette",
+              "paul_ricoeur"
+            ],
+            [
+              "paul_ricoeur",
+              "mikhail_bakhtin"
+            ]
+          ],
+          "recommended_method_ids": [
+            "met_lit_narrativ_sekvens_og_plotanalyse",
+            "met_lit_tidsstruktur_analyse",
+            "met_lit_hermeneutisk_fortolkningsanalyse"
+          ],
+          "recommended_oslo_cases": [
+            "Nasjonalbiblioteket",
+            "Deichman Bjørvika",
+            "Litteraturhuset",
+            "Ibsenmuseet",
+            "Nationaltheatret som tekst- og resepsjonssted"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "litteraturpensum_v4_5",
+          "canonical_file_role": "active",
+          "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "generator_constraints": {
+            "require_concrete_text_work_author_place_or_institution": true,
+            "require_external_claim_basis": true,
+            "require_visible_textual_evidence": true,
+            "require_observation_before_interpretation": true,
+            "require_competing_interpretation": true,
+            "require_scope_or_uncertainty_statement": true,
+            "ban_author_intention_without_source": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "do_not_generate_from_hook_label_only": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_lit_"
+          }
+        },
+        {
+          "id": "poetikk_retorikk_adressat_implisitt_leser",
+          "title": "Retorikk, adressat og implisitt leser",
+          "definition": "Analyserer hvordan en tekst posisjonerer, informerer, utfordrer og påvirker sin leser gjennom komposisjon, tiltale, fortielse og verdimønster.",
+          "core_problem": "Hvilken leserrolle inviterer teksten til, og hvilke tekstlige grep gjør invitasjonen mulig eller konfliktfylt?",
+          "observation_units": [
+            "ordvalg",
+            "syntaks",
+            "komposisjon",
+            "stemme",
+            "perspektiv",
+            "rytme",
+            "gjentakelse",
+            "tekstlig avvik"
+          ],
+          "mechanisms": [
+            "direkte tiltale",
+            "informasjonsstyring",
+            "verdiappell",
+            "fortielse",
+            "ironi",
+            "leserposisjonering"
+          ],
+          "critical_distinctions": [
+            "faktisk leser vs implisitt leser",
+            "adressat vs publikum",
+            "retorisk effekt vs forfatterintensjon",
+            "tekstlig invitasjon vs faktisk resepsjon"
+          ],
+          "evidence_requirements": [
+            "navngitt tekst eller verk",
+            "presist sitat, teksttrekk eller side-/sekvensreferanse",
+            "skille mellom observasjon og tolkning",
+            "minst én konkurrerende lesning",
+            "avgrenset konklusjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "wayne_c_booth",
+              "thinker_name": "Wayne C. Booth",
+              "concept": "retorikk og implisitt forfatter"
+            },
+            {
+              "thinker_id": "wolfgang_iser",
+              "thinker_name": "Wolfgang Iser",
+              "concept": "implisitt leser og tomrom"
+            },
+            {
+              "thinker_id": "james_phelan",
+              "thinker_name": "James Phelan",
+              "concept": "retorisk narratologi"
+            }
+          ],
+          "canon": {
+            "thinkers": [
+              {
+                "id": "wayne_c_booth",
+                "name": "Wayne C. Booth",
+                "role": "retorikk og implisitt forfatter",
+                "tier": "core"
+              },
+              {
+                "id": "wolfgang_iser",
+                "name": "Wolfgang Iser",
+                "role": "implisitt leser og tomrom",
+                "tier": "core"
+              },
+              {
+                "id": "james_phelan",
+                "name": "James Phelan",
+                "role": "retorisk narratologi",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_lit_poetikk_retorikk_adressat_implisitt_leser"
+          ],
+          "best_place_types": [
+            "bibliotek",
+            "forfatterhjem",
+            "arkiv",
+            "litteraert_sted",
+            "museum",
+            "lesesal",
+            "scene"
+          ],
+          "avoid_place_types": [
+            "sted_uten_tekst_verk_forfatter_institusjon_eller_leserankring"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "text-evidence-first",
+          "fact_anchor_required": true,
+          "text_anchor_required": true,
+          "source_anchor_required": true,
+          "external_claim_basis_required": true,
+          "visible_text_or_context_required": true,
+          "preferred_question_moves": [
+            "identify_textual_feature",
+            "separate_observation_and_interpretation",
+            "compare_plausible_readings",
+            "state_scope_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "wayne_c_booth",
+              "wolfgang_iser"
+            ],
+            [
+              "wolfgang_iser",
+              "james_phelan"
+            ]
+          ],
+          "recommended_method_ids": [
+            "met_lit_retorisk_leserhenvendelsesanalyse",
+            "met_lit_fortelleranalyse",
+            "met_lit_leser_og_resepsjonsanalyse"
+          ],
+          "recommended_oslo_cases": [
+            "Nasjonalbiblioteket",
+            "Deichman Bjørvika",
+            "Litteraturhuset",
+            "Ibsenmuseet",
+            "Nationaltheatret som tekst- og resepsjonssted"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "litteraturpensum_v4_5",
+          "canonical_file_role": "active",
+          "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "generator_constraints": {
+            "require_concrete_text_work_author_place_or_institution": true,
+            "require_external_claim_basis": true,
+            "require_visible_textual_evidence": true,
+            "require_observation_before_interpretation": true,
+            "require_competing_interpretation": true,
+            "require_scope_or_uncertainty_statement": true,
+            "ban_author_intention_without_source": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "do_not_generate_from_hook_label_only": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_lit_"
+          }
+        },
+        {
+          "id": "poetikk_hermeneutikk_fortolkningskonflikt",
+          "title": "Hermeneutikk, fortolkningskonflikt og tekstlig evidens",
+          "definition": "Behandler tolkning som en begrunnet prosess der deler, helhet, historisk avstand og konkurrerende lesninger prøves mot konkrete teksttrekk.",
+          "core_problem": "Hva gjør en tolkning mer tekstlig holdbar enn en annen, og hvor går grensen mellom plausibel lesning og fri assosiasjon?",
+          "observation_units": [
+            "ordvalg",
+            "syntaks",
+            "komposisjon",
+            "stemme",
+            "perspektiv",
+            "rytme",
+            "gjentakelse",
+            "tekstlig avvik"
+          ],
+          "mechanisms": [
+            "del–helhet-bevegelse",
+            "forforståelse",
+            "kontekstualisering",
+            "mønstergjenkjenning",
+            "moteksempel",
+            "revisjon av hypotese"
+          ],
+          "critical_distinctions": [
+            "observasjon vs tolkning",
+            "plausibilitet vs sikkerhet",
+            "tekstbelegg vs intensjonsgjetning",
+            "uenighet vs relativisme"
+          ],
+          "evidence_requirements": [
+            "navngitt tekst eller verk",
+            "presist sitat, teksttrekk eller side-/sekvensreferanse",
+            "skille mellom observasjon og tolkning",
+            "minst én konkurrerende lesning",
+            "avgrenset konklusjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "hans_georg_gadamer",
+              "thinker_name": "Hans-Georg Gadamer",
+              "concept": "hermeneutikk og horisont"
+            },
+            {
+              "thinker_id": "paul_ricoeur",
+              "thinker_name": "Paul Ricoeur",
+              "concept": "fortolkningskonflikt"
+            },
+            {
+              "thinker_id": "rita_felski",
+              "thinker_name": "Rita Felski",
+              "concept": "lesemåter og tilknytning"
+            }
+          ],
+          "canon": {
+            "thinkers": [
+              {
+                "id": "hans_georg_gadamer",
+                "name": "Hans-Georg Gadamer",
+                "role": "hermeneutikk og horisont",
+                "tier": "core"
+              },
+              {
+                "id": "paul_ricoeur",
+                "name": "Paul Ricoeur",
+                "role": "fortolkningskonflikt",
+                "tier": "core"
+              },
+              {
+                "id": "rita_felski",
+                "name": "Rita Felski",
+                "role": "lesemåter og tilknytning",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_lit_poetikk_hermeneutikk_fortolkningskonflikt"
+          ],
+          "best_place_types": [
+            "bibliotek",
+            "forfatterhjem",
+            "arkiv",
+            "litteraert_sted",
+            "museum",
+            "lesesal",
+            "scene"
+          ],
+          "avoid_place_types": [
+            "sted_uten_tekst_verk_forfatter_institusjon_eller_leserankring"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "text-evidence-first",
+          "fact_anchor_required": true,
+          "text_anchor_required": true,
+          "source_anchor_required": true,
+          "external_claim_basis_required": true,
+          "visible_text_or_context_required": true,
+          "preferred_question_moves": [
+            "identify_textual_feature",
+            "separate_observation_and_interpretation",
+            "compare_plausible_readings",
+            "state_scope_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "hans_georg_gadamer",
+              "paul_ricoeur"
+            ],
+            [
+              "paul_ricoeur",
+              "rita_felski"
+            ]
+          ],
+          "recommended_method_ids": [
+            "met_lit_hermeneutisk_fortolkningsanalyse",
+            "met_lit_naerlesning",
+            "met_lit_komparativ_tekstanalyse"
+          ],
+          "recommended_oslo_cases": [
+            "Nasjonalbiblioteket",
+            "Deichman Bjørvika",
+            "Litteraturhuset",
+            "Ibsenmuseet",
+            "Nationaltheatret som tekst- og resepsjonssted"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "litteraturpensum_v4_5",
+          "canonical_file_role": "active",
+          "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "generator_constraints": {
+            "require_concrete_text_work_author_place_or_institution": true,
+            "require_external_claim_basis": true,
+            "require_visible_textual_evidence": true,
+            "require_observation_before_interpretation": true,
+            "require_competing_interpretation": true,
+            "require_scope_or_uncertainty_statement": true,
+            "ban_author_intention_without_source": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "do_not_generate_from_hook_label_only": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_lit_"
+          }
         }
       ],
       "best_place_types": [
@@ -1384,7 +2284,11 @@
         "Ikke spør generisk om litteraturteori uten tekst, verk, sted, forfatter, leser, institusjon eller kilde.",
         "Ikke bruk litteratur som kategori hvis hovedpoenget egentlig er teater, musikk, media, historie, by, politikk eller kunst.",
         "Ikke gjør forfatterbiografi til litteraturspørsmål uten kobling til verk, tekst, språk, offentlighet eller litterært sted."
-      ]
+      ],
+      "quality_revisions": [
+        "litteratur-poetikk-vertical-phase-1-2026-07-24"
+      ],
+      "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24"
     },
     {
       "id": "sjanger_estetikk_tradisjon",
@@ -2713,6 +3617,603 @@
             "rotate_theorists": true,
             "do_not_generate_from_hook_label_only": true
           }
+        },
+        {
+          "id": "poetikk_lyrisk_stemme_rytme_metrikk",
+          "title": "Lyrisk stemme, rytme, metrikk og linjebrudd",
+          "definition": "Analyserer diktets stemme, lyd, rytme, metrikk, syntaks, strofe og linjebrudd som meningsbærende form.",
+          "core_problem": "Hvordan skaper lydlige og grafiske mønstre tempo, trykk, pause, spenning og perspektiv i et konkret dikt?",
+          "observation_units": [
+            "ordvalg",
+            "syntaks",
+            "komposisjon",
+            "stemme",
+            "perspektiv",
+            "rytme",
+            "gjentakelse",
+            "tekstlig avvik"
+          ],
+          "mechanisms": [
+            "metrikk",
+            "rytmebrudd",
+            "enjambement",
+            "rim og klang",
+            "strofeform",
+            "syntaktisk pause"
+          ],
+          "critical_distinctions": [
+            "lyrisk jeg vs forfatter",
+            "rytme vs metrisk skjema",
+            "linje vs setning",
+            "lydobservasjon vs stemningstilskrivning"
+          ],
+          "evidence_requirements": [
+            "navngitt tekst eller verk",
+            "presist sitat, teksttrekk eller side-/sekvensreferanse",
+            "skille mellom observasjon og tolkning",
+            "minst én konkurrerende lesning",
+            "avgrenset konklusjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "roman_jakobson",
+              "thinker_name": "Roman Jakobson",
+              "concept": "poetisk funksjon"
+            },
+            {
+              "thinker_id": "jonathan_culler",
+              "thinker_name": "Jonathan Culler",
+              "concept": "lyrikkteori"
+            },
+            {
+              "thinker_id": "t_s_eliot",
+              "thinker_name": "T. S. Eliot",
+              "concept": "tradisjon og poetisk form"
+            }
+          ],
+          "canon": {
+            "thinkers": [
+              {
+                "id": "roman_jakobson",
+                "name": "Roman Jakobson",
+                "role": "poetisk funksjon",
+                "tier": "core"
+              },
+              {
+                "id": "jonathan_culler",
+                "name": "Jonathan Culler",
+                "role": "lyrikkteori",
+                "tier": "core"
+              },
+              {
+                "id": "t_s_eliot",
+                "name": "T. S. Eliot",
+                "role": "tradisjon og poetisk form",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_lit_poetikk_lyrisk_stemme_rytme_metrikk"
+          ],
+          "best_place_types": [
+            "bibliotek",
+            "forfatterhjem",
+            "arkiv",
+            "litteraert_sted",
+            "museum",
+            "lesesal",
+            "scene"
+          ],
+          "avoid_place_types": [
+            "sted_uten_tekst_verk_forfatter_institusjon_eller_leserankring"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "text-evidence-first",
+          "fact_anchor_required": true,
+          "text_anchor_required": true,
+          "source_anchor_required": true,
+          "external_claim_basis_required": true,
+          "visible_text_or_context_required": true,
+          "preferred_question_moves": [
+            "identify_textual_feature",
+            "separate_observation_and_interpretation",
+            "compare_plausible_readings",
+            "state_scope_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "roman_jakobson",
+              "jonathan_culler"
+            ],
+            [
+              "jonathan_culler",
+              "t_s_eliot"
+            ]
+          ],
+          "recommended_method_ids": [
+            "met_lit_lyrisk_form_og_rytmeanalyse",
+            "met_lit_stilistisk_analyse",
+            "met_lit_naerlesning"
+          ],
+          "recommended_oslo_cases": [
+            "Nasjonalbiblioteket",
+            "Deichman Bjørvika",
+            "Litteraturhuset",
+            "Ibsenmuseet",
+            "Nationaltheatret som tekst- og resepsjonssted"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "litteraturpensum_v4_5",
+          "canonical_file_role": "active",
+          "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "generator_constraints": {
+            "require_concrete_text_work_author_place_or_institution": true,
+            "require_external_claim_basis": true,
+            "require_visible_textual_evidence": true,
+            "require_observation_before_interpretation": true,
+            "require_competing_interpretation": true,
+            "require_scope_or_uncertainty_statement": true,
+            "ban_author_intention_without_source": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "do_not_generate_from_hook_label_only": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_lit_"
+          }
+        },
+        {
+          "id": "poetikk_dramatisk_tekst_dialog_fremforbarhet",
+          "title": "Dramatisk tekst, dialog og fremførbarhet",
+          "definition": "Analyserer replikk, sceneanvisning, konflikt, taushet, rom og handlingspotensial i drama som tekst, samtidig som tekst og konkret oppsetning holdes fra hverandre.",
+          "core_problem": "Hvordan organiserer teksten taleposisjoner, konflikt og mulig scenehandling uten at én oppsetning gjøres til verkets eneste betydning?",
+          "observation_units": [
+            "ordvalg",
+            "syntaks",
+            "komposisjon",
+            "stemme",
+            "perspektiv",
+            "rytme",
+            "gjentakelse",
+            "tekstlig avvik"
+          ],
+          "mechanisms": [
+            "replikkveksling",
+            "undertekst",
+            "sceneanvisning",
+            "taushet",
+            "entré og sorti",
+            "dramaturgisk konflikt"
+          ],
+          "critical_distinctions": [
+            "dramatisk tekst vs oppsetning",
+            "replikk vs forfatterstemme",
+            "undertekst vs skjult fasit",
+            "fremførbarhet vs faktisk fremføring"
+          ],
+          "evidence_requirements": [
+            "navngitt tekst eller verk",
+            "presist sitat, teksttrekk eller side-/sekvensreferanse",
+            "skille mellom observasjon og tolkning",
+            "minst én konkurrerende lesning",
+            "avgrenset konklusjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "manfred_pfister",
+              "thinker_name": "Manfred Pfister",
+              "concept": "dramateori og kommunikasjon"
+            },
+            {
+              "thinker_id": "mikhail_bakhtin",
+              "thinker_name": "Mikhail Bakhtin",
+              "concept": "dialog og stemme"
+            },
+            {
+              "thinker_id": "wayne_c_booth",
+              "thinker_name": "Wayne C. Booth",
+              "concept": "retorikk og verdi"
+            }
+          ],
+          "canon": {
+            "thinkers": [
+              {
+                "id": "manfred_pfister",
+                "name": "Manfred Pfister",
+                "role": "dramateori og kommunikasjon",
+                "tier": "core"
+              },
+              {
+                "id": "mikhail_bakhtin",
+                "name": "Mikhail Bakhtin",
+                "role": "dialog og stemme",
+                "tier": "core"
+              },
+              {
+                "id": "wayne_c_booth",
+                "name": "Wayne C. Booth",
+                "role": "retorikk og verdi",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_lit_poetikk_dramatisk_tekst_dialog_fremforbarhet"
+          ],
+          "best_place_types": [
+            "bibliotek",
+            "forfatterhjem",
+            "arkiv",
+            "litteraert_sted",
+            "museum",
+            "lesesal",
+            "scene"
+          ],
+          "avoid_place_types": [
+            "sted_uten_tekst_verk_forfatter_institusjon_eller_leserankring"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "text-evidence-first",
+          "fact_anchor_required": true,
+          "text_anchor_required": true,
+          "source_anchor_required": true,
+          "external_claim_basis_required": true,
+          "visible_text_or_context_required": true,
+          "preferred_question_moves": [
+            "identify_textual_feature",
+            "separate_observation_and_interpretation",
+            "compare_plausible_readings",
+            "state_scope_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "manfred_pfister",
+              "mikhail_bakhtin"
+            ],
+            [
+              "mikhail_bakhtin",
+              "wayne_c_booth"
+            ]
+          ],
+          "recommended_method_ids": [
+            "met_lit_sjangeranalyse",
+            "met_lit_naerlesning"
+          ],
+          "recommended_oslo_cases": [
+            "Nasjonalbiblioteket",
+            "Deichman Bjørvika",
+            "Litteraturhuset",
+            "Ibsenmuseet",
+            "Nationaltheatret som tekst- og resepsjonssted"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "litteraturpensum_v4_5",
+          "canonical_file_role": "active",
+          "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "generator_constraints": {
+            "require_concrete_text_work_author_place_or_institution": true,
+            "require_external_claim_basis": true,
+            "require_visible_textual_evidence": true,
+            "require_observation_before_interpretation": true,
+            "require_competing_interpretation": true,
+            "require_scope_or_uncertainty_statement": true,
+            "ban_author_intention_without_source": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "do_not_generate_from_hook_label_only": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_lit_"
+          }
+        },
+        {
+          "id": "poetikk_metafor_metonymi_billedfelt",
+          "title": "Metafor, metonymi, symbol og billedfelt",
+          "definition": "Analyserer hvordan tropper og sammenhengende billedfelt overfører, forskyver og organiserer betydning i konkrete tekster.",
+          "core_problem": "Hvilke språklige forbindelser bærer tolkningen, og hvordan skiller man dokumenterbare mønstre fra løs symboljakt?",
+          "observation_units": [
+            "ordvalg",
+            "syntaks",
+            "komposisjon",
+            "stemme",
+            "perspektiv",
+            "rytme",
+            "gjentakelse",
+            "tekstlig avvik"
+          ],
+          "mechanisms": [
+            "metaforisk overføring",
+            "metonymisk nærhet",
+            "symbolsk fortetning",
+            "billedfelt",
+            "gjentakelse",
+            "kontrast"
+          ],
+          "critical_distinctions": [
+            "metafor vs metonymi",
+            "motiv vs symbol",
+            "enkeltbilde vs billedfelt",
+            "tekstlig mønster vs universell symbolfasit"
+          ],
+          "evidence_requirements": [
+            "navngitt tekst eller verk",
+            "presist sitat, teksttrekk eller side-/sekvensreferanse",
+            "skille mellom observasjon og tolkning",
+            "minst én konkurrerende lesning",
+            "avgrenset konklusjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "roman_jakobson",
+              "thinker_name": "Roman Jakobson",
+              "concept": "metafor og metonymi"
+            },
+            {
+              "thinker_id": "paul_ricoeur",
+              "thinker_name": "Paul Ricoeur",
+              "concept": "levende metafor"
+            },
+            {
+              "thinker_id": "roland_barthes",
+              "thinker_name": "Roland Barthes",
+              "concept": "tegn og koder"
+            }
+          ],
+          "canon": {
+            "thinkers": [
+              {
+                "id": "roman_jakobson",
+                "name": "Roman Jakobson",
+                "role": "metafor og metonymi",
+                "tier": "core"
+              },
+              {
+                "id": "paul_ricoeur",
+                "name": "Paul Ricoeur",
+                "role": "levende metafor",
+                "tier": "core"
+              },
+              {
+                "id": "roland_barthes",
+                "name": "Roland Barthes",
+                "role": "tegn og koder",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_lit_poetikk_metafor_metonymi_billedfelt"
+          ],
+          "best_place_types": [
+            "bibliotek",
+            "forfatterhjem",
+            "arkiv",
+            "litteraert_sted",
+            "museum",
+            "lesesal",
+            "scene"
+          ],
+          "avoid_place_types": [
+            "sted_uten_tekst_verk_forfatter_institusjon_eller_leserankring"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "text-evidence-first",
+          "fact_anchor_required": true,
+          "text_anchor_required": true,
+          "source_anchor_required": true,
+          "external_claim_basis_required": true,
+          "visible_text_or_context_required": true,
+          "preferred_question_moves": [
+            "identify_textual_feature",
+            "separate_observation_and_interpretation",
+            "compare_plausible_readings",
+            "state_scope_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "roman_jakobson",
+              "paul_ricoeur"
+            ],
+            [
+              "paul_ricoeur",
+              "roland_barthes"
+            ]
+          ],
+          "recommended_method_ids": [
+            "met_lit_motiv_symbol_analyse",
+            "met_lit_stilistisk_analyse"
+          ],
+          "recommended_oslo_cases": [
+            "Nasjonalbiblioteket",
+            "Deichman Bjørvika",
+            "Litteraturhuset",
+            "Ibsenmuseet",
+            "Nationaltheatret som tekst- og resepsjonssted"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "litteraturpensum_v4_5",
+          "canonical_file_role": "active",
+          "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "generator_constraints": {
+            "require_concrete_text_work_author_place_or_institution": true,
+            "require_external_claim_basis": true,
+            "require_visible_textual_evidence": true,
+            "require_observation_before_interpretation": true,
+            "require_competing_interpretation": true,
+            "require_scope_or_uncertainty_statement": true,
+            "ban_author_intention_without_source": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "do_not_generate_from_hook_label_only": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_lit_"
+          }
+        },
+        {
+          "id": "poetikk_litteraer_etikk_affekt_erfaring",
+          "title": "Litterær etikk, affekt og erfaringsform",
+          "definition": "Analyserer hvordan tekster former møte med handling, sårbarhet, ansvar, ubehag og affekt uten å redusere verk til moralsk budskap eller leserreaksjon.",
+          "core_problem": "Hvordan oppstår etiske og affektive virkninger gjennom form, perspektiv og språk, og hvilke alternative lesninger må prøves?",
+          "observation_units": [
+            "ordvalg",
+            "syntaks",
+            "komposisjon",
+            "stemme",
+            "perspektiv",
+            "rytme",
+            "gjentakelse",
+            "tekstlig avvik"
+          ],
+          "mechanisms": [
+            "perspektivplassering",
+            "affektiv rytme",
+            "identifikasjon og avstand",
+            "verdikonflikt",
+            "taushet",
+            "narrativ konsekvens"
+          ],
+          "critical_distinctions": [
+            "etisk analyse vs moralisering",
+            "tekstlig effekt vs faktisk leserfølelse",
+            "representasjon vs godkjenning",
+            "empati vs forståelse"
+          ],
+          "evidence_requirements": [
+            "navngitt tekst eller verk",
+            "presist sitat, teksttrekk eller side-/sekvensreferanse",
+            "skille mellom observasjon og tolkning",
+            "minst én konkurrerende lesning",
+            "avgrenset konklusjon"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "martha_nussbaum",
+              "thinker_name": "Martha Nussbaum",
+              "concept": "litteratur og moralsk forestillingsevne"
+            },
+            {
+              "thinker_id": "wayne_c_booth",
+              "thinker_name": "Wayne C. Booth",
+              "concept": "fortellingens etikk"
+            },
+            {
+              "thinker_id": "rita_felski",
+              "thinker_name": "Rita Felski",
+              "concept": "tilknytning og gjenkjennelse"
+            }
+          ],
+          "canon": {
+            "thinkers": [
+              {
+                "id": "martha_nussbaum",
+                "name": "Martha Nussbaum",
+                "role": "litteratur og moralsk forestillingsevne",
+                "tier": "core"
+              },
+              {
+                "id": "wayne_c_booth",
+                "name": "Wayne C. Booth",
+                "role": "fortellingens etikk",
+                "tier": "core"
+              },
+              {
+                "id": "rita_felski",
+                "name": "Rita Felski",
+                "role": "tilknytning og gjenkjennelse",
+                "tier": "core"
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_lit_poetikk_litteraer_etikk_affekt_erfaring"
+          ],
+          "best_place_types": [
+            "bibliotek",
+            "forfatterhjem",
+            "arkiv",
+            "litteraert_sted",
+            "museum",
+            "lesesal",
+            "scene"
+          ],
+          "avoid_place_types": [
+            "sted_uten_tekst_verk_forfatter_institusjon_eller_leserankring"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "text-evidence-first",
+          "fact_anchor_required": true,
+          "text_anchor_required": true,
+          "source_anchor_required": true,
+          "external_claim_basis_required": true,
+          "visible_text_or_context_required": true,
+          "preferred_question_moves": [
+            "identify_textual_feature",
+            "separate_observation_and_interpretation",
+            "compare_plausible_readings",
+            "state_scope_and_uncertainty"
+          ],
+          "comparison_pairs": [
+            [
+              "martha_nussbaum",
+              "wayne_c_booth"
+            ],
+            [
+              "wayne_c_booth",
+              "rita_felski"
+            ]
+          ],
+          "recommended_method_ids": [
+            "met_lit_retorisk_leserhenvendelsesanalyse",
+            "met_lit_hermeneutisk_fortolkningsanalyse"
+          ],
+          "recommended_oslo_cases": [
+            "Nasjonalbiblioteket",
+            "Deichman Bjørvika",
+            "Litteraturhuset",
+            "Ibsenmuseet",
+            "Nationaltheatret som tekst- og resepsjonssted"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "litteraturpensum_v4_5",
+          "canonical_file_role": "active",
+          "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "case_rotation_required": true,
+          "generator_constraints": {
+            "require_concrete_text_work_author_place_or_institution": true,
+            "require_external_claim_basis": true,
+            "require_visible_textual_evidence": true,
+            "require_observation_before_interpretation": true,
+            "require_competing_interpretation": true,
+            "require_scope_or_uncertainty_statement": true,
+            "ban_author_intention_without_source": true,
+            "ban_theorist_name_as_answer_without_concept": true,
+            "do_not_generate_from_hook_label_only": true,
+            "do_not_generate_from_emne_label_only": true,
+            "required_emne_prefix": "em_lit_"
+          }
         }
       ],
       "best_place_types": [
@@ -2735,7 +4236,11 @@
         "Ikke spør generisk om litteraturteori uten tekst, verk, sted, forfatter, leser, institusjon eller kilde.",
         "Ikke bruk litteratur som kategori hvis hovedpoenget egentlig er teater, musikk, media, historie, by, politikk eller kunst.",
         "Ikke gjør forfatterbiografi til litteraturspørsmål uten kobling til verk, tekst, språk, offentlighet eller litterært sted."
-      ]
+      ],
+      "quality_revisions": [
+        "litteratur-poetikk-vertical-phase-1-2026-07-24"
+      ],
+      "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24"
     },
     {
       "id": "felt_institusjon_kritikk",
@@ -8221,5 +9726,62 @@
     "hook_count": 60,
     "canonical_round": "v4.5",
     "emne_prefix_required": "em_lit_"
+  },
+  "poetics_narratology_axis": {
+    "status": "complete_revised",
+    "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+    "primary_domains": [
+      "tekst_form_fortelling",
+      "sjanger_estetikk_tradisjon"
+    ],
+    "hook_ids": [
+      "poetikk_plot_hendelse_narrativ_organisering",
+      "poetikk_fokalisering_upalitelig_forteller",
+      "poetikk_bevissthetsfremstilling_polyfoni",
+      "poetikk_narrativ_tid_minnestruktur",
+      "poetikk_retorikk_adressat_implisitt_leser",
+      "poetikk_hermeneutikk_fortolkningskonflikt",
+      "poetikk_lyrisk_stemme_rytme_metrikk",
+      "poetikk_dramatisk_tekst_dialog_fremforbarhet",
+      "poetikk_metafor_metonymi_billedfelt",
+      "poetikk_litteraer_etikk_affekt_erfaring"
+    ],
+    "emne_ids": [
+      "em_lit_poetikk_plot_hendelse_narrativ_organisering",
+      "em_lit_poetikk_fokalisering_upalitelig_forteller",
+      "em_lit_poetikk_bevissthetsfremstilling_polyfoni",
+      "em_lit_poetikk_narrativ_tid_minnestruktur",
+      "em_lit_poetikk_retorikk_adressat_implisitt_leser",
+      "em_lit_poetikk_hermeneutikk_fortolkningskonflikt",
+      "em_lit_poetikk_lyrisk_stemme_rytme_metrikk",
+      "em_lit_poetikk_dramatisk_tekst_dialog_fremforbarhet",
+      "em_lit_poetikk_metafor_metonymi_billedfelt",
+      "em_lit_poetikk_litteraer_etikk_affekt_erfaring"
+    ],
+    "method_ids": [
+      "met_lit_narrativ_sekvens_og_plotanalyse",
+      "met_lit_fokalisering_og_upalitelighetsanalyse",
+      "met_lit_bevissthets_og_polyfonianalyse",
+      "met_lit_retorisk_leserhenvendelsesanalyse",
+      "met_lit_hermeneutisk_fortolkningsanalyse",
+      "met_lit_lyrisk_form_og_rytmeanalyse"
+    ],
+    "analytical_sequence": [
+      "named_text_or_work",
+      "visible_textual_evidence",
+      "observation",
+      "interpretation",
+      "competing_interpretation",
+      "critical_distinction",
+      "scope_or_uncertainty",
+      "optional_theory"
+    ],
+    "hard_distinctions": [
+      "observasjon vs tolkning",
+      "forfatter vs forteller",
+      "tekstlig effekt vs intensjon",
+      "verk vs oppsetning eller resepsjon",
+      "plausibilitet vs sikkerhet"
+    ]
   }
 }

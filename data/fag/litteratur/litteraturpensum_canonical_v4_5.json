@@ -5,7 +5,7 @@
   "scope": "oslo_og_omegn",
   "type": "pensum",
   "canonical_registry_version": "litteraturpensum_v4_5",
-  "updated_at": "2026-05-02",
+  "updated_at": "2026-07-24",
   "purpose": "Kanonisk pensumregister for Litteratur i History Go. Filen samler domener, emner, metoder, hooks, teorispor og anbefalte Oslo-cases for litteraturfaglig quizgenerering.",
   "canonical_files": {
     "fagkart": "fagkart_litteratur_canonical_v4_5.json",
@@ -16,12 +16,15 @@
   },
   "summary": {
     "domain_count": 6,
-    "emne_count": 28,
-    "method_count": 29,
-    "mapping_count": 28,
-    "topic_hook_count": 60,
+    "emne_count": 41,
+    "method_count": 35,
+    "mapping_count": 38,
+    "topic_hook_count": 70,
     "all_emner_have_mapping": true,
-    "all_method_refs_valid": true
+    "all_method_refs_valid": true,
+    "poetics_phase_1_hook_count": 10,
+    "poetics_phase_1_emne_count": 10,
+    "poetics_phase_1_method_count": 6
   },
   "domain_order": [
     "tekst_form_fortelling",
@@ -38,10 +41,10 @@
       "tagline": "Hvordan litteratur skaper mening gjennom språk, struktur, stemme, tid og perspektiv.",
       "definition": "Domenet dekker nærlesning, stil, motiv, symbol, fortellerteori, perspektiv, tidsstruktur og tekstens interne form.",
       "question_role": "Starter i tekst, verk, sitat, motiv, fortellerstemme eller formgrep før teori løftes inn.",
-      "status": "strong",
-      "emne_count": 7,
-      "hook_count": 10,
-      "method_count": 14,
+      "status": "complete_revised",
+      "emne_count": 13,
+      "hook_count": 16,
+      "method_count": 21,
       "emne_ids": [
         "em_lit_ambivalens_ironi_tvetydighet",
         "em_lit_drama_scene_og_teatertekst",
@@ -49,7 +52,13 @@
         "em_lit_litteratur_etikk_og_erfaring",
         "em_lit_lyrikk_rytme_og_sprak",
         "em_lit_motiv_symbol_bildebruk",
-        "em_lit_naerlesning_stil_form"
+        "em_lit_naerlesning_stil_form",
+        "em_lit_poetikk_plot_hendelse_narrativ_organisering",
+        "em_lit_poetikk_fokalisering_upalitelig_forteller",
+        "em_lit_poetikk_bevissthetsfremstilling_polyfoni",
+        "em_lit_poetikk_narrativ_tid_minnestruktur",
+        "em_lit_poetikk_retorikk_adressat_implisitt_leser",
+        "em_lit_poetikk_hermeneutikk_fortolkningskonflikt"
       ],
       "hook_ids": [
         "naerlesning_og_stil",
@@ -61,7 +70,13 @@
         "forfatter_verk_stemme",
         "tekst_og_virkelighet",
         "dialog_og_drama",
-        "tekstlig_rytme"
+        "tekstlig_rytme",
+        "poetikk_plot_hendelse_narrativ_organisering",
+        "poetikk_fokalisering_upalitelig_forteller",
+        "poetikk_bevissthetsfremstilling_polyfoni",
+        "poetikk_narrativ_tid_minnestruktur",
+        "poetikk_retorikk_adressat_implisitt_leser",
+        "poetikk_hermeneutikk_fortolkningskonflikt"
       ],
       "method_ids": [
         "met_lit_fortelleranalyse",
@@ -77,7 +92,14 @@
         "met_lit_feministisk_og_postkolonial_lesning",
         "met_lit_offentlighetsanalyse",
         "met_lit_stilistisk_analyse",
-        "met_lit_motiv_symbol_analyse"
+        "met_lit_motiv_symbol_analyse",
+        "met_lit_narrativ_sekvens_og_plotanalyse",
+        "met_lit_fokalisering_og_upalitelighetsanalyse",
+        "met_lit_retorisk_leserhenvendelsesanalyse",
+        "met_lit_bevissthets_og_polyfonianalyse",
+        "met_lit_hermeneutisk_fortolkningsanalyse",
+        "met_lit_leser_og_resepsjonsanalyse",
+        "met_lit_komparativ_tekstanalyse"
       ],
       "recommended_oslo_cases": [
         "Henrik Ibsens hjem",
@@ -135,7 +157,14 @@
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "text_place_author_or_institution_anchor_required": true
+      "text_place_author_or_institution_anchor_required": true,
+      "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+      "vertical_chain_status": {
+        "phase_1_poetics_hooks_added": 6,
+        "phase_1_poetics_emner_added": 6,
+        "phase_1_poetics_methods_available": 12,
+        "phase_1_poetics_mappings_added": 6
+      }
     },
     {
       "domain_id": "sjanger_estetikk_tradisjon",
@@ -143,10 +172,10 @@
       "tagline": "Hvordan roman, dikt, drama, essay og hybridformer plasseres i estetiske tradisjoner.",
       "definition": "Domenet dekker sjanger, stilart, epoke, tradisjon, modernisme, realisme, lyrikk, drama, essay, biografi og formeksperiment.",
       "question_role": "Kobler konkrete verk, sjangre og epoker til litteraturhistoriske brudd, tradisjoner og formvalg.",
-      "status": "strong",
-      "emne_count": 7,
-      "hook_count": 10,
-      "method_count": 14,
+      "status": "complete_revised",
+      "emne_count": 11,
+      "hook_count": 14,
+      "method_count": 19,
       "emne_ids": [
         "em_lit_essay_biografi_sakprosa",
         "em_lit_hybridformer_og_sjangerbrudd",
@@ -154,7 +183,11 @@
         "em_lit_litteraere_epoker_og_brudd",
         "em_lit_realisme_modernisme_virkelighetsformer",
         "em_lit_roman_og_prosaformer",
-        "em_lit_sjanger_og_formtradisjon"
+        "em_lit_sjanger_og_formtradisjon",
+        "em_lit_poetikk_lyrisk_stemme_rytme_metrikk",
+        "em_lit_poetikk_dramatisk_tekst_dialog_fremforbarhet",
+        "em_lit_poetikk_metafor_metonymi_billedfelt",
+        "em_lit_poetikk_litteraer_etikk_affekt_erfaring"
       ],
       "hook_ids": [
         "romanens_former",
@@ -166,7 +199,11 @@
         "epoker_og_kanonfortelling",
         "originalitet_og_intertekst",
         "oversettelse_som_form",
-        "barn_ungdom_litteratur"
+        "barn_ungdom_litteratur",
+        "poetikk_lyrisk_stemme_rytme_metrikk",
+        "poetikk_dramatisk_tekst_dialog_fremforbarhet",
+        "poetikk_metafor_metonymi_billedfelt",
+        "poetikk_litteraer_etikk_affekt_erfaring"
       ],
       "method_ids": [
         "met_lit_sjangeranalyse",
@@ -182,7 +219,12 @@
         "met_lit_sosiologisk_tekstanalyse",
         "met_lit_bytekst_analyse",
         "met_lit_litteraer_stedsanalyse",
-        "met_lit_leser_og_resepsjonsanalyse"
+        "met_lit_leser_og_resepsjonsanalyse",
+        "met_lit_lyrisk_form_og_rytmeanalyse",
+        "met_lit_stilistisk_analyse",
+        "met_lit_motiv_symbol_analyse",
+        "met_lit_retorisk_leserhenvendelsesanalyse",
+        "met_lit_hermeneutisk_fortolkningsanalyse"
       ],
       "recommended_oslo_cases": [
         "Nationaltheatret som Ibsen-sted",
@@ -240,7 +282,14 @@
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "text_place_author_or_institution_anchor_required": true
+      "text_place_author_or_institution_anchor_required": true,
+      "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+      "vertical_chain_status": {
+        "phase_1_poetics_hooks_added": 4,
+        "phase_1_poetics_emner_added": 4,
+        "phase_1_poetics_methods_available": 7,
+        "phase_1_poetics_mappings_added": 4
+      }
     },
     {
       "domain_id": "felt_institusjon_kritikk",
@@ -750,5 +799,56 @@
     "required_place_emne_prefix": "em_lit_",
     "required_people_emne_prefix": "em_lit_",
     "review_note": "Steder og personer i litteratur må senere sjekkes mot denne pakken, slik at teater-, musikk-, film-, media-, historie-, kunst- og byposter ikke blir liggende i litteratur hvis hovedkategori er feil."
+  },
+  "poetics_narratology_axis": {
+    "status": "complete_revised",
+    "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+    "purpose": "Sikrer bachelorbredde i poetikk, narratologi, lyrikk- og dramateori med eksplisitt tekstlig evidens og konkurrerende lesninger.",
+    "hook_ids": [
+      "poetikk_plot_hendelse_narrativ_organisering",
+      "poetikk_fokalisering_upalitelig_forteller",
+      "poetikk_bevissthetsfremstilling_polyfoni",
+      "poetikk_narrativ_tid_minnestruktur",
+      "poetikk_retorikk_adressat_implisitt_leser",
+      "poetikk_hermeneutikk_fortolkningskonflikt",
+      "poetikk_lyrisk_stemme_rytme_metrikk",
+      "poetikk_dramatisk_tekst_dialog_fremforbarhet",
+      "poetikk_metafor_metonymi_billedfelt",
+      "poetikk_litteraer_etikk_affekt_erfaring"
+    ],
+    "emne_ids": [
+      "em_lit_poetikk_plot_hendelse_narrativ_organisering",
+      "em_lit_poetikk_fokalisering_upalitelig_forteller",
+      "em_lit_poetikk_bevissthetsfremstilling_polyfoni",
+      "em_lit_poetikk_narrativ_tid_minnestruktur",
+      "em_lit_poetikk_retorikk_adressat_implisitt_leser",
+      "em_lit_poetikk_hermeneutikk_fortolkningskonflikt",
+      "em_lit_poetikk_lyrisk_stemme_rytme_metrikk",
+      "em_lit_poetikk_dramatisk_tekst_dialog_fremforbarhet",
+      "em_lit_poetikk_metafor_metonymi_billedfelt",
+      "em_lit_poetikk_litteraer_etikk_affekt_erfaring"
+    ],
+    "method_ids": [
+      "met_lit_narrativ_sekvens_og_plotanalyse",
+      "met_lit_fokalisering_og_upalitelighetsanalyse",
+      "met_lit_bevissthets_og_polyfonianalyse",
+      "met_lit_retorisk_leserhenvendelsesanalyse",
+      "met_lit_hermeneutisk_fortolkningsanalyse",
+      "met_lit_lyrisk_form_og_rytmeanalyse"
+    ],
+    "learning_outcomes": {
+      "knowledge": [
+        "forklare sentrale begreper i narratologi, poetikk, lyrikk- og dramateori",
+        "skille tekstlige nivåer, stemmer, tidsformer og leserposisjoner"
+      ],
+      "skills": [
+        "utføre tekstnær analyse med presist belegg",
+        "skille observasjon, tolkning og kontekstpåstand",
+        "prøve konkurrerende lesninger og avgrense konklusjoner"
+      ],
+      "general_competence": [
+        "argumentere faglig uten å gjøre teori eller forfatterintensjon til løsrevet fasit"
+      ]
+    }
   }
 }

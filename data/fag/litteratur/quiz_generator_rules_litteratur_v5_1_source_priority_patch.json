@@ -11,10 +11,10 @@
     "emnemapping": "emnemapping_litteratur_canonical_v4_5.json",
     "pensum": "litteraturpensum_canonical_v4_5.json",
     "domain_count": 6,
-    "emne_count": 28,
-    "method_count": 29,
-    "mapping_count": 28,
-    "topic_hook_count": 60
+    "emne_count": 41,
+    "method_count": 35,
+    "mapping_count": 38,
+    "topic_hook_count": 70
   },
   "hard_rules": {
     "source_dominance_rule": "Eksterne litteraturfaglige kilder, konkrete tekster, verk, forfattere, forfatterskap, publikasjoner, bibliotek-, forlags-, arkiv- og institusjonskilder, manuskripter, kritikk, resepsjon og dokumenterte litterære offentligheter skal dominere det synlige faktainnholdet i litteraturquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
@@ -77,7 +77,12 @@
       "em_naering_"
     ],
     "people_litteratur_rule": "people_litteratur skal inneholde personer der hovedrollen er forfatter, poet, dramatiker som tekstforfatter, essayist, oversetter, kritiker, redaktør, forlegger, litteraturformidler eller sentral aktør i litteraturfeltet. Personer der hovedrollen er scenekunst, musikk, film, media, kunst, politikk, vitenskap eller historie skal primært ligge i disse kategoriene, med litteratur som sekundært tag bare der det er relevant.",
-    "places_litteratur_rule": "places_litteratur skal inneholde steder der hovedrollen er litterært verk, forfattersted, forfatterhjem, bibliotek, forlag, bokhandel, arkiv, manuskriptmiljø, redaksjon, litteraturhus, lesesal, litterær kafé, opplesningssted eller litterær offentlighet. Rene teater-, musikk-, film-, media-, kunst-, historie- eller byarkitektursteder skal ikke presses inn i litteratur."
+    "places_litteratur_rule": "places_litteratur skal inneholde steder der hovedrollen er litterært verk, forfattersted, forfatterhjem, bibliotek, forlag, bokhandel, arkiv, manuskriptmiljø, redaksjon, litteraturhus, lesesal, litterær kafé, opplesningssted eller litterær offentlighet. Rene teater-, musikk-, film-, media-, kunst-, historie- eller byarkitektursteder skal ikke presses inn i litteratur.",
+    "literary_interpretation_requires_visible_textual_evidence": true,
+    "observation_must_precede_interpretation": true,
+    "competing_interpretation_required_for_advanced_poetics": true,
+    "author_intention_requires_documented_source": true,
+    "theorist_name_cannot_be_answer_without_concept_and_application": true
   },
   "soft_preferences": {
     "preferred_external_source_mix_per_place": [
@@ -127,7 +132,13 @@
         "met_lit_stilistisk_analyse",
         "met_lit_motiv_symbol_analyse",
         "met_lit_fortelleranalyse",
-        "met_lit_perspektiv_stemme_analyse"
+        "met_lit_perspektiv_stemme_analyse",
+        "met_lit_narrativ_sekvens_og_plotanalyse",
+        "met_lit_fokalisering_og_upalitelighetsanalyse",
+        "met_lit_bevissthets_og_polyfonianalyse",
+        "met_lit_retorisk_leserhenvendelsesanalyse",
+        "met_lit_hermeneutisk_fortolkningsanalyse",
+        "met_lit_lyrisk_form_og_rytmeanalyse"
       ],
       "question_style": "tekstnær observasjon, stil, motiv, symbol, perspektiv, stemme og form uten ren smaksdom"
     },
@@ -139,7 +150,13 @@
         "met_lit_sjangeranalyse",
         "met_lit_litteraturhistorisk_kontekstualisering",
         "met_lit_komparativ_tekstanalyse",
-        "met_lit_tidsstruktur_analyse"
+        "met_lit_tidsstruktur_analyse",
+        "met_lit_narrativ_sekvens_og_plotanalyse",
+        "met_lit_fokalisering_og_upalitelighetsanalyse",
+        "met_lit_bevissthets_og_polyfonianalyse",
+        "met_lit_retorisk_leserhenvendelsesanalyse",
+        "met_lit_hermeneutisk_fortolkningsanalyse",
+        "met_lit_lyrisk_form_og_rytmeanalyse"
       ],
       "question_style": "roman, lyrikk, drama, essay, hybridform, modernisme/realisme, tradisjon, brudd og intertekst"
     },
@@ -278,5 +295,64 @@
     "source_note_definition": "Kort kildebeskrivelse som sier hvilken type litteraturfaglig kilde som er brukt."
   },
   "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For litteratur skal konkrete tekster, verk, forfattere, publikasjoner, institusjoner, arkiv, kritikk, resepsjon, leserpraksiser og litterære steder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
-  "migration_note": "Eksisterende places_litteratur og people_litteratur bør migreres til em_lit_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er litteratur og ikke scenekunst, musikk, film, media, kunst, historie, by eller annet fag."
+  "migration_note": "Eksisterende places_litteratur og people_litteratur bør migreres til em_lit_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er litteratur og ikke scenekunst, musikk, film, media, kunst, historie, by eller annet fag.",
+  "poetics_narratology_contract": {
+    "status": "active",
+    "quality_revision": "litteratur-poetikk-vertical-phase-1-2026-07-24",
+    "hook_ids": [
+      "poetikk_plot_hendelse_narrativ_organisering",
+      "poetikk_fokalisering_upalitelig_forteller",
+      "poetikk_bevissthetsfremstilling_polyfoni",
+      "poetikk_narrativ_tid_minnestruktur",
+      "poetikk_retorikk_adressat_implisitt_leser",
+      "poetikk_hermeneutikk_fortolkningskonflikt",
+      "poetikk_lyrisk_stemme_rytme_metrikk",
+      "poetikk_dramatisk_tekst_dialog_fremforbarhet",
+      "poetikk_metafor_metonymi_billedfelt",
+      "poetikk_litteraer_etikk_affekt_erfaring"
+    ],
+    "emne_ids": [
+      "em_lit_poetikk_plot_hendelse_narrativ_organisering",
+      "em_lit_poetikk_fokalisering_upalitelig_forteller",
+      "em_lit_poetikk_bevissthetsfremstilling_polyfoni",
+      "em_lit_poetikk_narrativ_tid_minnestruktur",
+      "em_lit_poetikk_retorikk_adressat_implisitt_leser",
+      "em_lit_poetikk_hermeneutikk_fortolkningskonflikt",
+      "em_lit_poetikk_lyrisk_stemme_rytme_metrikk",
+      "em_lit_poetikk_dramatisk_tekst_dialog_fremforbarhet",
+      "em_lit_poetikk_metafor_metonymi_billedfelt",
+      "em_lit_poetikk_litteraer_etikk_affekt_erfaring"
+    ],
+    "method_ids": [
+      "met_lit_narrativ_sekvens_og_plotanalyse",
+      "met_lit_fokalisering_og_upalitelighetsanalyse",
+      "met_lit_bevissthets_og_polyfonianalyse",
+      "met_lit_retorisk_leserhenvendelsesanalyse",
+      "met_lit_hermeneutisk_fortolkningsanalyse",
+      "met_lit_lyrisk_form_og_rytmeanalyse"
+    ],
+    "required_sequence": [
+      "external_claim_basis",
+      "named_text_or_work",
+      "visible_textual_evidence",
+      "observation",
+      "interpretation",
+      "competing_interpretation",
+      "scope_or_uncertainty",
+      "optional_theory"
+    ],
+    "hard_requirements": {
+      "require_concrete_text_work_author_place_or_institution": true,
+      "require_external_claim_basis": true,
+      "require_visible_textual_evidence": true,
+      "require_observation_before_interpretation": true,
+      "require_competing_interpretation": true,
+      "require_scope_or_uncertainty_statement": true,
+      "ban_author_intention_without_source": true,
+      "ban_theorist_name_as_answer_without_concept": true,
+      "do_not_generate_from_hook_label_only": true,
+      "do_not_generate_from_emne_label_only": true,
+      "required_emne_prefix": "em_lit_"
+    }
+  }
 }
