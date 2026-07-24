@@ -1,0 +1,121 @@
+{
+  "version": "2026-07-24",
+  "coordinateMaxBatch": 195,
+  "scope": {
+    "label": "Oslo sentrum / indre Oslo priority box",
+    "bbox": {
+      "minLat": 59.89,
+      "maxLat": 59.94,
+      "minLon": 10.7,
+      "maxLon": 10.78
+    },
+    "referencePoint": {
+      "lat": 59.9139,
+      "lon": 10.7522
+    },
+    "exclusionRule": "Only active evidence-backed unresolved places whose current public marker lies inside the bbox are included."
+  },
+  "activePlaceCount": 1445,
+  "evidenceFileCount": 339,
+  "activeUnresolvedEvidenceCount": 11,
+  "activeUnresolvedOsloCount": 9,
+  "activeUnresolvedCentralCount": 1,
+  "readinessCounts": {
+    "needs_source_or_scope": 1
+  },
+  "resolvedSincePost194": [
+    {
+      "placeId": "frognerstranda",
+      "batch": 195,
+      "coordStatus": "verified_geometry",
+      "sourceObjectId": "oslo-kommune:fjordbyen:frognerstranda:official-page-geojson"
+    }
+  ],
+  "centralRows": [
+    {
+      "placeId": "sigrid_undset_statue",
+      "name": "Sigrid Undset-statuen",
+      "category": "litteratur",
+      "sourceFile": "data/places/litteratur/oslo/places_litteratur.json",
+      "evidenceFile": "data/coordinate-evidence/oslo/litteratur/sigrid_undset_statue.json",
+      "lat": 59.9242,
+      "lon": 10.7297,
+      "r": 120,
+      "coordStatus": "needs_source",
+      "coordType": "unverified_monument_point",
+      "locatorType": "poi",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "oslo-kommune:stensparken:sigrid-undset-skulptur",
+      "evidenceStatus": "needs_research",
+      "coordinateDecision": "needs_geometry",
+      "identityStatus": "resolved",
+      "resolvedIdentity": "Sigrid Undset-skulpturen i Stensparken, avduket i 1991",
+      "identityProblem": "Fysisk identitet er dokumentert, men batchens strenge koordinatkrav er ikke oppfylt for ett entydig canonical punkt.",
+      "blockedReason": "Official sources resolve the Sigrid Undset monument identity but expose no exact coordinate. The closest exact OSM artwork candidate, node 7596280553, is now visually rejected because its directly linked images show a different sculpture. No verified canonical anchor remains.",
+      "nextAction": "Find an independent exact monument anchor or authoritative coordinate. Do not retry OSM node 7596280553.",
+      "canBecomeVerified": false,
+      "candidateCounts": {
+        "address": 0,
+        "sourceObject": 3,
+        "geometry": 0,
+        "coordinate": 0
+      },
+      "applicableCounts": {
+        "sourceObject": 0,
+        "geometry": 0,
+        "coordinate": 0
+      },
+      "centralBbox": true,
+      "distanceFromCentralReferenceM": 1698.3,
+      "productionReadiness": "needs_source_or_scope",
+      "explicitRejectedSourceObjects": [
+        "oslo-kommune:stensparken:sigrid-undset-skulptur",
+        "lokalhistoriewiki:stensparken:sigrid-undset",
+        "osm-node:7596280553"
+      ]
+    }
+  ],
+  "nextCandidate": {
+    "placeId": "sigrid_undset_statue",
+    "name": "Sigrid Undset-statuen",
+    "category": "litteratur",
+    "sourceFile": "data/places/litteratur/oslo/places_litteratur.json",
+    "evidenceFile": "data/coordinate-evidence/oslo/litteratur/sigrid_undset_statue.json",
+    "lat": 59.9242,
+    "lon": 10.7297,
+    "r": 120,
+    "coordStatus": "needs_source",
+    "coordType": "unverified_monument_point",
+    "locatorType": "poi",
+    "sourceProvider": "manual_research",
+    "sourceObjectId": "oslo-kommune:stensparken:sigrid-undset-skulptur",
+    "evidenceStatus": "needs_research",
+    "coordinateDecision": "needs_geometry",
+    "identityStatus": "resolved",
+    "resolvedIdentity": "Sigrid Undset-skulpturen i Stensparken, avduket i 1991",
+    "identityProblem": "Fysisk identitet er dokumentert, men batchens strenge koordinatkrav er ikke oppfylt for ett entydig canonical punkt.",
+    "blockedReason": "Official sources resolve the Sigrid Undset monument identity but expose no exact coordinate. The closest exact OSM artwork candidate, node 7596280553, is now visually rejected because its directly linked images show a different sculpture. No verified canonical anchor remains.",
+    "nextAction": "Find an independent exact monument anchor or authoritative coordinate. Do not retry OSM node 7596280553.",
+    "canBecomeVerified": false,
+    "candidateCounts": {
+      "address": 0,
+      "sourceObject": 3,
+      "geometry": 0,
+      "coordinate": 0
+    },
+    "applicableCounts": {
+      "sourceObject": 0,
+      "geometry": 0,
+      "coordinate": 0
+    },
+    "centralBbox": true,
+    "distanceFromCentralReferenceM": 1698.3,
+    "productionReadiness": "needs_source_or_scope",
+    "explicitRejectedSourceObjects": [
+      "oslo-kommune:stensparken:sigrid-undset-skulptur",
+      "lokalhistoriewiki:stensparken:sigrid-undset",
+      "osm-node:7596280553"
+    ]
+  },
+  "decision": "single_remaining_central_candidate_requires_new_exact_source_not_retry_of_rejected_osm_node"
+}
