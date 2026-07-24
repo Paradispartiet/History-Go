@@ -18,6 +18,7 @@ export const OFFICIAL_HISTORY_GO_CATEGORIES = [
   "sport",
   "subkultur",
   "vitenskap",
+  "filosofi",
   "film_tv"
 ] as const;
 
