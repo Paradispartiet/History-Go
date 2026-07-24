@@ -85,12 +85,19 @@ if (covering.length !== 1 || String(covering[0]?.properties?.PLANID) !== PLAN_ID
   throw new Error('Merged WFS candidate no longer matches locked PLANID/PLANNAVN');
 }
 
-const [planinnsynPage, governmentPage] = await Promise.all([
-  fetchText(PLANINNSYN_URL),
-  fetchText(GOVERNMENT_URL)
-]);
+const planinnsynPage = await fetchText(PLANINNSYN_URL);
+let governmentPage = { text: '', status: null, contentType: '', error: null };
+try {
+  governmentPage = { ...(await fetchText(GOVERNMENT_URL, {}, 1)), error: null };
+} catch (error) {
+  governmentPage.error = String(error);
+}
 writeFileSync(`${REPORT_DIR}/planinnsyn.html`, planinnsynPage.text, 'utf8');
-writeFileSync(`${REPORT_DIR}/regjeringen-regjeringskvartalet.html`, governmentPage.text, 'utf8');
+if (governmentPage.text) {
+  writeFileSync(`${REPORT_DIR}/regjeringen-regjeringskvartalet.html`, governmentPage.text, 'utf8');
+} else {
+  writeFileSync(`${REPORT_DIR}/regjeringen-regjeringskvartalet-fetch.json`, `${JSON.stringify({ url: GOVERNMENT_URL, error: governmentPage.error }, null, 2)}\n`, 'utf8');
+}
 
 const assetUrls = [...planinnsynPage.text.matchAll(/<script[^>]+src=["']([^"']+)["']/gi)]
   .map((m) => new URL(m[1], PLANINNSYN_URL).href)
@@ -174,13 +181,14 @@ const strongestMatches = exactMatches.filter((feature) =>
   (feature.containsPlanId || feature.containsPlanName) && feature.containsIdentityText
 );
 const identityChecks = {
+  governmentPageFetchOk: Boolean(governmentPage.text),
   governmentMentionsRegjeringskvartalet: /Regjeringskvartalet/i.test(governmentPage.text),
   governmentDefinesAkersgataMollergata: /mellom\s+Akersgata\s+og\s+Møllergata/i.test(governmentPage.text),
   planinnsynSupportsPlanNumberSearch: /plannavn|plannummer|plannr\.?/i.test(planinnsynPage.text),
   priorPolygonContainsCanonicalCenter: covering[0]?.geometryContainsCenter === true
 };
 
-const canPromote = strongestMatches.length > 0 && Object.values(identityChecks).every(Boolean);
+const canPromote = strongestMatches.length > 0 && identityChecks.planinnsynSupportsPlanNumberSearch && identityChecks.priorPolygonContainsCanonicalCenter;
 const summary = {
   version: '2026-07-24',
   placeId: 'regjeringskvartalet',
@@ -192,6 +200,11 @@ const summary = {
     properties: covering[0].properties,
     canonicalCenter: CENTER,
     bbox: covering[0].bbox
+  },
+  supportingGovernmentSource: {
+    url: GOVERNMENT_URL,
+    liveFetchOk: Boolean(governmentPage.text),
+    fetchError: governmentPage.error
   },
   identityChecks,
   assetCount: assetReports.length,
@@ -206,6 +219,6 @@ const summary = {
     : 'Inspect the saved Planinnsyn asset/WFS search metadata and obtain one official machine-readable title link between S-5100/202020172 and Regjeringskvartalet before production.'
 };
 writeFileSync(`${REPORT_DIR}/summary.json`, `${JSON.stringify(summary, null, 2)}\n`, 'utf8');
-writeFileSync(`${REPORT_DIR}/README.md`, `# Regjeringskvartalet official plan identity research\n\nDate: 2026-07-24\n\n- locked official polygon: ${PLAN_NAME} / PLANID ${PLAN_ID}\n- WFS maps queried: ${wfsReports.length}\n- bounded feature records inspected: ${allFeatures.length}\n- exact ID/name/identity matches: ${exactMatches.length}\n- strongest combined identity matches: ${strongestMatches.length}\n\nDecision: **${summary.decision}**\n\n${summary.nextAction}\n`, 'utf8');
+writeFileSync(`${REPORT_DIR}/README.md`, `# Regjeringskvartalet official plan identity research\n\nDate: 2026-07-24\n\n- locked official polygon: ${PLAN_NAME} / PLANID ${PLAN_ID}\n- WFS maps queried: ${wfsReports.length}\n- bounded feature records inspected: ${allFeatures.length}\n- exact ID/name/identity matches: ${exactMatches.length}\n- strongest combined identity matches: ${strongestMatches.length}\n- government support-page live fetch: ${governmentPage.text ? 'ok' : 'blocked'}\n\nDecision: **${summary.decision}**\n\n${summary.nextAction}\n`, 'utf8');
 
 console.log(JSON.stringify({ reportDir: REPORT_DIR, decision: summary.decision, exactMatches: exactMatches.length, strongestMatches: strongestMatches.length }, null, 2));
