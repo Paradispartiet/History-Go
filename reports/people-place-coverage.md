@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-07-24T11:21:28.109Z
+Generert: 2026-07-24T12:39:45.022Z
 
 ## Sammendrag
 
-- People totalt: **1293**
+- People totalt: **1296**
 - Places totalt: **1292**
 - Places med people: **337**
 - Places uten people: **955**
-- People-place-lenker: **1517**
-- People koblet til flere gyldige steder: **254**
+- People-place-lenker: **1522**
+- People koblet til flere gyldige steder: **256**
 - People uten gyldig sted: **122**
 - Ugyldige place-referanser: **50**
-- Duplikate place-referanser inne på people: **1212**
-- People uten image: **952**
-- People uten cardImage: **953**
+- Duplikate place-referanser inne på people: **1215**
+- People uten image: **955**
+- People uten cardImage: **956**
 - People uten popupDesc: **105**
 
 ## Dekning per place-kategori
@@ -30,7 +30,7 @@ Generert: 2026-07-24T11:21:28.109Z
 | musikk | 15 | 13 | 2 | 30 | 22 |
 | naeringsliv | 144 | 35 | 109 | 75 | 69 |
 | natur | 99 | 8 | 91 | 18 | 18 |
-| politikk | 35 | 23 | 12 | 208 | 172 |
+| politikk | 35 | 23 | 12 | 213 | 175 |
 | populaerkultur | 17 | 2 | 15 | 2 | 2 |
 | psykologi | 3 | 2 | 1 | 2 | 1 |
 | religion | 3 | 0 | 3 | 0 | 0 |
@@ -47,16 +47,16 @@ Generert: 2026-07-24T11:21:28.109Z
 - scenekunst: 193
 - litteratur: 178
 - skuespiller: 147
-- politikk: 129
+- politikk: 137
 - musikk: 121
 - holmenkollen: 105
 - holmenkollrennet: 80
 - kunst: 76
-- arkitektur: 66
 - subkultur: 64
-- by: 60
+- arkitektur: 61
 - naeringsliv: 58
 - regissor: 56
+- by: 55
 - langrenn: 49
 - fotball: 47
 - teatersjef: 47
@@ -115,10 +115,10 @@ Generert: 2026-07-24T11:21:28.109Z
 - lisbon_cinemateca_portuguesa (Cinemateca Portuguesa) – 13
 - nidaros_erkebispegarden (Erkebispegården i Nidaros) – 13
 - victoria_terrasse (Victoria terrasse) – 13
+- regjeringskvartalet (Regjeringskvartalet) – 12
+- slottet (Det kongelige slott) – 12
 - torggata (Torggata) – 12
 - ullevaal_stadion (Ullevaal Stadion) – 12
-- chat_noir (Chat Noir) – 11
-- jordal_amfi (Jordal Amfi) – 11
 
 ## Ugyldige place-referanser
 
@@ -275,7 +275,7 @@ Generert: 2026-07-24T11:21:28.109Z
 - haakon_v_magnusson (Håkon V Magnusson) -> akershus_festning
 - st_hallvard (St. Hallvard) -> middelalder_oslo
 - harald_hardrade (Harald Hardråde) -> middelalder_oslo
-- ... 1112 flere
+- ... 1115 flere
 
 ## Anbefalt første people-batch
 

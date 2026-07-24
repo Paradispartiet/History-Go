@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-24T11:21:27.882Z
+Generated: 2026-07-24T12:39:44.736Z
 
 ## Sammendrag
 - People-filer lest: **659**
-- People lest: **1291**
+- People lest: **1294**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1291**
+- Duplikate interne place-referanser: **1294**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -1297,12 +1297,15 @@ Generated: 2026-07-24T11:21:27.882Z
 - data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json :: erna_solberg (Erna Solberg) -> statsministerboligen x2
 - data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: rolf_stranger (Rolf Stranger) -> oslo_radhus x2
 - data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: jorgen_knudsen (Jørgen Knudsen) -> folkets_hus_oslo x2
-- data/people/by/oslo/people_by_oslo_politics_places_batch_04.json :: bengt_espen_knudsen (Bengt Espen Knudsen) -> folkets_hus_oslo x2
-- data/people/by/oslo/people_by_oslo_politics_places_batch_04.json :: torstein_ramberg (Torstein Ramberg) -> regjeringskvartalet x2
-- data/people/by/oslo/people_by_oslo_politics_places_batch_04.json :: johan_henrik_nebelong (Johan Henrik Nebelong) -> slottet x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: yngve_hagensen (Yngve Hågensen) -> folkets_hus_oslo x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: gerd_liv_valla (Gerd-Liv Valla) -> folkets_hus_oslo x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: per_borten (Per Borten) -> regjeringskvartalet x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: odvar_nordli (Odvar Nordli) -> regjeringskvartalet x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: olav_v (Olav V) -> slottet x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: harald_v (Harald V) -> slottet x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: halvard_lange (Halvard Lange) -> victoria_terrasse x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: ulrik_olsen (Ulrik Olsen) -> victoria_terrasse x2
 - data/people/by/oslo/people_by_oslo_politics_places_batch_04.json :: henrik_thrap_meyer (Henrik Thrap-Meyer) -> victoria_terrasse x2
-- data/people/by/oslo/people_by_oslo_politics_places_batch_04.json :: paul_due (Paul Due) -> victoria_terrasse x2
-- data/people/by/oslo/people_by_oslo_politics_places_batch_04.json :: bernhard_steckmest (Bernhard Steckmest) -> victoria_terrasse x2
 - data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_04.json :: peter_fredrik_wergmann (Peter Fredrik Wergmann) -> slottet x2
 - data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_04.json :: johannes_flintoe (Johannes Flintoe) -> slottet x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_04.json :: peter_petersen_victoria_terrasse (Peter Petersen) -> victoria_terrasse x2
