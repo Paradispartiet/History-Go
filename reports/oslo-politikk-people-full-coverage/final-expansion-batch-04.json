@@ -1,303 +1,200 @@
 {
-  "processed": 20,
-  "new_people": 12,
-  "reused_people": 8,
-  "new_place_links_on_reused": 4,
-  "already_satisfied_reused": 4,
-  "reused": [
-    {
-      "id": "knut_knutsen_arkitekt",
-      "name": "Knut Knutsen",
-      "place": "folkets_hus_oslo",
-      "already_linked": true,
-      "file": "data/people/politikk/oslo/people_politikk_oslo.json"
-    },
-    {
-      "id": "henrik_bull",
-      "name": "Henrik Bull",
-      "place": "regjeringskvartalet",
-      "already_linked": true,
-      "file": "data/people/by/oslo/people_by_oslo.json"
-    },
-    {
-      "id": "kong_karl_johan",
-      "name": "Karl Johan",
-      "place": "slottet",
-      "already_linked": true,
-      "file": "data/people/historie/oslo/people_historie_oslo.json"
-    },
-    {
-      "id": "oscar_i",
-      "name": "Oscar I",
-      "place": "slottet",
-      "already_linked": true,
-      "file": "data/people/historie/oslo/people_historie_oslo.json"
-    },
-    {
-      "id": "heinrich_ernst_schirmer",
-      "name": "Heinrich Ernst Schirmer",
-      "place": "slottet",
-      "already_linked": false,
-      "file": "data/people/by/oslo/gamle_aker_kirke/heinrich_ernst_schirmer.json"
-    },
-    {
-      "id": "wilhelm_von_hanno",
-      "name": "Wilhelm von Hanno",
-      "place": "victoria_terrasse",
-      "already_linked": false,
-      "file": "data/people/historie/oslo/people_historie_oslo.json"
-    },
-    {
-      "id": "henrik_ibsen",
-      "name": "Henrik Ibsen",
-      "place": "victoria_terrasse",
-      "already_linked": false,
-      "file": "data/people/historie/oslo/people_historie_oslo.json"
-    },
-    {
-      "id": "johan_nygaardsvold",
-      "name": "Johan Nygaardsvold",
-      "place": "victoria_terrasse",
-      "already_linked": false,
-      "file": "data/people/politikk/oslo/people_politikk_oslo.json"
-    }
+  "schema": "oslo_politikk_people_final_expansion_v2",
+  "generatedAt": "2026-07-24T12:35:00+02:00",
+  "scope": [
+    "folkets_hus_oslo",
+    "regjeringskvartalet",
+    "slottet",
+    "victoria_terrasse"
   ],
-  "created": [
+  "production": {
+    "newPeople": 15,
+    "reusedCanonicalPeople": 8,
+    "processedIdentities": 23,
+    "removedInBalancePass": 5,
+    "netNewComparedWithPreBalanceBatch": 3
+  },
+  "priorityRule": [
+    "decision_makers_and_actual_users",
+    "people_in_central_events",
+    "organisation_leaders_activists_and_civil_servants",
+    "artists_and_people_commemorated_at_the_place",
+    "architects_and_builders"
+  ],
+  "architecturePolicy": {
+    "maximumArchitectsPerPoliticalPlace": 2,
+    "nonArchitectRolesMustOutnumberArchitects": true,
+    "exceptions": "Only when the place is primarily an architecture place"
+  },
+  "newPeople": [
     {
-      "id": "bengt_espen_knudsen",
-      "name": "Bengt Espen Knudsen",
-      "category": "by",
-      "place": "folkets_hus_oslo",
-      "year": 1985,
-      "period": "arkitekt_for_tredje_byggetrinn",
-      "desc": "Arkitekten bak Folkets Hus’ tredje byggetrinn fra 1985.",
-      "popup": "Bengt Espen Knudsen tegnet det tredje byggetrinnet av Folkets Hus mot Hammersborggata og Møllergata, oppført i 1985. Kortet gjelder denne konkrete utvidelsen av anlegget.",
-      "tags": [
-        "by",
-        "arkitektur",
-        "arbeiderbevegelsen",
-        "folkets_hus"
-      ],
-      "sources": [
-        "https://oslobyleksikon.no/side/Folkets_hus"
-      ]
+      "id": "yngve_hagensen",
+      "name": "Yngve Hågensen",
+      "placeId": "folkets_hus_oslo",
+      "role": "LO-leder og institusjonsbærer"
     },
     {
-      "id": "torstein_ramberg",
-      "name": "Torstein Ramberg",
-      "category": "by",
-      "place": "regjeringskvartalet",
-      "year": 1996,
-      "period": "arkitekt_for_r5",
-      "desc": "Arkitekten bak regjeringsbygget R5, tatt i bruk i 1996.",
-      "popup": "Torstein Ramberg AS er dokumentert som arkitekt for R5 i Regjeringskvartalet, tatt i bruk i 1996. Kortet gjelder Torstein Rambergs direkte tilknytning til dette byggetrinnet.",
-      "tags": [
-        "by",
-        "arkitektur",
-        "regjeringskvartalet",
-        "r5"
-      ],
-      "sources": [
-        "https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/regjeringskvartalet/bygninger/id712727/"
-      ]
+      "id": "gerd_liv_valla",
+      "name": "Gerd-Liv Valla",
+      "placeId": "folkets_hus_oslo",
+      "role": "LO-leder og sentral hendelsesperson"
     },
     {
-      "id": "johan_henrik_nebelong",
-      "name": "Johan Henrik Nebelong",
-      "category": "by",
-      "place": "slottet",
-      "year": 1838,
-      "period": "arkitektassistent_ved_slottsinnredningen",
-      "desc": "Arkitektassistent for Linstow under innredningen av Slottet.",
-      "popup": "Johan Henrik Nebelong arbeidet som assistent for Linstow i innredningsfasen ved Det kongelige slott. Kortet gjelder hans konkrete arkitektrolle i anleggets ferdigstilling.",
-      "tags": [
-        "by",
-        "arkitektur",
-        "slottet",
-        "slottsinterior"
-      ],
-      "sources": [
-        "https://www.kongehuset.no/kongelige-eiendommer/det-kongelige-slott/slottets-historie-og-arkitektur"
-      ]
+      "id": "per_borten",
+      "name": "Per Borten",
+      "placeId": "regjeringskvartalet",
+      "secondaryPlaceId": "hoyblokka",
+      "role": "statsminister og faktisk bruker"
+    },
+    {
+      "id": "odvar_nordli",
+      "name": "Odvar Nordli",
+      "placeId": "regjeringskvartalet",
+      "secondaryPlaceId": "hoyblokka",
+      "role": "statsminister og faktisk bruker"
+    },
+    {
+      "id": "olav_v",
+      "name": "Olav V",
+      "placeId": "slottet",
+      "role": "konge og statsoverhode"
+    },
+    {
+      "id": "harald_v",
+      "name": "Harald V",
+      "placeId": "slottet",
+      "role": "konge og statsoverhode"
     },
     {
       "id": "peter_fredrik_wergmann",
       "name": "Peter Fredrik Wergmann",
-      "category": "kunst",
-      "place": "slottet",
-      "year": 1841,
-      "period": "dekorasjonsmaler_pa_slottet",
-      "desc": "Dekorasjonsmaleren bak pompeianske interiører på Slottet.",
-      "popup": "Peter Fredrik Wergmann utførte blant annet de pompeianske dekorasjonene i Den daglige spisesal og Den store spisesal. Kortet gjelder hans dokumenterte utsmykningsarbeid ved Slottet.",
-      "tags": [
-        "kunst",
-        "dekorasjonsmaleri",
-        "slottet",
-        "slottsinterior"
-      ],
-      "sources": [
-        "https://www.kongehuset.no/kongelige-eiendommer/det-kongelige-slott/slottets-historie-og-arkitektur",
-        "https://www.kongehuset.no/kongelige-eiendommer/det-kongelige-slott/byggingen-av-slottet"
-      ]
+      "placeId": "slottet",
+      "role": "dekorasjonsmaler"
     },
     {
       "id": "johannes_flintoe",
       "name": "Johannes Flintoe",
-      "category": "kunst",
-      "place": "slottet",
-      "year": 1841,
-      "period": "utsmykket_fuglevaerelset",
-      "desc": "Kunstneren som utsmykket Fugleværelset på Slottet.",
-      "popup": "Johannes Flintoe utførte dekorasjonene med norske prospekter i Slottets Fugleværelse. Kortet gjelder hans direkte kunstneriske arbeid i kongeboligen.",
-      "tags": [
-        "kunst",
-        "maleri",
-        "slottet",
-        "fuglevaerelset"
-      ],
-      "sources": [
-        "https://www.kongehuset.no/kongelige-eiendommer/det-kongelige-slott/slottets-historie-og-arkitektur",
-        "https://www.kongehuset.no/kongelige-eiendommer/det-kongelige-slott/byggingen-av-slottet"
-      ]
+      "placeId": "slottet",
+      "role": "kunstner og romdekoratør"
     },
     {
       "id": "peter_petersen_victoria_terrasse",
       "name": "Peter Petersen",
-      "category": "naeringsliv",
-      "place": "victoria_terrasse",
-      "year": 1884,
-      "period": "byggherre_for_victoria_terrasse",
-      "desc": "Generalkonsulen som ledet interessentskapet bak Victoria terrasse.",
-      "popup": "Peter Petersen ledet interessentskapet som oppførte Victoria terrasse som fasjonable leiegårder 1884–1890. Anlegget ble en tid kalt Petersborg etter ham. Kortet gjelder hans direkte byggherrerolle.",
-      "tags": [
-        "naeringsliv",
-        "eiendomsutvikling",
-        "victoria_terrasse",
-        "byggherre"
-      ],
-      "sources": [
-        "https://oslobyleksikon.no/side/Victoria_terrasse"
-      ]
+      "placeId": "victoria_terrasse",
+      "role": "byggherre"
     },
     {
       "id": "henrik_thrap_meyer",
       "name": "Henrik Thrap-Meyer",
-      "category": "by",
-      "place": "victoria_terrasse",
-      "year": 1884,
-      "period": "hovedarkitekt_for_victoria_terrasse",
-      "desc": "Hovedarkitekten for Victoria terrasse.",
-      "popup": "Henrik Thrap-Meyer var hovedarkitekt for bygningskomplekset Victoria terrasse, oppført 1884–1890. Kortet gjelder hans direkte hovedansvar for anleggets arkitektur.",
-      "tags": [
-        "by",
-        "arkitektur",
-        "historisme",
-        "victoria_terrasse"
-      ],
-      "sources": [
-        "https://oslobyleksikon.no/side/Victoria_terrasse"
-      ]
-    },
-    {
-      "id": "paul_due",
-      "name": "Paul Due",
-      "category": "by",
-      "place": "victoria_terrasse",
-      "year": 1884,
-      "period": "arkitekt_for_victoria_terrasse",
-      "desc": "En av arkitektene som assisterte ved Victoria terrasse.",
-      "popup": "Paul Due er dokumentert som en av arkitektene som assisterte hovedarkitekt Henrik Thrap-Meyer ved oppføringen av Victoria terrasse. Kortet gjelder denne direkte arkitektkoblingen.",
-      "tags": [
-        "by",
-        "arkitektur",
-        "historisme",
-        "victoria_terrasse"
-      ],
-      "sources": [
-        "https://oslobyleksikon.no/side/Victoria_terrasse"
-      ]
-    },
-    {
-      "id": "bernhard_steckmest",
-      "name": "Bernhard Steckmest",
-      "category": "by",
-      "place": "victoria_terrasse",
-      "year": 1884,
-      "period": "arkitekt_for_victoria_terrasse",
-      "desc": "En av arkitektene som assisterte ved Victoria terrasse.",
-      "popup": "Bernhard Steckmest er dokumentert som en av arkitektene som assisterte hovedarkitekt Henrik Thrap-Meyer ved Victoria terrasse. Kortet gjelder denne konkrete arkitektrollen.",
-      "tags": [
-        "by",
-        "arkitektur",
-        "historisme",
-        "victoria_terrasse"
-      ],
-      "sources": [
-        "https://oslobyleksikon.no/side/Victoria_terrasse"
-      ]
+      "placeId": "victoria_terrasse",
+      "role": "hovedarkitekt"
     },
     {
       "id": "curt_brauer",
       "name": "Curt Bräuer",
-      "category": "historie",
-      "place": "victoria_terrasse",
-      "year": 1940,
-      "period": "overbrakte_det_tyske_ultimatumet",
-      "desc": "Den tyske sendemannen som mottok Norges avslag 9. april 1940.",
-      "popup": "Curt Bräuer kom til Victoria terrasse tidlig 9. april 1940 for å overbringe Nazi-Tysklands ultimatum og mottok avslaget fra utenriksminister Halvdan Koht. Kortet gjelder dette dokumenterte møtet.",
-      "tags": [
-        "historie",
-        "andre_verdenskrig",
-        "diplomati",
-        "victoria_terrasse"
-      ],
-      "sources": [
-        "https://www.regjeringen.no/no/dep/smk/ansvarsomrader/forloperne/1905-1945/1940-norges-forste-nei/id2405916/"
-      ]
+      "placeId": "victoria_terrasse",
+      "role": "sentral hendelsesperson 9. april 1940"
     },
     {
       "id": "christian_mohr",
       "name": "Christian Mohr",
-      "category": "historie",
-      "place": "victoria_terrasse",
-      "year": 1940,
-      "period": "tok_imot_curt_brauer",
-      "desc": "Sekretæren som tok imot Curt Bräuer ved Victoria terrasse.",
-      "popup": "Christian Mohr, utenriksministerens sekretær, møtte Curt Bräuer ved hovedporten og førte ham opp trappene i Victoria terrasse tidlig 9. april 1940. Kortet gjelder denne direkte hendelsesrollen.",
-      "tags": [
-        "historie",
-        "andre_verdenskrig",
-        "utenrikstjenesten",
-        "victoria_terrasse"
-      ],
-      "sources": [
-        "https://www.regjeringen.no/no/dep/smk/ansvarsomrader/forloperne/1905-1945/1940-norges-forste-nei/id2405916/"
-      ]
+      "placeId": "victoria_terrasse",
+      "role": "diplomat og hendelsesperson 9. april 1940"
     },
     {
       "id": "christian_p_reusch",
       "name": "Christian P. Reusch",
-      "category": "historie",
-      "place": "victoria_terrasse",
-      "year": 1940,
-      "period": "forte_brauer_til_biblioteket",
-      "desc": "Byråsjefen som førte Curt Bräuer inn i biblioteket 9. april 1940.",
-      "popup": "Christian P. Reusch var byråsjef i Utenriksdepartementets politiske avdeling og førte Curt Bräuer til biblioteket i Victoria terrasse før møtet med Halvdan Koht. Kortet gjelder denne dokumenterte hendelsesrollen.",
-      "tags": [
-        "historie",
-        "andre_verdenskrig",
-        "utenrikstjenesten",
-        "victoria_terrasse"
-      ],
-      "sources": [
-        "https://www.regjeringen.no/no/dep/smk/ansvarsomrader/forloperne/1905-1945/1940-norges-forste-nei/id2405916/"
-      ]
+      "placeId": "victoria_terrasse",
+      "role": "diplomat og hendelsesperson 9. april 1940"
+    },
+    {
+      "id": "halvard_lange",
+      "name": "Halvard Lange",
+      "placeId": "victoria_terrasse",
+      "role": "utenriksminister ved regjeringskonferansen i 1948"
+    },
+    {
+      "id": "ulrik_olsen",
+      "name": "Ulrik Olsen",
+      "placeId": "victoria_terrasse",
+      "role": "kommunalminister ved regjeringskonferansen i 1948"
     }
   ],
-  "minimums": {
-    "folkets_hus_oslo": 4,
-    "regjeringskvartalet": 11,
-    "slottet": 11,
+  "reusedCanonicalPeople": [
+    {
+      "id": "knut_knutsen_arkitekt",
+      "placeId": "folkets_hus_oslo"
+    },
+    {
+      "id": "henrik_bull",
+      "placeId": "regjeringskvartalet"
+    },
+    {
+      "id": "kong_karl_johan",
+      "placeId": "slottet"
+    },
+    {
+      "id": "oscar_i",
+      "placeId": "slottet"
+    },
+    {
+      "id": "heinrich_ernst_schirmer",
+      "placeId": "slottet"
+    },
+    {
+      "id": "wilhelm_von_hanno",
+      "placeId": "victoria_terrasse"
+    },
+    {
+      "id": "henrik_ibsen",
+      "placeId": "victoria_terrasse"
+    },
+    {
+      "id": "johan_nygaardsvold",
+      "placeId": "victoria_terrasse"
+    }
+  ],
+  "removedInBalancePass": [
+    {
+      "id": "bengt_espen_knudsen",
+      "placeId": "folkets_hus_oslo",
+      "reason": "third architect at a political institution"
+    },
+    {
+      "id": "torstein_ramberg",
+      "placeId": "regjeringskvartalet",
+      "reason": "third architect after existing canonical architecture coverage"
+    },
+    {
+      "id": "johan_henrik_nebelong",
+      "placeId": "slottet",
+      "reason": "assistant architect displaced by direct royal users"
+    },
+    {
+      "id": "paul_due",
+      "placeId": "victoria_terrasse",
+      "reason": "additional architect displaced by political users"
+    },
+    {
+      "id": "bernhard_steckmest",
+      "placeId": "victoria_terrasse",
+      "reason": "additional architect displaced by political users"
+    }
+  ],
+  "lockedMinimums": {
+    "folkets_hus_oslo": 5,
+    "regjeringskvartalet": 12,
+    "slottet": 12,
     "victoria_terrasse": 13
+  },
+  "expectedHøyblokkaCount": 10,
+  "expectedCivicationPeopleCount": 1289,
+  "validation": {
+    "test": "tests/oslo-politikk-final-people-expansion.test.js",
+    "checksSources": true,
+    "checksUniqueIds": true,
+    "checksMinimums": true,
+    "checksArchitectureCaps": true,
+    "checksNonArchitectMajority": true
   }
 }
