@@ -32,6 +32,8 @@ jobs:
           set -euo pipefail
           mkdir -p reports/politikk-canonical-migration
 
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git fetch origin main
           git rebase origin/main
 
@@ -77,8 +79,6 @@ jobs:
           rm -f reports/politikk-canonical-migration/statsvitenskap-builder-syntax.txt
           rm -f reports/politikk-canonical-migration/statsvitenskap-builder-output.txt
 
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add -A data/fag/politikk reports/politikk-canonical-migration tools
           git diff --cached --check
           git commit -m 'Politikk: bygg full statsvitenskapelig hovedstruktur'
