@@ -1,6 +1,6 @@
 # Quiz: migreringskø for global 2 × 7-normalåpning
 
-Generert: 2026-07-24T16:23:00.771Z
+Generert: 2026-07-24T16:24:49.403Z
 
 ## Omfang
 
