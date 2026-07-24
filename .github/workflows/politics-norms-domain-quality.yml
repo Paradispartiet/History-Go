@@ -24,50 +24,42 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Read phase
-        id: phase
-        if: hashFiles('reports/politikk-canonical-migration/normer-domain-work-marker.txt') != ''
-        run: echo "value=$(cat reports/politikk-canonical-migration/normer-domain-work-marker.txt)" >> "$GITHUB_OUTPUT"
-      - name: Export current canonical inputs
-        id: export
-        if: steps.phase.outputs.value == 'export-current-canonical'
+      - name: Apply and validate norms-domain migration
+        id: apply
+        continue-on-error: true
+        if: hashFiles('tools/apply-politikk-normer-vertical.part-*') != ''
         run: |
           set -euo pipefail
-          mkdir -p /tmp/politikk-canonical
-          cp data/fag/politikk/{fagkart_politikk_canonical_v4_5.json,emner_politikk_canonical_v4_5.json,methods_politikk_canonical_v4_5.json,emnemapping_politikk_canonical_v4_5.json,politikkpensum_canonical_v4_5.json,quiz_generator_rules_politikk_v5_1_source_priority_patch.json} /tmp/politikk-canonical/
-          echo "exported=true" >> "$GITHUB_OUTPUT"
-      - uses: actions/upload-artifact@v4
-        if: steps.export.outputs.exported == 'true'
-        with:
-          name: politics-canonical-current-norms
-          path: /tmp/politikk-canonical/
-      - name: Materialize norm domain
-        if: steps.phase.outputs.value == 'materialize'
-        run: |
-          set -euo pipefail
-          node tools/apply-politikk-normer-vertical.mjs
-          node tools/validate-politikk-normer-vertical.mjs | tee reports/politikk-canonical-migration/normer-identitet-vertical-chain-validation.txt
-          node -e 'const fs=require("fs"); for (const p of ["data/fag/politikk/fagkart_politikk_canonical_v4_5.json","data/fag/politikk/emner_politikk_canonical_v4_5.json","data/fag/politikk/methods_politikk_canonical_v4_5.json","data/fag/politikk/emnemapping_politikk_canonical_v4_5.json","data/fag/politikk/politikkpensum_canonical_v4_5.json","data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json","reports/politikk-canonical-migration/normer-identitet-question-blueprints.json"]) JSON.parse(fs.readFileSync(p,"utf8")); console.log("JSON parse: PASS");'
-          git diff --check
-      - name: Commit canonical result
-        if: steps.phase.outputs.value == 'materialize'
-        run: |
-          set -euo pipefail
-          rm tools/apply-politikk-normer-vertical.mjs
-          rm reports/politikk-canonical-migration/normer-domain-work-marker.txt
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/fag/politikk/fagkart_politikk_canonical_v4_5.json
-          git add data/fag/politikk/emner_politikk_canonical_v4_5.json
-          git add data/fag/politikk/methods_politikk_canonical_v4_5.json
-          git add data/fag/politikk/emnemapping_politikk_canonical_v4_5.json
-          git add data/fag/politikk/politikkpensum_canonical_v4_5.json
-          git add data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json
-          git add reports/politikk-canonical-migration/normer-identitet-question-blueprints.json
-          git add reports/politikk-canonical-migration/normer-identitet-vertical-chain.md
-          git add reports/politikk-canonical-migration/normer-identitet-vertical-chain-validation.txt
-          git add tools/validate-politikk-normer-vertical.mjs
-          git add -u tools/apply-politikk-normer-vertical.mjs reports/politikk-canonical-migration/normer-domain-work-marker.txt
+          mkdir -p reports/politikk-canonical-migration
+          cat tools/apply-politikk-normer-vertical.part-* > /tmp/norm_payload.tar.gz.b64
+          echo '20e999e734864a26f637a73d15f2ef91b356f94e6f2fabf38e930400301213b8  /tmp/norm_payload.tar.gz.b64' | sha256sum -c -
+          base64 -d /tmp/norm_payload.tar.gz.b64 > /tmp/norm_payload.tar.gz
+          rm -rf /tmp/norm-unpack
+          mkdir -p /tmp/norm-unpack
+          tar -xzf /tmp/norm_payload.tar.gz -C /tmp/norm-unpack
+          python -m py_compile /tmp/norm-unpack/norm_payload/apply.py 2>&1 | tee reports/politikk-canonical-migration/normer-identitet-migration-syntax.txt
+          python /tmp/norm-unpack/norm_payload/apply.py 2>&1 | tee reports/politikk-canonical-migration/normer-identitet-vertical-chain-validation.txt
+          node tools/validate-politikk-normer-vertical.mjs 2>&1 | tee -a reports/politikk-canonical-migration/normer-identitet-vertical-chain-validation.txt
+          for file in data/fag/politikk/fagkart_politikk_canonical_v4_5.json data/fag/politikk/emner_politikk_canonical_v4_5.json data/fag/politikk/methods_politikk_canonical_v4_5.json data/fag/politikk/emnemapping_politikk_canonical_v4_5.json data/fag/politikk/politikkpensum_canonical_v4_5.json data/fag/politikk/quiz_generator_rules_politikk_v5_1_source_priority_patch.json reports/politikk-canonical-migration/normer-identitet-question-blueprints.json; do
+            node -e 'JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log("PASS | Gyldig JSON: "+process.argv[1])' "$file" 2>&1 | tee -a reports/politikk-canonical-migration/normer-identitet-vertical-chain-validation.txt
+          done
+          git diff --check 2>&1 | tee -a reports/politikk-canonical-migration/normer-identitet-vertical-chain-validation.txt
+          echo 'PASS | git diff --check' | tee -a reports/politikk-canonical-migration/normer-identitet-vertical-chain-validation.txt
+          rm -f tools/apply-politikk-normer-vertical.part-*
+          rm -f reports/politikk-canonical-migration/normer-domain-work-marker.txt
+          rm -f reports/politikk-canonical-migration/normer-identitet-migration-syntax.txt
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/fag/politikk reports/politikk-canonical-migration tools
           git diff --cached --check
           git commit -m 'Politikk: fullfør normdomenets vertikale kvalitetskjede'
           git push origin HEAD:${{ github.head_ref }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: politics-norms-diagnostics
+          path: reports/politikk-canonical-migration/normer-identitet-*
+          if-no-files-found: warn
+      - name: Propagate migration failure
+        if: steps.apply.outcome == 'failure'
+        run: exit 1
