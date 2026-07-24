@@ -2,7 +2,7 @@
   "subject_id": "sport",
   "subject_title": "Sport & lek",
   "type": "quality_layer_manifest",
-  "version": "5.0",
+  "version": "5.1",
   "status": "canonical_quality_overlay",
   "updated_at": "2026-07-24",
   "compatibility": {
@@ -14,7 +14,7 @@
       "methods": "methods_sport_canonical_v4_5.json",
       "quiz_profile": "supersetQUIZMAL_sport.json"
     },
-    "rule": "Eksisterende emne- og metode-ID-er beholdes for kompatibilitet. V5-laget skjerper teori, begreper, metoder, kildebruk og produksjonsregler uten å ugyldiggjøre eksisterende quizdata."
+    "rule": "Eksisterende emne- og metode-ID-er beholdes for kompatibilitet. V5-laget skjerper teori og begreper; evidenslaget v1 skjerper påstander, kilder, målinger, modeller og usikkerhet."
   },
   "quality_files": {
     "theory_hooks": "theory_hooks_sport_canonical_v5.json",
@@ -25,6 +25,18 @@
     "validator": "../../../tools/validate-sport-theory-quality.mjs",
     "report": "../../../reports/sport-theory-quality-validation.json"
   },
+  "scientific_evidence_layer": {
+    "manifest": "sport_scientific_evidence_manifest_v1.json",
+    "sources": "evidence_registry_sport_v1.json",
+    "claims": "claims_sport_canonical_v1.json",
+    "models": "models_sport_canonical_v1.json",
+    "source_quality_rubric": "source_quality_rubric_sport_v1.json",
+    "measurements": "measurement_registry_sport_v1.json",
+    "scientific_method_policy": "sport_scientific_method_policy_v1.json",
+    "validator": "../../../tools/validate-sport-evidence.mjs",
+    "report": "../../../reports/sport-scientific-evidence-validation.json",
+    "readme": "../../../reports/sport-scientific-evidence-layer.md"
+  },
   "counts": {
     "areas": 14,
     "hooks": 56,
@@ -34,17 +46,24 @@
     "thinkers_active": 177,
     "thinkers_contextual": 6,
     "works": 123,
-    "concepts": 140
+    "concepts": 140,
+    "evidence_sources": 17,
+    "canonical_claims": 16,
+    "scientific_models": 12,
+    "measurements": 15,
+    "evidence_gates": 10
   },
   "production_invariants": [
-    "Et spørsmål starter i et konkret idrettsanker: arena, kamp, regel, utøver, lag, øvelse, datasett, organisasjon, historisk hendelse eller dokumentert praksis.",
+    "Et spørsmål starter i et konkret idrettsanker.",
     "Begrep eller teori skal forklare noe i caset; navnet på en teoretiker er aldri tilstrekkelig spørsmålsoverflate.",
-    "Resultat- og rekordstoff skal forklare vilkår, betydning eller mekanisme, ikke bare be om et tall.",
+    "Resultat- og rekordstoff skal forklare vilkår, betydning eller mekanisme.",
     "Taktiske påstander må angi analyseenhet og datagrunnlag.",
     "Trenings- og helsepåstander må skille gruppefunn fra individuell vurdering.",
+    "Forskningsbaserte påstander må ha claim_id, source_ids, evidensgrad, populasjon, kontekst og usikkerhetsnote.",
+    "Måledata må angi instrument, protokoll, enhet, versjon og målekvalitet.",
+    "Modelloutput må angi modell, implementasjon, inputdefinisjon og valideringsområde.",
     "Barn og unge skal behandles med safeguarding, medvirkning og utviklingsperspektiv.",
-    "Globale, kjønnede, rasialiserte og funksjonsrelaterte erfaringer skal inngå som selvstendige analysefelt.",
-    "Personlig supporterpreferanse og hvem som er «best» vurderes ikke som fagkunnskap."
+    "Personlig supporterpreferanse og hvem som er best vurderes ikke som fagkunnskap."
   ],
   "coverage_balance": {
     "history_place_and_memory": 0.18,

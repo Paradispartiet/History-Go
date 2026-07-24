@@ -1,0 +1,170 @@
+{
+  "version": "1.0",
+  "subject_id": "sport",
+  "type": "scientific_method_policy",
+  "status": "canonical_scientific_evidence_layer",
+  "updated_at": "2026-07-24",
+  "scope": "Alle forsknings-, helse-, trenings-, måle-, modell- og risikopåstander i Sport & lek.",
+  "required_scientific_metadata": [
+    "claim_id",
+    "source_ids",
+    "claim_type",
+    "evidence_grade",
+    "population",
+    "context",
+    "uncertainty_note",
+    "external_validity_note"
+  ],
+  "conditional_metadata": {
+    "measurement_claim": [
+      "measurement_ids",
+      "instrument_or_provider",
+      "protocol",
+      "unit",
+      "measurement_quality_note"
+    ],
+    "model_claim": [
+      "model_ids",
+      "model_version",
+      "input_definition",
+      "validation_note"
+    ],
+    "causal_claim": [
+      "causal_question",
+      "design",
+      "confounder_strategy",
+      "causal_assumptions"
+    ],
+    "clinical_or_health_claim": [
+      "guideline_version",
+      "qualified_assessor_boundary",
+      "safety_note"
+    ],
+    "regulatory_claim": [
+      "effective_date",
+      "jurisdiction_or_governing_body",
+      "review_by_date"
+    ],
+    "comparative_effect_claim": [
+      "effect_measure",
+      "effect_size",
+      "uncertainty_interval",
+      "practical_relevance_note"
+    ]
+  },
+  "production_gates": [
+    {
+      "gate_id": "gate_sport_traceable_claim",
+      "rule": "Forskningsbasert knowledge-tekst må ha claim_id som finnes i claims_sport_canonical_v1.json.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_source_chain",
+      "rule": "Alle source_ids må finnes i evidence_registry_sport_v1.json og være reviewed eller ha eksplisitt pending-note.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_language_strength",
+      "rule": "Språket kan ikke være sikrere eller mer kausalt enn claim_type og evidence_grade.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_measurement_context",
+      "rule": "Målepåstander må oppgi måle-ID, protokoll, enhet, versjon og målekvalitetsforbehold.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_model_context",
+      "rule": "Modelloutput må oppgi modell, implementasjon, inputdefinisjon og valideringsområde.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_population_directness",
+      "rule": "Påstanden må angi målpopulasjon og hvorfor kilden er direkte nok for caset.",
+      "failure_action": "block_or_downgrade"
+    },
+    {
+      "gate_id": "gate_sport_medical_boundary",
+      "rule": "Quiz skal ikke diagnostisere, behandle, predikere individuell skade eller avgjøre retur til sport.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_current_regulation",
+      "rule": "Doping- og regelpåstander må bruke gjeldende versjon og virkningsdato.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_conflict_transparency",
+      "rule": "Motstridende relevant evidens må registreres og usikkerhet synliggjøres.",
+      "failure_action": "block_or_downgrade"
+    },
+    {
+      "gate_id": "gate_sport_reproducible_data",
+      "rule": "Analysebaserte tall må ha datakilde, versjon, definisjon og beregningsregel.",
+      "failure_action": "block"
+    }
+  ],
+  "forbidden_inferences": [
+    "kausal konklusjon fra korrelasjon alene",
+    "individuell diagnose fra screening, quiz eller enkeltmarkør",
+    "skadeprediksjon for enkeltutøver fra gruppemodell uten validert klinisk bruk",
+    "treningsresept uten målgruppe, dose, progresjon, kontraindikasjoner og sikkerhetsramme",
+    "universell sannhet fra én idrett, ett kjønn, ett nivå eller én aldersgruppe",
+    "modelloutput presentert som direkte observasjon",
+    "p-verdi presentert som effektstørrelse eller praktisk betydning",
+    "manglende signifikans presentert som bevis for ingen effekt",
+    "rapporteringsstandard presentert som kvalitetsstempel",
+    "leverandørpåstand uten interessekonflikt og uavhengig validering"
+  ],
+  "medical_safety": {
+    "red_flags": [
+      "mistanke om hjernerystelse",
+      "akutt alvorlig skade",
+      "REDs eller spiseforstyrrelsesmistanke",
+      "brystsmerte, kollaps eller alvorlig pustebesvær",
+      "selvskading eller alvorlig psykisk krise"
+    ],
+    "response_rule": "Gi generell sikkerhetsinformasjon og henvis til kvalifisert helsepersonell eller akutt hjelp etter situasjon; ikke gi individuell diagnose eller returavgjørelse.",
+    "clinical_sources_must_be_current": true
+  },
+  "uncertainty_language": {
+    "high": [
+      "viser",
+      "støtter",
+      "er godt dokumentert innen"
+    ],
+    "moderate": [
+      "tyder på",
+      "støtter med forbehold",
+      "er sannsynlig innen"
+    ],
+    "low": [
+      "kan være forbundet med",
+      "er usikkert",
+      "hypotesen støttes svakt"
+    ],
+    "very_low": [
+      "er foreslått",
+      "er hypotesegenererende",
+      "kan ikke konkluderes"
+    ]
+  },
+  "quiz_schema_extension": {
+    "scientific_evidence": {
+      "required_when": "question_type eller knowledge inneholder forsknings-, helse-, måle-, modell-, effekt-, risiko- eller treningspåstand",
+      "fields": {
+        "claim_id": "string",
+        "source_ids": "string[]",
+        "claim_type": "string",
+        "evidence_grade": "string",
+        "population": "string",
+        "context": "string",
+        "uncertainty_note": "string",
+        "external_validity_note": "string",
+        "measurement_ids": "string[] optional",
+        "model_ids": "string[] optional",
+        "effective_date": "date optional"
+      }
+    }
+  }
+}

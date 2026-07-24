@@ -1,0 +1,424 @@
+{
+  "version": "1.0",
+  "subject_id": "sport",
+  "type": "canonical_claim_registry",
+  "status": "canonical_scientific_evidence_layer",
+  "updated_at": "2026-07-24",
+  "production_rule": "Forsknings- eller helsepåstander må referere til claim_id. Språket kan ikke være sterkere enn claim_type, evidence_grade og usikkerhetsfeltene tillater.",
+  "claims": [
+    {
+      "claim_id": "claim_sport_measurement_change_requires_error_context",
+      "statement": "En observert forskjell i en prestasjonsmåling kan ikke uten videre tolkes som en reell endring; reliabilitet, målefeil, protokoll og praktisk betydning må vurderes.",
+      "claim_type": "methodological",
+      "status": "canonical",
+      "evidence_grade": "high",
+      "source_ids": [
+        "src_sport_cosmin"
+      ],
+      "population": "alle utøvere og målesystemer",
+      "contexts": [
+        "tracking",
+        "testing",
+        "monitorering",
+        "kampanalyse"
+      ],
+      "measurement_ids": [
+        "measurement_sport_generic_repeated"
+      ],
+      "model_ids": [],
+      "uncertainty_note": "Terskler er instrument-, protokoll- og populasjonsspesifikke.",
+      "external_validity_note": "Validering fra én enhet, idrett eller fart kan ikke automatisk overføres til en annen.",
+      "causal_language_allowed": false,
+      "quiz_use": "Skill tallforskjell fra dokumentert endring."
+    },
+    {
+      "claim_id": "claim_sport_association_not_causation",
+      "statement": "En statistisk sammenheng i observasjonsdata etablerer ikke alene at eksponeringen forårsaket utfallet.",
+      "claim_type": "causal_methodological",
+      "status": "canonical",
+      "evidence_grade": "high",
+      "source_ids": [
+        "src_sport_strobe",
+        "src_sport_grade"
+      ],
+      "population": "alle observasjonsstudier",
+      "contexts": [
+        "skadeforskning",
+        "belastning",
+        "talent",
+        "taktikk",
+        "helse"
+      ],
+      "measurement_ids": [],
+      "model_ids": [
+        "model_sport_causal_dag"
+      ],
+      "uncertainty_note": "Konfundering, seleksjon, målefeil, reversert årsaksretning og modellvalg kan forklare sammenhengen.",
+      "external_validity_note": "Design, utvalg og setting bestemmer hvor langt funnet kan generaliseres.",
+      "causal_language_allowed": false,
+      "quiz_use": "Krev egnet design og eksplisitte kausalantakelser."
+    },
+    {
+      "claim_id": "claim_sport_group_average_not_individual_prescription",
+      "statement": "Et gjennomsnittlig gruppefunn er ikke i seg selv en trygg eller presis individuell treningsresept.",
+      "claim_type": "clinical_methodological",
+      "status": "canonical",
+      "evidence_grade": "high",
+      "source_ids": [
+        "src_sport_grade",
+        "src_sport_cosmin"
+      ],
+      "population": "utøvere på alle nivåer",
+      "contexts": [
+        "treningslære",
+        "restitusjon",
+        "belastningsstyring",
+        "helse"
+      ],
+      "measurement_ids": [],
+      "model_ids": [
+        "model_sport_fitness_fatigue"
+      ],
+      "uncertainty_note": "Respons varierer med alder, treningserfaring, helse, søvn, ernæring, mål og kontekst.",
+      "external_validity_note": "Studiepopulasjon og intervensjonsdose må samsvare med målgruppen.",
+      "causal_language_allowed": false,
+      "quiz_use": "Blokker individuell anbefaling uten sikkerhetsramme."
+    },
+    {
+      "claim_id": "claim_sport_injury_rate_requires_exposure",
+      "statement": "Sammenligning av skaderisiko krever en eksplisitt eksponeringsnevner og konsistente definisjoner av skade, alvorlighet og tidsrom.",
+      "claim_type": "epidemiological",
+      "status": "canonical",
+      "evidence_grade": "high",
+      "source_ids": [
+        "src_sport_ioc_injury_2020",
+        "src_sport_para_injury_2021"
+      ],
+      "population": "idrettsdeltakere, inkludert parautøvere",
+      "contexts": [
+        "skadeovervåking",
+        "konkurranse",
+        "trening"
+      ],
+      "measurement_ids": [
+        "measurement_sport_injury_incidence",
+        "measurement_sport_injury_burden"
+      ],
+      "model_ids": [
+        "model_sport_injury_surveillance"
+      ],
+      "uncertainty_note": "Selvrapport, medisinsk registrering, time-loss og all-complaint fanger ulike helseproblemer.",
+      "external_validity_note": "Eksponering og klassifikasjon må være sammenlignbare.",
+      "causal_language_allowed": false,
+      "quiz_use": "Spør om nevner, definisjon og alvorlighet før rate tolkes."
+    },
+    {
+      "claim_id": "claim_sport_physical_activity_population_benefit",
+      "statement": "Regelmessig fysisk aktivitet gir betydelige helsegevinster på befolkningsnivå, men anbefalingene må tolkes etter aldersgruppe og helsetilstand.",
+      "claim_type": "guideline_recommendation",
+      "status": "canonical",
+      "evidence_grade": "high",
+      "source_ids": [
+        "src_sport_who_pa_2020"
+      ],
+      "population": "barn, ungdom, voksne, eldre og utvalgte subpopulasjoner",
+      "contexts": [
+        "folkehelse",
+        "aktivitet",
+        "sedentær atferd"
+      ],
+      "measurement_ids": [
+        "measurement_sport_activity_minutes"
+      ],
+      "model_ids": [],
+      "uncertainty_note": "Dose–respons og gjennomførbarhet varierer; dette er ikke en individuell behandlingsplan.",
+      "external_validity_note": "Bruk riktig alders- og subpopulasjonsdel av retningslinjen.",
+      "causal_language_allowed": true,
+      "quiz_use": "Bruk som befolkningskunnskap, ikke individuell behandling."
+    },
+    {
+      "claim_id": "claim_sport_reds_requires_clinical_context",
+      "statement": "Problematisk lav energitilgjengelighet kan påvirke flere helse- og prestasjonsdomener, men REDs kan ikke diagnostiseres fra ett symptom eller én quizvariabel.",
+      "claim_type": "clinical_consensus",
+      "status": "canonical",
+      "evidence_grade": "moderate",
+      "source_ids": [
+        "src_sport_ioc_reds_2023"
+      ],
+      "population": "utøvere på tvers av kjønn og idretter",
+      "contexts": [
+        "energitilgjengelighet",
+        "ernæring",
+        "restitusjon",
+        "utøverhelse"
+      ],
+      "measurement_ids": [],
+      "model_ids": [
+        "model_sport_reds_framework"
+      ],
+      "uncertainty_note": "Symptomer og markører er ikke spesifikke; helhetsvurdering er nødvendig.",
+      "external_validity_note": "Risikoindikatorer må tolkes i idretts-, kjønns-, alders- og helsekontekst.",
+      "causal_language_allowed": true,
+      "quiz_use": "Lær bort mekanisme og sikkerhetsgrense; ikke produser diagnose."
+    },
+    {
+      "claim_id": "claim_sport_concussion_remove_assess",
+      "statement": "Ved mistanke om idrettsrelatert hjernerystelse skal sikkerhet og kvalifisert vurdering prioriteres; et symptomskjema eller quizsvar er ikke en selvstendig diagnose.",
+      "claim_type": "clinical_safety",
+      "status": "canonical",
+      "evidence_grade": "high",
+      "source_ids": [
+        "src_sport_concussion_2022"
+      ],
+      "population": "utøvere med mulig idrettsrelatert hjernerystelse",
+      "contexts": [
+        "akutt skade",
+        "hjernerystelse",
+        "retur til aktivitet"
+      ],
+      "measurement_ids": [],
+      "model_ids": [
+        "model_sport_concussion_pathway"
+      ],
+      "uncertainty_note": "Symptombilde og forløp varierer, og vurderingsverktøy har avgrensede roller.",
+      "external_validity_note": "Alder og setting påvirker vurderingsforløpet.",
+      "causal_language_allowed": false,
+      "quiz_use": "Aldri individuell retur-til-spill-beslutning."
+    },
+    {
+      "claim_id": "claim_sport_youth_specialisation_contextual",
+      "statement": "Tidlig ensidig spesialisering bør ikke fremstilles som en universell forutsetning for ekspertise; utvikling må vurderes individuelt med hensyn til trivsel, variasjon og restitusjon.",
+      "claim_type": "development_consensus",
+      "status": "canonical",
+      "evidence_grade": "moderate",
+      "source_ids": [
+        "src_sport_ioc_youth_2015",
+        "src_sport_ericsson_1993"
+      ],
+      "population": "barn og unge i idrett",
+      "contexts": [
+        "talentutvikling",
+        "spesialisering",
+        "barneidrett"
+      ],
+      "measurement_ids": [],
+      "model_ids": [
+        "model_sport_deliberate_practice"
+      ],
+      "uncertainty_note": "Idretter har ulike aldersprofiler, og retrospektiv rapportering og frafall påvirker evidensen.",
+      "external_validity_note": "Påstander må angi alder, idrett, nivå og definisjon av spesialisering.",
+      "causal_language_allowed": false,
+      "quiz_use": "Unngå deterministiske talentpåstander."
+    },
+    {
+      "claim_id": "claim_sport_reporting_not_quality",
+      "statement": "Et studie kan følge en rapporteringsretningslinje og fortsatt ha risiko for systematiske skjevheter; rapporteringskvalitet og evidenskvalitet skal vurderes separat.",
+      "claim_type": "methodological",
+      "status": "canonical",
+      "evidence_grade": "high",
+      "source_ids": [
+        "src_sport_consort_2025",
+        "src_sport_prisma_2020",
+        "src_sport_strobe"
+      ],
+      "population": "randomiserte studier, observasjonsstudier og systematiske oversikter",
+      "contexts": [
+        "kildekritikk",
+        "evidenssyntese"
+      ],
+      "measurement_ids": [],
+      "model_ids": [
+        "model_sport_grade_certainty"
+      ],
+      "uncertainty_note": "Komplett rapportering er ikke bevis på lav risiko for bias.",
+      "external_validity_note": "Velg eget verktøy for risiko for bias og evidensgrad.",
+      "causal_language_allowed": false,
+      "quiz_use": "Test forskjellen mellom rapportering, bias og evidensgrad."
+    },
+    {
+      "claim_id": "claim_sport_fair_not_open",
+      "statement": "FAIR forskningsdata skal være sporbare og gjenbrukbare, men FAIR betyr ikke at person- eller helseopplysninger må være fritt åpne.",
+      "claim_type": "data_governance",
+      "status": "canonical",
+      "evidence_grade": "high",
+      "source_ids": [
+        "src_sport_fair_2016"
+      ],
+      "population": "forskningsdata og analyseobjekter",
+      "contexts": [
+        "utøverdata",
+        "tracking",
+        "reproduserbarhet",
+        "personvern"
+      ],
+      "measurement_ids": [],
+      "model_ids": [
+        "model_sport_reproducible_pipeline"
+      ],
+      "uncertainty_note": "Tilgang kan kreve autentisering og etisk styring mens metadata er tilgjengelige.",
+      "external_validity_note": "Personvern, samtykke og regelverk må vurderes lokalt.",
+      "causal_language_allowed": false,
+      "quiz_use": "Skill gjenbrukbarhet fra grenseløs publisering."
+    },
+    {
+      "claim_id": "claim_sport_doping_time_sensitive",
+      "statement": "En substans eller metode kan bare omtales som tillatt eller forbudt med henvisning til gjeldende WADA-liste, konkurransekontekst og virkningsdato.",
+      "claim_type": "regulatory",
+      "status": "canonical",
+      "evidence_grade": "authoritative_current",
+      "source_ids": [
+        "src_sport_wada_2026"
+      ],
+      "population": "utøvere underlagt antidopingregelverk",
+      "contexts": [
+        "doping",
+        "medikamenter",
+        "konkurranse"
+      ],
+      "measurement_ids": [],
+      "model_ids": [],
+      "uncertainty_note": "Listen oppdateres minst årlig og kan skille mellom konkurransekontekster.",
+      "external_validity_note": "Quizinnhold må kontrolleres mot listen som gjelder på spørsmålets dato.",
+      "causal_language_allowed": false,
+      "quiz_use": "Krev effective_date og source_id."
+    },
+    {
+      "claim_id": "claim_sport_model_output_definition_dependent",
+      "statement": "Modellbaserte størrelser som xG, rating og belastningsscore er avhengige av datadefinisjon, modellversjon, kalibrering og bruksområde.",
+      "claim_type": "model_methodological",
+      "status": "canonical",
+      "evidence_grade": "high",
+      "source_ids": [
+        "src_sport_cosmin",
+        "src_sport_elo_1978"
+      ],
+      "population": "sportslige datasett og modeller",
+      "contexts": [
+        "xG",
+        "rating",
+        "tracking",
+        "belastning"
+      ],
+      "measurement_ids": [
+        "measurement_sport_expected_goals",
+        "measurement_sport_rating"
+      ],
+      "model_ids": [
+        "model_sport_expected_goals",
+        "model_sport_elo_rating"
+      ],
+      "uncertainty_note": "To modeller kan gi ulike tall for samme hendelse.",
+      "external_validity_note": "Ytelse må testes på data som ligner målsettingen og konkurransen.",
+      "causal_language_allowed": false,
+      "quiz_use": "Krev modellnavn eller definisjon før tall sammenlignes."
+    },
+    {
+      "claim_id": "claim_sport_effect_requires_uncertainty",
+      "statement": "En effekt bør beskrives med størrelse, retning og usikkerhet, ikke bare med om en p-verdi passerer en terskel.",
+      "claim_type": "statistical_methodological",
+      "status": "canonical",
+      "evidence_grade": "high",
+      "source_ids": [
+        "src_sport_consort_2025",
+        "src_sport_grade"
+      ],
+      "population": "kvantitative studier",
+      "contexts": [
+        "intervensjon",
+        "prestasjon",
+        "skade",
+        "helse"
+      ],
+      "measurement_ids": [
+        "measurement_sport_generic_repeated"
+      ],
+      "model_ids": [
+        "model_sport_grade_certainty"
+      ],
+      "uncertainty_note": "Intervall, modellforutsetninger og praktisk relevans påvirker tolkningen.",
+      "external_validity_note": "Statistisk presisjon og generaliserbarhet er separate spørsmål.",
+      "causal_language_allowed": true,
+      "quiz_use": "Spør etter effektstørrelse og usikkerhet."
+    },
+    {
+      "claim_id": "claim_sport_motivation_context",
+      "statement": "Motivasjon bør ikke reduseres til en fast egenskap; opplevd autonomi, kompetanse, tilhørighet og miljø kan påvirke kvaliteten på motivasjonen.",
+      "claim_type": "theoretical_mechanism",
+      "status": "canonical",
+      "evidence_grade": "moderate",
+      "source_ids": [
+        "src_sport_deci_ryan_2000"
+      ],
+      "population": "utøvere, trenere og lag",
+      "contexts": [
+        "motivasjon",
+        "coaching",
+        "barneidrett",
+        "frafall"
+      ],
+      "measurement_ids": [
+        "measurement_sport_prom"
+      ],
+      "model_ids": [
+        "model_sport_self_determination"
+      ],
+      "uncertainty_note": "Måleinstrument, kultur, alder og setting påvirker registreringen.",
+      "external_validity_note": "Teoribegreper må knyttes til validerte mål og konkret atferd.",
+      "causal_language_allowed": false,
+      "quiz_use": "Unngå å stemple utøvere som permanent umotiverte."
+    },
+    {
+      "claim_id": "claim_sport_constraints_interaction",
+      "statement": "Ferdigheter oppstår gjennom samspill mellom individuelle, oppgave- og miljømessige begrensninger; én isolert teknikkforklaring er derfor sjelden tilstrekkelig.",
+      "claim_type": "theoretical_mechanism",
+      "status": "canonical",
+      "evidence_grade": "moderate",
+      "source_ids": [
+        "src_sport_newell_1986"
+      ],
+      "population": "motorisk læring og ferdighetsutvikling",
+      "contexts": [
+        "øvelsesdesign",
+        "teknikk",
+        "taktikk"
+      ],
+      "measurement_ids": [
+        "measurement_sport_video_coding"
+      ],
+      "model_ids": [
+        "model_sport_constraints_led"
+      ],
+      "uncertainty_note": "Modellen må operasjonaliseres gjennom konkrete oppgavevariabler.",
+      "external_validity_note": "Effekten av en øvelse avhenger av idrett, nivå, mål og representativitet.",
+      "causal_language_allowed": false,
+      "quiz_use": "Vis hvordan endret rom, regel eller utstyr endrer handling."
+    },
+    {
+      "claim_id": "claim_sport_reproducible_analysis",
+      "statement": "En reproduserbar sportsanalyse må dokumentere datakilde, versjon, utvalg, variabeldefinisjoner, kode eller beregningsregel og håndtering av manglende data.",
+      "claim_type": "data_methodological",
+      "status": "canonical",
+      "evidence_grade": "high",
+      "source_ids": [
+        "src_sport_fair_2016",
+        "src_sport_consort_2025",
+        "src_sport_prisma_2020"
+      ],
+      "population": "kamp-, trenings-, helse- og organisasjonsdata",
+      "contexts": [
+        "analysepipeline",
+        "datasett",
+        "modell",
+        "quizproduksjon"
+      ],
+      "measurement_ids": [],
+      "model_ids": [
+        "model_sport_reproducible_pipeline"
+      ],
+      "uncertainty_note": "Reproduserbar kode sikrer ikke at designet eller dataene er valide.",
+      "external_validity_note": "Tilgangsbegrensede data kan dokumenteres med metadata og kontrollert tilgang.",
+      "causal_language_allowed": false,
+      "quiz_use": "Blokker tallpåstand uten provenance og definisjon."
+    }
+  ]
+}
