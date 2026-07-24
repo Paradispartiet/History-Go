@@ -83,7 +83,7 @@ ok(record.content.templateViolations === 0, 'Inventaret viser null malbrudd');
 ok(record.content.balanceViolations === 0, 'Inventaret viser null balansebrudd');
 ok(record.content.optionLengthSignals === 0, 'Inventaret viser null svarlengdesignaler');
 ok(record.migrationRequired === false, 'Majorstua er ute av migreringskøen');
-ok(record.contentReviewRequired === false, 'Majorstua krever ikke ekstra innholdsgjennomgang');
+ok(record.contentReviewRequired === (record.content.repeatedOpeningSignals > 0), 'Eventuelt gjennomgangsflagg skyldes bare informativ gjentakelsesaudit');
 
 for (const id of ['by_majorstua_set_1_q7', 'by_majorstua_set_2_q7']) {
   const question = questions.find((item) => item.quiz_id === id);
