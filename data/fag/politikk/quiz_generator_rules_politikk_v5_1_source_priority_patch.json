@@ -169,16 +169,26 @@
     },
     "4": {
       "name": "rett_lov_rettssikkerhet",
-      "dominant_driver": "lov, rettighet, domstol, rettspraksis, rettsstat, forvaltningsvedtak, politi, straff, kontroll eller borger–stat-relasjon",
-      "canonical_role": "middels til høy rettslig metodeføring",
+      "dominant_driver": "dokumenterbar lov, dom, forvaltningsavgjørelse, kontrollsak, sanksjon, rettighetskonflikt eller historisk lovendring",
+      "canonical_role": "høy metode- og emnestyring, men påstanden om gjeldende rett eller praksis skal være ekstern",
       "allowed_methods": [
+        "met_pol_institusjonsanalyse",
         "met_pol_rettslig_analyse",
         "met_pol_rettighetsanalyse",
-        "met_pol_dokumentanalyse",
+        "met_pol_normanalyse",
+        "met_pol_kritisk_rettsanalyse",
+        "met_pol_makt_og_ulikhetsanalyse",
+        "met_pol_likestillingsanalyse",
+        "met_pol_fordelingsanalyse",
+        "met_pol_maktbalanseanalyse",
         "met_pol_kontroll_og_sanksjonsanalyse",
-        "met_pol_kritisk_rettsanalyse"
+        "met_pol_romlig_maktanalyse",
+        "met_pol_politisk_historisk_analyse",
+        "met_pol_dokumentanalyse",
+        "met_pol_minoritet_og_representasjonsanalyse",
+        "met_pol_forvaltningsanalyse"
       ],
-      "question_style": "rettsstat, domstoler, lov, rettigheter, straff, kontroll, rettssikkerhet, forvaltningsvedtak og maktbegrensning"
+      "question_style": "rettskilde, hjemmel og aktører først; deretter mekanisme, distinksjon og eventuelt målrettet teori"
     },
     "5": {
       "name": "fordeling_velferd_ulikhet",
@@ -265,7 +275,10 @@
     "Avvis teoretikernavn som svar når begrep og mekanisme ikke er del av spørsmålet.",
     "Avvis demokratspørsmål uten dokumenterbart valg, mandat, institusjonelt ansvar, offentlig ordskifte, organisasjon, konflikt, tillitsgrunnlag eller politisk rom.",
     "Avvis spørsmål som likestiller deltakelse med innflytelse, synlighet med dagsordenmakt eller flertallsregel med legitim majoritetsdominans.",
-    "Avvis teorispørsmål der teoretikernavn kan besvares uten at et begrep forklarer en dokumentert mekanisme."
+    "Avvis teorispørsmål der teoretikernavn kan besvares uten at et begrep forklarer en dokumentert mekanisme.",
+    "Avvis rettsspørsmål uten dokumenterbar lov, dom, avgjørelse, kontrollsak, sanksjon, rettighetskonflikt eller lovendring.",
+    "Avvis spørsmål som likestiller legalitet med legitimitet, formell rettighet med reell tilgang eller sikkerhetsformål med forholdsmessig inngrep.",
+    "Avvis teorispørsmål der teoretikernavn kan besvares uten at et rettslig begrep forklarer en dokumentert mekanisme."
   ],
   "generation_metadata_additions": {
     "required_per_question_fields_recommended": [
@@ -851,6 +864,473 @@
             {
               "thinker_id": "charles_tilly",
               "concept": "repertoarer og offentlig kravsframsetting"
+            }
+          ]
+        }
+      }
+    },
+    "rett_lov_rettssikkerhet": {
+      "profile_id": "rett_lov_rettssikkerhet",
+      "revision": "politikk-rett-vertical-2026-07-24",
+      "status": "complete_revised",
+      "required_hook_ids": [
+        "rettsstat",
+        "domstoler",
+        "lover_og_regler",
+        "rettigheter",
+        "straff_og_kontroll",
+        "politi_og_makt",
+        "forvaltningsvedtak",
+        "lovendringer",
+        "rettslige_blindsoner",
+        "borger_og_stat"
+      ],
+      "required_method_ids": [
+        "met_pol_institusjonsanalyse",
+        "met_pol_rettslig_analyse",
+        "met_pol_rettighetsanalyse",
+        "met_pol_normanalyse",
+        "met_pol_kritisk_rettsanalyse",
+        "met_pol_makt_og_ulikhetsanalyse",
+        "met_pol_likestillingsanalyse",
+        "met_pol_fordelingsanalyse",
+        "met_pol_maktbalanseanalyse",
+        "met_pol_kontroll_og_sanksjonsanalyse",
+        "met_pol_romlig_maktanalyse",
+        "met_pol_politisk_historisk_analyse",
+        "met_pol_dokumentanalyse",
+        "met_pol_minoritet_og_representasjonsanalyse",
+        "met_pol_forvaltningsanalyse"
+      ],
+      "generation_sequence": [
+        "external_legal_case_or_source",
+        "claim_basis",
+        "legal_mechanism",
+        "critical_distinction",
+        "optional_theory_lens"
+      ],
+      "hard_requirements": {
+        "require_external_claim_basis": true,
+        "require_case_specific_question": true,
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "require_method_match_to_mechanism": true,
+        "ban_theorist_name_as_answer_without_concept": true,
+        "canonical_files_are_guides_not_legal_sources": true
+      },
+      "forbidden_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk rettferdighetsmening uten rettskilde eller case",
+        "lovlighet likestilt med legitimitet",
+        "formell rettighet likestilt med reell tilgang",
+        "sikkerhet brukt som automatisk begrunnelse for inngrep"
+      ],
+      "source_rule": "Påstander om gjeldende rett, dommer, politimyndighet, sanksjoner, forvaltningsvedtak eller lovendringer må bygge på eksterne rettskilder og dokumenterbare institusjonskilder. Canonical-filene styrer analyseformen, men er ikke rettskilder.",
+      "hook_profiles": {
+        "rettsstat": {
+          "required_methods": [
+            "met_pol_rettslig_analyse",
+            "met_pol_maktbalanseanalyse"
+          ],
+          "mechanisms": [
+            "legalitetsprinsipp",
+            "normhierarki",
+            "kunngjøring og fremoverskuende regler",
+            "kompetansegrenser",
+            "uavhengig prøving",
+            "rettsmidler"
+          ],
+          "critical_distinctions": [
+            "rettsstat vs styring gjennom lov",
+            "formell vs materiell rettsstat",
+            "legalitet vs legitimitet",
+            "myndighetsautorisasjon vs maktbegrensning"
+          ],
+          "anchor_types": [
+            "constitution",
+            "legal_source",
+            "court",
+            "institution"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "lon_fuller",
+              "concept": "rettens indre moral og krav til regelkvalitet"
+            },
+            {
+              "thinker_id": "joseph_raz",
+              "concept": "formell rettsstat og vern mot vilkårlighet"
+            },
+            {
+              "thinker_id": "montesquieu",
+              "concept": "maktfordeling og uavhengig kontroll"
+            }
+          ]
+        },
+        "domstoler": {
+          "required_methods": [
+            "met_pol_institusjonsanalyse",
+            "met_pol_rettslig_analyse"
+          ],
+          "mechanisms": [
+            "jurisdiksjon",
+            "kontradiksjon",
+            "bevisvurdering",
+            "lovtolkning",
+            "prejudikat",
+            "domstolskontroll",
+            "anke og rettsmiddel"
+          ],
+          "critical_distinctions": [
+            "uavhengighet vs isolasjon",
+            "domstolskontroll vs politisk styring",
+            "rettsspørsmål vs bevisspørsmål",
+            "prejudikat vs lovgivning"
+          ],
+          "anchor_types": [
+            "court",
+            "judgment",
+            "legal_source",
+            "constitution"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "montesquieu",
+              "concept": "uavhengig dømmende makt"
+            },
+            {
+              "thinker_id": "ronald_dworkin",
+              "concept": "rettigheter, prinsipper og begrunnelse"
+            },
+            {
+              "thinker_id": "alexander_bickel",
+              "concept": "det kontramajoritære problemet"
+            }
+          ]
+        },
+        "lover_og_regler": {
+          "required_methods": [
+            "met_pol_dokumentanalyse",
+            "met_pol_rettslig_analyse"
+          ],
+          "mechanisms": [
+            "lovgivning",
+            "normhierarki",
+            "primære og sekundære regler",
+            "kunngjøring",
+            "lovtolkning",
+            "standarder og unntak",
+            "håndheving"
+          ],
+          "critical_distinctions": [
+            "lov vs forskrift",
+            "regel vs rettslig standard",
+            "gyldighet vs effektivitet",
+            "lovtekst vs anvendelse"
+          ],
+          "anchor_types": [
+            "legal_source",
+            "archive",
+            "parliament",
+            "administrative_rule"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "h_l_a_hart",
+              "concept": "primære og sekundære regler"
+            },
+            {
+              "thinker_id": "lon_fuller",
+              "concept": "offentlighet, klarhet og samsvar mellom regel og praksis"
+            },
+            {
+              "thinker_id": "max_weber",
+              "concept": "legal-rasjonell regelbundethet"
+            }
+          ]
+        },
+        "rettigheter": {
+          "required_methods": [
+            "met_pol_rettighetsanalyse",
+            "met_pol_normanalyse"
+          ],
+          "mechanisms": [
+            "rettighetskrav og pliktstildeling",
+            "prøving",
+            "forholdsmessighet",
+            "avveining",
+            "positiv forpliktelse",
+            "rettsmiddel og reparasjon"
+          ],
+          "critical_distinctions": [
+            "rettighet vs interesse",
+            "absolutt vs kvalifisert rettighet",
+            "negativ vs positiv rettighet",
+            "formell rettighet vs reell kapabilitet"
+          ],
+          "anchor_types": [
+            "legal_right",
+            "court",
+            "public_service",
+            "legal_source"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "ronald_dworkin",
+              "concept": "rettigheter som vern mot aggregert nytte"
+            },
+            {
+              "thinker_id": "john_rawls",
+              "concept": "grunnleggende friheter og rettferdig institusjonsorden"
+            },
+            {
+              "thinker_id": "amartya_sen",
+              "concept": "reell frihet og kapabilitet"
+            }
+          ]
+        },
+        "straff_og_kontroll": {
+          "required_methods": [
+            "met_pol_kontroll_og_sanksjonsanalyse",
+            "met_pol_institusjonsanalyse"
+          ],
+          "mechanisms": [
+            "kriminalisering",
+            "skyldfastsettelse",
+            "straffutmåling",
+            "avskrekking",
+            "uskadeliggjøring",
+            "rehabilitering",
+            "disiplinær overvåking"
+          ],
+          "critical_distinctions": [
+            "straff vs administrativ sanksjon",
+            "skyld vs risiko",
+            "proporsjonalitet vs prevensjon",
+            "rettslig straff vs uformell sosial kontroll"
+          ],
+          "anchor_types": [
+            "prison",
+            "court",
+            "police",
+            "sanction"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "cesare_beccaria",
+              "concept": "legalitet, nødvendighet og proporsjonalitet"
+            },
+            {
+              "thinker_id": "michel_foucault",
+              "concept": "disiplin, overvåking og normalisering"
+            },
+            {
+              "thinker_id": "david_garland",
+              "concept": "straffestat og kontrollkultur"
+            }
+          ]
+        },
+        "politi_og_makt": {
+          "required_methods": [
+            "met_pol_kontroll_og_sanksjonsanalyse",
+            "met_pol_romlig_maktanalyse"
+          ],
+          "mechanisms": [
+            "tvangsfullmakt",
+            "skjønnsutøvelse",
+            "mistankeklassifikasjon",
+            "territoriell tilstedeværelse",
+            "etterforskning",
+            "dokumentasjon",
+            "intern og ekstern kontroll"
+          ],
+          "critical_distinctions": [
+            "legitimt voldsmonopol vs konkret lovlig tvangsbruk",
+            "forebygging vs etterforskning",
+            "ordenshåndheving vs rettighetsvern",
+            "individfeil vs institusjonelt mønster"
+          ],
+          "anchor_types": [
+            "police",
+            "public_space",
+            "coercive_power",
+            "control_body"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "max_weber",
+              "concept": "statens legitime voldsmonopol"
+            },
+            {
+              "thinker_id": "egon_bittner",
+              "concept": "kapasiteten til ikke-forhandlingsbar tvang"
+            },
+            {
+              "thinker_id": "michel_foucault",
+              "concept": "overvåking, klassifikasjon og disiplin"
+            }
+          ]
+        },
+        "forvaltningsvedtak": {
+          "required_methods": [
+            "met_pol_forvaltningsanalyse",
+            "met_pol_rettslig_analyse"
+          ],
+          "mechanisms": [
+            "hjemmel og kompetanse",
+            "saksopplysning",
+            "varsel og kontradiksjon",
+            "habilitet",
+            "begrunnelse",
+            "skjønn",
+            "klage og omgjøring"
+          ],
+          "critical_distinctions": [
+            "vedtak vs veiledning",
+            "bundet kompetanse vs skjønn",
+            "prosessuell vs materiell prøving",
+            "likebehandling vs individualisert vurdering"
+          ],
+          "anchor_types": [
+            "administrative_decision",
+            "public_service",
+            "city_hall",
+            "appeal_body"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "max_weber",
+              "concept": "regelbundet forvaltning og kompetanse"
+            },
+            {
+              "thinker_id": "michael_lipsky",
+              "concept": "førstelinjeskjønn og praktisk rettighetstilgang"
+            },
+            {
+              "thinker_id": "jerry_mashaw",
+              "concept": "administrativ rettferdighet og beslutningsmodeller"
+            }
+          ]
+        },
+        "lovendringer": {
+          "required_methods": [
+            "met_pol_politisk_historisk_analyse",
+            "met_pol_dokumentanalyse"
+          ],
+          "mechanisms": [
+            "problemdefinisjon",
+            "utredning og høring",
+            "koalisjonsbygging",
+            "lovvedtak",
+            "ikraftsetting",
+            "rettslig fortolkning",
+            "stiavhengighet og tilbakekobling"
+          ],
+          "critical_distinctions": [
+            "lovendring vs praksisendring",
+            "reformhendelse vs implementeringsprosess",
+            "kontinuitet vs brudd",
+            "tilsiktet vs utilsiktet virkning"
+          ],
+          "anchor_types": [
+            "legislative_change",
+            "parliament",
+            "archive",
+            "legal_source"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "stein_rokkan",
+              "concept": "konfliktlinjer og institusjonalisering"
+            },
+            {
+              "thinker_id": "charles_tilly",
+              "concept": "kravsframsetting, statsdannelse og konflikt"
+            },
+            {
+              "thinker_id": "theda_skocpol",
+              "concept": "institusjonell kapasitet og historisk endring"
+            }
+          ]
+        },
+        "rettslige_blindsoner": {
+          "required_methods": [
+            "met_pol_kritisk_rettsanalyse",
+            "met_pol_makt_og_ulikhetsanalyse"
+          ],
+          "mechanisms": [
+            "kategorisk eksklusjon",
+            "bevismessig usynlighet",
+            "adgangskostnader",
+            "kumulativ ulempe",
+            "underhåndheving",
+            "interseksjonell feilklassifisering",
+            "profesjonell portvokting"
+          ],
+          "critical_distinctions": [
+            "formell nøytralitet vs ulik virkning",
+            "individuelt brudd vs strukturelt mønster",
+            "rettslig anerkjennelse vs effektivt rettsmiddel",
+            "kategoriutelukkelse vs eksplisitt diskriminering"
+          ],
+          "anchor_types": [
+            "legal_gap",
+            "court",
+            "minority",
+            "unequal_outcome"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "kimberle_crenshaw",
+              "concept": "interseksjonalitet og kategoriens blindsoner"
+            },
+            {
+              "thinker_id": "catharine_mackinnon",
+              "concept": "dominans og formell nøytralitet"
+            },
+            {
+              "thinker_id": "pierre_bourdieu",
+              "concept": "juridisk felt og profesjonell definisjonsmakt"
+            }
+          ]
+        },
+        "borger_og_stat": {
+          "required_methods": [
+            "met_pol_rettighetsanalyse",
+            "met_pol_institusjonsanalyse"
+          ],
+          "mechanisms": [
+            "statsborgerskap og status",
+            "registrering og dokumentasjon",
+            "rettighets- og pliktstildeling",
+            "administrativ klassifikasjon",
+            "saksbehandling",
+            "klage og rettsmiddel"
+          ],
+          "critical_distinctions": [
+            "borger vs bosatt",
+            "rettighet vs tjenestevilkår",
+            "plikt vs tvang",
+            "politisk medlemskap vs universell personstatus"
+          ],
+          "anchor_types": [
+            "citizenship",
+            "public_service",
+            "government_building",
+            "legal_status"
+          ],
+          "theory_lenses": [
+            {
+              "thinker_id": "t_h_marshall",
+              "concept": "sivile, politiske og sosiale medborgerskapsrettigheter"
+            },
+            {
+              "thinker_id": "hannah_arendt",
+              "concept": "retten til å ha rettigheter"
+            },
+            {
+              "thinker_id": "ronald_dworkin",
+              "concept": "lik respekt og omtanke fra staten"
             }
           ]
         }

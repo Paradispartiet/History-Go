@@ -289,59 +289,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Administrativ makt til et dokumenterbart rettslig case gjennom Straff og kontroll. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Max Weber",
+          "Cesare Beccaria",
           "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Hannah Arendt"
+          "David Garland"
         ],
         "thinker_ids": [
-          "max_weber",
+          "cesare_beccaria",
           "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "hannah_arendt"
+          "david_garland"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "cesare_beccaria",
+            "michel_foucault"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "michel_foucault",
+            "david_garland"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_prohibited_act_procedure_and_sanction",
+          "test_legality_culpability_and_proportionality",
+          "compare_declared_penal_goal_with_control_effect"
         ],
         "best_place_types": [
           "tinghus",
@@ -359,40 +340,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke reduser straff til fengsel.",
+          "Ikke anta at hardere reaksjon alltid gir sterkere forebygging.",
+          "Ikke overse forskjellen mellom individuell skyld og risikobasert kontroll.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "Høyesterett",
+          "Botsfengselet",
           "Møllergata 19",
-          "Grunnlovssted",
-          "Politihuset"
+          "Oslo tinghus"
         ],
         "recommended_method_ids": [
-          "met_pol_institusjonsanalyse",
-          "met_pol_kontroll_og_sanksjonsanalyse"
+          "met_pol_kontroll_og_sanksjonsanalyse",
+          "met_pol_institusjonsanalyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "prison",
+          "court",
+          "police",
+          "sanction"
+        ],
+        "mechanism_options": [
+          "kriminalisering",
+          "skyldfastsettelse",
+          "straffutmåling",
+          "avskrekking",
+          "uskadeliggjøring",
+          "rehabilitering",
+          "disiplinær overvåking"
+        ],
+        "critical_distinction_options": [
+          "straff vs administrativ sanksjon",
+          "skyld vs risiko",
+          "proporsjonalitet vs prevensjon",
+          "rettslig straff vs uformell sosial kontroll"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "cesare_beccaria",
+            "concept": "legalitet, nødvendighet og proporsjonalitet"
+          },
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "disiplin, overvåking og normalisering"
+          },
+          {
+            "thinker_id": "david_garland",
+            "concept": "straffestat og kontrollkultur"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -1368,59 +1389,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Byråkrati og forvaltning til et dokumenterbart rettslig case gjennom Forvaltningsvedtak. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
           "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Hannah Arendt"
+          "Michael Lipsky",
+          "Jerry L. Mashaw"
         ],
         "thinker_ids": [
           "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "hannah_arendt"
+          "michael_lipsky",
+          "jerry_mashaw"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "max_weber",
+            "michael_lipsky"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "michael_lipsky",
+            "jerry_mashaw"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_authority_facts_procedure_and_reasons",
+          "separate_bound_rule_from_discretion",
+          "trace_notification_participation_appeal_and_remedy"
         ],
         "best_place_types": [
           "tinghus",
@@ -1438,28 +1440,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke anta at standardisert saksbehandling alltid er likebehandling.",
+          "Ikke forveksle skjønn med fri vilje.",
+          "Ikke vurder vedtaket uten å undersøke prosess, faktagrunnlag og klagevei.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
+          "NAV-kontor",
           "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "Høyesterett",
-          "Møllergata 19",
-          "Grunnlovssted",
-          "Politihuset"
+          "Bydelshus"
         ],
         "recommended_method_ids": [
           "met_pol_forvaltningsanalyse",
@@ -1470,8 +1462,58 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "administrative_decision",
+          "public_service",
+          "city_hall",
+          "appeal_body"
+        ],
+        "mechanism_options": [
+          "hjemmel og kompetanse",
+          "saksopplysning",
+          "varsel og kontradiksjon",
+          "habilitet",
+          "begrunnelse",
+          "skjønn",
+          "klage og omgjøring"
+        ],
+        "critical_distinction_options": [
+          "vedtak vs veiledning",
+          "bundet kompetanse vs skjønn",
+          "prosessuell vs materiell prøving",
+          "likebehandling vs individualisert vurdering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "max_weber",
+            "concept": "regelbundet forvaltning og kompetanse"
+          },
+          {
+            "thinker_id": "michael_lipsky",
+            "concept": "førstelinjeskjønn og praktisk rettighetstilgang"
+          },
+          {
+            "thinker_id": "jerry_mashaw",
+            "concept": "administrativ rettferdighet og beslutningsmodeller"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -2617,51 +2659,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Domstoler og rettspraksis til et dokumenterbart rettslig case gjennom Domstoler. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
           "Montesquieu",
-          "John Rawls",
           "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt"
+          "Alexander Bickel"
         ],
         "thinker_ids": [
           "montesquieu",
-          "john_rawls",
           "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt"
+          "alexander_bickel"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
             "montesquieu",
-            "john_rawls"
+            "ronald_dworkin"
           ],
           [
             "ronald_dworkin",
-            "michel_foucault"
+            "alexander_bickel"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_jurisdiction_procedure_and_standard_of_review",
+          "separate_evidence_interpretation_and_remedy",
+          "test_independence_against_democratic_accountability"
         ],
         "best_place_types": [
           "tinghus",
@@ -2679,24 +2710,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke framstill domstoler som mekaniske lovlesere.",
+          "Ikke anta at uavhengighet betyr fravær av institusjonelle begrensninger.",
+          "Ikke forveksle en doms rettslige begrunnelse med en generell politisk preferanse.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
           "Høyesterett",
-          "Møllergata 19",
-          "Regjeringskvartalet",
-          "Stortinget",
-          "Grunnlovssted",
-          "Politihuset"
+          "Oslo tinghus",
+          "Eidsvolls plass"
         ],
         "recommended_method_ids": [
           "met_pol_institusjonsanalyse",
@@ -2707,8 +2732,58 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "court",
+          "judgment",
+          "legal_source",
+          "constitution"
+        ],
+        "mechanism_options": [
+          "jurisdiksjon",
+          "kontradiksjon",
+          "bevisvurdering",
+          "lovtolkning",
+          "prejudikat",
+          "domstolskontroll",
+          "anke og rettsmiddel"
+        ],
+        "critical_distinction_options": [
+          "uavhengighet vs isolasjon",
+          "domstolskontroll vs politisk styring",
+          "rettsspørsmål vs bevisspørsmål",
+          "prejudikat vs lovgivning"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "montesquieu",
+            "concept": "uavhengig dømmende makt"
+          },
+          {
+            "thinker_id": "ronald_dworkin",
+            "concept": "rettigheter, prinsipper og begrunnelse"
+          },
+          {
+            "thinker_id": "alexander_bickel",
+            "concept": "det kontramajoritære problemet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -4257,65 +4332,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Hverdagslivets regler til et dokumenterbart rettslig case gjennom Lover og regler. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Hannah Arendt",
-          "Émile Durkheim",
-          "Erving Goffman",
-          "Judith Butler"
+          "H. L. A. Hart",
+          "Lon L. Fuller",
+          "Max Weber"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "hannah_arendt",
-          "emile_durkheim",
-          "erving_goffman",
-          "judith_butler"
+          "h_l_a_hart",
+          "lon_fuller",
+          "max_weber"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "h_l_a_hart",
+            "lon_fuller"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "lon_fuller",
+            "max_weber"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "locate_rule_in_norm_hierarchy",
+          "compare_text_interpretation_and_application",
+          "identify_rule_standard_exception_and_enforcement"
         ],
         "best_place_types": [
           "tinghus",
@@ -4333,29 +4383,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke anta at lovteksten alene avgjør utfallet.",
+          "Ikke behandle alle offentlige regler som samme rettskildetype.",
+          "Ikke forveksle at en regel følges med at den er gyldig eller rettferdig.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
           "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
           "Statsarkivet",
-          "Høyesterett",
-          "Møllergata 19",
-          "Grunnlovssted",
-          "Politihuset",
-          "Grønland"
+          "Oslo tinghus"
         ],
         "recommended_method_ids": [
           "met_pol_dokumentanalyse",
@@ -4366,8 +4405,58 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "legal_source",
+          "archive",
+          "parliament",
+          "administrative_rule"
+        ],
+        "mechanism_options": [
+          "lovgivning",
+          "normhierarki",
+          "primære og sekundære regler",
+          "kunngjøring",
+          "lovtolkning",
+          "standarder og unntak",
+          "håndheving"
+        ],
+        "critical_distinction_options": [
+          "lov vs forskrift",
+          "regel vs rettslig standard",
+          "gyldighet vs effektivitet",
+          "lovtekst vs anvendelse"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "h_l_a_hart",
+            "concept": "primære og sekundære regler"
+          },
+          {
+            "thinker_id": "lon_fuller",
+            "concept": "offentlighet, klarhet og samsvar mellom regel og praksis"
+          },
+          {
+            "thinker_id": "max_weber",
+            "concept": "legal-rasjonell regelbundethet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "normer_identitet_hverdagsliv",
@@ -7868,59 +7957,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Likeverd og rettssikkerhet til et dokumenterbart rettslig case gjennom Rettigheter. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
           "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt",
-          "Émile Durkheim",
-          "Erving Goffman",
-          "Judith Butler",
-          "Pierre Bourdieu"
+          "John Rawls",
+          "Amartya Sen"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
           "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt",
-          "emile_durkheim",
-          "erving_goffman",
-          "judith_butler",
-          "pierre_bourdieu"
+          "john_rawls",
+          "amartya_sen"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
+            "ronald_dworkin",
             "john_rawls"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "john_rawls",
+            "amartya_sen"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_right_holder_duty_bearer_and_remedy",
+          "test_scope_limitation_and_proportionality",
+          "compare_formal_entitlement_with_real_access"
         ],
         "best_place_types": [
           "tinghus",
@@ -7938,29 +8008,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke kall ethvert politisk ønske en rettighet.",
+          "Ikke anta at en formell rettighet er reelt tilgjengelig.",
+          "Ikke framstill rettighetskollisjoner som om én side automatisk opphever den andre.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
           "Høyesterett",
-          "Møllergata 19",
-          "Regjeringskvartalet",
-          "Stortinget",
-          "Grunnlovssted",
-          "Politihuset",
-          "Grønland",
-          "Tøyen",
-          "Groruddalen",
-          "Majorstuen",
-          "skoler"
+          "Oslo tinghus",
+          "NAV-kontor"
         ],
         "recommended_method_ids": [
           "met_pol_rettighetsanalyse",
@@ -7971,8 +8030,57 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "legal_right",
+          "court",
+          "public_service",
+          "legal_source"
+        ],
+        "mechanism_options": [
+          "rettighetskrav og pliktstildeling",
+          "prøving",
+          "forholdsmessighet",
+          "avveining",
+          "positiv forpliktelse",
+          "rettsmiddel og reparasjon"
+        ],
+        "critical_distinction_options": [
+          "rettighet vs interesse",
+          "absolutt vs kvalifisert rettighet",
+          "negativ vs positiv rettighet",
+          "formell rettighet vs reell kapabilitet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "ronald_dworkin",
+            "concept": "rettigheter som vern mot aggregert nytte"
+          },
+          {
+            "thinker_id": "john_rawls",
+            "concept": "grunnleggende friheter og rettferdig institusjonsorden"
+          },
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "reell frihet og kapabilitet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "rett_lov_rettssikkerhet",
@@ -7986,59 +8094,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Likeverd og rettssikkerhet til et dokumenterbart rettslig case gjennom Rettslige blindsoner. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt",
-          "Émile Durkheim",
-          "Erving Goffman",
-          "Judith Butler",
+          "Kimberlé Crenshaw",
+          "Catharine A. MacKinnon",
           "Pierre Bourdieu"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt",
-          "emile_durkheim",
-          "erving_goffman",
-          "judith_butler",
+          "kimberle_crenshaw",
+          "catharine_mackinnon",
           "pierre_bourdieu"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "kimberle_crenshaw",
+            "catharine_mackinnon"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "catharine_mackinnon",
+            "pierre_bourdieu"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_category_evidence_and_access_barriers",
+          "compare_formal_neutrality_with_patterned_effect",
+          "trace_recognition_enforcement_and_effective_remedy"
         ],
         "best_place_types": [
           "tinghus",
@@ -8056,29 +8145,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke kall ethvert urettferdig utfall en juridisk blindsone uten mekanisme.",
+          "Ikke reduser strukturell ulikhet til individuell intensjon.",
+          "Ikke anta at rettslig anerkjennelse automatisk gir tilgang til bevis, prosess og reparasjon.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
           "Oslo tinghus",
-          "Høyesterett",
-          "Møllergata 19",
-          "Regjeringskvartalet",
-          "Stortinget",
-          "Grunnlovssted",
-          "Politihuset",
           "Grønland",
-          "Tøyen",
-          "Groruddalen",
-          "Majorstuen",
-          "skoler"
+          "Tøyen"
         ],
         "recommended_method_ids": [
           "met_pol_kritisk_rettsanalyse",
@@ -8089,8 +8167,58 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "legal_gap",
+          "court",
+          "minority",
+          "unequal_outcome"
+        ],
+        "mechanism_options": [
+          "kategorisk eksklusjon",
+          "bevismessig usynlighet",
+          "adgangskostnader",
+          "kumulativ ulempe",
+          "underhåndheving",
+          "interseksjonell feilklassifisering",
+          "profesjonell portvokting"
+        ],
+        "critical_distinction_options": [
+          "formell nøytralitet vs ulik virkning",
+          "individuelt brudd vs strukturelt mønster",
+          "rettslig anerkjennelse vs effektivt rettsmiddel",
+          "kategoriutelukkelse vs eksplisitt diskriminering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "kimberle_crenshaw",
+            "concept": "interseksjonalitet og kategoriens blindsoner"
+          },
+          {
+            "thinker_id": "catharine_mackinnon",
+            "concept": "dominans og formell nøytralitet"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "juridisk felt og profesjonell definisjonsmakt"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "normer_identitet_hverdagsliv",
@@ -8953,59 +9081,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Lov, dokument og arkiv til et dokumenterbart rettslig case gjennom Lover og regler. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Hannah Arendt"
+          "H. L. A. Hart",
+          "Lon L. Fuller",
+          "Max Weber"
         ],
         "thinker_ids": [
-          "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "hannah_arendt"
+          "h_l_a_hart",
+          "lon_fuller",
+          "max_weber"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "h_l_a_hart",
+            "lon_fuller"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "lon_fuller",
+            "max_weber"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "locate_rule_in_norm_hierarchy",
+          "compare_text_interpretation_and_application",
+          "identify_rule_standard_exception_and_enforcement"
         ],
         "best_place_types": [
           "tinghus",
@@ -9023,40 +9132,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke anta at lovteksten alene avgjør utfallet.",
+          "Ikke behandle alle offentlige regler som samme rettskildetype.",
+          "Ikke forveksle at en regel følges med at den er gyldig eller rettferdig.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo rådhus",
           "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
           "Statsarkivet",
-          "Høyesterett",
-          "Møllergata 19",
-          "Grunnlovssted",
-          "Politihuset"
+          "Oslo tinghus"
         ],
         "recommended_method_ids": [
-          "met_pol_rettslig_analyse",
-          "met_pol_dokumentanalyse"
+          "met_pol_dokumentanalyse",
+          "met_pol_rettslig_analyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "legal_source",
+          "archive",
+          "parliament",
+          "administrative_rule"
+        ],
+        "mechanism_options": [
+          "lovgivning",
+          "normhierarki",
+          "primære og sekundære regler",
+          "kunngjøring",
+          "lovtolkning",
+          "standarder og unntak",
+          "håndheving"
+        ],
+        "critical_distinction_options": [
+          "lov vs forskrift",
+          "regel vs rettslig standard",
+          "gyldighet vs effektivitet",
+          "lovtekst vs anvendelse"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "h_l_a_hart",
+            "concept": "primære og sekundære regler"
+          },
+          {
+            "thinker_id": "lon_fuller",
+            "concept": "offentlighet, klarhet og samsvar mellom regel og praksis"
+          },
+          {
+            "thinker_id": "max_weber",
+            "concept": "legal-rasjonell regelbundethet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -10053,51 +10202,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Maktbegrensning til et dokumenterbart rettslig case gjennom Rettsstat. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt"
+          "Lon L. Fuller",
+          "Joseph Raz",
+          "Montesquieu"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt"
+          "lon_fuller",
+          "joseph_raz",
+          "montesquieu"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "lon_fuller",
+            "joseph_raz"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "joseph_raz",
+            "montesquieu"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_legal_basis_and_competence_limits",
+          "test_publicity_predictability_and_review",
+          "compare_rule_of_law_with_rule_by_law"
         ],
         "best_place_types": [
           "tinghus",
@@ -10115,24 +10253,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill enhver lovbundet stat med en rettsstat.",
+          "Ikke bruk legalitet som bevis på at et tiltak er legitimt eller rettferdig.",
+          "Ikke reduser rettsstaten til domstoler alene.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
           "Høyesterett",
-          "Møllergata 19",
-          "Regjeringskvartalet",
           "Stortinget",
-          "Grunnlovssted",
-          "Politihuset"
+          "Oslo tinghus"
         ],
         "recommended_method_ids": [
           "met_pol_rettslig_analyse",
@@ -10143,8 +10275,57 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "constitution",
+          "legal_source",
+          "court",
+          "institution"
+        ],
+        "mechanism_options": [
+          "legalitetsprinsipp",
+          "normhierarki",
+          "kunngjøring og fremoverskuende regler",
+          "kompetansegrenser",
+          "uavhengig prøving",
+          "rettsmidler"
+        ],
+        "critical_distinction_options": [
+          "rettsstat vs styring gjennom lov",
+          "formell vs materiell rettsstat",
+          "legalitet vs legitimitet",
+          "myndighetsautorisasjon vs maktbegrensning"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "lon_fuller",
+            "concept": "rettens indre moral og krav til regelkvalitet"
+          },
+          {
+            "thinker_id": "joseph_raz",
+            "concept": "formell rettsstat og vern mot vilkårlighet"
+          },
+          {
+            "thinker_id": "montesquieu",
+            "concept": "maktfordeling og uavhengig kontroll"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -13747,51 +13928,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Politi, sikkerhet og makt til et dokumenterbart rettslig case gjennom Politi og makt. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt"
+          "Max Weber",
+          "Egon Bittner",
+          "Michel Foucault"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt"
+          "max_weber",
+          "egon_bittner",
+          "michel_foucault"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "max_weber",
+            "egon_bittner"
           ],
           [
-            "ronald_dworkin",
+            "egon_bittner",
             "michel_foucault"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_authority_threshold_discretion_and_force",
+          "trace_documentation_review_and_accountability",
+          "compare_order_maintenance_with_rights_protection"
         ],
         "best_place_types": [
           "tinghus",
@@ -13809,24 +13979,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke bruk voldsmonopol som automatisk legitimering av enhver maktbruk.",
+          "Ikke behandle politiskjønn som fravær av regler.",
+          "Ikke slutte fra enkelthendelse til institusjonelt mønster uten dokumentasjon.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
-          "Høyesterett",
+          "Politihuset Grønland",
           "Møllergata 19",
-          "Regjeringskvartalet",
-          "Stortinget",
-          "Grunnlovssted",
-          "Politihuset"
+          "Youngstorget"
         ],
         "recommended_method_ids": [
           "met_pol_kontroll_og_sanksjonsanalyse",
@@ -13837,8 +14001,58 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "police",
+          "public_space",
+          "coercive_power",
+          "control_body"
+        ],
+        "mechanism_options": [
+          "tvangsfullmakt",
+          "skjønnsutøvelse",
+          "mistankeklassifikasjon",
+          "territoriell tilstedeværelse",
+          "etterforskning",
+          "dokumentasjon",
+          "intern og ekstern kontroll"
+        ],
+        "critical_distinction_options": [
+          "legitimt voldsmonopol vs konkret lovlig tvangsbruk",
+          "forebygging vs etterforskning",
+          "ordenshåndheving vs rettighetsvern",
+          "individfeil vs institusjonelt mønster"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "max_weber",
+            "concept": "statens legitime voldsmonopol"
+          },
+          {
+            "thinker_id": "egon_bittner",
+            "concept": "kapasiteten til ikke-forhandlingsbar tvang"
+          },
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "overvåking, klassifikasjon og disiplin"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -13932,51 +14146,44 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Politisk historie til et dokumenterbart rettslig case gjennom Lovendringer. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt"
+          "Stein Rokkan",
+          "Charles Tilly",
+          "Theda Skocpol"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt"
+          "stein_rokkan",
+          "charles_tilly",
+          "theda_skocpol"
         ],
         "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
+          "stein_rokkan"
         ],
         "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
+          "stein_rokkan"
         ],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "stein_rokkan",
+            "charles_tilly"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "charles_tilly",
+            "theda_skocpol"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "reconstruct_problem_agenda_and_legislative_sequence",
+          "compare_formal_change_with_implementation_and_feedback",
+          "identify_continuity_break_and_unintended_effect"
         ],
         "best_place_types": [
           "tinghus",
@@ -13994,24 +14201,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke behandle vedtaksdatoen som hele reformprosessen.",
+          "Ikke anta at lovgivers formål beskriver faktisk virkning.",
+          "Ikke forklar lovendring bare med én fremtredende person.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
-          "Høyesterett",
-          "Møllergata 19",
-          "Regjeringskvartalet",
           "Stortinget",
-          "Grunnlovssted",
-          "Politihuset"
+          "Eidsvolls plass",
+          "Statsarkivet"
         ],
         "recommended_method_ids": [
           "met_pol_politisk_historisk_analyse",
@@ -14022,8 +14223,58 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "legislative_change",
+          "parliament",
+          "archive",
+          "legal_source"
+        ],
+        "mechanism_options": [
+          "problemdefinisjon",
+          "utredning og høring",
+          "koalisjonsbygging",
+          "lovvedtak",
+          "ikraftsetting",
+          "rettslig fortolkning",
+          "stiavhengighet og tilbakekobling"
+        ],
+        "critical_distinction_options": [
+          "lovendring vs praksisendring",
+          "reformhendelse vs implementeringsprosess",
+          "kontinuitet vs brudd",
+          "tilsiktet vs utilsiktet virkning"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "stein_rokkan",
+            "concept": "konfliktlinjer og institusjonalisering"
+          },
+          {
+            "thinker_id": "charles_tilly",
+            "concept": "kravsframsetting, statsdannelse og konflikt"
+          },
+          {
+            "thinker_id": "theda_skocpol",
+            "concept": "institusjonell kapasitet og historisk endring"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -14117,51 +14368,44 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Reformer og lovendringer til et dokumenterbart rettslig case gjennom Lovendringer. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt"
+          "Stein Rokkan",
+          "Charles Tilly",
+          "Theda Skocpol"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt"
+          "stein_rokkan",
+          "charles_tilly",
+          "theda_skocpol"
         ],
         "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
+          "stein_rokkan"
         ],
         "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
+          "stein_rokkan"
         ],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "stein_rokkan",
+            "charles_tilly"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "charles_tilly",
+            "theda_skocpol"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "reconstruct_problem_agenda_and_legislative_sequence",
+          "compare_formal_change_with_implementation_and_feedback",
+          "identify_continuity_break_and_unintended_effect"
         ],
         "best_place_types": [
           "tinghus",
@@ -14179,24 +14423,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke behandle vedtaksdatoen som hele reformprosessen.",
+          "Ikke anta at lovgivers formål beskriver faktisk virkning.",
+          "Ikke forklar lovendring bare med én fremtredende person.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
-          "Høyesterett",
-          "Møllergata 19",
-          "Regjeringskvartalet",
           "Stortinget",
-          "Grunnlovssted",
-          "Politihuset"
+          "Eidsvolls plass",
+          "Statsarkivet"
         ],
         "recommended_method_ids": [
           "met_pol_politisk_historisk_analyse",
@@ -14207,8 +14445,58 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "legislative_change",
+          "parliament",
+          "archive",
+          "legal_source"
+        ],
+        "mechanism_options": [
+          "problemdefinisjon",
+          "utredning og høring",
+          "koalisjonsbygging",
+          "lovvedtak",
+          "ikraftsetting",
+          "rettslig fortolkning",
+          "stiavhengighet og tilbakekobling"
+        ],
+        "critical_distinction_options": [
+          "lovendring vs praksisendring",
+          "reformhendelse vs implementeringsprosess",
+          "kontinuitet vs brudd",
+          "tilsiktet vs utilsiktet virkning"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "stein_rokkan",
+            "concept": "konfliktlinjer og institusjonalisering"
+          },
+          {
+            "thinker_id": "charles_tilly",
+            "concept": "kravsframsetting, statsdannelse og konflikt"
+          },
+          {
+            "thinker_id": "theda_skocpol",
+            "concept": "institusjonell kapasitet og historisk endring"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -15272,51 +15560,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Rettigheter og plikter til et dokumenterbart rettslig case gjennom Rettigheter. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
           "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt"
+          "John Rawls",
+          "Amartya Sen"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
           "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt"
+          "john_rawls",
+          "amartya_sen"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
+            "ronald_dworkin",
             "john_rawls"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "john_rawls",
+            "amartya_sen"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_right_holder_duty_bearer_and_remedy",
+          "test_scope_limitation_and_proportionality",
+          "compare_formal_entitlement_with_real_access"
         ],
         "best_place_types": [
           "tinghus",
@@ -15334,24 +15611,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke kall ethvert politisk ønske en rettighet.",
+          "Ikke anta at en formell rettighet er reelt tilgjengelig.",
+          "Ikke framstill rettighetskollisjoner som om én side automatisk opphever den andre.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
           "Høyesterett",
-          "Møllergata 19",
-          "Regjeringskvartalet",
-          "Stortinget",
-          "Grunnlovssted",
-          "Politihuset"
+          "Oslo tinghus",
+          "NAV-kontor"
         ],
         "recommended_method_ids": [
           "met_pol_rettighetsanalyse",
@@ -15362,8 +15633,57 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "legal_right",
+          "court",
+          "public_service",
+          "legal_source"
+        ],
+        "mechanism_options": [
+          "rettighetskrav og pliktstildeling",
+          "prøving",
+          "forholdsmessighet",
+          "avveining",
+          "positiv forpliktelse",
+          "rettsmiddel og reparasjon"
+        ],
+        "critical_distinction_options": [
+          "rettighet vs interesse",
+          "absolutt vs kvalifisert rettighet",
+          "negativ vs positiv rettighet",
+          "formell rettighet vs reell kapabilitet"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "ronald_dworkin",
+            "concept": "rettigheter som vern mot aggregert nytte"
+          },
+          {
+            "thinker_id": "john_rawls",
+            "concept": "grunnleggende friheter og rettferdig institusjonsorden"
+          },
+          {
+            "thinker_id": "amartya_sen",
+            "concept": "reell frihet og kapabilitet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "rett_lov_rettssikkerhet",
@@ -15377,51 +15697,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Rettigheter og plikter til et dokumenterbart rettslig case gjennom Borger og stat. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt"
+          "T. H. Marshall",
+          "Hannah Arendt",
+          "Ronald Dworkin"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt"
+          "t_h_marshall",
+          "hannah_arendt",
+          "ronald_dworkin"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "t_h_marshall",
+            "hannah_arendt"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "hannah_arendt",
+            "ronald_dworkin"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_status_right_duty_and_state_actor",
+          "trace_registration_classification_and_access",
+          "test_membership_universality_and_effective_remedy"
         ],
         "best_place_types": [
           "tinghus",
@@ -15439,24 +15748,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke anta at alle som møter staten har samme status eller prosessuelle kapasitet.",
+          "Ikke reduser statsborgerskap til pass og nasjonalitet.",
+          "Ikke framstill plikter og rettigheter som uavhengige av institusjonell håndheving.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
-          "Høyesterett",
-          "Møllergata 19",
           "Regjeringskvartalet",
-          "Stortinget",
-          "Grunnlovssted",
-          "Politihuset"
+          "NAV-kontor",
+          "Politihuset Grønland"
         ],
         "recommended_method_ids": [
           "met_pol_rettighetsanalyse",
@@ -15467,8 +15770,57 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "citizenship",
+          "public_service",
+          "government_building",
+          "legal_status"
+        ],
+        "mechanism_options": [
+          "statsborgerskap og status",
+          "registrering og dokumentasjon",
+          "rettighets- og pliktstildeling",
+          "administrativ klassifikasjon",
+          "saksbehandling",
+          "klage og rettsmiddel"
+        ],
+        "critical_distinction_options": [
+          "borger vs bosatt",
+          "rettighet vs tjenestevilkår",
+          "plikt vs tvang",
+          "politisk medlemskap vs universell personstatus"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "t_h_marshall",
+            "concept": "sivile, politiske og sosiale medborgerskapsrettigheter"
+          },
+          {
+            "thinker_id": "hannah_arendt",
+            "concept": "retten til å ha rettigheter"
+          },
+          {
+            "thinker_id": "ronald_dworkin",
+            "concept": "lik respekt og omtanke fra staten"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -15702,59 +16054,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-governance-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Rettslig styring til et dokumenterbart rettslig case gjennom Forvaltningsvedtak. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
           "Max Weber",
-          "Michel Foucault",
-          "Pierre Bourdieu",
-          "Theda Skocpol",
-          "James C. Scott",
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Hannah Arendt"
+          "Michael Lipsky",
+          "Jerry L. Mashaw"
         ],
         "thinker_ids": [
           "max_weber",
-          "michel_foucault",
-          "pierre_bourdieu",
-          "theda_skocpol",
-          "james_c_scott",
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "hannah_arendt"
+          "michael_lipsky",
+          "jerry_mashaw"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "max_weber",
+            "michael_lipsky"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "michael_lipsky",
+            "jerry_mashaw"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_authority_facts_procedure_and_reasons",
+          "separate_bound_rule_from_discretion",
+          "trace_notification_participation_appeal_and_remedy"
         ],
         "best_place_types": [
           "tinghus",
@@ -15772,40 +16105,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke anta at standardisert saksbehandling alltid er likebehandling.",
+          "Ikke forveksle skjønn med fri vilje.",
+          "Ikke vurder vedtaket uten å undersøke prosess, faktagrunnlag og klagevei.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
+          "NAV-kontor",
           "Oslo rådhus",
-          "Stortinget",
-          "Regjeringskvartalet",
-          "Oslo tinghus",
-          "Rådhusplassen",
-          "Bydelshus",
-          "Statsarkivet",
-          "Høyesterett",
-          "Møllergata 19",
-          "Grunnlovssted",
-          "Politihuset"
+          "Bydelshus"
         ],
         "recommended_method_ids": [
-          "met_pol_rettslig_analyse",
-          "met_pol_forvaltningsanalyse"
+          "met_pol_forvaltningsanalyse",
+          "met_pol_rettslig_analyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "administrative_decision",
+          "public_service",
+          "city_hall",
+          "appeal_body"
+        ],
+        "mechanism_options": [
+          "hjemmel og kompetanse",
+          "saksopplysning",
+          "varsel og kontradiksjon",
+          "habilitet",
+          "begrunnelse",
+          "skjønn",
+          "klage og omgjøring"
+        ],
+        "critical_distinction_options": [
+          "vedtak vs veiledning",
+          "bundet kompetanse vs skjønn",
+          "prosessuell vs materiell prøving",
+          "likebehandling vs individualisert vurdering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "max_weber",
+            "concept": "regelbundet forvaltning og kompetanse"
+          },
+          {
+            "thinker_id": "michael_lipsky",
+            "concept": "førstelinjeskjønn og praktisk rettighetstilgang"
+          },
+          {
+            "thinker_id": "jerry_mashaw",
+            "concept": "administrativ rettferdighet og beslutningsmodeller"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -15913,51 +16286,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Rettsstat og rettssikkerhet til et dokumenterbart rettslig case gjennom Rettsstat. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt"
+          "Lon L. Fuller",
+          "Joseph Raz",
+          "Montesquieu"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt"
+          "lon_fuller",
+          "joseph_raz",
+          "montesquieu"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "lon_fuller",
+            "joseph_raz"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "joseph_raz",
+            "montesquieu"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_legal_basis_and_competence_limits",
+          "test_publicity_predictability_and_review",
+          "compare_rule_of_law_with_rule_by_law"
         ],
         "best_place_types": [
           "tinghus",
@@ -15975,24 +16337,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke likestill enhver lovbundet stat med en rettsstat.",
+          "Ikke bruk legalitet som bevis på at et tiltak er legitimt eller rettferdig.",
+          "Ikke reduser rettsstaten til domstoler alene.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
           "Høyesterett",
-          "Møllergata 19",
-          "Regjeringskvartalet",
           "Stortinget",
-          "Grunnlovssted",
-          "Politihuset"
+          "Oslo tinghus"
         ],
         "recommended_method_ids": [
           "met_pol_rettslig_analyse",
@@ -16003,8 +16359,57 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "constitution",
+          "legal_source",
+          "court",
+          "institution"
+        ],
+        "mechanism_options": [
+          "legalitetsprinsipp",
+          "normhierarki",
+          "kunngjøring og fremoverskuende regler",
+          "kompetansegrenser",
+          "uavhengig prøving",
+          "rettsmidler"
+        ],
+        "critical_distinction_options": [
+          "rettsstat vs styring gjennom lov",
+          "formell vs materiell rettsstat",
+          "legalitet vs legitimitet",
+          "myndighetsautorisasjon vs maktbegrensning"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "lon_fuller",
+            "concept": "rettens indre moral og krav til regelkvalitet"
+          },
+          {
+            "thinker_id": "joseph_raz",
+            "concept": "formell rettsstat og vern mot vilkårlighet"
+          },
+          {
+            "thinker_id": "montesquieu",
+            "concept": "maktfordeling og uavhengig kontroll"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "rett_lov_rettssikkerhet",
@@ -16018,51 +16423,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Rettsstat og rettssikkerhet til et dokumenterbart rettslig case gjennom Domstoler. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
           "Montesquieu",
-          "John Rawls",
           "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt"
+          "Alexander Bickel"
         ],
         "thinker_ids": [
           "montesquieu",
-          "john_rawls",
           "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt"
+          "alexander_bickel"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
             "montesquieu",
-            "john_rawls"
+            "ronald_dworkin"
           ],
           [
             "ronald_dworkin",
-            "michel_foucault"
+            "alexander_bickel"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_jurisdiction_procedure_and_standard_of_review",
+          "separate_evidence_interpretation_and_remedy",
+          "test_independence_against_democratic_accountability"
         ],
         "best_place_types": [
           "tinghus",
@@ -16080,36 +16474,80 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke framstill domstoler som mekaniske lovlesere.",
+          "Ikke anta at uavhengighet betyr fravær av institusjonelle begrensninger.",
+          "Ikke forveksle en doms rettslige begrunnelse med en generell politisk preferanse.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
           "Høyesterett",
-          "Møllergata 19",
-          "Regjeringskvartalet",
-          "Stortinget",
-          "Grunnlovssted",
-          "Politihuset"
+          "Oslo tinghus",
+          "Eidsvolls plass"
         ],
         "recommended_method_ids": [
-          "met_pol_rettslig_analyse",
-          "met_pol_institusjonsanalyse"
+          "met_pol_institusjonsanalyse",
+          "met_pol_rettslig_analyse"
         ],
         "generator_constraints": {
           "require_concrete_institution_law_conflict_policy_or_social_process": true,
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "court",
+          "judgment",
+          "legal_source",
+          "constitution"
+        ],
+        "mechanism_options": [
+          "jurisdiksjon",
+          "kontradiksjon",
+          "bevisvurdering",
+          "lovtolkning",
+          "prejudikat",
+          "domstolskontroll",
+          "anke og rettsmiddel"
+        ],
+        "critical_distinction_options": [
+          "uavhengighet vs isolasjon",
+          "domstolskontroll vs politisk styring",
+          "rettsspørsmål vs bevisspørsmål",
+          "prejudikat vs lovgivning"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "montesquieu",
+            "concept": "uavhengig dømmende makt"
+          },
+          {
+            "thinker_id": "ronald_dworkin",
+            "concept": "rettigheter, prinsipper og begrunnelse"
+          },
+          {
+            "thinker_id": "alexander_bickel",
+            "concept": "det kontramajoritære problemet"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -16920,51 +17358,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Stat og borger-relasjoner til et dokumenterbart rettslig case gjennom Borger og stat. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt"
+          "T. H. Marshall",
+          "Hannah Arendt",
+          "Ronald Dworkin"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt"
+          "t_h_marshall",
+          "hannah_arendt",
+          "ronald_dworkin"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "t_h_marshall",
+            "hannah_arendt"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "hannah_arendt",
+            "ronald_dworkin"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_status_right_duty_and_state_actor",
+          "trace_registration_classification_and_access",
+          "test_membership_universality_and_effective_remedy"
         ],
         "best_place_types": [
           "tinghus",
@@ -16982,24 +17409,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke anta at alle som møter staten har samme status eller prosessuelle kapasitet.",
+          "Ikke reduser statsborgerskap til pass og nasjonalitet.",
+          "Ikke framstill plikter og rettigheter som uavhengige av institusjonell håndheving.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
-          "Høyesterett",
-          "Møllergata 19",
           "Regjeringskvartalet",
-          "Stortinget",
-          "Grunnlovssted",
-          "Politihuset"
+          "NAV-kontor",
+          "Politihuset Grønland"
         ],
         "recommended_method_ids": [
           "met_pol_rettighetsanalyse",
@@ -17010,8 +17431,57 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "citizenship",
+          "public_service",
+          "government_building",
+          "legal_status"
+        ],
+        "mechanism_options": [
+          "statsborgerskap og status",
+          "registrering og dokumentasjon",
+          "rettighets- og pliktstildeling",
+          "administrativ klassifikasjon",
+          "saksbehandling",
+          "klage og rettsmiddel"
+        ],
+        "critical_distinction_options": [
+          "borger vs bosatt",
+          "rettighet vs tjenestevilkår",
+          "plikt vs tvang",
+          "politisk medlemskap vs universell personstatus"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "t_h_marshall",
+            "concept": "sivile, politiske og sosiale medborgerskapsrettigheter"
+          },
+          {
+            "thinker_id": "hannah_arendt",
+            "concept": "retten til å ha rettigheter"
+          },
+          {
+            "thinker_id": "ronald_dworkin",
+            "concept": "lik respekt og omtanke fra staten"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -17326,51 +17796,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Straff og kontroll til et dokumenterbart rettslig case gjennom Straff og kontroll. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
+          "Cesare Beccaria",
           "Michel Foucault",
-          "Hannah Arendt"
+          "David Garland"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
+          "cesare_beccaria",
           "michel_foucault",
-          "hannah_arendt"
+          "david_garland"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "cesare_beccaria",
+            "michel_foucault"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "michel_foucault",
+            "david_garland"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_prohibited_act_procedure_and_sanction",
+          "test_legality_culpability_and_proportionality",
+          "compare_declared_penal_goal_with_control_effect"
         ],
         "best_place_types": [
           "tinghus",
@@ -17388,24 +17847,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke reduser straff til fengsel.",
+          "Ikke anta at hardere reaksjon alltid gir sterkere forebygging.",
+          "Ikke overse forskjellen mellom individuell skyld og risikobasert kontroll.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
-          "Høyesterett",
+          "Botsfengselet",
           "Møllergata 19",
-          "Regjeringskvartalet",
-          "Stortinget",
-          "Grunnlovssted",
-          "Politihuset"
+          "Oslo tinghus"
         ],
         "recommended_method_ids": [
           "met_pol_kontroll_og_sanksjonsanalyse",
@@ -17416,8 +17869,58 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "prison",
+          "court",
+          "police",
+          "sanction"
+        ],
+        "mechanism_options": [
+          "kriminalisering",
+          "skyldfastsettelse",
+          "straffutmåling",
+          "avskrekking",
+          "uskadeliggjøring",
+          "rehabilitering",
+          "disiplinær overvåking"
+        ],
+        "critical_distinction_options": [
+          "straff vs administrativ sanksjon",
+          "skyld vs risiko",
+          "proporsjonalitet vs prevensjon",
+          "rettslig straff vs uformell sosial kontroll"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "cesare_beccaria",
+            "concept": "legalitet, nødvendighet og proporsjonalitet"
+          },
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "disiplin, overvåking og normalisering"
+          },
+          {
+            "thinker_id": "david_garland",
+            "concept": "straffestat og kontrollkultur"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "rett_lov_rettssikkerhet",
@@ -17431,51 +17934,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Straff og kontroll til et dokumenterbart rettslig case gjennom Politi og makt. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt"
+          "Max Weber",
+          "Egon Bittner",
+          "Michel Foucault"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt"
+          "max_weber",
+          "egon_bittner",
+          "michel_foucault"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "max_weber",
+            "egon_bittner"
           ],
           [
-            "ronald_dworkin",
+            "egon_bittner",
             "michel_foucault"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_authority_threshold_discretion_and_force",
+          "trace_documentation_review_and_accountability",
+          "compare_order_maintenance_with_rights_protection"
         ],
         "best_place_types": [
           "tinghus",
@@ -17493,24 +17985,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke bruk voldsmonopol som automatisk legitimering av enhver maktbruk.",
+          "Ikke behandle politiskjønn som fravær av regler.",
+          "Ikke slutte fra enkelthendelse til institusjonelt mønster uten dokumentasjon.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Oslo tinghus",
-          "Høyesterett",
+          "Politihuset Grønland",
           "Møllergata 19",
-          "Regjeringskvartalet",
-          "Stortinget",
-          "Grunnlovssted",
-          "Politihuset"
+          "Youngstorget"
         ],
         "recommended_method_ids": [
           "met_pol_kontroll_og_sanksjonsanalyse",
@@ -17521,8 +18007,58 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "police",
+          "public_space",
+          "coercive_power",
+          "control_body"
+        ],
+        "mechanism_options": [
+          "tvangsfullmakt",
+          "skjønnsutøvelse",
+          "mistankeklassifikasjon",
+          "territoriell tilstedeværelse",
+          "etterforskning",
+          "dokumentasjon",
+          "intern og ekstern kontroll"
+        ],
+        "critical_distinction_options": [
+          "legitimt voldsmonopol vs konkret lovlig tvangsbruk",
+          "forebygging vs etterforskning",
+          "ordenshåndheving vs rettighetsvern",
+          "individfeil vs institusjonelt mønster"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "max_weber",
+            "concept": "statens legitime voldsmonopol"
+          },
+          {
+            "thinker_id": "egon_bittner",
+            "concept": "kapasiteten til ikke-forhandlingsbar tvang"
+          },
+          {
+            "thinker_id": "michel_foucault",
+            "concept": "overvåking, klassifikasjon og disiplin"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       }
     ],
     "mapping_status": "tiered+canonical",
@@ -17618,59 +18154,40 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "law-rights-first",
+        "question_surface_mode": "legal-case-mechanism-distinction-theory",
         "politics_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "institution_law_conflict_or_social_process_anchor_required": true,
         "documented_social_context_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/lov/reform/konflikt/fordeling/norm/offentlighet/sosial prosess og politisk teori.",
+        "use_note": "Koble Strukturell vold til et dokumenterbart rettslig case gjennom Rettslige blindsoner. Forklar hjemmel eller mekanisme og test en distinksjon før eventuell teori.",
         "tenkere": [
-          "Montesquieu",
-          "John Rawls",
-          "Ronald Dworkin",
-          "Michel Foucault",
-          "Hannah Arendt",
-          "Thomas Piketty",
-          "Nancy Fraser",
-          "Gøsta Esping-Andersen",
-          "Amartya Sen"
+          "Kimberlé Crenshaw",
+          "Catharine A. MacKinnon",
+          "Pierre Bourdieu"
         ],
         "thinker_ids": [
-          "montesquieu",
-          "john_rawls",
-          "ronald_dworkin",
-          "michel_foucault",
-          "hannah_arendt",
-          "thomas_piketty",
-          "nancy_fraser",
-          "gosta_esping_andersen",
-          "amartya_sen"
+          "kimberle_crenshaw",
+          "catharine_mackinnon",
+          "pierre_bourdieu"
         ],
-        "norwegian_thinker_ids": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
-        "norwegian_thinkers": [
-          "stein_rokkan",
-          "gudmund_hernes"
-        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
         "comparison_pairs": [
           [
-            "montesquieu",
-            "john_rawls"
+            "kimberle_crenshaw",
+            "catharine_mackinnon"
           ],
           [
-            "ronald_dworkin",
-            "michel_foucault"
+            "catharine_mackinnon",
+            "pierre_bourdieu"
           ]
         ],
         "preferred_question_moves": [
-          "start_with_concrete_institution_law_conflict_policy_or_social_process",
-          "connect_visible_place_to_power_norm_or_decision",
-          "identify_distribution_legitimacy_rights_or_governance",
-          "avoid_party_opinion_as_default"
+          "identify_category_evidence_and_access_barriers",
+          "compare_formal_neutrality_with_patterned_effect",
+          "trace_recognition_enforcement_and_effective_remedy"
         ],
         "best_place_types": [
           "tinghus",
@@ -17688,29 +18205,18 @@
           "sted_uten_institusjon_lov_fordeling_konflikt_norm_eller_forvaltning"
         ],
         "anti_patterns": [
-          "Hva mener du politisk",
-          "Hvilken teoretiker passer best",
-          "Hva betyr samfunn generelt",
-          "Generisk politisk holdningsspørsmål uten institusjon, lov, konflikt, fordeling, norm, sted eller kilde",
-          "Påstand hentet bare fra emnenavn eller teori",
-          "Ikke bruk emnet som synlig innhold uten institusjons-, lov-, reform-, konflikt-, fordelings-, norm-, rettighets-, offentlighets- eller kildegrunnlag.",
-          "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har en vag samfunnsvinkel.",
-          "Ikke bland inn by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur eller vitenskap som hovedfag hvis politikk bare er sekundærlag."
+          "Ikke kall ethvert urettferdig utfall en juridisk blindsone uten mekanisme.",
+          "Ikke reduser strukturell ulikhet til individuell intensjon.",
+          "Ikke anta at rettslig anerkjennelse automatisk gir tilgang til bevis, prosess og reparasjon.",
+          "Ikke bruk teoretikernavn som svar uten begrep og mekanisme.",
+          "Ikke bruk canonical-filen som rettskilde.",
+          "Ikke hopp direkte fra sted til teori uten dokumentert rettslig påstand."
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
           "Oslo tinghus",
-          "Høyesterett",
-          "Møllergata 19",
-          "Regjeringskvartalet",
-          "Stortinget",
-          "Grunnlovssted",
-          "Politihuset",
-          "NAV-kontor",
-          "Ullevål sykehus",
-          "Tøyen",
-          "Groruddalen",
-          "Oslo rådhus"
+          "Grønland",
+          "Tøyen"
         ],
         "recommended_method_ids": [
           "met_pol_kritisk_rettsanalyse",
@@ -17721,8 +18227,58 @@
           "require_external_claim_basis": true,
           "do_not_generate_from_hook_label_only": true,
           "do_not_generate_from_emne_label_only": true,
-          "required_emne_prefix": "em_pol_"
-        }
+          "required_emne_prefix": "em_pol_",
+          "require_case_specific_question": true,
+          "require_mechanism_explanation": true,
+          "require_critical_distinction": true,
+          "require_method_match_to_mechanism": true,
+          "ban_theorist_name_as_answer_without_concept": true
+        },
+        "required_anchor_types": [
+          "legal_gap",
+          "court",
+          "minority",
+          "unequal_outcome"
+        ],
+        "mechanism_options": [
+          "kategorisk eksklusjon",
+          "bevismessig usynlighet",
+          "adgangskostnader",
+          "kumulativ ulempe",
+          "underhåndheving",
+          "interseksjonell feilklassifisering",
+          "profesjonell portvokting"
+        ],
+        "critical_distinction_options": [
+          "formell nøytralitet vs ulik virkning",
+          "individuelt brudd vs strukturelt mønster",
+          "rettslig anerkjennelse vs effektivt rettsmiddel",
+          "kategoriutelukkelse vs eksplisitt diskriminering"
+        ],
+        "theory_lenses": [
+          {
+            "thinker_id": "kimberle_crenshaw",
+            "concept": "interseksjonalitet og kategoriens blindsoner"
+          },
+          {
+            "thinker_id": "catharine_mackinnon",
+            "concept": "dominans og formell nøytralitet"
+          },
+          {
+            "thinker_id": "pierre_bourdieu",
+            "concept": "juridisk felt og profesjonell definisjonsmakt"
+          }
+        ],
+        "question_build_sequence": [
+          "external_legal_case_or_source",
+          "claim_basis",
+          "legal_mechanism",
+          "critical_distinction",
+          "optional_theory_lens"
+        ],
+        "method_selection_policy": "Velg metode etter den rettslige mekanismen og kildetypen, ikke etter teoretikernavn eller hooktittel.",
+        "source_role": "Ekstern rettskilde eller institusjonskilde leverer faktapåstanden; mappingen leverer hook, metode, mekanisme, distinksjon og teorispor.",
+        "quality_revision": "politikk-rett-vertical-2026-07-24"
       },
       {
         "fagkart_kategori": "fordeling_velferd_ulikhet",
