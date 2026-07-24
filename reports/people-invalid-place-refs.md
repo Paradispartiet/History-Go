@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-24T06:58:49.494Z
+Generated: 2026-07-24T10:32:50.445Z
 
 ## Sammendrag
-- People-filer lest: **645**
-- People lest: **1245**
+- People-filer lest: **655**
+- People lest: **1279**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1245**
+- Duplikate interne place-referanser: **1279**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -1263,5 +1263,39 @@ Generated: 2026-07-24T06:58:49.494Z
 - data/people/popkultur/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d/aud_schonemann.json :: aud_schonemann (Aud Schønemann) -> bla_skilt_aud_schonemann_vetlandsveien_69d x2
 - data/people/popkultur/oslo/house_of_nerds/andreas_sollund.json :: andreas_sollund (Andreas Sollund) -> house_of_nerds x2
 - data/people/popkultur/oslo/latter/elina_krantz.json :: elina_krantz (Elina Krantz) -> latter x2
+- data/people/by/oslo/people_by_oslo_politics_places_batch_02.json :: knut_aasen (Knut Aasen) -> politihuset_gronland x2
+- data/people/by/oslo/people_by_oslo_politics_places_batch_02.json :: anne_bjorndal (Anne Bjørndal) -> 22_juli_senteret x2
+- data/people/by/oslo/people_by_oslo_politics_places_batch_03.json :: emil_victor_langlet (Emil Victor Langlet) -> stortinget x2
+- data/people/by/oslo/people_by_oslo_politics_places_batch_03.json :: hans_ditlev_franciscus_linstow (Hans Ditlev Franciscus Linstow) -> slottet x2
+- data/people/historie/oslo/people_historie_oslo_politics_places_batch_03.json :: dronning_maud (Dronning Maud) -> slottet x2
+- data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json :: oivind_astein (Øivind Åstein) -> tinghuset x2
+- data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json :: torstein_bakke (Torstein Bakke) -> 22_juli_senteret x2
+- data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json :: lars_halvor_mageroy (Lars Halvor Magerøy) -> 22_juli_senteret x2
+- data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json :: kai_fjell (Kai Fjell) -> hoyblokka x2
+- data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json :: tore_haaland (Tore Haaland) -> hoyblokka x2
+- data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json :: inger_sitter (Inger Sitter) -> hoyblokka x2
+- data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json :: odd_tandberg (Odd Tandberg) -> hoyblokka x2
+- data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_03.json :: oscar_wergeland (Oscar Wergeland) -> stortinget x2
+- data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_03.json :: brynjulf_bergslien (Brynjulf Bergslien) -> eidsvolls_plass x2
+- data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_03.json :: arne_vigeland (Arne Vigeland) -> eidsvolls_plass x2
+- data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_03.json :: arne_durban (Arne Durban) -> eidsvolls_plass x2
+- data/people/litteratur/oslo/people_litteratur_oslo_politics_places_batch_02.json :: olaf_bull (Olaf Bull) -> arbeidersamfunnets_plass x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_03.json :: jorgen_young (Jørgen Young) -> youngstorget x2
+- data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json :: ole_lislerud (Ole Lislerud) -> tinghuset x2
+- data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json :: hans_jakob_sparre (Hans Jakob Sparre) -> hoyesteretts_hus x2
+- data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json :: are_telje (Are Telje) -> politihuset_gronland x2
+- data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json :: lena_fahre (Lena Fahre) -> 22_juli_senteret x2
+- data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json :: sverre_jystad (Sverre Jystad) -> hoyblokka x2
+- data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json :: jorgen_lovland (Jørgen Løvland) -> victoria_terrasse x2
+- data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json :: henry_bucher (Henry Bucher) -> statsministerboligen x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json :: toril_marie_oie (Toril Marie Øie) -> hoyesteretts_hus x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json :: carsten_smith (Carsten Smith) -> hoyesteretts_hus x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json :: paal_berg (Paal Berg) -> hoyesteretts_hus x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json :: alexandra_europa_perez_seoane (Alexandra Europa Perez-Seoane) -> 22_juli_senteret x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json :: thor_von_ditten (Thor von Ditten) -> victoria_terrasse x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json :: halvdan_koht (Halvdan Koht) -> victoria_terrasse x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json :: erna_solberg (Erna Solberg) -> statsministerboligen x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: rolf_stranger (Rolf Stranger) -> oslo_radhus x2
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json :: jorgen_knudsen (Jørgen Knudsen) -> folkets_hus_oslo x2
 
 ## Anbefalt neste ryddebatch
