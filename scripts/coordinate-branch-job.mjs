@@ -1,6 +1,7 @@
-// Retry 2: fixed updated_emner builder typo.
+// Retry 3: assemble verified builder chunks.
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import { spawnSync } from "node:child_process";
 import { runBuildQuizProductionContext } from "./build-quiz-production-context.mjs";
@@ -55,10 +56,38 @@ function removeIfExists(relativePath) {
   if (fs.existsSync(target)) fs.rmSync(target, { force: true, recursive: true });
 }
 
-const encodedBuilderPath = resolve("tools/.build-historie-makt-phase3.py.gz.b64");
+const builderPartPaths = [
+  "tools/.build-historie-makt-phase3.part1",
+  "tools/.build-historie-makt-phase3.part2",
+  "tools/.build-historie-makt-phase3.part3",
+  "tools/.build-historie-makt-phase3.part4",
+];
+const encodedBuilder = builderPartPaths
+  .map((partPath) => fs.readFileSync(resolve(partPath), "utf8").trim())
+  .join("");
+const expectedEncodedLength = 19380;
+const expectedEncodedSha256 = "5cdfc5f8c039907b6d6f7c1c7926f0d94d96ee1b12f7b2cd56e060f17925f6a8";
+const actualEncodedSha256 = createHash("sha256").update(encodedBuilder).digest("hex");
+if (encodedBuilder.length !== expectedEncodedLength) {
+  throw new Error(`Builder base64 length mismatch: ${encodedBuilder.length} != ${expectedEncodedLength}`);
+}
+if (actualEncodedSha256 !== expectedEncodedSha256) {
+  throw new Error(`Builder base64 SHA-256 mismatch: ${actualEncodedSha256}`);
+}
+console.log(`Builder transport verified: ${encodedBuilder.length} chars, ${actualEncodedSha256}`);
+
 const builderPath = resolve("tools/build-historie-makt-phase3.py");
-const encodedBuilder = fs.readFileSync(encodedBuilderPath, "utf8").trim();
-fs.writeFileSync(builderPath, gunzipSync(Buffer.from(encodedBuilder, "base64")));
+const builderGzip = Buffer.from(encodedBuilder, "base64");
+const actualGzipSha256 = createHash("sha256").update(builderGzip).digest("hex");
+if (actualGzipSha256 !== "74c3624bb70f17bbb0d4dd22a5b8d1d8bd6900ce201ac737e3b1cfed7cafa362") {
+  throw new Error(`Builder gzip SHA-256 mismatch: ${actualGzipSha256}`);
+}
+const builderSource = gunzipSync(builderGzip);
+const actualSourceSha256 = createHash("sha256").update(builderSource).digest("hex");
+if (actualSourceSha256 !== "b6f9a74be06cb3c1e3b9dcc3b07b9a7f3978baa715b931bf3dc825da5dd48f85") {
+  throw new Error(`Builder source SHA-256 mismatch: ${actualSourceSha256}`);
+}
+fs.writeFileSync(builderPath, builderSource);
 
 run("python3", ["-m", "py_compile", "tools/build-historie-makt-phase3.py"], "Compile phase 3 builder");
 run("python3", ["tools/build-historie-makt-phase3.py"], "Build phase 3 canonical package");
@@ -131,6 +160,7 @@ run("git", ["diff", "--check"], "Check diff whitespace");
 
 removeIfExists(".github/workflows/history-phase3-build.yml");
 removeIfExists("tools/.build-historie-makt-phase3.py.gz.b64");
+for (const partPath of builderPartPaths) removeIfExists(partPath);
 removeIfExists("tools/build-historie-makt-phase3.py");
 removeIfExists("reports/historie-canonical-migration/makt-stat-phase3-research.json");
 removeIfExists("reports/historie-canonical-migration/makt-stat-phase3-build-diagnostic.md");
