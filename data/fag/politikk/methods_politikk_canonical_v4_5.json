@@ -639,7 +639,10 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
       },
       "definition": "Analyserer hvordan dokumenter registrerer, klassifiserer, begrunner og gjør beslutninger etterprøvbare, samtidig som de former hva som blir synlig.",
       "analytical_question": "Hva gjør dokumentet styrbart og etterprøvbart, hvilke kategorier bruker det, og hva faller utenfor registreringen?",
@@ -692,7 +695,63 @@
       "mechanism_explanation_required": true,
       "critical_distinction_required": true,
       "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
-      "quality_revision": "politikk-styring-vertical-2026-07-24"
+      "quality_revision": "politikk-styring-vertical-2026-07-24",
+      "domain_profiles": {
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer hvordan lovtekst, forarbeid, dom, vedtak og arkivmateriale etablerer kompetanse, fakta, begrunnelse og rettsvirkning.",
+          "analytical_question": "Hvilken dokumenttype er dette, hvilken autoritet har den, hvilke påstander og begreper bærer avgjørelsen, og hva dokumenterer den ikke?",
+          "evidence_inputs": [
+            "lovtekst",
+            "forarbeid",
+            "dom",
+            "forvaltningsvedtak",
+            "arkivdokument"
+          ],
+          "mechanism_focus": [
+            "klassifikasjon",
+            "begrunnelse",
+            "rettskildebruk",
+            "dokumentasjon"
+          ],
+          "critical_distinctions": [
+            "dokumentasjon vs faktum",
+            "rettskildevekt vs retorisk tyngde",
+            "tekst vs institusjonell praksis"
+          ],
+          "compatible_anchor_types": [
+            "legal_source",
+            "archive",
+            "judgment",
+            "administrative_decision"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-rett-vertical-2026-07-24"
+      ]
     },
     {
       "method_id": "met_pol_fordelingsanalyse",
@@ -782,7 +841,10 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
       },
       "domain_profiles": {
         "demokrati_representasjon_offentlighet": {
@@ -834,10 +896,61 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
           "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        },
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer hvordan rettsregler og institusjonelle avgjørelser fordeler rettigheter, byrder, risiko, beskyttelse og adgang til rettsmidler.",
+          "analytical_question": "Hvem får hva, hvem bærer kostnaden, og hvilken rettslig mekanisme skaper eller begrenser fordelingen?",
+          "evidence_inputs": [
+            "retts- eller fordelingsdata",
+            "lov eller vedtak",
+            "håndhevingsdata",
+            "gruppevirkningskilde"
+          ],
+          "mechanism_focus": [
+            "rettighetstildeling",
+            "terskel",
+            "unntak",
+            "kompensasjon"
+          ],
+          "critical_distinctions": [
+            "formell likhet vs materiell virkning",
+            "universell regel vs gruppeeffekt",
+            "fordeling vs rettslig status"
+          ],
+          "compatible_anchor_types": [
+            "distribution",
+            "legal_right",
+            "statistics",
+            "public_service"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
-        "politikk-demokrati-vertical-2026-07-24"
+        "politikk-demokrati-vertical-2026-07-24",
+        "politikk-rett-vertical-2026-07-24"
       ],
       "definition": "Analyserer hvordan demokratiske regler og beslutninger fordeler politisk adgang, representasjon, rettigheter, byrder og goder mellom grupper.",
       "analytical_question": "Hvem får hva, hvem bærer kostnaden, og hvilken mekanisme skaper eller begrenser den skjeve fordelingen?",
@@ -960,7 +1073,10 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
       },
       "definition": "Analyserer hvordan politiske vedtak blir fortolket, prioritert og gjennomført i administrasjon og frontlinjetjenester.",
       "analytical_question": "Hvor i gjennomføringskjeden oppstår skjønn, prioritering eller avvik mellom vedtak og borgerutfall?",
@@ -1013,7 +1129,62 @@
       "mechanism_explanation_required": true,
       "critical_distinction_required": true,
       "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
-      "quality_revision": "politikk-styring-vertical-2026-07-24"
+      "quality_revision": "politikk-styring-vertical-2026-07-24",
+      "domain_profiles": {
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer hjemmel, saksopplysning, kontradiksjon, begrunnelse, skjønn, likebehandling og klage i forvaltningsavgjørelser.",
+          "analytical_question": "Hvordan blir en generell regel til et konkret vedtak, og hvor kan faktum, skjønn eller prosess endre rettsstillingen?",
+          "evidence_inputs": [
+            "lov eller forskrift",
+            "saksdokument",
+            "vedtak og begrunnelse",
+            "klage- eller omgjøringsavgjørelse"
+          ],
+          "mechanism_focus": [
+            "saksopplysning",
+            "skjønnsutøvelse",
+            "begrunnelse",
+            "klage og omgjøring"
+          ],
+          "critical_distinctions": [
+            "bundet regel vs skjønn",
+            "likebehandling vs individuell vurdering",
+            "prosessfeil vs materielt utfall"
+          ],
+          "compatible_anchor_types": [
+            "administrative_decision",
+            "public_service",
+            "appeal_body",
+            "city_hall"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-rett-vertical-2026-07-24"
+      ]
     },
     {
       "method_id": "met_pol_ideologianalyse",
@@ -1283,7 +1454,10 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
       },
       "definition": "Analyserer hvordan varige regler, roller, kompetansegrenser og organisatoriske rutiner fordeler myndighet og stabiliserer politiske forventninger.",
       "analytical_question": "Hvilken institusjonell ordning gjør utfallet mulig, hvem har formell kompetanse, og hvordan avviker faktisk innflytelse fra den formelle strukturen?",
@@ -1387,11 +1561,62 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
           "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        },
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer hvordan rettslige institusjoner fordeler kompetanse, roller, prosedyrer og kontrollmuligheter.",
+          "analytical_question": "Hvordan organiserer institusjonen myndighet, rettslig ansvar og overprøving mellom aktørene?",
+          "evidence_inputs": [
+            "kompetanseregel",
+            "organisasjons- eller prosessregel",
+            "avgjørelse",
+            "kontrollsak"
+          ],
+          "mechanism_focus": [
+            "kompetansetildeling",
+            "arbeidsdeling",
+            "prosedyre",
+            "ansvarliggjøring"
+          ],
+          "critical_distinctions": [
+            "institusjon vs bygning",
+            "formell kompetanse vs faktisk praksis",
+            "uavhengighet vs ansvar"
+          ],
+          "compatible_anchor_types": [
+            "institution",
+            "court",
+            "control_body",
+            "government_building"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
         "politikk-styring-vertical-2026-07-24",
-        "politikk-demokrati-vertical-2026-07-24"
+        "politikk-demokrati-vertical-2026-07-24",
+        "politikk-rett-vertical-2026-07-24"
       ]
     },
     {
@@ -1526,7 +1751,7 @@
       "method_id": "met_pol_kontroll_og_sanksjonsanalyse",
       "title": "Kontroll- og sanksjonsanalyse",
       "short_label": "Kontroll/sanksjon",
-      "description": "Analyse av rettsstat, domstoler, lover, rettigheter, plikter, straff, kontroll og forholdet mellom borger og stat, normer, normalitet, minoritet, majoritet, identitet, kjønn, familie, migrasjon og hverdagsliv. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hjemmel, terskel, prosedyre, formål, proporsjonalitet og kontroll ved straff, tvang, overvåking og administrative sanksjoner.",
       "best_for_emne_kinds": [
         "rett_lov_rettssikkerhet",
         "normer_identitet_hverdagsliv"
@@ -1595,14 +1820,122 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
-      }
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
+      },
+      "domain_profiles": {
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer hjemmel, terskel, prosedyre, formål, proporsjonalitet og kontroll ved straff, tvang, overvåking og administrative sanksjoner.",
+          "analytical_question": "Hvilken handling eller risiko utløser inngrepet, hvilken prosess gjelder, og er reaksjonen nødvendig og forholdsmessig?",
+          "evidence_inputs": [
+            "straffebud eller sanksjonsregel",
+            "dom eller vedtak",
+            "kontroll- eller klagekilde",
+            "håndhevingsdata"
+          ],
+          "mechanism_focus": [
+            "kriminalisering",
+            "mistankeseleksjon",
+            "skyldfastsettelse",
+            "sanksjonering",
+            "overvåking"
+          ],
+          "critical_distinctions": [
+            "straff vs administrativ reaksjon",
+            "skyld vs risiko",
+            "proporsjonalitet vs prevensjon"
+          ],
+          "compatible_anchor_types": [
+            "sanction",
+            "police",
+            "prison",
+            "court"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-rett-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hjemmel, terskel, prosedyre, formål, proporsjonalitet og kontroll ved straff, tvang, overvåking og administrative sanksjoner.",
+      "analytical_question": "Hvilken handling eller risiko utløser inngrepet, hvilken prosess gjelder, og er reaksjonen nødvendig og forholdsmessig?",
+      "evidence_inputs": [
+        "straffebud eller sanksjonsregel",
+        "dom eller vedtak",
+        "kontroll- eller klagekilde",
+        "håndhevingsdata"
+      ],
+      "mechanism_focus": [
+        "kriminalisering",
+        "mistankeseleksjon",
+        "skyldfastsettelse",
+        "sanksjonering",
+        "overvåking"
+      ],
+      "critical_distinctions": [
+        "straff vs administrativ reaksjon",
+        "skyld vs risiko",
+        "proporsjonalitet vs prevensjon"
+      ],
+      "compatible_anchor_types": [
+        "sanction",
+        "police",
+        "prison",
+        "court"
+      ],
+      "question_build_sequence": [
+        "documented_legal_case_or_source",
+        "precise_claim_basis",
+        "identified_legal_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbar rettskilde eller institusjonskilde",
+        "forklar minst én rettslig mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk moralsk holdning uten rettskilde eller case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+      "quality_revision": "politikk-rett-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_kritisk_rettsanalyse",
       "title": "Kritisk rettsanalyse",
       "short_label": "Kritisk rett",
-      "description": "Analyse av rettsstat, domstoler, lover, rettigheter, plikter, straff, kontroll og forholdet mellom borger og stat. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan rettens kategorier, prosedyrer, beviskrav og profesjonelle praksiser kan produsere blindsoner eller skjev beskyttelse.",
       "best_for_emne_kinds": [
         "rett_lov_rettssikkerhet"
       ],
@@ -1657,8 +1990,114 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
-      }
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
+      },
+      "domain_profiles": {
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer hvordan rettens kategorier, prosedyrer, beviskrav og profesjonelle praksiser kan produsere blindsoner eller skjev beskyttelse.",
+          "analytical_question": "Hvilke erfaringer eller skader blir usynlige gjennom rettens kategorier og prosesser, og gjennom hvilken mekanisme?",
+          "evidence_inputs": [
+            "lovkategori",
+            "retts- eller forvaltningspraksis",
+            "mønsterdata",
+            "dokumentert tilgangs- eller håndhevingsproblem"
+          ],
+          "mechanism_focus": [
+            "kategoriutelukkelse",
+            "bevismessig usynlighet",
+            "portvokting",
+            "underhåndheving"
+          ],
+          "critical_distinctions": [
+            "formell nøytralitet vs ulik virkning",
+            "individuelt brudd vs strukturelt mønster",
+            "anerkjennelse vs effektivt rettsmiddel"
+          ],
+          "compatible_anchor_types": [
+            "legal_gap",
+            "court",
+            "minority",
+            "unequal_outcome"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-rett-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan rettens kategorier, prosedyrer, beviskrav og profesjonelle praksiser kan produsere blindsoner eller skjev beskyttelse.",
+      "analytical_question": "Hvilke erfaringer eller skader blir usynlige gjennom rettens kategorier og prosesser, og gjennom hvilken mekanisme?",
+      "evidence_inputs": [
+        "lovkategori",
+        "retts- eller forvaltningspraksis",
+        "mønsterdata",
+        "dokumentert tilgangs- eller håndhevingsproblem"
+      ],
+      "mechanism_focus": [
+        "kategoriutelukkelse",
+        "bevismessig usynlighet",
+        "portvokting",
+        "underhåndheving"
+      ],
+      "critical_distinctions": [
+        "formell nøytralitet vs ulik virkning",
+        "individuelt brudd vs strukturelt mønster",
+        "anerkjennelse vs effektivt rettsmiddel"
+      ],
+      "compatible_anchor_types": [
+        "legal_gap",
+        "court",
+        "minority",
+        "unequal_outcome"
+      ],
+      "question_build_sequence": [
+        "documented_legal_case_or_source",
+        "precise_claim_basis",
+        "identified_legal_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbar rettskilde eller institusjonskilde",
+        "forklar minst én rettslig mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk moralsk holdning uten rettskilde eller case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+      "quality_revision": "politikk-rett-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_legitimitetsanalyse",
@@ -1922,7 +2361,7 @@
       "method_id": "met_pol_likestillingsanalyse",
       "title": "Likestillingsanalyse",
       "short_label": "Likestilling",
-      "description": "Analyse av normer, normalitet, minoritet, majoritet, identitet, kjønn, familie, migrasjon og hverdagsliv. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer direkte og indirekte forskjellsbehandling, tilrettelegging og om formell likhet gir materiell likeverd.",
       "best_for_emne_kinds": [
         "normer_identitet_hverdagsliv"
       ],
@@ -1977,8 +2416,114 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
-      }
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
+      },
+      "domain_profiles": {
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer direkte og indirekte forskjellsbehandling, tilrettelegging og om formell likhet gir materiell likeverd.",
+          "analytical_question": "Hvilken gruppe sammenlignes, hvilken regel eller praksis skaper forskjellen, og er tiltaket saklig, nødvendig og forholdsmessig?",
+          "evidence_inputs": [
+            "regel eller praksis",
+            "gruppe- og utfallsdata",
+            "klage eller dom",
+            "tilretteleggings- eller håndhevingskilde"
+          ],
+          "mechanism_focus": [
+            "sammenligning",
+            "indirekte virkning",
+            "tilrettelegging",
+            "forholdsmessighet"
+          ],
+          "critical_distinctions": [
+            "samme behandling vs likeverdig virkning",
+            "direkte vs indirekte forskjellsbehandling",
+            "anerkjennelse vs håndheving"
+          ],
+          "compatible_anchor_types": [
+            "equality",
+            "minority",
+            "legal_right",
+            "public_service"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-rett-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer direkte og indirekte forskjellsbehandling, tilrettelegging og om formell likhet gir materiell likeverd.",
+      "analytical_question": "Hvilken gruppe sammenlignes, hvilken regel eller praksis skaper forskjellen, og er tiltaket saklig, nødvendig og forholdsmessig?",
+      "evidence_inputs": [
+        "regel eller praksis",
+        "gruppe- og utfallsdata",
+        "klage eller dom",
+        "tilretteleggings- eller håndhevingskilde"
+      ],
+      "mechanism_focus": [
+        "sammenligning",
+        "indirekte virkning",
+        "tilrettelegging",
+        "forholdsmessighet"
+      ],
+      "critical_distinctions": [
+        "samme behandling vs likeverdig virkning",
+        "direkte vs indirekte forskjellsbehandling",
+        "anerkjennelse vs håndheving"
+      ],
+      "compatible_anchor_types": [
+        "equality",
+        "minority",
+        "legal_right",
+        "public_service"
+      ],
+      "question_build_sequence": [
+        "documented_legal_case_or_source",
+        "precise_claim_basis",
+        "identified_legal_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbar rettskilde eller institusjonskilde",
+        "forklar minst én rettslig mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk moralsk holdning uten rettskilde eller case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+      "quality_revision": "politikk-rett-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_lokalpolitisk_analyse",
@@ -2162,7 +2707,7 @@
       "method_id": "met_pol_makt_og_ulikhetsanalyse",
       "title": "Makt- og ulikhetsanalyse",
       "short_label": "Makt/ulikhet",
-      "description": "Analyse av fordeling, velferd, levekår, klasse, bolig, helse, utdanning, demografi og ulikhet, rettsstat, domstoler, lover, rettigheter, plikter, straff, kontroll og forholdet mellom borger og stat. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan rettslige og institusjonelle ordninger fordeler beslutningsmakt, risiko, byrder og beskyttelse ulikt.",
       "best_for_emne_kinds": [
         "fordeling_velferd_ulikhet",
         "rett_lov_rettssikkerhet",
@@ -2236,8 +2781,114 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
-      }
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
+      },
+      "domain_profiles": {
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer hvordan rettslige og institusjonelle ordninger fordeler beslutningsmakt, risiko, byrder og beskyttelse ulikt.",
+          "analytical_question": "Hvem får større kontroll, beskyttelse eller belastning, og hvilken rettslig eller institusjonell mekanisme skaper mønsteret?",
+          "evidence_inputs": [
+            "fordelingsdata",
+            "rettsregel eller vedtak",
+            "håndhevingsdata",
+            "dokumentert gruppevirkning"
+          ],
+          "mechanism_focus": [
+            "seleksjon",
+            "klassifikasjon",
+            "ressursfordeling",
+            "underhåndheving"
+          ],
+          "critical_distinctions": [
+            "lik regel vs ulik virkning",
+            "ressursulikhet vs rettslig ulikhet",
+            "individutfall vs systematisk mønster"
+          ],
+          "compatible_anchor_types": [
+            "distribution",
+            "statistics",
+            "legal_right",
+            "unequal_outcome"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-rett-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan rettslige og institusjonelle ordninger fordeler beslutningsmakt, risiko, byrder og beskyttelse ulikt.",
+      "analytical_question": "Hvem får større kontroll, beskyttelse eller belastning, og hvilken rettslig eller institusjonell mekanisme skaper mønsteret?",
+      "evidence_inputs": [
+        "fordelingsdata",
+        "rettsregel eller vedtak",
+        "håndhevingsdata",
+        "dokumentert gruppevirkning"
+      ],
+      "mechanism_focus": [
+        "seleksjon",
+        "klassifikasjon",
+        "ressursfordeling",
+        "underhåndheving"
+      ],
+      "critical_distinctions": [
+        "lik regel vs ulik virkning",
+        "ressursulikhet vs rettslig ulikhet",
+        "individutfall vs systematisk mønster"
+      ],
+      "compatible_anchor_types": [
+        "distribution",
+        "statistics",
+        "legal_right",
+        "unequal_outcome"
+      ],
+      "question_build_sequence": [
+        "documented_legal_case_or_source",
+        "precise_claim_basis",
+        "identified_legal_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbar rettskilde eller institusjonskilde",
+        "forklar minst én rettslig mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk moralsk holdning uten rettskilde eller case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+      "quality_revision": "politikk-rett-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_maktbalanseanalyse",
@@ -2310,7 +2961,10 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
       },
       "domain_profiles": {
         "demokrati_representasjon_offentlighet": {
@@ -2362,10 +3016,61 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
           "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        },
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer hvordan grunnlov, lov og institusjonelle kontrollordninger fordeler kompetanse, veto, prøving og ansvar.",
+          "analytical_question": "Hvem kan autorisere, kontrollere, oppheve eller stanse hvem, og på hvilket rettslig grunnlag?",
+          "evidence_inputs": [
+            "grunnlov eller lov",
+            "kontroll- eller domstolsavgjørelse",
+            "kompetanseregel",
+            "dokumentert institusjonskonflikt"
+          ],
+          "mechanism_focus": [
+            "kompetansedeling",
+            "veto",
+            "domstolskontroll",
+            "parlamentarisk kontroll"
+          ],
+          "critical_distinctions": [
+            "maktfordeling vs parlamentarisme",
+            "uavhengighet vs ansvarlighet",
+            "kontroll vs medstyring"
+          ],
+          "compatible_anchor_types": [
+            "constitution",
+            "court",
+            "parliament",
+            "control_body"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
-        "politikk-demokrati-vertical-2026-07-24"
+        "politikk-demokrati-vertical-2026-07-24",
+        "politikk-rett-vertical-2026-07-24"
       ],
       "definition": "Analyserer hvordan kompetanse, delegasjon, kontroll, veto og politisk støtte fordeles mellom demokratiske institusjoner og aktører.",
       "analytical_question": "Hvem kan beslutte, blokkere, kontrollere eller avsette hvem, og på hvilket formelt eller politisk grunnlag?",
@@ -2492,7 +3197,10 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
       },
       "domain_profiles": {
         "demokrati_representasjon_offentlighet": {
@@ -2544,10 +3252,61 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
           "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        },
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer minoriteters rettighetsvern, prosessuelle adgang, representasjon og risiko for å bli overstyrt eller feilklassifisert.",
+          "analytical_question": "Hvilken gruppe mangler vern eller stemme i hvilket ledd, og hvilken rettslig eller representativ mekanisme påvirker utfallet?",
+          "evidence_inputs": [
+            "rettighetsregel",
+            "representasjonsdata",
+            "dom eller vedtak",
+            "dokumentert gruppevirkning"
+          ],
+          "mechanism_focus": [
+            "minoritetsvern",
+            "tilstedeværelse",
+            "rettslig prøving",
+            "kategoriinkludering"
+          ],
+          "critical_distinctions": [
+            "numerisk minoritet vs rettslig sårbarhet",
+            "tilstedeværelse vs effektivt vern",
+            "likebehandling vs særskilt beskyttelse"
+          ],
+          "compatible_anchor_types": [
+            "minority",
+            "legal_right",
+            "representation",
+            "court"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
-        "politikk-demokrati-vertical-2026-07-24"
+        "politikk-demokrati-vertical-2026-07-24",
+        "politikk-rett-vertical-2026-07-24"
       ],
       "definition": "Analyserer om minoriteter og underrepresenterte grupper har reell tilstedeværelse, opposisjonsmulighet, rettighetsvern og respons i demokratiske institusjoner.",
       "analytical_question": "Hvilken gruppe er marginalisert i hvilket ledd, og hvilken representasjons- eller vernemekanisme påvirker utfallet?",
@@ -2602,7 +3361,7 @@
       "method_id": "met_pol_normanalyse",
       "title": "Normanalyse",
       "short_label": "Norm",
-      "description": "Analyse av normer, normalitet, minoritet, majoritet, identitet, kjønn, familie, migrasjon og hverdagsliv, rettsstat, domstoler, lover, rettigheter, plikter, straff, kontroll og forholdet mellom borger og stat. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer hvordan rettslige og sosiale normer formulerer plikter, tillatelser og forbud, og hvordan normene begrunnes og håndheves.",
       "best_for_emne_kinds": [
         "normer_identitet_hverdagsliv",
         "rett_lov_rettssikkerhet"
@@ -2677,8 +3436,114 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
-      }
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
+      },
+      "domain_profiles": {
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer hvordan rettslige og sosiale normer formulerer plikter, tillatelser og forbud, og hvordan normene begrunnes og håndheves.",
+          "analytical_question": "Hvilken norm gjelder, hvem omfattes, hvilken type plikt eller tillatelse etableres, og hvordan håndheves den?",
+          "evidence_inputs": [
+            "lov eller forskrift",
+            "retningslinje",
+            "dom eller vedtak",
+            "dokumentert praksis"
+          ],
+          "mechanism_focus": [
+            "normfastsetting",
+            "klassifikasjon",
+            "fortolkning",
+            "sanksjonering"
+          ],
+          "critical_distinctions": [
+            "rettslig norm vs sosial forventning",
+            "regel vs standard",
+            "gyldighet vs etterlevelse"
+          ],
+          "compatible_anchor_types": [
+            "legal_source",
+            "administrative_rule",
+            "institution",
+            "sanction"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-rett-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan rettslige og sosiale normer formulerer plikter, tillatelser og forbud, og hvordan normene begrunnes og håndheves.",
+      "analytical_question": "Hvilken norm gjelder, hvem omfattes, hvilken type plikt eller tillatelse etableres, og hvordan håndheves den?",
+      "evidence_inputs": [
+        "lov eller forskrift",
+        "retningslinje",
+        "dom eller vedtak",
+        "dokumentert praksis"
+      ],
+      "mechanism_focus": [
+        "normfastsetting",
+        "klassifikasjon",
+        "fortolkning",
+        "sanksjonering"
+      ],
+      "critical_distinctions": [
+        "rettslig norm vs sosial forventning",
+        "regel vs standard",
+        "gyldighet vs etterlevelse"
+      ],
+      "compatible_anchor_types": [
+        "legal_source",
+        "administrative_rule",
+        "institution",
+        "sanction"
+      ],
+      "question_build_sequence": [
+        "documented_legal_case_or_source",
+        "precise_claim_basis",
+        "identified_legal_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbar rettskilde eller institusjonskilde",
+        "forklar minst én rettslig mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk moralsk holdning uten rettskilde eller case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+      "quality_revision": "politikk-rett-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_offentlighetsanalyse",
@@ -3226,7 +4091,10 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
       },
       "domain_profiles": {
         "demokrati_representasjon_offentlighet": {
@@ -3278,10 +4146,61 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
           "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        },
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer hvordan rettsregler og institusjoner oppstår og endres gjennom konflikt, sekvenser, kritiske vendepunkter, stiavhengighet og tilbakekobling.",
+          "analytical_question": "Hvilken historisk prosess skapte rettsordningen, hvilke alternativer ble lukket, og hvordan endret senere praksis funksjonen?",
+          "evidence_inputs": [
+            "arkivkilde",
+            "lovhistorikk",
+            "utredning eller forarbeid",
+            "historisk institusjonsdata"
+          ],
+          "mechanism_focus": [
+            "konfliktmobilisering",
+            "kritisk vendepunkt",
+            "institusjonalisering",
+            "tilbakekobling"
+          ],
+          "critical_distinctions": [
+            "opprinnelse vs senere funksjon",
+            "kontinuitet vs brudd",
+            "lovvedtak vs langsiktig prosess"
+          ],
+          "compatible_anchor_types": [
+            "archive",
+            "legislative_change",
+            "legal_source",
+            "institution"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
-        "politikk-demokrati-vertical-2026-07-24"
+        "politikk-demokrati-vertical-2026-07-24",
+        "politikk-rett-vertical-2026-07-24"
       ],
       "definition": "Analyserer hvordan demokratiske institusjoner, rettigheter, konfliktlinjer og repertoarer er blitt til gjennom sekvenser, brudd og stiavhengighet.",
       "analytical_question": "Hvilken historisk prosess skapte dagens institusjon eller konflikt, og hvilke alternativer ble lukket eller bevart?",
@@ -3860,7 +4779,7 @@
       "method_id": "met_pol_rettighetsanalyse",
       "title": "Rettighetsanalyse",
       "short_label": "Rettigheter",
-      "description": "Analyse av rettsstat, domstoler, lover, rettigheter, plikter, straff, kontroll og forholdet mellom borger og stat, normer, normalitet, minoritet, majoritet, identitet, kjønn, familie, migrasjon og hverdagsliv. Metoden brukes når konkrete institusjoner, lover, reformer, offentlige rom, fordelingsdata, konflikter, normer eller sosiale prosesser kan dokumenteres.",
+      "description": "Analyserer rettighetshaver, pliktbærer, rettighetens rekkevidde, begrensning, håndheving og effektive rettsmiddel.",
       "best_for_emne_kinds": [
         "rett_lov_rettssikkerhet",
         "normer_identitet_hverdagsliv"
@@ -3929,8 +4848,114 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
-      }
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
+      },
+      "domain_profiles": {
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer rettighetshaver, pliktbærer, rettighetens rekkevidde, begrensning, håndheving og effektive rettsmiddel.",
+          "analytical_question": "Hvem kan kreve hva av hvem, på hvilket grunnlag, med hvilke begrensninger og gjennom hvilken håndheving?",
+          "evidence_inputs": [
+            "rettighetsbestemmelse",
+            "dom eller vedtak",
+            "klage- eller håndhevingsdata",
+            "dokumentert berørt situasjon"
+          ],
+          "mechanism_focus": [
+            "rettighetsfesting",
+            "pliktstildeling",
+            "forholdsmessighet",
+            "håndheving"
+          ],
+          "critical_distinctions": [
+            "rettighet vs interesse",
+            "negativ vs positiv rett",
+            "formell rett vs reell tilgang"
+          ],
+          "compatible_anchor_types": [
+            "legal_right",
+            "court",
+            "public_service",
+            "legal_source"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-rett-vertical-2026-07-24"
+      ],
+      "definition": "Analyserer rettighetshaver, pliktbærer, rettighetens rekkevidde, begrensning, håndheving og effektive rettsmiddel.",
+      "analytical_question": "Hvem kan kreve hva av hvem, på hvilket grunnlag, med hvilke begrensninger og gjennom hvilken håndheving?",
+      "evidence_inputs": [
+        "rettighetsbestemmelse",
+        "dom eller vedtak",
+        "klage- eller håndhevingsdata",
+        "dokumentert berørt situasjon"
+      ],
+      "mechanism_focus": [
+        "rettighetsfesting",
+        "pliktstildeling",
+        "forholdsmessighet",
+        "håndheving"
+      ],
+      "critical_distinctions": [
+        "rettighet vs interesse",
+        "negativ vs positiv rett",
+        "formell rett vs reell tilgang"
+      ],
+      "compatible_anchor_types": [
+        "legal_right",
+        "court",
+        "public_service",
+        "legal_source"
+      ],
+      "question_build_sequence": [
+        "documented_legal_case_or_source",
+        "precise_claim_basis",
+        "identified_legal_mechanism",
+        "tested_critical_distinction",
+        "optional_theory_concept"
+      ],
+      "output_requirements": [
+        "navngi dokumenterbar rettskilde eller institusjonskilde",
+        "forklar minst én rettslig mekanisme",
+        "test minst én reell begrepsdistinksjon",
+        "bruk teori bare som forklaring eller sammenligning"
+      ],
+      "anti_patterns": [
+        "teoretikernavn som løsrevet fasit",
+        "generisk moralsk holdning uten rettskilde eller case",
+        "metodenavn som synlig quizinnhold",
+        "påstand hentet bare fra canonical-fil"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+      "quality_revision": "politikk-rett-vertical-2026-07-24"
     },
     {
       "method_id": "met_pol_rettslig_analyse",
@@ -4006,7 +5031,10 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
       },
       "definition": "Analyserer hjemmel, rettigheter, plikter, kompetanse og kontroll i politiske og administrative beslutninger.",
       "analytical_question": "Hvilken rettsregel gir kompetanse, hvilke rettssikkerhetsgarantier gjelder, og hvordan påvirker fortolkning den konkrete virkningen?",
@@ -4059,7 +5087,63 @@
       "mechanism_explanation_required": true,
       "critical_distinction_required": true,
       "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
-      "quality_revision": "politikk-styring-vertical-2026-07-24"
+      "quality_revision": "politikk-styring-vertical-2026-07-24",
+      "domain_profiles": {
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer hjemmel, kompetanse, normhierarki, tolkning, prosess, rettigheter, plikter og kontroll i et dokumenterbart rettslig spørsmål.",
+          "analytical_question": "Hvilken rettsregel og kompetanse styrer saken, hvordan anvendes den, og hvilken kontroll eller rettsvirkning følger?",
+          "evidence_inputs": [
+            "lovtekst eller forskrift",
+            "dom eller vedtak",
+            "forarbeid eller kontrollkilde",
+            "dokumentert saksforløp"
+          ],
+          "mechanism_focus": [
+            "hjemmel",
+            "normhierarki",
+            "lovtolkning",
+            "rettsanvendelse",
+            "kontroll"
+          ],
+          "critical_distinctions": [
+            "gyldighet vs legitimitet",
+            "lovtekst vs anvendelse",
+            "bundet regel vs skjønn"
+          ],
+          "compatible_anchor_types": [
+            "legal_source",
+            "court",
+            "administrative_decision",
+            "constitution"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
+        }
+      },
+      "quality_revisions": [
+        "politikk-rett-vertical-2026-07-24"
+      ]
     },
     {
       "method_id": "met_pol_romlig_maktanalyse",
@@ -4146,7 +5230,10 @@
         "require_concrete_institution_law_conflict_policy_or_social_process": true,
         "require_external_claim_basis": true,
         "do_not_generate_from_method_label_only": true,
-        "require_emne_prefix": "em_pol_"
+        "require_emne_prefix": "em_pol_",
+        "require_mechanism_explanation": true,
+        "require_critical_distinction": true,
+        "ban_theorist_name_as_answer_without_concept": true
       },
       "definition": "Analyserer hvordan plassering, tilgang, arkitektur og romlig organisering påvirker synlighet, nærhet og politisk handlingsrom.",
       "analytical_question": "Hvordan fordeler stedet tilgang, avstand, synlighet og kontroll mellom myndighet og borgere?",
@@ -4250,11 +5337,62 @@
           "critical_distinction_required": true,
           "theory_use_rule": "Teori kan forklare eller sammenligne mekanismen, men kan ikke være faktakilden eller erstatte casegrunnlaget.",
           "quality_revision": "politikk-demokrati-vertical-2026-07-24"
+        },
+        "rett_lov_rettssikkerhet": {
+          "definition": "Analyserer hvordan politi, kontrollinstitusjoner, adgangsregler og fysisk organisering fordeler synlighet, bevegelse, trygghet og inngrepsrisiko i rom.",
+          "analytical_question": "Hvordan gjør stedet bestemte former for kontroll, adgang eller tvang mer sannsynlige, og for hvem?",
+          "evidence_inputs": [
+            "kart eller stedskilde",
+            "adgangs- eller kontrollregel",
+            "hendelses- eller håndhevingsdata",
+            "institusjonell praksis"
+          ],
+          "mechanism_focus": [
+            "territoriell tilstedeværelse",
+            "adgangskontroll",
+            "overvåking",
+            "selektiv håndheving"
+          ],
+          "critical_distinctions": [
+            "offentlig rom vs kontrollert rom",
+            "synlighet vs mistanke",
+            "formell adgang vs faktisk tilgjengelighet"
+          ],
+          "compatible_anchor_types": [
+            "public_space",
+            "police",
+            "court",
+            "government_building"
+          ],
+          "question_build_sequence": [
+            "documented_legal_case_or_source",
+            "precise_claim_basis",
+            "identified_legal_mechanism",
+            "tested_critical_distinction",
+            "optional_theory_concept"
+          ],
+          "output_requirements": [
+            "navngi dokumenterbar rettskilde eller institusjonskilde",
+            "forklar minst én rettslig mekanisme",
+            "test minst én reell begrepsdistinksjon",
+            "bruk teori bare som forklaring eller sammenligning"
+          ],
+          "anti_patterns": [
+            "teoretikernavn som løsrevet fasit",
+            "generisk moralsk holdning uten rettskilde eller case",
+            "metodenavn som synlig quizinnhold",
+            "påstand hentet bare fra canonical-fil"
+          ],
+          "mechanism_explanation_required": true,
+          "critical_distinction_required": true,
+          "theory_use_rule": "Teori kan forklare eller sammenligne en rettslig mekanisme, men kan ikke erstatte rettskilden, caset eller den juridiske begrunnelsen.",
+          "quality_revision": "politikk-rett-vertical-2026-07-24"
         }
       },
       "quality_revisions": [
         "politikk-styring-vertical-2026-07-24",
-        "politikk-demokrati-vertical-2026-07-24"
+        "politikk-demokrati-vertical-2026-07-24",
+        "politikk-rett-vertical-2026-07-24"
       ]
     },
     {
