@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 
 const OUT = 'reports/oslo-politikk-expansion-research.json';
-const USER_AGENT = 'History-Go politics expansion research/1.1 (github.com/Paradispartiet/History-Go)';
+const USER_AGENT = 'History-Go politics expansion research/1.2 (github.com/Paradispartiet/History-Go)';
 
 async function fetchJson(url, options = {}) {
   const res = await fetch(url, {
@@ -92,6 +92,7 @@ async function overpassRegjeringskvartalet() {
 
 const addressQueries = {
   '22_juli_senteret': 'Akersgata 42 Oslo',
+  y_blokka_historical: 'Akersgata 44 Oslo',
   statsministerboligen: 'Inkognitogata 18 Oslo',
   hoyres_hus: 'Stortingsgata 20 Oslo',
   victoria_terrasse: '7. juni-plassen 1 Oslo',
