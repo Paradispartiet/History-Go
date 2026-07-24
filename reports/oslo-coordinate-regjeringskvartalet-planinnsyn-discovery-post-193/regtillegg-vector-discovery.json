@@ -1,6 +1,8 @@
 {
+  "version": "2026-07-24",
   "placeId": "regjeringskvartalet",
-  "services": [
+  "coordinateMaxBatch": 193,
+  "serviceResults": [
     {
       "url": "https://od2.pbe.oslo.kommune.no/cgi-bin/wms?map=REGTILLEGG&service=WMS&request=GetCapabilities&version=1.3.0",
       "status": 200,
@@ -42,7 +44,18 @@
       "preview": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n"
     }
   ],
-  "featureTypeCount": 10,
+  "featureTypes": [
+    "ms:Byggegrenselinje_linje",
+    "ms:Byggegrenselinje_tekst",
+    "ms:Ikke_bebyggelse",
+    "ms:Er_bebyggelse",
+    "ms:Veg_flate",
+    "ms:Fkb_Veg",
+    "ms:Eiendom_buffer4",
+    "ms:Eiendom_buffer1",
+    "ms:Hytteareal",
+    "ms:Omraadeplan"
+  ],
   "relevantFeatures": [
     "ms:Omraadeplan"
   ],
@@ -58,6 +71,6 @@
   ],
   "queryAttemptCount": 2,
   "jsonFeatureCount": 0,
-  "namedMatchCount": 0,
-  "namedMatches": []
+  "namedRegjeringskvartaletMatches": [],
+  "nextAction": "If WFS exposes plan features but no named match in the center bbox, identify the adopted plan number from official sources and query that attribute explicitly."
 }

@@ -2,11 +2,12 @@
 
 Date: 2026-07-24
 
-- actual map root: https://od2.pbe.oslo.kommune.no/kart/
-- map HTML bytes: 9353
-- JS/JSON assets inspected: 10
-- service-like candidates: 174
-- endpoints probed: 100
-- successful probes: 25
+- REGTILLEGG service probes: 5
+- discovered WFS feature types: 10
+- plan-like feature types: 1
+- plan-like WMS layers: 2
+- bounded GetFeature attempts: 2
+- returned JSON features: 0
+- Regjeringskvartalet-named feature matches: 0
 
 No canonical coordinate changed.

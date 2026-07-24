@@ -1,0 +1,405 @@
+<?xml version='1.0' encoding="UTF-8" standalone="no" ?>
+<WMS_Capabilities version="1.3.0"  xmlns="http://www.opengis.net/wms"   xmlns:sld="http://www.opengis.net/sld"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xmlns:ms="http://mapserver.gis.umn.edu/mapserver"   xsi:schemaLocation="http://www.opengis.net/wms http://schemas.opengeospatial.net/wms/1.3.0/capabilities_1_3_0.xsd  http://www.opengis.net/sld http://schemas.opengeospatial.net/sld/1.1.0/sld_capabilities.xsd  http://mapserver.gis.umn.edu/mapserver https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?service=WMS&amp;version=1.3.0&amp;request=GetSchemaExtension">
+<Service>
+  <Name>WMS</Name>
+<!-- WARNING: Mandatory metadata "wms_title" or "ows_title" was missing in this context. -->
+  <Title>regulering_tillegg</Title>
+  <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/>
+  <ContactInformation>
+    <ContactPersonPrimary>
+      <ContactPerson>Systemutvikling</ContactPerson>
+      <ContactOrganization>Seksjon teknologi/ Plan- og bygningsetaten, Oslo kommune</ContactOrganization>
+    </ContactPersonPrimary>
+    <ContactAddress>
+        <AddressType>Postal address</AddressType>
+        <Address>Plan- og bygningsetaten, Oslo kommune, Postboks 364</Address>
+        <City>Oslo</City>
+        <StateOrProvince>Oslo</StateOrProvince>
+        <PostCode>0102</PostCode>
+        <Country>Norway</Country>
+    </ContactAddress>
+  <ContactElectronicMailAddress>brukerstotte@pbe.oslo.kommune.no</ContactElectronicMailAddress>
+  </ContactInformation>
+  <MaxWidth>5000</MaxWidth>
+  <MaxHeight>5000</MaxHeight>
+</Service>
+
+<Capability>
+  <Request>
+    <GetCapabilities>
+      <Format>text/xml</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/></Post>
+        </HTTP>
+      </DCPType>
+    </GetCapabilities>
+    <GetMap>
+      <Format>image/png</Format>
+      <Format>image/jpeg</Format>
+      <Format>image/png; mode=8bit</Format>
+      <Format>image/vnd.jpeg-png</Format>
+      <Format>image/vnd.jpeg-png8</Format>
+      <Format>application/x-pdf</Format>
+      <Format>image/svg+xml</Format>
+      <Format>image/tiff</Format>
+      <Format>application/vnd.google-earth.kml+xml</Format>
+      <Format>application/vnd.google-earth.kmz</Format>
+      <Format>application/vnd.mapbox-vector-tile</Format>
+      <Format>application/x-protobuf</Format>
+      <Format>application/json</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/></Post>
+        </HTTP>
+      </DCPType>
+    </GetMap>
+    <GetFeatureInfo>
+      <Format>application/vnd.ogc.gml</Format>
+      <Format>text/plain</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/></Post>
+        </HTTP>
+      </DCPType>
+    </GetFeatureInfo>
+    <sld:DescribeLayer>
+      <Format>text/xml</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/></Post>
+        </HTTP>
+      </DCPType>
+    </sld:DescribeLayer>
+    <sld:GetLegendGraphic>
+      <Format>image/png</Format>
+      <Format>image/jpeg</Format>
+      <Format>image/png; mode=8bit</Format>
+      <Format>image/vnd.jpeg-png</Format>
+      <Format>image/vnd.jpeg-png8</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/></Post>
+        </HTTP>
+      </DCPType>
+    </sld:GetLegendGraphic>
+    <ms:GetStyles>
+      <Format>text/xml</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?"/></Post>
+        </HTTP>
+      </DCPType>
+    </ms:GetStyles>
+  </Request>
+  <Exception>
+    <Format>XML</Format>
+    <Format>INIMAGE</Format>
+    <Format>BLANK</Format>
+  </Exception>
+  <sld:UserDefinedSymbolization SupportSLD="1" UserLayer="0" UserStyle="1" RemoteWFS="0" InlineFeature="0" RemoteWCS="0"/>
+  <Layer queryable="1">
+    <Name>regulering_tillegg</Name>
+<!-- WARNING: Mandatory metadata "wms_title" or "ows_title" was missing in this context. -->
+    <Title>regulering_tillegg</Title>
+    <Abstract>regulering_tillegg</Abstract>
+    <CRS>EPSG:32632</CRS>
+    <CRS>EPSG:25832</CRS>
+    <EX_GeographicBoundingBox>
+        <westBoundLongitude>10.480068</westBoundLongitude>
+        <eastBoundLongitude>10.962132</eastBoundLongitude>
+        <southBoundLatitude>59.808047</southBoundLatitude>
+        <northBoundLatitude>60.136634</northBoundLatitude>
+    </EX_GeographicBoundingBox>
+    <BoundingBox CRS="EPSG:32632"
+                minx="583013" miny="6.63163e+06" maxx="609001" maxy="6.66757e+06" />
+    <Attribution>
+        <Title>Plan- og bygningsetaten, Oslo kommune</Title>
+    </Attribution>
+    <Layer queryable="1">
+      <Name>Byggegrenselinje</Name>
+      <Title>Byggegrenselinje</Title>
+      <Style>
+        <Name>default</Name>
+        <Title>default</Title>
+       <LegendURL width="214" height="22">
+          <Format>image/png</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=Byggegrenselinje&amp;format=image/png&amp;STYLE=default"/>
+       </LegendURL>
+      </Style>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>Byggegrenselinje_linje</Name>
+        <Title>Byggegrenselinje</Title>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:25832</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>10.421922</westBoundLongitude>
+            <eastBoundLongitude>11.528147</eastBoundLongitude>
+            <southBoundLatitude>59.694379</southBoundLatitude>
+            <northBoundLatitude>60.248836</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:32632"
+                    minx="580000" miny="6.62e+06" maxx="640000" maxy="6.68e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/xml</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Byggegrenselinje_linje"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="214" height="22">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=Byggegrenselinje_linje&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>5000</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>Byggegrenselinje_tekst</Name>
+        <Title>Byggegrenselinje_tekst</Title>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:25832</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>10.421922</westBoundLongitude>
+            <eastBoundLongitude>11.528147</eastBoundLongitude>
+            <southBoundLatitude>59.694379</southBoundLatitude>
+            <northBoundLatitude>60.248836</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:32632"
+                    minx="580000" miny="6.62e+06" maxx="640000" maxy="6.68e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/xml</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Byggegrenselinje_tekst"/>
+        </MetadataURL>
+      </Layer>
+    </Layer>
+    <Layer queryable="1">
+      <Name>Bebyggelse</Name>
+      <Title>Bebyggelse</Title>
+      <Style>
+        <Name>default</Name>
+        <Title>default</Title>
+       <LegendURL width="169" height="39">
+          <Format>image/png</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=Bebyggelse&amp;format=image/png&amp;STYLE=default"/>
+       </LegendURL>
+      </Style>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>Ikke_bebyggelse</Name>
+        <Title>Ikke_bebyggelse</Title>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:25832</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>10.421922</westBoundLongitude>
+            <eastBoundLongitude>11.528147</eastBoundLongitude>
+            <southBoundLatitude>59.694379</southBoundLatitude>
+            <northBoundLatitude>60.248836</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:32632"
+                    minx="580000" miny="6.62e+06" maxx="640000" maxy="6.68e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/xml</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Ikke_bebyggelse"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="169" height="22">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=Ikke_bebyggelse&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>Er_bebyggelse</Name>
+        <Title>Er_bebyggelse</Title>
+        <CRS>EPSG:32632</CRS>
+        <CRS>EPSG:25832</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>10.421922</westBoundLongitude>
+            <eastBoundLongitude>11.528147</eastBoundLongitude>
+            <southBoundLatitude>59.694379</southBoundLatitude>
+            <northBoundLatitude>60.248836</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:32632"
+                    minx="580000" miny="6.62e+06" maxx="640000" maxy="6.68e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/xml</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Er_bebyggelse"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="143" height="22">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=Er_bebyggelse&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+      <Name>Veg_flate</Name>
+      <Title>Veg_flate</Title>
+      <CRS>EPSG:32632</CRS>
+      <CRS>EPSG:25832</CRS>
+      <EX_GeographicBoundingBox>
+          <westBoundLongitude>10.421922</westBoundLongitude>
+          <eastBoundLongitude>11.528147</eastBoundLongitude>
+          <southBoundLatitude>59.694379</southBoundLatitude>
+          <northBoundLatitude>60.248836</northBoundLatitude>
+      </EX_GeographicBoundingBox>
+      <BoundingBox CRS="EPSG:32632"
+                  minx="580000" miny="6.62e+06" maxx="640000" maxy="6.68e+06" />
+      <MetadataURL type="TC211">
+        <Format>text/xml</Format>
+        <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Veg_flate"/>
+      </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="144" height="22">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=Veg_flate&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+      <Name>Fkb_Veg</Name>
+      <Title>Fkb_Veg</Title>
+      <CRS>EPSG:32632</CRS>
+      <CRS>EPSG:25832</CRS>
+      <EX_GeographicBoundingBox>
+          <westBoundLongitude>10.421922</westBoundLongitude>
+          <eastBoundLongitude>11.528147</eastBoundLongitude>
+          <southBoundLatitude>59.694379</southBoundLatitude>
+          <northBoundLatitude>60.248836</northBoundLatitude>
+      </EX_GeographicBoundingBox>
+      <BoundingBox CRS="EPSG:32632"
+                  minx="580000" miny="6.62e+06" maxx="640000" maxy="6.68e+06" />
+      <MetadataURL type="TC211">
+        <Format>text/xml</Format>
+        <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Fkb_Veg"/>
+      </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="174" height="37">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=Fkb_Veg&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+    </Layer>
+    <Layer>
+      <Name>Eiendom_buffer</Name>
+      <Title>Eiendom_buffer</Title>
+      <Style>
+        <Name>default</Name>
+        <Title>default</Title>
+       <LegendURL width="188" height="39">
+          <Format>image/png</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=Eiendom_buffer&amp;format=image/png&amp;STYLE=default"/>
+       </LegendURL>
+      </Style>
+      <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>Eiendom_buffer4</Name>
+        <Title>Eiendom_buffer4</Title>
+        <CRS>epsg:32632</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>10.421922</westBoundLongitude>
+            <eastBoundLongitude>11.167310</eastBoundLongitude>
+            <southBoundLatitude>59.700629</southBoundLatitude>
+            <northBoundLatitude>60.248836</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="epsg:32632"
+                    minx="580000" miny="6.62e+06" maxx="620000" maxy="6.68e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/xml</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Eiendom_buffer4"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="188" height="22">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=Eiendom_buffer4&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>Eiendom_buffer1</Name>
+        <Title>Eiendom_buffer1</Title>
+        <CRS>epsg:32632</CRS>
+        <EX_GeographicBoundingBox>
+            <westBoundLongitude>10.421922</westBoundLongitude>
+            <eastBoundLongitude>11.167310</eastBoundLongitude>
+            <southBoundLatitude>59.700629</southBoundLatitude>
+            <northBoundLatitude>60.248836</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="epsg:32632"
+                    minx="580000" miny="6.62e+06" maxx="620000" maxy="6.68e+06" />
+        <MetadataURL type="TC211">
+          <Format>text/xml</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Eiendom_buffer1"/>
+        </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="188" height="22">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=Eiendom_buffer1&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+      <Name>Hytteareal</Name>
+      <Title>Hytteareal</Title>
+      <CRS>epsg:32632</CRS>
+      <EX_GeographicBoundingBox>
+          <westBoundLongitude>10.421922</westBoundLongitude>
+          <eastBoundLongitude>11.167310</eastBoundLongitude>
+          <southBoundLatitude>59.700629</southBoundLatitude>
+          <northBoundLatitude>60.248836</northBoundLatitude>
+      </EX_GeographicBoundingBox>
+      <BoundingBox CRS="epsg:32632"
+                  minx="580000" miny="6.62e+06" maxx="620000" maxy="6.68e+06" />
+      <MetadataURL type="TC211">
+        <Format>text/xml</Format>
+        <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Hytteareal"/>
+      </MetadataURL>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+      <Name>Omraadeplan</Name>
+      <Title>Omraadeplan</Title>
+      <CRS>EPSG:32632</CRS>
+      <CRS>EPSG:25832</CRS>
+      <EX_GeographicBoundingBox>
+          <westBoundLongitude>10.421922</westBoundLongitude>
+          <eastBoundLongitude>11.528147</eastBoundLongitude>
+          <southBoundLatitude>59.694379</southBoundLatitude>
+          <northBoundLatitude>60.248836</northBoundLatitude>
+      </EX_GeographicBoundingBox>
+      <BoundingBox CRS="EPSG:32632"
+                  minx="580000" miny="6.62e+06" maxx="640000" maxy="6.68e+06" />
+      <MetadataURL type="TC211">
+        <Format>text/xml</Format>
+        <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?request=GetMetadata&amp;layer=Omraadeplan"/>
+      </MetadataURL>
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="222" height="22">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://od2.pbe.oslo.kommune.no:80/cgi-bin/wms?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=Omraadeplan&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+    </Layer>
+  </Layer>
+</Capability>
+</WMS_Capabilities>
