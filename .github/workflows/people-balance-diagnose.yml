@@ -10,11 +10,15 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: people-balance-diagnose
+  cancel-in-progress: true
+
 jobs:
   diagnose:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out branch
+      - name: Check out latest branch
         uses: actions/checkout@v4
         with:
           ref: agent/oslo-politikk-people-full-coverage
