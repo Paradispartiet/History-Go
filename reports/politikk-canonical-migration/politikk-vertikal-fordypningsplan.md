@@ -45,7 +45,7 @@ Leveranse:
 
 ## Fase 2 — Politisk teori og ideologier
 
-**Status:** Fullført på arbeidsbranch i PR #3685; ordinær CI er sluttport før merge.
+**Status:** Fullført og merget i PR #3685.
 
 **Formål:** Bygge en eksplisitt normativ og ideologisk akse som skiller empirisk forklaring fra normativ begrunnelse.
 
@@ -74,7 +74,7 @@ Leveranse:
 
 ## Fase 3 — Norsk politikk, EU og flernivåstyring
 
-**Status:** Fullført på arbeidsbranch i fase 3 med 12 hooks, 12 emner, 6 metoder, 12 mappinger og 12 spørsmålsplaner; ordinær CI er sluttport før merge.
+**Status:** Faglig fullført i PR #3691. Fasevalidatoren har 552 PASS, statsvitenskapelig kjernevalidator har 1235 PASS, alle canonical-filer parser, og `git diff --check` er grønn. Ordinær Data- og TypeScript-CI er siste mergeport.
 
 **Formål:** Gjøre pensumet direkte anvendelig på norske steder, institusjoner og politiske prosesser.
 
@@ -90,13 +90,19 @@ Temaer:
 - internasjonale regler i nasjonal og lokal gjennomføring
 - norsk utenriks- og sikkerhetspolitikk
 - korporatisme, trepartssamarbeid og organiserte interesser
+- statsbudsjett, utredning og lovprosess
 
 Leveranse:
 
-- 12–15 emner og hooks
-- institusjonskart for norsk politikk
-- kobling mellom steder, offentlige dokumenter og komparative spørsmål
-- egne norske progresjons- og casekrav
+- 12 nye hooks
+- 12 nye emner i `em_pol_norge_*`
+- 6 norske institusjons- og EØS-metoder
+- 12 emnemappinger med to analysebaner hver
+- 12 spørsmålsplaner
+- norsk institusjons- og dokumentkart i fagkart, pensum og generator
+- kobling til Stortinget, Youngstorget, Oslo rådhus og Eidsvolls plass
+- egne sperrer for EØS-kjeden, urfolkskonsultasjon, norsk eksepsjonalisme og stat–kommune-analyse
+- permanent fasevalidator
 
 ## Kvalitetsporter
 
