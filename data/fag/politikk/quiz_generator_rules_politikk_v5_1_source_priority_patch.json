@@ -1,9 +1,9 @@
 {
-  "version": "v5.5-konflikt-vertical-chain",
+  "version": "v5.6-two-normal-opening-sets",
   "subject_id": "politikk",
   "subject_title": "Politikk & samfunn",
   "scope": "oslo_og_omegn",
-  "purpose": "Stramme inn quizgeneratoren for Politikk & samfunn slik at konkrete institusjoner, lover, vedtak, reformer, offentlige rom, rettsbygg, forvaltningssteder, demokratiske arenaer, velferdstjenester, konflikter, proteststeder, normsystemer, fordelingsdata, rettskilder, budsjett, reguleringsplaner, statistikk og dokumenterte samfunnsfaglige kilder dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander.",
+  "purpose": "Stramme inn quizgeneratoren for Politikk & samfunn slik at konkrete institusjoner, lover, vedtak, reformer, offentlige rom, rettsbygg, forvaltningssteder, demokratiske arenaer, velferdstjenester, konflikter, proteststeder, normsystemer, fordelingsdata, rettskilder, budsjett, reguleringsplaner, statistikk og dokumenterte samfunnsfaglige kilder dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander. De to første settene skal alltid bestå av sju vanlige, kildebaserte quizspørsmål hver før mekanisme-, distinksjons- eller teorispørsmål introduseres.",
   "canonical_inputs": {
     "fagkart": "fagkart_politikk_canonical_v4_5.json",
     "methods": "methods_politikk_canonical_v4_5.json",
@@ -82,7 +82,17 @@
     "ban_theorist_name_as_answer_without_concept": true,
     "theory_may_not_supply_claim_basis": true,
     "method_must_match_documented_mechanism": true,
-    "mapping_must_supply_question_build_sequence": true
+    "mapping_must_supply_question_build_sequence": true,
+    "first_two_sets_must_be_normal_quiz": true,
+    "opening_normal_set_count": 2,
+    "opening_questions_per_set": 7,
+    "opening_normal_question_total": 14,
+    "visible_academic_language_forbidden_in_sets_1_2": true,
+    "theory_forbidden_in_sets_1_2": true,
+    "method_names_forbidden_in_sets_1_2": true,
+    "mechanism_or_distinction_as_visible_task_forbidden_in_sets_1_2": true,
+    "opening_question_answer_must_be_short_concrete_and_verifiable": true,
+    "opening_distractors_must_be_plausible_not_absurd": true
   },
   "soft_preferences": {
     "preferred_external_source_mix_per_place": [
@@ -112,44 +122,54 @@
   },
   "set_guidance": {
     "1": {
-      "name": "grunnfakta_institusjon_lov_sted",
-      "dominant_driver": "ekstern kilde, konkret institusjon, offentlig bygg, lov, vedtak, rettsbygg, politisk rom, forvaltningssted eller offentlig tjeneste",
-      "canonical_role": "lett styring av emne og metode",
-      "allowed_methods": [
-        "met_pol_institusjonsanalyse",
-        "met_pol_forvaltningsanalyse",
-        "met_pol_dokumentanalyse",
-        "met_pol_romlig_maktanalyse"
+      "name": "normalquiz_1_sted_institusjon_funksjon",
+      "opening_normal_set": true,
+      "questions_required": 7,
+      "visible_question_mode": "normal_factual_quiz",
+      "difficulty": "lett_til_middels",
+      "dominant_driver": "ekstern kilde og direkte fakta om stedet, institusjonen, personen eller den offentlige funksjonen",
+      "canonical_role": "metadata og intern klassifisering; ikke synlig fagspråk",
+      "preferred_question_types": [
+        "Hva heter stedet eller institusjonen?",
+        "Hvilken institusjon holder til her?",
+        "Hva er stedets viktigste offentlige funksjon?",
+        "Når åpnet, ble opprettet eller tatt i bruk?",
+        "Hvilket organ bruker stedet?",
+        "Hva erstattet stedet eller institusjonen?",
+        "Hvilket dokumentert kjennetegn er knyttet til stedet?"
       ],
-      "question_style": "enkel gjenkjenning, institusjon/sted/funksjon, offentlig rolle, lov, styring eller synlig politisk spor"
+      "external_source_ratio_minimum": 1,
+      "theory_allowed": false,
+      "named_theorist_allowed": false,
+      "method_name_visible_allowed": false,
+      "mechanism_as_visible_task_allowed": false,
+      "critical_distinction_as_visible_task_allowed": false,
+      "questions_must_have_short_concrete_answers": true
     },
     "2": {
-      "name": "styring_institusjoner_forvaltning",
-      "dominant_driver": "konkret institusjon, forvaltningsbygg, offentlig tjeneste, byråkrati, budsjett, reguleringsplan, administrativ praksis eller legitimitet",
-      "canonical_role": "lett til middels metodeføring",
-      "allowed_methods": [
-        "met_pol_institusjonsanalyse",
-        "met_pol_forvaltningsanalyse",
-        "met_pol_lokalpolitisk_analyse",
-        "met_pol_plan_og_reguleringsanalyse",
-        "met_pol_legitimitetsanalyse",
-        "met_pol_teknokrati_og_ekspertanalyse",
-        "met_pol_budsjett_og_fordelingsanalyse",
-        "met_pol_praksisanalyse",
-        "met_pol_rettslig_analyse",
-        "met_pol_velferdsstatlig_analyse",
-        "met_pol_dokumentanalyse",
-        "met_pol_romlig_maktanalyse"
+      "name": "normalquiz_2_historie_personer_hendelser",
+      "opening_normal_set": true,
+      "questions_required": 7,
+      "visible_question_mode": "normal_factual_quiz",
+      "difficulty": "lett_til_middels",
+      "dominant_driver": "ekstern kilde og dokumenterte personer, hendelser, beslutninger, organisasjoner, funksjonsendringer og kronologi",
+      "canonical_role": "metadata og intern klassifisering; ikke synlig fagspråk",
+      "preferred_question_types": [
+        "Hvem hadde en dokumentert rolle her?",
+        "Hvilken hendelse fant sted her?",
+        "Hvilket vedtak, hvilken lov eller reform er knyttet til stedet?",
+        "Hvilken organisasjon brukte eller bruker stedet?",
+        "Hva skjedde først eller sist?",
+        "Hvordan endret stedets funksjon seg – formulert som et konkret faktaspørsmål?",
+        "Hvilken tidligere bruk, person eller institusjon er dokumentert her?"
       ],
-      "question_style": "dokumentert styringscase -> presis påstand -> mekanisme -> distinksjon -> eventuell teoriforklaring",
-      "required_question_chain": [
-        "external_case_or_document",
-        "claim_basis",
-        "mechanism",
-        "critical_distinction",
-        "optional_theory_lens"
-      ],
-      "method_selection_policy": "Velg metode etter mekanisme og kildetype; ikke roter metoder tilfeldig."
+      "external_source_ratio_minimum": 1,
+      "theory_allowed": false,
+      "named_theorist_allowed": false,
+      "method_name_visible_allowed": false,
+      "mechanism_as_visible_task_allowed": false,
+      "critical_distinction_as_visible_task_allowed": false,
+      "questions_must_have_short_concrete_answers": true
     },
     "3": {
       "name": "demokrati_representasjon_offentlighet",
@@ -278,7 +298,13 @@
     "Avvis teorispørsmål der teoretikernavn kan besvares uten at et begrep forklarer en dokumentert mekanisme.",
     "Avvis rettsspørsmål uten dokumenterbar lov, dom, avgjørelse, kontrollsak, sanksjon, rettighetskonflikt eller lovendring.",
     "Avvis spørsmål som likestiller legalitet med legitimitet, formell rettighet med reell tilgang eller sikkerhetsformål med forholdsmessig inngrep.",
-    "Avvis teorispørsmål der teoretikernavn kan besvares uten at et rettslig begrep forklarer en dokumentert mekanisme."
+    "Avvis teorispørsmål der teoretikernavn kan besvares uten at et rettslig begrep forklarer en dokumentert mekanisme.",
+    "Avvis enhver politikkquiz som ikke har nøyaktig sju normale faktaspørsmål i både sett 1 og sett 2.",
+    "Avvis synlig teori-, metode-, mekanisme- eller distinksjonsspråk i sett 1 og sett 2.",
+    "Avvis åpningsspørsmål som bruker formuleringene «Hvordan kan stedet leses som», «Hvorfor passer stedet til emnet», «mest presise faglige lesning», «Hvilket begrep beskriver best» eller «Hvilken teoretiker».",
+    "Avvis åpningsspørsmål uten kort, konkret og direkte kildeverifiserbar fasit.",
+    "Avvis åpningssett med åpenbart tullete distraktorer; alle alternativer skal være plausible innen samme svarkategori.",
+    "Avvis generatorløp som lar et avansert sted hoppe over de 14 normale åpningsspørsmålene."
   ],
   "generation_metadata_additions": {
     "required_per_question_fields_recommended": [
@@ -293,7 +319,11 @@
       "mechanism",
       "critical_distinction",
       "theory_concept",
-      "case_anchor"
+      "case_anchor",
+      "set_index",
+      "opening_normal_question",
+      "normal_question_type",
+      "visible_question_register"
     ],
     "source_origin_values": [
       "external",
@@ -357,12 +387,13 @@
     "mechanism_definition": "Den dokumenterbare prosessen som forklarer hvordan styring gir et konkret utfall.",
     "critical_distinction_definition": "Begrepsskillet spørsmålet faktisk tester.",
     "theory_concept_definition": "Valgfritt teoretisk begrep som forklarer eller sammenligner mekanismen.",
-    "case_anchor_definition": "Konkret institusjon, dokument, tjeneste, plan, budsjett eller offentlig prosess."
+    "case_anchor_definition": "Konkret institusjon, dokument, tjeneste, plan, budsjett eller offentlig prosess.",
+    "opening_sets_metadata_rule": "Metadata kan inneholde emne, metode og mekanisme, men synlig spørsmålstekst i sett 1–2 skal være vanlig faktaspråk."
   },
   "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For politikk skal konkrete institusjoner, lover, vedtak, reformer, offentlige rom, rettsbygg, forvaltningssteder, demokratiske arenaer, velferdstjenester, konflikter, proteststeder, normsystemer, fordelingsdata, rettskilder, budsjett, reguleringsplaner, statistikk og samfunnsfaglige kilder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
   "migration_note": "Eksisterende places_politikk og people_politikk bør migreres til em_pol_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er politikk og ikke by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller annet fag.",
   "updated_at": "2026-07-24",
-  "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+  "quality_revision": "politikk-two-normal-opening-sets-2026-07-24",
   "domain_quality_profiles": {
     "styring_institusjoner_forvaltning": {
       "status": "complete_revised",
@@ -2046,5 +2077,108 @@
         "ban_theorist_name_as_answer_without_concept": true
       }
     }
+  },
+  "opening_normal_quiz_contract": {
+    "status": "required",
+    "quality_revision": "politikk-two-normal-opening-sets-2026-07-24",
+    "applies_to_every_place_and_person_quiz": true,
+    "opening_set_ids": [
+      1,
+      2
+    ],
+    "questions_per_set": 7,
+    "total_opening_normal_questions": 14,
+    "visible_register": "vanlig norsk quizspråk",
+    "purpose": "Etablere sted, institusjon, person, funksjon, hendelser og kronologi med normale faktaspørsmål før faglig analyse.",
+    "set_1_role": "direkte grunnfakta om sted, institusjon, offentlig funksjon og identifiserbare kjennetegn",
+    "set_2_role": "historie, personer, hendelser, vedtak, organisasjoner, endret funksjon og enkel kronologi",
+    "allowed_question_starts": [
+      "Hva",
+      "Hvem",
+      "Hvor",
+      "Når",
+      "Hvilket",
+      "Hvilken",
+      "Hvilke"
+    ],
+    "preferred_normal_question_types": [
+      "navn eller identifikasjon",
+      "institusjon eller organisasjon",
+      "offentlig funksjon",
+      "årstall eller periode",
+      "person og dokumentert rolle",
+      "hendelse",
+      "lov, vedtak eller reform",
+      "hva stedet erstattet eller ble brukt til",
+      "enkel kronologi",
+      "synlig eller dokumentert kjennetegn"
+    ],
+    "required_source_rule": "Alle 14 spørsmål skal ha et eksternt kildegrunnlag som direkte bærer fasiten.",
+    "answer_rule": "Ett kort, konkret og etterprøvbart svar skal være tydelig riktig. Distraktorene skal være plausible, men faktuelt feil.",
+    "metadata_may_be_academic_but_visible_question_may_not": true,
+    "analysis_may_begin_from_set": 3,
+    "theory_may_begin_from_set": 4,
+    "forbidden_visible_features_in_sets_1_2": [
+      "teoretikernavn som spørsmålets hovedpoeng",
+      "metodenavn",
+      "hook-id eller emne-id",
+      "krav om å velge faglig lesning",
+      "krav om å identifisere abstrakt mekanisme",
+      "krav om å velge kritisk distinksjon",
+      "akademisk omskriving av et enkelt faktaspørsmål"
+    ],
+    "forbidden_stems_in_sets_1_2": [
+      "Hvordan kan stedet leses som",
+      "Hvorfor passer stedet til emnet",
+      "Hva er den mest presise faglige lesningen",
+      "Hvilket begrep beskriver best",
+      "Hvilken teoretiker",
+      "Hvordan illustrerer stedet",
+      "Hva viser stedet om",
+      "Hvilken mekanisme forklarer best",
+      "Hvilken distinksjon er mest relevant"
+    ],
+    "no_exceptions_for_advanced_places": true
+  },
+  "analytical_domain_rotation_after_opening": {
+    "status": "required",
+    "begins_after_set": 2,
+    "domains": [
+      "styring_institusjoner_forvaltning",
+      "demokrati_representasjon_offentlighet",
+      "rett_lov_rettssikkerhet",
+      "fordeling_velferd_ulikhet",
+      "konflikt_makt_sivilsamfunn",
+      "normer_identitet_hverdagsliv"
+    ],
+    "preserved_styring_guidance_from_previous_set_2": {
+      "name": "styring_institusjoner_forvaltning",
+      "dominant_driver": "konkret institusjon, forvaltningsbygg, offentlig tjeneste, byråkrati, budsjett, reguleringsplan, administrativ praksis eller legitimitet",
+      "canonical_role": "lett til middels metodeføring",
+      "allowed_methods": [
+        "met_pol_institusjonsanalyse",
+        "met_pol_forvaltningsanalyse",
+        "met_pol_lokalpolitisk_analyse",
+        "met_pol_plan_og_reguleringsanalyse",
+        "met_pol_legitimitetsanalyse",
+        "met_pol_teknokrati_og_ekspertanalyse",
+        "met_pol_budsjett_og_fordelingsanalyse",
+        "met_pol_praksisanalyse",
+        "met_pol_rettslig_analyse",
+        "met_pol_velferdsstatlig_analyse",
+        "met_pol_dokumentanalyse",
+        "met_pol_romlig_maktanalyse"
+      ],
+      "question_style": "dokumentert styringscase -> presis påstand -> mekanisme -> distinksjon -> eventuell teoriforklaring",
+      "required_question_chain": [
+        "external_case_or_document",
+        "claim_basis",
+        "mechanism",
+        "critical_distinction",
+        "optional_theory_lens"
+      ],
+      "method_selection_policy": "Velg metode etter mekanisme og kildetype; ikke roter metoder tilfeldig."
+    },
+    "rule": "Alle seks domener skal kunne brukes etter de 14 normale åpningsspørsmålene. Styringsdomenet skal ikke gå tapt når sett 2 reserveres til normalquiz."
   }
 }
