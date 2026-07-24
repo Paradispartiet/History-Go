@@ -69,12 +69,12 @@ assert(closure.nextQueueCandidate === null, 'The merged post-195 closure still h
 const exclusions = await readJson(exclusionsRel);
 const disabledIds = new Set(exclusions.disabledPlaceIds ?? []);
 for (const expected of [
-  'bygdoy_roykenvika',
   'bygdoy_kongsgard_salamanderdam',
   'ostensjovannet_sivbelte',
 ]) {
   assert(disabledIds.has(expected), `Expected disabled post-195 place ${expected}.`);
 }
+assert(!disabledIds.has('bygdoy_roykenvika'), 'Røykensvika was retired without replacement and must not be modeled as a disabled source record.');
 
 const manifest = await readJson(placeManifestRel);
 const sourceFiles = (manifest.files ?? []).map(asDataRel);
@@ -128,6 +128,7 @@ for (const sourceRel of sourceFiles) {
     }
   }
 }
+assert(!activeById.has('bygdoy_roykenvika'), 'Retired Røykensvika still exists in a manifest-loaded Oslo place source.');
 
 const evidenceById = new Map();
 const walkJson = async (directory) => {
@@ -228,11 +229,13 @@ const summary = {
   actionableUnresolvedCount: rankedActionable.length,
   missingEvidenceCount: missingEvidenceRows.length,
   otherStatusCount: otherStatusRows.length,
-  disabledPost195Ids: [
-    'bygdoy_roykenvika',
-    'bygdoy_kongsgard_salamanderdam',
-    'ostensjovannet_sivbelte',
-  ],
+  post195ClosedOutcomes: {
+    retiredWithoutReplacement: ['bygdoy_roykenvika'],
+    disabledSourceRecords: [
+      'bygdoy_kongsgard_salamanderdam',
+      'ostensjovannet_sivbelte',
+    ],
+  },
   statusCounts: Object.fromEntries([...statusCounts.entries()].sort(([a], [b]) => a.localeCompare(b))),
   knownExhausted: knownExhaustedRows,
   actionableQueue: rankedActionable,
@@ -246,7 +249,7 @@ const summary = {
 };
 
 await fs.writeFile(path.join(reportDir, 'summary.json'), `${JSON.stringify(summary, null, 2)}\n`, 'utf8');
-await fs.writeFile(path.join(reportDir, 'README.md'), `# Fresh-main Oslo coordinate audit after post-195 closure\n\n- Protocol max batch: **${protocolMaxBatch}**\n- Canonical data changed: **no**\n- Unique active Oslo places: **${allActive.length}**\n- Resolved active places: **${resolvedActiveCount}**\n- Unresolved active places: **${unresolved.length}**\n- Known exhausted unresolved tracks: **${knownExhaustedRows.length}**\n- New actionable unresolved tracks: **${rankedActionable.length}**\n- Missing coordinate-evidence files: **${missingEvidenceRows.length}**\n- Queue decision: **\`${summary.queueDecision}\`**\n- Next candidate: **${summary.nextCandidate ? `\`${summary.nextCandidate.placeId}\` — ${summary.nextCandidate.name ?? 'unnamed'}` : 'none'}**\n\nThis audit rebuilds the queue from the current manifest-loaded Oslo place sources. Disabled post-195 records are excluded from runtime scope, while the four source-exhausted unresolved records remain visible but are not reopened without new evidence.\n`, 'utf8');
+await fs.writeFile(path.join(reportDir, 'README.md'), `# Fresh-main Oslo coordinate audit after post-195 closure\n\n- Protocol max batch: **${protocolMaxBatch}**\n- Canonical data changed: **no**\n- Unique active Oslo places: **${allActive.length}**\n- Resolved active places: **${resolvedActiveCount}**\n- Unresolved active places: **${unresolved.length}**\n- Known exhausted unresolved tracks: **${knownExhaustedRows.length}**\n- New actionable unresolved tracks: **${rankedActionable.length}**\n- Missing coordinate-evidence files: **${missingEvidenceRows.length}**\n- Queue decision: **\`${summary.queueDecision}\`**\n- Next candidate: **${summary.nextCandidate ? `\`${summary.nextCandidate.placeId}\` — ${summary.nextCandidate.name ?? 'unnamed'}` : 'none'}**\n\nThis audit rebuilds the queue from the current manifest-loaded Oslo place sources. Røykensvika is verified absent after retirement without replacement. The two thematic habitat records remain as disabled source history and are excluded from runtime scope. The four source-exhausted unresolved records remain visible but are not reopened without new evidence.\n`, 'utf8');
 
 console.log(JSON.stringify({
   status: 'fresh_main_audit_complete',
