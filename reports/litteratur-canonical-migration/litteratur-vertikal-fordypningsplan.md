@@ -18,6 +18,8 @@ Litteraturpensumet skal utvikles fra et bredt canonical fagkart til et vertikalt
 
 ## Fase 1 — Poetikk, narratologi og tekstlig analyse
 
+**Status:** Fullført og validert med 354 fagkontroller samt full Data-/TypeScript-sluttport.
+
 **Formål:** Gi tekst-, form- og sjangeranalysen full bachelorbredde og tydelige inferensgrenser.
 
 Temaer:
@@ -45,6 +47,8 @@ Leveranse:
 
 ## Fase 2 — Litteraturhistorie, verdenslitteratur, oversettelse og medieformer
 
+**Status:** Neste fase.
+
 **Formål:** Bygge historisk, komparativ og transnasjonal dybde fra antikkens sjangre til digitale og multimodale tekster.
 
 Temaer:
@@ -71,6 +75,8 @@ Leveranse:
 - permanente kilde-, utgave- og oversettelseskrav
 
 ## Fase 3 — Norsk, nordisk og samisk litteratur; institusjoner, lesere og steder
+
+**Status:** Planlagt etter fase 2.
 
 **Formål:** Gjøre pensumet direkte anvendelig på norske og nordiske verk, språk, institusjoner og litterære steder uten nasjonal selvtilstrekkelighet.
 
