@@ -14,6 +14,7 @@ function assert(condition, message) {
 let source = execFileSync('git', ['show', `${BASE_COMMIT}:${BASE_PATH}`], { encoding: 'utf8' });
 assert(source.includes("const BATCH = 195;"), 'Pinned Frognerstranda batch-195 source is missing.');
 assert(source.includes("assert(JSON.stringify(place) === JSON.stringify(splitChild), 'Aggregate and split child differ before batch 195.');"), 'Pinned split parity gate changed unexpectedly.');
+assert(source.includes("assert(centralAudit.queue?.some((entry) => entry.placeId === PLACE_ID), 'Frognerstranda is no longer in the post-194 central queue.');"), 'Pinned central audit field gate changed unexpectedly.');
 assert(source.includes('const parsed = parseOfficialGeoJson(official.html);'), 'Official GeoJSON source gate is missing.');
 
 const semanticHelpers = `
@@ -38,9 +39,14 @@ source = source.replace(
   "assert(JSON.stringify(place) === JSON.stringify(splitChild), 'Aggregate and split child differ before batch 195.');",
   "assert(sameJsonContent(place, splitChild), 'Aggregate and split child differ semantically before batch 195.');",
 );
+source = source.replace(
+  "assert(centralAudit.queue?.some((entry) => entry.placeId === PLACE_ID), 'Frognerstranda is no longer in the post-194 central queue.');",
+  "assert(centralAudit.centralRows?.some((entry) => entry.placeId === PLACE_ID && entry.coordStatus === 'needs_source' && entry.coordinateDecision === 'needs_geometry'), 'Frognerstranda unresolved row is missing from post-194 centralRows.');",
+);
 
 assert(source.includes('function sameJsonContent(a, b)'), 'Semantic JSON helper patch failed.');
 assert(!source.includes("assert(JSON.stringify(place) === JSON.stringify(splitChild)"), 'Order-sensitive split gate remains.');
+assert(source.includes("centralAudit.centralRows?.some"), 'Central audit row patch failed.');
 assert(source.includes("assertLine(parsed.line.geometry.coordinates, EXPECTED_LINE);"), 'Official line drift gate was removed unexpectedly.');
 
 const tempDir = await mkdtemp(join(tmpdir(), 'history-go-frognerstranda-batch-195-'));
