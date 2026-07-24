@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "abelhaugen",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_exact_named_monument_point",
+  "currentCoordinate": {
+    "lat": 59.9155642,
+    "lon": 10.7312163,
+    "r": 45,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 1664967162 – Niels Henrik Abel monument; identity cross-checked with Wikidata Q23868718, Vigeland Museum and Oslo Byleksikon",
+    "coordType": "monument",
+    "coordNote": "Eksakt historic=monument-punkt med navnet Niels Henrik Abel, artist_name=Gustav Vigeland og wikidata=Q23868718. OSM-punktet er krysskoblet til Wikidata, og de uavhengige koordinatene avviker bare 1.02 meter. Vigeland Museum og Oslo byleksikon bekrefter monumentets identitet og plassering på Abelhaugen i Slottsparken. Den tidligere markøren lå 341.8 meter unna og er erstattet."
+  },
+  "identity": {
+    "currentName": "Abelhaugen",
+    "resolvedIdentity": "Abelmonumentet over Niels Henrik Abel av Gustav Vigeland, reist på Abelhaugen i Slottsparken i 1908",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "poi",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt navngitt monumentobjekt",
+    "uavhengig identitetskryssjekk",
+    "stabil kildeidentifikator"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Vigeland Museum – Vigeland andre steder",
+      "sourceUrl": "https://vigeland.museum.no/gustav-vigeland/vigeland-andre-steder",
+      "sourceObjectId": "vigeland-museum:abelmonumentet",
+      "sourceQuality": "official_museum_identity",
+      "finding": "Vigeland Museum identifies Abelmonumentet near the Royal Palace as one of Gustav Vigeland’s monuments.",
+      "canVerifyCoordinate": false,
+      "reason": "The museum source resolves identity and creator but does not expose an exact public coordinate."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo Byleksikon – Abelmonumentet",
+      "sourceUrl": "https://oslobyleksikon.no/side/Abelmonumentet",
+      "sourceObjectId": "oslo-byleksikon:11493",
+      "sourceQuality": "authoritative_local_identity",
+      "finding": "Oslo Byleksikon identifies the 1908 Abel monument at Abelhaugen in Slottsparken.",
+      "canVerifyCoordinate": false,
+      "reason": "The article resolves the named place and monument identity but is used as an identity source rather than the exact geometry source."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q23868718 – Abel Monument, Royal Palace Park, Oslo",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q23868718",
+      "sourceObjectId": "wikidata:Q23868718",
+      "sourceQuality": "structured_identity_and_coordinate_crosscheck",
+      "finding": "Dedicated monument item links to OSM node 1664967162, identifies Gustav Vigeland as creator, and provides 59.91555556, 10.73122222.",
+      "canVerifyCoordinate": true,
+      "reason": "The Wikidata coordinate independently agrees with the exact named OSM monument point within 1.02 metres."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 1664967162 – Niels Henrik Abel",
+      "sourceUrl": "https://www.openstreetmap.org/node/1664967162",
+      "sourceObjectId": "osm-node:1664967162",
+      "sourceQuality": "unique_exact_named_monument_object",
+      "finding": "Exact historic=monument point named Niels Henrik Abel with artist_name=Gustav Vigeland and wikidata=Q23868718.",
+      "canVerifyCoordinate": true,
+      "reason": "The object represents the physical monument itself and is independently identity- and coordinate-cross-checked."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1664967162",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q23868718",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1664967162",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9155642,
+      "lon": 10.7312163,
+      "coordRole": "display_marker",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Exact named monument point is applied to the canonical place."
+  },
+  "notes": [
+    "Eksakt historic=monument-punkt med navnet Niels Henrik Abel, artist_name=Gustav Vigeland og wikidata=Q23868718. OSM-punktet er krysskoblet til Wikidata, og de uavhengige koordinatene avviker bare 1.02 meter. Vigeland Museum og Oslo byleksikon bekrefter monumentets identitet og plassering på Abelhaugen i Slottsparken. Den tidligere markøren lå 341.8 meter unna og er erstattet.",
+    "Research report: reports/oslo-coordinate-abelhaugen-research-post-195/summary.json"
+  ]
+}
