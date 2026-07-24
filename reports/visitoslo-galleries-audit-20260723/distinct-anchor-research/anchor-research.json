@@ -1,6 +1,6 @@
 {
   "version": "2026-07-24",
-  "status": "research_complete",
+  "status": "research_complete_corrected",
   "policy": [
     "Official address was attempted first for both candidates and is unusable because each ordinary address point exactly overlaps an existing canonical marker.",
     "No VisitOSLO coordinate is accepted as canonical evidence.",
@@ -1595,32 +1595,27 @@
       "url": "https://wfs.geonorge.no/skwms1/wfs.matrikkelen-bygningspunkt?service=WFS&version=2.0.0&request=GetFeature&typeNames=app%3ABygning&bbox=10.7408%2C59.9085%2C10.744%2C59.9106%2CEPSG%3A4326&srsName=EPSG%3A4326&outputFormat=application%2Fjson",
       "json": null,
       "bodyPreview": "<?xml version='1.0' encoding='UTF-8'?>\n<ows:ExceptionReport xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd\" version=\"2.0.0\">\n  <ows:Exception exceptionCode=\"InvalidParameterValue\" locator=\"outputFormat\">\n    <ows:ExceptionText>This WFS is not configured to handle the output/input format 'application/json'</ows:ExceptionText>\n  </ows:Exception>\n</ows:ExceptionReport>"
+    },
+    "refined_geometry_analysis": {
+      "file": "refined-anchor-analysis.json",
+      "kartverketFeatureTypeNames": []
     }
   },
   "decisions": {
     "rom_for_kunst_og_arkitektur": {
-      "status": "candidate_osm_object_found_requires_manual_identity_check",
-      "candidate": {
-        "type": "node",
-        "id": 13812242924,
-        "lat": 59.92327,
-        "lon": 10.7525034,
-        "tags": {
-          "emergency": "defibrillator",
-          "emergency:phone": "113",
-          "level": "1",
-          "name": "Vegg på motsatt side av klasserom 1. etg. ved hovedinngang.",
-          "opening_hours": "Mo-Fr 08:00-16:00; PH off",
-          "ref:hjertestarterregister": "40A1960EF87A30F7E06324A4E80A4FA7"
-        }
-      },
-      "sourceObjectId": "osm:node/13812242924",
-      "nextGate": "Confirm the OSM object is physically the ROM building/entrance described by ROM and is not the X-Ray marker before production."
+      "status": "still_requires_anchor_resolution",
+      "rejectedFalsePositive": "osm:node/13812242924 matched the substring \"rom\" inside the Norwegian word \"klasserom\" and is unrelated to ROM for kunst og arkitektur.",
+      "sharedRoadNodes": [],
+      "candidateEntranceObjects": [],
+      "nextGate": "Tie exactly one stable entrance or building object to ROM building O / the institution-defined Maridalsveien-Brenneriveien entrance before production."
     },
     "soft_galleri": {
       "status": "still_requires_anchor_resolution",
-      "namedOsmCandidates": [],
-      "nextGate": "Use the official corner-entrance statement together with stable OSM/Kartverket geometry; do not choose a corner solely by visual guess."
+      "containingBuildingObjects": [
+        "osm:way/112191362"
+      ],
+      "candidateEntranceObjectsOnContainingBuilding": [],
+      "nextGate": "Require an entrance object on the Rådhusgata 20 building that uniquely matches SOFT’s stated corner entrance, or another stable authoritative object. Do not select a polygon corner by proximity alone."
     }
   }
 }
