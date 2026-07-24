@@ -1,0 +1,42 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const R="politikk-statsvitenskap-core-expansion-2026-07-24";
+const BASE=process.env.POLITIKK_BASE||'data/fag/politikk';
+const REPORT=process.env.POLITIKK_REPORT_BASE||'reports/politikk-canonical-migration';
+const read=n=>JSON.parse(fs.readFileSync(path.join(BASE,n),'utf8'));
+const fagkart=read('fagkart_politikk_canonical_v4_5.json');
+const emner=read('emner_politikk_canonical_v4_5.json');
+const methods=read('methods_politikk_canonical_v4_5.json');
+const mappings=read('emnemapping_politikk_canonical_v4_5.json');
+const pensum=read('politikkpensum_canonical_v4_5.json');
+const generator=read('quiz_generator_rules_politikk_v5_1_source_priority_patch.json');
+const blueprints=JSON.parse(fs.readFileSync(path.join(REPORT,'statsvitenskap-question-blueprints.json'),'utf8'));
+let pass=0; const ok=(v,m)=>{if(!v)throw new Error('FAIL | '+m); console.log('PASS | '+m); pass++;};
+const domains=["komparativ_politikk_regimer_institusjoner", "valg_partier_velgeratferd", "offentlig_politikk_beslutning_implementering", "internasjonal_politikk_sikkerhet_samarbeid", "politisk_okonomi_stat_marked", "statsvitenskapelig_metode_og_sammenligning"];
+const emneIds=["em_pol_allianser_avskrekking", "em_pol_begreper_operasjonalisering", "em_pol_desentralisering_flerniva", "em_pol_evaluering_policyfeedback", "em_pol_globale_utfordringer", "em_pol_globalisering_gronn_omstilling", "em_pol_implementering_bakkebyrakrati", "em_pol_institusjonell_endring", "em_pol_institusjonelle_systemer", "em_pol_internasjonale_institusjoner", "em_pol_internasjonalt_system", "em_pol_kampanje_deltakelse_ansvar", "em_pol_kausalitet_forskningsdesign", "em_pol_komparativ_metode_caseutvalg", "em_pol_krisestyring_samordning", "em_pol_kvalitativ_prosessporing_etikk", "em_pol_kvantitativ_inferens_maling", "em_pol_makrookonomi_politisk_styring", "em_pol_partisystemer", "em_pol_policy_design_virkemidler", "em_pol_policyprosess_dagsorden", "em_pol_regimer_demokratisering", "em_pol_regjeringsdannelse", "em_pol_regulering_markedssvikt", "em_pol_skatt_omfordeling_preferanser", "em_pol_stat_marked_institusjoner", "em_pol_statsdannelse_statskapasitet", "em_pol_utenrikspolitikk_smastat", "em_pol_valgsystemer", "em_pol_velgeratferd"];
+const methodIds=["met_pol_implementeringsanalyse", "met_pol_internasjonal_politisk_analyse", "met_pol_kausalt_forskningsdesign", "met_pol_komparativ_institusjonsanalyse", "met_pol_komparativt_forskningsdesign", "met_pol_partisystemanalyse", "met_pol_policy_design_og_virkemiddelanalyse", "met_pol_policy_evaluering", "met_pol_policyprosessanalyse", "met_pol_politisk_okonomianalyse", "met_pol_prosessporing", "met_pol_regime_og_demokratiseringsanalyse", "met_pol_regjerings_og_koalisjonsanalyse", "met_pol_survey_og_valgdataanalyse", "met_pol_utenrikspolitisk_analyse", "met_pol_valgsystemanalyse", "met_pol_velgeratferdsanalyse"];
+ok(fagkart.meta.disciplinary_profile.includes('statsvitenskapelig hovedpensum'),'Fagkart har eksplisitt statsvitenskapelig hovedprofil');
+ok(pensum.disciplinary_profile.primary_discipline==='statsvitenskap','Pensum har statsvitenskap som primærdisiplin');
+ok(pensum.summary.domain_count===12,'Pensum har 12 domener');
+ok(pensum.summary.topic_hook_count===120,'Pensum har 120 hooks');
+ok(pensum.summary.political_science_core_domain_count===8,'Åtte domener er statsvitenskapelig kjerne');
+ok(generator.political_science_core_contract.required_core_share===0.67,'Generator krever minst to tredeler statsvitenskapelig kjerne');
+for(const id of domains){
+ const c=fagkart.categories.find(x=>x.id===id); ok(!!c,'Fagkart har '+id); ok(c.disciplinary_role==='political_science_core',id+' er statsvitenskapelig kjerne'); ok(c.topic_hooks.length===10,id+' har 10 hooks'); ok(c.quality_revision===R,id+' har ny revisjon');
+ const pd=pensum.domains.find(x=>x.domain_id===id); ok(!!pd,'Pensum har '+id); ok(pd.status==='complete_revised',id+' er fullført'); ok(pd.generator_profile_id===id,id+' peker til generatorprofil');
+ const gp=generator.domain_quality_profiles[id]; ok(!!gp,'Generator har profil for '+id); ok(gp.hook_count===10,id+' generatorprofil har 10 hooks');
+ for(const h of c.topic_hooks){ ok(h.quality_revision===R,h.id+' har ny revisjon'); ok(h.mechanisms.length>=6,h.id+' har minst seks mekanismer'); ok(h.critical_distinctions.length>=4,h.id+' har fire distinksjoner'); ok(h.theory_lenses.length===3,h.id+' har tre teorispor'); ok(h.recommended_method_ids.length>=3,h.id+' har minst tre metoder'); ok(h.generator_constraints.require_defined_outcome_or_dependent_variable===true,h.id+' krever definert utfall'); ok(h.generator_constraints.require_method_match_to_claim===true,h.id+' krever metodekobling'); }
+}
+for(const id of emneIds){ const e=emner.find(x=>x.emne_id===id); ok(!!e,'Emne finnes: '+id); ok(e.quality_revision===R,id+' har ny revisjon'); ok(e.method_ids.length>=4,id+' har metodebredde'); ok(e.generator_constraints.require_defined_unit_and_outcome===true,id+' krever analyseenhet og utfall'); const mp=mappings.find(x=>x.emne_id===id); ok(!!mp,'Mapping finnes: '+id); ok(mp.mappings.length===2,id+' har to mappinger'); for(const x of mp.mappings){ok(x.mechanism_options.length>=5,id+' mapping har mekanismer');ok(x.critical_distinction_options.length>=4,id+' mapping har distinksjoner');ok(x.recommended_method_ids.length>=3,id+' mapping har metoder');} }
+for(const id of methodIds){ const m=methods.methods.find(x=>x.method_id===id); ok(!!m,'Metode finnes: '+id); ok(m.quality_revision===R,id+' har ny revisjon'); ok(m.mechanism_explanation_required===true,id+' krever mekanisme'); ok(m.critical_distinction_required===true,id+' krever distinksjon'); ok(m.question_build_sequence.length>=7,id+' har komplett byggesekvens'); }
+ok(pensum.primary_category_rule.accept_as_politikk_primary_when.some(x=>x.includes('komparativ politikk')),'Primærkategoriregelen dekker komparativ politikk');
+ok(pensum.primary_category_rule.accept_as_politikk_primary_when.some(x=>x.includes('internasjonal politikk')),'Primærkategoriregelen dekker internasjonal politikk');
+ok(pensum.primary_category_rule.accept_as_politikk_primary_when.some(x=>x.includes('statsvitenskapelig forskningsdesign')),'Primærkategoriregelen dekker statsvitenskapelig metode');
+ok(generator.politikk_category_guardrails.accept_as_politikk_primary_when.some(x=>x.includes('statsvitenskapelig hovedpoeng')),'Generatorens kategorivern krever statsvitenskapelig hovedpoeng');
+ok(pensum.learning_outcomes.knowledge.length>=2,'Pensum har kunnskapsmål');
+ok(pensum.learning_outcomes.skills.length>=3,'Pensum har ferdighetsmål');
+ok(pensum.learning_outcomes.general_competence.length>=3,'Pensum har generell kompetanse');
+ok(methods.political_science_method_core.length===17,'Metodekatalogen har 17 nye kjernemetoder');
+ok(blueprints.length===30,'Det finnes 30 spørsmålsplaner'); for(const b of blueprints){ok(domains.includes(b.domain_id),b.blueprint_id+' har gyldig domene');ok(emneIds.includes(b.emne_id),b.blueprint_id+' har gyldig emne');ok(methods.methods.some(m=>m.method_id===b.method_id),b.blueprint_id+' har gyldig metode');ok(b.answer_requirements.length===6,b.blueprint_id+' har seks svarskrav');}
+ok(!fs.existsSync(path.join(BASE,'kvalitetslag_v1')),'Ingen kvalitetslag-overlay finnes');
+console.log('PASS: '+pass); console.log('RESULTAT: PASS');
