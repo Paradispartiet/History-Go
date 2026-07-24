@@ -1,7 +1,7 @@
 import { spawnSync } from 'node:child_process';
 import { writeFileSync } from 'node:fs';
 
-const PINNED_RESEARCH_URL = 'https://raw.githubusercontent.com/Paradispartiet/History-Go/9ec8ac5d2ca00b8ac4b67fca8331f2f84f012174/scripts/coordinate-branch-job.mjs';
+const PINNED_RESEARCH_URL = 'https://raw.githubusercontent.com/Paradispartiet/History-Go/179b04c9ce4c46cfe353e7942479252b40a17743/scripts/coordinate-branch-job.mjs';
 
 const response = await fetch(PINNED_RESEARCH_URL, {
   headers: {
