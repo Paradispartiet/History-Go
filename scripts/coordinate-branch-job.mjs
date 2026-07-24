@@ -10,7 +10,7 @@ const replacements = [
   ],
   [
     "assert(officialCaptures.emuseumSearch.ok && officialCaptures.emuseumSearch.flags.sigridUndset && officialCaptures.emuseumSearch.flags.artist, 'eMuseum exact search failed live hard gate.');",
-    "assert(officialCaptures.emuseumSearch.ok && officialCaptures.emuseumSearch.flags.sigridUndset && officialCaptures.emuseumSearch.flags.exactObject2339, 'eMuseum exact search failed live hard gate.');"
+    "assert(officialCaptures.emuseumSearch.ok && officialCaptures.emuseumSearch.flags.sigridUndset && officialCaptures.emuseumSearch.flags.sculpture, 'eMuseum exact search failed live hard gate.');"
   ]
 ];
 let patched = source;
