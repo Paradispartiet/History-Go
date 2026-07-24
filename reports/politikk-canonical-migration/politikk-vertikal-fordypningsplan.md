@@ -17,6 +17,8 @@ Politikkpensumet skal utvikles fra et bredt statsvitenskapelig fagkart til et ve
 
 ## Fase 1 — Politiske institusjoner og konstitusjonell politikk
 
+**Status:** Fullført og merget i PR #3680.
+
 **Formål:** Gi komparativ politikk og institusjonsanalysen full bachelorbredde.
 
 Temaer:
@@ -43,6 +45,8 @@ Leveranse:
 
 ## Fase 2 — Politisk teori og ideologier
 
+**Status:** Fullført på arbeidsbranch i PR #3685; ordinær CI er sluttport før merge.
+
 **Formål:** Bygge en eksplisitt normativ og ideologisk akse som skiller empirisk forklaring fra normativ begrunnelse.
 
 Temaer:
@@ -60,12 +64,17 @@ Temaer:
 
 Leveranse:
 
-- 10–12 emner og hooks
-- normativ argumentasjonsmetode og ideologisk sammenligning
-- egne sperrer mot å behandle normative påstander som empiriske fakta
-- spørsmålsplaner med premiss, argument, motargument og normativ konsekvens
+- 10 nye hooks
+- 10 nye emner i `em_pol_teorifordypning_*`
+- 4 normative analysemetoder
+- 10 emnemappinger med to argumentasjonsbaner hver
+- 10 spørsmålsplaner med kilde, empirisk kontekst, normativt premiss, argument, motargument, konsekvens og avgrensning
+- generatorkontrakt som forbyr å presentere normative påstander som empiriske fakta
+- permanent fasevalidator
 
 ## Fase 3 — Norsk politikk, EU og flernivåstyring
+
+**Status:** Neste fase etter at fase 2 er merget og kontrollert på `main`.
 
 **Formål:** Gjøre pensumet direkte anvendelig på norske steder, institusjoner og politiske prosesser.
 
@@ -103,4 +112,4 @@ Hver fase skal bestå:
 
 ## Rekkefølge
 
-Fase 1 implementeres først. Fase 2 starter etter at fase 1 er merget og kontrollert på `main`. Fase 3 gjennomføres sist fordi den skal bygge på institusjons- og teorigrunnlaget fra de to første fasene.
+Fase 1 og fase 2 er gjennomført sekvensielt. Fase 3 starter først etter at fase 2 er merget og sluttkontrollert på `main`, fordi den norske institusjons- og casearkitekturen skal bygge på både institusjons- og teorigrunnlaget.
