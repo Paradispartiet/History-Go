@@ -167,4 +167,10 @@ node tests/etne-people-of-places-batch25.test.js
 echo "== Etne People of Places batch 26 =="
 node tests/etne-people-of-places-batch26.test.js
 
+echo "== Oslo politics People full coverage =="
+node tests/oslo-politikk-people-full-coverage.test.js
+
+echo "== Oslo politics remaining-place expansion =="
+node tests/oslo-politikk-remaining-people-expansion.test.js
+
 echo "== People check complete =="
