@@ -1,5 +1,6 @@
 import { readFile, rm, writeFile } from 'node:fs/promises';
 
+// One-shot retention pass: preserve compact evidence, remove voluminous raw captures.
 const base = 'reports/oslo-coordinate-sigrid-undset-independent-anchor-post-195';
 const compactPath = `${base}/compact-summary.json`;
 const summaryPath = `${base}/summary.json`;
