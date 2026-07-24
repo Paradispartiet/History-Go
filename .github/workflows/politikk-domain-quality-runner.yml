@@ -75,10 +75,11 @@ jobs:
           git commit -m "Politikk: fullfør rettsdomenets vertikale kvalitetskjede"
           git push origin HEAD:${{ github.head_ref }}
       - uses: actions/upload-artifact@v4
-        if: always() && hashFiles('reports/politikk-canonical-migration/rett-lov-*') != ''
+        if: always()
         with:
           name: politics-rett-diagnostics
           path: reports/politikk-canonical-migration/rett-lov-*
+          if-no-files-found: warn
       - name: Propagate migration failure
         if: steps.apply.outcome == 'failure'
         run: exit 1
