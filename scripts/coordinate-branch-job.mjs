@@ -48,7 +48,10 @@ const bryn = await readJson('reports/oslo-coordinate-bryn-official-scope-researc
 assert(bryn.placeId === 'bryn_industriomrade', 'Bryn report has the wrong placeId.');
 assert(bryn.decision === 'keep_needs_source', `Unexpected Bryn decision: ${bryn.decision}`);
 assert(bryn.canonicalChanged === false, 'Bryn research unexpectedly changed canonical data.');
-assert(bryn.strongOfficialCandidates === 0, 'Bryn research found a strong official candidate and must be reviewed before continuing.');
+assert(
+  bryn.officialArcGis?.strongIndustrialCandidateCount === 0,
+  'Bryn research found a strong official industrial candidate and must be reviewed before continuing.',
+);
 
 const bygdoy = await readJson('reports/oslo-coordinate-bygdoy-gulliste-scope-research-post-195-v5/summary.json');
 assert(bygdoy.placeId === 'bygdoy_natur', 'Bygdøy report has the wrong placeId.');
