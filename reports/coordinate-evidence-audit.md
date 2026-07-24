@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-24T12:26:43.228Z
+Generert: 2026-07-24T12:44:15.284Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -232,7 +232,6 @@ Generert: 2026-07-24T12:26:43.228Z
 | bygdoy_kongsgard_salamanderdam | data/coordinate-evidence/oslo/natur/bygdoy_kongsgard_salamanderdam.json | needs_research | needs_geometry | OK |
 | bygdoy_natur | data/coordinate-evidence/oslo/natur/bygdoy_natur.json | needs_research | needs_geometry | OK |
 | bygdoy_paradisbukta | data/coordinate-evidence/oslo/natur/bygdoy_paradisbukta.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| bygdoy_roykenvika | data/coordinate-evidence/oslo/natur/bygdoy_roykenvika.json | needs_research | needs_geometry | OK |
 | elvestrekning_bla_brenneriveien | data/coordinate-evidence/oslo/natur/elvestrekning_bla_brenneriveien.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | fossveien_elvestrekning | data/coordinate-evidence/oslo/natur/fossveien_elvestrekning.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | frysjadammen | data/coordinate-evidence/oslo/natur/frysjadammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
