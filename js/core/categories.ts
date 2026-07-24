@@ -42,7 +42,7 @@ const CATEGORY_LIST: CategoryDefinition[] = [
   { id: "scenekunst", name: "Scenekunst", icon: "🎭", color: "#B35C9E", secondaryColor: "#3A1836", scope: "runtime_domain" },
   { id: "musikk", name: "Musikk", icon: "🎵", color: "#122033", secondaryColor: "#121E2B", scope: "runtime_domain" },
   { id: "natur", name: "Natur & miljø", icon: "🌿", color: "#2E4F21", secondaryColor: "#DC7A04", scope: "runtime_domain" },
-  { id: "sport", name: "Sport & lek", icon: "⚽", color: "#A01D13", secondaryColor: "#A51E15", scope: "runtime_domain" },
+  { id: "sport", name: "Sport & lek", icon: "⚽", color: "#FFFFFF", secondaryColor: "#A51E15", scope: "runtime_domain" },
   { id: "by", name: "By & arkitektur", icon: "🏙️", color: "#A1917E", secondaryColor: "#3C3731", scope: "runtime_domain" },
   { id: "politikk", name: "Politikk & samfunn", icon: "🏛️", color: "#103E71", secondaryColor: "#114A84", scope: "runtime_domain" },
   { id: "subkultur", name: "Subkultur", icon: "🧷", color: "#292625", secondaryColor: "#E78847", scope: "runtime_domain" },
