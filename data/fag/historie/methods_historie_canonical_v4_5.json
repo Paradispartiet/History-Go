@@ -74,7 +74,11 @@
         "his_spor_materialitet",
         "his_okkupasjon_byrom_kontroll",
         "his_historiebruk_minne",
-        "his_grunnlov_rom_tekst"
+        "his_grunnlov_rom_tekst",
+        "his_beslutningskjede_kompetanse",
+        "his_lov_domstol_rettsstat",
+        "his_register_overvakning_disiplin",
+        "his_rettsoppgjor_legitimitet_minne"
       ],
       "recommended_oslo_cases": [
         "Gamle Deichman på Hammersborg",
@@ -117,7 +121,8 @@
         "kilder_arkiv_spor",
         "velferd_rett_hverdagsliv",
         "migrasjon_minoritet_tilhorighet",
-        "byhistorie_stedsendring"
+        "byhistorie_stedsendring",
+        "makt_stat_institusjoner"
       ],
       "progression_stage": "advanced",
       "good_for_place_types": [
@@ -141,7 +146,11 @@
         "his_spor_materialitet",
         "his_velferd_institusjoner",
         "his_migrasjon_tilhorighet",
-        "his_stedsendring_for_etter"
+        "his_stedsendring_for_etter",
+        "his_embetsverk_byrakrati",
+        "his_beslutningskjede_kompetanse",
+        "his_rettigheter_borgerskap_forvaltning",
+        "his_register_overvakning_disiplin"
       ],
       "recommended_oslo_cases": [
         "Oslo byarkiv",
@@ -343,7 +352,8 @@
         "historisk_tid_periodisering",
         "byhistorie_stedsendring",
         "katastrofer_brudd_ulykker",
-        "minne_kulturarv_historiebruk"
+        "minne_kulturarv_historiebruk",
+        "makt_stat_institusjoner"
       ],
       "progression_stage": "full_ladder",
       "good_for_place_types": [
@@ -374,7 +384,10 @@
         "his_erfaringsrom_forventningshorisont",
         "his_kronologi_datering",
         "his_anakronisme_begrepsbruk",
-        "his_samtid_ettertid_fortelling"
+        "his_samtid_ettertid_fortelling",
+        "his_institusjonsbygging_funksjon",
+        "his_statlig_kapasitet_ressurser",
+        "his_krise_unntak_kontinuitet"
       ],
       "recommended_oslo_cases": [
         "Bjørvika",
@@ -509,7 +522,9 @@
         "his_historiebruk_minne",
         "his_okkupasjon_byrom_kontroll",
         "his_krise_gjenoppbygging",
-        "his_rett_kontroll"
+        "his_rett_kontroll",
+        "his_politi_fengsel_straff",
+        "his_rettsoppgjor_legitimitet_minne"
       ],
       "recommended_oslo_cases": [
         "Vår Frelsers gravlund",
@@ -639,7 +654,12 @@
         "his_stat_institusjon",
         "his_rett_kontroll",
         "his_velferd_institusjoner",
-        "his_grunnlov_rom_tekst"
+        "his_grunnlov_rom_tekst",
+        "his_institusjonsbygging_funksjon",
+        "his_embetsverk_byrakrati",
+        "his_statlig_kapasitet_ressurser",
+        "his_rettigheter_borgerskap_forvaltning",
+        "his_politi_fengsel_straff"
       ],
       "recommended_oslo_cases": [
         "Møllergata 19",
@@ -1584,6 +1604,358 @@
       "critical_distinction_required": true,
       "method_use_note": "Brukes først etter at et konkret kildeobjekt, stedsspor eller dokumentert hendelsesforløp er identifisert.",
       "rotation_note": "Varier med kildekritikk, sporlesning og komparativ historie; metoden skal ikke bli synlig som abstrakt fasit i åpningssettene."
+    },
+    {
+      "method_id": "met_beslutningskjedeanalyse",
+      "title": "Beslutningskjedeanalyse",
+      "short_label": "Beslutningskjede",
+      "description": "Rekonstruerer initiativ, utredning, kompetanse, vedtak, iverksetting, kontroll og klage gjennom daterte dokumenter og identifiserte aktører.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "metodisk",
+        "analytisk",
+        "institusjonell"
+      ],
+      "data_forms": [
+        "innstilling",
+        "saksframlegg",
+        "protokoll",
+        "vedtak",
+        "fullmakt",
+        "korrespondanse",
+        "iverksettingsordre",
+        "klage"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "makt_stat_institusjoner"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "departementsomrade",
+        "rådhus",
+        "rettsbygning",
+        "institusjonsbygg",
+        "arkiv"
+      ],
+      "question_moves": [
+        "identify initiating actor and authority",
+        "order documents and decision stages",
+        "separate decision from implementation",
+        "locate review, appeal and responsibility"
+      ],
+      "hook_affinities": [
+        "his_beslutningskjede_kompetanse",
+        "his_krise_unntak_kontinuitet",
+        "his_institusjonsbygging_funksjon"
+      ],
+      "recommended_oslo_cases": [
+        "Stortinget",
+        "Regjeringskvartalet",
+        "Oslo rådhus",
+        "Høyesteretts hus"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "chronology_required": true,
+      "temporal_scope_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes først når minst én identifisert beslutning, aktør, kompetanseregel og iverksettingshandling kan dokumenteres.",
+      "rotation_note": "Metodenavnet skal ikke være synlig fasit i de to første settene; metoden brukes til å forme dokumenterte spørsmål.",
+      "institutional_chain_required": true,
+      "authority_or_rule_basis_required": true,
+      "implementation_or_consequence_required": true,
+      "uncertainty_required": true
+    },
+    {
+      "method_id": "met_forvaltningshistorisk_saksanalyse",
+      "title": "Forvaltningshistorisk saksanalyse",
+      "short_label": "Forvaltningssak",
+      "description": "Leser en saksmappe eller dokumentkjede fra journalføring og utredning til avgjørelse, begrunnelse, iverksetting og eventuell klage.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "metodisk",
+        "analytisk",
+        "institusjonell"
+      ],
+      "data_forms": [
+        "journal",
+        "saksmappe",
+        "notat",
+        "høringsuttalelse",
+        "innstilling",
+        "vedtak",
+        "ekspedisjon",
+        "klage"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "makt_stat_institusjoner"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "arkiv",
+        "rådhus",
+        "departementsomrade",
+        "institusjonsbygg",
+        "rettsbygning"
+      ],
+      "question_moves": [
+        "identify case opening and record series",
+        "distinguish evidence from administrative assessment",
+        "trace decision and implementation",
+        "record missing documents and appeal path"
+      ],
+      "hook_affinities": [
+        "his_embetsverk_byrakrati",
+        "his_beslutningskjede_kompetanse",
+        "his_rettigheter_borgerskap_forvaltning",
+        "his_register_overvakning_disiplin"
+      ],
+      "recommended_oslo_cases": [
+        "Riksarkivet",
+        "Oslo byarkiv",
+        "Regjeringskvartalet",
+        "Oslo rådhus"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "chronology_required": true,
+      "temporal_scope_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes når et konkret saksforløp kan dokumenteres; en løs institusjonsbeskrivelse er ikke tilstrekkelig.",
+      "rotation_note": "Metodenavnet skal ikke være synlig fasit i de to første settene; metoden brukes til å forme dokumenterte spørsmål.",
+      "institutional_chain_required": true,
+      "authority_or_rule_basis_required": true,
+      "implementation_or_consequence_required": true,
+      "uncertainty_required": true
+    },
+    {
+      "method_id": "met_rettshistorisk_analyse",
+      "title": "Rettshistorisk analyse",
+      "short_label": "Rettshistorie",
+      "description": "Sammenholder samtidens lovgrunnlag, jurisdiksjon, prosedyre, bevis, avgjørelse og håndheving uten å bruke dagens rett som målestokk.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "metodisk",
+        "analytisk",
+        "institusjonell"
+      ],
+      "data_forms": [
+        "lovtekst",
+        "forordning",
+        "rettsprotokoll",
+        "tiltale",
+        "dom",
+        "fengselsprotokoll",
+        "anke",
+        "juridisk kommentar"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "makt_stat_institusjoner"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "rettsbygning",
+        "fengsel",
+        "festning",
+        "politistasjon",
+        "arkiv"
+      ],
+      "question_moves": [
+        "identify contemporaneous legal basis",
+        "separate charge, evidence and judgment",
+        "trace jurisdiction and procedure",
+        "compare legal rule with enforcement"
+      ],
+      "hook_affinities": [
+        "his_lov_domstol_rettsstat",
+        "his_rettigheter_borgerskap_forvaltning",
+        "his_rettsoppgjor_legitimitet_minne"
+      ],
+      "recommended_oslo_cases": [
+        "Høyesteretts hus",
+        "Møllergata 19",
+        "Akershus festning",
+        "Stortinget"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "chronology_required": true,
+      "temporal_scope_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Bruker alltid samtidens lovgrunnlag og markerer usikkerhet, unntak og senere endringer.",
+      "rotation_note": "Metodenavnet skal ikke være synlig fasit i de to første settene; metoden brukes til å forme dokumenterte spørsmål.",
+      "institutional_chain_required": true,
+      "authority_or_rule_basis_required": true,
+      "implementation_or_consequence_required": true,
+      "uncertainty_required": true
+    },
+    {
+      "method_id": "met_kontrollregimeanalyse",
+      "title": "Kontrollregimeanalyse",
+      "short_label": "Kontrollregime",
+      "description": "Analyserer hvordan registrering, kategorisering, observasjon, varetekt, disiplin og sanksjon ble koblet i en historisk kontrollpraksis.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "metodisk",
+        "analytisk",
+        "institusjonell"
+      ],
+      "data_forms": [
+        "register",
+        "kartotek",
+        "rapport",
+        "instruks",
+        "fengselsprotokoll",
+        "personmappe",
+        "overvåkningsnotat",
+        "reglement"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "makt_stat_institusjoner"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "politistasjon",
+        "fengsel",
+        "arkiv",
+        "fangeleir",
+        "institusjonsbygg"
+      ],
+      "question_moves": [
+        "identify category and producing authority",
+        "trace information to intervention",
+        "compare formal rule with routine practice",
+        "test omissions, bias and consequences"
+      ],
+      "hook_affinities": [
+        "his_register_overvakning_disiplin",
+        "his_politi_fengsel_straff",
+        "his_rettsoppgjor_legitimitet_minne"
+      ],
+      "recommended_oslo_cases": [
+        "Møllergata 19",
+        "Botsfengselet",
+        "Grini fangeleir",
+        "Riksarkivet"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "chronology_required": true,
+      "temporal_scope_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Skiller alltid registrert kategori fra person, mistanke fra bevis og formell regel fra dokumentert praksis.",
+      "rotation_note": "Metodenavnet skal ikke være synlig fasit i de to første settene; metoden brukes til å forme dokumenterte spørsmål.",
+      "institutional_chain_required": true,
+      "authority_or_rule_basis_required": true,
+      "implementation_or_consequence_required": true,
+      "uncertainty_required": true
+    },
+    {
+      "method_id": "met_statskapasitetsanalyse",
+      "title": "Statskapasitetsanalyse",
+      "short_label": "Statskapasitet",
+      "description": "Undersøker om en statlig ordning hadde inntekter, personell, kunnskap, logistikk, fysisk rekkevidde og lokal gjennomføringsevne.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "metodisk",
+        "analytisk",
+        "institusjonell"
+      ],
+      "data_forms": [
+        "budsjett",
+        "skatteregister",
+        "bemanningsliste",
+        "organisasjonskart",
+        "byggeplan",
+        "årsrapport",
+        "forsyningsprotokoll",
+        "inspeksjonsrapport"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "makt_stat_institusjoner"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "festning",
+        "tollbod",
+        "departementsomrade",
+        "rådhus",
+        "teknisk_anlegg",
+        "institusjonsbygg"
+      ],
+      "question_moves": [
+        "identify resources and territorial reach",
+        "connect personnel and revenue to implementation",
+        "compare planned and actual coverage",
+        "locate bottlenecks, resistance and failure"
+      ],
+      "hook_affinities": [
+        "his_statlig_kapasitet_ressurser",
+        "his_institusjonsbygging_funksjon",
+        "his_krise_unntak_kontinuitet"
+      ],
+      "recommended_oslo_cases": [
+        "Akershus festning",
+        "Tollboden",
+        "Regjeringskvartalet",
+        "Oslo rådhus"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "chronology_required": true,
+      "temporal_scope_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Et vedtak teller ikke som kapasitet uten dokumentasjon av ressurser, gjennomføring eller virkning.",
+      "rotation_note": "Metodenavnet skal ikke være synlig fasit i de to første settene; metoden brukes til å forme dokumenterte spørsmål.",
+      "institutional_chain_required": true,
+      "authority_or_rule_basis_required": true,
+      "implementation_or_consequence_required": true,
+      "uncertainty_required": true
     }
   ]
 }

@@ -1,0 +1,498 @@
+{
+  "version": "v1",
+  "subject_id": "historie",
+  "domain_id": "his_makt_stat_institusjoner",
+  "blueprint_count": 10,
+  "blueprints": [
+    {
+      "blueprint_id": "historie_makt_his_institusjonsbygging_funksjon",
+      "domain_id": "his_makt_stat_institusjoner",
+      "hook_id": "his_institusjonsbygging_funksjon",
+      "hook_title": "Institusjonsbygging, mandat og funksjon",
+      "visible_question_model": "Normalt quizspørsmål om en konkret institusjon, regel, aktør, sak, beslutning, praksis eller dokumentert konsekvens på et bestemt sted.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "institution_or_authority",
+        "authority_or_rule_basis",
+        "decision_or_practice",
+        "implementation_or_consequence",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify formal mandate and founding act",
+        "connect building to operational function",
+        "compare stated purpose with documented practice",
+        "trace institutional change and persistence"
+      ],
+      "critical_distinctions": [
+        "bygning vs institusjon",
+        "formelt mandat vs faktisk praksis",
+        "symbolsk makt vs operativ kapasitet",
+        "opprettelse vs senere funksjon"
+      ],
+      "method_ids": [
+        "met_institusjonshistorisk_analyse",
+        "met_beslutningskjedeanalyse",
+        "met_statskapasitetsanalyse"
+      ],
+      "recommended_cases": [
+        "Akershus festning",
+        "Stortinget",
+        "Regjeringskvartalet",
+        "Oslo rådhus"
+      ],
+      "forbidden_surface": [
+        "Hvem hadde makten generelt uten dokumentert kompetanse",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Hva symboliserer bygningen uten institusjonell handling?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_makt_his_embetsverk_byrakrati",
+      "domain_id": "his_makt_stat_institusjoner",
+      "hook_id": "his_embetsverk_byrakrati",
+      "hook_title": "Embetsverk, kontor og byråkrati",
+      "visible_question_model": "Normalt quizspørsmål om en konkret institusjon, regel, aktør, sak, beslutning, praksis eller dokumentert konsekvens på et bestemt sted.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "institution_or_authority",
+        "authority_or_rule_basis",
+        "decision_or_practice",
+        "implementation_or_consequence",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify office and jurisdiction",
+        "trace a case through administrative stages",
+        "separate professional expertise from political authority",
+        "compare rule-bound procedure with discretionary practice"
+      ],
+      "critical_distinctions": [
+        "embete vs person",
+        "regelstyring vs skjønn",
+        "politisk beslutning vs administrativ behandling",
+        "arkivspor vs faktisk praksis"
+      ],
+      "method_ids": [
+        "met_forvaltningshistorisk_saksanalyse",
+        "met_arkivlesning",
+        "met_institusjonshistorisk_analyse"
+      ],
+      "recommended_cases": [
+        "Regjeringskvartalet",
+        "Oslo rådhus",
+        "Riksarkivet",
+        "Stortinget"
+      ],
+      "forbidden_surface": [
+        "Hvem hadde makten generelt uten dokumentert kompetanse",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Hva symboliserer bygningen uten institusjonell handling?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_makt_his_beslutningskjede_kompetanse",
+      "domain_id": "his_makt_stat_institusjoner",
+      "hook_id": "his_beslutningskjede_kompetanse",
+      "hook_title": "Beslutningskjede, kompetanse og ansvar",
+      "visible_question_model": "Normalt quizspørsmål om en konkret institusjon, regel, aktør, sak, beslutning, praksis eller dokumentert konsekvens på et bestemt sted.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "institution_or_authority",
+        "authority_or_rule_basis",
+        "decision_or_practice",
+        "implementation_or_consequence",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "name initiating actor and legal competence",
+        "follow documents through decision stages",
+        "separate decision from implementation",
+        "locate responsibility, review and appeal"
+      ],
+      "critical_distinctions": [
+        "kompetanse vs innflytelse",
+        "forslag vs vedtak",
+        "vedtak vs iverksetting",
+        "formelt ansvar vs praktisk kontroll"
+      ],
+      "method_ids": [
+        "met_beslutningskjedeanalyse",
+        "met_forvaltningshistorisk_saksanalyse",
+        "met_kildekritikk"
+      ],
+      "recommended_cases": [
+        "Stortinget",
+        "Regjeringskvartalet",
+        "Oslo rådhus",
+        "Høyesteretts hus"
+      ],
+      "forbidden_surface": [
+        "Hvem hadde makten generelt uten dokumentert kompetanse",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Hva symboliserer bygningen uten institusjonell handling?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_makt_his_statlig_kapasitet_ressurser",
+      "domain_id": "his_makt_stat_institusjoner",
+      "hook_id": "his_statlig_kapasitet_ressurser",
+      "hook_title": "Statlig kapasitet, ressurser og gjennomføring",
+      "visible_question_model": "Normalt quizspørsmål om en konkret institusjon, regel, aktør, sak, beslutning, praksis eller dokumentert konsekvens på et bestemt sted.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "institution_or_authority",
+        "authority_or_rule_basis",
+        "decision_or_practice",
+        "implementation_or_consequence",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify resources and administrative reach",
+        "connect revenue or personnel to implementation",
+        "compare planned measure with actual coverage",
+        "show where capacity failed or met resistance"
+      ],
+      "critical_distinctions": [
+        "vedtak vs gjennomføringsevne",
+        "ressurs vs resultat",
+        "sentral kontroll vs lokal kapasitet",
+        "formell tilstedeværelse vs faktisk rekkevidde"
+      ],
+      "method_ids": [
+        "met_statskapasitetsanalyse",
+        "met_institusjonshistorisk_analyse",
+        "met_for_etter_historisk"
+      ],
+      "recommended_cases": [
+        "Akershus festning",
+        "Tollboden",
+        "Regjeringskvartalet",
+        "Oslo rådhus"
+      ],
+      "forbidden_surface": [
+        "Hvem hadde makten generelt uten dokumentert kompetanse",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Hva symboliserer bygningen uten institusjonell handling?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_makt_his_rettigheter_borgerskap_forvaltning",
+      "domain_id": "his_makt_stat_institusjoner",
+      "hook_id": "his_rettigheter_borgerskap_forvaltning",
+      "hook_title": "Rettigheter, medborgerskap og forvaltning",
+      "visible_question_model": "Normalt quizspørsmål om en konkret institusjon, regel, aktør, sak, beslutning, praksis eller dokumentert konsekvens på et bestemt sted.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "institution_or_authority",
+        "authority_or_rule_basis",
+        "decision_or_practice",
+        "implementation_or_consequence",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify claimed right or imposed duty",
+        "name authority and applicable rule",
+        "trace application, decision and appeal",
+        "show who was included, excluded or treated differently"
+      ],
+      "critical_distinctions": [
+        "rettighet vs ytelse",
+        "formell likhet vs praktisk adgang",
+        "borgerstatus vs faktisk tilhørighet",
+        "regel vs individuell avgjørelse"
+      ],
+      "method_ids": [
+        "met_rettshistorisk_analyse",
+        "met_forvaltningshistorisk_saksanalyse",
+        "met_arkivlesning"
+      ],
+      "recommended_cases": [
+        "Stortinget",
+        "Oslo rådhus",
+        "Høyesteretts hus",
+        "Oslo byarkiv"
+      ],
+      "forbidden_surface": [
+        "Hvem hadde makten generelt uten dokumentert kompetanse",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Hva symboliserer bygningen uten institusjonell handling?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_makt_his_lov_domstol_rettsstat",
+      "domain_id": "his_makt_stat_institusjoner",
+      "hook_id": "his_lov_domstol_rettsstat",
+      "hook_title": "Lov, domstol og rettsstat",
+      "visible_question_model": "Normalt quizspørsmål om en konkret institusjon, regel, aktør, sak, beslutning, praksis eller dokumentert konsekvens på et bestemt sted.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "institution_or_authority",
+        "authority_or_rule_basis",
+        "decision_or_practice",
+        "implementation_or_consequence",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify contemporaneous rule and jurisdiction",
+        "separate charge, procedure and judgment",
+        "compare legal norm with enforcement",
+        "test legal certainty against documented exceptions"
+      ],
+      "critical_distinctions": [
+        "lovtekst vs rettspraksis",
+        "anklage vs dom",
+        "jurisdiksjon vs fysisk kontroll",
+        "rettssikkerhet vs formell prosedyre"
+      ],
+      "method_ids": [
+        "met_rettshistorisk_analyse",
+        "met_kildekritikk",
+        "met_beslutningskjedeanalyse"
+      ],
+      "recommended_cases": [
+        "Høyesteretts hus",
+        "Møllergata 19",
+        "Akershus festning",
+        "Stortinget"
+      ],
+      "forbidden_surface": [
+        "Hvem hadde makten generelt uten dokumentert kompetanse",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Hva symboliserer bygningen uten institusjonell handling?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_makt_his_politi_fengsel_straff",
+      "domain_id": "his_makt_stat_institusjoner",
+      "hook_id": "his_politi_fengsel_straff",
+      "hook_title": "Politi, fengsel og strafferegime",
+      "visible_question_model": "Normalt quizspørsmål om en konkret institusjon, regel, aktør, sak, beslutning, praksis eller dokumentert konsekvens på et bestemt sted.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "institution_or_authority",
+        "authority_or_rule_basis",
+        "decision_or_practice",
+        "implementation_or_consequence",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify institution and formal function",
+        "reconstruct routine, custody and sanction",
+        "compare regulation with lived institutional practice",
+        "show who was controlled and with what documented consequence"
+      ],
+      "critical_distinctions": [
+        "varetekt vs straff",
+        "reglement vs institusjonshverdag",
+        "domstol vs fengselsforvaltning",
+        "sikkerhet vs disiplin"
+      ],
+      "method_ids": [
+        "met_kontrollregimeanalyse",
+        "met_institusjonshistorisk_analyse",
+        "met_minneanalyse"
+      ],
+      "recommended_cases": [
+        "Botsfengselet",
+        "Møllergata 19",
+        "Akershus festning",
+        "Grini fangeleir"
+      ],
+      "forbidden_surface": [
+        "Hvem hadde makten generelt uten dokumentert kompetanse",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Hva symboliserer bygningen uten institusjonell handling?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_makt_his_register_overvakning_disiplin",
+      "domain_id": "his_makt_stat_institusjoner",
+      "hook_id": "his_register_overvakning_disiplin",
+      "hook_title": "Register, overvåkning og disiplin",
+      "visible_question_model": "Normalt quizspørsmål om en konkret institusjon, regel, aktør, sak, beslutning, praksis eller dokumentert konsekvens på et bestemt sted.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "institution_or_authority",
+        "authority_or_rule_basis",
+        "decision_or_practice",
+        "implementation_or_consequence",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify register, category and producing authority",
+        "trace how information enabled intervention",
+        "test omissions and category bias",
+        "separate recorded suspicion from documented action"
+      ],
+      "critical_distinctions": [
+        "registrering vs overvåkning",
+        "kategori vs person",
+        "opplysning vs bevis",
+        "synlighet for staten vs faktisk kontroll"
+      ],
+      "method_ids": [
+        "met_kontrollregimeanalyse",
+        "met_forvaltningshistorisk_saksanalyse",
+        "met_kildekritikk"
+      ],
+      "recommended_cases": [
+        "Møllergata 19",
+        "Riksarkivet",
+        "Oslo byarkiv",
+        "Victoria terrasse"
+      ],
+      "forbidden_surface": [
+        "Hvem hadde makten generelt uten dokumentert kompetanse",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Hva symboliserer bygningen uten institusjonell handling?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_makt_his_krise_unntak_kontinuitet",
+      "domain_id": "his_makt_stat_institusjoner",
+      "hook_id": "his_krise_unntak_kontinuitet",
+      "hook_title": "Krise, unntak og institusjonell kontinuitet",
+      "visible_question_model": "Normalt quizspørsmål om en konkret institusjon, regel, aktør, sak, beslutning, praksis eller dokumentert konsekvens på et bestemt sted.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "institution_or_authority",
+        "authority_or_rule_basis",
+        "decision_or_practice",
+        "implementation_or_consequence",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify declared or practical crisis condition",
+        "trace temporary authority and decision chain",
+        "compare emergency measure with ordinary rule",
+        "show what continued, changed and became permanent"
+      ],
+      "critical_distinctions": [
+        "krise vs varig ordning",
+        "midlertidig fullmakt vs ordinær kompetanse",
+        "institusjonell kontinuitet vs uendret praksis",
+        "beredskap vs faktisk gjennomføring"
+      ],
+      "method_ids": [
+        "met_beslutningskjedeanalyse",
+        "met_statskapasitetsanalyse",
+        "met_for_etter_historisk"
+      ],
+      "recommended_cases": [
+        "Regjeringskvartalet",
+        "Akershus festning",
+        "Møllergata 19",
+        "Oslo rådhus"
+      ],
+      "forbidden_surface": [
+        "Hvem hadde makten generelt uten dokumentert kompetanse",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Hva symboliserer bygningen uten institusjonell handling?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    },
+    {
+      "blueprint_id": "historie_makt_his_rettsoppgjor_legitimitet_minne",
+      "domain_id": "his_makt_stat_institusjoner",
+      "hook_id": "his_rettsoppgjor_legitimitet_minne",
+      "hook_title": "Rettsoppgjør, legitimitet og minne",
+      "visible_question_model": "Normalt quizspørsmål om en konkret institusjon, regel, aktør, sak, beslutning, praksis eller dokumentert konsekvens på et bestemt sted.",
+      "required_source_chain": [
+        "source_object",
+        "claim_basis",
+        "institution_or_authority",
+        "authority_or_rule_basis",
+        "decision_or_practice",
+        "implementation_or_consequence",
+        "limitation",
+        "critical_distinction"
+      ],
+      "question_moves": [
+        "identify legal basis and historical jurisdiction",
+        "separate investigation, charge, judgment and punishment",
+        "test contemporaneous legitimacy against later memory",
+        "identify groups, exceptions and unresolved cases"
+      ],
+      "critical_distinctions": [
+        "rettsoppgjør vs hevn",
+        "samtidig lovgrunnlag vs tilbakevirkning",
+        "individuelt ansvar vs kollektiv kategori",
+        "domshistorie vs minnekultur"
+      ],
+      "method_ids": [
+        "met_rettshistorisk_analyse",
+        "met_kildekritikk",
+        "met_minneanalyse"
+      ],
+      "recommended_cases": [
+        "Møllergata 19",
+        "Akershus festning",
+        "Villa Grande",
+        "Høyesteretts hus"
+      ],
+      "forbidden_surface": [
+        "Hvem hadde makten generelt uten dokumentert kompetanse",
+        "Hvilken metode bruker historikeren?",
+        "Hvilken teoretiker passer best?",
+        "Hva symboliserer bygningen uten institusjonell handling?"
+      ],
+      "opening_sets_allowed": false,
+      "analysis_from_set": 3,
+      "theory_from_set": 4
+    }
+  ]
+}

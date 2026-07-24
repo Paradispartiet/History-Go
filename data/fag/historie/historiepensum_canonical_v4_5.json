@@ -212,55 +212,98 @@
       "domain_id": "his_makt_stat_institusjoner",
       "label": "Makt, stat og institusjoner",
       "tagline": "Hvordan makt får rom, regler og bygninger",
-      "status": "strong",
-      "emne_count": 6,
-      "hook_count": 2,
-      "method_count": 5,
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
       "emne_ids": [
-        "em_his_embetsstat_forvaltning",
-        "em_his_kontroll_overvakning",
-        "em_his_rett_politi_fengsel",
-        "em_his_rettsoppgjor",
         "em_his_stat_institusjoner",
-        "em_his_styring_krise_kontinuitet"
+        "em_his_embetsstat_forvaltning",
+        "em_his_styring_krise_kontinuitet",
+        "em_his_rett_politi_fengsel",
+        "em_his_kontroll_overvakning",
+        "em_his_rettsoppgjor",
+        "em_his_beslutningskjeder_kompetanse_ansvar",
+        "em_his_statlig_kapasitet_skatt_infrastruktur",
+        "em_his_rettigheter_borgerskap_forvaltning",
+        "em_his_politi_straff_institusjonshverdag"
       ],
       "hook_ids": [
-        "his_stat_institusjon",
-        "his_rett_kontroll"
+        "his_institusjonsbygging_funksjon",
+        "his_embetsverk_byrakrati",
+        "his_beslutningskjede_kompetanse",
+        "his_statlig_kapasitet_ressurser",
+        "his_rettigheter_borgerskap_forvaltning",
+        "his_lov_domstol_rettsstat",
+        "his_politi_fengsel_straff",
+        "his_register_overvakning_disiplin",
+        "his_krise_unntak_kontinuitet",
+        "his_rettsoppgjor_legitimitet_minne"
       ],
       "method_ids": [
         "met_institusjonshistorisk_analyse",
         "met_arkivlesning",
         "met_for_etter_historisk",
         "met_kildekritikk",
-        "met_minneanalyse"
+        "met_minneanalyse",
+        "met_beslutningskjedeanalyse",
+        "met_forvaltningshistorisk_saksanalyse",
+        "met_rettshistorisk_analyse",
+        "met_kontrollregimeanalyse",
+        "met_statskapasitetsanalyse"
       ],
       "recommended_oslo_cases": [
         "Akershus festning",
         "Stortinget",
         "Regjeringskvartalet",
         "Oslo rådhus",
+        "Riksarkivet",
+        "Høyesteretts hus",
+        "Tollboden",
+        "Oslo byarkiv",
         "Møllergata 19",
+        "Botsfengselet",
         "Grini fangeleir",
-        "Botsfengselet"
+        "Victoria terrasse",
+        "Villa Grande"
       ],
       "canonical_thinker_ids": [
         "max_weber",
         "charles_tilly",
         "francis_sejersted",
-        "michel_foucault",
+        "theda_skocpol",
+        "jens_arup_seip",
+        "rune_slagstad",
+        "hannah_arendt",
+        "michael_mann",
+        "t_h_marshall",
+        "anne_lise_seip",
+        "e_p_thompson",
         "nils_christie",
-        "david_garland"
+        "michel_foucault",
+        "david_garland",
+        "erving_goffman",
+        "james_c_scott",
+        "reinhart_koselleck",
+        "jorunn_sem_fure"
       ],
       "norwegian_thinker_ids": [
         "francis_sejersted",
-        "nils_christie"
+        "jens_arup_seip",
+        "rune_slagstad",
+        "anne_lise_seip",
+        "nils_christie",
+        "jorunn_sem_fure"
       ],
       "canonical_status": "canonical",
       "case_anchor_required": true,
       "method_anchor_required": true,
       "source_anchor_required": true,
-      "external_claim_basis_required": true
+      "external_claim_basis_required": true,
+      "institutional_chain_required": true,
+      "authority_or_rule_basis_required": true,
+      "implementation_or_consequence_required": true,
+      "critical_distinction_required": true
     },
     {
       "domain_id": "his_middelalder_kirke_kongemakt",
@@ -667,5 +710,6 @@
     ],
     "history_emne_prefix_required": "em_his_",
     "migration_note": "Historiske steder og personer skal bruke em_his_* fra denne pakken. Em_by_* kan brukes som inspirasjon i byfaget, men ikke som faglig emne-ID i places_historie eller people_historie."
-  }
+  },
+  "updated_at": "2026-07-24"
 }
