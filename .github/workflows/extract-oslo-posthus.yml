@@ -1,0 +1,41 @@
+name: Extract Oslo posthus questions
+
+on:
+  push:
+    branches:
+      - agent/oslo-quiz-oslo-posthus-5x7
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Extract compact question inventory
+        run: |
+          mkdir -p audit-output
+          node --input-type=module <<'EOF'
+          import { readFile, writeFile } from 'node:fs/promises';
+          const path = 'data/quiz/naeringsliv/oslo_posthus_sets_merged.json';
+          const data = JSON.parse(await readFile(path, 'utf8'));
+          const questions = data.sets.flatMap((set) => set.questions.map((q) => ({
+            set_id: set.set_id,
+            id: q.id,
+            question: q.question,
+            options: q.options,
+            answer: q.answer,
+            answerIndex: q.answerIndex,
+            knowledge: q.knowledge,
+            question_type: q.question_type,
+            emne_id: q.emne_id,
+            method_id: q.method_id,
+            source: q.source
+          })));
+          await writeFile('audit-output/oslo-posthus-question-inventory.json', JSON.stringify(questions, null, 2) + '\n');
+          EOF
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oslo-posthus-question-inventory
+          path: audit-output/oslo-posthus-question-inventory.json
