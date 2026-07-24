@@ -6,6 +6,8 @@ Revisjon: `litteratur-vertical-depth-plan-2026-07-24`
 
 Litteraturpensumet skal utvikles fra et bredt canonical fagkart til et vertikalt, progresjonsbasert bachelorpensum i litteraturvitenskap. Utvidelsen skjer direkte i aktive canonical-filer, uten overlay, parallell runtime eller løsrevne teorilister.
 
+**Samlet status:** Alle tre faser er faglig materialisert og validert. Fase 3 avventer bare ordinær Data-/TypeScript-sluttkontroll i PR #3711 før merge.
+
 ## Prinsipper
 
 1. Litteraturvitenskap er hoveddisiplin; historie, sosiologi, språkvitenskap, medievitenskap og kulturstudier brukes som støttefag.
@@ -47,7 +49,7 @@ Leveranse:
 
 ## Fase 2 — Litteraturhistorie, verdenslitteratur, oversettelse og medieformer
 
-**Status:** Materialisert og faglig validert med 387 fasekontroller i PR #3706; ordinær Data-/TypeScript-CI er sluttport før merge.
+**Status:** Fullført og squash-merget i PR #3706 med 387 fagkontroller og full Data-/TypeScript-sluttport.
 
 **Formål:** Bygge historisk, komparativ og transnasjonal dybde fra antikkens sjangre til digitale og multimodale tekster.
 
@@ -76,7 +78,7 @@ Leveranse:
 
 ## Fase 3 — Norsk, nordisk og samisk litteratur; institusjoner, lesere og steder
 
-**Status:** Neste fase etter at fase 2 er merget og sluttkontrollert på `main`.
+**Status:** Materialisert og faglig validert med 464 fagkontroller i PR #3711; ordinær Data-/TypeScript-CI er sluttport før merge.
 
 **Formål:** Gjøre pensumet direkte anvendelig på norske og nordiske verk, språk, institusjoner og litterære steder uten nasjonal selvtilstrekkelighet.
 
@@ -104,6 +106,15 @@ Leveranse:
 - 14 mappinger og spørsmålsplaner
 - litterært institusjons- og stedskart
 - krav om nordisk sammenligningsgrunnlag og oppdaterte institusjonskilder
+
+## Samlet canonical-status etter fase 3
+
+- 6 domener
+- 96 hooks
+- 67 emner
+- 47 metoder
+- 64 mappinger
+- 36 spørsmålsplaner fra de tre fordypningsfasene
 
 ## Kvalitetsporter
 
