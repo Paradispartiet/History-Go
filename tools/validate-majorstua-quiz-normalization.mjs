@@ -58,7 +58,8 @@ const forbiddenVisiblePatterns = [
   /hvem er mest nyttig/iu,
   /canonical-mapping/iu,
   /hvilket emne passer best/iu,
-  /hva gjør .*relevant for emnet/iu
+  /hva gjør .*relevant for emnet/iu,
+  /hva gjør .*mer enn/iu
 ];
 for (const question of questions) {
   ok(forbiddenVisiblePatterns.every((pattern) => !pattern.test(question.question)), `${question.quiz_id} unngår oppkonstruert maltekst`);
