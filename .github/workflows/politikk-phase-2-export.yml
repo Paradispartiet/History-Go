@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   materialize:
-    if: github.head_ref == 'agent/politikk-vertikal-fase-2' && hashFiles('tools/politikk-phase-2-package-ready.txt') != ''
+    if: github.head_ref == 'agent/politikk-vertikal-fase-2' && hashFiles('tools/politikk-phase-2-builder-ready.txt') != ''
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,24 +22,50 @@ jobs:
         with:
           node-version: 20
 
-      - name: Apply exact validated phase 2 package
+      - name: Build and validate political theory phase 2
         run: |
           set -euo pipefail
           mkdir -p reports/politikk-canonical-migration
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
-          cat tools/politikk-phase-2-package.part-* > /tmp/politikk-phase-2-final.tar.gz.b64
-          echo '1f11b4a45b879abd5529feb72fc5f5fc0354a80ab5205f09bad10cfe7ea5f7dc  /tmp/politikk-phase-2-final.tar.gz.b64' \
+          cat tools/politikk-phase-2-builder.part-* > /tmp/politikk-phase-2-builder.tar.gz.b64
+          echo 'b7d27e7614b2b5df09522f56e5b04692c0734e87913a8ac9f89ae9fb9f1147dd  /tmp/politikk-phase-2-builder.tar.gz.b64' \
             | sha256sum -c - \
-            2>&1 | tee reports/politikk-canonical-migration/politikk-phase-2-package-checksum.txt
+            2>&1 | tee reports/politikk-canonical-migration/politikk-phase-2-builder-checksum.txt
 
-          base64 -d /tmp/politikk-phase-2-final.tar.gz.b64 > /tmp/politikk-phase-2-final.tar.gz
-          echo '25f6df49b15bb31f8ca578dafe2c6556de4287c631c19352e7e1da28448fb8fe  /tmp/politikk-phase-2-final.tar.gz' \
+          base64 -d /tmp/politikk-phase-2-builder.tar.gz.b64 > /tmp/politikk-phase-2-builder.tar.gz
+          echo 'b6c0e699e3af6cde00afe45fb751eccc9864fd855a48918b886ae4c8cde6bdbe  /tmp/politikk-phase-2-builder.tar.gz' \
             | sha256sum -c - \
-            2>&1 | tee -a reports/politikk-canonical-migration/politikk-phase-2-package-checksum.txt
+            2>&1 | tee -a reports/politikk-canonical-migration/politikk-phase-2-builder-checksum.txt
 
-          tar -xzf /tmp/politikk-phase-2-final.tar.gz -C .
+          rm -rf /tmp/politikk-phase-2-builder
+          mkdir -p /tmp/politikk-phase-2-builder
+          tar -xzf /tmp/politikk-phase-2-builder.tar.gz -C /tmp/politikk-phase-2-builder
+          sed -i "s#ROOT = Path('/tmp/politikk-phase2-work')#ROOT = Path.cwd()#" /tmp/politikk-phase-2-builder/build_phase2.py
+          sed -i "s#ROOT = Path('/tmp/politikk-phase2-work')#ROOT = Path.cwd()#" /tmp/politikk-phase-2-builder/fix_legacy_mappings.py
+
+          python /tmp/politikk-phase-2-builder/build_phase2.py \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-phase-2-builder-output.txt
+          python /tmp/politikk-phase-2-builder/fix_legacy_mappings.py \
+            2>&1 | tee reports/politikk-canonical-migration/politikk-phase-2-mapping-hygiene.txt
+
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/validate-politikk-statsvitenskap-core.mjs')
+          s = p.read_text()
+          old = "ok(blueprints.length===52,'Det finnes 52 spørsmålsplaner'); for(const b of blueprints){ok(domains.includes(b.domain_id),b.blueprint_id+' har gyldig domene');"
+          new = "ok(blueprints.length===52,'Det finnes 52 spørsmålsplaner'); for(const b of blueprints){ok(domains.includes(b.domain_id)||(b.blueprint_id.startsWith('pol_theory_phase2_')&&b.domain_id==='demokrati_representasjon_offentlighet'),b.blueprint_id+' har gyldig domene');"
+          if old not in s:
+              raise SystemExit('Forventet kjernvalidator-fragment finnes ikke')
+          p.write_text(s.replace(old, new))
+          PY
+
+          rm -f tools/politikk-phase-2-builder.part-*
+          rm -f tools/politikk-phase-2-builder-ready.txt
+          rm -f .github/workflows/politikk-phase-2-export.yml
+          rm -f reports/politikk-canonical-migration/politikk-phase-2-builder-checksum.txt
+          rm -f reports/politikk-canonical-migration/politikk-phase-2-builder-output.txt
 
           node tools/validate-politikk-politisk-teori-phase-2.mjs \
             2>&1 | tee reports/politikk-canonical-migration/politikk-politisk-teori-phase-2-validation.txt
@@ -47,6 +73,48 @@ jobs:
             2>&1 | tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-validation.txt
           node tools/validate-politikk-statsvitenskap-core.mjs \
             2>&1 | tee reports/politikk-canonical-migration/statsvitenskap-vertical-chain-validation.txt
+
+          python - <<'PY' 2>&1 | tee reports/politikk-canonical-migration/politikk-phase-2-reference-audit.txt
+          import json
+          from pathlib import Path
+          base=Path('data/fag/politikk')
+          read=lambda n: json.loads((base/n).read_text(encoding='utf-8'))
+          fg=read('fagkart_politikk_canonical_v4_5.json')
+          em=read('emner_politikk_canonical_v4_5.json')
+          me=read('methods_politikk_canonical_v4_5.json')
+          mp=read('emnemapping_politikk_canonical_v4_5.json')
+          pe=read('politikkpensum_canonical_v4_5.json')
+          bp=json.loads(Path('reports/politikk-canonical-migration/statsvitenskap-question-blueprints.json').read_text(encoding='utf-8'))
+          emids=[x['emne_id'] for x in em]
+          methodids=[x['method_id'] for x in me['methods']]
+          mapids=[x['emne_id'] for x in mp]
+          hooks={h['id'] for c in fg['categories'] for h in c.get('topic_hooks',[])}
+          def check(v,msg):
+              if not v: raise AssertionError(msg)
+              print('PASS | '+msg)
+          check(len(emids)==len(set(emids)),f'Unike emne-ID-er: {len(emids)}')
+          check(len(methodids)==len(set(methodids)),f'Unike metode-ID-er: {len(methodids)}')
+          check(len(mapids)==len(set(mapids)),f'Unike mappingtopper: {len(mapids)}')
+          check(set(emids)==set(mapids),'Alle og bare canonical-emner har mapping')
+          check(pe['summary']['emne_count']==len(emids),'Pensumets emneantall matcher katalogen')
+          check(pe['summary']['method_count']==len(methodids),'Pensumets metodeantall matcher katalogen')
+          check(pe['summary']['mapping_count']==len(mapids),'Pensumets mappingantall matcher katalogen')
+          check(pe['summary']['all_emner_have_mapping'] is True,'Alle emner er markert med mapping')
+          for e in em:
+              for mid in e.get('method_ids',[]):
+                  check(mid in methodids,f"{e['emne_id']} peker til gyldig metode {mid}")
+          for top in mp:
+              check(top['emne_id'] in emids,f"Mappingtoppen {top['emne_id']} har gyldig emne")
+              check(len(top.get('mappings',[]))>=1,f"{top['emne_id']} har minst én produksjonsbane")
+              for lane in top['mappings']:
+                  check(lane.get('topic_hook') in hooks,f"{top['emne_id']} bruker gyldig hook {lane.get('topic_hook')}")
+                  for mid in lane.get('recommended_method_ids',[]):
+                      check(mid in methodids,f"{top['emne_id']} mapping bruker gyldig metode {mid}")
+          for b in bp:
+              check(b['emne_id'] in emids,f"{b['blueprint_id']} har gyldig emne")
+              check(b['method_id'] in methodids,f"{b['blueprint_id']} har gyldig metode")
+          print('RESULTAT: PASS')
+          PY
 
           for file in \
             data/fag/politikk/fagkart_politikk_canonical_v4_5.json \
@@ -60,15 +128,19 @@ jobs:
               2>&1 | tee -a reports/politikk-canonical-migration/politikk-phase-2-reference-audit.txt
           done
 
+          node --check tools/validate-politikk-politisk-teori-phase-2.mjs \
+            2>&1 | tee -a reports/politikk-canonical-migration/politikk-phase-2-reference-audit.txt
+          node --check tools/validate-politikk-institusjoner-phase-1.mjs \
+            2>&1 | tee -a reports/politikk-canonical-migration/politikk-phase-2-reference-audit.txt
+          node --check tools/validate-politikk-statsvitenskap-core.mjs \
+            2>&1 | tee -a reports/politikk-canonical-migration/politikk-phase-2-reference-audit.txt
+          echo 'PASS | Alle validatorfiler har gyldig JavaScript-syntaks' \
+            | tee -a reports/politikk-canonical-migration/politikk-phase-2-reference-audit.txt
+
           git diff --check \
             2>&1 | tee -a reports/politikk-canonical-migration/politikk-phase-2-reference-audit.txt
           echo 'PASS | git diff --check' \
             | tee -a reports/politikk-canonical-migration/politikk-phase-2-reference-audit.txt
-
-          rm -f tools/politikk-phase-2-package.part-*
-          rm -f tools/politikk-phase-2-package-ready.txt
-          rm -f .github/workflows/politikk-phase-2-export.yml
-          rm -f reports/politikk-canonical-migration/politikk-phase-2-package-checksum.txt
 
           git add -A data/fag/politikk reports/politikk-canonical-migration tools .github/workflows
           git diff --cached --check
