@@ -3,23 +3,22 @@ name: Politics political science expansion runner
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - agent/politikk-statsvitenskap-utvidelse
 
 permissions:
   contents: write
   pull-requests: read
 
-concurrency:
-  group: politics-political-science-expansion-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
-
 jobs:
   run-expansion-work:
-    if: startsWith(github.head_ref, 'agent/politikk-statsvitenskap-')
+    if: github.event_name == 'push' || startsWith(github.head_ref, 'agent/politikk-statsvitenskap-')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.event_name == 'push' && github.ref_name || github.head_ref }}
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -82,7 +81,8 @@ jobs:
           git add -A data/fag/politikk reports/politikk-canonical-migration tools
           git diff --cached --check
           git commit -m 'Politikk: bygg full statsvitenskapelig hovedstruktur'
-          git push --force-with-lease origin HEAD:${{ github.head_ref }}
+          target_branch="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
+          git push --force-with-lease origin HEAD:"$target_branch"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
