@@ -31,6 +31,7 @@ Canonical-filene styrer analyseformen, men er aldri faktakilde.
 - `his_digitale_kilder` er bundet til `em_his_arkiv_og_dokumentasjon`, som allerede har digitale kilder som sekundær produksjonsbane.
 - Produksjonskontekstene for Grindheim runestein, Grindheim steinkross, Grindheimsveien nord gravfelt og Høyland gravhaug er regenerert mot de oppdaterte canonical-filene.
 - Avledede Knowledge-data er regenerert etter fagfilendringene.
+- Produksjonstestene er synkronisert med canonical-katalogen: 12 pensummoduler, 49 emner, 23 hooks og 18 metoder.
 
 ## Kontroll etter review
 
@@ -42,5 +43,6 @@ Følgende kontroller bestod samlet før rettingscommiten ble skrevet:
 - category governance
 - quiz-template governance
 - canonical Knowledge-audit
+- quizinnholdstesten
 - quizproduksjonens testpakke
 - `git diff --check`
