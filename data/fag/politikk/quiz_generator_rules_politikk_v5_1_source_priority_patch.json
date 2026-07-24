@@ -3,7 +3,7 @@
   "subject_id": "politikk",
   "subject_title": "Politikk & samfunn",
   "scope": "oslo_og_omegn",
-  "purpose": "Stramme inn quizgeneratoren for Politikk & samfunn slik at konkrete institusjoner, lover, vedtak, reformer, offentlige rom, rettsbygg, forvaltningssteder, demokratiske arenaer, velferdstjenester, konflikter, proteststeder, normsystemer, fordelingsdata, rettskilder, budsjett, reguleringsplaner, statistikk og dokumenterte samfunnsfaglige kilder dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander. De to første settene skal alltid bestå av sju vanlige, kildebaserte quizspørsmål hver før mekanisme-, distinksjons- eller teorispørsmål introduseres.",
+  "purpose": "Styresystem for et statsvitenskapelig hovedpensum med komparativ politikk, valg, offentlig politikk, internasjonal politikk, politisk økonomi og metode, støttet av sosiologiske, rettslige og normative domener.",
   "canonical_inputs": {
     "fagkart": "fagkart_politikk_canonical_v4_5.json",
     "methods": "methods_politikk_canonical_v4_5.json",
@@ -92,7 +92,15 @@
     "method_names_forbidden_in_sets_1_2": true,
     "mechanism_or_distinction_as_visible_task_forbidden_in_sets_1_2": true,
     "opening_question_answer_must_be_short_concrete_and_verifiable": true,
-    "opening_distractors_must_be_plausible_not_absurd": true
+    "opening_distractors_must_be_plausible_not_absurd": true,
+    "political_science_primary_required": true,
+    "comparative_claims_require_case_selection_and_comparable_indicators": true,
+    "causal_claims_require_design_or_mechanism": true,
+    "election_claims_require_defined_electorate_denominator_and_rules": true,
+    "policy_claims_distinguish_output_outcome_and_impact": true,
+    "international_relations_claims_require_level_of_analysis": true,
+    "political_economy_claims_require_distributional_incidence": true,
+    "method_claims_require_scope_and_uncertainty": true
   },
   "soft_preferences": {
     "preferred_external_source_mix_per_place": [
@@ -118,7 +126,9 @@
       "norms-everyday-first",
       "institution-law-conflict-process-first_then_named_theorist"
     ],
-    "preferred_norwegian_theory_path": "Når relevant norsk politisk teori, sosiologi, rettsvitenskap, velferdsforskning, demokratiforskning, maktutredning eller samfunnsfaglig forskning finnes, kan den brukes i senere sett, men bare etter at institusjon, lov, konflikt, fordeling, norm eller sosial prosess allerede er etablert."
+    "preferred_norwegian_theory_path": "Når relevant norsk politisk teori, sosiologi, rettsvitenskap, velferdsforskning, demokratiforskning, maktutredning eller samfunnsfaglig forskning finnes, kan den brukes i senere sett, men bare etter at institusjon, lov, konflikt, fordeling, norm eller sosial prosess allerede er etablert.",
+    "prefer_political_science_core_rotation": true,
+    "prefer_norwegian_and_comparative_case_pairing": true
   },
   "set_guidance": {
     "1": {
@@ -261,20 +271,27 @@
         "met_pol_romlig_maktanalyse"
       ],
       "question_style": "makt, legitimitet, doxa, symbolsk makt, strukturell vold, polarisering, rettferdighet, offentlighet og institusjonell orden"
-    }
+    },
+    "political_science_core_share": "Minst to tredeler av analytiske spørsmål etter åpningen bør komme fra statsvitenskapelige kjernedomener.",
+    "support_fields": "Støttefeltene brukes for å utdype politiske mekanismer, ikke som erstatning for statsvitenskapelig analyseenhet."
   },
   "politikk_category_guardrails": {
     "accept_as_politikk_primary_when": [
       "stedet eller personen har politisk eller samfunnsfaglig hovedrolle",
       "det finnes konkret institusjon, lov, vedtak, reform, rettighet, offentlig tjeneste, demokratisk arena, fordeling, konflikt, norm, offentlighet eller sosial prosess",
       "spørsmål kan bygges fra politiske, rettslige, forvaltningsmessige, statistiske, historiske eller samfunnsfaglige kilder",
-      "politikkens og samfunnets systemlogikk er primær, ikke bare generell historie, arkitektur, kultur eller nærhet til maktbygg"
+      "politikkens og samfunnets systemlogikk er primær, ikke bare generell historie, arkitektur, kultur eller nærhet til maktbygg",
+      "stedet, personen eller kilden bærer et dokumentert statsvitenskapelig hovedpoeng om institusjoner, regimer, valg, partier, policy, internasjonal politikk, politisk økonomi eller metode",
+      "spørsmålet kan bygges rundt eksplisitt analyseenhet, definert utfall, mekanisme eller forskningsdesign"
     ],
     "do_not_accept_as_politikk_primary_when": [
       "hovedrollen er byarkitektur, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller populærkultur",
       "stedet er bare nær et politisk bygg uten dokumentert politisk eller samfunnsfaglig hovedrolle",
       "stedet er bare en generell byutviklingscase uten konkret institusjon, lov, fordeling, offentlighet, konflikt, norm eller sosial prosess",
-      "personen er kulturpersonlighet, næringslivsaktør, forsker, artist, idrettsutøver eller medieperson uten hovedrolle som politisk/samfunnsfaglig aktør"
+      "personen er kulturpersonlighet, næringslivsaktør, forsker, artist, idrettsutøver eller medieperson uten hovedrolle som politisk/samfunnsfaglig aktør",
+      "internasjonal hendelse uten statsvitenskapelig analysenivå, mekanisme eller institusjonell kobling",
+      "økonomisk fenomen uten politisk regel, interesse, styringsvalg eller fordelingskonsekvens",
+      "metodeetikett uten faktisk politisk påstand eller datagrunnlag"
     ],
     "secondary_politikk_tag_allowed": true
   },
@@ -388,12 +405,17 @@
     "critical_distinction_definition": "Begrepsskillet spørsmålet faktisk tester.",
     "theory_concept_definition": "Valgfritt teoretisk begrep som forklarer eller sammenligner mekanismen.",
     "case_anchor_definition": "Konkret institusjon, dokument, tjeneste, plan, budsjett eller offentlig prosess.",
-    "opening_sets_metadata_rule": "Metadata kan inneholde emne, metode og mekanisme, men synlig spørsmålstekst i sett 1–2 skal være vanlig faktaspråk."
+    "opening_sets_metadata_rule": "Metadata kan inneholde emne, metode og mekanisme, men synlig spørsmålstekst i sett 1–2 skal være vanlig faktaspråk.",
+    "political_science_domain_id_required": true,
+    "unit_of_analysis_required": true,
+    "defined_outcome_required": true,
+    "method_or_design_required": true,
+    "scope_condition_required": true
   },
   "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For politikk skal konkrete institusjoner, lover, vedtak, reformer, offentlige rom, rettsbygg, forvaltningssteder, demokratiske arenaer, velferdstjenester, konflikter, proteststeder, normsystemer, fordelingsdata, rettskilder, budsjett, reguleringsplaner, statistikk og samfunnsfaglige kilder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
   "migration_note": "Eksisterende places_politikk og people_politikk bør migreres til em_pol_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er politikk og ikke by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller annet fag.",
   "updated_at": "2026-07-24",
-  "quality_revision": "politikk-two-normal-opening-sets-2026-07-24",
+  "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
   "domain_quality_profiles": {
     "styring_institusjoner_forvaltning": {
       "status": "complete_revised",
@@ -2076,6 +2098,225 @@
         "ban_identity_essence_questions": true,
         "ban_theorist_name_as_answer_without_concept": true
       }
+    },
+    "komparativ_politikk_regimer_institusjoner": {
+      "status": "complete_revised",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "required_question_chain": [
+        "external_source",
+        "unit_of_analysis",
+        "defined_outcome",
+        "mechanism_or_institutional_rule",
+        "method_or_design",
+        "competing_explanation_or_critical_distinction",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "required_mapping_fields": [
+        "recommended_method_ids",
+        "mechanism_options",
+        "critical_distinction_options",
+        "theory_lenses",
+        "required_anchor_types"
+      ],
+      "revised_method_ids": [
+        "met_pol_komparativ_institusjonsanalyse",
+        "met_pol_regime_og_demokratiseringsanalyse",
+        "met_pol_komparativt_forskningsdesign",
+        "met_pol_prosessporing"
+      ],
+      "hook_count": 10,
+      "method_selection_rule": "Metoden velges etter påstand, analyseenhet, datakilde og inferensbehov.",
+      "theory_rule": "Teori kommer etter ekstern dokumentasjon og metode, og må forklare eller sammenligne mekanismen.",
+      "rejection_rules": [
+        "avvis teoretikernavn som løsrevet svar",
+        "avvis komparasjon uten sammenlignbare indikatorer",
+        "avvis kausal påstand uten design eller mekanisme",
+        "avvis generalisering uten scope condition"
+      ]
+    },
+    "valg_partier_velgeratferd": {
+      "status": "complete_revised",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "required_question_chain": [
+        "external_source",
+        "unit_of_analysis",
+        "defined_outcome",
+        "mechanism_or_institutional_rule",
+        "method_or_design",
+        "competing_explanation_or_critical_distinction",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "required_mapping_fields": [
+        "recommended_method_ids",
+        "mechanism_options",
+        "critical_distinction_options",
+        "theory_lenses",
+        "required_anchor_types"
+      ],
+      "revised_method_ids": [
+        "met_pol_valgsystemanalyse",
+        "met_pol_partisystemanalyse",
+        "met_pol_velgeratferdsanalyse",
+        "met_pol_regjerings_og_koalisjonsanalyse",
+        "met_pol_survey_og_valgdataanalyse"
+      ],
+      "hook_count": 10,
+      "method_selection_rule": "Metoden velges etter påstand, analyseenhet, datakilde og inferensbehov.",
+      "theory_rule": "Teori kommer etter ekstern dokumentasjon og metode, og må forklare eller sammenligne mekanismen.",
+      "rejection_rules": [
+        "avvis teoretikernavn som løsrevet svar",
+        "avvis komparasjon uten sammenlignbare indikatorer",
+        "avvis kausal påstand uten design eller mekanisme",
+        "avvis generalisering uten scope condition"
+      ]
+    },
+    "offentlig_politikk_beslutning_implementering": {
+      "status": "complete_revised",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "required_question_chain": [
+        "external_source",
+        "unit_of_analysis",
+        "defined_outcome",
+        "mechanism_or_institutional_rule",
+        "method_or_design",
+        "competing_explanation_or_critical_distinction",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "required_mapping_fields": [
+        "recommended_method_ids",
+        "mechanism_options",
+        "critical_distinction_options",
+        "theory_lenses",
+        "required_anchor_types"
+      ],
+      "revised_method_ids": [
+        "met_pol_policyprosessanalyse",
+        "met_pol_policy_design_og_virkemiddelanalyse",
+        "met_pol_implementeringsanalyse",
+        "met_pol_policy_evaluering",
+        "met_pol_prosessporing"
+      ],
+      "hook_count": 10,
+      "method_selection_rule": "Metoden velges etter påstand, analyseenhet, datakilde og inferensbehov.",
+      "theory_rule": "Teori kommer etter ekstern dokumentasjon og metode, og må forklare eller sammenligne mekanismen.",
+      "rejection_rules": [
+        "avvis teoretikernavn som løsrevet svar",
+        "avvis komparasjon uten sammenlignbare indikatorer",
+        "avvis kausal påstand uten design eller mekanisme",
+        "avvis generalisering uten scope condition"
+      ]
+    },
+    "internasjonal_politikk_sikkerhet_samarbeid": {
+      "status": "complete_revised",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "required_question_chain": [
+        "external_source",
+        "unit_of_analysis",
+        "defined_outcome",
+        "mechanism_or_institutional_rule",
+        "method_or_design",
+        "competing_explanation_or_critical_distinction",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "required_mapping_fields": [
+        "recommended_method_ids",
+        "mechanism_options",
+        "critical_distinction_options",
+        "theory_lenses",
+        "required_anchor_types"
+      ],
+      "revised_method_ids": [
+        "met_pol_internasjonal_politisk_analyse",
+        "met_pol_utenrikspolitisk_analyse",
+        "met_pol_komparativt_forskningsdesign",
+        "met_pol_prosessporing"
+      ],
+      "hook_count": 10,
+      "method_selection_rule": "Metoden velges etter påstand, analyseenhet, datakilde og inferensbehov.",
+      "theory_rule": "Teori kommer etter ekstern dokumentasjon og metode, og må forklare eller sammenligne mekanismen.",
+      "rejection_rules": [
+        "avvis teoretikernavn som løsrevet svar",
+        "avvis komparasjon uten sammenlignbare indikatorer",
+        "avvis kausal påstand uten design eller mekanisme",
+        "avvis generalisering uten scope condition"
+      ]
+    },
+    "politisk_okonomi_stat_marked": {
+      "status": "complete_revised",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "required_question_chain": [
+        "external_source",
+        "unit_of_analysis",
+        "defined_outcome",
+        "mechanism_or_institutional_rule",
+        "method_or_design",
+        "competing_explanation_or_critical_distinction",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "required_mapping_fields": [
+        "recommended_method_ids",
+        "mechanism_options",
+        "critical_distinction_options",
+        "theory_lenses",
+        "required_anchor_types"
+      ],
+      "revised_method_ids": [
+        "met_pol_politisk_okonomianalyse",
+        "met_pol_policy_design_og_virkemiddelanalyse",
+        "met_pol_komparativ_institusjonsanalyse",
+        "met_pol_kausalt_forskningsdesign"
+      ],
+      "hook_count": 10,
+      "method_selection_rule": "Metoden velges etter påstand, analyseenhet, datakilde og inferensbehov.",
+      "theory_rule": "Teori kommer etter ekstern dokumentasjon og metode, og må forklare eller sammenligne mekanismen.",
+      "rejection_rules": [
+        "avvis teoretikernavn som løsrevet svar",
+        "avvis komparasjon uten sammenlignbare indikatorer",
+        "avvis kausal påstand uten design eller mekanisme",
+        "avvis generalisering uten scope condition"
+      ]
+    },
+    "statsvitenskapelig_metode_og_sammenligning": {
+      "status": "complete_revised",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "required_question_chain": [
+        "external_source",
+        "unit_of_analysis",
+        "defined_outcome",
+        "mechanism_or_institutional_rule",
+        "method_or_design",
+        "competing_explanation_or_critical_distinction",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "required_mapping_fields": [
+        "recommended_method_ids",
+        "mechanism_options",
+        "critical_distinction_options",
+        "theory_lenses",
+        "required_anchor_types"
+      ],
+      "revised_method_ids": [
+        "met_pol_kausalt_forskningsdesign",
+        "met_pol_komparativt_forskningsdesign",
+        "met_pol_prosessporing",
+        "met_pol_survey_og_valgdataanalyse",
+        "met_pol_dokumentanalyse"
+      ],
+      "hook_count": 10,
+      "method_selection_rule": "Metoden velges etter påstand, analyseenhet, datakilde og inferensbehov.",
+      "theory_rule": "Teori kommer etter ekstern dokumentasjon og metode, og må forklare eller sammenligne mekanismen.",
+      "rejection_rules": [
+        "avvis teoretikernavn som løsrevet svar",
+        "avvis komparasjon uten sammenlignbare indikatorer",
+        "avvis kausal påstand uten design eller mekanisme",
+        "avvis generalisering uten scope condition"
+      ]
     }
   },
   "opening_normal_quiz_contract": {
@@ -2141,44 +2382,77 @@
     "no_exceptions_for_advanced_places": true
   },
   "analytical_domain_rotation_after_opening": {
-    "status": "required",
-    "begins_after_set": 2,
-    "domains": [
+    "status": "active",
+    "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+    "minimum_core_domain_share": 0.67,
+    "rotation_order": [
       "styring_institusjoner_forvaltning",
       "demokrati_representasjon_offentlighet",
+      "komparativ_politikk_regimer_institusjoner",
+      "valg_partier_velgeratferd",
+      "offentlig_politikk_beslutning_implementering",
+      "internasjonal_politikk_sikkerhet_samarbeid",
+      "politisk_okonomi_stat_marked",
+      "statsvitenskapelig_metode_og_sammenligning",
       "rett_lov_rettssikkerhet",
       "fordeling_velferd_ulikhet",
       "konflikt_makt_sivilsamfunn",
       "normer_identitet_hverdagsliv"
     ],
-    "preserved_styring_guidance_from_previous_set_2": {
-      "name": "styring_institusjoner_forvaltning",
-      "dominant_driver": "konkret institusjon, forvaltningsbygg, offentlig tjeneste, byråkrati, budsjett, reguleringsplan, administrativ praksis eller legitimitet",
-      "canonical_role": "lett til middels metodeføring",
-      "allowed_methods": [
-        "met_pol_institusjonsanalyse",
-        "met_pol_forvaltningsanalyse",
-        "met_pol_lokalpolitisk_analyse",
-        "met_pol_plan_og_reguleringsanalyse",
-        "met_pol_legitimitetsanalyse",
-        "met_pol_teknokrati_og_ekspertanalyse",
-        "met_pol_budsjett_og_fordelingsanalyse",
-        "met_pol_praksisanalyse",
-        "met_pol_rettslig_analyse",
-        "met_pol_velferdsstatlig_analyse",
-        "met_pol_dokumentanalyse",
-        "met_pol_romlig_maktanalyse"
-      ],
-      "question_style": "dokumentert styringscase -> presis påstand -> mekanisme -> distinksjon -> eventuell teoriforklaring",
-      "required_question_chain": [
-        "external_case_or_document",
-        "claim_basis",
-        "mechanism",
-        "critical_distinction",
-        "optional_theory_lens"
-      ],
-      "method_selection_policy": "Velg metode etter mekanisme og kildetype; ikke roter metoder tilfeldig."
-    },
-    "rule": "Alle seks domener skal kunne brukes etter de 14 normale åpningsspørsmålene. Styringsdomenet skal ikke gå tapt når sett 2 reserveres til normalquiz."
+    "rule": "Etter åpningen skal settene rotere mellom statsvitenskapelige hoveddomener før støtte- og brodomener overvektes."
+  },
+  "disciplinary_profile": {
+    "primary_discipline": "statsvitenskap",
+    "level": "bachelor_core",
+    "political_science_core_domain_count": 8,
+    "supporting_bridge_domain_count": 4,
+    "core_subfields": [
+      "political institutions",
+      "comparative politics",
+      "electoral politics",
+      "public policy",
+      "international relations",
+      "political economy",
+      "political methodology"
+    ],
+    "supporting_fields": [
+      "political sociology",
+      "sociology of law",
+      "social policy",
+      "norm and identity analysis"
+    ],
+    "design_rule": "Statsvitenskapelige forklaringer skal dominere kategorien. Støttefag brukes når de presiserer mekanisme, konsekvens eller normativ konflikt."
+  },
+  "political_science_core_contract": {
+    "required_core_share": 0.67,
+    "core_domain_ids": [
+      "styring_institusjoner_forvaltning",
+      "demokrati_representasjon_offentlighet",
+      "komparativ_politikk_regimer_institusjoner",
+      "valg_partier_velgeratferd",
+      "offentlig_politikk_beslutning_implementering",
+      "internasjonal_politikk_sikkerhet_samarbeid",
+      "politisk_okonomi_stat_marked",
+      "statsvitenskapelig_metode_og_sammenligning"
+    ],
+    "supporting_domain_ids": [
+      "rett_lov_rettssikkerhet",
+      "fordeling_velferd_ulikhet",
+      "konflikt_makt_sivilsamfunn",
+      "normer_identitet_hverdagsliv"
+    ],
+    "required_claim_chain": [
+      "external_source",
+      "unit_of_analysis",
+      "defined_outcome",
+      "institution_actor_or_system_mechanism",
+      "method_or_design",
+      "competing_explanation_or_critical_distinction",
+      "scope_condition",
+      "optional_theory"
+    ],
+    "comparative_rule": "Sammenligninger krever begrunnet caseutvalg og sammenlignbare indikatorer.",
+    "causal_rule": "Kausale påstander krever mekanisme, kontrafaktisk design eller eksplisitt identifikasjonsstrategi.",
+    "support_field_rule": "Sosiologiske, rettslige og normative perspektiver skal presisere, ikke erstatte, statsvitenskapelig analyseenhet og forklaring."
   }
 }

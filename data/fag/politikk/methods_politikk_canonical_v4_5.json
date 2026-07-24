@@ -4,7 +4,7 @@
   "subject_title": "Politikk & samfunn",
   "scope": "oslo_og_omegn",
   "type": "methods",
-  "purpose": "Metodekatalog for Politikk & samfunn i History Go. Metodene skal sikre at politikkspørsmål starter i konkret institusjon, lov, reform, offentlig rom, fordeling, rett, konflikt, norm, velferdstjeneste eller dokumentert samfunnsfaglig kilde før teori brukes som tolkningsramme.",
+  "purpose": "Statsvitenskapelig metodekatalog for Politikk & samfunn. Metodene dekker institusjoner, valg, offentlig politikk, internasjonal politikk, politisk økonomi, komparasjon og kausal inferens, med støtte fra rettslige og sosiologiske analyser.",
   "updated_at": "2026-07-24",
   "canonical_inputs": {
     "fagkart": "fagkart_politikk_canonical_v4_5.json",
@@ -8660,9 +8660,2631 @@
       "quality_revisions": [
         "politikk-fordeling-vertical-2026-07-24"
       ]
+    },
+    {
+      "method_id": "met_pol_komparativ_institusjonsanalyse",
+      "title": "Komparativ institusjonsanalyse",
+      "short_label": "Komparativ institusjonsanalyse",
+      "description": "Sammenligner hvordan institusjonell utforming påvirker politiske utfall på tvers av case.",
+      "best_for_emne_kinds": [
+        "komparativ_politikk_regimer_institusjoner"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "komparativ_politikk_regimer_institusjoner"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "komparativ_politikk_regimer_institusjoner": {
+          "definition": "Sammenligner hvordan institusjonell utforming påvirker politiske utfall på tvers av case.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "institusjonell variasjon",
+            "vetopunkter",
+            "ansvarliggjøring",
+            "statskapasitet"
+          ],
+          "critical_distinctions": [
+            "institusjon vs organisasjon",
+            "korrelert forskjell vs kausal institusjonseffekt"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Sammenligner hvordan institusjonell utforming påvirker politiske utfall på tvers av case.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "institusjonell variasjon",
+        "vetopunkter",
+        "ansvarliggjøring",
+        "statskapasitet"
+      ],
+      "critical_distinctions": [
+        "institusjon vs organisasjon",
+        "korrelert forskjell vs kausal institusjonseffekt"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_regime_og_demokratiseringsanalyse",
+      "title": "Regime- og demokratiseringsanalyse",
+      "short_label": "Regime- og demokratiseringsanalyse",
+      "description": "Analyserer demokratisk konkurranse, deltakelse, rettsstat, autoritær kontroll og regimeendring.",
+      "best_for_emne_kinds": [
+        "komparativ_politikk_regimer_institusjoner"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "komparativ_politikk_regimer_institusjoner"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "komparativ_politikk_regimer_institusjoner": {
+          "definition": "Analyserer demokratisk konkurranse, deltakelse, rettsstat, autoritær kontroll og regimeendring.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "regimeklassifikasjon",
+            "demokratisering",
+            "autoritarisering",
+            "kontrollmekanisme"
+          ],
+          "critical_distinctions": [
+            "valg vs demokrati",
+            "regjeringsskifte vs regimeendring"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Analyserer demokratisk konkurranse, deltakelse, rettsstat, autoritær kontroll og regimeendring.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "regimeklassifikasjon",
+        "demokratisering",
+        "autoritarisering",
+        "kontrollmekanisme"
+      ],
+      "critical_distinctions": [
+        "valg vs demokrati",
+        "regjeringsskifte vs regimeendring"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_valgsystemanalyse",
+      "title": "Valgsystemanalyse",
+      "short_label": "Valgsystemanalyse",
+      "description": "Analyserer hvordan valgkretser, sperregrenser og mandatformler omsetter stemmer til representasjon.",
+      "best_for_emne_kinds": [
+        "valg_partier_velgeratferd"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "valg_partier_velgeratferd"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "valg_partier_velgeratferd": {
+          "definition": "Analyserer hvordan valgkretser, sperregrenser og mandatformler omsetter stemmer til representasjon.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "mandatfordeling",
+            "proporsjonalitet",
+            "strategisk tilpasning",
+            "valgkrets"
+          ],
+          "critical_distinctions": [
+            "stemmer vs mandater",
+            "proporsjonalitet vs styringsdannelse"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan valgkretser, sperregrenser og mandatformler omsetter stemmer til representasjon.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "mandatfordeling",
+        "proporsjonalitet",
+        "strategisk tilpasning",
+        "valgkrets"
+      ],
+      "critical_distinctions": [
+        "stemmer vs mandater",
+        "proporsjonalitet vs styringsdannelse"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_partisystemanalyse",
+      "title": "Partisystemanalyse",
+      "short_label": "Partisystemanalyse",
+      "description": "Analyserer konfliktlinjer, partifragmentering, polarisering og konkurransestruktur.",
+      "best_for_emne_kinds": [
+        "valg_partier_velgeratferd"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "valg_partier_velgeratferd"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "valg_partier_velgeratferd": {
+          "definition": "Analyserer konfliktlinjer, partifragmentering, polarisering og konkurransestruktur.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "konfliktlinje",
+            "fragmentering",
+            "polarisering",
+            "partikonkurranse"
+          ],
+          "critical_distinctions": [
+            "parti vs sak",
+            "fragmentering vs polarisering"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Analyserer konfliktlinjer, partifragmentering, polarisering og konkurransestruktur.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "konfliktlinje",
+        "fragmentering",
+        "polarisering",
+        "partikonkurranse"
+      ],
+      "critical_distinctions": [
+        "parti vs sak",
+        "fragmentering vs polarisering"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_velgeratferdsanalyse",
+      "title": "Velgeratferdsanalyse",
+      "short_label": "Velgeratferdsanalyse",
+      "description": "Analyserer hvordan identifikasjon, saker, økonomi, kandidater og strategi påvirker partivalg.",
+      "best_for_emne_kinds": [
+        "valg_partier_velgeratferd"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "valg_partier_velgeratferd"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "valg_partier_velgeratferd": {
+          "definition": "Analyserer hvordan identifikasjon, saker, økonomi, kandidater og strategi påvirker partivalg.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "partiidentifikasjon",
+            "sakstemmegivning",
+            "økonomisk stemmegivning",
+            "strategisk stemme"
+          ],
+          "critical_distinctions": [
+            "holdning vs stemme",
+            "korrelasjon vs kausalitet"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan identifikasjon, saker, økonomi, kandidater og strategi påvirker partivalg.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "partiidentifikasjon",
+        "sakstemmegivning",
+        "økonomisk stemmegivning",
+        "strategisk stemme"
+      ],
+      "critical_distinctions": [
+        "holdning vs stemme",
+        "korrelasjon vs kausalitet"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_regjerings_og_koalisjonsanalyse",
+      "title": "Regjerings- og koalisjonsanalyse",
+      "short_label": "Regjerings- og koalisjonsanalyse",
+      "description": "Analyserer regjeringsdannelse, porteføljefordeling, støtteavtaler og parlamentarisk overlevelse.",
+      "best_for_emne_kinds": [
+        "valg_partier_velgeratferd"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "valg_partier_velgeratferd"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "valg_partier_velgeratferd": {
+          "definition": "Analyserer regjeringsdannelse, porteføljefordeling, støtteavtaler og parlamentarisk overlevelse.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "koalisjonsdannelse",
+            "porteføljefordeling",
+            "tillit",
+            "mindretallsstrategi"
+          ],
+          "critical_distinctions": [
+            "valgresultat vs regjeringsmakt",
+            "mindretall vs svakhet"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Analyserer regjeringsdannelse, porteføljefordeling, støtteavtaler og parlamentarisk overlevelse.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "koalisjonsdannelse",
+        "porteføljefordeling",
+        "tillit",
+        "mindretallsstrategi"
+      ],
+      "critical_distinctions": [
+        "valgresultat vs regjeringsmakt",
+        "mindretall vs svakhet"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_policyprosessanalyse",
+      "title": "Policyprosessanalyse",
+      "short_label": "Policyprosessanalyse",
+      "description": "Følger problemdefinisjon, dagsorden, beslutning, implementering og feedback som en sammenhengende prosess.",
+      "best_for_emne_kinds": [
+        "offentlig_politikk_beslutning_implementering"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "offentlig_politikk_beslutning_implementering"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "offentlig_politikk_beslutning_implementering": {
+          "definition": "Følger problemdefinisjon, dagsorden, beslutning, implementering og feedback som en sammenhengende prosess.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "dagsorden",
+            "beslutning",
+            "implementering",
+            "feedback"
+          ],
+          "critical_distinctions": [
+            "problem vs problemdefinisjon",
+            "vedtak vs virkning"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Følger problemdefinisjon, dagsorden, beslutning, implementering og feedback som en sammenhengende prosess.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "dagsorden",
+        "beslutning",
+        "implementering",
+        "feedback"
+      ],
+      "critical_distinctions": [
+        "problem vs problemdefinisjon",
+        "vedtak vs virkning"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_policy_design_og_virkemiddelanalyse",
+      "title": "Policy design- og virkemiddelanalyse",
+      "short_label": "Policy design- og virkemiddelanalyse",
+      "description": "Vurderer koblingen mellom mål, målgruppe, atferdsantakelse, virkemiddel og administrativ kapasitet.",
+      "best_for_emne_kinds": [
+        "offentlig_politikk_beslutning_implementering",
+        "politisk_okonomi_stat_marked"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "offentlig_politikk_beslutning_implementering",
+        "politisk_okonomi_stat_marked"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "offentlig_politikk_beslutning_implementering": {
+          "definition": "Vurderer koblingen mellom mål, målgruppe, atferdsantakelse, virkemiddel og administrativ kapasitet.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "virkemiddelvalg",
+            "insentiv",
+            "regulering",
+            "tjenestekapasitet"
+          ],
+          "critical_distinctions": [
+            "mål vs virkemiddel",
+            "regel vs faktisk effekt"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        },
+        "politisk_okonomi_stat_marked": {
+          "definition": "Vurderer koblingen mellom mål, målgruppe, atferdsantakelse, virkemiddel og administrativ kapasitet.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "virkemiddelvalg",
+            "insentiv",
+            "regulering",
+            "tjenestekapasitet"
+          ],
+          "critical_distinctions": [
+            "mål vs virkemiddel",
+            "regel vs faktisk effekt"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Vurderer koblingen mellom mål, målgruppe, atferdsantakelse, virkemiddel og administrativ kapasitet.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "virkemiddelvalg",
+        "insentiv",
+        "regulering",
+        "tjenestekapasitet"
+      ],
+      "critical_distinctions": [
+        "mål vs virkemiddel",
+        "regel vs faktisk effekt"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_implementeringsanalyse",
+      "title": "Implementeringsanalyse",
+      "short_label": "Implementeringsanalyse",
+      "description": "Analyserer hvordan ressurser, organisasjon, skjønn og brukermøter oversetter vedtak til praksis.",
+      "best_for_emne_kinds": [
+        "offentlig_politikk_beslutning_implementering"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "offentlig_politikk_beslutning_implementering"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "offentlig_politikk_beslutning_implementering": {
+          "definition": "Analyserer hvordan ressurser, organisasjon, skjønn og brukermøter oversetter vedtak til praksis.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "skjønn",
+            "kapasitet",
+            "organisasjonsrutine",
+            "brukermøte"
+          ],
+          "critical_distinctions": [
+            "vedtak vs praksis",
+            "skjønn vs vilkårlighet"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan ressurser, organisasjon, skjønn og brukermøter oversetter vedtak til praksis.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "skjønn",
+        "kapasitet",
+        "organisasjonsrutine",
+        "brukermøte"
+      ],
+      "critical_distinctions": [
+        "vedtak vs praksis",
+        "skjønn vs vilkårlighet"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_policy_evaluering",
+      "title": "Policyevaluering",
+      "short_label": "Policyevaluering",
+      "description": "Vurderer output, outcome, impact, fordelingsvirkning og kausal effekt av offentlig politikk.",
+      "best_for_emne_kinds": [
+        "offentlig_politikk_beslutning_implementering"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "offentlig_politikk_beslutning_implementering"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "offentlig_politikk_beslutning_implementering": {
+          "definition": "Vurderer output, outcome, impact, fordelingsvirkning og kausal effekt av offentlig politikk.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "effektmåling",
+            "kontrafaktisk",
+            "fordelingsvirkning",
+            "målevaliditet"
+          ],
+          "critical_distinctions": [
+            "output vs outcome vs impact",
+            "korrelasjon vs effekt"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Vurderer output, outcome, impact, fordelingsvirkning og kausal effekt av offentlig politikk.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "effektmåling",
+        "kontrafaktisk",
+        "fordelingsvirkning",
+        "målevaliditet"
+      ],
+      "critical_distinctions": [
+        "output vs outcome vs impact",
+        "korrelasjon vs effekt"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_internasjonal_politisk_analyse",
+      "title": "Internasjonal-politisk analyse",
+      "short_label": "Internasjonal-politisk analyse",
+      "description": "Analyserer maktfordeling, anarki, institusjoner, normer, avhengighet og sikkerhetsmekanismer.",
+      "best_for_emne_kinds": [
+        "internasjonal_politikk_sikkerhet_samarbeid"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "internasjonal_politikk_sikkerhet_samarbeid"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "internasjonal_politikk_sikkerhet_samarbeid": {
+          "definition": "Analyserer maktfordeling, anarki, institusjoner, normer, avhengighet og sikkerhetsmekanismer.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "maktbalanse",
+            "sikkerhetsdilemma",
+            "institusjonelt samarbeid",
+            "normspredning"
+          ],
+          "critical_distinctions": [
+            "systemnivå vs utenrikspolitisk valg",
+            "kapabilitet vs intensjon"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Analyserer maktfordeling, anarki, institusjoner, normer, avhengighet og sikkerhetsmekanismer.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "maktbalanse",
+        "sikkerhetsdilemma",
+        "institusjonelt samarbeid",
+        "normspredning"
+      ],
+      "critical_distinctions": [
+        "systemnivå vs utenrikspolitisk valg",
+        "kapabilitet vs intensjon"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_utenrikspolitisk_analyse",
+      "title": "Utenrikspolitisk analyse",
+      "short_label": "Utenrikspolitisk analyse",
+      "description": "Analyserer hvordan ledere, byråkratier, partier, opinion og internasjonalt press former statlige valg.",
+      "best_for_emne_kinds": [
+        "internasjonal_politikk_sikkerhet_samarbeid"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "internasjonal_politikk_sikkerhet_samarbeid"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "internasjonal_politikk_sikkerhet_samarbeid": {
+          "definition": "Analyserer hvordan ledere, byråkratier, partier, opinion og internasjonalt press former statlige valg.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "byråkratisk politikk",
+            "lederoppfatning",
+            "to-nivåspill",
+            "alliansepress"
+          ],
+          "critical_distinctions": [
+            "stat som enhet vs intern prosess",
+            "retorikk vs implementering"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan ledere, byråkratier, partier, opinion og internasjonalt press former statlige valg.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "byråkratisk politikk",
+        "lederoppfatning",
+        "to-nivåspill",
+        "alliansepress"
+      ],
+      "critical_distinctions": [
+        "stat som enhet vs intern prosess",
+        "retorikk vs implementering"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_politisk_okonomianalyse",
+      "title": "Politisk-økonomisk analyse",
+      "short_label": "Politisk-økonomisk analyse",
+      "description": "Analyserer hvordan institusjoner, interesser og makt former markeder, skatt, regulering og fordeling.",
+      "best_for_emne_kinds": [
+        "politisk_okonomi_stat_marked"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "politisk_okonomi_stat_marked"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "politisk_okonomi_stat_marked": {
+          "definition": "Analyserer hvordan institusjoner, interesser og makt former markeder, skatt, regulering og fordeling.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "beskatning",
+            "regulering",
+            "kollektiv forhandling",
+            "kapitalmobilitet"
+          ],
+          "critical_distinctions": [
+            "effektivitet vs fordeling",
+            "marked vs fravær av politikk"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Analyserer hvordan institusjoner, interesser og makt former markeder, skatt, regulering og fordeling.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "beskatning",
+        "regulering",
+        "kollektiv forhandling",
+        "kapitalmobilitet"
+      ],
+      "critical_distinctions": [
+        "effektivitet vs fordeling",
+        "marked vs fravær av politikk"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_kausalt_forskningsdesign",
+      "title": "Kausalt forskningsdesign",
+      "short_label": "Kausalt forskningsdesign",
+      "description": "Tester årsakspåstander gjennom kontrafaktiske sammenligninger, identifikasjon og alternative forklaringer.",
+      "best_for_emne_kinds": [
+        "statsvitenskapelig_metode_og_sammenligning",
+        "offentlig_politikk_beslutning_implementering"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "statsvitenskapelig_metode_og_sammenligning",
+        "offentlig_politikk_beslutning_implementering"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "statsvitenskapelig_metode_og_sammenligning": {
+          "definition": "Tester årsakspåstander gjennom kontrafaktiske sammenligninger, identifikasjon og alternative forklaringer.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "kontrafaktisk",
+            "identifikasjon",
+            "robusthet",
+            "heterogen effekt"
+          ],
+          "critical_distinctions": [
+            "korrelasjon vs kausalitet",
+            "forklaring vs prediksjon"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        },
+        "offentlig_politikk_beslutning_implementering": {
+          "definition": "Tester årsakspåstander gjennom kontrafaktiske sammenligninger, identifikasjon og alternative forklaringer.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "kontrafaktisk",
+            "identifikasjon",
+            "robusthet",
+            "heterogen effekt"
+          ],
+          "critical_distinctions": [
+            "korrelasjon vs kausalitet",
+            "forklaring vs prediksjon"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Tester årsakspåstander gjennom kontrafaktiske sammenligninger, identifikasjon og alternative forklaringer.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "kontrafaktisk",
+        "identifikasjon",
+        "robusthet",
+        "heterogen effekt"
+      ],
+      "critical_distinctions": [
+        "korrelasjon vs kausalitet",
+        "forklaring vs prediksjon"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_komparativt_forskningsdesign",
+      "title": "Komparativt forskningsdesign",
+      "short_label": "Komparativt forskningsdesign",
+      "description": "Bruker systematisk caseutvalg og mest-like/mest-ulike design til å teste forklaringer.",
+      "best_for_emne_kinds": [
+        "statsvitenskapelig_metode_og_sammenligning",
+        "komparativ_politikk_regimer_institusjoner"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "statsvitenskapelig_metode_og_sammenligning",
+        "komparativ_politikk_regimer_institusjoner"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "statsvitenskapelig_metode_og_sammenligning": {
+          "definition": "Bruker systematisk caseutvalg og mest-like/mest-ulike design til å teste forklaringer.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "caseutvalg",
+            "MSSD",
+            "MDSD",
+            "analytisk generalisering"
+          ],
+          "critical_distinctions": [
+            "case vs observasjon",
+            "teoretisk relevans vs representativitet"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        },
+        "komparativ_politikk_regimer_institusjoner": {
+          "definition": "Bruker systematisk caseutvalg og mest-like/mest-ulike design til å teste forklaringer.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "caseutvalg",
+            "MSSD",
+            "MDSD",
+            "analytisk generalisering"
+          ],
+          "critical_distinctions": [
+            "case vs observasjon",
+            "teoretisk relevans vs representativitet"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Bruker systematisk caseutvalg og mest-like/mest-ulike design til å teste forklaringer.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "caseutvalg",
+        "MSSD",
+        "MDSD",
+        "analytisk generalisering"
+      ],
+      "critical_distinctions": [
+        "case vs observasjon",
+        "teoretisk relevans vs representativitet"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_prosessporing",
+      "title": "Prosessporing",
+      "short_label": "Prosessporing",
+      "description": "Tester om dokumenterte mellomledd og sekvenser støtter en spesifisert årsaksmekanisme.",
+      "best_for_emne_kinds": [
+        "statsvitenskapelig_metode_og_sammenligning",
+        "offentlig_politikk_beslutning_implementering",
+        "internasjonal_politikk_sikkerhet_samarbeid"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "statsvitenskapelig_metode_og_sammenligning",
+        "offentlig_politikk_beslutning_implementering",
+        "internasjonal_politikk_sikkerhet_samarbeid"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "statsvitenskapelig_metode_og_sammenligning": {
+          "definition": "Tester om dokumenterte mellomledd og sekvenser støtter en spesifisert årsaksmekanisme.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "sekvens",
+            "mekanisme",
+            "hoop test",
+            "alternative spor"
+          ],
+          "critical_distinctions": [
+            "sekvens vs årsak",
+            "indikasjon vs avgjørende bevis"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        },
+        "offentlig_politikk_beslutning_implementering": {
+          "definition": "Tester om dokumenterte mellomledd og sekvenser støtter en spesifisert årsaksmekanisme.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "sekvens",
+            "mekanisme",
+            "hoop test",
+            "alternative spor"
+          ],
+          "critical_distinctions": [
+            "sekvens vs årsak",
+            "indikasjon vs avgjørende bevis"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        },
+        "internasjonal_politikk_sikkerhet_samarbeid": {
+          "definition": "Tester om dokumenterte mellomledd og sekvenser støtter en spesifisert årsaksmekanisme.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "sekvens",
+            "mekanisme",
+            "hoop test",
+            "alternative spor"
+          ],
+          "critical_distinctions": [
+            "sekvens vs årsak",
+            "indikasjon vs avgjørende bevis"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Tester om dokumenterte mellomledd og sekvenser støtter en spesifisert årsaksmekanisme.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "sekvens",
+        "mekanisme",
+        "hoop test",
+        "alternative spor"
+      ],
+      "critical_distinctions": [
+        "sekvens vs årsak",
+        "indikasjon vs avgjørende bevis"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
+    },
+    {
+      "method_id": "met_pol_survey_og_valgdataanalyse",
+      "title": "Survey- og valgdataanalyse",
+      "short_label": "Survey- og valgdataanalyse",
+      "description": "Analyserer utvalg, måling, frafall, vekting og usikkerhet i velger- og opinionsdata.",
+      "best_for_emne_kinds": [
+        "statsvitenskapelig_metode_og_sammenligning",
+        "valg_partier_velgeratferd"
+      ],
+      "data_forms": [
+        "offisielle dokumenter",
+        "administrative data",
+        "valg- og surveydata",
+        "komparative case",
+        "fagfellevurdert forskning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "statsvitenskapelig_metode_og_sammenligning",
+        "valg_partier_velgeratferd"
+      ],
+      "progression_stage": "intermediate_to_advanced",
+      "good_for_place_types": [
+        "storting",
+        "departement",
+        "rådhus",
+        "universitet",
+        "arkiv",
+        "internasjonal institusjon"
+      ],
+      "question_moves": [
+        "definer analyseenhet og utfall",
+        "etabler claim_basis",
+        "identifiser mekanisme eller design",
+        "test alternativ forklaring",
+        "avgrens rekkevidde"
+      ],
+      "method_use_note": "Metoden styrer inferens og spørsmålskonstruksjon, men leverer aldri faktapåstanden alene.",
+      "rotation_note": "Roter mellom design, datakilder og case.",
+      "hook_affinities": [],
+      "emne_affinities": [],
+      "canonical_status": "canonical",
+      "registry_version": "politikkpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "institution_law_conflict_or_social_process_anchor_required": true,
+      "generator_constraints": {
+        "require_external_claim_basis": true,
+        "require_defined_unit_and_outcome": true,
+        "require_mechanism_or_identification": true,
+        "require_scope_condition": true,
+        "ban_method_label_as_answer": true
+      },
+      "domain_profiles": {
+        "statsvitenskapelig_metode_og_sammenligning": {
+          "definition": "Analyserer utvalg, måling, frafall, vekting og usikkerhet i velger- og opinionsdata.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "utvalgsdesign",
+            "spørsmålsmåling",
+            "vekting",
+            "statistisk usikkerhet"
+          ],
+          "critical_distinctions": [
+            "utvalg vs populasjon",
+            "statistisk vs substansiell betydning"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        },
+        "valg_partier_velgeratferd": {
+          "definition": "Analyserer utvalg, måling, frafall, vekting og usikkerhet i velger- og opinionsdata.",
+          "analytical_question": "Hvilken mekanisme eller identifikasjonsstrategi støtter påstanden?",
+          "evidence_inputs": [
+            "offisiell kilde",
+            "sammenlignbart datasett",
+            "dokumentert prosess",
+            "relevant forskning"
+          ],
+          "mechanism_focus": [
+            "utvalgsdesign",
+            "spørsmålsmåling",
+            "vekting",
+            "statistisk usikkerhet"
+          ],
+          "critical_distinctions": [
+            "utvalg vs populasjon",
+            "statistisk vs substansiell betydning"
+          ],
+          "output_requirements": [
+            "claim_basis",
+            "analyseenhet",
+            "utfall",
+            "mekanisme eller design",
+            "avgrensning"
+          ]
+        }
+      },
+      "quality_revisions": [
+        "politikk-statsvitenskap-core-expansion-2026-07-24"
+      ],
+      "definition": "Analyserer utvalg, måling, frafall, vekting og usikkerhet i velger- og opinionsdata.",
+      "analytical_question": "Hvilken dokumentasjon, sammenligning eller mekanisme gjør slutningen holdbar?",
+      "evidence_inputs": [
+        "offisielle dokumenter",
+        "datasett",
+        "arkiv",
+        "intervju eller survey med metodeopplysninger",
+        "fagfellevurdert forskning"
+      ],
+      "mechanism_focus": [
+        "utvalgsdesign",
+        "spørsmålsmåling",
+        "vekting",
+        "statistisk usikkerhet"
+      ],
+      "critical_distinctions": [
+        "utvalg vs populasjon",
+        "statistisk vs substansiell betydning"
+      ],
+      "compatible_anchor_types": [
+        "institution",
+        "document",
+        "dataset",
+        "election",
+        "treaty",
+        "policy",
+        "comparison_case"
+      ],
+      "question_build_sequence": [
+        "external_claim_basis",
+        "unit_and_outcome",
+        "method_or_design",
+        "mechanism",
+        "competing_explanation",
+        "scope_condition",
+        "optional_theory"
+      ],
+      "output_requirements": [
+        "presis påstand",
+        "etterprøvbar kilde",
+        "gyldig metode",
+        "kritisk distinksjon",
+        "avgrenset konklusjon"
+      ],
+      "anti_patterns": [
+        "metodenavn som fasit",
+        "kausal påstand fra korrelasjon alene",
+        "komparasjon uten sammenlignbare indikatorer",
+        "generalisering uten avgrensning"
+      ],
+      "mechanism_explanation_required": true,
+      "critical_distinction_required": true,
+      "theory_use_rule": "Teori brukes etter empirisk og metodisk forankring.",
+      "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24"
     }
   ],
-  "quality_revision": "politikk-konflikt-vertical-2026-07-24",
+  "quality_revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
   "method_quality_model": {
     "sequence": [
       "case_or_source",
@@ -8677,6 +11299,29 @@
   },
   "quality_revisions": [
     "politikk-fordeling-vertical-2026-07-24",
-    "politikk-konflikt-vertical-2026-07-24"
+    "politikk-konflikt-vertical-2026-07-24",
+    {
+      "revision": "politikk-statsvitenskap-core-expansion-2026-07-24",
+      "scope": "17 nye statsvitenskapelige metoder og bachelororientert metodekjerne"
+    }
+  ],
+  "political_science_method_core": [
+    "met_pol_komparativ_institusjonsanalyse",
+    "met_pol_regime_og_demokratiseringsanalyse",
+    "met_pol_valgsystemanalyse",
+    "met_pol_partisystemanalyse",
+    "met_pol_velgeratferdsanalyse",
+    "met_pol_regjerings_og_koalisjonsanalyse",
+    "met_pol_policyprosessanalyse",
+    "met_pol_policy_design_og_virkemiddelanalyse",
+    "met_pol_implementeringsanalyse",
+    "met_pol_policy_evaluering",
+    "met_pol_internasjonal_politisk_analyse",
+    "met_pol_utenrikspolitisk_analyse",
+    "met_pol_politisk_okonomianalyse",
+    "met_pol_kausalt_forskningsdesign",
+    "met_pol_komparativt_forskningsdesign",
+    "met_pol_prosessporing",
+    "met_pol_survey_og_valgdataanalyse"
   ]
 }
