@@ -1,0 +1,111 @@
+{
+  "version": "2026-07-24",
+  "protocolMaxBatch": 195,
+  "researchOnly": true,
+  "canonicalChanged": false,
+  "placeId": "gamlebyen_skole",
+  "placeName": "Gamlebyen skole",
+  "identityDecision": "resolved_gamlebyen_school_egedes_gate_3",
+  "coordinateDecision": "promote_official_school_address_point",
+  "currentCoordinate": {
+    "lat": 59.9036,
+    "lon": 10.7671
+  },
+  "candidate": {
+    "lat": 59.90681241,
+    "lon": 10.77044366,
+    "sourceProvider": "official_address",
+    "sourceObjectId": "geonorge-adresser-v1:0301:11412:3:59.90681241,10.77044366",
+    "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Egedes%20gate&nummer=3&kommunenummer=0301&treffPerSide=20",
+    "objectType": "school_address_point"
+  },
+  "displacementMeters": 402.9,
+  "officialAddress": {
+    "address": "Egedes gate 3, 0192 Oslo",
+    "coordinateCount": 1,
+    "coordinates": [
+      {
+        "lat": 59.90681241,
+        "lon": 10.77044366,
+        "sourceObjectId": "geonorge-adresser-v1:0301:11412:3:59.90681241,10.77044366",
+        "rowCount": 1,
+        "addressText": "Egedes gate 3"
+      }
+    ],
+    "selectionDecision": "unique_official_point_supported_by_school_identity_and_nearby_school_object"
+  },
+  "supportingOsmObject": {
+    "sourceObjectId": "osm-way:263309956",
+    "sourceUrl": "https://www.openstreetmap.org/way/263309956",
+    "coordinate": {
+      "lat": 59.9066177,
+      "lon": 10.7711027
+    },
+    "nearestAddressMeters": 42.6,
+    "score": 315,
+    "tags": {
+      "amenity": "school",
+      "capacity": "303",
+      "email": "postmottak@ude.oslo.kommune.no",
+      "fee": "no",
+      "grades": "1-7",
+      "isced:level": "1",
+      "name": "Gamlebyen skole",
+      "operator": "Oslo kommune",
+      "operator:type": "government",
+      "operator:wikidata": "Q5245991",
+      "phone": "+47 23 47 24 50",
+      "ref:NO:orgnr": "973626442",
+      "ref:udir_nsr": "973626442",
+      "website": "https://gamlebyen.osloskolen.no/",
+      "wikidata": "Q17194626",
+      "wikimedia_commons": "Category:Gamlebyen skole, Oslo"
+    }
+  },
+  "historyReview": {
+    "canonicalYear": 1799,
+    "officialFoundingYear": 1881,
+    "officialPageContains1881": true,
+    "mismatch": true,
+    "coordinateResearchChangedYear": false,
+    "nextAction": "Review canonical year separately; the official school profile states that Gamlebyen school was founded in 1881."
+  },
+  "sourceChecks": {
+    "officialSchoolIdentity": true,
+    "officialContactPageAddressShown": true,
+    "official1881FoundingYearShown": true,
+    "brregSubunitIdentityAndAddress": true,
+    "geonorgeExactAddressCoordinatesPreserved": true,
+    "namedNonTransportSchoolObjectFound": true,
+    "transportObjectsExcluded": true,
+    "fullSchoolPolygonValidated": true,
+    "officialAddressPointInsideSchoolGeometry": true,
+    "schoolRadiusCoversGeometry": true
+  },
+  "recommendation": {
+    "canBecomeVerified": true,
+    "nextAction": "Apply geonorge-adresser-v1:0301:11412:3:59.90681241,10.77044366 as the canonical display marker because it is the unique official Egedes gate 3 address point and lies inside named OSM school polygon 263309956; preserve official Osloskolen and Brønnøysund identity, retain the polygon as geometry support, add coordinate evidence, synchronize aggregate/index copies, and keep protocol max batch at 195. Review the canonical 1799 year separately against the official 1881 founding year.",
+    "coordStatus": "verified",
+    "coordType": "address_point",
+    "locatorType": "building",
+    "suggestedRadiusMeters": 150
+  },
+  "geometry": {
+    "sourceObjectId": "osm-way:263309956",
+    "sourceUrl": "https://www.openstreetmap.org/way/263309956",
+    "amenity": "school",
+    "name": "Gamlebyen skole",
+    "organisationNumber": "973626442",
+    "wikidata": "Q17194626",
+    "polygonNodeCount": 8,
+    "areaSquareMeters": 5852.5,
+    "centroid": {
+      "lat": 59.9066112,
+      "lon": 10.77104945
+    },
+    "candidateInsidePolygon": true,
+    "centroidInsidePolygon": true,
+    "addressToCentroidMeters": 40.5,
+    "maximumVertexDistanceMeters": 56.2
+  }
+}
