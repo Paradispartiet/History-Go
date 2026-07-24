@@ -1,0 +1,149 @@
+{
+  "version": "2026-07-24",
+  "protocolMaxBatch": 195,
+  "researchOnly": true,
+  "canonicalChanged": false,
+  "placeId": "forskningsparken",
+  "placeName": "Forskningsparken",
+  "identityDecision": "resolved_oslo_science_park_gaustadalleen_21",
+  "coordinateDecision": "promote_named_building_multipolygon_centroid",
+  "currentCoordinate": {
+    "lat": 59.9426,
+    "lon": 10.7192
+  },
+  "candidate": {
+    "lat": 59.94203365,
+    "lon": 10.71662635,
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-relation:10322880",
+    "sourceUrl": "https://www.openstreetmap.org/relation/10322880",
+    "objectType": "university_building_multipolygon_centroid",
+    "wikidata": "Q7107027"
+  },
+  "displacementMeters": 156.6,
+  "officialAddress": {
+    "address": "Gaustadalléen 21, 0349 Oslo",
+    "coordinateCount": 2,
+    "coordinates": [
+      {
+        "lat": 59.94228605,
+        "lon": 10.71674422,
+        "sourceObjectId": "geonorge-adresser-v1:0301:12199:21:59.94228605,10.71674422",
+        "rowCount": 1
+      },
+      {
+        "lat": 59.94190814,
+        "lon": 10.71583142,
+        "sourceObjectId": "geonorge-adresser-v1:0301:12199:21B:59.94190814,10.71583142",
+        "rowCount": 1
+      }
+    ],
+    "selectionDecision": "multiple_official_points_preserved_not_arbitrarily_selected"
+  },
+  "supportingGeometry": {
+    "sourceObjectId": "osm-relation:10322880",
+    "sourceUrl": "https://www.openstreetmap.org/relation/10322880",
+    "building": "university",
+    "name": "Forskningsparken",
+    "nameEn": "Oslo Science Park",
+    "website": "http://www.oslotech.no/forskningsparken/",
+    "wikidata": "Q7107027",
+    "outerRingCount": 4,
+    "resolvedNodeCount": 101,
+    "areaSquareMeters": 8761.9,
+    "centroidInsideOuter": true,
+    "maximumVertexDistanceMeters": 82.2,
+    "distancesToOfficialAddressPointsMeters": [
+      28.8,
+      46.4
+    ]
+  },
+  "rejectedTransportObjects": [
+    {
+      "sourceObjectId": "osm-way:84603232",
+      "name": "Forskningsparken",
+      "reason": "transport_object_not_science_park_building",
+      "distanceMeters": 310.2
+    },
+    {
+      "sourceObjectId": "osm-way:84603238",
+      "name": "Forskningsparken",
+      "reason": "transport_object_not_science_park_building",
+      "distanceMeters": 312.7
+    },
+    {
+      "sourceObjectId": "osm-way:238479320",
+      "name": "Forskningsparken",
+      "reason": "transport_object_not_science_park_building",
+      "distanceMeters": 316
+    },
+    {
+      "sourceObjectId": "osm-way:238479318",
+      "name": "Forskningsparken",
+      "reason": "transport_object_not_science_park_building",
+      "distanceMeters": 325
+    },
+    {
+      "sourceObjectId": "osm-node:5218231662",
+      "name": "Forskningsparken",
+      "reason": "transport_object_not_science_park_building",
+      "distanceMeters": 310.7
+    },
+    {
+      "sourceObjectId": "osm-node:2285904268",
+      "name": "Forskningsparken",
+      "reason": "transport_object_not_science_park_building",
+      "distanceMeters": 310.8
+    },
+    {
+      "sourceObjectId": "osm-relation:2902937",
+      "name": "Forskningsparken",
+      "reason": "transport_object_not_science_park_building",
+      "distanceMeters": 311.1
+    },
+    {
+      "sourceObjectId": "osm-node:2285904254",
+      "name": "Forskningsparken",
+      "reason": "transport_object_not_science_park_building",
+      "distanceMeters": 311.9
+    },
+    {
+      "sourceObjectId": "osm-node:450943347",
+      "name": "Forskningsparken",
+      "reason": "transport_object_not_science_park_building",
+      "distanceMeters": 318.9
+    },
+    {
+      "sourceObjectId": "osm-relation:3214978",
+      "name": "Forskningsparken",
+      "reason": "transport_object_not_science_park_building",
+      "distanceMeters": 320.4
+    },
+    {
+      "sourceObjectId": "osm-node:1334088009",
+      "name": "Forskningsparken",
+      "reason": "transport_object_not_science_park_building",
+      "distanceMeters": 322.3
+    }
+  ],
+  "sourceChecks": {
+    "officialAddressAndOrganisationNumber": true,
+    "official1989History": true,
+    "brregMainUnitIdentityAndAddress": true,
+    "brregOperatingUnitIdentityAndAddress": true,
+    "geonorgeExactAddressPointsPreserved": true,
+    "transportObjectsExcluded": true,
+    "namedNonTransportBuildingGeometryFound": true,
+    "exactBuildingRelationValidated": true,
+    "buildingCentroidInsideGeometry": true,
+    "buildingNearBothOfficialAddressPoints": true
+  },
+  "recommendation": {
+    "canBecomeVerified": true,
+    "nextAction": "Apply the area-weighted centroid of named OSM university-building relation 10322880 as the canonical display marker, preserve both Kartverket address points as context, synchronize aggregate/index copies and coordinate evidence, and keep protocol max batch at 195.",
+    "coordStatus": "verified_geometry",
+    "coordType": "building_center",
+    "locatorType": "building",
+    "suggestedRadiusMeters": 150
+  }
+}
