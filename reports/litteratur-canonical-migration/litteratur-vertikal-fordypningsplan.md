@@ -6,7 +6,7 @@ Revisjon: `litteratur-vertical-depth-plan-2026-07-24`
 
 Litteraturpensumet skal utvikles fra et bredt canonical fagkart til et vertikalt, progresjonsbasert bachelorpensum i litteraturvitenskap. Utvidelsen skjer direkte i aktive canonical-filer, uten overlay, parallell runtime eller løsrevne teorilister.
 
-**Samlet status:** Alle tre faser er faglig materialisert og validert. Fase 3 avventer bare ordinær Data-/TypeScript-sluttkontroll i PR #3711 før merge.
+**Samlet status:** Alle tre faser er gjennomført, faglig validert og merget med full Data-/TypeScript-sluttkontroll.
 
 ## Prinsipper
 
@@ -78,7 +78,7 @@ Leveranse:
 
 ## Fase 3 — Norsk, nordisk og samisk litteratur; institusjoner, lesere og steder
 
-**Status:** Materialisert og faglig validert med 464 fagkontroller i PR #3711; ordinær Data-/TypeScript-CI er sluttport før merge.
+**Status:** Fullført og squash-merget i PR #3711 med 464 fagkontroller og full Data-/TypeScript-sluttport.
 
 **Formål:** Gjøre pensumet direkte anvendelig på norske og nordiske verk, språk, institusjoner og litterære steder uten nasjonal selvtilstrekkelighet.
 
@@ -118,7 +118,7 @@ Leveranse:
 
 ## Kvalitetsporter
 
-Hver fase skal bestå:
+Alle tre faser har bestått:
 
 - canonical JSON-parsing
 - referanseintegritet mellom fagkart, emner, metoder, mappinger, pensum og generator
