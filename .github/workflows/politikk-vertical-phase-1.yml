@@ -72,6 +72,33 @@ jobs:
           node tools/build-politikk-vertical-phase-1.mjs \
             2>&1 | tee reports/politikk-canonical-migration/politikk-institusjoner-phase-1-builder-output.txt
 
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/validate-politikk-statsvitenskap-core.mjs')
+          s = p.read_text()
+          s = s.replace(
+              'const R="politikk-statsvitenskap-core-expansion-2026-07-24";',
+              'const R="politikk-statsvitenskap-core-expansion-2026-07-24"; const P1="politikk-institusjoner-vertical-phase-1-2026-07-24";'
+          )
+          s = s.replace(
+              "ok(c.quality_revision===R,id+' har ny revisjon');",
+              "ok(c.quality_revision===(id==='komparativ_politikk_regimer_institusjoner'?P1:R),id+' har forventet revisjon');"
+          )
+          s = s.replace(
+              "ok(h.quality_revision===R,h.id+' har ny revisjon');",
+              "ok(h.quality_revision===R||(id==='komparativ_politikk_regimer_institusjoner'&&h.quality_revision===P1),h.id+' har gyldig revisjon');"
+          )
+          s = s.replace(
+              "ok(e.quality_revision===R,id+' har ny revisjon');",
+              "ok(e.quality_revision===(id.startsWith('em_pol_institusjonsfordypning_')?P1:R),id+' har gyldig revisjon');"
+          )
+          s = s.replace(
+              "ok(m.quality_revision===R,id+' har ny revisjon');",
+              "ok(m.quality_revision===(id.startsWith('met_pol_parlamentarisk_')||id.startsWith('met_pol_vetospiller')||id.startsWith('met_pol_foderalisme_')||id.startsWith('met_pol_konstitusjonell_')||id.startsWith('met_pol_institusjonell_tilbakegang')||id.startsWith('met_pol_lovgivningsstruktur_')?P1:R),id+' har gyldig revisjon');"
+          )
+          p.write_text(s)
+          PY
+
           rm -f tools/build-politikk-vertical-phase-1.mjs
           rm -f tools/build-politikk-vertical-phase-1.mjs.gz.b64
           rm -f .github/workflows/politikk-vertical-phase-1.yml
