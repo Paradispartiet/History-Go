@@ -10,7 +10,7 @@ Civication er et eget produkt/subsystem i samme repo. Denne filen er inngangen t
 - [`../js/Civication/README.md`](../js/Civication/README.md) — motoroversikt, boot-arkitektur og den aktive spillveien gjennom dagen
 - [`CIVICATION_DATA_LAYERS.md`](./CIVICATION_DATA_LAYERS.md) — datalag og ansvar
 - [`../data/Civication/README-mailsystem-og-rolemodels.md`](../data/Civication/README-mailsystem-og-rolemodels.md) — badge → role model → mail plan → mail family
-- [`CIVICATION_WORK_GRAMMAR_STANDARD.md`](./CIVICATION_WORK_GRAMMAR_STANDARD.md) — FWG/work grammar-standard
+- [`CIVICATION_WORK_GRAMMAR_STANDARD.md`](./CIVICATION_WORK_GRAMMAR_STANDARD.md) — normativ FWG/work grammar-standard
 - [`civication-life-story-system.md`](./civication-life-story-system.md) — Life Story / Min dag-systemet
 
 ## Roller og jobbinnhold
@@ -18,10 +18,12 @@ Civication er et eget produkt/subsystem i samme repo. Denne filen er inngangen t
 - [`CIVICATION_ROLE_PACK.md`](./CIVICATION_ROLE_PACK.md) — inngang og dedup-kontrakt for rollepakken
 - [`CIVICATION_ROLE_PACK_STANDARD.md`](./CIVICATION_ROLE_PACK_STANDARD.md) — detaljert role-pack-kontrakt
 - [`CIVICATION_ROLE_PACK_INDEX.md`](./CIVICATION_ROLE_PACK_INDEX.md) — eneste genererte markdown-index for role-pack-status; regenereres sammen med runtime-indeksen
-- [`CIVICATION_WORK_GRAMMAR_STANDARD.md`](./CIVICATION_WORK_GRAMMAR_STANDARD.md) — arbeidsgrammatikk
-- [`CIVICATION_FWG_GOVERNANCE.md`](./CIVICATION_FWG_GOVERNANCE.md) — styring av FWG-innhold
+- [`CIVICATION_WORK_GRAMMAR_STANDARD.md`](./CIVICATION_WORK_GRAMMAR_STANDARD.md) — normativ arbeidsgrammatikk
+- [`CIVICATION_FWG_GOVERNANCE.md`](./CIVICATION_FWG_GOVERNANCE.md) — eneste genererte markdown-audit for om FWG faktisk styrer mailFamilies
 
 `npm run audit:civication:role-packs` skriver `docs/CIVICATION_ROLE_PACK_INDEX.md` og `data/Civication/rolePackIndex.json`. Det skal ikke opprettes en parallell kopi under `reports/`.
+
+`npm run audit:civication:fwg-governance` skriver bare `docs/CIVICATION_FWG_GOVERNANCE.md`. Filen er commit-bundet status, ikke en normativ FWG-kontrakt, og skal ikke kopieres til `reports/civication-fwg-governance.md`.
 
 De tidligere filene `README/CIVICATION_JOB_MODEL.md` og `README/CIVICATION_job_model.md` var samme tidlige jobbmodell med formateringsforskjeller. De er fjernet. Aktiv modell for mestring, konsekvens, progresjon og komplett jobbinnhold ligger i role-pack-, work-grammar-, roleModel-, mailPlan- og mailFamily-kontraktene over.
 
@@ -42,7 +44,7 @@ Disse er to ulike systemflater og skal ikke slås sammen uten en eksplisitt runt
 
 ## Audits og statusdokumenter
 
-Filer med `AUDIT`, `REVIEW`, `STATUS` eller datostempel er snapshots med mindre de er registrert som canonical i `documentation_registry.json`. De kan dokumentere hva som var sant på en bestemt commit, men skal ikke overstyre dokumentene over.
+Filer med `AUDIT`, `REVIEW`, `STATUS` eller datostempel er snapshots med mindre de er registrert som canonical i `documentation_registry.json`. Genererte operational-filer er reproducerbare statusflater og skal ikke overstyre de normative kontraktene de kontrollerer.
 
 Eksempler:
 
@@ -62,10 +64,10 @@ Ved konflikt gjelder denne rekkefølgen:
 4. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — dagens runtime-flyt
 5. [`../js/Civication/README.md`](../js/Civication/README.md) — Civication-motorene og dagflyten
 6. spesifikke data-/mail-/rolle-/FWG-/debattkontrakter
-7. audits og historiske snapshots
+7. genererte audits og historiske snapshots
 
 ## Regel for nye Civication-dokumenter
 
-Ikke opprett en ny generell `CivicationREADME`, `CivicationGameREADME`, `CIVICATION_JOB_MODEL`, `CIVICATION_STATUS` eller systemoversikt ved siden av denne filen. Oppdater dokumentet som eier det konkrete ansvarsområdet. Tidsbundne undersøkelser skal normalt ligge i `reports/`.
+Ikke opprett en ny generell `CivicationREADME`, `CivicationGameREADME`, `CIVICATION_JOB_MODEL`, `CIVICATION_STATUS` eller systemoversikt ved siden av denne filen. Oppdater dokumentet som eier det konkrete ansvarsområdet. Tidsbundne undersøkelser skal normalt ligge i `reports/`; reproducerbare statusindekser skal ha én registrert output-path.
 
 De tidligere generelle Civication-chatutkastene og `README/CivicationGameREADME.md` er fjernet fra aktivt tre. Historikken finnes fortsatt i Git.

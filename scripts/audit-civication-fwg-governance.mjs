@@ -310,7 +310,6 @@ for (const a of audited) {
 }
 
 const markdown = `${lines.join('\n')}\n`;
-fs.mkdirSync(path.join(repoRoot, 'reports'), { recursive: true });
-fs.writeFileSync(path.join(repoRoot, 'reports/civication-fwg-governance.md'), markdown);
+fs.mkdirSync(path.join(repoRoot, 'docs'), { recursive: true });
 fs.writeFileSync(path.join(repoRoot, 'docs/CIVICATION_FWG_GOVERNANCE.md'), markdown);
-console.log(`FWG governance audit: ${audited.length} rolle(r), ${totalDeviations} avvik. Skrev docs/CIVICATION_FWG_GOVERNANCE.md og reports/civication-fwg-governance.md`);
+console.log(`FWG governance audit: ${audited.length} rolle(r), ${totalDeviations} avvik. Skrev docs/CIVICATION_FWG_GOVERNANCE.md`);
