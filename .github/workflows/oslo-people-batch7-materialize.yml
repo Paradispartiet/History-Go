@@ -28,6 +28,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # The materializer performs the live candidate audit before writing data.
       - name: Materialize batch
         id: materialize
         shell: bash
