@@ -1,0 +1,169 @@
+{
+  "version": "2026-07-25",
+  "protocolMaxBatch": 195,
+  "researchOnly": true,
+  "canonicalChanged": false,
+  "places": [
+    {
+      "placeId": "radiumhospitalet",
+      "researchOnly": true,
+      "canonicalChanged": false,
+      "currentCoordinate": {
+        "lat": 59.919,
+        "lon": 10.6677,
+        "r": 170
+      },
+      "officialAddress": {
+        "addressText": "Ullernchausséen 70",
+        "postcode": "0379",
+        "postArea": "OSLO",
+        "lat": 59.92992084947542,
+        "lon": 10.660609376970168,
+        "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Ullernchauss%C3%A9en&nummer=70&kommunenummer=0301&treffPerSide=20",
+        "sourceObjectId": "geonorge-adresser-v1:0301:17945:70:59.92992085,10.66060938",
+        "uniqueExactMatchCount": 1
+      },
+      "officialPage": {
+        "url": "https://www.oslo-universitetssykehus.no/steder/radiumhospitalet/",
+        "finalUrl": "https://www.oslo-universitetssykehus.no/steder/radiumhospitalet/",
+        "containsAddress": true
+      },
+      "geometry": {
+        "overpassEndpoint": "https://overpass.kumi.systems/api/interpreter",
+        "containingBuildingCount": 0,
+        "containingBuildings": [],
+        "namedHospitalFeatureCount": 1,
+        "closestNamedFeature": {
+          "type": "way",
+          "id": 143526382,
+          "tags": {
+            "alt_name": "Det norske radiumhospital",
+            "amenity": "hospital",
+            "healthcare": "hospital",
+            "healthcare:speciality": "oncology",
+            "name": "Radiumhospitalet",
+            "note": "Part of Oslo University Hospital",
+            "wikidata": "Q3417050",
+            "wikipedia": "en:Oslo University Hospital, Radiumhospitalet"
+          },
+          "distanceMeters": 136.4
+        },
+        "selectedHospitalArea": {
+          "id": 143526382,
+          "tags": {
+            "alt_name": "Det norske radiumhospital",
+            "amenity": "hospital",
+            "healthcare": "hospital",
+            "healthcare:speciality": "oncology",
+            "name": "Radiumhospitalet",
+            "note": "Part of Oslo University Hospital",
+            "wikidata": "Q3417050",
+            "wikipedia": "en:Oslo University Hospital, Radiumhospitalet"
+          }
+        },
+        "supportedBuildingCount": 10,
+        "maximumCampusSupportDistanceMeters": 295.9,
+        "addressPointInsideHospitalArea": true,
+        "areaGeometrySourceObjectId": "osm-way:143526382"
+      },
+      "radiusRecommendation": {
+        "method": "building centroids inside named hospital area plus 40 metre buffer",
+        "bufferMeters": 40,
+        "recommendedRadius": 340
+      },
+      "displacementMeters": 1277,
+      "decision": {
+        "canBecomeVerified": true,
+        "coordinateDecision": "use_official_address_point_for_main_entrance",
+        "recommendedLat": 59.92992084947542,
+        "recommendedLon": 10.660609376970168,
+        "recommendedRadius": 340,
+        "coordStatus": "verified",
+        "coordType": "address_point",
+        "locatorType": "current_place",
+        "sourceProvider": "official_address",
+        "nextAction": "Create a separate production PR using the official address point and named hospital-area radius."
+      }
+    },
+    {
+      "placeId": "rikshospitalet",
+      "researchOnly": true,
+      "canonicalChanged": false,
+      "currentCoordinate": {
+        "lat": 59.948,
+        "lon": 10.7082,
+        "r": 190
+      },
+      "officialAddress": {
+        "addressText": "Sognsvannsveien 20",
+        "postcode": "0372",
+        "postArea": "OSLO",
+        "lat": 59.948348176394674,
+        "lon": 10.714348787763203,
+        "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Sognsvannsveien&nummer=20&kommunenummer=0301&treffPerSide=20",
+        "sourceObjectId": "geonorge-adresser-v1:0301:16757:20:59.94834818,10.71434879",
+        "uniqueExactMatchCount": 1
+      },
+      "officialPage": {
+        "url": "https://www.oslo-universitetssykehus.no/steder/rikshospitalet",
+        "finalUrl": "https://www.oslo-universitetssykehus.no/steder/rikshospitalet",
+        "containsAddress": true
+      },
+      "geometry": {
+        "overpassEndpoint": "https://overpass-api.de/api/interpreter",
+        "containingBuildingCount": 0,
+        "containingBuildings": [],
+        "namedHospitalFeatureCount": 1,
+        "closestNamedFeature": {
+          "type": "relation",
+          "id": 14086466,
+          "tags": {
+            "amenity": "hospital",
+            "emergency": "yes",
+            "healthcare": "hospital",
+            "name": "Rikshospitalet",
+            "official_name": "Oslo universitetssykehus, Rikshospitalet",
+            "phone": "+47 02770",
+            "type": "multipolygon",
+            "website": "https://oslo-universitetssykehus.no/pasient_/nyttig_/kart_/Sider/Kart-over-Rikshospitalet.aspx",
+            "wheelchair": "yes",
+            "wikidata": "Q3050696"
+          },
+          "distanceMeters": null
+        },
+        "selectedHospitalArea": null,
+        "supportedBuildingCount": 23,
+        "maximumCampusSupportDistanceMeters": 579.4,
+        "relationGeometryEndpoint": "https://overpass-api.de/api/interpreter",
+        "relationOuterWayCount": 4,
+        "relationOuterRingCount": 4,
+        "addressPointInsideHospitalArea": true,
+        "areaGeometrySourceObjectId": "osm-relation:14086466"
+      },
+      "radiusRecommendation": {
+        "method": "building centroids inside OSM relation 14086466 outer rings plus 40 metre buffer",
+        "bufferMeters": 40,
+        "recommendedRadius": 620
+      },
+      "displacementMeters": 344.6,
+      "decision": {
+        "canBecomeVerified": true,
+        "coordinateDecision": "use_official_address_point_for_main_entrance",
+        "recommendedLat": 59.948348176394674,
+        "recommendedLon": 10.714348787763203,
+        "recommendedRadius": 620,
+        "coordStatus": "verified",
+        "coordType": "address_point",
+        "locatorType": "current_place",
+        "sourceProvider": "official_address",
+        "nextAction": "Create a separate production PR using the official address point and multipolygon-supported hospital radius."
+      }
+    }
+  ],
+  "refinement": {
+    "version": "2026-07-25-area-model-v2",
+    "coordinateModel": "official main-address display point plus named hospital-area building support",
+    "radiumhospitaletArea": "osm-way:143526382",
+    "rikshospitaletArea": "osm-relation:14086466"
+  }
+}
