@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "psykologisk_institutt_uio",
+  "placeFile": "data/places/psykologi/oslo/places_psykologi/psykologisk_institutt_uio.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_official_address_point",
+  "currentCoordinate": {
+    "lat": 59.94377072400817,
+    "lon": 10.713355170321078,
+    "r": 110,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Kartverket/Geonorge for Psykologisk institutt ved Universitetet i Oslo i Harald Schjelderups hus, Forskningsveien 3A, 0373 Oslo. UiOs engelske kontaktside bekrefter både instituttet, bygget og besøksadressen. Adressepunktet ligger inne i OSM way 94991712, Harald Schjelderups hus, merket building=university og operator=Universitetet i Oslo. Maksimal avstand fra adressepunktet til bygningsfotavtrykkets ytterkant er 73.7 meter; radius 110 meter dekker bygget med 30 meters buffer. Den tidligere markøren lå 570.8 meter unna. År 1909 beholdes."
+  },
+  "identity": {
+    "currentName": "Psykologisk institutt, UiO",
+    "resolvedIdentity": "Psykologisk institutt ved Universitetet i Oslo i Harald Schjelderups hus, Forskningsveien 3A, 0373 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt adressepunkt",
+    "riktig universitetsbygg",
+    "målt bygningsradius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket/Geonorge – Forskningsveien 3A",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Forskningsveien&nummer=3&bokstav=A&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11882:3A:59.94377072,10.71335517",
+      "sourceQuality": "official_address",
+      "finding": "Ett unikt adressepunkt: 59.94377072400817, 10.713355170321078.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical display-marker."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Universitetet i Oslo – Psykologisk institutt contact",
+      "sourceUrl": "https://www.sv.uio.no/psi/english/about/contact/",
+      "sourceObjectId": "uio:psi:contact:en",
+      "sourceQuality": "official_current_site",
+      "finding": "Psykologisk institutt holder til i Harald Schjelderups hus, Forskningsveien 3A, 0373 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Institusjons-, bygg- og adressekryssjekk."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 94991712 – Harald Schjelderups hus",
+      "sourceUrl": "https://www.openstreetmap.org/way/94991712",
+      "sourceObjectId": "osm-way:94991712",
+      "sourceQuality": "named_institution_building_geometry",
+      "finding": "Adressepunktet ligger inne i et navngitt universitetsbygg med operator Universitetet i Oslo.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter riktig bygg og fysisk utstrekning."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go research report",
+      "sourceUrl": "reports/oslo-coordinate-psykologisk-institutt-uio-research-post-195/summary.json",
+      "sourceObjectId": "history-go-research:psykologisk-institutt-uio-post-195",
+      "sourceQuality": "reproducible_multi_source_research",
+      "finding": "Maksimal fotavtrykksavstand 73.7 m + 30 m buffer gir radius 110 m.",
+      "canVerifyCoordinate": true,
+      "reason": "Reproduserbar radiusberegning."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Forskningsveien 3A, 0373 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11882:3A:59.94377072,10.71335517",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11882:3A:59.94377072,10.71335517",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:94991712",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:94991712",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.94377072400817,
+      "lon": 10.713355170321078,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:11882:3A:59.94377072,10.71335517",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Forskningsveien 3A er anvendt med radius 110 meter."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Kartverket/Geonorge for Psykologisk institutt ved Universitetet i Oslo i Harald Schjelderups hus, Forskningsveien 3A, 0373 Oslo. UiOs engelske kontaktside bekrefter både instituttet, bygget og besøksadressen. Adressepunktet ligger inne i OSM way 94991712, Harald Schjelderups hus, merket building=university og operator=Universitetet i Oslo. Maksimal avstand fra adressepunktet til bygningsfotavtrykkets ytterkant er 73.7 meter; radius 110 meter dekker bygget med 30 meters buffer. Den tidligere markøren lå 570.8 meter unna. År 1909 beholdes.",
+    "Research report: reports/oslo-coordinate-psykologisk-institutt-uio-research-post-195/summary.json"
+  ]
+}
