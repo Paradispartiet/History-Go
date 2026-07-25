@@ -1,0 +1,237 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hurdal_verk_glassverk",
+  "placeFile": "data/places/naeringsliv/akershus/hurdal_verk_glassverk/hurdal_verk_glassverk.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_main_building_anchor_for_layered_glassworks_environment",
+  "currentCoordinate": {
+    "lat": 60.450835090104455,
+    "lon": 11.047825837515976,
+    "r": 360,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Store norske leksikon – Hurdal Verk og Hurdal glassverk; Kartverket adressepunkt Hurdal verk 5A",
+    "coordType": "documented_glassworks_main_building_and_institution_anchor",
+    "coordRole": "area_anchor",
+    "sourceObjectId": "snl:hurdal-verk-og-glassverk",
+    "coordNote": "The official address point on the main-building complex physically anchors the layered glassworks, manor, hotel, Lebensborn and folk-high-school environment; it is not an exact 1755 furnace or glass-hut point."
+  },
+  "previousCoordinate": {
+    "lat": 60.45029,
+    "lon": 11.04809,
+    "r": 360,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 62.3,
+    "reasonReplaced": "The legacy coordinate matched the general current school POI rather than a stable physical point on the historic main-building complex."
+  },
+  "identity": {
+    "currentName": "Hurdal Verk / Hurdal Glassverk",
+    "resolvedIdentity": "The former Hurdal glassworks and its later layered manor, hotel, Lebensborn and folk-high-school environment, physically anchored at Hurdal verk 5A",
+    "identityStatus": "resolved",
+    "identityProblem": "The surviving main building postdates the glassworks' 1755 establishment and must be used as a same-site physical anchor rather than misrepresented as the original glass hut or furnace location.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The glassworks, main building, worker and institutional history, park, dam and later uses form one coherent layered place identity."
+  },
+  "requiredEvidence": [
+    "stable historical identity for the glassworks and industrial community",
+    "documented relationship between the glassworks and the surviving main-building complex",
+    "official active-site address",
+    "official address representation point",
+    "nearby physical building cross-check",
+    "explicit distinction between the area anchor and an exact 1755 production-building location"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Hurdal Verk",
+      "sourceUrl": "https://snl.no/Hurdal_Verk",
+      "sourceObjectId": "snl:hurdal-verk",
+      "sourceQuality": "authoritative_layered_site_identity",
+      "finding": "SNL identifies Hurdal Verk as the former industrial site north of Torget, operated as a glassworks from 1755 to 1895, with more than 300 workers around 1800 and approximately 50 buildings. It also dates the present main building to construction beginning in 1850 and the portico to 1905.",
+      "canVerifyCoordinate": true,
+      "reason": "Establishes the layered site identity and the relationship between the historic industrial community and the surviving main-building complex."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Hurdal glassverk",
+      "sourceUrl": "https://snl.no/Hurdal_glassverk",
+      "sourceObjectId": "snl:hurdal-glassverk",
+      "sourceQuality": "authoritative_glassworks_history",
+      "finding": "SNL documents glass production from 1755 to 1895, including window glass, crystal, white glass and coloured glass, and the transfer of equipment and personnel from Nøstetangen in 1779.",
+      "canVerifyCoordinate": false,
+      "reason": "Provides authoritative industrial-history scope but not a precise surviving production-building coordinate."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Hurdal Glassverk",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Hurdal_glassverk",
+      "sourceObjectId": "lokalhistoriewiki:hurdal-glassverk",
+      "sourceQuality": "published_site_coordinate_and_detailed_layered_history",
+      "finding": "Lokalhistoriewiki publishes 60.450853, 11.047547 for Hurdal Glassverk and documents the worker institutions, closure in 1895, manor and hotel use, Lebensborn home and later folk-high-school use.",
+      "canVerifyCoordinate": true,
+      "reason": "Independently places the historic site at the surviving building complex and supports the layered no-split representation."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Hurdal verk 5A",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "kartverket-address:3242:14/15:1090:5A",
+      "sourceQuality": "official_address_representation_point",
+      "finding": "Kartverket returns exactly one Hurdal verk 5A, 2090 Hurdal address object: municipality 3242, farm/use number 14/15, address code 1090 and representation point 60.450835090104455, 11.047825837515976.",
+      "canVerifyCoordinate": true,
+      "reason": "Supplies the official physical representation point on the main-building complex used as the area anchor."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Hurdal Verk Folkehøgskole – Contact and history",
+      "sourceUrl": "https://hvf.no/en/the-school/contact/",
+      "sourceObjectId": "hurdal-verk-folkehogskole:address-and-history",
+      "sourceQuality": "official_active_site_address_and_continuity",
+      "finding": "The school lists Hurdal Verk 5A, 2090 Hurdal and states that the site's history reaches back to the establishment of the glassworks in 1755 and that the school was founded there in 1945.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the active institutional address and continuity of the named site, but does not independently publish the coordinate."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 170856663 – main school building at Hurdal Verk",
+      "sourceUrl": "https://www.openstreetmap.org/way/170856663",
+      "sourceObjectId": "osm-way:170856663;building-ref:151946569",
+      "sourceQuality": "physical_building_cross_check",
+      "finding": "The building way with national building reference 151946569 has a calculated centre at approximately 60.45081564, 11.04780523, about 2.4 metres from the official address point.",
+      "canVerifyCoordinate": false,
+      "reason": "Cross-checks that the Kartverket address point lies on the main-building complex; the way lacks a sufficiently specific historical name to serve as the top-level source."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy school POI",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:hurdal_verk_glassverk;geonames:8556419",
+      "sourceQuality": "generic_current_school_poi",
+      "finding": "The previous coordinate 60.45029, 11.04809 corresponds to the general Hurdal Verk Folkehøgskole POI and lies approximately 62.3 metres from the official main-building address point.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected as the canonical coordinate because it represents the current institution generically rather than a stable physical anchor for the layered historic site."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Hurdal verk",
+        "number": "5",
+        "letter": "A",
+        "postcode": "2090",
+        "city": "Hurdal",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "kartverket-address:3242:14/15:1090:5A",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "snl:hurdal-verk-og-glassverk",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "kartverket-address:3242:14/15:1090:5A",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:170856663;building-ref:151946569",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hurdal_verk_glassverk",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:170856663",
+      "geometryType": "Polygon",
+      "geometryRole": "main_building_complex_cross_check",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "hurdal_verk_main_building_complex",
+      "name": "Hurdal Verk main-building complex",
+      "lat": 60.450835090104455,
+      "lon": 11.047825837515976,
+      "r": 90,
+      "type": "area_anchor",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "kartverket-address:3242:14/15:1090:5A",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hurdal_verk_glassverk;geonames:8556419",
+      "lat": 60.45029,
+      "lon": 11.04809,
+      "coordRole": "generic_current_school_poi",
+      "distanceFromAppliedM": 62.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "kartverket-address:3242:14/15:1090:5A",
+      "lat": 60.450835090104455,
+      "lon": 11.047825837515976,
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 62.3,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lokalhistoriewiki:hurdal-glassverk",
+      "lat": 60.450853,
+      "lon": 11.047547,
+      "coordRole": "published_historic_site_point_cross_check",
+      "distanceFromAppliedM": 15.4,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-hurdal-verk-source-probe/geonorge-hurdal-verk-5a.json",
+      "description": "Raw Kartverket Address API response for Hurdal verk 5A."
+    },
+    {
+      "path": "reports/akershus-coordinate-hurdal-verk-source-probe/nominatim-hurdal-verk.json",
+      "description": "Raw Nominatim result for the current Hurdal Verk Folkehøgskole POI."
+    },
+    {
+      "path": "reports/akershus-coordinate-hurdal-verk-source-probe/osm-hurdal-verk-map.xml",
+      "description": "Raw OSM map data for the immediate Hurdal Verk building complex."
+    },
+    {
+      "path": "reports/akershus-coordinate-hurdal-verk-source-probe/source-summary.txt",
+      "description": "Deterministic exact-address and nearby-object summary."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the official main-building address point as the physical anchor for the historically documented layered glassworks and institution environment. The active Akershus history batch-3 coordinate queue is complete."
+  },
+  "notes": [
+    "The main building is a same-site physical anchor and is not misrepresented as the original 1755 glass hut or furnace location.",
+    "The canonical record remains a layered industrial and institutional environment rather than a current-school record.",
+    "The 360-metre radius covers the main building, school and former works buildings, park, Verkensdammen and immediate historic industrial area at gameplay scale.",
+    "The radius is not an exact former glassworks property or production-area polygon.",
+    "The coordinate correction is approximately 62.3 metres."
+  ]
+}
