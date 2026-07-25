@@ -1,0 +1,66 @@
+name: Batch 7 Knowledge tests debug
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-people-zero-gap-batch7-v3
+          fetch-depth: 1
+          show-progress: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Run Knowledge tests individually
+        id: tests
+        shell: bash
+        run: |
+          set +e
+          : > /tmp/knowledge-tests-debug.log
+          tests=(
+            "tests/knowledge-v2-model.test.js"
+            "tests/quiz-knowledge-memory.test.js"
+            "tests/knowledge-profile-memory-integration.test.js"
+            "tests/knowledge-profile-restore.test.js"
+            "tests/knowledge-canonical-storage-contract.test.js"
+          )
+          failed=0
+          for test_file in "${tests[@]}"; do
+            echo "===== $test_file =====" | tee -a /tmp/knowledge-tests-debug.log
+            node --test "$test_file" >> /tmp/knowledge-tests-debug.log 2>&1
+            status=$?
+            echo "STATUS=$status" | tee -a /tmp/knowledge-tests-debug.log
+            if [ "$status" -ne 0 ]; then failed=1; fi
+          done
+          cat /tmp/knowledge-tests-debug.log
+          echo "failed=$failed" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload test diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: batch7-knowledge-tests-debug
+          path: /tmp/knowledge-tests-debug.log
+
+      - name: Fail on test error
+        if: steps.tests.outputs.failed != '0'
+        run: exit 1
