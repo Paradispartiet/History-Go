@@ -3854,3 +3854,214 @@ places_index.json is in sync with source place files after disabled-place filter
 Place coordinate index parity OK: runtime index coordinate fields match source files.
 From https://github.com/Paradispartiet/History-Go
  * branch                main       -> FETCH_HEAD
+[agent/oslo-coordinate-remove-popkultur-domain 5e14571b5] Final synchronized popkultur migration 5
+ 4 files changed, 163 insertions(+), 165 deletions(-)
+ delete mode 100644 scripts/coordinate-branch-job.mjs
+To https://github.com/Paradispartiet/History-Go
+   011ac5200..5e14571b5  HEAD -> agent/oslo-coordinate-remove-popkultur-domain
+To https://github.com/Paradispartiet/History-Go
+ ! [rejected]            HEAD -> main (fetch first)
+error: failed to push some refs to 'https://github.com/Paradispartiet/History-Go'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+[agent/oslo-coordinate-remove-popkultur-domain 9ce26a9fd] Retry final popkultur fast-forward 5
+ 1 file changed, 161 insertions(+)
+ create mode 100644 scripts/coordinate-branch-job.mjs
+To https://github.com/Paradispartiet/History-Go
+   5e14571b5..9ce26a9fd  HEAD -> agent/oslo-coordinate-remove-popkultur-domain
+From https://github.com/Paradispartiet/History-Go
+ * branch                main       -> FETCH_HEAD
+   20c971700..5310b1835  main       -> origin/main
+Merge made by the 'ort' strategy.
+ .../criciuma/criciuma_avenida_centenario.json      |   2 +-
+ .../criciuma_biblioteca_donatila_borba.json        |   2 +-
+ .../criciuma/criciuma_caixa_de_embarque.json       |   2 +-
+ .../criciuma/criciuma_capela_sao_bras.json         |   2 +-
+ .../criciuma/criciuma_capela_sao_roque.json        |   2 +-
+ .../criciuma/criciuma_capela_sao_sebastiao.json    |   2 +-
+ .../criciuma/criciuma_casa_da_cultura.json         |   2 +-
+ .../criciuma/criciuma_casa_do_vo_justi.json        |   2 +-
+ .../criciuma/criciuma_casa_londres.json            |   2 +-
+ .../criciuma/criciuma_casarao_atafona.json         |   2 +-
+ .../criciuma/criciuma_castelo_britanico.json       |   2 +-
+ .../criciuma/criciuma_catedral_sao_jose.json       |   2 +-
+ .../criciuma_centro_cultural_jorge_zanatta.json    |   2 +-
+ .../criciuma/criciuma_cruz_sao_paulo_apostolo.json |   2 +-
+ .../criciuma/criciuma_ct_antenor_angeloni.json     |   2 +-
+ .../criciuma_estacao_ferroviaria_replica.json      |   2 +-
+ .../criciuma/criciuma_estadio_heriberto_hulse.json |   2 +-
+ .../criciuma/criciuma_ginasio_walmir_orsi.json     |   2 +-
+ .../criciuma/criciuma_gruta_lourdes.json           |   2 +-
+ .../criciuma_igreja_nossa_senhora_salete.json      |   2 +-
+ .../criciuma/criciuma_mina_octavio_fontana.json    |   2 +-
+ .../criciuma_mirante_realdo_guglielmi.json         |   2 +-
+ .../criciuma/criciuma_monumento_ao_mineiro.json    |   2 +-
+ .../criciuma/criciuma_monumento_as_etnias.json     |   2 +-
+ .../criciuma/criciuma_morro_cechinel.json          |   2 +-
+ .../criciuma_museu_augusto_casagrande.json         |   2 +-
+ .../criciuma/criciuma_museu_zoologia.json          |   2 +-
+ .../criciuma/criciuma_paco_municipal.json          |   2 +-
+ .../criciuma/criciuma_parque_astronomico.json      |   2 +-
+ .../criciuma/criciuma_parque_da_prefeitura.json    |   2 +-
+ .../criciuma/criciuma_parque_das_nacoes.json       |   2 +-
+ .../criciuma/criciuma_parque_dos_imigrantes.json   |   2 +-
+ .../criciuma_pavilhao_jose_ijair_conti.json        |   2 +-
+ .../criciuma/criciuma_praca_da_chamine.json        |   2 +-
+ .../criciuma/criciuma_praca_do_congresso.json      |   2 +-
+ .../criciuma/criciuma_praca_nereu_ramos.json       |   2 +-
+ .../santa-catarina/criciuma/criciuma_satc.json     |   2 +-
+ .../criciuma/criciuma_teatro_elias_angeloni.json   |   2 +-
+ .../criciuma/criciuma_terminal_central.json        |   2 +-
+ .../santa-catarina/criciuma/criciuma_unesc.json    |   2 +-
+ .../brazil/criciuma/places_criciuma_01.json        |   2 +-
+ ...-coordinate-batch-1-central-audit-2026-07-25.md |  29 ++++
+ tools/audit-coordinate-evidence.mts                | 163 ++++++++++++++-------
+ 43 files changed, 178 insertions(+), 96 deletions(-)
+ create mode 100644 reports/criciuma-coordinate-batch-1-central-audit-2026-07-25.md
+
+> history-go@0.0.0 build:web
+> node build/build-web.mjs
+
+
+  dist/web/knowledgeV2.js             82.6kb
+  dist/web/hgKnowledgeEngine.js       25.1kb
+  dist/web/knowledge.js               16.7kb
+  dist/web/fagHealthReport.js         11.7kb
+  dist/web/courses.js                 10.8kb
+  dist/web/hgSocialPrivacy.js         10.5kb
+  dist/web/emnerLoader.js              5.2kb
+  dist/web/hgModeration.js             3.1kb
+  dist/web/hgInsights.js               2.1kb
+  dist/web/emneDekning.js              1.9kb
+  dist/web/fagkartLoader.js            1.8kb
+  dist/web/trivia.js                   1.0kb
+  dist/web/knowledgeV2.js.map        138.8kb
+  dist/web/hgKnowledgeEngine.js.map   40.6kb
+  dist/web/knowledge.js.map           28.8kb
+  dist/web/fagHealthReport.js.map     19.3kb
+  dist/web/courses.js.map             18.1kb
+  dist/web/hgSocialPrivacy.js.map     16.5kb
+  dist/web/emnerLoader.js.map          9.9kb
+  dist/web/hgModeration.js.map         4.5kb
+  ...and 4 more output files...
+
+⚡ Done in 22ms
+
+  dist/web/map.js                         35.6kb
+  dist/web/map-controls-runtime.js        21.6kb
+  dist/web/place-card-quizcards-patch.js  19.4kb
+  dist/web/search.js                      11.1kb
+  dist/web/nearbyFilterControls.js         9.3kb
+  dist/web/nearbyPeopleList.js             6.5kb
+  dist/web/layerManager.js                 6.2kb
+  dist/web/hgSocialMeetFastApiClient.js    6.1kb
+  dist/web/nearbyPlacesList.js             5.4kb
+  dist/web/nearbyFilters.js                5.4kb
+  dist/web/nearbyPlaceSelector.js          5.3kb
+  dist/web/left-panel.js                   5.2kb
+  dist/web/categories.js                   4.3kb
+  dist/web/nearbyBadgesPanel.js            4.1kb
+  dist/web/leftPanelMode.js                3.8kb
+  dist/web/nearbyDrawer.js                 2.1kb
+
+⚡ Done in 12ms
+
+  dist/web/pos.js  17.0kb
+
+⚡ Done in 5ms
+[build:web] built 29 entry/entries -> dist/web
+
+> history-go@0.0.0 typecheck:web
+> tsc -p tsconfig.web.json
+
+
+> history-go@0.0.0 audit:categories
+> node scripts/audit-category-governance.mjs
+
+{
+  "status": "passed",
+  "runtimeCategories": 17,
+  "fagSubjects": 17,
+  "failures": []
+}
+
+> history-go@0.0.0 audit:people-of-places
+> npm run build:tools && node dist/tools/audit-people-of-places-status.mjs && node dist/tools/check-people-of-places-gate.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote reports/people-of-places-status.json and reports/people-of-places-status.md
+People: 1351; flat files: 0; geographic files: 716; invalid refs: 0; duplicate IDs: 0
+People of Places audit gate passed
+
+> history-go@0.0.0 places:emner:check
+> npm run build:tools && node dist/tools/check_place_emne_ids.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+=== Place emne_id validation ===
+Active place files: 701
+Canonical emne files scanned: 18
+Canonical emne ids loaded: 1197
+
+Missing emne_ids: 0
+
+Duplicate emne_ids within same place: 0
+
+Duplicate place ids across active files: 0
+
+Duplicate place ids within same active file: 0
+
+Duplicate canonical emne_ids across canonical files: 0
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1431 places -> data/places/places_index.json; skipped 13 disabled place(s); applied 213 category override(s)
+
+> history-go@0.0.0 audit:places-split-manifest-sync
+> npm run build:tools && node dist/tools/audit-places-split-manifest-sync.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "status": "passed",
+  "counts": {
+    "duplicateActivePlaceIds": 0,
+    "staleSplitManifestRows": 0,
+    "splitRowsMissingFromAggregate": 0,
+    "aggregateRowsMissingFromSplitManifest": 0,
+    "movedPlacesStillActiveInOldCategory": 0
+  },
+  "auditReport": "reports/place-split-manifest-category-move-audit.json"
+}
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index.json is in sync with source place files after disabled-place filtering and place overrides.
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity OK: runtime index coordinate fields match source files.
+From https://github.com/Paradispartiet/History-Go
+ * branch                main       -> FETCH_HEAD
