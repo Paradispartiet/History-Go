@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-25T22:35:58.195Z
+Generert: 2026-07-25T19:43:06.401Z
 
 ## Hvorfor denne gaten finnes
 
@@ -12,13 +12,13 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 
 - Modus: **--strict-new**
 - Strict-new: **true**
-- Base for nye/endrede place-objekter: **origin/main**
-- Base method: **origin/${GITHUB_BASE_REF}**
+- Base for nye/endrede place-objekter: **a84ab9c1b2d18b2188859a0c72cfe11ddc75bd08**
+- Base method: **git merge-base HEAD origin/main**
 - Aktive manifest-filer lest: **1444**
 - Place-objekter validert: **1444**
 - Nye/endrede koordinatobjekter mot base: **0**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **2818**
+- Backlog-funn: **2839**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -79,6 +79,27 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | kjeller_flyplass | Kjeller flyplass | data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | kjeller_flyplass | Kjeller flyplass | data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | kjeller_flyplass | Kjeller flyplass | data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json | coordNote | Stor radius r=360 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | tanum_kirke | Tanum kirke | data/places/historie/akershus/places_historie_akershus_batch2/tanum_kirke.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | tanum_kirke | Tanum kirke | data/places/historie/akershus/places_historie_akershus_batch2/tanum_kirke.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | tanum_kirke | Tanum kirke | data/places/historie/akershus/places_historie_akershus_batch2/tanum_kirke.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | haslum_kirke | Haslum kirke | data/places/historie/akershus/places_historie_akershus_batch2/haslum_kirke.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | haslum_kirke | Haslum kirke | data/places/historie/akershus/places_historie_akershus_batch2/haslum_kirke.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | haslum_kirke | Haslum kirke | data/places/historie/akershus/places_historie_akershus_batch2/haslum_kirke.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | skedsmo_kirke | Skedsmo kirke | data/places/historie/akershus/places_historie_akershus_batch2/skedsmo_kirke.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | skedsmo_kirke | Skedsmo kirke | data/places/historie/akershus/places_historie_akershus_batch2/skedsmo_kirke.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | skedsmo_kirke | Skedsmo kirke | data/places/historie/akershus/places_historie_akershus_batch2/skedsmo_kirke.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | enebakk_kirke | Enebakk kirke | data/places/historie/akershus/places_historie_akershus_batch2/enebakk_kirke.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | enebakk_kirke | Enebakk kirke | data/places/historie/akershus/places_historie_akershus_batch2/enebakk_kirke.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | enebakk_kirke | Enebakk kirke | data/places/historie/akershus/places_historie_akershus_batch2/enebakk_kirke.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | asker_kirke_kirkested | Asker kirke / gamle kirkested | data/places/historie/akershus/places_historie_akershus_batch2/asker_kirke_kirkested.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | asker_kirke_kirkested | Asker kirke / gamle kirkested | data/places/historie/akershus/places_historie_akershus_batch2/asker_kirke_kirkested.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | asker_kirke_kirkested | Asker kirke / gamle kirkested | data/places/historie/akershus/places_historie_akershus_batch2/asker_kirke_kirkested.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | gamle_hvam_museum | Gamle Hvam museum | data/places/historie/akershus/places_historie_akershus_batch2/gamle_hvam_museum.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | gamle_hvam_museum | Gamle Hvam museum | data/places/historie/akershus/places_historie_akershus_batch2/gamle_hvam_museum.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | gamle_hvam_museum | Gamle Hvam museum | data/places/historie/akershus/places_historie_akershus_batch2/gamle_hvam_museum.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | heggedal_hovedgard | Heggedal hovedgård | data/places/historie/akershus/places_historie_akershus_batch2/heggedal_hovedgard.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | heggedal_hovedgard | Heggedal hovedgård | data/places/historie/akershus/places_historie_akershus_batch2/heggedal_hovedgard.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | heggedal_hovedgard | Heggedal hovedgård | data/places/historie/akershus/places_historie_akershus_batch2/heggedal_hovedgard.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | hvitsten_sjobodene | Hvitsten sjøbodene | data/places/by/akershus/hvitsten_sjobodene/hvitsten_sjobodene.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | hvitsten_sjobodene | Hvitsten sjøbodene | data/places/by/akershus/hvitsten_sjobodene/hvitsten_sjobodene.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | hvitsten_sjobodene | Hvitsten sjøbodene | data/places/by/akershus/hvitsten_sjobodene/hvitsten_sjobodene.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
@@ -520,27 +541,6 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | union_papirfabrikk_drammen | Union papirfabrikk / Grønland Drammen | data/places/naeringsliv/buskerud/union_papirfabrikk_drammen/union_papirfabrikk_drammen.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | union_papirfabrikk_drammen | Union papirfabrikk / Grønland Drammen | data/places/naeringsliv/buskerud/union_papirfabrikk_drammen/union_papirfabrikk_drammen.json | coordNote | Stor radius r=340 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
 | backlog | nei | solberg_spinderi | Solberg Spinderi | data/places/naeringsliv/buskerud/solberg_spinderi/solberg_spinderi.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | solberg_spinderi | Solberg Spinderi | data/places/naeringsliv/buskerud/solberg_spinderi/solberg_spinderi.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | solberg_spinderi | Solberg Spinderi | data/places/naeringsliv/buskerud/solberg_spinderi/solberg_spinderi.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | solberg_spinderi | Solberg Spinderi | data/places/naeringsliv/buskerud/solberg_spinderi/solberg_spinderi.json | coordNote | Stor radius r=320 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
-| backlog | nei | vikersund_stasjon_randsfjordbanen | Vikersund stasjon / Randsfjordbanen | data/places/by/buskerud/vikersund_stasjon_randsfjordbanen/vikersund_stasjon_randsfjordbanen.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | vikersund_stasjon_randsfjordbanen | Vikersund stasjon / Randsfjordbanen | data/places/by/buskerud/vikersund_stasjon_randsfjordbanen/vikersund_stasjon_randsfjordbanen.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | vikersund_stasjon_randsfjordbanen | Vikersund stasjon / Randsfjordbanen | data/places/by/buskerud/vikersund_stasjon_randsfjordbanen/vikersund_stasjon_randsfjordbanen.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | vikersund_stasjon_randsfjordbanen | Vikersund stasjon / Randsfjordbanen | data/places/by/buskerud/vikersund_stasjon_randsfjordbanen/vikersund_stasjon_randsfjordbanen.json | coordNote | Stor radius r=300 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
-| backlog | nei | domkirkeodden_hamar | Domkirkeodden / Hamardomen | data/places/historie/innlandet/places_historie_innlandet_batch1/domkirkeodden_hamar.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | domkirkeodden_hamar | Domkirkeodden / Hamardomen | data/places/historie/innlandet/places_historie_innlandet_batch1/domkirkeodden_hamar.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | domkirkeodden_hamar | Domkirkeodden / Hamardomen | data/places/historie/innlandet/places_historie_innlandet_batch1/domkirkeodden_hamar.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | domkirkeodden_hamar | Domkirkeodden / Hamardomen | data/places/historie/innlandet/places_historie_innlandet_batch1/domkirkeodden_hamar.json | coordNote | Stor radius r=420 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
-| backlog | nei | maihaugen_lillehammer | Maihaugen | data/places/historie/innlandet/places_historie_innlandet_batch1/maihaugen_lillehammer.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | maihaugen_lillehammer | Maihaugen | data/places/historie/innlandet/places_historie_innlandet_batch1/maihaugen_lillehammer.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | maihaugen_lillehammer | Maihaugen | data/places/historie/innlandet/places_historie_innlandet_batch1/maihaugen_lillehammer.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | maihaugen_lillehammer | Maihaugen | data/places/historie/innlandet/places_historie_innlandet_batch1/maihaugen_lillehammer.json | coordNote | Stor radius r=520 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
-| backlog | nei | ringebu_stavkirke | Ringebu stavkirke | data/places/historie/innlandet/places_historie_innlandet_batch1/ringebu_stavkirke.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | ringebu_stavkirke | Ringebu stavkirke | data/places/historie/innlandet/places_historie_innlandet_batch1/ringebu_stavkirke.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | ringebu_stavkirke | Ringebu stavkirke | data/places/historie/innlandet/places_historie_innlandet_batch1/ringebu_stavkirke.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | ringebu_stavkirke | Ringebu stavkirke | data/places/historie/innlandet/places_historie_innlandet_batch1/ringebu_stavkirke.json | coordNote | Stor radius r=300 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
-| backlog | nei | lom_stavkirke | Lom stavkirke | data/places/historie/innlandet/places_historie_innlandet_batch1/lom_stavkirke.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | lom_stavkirke | Lom stavkirke | data/places/historie/innlandet/places_historie_innlandet_batch1/lom_stavkirke.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 2818 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 2839 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
