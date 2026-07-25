@@ -1,9 +1,35 @@
 {
   "id": "son_ladested",
   "name": "Son ladested",
-  "lat": 59.5208,
-  "lon": 10.6849,
+  "lat": 59.52352,
+  "lon": 10.68665,
   "r": 320,
+  "locatorType": "historic_site",
+  "sourceProvider": "manual_research",
+  "sourceObjectId": "vestby-kommune:son-historisk-byomrade",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "area_anchor",
+  "coordType": "documented_historic_ladested_center_anchor",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "Vestby kommune – Son historisk byområde; OpenStreetMap way 369923177 – Thornegården",
+  "coordSourceId": "vestby-kommune:son-historisk-byomrade",
+  "coordSourceUrl": "https://www.vestby.kommune.no/om-vestby/son",
+  "coordVerifiedAt": "2026-07-26",
+  "coordChangeReason": "Markøren flyttes om lag 318,1 meter fra et uavklart havne-/tettstedspunkt til Thornegården ved Son torv, et stabilt fysisk anker midt i det dokumenterte historiske ladestedet.",
+  "coordNote": "Vestby kommune dokumenterer Son som et gammelt ladested og nasjonalt viktig historisk byområde, med trelasthavn, tollrettigheter fra 1604 og et bevart sentrum med Thornegården, Stoltenberggården og Spinnerigården. Kommunens bevaringsveiledning understreker at Sons samlede selvgrodde småbypreg og sammenhengen mellom bygninger, gater og havn er viktigere enn enkeltbyggene isolert. OpenStreetMap way 369923177 er den stabile navngitte bygningsgeometrien for Thornegården ved Son torv, omtrent 59.52352, 10.68665, og brukes som fysisk area_anchor for det historiske handels- og havnemiljøet. Punktet hevdes ikke å være geometrisk sentrum eller eksakt avgrensning av hele kulturmiljøet, og representerer heller ikke Son marina, Sonsstranda eller ett enkelt fredet hus alene. Radius 320 meter beholdes for Son torv, de sentrale historiske gatene, handelshusene og forbindelsen mot den gamle havnen.",
+  "anchors": [
+    {
+      "id": "son_thornegarden_historic_center",
+      "name": "Thornegården ved Son torv – fysisk anker for ladestedet",
+      "lat": 59.52352,
+      "lon": 10.68665,
+      "r": 80,
+      "type": "area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:369923177",
+      "note": "Stabil navngitt bygning i kjernen av det historiske handels- og torgmiljøet; brukes som områdeanker, ikke som hele stedets identitet."
+    }
+  ],
   "category": "by",
   "fylke": "akershus",
   "kommune": "Vestby",
@@ -17,7 +43,7 @@
     "fjord"
   ],
   "desc": "Havnen, gatene og de eldre handelsgårdene gjør Son til et lesbart ladested fra trelasthandelens tid. Tollrettigheter fra 1604 knyttet stedet til fjordens varestrømmer, mens Thornegården, Stoltenberggården og Spinnerigården fortsatt gir sentrum fysisk og historisk dybde.",
-  "popupDesc": "Son ble viktig som ladested ved Oslofjorden fra 1500-tallet og fikk egne tollrettigheter i 1604. Trelast, havn og handel formet tettstedet, fordi varer kunne samles, kontrolleres og sendes videre sjøveien. Historien finnes fortsatt i mer enn selve strandlinjen. Eldre bygninger som Thornegården, Stoltenberggården og Spinnerigården viser hvordan handel og bolig ble organisert i det historiske sentrum. Når man beveger seg mellom gårdene og havnen, kan sammenhengen mellom tollsted, kjøpmannsmiljø og fjordtransport leses direkte i byformen. Son er derfor ikke bare en marina eller sommerdestinasjon. Stedet viser hvordan et lite havnemiljø kunne få økonomisk betydning gjennom privilegier, eksport og forbindelsen til Christiania og andre markeder.",
+  "popupDesc": "Son ble viktig som ladested ved Oslofjorden fra 1500-tallet og fikk egne tollrettigheter i 1604. Trelast, havn og handel formet tettstedet, fordi varer kunne samles, kontrolleres og sendes videre sjøveien. Historien finnes fortsatt i mer enn selve strandlinjen. Eldre bygninger som Thornegården, Stoltenberggården og Spinnerigården viser hvordan handel og bolig ble organisert i det historiske sentrum. Når man beveger seg mellom Son torv, de kronglete gatene, handelshusene og havnen, kan sammenhengen mellom tollsted, kjøpmannsmiljø og fjordtransport leses direkte i byformen. Son er derfor ikke bare en marina eller sommerdestinasjon. Det er et sammenhengende kulturmiljø der småbystruktur, bygninger, uterom og havn forteller hvordan et lite ladested fikk nasjonal økonomisk betydning.",
   "quiz_profile": {
     "place_type": "ladested",
     "subtype": "historisk_fjordby_og_trelasthavn",
@@ -50,6 +76,36 @@
       "holen_ladested",
       "hvitsten_sjobodene"
     ],
-    "notes": "Skal spørres som historisk ladested og handelsmiljø, ikke som ren marina eller sommersted."
-  }
+    "notes": "Skal spørres som historisk ladested og samlet handelsmiljø, ikke som ren marina, ett fredet hus eller sommersted."
+  },
+  "externalLinks": [
+    {
+      "type": "official",
+      "label": "Vestby kommune – Son",
+      "url": "https://www.vestby.kommune.no/om-vestby/son",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "official",
+      "label": "Vestby kommune – Bevaring og kulturminner",
+      "url": "https://www.vestby.kommune.no/tjenester/plan-bygg-og-eiendom/byggesak/skal-du-bygge-rive-eller-endre/bevaring-og-kulturminner",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "heritage",
+      "label": "Kulturminnesøk – Thornegården, ID 86110",
+      "url": "https://www.kulturminnesok.no/minne?queryString=https://data.kulturminne.no/askeladden/lokalitet/86110",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Thornegården",
+      "url": "https://www.openstreetmap.org/way/369923177",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    }
+  ]
 }
