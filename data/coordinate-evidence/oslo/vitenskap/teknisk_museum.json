@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "teknisk_museum",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/teknisk_museum.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_physically_resolved_official_address_point",
+  "currentCoordinate": {
+    "lat": 59.96642806414705,
+    "lon": 10.78270731715194,
+    "r": 170,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Kartverket/Geonorge for Kjelsåsveien 143, 0491 Oslo. Norsk Teknisk Museums offisielle side bekrefter identitet og adresse. Kartverket returnerer fire punkter for 143, 143B, 143C og 143D; det ulettererte 143-punktet ligger inne i OSM way 54031035, navngitt Norsk Teknisk Museum og merket tourism=museum, mens B–D ligger i separate sidebygg. Maksimal avstand fra adressepunktet til hovedbyggets ytterkant er 136.9 meter; radius 170 meter dekker bygget med 30 meters buffer. Den tidligere markøren lå 2273.8 meter unna. Canonical year 1914 beholdes."
+  },
+  "identity": {
+    "currentName": "Norsk Teknisk Museum",
+    "resolvedIdentity": "Norsk Teknisk Museum, Kjelsåsveien 143, 0491 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisiell adresse og identitet",
+    "fysisk skille mellom fire adressepunkter",
+    "riktig navngitt museumsbygg",
+    "målt bygningsradius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket/Geonorge – Kjelsåsveien 143",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Kjels%C3%A5sveien&nummer=143&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13747:143:59.96642806,10.78270732",
+      "sourceQuality": "official_address",
+      "finding": "Det ulettererte offisielle adressepunktet er 59.96642806414705, 10.78270731715194.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical display-marker under address-first policy."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Norsk Teknisk Museum – finn veien",
+      "sourceUrl": "https://www.tekniskmuseum.no/finn-veien",
+      "sourceObjectId": "tekniskmuseum:finn-veien",
+      "sourceQuality": "official_current_site",
+      "finding": "Norsk Teknisk Museum bekrefter Kjelsåsveien 143, 0491 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Identitets- og adressekryssjekk."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 54031035 – Norsk Teknisk Museum",
+      "sourceUrl": "https://www.openstreetmap.org/way/54031035",
+      "sourceObjectId": "osm-way:54031035",
+      "sourceQuality": "named_museum_building_geometry",
+      "finding": "143-punktet ligger inne i hovedbygget; 143B, 143C og 143D ligger i separate sidebygg.",
+      "canVerifyCoordinate": true,
+      "reason": "Fysisk kandidatoppløsning og bygningsgeometri."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go Teknisk Museum research report",
+      "sourceUrl": "reports/oslo-coordinate-teknisk-museum-research-post-195/summary.json",
+      "sourceObjectId": "history-go-research:teknisk-museum-post-195",
+      "sourceQuality": "reproducible_multi_source_research",
+      "finding": "Maksimal fotavtrykksavstand 136.9 meter + 30 meter buffer gir radius 170 meter. Gammel markør var 2273.8 meter feil.",
+      "canVerifyCoordinate": true,
+      "reason": "Samlet reproduserbart beslutningsgrunnlag."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Kjelsåsveien 143, 0491 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13747:143:59.96642806,10.78270732",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13747:143:59.96642806,10.78270732",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:54031035",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:54031035",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.96642806414705,
+      "lon": 10.78270731715194,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13747:143:59.96642806,10.78270732",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kjelsåsveien 143 er anvendt med radius 170 meter."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Kartverket/Geonorge for Kjelsåsveien 143, 0491 Oslo. Norsk Teknisk Museums offisielle side bekrefter identitet og adresse. Kartverket returnerer fire punkter for 143, 143B, 143C og 143D; det ulettererte 143-punktet ligger inne i OSM way 54031035, navngitt Norsk Teknisk Museum og merket tourism=museum, mens B–D ligger i separate sidebygg. Maksimal avstand fra adressepunktet til hovedbyggets ytterkant er 136.9 meter; radius 170 meter dekker bygget med 30 meters buffer. Den tidligere markøren lå 2273.8 meter unna. Canonical year 1914 beholdes.",
+    "Research report: reports/oslo-coordinate-teknisk-museum-research-post-195/summary.json"
+  ]
+}
