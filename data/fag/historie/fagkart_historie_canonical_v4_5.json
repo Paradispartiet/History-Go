@@ -3845,36 +3845,273 @@
     {
       "id": "his_middelalder_kirke_kongemakt",
       "title": "Middelalder, kirke og kongemakt",
-      "tagline": "Byens eldste maktlag",
-      "definition": "Dette området handler om middelalderens Oslo og omland: kongemakt, kirke, klostre, handel, bygrunnleggelse, eiendom, tro og landskap. Det undersøker hvordan religion og politisk makt ble materialisert i bygg, ruiner, veier og minnesteder.",
+      "tagline": "Fra daterte spor og institusjoner til makt, ressursbruk, praksis og historisk endring",
+      "definition": "Området undersøker middelalderens kongemakt, kirke, rett, byer, eiendom, handel, hushold, skriftkultur, pest og samiske kontaktsoner gjennom eksplisitt daterte og kildekritisk avgrensede forløp.",
       "focus": [
-        "middelalderbyen",
-        "kirke og kloster",
-        "kongemakt og rikssamling",
-        "eiendom, jord og fjordlandskap"
+        "Kristning, kirkeetablering og klosterliv",
+        "Kongemakt, kirke og jurisdiksjonskonflikt",
+        "Middelalderbyen Oslo som makt- og ressursknutepunkt",
+        "Lov, ting og rettshåndheving",
+        "Jord, eiendom, landskyld og patronasje",
+        "Handel, håndverk og bynettverk",
+        "Hushold, arbeid og hverdagsliv",
+        "Pest, demografi og senmiddelalder",
+        "Skriftkultur, diplomer og muntlighet",
+        "Samiske kontaktsoner, ressursbruk og statsintegrasjon"
       ],
       "topic_hooks": [
         {
-          "id": "his_middelalder_by_kirke",
-          "title": "Middelalderbyen og kirkemakten",
+          "id": "his_kristning_kirke_kloster_lokalsamfunn",
+          "title": "Kristning, kirkeetablering og klosterliv",
           "canon": {
             "thinkers": [
               {
                 "id": "sverre_bagge",
                 "name": "Sverre Bagge",
-                "why": "Norsk middelalder, kongemakt, kirke og politisk kultur",
+                "why": "Norsk middelalder, kongemakt, kristning og politisk kultur",
                 "tier": "core",
                 "works": [
                   "From Viking Stronghold to Christian Kingdom"
                 ]
               },
               {
+                "id": "saebjorg_walaker_nordeide",
+                "name": "Sæbjørg Walaker Nordeide",
+                "why": "Kristning, arkeologiske spor og religionsskifte i Norge",
+                "tier": "core",
+                "works": [
+                  "The Viking Age as a Period of Religious Transformation"
+                ]
+              },
+              {
+                "id": "jacques_le_goff",
+                "name": "Jacques Le Goff",
+                "why": "Europeisk middelalder, kirkelig tid og mentalitetshistorie",
+                "tier": "advanced",
+                "works": [
+                  "Medieval Civilization"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_kirke_kloster_middelalder"
+          ],
+          "best_place_types": [
+            "ruinomrade",
+            "kirke",
+            "kloster",
+            "kulturmiljo",
+            "festning",
+            "historical_site",
+            "arkiv",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_middelalderspor_eller_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_historian",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk middelalder uten sted, kilde eller datering",
+            "Teoretikernavn som fasit før caset er etablert",
+            "Sen saga behandlet som samtidig referat"
+          ],
+          "preferred_question_moves": [
+            "identify the dated source or material trace",
+            "name the actor, institution or resource relation",
+            "separate normative claim from documented practice",
+            "state source limitation before theoretical interpretation"
+          ],
+          "comparison_pairs": [
+            [
+              "sverre_bagge",
+              "saebjorg_walaker_nordeide"
+            ],
+            [
+              "saebjorg_walaker_nordeide",
+              "jacques_le_goff"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "sverre_bagge",
+            "saebjorg_walaker_nordeide"
+          ],
+          "recommended_oslo_cases": [
+            "Hallvardskatedralen",
+            "Hovedøya kloster",
+            "Gamle Aker kirke",
+            "Moster gamle kyrkje",
+            "Stødle kyrkje"
+          ],
+          "recommended_method_ids": [
+            "met_sporlesning",
+            "met_arkeologisk_kontekstanalyse",
+            "met_bygningsarkeologisk_analyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_kongemakt_kirke_jurisdiksjon",
+          "title": "Kongemakt, kirke og jurisdiksjonskonflikt",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "sverre_bagge",
+                "name": "Sverre Bagge",
+                "why": "Norsk middelalder, kongemakt, kristning og politisk kultur",
+                "tier": "core",
+                "works": [
+                  "From Viking Stronghold to Christian Kingdom"
+                ]
+              },
+              {
+                "id": "hans_jacob_orning",
+                "name": "Hans Jacob Orning",
+                "why": "Middelalderens politiske kultur, nærvær og forhandling",
+                "tier": "core",
+                "works": [
+                  "Unpredictability and Presence"
+                ]
+              },
+              {
+                "id": "susan_reynolds",
+                "name": "Susan Reynolds",
+                "why": "Middelaldersk politisk organisasjon og kritikk av tidløse føydalmodeller",
+                "tier": "advanced",
+                "works": [
+                  "Fiefs and Vassals"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_kongemakt_kirke_konflikt"
+          ],
+          "best_place_types": [
+            "ruinomrade",
+            "kirke",
+            "kloster",
+            "kulturmiljo",
+            "festning",
+            "historical_site",
+            "arkiv",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_middelalderspor_eller_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_historian",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk middelalder uten sted, kilde eller datering",
+            "Teoretikernavn som fasit før caset er etablert",
+            "Sen saga behandlet som samtidig referat"
+          ],
+          "preferred_question_moves": [
+            "identify the dated source or material trace",
+            "name the actor, institution or resource relation",
+            "separate normative claim from documented practice",
+            "state source limitation before theoretical interpretation"
+          ],
+          "comparison_pairs": [
+            [
+              "sverre_bagge",
+              "hans_jacob_orning"
+            ],
+            [
+              "hans_jacob_orning",
+              "susan_reynolds"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "sverre_bagge",
+            "hans_jacob_orning"
+          ],
+          "recommended_oslo_cases": [
+            "Oslo bispeborg",
+            "Akershus festning",
+            "Nidarosdomen",
+            "Sverresborg"
+          ],
+          "recommended_method_ids": [
+            "met_rettshistorisk_analyse",
+            "met_kildekritikk",
+            "met_prosopografi",
+            "met_periodisering"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_middelalder_by_kirke",
+          "title": "Middelalderbyen Oslo som makt- og ressursknutepunkt",
+          "canon": {
+            "thinkers": [
+              {
                 "id": "knut_helle",
                 "name": "Knut Helle",
-                "why": "Norsk middelalder, byutvikling og statsdannelse",
+                "why": "Norsk statsdannelse, lov, byutvikling og middelalderinstitusjoner",
                 "tier": "core",
                 "works": [
                   "Norge blir en stat 1130–1319"
+                ]
+              },
+              {
+                "id": "arnved_nedkvitne",
+                "name": "Arnved Nedkvitne",
+                "why": "Middelalderbyer, handel, kommunikasjon og Oslohistorie",
+                "tier": "core",
+                "works": [
+                  "The Social Consequences of Literacy in Medieval Scandinavia"
                 ]
               },
               {
@@ -3899,67 +4136,885 @@
             "kloster",
             "kulturmiljo",
             "festning",
-            "historical_site"
+            "historical_site",
+            "arkiv",
+            "museum"
           ],
           "avoid_place_types": [
-            "modernisert_sted_uten_middelalderspor"
+            "sted_uten_dokumentert_middelalderspor_eller_kilde"
           ],
           "set_phase_fit": [
             "facts",
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "fact-first",
+          "question_surface_mode": "place-first_then_named_historian",
           "fact_anchor_required": true,
           "history_anchor_required": true,
           "avoid_surface_forms": [
-            "Generisk middelalder uten Oslo-spor",
-            "Konge/kirke som myte uten konkret sted"
+            "Generisk middelalder uten sted, kilde eller datering",
+            "Teoretikernavn som fasit før caset er etablert",
+            "Sen saga behandlet som samtidig referat"
           ],
           "preferred_question_moves": [
-            "anchor ruler or institution in place",
-            "read ruin/church as power structure",
-            "compare religious and royal authority",
-            "connect local Oslo trace to national state formation"
+            "identify the dated source or material trace",
+            "name the actor, institution or resource relation",
+            "separate normative claim from documented practice",
+            "state source limitation before theoretical interpretation"
           ],
           "comparison_pairs": [
             [
-              "sverre_bagge",
-              "knut_helle"
+              "knut_helle",
+              "arnved_nedkvitne"
             ],
             [
-              "jacques_le_goff",
-              "sverre_bagge"
+              "arnved_nedkvitne",
+              "jacques_le_goff"
             ]
           ],
           "norwegian_thinker_ids": [
-            "sverre_bagge",
-            "knut_helle"
+            "knut_helle",
+            "arnved_nedkvitne"
           ],
           "recommended_oslo_cases": [
             "Middelalderbyen Oslo",
-            "Gamle Aker kirke",
-            "Hovedøya kloster",
-            "Akershus festning"
+            "Kongsgården",
+            "Mariakirken",
+            "Hallvardskatedralen",
+            "Oslo bispeborg",
+            "Bjørvika"
           ],
           "recommended_method_ids": [
+            "met_historisk_gis",
             "met_sporlesning",
-            "met_kildekritikk",
-            "met_periodisering"
+            "met_arkeologisk_kontekstanalyse",
+            "met_komparativ_historie"
           ],
           "canonical_status": "canonical",
           "registry_version": "historiepensum_v4_5",
-          "min_recommended_oslo_cases": 2,
-          "min_recommended_methods": 1,
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
           "case_gate_required": true,
           "method_gate_required": true,
           "theory_rotation_required": true,
           "canonical_file_role": "active",
           "generator_constraints": {
-            "min_case_count": 2,
-            "min_method_count": 1,
+            "min_case_count": 4,
+            "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_lov_ting_rettshandheving",
+          "title": "Lov, ting og rettshåndheving",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "knut_helle",
+                "name": "Knut Helle",
+                "why": "Norsk statsdannelse, lov, byutvikling og middelalderinstitusjoner",
+                "tier": "core",
+                "works": [
+                  "Norge blir en stat 1130–1319"
+                ]
+              },
+              {
+                "id": "anne_irene_riisoy",
+                "name": "Anne Irene Riisøy",
+                "why": "Rett, kriminalitet og rettspraksis i norsk middelalder",
+                "tier": "core",
+                "works": [
+                  "Sex, Death and Witchcraft"
+                ]
+              },
+              {
+                "id": "jon_vidar_sigurdsson",
+                "name": "Jón Viðar Sigurðsson",
+                "why": "Makt, nettverk og politisk kultur i nordisk middelalder",
+                "tier": "advanced",
+                "works": [
+                  "Chieftains and Power in the Icelandic Commonwealth"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_lov_ting_jurisdiksjon_middelalder"
+          ],
+          "best_place_types": [
+            "ruinomrade",
+            "kirke",
+            "kloster",
+            "kulturmiljo",
+            "festning",
+            "historical_site",
+            "arkiv",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_middelalderspor_eller_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_historian",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk middelalder uten sted, kilde eller datering",
+            "Teoretikernavn som fasit før caset er etablert",
+            "Sen saga behandlet som samtidig referat"
+          ],
+          "preferred_question_moves": [
+            "identify the dated source or material trace",
+            "name the actor, institution or resource relation",
+            "separate normative claim from documented practice",
+            "state source limitation before theoretical interpretation"
+          ],
+          "comparison_pairs": [
+            [
+              "knut_helle",
+              "anne_irene_riisoy"
+            ],
+            [
+              "anne_irene_riisoy",
+              "jon_vidar_sigurdsson"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_helle",
+            "anne_irene_riisoy",
+            "jon_vidar_sigurdsson"
+          ],
+          "recommended_oslo_cases": [
+            "Eidsivatinget",
+            "Gulatinget",
+            "Frostatinget",
+            "Oslo bispeborg",
+            "Akershus festning"
+          ],
+          "recommended_method_ids": [
+            "met_rettshistorisk_analyse",
+            "met_diplomatikk",
+            "met_kildekritikk",
+            "met_komparativ_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_jord_eiendom_patronasje",
+          "title": "Jord, eiendom, landskyld og patronasje",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "knut_helle",
+                "name": "Knut Helle",
+                "why": "Norsk statsdannelse, lov, byutvikling og middelalderinstitusjoner",
+                "tier": "core",
+                "works": [
+                  "Norge blir en stat 1130–1319"
+                ]
+              },
+              {
+                "id": "chris_wickham",
+                "name": "Chris Wickham",
+                "why": "Eiendom, økonomi, samfunnsstruktur og sammenlignende middelalderhistorie",
+                "tier": "core",
+                "works": [
+                  "Framing the Early Middle Ages"
+                ]
+              },
+              {
+                "id": "georges_duby",
+                "name": "Georges Duby",
+                "why": "Jord, elite, hushold og sosial orden i middelalderen",
+                "tier": "advanced",
+                "works": [
+                  "The Three Orders"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_jord_eiendom_patronasje_middelalder"
+          ],
+          "best_place_types": [
+            "ruinomrade",
+            "kirke",
+            "kloster",
+            "kulturmiljo",
+            "festning",
+            "historical_site",
+            "arkiv",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_middelalderspor_eller_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_historian",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk middelalder uten sted, kilde eller datering",
+            "Teoretikernavn som fasit før caset er etablert",
+            "Sen saga behandlet som samtidig referat"
+          ],
+          "preferred_question_moves": [
+            "identify the dated source or material trace",
+            "name the actor, institution or resource relation",
+            "separate normative claim from documented practice",
+            "state source limitation before theoretical interpretation"
+          ],
+          "comparison_pairs": [
+            [
+              "knut_helle",
+              "chris_wickham"
+            ],
+            [
+              "chris_wickham",
+              "georges_duby"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_helle"
+          ],
+          "recommended_oslo_cases": [
+            "Hovedøya kloster",
+            "Nonneseter kloster",
+            "Gamle Aker kirke",
+            "Oslo Hospital",
+            "Mariakirken"
+          ],
+          "recommended_method_ids": [
+            "met_diplomatikk",
+            "met_seriell_kildeanalyse",
+            "met_prosopografi",
+            "met_historisk_gis"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_handel_handverk_bynettverk",
+          "title": "Handel, håndverk og bynettverk",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "knut_helle",
+                "name": "Knut Helle",
+                "why": "Norsk statsdannelse, lov, byutvikling og middelalderinstitusjoner",
+                "tier": "core",
+                "works": [
+                  "Norge blir en stat 1130–1319"
+                ]
+              },
+              {
+                "id": "arnved_nedkvitne",
+                "name": "Arnved Nedkvitne",
+                "why": "Middelalderbyer, handel, kommunikasjon og Oslohistorie",
+                "tier": "core",
+                "works": [
+                  "The Social Consequences of Literacy in Medieval Scandinavia"
+                ]
+              },
+              {
+                "id": "chris_wickham",
+                "name": "Chris Wickham",
+                "why": "Eiendom, økonomi, samfunnsstruktur og sammenlignende middelalderhistorie",
+                "tier": "advanced",
+                "works": [
+                  "Framing the Early Middle Ages"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_handel_handverk_bynettverk_middelalder"
+          ],
+          "best_place_types": [
+            "ruinomrade",
+            "kirke",
+            "kloster",
+            "kulturmiljo",
+            "festning",
+            "historical_site",
+            "arkiv",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_middelalderspor_eller_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_historian",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk middelalder uten sted, kilde eller datering",
+            "Teoretikernavn som fasit før caset er etablert",
+            "Sen saga behandlet som samtidig referat"
+          ],
+          "preferred_question_moves": [
+            "identify the dated source or material trace",
+            "name the actor, institution or resource relation",
+            "separate normative claim from documented practice",
+            "state source limitation before theoretical interpretation"
+          ],
+          "comparison_pairs": [
+            [
+              "knut_helle",
+              "arnved_nedkvitne"
+            ],
+            [
+              "arnved_nedkvitne",
+              "chris_wickham"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_helle",
+            "arnved_nedkvitne"
+          ],
+          "recommended_oslo_cases": [
+            "Middelalderbyen Oslo",
+            "Bjørvika",
+            "Kaupang",
+            "Borgundkaupangen",
+            "Bryggen"
+          ],
+          "recommended_method_ids": [
+            "met_arkeologisk_kontekstanalyse",
+            "met_materiell_kulturanalyse",
+            "met_historisk_gis",
+            "met_komparativ_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_hushold_arbeid_hverdagsliv",
+          "title": "Hushold, arbeid og hverdagsliv",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "judith_bennett",
+                "name": "Judith Bennett",
+                "why": "Kjønn, arbeid og hverdagsliv i middelalderen",
+                "tier": "core",
+                "works": [
+                  "Ale, Beer, and Brewsters in England"
+                ]
+              },
+              {
+                "id": "christopher_dyer",
+                "name": "Christopher Dyer",
+                "why": "Levestandard, hushold og økonomisk hverdagsliv",
+                "tier": "core",
+                "works": [
+                  "Standards of Living in the Later Middle Ages"
+                ]
+              },
+              {
+                "id": "else_roesdahl",
+                "name": "Else Roesdahl",
+                "why": "Materiell kultur, arkeologi og nordisk middelalder",
+                "tier": "advanced",
+                "works": [
+                  "The Vikings"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_hushold_arbeid_hverdagsliv_middelalder"
+          ],
+          "best_place_types": [
+            "ruinomrade",
+            "kirke",
+            "kloster",
+            "kulturmiljo",
+            "festning",
+            "historical_site",
+            "arkiv",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_middelalderspor_eller_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_historian",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk middelalder uten sted, kilde eller datering",
+            "Teoretikernavn som fasit før caset er etablert",
+            "Sen saga behandlet som samtidig referat"
+          ],
+          "preferred_question_moves": [
+            "identify the dated source or material trace",
+            "name the actor, institution or resource relation",
+            "separate normative claim from documented practice",
+            "state source limitation before theoretical interpretation"
+          ],
+          "comparison_pairs": [
+            [
+              "judith_bennett",
+              "christopher_dyer"
+            ],
+            [
+              "christopher_dyer",
+              "else_roesdahl"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Middelalderbyen Oslo",
+            "Minneparken",
+            "Hovedøya kloster",
+            "Kaupang",
+            "Borgundkaupangen"
+          ],
+          "recommended_method_ids": [
+            "met_materiell_kulturanalyse",
+            "met_arkeologisk_kontekstanalyse",
+            "met_mikrohistorisk_analyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_pest_demografi_senmiddelalder",
+          "title": "Pest, demografi og senmiddelalder",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "ole_jorgen_benedictow",
+                "name": "Ole Jørgen Benedictow",
+                "why": "Svartedauden, demografi og norsk senmiddelalder",
+                "tier": "core",
+                "works": [
+                  "The Black Death 1346–1353"
+                ]
+              },
+              {
+                "id": "bruce_campbell",
+                "name": "Bruce Campbell",
+                "why": "Pest, klima, økonomi og demografisk endring",
+                "tier": "core",
+                "works": [
+                  "The Great Transition"
+                ]
+              },
+              {
+                "id": "knut_helle",
+                "name": "Knut Helle",
+                "why": "Norsk statsdannelse, lov, byutvikling og middelalderinstitusjoner",
+                "tier": "advanced",
+                "works": [
+                  "Norge blir en stat 1130–1319"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_pest_demografi_senmiddelalder"
+          ],
+          "best_place_types": [
+            "ruinomrade",
+            "kirke",
+            "kloster",
+            "kulturmiljo",
+            "festning",
+            "historical_site",
+            "arkiv",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_middelalderspor_eller_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_historian",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk middelalder uten sted, kilde eller datering",
+            "Teoretikernavn som fasit før caset er etablert",
+            "Sen saga behandlet som samtidig referat"
+          ],
+          "preferred_question_moves": [
+            "identify the dated source or material trace",
+            "name the actor, institution or resource relation",
+            "separate normative claim from documented practice",
+            "state source limitation before theoretical interpretation"
+          ],
+          "comparison_pairs": [
+            [
+              "ole_jorgen_benedictow",
+              "bruce_campbell"
+            ],
+            [
+              "bruce_campbell",
+              "knut_helle"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "ole_jorgen_benedictow",
+            "knut_helle"
+          ],
+          "recommended_oslo_cases": [
+            "Middelalderbyen Oslo",
+            "Hamar domkirkeruin",
+            "Borgundkaupangen",
+            "Selja kloster"
+          ],
+          "recommended_method_ids": [
+            "met_seriell_kildeanalyse",
+            "met_historisk_gis",
+            "met_kildekritikk",
+            "met_periodisering"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_skrift_diplom_muntlighet",
+          "title": "Skriftkultur, diplomer og muntlighet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "michael_clanchy",
+                "name": "Michael Clanchy",
+                "why": "Overgangen mellom muntlighet, minne og pragmatisk skriftlighet",
+                "tier": "core",
+                "works": [
+                  "From Memory to Written Record"
+                ]
+              },
+              {
+                "id": "else_mundal",
+                "name": "Else Mundal",
+                "why": "Norrøn skriftkultur, muntlighet og tekstoverføring",
+                "tier": "core",
+                "works": [
+                  "Oral Art Forms and Their Passage into Writing"
+                ]
+              },
+              {
+                "id": "armando_petrucci",
+                "name": "Armando Petrucci",
+                "why": "Skriftpraksis, paleografi og skriftens sosiale bruk",
+                "tier": "advanced",
+                "works": [
+                  "Public Lettering"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_skrift_diplom_muntlighet_middelalder"
+          ],
+          "best_place_types": [
+            "ruinomrade",
+            "kirke",
+            "kloster",
+            "kulturmiljo",
+            "festning",
+            "historical_site",
+            "arkiv",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_middelalderspor_eller_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_historian",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk middelalder uten sted, kilde eller datering",
+            "Teoretikernavn som fasit før caset er etablert",
+            "Sen saga behandlet som samtidig referat"
+          ],
+          "preferred_question_moves": [
+            "identify the dated source or material trace",
+            "name the actor, institution or resource relation",
+            "separate normative claim from documented practice",
+            "state source limitation before theoretical interpretation"
+          ],
+          "comparison_pairs": [
+            [
+              "michael_clanchy",
+              "else_mundal"
+            ],
+            [
+              "else_mundal",
+              "armando_petrucci"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "else_mundal"
+          ],
+          "recommended_oslo_cases": [
+            "Riksarkivet",
+            "Nasjonalbiblioteket",
+            "Oslo byarkiv",
+            "Grindheim runestein",
+            "Stødle kyrkje"
+          ],
+          "recommended_method_ids": [
+            "met_diplomatikk",
+            "met_paleografi",
+            "met_kildekritikk",
+            "met_proveniensanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_samisk_kontaktsone_ressursrett",
+          "title": "Samiske kontaktsoner, ressursbruk og statsintegrasjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "lars_ivar_hansen",
+                "name": "Lars Ivar Hansen",
+                "why": "Samiske samfunn, handel, skattlegging og statsintegrasjon",
+                "tier": "core",
+                "works": [
+                  "Hunters in Transition"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Samisk arkeologi, materiell kultur og koloniale kunnskapsordener",
+                "tier": "core",
+                "works": [
+                  "Hunters in Transition"
+                ]
+              },
+              {
+                "id": "sverre_bagge",
+                "name": "Sverre Bagge",
+                "why": "Norsk middelalder, kongemakt, kristning og politisk kultur",
+                "tier": "advanced",
+                "works": [
+                  "From Viking Stronghold to Christian Kingdom"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_samiske_kontaktsoner_middelalder"
+          ],
+          "best_place_types": [
+            "ruinomrade",
+            "kirke",
+            "kloster",
+            "kulturmiljo",
+            "festning",
+            "historical_site",
+            "arkiv",
+            "museum"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_middelalderspor_eller_kilde"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_historian",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk middelalder uten sted, kilde eller datering",
+            "Teoretikernavn som fasit før caset er etablert",
+            "Sen saga behandlet som samtidig referat"
+          ],
+          "preferred_question_moves": [
+            "identify the dated source or material trace",
+            "name the actor, institution or resource relation",
+            "separate normative claim from documented practice",
+            "state source limitation before theoretical interpretation"
+          ],
+          "comparison_pairs": [
+            [
+              "lars_ivar_hansen",
+              "bjornar_olsen"
+            ],
+            [
+              "bjornar_olsen",
+              "sverre_bagge"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "lars_ivar_hansen",
+            "bjornar_olsen",
+            "sverre_bagge"
+          ],
+          "recommended_oslo_cases": [
+            "Varanger",
+            "Pasvik",
+            "Astafjord",
+            "Trondenes",
+            "Borg i Lofoten"
+          ],
+          "recommended_method_ids": [
+            "met_arkeologisk_kontekstanalyse",
+            "met_materiell_kulturanalyse",
+            "met_historisk_gis",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
             "rotate_theorists": true
           }
         }
