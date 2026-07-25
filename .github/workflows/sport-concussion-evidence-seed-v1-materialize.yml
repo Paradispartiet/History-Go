@@ -28,6 +28,10 @@ jobs:
           set -euo pipefail
           git clone --quiet --depth 1 --branch '${{ github.head_ref }}' "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" repo
 
+      - name: Apply precise CDC candidate title
+        working-directory: repo
+        run: sed -i 's/title: "Returning to Sports"/title: "CDC HEADS UP: Returning to Sports After a Concussion"/' tools/build-sport-concussion-evidence-seed-v1.mjs
+
       - name: Build registered concussion package
         working-directory: repo
         run: node tools/build-sport-concussion-evidence-seed-v1.mjs
