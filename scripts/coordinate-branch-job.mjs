@@ -1,3 +1,4 @@
+// One-shot editorial correction after the structural popkultur migration.
 import fs from "node:fs/promises";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -74,7 +75,6 @@ const QUIZ_ONLY_PERSON_CATEGORIES = {
 };
 
 const absFromDataEntry = (entry) => path.join(DATA, String(entry).replace(/^data\//, ""));
-const relFromRoot = (file) => path.relative(ROOT, file).split(path.sep).join("/");
 
 async function exists(file) {
   try {
