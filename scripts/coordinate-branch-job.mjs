@@ -38,3 +38,13 @@ replaceOnce(/^  `Emner korrigert: \$\{finalEmner\.length\}`,\n/m, "  'Emner fagl
 const target = path.join('/tmp', 'history-power-v5-5-curation-v2-fixed.mjs');
 fs.writeFileSync(target, source);
 await import(`file://${target}?v=${Date.now()}`);
+
+const canonicalWorkflow = spawnSync('git', ['show', 'origin/main:.github/workflows/coordinate-branch-runner.yml'], {
+  cwd: root,
+  encoding: 'utf8',
+  maxBuffer: 4 * 1024 * 1024,
+});
+if (canonicalWorkflow.error || canonicalWorkflow.status !== 0) {
+  throw new Error(`Could not restore canonical coordinate workflow\n${canonicalWorkflow.stderr || ''}`);
+}
+fs.writeFileSync(path.join(root, '.github/workflows/coordinate-branch-runner.yml'), canonicalWorkflow.stdout);
