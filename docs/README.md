@@ -67,19 +67,21 @@ Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk
 1. [`../README/README.pensum.md`](../README/README.pensum.md) — fagkart, emner og pensum
 2. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md) — fagstruktur
 3. [`../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`](../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md) — eneste bindende quizproduksjonsprosedyre
-4. [`../data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) — filresolver, full fagpakke og aktive `quizProduction.targets`
-5. [`../data/quiz/manifest.json`](../data/quiz/manifest.json) — runtime-aktivering av quizfiler og target-bundne sett
-6. [`../README/quizREADME.md`](../README/quizREADME.md) — compatibility-pointer til canonical produksjon, schemas, audits og runtime-eierskap
+4. [`../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`](../data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json) — maskinlesbar autoritetsrekkefølge, globale invariants og kategori-profiler
+5. [`../data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) — filresolver, full fagpakke og aktive `quizProduction.targets`
+6. [`../data/quiz/manifest.json`](../data/quiz/manifest.json) — runtime-aktivering av quizfiler og target-bundne sett
+7. [`../README/quizREADME.md`](../README/quizREADME.md) — compatibility-pointer til canonical produksjon, schemas, audits og runtime-eierskap
 
 Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. Den tidligere 913-linjers quiz-/lærings-/observations-/popup-README-en er bevart byte-identisk i `README/archive/QUIZ_README_PRE_CONSOLIDATION_2026-07-25.md`; den er historisk og eier ingen aktiv regel.
 
 ### Civication
 
-- [`CIVICATION_README.md`](./CIVICATION_README.md) — operativ inngang til Civication-runtime, data-, rolle-, mail- og FWG-dokumentasjon
+- [`CIVICATION_README.md`](./CIVICATION_README.md) — operativ inngang til Civication-runtime, data-, rolle-, mail-, debatt- og FWG-dokumentasjon
+- [`CIVICATION_DEBATE_SYSTEM.md`](./CIVICATION_DEBATE_SYSTEM.md) — operativ forklaring av Civications interne konfrontasjonsmotor
 - [`../js/Civication/README.md`](../js/Civication/README.md) — motoroversikt og aktiv dagflyt
 - [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — bindende subsystemkontrakter
 
-De to gamle generelle Civication-utkastene under `README/` er fjernet. Nye Civication-dokumenter skal plasseres under riktig kontrakt eller som tidsbundne rapporter, ikke som nye parallelle hoved-READMEs.
+Gamle generelle Civication-utkast, den innlimte `CivicationGameREADME`-chatloggen og de to dupliserte jobbmodellene er fjernet. Nye Civication-dokumenter skal plasseres under riktig kontrakt eller som tidsbundne rapporter, ikke som nye parallelle hoved-READMEs.
 
 ### Rapporter og audits
 
@@ -149,12 +151,12 @@ Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation
 - aktiv `SYSTEM_REGISTRY` skilt fra byte-identisk pre-split-arkiv
 - aktive subsystemappendikser samlet i en egen canonical kontrakt
 - seks feilformede/extensionløse README-filer fjernet
-- én Civication-dokumentasjonsinngang opprettet
+- Civication-dokumentasjonen samlet under én inngang; chatlogg og jobbmodellduplikater fjernet
 - foreldet `badge_refs`-regel og biologispesifikk emnearkitektur fjernet fra aktiv dokumentflate
-- gammel quiz-README erstattet med compatibility-pointer; canonical produksjonsprosedyre og manifests er eksplisitt prioritert
+- gammel quiz-README erstattet med compatibility-pointer; canonical produksjonsprosedyre, template-register og manifests er eksplisitt prioritert
 
 ### Neste
 
 - bruk inventaret til å klassifisere de gjenværende uregistrerte globale dokumentkandidatene
 - flytt daterte audits og migreringsstatus til `reports/archive/`
-- slå sammen konkrete overlappgrupper, først Civication job model og role-pack index
+- slå sammen konkrete overlappgrupper, først Civication role-pack index og gjentatte migreringsstatusfiler
