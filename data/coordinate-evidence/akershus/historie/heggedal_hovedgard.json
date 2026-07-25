@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "heggedal_hovedgard",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch2/heggedal_hovedgard.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_historical_farmyard_anchor_applied",
+  "currentCoordinate": {
+    "lat": 59.7836306,
+    "lon": 10.4388194,
+    "r": 220,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Lokalhistoriewiki – Heggedal hovedgård",
+    "coordType": "documented_historic_farmyard_anchor",
+    "coordRole": "area_anchor",
+    "sourceObjectId": "lokalhistoriewiki:heggedal-hovedgard",
+    "coordNote": "Published coordinate for the preserved farm complex around the courtyard, tied to official history, visitor address and heritage ID 86083."
+  },
+  "previousCoordinate": {
+    "lat": 59.78363,
+    "lon": 10.43882,
+    "r": 220,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 0.1,
+    "reasonReplaced": "The legacy point already represented the farmyard but was rounded and lacked a historical source identity and representation contract."
+  },
+  "identity": {
+    "currentName": "Heggedal hovedgård",
+    "resolvedIdentity": "The preserved Heggedal hovedgård farm complex at Heggedalsbakken 23, including the protected main building and the historic courtyard buildings",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The protected main building, side building, storehouse, newer outbuilding, courtyard and garden form one coherent historic farm destination."
+  },
+  "requiredEvidence": [
+    "published coordinate for the historic farm complex",
+    "official history documenting preservation and restoration",
+    "official visitor address",
+    "stable heritage identity for the protected main building",
+    "explicit exclusion of adjacent school and sports facilities"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Heggedal hovedgård",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Heggedal_hovedg%C3%A5rd",
+      "sourceObjectId": "lokalhistoriewiki:heggedal-hovedgard",
+      "sourceQuality": "published_historic_farmyard_coordinate_and_scope",
+      "finding": "The article publishes 59.7836306, 10.4388194 and identifies the place as the farm buildings at Heggedalsbakken 23: three old buildings around a courtyard plus a newer outbuilding.",
+      "canVerifyCoordinate": true,
+      "reason": "The published point directly represents the preserved farm complex and agrees with the legacy coordinate to approximately 0.1 metre."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Stiftelsen Heggedal Hovedgård – Historie",
+      "sourceUrl": "https://www.heggedalhovedgaard.no/om-oss/historie/",
+      "sourceObjectId": "heggedal-hovedgaard:official-history",
+      "sourceQuality": "official_historical_identity_and_conservation_history",
+      "finding": "The foundation documents the farm in Bishop Eystein's 1398 land register, protection of the main building in 1974, creation of the restoration foundation in 1975 and completed restoration in 1976. It also describes three old buildings surrounding the courtyard.",
+      "canVerifyCoordinate": false,
+      "reason": "Establishes historical identity, site composition and conservation scope, but does not publish a machine-readable coordinate."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Stiftelsen Heggedal Hovedgård – Contact",
+      "sourceUrl": "https://www.heggedalhovedgaard.no/kontakt-oss/",
+      "sourceObjectId": "heggedal-hovedgaard:address:heggedalsbakken-23",
+      "sourceQuality": "official_visitor_address",
+      "finding": "The foundation lists Heggedalsbakken 23, 1389 Heggedal as the visitor address.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as the authoritative active-place address and identity cross-check."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Kulturminnesøk / Askeladden – Heggedal hovedgård",
+      "sourceUrl": "https://www.kulturminnesok.no/minne?queryString=https://data.kulturminne.no/askeladden/lokalitet/86083",
+      "sourceObjectId": "kulturminne:86083",
+      "sourceQuality": "official_protected_building_identity",
+      "finding": "Cultural heritage ID 86083 identifies the protected Heggedal hovedgård main building, dated to the 1830s with an older 18th-century core.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as the stable heritage identifier for the protected main building within the wider farmyard record."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 85904457 – Heggedal hovedgård tourist attraction",
+      "sourceUrl": "https://www.openstreetmap.org/node/85904457",
+      "sourceObjectId": "osm-node:85904457",
+      "sourceQuality": "named_visitor_point_candidate",
+      "finding": "The named tourism point lies at approximately 59.78383, 10.43884, about 22.3 metres north of the published historic-farmyard coordinate.",
+      "canVerifyCoordinate": false,
+      "reason": "Useful as an identity cross-check, but less directly tied to the preserved courtyard anchor than the published farm-complex coordinate."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 10225952754 – Heggedal hovedgård farm",
+      "sourceUrl": "https://www.openstreetmap.org/node/10225952754",
+      "sourceObjectId": "osm-node:10225952754",
+      "sourceQuality": "named_farm_locality_candidate",
+      "finding": "The named farm point lies at approximately 59.78356, 10.43849, about 20.0 metres from the published courtyard coordinate.",
+      "canVerifyCoordinate": false,
+      "reason": "The broad farm-name point is not preferred over the source that explicitly describes and coordinates the preserved buildings around the courtyard."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Hovedgården ungdomsskole / Heggedalshallen exclusion",
+      "sourceUrl": "https://www.openstreetmap.org/way/10271319",
+      "sourceObjectId": "osm-way:10271319;osm-way:10271344",
+      "sourceQuality": "wrong_object_exclusion",
+      "finding": "The school and sports centre are separate mapped facilities northwest of the historic farm complex.",
+      "canVerifyCoordinate": false,
+      "reason": "Prevents the nearby modern school and sports facilities from being used as proxies for the historical record."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Heggedalsbakken",
+        "number": "23",
+        "postcode": "1389",
+        "city": "Heggedal",
+        "country": "NO"
+      },
+      "sourceUrl": "https://www.heggedalhovedgaard.no/kontakt-oss/",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Heggedalsbakken",
+        "number": "11",
+        "postcode": "1389",
+        "city": "Heggedal",
+        "country": "NO"
+      },
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Heggedalsbakken",
+      "canApplyToPlace": false,
+      "reasonRejected": "This is Hovedgården ungdomsskole, not Heggedal hovedgård."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lokalhistoriewiki:heggedal-hovedgard",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminne:86083",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:85904457",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:10225952754",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "anchors": [
+    {
+      "id": "heggedal_hovedgard_historic_farmyard",
+      "name": "Heggedal hovedgård – documented historic farmyard",
+      "lat": 59.7836306,
+      "lon": 10.4388194,
+      "r": 90,
+      "type": "area_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lokalhistoriewiki:heggedal-hovedgard",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:heggedal_hovedgard",
+      "lat": 59.78363,
+      "lon": 10.43882,
+      "coordRole": "unverified_historic_site_point",
+      "distanceFromAppliedM": 0.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "lokalhistoriewiki:heggedal-hovedgard",
+      "lat": 59.7836306,
+      "lon": 10.4388194,
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 0.1,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:85904457",
+      "lat": 59.78383,
+      "lon": 10.43884,
+      "coordRole": "visitor_poi_candidate",
+      "distanceFromAppliedM": 22.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:10225952754",
+      "lat": 59.78356,
+      "lon": 10.43849,
+      "coordRole": "farm_locality_candidate",
+      "distanceFromAppliedM": 20.0,
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the documented historic farmyard anchor and full historical source contract. Continue with Hvitsten sjøbodene."
+  },
+  "notes": [
+    "The coordinate refinement is approximately 0.1 metre and is not a material map move.",
+    "The record represents the preserved farm complex and conservation story, not merely the current event-rental use.",
+    "Heritage ID 86083 identifies the protected main building but does not reduce the whole record to that one building.",
+    "The school and sports centre northwest of the farm are explicitly excluded.",
+    "The 220-metre radius is retained for the courtyard, historic buildings and immediate garden, not the farm's former historical land extent."
+  ]
+}
