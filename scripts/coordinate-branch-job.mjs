@@ -15,6 +15,12 @@ const sourceFiles = [
   'tests/quiz-production-pipeline.test.mjs',
   'tools/validate-historie-industri-arbeid.mjs'
 ];
+const quizTargets = [
+  'grindheim_runestein',
+  'grindheim_steinkross',
+  'grindheimsveien_nord_gravfelt',
+  'hoyland_gravhaug_etne'
+];
 
 function run(command, args) {
   const result = spawnSync(command, args, { stdio: 'inherit' });
@@ -33,7 +39,14 @@ for (const file of sourceFiles.filter((file) => file.endsWith('.json'))) {
 
 run('node', ['tools/validate-historie-industri-arbeid.mjs']);
 run('npm', ['run', 'knowledge:canonical:write']);
-run('npm', ['run', 'quiz:context']);
+for (const target of quizTargets) {
+  run('node', [
+    'scripts/build-quiz-production-context.mjs',
+    '--category', 'historie',
+    '--target', target,
+    '--output', `data/quiz/production_context/historie/${target}.json`
+  ]);
+}
 run('node', ['tools/validate-historie-industri-arbeid.mjs']);
 run('npm', ['run', 'knowledge:canonical:check']);
 
