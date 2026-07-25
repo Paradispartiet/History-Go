@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { spawnSync } from 'node:child_process';
 
+console.log('Kjører 1814-kuratering mot synkronisert main med verifiserte Akershus-koordinater.');
 const run = spawnSync(process.execPath, ['scripts/run-1814-curation.mjs'], {
   cwd: process.cwd(),
   stdio: 'inherit'
