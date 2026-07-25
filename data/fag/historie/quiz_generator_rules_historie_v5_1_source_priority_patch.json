@@ -11,9 +11,9 @@
     "emnemapping": "emnemapping_historie_canonical_v4_5.json",
     "pensum": "historiepensum_canonical_v4_5.json",
     "domain_count": 12,
-    "emne_count": 78,
-    "method_count": 43,
-    "mapping_count": 78
+    "emne_count": 92,
+    "method_count": 54,
+    "mapping_count": 92
   },
   "hard_rules": {
     "source_dominance_rule": "External historical/local sources must dominate the factual substance of every history quiz. Canonical files may guide emne choice, method choice, theory choice, set progression and risk control, but may not be the main source of visible question content.",
@@ -720,6 +720,79 @@
         "arkivtaushet behandlet som bevis for at erfaringen ikke fantes",
         "teoretikernavn behandlet som tilstrekkelig svar"
       ]
+    },
+    "his_minne_kulturarv_historiebruk": {
+      "status": "complete_revised",
+      "purpose": "Bygge minne- og kulturarvshistoriske spørsmål fra dokumenterte objekter, opprinnelige hendelser, senere inngrep, aktører, utvelgelser, grupper og offentlige konsekvenser uten å redusere feltet til løs symbolikk eller hyllest.",
+      "required_chain": [
+        "ekstern kilde eller synlig minne- eller kulturarvsspor",
+        "navngitt minneaktør, institusjon, kulturarvobjekt, samling, seremoni eller offentlig fortelling",
+        "datert opprinnelig hendelse, objekt eller bruk og datert senere minne- eller kulturarvsinngrep",
+        "dokumentert utvelgelse, bevaring, restaurering, innsamling, navngivning, ritual, utstilling, fjerning eller omtolking",
+        "uttalt verdi, argument, mandat eller autorisert aktør",
+        "identifisert gruppe som inkluderes, utelates, utfordrer eller berøres",
+        "dokumentert offentlig konsekvens, bruk, konflikt eller endret forståelse",
+        "kontrollkilde, sammenligning eller tidligere/senere representasjon",
+        "kildebegrensning, autentisitetsusikkerhet og etisk håndtering",
+        "kritisk distinksjon",
+        "eventuelt teori etter at minne- og kulturarvskjeden er etablert"
+      ],
+      "hook_ids": [
+        "his_kulturminneutvelgelse_verdi",
+        "his_bevaring_restaurering_autentisitet",
+        "his_museum_samling_kanon",
+        "his_minnested_ritual_offentlig_sorg",
+        "his_monument_symbol_makt",
+        "his_kontrovers_fjerning_omtolking",
+        "his_jubileum_seremoni_historiebruk",
+        "his_stedsnavn_navnepolitikk",
+        "his_fravaer_taushet_motminne",
+        "his_digital_kulturarv_formidling"
+      ],
+      "emne_ids": [
+        "em_his_kulturminner_bevaring",
+        "em_his_restaurering_autentisitet",
+        "em_his_museum_samling_kanon",
+        "em_his_minnesteder_historiebruk",
+        "em_his_monumenter_kontrovers",
+        "em_his_kontrovers_fjerning_omtolking",
+        "em_his_jubileum_seremoni_historiebruk",
+        "em_his_stedsnavn_navnepolitikk",
+        "em_his_fravaer_taushet_motminne",
+        "em_his_digital_kulturarv_formidling"
+      ],
+      "method_ids": [
+        "met_minneanalyse",
+        "met_symbol_og_minneanalyse",
+        "met_sporlesning",
+        "met_kildekritikk",
+        "met_kulturarvutvelgelsesanalyse",
+        "met_restaurerings_autentisitetsanalyse",
+        "met_museums_og_samlingsanalyse",
+        "met_minnesteds_og_ritualanalyse",
+        "met_historiebruksanalyse",
+        "met_navnepolitisk_analyse"
+      ],
+      "forbidden_shortcuts": [
+        "alder behandlet som kulturarvstatus",
+        "vern behandlet som bevis for representativitet",
+        "monument behandlet som nøytral fortelling",
+        "museumstekst behandlet som fullstendig kilde",
+        "rekonstruksjon behandlet som original",
+        "offentlig sorg behandlet som enhetlig erfaring",
+        "digital tilgjengelighet behandlet som representativitet",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "kilder_arkiv_spor": "Kildeobjektets produksjon og autentisitet hører til kildefeltet; offentlig utvelgelse, representasjon og bruk hører hit.",
+        "byhistorie_stedsendring": "Fysisk og funksjonell transformasjon hører til byhistorie; minnepolitikk, verneverdier og kulturarvskonflikt hører hit.",
+        "migrasjon_minoritet_tilhorighet": "Migrasjonsforløp og minoritetsposisjon hører til migrasjon; offentlig representasjon, museumskanon og motminne hører hit.",
+        "katastrofer_brudd_ulykker": "Hendelse, beredskap og gjenoppbygging hører til katastrofehistorie; senere minnemarkering og offentlig sorg hører hit.",
+        "politikk": "Samtidige partiprogram og pågående beslutningsprosess hører til politikk; historisk dokumentert minnepraksis og dens konsekvens hører hit.",
+        "kunst": "Form, estetikk og kunstverk hører til kunst; bestilling, autorisering og offentlig minnebruk hører hit.",
+        "religion": "Troslære og religiøs praksis hører til religion; kulturarvsforvaltning og offentlig minnebruk av religiøse steder hører hit.",
+        "media": "Medieproduksjon og distribusjon hører til media; dokumentert mediert bruk av fortiden som offentlig minne hører hit."
+      }
     }
   }
 }

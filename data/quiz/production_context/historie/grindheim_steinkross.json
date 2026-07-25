@@ -15,26 +15,26 @@
   "resolved_files": {
     "pensum": {
       "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
-      "bytes": 37274,
-      "sha256": "e15cd62a4f98d784db6eb4f11b4b89372a3cffdf78628373a5244d744fb15580",
+      "bytes": 41787,
+      "sha256": "b2103c68306e52fb608fcac41dbd5d5482007c0ec71107d48b8eb5d0905ce71d",
       "format": "json"
     },
     "emner": {
       "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
-      "bytes": 719853,
-      "sha256": "50c04e553bf2c3f8c0bcbb19e191f0967ad238e7a42a71cff40c8dde233945d5",
+      "bytes": 772208,
+      "sha256": "9ac0b9d5bc9bfef154de036429b1a93acb14cbb7adf3e6508b2c4d3d6cfaf421",
       "format": "json"
     },
     "fagkart": {
       "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
-      "bytes": 364001,
-      "sha256": "056724d3accb288ec95d264c76f33e2624b8cf7b420ef9768c0979ec18479bee",
+      "bytes": 401265,
+      "sha256": "1ede65f98be756589e0e0ed7d80bd5011a8eff69ef2cda24f3297fa3451fe78f",
       "format": "json"
     },
     "methods": {
       "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
-      "bytes": 119594,
-      "sha256": "10fb9514534c29223b26f9eee79bf69c976ec226e281e9ea8307767a967eec2c",
+      "bytes": 134118,
+      "sha256": "06430f5664c57f40cae5c30bb9db5da626bbec28a07243881bdcfd3d9a155187",
       "format": "json"
     },
     "supersetQuizMal": {
@@ -68,8 +68,8 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/historie/grindheim_steinkross.json",
-      "bytes": 11587,
-      "sha256": "126c825b732bfb90ae7a48a1a21f60d8b05110b898d98c5ff489672e9ba8127d"
+      "bytes": 11657,
+      "sha256": "d543a488377f0dfeae26057c650d28e225cd00cc44de26916be522f3200f72f6"
     },
     "target": {
       "path": "data/places/historie/vestland/etne/grindheim_steinkross.json",
@@ -118,9 +118,9 @@
   "considered_curriculum": {
     "counts": {
       "pensum_modules": 12,
-      "emner": 85,
-      "topic_hooks": 75,
-      "methods": 48
+      "emner": 92,
+      "topic_hooks": 84,
+      "methods": 54
     },
     "candidate_emner": [
       {
@@ -135,7 +135,12 @@
       },
       {
         "id": "em_his_kulturminner_bevaring",
-        "title": "Kulturminner og bevaring",
+        "title": "Kulturminner, utvelgelse og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_minnesteder_historiebruk",
+        "title": "Minnesteder, ritual og offentlig historiebruk",
         "score": 100
       },
       {
@@ -146,21 +151,27 @@
     ],
     "candidate_topic_hooks": [
       {
-        "id": "his_historiebruk_minne",
-        "title": "Historiebruk og minnekultur",
-        "category_id": "his_minne_kulturarv_historiebruk",
-        "score": 10
-      },
-      {
         "id": "his_kildekritikk",
         "title": "Kildekritikk, opphav og formål",
         "category_id": "his_kilder_arkiv_spor",
         "score": 10
       },
       {
+        "id": "his_kulturminneutvelgelse_verdi",
+        "title": "Kulturminneutvelgelse og verdi",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
         "id": "his_middelalder_by_kirke",
         "title": "Middelalderbyen og kirkemakten",
         "category_id": "his_middelalder_kirke_kongemakt",
+        "score": 10
+      },
+      {
+        "id": "his_minnested_ritual_offentlig_sorg",
+        "title": "Minnested, ritual og offentlig sorg",
+        "category_id": "his_minne_kulturarv_historiebruk",
         "score": 10
       },
       {
@@ -182,11 +193,12 @@
       "em_his_kirke_kloster_middelalder",
       "em_his_spor_materialitet",
       "em_his_kildekritikk_arkiv_spor",
-      "em_his_kulturminner_bevaring"
+      "em_his_kulturminner_bevaring",
+      "em_his_minnesteder_historiebruk"
     ],
     "topic_hook_ids": [
       "his_kildekritikk",
-      "his_historiebruk_minne"
+      "his_minnested_ritual_offentlig_sorg"
     ],
     "method_ids": [
       "met_sporlesning",
@@ -482,14 +494,14 @@
         "norges_kirker_grindheim"
       ],
       "source_origin": "external",
-      "emne_id": "em_his_kulturminner_bevaring",
+      "emne_id": "em_his_minnesteder_historiebruk",
       "guidance_basis": [
         "data/fag/historie/fagkart_historie_canonical_v4_5.json",
         "data/fag/historie/methods_historie_canonical_v4_5.json",
         "data/fag/historie/emner_historie_canonical_v4_5.json"
       ],
       "method_id": "met_minneanalyse",
-      "topic_hook_id": "his_historiebruk_minne",
+      "topic_hook_id": "his_minnested_ritual_offentlig_sorg",
       "thinker_id": "pierre_nora",
       "work": "Realms of Memory"
     }

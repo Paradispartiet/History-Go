@@ -9132,480 +9132,6 @@
     "critical_distinction_required": true
   },
   {
-    "emne_id": "em_his_kulturminner_bevaring",
-    "title": "Kulturminner og bevaring",
-    "mappings": [
-      {
-        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
-        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
-        "topic_hook": "his_historiebruk_minne",
-        "topic_hook_tittel": "Historiebruk og minnekultur",
-        "mapping_tier": "primary",
-        "priority_score": 10,
-        "set_phase_fit": [
-          "facts",
-          "bridge_facts_theory",
-          "late_theory"
-        ],
-        "question_surface_mode": "place-first_then_named_theorist",
-        "history_anchor_required": true,
-        "fact_anchor_required": true,
-        "source_anchor_required": true,
-        "external_claim_basis_required": true,
-        "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
-        "tenkere": [
-          "Pierre Nora",
-          "Maurice Halbwachs",
-          "Jan Assmann",
-          "Anne Eriksen"
-        ],
-        "thinker_ids": [
-          "pierre_nora",
-          "maurice_halbwachs",
-          "jan_assmann",
-          "anne_eriksen"
-        ],
-        "norwegian_thinker_ids": [
-          "anne_eriksen"
-        ],
-        "norwegian_thinkers": [
-          "Anne Eriksen"
-        ],
-        "comparison_pairs": [
-          [
-            "pierre_nora",
-            "maurice_halbwachs"
-          ],
-          [
-            "jan_assmann",
-            "anne_eriksen"
-          ]
-        ],
-        "preferred_question_moves": [
-          "read monument as argument",
-          "ask who is remembered and who is absent",
-          "compare official and unofficial memory",
-          "connect museum or grave to canon formation"
-        ],
-        "best_place_types": [
-          "minnested",
-          "monument",
-          "gravlund",
-          "museum",
-          "kulturmiljo",
-          "ruinomrade",
-          "plass"
-        ],
-        "avoid_place_types": [
-          "sted_uten_minnebruk_eller_historisk_representasjon"
-        ],
-        "anti_patterns": [
-          "Hva symboliserer dette generelt",
-          "Ren hyllest uten å spørre hva som utelates",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
-        ],
-        "theory_depth": "high",
-        "recommended_oslo_cases": [
-          "Vår Frelsers gravlund",
-          "HL-senteret / Villa Grande",
-          "Eidsvollsbygningen",
-          "22. juli-senteret"
-        ],
-        "recommended_method_ids": [
-          "met_minneanalyse",
-          "met_symbol_og_minneanalyse",
-          "met_sporlesning",
-          "met_kildekritikk"
-        ]
-      }
-    ],
-    "mapping_status": "tiered+canonical",
-    "primary_hooks": [
-      "his_historiebruk_minne"
-    ],
-    "secondary_hooks": [],
-    "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
-    "history_anchor_required": true,
-    "source_anchor_required": true,
-    "external_claim_basis_required": true,
-    "canonical_thinkers": [
-      "Pierre Nora",
-      "Maurice Halbwachs",
-      "Jan Assmann",
-      "Anne Eriksen"
-    ],
-    "canonical_thinker_ids": [
-      "pierre_nora",
-      "maurice_halbwachs",
-      "jan_assmann",
-      "anne_eriksen"
-    ],
-    "norwegian_thinker_ids": [
-      "anne_eriksen"
-    ],
-    "norwegian_thinkers": [
-      "Anne Eriksen"
-    ],
-    "theory_diversity_score": 4,
-    "has_norwegian_theory_path": true,
-    "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
-    "recommended_oslo_cases": [
-      "Vår Frelsers gravlund",
-      "HL-senteret / Villa Grande",
-      "Eidsvollsbygningen",
-      "22. juli-senteret"
-    ],
-    "recommended_method_ids": [
-      "met_minneanalyse",
-      "met_symbol_og_minneanalyse",
-      "met_sporlesning",
-      "met_kildekritikk"
-    ],
-    "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
-    "theory_overreach_risk": "medium",
-    "progression_stage": "full_ladder",
-    "theory_spread_priority": "spread_more",
-    "canonical_status": "canonical",
-    "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
-    "case_gate_required": true,
-    "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
-    "generator_risk_mode": "guarded",
-    "canonical_file_role": "active",
-    "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
-      "risk_mode": "guarded",
-      "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
-  },
-  {
-    "emne_id": "em_his_minnesteder_historiebruk",
-    "title": "Minnesteder og historiebruk",
-    "mappings": [
-      {
-        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
-        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
-        "topic_hook": "his_historiebruk_minne",
-        "topic_hook_tittel": "Historiebruk og minnekultur",
-        "mapping_tier": "primary",
-        "priority_score": 10,
-        "set_phase_fit": [
-          "facts",
-          "bridge_facts_theory",
-          "late_theory"
-        ],
-        "question_surface_mode": "place-first_then_named_theorist",
-        "history_anchor_required": true,
-        "fact_anchor_required": true,
-        "source_anchor_required": true,
-        "external_claim_basis_required": true,
-        "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
-        "tenkere": [
-          "Pierre Nora",
-          "Maurice Halbwachs",
-          "Jan Assmann",
-          "Anne Eriksen"
-        ],
-        "thinker_ids": [
-          "pierre_nora",
-          "maurice_halbwachs",
-          "jan_assmann",
-          "anne_eriksen"
-        ],
-        "norwegian_thinker_ids": [
-          "anne_eriksen"
-        ],
-        "norwegian_thinkers": [
-          "Anne Eriksen"
-        ],
-        "comparison_pairs": [
-          [
-            "pierre_nora",
-            "maurice_halbwachs"
-          ],
-          [
-            "jan_assmann",
-            "anne_eriksen"
-          ]
-        ],
-        "preferred_question_moves": [
-          "read monument as argument",
-          "ask who is remembered and who is absent",
-          "compare official and unofficial memory",
-          "connect museum or grave to canon formation"
-        ],
-        "best_place_types": [
-          "minnested",
-          "monument",
-          "gravlund",
-          "museum",
-          "kulturmiljo",
-          "ruinomrade",
-          "plass"
-        ],
-        "avoid_place_types": [
-          "sted_uten_minnebruk_eller_historisk_representasjon"
-        ],
-        "anti_patterns": [
-          "Hva symboliserer dette generelt",
-          "Ren hyllest uten å spørre hva som utelates",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
-        ],
-        "theory_depth": "high",
-        "recommended_oslo_cases": [
-          "Vår Frelsers gravlund",
-          "HL-senteret / Villa Grande",
-          "Eidsvollsbygningen",
-          "22. juli-senteret"
-        ],
-        "recommended_method_ids": [
-          "met_minneanalyse",
-          "met_symbol_og_minneanalyse",
-          "met_sporlesning",
-          "met_kildekritikk"
-        ]
-      }
-    ],
-    "mapping_status": "tiered+canonical",
-    "primary_hooks": [
-      "his_historiebruk_minne"
-    ],
-    "secondary_hooks": [],
-    "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
-    "history_anchor_required": true,
-    "source_anchor_required": true,
-    "external_claim_basis_required": true,
-    "canonical_thinkers": [
-      "Pierre Nora",
-      "Maurice Halbwachs",
-      "Jan Assmann",
-      "Anne Eriksen"
-    ],
-    "canonical_thinker_ids": [
-      "pierre_nora",
-      "maurice_halbwachs",
-      "jan_assmann",
-      "anne_eriksen"
-    ],
-    "norwegian_thinker_ids": [
-      "anne_eriksen"
-    ],
-    "norwegian_thinkers": [
-      "Anne Eriksen"
-    ],
-    "theory_diversity_score": 4,
-    "has_norwegian_theory_path": true,
-    "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
-    "recommended_oslo_cases": [
-      "Vår Frelsers gravlund",
-      "HL-senteret / Villa Grande",
-      "Eidsvollsbygningen",
-      "22. juli-senteret"
-    ],
-    "recommended_method_ids": [
-      "met_minneanalyse",
-      "met_symbol_og_minneanalyse",
-      "met_sporlesning",
-      "met_kildekritikk"
-    ],
-    "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
-    "theory_overreach_risk": "medium",
-    "progression_stage": "full_ladder",
-    "theory_spread_priority": "spread_more",
-    "canonical_status": "canonical",
-    "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
-    "case_gate_required": true,
-    "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
-    "generator_risk_mode": "guarded",
-    "canonical_file_role": "active",
-    "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
-      "risk_mode": "guarded",
-      "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
-  },
-  {
-    "emne_id": "em_his_monumenter_kontrovers",
-    "title": "Monumenter, kanon og kontrovers",
-    "mappings": [
-      {
-        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
-        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
-        "topic_hook": "his_historiebruk_minne",
-        "topic_hook_tittel": "Historiebruk og minnekultur",
-        "mapping_tier": "primary",
-        "priority_score": 10,
-        "set_phase_fit": [
-          "facts",
-          "bridge_facts_theory",
-          "late_theory"
-        ],
-        "question_surface_mode": "place-first_then_named_theorist",
-        "history_anchor_required": true,
-        "fact_anchor_required": true,
-        "source_anchor_required": true,
-        "external_claim_basis_required": true,
-        "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
-        "tenkere": [
-          "Pierre Nora",
-          "Maurice Halbwachs",
-          "Jan Assmann",
-          "Anne Eriksen"
-        ],
-        "thinker_ids": [
-          "pierre_nora",
-          "maurice_halbwachs",
-          "jan_assmann",
-          "anne_eriksen"
-        ],
-        "norwegian_thinker_ids": [
-          "anne_eriksen"
-        ],
-        "norwegian_thinkers": [
-          "Anne Eriksen"
-        ],
-        "comparison_pairs": [
-          [
-            "pierre_nora",
-            "maurice_halbwachs"
-          ],
-          [
-            "jan_assmann",
-            "anne_eriksen"
-          ]
-        ],
-        "preferred_question_moves": [
-          "read monument as argument",
-          "ask who is remembered and who is absent",
-          "compare official and unofficial memory",
-          "connect museum or grave to canon formation"
-        ],
-        "best_place_types": [
-          "minnested",
-          "monument",
-          "gravlund",
-          "museum",
-          "kulturmiljo",
-          "ruinomrade",
-          "plass"
-        ],
-        "avoid_place_types": [
-          "sted_uten_minnebruk_eller_historisk_representasjon"
-        ],
-        "anti_patterns": [
-          "Hva symboliserer dette generelt",
-          "Ren hyllest uten å spørre hva som utelates",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
-        ],
-        "theory_depth": "high",
-        "recommended_oslo_cases": [
-          "Vår Frelsers gravlund",
-          "HL-senteret / Villa Grande",
-          "Eidsvollsbygningen",
-          "22. juli-senteret"
-        ],
-        "recommended_method_ids": [
-          "met_minneanalyse",
-          "met_symbol_og_minneanalyse",
-          "met_sporlesning",
-          "met_kildekritikk"
-        ]
-      }
-    ],
-    "mapping_status": "tiered+canonical",
-    "primary_hooks": [
-      "his_historiebruk_minne"
-    ],
-    "secondary_hooks": [],
-    "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
-    "history_anchor_required": true,
-    "source_anchor_required": true,
-    "external_claim_basis_required": true,
-    "canonical_thinkers": [
-      "Pierre Nora",
-      "Maurice Halbwachs",
-      "Jan Assmann",
-      "Anne Eriksen"
-    ],
-    "canonical_thinker_ids": [
-      "pierre_nora",
-      "maurice_halbwachs",
-      "jan_assmann",
-      "anne_eriksen"
-    ],
-    "norwegian_thinker_ids": [
-      "anne_eriksen"
-    ],
-    "norwegian_thinkers": [
-      "Anne Eriksen"
-    ],
-    "theory_diversity_score": 4,
-    "has_norwegian_theory_path": true,
-    "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
-    "recommended_oslo_cases": [
-      "Vår Frelsers gravlund",
-      "HL-senteret / Villa Grande",
-      "Eidsvollsbygningen",
-      "22. juli-senteret"
-    ],
-    "recommended_method_ids": [
-      "met_minneanalyse",
-      "met_symbol_og_minneanalyse",
-      "met_sporlesning",
-      "met_kildekritikk"
-    ],
-    "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
-    "theory_overreach_risk": "high",
-    "progression_stage": "full_ladder",
-    "theory_spread_priority": "spread_more",
-    "canonical_status": "canonical",
-    "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
-    "case_gate_required": true,
-    "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
-    "generator_risk_mode": "strict",
-    "canonical_file_role": "active",
-    "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
-      "risk_mode": "strict",
-      "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
-  },
-  {
     "emne_id": "em_his_byutvidelse_gentrifisering",
     "title": "Byutvidelse, grenser og innlemmelse",
     "mappings": [
@@ -22151,6 +21677,2768 @@
     "individual_household_or_community_consequence_required": true,
     "source_limitation_required": true,
     "ethical_source_handling_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_kulturminner_bevaring",
+    "title": "Kulturminner, utvelgelse og bevaring",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_kulturminneutvelgelse_verdi",
+        "topic_hook_tittel": "Kulturminneutvelgelse og verdi",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Hovedbane for emnets dokumenterte minne- eller kulturarvskjede.",
+        "tenkere": [
+          "Alois Riegl",
+          "Laurajane Smith",
+          "Anne Eriksen",
+          "Torgrim Sneve Guttormsen"
+        ],
+        "thinker_ids": [
+          "alois_riegl",
+          "laurajane_smith",
+          "anne_eriksen",
+          "torgrim_sneve_guttormsen"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_eriksen",
+          "torgrim_sneve_guttormsen"
+        ],
+        "norwegian_thinkers": [
+          "Anne Eriksen",
+          "Torgrim Sneve Guttormsen"
+        ],
+        "comparison_pairs": [
+          [
+            "alois_riegl",
+            "laurajane_smith"
+          ],
+          [
+            "anne_eriksen",
+            "torgrim_sneve_guttormsen"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_kulturarvutvelgelsesanalyse",
+          "met_sporlesning",
+          "met_kildekritikk"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_bevaring_restaurering_autentisitet",
+        "topic_hook_tittel": "Bevaring, restaurering og autentisitet",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Kontrollbane som skal gi en selvstendig alternativ produksjonsvei.",
+        "tenkere": [
+          "Alois Riegl",
+          "Laurajane Smith",
+          "Anne Eriksen",
+          "Torgrim Sneve Guttormsen"
+        ],
+        "thinker_ids": [
+          "alois_riegl",
+          "laurajane_smith",
+          "anne_eriksen",
+          "torgrim_sneve_guttormsen"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_eriksen",
+          "torgrim_sneve_guttormsen"
+        ],
+        "norwegian_thinkers": [
+          "Anne Eriksen",
+          "Torgrim Sneve Guttormsen"
+        ],
+        "comparison_pairs": [
+          [
+            "alois_riegl",
+            "laurajane_smith"
+          ],
+          [
+            "anne_eriksen",
+            "torgrim_sneve_guttormsen"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_kulturarvutvelgelsesanalyse",
+          "met_sporlesning",
+          "met_kildekritikk"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_kulturminneutvelgelse_verdi"
+    ],
+    "secondary_hooks": [
+      "his_bevaring_restaurering_autentisitet"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primærbanen først; sekundærbanen må være en selvstendig dokumentert minne- eller kulturarvskjede.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Alois Riegl",
+      "Laurajane Smith",
+      "Anne Eriksen",
+      "Torgrim Sneve Guttormsen"
+    ],
+    "canonical_thinker_ids": [
+      "alois_riegl",
+      "laurajane_smith",
+      "anne_eriksen",
+      "torgrim_sneve_guttormsen"
+    ],
+    "norwegian_thinker_ids": [
+      "anne_eriksen",
+      "torgrim_sneve_guttormsen"
+    ],
+    "norwegian_thinkers": [
+      "Anne Eriksen",
+      "Torgrim Sneve Guttormsen"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Objekt, dato, senere inngrep, aktør, gruppe og offentlig konsekvens skal være etablert før teori.",
+    "recommended_oslo_cases": [
+      "Vår Frelsers gravlund",
+      "HL-senteret / Villa Grande",
+      "22. juli-senteret",
+      "Eidsvollsbygningen",
+      "Akershus festning",
+      "Oslo Museum",
+      "Interkulturelt museum",
+      "Jødisk museum"
+    ],
+    "recommended_method_ids": [
+      "met_kulturarvutvelgelsesanalyse",
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Velg emnet etter den dokumenterte hovedintervensjonen og dens offentlige konsekvens.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 3,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 3,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_original_and_later_date": true,
+      "require_selection_or_intervention": true,
+      "require_included_or_excluded_group": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_restaurering_autentisitet",
+    "title": "Restaurering, rekonstruksjon og autentisitet",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_bevaring_restaurering_autentisitet",
+        "topic_hook_tittel": "Bevaring, restaurering og autentisitet",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Hovedbane for emnets dokumenterte minne- eller kulturarvskjede.",
+        "tenkere": [
+          "Alois Riegl",
+          "Françoise Choay",
+          "David Lowenthal",
+          "Torgrim Sneve Guttormsen"
+        ],
+        "thinker_ids": [
+          "alois_riegl",
+          "francoise_choay",
+          "david_lowenthal",
+          "torgrim_sneve_guttormsen"
+        ],
+        "norwegian_thinker_ids": [
+          "torgrim_sneve_guttormsen"
+        ],
+        "norwegian_thinkers": [
+          "Torgrim Sneve Guttormsen"
+        ],
+        "comparison_pairs": [
+          [
+            "alois_riegl",
+            "francoise_choay"
+          ],
+          [
+            "david_lowenthal",
+            "torgrim_sneve_guttormsen"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_restaurerings_autentisitetsanalyse",
+          "met_sporlesning",
+          "met_kildekritikk"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_kulturminneutvelgelse_verdi",
+        "topic_hook_tittel": "Kulturminneutvelgelse og verdi",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Kontrollbane som skal gi en selvstendig alternativ produksjonsvei.",
+        "tenkere": [
+          "Alois Riegl",
+          "Françoise Choay",
+          "David Lowenthal",
+          "Torgrim Sneve Guttormsen"
+        ],
+        "thinker_ids": [
+          "alois_riegl",
+          "francoise_choay",
+          "david_lowenthal",
+          "torgrim_sneve_guttormsen"
+        ],
+        "norwegian_thinker_ids": [
+          "torgrim_sneve_guttormsen"
+        ],
+        "norwegian_thinkers": [
+          "Torgrim Sneve Guttormsen"
+        ],
+        "comparison_pairs": [
+          [
+            "alois_riegl",
+            "francoise_choay"
+          ],
+          [
+            "david_lowenthal",
+            "torgrim_sneve_guttormsen"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_restaurerings_autentisitetsanalyse",
+          "met_sporlesning",
+          "met_kildekritikk"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_bevaring_restaurering_autentisitet"
+    ],
+    "secondary_hooks": [
+      "his_kulturminneutvelgelse_verdi"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primærbanen først; sekundærbanen må være en selvstendig dokumentert minne- eller kulturarvskjede.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Alois Riegl",
+      "Françoise Choay",
+      "David Lowenthal",
+      "Torgrim Sneve Guttormsen"
+    ],
+    "canonical_thinker_ids": [
+      "alois_riegl",
+      "francoise_choay",
+      "david_lowenthal",
+      "torgrim_sneve_guttormsen"
+    ],
+    "norwegian_thinker_ids": [
+      "torgrim_sneve_guttormsen"
+    ],
+    "norwegian_thinkers": [
+      "Torgrim Sneve Guttormsen"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Objekt, dato, senere inngrep, aktør, gruppe og offentlig konsekvens skal være etablert før teori.",
+    "recommended_oslo_cases": [
+      "Vår Frelsers gravlund",
+      "HL-senteret / Villa Grande",
+      "22. juli-senteret",
+      "Eidsvollsbygningen",
+      "Akershus festning",
+      "Oslo Museum",
+      "Interkulturelt museum",
+      "Jødisk museum"
+    ],
+    "recommended_method_ids": [
+      "met_restaurerings_autentisitetsanalyse",
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Velg emnet etter den dokumenterte hovedintervensjonen og dens offentlige konsekvens.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 3,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 3,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_original_and_later_date": true,
+      "require_selection_or_intervention": true,
+      "require_included_or_excluded_group": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_museum_samling_kanon",
+    "title": "Museum, samling og historisk kanon",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_museum_samling_kanon",
+        "topic_hook_tittel": "Museum, samling og kanon",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Hovedbane for emnets dokumenterte minne- eller kulturarvskjede.",
+        "tenkere": [
+          "Sharon Macdonald",
+          "Tony Bennett",
+          "Brita Brenna",
+          "Anne Eriksen"
+        ],
+        "thinker_ids": [
+          "sharon_macdonald",
+          "tony_bennett",
+          "brita_brenna",
+          "anne_eriksen"
+        ],
+        "norwegian_thinker_ids": [
+          "brita_brenna",
+          "anne_eriksen"
+        ],
+        "norwegian_thinkers": [
+          "Brita Brenna",
+          "Anne Eriksen"
+        ],
+        "comparison_pairs": [
+          [
+            "sharon_macdonald",
+            "tony_bennett"
+          ],
+          [
+            "brita_brenna",
+            "anne_eriksen"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_museums_og_samlingsanalyse",
+          "met_historiebruksanalyse",
+          "met_kildekritikk"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_fravaer_taushet_motminne",
+        "topic_hook_tittel": "Fravær, taushet og motminne",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Kontrollbane som skal gi en selvstendig alternativ produksjonsvei.",
+        "tenkere": [
+          "Sharon Macdonald",
+          "Tony Bennett",
+          "Brita Brenna",
+          "Anne Eriksen"
+        ],
+        "thinker_ids": [
+          "sharon_macdonald",
+          "tony_bennett",
+          "brita_brenna",
+          "anne_eriksen"
+        ],
+        "norwegian_thinker_ids": [
+          "brita_brenna",
+          "anne_eriksen"
+        ],
+        "norwegian_thinkers": [
+          "Brita Brenna",
+          "Anne Eriksen"
+        ],
+        "comparison_pairs": [
+          [
+            "sharon_macdonald",
+            "tony_bennett"
+          ],
+          [
+            "brita_brenna",
+            "anne_eriksen"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_museums_og_samlingsanalyse",
+          "met_historiebruksanalyse",
+          "met_kildekritikk"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_museum_samling_kanon"
+    ],
+    "secondary_hooks": [
+      "his_fravaer_taushet_motminne"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primærbanen først; sekundærbanen må være en selvstendig dokumentert minne- eller kulturarvskjede.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Sharon Macdonald",
+      "Tony Bennett",
+      "Brita Brenna",
+      "Anne Eriksen"
+    ],
+    "canonical_thinker_ids": [
+      "sharon_macdonald",
+      "tony_bennett",
+      "brita_brenna",
+      "anne_eriksen"
+    ],
+    "norwegian_thinker_ids": [
+      "brita_brenna",
+      "anne_eriksen"
+    ],
+    "norwegian_thinkers": [
+      "Brita Brenna",
+      "Anne Eriksen"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Objekt, dato, senere inngrep, aktør, gruppe og offentlig konsekvens skal være etablert før teori.",
+    "recommended_oslo_cases": [
+      "Vår Frelsers gravlund",
+      "HL-senteret / Villa Grande",
+      "22. juli-senteret",
+      "Eidsvollsbygningen",
+      "Akershus festning",
+      "Oslo Museum",
+      "Interkulturelt museum",
+      "Jødisk museum"
+    ],
+    "recommended_method_ids": [
+      "met_museums_og_samlingsanalyse",
+      "met_historiebruksanalyse",
+      "met_kildekritikk"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Velg emnet etter den dokumenterte hovedintervensjonen og dens offentlige konsekvens.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 3,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 3,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_original_and_later_date": true,
+      "require_selection_or_intervention": true,
+      "require_included_or_excluded_group": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_minnesteder_historiebruk",
+    "title": "Minnesteder, ritual og offentlig historiebruk",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_minnested_ritual_offentlig_sorg",
+        "topic_hook_tittel": "Minnested, ritual og offentlig sorg",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Hovedbane for emnets dokumenterte minne- eller kulturarvskjede.",
+        "tenkere": [
+          "Pierre Nora",
+          "Maurice Halbwachs",
+          "Paul Connerton",
+          "Claudia Lenz"
+        ],
+        "thinker_ids": [
+          "pierre_nora",
+          "maurice_halbwachs",
+          "paul_connerton",
+          "claudia_lenz"
+        ],
+        "norwegian_thinker_ids": [
+          "claudia_lenz"
+        ],
+        "norwegian_thinkers": [
+          "Claudia Lenz"
+        ],
+        "comparison_pairs": [
+          [
+            "pierre_nora",
+            "maurice_halbwachs"
+          ],
+          [
+            "paul_connerton",
+            "claudia_lenz"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_minnesteds_og_ritualanalyse",
+          "met_minneanalyse",
+          "met_kildekritikk"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_jubileum_seremoni_historiebruk",
+        "topic_hook_tittel": "Jubileum, seremoni og historiebruk",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Kontrollbane som skal gi en selvstendig alternativ produksjonsvei.",
+        "tenkere": [
+          "Pierre Nora",
+          "Maurice Halbwachs",
+          "Paul Connerton",
+          "Claudia Lenz"
+        ],
+        "thinker_ids": [
+          "pierre_nora",
+          "maurice_halbwachs",
+          "paul_connerton",
+          "claudia_lenz"
+        ],
+        "norwegian_thinker_ids": [
+          "claudia_lenz"
+        ],
+        "norwegian_thinkers": [
+          "Claudia Lenz"
+        ],
+        "comparison_pairs": [
+          [
+            "pierre_nora",
+            "maurice_halbwachs"
+          ],
+          [
+            "paul_connerton",
+            "claudia_lenz"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_minnesteds_og_ritualanalyse",
+          "met_minneanalyse",
+          "met_kildekritikk"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_minnested_ritual_offentlig_sorg"
+    ],
+    "secondary_hooks": [
+      "his_jubileum_seremoni_historiebruk"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primærbanen først; sekundærbanen må være en selvstendig dokumentert minne- eller kulturarvskjede.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Pierre Nora",
+      "Maurice Halbwachs",
+      "Paul Connerton",
+      "Claudia Lenz"
+    ],
+    "canonical_thinker_ids": [
+      "pierre_nora",
+      "maurice_halbwachs",
+      "paul_connerton",
+      "claudia_lenz"
+    ],
+    "norwegian_thinker_ids": [
+      "claudia_lenz"
+    ],
+    "norwegian_thinkers": [
+      "Claudia Lenz"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Objekt, dato, senere inngrep, aktør, gruppe og offentlig konsekvens skal være etablert før teori.",
+    "recommended_oslo_cases": [
+      "Vår Frelsers gravlund",
+      "HL-senteret / Villa Grande",
+      "22. juli-senteret",
+      "Eidsvollsbygningen",
+      "Akershus festning",
+      "Oslo Museum",
+      "Interkulturelt museum",
+      "Jødisk museum"
+    ],
+    "recommended_method_ids": [
+      "met_minnesteds_og_ritualanalyse",
+      "met_minneanalyse",
+      "met_kildekritikk"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Velg emnet etter den dokumenterte hovedintervensjonen og dens offentlige konsekvens.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 3,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 3,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_original_and_later_date": true,
+      "require_selection_or_intervention": true,
+      "require_included_or_excluded_group": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_monumenter_kontrovers",
+    "title": "Monumenter, symbolsk makt og kontrovers",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_monument_symbol_makt",
+        "topic_hook_tittel": "Monument, symbol og makt",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Hovedbane for emnets dokumenterte minne- eller kulturarvskjede.",
+        "tenkere": [
+          "Pierre Nora",
+          "James E. Young",
+          "Andreas Huyssen",
+          "Anne Eriksen"
+        ],
+        "thinker_ids": [
+          "pierre_nora",
+          "james_e_young",
+          "andreas_huyssen",
+          "anne_eriksen"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_eriksen"
+        ],
+        "norwegian_thinkers": [
+          "Anne Eriksen"
+        ],
+        "comparison_pairs": [
+          [
+            "pierre_nora",
+            "james_e_young"
+          ],
+          [
+            "andreas_huyssen",
+            "anne_eriksen"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_symbol_og_minneanalyse",
+          "met_historiebruksanalyse",
+          "met_kildekritikk"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_kontrovers_fjerning_omtolking",
+        "topic_hook_tittel": "Kontrovers, fjerning og omtolking",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Kontrollbane som skal gi en selvstendig alternativ produksjonsvei.",
+        "tenkere": [
+          "Pierre Nora",
+          "James E. Young",
+          "Andreas Huyssen",
+          "Anne Eriksen"
+        ],
+        "thinker_ids": [
+          "pierre_nora",
+          "james_e_young",
+          "andreas_huyssen",
+          "anne_eriksen"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_eriksen"
+        ],
+        "norwegian_thinkers": [
+          "Anne Eriksen"
+        ],
+        "comparison_pairs": [
+          [
+            "pierre_nora",
+            "james_e_young"
+          ],
+          [
+            "andreas_huyssen",
+            "anne_eriksen"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_symbol_og_minneanalyse",
+          "met_historiebruksanalyse",
+          "met_kildekritikk"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_monument_symbol_makt"
+    ],
+    "secondary_hooks": [
+      "his_kontrovers_fjerning_omtolking"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primærbanen først; sekundærbanen må være en selvstendig dokumentert minne- eller kulturarvskjede.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Pierre Nora",
+      "James E. Young",
+      "Andreas Huyssen",
+      "Anne Eriksen"
+    ],
+    "canonical_thinker_ids": [
+      "pierre_nora",
+      "james_e_young",
+      "andreas_huyssen",
+      "anne_eriksen"
+    ],
+    "norwegian_thinker_ids": [
+      "anne_eriksen"
+    ],
+    "norwegian_thinkers": [
+      "Anne Eriksen"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Objekt, dato, senere inngrep, aktør, gruppe og offentlig konsekvens skal være etablert før teori.",
+    "recommended_oslo_cases": [
+      "Vår Frelsers gravlund",
+      "HL-senteret / Villa Grande",
+      "22. juli-senteret",
+      "Eidsvollsbygningen",
+      "Akershus festning",
+      "Oslo Museum",
+      "Interkulturelt museum",
+      "Jødisk museum"
+    ],
+    "recommended_method_ids": [
+      "met_symbol_og_minneanalyse",
+      "met_historiebruksanalyse",
+      "met_kildekritikk"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Velg emnet etter den dokumenterte hovedintervensjonen og dens offentlige konsekvens.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 3,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 3,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_original_and_later_date": true,
+      "require_selection_or_intervention": true,
+      "require_included_or_excluded_group": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_kontrovers_fjerning_omtolking",
+    "title": "Kulturarvskonflikt, fjerning og omtolking",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_kontrovers_fjerning_omtolking",
+        "topic_hook_tittel": "Kontrovers, fjerning og omtolking",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Hovedbane for emnets dokumenterte minne- eller kulturarvskjede.",
+        "tenkere": [
+          "James E. Young",
+          "Laurajane Smith",
+          "Andreas Huyssen",
+          "Torgrim Sneve Guttormsen"
+        ],
+        "thinker_ids": [
+          "james_e_young",
+          "laurajane_smith",
+          "andreas_huyssen",
+          "torgrim_sneve_guttormsen"
+        ],
+        "norwegian_thinker_ids": [
+          "torgrim_sneve_guttormsen"
+        ],
+        "norwegian_thinkers": [
+          "Torgrim Sneve Guttormsen"
+        ],
+        "comparison_pairs": [
+          [
+            "james_e_young",
+            "laurajane_smith"
+          ],
+          [
+            "andreas_huyssen",
+            "torgrim_sneve_guttormsen"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_historiebruksanalyse",
+          "met_symbol_og_minneanalyse",
+          "met_kildekritikk"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_monument_symbol_makt",
+        "topic_hook_tittel": "Monument, symbol og makt",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Kontrollbane som skal gi en selvstendig alternativ produksjonsvei.",
+        "tenkere": [
+          "James E. Young",
+          "Laurajane Smith",
+          "Andreas Huyssen",
+          "Torgrim Sneve Guttormsen"
+        ],
+        "thinker_ids": [
+          "james_e_young",
+          "laurajane_smith",
+          "andreas_huyssen",
+          "torgrim_sneve_guttormsen"
+        ],
+        "norwegian_thinker_ids": [
+          "torgrim_sneve_guttormsen"
+        ],
+        "norwegian_thinkers": [
+          "Torgrim Sneve Guttormsen"
+        ],
+        "comparison_pairs": [
+          [
+            "james_e_young",
+            "laurajane_smith"
+          ],
+          [
+            "andreas_huyssen",
+            "torgrim_sneve_guttormsen"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_historiebruksanalyse",
+          "met_symbol_og_minneanalyse",
+          "met_kildekritikk"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_kontrovers_fjerning_omtolking"
+    ],
+    "secondary_hooks": [
+      "his_monument_symbol_makt"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primærbanen først; sekundærbanen må være en selvstendig dokumentert minne- eller kulturarvskjede.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "James E. Young",
+      "Laurajane Smith",
+      "Andreas Huyssen",
+      "Torgrim Sneve Guttormsen"
+    ],
+    "canonical_thinker_ids": [
+      "james_e_young",
+      "laurajane_smith",
+      "andreas_huyssen",
+      "torgrim_sneve_guttormsen"
+    ],
+    "norwegian_thinker_ids": [
+      "torgrim_sneve_guttormsen"
+    ],
+    "norwegian_thinkers": [
+      "Torgrim Sneve Guttormsen"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Objekt, dato, senere inngrep, aktør, gruppe og offentlig konsekvens skal være etablert før teori.",
+    "recommended_oslo_cases": [
+      "Vår Frelsers gravlund",
+      "HL-senteret / Villa Grande",
+      "22. juli-senteret",
+      "Eidsvollsbygningen",
+      "Akershus festning",
+      "Oslo Museum",
+      "Interkulturelt museum",
+      "Jødisk museum"
+    ],
+    "recommended_method_ids": [
+      "met_historiebruksanalyse",
+      "met_symbol_og_minneanalyse",
+      "met_kildekritikk"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Velg emnet etter den dokumenterte hovedintervensjonen og dens offentlige konsekvens.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 3,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 3,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_original_and_later_date": true,
+      "require_selection_or_intervention": true,
+      "require_included_or_excluded_group": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_jubileum_seremoni_historiebruk",
+    "title": "Jubileer, seremonier og historiske fortellinger",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_jubileum_seremoni_historiebruk",
+        "topic_hook_tittel": "Jubileum, seremoni og historiebruk",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Hovedbane for emnets dokumenterte minne- eller kulturarvskjede.",
+        "tenkere": [
+          "Anne Eriksen",
+          "Paul Connerton",
+          "Benedict Anderson",
+          "Jan Assmann"
+        ],
+        "thinker_ids": [
+          "anne_eriksen",
+          "paul_connerton",
+          "benedict_anderson",
+          "jan_assmann"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_eriksen"
+        ],
+        "norwegian_thinkers": [
+          "Anne Eriksen"
+        ],
+        "comparison_pairs": [
+          [
+            "anne_eriksen",
+            "paul_connerton"
+          ],
+          [
+            "benedict_anderson",
+            "jan_assmann"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_historiebruksanalyse",
+          "met_minnesteds_og_ritualanalyse",
+          "met_minneanalyse"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_minnested_ritual_offentlig_sorg",
+        "topic_hook_tittel": "Minnested, ritual og offentlig sorg",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Kontrollbane som skal gi en selvstendig alternativ produksjonsvei.",
+        "tenkere": [
+          "Anne Eriksen",
+          "Paul Connerton",
+          "Benedict Anderson",
+          "Jan Assmann"
+        ],
+        "thinker_ids": [
+          "anne_eriksen",
+          "paul_connerton",
+          "benedict_anderson",
+          "jan_assmann"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_eriksen"
+        ],
+        "norwegian_thinkers": [
+          "Anne Eriksen"
+        ],
+        "comparison_pairs": [
+          [
+            "anne_eriksen",
+            "paul_connerton"
+          ],
+          [
+            "benedict_anderson",
+            "jan_assmann"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_historiebruksanalyse",
+          "met_minnesteds_og_ritualanalyse",
+          "met_minneanalyse"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_jubileum_seremoni_historiebruk"
+    ],
+    "secondary_hooks": [
+      "his_minnested_ritual_offentlig_sorg"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primærbanen først; sekundærbanen må være en selvstendig dokumentert minne- eller kulturarvskjede.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Anne Eriksen",
+      "Paul Connerton",
+      "Benedict Anderson",
+      "Jan Assmann"
+    ],
+    "canonical_thinker_ids": [
+      "anne_eriksen",
+      "paul_connerton",
+      "benedict_anderson",
+      "jan_assmann"
+    ],
+    "norwegian_thinker_ids": [
+      "anne_eriksen"
+    ],
+    "norwegian_thinkers": [
+      "Anne Eriksen"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Objekt, dato, senere inngrep, aktør, gruppe og offentlig konsekvens skal være etablert før teori.",
+    "recommended_oslo_cases": [
+      "Vår Frelsers gravlund",
+      "HL-senteret / Villa Grande",
+      "22. juli-senteret",
+      "Eidsvollsbygningen",
+      "Akershus festning",
+      "Oslo Museum",
+      "Interkulturelt museum",
+      "Jødisk museum"
+    ],
+    "recommended_method_ids": [
+      "met_historiebruksanalyse",
+      "met_minnesteds_og_ritualanalyse",
+      "met_minneanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Velg emnet etter den dokumenterte hovedintervensjonen og dens offentlige konsekvens.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 3,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 3,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_original_and_later_date": true,
+      "require_selection_or_intervention": true,
+      "require_included_or_excluded_group": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_stedsnavn_navnepolitikk",
+    "title": "Stedsnavn, navnepolitikk og offentlig minne",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_stedsnavn_navnepolitikk",
+        "topic_hook_tittel": "Stedsnavn og navnepolitikk",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Hovedbane for emnets dokumenterte minne- eller kulturarvskjede.",
+        "tenkere": [
+          "Benedict Anderson",
+          "Maurice Halbwachs",
+          "Anne Eriksen",
+          "Michel-Rolph Trouillot"
+        ],
+        "thinker_ids": [
+          "benedict_anderson",
+          "maurice_halbwachs",
+          "anne_eriksen",
+          "michel_rolph_trouillot"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_eriksen"
+        ],
+        "norwegian_thinkers": [
+          "Anne Eriksen"
+        ],
+        "comparison_pairs": [
+          [
+            "benedict_anderson",
+            "maurice_halbwachs"
+          ],
+          [
+            "anne_eriksen",
+            "michel_rolph_trouillot"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_navnepolitisk_analyse",
+          "met_historiebruksanalyse",
+          "met_kildekritikk"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_fravaer_taushet_motminne",
+        "topic_hook_tittel": "Fravær, taushet og motminne",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Kontrollbane som skal gi en selvstendig alternativ produksjonsvei.",
+        "tenkere": [
+          "Benedict Anderson",
+          "Maurice Halbwachs",
+          "Anne Eriksen",
+          "Michel-Rolph Trouillot"
+        ],
+        "thinker_ids": [
+          "benedict_anderson",
+          "maurice_halbwachs",
+          "anne_eriksen",
+          "michel_rolph_trouillot"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_eriksen"
+        ],
+        "norwegian_thinkers": [
+          "Anne Eriksen"
+        ],
+        "comparison_pairs": [
+          [
+            "benedict_anderson",
+            "maurice_halbwachs"
+          ],
+          [
+            "anne_eriksen",
+            "michel_rolph_trouillot"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_navnepolitisk_analyse",
+          "met_historiebruksanalyse",
+          "met_kildekritikk"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_stedsnavn_navnepolitikk"
+    ],
+    "secondary_hooks": [
+      "his_fravaer_taushet_motminne"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primærbanen først; sekundærbanen må være en selvstendig dokumentert minne- eller kulturarvskjede.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Benedict Anderson",
+      "Maurice Halbwachs",
+      "Anne Eriksen",
+      "Michel-Rolph Trouillot"
+    ],
+    "canonical_thinker_ids": [
+      "benedict_anderson",
+      "maurice_halbwachs",
+      "anne_eriksen",
+      "michel_rolph_trouillot"
+    ],
+    "norwegian_thinker_ids": [
+      "anne_eriksen"
+    ],
+    "norwegian_thinkers": [
+      "Anne Eriksen"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Objekt, dato, senere inngrep, aktør, gruppe og offentlig konsekvens skal være etablert før teori.",
+    "recommended_oslo_cases": [
+      "Vår Frelsers gravlund",
+      "HL-senteret / Villa Grande",
+      "22. juli-senteret",
+      "Eidsvollsbygningen",
+      "Akershus festning",
+      "Oslo Museum",
+      "Interkulturelt museum",
+      "Jødisk museum"
+    ],
+    "recommended_method_ids": [
+      "met_navnepolitisk_analyse",
+      "met_historiebruksanalyse",
+      "met_kildekritikk"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Velg emnet etter den dokumenterte hovedintervensjonen og dens offentlige konsekvens.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 3,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 3,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_original_and_later_date": true,
+      "require_selection_or_intervention": true,
+      "require_included_or_excluded_group": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_fravaer_taushet_motminne",
+    "title": "Fravær, taushet og motminne",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_fravaer_taushet_motminne",
+        "topic_hook_tittel": "Fravær, taushet og motminne",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Hovedbane for emnets dokumenterte minne- eller kulturarvskjede.",
+        "tenkere": [
+          "Michel-Rolph Trouillot",
+          "James E. Young",
+          "Michel Foucault",
+          "Claudia Lenz"
+        ],
+        "thinker_ids": [
+          "michel_rolph_trouillot",
+          "james_e_young",
+          "michel_foucault",
+          "claudia_lenz"
+        ],
+        "norwegian_thinker_ids": [
+          "claudia_lenz"
+        ],
+        "norwegian_thinkers": [
+          "Claudia Lenz"
+        ],
+        "comparison_pairs": [
+          [
+            "michel_rolph_trouillot",
+            "james_e_young"
+          ],
+          [
+            "michel_foucault",
+            "claudia_lenz"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_historiebruksanalyse",
+          "met_minneanalyse",
+          "met_kildekritikk"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_museum_samling_kanon",
+        "topic_hook_tittel": "Museum, samling og kanon",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Kontrollbane som skal gi en selvstendig alternativ produksjonsvei.",
+        "tenkere": [
+          "Michel-Rolph Trouillot",
+          "James E. Young",
+          "Michel Foucault",
+          "Claudia Lenz"
+        ],
+        "thinker_ids": [
+          "michel_rolph_trouillot",
+          "james_e_young",
+          "michel_foucault",
+          "claudia_lenz"
+        ],
+        "norwegian_thinker_ids": [
+          "claudia_lenz"
+        ],
+        "norwegian_thinkers": [
+          "Claudia Lenz"
+        ],
+        "comparison_pairs": [
+          [
+            "michel_rolph_trouillot",
+            "james_e_young"
+          ],
+          [
+            "michel_foucault",
+            "claudia_lenz"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_historiebruksanalyse",
+          "met_minneanalyse",
+          "met_kildekritikk"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_fravaer_taushet_motminne"
+    ],
+    "secondary_hooks": [
+      "his_museum_samling_kanon"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primærbanen først; sekundærbanen må være en selvstendig dokumentert minne- eller kulturarvskjede.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Michel-Rolph Trouillot",
+      "James E. Young",
+      "Michel Foucault",
+      "Claudia Lenz"
+    ],
+    "canonical_thinker_ids": [
+      "michel_rolph_trouillot",
+      "james_e_young",
+      "michel_foucault",
+      "claudia_lenz"
+    ],
+    "norwegian_thinker_ids": [
+      "claudia_lenz"
+    ],
+    "norwegian_thinkers": [
+      "Claudia Lenz"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Objekt, dato, senere inngrep, aktør, gruppe og offentlig konsekvens skal være etablert før teori.",
+    "recommended_oslo_cases": [
+      "Vår Frelsers gravlund",
+      "HL-senteret / Villa Grande",
+      "22. juli-senteret",
+      "Eidsvollsbygningen",
+      "Akershus festning",
+      "Oslo Museum",
+      "Interkulturelt museum",
+      "Jødisk museum"
+    ],
+    "recommended_method_ids": [
+      "met_historiebruksanalyse",
+      "met_minneanalyse",
+      "met_kildekritikk"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Velg emnet etter den dokumenterte hovedintervensjonen og dens offentlige konsekvens.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 3,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 3,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_original_and_later_date": true,
+      "require_selection_or_intervention": true,
+      "require_included_or_excluded_group": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_digital_kulturarv_formidling",
+    "title": "Digital kulturarv, arkiv og formidling",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_digital_kulturarv_formidling",
+        "topic_hook_tittel": "Digital kulturarv og formidling",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Hovedbane for emnets dokumenterte minne- eller kulturarvskjede.",
+        "tenkere": [
+          "Andrew Hoskins",
+          "Aleida Assmann",
+          "Sharon Macdonald",
+          "Brita Brenna"
+        ],
+        "thinker_ids": [
+          "andrew_hoskins",
+          "aleida_assmann",
+          "sharon_macdonald",
+          "brita_brenna"
+        ],
+        "norwegian_thinker_ids": [
+          "brita_brenna"
+        ],
+        "norwegian_thinkers": [
+          "Brita Brenna"
+        ],
+        "comparison_pairs": [
+          [
+            "andrew_hoskins",
+            "aleida_assmann"
+          ],
+          [
+            "sharon_macdonald",
+            "brita_brenna"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_historiebruksanalyse",
+          "met_museums_og_samlingsanalyse",
+          "met_kildekritikk"
+        ]
+      },
+      {
+        "fagkart_kategori": "his_minne_kulturarv_historiebruk",
+        "fagkart_kategori_tittel": "Minne, kulturarv og historiebruk",
+        "topic_hook": "his_museum_samling_kanon",
+        "topic_hook_tittel": "Museum, samling og kanon",
+        "mapping_tier": "secondary",
+        "priority_score": 7,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "place-first_then_named_theorist",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "original_event_and_later_use_date_required": true,
+        "selection_or_intervention_required": true,
+        "authorized_actor_or_claim_required": true,
+        "included_or_excluded_group_required": true,
+        "public_consequence_required": true,
+        "source_limitation_required": true,
+        "ethical_source_handling_required": true,
+        "critical_distinction_required": true,
+        "use_note": "Kontrollbane som skal gi en selvstendig alternativ produksjonsvei.",
+        "tenkere": [
+          "Andrew Hoskins",
+          "Aleida Assmann",
+          "Sharon Macdonald",
+          "Brita Brenna"
+        ],
+        "thinker_ids": [
+          "andrew_hoskins",
+          "aleida_assmann",
+          "sharon_macdonald",
+          "brita_brenna"
+        ],
+        "norwegian_thinker_ids": [
+          "brita_brenna"
+        ],
+        "norwegian_thinkers": [
+          "Brita Brenna"
+        ],
+        "comparison_pairs": [
+          [
+            "andrew_hoskins",
+            "aleida_assmann"
+          ],
+          [
+            "sharon_macdonald",
+            "brita_brenna"
+          ]
+        ],
+        "preferred_question_moves": [
+          "establish original event or object",
+          "date the later intervention",
+          "identify selecting or authorising actor",
+          "trace included and excluded groups",
+          "document public consequence or contestation"
+        ],
+        "best_place_types": [
+          "minnested",
+          "monument",
+          "museum",
+          "gravlund",
+          "kulturmiljo",
+          "ruinomrade",
+          "plass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_senere_historiebruk"
+        ],
+        "anti_patterns": [
+          "ren symboltolkning",
+          "vern lik representativitet",
+          "museumstekst som nøytral fasit"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vår Frelsers gravlund",
+          "HL-senteret / Villa Grande",
+          "22. juli-senteret",
+          "Eidsvollsbygningen",
+          "Akershus festning",
+          "Oslo Museum",
+          "Interkulturelt museum",
+          "Jødisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_historiebruksanalyse",
+          "met_museums_og_samlingsanalyse",
+          "met_kildekritikk"
+        ]
+      }
+    ],
+    "mapping_status": "two_lane+canonical",
+    "primary_hooks": [
+      "his_digital_kulturarv_formidling"
+    ],
+    "secondary_hooks": [
+      "his_museum_samling_kanon"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primærbanen først; sekundærbanen må være en selvstendig dokumentert minne- eller kulturarvskjede.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Andrew Hoskins",
+      "Aleida Assmann",
+      "Sharon Macdonald",
+      "Brita Brenna"
+    ],
+    "canonical_thinker_ids": [
+      "andrew_hoskins",
+      "aleida_assmann",
+      "sharon_macdonald",
+      "brita_brenna"
+    ],
+    "norwegian_thinker_ids": [
+      "brita_brenna"
+    ],
+    "norwegian_thinkers": [
+      "Brita Brenna"
+    ],
+    "theory_diversity_score": 4,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Objekt, dato, senere inngrep, aktør, gruppe og offentlig konsekvens skal være etablert før teori.",
+    "recommended_oslo_cases": [
+      "Vår Frelsers gravlund",
+      "HL-senteret / Villa Grande",
+      "22. juli-senteret",
+      "Eidsvollsbygningen",
+      "Akershus festning",
+      "Oslo Museum",
+      "Interkulturelt museum",
+      "Jødisk museum"
+    ],
+    "recommended_method_ids": [
+      "met_historiebruksanalyse",
+      "met_museums_og_samlingsanalyse",
+      "met_kildekritikk"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Velg emnet etter den dokumenterte hovedintervensjonen og dens offentlige konsekvens.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 3,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 3,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_original_and_later_date": true,
+      "require_selection_or_intervention": true,
+      "require_included_or_excluded_group": true
+    },
+    "chronology_required": true,
+    "temporal_scope_required": true,
     "critical_distinction_required": true
   }
 ]
