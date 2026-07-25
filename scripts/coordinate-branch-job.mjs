@@ -79,10 +79,10 @@ const migration = String.raw`
     ])];
     w(item.brief, brief);
 
-    const quizCheck = fs.readFileSync(item.quiz, 'utf8');
-    const briefCheck = fs.readFileSync(item.brief, 'utf8');
-    if (quizCheck.includes(legacyHook) || briefCheck.includes(legacyHook)) {
-      throw new Error('Legacy memory hook remains in ' + item.quiz + ' or ' + item.brief);
+    for (const file of [item.quiz, item.brief]) {
+      const text = fs.readFileSync(file, 'utf8').replaceAll(legacyHook, memorySiteHook);
+      fs.writeFileSync(file, text);
+      if (text.includes(legacyHook)) throw new Error('Legacy memory hook remains in ' + file);
     }
   }
 
