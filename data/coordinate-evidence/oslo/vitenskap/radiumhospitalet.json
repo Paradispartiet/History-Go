@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "radiumhospitalet",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/radiumhospitalet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_official_address_point_for_main_entrance",
+  "currentCoordinate": {
+    "lat": 59.92992084947542,
+    "lon": 10.660609376970168,
+    "r": 340,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Kartverket/Geonorge for Ullernchausséen 70, 0379 Oslo. Oslo universitetssykehus bekrefter adressen og sykehusidentiteten. Punktet ligger innenfor OSM way 143526382, Radiumhospitalet. 10 sykehusbygg har sentroid innenfor området. Maksimal avstand fra adressepunktet til den dokumenterte bygningsstøtten er 295.9 meter; radius 340 meter dekker sykehusområdet med 40 meters buffer. Den tidligere markøren lå 1277 meter unna. Canonical year 1932 beholdes."
+  },
+  "identity": {
+    "currentName": "Radiumhospitalet",
+    "resolvedIdentity": "Radiumhospitalet, Ullernchausséen 70, 0379 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "current_place",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt offisielt adressepunkt",
+    "offisiell sykehusidentitet",
+    "navngitt sykehusområde",
+    "målt flerbyggradius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket/Geonorge – Ullernchausséen 70",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Ullernchauss%C3%A9en&nummer=70&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17945:70:59.92992085,10.66060938",
+      "sourceQuality": "official_address",
+      "finding": "Ett unikt adressepunkt: 59.92992084947542, 10.660609376970168.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical display-marker under address-first policy."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo universitetssykehus – Radiumhospitalet",
+      "sourceUrl": "https://www.oslo-universitetssykehus.no/steder/radiumhospitalet/",
+      "sourceObjectId": "ous:radiumhospitalet:official-place-page",
+      "sourceQuality": "official_current_site",
+      "finding": "Radiumhospitalet og adressen Ullernchausséen 70, 0379 Oslo er bekreftet av Oslo universitetssykehus.",
+      "canVerifyCoordinate": false,
+      "reason": "Institusjons- og adressekryssjekk."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Radiumhospitalet sykehusområde",
+      "sourceUrl": "https://www.openstreetmap.org/way/143526382",
+      "sourceObjectId": "osm-way:143526382",
+      "sourceQuality": "named_hospital_area_geometry",
+      "finding": "Adressepunktet ligger innenfor det navngitte sykehusområdet; 10 støttede bygg og maksimal avstand 295.9 meter gir radius 340 meter med buffer.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter fysisk flerbyggområde og radius."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go OUS hospital research report",
+      "sourceUrl": "reports/oslo-coordinate-ous-hospitals-research-post-195/summary.json",
+      "sourceObjectId": "history-go-research:radiumhospitalet:post-195",
+      "sourceQuality": "reproducible_multi_source_research",
+      "finding": "Offisielt adressepunkt, sykehusområde og radius er reproduserbart dokumentert. Tidligere markør var forskjøvet 1277 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Samlet beslutningsgrunnlag."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Ullernchausséen 70, 0379 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17945:70:59.92992085,10.66060938",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17945:70:59.92992085,10.66060938",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:143526382",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:143526382",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.92992084947542,
+      "lon": 10.660609376970168,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17945:70:59.92992085,10.66060938",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Ullernchausséen 70 er anvendt med radius 340 meter."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Kartverket/Geonorge for Ullernchausséen 70, 0379 Oslo. Oslo universitetssykehus bekrefter adressen og sykehusidentiteten. Punktet ligger innenfor OSM way 143526382, Radiumhospitalet. 10 sykehusbygg har sentroid innenfor området. Maksimal avstand fra adressepunktet til den dokumenterte bygningsstøtten er 295.9 meter; radius 340 meter dekker sykehusområdet med 40 meters buffer. Den tidligere markøren lå 1277 meter unna. Canonical year 1932 beholdes.",
+    "Research report: reports/oslo-coordinate-ous-hospitals-research-post-195/summary.json"
+  ]
+}

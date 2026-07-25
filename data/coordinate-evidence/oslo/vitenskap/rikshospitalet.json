@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "rikshospitalet",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/rikshospitalet.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_official_address_point_for_main_entrance",
+  "currentCoordinate": {
+    "lat": 59.948348176394674,
+    "lon": 10.714348787763203,
+    "r": 620,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Kartverket/Geonorge for Sognsvannsveien 20, 0372 Oslo. Oslo universitetssykehus bekrefter adressen og sykehusidentiteten. Punktet ligger innenfor OSM multipolygon relation 14086466, Rikshospitalet, som består av 4 ytre ringer. 23 sykehusbygg har sentroid innenfor relasjonen. Maksimal avstand fra adressepunktet til den dokumenterte bygningsstøtten er 579.4 meter; radius 620 meter dekker sykehusområdet med 40 meters buffer. Den tidligere markøren lå 344.6 meter unna. Canonical year 1826 beholdes."
+  },
+  "identity": {
+    "currentName": "Rikshospitalet",
+    "resolvedIdentity": "Rikshospitalet, Sognsvannsveien 20, 0372 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "current_place",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "eksakt offisielt adressepunkt",
+    "offisiell sykehusidentitet",
+    "navngitt sykehusområde",
+    "målt flerbyggradius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket/Geonorge – Sognsvannsveien 20",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Sognsvannsveien&nummer=20&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16757:20:59.94834818,10.71434879",
+      "sourceQuality": "official_address",
+      "finding": "Ett unikt adressepunkt: 59.948348176394674, 10.714348787763203.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical display-marker under address-first policy."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslo universitetssykehus – Rikshospitalet",
+      "sourceUrl": "https://www.oslo-universitetssykehus.no/steder/rikshospitalet",
+      "sourceObjectId": "ous:rikshospitalet:official-place-page",
+      "sourceQuality": "official_current_site",
+      "finding": "Rikshospitalet og adressen Sognsvannsveien 20, 0372 Oslo er bekreftet av Oslo universitetssykehus.",
+      "canVerifyCoordinate": false,
+      "reason": "Institusjons- og adressekryssjekk."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Rikshospitalet sykehusområde",
+      "sourceUrl": "https://www.openstreetmap.org/relation/14086466",
+      "sourceObjectId": "osm-relation:14086466",
+      "sourceQuality": "named_hospital_area_geometry",
+      "finding": "Adressepunktet ligger innenfor det navngitte sykehusområdet; 23 støttede bygg og maksimal avstand 579.4 meter gir radius 620 meter med buffer.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter fysisk flerbyggområde og radius."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go OUS hospital research report",
+      "sourceUrl": "reports/oslo-coordinate-ous-hospitals-research-post-195/summary.json",
+      "sourceObjectId": "history-go-research:rikshospitalet:post-195",
+      "sourceQuality": "reproducible_multi_source_research",
+      "finding": "Offisielt adressepunkt, sykehusområde og radius er reproduserbart dokumentert. Tidligere markør var forskjøvet 344.6 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Samlet beslutningsgrunnlag."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Sognsvannsveien 20, 0372 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16757:20:59.94834818,10.71434879",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16757:20:59.94834818,10.71434879",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:14086466",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:14086466",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.948348176394674,
+      "lon": 10.714348787763203,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:16757:20:59.94834818,10.71434879",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Sognsvannsveien 20 er anvendt med radius 620 meter."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Kartverket/Geonorge for Sognsvannsveien 20, 0372 Oslo. Oslo universitetssykehus bekrefter adressen og sykehusidentiteten. Punktet ligger innenfor OSM multipolygon relation 14086466, Rikshospitalet, som består av 4 ytre ringer. 23 sykehusbygg har sentroid innenfor relasjonen. Maksimal avstand fra adressepunktet til den dokumenterte bygningsstøtten er 579.4 meter; radius 620 meter dekker sykehusområdet med 40 meters buffer. Den tidligere markøren lå 344.6 meter unna. Canonical year 1826 beholdes.",
+    "Research report: reports/oslo-coordinate-ous-hospitals-research-post-195/summary.json"
+  ]
+}
