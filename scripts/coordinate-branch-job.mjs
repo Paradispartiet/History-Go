@@ -53,6 +53,14 @@ const testPatch = [
   "quizTest=quizTest.replace(/context\\.considered_curriculum\\.counts\\.emner, \\d+/g,'context.considered_curriculum.counts.emner, 200');",
   "quizTest=quizTest.replace(/context\\.considered_curriculum\\.counts\\.topic_hooks, \\d+/g,'context.considered_curriculum.counts.topic_hooks, 200');",
   "quizTest=quizTest.replace(/context\\.considered_curriculum\\.counts\\.methods, \\d+/g,'context.considered_curriculum.counts.methods, 87');",
+  "const historyTestStart=quizTest.indexOf('test(\"builds the full history production context');",
+  "if(historyTestStart<0)throw new Error('History quiz test marker missing');",
+  "let byPrefix=quizTest.slice(0,historyTestStart);",
+  "byPrefix=byPrefix.replace('context.considered_curriculum.counts.pensum_modules, 20','context.considered_curriculum.counts.pensum_modules, 7');",
+  "byPrefix=byPrefix.replace('context.considered_curriculum.counts.emner, 200','context.considered_curriculum.counts.emner, 82');",
+  "byPrefix=byPrefix.replace('context.considered_curriculum.counts.topic_hooks, 200','context.considered_curriculum.counts.topic_hooks, 81');",
+  "byPrefix=byPrefix.replace('context.considered_curriculum.counts.methods, 87','context.considered_curriculum.counts.methods, 14');",
+  "quizTest=byPrefix+quizTest.slice(historyTestStart);",
   "fs.writeFileSync(quizTestPath,quizTest);",
   ""
 ].join('\n');
