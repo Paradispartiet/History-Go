@@ -37,10 +37,34 @@ jobs:
           out center tags;
           QUERY
 
-          curl --fail --silent --show-error \
-            --data-urlencode "data@${out}/overpass-query.txt" \
-            'https://overpass-api.de/api/interpreter' \
-            | tee "$out/overpass-krakstad-archaeology.json"
+          query=$(cat "$out/overpass-query.txt")
+          : > "$out/overpass-endpoints.log"
+          success=0
+          for endpoint in \
+            'https://overpass.kumi.systems/api/interpreter' \
+            'https://overpass-api.de/api/interpreter'; do
+            echo "endpoint=${endpoint}" | tee -a "$out/overpass-endpoints.log"
+            if curl --fail --silent --show-error \
+              --retry 3 --retry-delay 3 --retry-all-errors \
+              --request POST \
+              --data-urlencode "data=${query}" \
+              "$endpoint" \
+              --output "$out/overpass-krakstad-archaeology.json" \
+              2>> "$out/overpass-endpoints.log"; then
+              echo "status=success" | tee -a "$out/overpass-endpoints.log"
+              success=1
+              break
+            else
+              echo "status=failure" | tee -a "$out/overpass-endpoints.log"
+            fi
+          done
+
+          if [ "$success" -ne 1 ]; then
+            cat "$out/overpass-endpoints.log"
+            exit 1
+          fi
+
+          cat "$out/overpass-krakstad-archaeology.json"
 
           python - <<'PY' 2>&1 | tee "$out/overpass-krakstad-archaeology-summary.txt"
           import json
