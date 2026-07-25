@@ -1135,21 +1135,27 @@
   {
     "concept_id": "con_his_autoritet",
     "label": "autoritet",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «autoritet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Anerkjent rett eller kapasitet til å definere gyldig kunnskap, standarder og beslutningsgrunnlag innenfor et historisk institusjonelt felt.",
+    "concept_type": "institutional_power_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
     "source_emne_ids": [
       "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kunnskap"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
+    "related_concepts": [
+      "con_his_vitenskap",
+      "con_his_ekspertise",
+      "con_his_kunnskapsinstitusjoner"
+    ],
     "distinguish_from": [],
     "common_misuse": [
-      "Å bruke «autoritet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «autoritet» som tidløs sannhet uten å undersøke metode, institusjon, autoritet, uenighet og historisk kontekst."
     ],
     "status": "canonical_v5_5"
   },
@@ -1444,21 +1450,28 @@
   {
     "concept_id": "con_his_befolkning",
     "label": "befolkning",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «befolkning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Mennesker avgrenset og gjort sammenlignbare som en administrativ eller statistisk helhet gjennom telling, klassifikasjon, territorium og styring.",
+    "concept_type": "administrative_population_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
     "source_emne_ids": [
       "em_his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_medisin"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_helsevitenskap",
+      "con_his_medikalisering"
+    ],
+    "distinguish_from": [
+      "con_his_vitenskap"
+    ],
     "common_misuse": [
-      "Å bruke «befolkning» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å lese «befolkning» som lineær faglig framgang uten å undersøke diagnostiske kategorier, pasienterfaring, institusjoner og skadevirkninger."
     ],
     "status": "canonical_v5_5"
   },
@@ -2605,9 +2618,9 @@
   {
     "concept_id": "con_his_datamakt",
     "label": "datamakt",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «datamakt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Makt som oppstår gjennom innsamling, standardisering, kobling, analyse og kontroll av data om personer, institusjoner og samfunn.",
+    "concept_type": "information_power_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
@@ -2622,12 +2635,19 @@
       "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kommunikasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_digitalisering",
+      "con_his_informasjonsregimer"
+    ],
+    "distinguish_from": [
+      "con_his_medier"
+    ],
     "common_misuse": [
-      "Å bruke «datamakt» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «datamakt» som automatisk tilgjengelig eller objektiv uten å kontrollere metadata, plattform, algoritmer, eierskap og ekskludering."
     ],
     "status": "canonical_v5_5"
   },
@@ -3023,9 +3043,9 @@
   {
     "concept_id": "con_his_digitalisering",
     "label": "digitalisering",
-    "definition": "I Minne, kulturarv og historiebruk betegner «digitalisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk omforming av informasjon, arbeid og institusjoner gjennom digital representasjon, databehandling, nettverk og programvare.",
+    "concept_type": "technological_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk",
       "his_vitenskap_teknologi_kunnskap"
@@ -3043,12 +3063,19 @@
       "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kommunikasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_datamakt",
+      "con_his_informasjonsregimer"
+    ],
+    "distinguish_from": [
+      "con_his_medier"
+    ],
     "common_misuse": [
-      "Å bruke «digitalisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «digitalisering» som automatisk tilgjengelig eller objektiv uten å kontrollere metadata, plattform, algoritmer, eierskap og ekskludering."
     ],
     "status": "canonical_v5_5"
   },
@@ -3450,9 +3477,9 @@
   {
     "concept_id": "con_his_ekskludering",
     "label": "ekskludering",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «ekskludering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Prosesser som begrenser adgang til institusjoner, kunnskapsproduksjon, profesjoner, teknologi eller rettigheter gjennom formelle og uformelle kriterier.",
+    "concept_type": "boundary_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
@@ -3460,12 +3487,19 @@
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
       "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_makt"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_stat",
+      "con_his_industri"
+    ],
+    "distinguish_from": [
+      "con_his_autoritet"
+    ],
     "common_misuse": [
-      "Å bruke «ekskludering» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «ekskludering» som en enhetlig aktør eller enkel årsak uten å dokumentere konkrete institusjoner, ressurser, relasjoner og beslutningskjeder."
     ],
     "status": "canonical_v5_5"
   },
@@ -3493,9 +3527,9 @@
   {
     "concept_id": "con_his_ekspertise",
     "label": "ekspertise",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «ekspertise» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Spesialisert kunnskap og ferdighet som gis autoritet gjennom utdanning, erfaring, institusjoner, sertifisering og offentlig anerkjennelse.",
+    "concept_type": "knowledge_authority_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
@@ -3510,12 +3544,19 @@
       "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kunnskap"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_vitenskap",
+      "con_his_kunnskapsinstitusjoner"
+    ],
+    "distinguish_from": [
+      "con_his_autoritet"
+    ],
     "common_misuse": [
-      "Å bruke «ekspertise» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «ekspertise» som tidløs sannhet uten å undersøke metode, institusjon, autoritet, uenighet og historisk kontekst."
     ],
     "status": "canonical_v5_5"
   },
@@ -4970,10 +5011,10 @@
   },
   {
     "concept_id": "con_his_forbindelser",
-    "label": "forbindelser",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «forbindelser» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "militær-industrielle forbindelser",
+    "definition": "Historiske nettverk mellom forsvar, stat, forskning og industri som kanaliserer finansiering, personell, teknologi og strategiske prioriteringer.",
+    "concept_type": "institutional_network_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap",
       "his_global_kolonial_transnasjonal"
@@ -4982,12 +5023,20 @@
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser",
       "em_his_global_kolonial_norge_i_imperiale_og_koloniale_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_makt"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_stat",
+      "con_his_industri",
+      "con_his_ekskludering"
+    ],
+    "distinguish_from": [
+      "con_his_autoritet"
+    ],
     "common_misuse": [
-      "Å bruke «forbindelser» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «militær-industrielle forbindelser» som en enhetlig aktør eller enkel årsak uten å dokumentere konkrete institusjoner, ressurser, relasjoner og beslutningskjeder."
     ],
     "status": "canonical_v5_5"
   },
@@ -6356,21 +6405,28 @@
   {
     "concept_id": "con_his_helsevitenskap",
     "label": "helsevitenskap",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «helsevitenskap» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Institusjonaliserte fag som produserer kunnskap om helse, sykdom, forebygging og behandling gjennom observasjon, måling, forsøk og befolkningsdata.",
+    "concept_type": "knowledge_field_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
     "source_emne_ids": [
       "em_his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_medisin"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_befolkning",
+      "con_his_medikalisering"
+    ],
+    "distinguish_from": [
+      "con_his_vitenskap"
+    ],
     "common_misuse": [
-      "Å bruke «helsevitenskap» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å lese «helsevitenskap» som lineær faglig framgang uten å undersøke diagnostiske kategorier, pasienterfaring, institusjoner og skadevirkninger."
     ],
     "status": "canonical_v5_5"
   },
@@ -6991,9 +7047,9 @@
   {
     "concept_id": "con_his_industri",
     "label": "industri",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «industri» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Organisert vareproduksjon basert på arbeidsdeling, maskiner, energi, kapital, infrastruktur og standardiserte prosesser.",
+    "concept_type": "production_system_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
@@ -7001,12 +7057,19 @@
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_makt"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_stat",
+      "con_his_ekskludering"
+    ],
+    "distinguish_from": [
+      "con_his_autoritet"
+    ],
     "common_misuse": [
-      "Å bruke «industri» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «industri» som en enhetlig aktør eller enkel årsak uten å dokumentere konkrete institusjoner, ressurser, relasjoner og beslutningskjeder."
     ],
     "status": "canonical_v5_5"
   },
@@ -7142,31 +7205,39 @@
   },
   {
     "concept_id": "con_his_informasjonsregimer",
-    "label": "informasjonsregimer",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «informasjonsregimer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "informasjonsregime",
+    "definition": "En historisk ordning for hvordan informasjon produseres, klassifiseres, sirkuleres, lagres, kontrolleres og gis autoritet.",
+    "concept_type": "information_order_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
     "source_emne_ids": [
       "em_his_vitenskap_teknologi_kommunikasjon_medier_og_informasjonsregimer"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_maling"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_statistikk",
+      "con_his_klassifikasjon",
+      "con_his_standardisering"
+    ],
+    "distinguish_from": [
+      "con_his_kart"
+    ],
     "common_misuse": [
-      "Å bruke «informasjonsregimer» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «informasjonsregime» som en nøytral registrering uten å undersøke kategorier, instrumenter, standarder, manglende data og styringsformål."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_infrastruktur",
     "label": "infrastruktur",
-    "definition": "I Makt, stat og institusjoner betegner «infrastruktur» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Varige fysiske, organisatoriske og tekniske systemer som muliggjør transport, energi, kommunikasjon, forsyning og koordinering.",
+    "concept_type": "sociotechnical_system_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_makt_stat_institusjoner",
       "his_industri_arbeid_sosialhistorie",
@@ -7197,12 +7268,19 @@
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_teknologi"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_teknologisk_system",
+      "con_his_digitalisering"
+    ],
+    "distinguish_from": [
+      "con_his_vitenskap"
+    ],
     "common_misuse": [
-      "Å bruke «infrastruktur» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å forklare historisk endring direkte med «infrastruktur» uten å analysere organisasjoner, brukere, vedlikehold, infrastruktur og alternative systemer."
     ],
     "status": "canonical_v5_5"
   },
@@ -8029,9 +8107,9 @@
   {
     "concept_id": "con_his_kartlegging",
     "label": "kartlegging",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «kartlegging» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Systematisk registrering og romlig eller kategorisk ordning av territorium, ressurser, befolkning eller fenomener for kunnskap og styring.",
+    "concept_type": "measurement_practice_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
@@ -8046,12 +8124,20 @@
       "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_maling"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_statistikk",
+      "con_his_klassifikasjon",
+      "con_his_standardisering"
+    ],
+    "distinguish_from": [
+      "con_his_kart"
+    ],
     "common_misuse": [
-      "Å bruke «kartlegging» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «kartlegging» som en nøytral registrering uten å undersøke kategorier, instrumenter, standarder, manglende data og styringsformål."
     ],
     "status": "canonical_v5_5"
   },
@@ -8684,9 +8770,9 @@
   {
     "concept_id": "con_his_klassifikasjon",
     "label": "klassifikasjon",
-    "definition": "I Samisk og urfolkshistorie betegner «klassifikasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk praksis for å ordne mennesker, objekter og fenomener i kategorier som muliggjør sammenligning og styring, men også produserer grenser.",
+    "concept_type": "categorization_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie",
       "his_vitenskap_teknologi_kunnskap"
@@ -8703,12 +8789,19 @@
       "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_maling"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_statistikk",
+      "con_his_standardisering"
+    ],
+    "distinguish_from": [
+      "con_his_kart"
+    ],
     "common_misuse": [
-      "Å bruke «klassifikasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «klassifikasjon» som en nøytral registrering uten å undersøke kategorier, instrumenter, standarder, manglende data og styringsformål."
     ],
     "status": "canonical_v5_5"
   },
@@ -9113,9 +9206,9 @@
   {
     "concept_id": "con_his_kommunikasjon",
     "label": "kommunikasjon",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «kommunikasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Produksjon og overføring av tegn, budskap og informasjon gjennom historiske medier, teknologier, institusjoner og nettverk.",
+    "concept_type": "information_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap",
       "his_offentlighet_mobilisering_bevegelser"
@@ -9125,11 +9218,20 @@
       "em_his_offentlighet_mobilisering_presse_offentlighet_og_politisk_kommunikasjon"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_medier",
+      "con_his_informasjonsregimer"
+    ],
+    "related_concepts": [
+      "con_his_digitalisering",
+      "con_his_datamakt",
+      "con_his_informasjonsregimer"
+    ],
+    "distinguish_from": [
+      "con_his_medier"
+    ],
     "common_misuse": [
-      "Å bruke «kommunikasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «kommunikasjon» som automatisk tilgjengelig eller objektiv uten å kontrollere metadata, plattform, algoritmer, eierskap og ekskludering."
     ],
     "status": "canonical_v5_5"
   },
@@ -10161,9 +10263,9 @@
   {
     "concept_id": "con_his_kunnskap",
     "label": "kunnskap",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «kunnskap» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk situerte påstander, ferdigheter og praksiser som anerkjennes som gyldige gjennom bestemte metoder, institusjoner og fellesskap.",
+    "concept_type": "epistemic_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap",
       "his_global_kolonial_transnasjonal"
@@ -10173,32 +10275,49 @@
       "em_his_global_kolonial_misjon_kunnskap_og_kulturelle_moter"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_vitenskap",
+      "con_his_ekspertise",
+      "con_his_profesjon"
+    ],
+    "related_concepts": [
+      "con_his_vitenskap",
+      "con_his_ekspertise",
+      "con_his_kunnskapsinstitusjoner"
+    ],
+    "distinguish_from": [
+      "con_his_autoritet"
+    ],
     "common_misuse": [
-      "Å bruke «kunnskap» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «kunnskap» som tidløs sannhet uten å undersøke metode, institusjon, autoritet, uenighet og historisk kontekst."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_kunnskapsinstitusjoner",
     "label": "kunnskapsinstitusjoner",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «kunnskapsinstitusjoner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Organisasjoner som universitet, skole, laboratorium, arkiv, museum og institutt som produserer, validerer, lagrer og formidler kunnskap.",
+    "concept_type": "institutional_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
     "source_emne_ids": [
       "em_his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kunnskap"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_vitenskap",
+      "con_his_ekspertise"
+    ],
+    "distinguish_from": [
+      "con_his_autoritet"
+    ],
     "common_misuse": [
-      "Å bruke «kunnskapsinstitusjoner» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «kunnskapsinstitusjoner» som tidløs sannhet uten å undersøke metode, institusjon, autoritet, uenighet og historisk kontekst."
     ],
     "status": "canonical_v5_5"
   },
@@ -11094,9 +11213,9 @@
   {
     "concept_id": "con_his_makt",
     "label": "makt",
-    "definition": "I Minne, kulturarv og historiebruk betegner «makt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Evnen til å forme handlinger, ressurser, kategorier og mulige utfall i relasjoner mellom aktører og institusjoner.",
+    "concept_type": "relational_power_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk",
       "his_kjonn_familie_livslop",
@@ -11110,11 +11229,20 @@
       "em_his_global_kolonial_imperier_kolonialisme_og_makt"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_datamakt",
+      "con_his_autoritet"
+    ],
+    "related_concepts": [
+      "con_his_stat",
+      "con_his_industri",
+      "con_his_ekskludering"
+    ],
+    "distinguish_from": [
+      "con_his_autoritet"
+    ],
     "common_misuse": [
-      "Å bruke «makt» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «makt» som en enhetlig aktør eller enkel årsak uten å dokumentere konkrete institusjoner, ressurser, relasjoner og beslutningskjeder."
     ],
     "status": "canonical_v5_5"
   },
@@ -11149,9 +11277,9 @@
   {
     "concept_id": "con_his_maling",
     "label": "måling",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «måling» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Praksisen med å gjøre egenskaper sammenlignbare gjennom instrumenter, enheter, prosedyrer og avtalte standarder.",
+    "concept_type": "quantification_practice_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
@@ -11167,11 +11295,20 @@
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_statistikk",
+      "con_his_kartlegging"
+    ],
+    "related_concepts": [
+      "con_his_statistikk",
+      "con_his_klassifikasjon",
+      "con_his_standardisering"
+    ],
+    "distinguish_from": [
+      "con_his_kart"
+    ],
     "common_misuse": [
-      "Å bruke «måling» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «måling» som en nøytral registrering uten å undersøke kategorier, instrumenter, standarder, manglende data og styringsformål."
     ],
     "status": "canonical_v5_5"
   },
@@ -11548,9 +11685,9 @@
   {
     "concept_id": "con_his_medier",
     "label": "medier",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «medier» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Teknologier, organisasjoner og sjangre som produserer, distribuerer og rammer inn informasjon og offentlig kommunikasjon.",
+    "concept_type": "communication_system_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap",
       "his_global_kolonial_transnasjonal"
@@ -11559,21 +11696,27 @@
       "em_his_vitenskap_teknologi_kommunikasjon_medier_og_informasjonsregimer",
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kommunikasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
+    "related_concepts": [
+      "con_his_digitalisering",
+      "con_his_datamakt",
+      "con_his_informasjonsregimer"
+    ],
     "distinguish_from": [],
     "common_misuse": [
-      "Å bruke «medier» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «medier» som automatisk tilgjengelig eller objektiv uten å kontrollere metadata, plattform, algoritmer, eierskap og ekskludering."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_medikalisering",
     "label": "medikalisering",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «medikalisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Prosessen der erfaringer, atferd eller sosiale problemer defineres og håndteres som medisinske tilstander gjennom diagnoser, ekspertise og institusjoner.",
+    "concept_type": "knowledge_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
@@ -11589,21 +11732,28 @@
       "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_medisin"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_helsevitenskap",
+      "con_his_befolkning"
+    ],
+    "distinguish_from": [
+      "con_his_vitenskap"
+    ],
     "common_misuse": [
-      "Å bruke «medikalisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å lese «medikalisering» som lineær faglig framgang uten å undersøke diagnostiske kategorier, pasienterfaring, institusjoner og skadevirkninger."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_medisin",
     "label": "medisin",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «medisin» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk skiftende kunnskaper og praksiser for å forstå, forebygge og behandle sykdom og kroppslige tilstander.",
+    "concept_type": "knowledge_practice_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
@@ -11611,11 +11761,20 @@
       "em_his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_helsevitenskap",
+      "con_his_medikalisering"
+    ],
+    "related_concepts": [
+      "con_his_helsevitenskap",
+      "con_his_befolkning",
+      "con_his_medikalisering"
+    ],
+    "distinguish_from": [
+      "con_his_vitenskap"
+    ],
     "common_misuse": [
-      "Å bruke «medisin» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å lese «medisin» som lineær faglig framgang uten å undersøke diagnostiske kategorier, pasienterfaring, institusjoner og skadevirkninger."
     ],
     "status": "canonical_v5_5"
   },
@@ -11900,22 +12059,30 @@
   },
   {
     "concept_id": "con_his_militaere",
-    "label": "militære",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «militære» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "militær forskning",
+    "definition": "Kunnskaps- og teknologiutvikling finansiert eller organisert for militære formål, beredskap, etterretning, logistikk og våpensystemer.",
+    "concept_type": "research_system_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
     "source_emne_ids": [
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_makt"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_stat",
+      "con_his_industri",
+      "con_his_ekskludering"
+    ],
+    "distinguish_from": [
+      "con_his_autoritet"
+    ],
     "common_misuse": [
-      "Å bruke «militære» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «militær forskning» som en enhetlig aktør eller enkel årsak uten å dokumentere konkrete institusjoner, ressurser, relasjoner og beslutningskjeder."
     ],
     "status": "canonical_v5_5"
   },
@@ -15082,9 +15249,9 @@
   {
     "concept_id": "con_his_profesjon",
     "label": "profesjon",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «profesjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En yrkesgruppe som hevder kontroll over spesialisert kunnskap, utdanning, sertifisering, arbeidsoppgaver og etiske normer.",
+    "concept_type": "occupational_authority_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
@@ -15099,12 +15266,22 @@
       "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "broader_concepts": [
+      "con_his_kunnskap"
+    ],
+    "narrower_concepts": [
+      "con_his_profesjoner"
+    ],
+    "related_concepts": [
+      "con_his_vitenskap",
+      "con_his_ekspertise",
+      "con_his_kunnskapsinstitusjoner"
+    ],
+    "distinguish_from": [
+      "con_his_autoritet"
+    ],
     "common_misuse": [
-      "Å bruke «profesjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «profesjon» som tidløs sannhet uten å undersøke metode, institusjon, autoritet, uenighet og historisk kontekst."
     ],
     "status": "canonical_v5_5"
   },
@@ -15156,10 +15333,10 @@
   },
   {
     "concept_id": "con_his_profesjoner",
-    "label": "profesjoner",
-    "definition": "I Makt, stat og institusjoner betegner «profesjoner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "profesjonalisering",
+    "definition": "Prosessen der et kunnskaps- eller arbeidsfelt etablerer utdanning, organisasjon, standarder, monopolkrav og offentlig autoritet.",
+    "concept_type": "institutional_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_makt_stat_institusjoner",
       "his_vitenskap_teknologi_kunnskap"
@@ -15168,12 +15345,20 @@
       "em_his_embetsstat_forvaltning",
       "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kunnskap"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_vitenskap",
+      "con_his_ekspertise",
+      "con_his_kunnskapsinstitusjoner"
+    ],
+    "distinguish_from": [
+      "con_his_autoritet"
+    ],
     "common_misuse": [
-      "Å bruke «profesjoner» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «profesjonalisering» som tidløs sannhet uten å undersøke metode, institusjon, autoritet, uenighet og historisk kontekst."
     ],
     "status": "canonical_v5_5"
   },
@@ -16592,9 +16777,9 @@
   {
     "concept_id": "con_his_samfunn",
     "label": "samfunn",
-    "definition": "I Samisk og urfolkshistorie betegner «samfunn» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk organiserte relasjoner, institusjoner og praksiser som binder mennesker sammen og fordeler ressurser, plikter og makt.",
+    "concept_type": "social_relational_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie",
       "his_vitenskap_teknologi_kunnskap"
@@ -16603,12 +16788,20 @@
       "em_his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer",
       "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_makt"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_stat",
+      "con_his_industri",
+      "con_his_ekskludering"
+    ],
+    "distinguish_from": [
+      "con_his_autoritet"
+    ],
     "common_misuse": [
-      "Å bruke «samfunn» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «samfunn» som en enhetlig aktør eller enkel årsak uten å dokumentere konkrete institusjoner, ressurser, relasjoner og beslutningskjeder."
     ],
     "status": "canonical_v5_5"
   },
@@ -18164,9 +18357,9 @@
   {
     "concept_id": "con_his_standardisering",
     "label": "standardisering",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «standardisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Utvikling og håndheving av felles mål, kategorier, prosedyrer eller tekniske spesifikasjoner for å gjøre handlinger og objekter sammenlignbare.",
+    "concept_type": "coordination_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
@@ -18181,21 +18374,28 @@
       "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_maling"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_statistikk",
+      "con_his_klassifikasjon"
+    ],
+    "distinguish_from": [
+      "con_his_kart"
+    ],
     "common_misuse": [
-      "Å bruke «standardisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «standardisering» som en nøytral registrering uten å undersøke kategorier, instrumenter, standarder, manglende data og styringsformål."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_stat",
     "label": "stat",
-    "definition": "I Makt, stat og institusjoner betegner «stat» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Institusjonell orden som hevder myndighet over et territorium og organiserer lov, administrasjon, skatt, kunnskap og tvangsmidler.",
+    "concept_type": "political_institution_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_makt_stat_institusjoner",
       "his_vitenskap_teknologi_kunnskap"
@@ -18205,21 +18405,28 @@
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_makt"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_industri",
+      "con_his_ekskludering"
+    ],
+    "distinguish_from": [
+      "con_his_autoritet"
+    ],
     "common_misuse": [
-      "Å bruke «stat» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «stat» som en enhetlig aktør eller enkel årsak uten å dokumentere konkrete institusjoner, ressurser, relasjoner og beslutningskjeder."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_statistikk",
     "label": "statistikk",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «statistikk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Metoder og institusjoner for å samle, aggregere og analysere tallfestede opplysninger om befolkning, økonomi, helse og andre fenomener.",
+    "concept_type": "quantification_system_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
@@ -18234,12 +18441,19 @@
       "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_maling"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_klassifikasjon",
+      "con_his_standardisering"
+    ],
+    "distinguish_from": [
+      "con_his_kart"
+    ],
     "common_misuse": [
-      "Å bruke «statistikk» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «statistikk» som en nøytral registrering uten å undersøke kategorier, instrumenter, standarder, manglende data og styringsformål."
     ],
     "status": "canonical_v5_5"
   },
@@ -19068,9 +19282,9 @@
   {
     "concept_id": "con_his_teknologi",
     "label": "teknologi",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «teknologi» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Materielle redskaper, kunnskaper, organisasjoner og praksiser som sammen gjør bestemte handlinger og produksjonsformer mulige.",
+    "concept_type": "sociotechnical_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker",
       "his_okonomi_handel_materielle_systemer",
@@ -19082,20 +19296,29 @@
       "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_teknologisk_system",
+      "con_his_digitalisering"
+    ],
+    "related_concepts": [
+      "con_his_teknologisk_system",
+      "con_his_infrastruktur",
+      "con_his_digitalisering"
+    ],
+    "distinguish_from": [
+      "con_his_vitenskap"
+    ],
     "common_misuse": [
-      "Å bruke «teknologi» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å forklare historisk endring direkte med «teknologi» uten å analysere organisasjoner, brukere, vedlikehold, infrastruktur og alternative systemer."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_teknologisk_system",
     "label": "teknologisk system",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «teknologisk system» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Sammenkobling av artefakter, infrastruktur, organisasjoner, kompetanse, regler og brukere som opprettholder en teknologisk funksjon.",
+    "concept_type": "sociotechnical_system_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
@@ -19110,12 +19333,19 @@
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
       "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_teknologi"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_infrastruktur",
+      "con_his_digitalisering"
+    ],
+    "distinguish_from": [
+      "con_his_vitenskap"
+    ],
     "common_misuse": [
-      "Å bruke «teknologisk system» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å forklare historisk endring direkte med «teknologisk system» uten å analysere organisasjoner, brukere, vedlikehold, infrastruktur og alternative systemer."
     ],
     "status": "canonical_v5_5"
   },
@@ -20953,9 +21183,9 @@
   {
     "concept_id": "con_his_vitenskap",
     "label": "vitenskap",
-    "definition": "I Vitenskap-, teknologi- og kunnskapshistorie betegner «vitenskap» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Institusjonaliserte praksiser for systematisk undersøkelse, argumentasjon og kontroll av kunnskap gjennom historisk bestemte metoder og normer.",
+    "concept_type": "knowledge_system_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_vitenskap_teknologi_kunnskap"
     ],
@@ -20963,12 +21193,22 @@
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
       "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "broader_concepts": [
+      "con_his_kunnskap"
+    ],
+    "narrower_concepts": [
+      "con_his_helsevitenskap",
+      "con_his_militaere"
+    ],
+    "related_concepts": [
+      "con_his_ekspertise",
+      "con_his_kunnskapsinstitusjoner"
+    ],
+    "distinguish_from": [
+      "con_his_autoritet"
+    ],
     "common_misuse": [
-      "Å bruke «vitenskap» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «vitenskap» som tidløs sannhet uten å undersøke metode, institusjon, autoritet, uenighet og historisk kontekst."
     ],
     "status": "canonical_v5_5"
   },
