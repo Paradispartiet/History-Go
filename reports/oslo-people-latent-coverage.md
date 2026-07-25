@@ -1,14 +1,14 @@
 # Oslo latent People coverage audit
 
-Generert: 2026-07-25T06:29:24.799Z
+Generert: 2026-07-25T06:57:36.689Z
 
 ## Sammendrag
 
-- Kravpliktige Oslo-hull i baseline: **158**
+- Kravpliktige Oslo-hull i baseline: **152**
 - Ulistede JSON-filer skannet: **20**
 - Ulistede filer med People-records: **3**
 - Hull med minst én latent eksisterende kandidat: **1**
-- Hull uten noen kandidat i manifest eller ulistede People-filer: **157**
+- Hull uten noen kandidat i manifest eller ulistede People-filer: **151**
 - Parse-feil: **0**
 
 ## Latente Oslo-koblinger
