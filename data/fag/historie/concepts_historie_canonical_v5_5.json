@@ -3102,10 +3102,10 @@
   },
   {
     "concept_id": "con_his_disiplin",
-    "label": "disiplin",
-    "definition": "I Makt, stat og institusjoner betegner «disiplin» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "religiøs disiplin",
+    "definition": "Praksiser for å forme tro, moral og atferd gjennom forkynnelse, undervisning, tilsyn, kirketukt, ritualer og sanksjoner i religiøse institusjoner og lokalsamfunn.",
+    "concept_type": "institutional_practice_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_makt_stat_institusjoner",
       "his_religion_reformasjon_livssyn"
@@ -3116,12 +3116,19 @@
       "em_his_politi_straff_institusjonshverdag",
       "em_his_religion_reformasjon_statskirke_disiplin_og_religios_orden"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_religion"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_statskirke",
+      "con_his_konfesjonalisering"
+    ],
+    "distinguish_from": [
+      "con_his_levd_religion"
+    ],
     "common_misuse": [
-      "Å bruke «disiplin» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «religiøs disiplin» som en ensartet og fullt gjennomført ordning uten å skille formell lære, institusjonell kapasitet, lokal praksis og motstand."
     ],
     "status": "canonical_v5_5"
   },
@@ -3153,9 +3160,9 @@
   {
     "concept_id": "con_his_dissenter",
     "label": "dissenter",
-    "definition": "I Religion, reformasjon og livssyn betegner «dissenter» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En person som tilhører eller praktiserer et kristent trossamfunn utenfor den etablerte statskirken, særlig som historisk rettslig og administrativ kategori.",
+    "concept_type": "legal_status_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
@@ -3170,33 +3177,47 @@
       "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
       "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_minoriteter"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_trosfrihet",
+      "con_his_dissentere"
+    ],
+    "distinguish_from": [
+      "con_his_pluralisme"
+    ],
     "common_misuse": [
-      "Å bruke «dissenter» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «dissenter» som en tidløs identitet uten å avgrense lovstatus, selvidentifikasjon, institusjonell makt og historisk kontekst."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_dissentere",
-    "label": "dissentere",
-    "definition": "I Religion, reformasjon og livssyn betegner «dissentere» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "dissentersamfunn",
+    "definition": "Organiserte religiøse fellesskap utenfor statskirken, formet av lovgivning, migrasjon, nettverk, møtepraksis og kamp om trosfrihet.",
+    "concept_type": "religious_community_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
     "source_emne_ids": [
       "em_his_religion_reformasjon_dissentere_trosfrihet_og_minoriteter"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_vekkelse"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_pietisme",
+      "con_his_lekmannsbevegelse"
+    ],
+    "distinguish_from": [
+      "con_his_statskirke"
+    ],
     "common_misuse": [
-      "Å bruke «dissentere» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «dissentersamfunn» som én samlet aktør uten å undersøke ledelse, lokale miljøer, nettverk, kjønn og interne konflikter."
     ],
     "status": "canonical_v5_5"
   },
@@ -5182,22 +5203,29 @@
   },
   {
     "concept_id": "con_his_forkristne",
-    "label": "førkristne",
-    "definition": "I Religion, reformasjon og livssyn betegner «førkristne» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "førkristen religion",
+    "definition": "Religiøse forestillinger, ritualer, kultsteder og sosiale praksiser før kristendommens institusjonelle dominans i et avgrenset område.",
+    "concept_type": "historical_religion_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
     "source_emne_ids": [
       "em_his_religion_reformasjon_forkristne_religioner_og_kristning"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_religion"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kristning",
+      "con_his_religioner"
+    ],
+    "distinguish_from": [
+      "con_his_livssyn"
+    ],
     "common_misuse": [
-      "Å bruke «førkristne» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å projisere et moderne og enhetlig religionsbegrep på «førkristen religion» uten å analysere samtidige kategorier, ritualer, institusjoner og materialitet."
     ],
     "status": "canonical_v5_5"
   },
@@ -6679,9 +6707,9 @@
   {
     "concept_id": "con_his_hverdagsliv",
     "label": "hverdagsliv",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «hverdagsliv» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Gjentatte praksiser i hjem, arbeid, nabolag og fritid der normer, ressurser, kjønn, tro og makt blir levd, forhandlet og endret.",
+    "concept_type": "social_history_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie",
       "his_religion_reformasjon_livssyn"
@@ -6690,12 +6718,19 @@
       "em_his_sosialhistorie_hverdagsliv",
       "em_his_religion_reformasjon_religion_kjonn_og_hverdagsliv"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_levd_religion"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kjonn",
+      "con_his_religios"
+    ],
+    "distinguish_from": [
+      "con_his_orden"
+    ],
     "common_misuse": [
-      "Å bruke «hverdagsliv» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra norm eller lære til «hverdagsliv» uten kilder til faktisk praksis, erfaring og sosial variasjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -8518,9 +8553,9 @@
   {
     "concept_id": "con_his_kjonn",
     "label": "kjønn",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «kjønn» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk skiftende kategorier, normer og maktrelasjoner knyttet til kropp, identitet, arbeid, familie, seksualitet og sosial posisjon.",
+    "concept_type": "social_category_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie",
       "his_velferd_rett_hverdagsliv",
@@ -8536,12 +8571,19 @@
       "em_his_religion_reformasjon_religion_kjonn_og_hverdagsliv",
       "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_levd_religion"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_hverdagsliv",
+      "con_his_religios"
+    ],
+    "distinguish_from": [
+      "con_his_orden"
+    ],
     "common_misuse": [
-      "Å bruke «kjønn» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra norm eller lære til «kjønn» uten kilder til faktisk praksis, erfaring og sosial variasjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -9147,9 +9189,9 @@
   {
     "concept_id": "con_his_konfesjonalisering",
     "label": "konfesjonalisering",
-    "definition": "I Religion, reformasjon og livssyn betegner «konfesjonalisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Prosessen der religiøs lære, statlig styring, kirkeorganisasjon, undervisning og sosial disiplin kobles for å forme tydeligere konfesjonelle samfunn.",
+    "concept_type": "institutional_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
@@ -9164,12 +9206,19 @@
       "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
       "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_religion"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_statskirke",
+      "con_his_disiplin"
+    ],
+    "distinguish_from": [
+      "con_his_levd_religion"
+    ],
     "common_misuse": [
-      "Å bruke «konfesjonalisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «konfesjonalisering» som en ensartet og fullt gjennomført ordning uten å skille formell lære, institusjonell kapasitet, lokal praksis og motstand."
     ],
     "status": "canonical_v5_5"
   },
@@ -9822,9 +9871,9 @@
   {
     "concept_id": "con_his_kristning",
     "label": "kristning",
-    "definition": "I Middelalder, kirke og kongemakt betegner «kristning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En langvarig og ujevn prosess der kristne ritualer, institusjoner, normer og identiteter etableres, forhandles og blandes med eldre praksiser.",
+    "concept_type": "religious_change_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_middelalder_kirke_kongemakt",
       "his_religion_reformasjon_livssyn",
@@ -9850,12 +9899,19 @@
       "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet",
       "em_his_samisk_urfolkshistorie_misjon_kristning_og_kunnskapsmakt"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_religion"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_reformasjon",
+      "con_his_sekularisering"
+    ],
+    "distinguish_from": [
+      "con_his_konfesjonalisering"
+    ],
     "common_misuse": [
-      "Å bruke «kristning» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å framstille «kristning» som et øyeblikkelig og fullstendig brudd uten å undersøke kontinuitet, lokal variasjon og ulike endringstempo."
     ],
     "status": "canonical_v5_5"
   },
@@ -10574,21 +10630,28 @@
   {
     "concept_id": "con_his_lekmannsbevegelse",
     "label": "lekmannsbevegelse",
-    "definition": "I Religion, reformasjon og livssyn betegner «lekmannsbevegelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Religiøs mobilisering ledet av ikke-ordinerte aktører gjennom møter, forkynnelse, foreninger, trykksaker og omsorgsarbeid, ofte i spenning med kirkelig embete.",
+    "concept_type": "collective_action_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
     "source_emne_ids": [
       "em_his_religion_reformasjon_pietisme_vekkelse_og_lekmannsbevegelse"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_vekkelse"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_pietisme",
+      "con_his_dissentere"
+    ],
+    "distinguish_from": [
+      "con_his_statskirke"
+    ],
     "common_misuse": [
-      "Å bruke «lekmannsbevegelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «lekmannsbevegelse» som én samlet aktør uten å undersøke ledelse, lokale miljøer, nettverk, kjønn og interne konflikter."
     ],
     "status": "canonical_v5_5"
   },
@@ -10637,9 +10700,9 @@
   {
     "concept_id": "con_his_levd_religion",
     "label": "levd religion",
-    "definition": "I Religion, reformasjon og livssyn betegner «levd religion» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Religion slik den praktiseres, erfares og fortolkes i hverdagen, inkludert ritualer, kropp, hjem, arbeid, materialitet og lokale tilpasninger.",
+    "concept_type": "practice_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
@@ -10657,10 +10720,16 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_hverdagsliv",
+      "con_his_kjonn",
+      "con_his_religios"
+    ],
+    "distinguish_from": [
+      "con_his_orden"
+    ],
     "common_misuse": [
-      "Å bruke «levd religion» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra norm eller lære til «levd religion» uten kilder til faktisk praksis, erfaring og sosial variasjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -10794,9 +10863,9 @@
   {
     "concept_id": "con_his_livssyn",
     "label": "livssyn",
-    "definition": "I Religion, reformasjon og livssyn betegner «livssyn» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En sammenhengende eller praktisk orientering om menneske, virkelighet, mening, moral og livsførsel, religiøs eller ikke-religiøs.",
+    "concept_type": "worldview_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
@@ -10811,21 +10880,29 @@
       "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
       "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_livssynspluralisme"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_pluralisme",
+      "con_his_religioner",
+      "con_his_sekularitet"
+    ],
+    "distinguish_from": [
+      "con_his_statskirke"
+    ],
     "common_misuse": [
-      "Å bruke «livssyn» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «livssyn» som synonym for likestilling uten å undersøke rettigheter, ressurser, representasjon og institusjonell asymmetri."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_livssynspluralisme",
     "label": "livssynspluralisme",
-    "definition": "I Religion, reformasjon og livssyn betegner «livssynspluralisme» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk sameksistens og institusjonell håndtering av flere religiøse og ikke-religiøse livssyn med ulik størrelse, status og offentlig innflytelse.",
+    "concept_type": "plurality_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
@@ -10833,11 +10910,21 @@
       "em_his_religion_reformasjon_sekularisering_og_livssynspluralisme"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_pluralisme",
+      "con_his_religioner",
+      "con_his_sekularitet"
+    ],
+    "related_concepts": [
+      "con_his_pluralisme",
+      "con_his_religioner",
+      "con_his_sekularitet"
+    ],
+    "distinguish_from": [
+      "con_his_statskirke"
+    ],
     "common_misuse": [
-      "Å bruke «livssynspluralisme» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «livssynspluralisme» som synonym for likestilling uten å undersøke rettigheter, ressurser, representasjon og institusjonell asymmetri."
     ],
     "status": "canonical_v5_5"
   },
@@ -11734,9 +11821,9 @@
   {
     "concept_id": "con_his_migrasjon",
     "label": "migrasjon",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «migrasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Flytting av mennesker mellom steder over kortere eller lengre tid, formet av arbeid, familie, tvang, politikk, religion, nettverk og rettslig status.",
+    "concept_type": "mobility_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet",
       "his_religion_reformasjon_livssyn",
@@ -11747,12 +11834,19 @@
       "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
       "em_his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_nettverk"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_transnasjonale",
+      "con_his_offentlighet"
+    ],
+    "distinguish_from": [
+      "con_his_statskirke"
+    ],
     "common_misuse": [
-      "Å bruke «migrasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å påstå at «migrasjon» forklarer spredning eller mobilisering uten å dokumentere konkrete forbindelser, formidlere, retning og tidsforløp."
     ],
     "status": "canonical_v5_5"
   },
@@ -12131,9 +12225,9 @@
   {
     "concept_id": "con_his_minoriteter",
     "label": "minoriteter",
-    "definition": "I Religion, reformasjon og livssyn betegner «minoriteter» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Grupper som i en bestemt historisk sammenheng har mindre demografisk, institusjonell eller politisk makt enn en dominerende befolkning eller norm.",
+    "concept_type": "relational_group_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
@@ -12141,11 +12235,19 @@
       "em_his_religion_reformasjon_dissentere_trosfrihet_og_minoriteter"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_dissenter"
+    ],
+    "related_concepts": [
+      "con_his_trosfrihet",
+      "con_his_dissenter",
+      "con_his_dissentere"
+    ],
+    "distinguish_from": [
+      "con_his_pluralisme"
+    ],
     "common_misuse": [
-      "Å bruke «minoriteter» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «minoriteter» som en tidløs identitet uten å avgrense lovstatus, selvidentifikasjon, institusjonell makt og historisk kontekst."
     ],
     "status": "canonical_v5_5"
   },
@@ -13030,9 +13132,9 @@
   {
     "concept_id": "con_his_nettverk",
     "label": "nettverk",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «nettverk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Relasjoner mellom personer, organisasjoner og steder som formidler informasjon, tillit, ressurser, mobilisering og praksiser over tid.",
+    "concept_type": "relational_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet",
       "his_okonomi_handel_materielle_systemer",
@@ -13057,11 +13159,19 @@
       "em_his_offentlighet_mobilisering_digitale_offentligheter_nettverk_og_nye_mobiliseringsformer"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_transnasjonale"
+    ],
+    "related_concepts": [
+      "con_his_migrasjon",
+      "con_his_transnasjonale",
+      "con_his_offentlighet"
+    ],
+    "distinguish_from": [
+      "con_his_statskirke"
+    ],
     "common_misuse": [
-      "Å bruke «nettverk» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å påstå at «nettverk» forklarer spredning eller mobilisering uten å dokumentere konkrete forbindelser, formidlere, retning og tidsforløp."
     ],
     "status": "canonical_v5_5"
   },
@@ -13412,9 +13522,9 @@
   {
     "concept_id": "con_his_offentlighet",
     "label": "offentlighet",
-    "definition": "I Religion, reformasjon og livssyn betegner «offentlighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Arenaer, medier og institusjoner der saker gjøres synlige, diskuteres og gis kollektiv betydning, med historisk skiftende adgang og makt.",
+    "concept_type": "public_sphere_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn",
       "his_offentlighet_mobilisering_bevegelser"
@@ -13434,10 +13544,16 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_politikk",
+      "con_his_sekularitet",
+      "con_his_trosfrihet"
+    ],
+    "distinguish_from": [
+      "con_his_levd_religion"
+    ],
     "common_misuse": [
-      "Å bruke «offentlighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «offentlighet» som åpent for alle uten å undersøke adgang, medier, makt, sensur og uformelle eksklusjoner."
     ],
     "status": "canonical_v5_5"
   },
@@ -13841,22 +13957,30 @@
   },
   {
     "concept_id": "con_his_orden",
-    "label": "orden",
-    "definition": "I Religion, reformasjon og livssyn betegner «orden» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "religiøs orden",
+    "definition": "Et normativt og institusjonelt system som organiserer lære, ritual, embete, medlemskap og legitim religiøs praksis.",
+    "concept_type": "institutional_order_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
     "source_emne_ids": [
       "em_his_religion_reformasjon_statskirke_disiplin_og_religios_orden"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_religion"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_statskirke",
+      "con_his_konfesjonalisering",
+      "con_his_disiplin"
+    ],
+    "distinguish_from": [
+      "con_his_levd_religion"
+    ],
     "common_misuse": [
-      "Å bruke «orden» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «religiøs orden» som en ensartet og fullt gjennomført ordning uten å skille formell lære, institusjonell kapasitet, lokal praksis og motstand."
     ],
     "status": "canonical_v5_5"
   },
@@ -14414,9 +14538,9 @@
   {
     "concept_id": "con_his_pietisme",
     "label": "pietisme",
-    "definition": "I Religion, reformasjon og livssyn betegner «pietisme» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En protestantisk fornyelsesretning som vektla personlig omvendelse, bibellesning, moralsk liv, fellesskap og praktisk fromhet.",
+    "concept_type": "religious_movement_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
@@ -14431,12 +14555,19 @@
       "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
       "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_vekkelse"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_lekmannsbevegelse",
+      "con_his_dissentere"
+    ],
+    "distinguish_from": [
+      "con_his_statskirke"
+    ],
     "common_misuse": [
-      "Å bruke «pietisme» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «pietisme» som én samlet aktør uten å undersøke ledelse, lokale miljøer, nettverk, kjønn og interne konflikter."
     ],
     "status": "canonical_v5_5"
   },
@@ -14555,10 +14686,10 @@
   },
   {
     "concept_id": "con_his_pluralisme",
-    "label": "pluralisme",
-    "definition": "I Religion, reformasjon og livssyn betegner «pluralisme» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "religiøs pluralisme",
+    "definition": "Samtidig tilstedeværelse av flere religiøse tradisjoner og organisasjoner, med varierende rettigheter, autoritet, kontakt og konflikt.",
+    "concept_type": "plurality_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
@@ -14574,12 +14705,19 @@
       "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
       "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_livssynspluralisme"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_religioner",
+      "con_his_sekularitet"
+    ],
+    "distinguish_from": [
+      "con_his_statskirke"
+    ],
     "common_misuse": [
-      "Å bruke «pluralisme» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «religiøs pluralisme» som synonym for likestilling uten å undersøke rettigheter, ressurser, representasjon og institusjonell asymmetri."
     ],
     "status": "canonical_v5_5"
   },
@@ -14628,21 +14766,28 @@
   {
     "concept_id": "con_his_politikk",
     "label": "politikk",
-    "definition": "I Religion, reformasjon og livssyn betegner «politikk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Prosesser der bindende beslutninger, ressurser, rettigheter og kollektive mål forhandles, vedtas, gjennomføres og bestrides.",
+    "concept_type": "power_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
     "source_emne_ids": [
       "em_his_religion_reformasjon_religion_politikk_og_offentlighet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_offentlighet"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_sekularitet",
+      "con_his_trosfrihet"
+    ],
+    "distinguish_from": [
+      "con_his_levd_religion"
+    ],
     "common_misuse": [
-      "Å bruke «politikk» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «politikk» som åpent for alle uten å undersøke adgang, medier, makt, sensur og uformelle eksklusjoner."
     ],
     "status": "canonical_v5_5"
   },
@@ -15349,9 +15494,9 @@
   {
     "concept_id": "con_his_reformasjon",
     "label": "reformasjon",
-    "definition": "I Religion, reformasjon og livssyn betegner «reformasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Omformingen av vestlig kristendom på 1500-tallet som endret lære, kirkeorganisasjon, eiendom, ritual, kongemakt og religiøst hverdagsliv.",
+    "concept_type": "religious_political_change_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
@@ -15366,12 +15511,19 @@
       "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
       "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_religion"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kristning",
+      "con_his_sekularisering"
+    ],
+    "distinguish_from": [
+      "con_his_konfesjonalisering"
+    ],
     "common_misuse": [
-      "Å bruke «reformasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å framstille «reformasjon» som et øyeblikkelig og fullstendig brudd uten å undersøke kontinuitet, lokal variasjon og ulike endringstempo."
     ],
     "status": "canonical_v5_5"
   },
@@ -15693,9 +15845,9 @@
   {
     "concept_id": "con_his_religion",
     "label": "religion",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «religion» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk skiftende forestillinger, praksiser, institusjoner og materialiteter knyttet til det hellige, kosmologi, ritual, moral og fellesskap.",
+    "concept_type": "historical_category",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet",
       "his_religion_reformasjon_livssyn"
@@ -15707,11 +15859,23 @@
       "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_forkristne",
+      "con_his_kristning",
+      "con_his_reformasjon",
+      "con_his_levd_religion",
+      "con_his_religioner"
+    ],
+    "related_concepts": [
+      "con_his_forkristne",
+      "con_his_kristning",
+      "con_his_religioner"
+    ],
+    "distinguish_from": [
+      "con_his_livssyn"
+    ],
     "common_misuse": [
-      "Å bruke «religion» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å projisere et moderne og enhetlig religionsbegrep på «religion» uten å analysere samtidige kategorier, ritualer, institusjoner og materialitet."
     ],
     "status": "canonical_v5_5"
   },
@@ -15738,43 +15902,57 @@
   },
   {
     "concept_id": "con_his_religioner",
-    "label": "religioner",
-    "definition": "I Religion, reformasjon og livssyn betegner «religioner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "religionsmangfold",
+    "definition": "Tilstedeværelsen av flere religiøse tradisjoner, praksisformer og organisasjoner i samme samfunn eller område.",
+    "concept_type": "plurality_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
     "source_emne_ids": [
       "em_his_religion_reformasjon_forkristne_religioner_og_kristning"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_livssynspluralisme"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_pluralisme",
+      "con_his_sekularitet"
+    ],
+    "distinguish_from": [
+      "con_his_statskirke"
+    ],
     "common_misuse": [
-      "Å bruke «religioner» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «religionsmangfold» som synonym for likestilling uten å undersøke rettigheter, ressurser, representasjon og institusjonell asymmetri."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_religios",
-    "label": "religiøs",
-    "definition": "I Religion, reformasjon og livssyn betegner «religiøs» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "religiøs norm",
+    "definition": "En forventning om tro, ritual, moral, kropp eller livsførsel som begrunnes religiøst og håndheves gjennom institusjoner, fellesskap eller selvdisiplin.",
+    "concept_type": "normative_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
     "source_emne_ids": [
       "em_his_religion_reformasjon_statskirke_disiplin_og_religios_orden"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_levd_religion"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_hverdagsliv",
+      "con_his_kjonn"
+    ],
+    "distinguish_from": [
+      "con_his_orden"
+    ],
     "common_misuse": [
-      "Å bruke «religiøs» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra norm eller lære til «religiøs norm» uten kilder til faktisk praksis, erfaring og sosial variasjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -16808,9 +16986,9 @@
   {
     "concept_id": "con_his_sekularisering",
     "label": "sekularisering",
-    "definition": "I Religion, reformasjon og livssyn betegner «sekularisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Ujevne prosesser der religiøse institusjoners myndighet, deltakelse eller samfunnsfunksjoner endres, differensieres eller svekkes uten at religion nødvendigvis forsvinner.",
+    "concept_type": "historical_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
@@ -16825,33 +17003,47 @@
       "em_his_religion_reformasjon_religion_politikk_og_offentlighet",
       "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_religion"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kristning",
+      "con_his_reformasjon"
+    ],
+    "distinguish_from": [
+      "con_his_konfesjonalisering"
+    ],
     "common_misuse": [
-      "Å bruke «sekularisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å framstille «sekularisering» som et øyeblikkelig og fullstendig brudd uten å undersøke kontinuitet, lokal variasjon og ulike endringstempo."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_sekularitet",
     "label": "sekularitet",
-    "definition": "I Religion, reformasjon og livssyn betegner «sekularitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk bestemte ordninger og forestillinger som regulerer forholdet mellom religion, stat, offentlighet og ikke-religiøse livssyn.",
+    "concept_type": "institutional_cultural_condition",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
     "source_emne_ids": [
       "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_livssynspluralisme"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_pluralisme",
+      "con_his_religioner"
+    ],
+    "distinguish_from": [
+      "con_his_statskirke"
+    ],
     "common_misuse": [
-      "Å bruke «sekularitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «sekularitet» som synonym for likestilling uten å undersøke rettigheter, ressurser, representasjon og institusjonell asymmetri."
     ],
     "status": "canonical_v5_5"
   },
@@ -18226,9 +18418,9 @@
   {
     "concept_id": "con_his_statskirke",
     "label": "statskirke",
-    "definition": "I Religion, reformasjon og livssyn betegner «statskirke» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En kirke med formelle rettslige, økonomiske og administrative bånd til staten og en særstilling i styring, ritualer og offentlig liv.",
+    "concept_type": "church_state_institution_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
@@ -18243,12 +18435,23 @@
       "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
       "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "broader_concepts": [
+      "con_his_religion"
+    ],
+    "narrower_concepts": [
+      "con_his_orden",
+      "con_his_disiplin",
+      "con_his_konfesjonalisering"
+    ],
+    "related_concepts": [
+      "con_his_konfesjonalisering",
+      "con_his_disiplin"
+    ],
+    "distinguish_from": [
+      "con_his_levd_religion"
+    ],
     "common_misuse": [
-      "Å bruke «statskirke» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «statskirke» som en ensartet og fullt gjennomført ordning uten å skille formell lære, institusjonell kapasitet, lokal praksis og motstand."
     ],
     "status": "canonical_v5_5"
   },
@@ -19512,10 +19715,10 @@
   },
   {
     "concept_id": "con_his_transnasjonale",
-    "label": "transnasjonale",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «transnasjonale» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "transnasjonale religionsnettverk",
+    "definition": "Religiøse forbindelser som krysser statsgrenser gjennom personer, organisasjoner, misjon, penger, medier, ideer og autoritetsstrukturer.",
+    "concept_type": "network_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet",
       "his_religion_reformasjon_livssyn",
@@ -19527,12 +19730,19 @@
       "em_his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_nettverk"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_migrasjon",
+      "con_his_offentlighet"
+    ],
+    "distinguish_from": [
+      "con_his_statskirke"
+    ],
     "common_misuse": [
-      "Å bruke «transnasjonale» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å påstå at «transnasjonale religionsnettverk» forklarer spredning eller mobilisering uten å dokumentere konkrete forbindelser, formidlere, retning og tidsforløp."
     ],
     "status": "canonical_v5_5"
   },
@@ -19605,9 +19815,9 @@
   {
     "concept_id": "con_his_trosfrihet",
     "label": "trosfrihet",
-    "definition": "I Religion, reformasjon og livssyn betegner «trosfrihet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Retten til å ha, endre, praktisere eller avstå fra religion og livssyn, historisk avgrenset av lov, institusjoner og andres rettigheter.",
+    "concept_type": "rights_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
@@ -19622,12 +19832,19 @@
       "em_his_religion_reformasjon_religion_politikk_og_offentlighet",
       "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_minoriteter"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_dissenter",
+      "con_his_dissentere"
+    ],
+    "distinguish_from": [
+      "con_his_pluralisme"
+    ],
     "common_misuse": [
-      "Å bruke «trosfrihet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «trosfrihet» som en tidløs identitet uten å avgrense lovstatus, selvidentifikasjon, institusjonell makt og historisk kontekst."
     ],
     "status": "canonical_v5_5"
   },
@@ -20453,9 +20670,9 @@
   {
     "concept_id": "con_his_vekkelse",
     "label": "vekkelse",
-    "definition": "I Religion, reformasjon og livssyn betegner «vekkelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En intens periode med religiøs forkynnelse, omvendelse og organisering som kan skape nye fellesskap, praksiser og konflikter.",
+    "concept_type": "religious_mobilization_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_religion_reformasjon_livssyn"
     ],
@@ -20471,11 +20688,21 @@
       "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_pietisme",
+      "con_his_lekmannsbevegelse",
+      "con_his_dissentere"
+    ],
+    "related_concepts": [
+      "con_his_pietisme",
+      "con_his_lekmannsbevegelse",
+      "con_his_dissentere"
+    ],
+    "distinguish_from": [
+      "con_his_statskirke"
+    ],
     "common_misuse": [
-      "Å bruke «vekkelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «vekkelse» som én samlet aktør uten å undersøke ledelse, lokale miljøer, nettverk, kjønn og interne konflikter."
     ],
     "status": "canonical_v5_5"
   },
