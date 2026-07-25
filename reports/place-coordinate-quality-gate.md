@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-25T07:07:25.857Z
+Generert: 2026-07-25T07:15:42.802Z
 
 ## Oppsummering
 - Aktive filer validert: **690**
 - Antall steder validert: **1291**
 - Harde feil: **0**
-- Varsler: **517**
-- Coordinate review candidates: **775** signaler fordelt på **653** steder
+- Varsler: **516**
+- Coordinate review candidates: **774** signaler fordelt på **652** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -971,7 +971,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/naeringsliv/oslo/places_naeringsliv.json#ringnes_bryggeri: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#oslo_kraftselskap: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#vippetangen_fisketorg: coordStatus=verified uten coordPrecisionM
-- data/places/naeringsliv/oslo/places_naeringsliv.json#bryn_industriomrade: stort område uten coordNote/coordStatus
 - data/places/naeringsliv/oslo/places_naeringsliv.json#christiania_seildugsfabrik: lineært sted uten anchors
 - data/places/naeringsliv/oslo/places_naeringsliv.json#christiania_seildugsfabrik: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv.json#lilleborg_fabrikker: coordStatus=verified uten coordPrecisionM
@@ -1233,7 +1232,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 774 signaler fordelt på 652 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -1243,7 +1242,7 @@ Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | lineært sted uten anchors | 80 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 65 |
 | lav koordinatpresisjon (<4 desimaler) | 70 |
-| park/stort område uten anchors eller coordNote | 127 |
+| park/stort område uten anchors eller coordNote | 126 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 8 |
@@ -1724,7 +1723,7 @@ Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | vikedalselva | Vikedalselva | natur | data/places/natur/rogaland/vikedalselva.json | 59.4977 | 5.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### park/stort område uten anchors eller coordNote (127)
+### park/stort område uten anchors eller coordNote (126)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1850,7 +1849,6 @@ Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | baneheia_kristiansand_bypark | Baneheia Kristiansand bypark | natur | data/places/natur/agder/baneheia_kristiansand_bypark.json | 58.1518 | 7.9829 | 620 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | laudal_kraftverk_lindesnes | Laudal kraftverk Lindesnes | naeringsliv | data/places/naeringsliv/agder/laudal_kraftverk_lindesnes.json | 58.2695 | 7.5093 | 520 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | audnedal_stasjon_lyngdal | Audnedal stasjon Lyngdal | by | data/places/by/agder/audnedal_stasjon_lyngdal.json | 58.3238 | 7.354 | 420 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
-| bryn_industriomrade | Bryn industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9129 | 10.8251 | 250 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | rudskogen_motorsenter | Rudskogen Motorsenter | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 59.3759 | 11.2552 | 520 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | gardermoen_motorpark | Gardermoen Motorpark | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.1832 | 11.1399 | 280 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | finnskogbanen | Finnskogbanen | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.4513 | 12.1864 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |

@@ -7,10 +7,10 @@
     "lat": 59.9129,
     "lon": 10.8251,
     "r": 250,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "coordStatus": "needs_source",
+    "coordSource": "manual_research",
+    "coordType": "unverified_area_anchor",
+    "coordNote": "Bredt og uavgrenset industriområde mangler kildebelagt geometri/anchors. Dagens koordinat beholdes kun som redaksjonell områdeproxy og skal ikke tolkes som dokumentert fysisk sentrum. Definer fysisk scope og hent offisiell områdegeometri eller flere kildebelagte area-ankre før canonical koordinat kan godkjennes."
   },
   "identity": {
     "currentName": "Bryn industriområde",
@@ -41,11 +41,24 @@
   "addressCandidates": [],
   "sourceObjectCandidates": [],
   "geometryCandidates": [],
-  "coordinateCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9129,
+      "lon": 10.8251,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "oslobyleksikon:bryn-strok",
+      "canApplyToPlace": false,
+      "reason": "Redaksjonell områdeproxy uten kildebelagt avgrensning."
+    }
+  ],
   "decision": {
     "canBecomeVerified": false,
     "blockedReason": "Bredt og uavgrenset industriområde mangler kildebelagt geometri/anchors.",
-    "nextAction": "Definer fysisk scope og hent offisiell områdegeometri eller flere area-ankre før canonical koordinat kan godkjennes."
+    "nextAction": "Definer fysisk scope og hent offisiell områdegeometri eller flere kildebelagte area-ankre før canonical koordinat kan godkjennes."
   },
-  "notes": ["Ingen koordinatendring i batch 25."]
+  "notes": [
+    "Bredt og uavgrenset industriområde mangler kildebelagt geometri/anchors. Dagens koordinat beholdes kun som redaksjonell områdeproxy og skal ikke tolkes som dokumentert fysisk sentrum. Definer fysisk scope og hent offisiell områdegeometri eller flere kildebelagte area-ankre før canonical koordinat kan godkjennes.",
+    "Statusnormalisering 2026-07-25; ingen koordinatendring."
+  ],
+  "schemaVersion": "1.0"
 }
