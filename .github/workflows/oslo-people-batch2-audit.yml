@@ -1,0 +1,41 @@
+name: Oslo People batch 2 candidate audit
+
+on:
+  push:
+    branches:
+      - agent/oslo-people-zero-gap-batch2
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-people-zero-gap-batch2
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit candidates
+        run: npx tsx tools/audit-oslo-people-batch2-candidates.mts
+
+      - name: Publish audit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/oslo-people-batch2-candidate-audit.json reports/oslo-people-batch2-candidate-audit.md
+          git diff --cached --check
+          git commit -m "Audit Oslo People batch 2 candidates"
+          git push origin HEAD:agent/oslo-people-zero-gap-batch2
