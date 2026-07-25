@@ -28,12 +28,13 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 
 ### Dagens runtime og arbeidsflyt
 
-1. [`../README/SYSTEM_REGISTRY.md`](../README/SYSTEM_REGISTRY.md) — hvem eier hva
-2. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — hva skjer i flyten
-3. [`../README/README_DEV.md`](../README/README_DEV.md) — kjøring, debugging og validering
-4. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
+1. [`../README/SYSTEM_REGISTRY.md`](../README/SYSTEM_REGISTRY.md) — overordnet runtime-eierskap og kjernegrenser
+2. [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — aktive API-, storage-, privacy- og UI-kontrakter for subsystemene
+3. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — hva skjer i flyten
+4. [`../README/README_DEV.md`](../README/README_DEV.md) — kjøring, debugging og validering
+5. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
 
-`SYSTEM_REGISTRY.md` er canonical og inneholder bare den aktive kontrakten. Den tidligere pre-split-filen er bevart byte-identisk i [`../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md) som historisk sporbarhet, ikke som bindende regelverk.
+`SYSTEM_REGISTRY.md` og `SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md` utgjør sammen den aktive runtime-kontrakten. Den tidligere pre-split-filen er bevart byte-identisk i [`../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md) som historisk sporbarhet, ikke som bindende regelverk.
 
 ### Produkt og ferdigstillelse
 
@@ -122,6 +123,7 @@ Kontrollen kjører når sentrale dokumenter, registeret eller kontrollscriptet e
 - gamle politikk-aggregate-paths fjernet fra dataproduksjonskontrakten
 - `CURRENT_PRODUCT_STATE` og `IMPLEMENTATION_STATUS` merket som historiske snapshots
 - aktiv `SYSTEM_REGISTRY` skilt fra byte-identisk pre-split-arkiv
+- aktive subsystemappendikser bevart i egen canonical kontrakt
 - spillbarhets-gaprapporten flyttet til `reports/archive/` med kort historisk peker i `docs/`
 
 ### Neste
