@@ -10,6 +10,16 @@ const writeJson = (file: string, value: unknown) => {
 const run = (command: string, args: string[]) => execFileSync(command, args, { stdio: 'inherit' });
 const unique = <T>(values: T[]) => [...new Set(values)];
 
+const targetPlaceIds = ['wessels_plass', 'egertorget', 'grev_wedels_plass', 'kampen_kirke', 'sofienberg_kirke', 'ostbanestasjonen'];
+
+run('npx', ['tsx', 'tools/audit-oslo-people-coverage.mts']);
+const baselineCoverage = readJson('reports/oslo-people-coverage.json');
+const baselineTotals = baselineCoverage.totals;
+const baselineUncoveredIds = new Set((baselineCoverage.uncoveredRequired ?? []).map((place: { placeId: string }) => place.placeId));
+for (const placeId of targetPlaceIds) {
+  if (!baselineUncoveredIds.has(placeId)) throw new Error(`Target place was not uncovered at baseline: ${placeId}`);
+}
+
 const manifestPath = 'data/people/manifest.json';
 const manifest = readJson(manifestPath) as { files: string[] };
 const newManifestEntries = [
@@ -129,18 +139,25 @@ nordan.source_urls = unique([...(Array.isArray(nordan.source_urls) ? nordan.sour
 nordan.verifiedAt = '2026-07-25';
 writeJson(nordanPath, nordanRecords);
 
-fs.writeFileSync('reports/people-oslo-zero-gap-batch2-validation.md', `# Oslo People zero-gap batch 2 – validation\n\n## Target places\n\n- \`wessels_plass\` → new \`johan_herman_wessel\`\n- \`egertorget\` → new \`herman_eger\` and \`thorvald_eger\`\n- \`grev_wedels_plass\` → reused \`herman_wedel_jarlsberg\`\n- \`kampen_kirke\` → reused \`jacob_wilhelm_nordan\`\n- \`sofienberg_kirke\` → reused \`jacob_wilhelm_nordan\`\n- \`ostbanestasjonen\` → new \`georg_bull\` (display name Georg Andreas Bull)\n\n## Repository audit\n\nThe candidate audit scanned 680 People JSON files and 1,321 id/name records. Herman Wedel Jarlsberg and Jacob Wilhelm Nordan had unique canonical records and are reused. Johan Herman Wessel, Herman Eger, Thorvald Eger and Georg Bull had no canonical or legacy id/name matches and are added as new People. None of the six target place IDs had an existing People link.\n\n## Research gate\n\n- Wessels plass received its current name in 1891 after Johan Herman Wessel.\n- Egertorget is named after brothers Herman and Thorvald Eger, who operated Egers brewery from Karl Johans gate 20.\n- Grev Wedels plass is named after Herman Wedel Jarlsberg.\n- Kampen kirke and Sofienberg kirke were both built from Jacob Wilhelm Nordan's designs.\n- The canonical Østbanestasjonen place represents Georg Bull's preserved 1882 building. Heinrich Schirmer and Wilhelm von Hanno are not added because they designed the smaller 1854 predecessor, not the canonical 1882 station building.\n\n## Expected coverage change\n\n- Covered required Oslo places: 148 → 154\n- Uncovered required Oslo places: 185 → 179\n- New logical People: 4\n- Reused canonical People: 2\n`);
-
 run('npx', ['tsx', 'scripts/build-civication-history-people-index.mts']);
 run('npx', ['tsx', 'tools/audit-oslo-people-coverage.mts']);
 run('npx', ['tsx', 'tools/audit-oslo-latent-people-coverage.mts']);
 
 const coverage = readJson('reports/oslo-people-coverage.json');
-if (coverage.totals?.coveredRequiredPlaces !== 154 || coverage.totals?.uncoveredRequiredPlaces !== 179) {
-  throw new Error(`Unexpected Oslo coverage: ${JSON.stringify(coverage.totals)}`);
+const totals = coverage.totals;
+if (totals?.requiredNonNaturePlaces !== baselineTotals?.requiredNonNaturePlaces) {
+  throw new Error(`Required Oslo place total changed during batch: ${JSON.stringify({ baseline: baselineTotals, after: totals })}`);
+}
+if (totals?.coveredRequiredPlaces !== baselineTotals?.coveredRequiredPlaces + 6) {
+  throw new Error(`Expected exactly six newly covered Oslo places: ${JSON.stringify({ baseline: baselineTotals, after: totals })}`);
+}
+if (totals?.uncoveredRequiredPlaces !== baselineTotals?.uncoveredRequiredPlaces - 6) {
+  throw new Error(`Expected exactly six fewer uncovered Oslo places: ${JSON.stringify({ baseline: baselineTotals, after: totals })}`);
+}
+if (totals?.logicalPeople !== baselineTotals?.logicalPeople + 4) {
+  throw new Error(`Expected exactly four new logical People: ${JSON.stringify({ baseline: baselineTotals, after: totals })}`);
 }
 
-const targetPlaceIds = ['wessels_plass', 'egertorget', 'grev_wedels_plass', 'kampen_kirke', 'sofienberg_kirke', 'ostbanestasjonen'];
 const uncoveredIds = new Set((coverage.uncoveredRequired ?? []).map((place: { placeId: string }) => place.placeId));
 for (const placeId of targetPlaceIds) {
   if (uncoveredIds.has(placeId)) throw new Error(`Target place remains uncovered: ${placeId}`);
@@ -150,6 +167,8 @@ const indexText = fs.readFileSync('data/Civication/historyPeople_index.json', 'u
 for (const id of ['johan_herman_wessel', 'herman_eger', 'thorvald_eger', 'herman_wedel_jarlsberg', 'jacob_wilhelm_nordan', 'georg_bull']) {
   if (!indexText.includes(`\"${id}\"`)) throw new Error(`Missing ${id} from Civication People index`);
 }
+
+fs.writeFileSync('reports/people-oslo-zero-gap-batch2-validation.md', `# Oslo People zero-gap batch 2 – validation\n\n## Target places\n\n- \`wessels_plass\` → new \`johan_herman_wessel\`\n- \`egertorget\` → new \`herman_eger\` and \`thorvald_eger\`\n- \`grev_wedels_plass\` → reused \`herman_wedel_jarlsberg\`\n- \`kampen_kirke\` → reused \`jacob_wilhelm_nordan\`\n- \`sofienberg_kirke\` → reused \`jacob_wilhelm_nordan\`\n- \`ostbanestasjonen\` → new \`georg_bull\` (display name Georg Andreas Bull)\n\n## Repository audit\n\nThe candidate audit scanned 680 People JSON files and 1,321 id/name records. Herman Wedel Jarlsberg and Jacob Wilhelm Nordan had unique canonical records and are reused. Johan Herman Wessel, Herman Eger, Thorvald Eger and Georg Bull had no canonical or legacy id/name matches and are added as new People. None of the six target place IDs had an existing People link.\n\n## Research gate\n\n- Wessels plass received its current name in 1891 after Johan Herman Wessel.\n- Egertorget is named after brothers Herman and Thorvald Eger, who operated Egers brewery from Karl Johans gate 20.\n- Grev Wedels plass is named after Herman Wedel Jarlsberg.\n- Kampen kirke and Sofienberg kirke were both built from Jacob Wilhelm Nordan's designs.\n- The canonical Østbanestasjonen place represents Georg Bull's preserved 1882 building. Heinrich Schirmer and Wilhelm von Hanno are not added because they designed the smaller 1854 predecessor, not the canonical 1882 station building.\n\n## Coverage gate\n\n- Required non-nature Oslo places: ${baselineTotals.requiredNonNaturePlaces} → ${totals.requiredNonNaturePlaces}\n- Covered required Oslo places: ${baselineTotals.coveredRequiredPlaces} → ${totals.coveredRequiredPlaces}\n- Uncovered required Oslo places: ${baselineTotals.uncoveredRequiredPlaces} → ${totals.uncoveredRequiredPlaces}\n- Logical People: ${baselineTotals.logicalPeople} → ${totals.logicalPeople}\n- New logical People: 4\n- Reused canonical People: 2\n`);
 
 run('bash', ['scripts/check-people.sh']);
 run('git', ['diff', '--check']);
