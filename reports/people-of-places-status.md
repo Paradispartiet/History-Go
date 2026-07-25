@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-24T12:39:44.784Z
+Generert: 2026-07-25T04:31:38.088Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-24T12:39:44.784Z |
-| peopleFilesRead | 659 |
-| totalPeople | 1294 |
-| uniquePeopleIds | 1294 |
+| generatedAt | 2026-07-25T04:31:38.088Z |
+| peopleFilesRead | 663 |
+| totalPeople | 1298 |
+| uniquePeopleIds | 1298 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 659 |
+| geographicPeopleFiles | 663 |
 | categoriesRepresented | 16 |
 
 ## People-filer
@@ -31,18 +31,22 @@ Generert: 2026-07-24T12:39:44.784Z
 | data/people/by/europe/portugal/lisbon/gare_do_cais_do_sodre/porfirio_pardal_monteiro.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/aker_brygge/niels_torp.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/akerselva/people_nybrua_vaterlandsparken.json | by | ja | 7 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/egertorget/herman_eger.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/egertorget/thorvald_eger.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/gamle_aker_kirke/heinrich_ernst_schirmer.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/gamle_radhus/carl_berner_arkitekt.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/gamle_radhus/lars_backer.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/helsfyr/fredrik_a_s_torp.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/helsfyr/guttorm_bruskeland.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/oslo_s/john_engh.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/ostbanestasjonen/georg_bull.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/people_by_oslo_politics_places_batch_02.json | by | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/people_by_oslo_politics_places_batch_03.json | by | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/people_by_oslo_politics_places_batch_04.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/people_by_oslo.json | by | ja | 25 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/st_hallvard_kirke_kloster/kjell_lund.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/st_hallvard_kirke_kloster/nils_slaatto.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/wessels_plass/johan_herman_wessel.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/vestland/etne/people_by_etne_rounds_batch1.json | by | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/filantroper/oslo/people_filantroper_oslo.json | filantroper | ja | 17 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
 | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json | film_tv | ja | 13 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -686,7 +690,7 @@ Generert: 2026-07-24T12:39:44.784Z
 
 | Kategori | People | Flate filer | Geofiler | Foreslått neste steg | Begrunnelse |
 |---|---:|---:|---:|---|---|
-| by | 52 | 0 | 22 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| by | 56 | 0 | 26 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | filantroper | 17 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 23 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | historie | 199 | 0 | 51 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -705,7 +709,7 @@ Generert: 2026-07-24T12:39:44.784Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 659
+- Allerede geografisk strukturert: 663
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -739,18 +743,22 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/by/europe/portugal/lisbon/gare_do_cais_do_sodre/porfirio_pardal_monteiro.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/aker_brygge/niels_torp.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/akerselva/people_nybrua_vaterlandsparken.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=7/7; source_place_id=0/7; placesArray=7/7; categories=by,historie,kunst; category_mismatch=6
+- data/people/by/oslo/egertorget/herman_eger.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
+- data/people/by/oslo/egertorget/thorvald_eger.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/gamle_aker_kirke/heinrich_ernst_schirmer.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/gamle_radhus/carl_berner_arkitekt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/gamle_radhus/lars_backer.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/helsfyr/fredrik_a_s_torp.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/helsfyr/guttorm_bruskeland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/oslo_s/john_engh.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
+- data/people/by/oslo/ostbanestasjonen/georg_bull.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/people_by_oslo_politics_places_batch_02.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=by
 - data/people/by/oslo/people_by_oslo_politics_places_batch_03.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=by
 - data/people/by/oslo/people_by_oslo_politics_places_batch_04.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/people_by_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=25/25; source_place_id=0/25; placesArray=25/25; categories=by
 - data/people/by/oslo/st_hallvard_kirke_kloster/kjell_lund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/st_hallvard_kirke_kloster/nils_slaatto.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
+- data/people/by/oslo/wessels_plass/johan_herman_wessel.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/vestland/etne/people_by_etne_rounds_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=by
 - data/people/filantroper/oslo/people_filantroper_oslo.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=17/17; source_place_id=0/17; placesArray=17/17; collectionGroup=17/17; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=13/13; source_place_id=0/13; placesArray=13/13; categories=film_tv

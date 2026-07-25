@@ -1,27 +1,27 @@
 # People-place coverage audit
 
-Generert: 2026-07-24T12:39:45.022Z
+Generert: 2026-07-25T04:31:38.322Z
 
 ## Sammendrag
 
-- People totalt: **1296**
-- Places totalt: **1292**
-- Places med people: **337**
-- Places uten people: **955**
-- People-place-lenker: **1522**
-- People koblet til flere gyldige steder: **256**
+- People totalt: **1300**
+- Places totalt: **1291**
+- Places med people: **343**
+- Places uten people: **948**
+- People-place-lenker: **1529**
+- People koblet til flere gyldige steder: **257**
 - People uten gyldig sted: **122**
 - Ugyldige place-referanser: **50**
-- Duplikate place-referanser inne på people: **1215**
-- People uten image: **955**
-- People uten cardImage: **956**
+- Duplikate place-referanser inne på people: **1219**
+- People uten image: **959**
+- People uten cardImage: **960**
 - People uten popupDesc: **105**
 
 ## Dekning per place-kategori
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 213 | 56 | 157 | 178 | 147 |
+| by | 213 | 62 | 151 | 185 | 153 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
 | historie | 449 | 62 | 387 | 222 | 149 |
 | kunst | 34 | 20 | 14 | 50 | 46 |
@@ -29,7 +29,7 @@ Generert: 2026-07-24T12:39:45.022Z
 | media | 11 | 8 | 3 | 28 | 27 |
 | musikk | 15 | 13 | 2 | 30 | 22 |
 | naeringsliv | 144 | 35 | 109 | 75 | 69 |
-| natur | 99 | 8 | 91 | 18 | 18 |
+| natur | 98 | 8 | 90 | 18 | 18 |
 | politikk | 35 | 23 | 12 | 213 | 175 |
 | populaerkultur | 17 | 2 | 15 | 2 | 2 |
 | psykologi | 3 | 2 | 1 | 2 | 1 |
@@ -45,7 +45,7 @@ Generert: 2026-07-24T12:39:45.022Z
 - historie: 241
 - teater: 202
 - scenekunst: 193
-- litteratur: 178
+- litteratur: 179
 - skuespiller: 147
 - politikk: 137
 - musikk: 121
@@ -53,10 +53,10 @@ Generert: 2026-07-24T12:39:45.022Z
 - holmenkollrennet: 80
 - kunst: 76
 - subkultur: 64
-- arkitektur: 61
-- naeringsliv: 58
+- arkitektur: 62
+- naeringsliv: 60
+- by: 59
 - regissor: 56
-- by: 55
 - langrenn: 49
 - fotball: 47
 - teatersjef: 47
@@ -275,7 +275,7 @@ Generert: 2026-07-24T12:39:45.022Z
 - haakon_v_magnusson (Håkon V Magnusson) -> akershus_festning
 - st_hallvard (St. Hallvard) -> middelalder_oslo
 - harald_hardrade (Harald Hardråde) -> middelalder_oslo
-- ... 1115 flere
+- ... 1119 flere
 
 ## Anbefalt første people-batch
 
