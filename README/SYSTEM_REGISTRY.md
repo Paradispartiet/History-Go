@@ -16,6 +16,12 @@ Det er bindende for videre utvikling.
 
 - Praktisk dataproduksjon for places, people, badges, `underbadge_ids`, `rounds`, manifest-bruk og duplikatregler styres av [DATA_PRODUCTION_CONTRACT](../docs/DATA_PRODUCTION_CONTRACT.md). Ikke lim kontrakten inn her; bruk den som aktiv arbeidskontrakt ved dataendringer.
 
+## Aktive subsystemkontrakter
+
+- Observations, fagstruktur/progresjon, Civication wallet/shell/debug/Home, HG Social, Today Hub, Daily Objectives/Progress, Spotmeeting og Social Meet styres av [`SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](./SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md).
+- Dette dokumentet eier de overordnede grensene. Subsystemdokumentet eier de eksplisitte API-, storage-, privacy- og UI-kontraktene for de registrerte subsystemene.
+- Ingen av kontraktene skal hentes fra den historiske pre-split-filen.
+
 ## TILLATTE GLOBALS
 
 Følgende globals er eksplisitt tillatt:
@@ -168,6 +174,7 @@ All init skjer via `boot()`.
 Endringer i struktur krever:
 1. Oppdatert SYSTEM_MAP.md
 2. Oppdatert SYSTEM_REGISTRY.md
+3. Oppdatert `SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md` når API-, storage-, privacy- eller subsystemeierskap endres
 
 Ingen unntak.
 
@@ -175,12 +182,12 @@ Ingen unntak.
 
 ## Historisk arkiv
 
-Den tidligere innlimte fullteksten, inkludert `SYSTEM REGISTRY (UPDATED 2025-12-28)` og senere appendikser, er bevart byte-identisk i [`archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](./archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md).
+Den tidligere fullteksten er bevart byte-identisk i [`archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](./archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md).
 
-Arkivfilen er historisk dokumentasjon. Den er ikke bindende og skal ikke brukes som nåværende runtime-kontrakt.
+Arkivet inneholder både legacytekst og kildeversjonene til appendiksregler som nå er konsolidert i `SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`. Arkivfilen er historisk dokumentasjon og er ikke bindende.
 
 ---
 
 ## SLUTT
 
-Dette dokumentet er kontrakten for History Go.
+Dette dokumentet og `SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md` utgjør den aktive runtime-kontrakten for History Go.
