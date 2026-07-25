@@ -1,6 +1,6 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-25T05:10:06.231Z
+Generert: 2026-07-25T05:53:59.707Z
 
 ## Oppsummering
 - Aktive filer validert: **701**
@@ -717,8 +717,8 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/religion/europe/portugal/lisbon/lisbon_santo_antonio_festival.json
 - data/places/scenekunst/europe/portugal/lisbon/lisbon_marchas_populares.json
 - data/places/scenekunst/oslo/chateau_neuf.json
-- data/places/sport/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d.json
 - data/places/subkultur/oslo/house_of_nerds.json
+- data/places/scenekunst/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d.json
 
 ## Harde feil
 - Ingen
