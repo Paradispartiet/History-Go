@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "nybrua_pilarrom",
+  "placeFile": "data/places/subkultur/oslo/places_subkultur/nybrua_pilarrom.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_named_nybrua_bridge_geometry_as_pillar_room_anchor",
+  "currentCoordinate": {
+    "lat": 59.91779951428572,
+    "lon": 10.759186495238094,
+    "r": 80,
+    "coordStatus": "verified_geometry",
+    "coordSource": "kartverket_ssr_osm_bridge_geometry",
+    "coordType": "bridge_substructure_anchor",
+    "coordNote": "Canonical record gjelder pilarrommet under og rundt den navngitte Nybrua. Kartverket SSR stedsnummer 997935, objekttype Bru, ligger 17.8 meter fra OSM way 315066295, navngitt Nybrua. Display-markøren settes til geometrisenteret for den navngitte brogeometrien, mens SSR-punktet dokumenterer den offisielle broidentiteten. Maksimal geometriavstand er 18.3 meter, og radius 80 meter inkluderer 30 meters buffer og minimum 80 meter for pilarrommet. Den tidligere markøren lå 327.1 meter unna."
+  },
+  "identity": {
+    "currentName": "Nybrua pilarrom",
+    "resolvedIdentity": "Pilarrommet under og rundt den navngitte Nybrua over Akerselva",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisielt brostedsobjekt",
+    "navngitt brogeometri",
+    "målt radius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "kartverket",
+      "sourceName": "Kartverket SSR – Nybrua",
+      "sourceUrl": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Nybrua&utkoordsys=4258&treffPerSide=50&side=1",
+      "sourceObjectId": "kartverket-ssr:997935:59.91765000,10.75907000",
+      "sourceQuality": "official_place_name_register",
+      "finding": "Stedsnummer 997935 er et Oslo-objekt av type Bru ved 59.91765, 10.75907.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisielt navne- og stedspunkt for Nybrua."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Nybrua bridge geometry",
+      "sourceUrl": "https://www.openstreetmap.org/way/315066295",
+      "sourceObjectId": "osm-way:315066295",
+      "sourceQuality": "named_bridge_geometry",
+      "finding": "Navngitt brogeometri med 21 punkter; maksimal avstand fra geometrisenteret er 18.3 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Avgrenser den fysiske broen som pilarrommet tilhører."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go subculture anchor research",
+      "sourceUrl": "reports/oslo-coordinate-subculture-anchors-research-20260725/summary.json",
+      "sourceObjectId": "history-go-research:subculture-anchors-20260725:nybrua_pilarrom",
+      "sourceQuality": "reproducible_multi_source_research",
+      "finding": "Tidligere markør lå 327.1 meter unna; anbefalt radius er 80 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Samlet beslutningsgrunnlag."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "kartverket",
+      "sourceObjectId": "kartverket-ssr:997935:59.91765000,10.75907000",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:315066295",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:315066295",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91779951428572,
+      "lon": 10.759186495238094,
+      "coordRole": "area_anchor",
+      "sourceObjectId": "osm-way:315066295",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kartverket SSR og navngitt OSM-brogeometri er anvendt med radius 80 meter."
+  },
+  "notes": [
+    "Canonical record gjelder pilarrommet under og rundt den navngitte Nybrua. Kartverket SSR stedsnummer 997935, objekttype Bru, ligger 17.8 meter fra OSM way 315066295, navngitt Nybrua. Display-markøren settes til geometrisenteret for den navngitte brogeometrien, mens SSR-punktet dokumenterer den offisielle broidentiteten. Maksimal geometriavstand er 18.3 meter, og radius 80 meter inkluderer 30 meters buffer og minimum 80 meter for pilarrommet. Den tidligere markøren lå 327.1 meter unna.",
+    "Research report: reports/oslo-coordinate-subculture-anchors-research-20260725/summary.json"
+  ]
+}
