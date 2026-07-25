@@ -1,13 +1,14 @@
 name: Oslo People zero-gap batch 7 materialize
 
 on:
-  push:
-    branches:
-      - agent/oslo-people-zero-gap-batch7-v2
   pull_request:
     branches:
       - main
     types: [opened, reopened, synchronize, ready_for_review]
+
+concurrency:
+  group: oslo-people-batch7-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
