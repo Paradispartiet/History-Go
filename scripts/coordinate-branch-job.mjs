@@ -1,18 +1,22 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 import { spawnSync } from 'node:child_process';
 
 const root = process.cwd();
 const sourceRef = 'origin/agent/oslo-coordinate-history-v5-5-power-curation-v2';
 const domainId = 'his_makt_stat_institusjoner';
+const historyQuizTargets = [
+  'grindheim_runestein',
+  'grindheim_steinkross',
+  'grindheimsveien_nord_gravfelt',
+  'hoyland_gravhaug_etne'
+];
 const pathsToTransfer = [
   'data/fag/historie/concepts_historie_canonical_v5_5.json',
   'data/fag/historie/emner_historie_canonical_v4_5.json',
   'data/fag/historie/theory_objects_historie_canonical_v5_5.json',
-  'data/quiz/production_context/historie/grindheim_runestein.json',
-  'data/quiz/production_context/historie/grindheim_steinkross.json',
-  'data/quiz/production_context/historie/grindheimsveien_nord_gravfelt.json',
-  'data/quiz/production_context/historie/hoyland_gravhaug_etne.json',
+  ...historyQuizTargets.map((targetId) => `data/quiz/production_context/historie/${targetId}.json`),
   'reports/historie-v5/historie-v5-5-readiness.json',
   'reports/historie-v5/quality-review-queue.json',
   'reports/historie-v5/validation.txt',
@@ -55,7 +59,26 @@ for (const relativePath of pathsToTransfer) {
 run('node', ['tools/validate-historie-v5.mjs', '--write']);
 run('npm', ['run', 'knowledge:canonical:check']);
 run('npm', ['run', 'knowledge:legacy:check']);
-run('npm', ['run', 'audit:quiz-production-context']);
+
+const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'history-quiz-context-'));
+for (const targetId of historyQuizTargets) {
+  const rebuiltPath = path.join(tempDir, `${targetId}.json`);
+  run('node', [
+    'scripts/build-quiz-production-context.mjs',
+    '--category', 'historie',
+    '--target', targetId,
+    '--output', rebuiltPath
+  ]);
+  const trackedPath = path.join(root, 'data/quiz/production_context/historie', `${targetId}.json`);
+  const tracked = JSON.stringify(JSON.parse(fs.readFileSync(trackedPath, 'utf8')));
+  const rebuilt = JSON.stringify(JSON.parse(fs.readFileSync(rebuiltPath, 'utf8')));
+  if (tracked !== rebuilt) {
+    throw new Error(`Quizkonteksten for ${targetId} avviker fra deterministisk rebuild`);
+  }
+  console.log(`Quizkontekst verifisert: ${targetId}`);
+}
+fs.rmSync(tempDir, { recursive: true, force: true });
+
 run('npm', ['run', 'audit:quiz-progression']);
 run('npm', ['run', 'audit:quiz-theory-binding']);
 run('git', ['diff', '--check']);
