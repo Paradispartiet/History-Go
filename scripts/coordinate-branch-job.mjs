@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
+// Re-run after aligning the validator with the canonical status contract.
 const branch = 'agent/oslo-coordinate-history-quality-kilder-validator';
 const timeValidatorPath = 'tools/validate-historie-quality-tid-periodisering.mjs';
 const commandLogPath = 'reports/historie-v5/kilder-arkiv-spor-curation-command.log';
