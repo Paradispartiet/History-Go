@@ -1,0 +1,108 @@
+name: Sport scientific pipeline v2
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: sport-scientific-pipeline-v2-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: startsWith(github.head_ref, 'agent/sport-scientific-pipeline-v2')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Clone branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git clone --quiet --depth 1 --branch '${{ github.head_ref }}' "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" repo
+
+      - name: Build scientific pipeline V2
+        working-directory: repo
+        run: node tools/build-sport-scientific-pipeline-v2.mjs
+
+      - name: Validate scientific pipeline V2
+        working-directory: repo
+        run: node tools/validate-sport-scientific-pipeline-v2.mjs --write
+
+      - name: Validate existing Sport theory and evidence layers
+        working-directory: repo
+        run: |
+          set -euo pipefail
+          node tools/validate-sport-theory-depth-v6.mjs
+          node tools/validate-sport-theory-quality.mjs
+          node tools/validate-sport-evidence.mjs
+
+      - name: Run governance audits
+        working-directory: repo
+        run: |
+          set -euo pipefail
+          node scripts/audit-category-governance.mjs
+          node scripts/audit-quiz-template-governance.mjs
+
+      - name: Parse generated JSON and inspect diff
+        working-directory: repo
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const files = [
+            'data/fag/sport/hook_scientific_classification_sport_v1.json',
+            'data/fag/sport/research_questions_sport_v1.json',
+            'data/fag/sport/review_protocols_sport_v1.json',
+            'data/fag/sport/study_registry_sport_v1.json',
+            'data/fag/sport/risk_of_bias_sport_v1.json',
+            'data/fag/sport/evidence_syntheses_sport_v1.json',
+            'data/fag/sport/certainty_assessments_sport_v1.json',
+            'data/fag/sport/sport_scientific_pipeline_manifest_v2.json',
+            'data/fag/sport/claims_sport_canonical_v1.json',
+            'data/fag/sport/sport_scientific_evidence_manifest_v1.json',
+            'data/fag/sport/sport_scientific_method_policy_v1.json',
+            'data/fag/sport/sport_quality_manifest_v5.json',
+            'data/fag/sport/supersetQUIZMAL_sport.json',
+            'reports/sport-scientific-pipeline-v2-validation.json'
+          ];
+          for (const file of files) JSON.parse(fs.readFileSync(file, 'utf8'));
+          console.log('Sport scientific pipeline V2 JSON parse: PASS');
+          NODE
+          git diff --check
+
+      - name: Commit final pipeline files
+        working-directory: repo
+        run: |
+          set -euo pipefail
+          rm .github/workflows/sport-scientific-pipeline-v2-materialize.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fag/sport/hook_scientific_classification_sport_v1.json
+          git add data/fag/sport/research_questions_sport_v1.json
+          git add data/fag/sport/review_protocols_sport_v1.json
+          git add data/fag/sport/study_registry_sport_v1.json
+          git add data/fag/sport/risk_of_bias_sport_v1.json
+          git add data/fag/sport/evidence_syntheses_sport_v1.json
+          git add data/fag/sport/certainty_assessments_sport_v1.json
+          git add data/fag/sport/sport_scientific_pipeline_manifest_v2.json
+          git add data/fag/sport/claims_sport_canonical_v1.json
+          git add data/fag/sport/sport_scientific_evidence_manifest_v1.json
+          git add data/fag/sport/sport_scientific_method_policy_v1.json
+          git add data/fag/sport/sport_quality_manifest_v5.json
+          git add data/fag/sport/supersetQUIZMAL_sport.json
+          git add tools/build-sport-scientific-pipeline-v2.mjs
+          git add tools/validate-sport-scientific-pipeline-v2.mjs
+          git add reports/sport-scientific-pipeline-v2.md
+          git add reports/sport-scientific-pipeline-v2-validation.json
+          git add -u .github/workflows/sport-scientific-pipeline-v2-materialize.yml
+          git diff --cached --check
+          git commit -m 'Sport: bygg vitenskapelig pipeline og klassifisering V2'
+          git push origin HEAD:${{ github.head_ref }}
