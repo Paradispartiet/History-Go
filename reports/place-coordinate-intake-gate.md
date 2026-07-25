@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-25T19:10:11.255Z
+Generert: 2026-07-25T19:43:06.401Z
 
 ## Hvorfor denne gaten finnes
 
@@ -12,13 +12,13 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 
 - Modus: **--strict-new**
 - Strict-new: **true**
-- Base for nye/endrede place-objekter: **746c21c18c3cab9ee2e3d5547732c74e3141754c**
+- Base for nye/endrede place-objekter: **a84ab9c1b2d18b2188859a0c72cfe11ddc75bd08**
 - Base method: **git merge-base HEAD origin/main**
 - Aktive manifest-filer lest: **1444**
 - Place-objekter validert: **1444**
 - Nye/endrede koordinatobjekter mot base: **0**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **2843**
+- Backlog-funn: **2839**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -53,10 +53,6 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | blaker_skanse | Blaker skanse | data/places/historie/akershus/places_historie_akershus_batch1/blaker_skanse.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | blaker_skanse | Blaker skanse | data/places/historie/akershus/places_historie_akershus_batch1/blaker_skanse.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | blaker_skanse | Blaker skanse | data/places/historie/akershus/places_historie_akershus_batch1/blaker_skanse.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | fetsund_lenser | Fetsund lenser | data/places/historie/akershus/places_historie_akershus_batch1/fetsund_lenser.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | fetsund_lenser | Fetsund lenser | data/places/historie/akershus/places_historie_akershus_batch1/fetsund_lenser.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | fetsund_lenser | Fetsund lenser | data/places/historie/akershus/places_historie_akershus_batch1/fetsund_lenser.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | fetsund_lenser | Fetsund lenser | data/places/historie/akershus/places_historie_akershus_batch1/fetsund_lenser.json | coordNote | Stor radius r=300 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
 | backlog | nei | oscarsborg_festning | Oscarsborg festning | data/places/historie/akershus/places_historie_akershus_batch1/oscarsborg_festning.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | oscarsborg_festning | Oscarsborg festning | data/places/historie/akershus/places_historie_akershus_batch1/oscarsborg_festning.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | oscarsborg_festning | Oscarsborg festning | data/places/historie/akershus/places_historie_akershus_batch1/oscarsborg_festning.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
@@ -541,6 +537,10 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | sundvollen_hotell_skysskifte | Sundvollen Hotell / skysskifte | data/places/naeringsliv/buskerud/sundvollen_hotell_skysskifte/sundvollen_hotell_skysskifte.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | sundvollen_hotell_skysskifte | Sundvollen Hotell / skysskifte | data/places/naeringsliv/buskerud/sundvollen_hotell_skysskifte/sundvollen_hotell_skysskifte.json | coordNote | Stor radius r=300 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
 | backlog | nei | union_papirfabrikk_drammen | Union papirfabrikk / Grønland Drammen | data/places/naeringsliv/buskerud/union_papirfabrikk_drammen/union_papirfabrikk_drammen.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | union_papirfabrikk_drammen | Union papirfabrikk / Grønland Drammen | data/places/naeringsliv/buskerud/union_papirfabrikk_drammen/union_papirfabrikk_drammen.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | union_papirfabrikk_drammen | Union papirfabrikk / Grønland Drammen | data/places/naeringsliv/buskerud/union_papirfabrikk_drammen/union_papirfabrikk_drammen.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | union_papirfabrikk_drammen | Union papirfabrikk / Grønland Drammen | data/places/naeringsliv/buskerud/union_papirfabrikk_drammen/union_papirfabrikk_drammen.json | coordNote | Stor radius r=340 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | solberg_spinderi | Solberg Spinderi | data/places/naeringsliv/buskerud/solberg_spinderi/solberg_spinderi.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 2843 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 2839 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._

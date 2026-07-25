@@ -1,7 +1,7 @@
 {
   "version": "v5.5-quality-freeze-contract",
   "subject_id": "historie",
-  "status": "quality_freeze_complete",
+  "status": "quality_gate_active",
   "authoritative_files": {
     "fagkart": "fagkart_historie_canonical_v4_5.json",
     "methods": "methods_historie_canonical_v4_5.json",
@@ -20,8 +20,7 @@
   },
   "coverage_policy": {
     "counts_establish_coverage_not_curation": true,
-    "generated_objects_cannot_unlock_v6": false,
-    "quality_curated_objects_unlock_v6": true
+    "generated_objects_cannot_unlock_v6": true
   },
   "domain_freeze_contract": {
     "required_status": "complete_revised",
@@ -70,8 +69,6 @@
   },
   "v6_policy": {
     "allowed_only_when_quality_freeze_ready": true,
-    "current_default": "allowed_after_quality_gate_passed",
-    "last_gate_result": "FREEZE_READY"
-  },
-  "completed_at": "2026-07-25T19:34:15.219Z"
+    "current_default": "blocked_until_quality_gate_passes"
+  }
 }
