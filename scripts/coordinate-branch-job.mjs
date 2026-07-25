@@ -66,6 +66,10 @@ const testPatch = [
 ].join('\n');
 source = source.replace(validationMarker, testPatch + validationMarker);
 source = source.replace("'scripts/coordinate-branch-job.mjs'];", "'scripts/coordinate-branch-job.mjs','tests/quiz-production-pipeline.test.mjs'];");
+source = source.replace("'data/knowledge/knowledge_units.generated.json',", "'data/knowledge/knowledge_units.generated.json','data/knowledge/knowledge_emne_review_queue.generated.json','reports/knowledge-id-backfill.json',");
+const pullStep = "run('git',['pull','--rebase','origin',branch]);";
+if (!source.includes(pullStep)) throw new Error('Could not locate completion pull step');
+source = source.replace(pullStep, "run('git',['reset','--hard','HEAD']);run('git',['clean','-fd','reports/coordinate-branch-runner']);");
 
 const target = path.join('/tmp', 'history-v5-5-completion-job.mjs');
 fs.writeFileSync(target, source);
