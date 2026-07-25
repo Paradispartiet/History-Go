@@ -11,9 +11,9 @@
     "emnemapping": "emnemapping_historie_canonical_v4_5.json",
     "pensum": "historiepensum_canonical_v4_5.json",
     "domain_count": 12,
-    "emne_count": 71,
-    "method_count": 38,
-    "mapping_count": 71
+    "emne_count": 78,
+    "method_count": 43,
+    "mapping_count": 78
   },
   "hard_rules": {
     "source_dominance_rule": "External historical/local sources must dominate the factual substance of every history quiz. Canonical files may guide emne choice, method choice, theory choice, set progression and risk control, but may not be the main source of visible question content.",
@@ -598,6 +598,67 @@
         "ytelsesnivå behandlet som full beskrivelse av livsvilkår",
         "pasient-, elev- eller brukerregister behandlet som nøytral beskrivelse av personen",
         "velferdsstat eller teoretikernavn som tilstrekkelig svar"
+      ]
+    },
+    "his_byhistorie_stedsendring": {
+      "status": "complete_revised",
+      "purpose": "Bygge byhistoriske spørsmål fra kart, før- og ettertilstander, planer, inngrep, funksjonsskifter og berørte grupper uten å redusere feltet til løs byutviklingsteori eller dagens byform.",
+      "required_chain": [
+        "ekstern kilde eller synlig byhistorisk spor",
+        "presist avgrenset gate, kvartal, tomt, område eller forbindelseslinje",
+        "datert førtilstand med dokumentert funksjon, eierskap, bruk eller befolkning",
+        "navngitt plan, vedtak, investering, infrastruktur eller annen endringsdriver",
+        "dokumentert fysisk, funksjonell, juridisk, økonomisk eller sosial endring",
+        "identifisert beboer-, bruker-, arbeider- eller virksomhetsgruppe som ble berørt",
+        "datert ettertilstand og eksplisitt tidsspenn",
+        "kontrollkilde, kart- eller seriekryssjekk",
+        "kildebegrensning og skalausikkerhet",
+        "kritisk distinksjon",
+        "eventuelt teori etter at stedsendringskjeden er etablert"
+      ],
+      "hook_ids": [
+        "his_byutvidelse_grense_innlemmelse",
+        "his_gatenett_tomtestruktur_infrastruktur",
+        "his_regulering_plan_ekspropriasjon",
+        "his_sanering_riving_fortrengning",
+        "his_byfornyelse_bolig_standard",
+        "his_naring_funksjonsskifte",
+        "his_industrihavn_transformasjon",
+        "his_gentrifisering_verdi_befolkning",
+        "his_bevaring_ombruk_kulturmiljo",
+        "his_offentlig_rom_tilgang_konflikt"
+      ],
+      "emne_ids": [
+        "em_his_byutvidelse_gentrifisering",
+        "em_his_riving_ombruk_bevaring",
+        "em_his_sanering_byfornyelse",
+        "em_his_gatenett_tomtestruktur_infrastruktur",
+        "em_his_regulering_plan_ekspropriasjon",
+        "em_his_naring_funksjonsskifte",
+        "em_his_industrihavn_transformasjon",
+        "em_his_gentrifisering_verdi_befolkning",
+        "em_his_offentlig_rom_tilgang_konflikt",
+        "em_his_stedsnavn_fortelling_tilhorighet"
+      ],
+      "method_ids": [
+        "met_for_etter_historisk",
+        "met_sporlesning",
+        "met_arkivlesning",
+        "met_komparativ_historie",
+        "met_mikrohistorisk_analyse",
+        "met_historisk_gis",
+        "met_romlig_historie",
+        "met_planhistorisk_analyse",
+        "met_arealbruksendringsanalyse",
+        "met_eiendoms_og_verdidynamikkanalyse"
+      ],
+      "forbidden_shortcuts": [
+        "dagens byform behandlet som bevis for historisk prosess",
+        "planvedtak behandlet som identisk med gjennomføring",
+        "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+        "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+        "synlig riving behandlet som full forklaring på hvem som flyttet",
+        "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
       ]
     }
   }

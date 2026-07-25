@@ -7158,96 +7158,517 @@
     {
       "id": "his_byhistorie_stedsendring",
       "title": "Byhistorie og stedsendring",
-      "tagline": "Hvordan steder endrer funksjon, verdi og fortelling",
-      "definition": "Dette området handler om byutvidelser, sanering, gentrifisering, byfornyelse, riving, ombruk og endret hverdagsliv. Det brukes bare når hovedpoenget er historisk stedsendring; rene byform- og urbanismeemner hører til byfaget.",
+      "tagline": "Fra kart, vedtak og fysiske inngrep til endret bruk, verdi og tilhørighet",
+      "definition": "Dette området undersøker hvordan avgrensede steder og byområder endrer fysisk form, funksjon, eierskap, tilgang, verdi og befolkningssammensetning gjennom dokumenterbare historiske prosesser.",
       "focus": [
-        "byutvidelse",
-        "sanering og byfornyelse",
-        "gentrifisering som historisk prosess",
-        "riving, bevaring og ombruk",
-        "stedstap og ny bruk"
+        "byutvidelse, grenser og innlemmelse",
+        "gatenett, tomtestruktur og infrastruktur",
+        "regulering, ekspropriasjon og gjennomføring",
+        "sanering, byfornyelse og fortrengning",
+        "funksjonsskifte, transformasjon og gentrifisering"
       ],
       "topic_hooks": [
         {
-          "id": "his_stedsendring_for_etter",
-          "title": "Stedsendring før og etter",
+          "id": "his_byutvidelse_grense_innlemmelse",
+          "title": "Byutvidelse, grenser og innlemmelse",
           "canon": {
             "thinkers": [
               {
-                "id": "sharon_zukin",
-                "name": "Sharon Zukin",
-                "why": "Autentisitet, kultur, kapital og endring i urbane nabolag",
+                "id": "jan_eivind_myhre",
+                "name": "Jan Eivind Myhre",
+                "why": "Norsk byhistorie, urbanisering og hovedstadens vekst",
                 "tier": "core",
                 "works": [
-                  "Naked City"
-                ]
-              },
-              {
-                "id": "david_harvey",
-                "name": "David Harvey",
-                "why": "Kapital, byutvikling og romlig omforming",
-                "tier": "core",
-                "works": [
-                  "Social Justice and the City"
-                ]
-              },
-              {
-                "id": "tone_huse",
-                "name": "Tone Huse",
-                "why": "Norsk by- og gentrifiseringsforskning med stedlig og sosial presisjon",
-                "tier": "core",
-                "works": [
-                  "Everyday Life in the Gentrifying City"
+                  "Hovedstaden Christiania"
                 ]
               },
               {
                 "id": "knut_kjeldstadli",
                 "name": "Knut Kjeldstadli",
-                "why": "Sosialhistorisk byperspektiv og historisk endring nedenfra",
+                "why": "Oslohistorie, sosialhistorie og kildebasert analyse av byens deling og endring",
                 "tier": "core",
                 "works": [
-                  "Oslo bys historie"
+                  "Den delte byen",
+                  "Fortida er ikke hva den en gang var"
+                ]
+              },
+              {
+                "id": "lewis_mumford",
+                "name": "Lewis Mumford",
+                "why": "Byens historiske form, teknologi og samfunnsorganisering",
+                "tier": "advanced",
+                "works": [
+                  "The City in History"
+                ]
+              },
+              {
+                "id": "peter_hall",
+                "name": "Peter Hall",
+                "why": "Planleggingens idehistorie, byvisjoner og deres konsekvenser",
+                "tier": "advanced",
+                "works": [
+                  "Cities of Tomorrow"
                 ]
               }
             ]
           },
           "emne_ids": [
-            "em_his_byutvidelse_gentrifisering",
-            "em_his_sanering_byfornyelse",
-            "em_his_riving_ombruk_bevaring"
+            "em_his_byutvidelse_gentrifisering"
           ],
           "best_place_types": [
-            "omrade",
+            "bydel",
             "gate",
-            "transformasjonsomrade",
-            "arbeiderbydel",
-            "havneomrade",
-            "boligomrade"
+            "transportknutepunkt",
+            "kulturmiljo",
+            "kartfestet_omrade"
           ],
           "avoid_place_types": [
-            "ren_byform_uten_historisk_kilde",
-            "kommersielt_sted_uten_for_etter"
+            "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
           ],
           "set_phase_fit": [
+            "facts",
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "before-after-first",
+          "question_surface_mode": "map-boundary-first",
           "fact_anchor_required": true,
           "history_anchor_required": true,
           "avoid_surface_forms": [
-            "Generisk gentrifisering uten lokal tidslinje",
-            "Ren byanalyse som egentlig hører til byfaget"
+            "Generisk byutvikling uten datert før- og ettertilstand",
+            "Dagens byform brukt som eneste bevis for historisk endring",
+            "Planvedtak behandlet som identisk med gjennomført tiltak",
+            "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert"
           ],
           "preferred_question_moves": [
-            "compare former and current function",
-            "show who gains and who loses through change",
-            "connect material change to social history",
-            "separate historical process from present impression"
+            "date a boundary or annexation",
+            "compare mapped urban extent before and after",
+            "connect transport or infrastructure to expansion",
+            "separate administrative inclusion from built-up continuity"
           ],
           "comparison_pairs": [
             [
-              "sharon_zukin",
+              "jan_eivind_myhre",
+              "knut_kjeldstadli"
+            ],
+            [
+              "lewis_mumford",
+              "peter_hall"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "jan_eivind_myhre",
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Christiania torv",
+            "Grønland",
+            "Tøyen",
+            "Aker kommune",
+            "Majorstuen",
+            "Bryn"
+          ],
+          "recommended_method_ids": [
+            "met_for_etter_historisk",
+            "met_historisk_gis",
+            "met_arkivlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
+            "require_defined_spatial_unit": true,
+            "require_before_after_state": true,
+            "require_intervention_or_driver": true,
+            "require_physical_or_function_change": true,
+            "require_affected_group": true
+          },
+          "definition": "Undersøker hvordan administrative grenser, innlemmelser, nye byggesoner og transportforbindelser flyttet byen utover og endret forholdet mellom sentrum, forstad og omland.",
+          "critical_distinctions": [
+            "administrativ grense vs sammenhengende bebyggelse",
+            "innlemmelse vs umiddelbar urbanisering",
+            "forstad vs selvstendig lokalsamfunn",
+            "transportforbindelse vs full årsaksforklaring"
+          ]
+        },
+        {
+          "id": "his_gatenett_tomtestruktur_infrastruktur",
+          "title": "Gatenett, tomtestruktur og infrastruktur",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "lewis_mumford",
+                "name": "Lewis Mumford",
+                "why": "Byens historiske form, teknologi og samfunnsorganisering",
+                "tier": "advanced",
+                "works": [
+                  "The City in History"
+                ]
+              },
+              {
+                "id": "henri_lefebvre",
+                "name": "Henri Lefebvre",
+                "why": "Produksjonen av rom og retten til byen",
+                "tier": "core",
+                "works": [
+                  "The Production of Space",
+                  "Writings on Cities"
+                ]
+              },
+              {
+                "id": "kevin_lynch",
+                "name": "Kevin Lynch",
+                "why": "Tidslag, lesbarhet og endring i det urbane landskapet",
+                "tier": "advanced",
+                "works": [
+                  "What Time Is This Place?"
+                ]
+              },
+              {
+                "id": "jan_eivind_myhre",
+                "name": "Jan Eivind Myhre",
+                "why": "Norsk byhistorie, urbanisering og hovedstadens vekst",
+                "tier": "core",
+                "works": [
+                  "Hovedstaden Christiania"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_gatenett_tomtestruktur_infrastruktur"
+          ],
+          "best_place_types": [
+            "gate",
+            "kvartal",
+            "kai",
+            "jernbaneomrade",
+            "infrastruktur",
+            "bydel"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "map-network-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk byutvikling uten datert før- og ettertilstand",
+            "Dagens byform brukt som eneste bevis for historisk endring",
+            "Planvedtak behandlet som identisk med gjennomført tiltak",
+            "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "compare street and parcel maps",
+            "identify infrastructure that enabled land use",
+            "trace persistence of an old street line",
+            "separate physical network from social use"
+          ],
+          "comparison_pairs": [
+            [
+              "lewis_mumford",
+              "henri_lefebvre"
+            ],
+            [
+              "kevin_lynch",
+              "jan_eivind_myhre"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "jan_eivind_myhre"
+          ],
+          "recommended_oslo_cases": [
+            "Kvadraturen",
+            "Torggata",
+            "Bjørvika",
+            "Akerselva",
+            "Bryn",
+            "Oslo S"
+          ],
+          "recommended_method_ids": [
+            "met_historisk_gis",
+            "met_romlig_historie",
+            "met_sporlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
+            "require_defined_spatial_unit": true,
+            "require_before_after_state": true,
+            "require_intervention_or_driver": true,
+            "require_physical_or_function_change": true,
+            "require_affected_group": true
+          },
+          "definition": "Studerer hvordan gater, kvartaler, tomter, vann, avløp, kai, jernbane og annen infrastruktur organiserte byens vekst og senere begrenset eller muliggjorde endring.",
+          "critical_distinctions": [
+            "gatelinje vs faktisk ferdsel",
+            "tomtegrense vs bruksgrense",
+            "infrastrukturtilgang vs lik tilgang",
+            "kartlagt struktur vs levd byrom"
+          ]
+        },
+        {
+          "id": "his_regulering_plan_ekspropriasjon",
+          "title": "Regulering, plan og ekspropriasjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "peter_hall",
+                "name": "Peter Hall",
+                "why": "Planleggingens idehistorie, byvisjoner og deres konsekvenser",
+                "tier": "advanced",
+                "works": [
+                  "Cities of Tomorrow"
+                ]
+              },
+              {
+                "id": "david_harvey",
+                "name": "David Harvey",
+                "why": "Kapital, urbanisering, arealverdi og ulik geografisk utvikling",
+                "tier": "core",
+                "works": [
+                  "Social Justice and the City",
+                  "The Urbanization of Capital"
+                ]
+              },
+              {
+                "id": "jane_jacobs",
+                "name": "Jane Jacobs",
+                "why": "Gateliv, blandede funksjoner og kritikk av storskala sanering",
+                "tier": "core",
+                "works": [
+                  "The Death and Life of Great American Cities"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Oslohistorie, sosialhistorie og kildebasert analyse av byens deling og endring",
+                "tier": "core",
+                "works": [
+                  "Den delte byen",
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_regulering_plan_ekspropriasjon"
+          ],
+          "best_place_types": [
+            "planomrade",
+            "kvartal",
+            "gate",
+            "institusjonsbygg",
+            "bydel",
+            "arkiv"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "plan-document-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk byutvikling uten datert før- og ettertilstand",
+            "Dagens byform brukt som eneste bevis for historisk endring",
+            "Planvedtak behandlet som identisk med gjennomført tiltak",
+            "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify the dated plan and authority",
+            "compare planned and implemented change",
+            "trace expropriation or acquisition",
+            "name groups affected by implementation or delay"
+          ],
+          "comparison_pairs": [
+            [
+              "peter_hall",
+              "david_harvey"
+            ],
+            [
+              "jane_jacobs",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Bjørvika",
+            "Enerhaugen",
+            "Vaterland",
+            "Regjeringskvartalet",
+            "Tøyen",
+            "Bispelokket"
+          ],
+          "recommended_method_ids": [
+            "met_planhistorisk_analyse",
+            "met_arkivlesning",
+            "met_for_etter_historisk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
+            "require_defined_spatial_unit": true,
+            "require_before_after_state": true,
+            "require_intervention_or_driver": true,
+            "require_physical_or_function_change": true,
+            "require_affected_group": true
+          },
+          "definition": "Undersøker hvordan reguleringsplaner, byggevedtekter, ekspropriasjon og kommunale beslutninger ble omsatt i konkrete inngrep, og hva som ikke ble gjennomført.",
+          "critical_distinctions": [
+            "planvedtak vs gjennomført tiltak",
+            "reguleringsformål vs faktisk bruk",
+            "ekspropriasjonshjemmel vs gjennomført overtakelse",
+            "offentlig begrunnelse vs dokumentert konsekvens"
+          ]
+        },
+        {
+          "id": "his_sanering_riving_fortrengning",
+          "title": "Sanering, riving og fortrengning",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "jane_jacobs",
+                "name": "Jane Jacobs",
+                "why": "Gateliv, blandede funksjoner og kritikk av storskala sanering",
+                "tier": "core",
+                "works": [
+                  "The Death and Life of Great American Cities"
+                ]
+              },
+              {
+                "id": "david_harvey",
+                "name": "David Harvey",
+                "why": "Kapital, urbanisering, arealverdi og ulik geografisk utvikling",
+                "tier": "core",
+                "works": [
+                  "Social Justice and the City",
+                  "The Urbanization of Capital"
+                ]
+              },
+              {
+                "id": "tone_huse",
+                "name": "Tone Huse",
+                "why": "Norsk gentrifisering, stedskamp og hverdagsliv på Tøyen",
+                "tier": "core",
+                "works": [
+                  "Tøyengata"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Oslohistorie, sosialhistorie og kildebasert analyse av byens deling og endring",
+                "tier": "core",
+                "works": [
+                  "Den delte byen",
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_riving_ombruk_bevaring",
+            "em_his_sanering_byfornyelse"
+          ],
+          "best_place_types": [
+            "saneringsomrade",
+            "boligomrade",
+            "kvartal",
+            "gate",
+            "bydel",
+            "arkiv"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "demolition-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk byutvikling uten datert før- og ettertilstand",
+            "Dagens byform brukt som eneste bevis for historisk endring",
+            "Planvedtak behandlet som identisk med gjennomført tiltak",
+            "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "date demolition and relocation",
+            "identify residents or businesses displaced",
+            "compare stated sanitation goal with outcome",
+            "separate building loss from community dissolution"
+          ],
+          "comparison_pairs": [
+            [
+              "jane_jacobs",
               "david_harvey"
             ],
             [
@@ -7260,32 +7681,889 @@
             "knut_kjeldstadli"
           ],
           "recommended_oslo_cases": [
+            "Enerhaugen",
+            "Vaterland",
+            "Pipervika",
             "Bjørvika",
-            "Aker Brygge",
-            "Vulkan",
-            "Torggata"
+            "Regjeringskvartalet",
+            "Tøyen"
           ],
           "recommended_method_ids": [
             "met_for_etter_historisk",
-            "met_sporlesning",
-            "met_arkivlesning",
-            "met_komparativ_historie"
+            "met_planhistorisk_analyse",
+            "met_mikrohistorisk_analyse"
           ],
           "canonical_status": "canonical",
           "registry_version": "historiepensum_v4_5",
-          "min_recommended_oslo_cases": 2,
-          "min_recommended_methods": 1,
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
           "case_gate_required": true,
           "method_gate_required": true,
           "theory_rotation_required": true,
           "canonical_file_role": "active",
           "generator_constraints": {
-            "min_case_count": 2,
-            "min_method_count": 1,
+            "min_case_count": 4,
+            "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
-            "rotate_theorists": true
-          }
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
+            "require_defined_spatial_unit": true,
+            "require_before_after_state": true,
+            "require_intervention_or_driver": true,
+            "require_physical_or_function_change": true,
+            "require_affected_group": true
+          },
+          "definition": "Studerer saneringsvedtak, riving, flytting og tap av boliger eller virksomheter som konkrete historiske prosesser med identifiserbare aktører og konsekvenser.",
+          "critical_distinctions": [
+            "saneringsvedtak vs faktisk riving",
+            "flytting vs frivillig mobilitet",
+            "dårlig boligstandard vs legitimert totalriving",
+            "revet bygg vs oppløst sosialt miljø"
+          ]
+        },
+        {
+          "id": "his_byfornyelse_bolig_standard",
+          "title": "Byfornyelse, boligstandard og oppgradering",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "tone_huse",
+                "name": "Tone Huse",
+                "why": "Norsk gentrifisering, stedskamp og hverdagsliv på Tøyen",
+                "tier": "core",
+                "works": [
+                  "Tøyengata"
+                ]
+              },
+              {
+                "id": "sharon_zukin",
+                "name": "Sharon Zukin",
+                "why": "Kultur, marked, autentisitet og makt i byomforming",
+                "tier": "core",
+                "works": [
+                  "The Cultures of Cities",
+                  "Naked City"
+                ]
+              },
+              {
+                "id": "david_harvey",
+                "name": "David Harvey",
+                "why": "Kapital, urbanisering, arealverdi og ulik geografisk utvikling",
+                "tier": "core",
+                "works": [
+                  "Social Justice and the City",
+                  "The Urbanization of Capital"
+                ]
+              },
+              {
+                "id": "jan_eivind_myhre",
+                "name": "Jan Eivind Myhre",
+                "why": "Norsk byhistorie, urbanisering og hovedstadens vekst",
+                "tier": "core",
+                "works": [
+                  "Hovedstaden Christiania"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_sanering_byfornyelse"
+          ],
+          "best_place_types": [
+            "boligomrade",
+            "bygård",
+            "bydel",
+            "gate",
+            "arkiv",
+            "kulturmiljo"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "housing-renewal-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk byutvikling uten datert før- og ettertilstand",
+            "Dagens byform brukt som eneste bevis for historisk endring",
+            "Planvedtak behandlet som identisk med gjennomført tiltak",
+            "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "compare dwelling standard before and after",
+            "trace ownership and rent change",
+            "identify renewal programme and eligibility",
+            "separate physical improvement from social retention"
+          ],
+          "comparison_pairs": [
+            [
+              "tone_huse",
+              "sharon_zukin"
+            ],
+            [
+              "david_harvey",
+              "jan_eivind_myhre"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "tone_huse",
+            "jan_eivind_myhre"
+          ],
+          "recommended_oslo_cases": [
+            "Grünerløkka",
+            "Tøyen",
+            "Sagene",
+            "Torshov",
+            "Gamlebyen",
+            "Vålerenga"
+          ],
+          "recommended_method_ids": [
+            "met_arealbruksendringsanalyse",
+            "met_eiendoms_og_verdidynamikkanalyse",
+            "met_arkivlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
+            "require_defined_spatial_unit": true,
+            "require_before_after_state": true,
+            "require_intervention_or_driver": true,
+            "require_physical_or_function_change": true,
+            "require_affected_group": true
+          },
+          "definition": "Undersøker hvordan rehabilitering, standardheving, gårdsfornyelse og kommunale programmer endret boliger, eierskap, husleie og beboersammensetning.",
+          "critical_distinctions": [
+            "rehabilitering vs sosial bevaring",
+            "standardheving vs rimeligere bolig",
+            "gårdsfornyelse vs områdefornyelse",
+            "beboerutskifting vs dokumentert fortrengning"
+          ]
+        },
+        {
+          "id": "his_naring_funksjonsskifte",
+          "title": "Næring, funksjonsskifte og hverdagsbruk",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "sharon_zukin",
+                "name": "Sharon Zukin",
+                "why": "Kultur, marked, autentisitet og makt i byomforming",
+                "tier": "core",
+                "works": [
+                  "The Cultures of Cities",
+                  "Naked City"
+                ]
+              },
+              {
+                "id": "henri_lefebvre",
+                "name": "Henri Lefebvre",
+                "why": "Produksjonen av rom og retten til byen",
+                "tier": "core",
+                "works": [
+                  "The Production of Space",
+                  "Writings on Cities"
+                ]
+              },
+              {
+                "id": "richard_sennett",
+                "name": "Richard Sennett",
+                "why": "Offentlig rom, byliv og forholdet mellom form og sosial erfaring",
+                "tier": "advanced",
+                "works": [
+                  "The Uses of Disorder",
+                  "Building and Dwelling"
+                ]
+              },
+              {
+                "id": "doreen_massey",
+                "name": "Doreen Massey",
+                "why": "Relasjonelt sted, romlig ulikhet og skiftende tilhørighet",
+                "tier": "advanced",
+                "works": [
+                  "Space, Place and Gender"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_naring_funksjonsskifte"
+          ],
+          "best_place_types": [
+            "gate",
+            "kvartal",
+            "næringsbygg",
+            "kulturbygg",
+            "bydel",
+            "moteplass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "function-change-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk byutvikling uten datert før- og ettertilstand",
+            "Dagens byform brukt som eneste bevis for historisk endring",
+            "Planvedtak behandlet som identisk med gjennomført tiltak",
+            "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "name former and later function",
+            "date conversion or tenant shift",
+            "compare daytime and evening use",
+            "identify users gained or displaced"
+          ],
+          "comparison_pairs": [
+            [
+              "sharon_zukin",
+              "henri_lefebvre"
+            ],
+            [
+              "richard_sennett",
+              "doreen_massey"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Torggata",
+            "Youngstorget",
+            "Aker Brygge",
+            "Vulkan",
+            "Kvadraturen",
+            "Bjørvika"
+          ],
+          "recommended_method_ids": [
+            "met_arealbruksendringsanalyse",
+            "met_for_etter_historisk",
+            "met_mikrohistorisk_analyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
+            "require_defined_spatial_unit": true,
+            "require_before_after_state": true,
+            "require_intervention_or_driver": true,
+            "require_physical_or_function_change": true,
+            "require_affected_group": true
+          },
+          "definition": "Studerer hvordan bygninger, gater og områder skiftet mellom bolig, handel, kontor, kultur, transport og offentlig tjeneste, og hvordan endringen påvirket brukere og døgnrytme.",
+          "critical_distinctions": [
+            "bygningens funksjon vs virksomhetens identitet",
+            "formelt formål vs faktisk bruk",
+            "ny aktivitet vs sammenhengende lokal tradisjon",
+            "økt besøk vs bredere sosial tilgang"
+          ]
+        },
+        {
+          "id": "his_industrihavn_transformasjon",
+          "title": "Industri-, havne- og jernbanetransformasjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "david_harvey",
+                "name": "David Harvey",
+                "why": "Kapital, urbanisering, arealverdi og ulik geografisk utvikling",
+                "tier": "core",
+                "works": [
+                  "Social Justice and the City",
+                  "The Urbanization of Capital"
+                ]
+              },
+              {
+                "id": "sharon_zukin",
+                "name": "Sharon Zukin",
+                "why": "Kultur, marked, autentisitet og makt i byomforming",
+                "tier": "core",
+                "works": [
+                  "The Cultures of Cities",
+                  "Naked City"
+                ]
+              },
+              {
+                "id": "saskia_sassen",
+                "name": "Saskia Sassen",
+                "why": "Globalisering, sentralitet og omforming av urbane økonomier",
+                "tier": "advanced",
+                "works": [
+                  "The Global City"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Oslohistorie, sosialhistorie og kildebasert analyse av byens deling og endring",
+                "tier": "core",
+                "works": [
+                  "Den delte byen",
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_industrihavn_transformasjon"
+          ],
+          "best_place_types": [
+            "industriomrade",
+            "havneomrade",
+            "jernbaneomrade",
+            "transformasjonsomrade",
+            "bydel",
+            "kai"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "industrial-land-use-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk byutvikling uten datert før- og ettertilstand",
+            "Dagens byform brukt som eneste bevis for historisk endring",
+            "Planvedtak behandlet som identisk med gjennomført tiltak",
+            "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "date closure and redevelopment phase",
+            "compare industrial and post-industrial land use",
+            "trace ownership or planning transition",
+            "separate preserved industrial form from continuity of work"
+          ],
+          "comparison_pairs": [
+            [
+              "david_harvey",
+              "sharon_zukin"
+            ],
+            [
+              "saskia_sassen",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Bjørvika",
+            "Aker Brygge",
+            "Vulkan",
+            "Nydalen",
+            "Kværnerbyen",
+            "Filipstad"
+          ],
+          "recommended_method_ids": [
+            "met_arealbruksendringsanalyse",
+            "met_historisk_gis",
+            "met_for_etter_historisk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
+            "require_defined_spatial_unit": true,
+            "require_before_after_state": true,
+            "require_intervention_or_driver": true,
+            "require_physical_or_function_change": true,
+            "require_affected_group": true
+          },
+          "definition": "Undersøker hvordan tidligere industri-, havne- og jernbanearealer ble avviklet, ryddet, regulert og omformet til nye bydeler eller funksjoner.",
+          "critical_distinctions": [
+            "nedlagt virksomhet vs ferdig transformasjon",
+            "industriarv vs industriell kontinuitet",
+            "opprydding vs sosial inkludering",
+            "ny bydel vs integrert byområde"
+          ]
+        },
+        {
+          "id": "his_gentrifisering_verdi_befolkning",
+          "title": "Gentrifisering, verdi og befolkningsendring",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "neil_smith",
+                "name": "Neil Smith",
+                "why": "Rent gap, gentrifisering og ulik byutvikling",
+                "tier": "advanced",
+                "works": [
+                  "The New Urban Frontier"
+                ]
+              },
+              {
+                "id": "sharon_zukin",
+                "name": "Sharon Zukin",
+                "why": "Kultur, marked, autentisitet og makt i byomforming",
+                "tier": "core",
+                "works": [
+                  "The Cultures of Cities",
+                  "Naked City"
+                ]
+              },
+              {
+                "id": "tone_huse",
+                "name": "Tone Huse",
+                "why": "Norsk gentrifisering, stedskamp og hverdagsliv på Tøyen",
+                "tier": "core",
+                "works": [
+                  "Tøyengata"
+                ]
+              },
+              {
+                "id": "david_harvey",
+                "name": "David Harvey",
+                "why": "Kapital, urbanisering, arealverdi og ulik geografisk utvikling",
+                "tier": "core",
+                "works": [
+                  "Social Justice and the City",
+                  "The Urbanization of Capital"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_byutvidelse_gentrifisering",
+            "em_his_gentrifisering_verdi_befolkning"
+          ],
+          "best_place_types": [
+            "bydel",
+            "gate",
+            "boligomrade",
+            "næringsgate",
+            "transformasjonsomrade",
+            "arkiv"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "series-and-household-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk byutvikling uten datert før- og ettertilstand",
+            "Dagens byform brukt som eneste bevis for historisk endring",
+            "Planvedtak behandlet som identisk med gjennomført tiltak",
+            "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "compare rent or value series",
+            "trace investor and ownership change",
+            "compare population or business composition",
+            "test displacement claim against evidence"
+          ],
+          "comparison_pairs": [
+            [
+              "neil_smith",
+              "sharon_zukin"
+            ],
+            [
+              "tone_huse",
+              "david_harvey"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "tone_huse"
+          ],
+          "recommended_oslo_cases": [
+            "Tøyen",
+            "Grünerløkka",
+            "Gamlebyen",
+            "Vulkan",
+            "Bjørvika",
+            "Sagene"
+          ],
+          "recommended_method_ids": [
+            "met_eiendoms_og_verdidynamikkanalyse",
+            "met_seriell_kildeanalyse",
+            "met_mikrohistorisk_analyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
+            "require_defined_spatial_unit": true,
+            "require_before_after_state": true,
+            "require_intervention_or_driver": true,
+            "require_physical_or_function_change": true,
+            "require_affected_group": true
+          },
+          "definition": "Studerer dokumenterte endringer i eiendomsverdi, leie, investering, virksomhetsmiks og beboersammensetning uten å bruke gentrifisering som løs etikett.",
+          "critical_distinctions": [
+            "prisvekst vs gentrifisering",
+            "befolkningsendring vs tvungen fortrengning",
+            "ny servering vs full funksjonsendring",
+            "områdeprofil vs variasjon mellom gater og gårder"
+          ]
+        },
+        {
+          "id": "his_bevaring_ombruk_kulturmiljo",
+          "title": "Bevaring, ombruk og kulturmiljø",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "dolores_hayden",
+                "name": "Dolores Hayden",
+                "why": "Sted, sosialt minne og det bygde miljøets historiske lag",
+                "tier": "advanced",
+                "works": [
+                  "The Power of Place"
+                ]
+              },
+              {
+                "id": "francoise_choay",
+                "name": "Françoise Choay",
+                "why": "Byplanlegging, monumentvern og kulturarvens historiske konstruksjon",
+                "tier": "advanced",
+                "works": [
+                  "The Invention of the Historic Monument"
+                ]
+              },
+              {
+                "id": "alois_riegl",
+                "name": "Alois Riegl",
+                "why": "Minnesverdier, alder, bruk og konflikt i bevaring",
+                "tier": "advanced",
+                "works": [
+                  "The Modern Cult of Monuments"
+                ]
+              },
+              {
+                "id": "kevin_lynch",
+                "name": "Kevin Lynch",
+                "why": "Tidslag, lesbarhet og endring i det urbane landskapet",
+                "tier": "advanced",
+                "works": [
+                  "What Time Is This Place?"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_riving_ombruk_bevaring"
+          ],
+          "best_place_types": [
+            "kulturmiljo",
+            "vernet_bygg",
+            "industriarv",
+            "gate",
+            "kvartal",
+            "transformasjonsomrade"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "heritage-decision-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk byutvikling uten datert før- og ettertilstand",
+            "Dagens byform brukt som eneste bevis for historisk endring",
+            "Planvedtak behandlet som identisk med gjennomført tiltak",
+            "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify protected element and legal basis",
+            "compare original and reused function",
+            "trace what was removed despite preservation",
+            "separate material continuity from social continuity"
+          ],
+          "comparison_pairs": [
+            [
+              "dolores_hayden",
+              "francoise_choay"
+            ],
+            [
+              "alois_riegl",
+              "kevin_lynch"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Vulkan",
+            "Aker Brygge",
+            "Kvadraturen",
+            "Møllergata 19",
+            "Bjørvika",
+            "Telthusbakken"
+          ],
+          "recommended_method_ids": [
+            "met_sporlesning",
+            "met_planhistorisk_analyse",
+            "met_for_etter_historisk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
+            "require_defined_spatial_unit": true,
+            "require_before_after_state": true,
+            "require_intervention_or_driver": true,
+            "require_physical_or_function_change": true,
+            "require_affected_group": true
+          },
+          "definition": "Undersøker hvordan vernevedtak, ombruk og kulturmiljøforvaltning valgte hvilke fysiske lag som skulle bevares, endres eller fjernes.",
+          "critical_distinctions": [
+            "vern av fasade vs vern av helhet",
+            "ombruk vs historisk kontinuitet",
+            "kulturminneverdi vs bruksverdi",
+            "bevart materiale vs bevart sosial erfaring"
+          ]
+        },
+        {
+          "id": "his_offentlig_rom_tilgang_konflikt",
+          "title": "Offentlig rom, tilgang og konflikt",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "henri_lefebvre",
+                "name": "Henri Lefebvre",
+                "why": "Produksjonen av rom og retten til byen",
+                "tier": "core",
+                "works": [
+                  "The Production of Space",
+                  "Writings on Cities"
+                ]
+              },
+              {
+                "id": "setha_low",
+                "name": "Setha Low",
+                "why": "Offentlig rom, tilgang, ekskludering og stedlig praksis",
+                "tier": "advanced",
+                "works": [
+                  "On the Plaza"
+                ]
+              },
+              {
+                "id": "don_mitchell",
+                "name": "Don Mitchell",
+                "why": "Offentlig rom, rettigheter og ekskludering",
+                "tier": "advanced",
+                "works": [
+                  "The Right to the City"
+                ]
+              },
+              {
+                "id": "richard_sennett",
+                "name": "Richard Sennett",
+                "why": "Offentlig rom, byliv og forholdet mellom form og sosial erfaring",
+                "tier": "advanced",
+                "works": [
+                  "The Uses of Disorder",
+                  "Building and Dwelling"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_offentlig_rom_tilgang_konflikt",
+            "em_his_stedsnavn_fortelling_tilhorighet"
+          ],
+          "best_place_types": [
+            "plass",
+            "gate",
+            "park",
+            "torg",
+            "havnepromenade",
+            "moteplass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "access-rule-and-use-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk byutvikling uten datert før- og ettertilstand",
+            "Dagens byform brukt som eneste bevis for historisk endring",
+            "Planvedtak behandlet som identisk med gjennomført tiltak",
+            "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify rule or design change affecting access",
+            "compare formal public status with actual use",
+            "trace conflict over presence or activity",
+            "name groups enabled or excluded"
+          ],
+          "comparison_pairs": [
+            [
+              "henri_lefebvre",
+              "setha_low"
+            ],
+            [
+              "don_mitchell",
+              "richard_sennett"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Youngstorget",
+            "Eidsvolls plass",
+            "Torggata",
+            "Bjørvika",
+            "Tøyen torg",
+            "Aker Brygge"
+          ],
+          "recommended_method_ids": [
+            "met_romlig_historie",
+            "met_planhistorisk_analyse",
+            "met_mikrohistorisk_analyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
+            "require_defined_spatial_unit": true,
+            "require_before_after_state": true,
+            "require_intervention_or_driver": true,
+            "require_physical_or_function_change": true,
+            "require_affected_group": true
+          },
+          "definition": "Studerer hvordan plasser, gater, parker og overgangssoner ble åpnet, stengt, privatisert, overvåket eller omformet, og hvem som faktisk kunne bruke dem.",
+          "critical_distinctions": [
+            "offentlig eid vs offentlig tilgjengelig",
+            "designintensjon vs faktisk bruk",
+            "ordenstiltak vs sosial ekskludering",
+            "åpen plass vs lik rett til opphold"
+          ]
         }
       ]
     },
