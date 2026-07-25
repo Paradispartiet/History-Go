@@ -1,6 +1,11 @@
 # Coordinate Evidence Files v1
 
-Coordinate evidence files are the evidence layer between a reported coordinate problem and a later coordinate change.
+Status: **canonical evidenskontrakt**  
+Dokumentasjonskart: [`README.md`](./README.md)  
+Coordinate-regler: [`coordinate-source-contract-v1.md`](./coordinate-source-contract-v1.md)  
+Sist kontrollert: **2026-07-25**
+
+Coordinate evidence files are the evidence layer between a reported coordinate problem and a later coordinate change. Denne filen eier evidensformatet og livsløpet før endring; den eier ikke coordinate-feltene eller `verified*`-statusenes semantikk.
 
 They exist because a `lat`/`lon` pair is not evidence. A coordinate can only become `verified` after the place identity, source object, address, geometry, geocode accuracy and coordinate role are clear enough to satisfy Coordinate Source Contract v1.
 
