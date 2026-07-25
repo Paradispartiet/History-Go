@@ -1,4 +1,7 @@
-# TypeScript core migration status — 2026-07-20
+# Arkiv: TypeScript core migration status — 2026-07-20
+
+> Historisk snapshot flyttet fra `docs/TYPESCRIPT_CORE_MIGRATION_STATUS_2026-07-20.md`.
+> Aktiv policy og plan ligger i `docs/TYPESCRIPT_FIRST_POLICY.md` og `docs/typescript-migration-plan.md`.
 
 Dette dokumentet er et oppdatert statuspunkt for den aktive TypeScript-first-migreringen. Den eldre, historiske batchloggen i `docs/typescript-migration-plan.md` beholdes som migreringshistorikk, men tellinger og «neste kandidat»-vurderinger der kan være utdaterte.
 

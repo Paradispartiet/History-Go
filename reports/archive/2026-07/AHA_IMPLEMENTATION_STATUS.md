@@ -1,4 +1,7 @@
-# AHA implementation status
+# Arkiv: AHA implementation status
+
+> Historisk snapshot flyttet fra `docs/AHA_IMPLEMENTATION_STATUS.md`.
+> Aktiv AHA-arkitektur og kontrakter skal leses i de spesifikke AHA-dokumentene, ikke i denne statuslisten.
 
 ## Implemented
 
@@ -19,7 +22,7 @@
 - The details panel never renders a full payload, full item data, secrets, tokens, passwords, credentials, or connection strings. Unknown fields and nested object dumps are excluded.
 - Opening or closing history details does not change the existing confirmation, sync, domain-write, or audit-write flow.
 - A read-only retry eligibility preview exists for historical runs. Its `eligible_preview` state is informational only and cannot execute retry, persist confirmation, mutate the selected run, or write audit/database state.
-- The manual sync retry contract is documented in [`AHA_MANUAL_SYNC_RETRY_CONTRACT.md`](./AHA_MANUAL_SYNC_RETRY_CONTRACT.md). It defines eligibility and blockers, fresh confirmation, `originalRunId` → `retryRunId` linkage, safe payload reconstruction, adapter support, attempt/outcome audit, failure/partial/rollback semantics, UI limits, and the prohibition on auto-retry.
+- The manual sync retry contract is documented in [`AHA_MANUAL_SYNC_RETRY_CONTRACT.md`](../../../docs/AHA_MANUAL_SYNC_RETRY_CONTRACT.md). It defines eligibility and blockers, fresh confirmation, `originalRunId` → `retryRunId` linkage, safe payload reconstruction, adapter support, attempt/outcome audit, failure/partial/rollback semantics, UI limits, and the prohibition on auto-retry.
 - Sync remains manual and gated: one deliberate user action, one confirmation, one run, and one audit trail. No retry contract or preview grants write authority.
 - The AHA Sync Hub operator UI is simplified into a top status summary, a primary manual action area, visible manual sync history, and on-demand technical details.
 - **Advanced diagnostics** keeps dry-run, validation, readiness, minimized payload sample, checklist, target internals, audit preview, adapter/state-machine status, run internals, and retry eligibility reasons out of the main operator path. Its open/closed state is local UI state and is never persisted.
@@ -30,12 +33,10 @@
 - Help text, action labels, and status labels now use consistent wording and capitalization. Normal empty states identify missing history, blockers, module data, warnings, errors, target configuration, and details without treating expected absence as a system failure.
 - Main-view error copy is short and does not expose raw error objects. Sanitized technical detail remains limited to the existing read-only diagnostics/details surfaces; full payloads, secrets, credentials, connection strings, and raw audit JSON remain excluded.
 - This normalization is UI text and organization only. Sync behavior, database/write flow, adapter behavior, audit writing, state-machine rules, payload contracts, history/details data flow, retry logic, and module-health calculation are unchanged. Auto-sync is still not implemented.
-
 - AHA module page shells are normalized for **Lists**, **Paths**, **Groups**, and **AHAavisa** through a small shared, side-effect-free DOM pattern.
 - Each shell now provides a consistent title, short purpose, textual health badge, action row, content/empty/error area, and optional collapsed **Advanced details** section. Existing module content can be mounted inside the shell without changing item schemas, sorting, filtering, persistence, or module data models.
 - The module runtime files remain lazy-mount-ready and are not added to the Home initial load. Unavailable primary actions are visibly disabled rather than creating new module behavior.
 - This is a UI/structure change only. Sync behavior, database/write flow, adapter behavior, audit writing, state-machine rules, payload contracts, retry logic, and AHA Sync Hub core are unchanged. Auto-sync is still not implemented.
-
 
 ## Frozen AHA V1 layers
 
