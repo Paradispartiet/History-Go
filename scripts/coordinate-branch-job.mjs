@@ -26,10 +26,10 @@ const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const A = (value) => Array.isArray(value) ? value : [];
 const unique = (values) => [...new Set(values)];
 
-const concepts = readJson(\`${historyDir}/concepts_historie_canonical_v5_5.json\`);
-const theories = readJson(\`${historyDir}/theory_objects_historie_canonical_v5_5.json\`);
-const emners = readJson(\`${historyDir}/emner_historie_canonical_v4_5.json\`);
-const pensum = readJson(\`${historyDir}/historiepensum_canonical_v4_5.json\`);
+const concepts = readJson(historyDir + '/concepts_historie_canonical_v5_5.json');
+const theories = readJson(historyDir + '/theory_objects_historie_canonical_v5_5.json');
+const emners = readJson(historyDir + '/emner_historie_canonical_v4_5.json');
+const pensum = readJson(historyDir + '/historiepensum_canonical_v4_5.json');
 const curationResult = readJson('reports/historie-v5/kilder-arkiv-spor-curation-result.json');
 
 const failures = [];
