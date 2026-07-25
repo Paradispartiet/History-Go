@@ -1,0 +1,306 @@
+{
+  "version": "1.0",
+  "subject_id": "sport",
+  "type": "risk_of_bias_registry",
+  "status": "tools_ready_no_assessments_materialized",
+  "updated_at": "2026-07-25",
+  "principles": {
+    "result_specific": true,
+    "independent_reviewers_required": 2,
+    "adjudication_required": true,
+    "supporting_basis_required": true
+  },
+  "tools": [
+    {
+      "tool_id": "tool_sport_rob2_v1",
+      "version": "1.0",
+      "applicability": "Randomiserte intervensjonsresultater",
+      "domains": [
+        "randomisering",
+        "avvik fra intervensjon",
+        "manglende resultatdata",
+        "utfallsmåling",
+        "selektiv rapportering"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_robins_i_v1",
+      "version": "1.0",
+      "applicability": "Ikke-randomiserte intervensjonsresultater",
+      "domains": [
+        "konfundering",
+        "deltakervalg",
+        "intervensjonsklassifikasjon",
+        "avvik",
+        "manglende data",
+        "utfallsmåling",
+        "rapportering"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_observational_v1",
+      "version": "1.0",
+      "applicability": "Observasjons-, eksponerings- og kohortresultater",
+      "domains": [
+        "konfundering",
+        "seleksjon",
+        "eksponeringsmåling",
+        "utfallsmåling",
+        "manglende data",
+        "analysevalg"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_prediction_model_v1",
+      "version": "1.0",
+      "applicability": "Prediksjonsmodeller",
+      "domains": [
+        "deltakere",
+        "prediktorer",
+        "utfall",
+        "analyse",
+        "kalibrering",
+        "ekstern validering"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_cosmin_v1",
+      "version": "1.0",
+      "applicability": "Måleinstrumenter og måleegenskaper",
+      "domains": [
+        "innholdsvaliditet",
+        "strukturell validitet",
+        "reliabilitet",
+        "målefeil",
+        "kriterievaliditet",
+        "responsivitet"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_model_validation_v1",
+      "version": "1.0",
+      "applicability": "Data- og prestasjonsmodeller",
+      "domains": [
+        "målvariabel",
+        "datasett",
+        "inputdefinisjon",
+        "intern validering",
+        "ekstern validering",
+        "kalibrering",
+        "drift"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_qualitative_v1",
+      "version": "1.0",
+      "applicability": "Kvalitative studier",
+      "domains": [
+        "forskningsdesign",
+        "utvalg",
+        "dataproduksjon",
+        "refleksivitet",
+        "analyse",
+        "representasjon"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_historical_source_criticism_v1",
+      "version": "1.0",
+      "applicability": "Historiske kilder og slutninger",
+      "domains": [
+        "proveniens",
+        "samtidighet",
+        "avhengighet",
+        "tendens",
+        "representativitet",
+        "kontekst"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_normative_argument_v1",
+      "version": "1.0",
+      "applicability": "Normative argumenter",
+      "domains": [
+        "premissklarhet",
+        "slutningsgyldighet",
+        "begrepsbruk",
+        "motargument",
+        "praksisrelevans",
+        "skjulte forutsetninger"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_spatial_inference_v1",
+      "version": "1.0",
+      "applicability": "Romlige og geografiske analyser",
+      "domains": [
+        "systemgrense",
+        "skala",
+        "geokoding",
+        "seleksjon",
+        "romlig autokorrelasjon",
+        "fordelingsmål"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_learning_transfer_v1",
+      "version": "1.0",
+      "applicability": "Ferdighetslæring",
+      "domains": [
+        "representativ oppgave",
+        "sammenligningsbetingelse",
+        "retensjon",
+        "transfer",
+        "målekvalitet",
+        "etterlevelse"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_safeguarding_policy_v1",
+      "version": "1.0",
+      "applicability": "Safeguarding og rettighetsimplementering",
+      "domains": [
+        "rettighetsgrunnlag",
+        "implementering",
+        "rapporteringsvei",
+        "uønskede konsekvenser",
+        "barns stemme",
+        "håndheving"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_process_tracing_v1",
+      "version": "1.0",
+      "applicability": "Institusjonell prosessporing",
+      "domains": [
+        "mekanisme",
+        "tidsrekkefølge",
+        "alternativ forklaring",
+        "kildetriangulering",
+        "casevalg",
+        "bevisstyrke"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_media_analysis_v1",
+      "version": "1.0",
+      "applicability": "Medie- og diskursanalyse",
+      "domains": [
+        "utvalg",
+        "kodingsramme",
+        "plattformkontekst",
+        "interkoderkontroll",
+        "tolkningsgrunnlag",
+        "generaliserbarhet"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_intersectional_inference_v1",
+      "version": "1.0",
+      "applicability": "Interseksjonell analyse",
+      "domains": [
+        "kategorioperasjonalisering",
+        "institusjonell mekanisme",
+        "utvalgsstørrelse",
+        "kryssklassifisering",
+        "maktforhold",
+        "representasjon"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_regulatory_currency_v1",
+      "version": "1.0",
+      "applicability": "Gjeldende regelverk",
+      "domains": [
+        "jurisdiksjon",
+        "versjon",
+        "virkningsdato",
+        "endringshistorikk",
+        "autorativ kilde",
+        "kontrollfrist"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    },
+    {
+      "tool_id": "tool_sport_environmental_lca_v1",
+      "version": "1.0",
+      "applicability": "Livsløps- og miljøanalyse",
+      "domains": [
+        "funksjonell enhet",
+        "systemgrense",
+        "datakvalitet",
+        "allokering",
+        "alternativscenario",
+        "sensitivitetsanalyse"
+      ],
+      "result_level_required": true,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool"
+    }
+  ],
+  "assessments": []
+}

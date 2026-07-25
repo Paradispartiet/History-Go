@@ -1,5 +1,5 @@
 {
-  "version": "1.1",
+  "version": "2.0",
   "subject_id": "sport",
   "type": "scientific_evidence_manifest",
   "status": "canonical_scientific_evidence_layer_partial_coverage",
@@ -13,14 +13,34 @@
     "scientific_method_policy": "sport_scientific_method_policy_v1.json",
     "validator": "../../../tools/validate-sport-evidence.mjs",
     "report": "../../../reports/sport-scientific-evidence-validation.json",
-    "readme": "../../../reports/sport-scientific-evidence-layer.md"
+    "readme": "../../../reports/sport-scientific-evidence-layer.md",
+    "scientific_pipeline_manifest": "sport_scientific_pipeline_manifest_v2.json",
+    "hook_classification": "hook_scientific_classification_sport_v1.json",
+    "research_questions": "research_questions_sport_v1.json",
+    "review_protocols": "review_protocols_sport_v1.json",
+    "study_registry": "study_registry_sport_v1.json",
+    "risk_of_bias": "risk_of_bias_sport_v1.json",
+    "evidence_syntheses": "evidence_syntheses_sport_v1.json",
+    "certainty_assessments": "certainty_assessments_sport_v1.json"
   },
   "counts": {
     "sources": 17,
     "claims": 16,
     "models": 12,
     "measurements": 15,
-    "production_gates": 10
+    "production_gates": 17,
+    "classified_hooks": 56,
+    "research_questions": 56,
+    "planned_protocols": 56,
+    "registered_protocols": 0,
+    "studies": 0,
+    "results": 0,
+    "risk_of_bias_assessments": 0,
+    "planned_syntheses": 56,
+    "completed_syntheses": 0,
+    "certainty_assessments": 0,
+    "publication_ready_claims": 0,
+    "provisional_legacy_claims": 16
   },
   "integration": {
     "quality_manifest": "sport_quality_manifest_v5.json",
@@ -43,8 +63,13 @@
     "theory_prerequisite": "validated_v6",
     "hooks_total": 56,
     "hooks_with_claim_links": 19,
-    "rule": "Ingen påstand om full evidensdekning før alle teorihooks har minst én kontrollert claim-kjede.",
+    "rule": "Klassifisering og protokollstruktur er komplett, men vitenskapelig dekning krever materialiserte studier, biasvurderinger, synteser og sikkerhetsvurderinger.",
     "emners_with_claim_links": 32,
-    "mapping_method": "curated claim-to-hook mapping"
-  }
+    "mapping_method": "curated claim-to-hook mapping",
+    "pipeline_state": "infrastructure_ready_evidence_materialization_pending",
+    "classified_hooks": 56,
+    "completed_syntheses": 0,
+    "publication_ready_claims": 0
+  },
+  "pipeline_status": "scientific_pipeline_infrastructure_ready_evidence_materialization_pending"
 }

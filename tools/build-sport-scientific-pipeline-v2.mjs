@@ -643,7 +643,7 @@ const pipelineManifest = {
   ]
 };
 
-qualityManifest.version = "6.1";
+qualityManifest.version = "6.0";
 qualityManifest.updated_at = "2026-07-25";
 qualityManifest.scientific_pipeline_v2 = {
   manifest: "sport_scientific_pipeline_manifest_v2.json",
@@ -660,7 +660,8 @@ qualityManifest.scientific_pipeline_v2 = {
 qualityManifest.production_invariants = unique([...(qualityManifest.production_invariants || []), "Ny eller endret vitenskapelig Sport-tekst krever full V2-kjede fra forskningsspørsmål til sikkerhetsvurdering.", "Legacy-claims er provisoriske og kan ikke gi ny publication_ready-status uten syntese."]);
 
 evidenceManifest.version = "2.0";
-evidenceManifest.status = "scientific_pipeline_infrastructure_ready_partial_evidence";
+evidenceManifest.status = "canonical_scientific_evidence_layer_partial_coverage";
+evidenceManifest.pipeline_status = "scientific_pipeline_infrastructure_ready_evidence_materialization_pending";
 evidenceManifest.updated_at = "2026-07-25";
 evidenceManifest.files.scientific_pipeline_manifest = "sport_scientific_pipeline_manifest_v2.json";
 evidenceManifest.files.hook_classification = "hook_scientific_classification_sport_v1.json";
@@ -670,10 +671,11 @@ evidenceManifest.files.study_registry = "study_registry_sport_v1.json";
 evidenceManifest.files.risk_of_bias = "risk_of_bias_sport_v1.json";
 evidenceManifest.files.evidence_syntheses = "evidence_syntheses_sport_v1.json";
 evidenceManifest.files.certainty_assessments = "certainty_assessments_sport_v1.json";
-evidenceManifest.counts = { ...(evidenceManifest.counts || {}), ...pipelineCounts };
+evidenceManifest.counts = { ...(evidenceManifest.counts || {}), ...pipelineCounts, production_gates: methodPolicy.production_gates.length };
 evidenceManifest.coverage_status = {
   ...(evidenceManifest.coverage_status || {}),
-  state: "partial_pipeline_v2",
+  state: "partial",
+  pipeline_state: "infrastructure_ready_evidence_materialization_pending",
   classified_hooks: classifications.length,
   completed_syntheses: 0,
   publication_ready_claims: 0,

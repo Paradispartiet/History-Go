@@ -243,7 +243,8 @@ for (const field of ["research_question_id", "synthesis_id", "certainty_assessme
 require(quizProfile.scientific_pipeline_v2?.publication_ready_requires_complete_chain === true, "quizprofil krever ikke full kjede");
 require(quizProfile.scientific_pipeline_v2?.legacy_claims_are_provisional === true, "quizprofil overdriver legacy-claims");
 require(qualityManifest.scientific_pipeline_v2?.manifest === "sport_scientific_pipeline_manifest_v2.json", "kvalitetsmanifest mangler V2-pipeline");
-require(evidenceManifest.status === "scientific_pipeline_infrastructure_ready_partial_evidence", "evidensmanifestet overdriver status");
+require(evidenceManifest.status === "canonical_scientific_evidence_layer_partial_coverage", "evidensmanifestet har brutt kompatibel evidensstatus");
+require(evidenceManifest.pipeline_status === "scientific_pipeline_infrastructure_ready_evidence_materialization_pending", "evidensmanifestet mangler V2-pipelinestatus");
 require(evidenceManifest.coverage_status?.completed_syntheses === 0, "evidensmanifestet hevder fullførte synteser");
 require(evidenceManifest.coverage_status?.publication_ready_claims === 0, "evidensmanifestet hevder publication-ready claims");
 
