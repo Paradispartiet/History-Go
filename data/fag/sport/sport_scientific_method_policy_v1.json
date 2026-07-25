@@ -1,10 +1,10 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "subject_id": "sport",
   "type": "scientific_method_policy",
   "status": "canonical_scientific_evidence_layer",
-  "updated_at": "2026-07-24",
-  "scope": "Alle forsknings-, helse-, trenings-, måle-, modell- og risikopåstander i Sport & lek.",
+  "updated_at": "2026-07-25",
+  "scope": "Hele kjeden fra forskningsspørsmål og protokoll til studieresultat, biasvurdering, syntese, sikkerhetsvurdering, claim og quizproduksjon i Sport & lek.",
   "required_scientific_metadata": [
     "claim_id",
     "source_ids",
@@ -13,7 +13,10 @@
     "population",
     "context",
     "uncertainty_note",
-    "external_validity_note"
+    "external_validity_note",
+    "research_question_id",
+    "synthesis_id",
+    "certainty_assessment_id"
   ],
   "conditional_metadata": {
     "measurement_claim": [
@@ -102,6 +105,41 @@
       "gate_id": "gate_sport_reproducible_data",
       "rule": "Analysebaserte tall må ha datakilde, versjon, definisjon og beregningsregel.",
       "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_research_question_chain",
+      "rule": "Ny eller endret vitenskapelig tekst må peke til research_question_id og klassifisert epistemisk spor.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_protocol_preregistration",
+      "rule": "Screening og syntese kan ikke starte før en versjonert protokoll er registrert og søkeplanen er låst.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_dual_review",
+      "rule": "Fulltekstscreening, kritisk dataekstraksjon, biasvurdering og sikkerhetsvurdering krever to uavhengige vurderere og dokumentert avgjørelse ved uenighet.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_result_level_bias",
+      "rule": "Empiriske resultater kan ikke inngå i en godkjent syntese uten resultatspesifikk biasvurdering med riktig verktøyversjon.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_synthesis_before_claim",
+      "rule": "En claim kan ikke være publication_ready før den peker til minst én fullført og godkjent synthesis_id.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_certainty_before_publication",
+      "rule": "En claim kan ikke publiseres eller regenereres vitenskapelig før den peker til en godkjent, utfallsspesifikk certainty_assessment_id.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_living_update",
+      "rule": "Tidsfølsomme kliniske, regulatoriske, teknologiske og retningslinjebaserte synteser må ha update_due og blokkeres etter utløp.",
+      "failure_action": "block"
     }
   ],
   "forbidden_inferences": [
@@ -163,8 +201,26 @@
         "external_validity_note": "string",
         "measurement_ids": "string[] optional",
         "model_ids": "string[] optional",
-        "effective_date": "date optional"
+        "effective_date": "date optional",
+        "research_question_id": "string",
+        "protocol_id": "string",
+        "synthesis_id": "string",
+        "certainty_assessment_id": "string"
       }
     }
+  },
+  "pipeline_v2": {
+    "required_chain": [
+      "hook_id",
+      "theory_unit_id",
+      "research_question_id",
+      "protocol_id",
+      "synthesis_id",
+      "certainty_assessment_id",
+      "claim_id"
+    ],
+    "required_for": "all new or modified scientific content",
+    "legacy_claim_status": "provisional_legacy_claim",
+    "publication_ready_requires_all_links": true
   }
 }

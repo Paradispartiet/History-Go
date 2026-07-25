@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "subject_id": "sport",
+  "type": "study_and_result_registry",
+  "status": "schema_ready_no_studies_materialized",
+  "updated_at": "2026-07-25",
+  "required_study_fields": [
+    "study_id",
+    "bibliographic_source_id",
+    "research_question_ids",
+    "study_design",
+    "country",
+    "setting",
+    "population",
+    "sample_size",
+    "exposure_or_intervention",
+    "comparator",
+    "follow_up",
+    "funding",
+    "conflicts_of_interest"
+  ],
+  "required_result_fields": [
+    "result_id",
+    "study_id",
+    "outcome_id",
+    "analysis_population",
+    "effect_measure",
+    "effect_estimate",
+    "uncertainty_interval",
+    "measurement_id",
+    "timepoint",
+    "missing_data_note"
+  ],
+  "invariants": [
+    "Effektestimater lagres som resultatobjekter, ikke som fritekst i claims.",
+    "Alle resultater skal ha utfall, analysepopulasjon, måletidspunkt og usikkerhet.",
+    "Duplikatpublikasjoner kobles til samme study_id."
+  ],
+  "studies": [],
+  "results": []
+}

@@ -71,7 +71,9 @@
     "Personlig supporterpreferanse og hvem som er best vurderes ikke som fagkunnskap.",
     "Hvert emne må bruke en validert V6-teorienhet; prefikskontroll alene er ikke teoridekning.",
     "Hver teoribruk skal angi rival, kritikk og bruksgrense, ikke bare teoretikernavn.",
-    "Evidenslaget er delvis til alle teorihooks har sporbare claim-kjeder."
+    "Evidenslaget er delvis til alle teorihooks har sporbare claim-kjeder.",
+    "Ny eller endret vitenskapelig Sport-tekst krever full V2-kjede fra forskningsspørsmål til sikkerhetsvurdering.",
+    "Legacy-claims er provisoriske og kan ikke gi ny publication_ready-status uten syntese."
   ],
   "coverage_balance": {
     "history_place_and_memory": 0.18,
@@ -87,5 +89,30 @@
     "emne_coverage_matrix": "emne_theory_coverage_sport_v6.json",
     "validator": "../../../tools/validate-sport-theory-depth-v6.mjs",
     "report": "../../../reports/sport-theory-depth-validation.json"
+  },
+  "scientific_pipeline_v2": {
+    "manifest": "sport_scientific_pipeline_manifest_v2.json",
+    "hook_classification": "hook_scientific_classification_sport_v1.json",
+    "research_questions": "research_questions_sport_v1.json",
+    "protocols": "review_protocols_sport_v1.json",
+    "studies": "study_registry_sport_v1.json",
+    "risk_of_bias": "risk_of_bias_sport_v1.json",
+    "syntheses": "evidence_syntheses_sport_v1.json",
+    "certainty": "certainty_assessments_sport_v1.json",
+    "validator": "../../../tools/validate-sport-scientific-pipeline-v2.mjs",
+    "counts": {
+      "classified_hooks": 56,
+      "research_questions": 56,
+      "planned_protocols": 56,
+      "registered_protocols": 0,
+      "studies": 0,
+      "results": 0,
+      "risk_of_bias_assessments": 0,
+      "planned_syntheses": 56,
+      "completed_syntheses": 0,
+      "certainty_assessments": 0,
+      "publication_ready_claims": 0,
+      "provisional_legacy_claims": 16
+    }
   }
 }
