@@ -28,6 +28,10 @@ jobs:
           set -euo pipefail
           git clone --quiet --depth 1 --branch '${{ github.head_ref }}' "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" repo
 
+      - name: Apply validator path correction
+        working-directory: repo
+        run: sed -i 's/paths\.emners/paths.emner/' tools/validate-sport-theory-depth-v6.mjs
+
       - name: Build theory depth and coverage
         working-directory: repo
         run: node tools/build-sport-theory-depth-v6.mjs
