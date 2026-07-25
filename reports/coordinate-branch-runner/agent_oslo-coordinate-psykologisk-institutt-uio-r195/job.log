@@ -1,0 +1,88 @@
+{
+  "version": "2026-07-25",
+  "protocolMaxBatch": 195,
+  "placeId": "psykologisk_institutt_uio",
+  "researchOnly": true,
+  "canonicalChanged": false,
+  "identity": {
+    "currentName": "Psykologisk institutt, UiO",
+    "resolvedIdentity": "Psykologisk institutt ved Universitetet i Oslo i Harald Schjelderups hus, Forskningsveien 3A, 0373 Oslo",
+    "identityStatus": "resolved",
+    "locatorTypeCandidate": "building"
+  },
+  "currentCoordinate": {
+    "lat": 59.9419,
+    "lon": 10.7229,
+    "r": 160
+  },
+  "officialAddress": {
+    "addressText": "Forskningsveien 3A",
+    "postcode": "0373",
+    "postArea": "OSLO",
+    "municipalityNumber": "0301",
+    "lat": 59.94377072400817,
+    "lon": 10.713355170321078,
+    "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Forskningsveien&nummer=3&bokstav=A&kommunenummer=0301&treffPerSide=20",
+    "sourceObjectId": "geonorge-adresser-v1:0301:11882:3A:59.94377072,10.71335517",
+    "uniqueExactMatchCount": 1
+  },
+  "buildingVerification": {
+    "overpassEndpoint": "https://overpass-api.de/api/interpreter",
+    "containingBuildingCount": 1,
+    "selectedBuilding": {
+      "type": "way",
+      "id": 94991712,
+      "sourceObjectId": "osm-way:94991712",
+      "tags": {
+        "building": "university",
+        "name": "Harald Schjelderups hus",
+        "operator": "Universitetet i Oslo",
+        "ref": "GA09",
+        "ref:bygningsnr": "81045631",
+        "wikidata": "Q65768784"
+      }
+    },
+    "addressPointInsideBuilding": true,
+    "maxFootprintDistanceMeters": 73.7
+  },
+  "radiusRecommendation": {
+    "method": "maximum address-point-to-building-vertex distance plus 30 metre building buffer, rounded up to nearest 10 metres",
+    "footprintBufferMeters": 30,
+    "recommendedRadius": 110
+  },
+  "displacementMeters": 570.8,
+  "officialSourceFetches": [
+    {
+      "url": "https://www.sv.uio.no/psi/om/kontakt/",
+      "fileName": "uio-contact-nb.html",
+      "error": "Error: HTTP 404 for https://www.sv.uio.no/psi/om/kontakt/"
+    },
+    {
+      "url": "https://www.sv.uio.no/psi/english/about/contact/",
+      "fileName": "uio-contact-en.html",
+      "status": 200,
+      "finalUrl": "https://www.sv.uio.no/psi/english/about/contact/",
+      "bytes": 19856,
+      "containsAddress": true,
+      "containsBuildingName": true
+    },
+    {
+      "url": "https://www.uio.no/om/finn-fram/omrader/gaustad/harald-schjelderups-hus/",
+      "fileName": "uio-building.html",
+      "error": "Error: HTTP 404 for https://www.uio.no/om/finn-fram/omrader/gaustad/harald-schjelderups-hus/"
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "coordinateDecision": "use_official_address_point",
+    "recommendedLat": 59.94377072400817,
+    "recommendedLon": 10.713355170321078,
+    "recommendedRadius": 110,
+    "coordStatus": "verified",
+    "coordType": "address_point",
+    "coordRole": "display_marker",
+    "sourceProvider": "official_address",
+    "locatorType": "building",
+    "nextAction": "Create a separate production PR that applies the official address point, measured radius, coordinate metadata and evidence."
+  }
+}
