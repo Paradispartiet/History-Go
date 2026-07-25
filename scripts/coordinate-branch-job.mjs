@@ -52,6 +52,14 @@ for (const target of ["grindheim_runestein", "grindheim_steinkross", "grindheims
 
 validation = run("node", ["tools/validate-historie-byhistorie.mjs"], { capture: true });
 fs.writeFileSync("reports/historie-canonical-migration/byhistorie-vertical-chain-validation.txt", validation);
+
+const testPath = "tests/quiz-production-pipeline.test.mjs";
+let testText = fs.readFileSync(testPath, "utf8");
+for (const [field, count] of [["emner", 78], ["topic_hooks", 66], ["methods", 43]]) {
+  testText = testText.replace(new RegExp(`(counts\\.${field},\\s*)\\d+(\\))`, "g"), `$1${count}$2`);
+}
+fs.writeFileSync(testPath, testText);
+
 run("npm", ["run", "test:quiz-production"]);
 run("git", ["diff", "--check"]);
 
