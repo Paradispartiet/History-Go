@@ -44,6 +44,21 @@ const globalLoop = [
 source = source.slice(0, startIndex) + globalLoop + source.slice(endIndex);
 source = source.replace("'data/quiz/production_context/historie'", "'data/quiz/production_context'");
 
+const validationMarker = "run(process.execPath,['tools/validate-historie-v5.mjs','--write']);";
+if (!source.includes(validationMarker)) throw new Error('Could not locate V5.5 validation marker');
+const testPatch = [
+  "const quizTestPath=path.join(root,'tests/quiz-production-pipeline.test.mjs');",
+  "let quizTest=fs.readFileSync(quizTestPath,'utf8');",
+  "quizTest=quizTest.replaceAll('context.considered_curriculum.counts.pensum_modules, 12','context.considered_curriculum.counts.pensum_modules, 20');",
+  "quizTest=quizTest.replaceAll('context.considered_curriculum.counts.emner, 92','context.considered_curriculum.counts.emner, 200');",
+  "quizTest=quizTest.replaceAll('context.considered_curriculum.counts.topic_hooks, 84','context.considered_curriculum.counts.topic_hooks, 200');",
+  "quizTest=quizTest.replaceAll('context.considered_curriculum.counts.methods, 54','context.considered_curriculum.counts.methods, 87');",
+  "fs.writeFileSync(quizTestPath,quizTest);",
+  ""
+].join('\n');
+source = source.replace(validationMarker, testPatch + validationMarker);
+source = source.replace("'scripts/coordinate-branch-job.mjs'];", "'scripts/coordinate-branch-job.mjs','tests/quiz-production-pipeline.test.mjs'];");
+
 const target = path.join('/tmp', 'history-v5-5-completion-job.mjs');
 fs.writeFileSync(target, source);
 for (const relative of parts) fs.rmSync(path.join(root, relative));
