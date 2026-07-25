@@ -62,7 +62,9 @@
           }
         },
         "supportedBuildingCount": 10,
-        "maximumCampusSupportDistanceMeters": 295.9
+        "maximumCampusSupportDistanceMeters": 295.9,
+        "addressPointInsideHospitalArea": true,
+        "areaGeometrySourceObjectId": "osm-way:143526382"
       },
       "radiusRecommendation": {
         "method": "building centroids inside named hospital area plus 40 metre buffer",
@@ -71,16 +73,16 @@
       },
       "displacementMeters": 1277,
       "decision": {
-        "canBecomeVerified": false,
+        "canBecomeVerified": true,
         "coordinateDecision": "use_official_address_point_for_main_entrance",
         "recommendedLat": 59.92992084947542,
         "recommendedLon": 10.660609376970168,
         "recommendedRadius": 340,
         "coordStatus": "verified",
         "coordType": "address_point",
-        "locatorType": "building",
+        "locatorType": "current_place",
         "sourceProvider": "official_address",
-        "nextAction": "Review the measured hospital-complex support and create a separate production PR when the radius matches the canonical scope."
+        "nextAction": "Create a separate production PR using the official address point and named hospital-area radius."
       }
     },
     {
@@ -130,27 +132,38 @@
           "distanceMeters": null
         },
         "selectedHospitalArea": null,
-        "supportedBuildingCount": 124,
-        "maximumCampusSupportDistanceMeters": 374.9
+        "supportedBuildingCount": 23,
+        "maximumCampusSupportDistanceMeters": 579.4,
+        "relationGeometryEndpoint": "https://overpass-api.de/api/interpreter",
+        "relationOuterWayCount": 4,
+        "relationOuterRingCount": 4,
+        "addressPointInsideHospitalArea": true,
+        "areaGeometrySourceObjectId": "osm-relation:14086466"
       },
       "radiusRecommendation": {
-        "method": "building centroids within 350 metres of official address point plus 40 metre buffer",
+        "method": "building centroids inside OSM relation 14086466 outer rings plus 40 metre buffer",
         "bufferMeters": 40,
-        "recommendedRadius": 420
+        "recommendedRadius": 620
       },
       "displacementMeters": 344.6,
       "decision": {
-        "canBecomeVerified": false,
+        "canBecomeVerified": true,
         "coordinateDecision": "use_official_address_point_for_main_entrance",
         "recommendedLat": 59.948348176394674,
         "recommendedLon": 10.714348787763203,
-        "recommendedRadius": 420,
+        "recommendedRadius": 620,
         "coordStatus": "verified",
         "coordType": "address_point",
-        "locatorType": "building",
+        "locatorType": "current_place",
         "sourceProvider": "official_address",
-        "nextAction": "Review the measured hospital-complex support and create a separate production PR when the radius matches the canonical scope."
+        "nextAction": "Create a separate production PR using the official address point and multipolygon-supported hospital radius."
       }
     }
-  ]
+  ],
+  "refinement": {
+    "version": "2026-07-25-area-model-v2",
+    "coordinateModel": "official main-address display point plus named hospital-area building support",
+    "radiumhospitaletArea": "osm-way:143526382",
+    "rikshospitaletArea": "osm-relation:14086466"
+  }
 }
