@@ -1,26 +1,23 @@
-name: Diagnose quiz production
+name: Repair deterministic quiz context
 
 on:
   pull_request:
     paths:
       - '.github/workflows/diagnose-quiz-production.yml'
-      - 'data/places/**'
-      - 'data/quiz/**'
-      - 'scripts/audit-quiz-*.mjs'
-      - 'scripts/quiz-production-lib.mjs'
-      - 'package.json'
-      - 'package-lock.json'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  diagnose:
+  repair:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out PR branch
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -30,46 +27,28 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Run quiz audits with persisted logs
+      - name: Rebuild context, remove diagnostic workflow and push
         shell: bash
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
         run: |
-          set +e
-          mkdir -p /tmp/quiz-audit-diagnostics
+          set -euo pipefail
+          mkdir -p reports/akershus-coordinate-asker-kirkested-production-ci
 
           npm run quiz:context -- \
             --category by \
             --target deichman_bjorvika \
-            --output /tmp/quiz-audit-diagnostics/deichman_bjorvika.expected.json \
-            2>&1 | tee /tmp/quiz-audit-diagnostics/rebuild.log
-          rebuild_status=${PIPESTATUS[0]}
+            --output data/quiz/production_context/by/deichman_bjorvika.json \
+            2>&1 | tee reports/akershus-coordinate-asker-kirkested-production-ci/deichman-context-rebuild.log
 
-          cp data/quiz/production_context/by/deichman_bjorvika.json \
-            /tmp/quiz-audit-diagnostics/deichman_bjorvika.current.json
+          npm run audit:quiz-production-context \
+            2>&1 | tee reports/akershus-coordinate-asker-kirkested-production-ci/quiz-production-context-audit.log
 
-          npm run audit:quiz-production-context 2>&1 | tee /tmp/quiz-audit-diagnostics/production-context.log
-          context_status=${PIPESTATUS[0]}
-
-          npm run audit:quiz-progression 2>&1 | tee /tmp/quiz-audit-diagnostics/progression.log
-          progression_status=${PIPESTATUS[0]}
-
-          npm run audit:quiz-theory-binding 2>&1 | tee /tmp/quiz-audit-diagnostics/theory-binding.log
-          theory_status=${PIPESTATUS[0]}
-
-          {
-            echo "rebuild=${rebuild_status}"
-            echo "production_context=${context_status}"
-            echo "progression=${progression_status}"
-            echo "theory_binding=${theory_status}"
-          } | tee /tmp/quiz-audit-diagnostics/status.txt
-
-          if [ "${rebuild_status}" -ne 0 ] || [ "${context_status}" -ne 0 ] || [ "${progression_status}" -ne 0 ] || [ "${theory_status}" -ne 0 ]; then
-            exit 1
-          fi
-
-      - name: Upload quiz audit diagnostics
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: quiz-audit-diagnostics
-          path: /tmp/quiz-audit-diagnostics
-          if-no-files-found: error
+          git rm .github/workflows/diagnose-quiz-production.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/production_context/by/deichman_bjorvika.json \
+            reports/akershus-coordinate-asker-kirkested-production-ci/deichman-context-rebuild.log \
+            reports/akershus-coordinate-asker-kirkested-production-ci/quiz-production-context-audit.log
+          git commit -m "Refresh deterministic Deichman quiz context"
+          git push origin "HEAD:${BRANCH_NAME}"
