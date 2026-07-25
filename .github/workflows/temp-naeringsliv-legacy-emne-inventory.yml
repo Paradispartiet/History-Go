@@ -1,0 +1,61 @@
+name: Temporary Næringsliv legacy emne inventory
+
+on:
+  push:
+    branches:
+      - agent/naeringsliv-fagpakke-audit
+    paths:
+      - '.github/workflows/temp-naeringsliv-legacy-emne-inventory.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - name: Build reference inventory
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const path=require('path');
+          const ids=['em_naer_felt_arbeid_verdiskaping','em_naer_geografi_infrastruktur'];
+          const roots=['data','js','scripts','tools','docs','README'];
+          const skip=new Set(['node_modules','.git','reports']);
+          const out=Object.fromEntries(ids.map(id=>[id,[]]));
+          function walk(p){
+            if(!fs.existsSync(p))return;
+            const s=fs.statSync(p);
+            if(s.isDirectory()){
+              if(skip.has(path.basename(p)))return;
+              for(const n of fs.readdirSync(p))walk(path.join(p,n));
+              return;
+            }
+            if(s.size>5_000_000)return;
+            let text; try{text=fs.readFileSync(p,'utf8')}catch{return}
+            for(const id of ids){
+              let count=0,pos=0;
+              while((pos=text.indexOf(id,pos))!==-1){count++;pos+=id.length}
+              if(count)out[id].push({path:p.split(path.sep).join('/'),count});
+            }
+          }
+          for(const r of roots)walk(r);
+          const summary=Object.fromEntries(ids.map(id=>[id,{files:out[id].length,occurrences:out[id].reduce((n,x)=>n+x.count,0),by_top_dir:Object.fromEntries([...new Set(out[id].map(x=>x.path.split('/').slice(0,3).join('/')))].map(prefix=>[prefix,out[id].filter(x=>x.path.startsWith(prefix)).reduce((n,x)=>n+x.count,0)]))}]));
+          const report={generated_at:new Date().toISOString(),summary,references:out};
+          fs.mkdirSync('reports',{recursive:true});
+          fs.writeFileSync('reports/naeringsliv-legacy-emne-reference-inventory-working.json',JSON.stringify(report,null,2)+'\n');
+          console.log(summary);
+          NODE
+      - name: Commit report
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/naeringsliv-legacy-emne-reference-inventory-working.json
+          git commit -m 'Materialiser næringslivets legacy-emnereferanser'
+          git push origin HEAD:${{ github.ref_name }}
