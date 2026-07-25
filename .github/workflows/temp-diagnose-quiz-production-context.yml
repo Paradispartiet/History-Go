@@ -1,0 +1,37 @@
+name: TEMP diagnose quiz production contexts
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/history-makt-quality-validator-cleanup
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Capture quiz production audit
+        shell: bash
+        run: |
+          set +e
+          npm run audit:quiz-production-context > /tmp/quiz-production-audit.log 2>&1
+          status=$?
+          cat /tmp/quiz-production-audit.log
+          printf '\nAUDIT_EXIT_CODE=%s\n' "$status" >> /tmp/quiz-production-audit.log
+          exit 0
+      - name: Upload audit log
+        uses: actions/upload-artifact@v4
+        with:
+          name: quiz-production-audit-diagnostics
+          path: /tmp/quiz-production-audit.log
+          if-no-files-found: error
