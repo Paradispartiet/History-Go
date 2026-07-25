@@ -82,19 +82,23 @@ function collectPlaceFiles() {
 const templates = readJson(templatePath);
 const aliases = templates.categoryAliases ?? {};
 const categoryTemplates = templates.categories ?? {};
-const descRange = templates.global?.desc?.targetWords ?? [28, 58];
-const popupRange = templates.global?.popupDesc?.targetWords ?? [75, 155];
+const descRange = templates.global?.desc?.targetWords ?? [40, 80];
+const popupRange = templates.global?.popupDesc?.targetWords ?? [160, 320];
+const popupExceptionalMaximum = templates.global?.popupDesc?.exceptionalMaximumWords ?? popupRange[1];
 const watchWords = templates.global?.antiFormula?.watchWords ?? [];
 
 const genericPatterns = [
   { id: 'viser_hvordan', label: 'viser hvordan', regex: /\bviser hvordan\b/giu },
+  { id: 'forteller_historien_om', label: 'forteller historien om', regex: /\bforteller historien om\b/giu },
+  { id: 'gjor_mulig_a_forsta', label: 'gjør det mulig å forstå', regex: /\bgjør det mulig å forstå\b/giu },
   { id: 'viktig_spor', label: 'viktig spor', regex: /\bviktig(?:e)? spor\b/giu },
   { id: 'gjor_lesbart', label: 'gjør … lesbart', regex: /\bgjør\b[^.!?]{0,80}\blesbar(?:t|e|het)?\b/giu },
   { id: 'representerer_overgangen', label: 'representerer overgangen', regex: /\brepresenterer (?:en|den )?overgang(?:en)?\b/giu },
   { id: 'mote_mellom', label: 'møte mellom', regex: /\bmøte mellom\b/giu },
   { id: 'institusjonelt_tyngdepunkt', label: 'institusjonelt tyngdepunkt', regex: /\binstitusjonelt tyngdepunkt\b/giu },
   { id: 'samlede_byfortelling', label: 'samlede byfortelling', regex: /\bsamlede byfortelling\b/giu },
-  { id: 'coordinate_validation_copy', label: 'intern koordinatvalidering i popupDesc', regex: /\b(?:koordinat(?:en|er|status)?|bygningsgeometri|source object|foundation-punkt|verifiseres|godkjennes)\b/giu }
+  { id: 'history_go_meta', label: 'redaksjonelt History Go-språk', regex: /\bi history go\b/giu },
+  { id: 'coordinate_validation_copy', label: 'intern koordinatvalidering i brukertekst', regex: /\b(?:koordinat(?:en|er|status)?|bygningsgeometri|source object|foundation-punkt|verifiseres|godkjennes)\b/giu }
 ];
 
 const { files: placeFiles, errors: discoveryErrors } = collectPlaceFiles();
@@ -137,10 +141,13 @@ for (const filePath of placeFiles) {
     if (!desc) issues.push('missing_desc');
     if (!popupDesc) issues.push('missing_popupDesc');
     if (desc && popupDesc && normalizedDesc === normalizedPopup) issues.push('identical_desc_popupDesc');
-    if (desc && descWords < descRange[0]) issues.push('desc_too_short');
-    if (desc && descWords > descRange[1]) issues.push('desc_too_long');
-    if (popupDesc && popupWords < popupRange[0]) issues.push('popupDesc_too_short');
-    if (popupDesc && popupWords > popupRange[1]) issues.push('popupDesc_too_long');
+    if (desc && descWords < descRange[0]) issues.push('desc_below_normal_range');
+    if (desc && descWords > descRange[1]) issues.push('desc_above_normal_range');
+    if (popupDesc && popupWords < popupRange[0]) issues.push('popupDesc_below_normal_range');
+    if (popupDesc && popupWords > popupRange[1] && popupWords <= popupExceptionalMaximum) {
+      issues.push('popupDesc_above_normal_range_allowed_exception');
+    }
+    if (popupDesc && popupWords > popupExceptionalMaximum) issues.push('popupDesc_exceeds_exceptional_maximum');
     if (desc && popupDesc && popupWords <= descWords + 8) issues.push('popupDesc_adds_too_little');
     if (!categoryTemplates[category]) issues.push('missing_category_template');
 
@@ -198,9 +205,14 @@ const revisionCandidates = findings
   });
 
 const report = {
-  schema: 'history_go_place_description_audit_v1',
+  schema: 'history_go_place_description_audit_v2',
   generatedAt: new Date().toISOString(),
   template: rel(templatePath),
+  normalRanges: {
+    desc: descRange,
+    popupDesc: popupRange,
+    popupDescExceptionalMaximum: popupExceptionalMaximum
+  },
   scannedFiles: placeFiles.length,
   scannedPlaces: findings.length,
   fileErrors,
@@ -225,6 +237,10 @@ function renderMarkdown(data) {
   lines.push(`- Kritiske steder: **${data.totals.criticalPlaces}**`);
   lines.push(`- Revisjonskandidater: **${data.totals.revisionCandidates}**`);
   lines.push(`- Filfeil: **${data.fileErrors.length}**`, '');
+  lines.push('## Normalrammer', '');
+  lines.push(`- desc: **${data.normalRanges.desc[0]}–${data.normalRanges.desc[1]} ord**`);
+  lines.push(`- popupDesc: **${data.normalRanges.popupDesc[0]}–${data.normalRanges.popupDesc[1]} ord**`);
+  lines.push(`- Tillatt unntaksrom for særlig innholdsrik popupDesc: opptil **${data.normalRanges.popupDescExceptionalMaximum} ord**`, '');
   lines.push('## Funn etter type', '');
   lines.push('| Funn | Antall |', '|---|---:|');
   for (const [key, count] of Object.entries(data.totals.issues)) lines.push(`| \`${key}\` | ${count} |`);
@@ -240,7 +256,7 @@ function renderMarkdown(data) {
     const flags = [...item.issues, ...item.formulaHits.map((hit) => `formel:${hit.id}`)].join(', ');
     lines.push(`| ${item.name} (\`${item.id}\`) | ${item.category} | ${item.descWords} | ${item.popupWords} | ${flags || 'ordvariasjon'} | \`${item.file}\` |`);
   }
-  lines.push('', 'Auditresultatet er en arbeidsliste. Lengdeavvik er signaler, ikke automatiske sannhetsdommer. Faktisk revisjon skal følge kildene og den kategorispesifikke malen.', '');
+  lines.push('', 'Auditresultatet er en arbeidsliste. Normalrammene er redaksjonelle signaler, ikke automatiske sannhetsdommer. En popupDesc på 320–400 ord kan godkjennes når kildene og innholdet forsvarer lengden. Faktisk revisjon skal følge kildene og den canonical faktaførst-kontrakten.', '');
   return lines.join('\n');
 }
 
