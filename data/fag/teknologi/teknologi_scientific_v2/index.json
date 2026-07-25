@@ -1,0 +1,71 @@
+{
+  "schema": "teknologi_scientific_subject_index_v2",
+  "version": "2.0",
+  "status": "canonical_scientific_subject",
+  "subject_id": "teknologi",
+  "title": "Teknologi som vitenskapelig fag",
+  "definition": "Teknologi er et design-, system- og ingeniørvitenskapelig fag som studerer hvordan konstruerte artefakter, programvare, prosesser og infrastrukturer kan forstås, utvikles, prøves og forvaltes under eksplisitte krav, begrensninger og usikkerhet.",
+  "object_of_study": [
+    "artefakter",
+    "tekniske prosesser",
+    "programvare",
+    "infrastrukturer",
+    "sosiotekniske systemer"
+  ],
+  "knowledge_forms": [
+    "mekanismeforklaring",
+    "designbegrunnelse",
+    "modell",
+    "måling",
+    "prototypeeksperiment",
+    "verifikasjon",
+    "validering",
+    "feil- og risikoanalyse",
+    "teknologihistorisk og institusjonell analyse"
+  ],
+  "governance": {
+    "separate_from_science_category": true,
+    "external_claim_basis_required": true,
+    "concrete_technology_anchor_required": true,
+    "uncertainty_must_be_explicit": true,
+    "comparison_requires_common_basis": true,
+    "avoid_name_guessing": true,
+    "avoid_inevitable_progress_story": true,
+    "personal_opinion_is_not_scored_knowledge": true
+  },
+  "counts": {
+    "areas": 12,
+    "topics": 48,
+    "methods": 35,
+    "hooks": 36,
+    "concepts": 72,
+    "thinkers": 60,
+    "theory_objects": 24,
+    "modules": 12
+  },
+  "area_files": [
+    "data/fag/teknologi/teknologi_scientific_v2/01_teknologivitenskap_design.json",
+    "data/fag/teknologi/teknologi_scientific_v2/02_systemer_arkitektur_palitelighet.json",
+    "data/fag/teknologi/teknologi_scientific_v2/03_mekanikk_energi_maskiner.json",
+    "data/fag/teknologi/teknologi_scientific_v2/04_materialer_produksjon.json",
+    "data/fag/teknologi/teknologi_scientific_v2/05_elektronikk_signaler_regulering.json",
+    "data/fag/teknologi/teknologi_scientific_v2/06_robotikk_automatisering.json",
+    "data/fag/teknologi/teknologi_scientific_v2/07_datamaskiner_operativsystemer.json",
+    "data/fag/teknologi/teknologi_scientific_v2/08_programvareteknikk.json",
+    "data/fag/teknologi/teknologi_scientific_v2/09_algoritmer_data_ai.json",
+    "data/fag/teknologi/teknologi_scientific_v2/10_nettverk_cybersikkerhet_infrastruktur.json",
+    "data/fag/teknologi/teknologi_scientific_v2/11_menneske_teknologi_hci.json",
+    "data/fag/teknologi/teknologi_scientific_v2/12_teknologihistorie_sts_risiko_baerekraft.json"
+  ],
+  "production_sequence": [
+    "begynn i et dokumentert artefakt, system, anlegg, kodeobjekt, datasett, standard eller teknologisk forløp",
+    "forklar funksjon, mekanisme, arkitektur eller produksjonsprosess",
+    "vurder evidens, måling, usikkerhet, antakelser og gyldighetsområde",
+    "undersøk feilmodi, vedlikehold, sikkerhet og alternative løsninger",
+    "analyser avveininger, institusjoner, brukere og samfunnsvirkninger"
+  ],
+  "validation": {
+    "tool": "tools/validate-teknologi-foundation.mjs",
+    "report": "reports/teknologi-scientific-quality-validation.json"
+  }
+}
