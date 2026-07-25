@@ -1,32 +1,28 @@
-# Historie V5 – canonical completion
+# Historie V5.5 – modenhetsrapporter
 
-Historie V5 er formalisert som en deterministisk canonical-pakke med eksplisitt kontrakt, faglig blueprint, generator og validator.
+Denne mappen dokumenterer faktisk produksjonsmodenhet for Historie før V6. Tidligere rapporter som beskrev 160 eller 200 automatisk genererte emner som en ferdig canonical-pakke er erstattet av en kontroll mot de aktive produksjonsfilene.
 
-## Omfang
-
-- 20 hoveddomener
-- 160 aktive emner
-- 160 kjernebegreper
-- 160 teorihooks
-- 79 teoriobjekter
-- minst 6 metoder per domene
-
-## Nye og utvidede domener
-
-Alle tidligere domener er løftet til minst åtte emner. I tillegg er kjønn/familie/livsløp, økonomi/handel, religion/livssyn, samisk og urfolkshistorie, miljø/klima, vitenskap/teknologi/kunnskap, global/transnasjonal historie og offentlighet/mobilisering formalisert.
-
-## Kjøring
+## Generer rapport
 
 ```bash
 mkdir -p reports/historie-v5
-node tools/build-historie-v5.mjs --write \
-  | tee reports/historie-v5/validation.txt
+node tools/validate-historie-v5.mjs --write \
+  | tee reports/historie-v5/validation-console.txt
 ```
 
-Uten `--write` validerer skriptet blueprinten og den genererte pakken i minnet.
+Dette oppdaterer:
 
-## Kvalitetsporter
+- `historie-v5-5-readiness.json`: detaljert maskinlesbar status per domene og emne
+- `validation.txt`: kompakt status med manglende porter
 
-Validatoren kontrollerer domeneminimum, referensiell integritet, teori- og metodekoblinger, historiografiske konflikter, kilde- og korroboreringskrav, læringsprogresjon og at stoppord ikke registreres som selvstendige begreper.
+## Endelig frysekontroll
 
-V5 gir stabile canonical-ID-er som V6 kan bruke til evidens-, kilde- og proveniensobjekter.
+```bash
+mkdir -p reports/historie-v5
+node tools/validate-historie-v5.mjs --write --require-freeze \
+  | tee reports/historie-v5/freeze-validation.txt
+```
+
+Den strenge kontrollen skal feile fram til alle 20 planlagte domener er individuelt kuratert, produksjonskoblet og `freeze_ready`, og de globale begreps-, teori-, metode-, språk- og skjevhetsportene er grønne.
+
+Rapporten er et modenhetsbevis, ikke et evidenslag. V6 kan først begynne når `v6_allowed` er `true`.

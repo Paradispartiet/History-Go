@@ -1,54 +1,94 @@
-# Historie V5
+# Historie V5.5
 
-Historie V5 er nå definert som en eksplisitt canonical-kontrakt, ikke bare som en løs samling fagkartoppgraderinger.
+Historie V5.5 er fagets kuraterings- og frysefase før V6-evidenslaget. V5.5 er ikke et fast antall automatisk genererte objekter. Faget er først ferdig når hvert planlagt domene er individuelt kuratert, produksjonskoblet og maskinelt kontrollert.
 
-## Omfang
+## Autoritativ modell
 
-- 20 domener
-- 200 aktive emner
-- 355 canonical-begreper
-- 20 teoriobjekter fordelt på rammeverk, mellomnivåmodeller, analytiske begreper og historiografiske tradisjoner
-- 12 metode-ID-er
-- historiografiske konflikter, blindsoner og generatorbegrensninger på emnenivå
+Disse filene er produksjons-canonical:
 
-De åtte nye domenene er:
+- `fagkart_historie_canonical_v4_5.json`
+- `methods_historie_canonical_v4_5.json`
+- `emner_historie_canonical_v4_5.json`
+- `emnemapping_historie_canonical_v4_5.json`
+- `historiepensum_canonical_v4_5.json`
+- `quiz_generator_rules_historie_v5_1_source_priority_patch.json`
 
-1. Kjønn, familie, seksualitet og livsløp
-2. Økonomi, handel og materielle systemer
-3. Religion, reformasjon og livssyn
-4. Samisk og urfolkshistorie
-5. Miljø-, klima- og landskapshistorie
-6. Vitenskap-, teknologi- og kunnskapshistorie
-7. Global, kolonial og transnasjonal historie
-8. Offentlighet, mobilisering og sosiale bevegelser
+Filnavnene beholder foreløpig `v4_5` av kompatibilitetshensyn. Modenheten bestemmes av innholdet og V5.5-validatoren, ikke av filnavnet.
 
-## Canonical kilde
+`historie_v5_5_domain_plan.json` definerer målbildet på 20 domener. Et domene som bare finnes i planen er `planned_only`; det er ikke canonical og kan ikke brukes som evidensanker.
 
-`historie_v5_registry.mjs` er den deterministiske kilden for domener, emner, begreper og teoriobjekter. Dette hindrer at flere store genererte JSON-filer driver fra hverandre.
+## Hva som er avviklet
 
-Materialiser lesbare JSON-filer med:
+Følgende V5.0-artefakter var nyttige som planleggingsskisser, men er ikke autoritative:
+
+- `historie_v5_registry.mjs`
+- `historie_v5_blueprint.json`
+- syntetiske `generated-v5`-filer
+- genererte V5-filer med ett standardbegrep per emnetittel
+
+Den tidligere registry-generatoren laget generiske definisjoner, roterte metoder og teorier mekanisk og markerte planlagte domener som komplette. Den er nå eksplisitt deaktivert og kan ikke brukes til V6.
+
+## Fire modenhetsnivåer
+
+- `planned_only`: finnes bare i 20-domeneplanen
+- `production_partial`: finnes i produksjons-canonical, men mangler vertikal dybde
+- `production_complete`: har minst 10 emner, 10 hooks, operative metoder, mappinger, case og tenkerbaner
+- `freeze_ready`: er i tillegg individuelt kuratert og passerer hele V5.5-kontrakten
+
+`production_complete` er ikke det samme som `freeze_ready`.
+
+## Krav til et freeze-ready domene
+
+Et domene må blant annet ha:
+
+- minst 10 individuelt kuraterte emner
+- minst 10 operative teorihooks
+- minst 9 relevante metoder
+- to selvstendige mappingbaner per emne
+- konkret domenekjede fra kilde og sted til historisk konsekvens
+- eksplisitte grenser mot nabofag og nabodomener
+- kildebegrensning og kritisk distinksjon
+- norske eller nordiske faglige bidrag der slike finnes
+- tilstrekkelig casebredde
+- permanent domenespesifikk validator
+
+Hvert emne må ha en særskilt definisjon, kuraterte begreper, historiografisk konflikt, metodekobling, case, overlappsløsning, generatorvern og anti-mønstre. Uniform tekst fra emnetittelen godtas ikke.
+
+## Validering
+
+Kjør den sannferdige modenhetskontrollen og lagre rapporten:
 
 ```bash
 mkdir -p reports/historie-v5
-node tools/materialize-historie-v5.mjs | tee reports/historie-v5/materialization.txt
+node tools/validate-historie-v5.mjs --write \
+  | tee reports/historie-v5/validation-console.txt
 ```
 
-Valider hele V5-kontrakten med:
+Dette skriver:
+
+- `reports/historie-v5/historie-v5-5-readiness.json`
+- `reports/historie-v5/validation.txt`
+
+Den vanlige kontrollen rapporterer `NOT_READY` uten å feile så lenge arbeidet pågår. Den endelige fryseporten er streng:
 
 ```bash
 mkdir -p reports/historie-v5
-node tools/validate-historie-v5.mjs | tee reports/historie-v5/validation.txt
+node tools/validate-historie-v5.mjs --write --require-freeze \
+  | tee reports/historie-v5/freeze-validation.txt
 ```
 
-Validatoren kontrollerer blant annet:
+`--require-freeze` skal feile helt til alle 20 domener og de globale begreps-, teori-, metode-, skjevhets- og generatorportene er grønne.
 
-- minimum 20 domener
-- minimum åtte emner, åtte begreper, åtte metoder og åtte teoriobjekter per domene
-- unike og gyldige ID-er
-- ingen foreldreløse referanser
-- historiografiske konflikter
-- Oslo-forankring og internasjonalt sammenligningsspor
-- kildekrav, tidsavgrensning og teori etter case
-- definisjoner, misbruksvern og begrensninger
+## Arbeidsrekkefølge
 
-V6 skal bygge evidens, proveniens, kildevekting og motstridende forskning på toppen av disse stabile ID-ene.
+1. Fullfør eksisterende deldomener vertikalt i produksjonsfilene.
+2. Materialiser de åtte planlagte kjernedomenene én etter én.
+3. Kurater begrepsregisteret og skill aktørkategorier, analytiske begreper og historiografiske begreper.
+4. Bygg et typet teoriregister med forklaringsområde, forutsetninger, begrensninger og kritikk.
+5. Kjør skjevhets-, språk-, case- og progresjonsrevisjon.
+6. Frys V5.5.
+7. Bygg V6-evidens og proveniens på de fryste ID-ene.
+
+## V6-port
+
+V6 er ikke tillatt bare fordi et blueprint inneholder 20 domener. `v6_allowed` blir først `true` når V5.5-rapporten har status `FREEZE_READY`.

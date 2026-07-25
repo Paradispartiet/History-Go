@@ -1,71 +1,93 @@
 {
-  "version": "v5.0-canonical",
+  "version": "v5.5-readiness",
   "subject_id": "historie",
-  "status": "complete",
-  "scope": "oslo_og_omegn_med_nasjonale_og_globale_forbindelser",
-  "counts": {
-    "domains": 20,
-    "emner": 160,
-    "concepts": 160,
-    "theory_objects": 79,
-    "theory_hooks": 160,
-    "methods": 32
+  "status": "in_progress",
+  "freeze_target": "v5.5-frozen",
+  "v6_allowed_only_when": "all_domains_freeze_ready",
+  "authoritative_files": {
+    "fagkart": "fagkart_historie_canonical_v4_5.json",
+    "methods": "methods_historie_canonical_v4_5.json",
+    "emner": "emner_historie_canonical_v4_5.json",
+    "emnemapping": "emnemapping_historie_canonical_v4_5.json",
+    "pensum": "historiepensum_canonical_v4_5.json",
+    "generator_rules": "quiz_generator_rules_historie_v5_1_source_priority_patch.json",
+    "domain_plan": "historie_v5_5_domain_plan.json"
   },
-  "object_types": {
-    "theory": [
-      "theory_framework",
-      "middle_range_model",
-      "historiographical_tradition",
-      "analytical_concept",
-      "methodological_framework"
+  "non_authoritative_legacy_scaffolds": [
+    "historie_v5_registry.mjs",
+    "historie_v5_blueprint.json",
+    "generated-v5/*",
+    "domains_historie_canonical_v5.json",
+    "emner_historie_canonical_v5.json",
+    "concepts_historie_canonical_v5.json",
+    "theory_objects_historie_canonical_v5.json",
+    "theory_hooks_historie_canonical_v5.json",
+    "methods_historie_canonical_v5.json"
+  ],
+  "maturity_states": {
+    "planned_only": "Domenet finnes i V5.5-planen, men ikke i produksjons-canonical.",
+    "production_partial": "Domenet finnes i produksjons-canonical, men mangler vertikal dybde eller kvalitetsporter.",
+    "production_complete": "Domenet oppfyller den vertikale produksjonskontrakten.",
+    "freeze_ready": "Domenet er produksjonskomplett og passerer faglig V5.5-revisjon."
+  },
+  "domain_freeze_contract": {
+    "required_status": "complete_revised",
+    "min_emner": 10,
+    "min_theory_hooks": 10,
+    "min_methods": 9,
+    "min_mapped_emner": 10,
+    "min_recommended_cases": 8,
+    "min_canonical_thinkers": 6,
+    "min_norwegian_thinkers": 1,
+    "require_domain_chain": true,
+    "require_boundary_rules": true,
+    "require_source_anchor": true,
+    "require_external_claim_basis": true,
+    "require_source_limitation": true,
+    "require_critical_distinction": true,
+    "require_two_lane_mapping": true,
+    "require_domain_validator": true
+  },
+  "emne_freeze_contract": {
+    "required_fields": [
+      "emne_id",
+      "area_id",
+      "title",
+      "definition",
+      "why_it_matters",
+      "core_concepts",
+      "sub_concepts",
+      "key_questions",
+      "analysis_axes",
+      "canonical_thinker_ids",
+      "method_ids",
+      "recommended_oslo_cases",
+      "generator_constraints",
+      "anti_patterns"
     ],
-    "concept": [
-      "analytical_concept",
-      "actor_category",
-      "historiographical_concept"
-    ]
+    "min_core_concepts": 4,
+    "min_sub_concepts": 4,
+    "min_key_questions": 3,
+    "min_analysis_axes": 3,
+    "min_methods": 2,
+    "min_cases": 4,
+    "require_historiographical_conflict": true,
+    "require_overlap_resolution": true,
+    "require_temporal_scope": true,
+    "require_source_limitation": true
   },
-  "domain_contract": {
-    "min_emner": 8,
-    "min_theory_hooks": 8,
-    "min_methods": 6,
-    "min_core_concepts": 8
-  },
-  "emne_required_fields": [
-    "emne_id",
-    "subject_id",
-    "domain_id",
-    "title",
-    "definition",
-    "why_it_matters",
-    "core_concept_ids",
-    "key_questions",
-    "analysis_axes",
-    "historiographical_conflicts",
-    "method_ids",
-    "primary_theory_ids",
-    "source_requirements",
-    "generator_constraints",
-    "progression"
+  "freeze_gates": [
+    "all_20_domains_present",
+    "all_domains_vertical_complete",
+    "all_emner_individually_curated",
+    "concept_noise_zero",
+    "theory_objects_typed_and_limited",
+    "methods_operational_not_decorative",
+    "historiographical_conflicts_concrete",
+    "local_national_global_case_balance",
+    "bias_audit_pass",
+    "generator_language_audit_pass",
+    "quiz_progression_and_theory_binding_pass"
   ],
-  "quality_gates": [
-    "referential_integrity",
-    "no_stopword_concepts",
-    "domain_minimums",
-    "emne_contract",
-    "theory_type_integrity",
-    "method_integrity",
-    "historiography_required",
-    "source_requirements",
-    "progression_required"
-  ],
-  "canonical_files": {
-    "domains": "domains_historie_canonical_v5.json",
-    "emner": "emner_historie_canonical_v5.json",
-    "concepts": "concepts_historie_canonical_v5.json",
-    "theories": "theory_objects_historie_canonical_v5.json",
-    "theory_hooks": "theory_hooks_historie_canonical_v5.json",
-    "methods": "methods_historie_canonical_v5.json"
-  },
-  "updated_at": "2026-07-24"
+  "updated_at": "2026-07-25"
 }

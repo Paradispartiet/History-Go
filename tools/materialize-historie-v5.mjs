@@ -1,17 +1,15 @@
 #!/usr/bin/env node
-import fs from "node:fs";
+import { spawnSync } from "node:child_process";
 import path from "node:path";
-import { domains, emner, concepts, theories } from "../data/fag/historie/historie_v5_registry.mjs";
 
-const outDir = path.join(process.cwd(), "data/fag/historie/generated-v5");
-fs.mkdirSync(outDir, { recursive: true });
-const files = {
-  "domains_historie_canonical_v5.json": domains,
-  "emner_historie_canonical_v5.json": emner,
-  "concepts_historie_canonical_v5.json": concepts,
-  "theories_historie_canonical_v5.json": theories,
-};
-for (const [name, value] of Object.entries(files)) {
-  fs.writeFileSync(path.join(outDir, name), `${JSON.stringify(value, null, 2)}\n`);
-}
-console.log(JSON.stringify({ status: "MATERIALIZED", outDir, domains: domains.length, emner: emner.length, concepts: concepts.length, theories: theories.length }, null, 2));
+// The old materializer wrote synthetic V5 emner, concepts and theories that were
+// not used by the production quiz pipeline. Materialization now means producing
+// a truthful V5.5 readiness snapshot from the active production canonical files.
+const validator = path.join(process.cwd(), "tools/validate-historie-v5.mjs");
+const result = spawnSync(process.execPath, [validator, "--write", ...process.argv.slice(2)], {
+  cwd: process.cwd(),
+  stdio: "inherit"
+});
+
+if (result.error) throw result.error;
+process.exit(result.status ?? 1);
