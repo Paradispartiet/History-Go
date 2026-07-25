@@ -1,0 +1,60 @@
+name: Temporary Næringsliv work-domain extract
+
+on:
+  push:
+    branches:
+      - agent/naeringsliv-arbeid-produksjon-curation
+    paths:
+      - '.github/workflows/temp-naeringsliv-arbeid-domain-extract.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - name: Extract nine emne objects
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const ids = [
+            'em_naering_arbeid_verdiskaping',
+            'em_naering_arbeidsliv_organisering',
+            'em_naering_automatisering_og_arbeid',
+            'em_naering_effektivitet_optimalisering',
+            'em_naering_industri_og_mekanisering',
+            'em_naering_omstilling_kriser_skift',
+            'em_naering_produksjon_produktivitet',
+            'em_naering_profesjoner_kompetanse',
+            'em_naering_usynlig_arbeid'
+          ];
+          const all = JSON.parse(fs.readFileSync('data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json','utf8'));
+          const keep = [
+            'emne_id','title','level','definition','why_it_matters','keywords','key_concepts','core_concepts','sub_concepts',
+            'key_questions','conflicts','ideological_dimensions','methods','analysis_axes','canonical_thinkers','canonical_thinker_ids',
+            'related_emner','good_for_places','quiz_angles','blindspots','broadness','opening_use_ok','question_surface_mode',
+            'generator_use_note','primary_theory_hooks','secondary_theory_hooks','method_ids','recommended_oslo_cases',
+            'distinguish_from_emners','overlap_resolution_note','anti_patterns','recommended_methods'
+          ];
+          const out = ids.map(id => {
+            const item = all.find(x => x.emne_id === id);
+            if (!item) throw new Error(`Mangler ${id}`);
+            return Object.fromEntries(keep.filter(key => item[key] !== undefined).map(key => [key,item[key]]));
+          });
+          fs.mkdirSync('reports',{recursive:true});
+          fs.writeFileSync('reports/naeringsliv-arbeid-domain-working.json',JSON.stringify(out,null,2)+'\n');
+          NODE
+      - name: Commit working extract
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/naeringsliv-arbeid-domain-working.json
+          git commit -m 'Materialiser arbeidsdomenets emneutdrag'
+          git push origin HEAD:${{ github.ref_name }}
