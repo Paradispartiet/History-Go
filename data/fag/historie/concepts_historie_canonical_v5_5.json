@@ -393,9 +393,9 @@
   {
     "concept_id": "con_his_antropocen",
     "label": "antropocen",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «antropocen» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Et omstridt geologisk og historisk periodiseringsbegrep for en epoke der menneskelig aktivitet virker som en planetær kraft, med ujevnt fordelt ansvar, påvirkning og sårbarhet.",
+    "concept_type": "periodization_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
@@ -411,12 +411,19 @@
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet",
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_prosess"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_endring",
+      "con_his_klimavariasjon"
+    ],
+    "distinguish_from": [
+      "con_his_hendelse"
+    ],
     "common_misuse": [
-      "Å bruke «antropocen» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «antropocen» som et naturlig og entydig tidsskille uten å dokumentere startpunkt, romlig skala og konkurrerende periodiseringer."
     ],
     "status": "canonical_v5_5"
   },
@@ -3351,9 +3358,9 @@
   {
     "concept_id": "con_his_dyr",
     "label": "dyr",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «dyr» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Ikke-menneskelige arter undersøkt som arbeidskraft, mat, eiendom, symboler, sykdomsbærere, økologiske aktører og deltakere i historiske menneske–natur-relasjoner.",
+    "concept_type": "more_than_human_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
@@ -3368,12 +3375,19 @@
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet",
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_miljohistorie"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_natur",
+      "con_his_natur_relasjoner"
+    ],
+    "distinguish_from": [
+      "con_his_naturressurser"
+    ],
     "common_misuse": [
-      "Å bruke «dyr» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «dyr» som en tidløs og passiv kategori uten å undersøke historisk definisjon, gjensidighet og ikke-menneskelig påvirkning."
     ],
     "status": "canonical_v5_5"
   },
@@ -3645,22 +3659,33 @@
   },
   {
     "concept_id": "con_his_endring",
-    "label": "endring",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «endring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "miljøendring",
+    "definition": "Dokumentert omforming av økosystemer, landskap eller miljøforhold gjennom samvirke mellom naturlige prosesser, teknologi, institusjoner og menneskelig praksis.",
+    "concept_type": "process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
     "source_emne_ids": [
       "em_his_miljo_klima_klima_og_historisk_endring"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "broader_concepts": [
+      "con_his_prosess"
+    ],
+    "narrower_concepts": [
+      "con_his_klimavariasjon",
+      "con_his_forurensning",
+      "con_his_langsom"
+    ],
+    "related_concepts": [
+      "con_his_klimavariasjon",
+      "con_his_antropocen"
+    ],
+    "distinguish_from": [
+      "con_his_hendelse"
+    ],
     "common_misuse": [
-      "Å bruke «endring» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «miljøendring» som et naturlig og entydig tidsskille uten å dokumentere startpunkt, romlig skala og konkurrerende periodiseringer."
     ],
     "status": "canonical_v5_5"
   },
@@ -3697,9 +3722,9 @@
   {
     "concept_id": "con_his_energi",
     "label": "energi",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «energi» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Fysiske energikilder og omformingsformer som ved, vannkraft, kull, olje og elektrisitet, analysert gjennom arbeid, teknologi, infrastruktur og forbruk.",
+    "concept_type": "material_system_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie",
       "his_miljo_klima_landskap"
@@ -3708,12 +3733,19 @@
       "em_his_industri_produksjon_energi",
       "em_his_miljo_klima_energi_og_energiregimer"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_energiregime"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_energiregimer",
+      "con_his_ressursbruk"
+    ],
+    "distinguish_from": [
+      "con_his_naturressurser"
+    ],
     "common_misuse": [
-      "Å bruke «energi» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å redusere «energi» til én energikilde uten å analysere teknologi, infrastruktur, arbeid, eierskap og overlappende systemer."
     ],
     "status": "canonical_v5_5"
   },
@@ -3743,9 +3775,9 @@
   {
     "concept_id": "con_his_energiregime",
     "label": "energiregime",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «energiregime» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En historisk konfigurasjon av energikilder, teknologi, infrastruktur, arbeid, eierskap, institusjoner og hverdagspraksis som gjør energibruk mulig.",
+    "concept_type": "material_system_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
@@ -3761,32 +3793,48 @@
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_energiregimer",
+      "con_his_energi"
+    ],
+    "related_concepts": [
+      "con_his_energi",
+      "con_his_energiregimer",
+      "con_his_ressursbruk"
+    ],
+    "distinguish_from": [
+      "con_his_naturressurser"
+    ],
     "common_misuse": [
-      "Å bruke «energiregime» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å redusere «energiregime» til én energikilde uten å analysere teknologi, infrastruktur, arbeid, eierskap og overlappende systemer."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_energiregimer",
-    "label": "energiregimer",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «energiregimer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "energiomstilling",
+    "definition": "En langvarig og ujevnt fordelt overgang mellom energiregimer der nye kilder og infrastrukturer bygges ut samtidig som eldre systemer ofte fortsetter.",
+    "concept_type": "process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
     "source_emne_ids": [
       "em_his_miljo_klima_energi_og_energiregimer"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_energiregime"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_energi",
+      "con_his_ressursbruk"
+    ],
+    "distinguish_from": [
+      "con_his_naturressurser"
+    ],
     "common_misuse": [
-      "Å bruke «energiregimer» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å redusere «energiomstilling» til én energikilde uten å analysere teknologi, infrastruktur, arbeid, eierskap og overlappende systemer."
     ],
     "status": "canonical_v5_5"
   },
@@ -5451,9 +5499,9 @@
   {
     "concept_id": "con_his_forurensning",
     "label": "forurensning",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «forurensning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Tilførsel eller opphopning av stoffer, avfall, støy eller stråling som endrer miljøforhold og skaper historisk bestemte skade-, helse- og fordelingskonflikter.",
+    "concept_type": "environmental_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
@@ -5468,12 +5516,19 @@
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet",
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_endring"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_helse",
+      "con_his_miljoulikhet"
+    ],
+    "distinguish_from": [
+      "con_his_klimavariasjon"
+    ],
     "common_misuse": [
-      "Å bruke «forurensning» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «forurensning» som en stabil og likt fordelt størrelse uten å kontrollere målemetode, terskler, eksponering og berørte grupper."
     ],
     "status": "canonical_v5_5"
   },
@@ -5572,21 +5627,28 @@
   {
     "concept_id": "con_his_framtidsansvar",
     "label": "framtidsansvar",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «framtidsansvar» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Forestillinger og institusjonelle forpliktelser om at samtidige beslutninger må vurderes etter deres langsiktige konsekvenser for framtidige mennesker, arter og økosystemer.",
+    "concept_type": "normative_historical_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
     "source_emne_ids": [
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_miljorettferdighet"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_miljoulikhet",
+      "con_his_vold"
+    ],
+    "distinguish_from": [
+      "con_his_naturforvaltning"
+    ],
     "common_misuse": [
-      "Å bruke «framtidsansvar» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «framtidsansvar» som en moralsk etikett uten å dokumentere fordeling, beslutningsprosess, anerkjennelse og årsakskjede."
     ],
     "status": "canonical_v5_5"
   },
@@ -6233,9 +6295,9 @@
   {
     "concept_id": "con_his_helse",
     "label": "helse",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «helse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk fordelte kroppslige og sosiale livsvilkår påvirket av bolig, arbeid, ernæring, smitte, forurensning, infrastruktur og tilgang til natur.",
+    "concept_type": "social_environmental_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie",
       "his_velferd_rett_hverdagsliv",
@@ -6246,12 +6308,20 @@
       "em_his_helse_omsorg_institusjoner",
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_landskap"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_urban_natur",
+      "con_his_urbanisering",
+      "con_his_forurensning"
+    ],
+    "distinguish_from": [
+      "con_his_natur"
+    ],
     "common_misuse": [
-      "Å bruke «helse» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å generalisere fra «helse» for hele byen uten å analysere nabolag, infrastruktur, sosial fordeling og historisk arealbruk."
     ],
     "status": "canonical_v5_5"
   },
@@ -8603,30 +8673,37 @@
   {
     "concept_id": "con_his_klima",
     "label": "klima",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «klima» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Langsiktige mønstre i temperatur, nedbør, vind og andre atmosfæriske forhold som virker sammen med samfunnets sårbarhet, teknologi og institusjoner.",
+    "concept_type": "environmental_system_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
     "source_emne_ids": [
       "em_his_miljo_klima_klima_og_historisk_endring"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_miljohistorie"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_klimavariasjon",
+      "con_his_landskap"
+    ],
+    "distinguish_from": [
+      "con_his_endring"
+    ],
     "common_misuse": [
-      "Å bruke «klima» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å forklare historiske utfall direkte med «klima» uten å analysere sårbarhet, institusjoner, teknologi og aktørenes handlingsvalg."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_klimavariasjon",
     "label": "klimavariasjon",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «klimavariasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Endringer og svingninger i klimatiske forhold over tid, rekonstruert gjennom målinger, naturarkiver og historiske kilder med synlig usikkerhet.",
+    "concept_type": "environmental_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
@@ -8641,12 +8718,19 @@
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet",
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_miljohistorie"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_klima",
+      "con_his_landskap"
+    ],
+    "distinguish_from": [
+      "con_his_endring"
+    ],
     "common_misuse": [
-      "Å bruke «klimavariasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å forklare historiske utfall direkte med «klimavariasjon» uten å analysere sårbarhet, institusjoner, teknologi og aktørenes handlingsvalg."
     ],
     "status": "canonical_v5_5"
   },
@@ -10229,9 +10313,9 @@
   {
     "concept_id": "con_his_landskap",
     "label": "landskap",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «landskap» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Et materielt og kulturelt formet område der geologi, vegetasjon, dyr, arbeid, eiendom, infrastruktur og fortolkning har avsatt historiske lag.",
+    "concept_type": "spatial_environmental_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
@@ -10246,12 +10330,19 @@
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet",
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_miljohistorie"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_natur",
+      "con_his_ressursbruk"
+    ],
+    "distinguish_from": [
+      "con_his_naturressurser"
+    ],
     "common_misuse": [
-      "Å bruke «landskap» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å lese «landskap» som urørt bakgrunn uten å undersøke arbeid, eiendom, infrastruktur, økologi og historiske lag."
     ],
     "status": "canonical_v5_5"
   },
@@ -10340,10 +10431,10 @@
   },
   {
     "concept_id": "con_his_langsom",
-    "label": "langsom",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «langsom» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "tidsforsinket miljøskade",
+    "definition": "Miljøskade som bygges opp gradvis eller blir synlig lenge etter utslipp, inngrep eller eksponering, slik at årsak, ansvar og berørte grupper blir vanskelige å avgrense.",
+    "concept_type": "environmental_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
@@ -10351,12 +10442,20 @@
       "em_his_miljo_klima_antropocen_langsom_vold_og_miljorettferdighet",
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_miljorettferdighet"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_miljoulikhet",
+      "con_his_framtidsansvar",
+      "con_his_vold"
+    ],
+    "distinguish_from": [
+      "con_his_naturforvaltning"
+    ],
     "common_misuse": [
-      "Å bruke «langsom» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «tidsforsinket miljøskade» som en moralsk etikett uten å dokumentere fordeling, beslutningsprosess, anerkjennelse og årsakskjede."
     ],
     "status": "canonical_v5_5"
   },
@@ -11500,22 +11599,30 @@
   },
   {
     "concept_id": "con_his_menneske",
-    "label": "menneske",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «menneske» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "menneskelig påvirkning",
+    "definition": "Historiske endringer i miljø og økosystemer som følger av bosetting, produksjon, forbruk, politikk, teknologi og andre organiserte menneskelige handlinger.",
+    "concept_type": "agency_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
     "source_emne_ids": [
       "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_miljohistorie"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_natur",
+      "con_his_dyr",
+      "con_his_natur_relasjoner"
+    ],
+    "distinguish_from": [
+      "con_his_naturressurser"
+    ],
     "common_misuse": [
-      "Å bruke «menneske» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «menneskelig påvirkning» som en tidløs og passiv kategori uten å undersøke historisk definisjon, gjensidighet og ikke-menneskelig påvirkning."
     ],
     "status": "canonical_v5_5"
   },
@@ -11721,9 +11828,9 @@
   {
     "concept_id": "con_his_miljobevegelse",
     "label": "miljøbevegelse",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «miljøbevegelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Kollektiv organisering som mobiliserer kunnskap, protest, rettslige virkemidler og politiske krav for vern, helse, ressurskontroll eller miljørettferdighet.",
+    "concept_type": "collective_action_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap",
       "his_offentlighet_mobilisering_bevegelser"
@@ -11741,21 +11848,28 @@
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar",
       "em_his_offentlighet_mobilisering_miljobevegelse_og_nye_sosiale_bevegelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_naturforvaltning"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_vern",
+      "con_his_framtidsansvar"
+    ],
+    "distinguish_from": [
+      "con_his_miljorettferdighet"
+    ],
     "common_misuse": [
-      "Å bruke «miljøbevegelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å likestille formelle vedtak om «miljøbevegelse» med faktisk gjennomføring uten å undersøke konflikter, kapasitet og lokal praksis."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_miljohistorie",
     "label": "miljøhistorie",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «miljøhistorie» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Et historiefaglig felt som undersøker gjensidige forbindelser mellom samfunn, arter, klima, landskap, teknologi og naturressurser over tid.",
+    "concept_type": "historiographical_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
@@ -11763,20 +11877,32 @@
       "em_his_miljo_klima_forurensning_og_urban_miljohistorie"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_klima",
+      "con_his_landskap",
+      "con_his_natur_relasjoner",
+      "con_his_energiregime",
+      "con_his_miljorettferdighet"
+    ],
+    "related_concepts": [
+      "con_his_natur",
+      "con_his_dyr",
+      "con_his_natur_relasjoner"
+    ],
+    "distinguish_from": [
+      "con_his_naturressurser"
+    ],
     "common_misuse": [
-      "Å bruke «miljøhistorie» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «miljøhistorie» som en tidløs og passiv kategori uten å undersøke historisk definisjon, gjensidighet og ikke-menneskelig påvirkning."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_miljorettferdighet",
     "label": "miljørettferdighet",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «miljørettferdighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Analyse av hvordan miljøgoder, skader, beslutningsmakt og anerkjennelse fordeles mellom grupper, steder og generasjoner.",
+    "concept_type": "justice_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
@@ -11792,11 +11918,21 @@
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_miljoulikhet",
+      "con_his_vold",
+      "con_his_framtidsansvar"
+    ],
+    "related_concepts": [
+      "con_his_miljoulikhet",
+      "con_his_framtidsansvar",
+      "con_his_vold"
+    ],
+    "distinguish_from": [
+      "con_his_naturforvaltning"
+    ],
     "common_misuse": [
-      "Å bruke «miljørettferdighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «miljørettferdighet» som en moralsk etikett uten å dokumentere fordeling, beslutningsprosess, anerkjennelse og årsakskjede."
     ],
     "status": "canonical_v5_5"
   },
@@ -11825,21 +11961,28 @@
   {
     "concept_id": "con_his_miljoulikhet",
     "label": "miljøulikhet",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «miljøulikhet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Systematiske forskjeller i eksponering for miljøskade, tilgang til naturgoder og kapasitet til å påvirke eller håndtere miljøendringer.",
+    "concept_type": "distribution_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
     "source_emne_ids": [
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_miljorettferdighet"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_framtidsansvar",
+      "con_his_vold"
+    ],
+    "distinguish_from": [
+      "con_his_naturforvaltning"
+    ],
     "common_misuse": [
-      "Å bruke «miljøulikhet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «miljøulikhet» som en moralsk etikett uten å dokumentere fordeling, beslutningsprosess, anerkjennelse og årsakskjede."
     ],
     "status": "canonical_v5_5"
   },
@@ -12736,51 +12879,70 @@
   {
     "concept_id": "con_his_natur",
     "label": "natur",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «natur» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En historisk og kulturelt skiftende kategori for ikke-menneskelige omgivelser og prosesser, aldri et helt stabilt motstykke til samfunn eller kultur.",
+    "concept_type": "historical_category",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
     "source_emne_ids": [
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "broader_concepts": [
+      "con_his_miljohistorie"
+    ],
+    "narrower_concepts": [
+      "con_his_dyr",
+      "con_his_skog",
+      "con_his_vann",
+      "con_his_urban_natur"
+    ],
+    "related_concepts": [
+      "con_his_dyr",
+      "con_his_natur_relasjoner"
+    ],
+    "distinguish_from": [
+      "con_his_naturressurser"
+    ],
     "common_misuse": [
-      "Å bruke «natur» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «natur» som en tidløs og passiv kategori uten å undersøke historisk definisjon, gjensidighet og ikke-menneskelig påvirkning."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_natur_relasjoner",
-    "label": "natur-relasjoner",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «natur-relasjoner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "menneske–natur-relasjoner",
+    "definition": "Gjensidige historiske forbindelser mellom mennesker, andre arter, økosystemer og materialer gjennom arbeid, omsorg, konflikt, kunnskap og avhengighet.",
+    "concept_type": "relational_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
     "source_emne_ids": [
       "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_miljohistorie"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_natur",
+      "con_his_dyr"
+    ],
+    "distinguish_from": [
+      "con_his_naturressurser"
+    ],
     "common_misuse": [
-      "Å bruke «natur-relasjoner» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «menneske–natur-relasjoner» som en tidløs og passiv kategori uten å undersøke historisk definisjon, gjensidighet og ikke-menneskelig påvirkning."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_naturforvaltning",
     "label": "naturforvaltning",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «naturforvaltning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Institusjoner, kunnskapsformer, regler og praksiser som klassifiserer, fordeler, regulerer og overvåker arter, områder og naturressurser.",
+    "concept_type": "governance_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
@@ -12796,20 +12958,29 @@
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_vern",
+      "con_his_miljobevegelse"
+    ],
+    "related_concepts": [
+      "con_his_miljobevegelse",
+      "con_his_vern",
+      "con_his_framtidsansvar"
+    ],
+    "distinguish_from": [
+      "con_his_miljorettferdighet"
+    ],
     "common_misuse": [
-      "Å bruke «naturforvaltning» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å likestille formelle vedtak om «naturforvaltning» med faktisk gjennomføring uten å undersøke konflikter, kapasitet og lokal praksis."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_naturressurser",
     "label": "naturressurser",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «naturressurser» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Deler av naturen som historiske aktører klassifiserer som nyttige eller verdifulle og gjør tilgjengelige gjennom kunnskap, eierskap, arbeid og teknologi.",
+    "concept_type": "material_system_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
@@ -12817,11 +12988,21 @@
       "em_his_miljo_klima_skog_vann_og_naturressurser"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_skog",
+      "con_his_vann",
+      "con_his_energi"
+    ],
+    "related_concepts": [
+      "con_his_ressursbruk",
+      "con_his_naturforvaltning",
+      "con_his_landskap"
+    ],
+    "distinguish_from": [
+      "con_his_vern"
+    ],
     "common_misuse": [
-      "Å bruke «naturressurser» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «naturressurser» som gitt av naturen uten å vise hvordan verdi, tilgang, rettigheter og bruk ble historisk produsert."
     ],
     "status": "canonical_v5_5"
   },
@@ -15762,9 +15943,9 @@
   {
     "concept_id": "con_his_ressursbruk",
     "label": "ressursbruk",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «ressursbruk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Uttak, bearbeiding, fordeling, forbruk og avhending av naturressurser, analysert sammen med rettigheter, arbeid, teknologi og miljøkonsekvenser.",
+    "concept_type": "material_practice_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
@@ -15779,12 +15960,19 @@
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet",
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_naturressurser"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_naturforvaltning",
+      "con_his_landskap"
+    ],
+    "distinguish_from": [
+      "con_his_vern"
+    ],
     "common_misuse": [
-      "Å bruke «ressursbruk» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «ressursbruk» som gitt av naturen uten å vise hvordan verdi, tilgang, rettigheter og bruk ble historisk produsert."
     ],
     "status": "canonical_v5_5"
   },
@@ -17168,21 +17356,29 @@
   {
     "concept_id": "con_his_skog",
     "label": "skog",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «skog» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Et økologisk og forvaltet landskap formet av hogst, beite, vern, eiendom, artsendring, energi- og materialbehov.",
+    "concept_type": "landscape_resource_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
     "source_emne_ids": [
       "em_his_miljo_klima_skog_vann_og_naturressurser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_naturressurser"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_ressursbruk",
+      "con_his_naturforvaltning",
+      "con_his_landskap"
+    ],
+    "distinguish_from": [
+      "con_his_vern"
+    ],
     "common_misuse": [
-      "Å bruke «skog» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «skog» som gitt av naturen uten å vise hvordan verdi, tilgang, rettigheter og bruk ble historisk produsert."
     ],
     "status": "canonical_v5_5"
   },
@@ -19772,10 +19968,10 @@
   },
   {
     "concept_id": "con_his_urban",
-    "label": "urban",
-    "definition": "I Byhistorie og stedsendring betegner «urban» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "urbanisering",
+    "definition": "Konsentrasjon av befolkning, bygging og infrastrukturer som omformer areal, vannløp, energibruk, avfall, helse og forholdet mellom by og omland.",
+    "concept_type": "spatial_process_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring",
       "his_miljo_klima_landskap"
@@ -19785,12 +19981,20 @@
       "em_his_miljo_klima_forurensning_og_urban_miljohistorie",
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_landskap"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_urban_natur",
+      "con_his_urbanisering",
+      "con_his_forurensning"
+    ],
+    "distinguish_from": [
+      "con_his_natur"
+    ],
     "common_misuse": [
-      "Å bruke «urban» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å generalisere fra «urbanisering» for hele byen uten å analysere nabolag, infrastruktur, sosial fordeling og historisk arealbruk."
     ],
     "status": "canonical_v5_5"
   },
@@ -19825,9 +20029,9 @@
   {
     "concept_id": "con_his_urban_natur",
     "label": "urban natur",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «urban natur» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Arter, vann, jord, grøntområder og økologiske prosesser i byen, formet av planlegging, vedlikehold, forurensning, bruk og sosial ulikhet.",
+    "concept_type": "spatial_environmental_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
@@ -19842,12 +20046,19 @@
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet",
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_landskap"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_urbanisering",
+      "con_his_forurensning"
+    ],
+    "distinguish_from": [
+      "con_his_natur"
+    ],
     "common_misuse": [
-      "Å bruke «urban natur» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å generalisere fra «urban natur» for hele byen uten å analysere nabolag, infrastruktur, sosial fordeling og historisk arealbruk."
     ],
     "status": "canonical_v5_5"
   },
@@ -20162,21 +20373,29 @@
   {
     "concept_id": "con_his_vann",
     "label": "vann",
-    "definition": "I Miljø-, klima- og landskapshistorie betegner «vann» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Hydrologiske kretsløp og vannforekomster analysert sammen med forsyning, energi, transport, avløp, eierskap, flom og forurensning.",
+    "concept_type": "environmental_system_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_miljo_klima_landskap"
     ],
     "source_emne_ids": [
       "em_his_miljo_klima_skog_vann_og_naturressurser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_naturressurser"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_ressursbruk",
+      "con_his_naturforvaltning",
+      "con_his_landskap"
+    ],
+    "distinguish_from": [
+      "con_his_vern"
+    ],
     "common_misuse": [
-      "Å bruke «vann» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «vann» som gitt av naturen uten å vise hvordan verdi, tilgang, rettigheter og bruk ble historisk produsert."
     ],
     "status": "canonical_v5_5"
   },
@@ -20368,9 +20587,9 @@
   {
     "concept_id": "con_his_vern",
     "label": "vern",
-    "definition": "I Minne, kulturarv og historiebruk betegner «vern» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Juridiske, administrative og sosiale praksiser som begrenser inngrep for å beskytte arter, landskap, økosystemer eller kultur- og naturverdier.",
+    "concept_type": "governance_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk",
       "his_byhistorie_stedsendring",
@@ -20389,12 +20608,19 @@
       "em_his_miljo_klima_antropocen_langsom_vold_og_miljorettferdighet",
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_naturforvaltning"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_miljobevegelse",
+      "con_his_framtidsansvar"
+    ],
+    "distinguish_from": [
+      "con_his_miljorettferdighet"
+    ],
     "common_misuse": [
-      "Å bruke «vern» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å likestille formelle vedtak om «vern» med faktisk gjennomføring uten å undersøke konflikter, kapasitet og lokal praksis."
     ],
     "status": "canonical_v5_5"
   },
@@ -20542,10 +20768,10 @@
   },
   {
     "concept_id": "con_his_vold",
-    "label": "vold",
-    "definition": "I Krig, okkupasjon og motstand betegner «vold» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "langsom vold",
+    "definition": "Skade som utvikler seg gradvis, spres over store områder eller rammer etter lang tid, og derfor ofte mangler et tydelig øyeblikk, synlig gjerningsperson eller samlet offentlighet.",
+    "concept_type": "justice_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_krig_okkupasjon_motstand",
       "his_miljo_klima_landskap"
@@ -20555,12 +20781,19 @@
       "em_his_miljo_klima_antropocen_langsom_vold_og_miljorettferdighet",
       "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_miljorettferdighet"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_miljoulikhet",
+      "con_his_framtidsansvar"
+    ],
+    "distinguish_from": [
+      "con_his_naturforvaltning"
+    ],
     "common_misuse": [
-      "Å bruke «vold» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «langsom vold» som en moralsk etikett uten å dokumentere fordeling, beslutningsprosess, anerkjennelse og årsakskjede."
     ],
     "status": "canonical_v5_5"
   },

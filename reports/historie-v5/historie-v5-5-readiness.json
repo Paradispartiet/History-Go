@@ -3,7 +3,7 @@
   "subject_id": "historie",
   "status": "QUALITY_REVIEW_REQUIRED",
   "v6_allowed": false,
-  "generated_at": "2026-07-25T17:02:52.373Z",
+  "generated_at": "2026-07-25T17:15:23.468Z",
   "coverage_counts": {
     "domains": 20,
     "emner": 200,
@@ -13,10 +13,10 @@
     "theories": 200
   },
   "quality_issue_totals": {
-    "concepts": 721,
-    "theories": 180,
+    "concepts": 692,
+    "theories": 170,
     "emner": 0,
-    "domains_not_freeze_ready": 18
+    "domains_not_freeze_ready": 17
   },
   "global_gates": {
     "structural_integrity": true,
@@ -30,14 +30,14 @@
   },
   "quality": {
     "concept_issue_counts": {
-      "synthetic_template_definition": 721,
-      "missing_semantic_relations": 721,
-      "generic_or_missing_misuse_guard": 721,
+      "synthetic_template_definition": 692,
+      "missing_semantic_relations": 692,
+      "generic_or_missing_misuse_guard": 692,
       "numeric_reference_mistyped_as_concept": 3
     },
     "theory_issue_counts": {
-      "only_generic_limitations": 180,
-      "mass_repeated_limitation_profile": 180
+      "only_generic_limitations": 170,
+      "mass_repeated_limitation_profile": 170
     },
     "emne_issue_counts": {}
   },
@@ -118,7 +118,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 82,
+        "concepts": 80,
         "theories": 10
       },
       "issues": [
@@ -133,7 +133,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 43,
+        "concepts": 42,
         "theories": 10
       },
       "issues": [
@@ -148,7 +148,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 76,
+        "concepts": 75,
         "theories": 10
       },
       "issues": [
@@ -178,7 +178,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 71,
+        "concepts": 70,
         "theories": 10
       },
       "issues": [
@@ -193,7 +193,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 48,
+        "concepts": 46,
         "theories": 10
       },
       "issues": [
@@ -280,16 +280,13 @@
       "domain_id": "his_miljo_klima_landskap",
       "label": "Miljø-, klima- og landskapshistorie",
       "coverage_complete": true,
-      "freeze_ready": false,
+      "freeze_ready": true,
       "issue_counts": {
         "emner": 0,
-        "concepts": 29,
-        "theories": 10
+        "concepts": 0,
+        "theories": 0
       },
-      "issues": [
-        "concept_quality_incomplete",
-        "theory_quality_incomplete"
-      ]
+      "issues": []
     },
     {
       "domain_id": "his_vitenskap_teknologi_kunnskap",
@@ -328,7 +325,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 43,
+        "concepts": 42,
         "theories": 10
       },
       "issues": [
@@ -514,18 +511,6 @@
         ]
       },
       {
-        "concept_id": "con_his_antropocen",
-        "label": "antropocen",
-        "domain_ids": [
-          "his_miljo_klima_landskap"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
         "concept_id": "con_his_arbeid",
         "label": "arbeid",
         "domain_ids": [
@@ -642,6 +627,18 @@
         "label": "arbeidskraft",
         "domain_ids": [
           "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmigrasjon",
+        "label": "arbeidsmigrasjon",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
         ],
         "issues": [
           "synthetic_template_definition",
