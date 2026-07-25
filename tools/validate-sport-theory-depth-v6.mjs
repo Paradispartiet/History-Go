@@ -20,7 +20,7 @@ const paths = {
 };
 
 const [emners, hookFile, thinkerFile, claimFile, unitFile, matrixFile, manifest, qualityManifest, evidenceManifest, profile] = await Promise.all([
-  readJson(paths.emner), readJson(paths.hooks), readJson(paths.thinkers), readJson(paths.claims),
+  readJson(paths.emners), readJson(paths.hooks), readJson(paths.thinkers), readJson(paths.claims),
   readJson(paths.units), readJson(paths.matrix), readJson(paths.manifest), readJson(paths.qualityManifest),
   readJson(paths.evidenceManifest), readJson(paths.profile)
 ]);
@@ -37,7 +37,9 @@ const uniqueIds = (items, key, label) => {
 };
 const resolveRefs = (items, key, known, label, idKey) => {
   for (const item of items) {
-    for (const ref of item?.[key] || []) {
+    const raw = item?.[key];
+    const refs = raw == null ? [] : (Array.isArray(raw) ? raw : [raw]);
+    for (const ref of refs) {
       require(known.has(ref), `${label}: ukjent ${key}`, { item: item[idKey], ref });
     }
   }
