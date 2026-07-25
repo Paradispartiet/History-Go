@@ -1,7 +1,7 @@
 {
-  "version": "v5.5-freeze-contract",
+  "version": "v5.5-quality-freeze-contract",
   "subject_id": "historie",
-  "status": "canonical",
+  "status": "quality_gate_active",
   "authoritative_files": {
     "fagkart": "fagkart_historie_canonical_v4_5.json",
     "methods": "methods_historie_canonical_v4_5.json",
@@ -12,30 +12,63 @@
     "concepts": "concepts_historie_canonical_v5_5.json",
     "theories": "theory_objects_historie_canonical_v5_5.json"
   },
-  "counts": {
+  "coverage_counts": {
     "domains": 20,
     "emner": 200,
     "mappings": 200,
     "theory_hooks": 200
   },
+  "coverage_policy": {
+    "counts_establish_coverage_not_curation": true,
+    "generated_objects_cannot_unlock_v6": true
+  },
   "domain_freeze_contract": {
     "required_status": "complete_revised",
-    "min_emner": 10,
-    "min_theory_hooks": 10,
+    "exact_emner": 10,
+    "exact_theory_hooks": 10,
     "min_methods": 9,
     "min_mapped_emner": 10,
     "min_recommended_cases": 6,
     "min_canonical_thinkers": 4,
-    "min_norwegian_thinkers": 1
+    "min_norwegian_thinkers": 1,
+    "domain_chain_required": true,
+    "boundary_rules_required": true,
+    "permanent_validator_required": true
   },
-  "global_freeze_contract": {
-    "all_domains_freeze_ready": true,
-    "concept_noise_zero": true,
-    "synthetic_generator_language_zero": true,
-    "typed_curated_theory_registry_present": true,
-    "curated_concept_registry_present": true
+  "concept_freeze_contract": {
+    "specific_definition_required": true,
+    "semantic_relations_required": true,
+    "type_must_match_object": true,
+    "specific_misuse_guard_required": true,
+    "provenance_links_required": true,
+    "lexical_fragments_forbidden": true
+  },
+  "theory_freeze_contract": {
+    "typed_objects_required": true,
+    "theory_specific_definition_required": true,
+    "theory_specific_limitations_required": true,
+    "method_and_thinker_links_required": true,
+    "evidence_ready_must_remain_false_until_v6": true
+  },
+  "emne_freeze_contract": {
+    "individually_specific_definition_required": true,
+    "individually_specific_rationale_required": true,
+    "min_core_concepts": 4,
+    "min_sub_concepts": 4,
+    "min_key_questions": 3,
+    "min_analysis_axes": 3,
+    "min_methods": 2,
+    "min_cases": 4,
+    "min_thinkers": 4,
+    "min_norwegian_thinkers": 1,
+    "min_anti_patterns": 3,
+    "min_distinguish_from_emners": 2,
+    "min_historiographical_conflicts": 2,
+    "two_lane_mapping_required": true,
+    "temporal_source_and_distinction_gates_required": true
   },
   "v6_policy": {
-    "allowed_only_when_freeze_ready": true
+    "allowed_only_when_quality_freeze_ready": true,
+    "current_default": "blocked_until_quality_gate_passes"
   }
 }
