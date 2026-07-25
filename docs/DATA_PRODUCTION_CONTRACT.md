@@ -1,8 +1,8 @@
 # History Go – data production contract
 
-Status: active data-production contract
+Status: **canonical data-production contract**
 Owner: History Go data/runtime
-Last updated: 2026-06-15
+Last verified: 2026-07-25
 
 This document defines how new History Go data must be produced, checked and inserted without breaking category logic, place references, people references, badges, progression or generated indexes.
 
@@ -131,6 +131,8 @@ If the file is not manifest-listed, the place is not part of the app's canonical
 
 Do not update `data/places/places_index.json` directly. Regenerate it from source when relevant.
 
+When a category has been split to one file per place, edit the manifest-listed per-place file. Do not edit the retained aggregate merely because it still exists in the repository.
+
 ## 6. People must be added through manifest-loaded people files
 
 New people must be added to the correct source file under:
@@ -163,28 +165,53 @@ A person can have several place links:
 
 ## 7. Politics data rule
 
-Politics already has canonical source files:
+Politics is manifest-driven and must not have a parallel data structure.
+
+### Places
+
+Oslo politics places have been split to one file per place under:
+
+```text
+data/places/politikk/oslo/places_politikk/<place_id>.json
+```
+
+The split layout and source provenance are documented in:
+
+```text
+data/places/politikk/oslo/places_politikk_manifest.json
+```
+
+The global runtime authority is still:
+
+```text
+data/places/manifest.json
+```
+
+Only files listed by the global manifest are active canonical runtime sources. The retained aggregate:
 
 ```text
 data/places/politikk/oslo/places_politikk.json
+```
+
+is an original/source aggregate retained during the split. It must not be treated as the active edit target unless the global manifest explicitly activates it again.
+
+Existing politics places must be improved in their manifest-listed per-place source file. Search by ID and name before editing; do not rely on a static ID list in documentation.
+
+### People and badges
+
+The currently manifest-listed Oslo politics people source is:
+
+```text
 data/people/politikk/oslo/people_politikk_oslo.json
+```
+
+Politics underbadges remain defined in:
+
+```text
 data/badges/politikk.json
 ```
 
-Do not create a parallel politics data structure.
-
-Existing politics places must be improved in the existing politics place file.
-
-Known current politics place IDs include:
-
-```text
-stortinget
-youngstorget
-oslo_radhus
-eidsvolls_plass
-tinghuset
-regjeringskvartalet
-```
+Do not create parallel politics place, people or badge registries.
 
 Important ID rule:
 
@@ -278,7 +305,6 @@ Do not solve data problems by adding runtime filters, hardcoded exceptions or te
 If data is wrong, fix the relevant JSON source file or schema contract.
 
 Minimal, source-first data work is preferred over broad refactors.
-
 
 ### Rundingsregel for minneskilt og plaketter
 

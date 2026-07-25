@@ -33,7 +33,7 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 3. [`../README/README_DEV.md`](../README/README_DEV.md) — kjøring, debugging og validering
 4. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
 
-`SYSTEM_REGISTRY.md` er fortsatt bindende, men er merket `transitional` fordi aktiv kontrakt og gammel innlimt historikk fortsatt ligger i samme fil. Den skal deles i fase 2 uten å endre runtime-kontraktene tilfeldig.
+`SYSTEM_REGISTRY.md` er fortsatt bindende, men er merket `transitional` fordi aktiv kontrakt og gammel innlimt historikk fortsatt ligger i samme fil. Den skal konsolideres uten å miste gjeldende runtime-regler.
 
 ### Produkt og ferdigstillelse
 
@@ -45,9 +45,9 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 
 Følgende filer er snapshots og skal ikke brukes som nåstatus:
 
-- `README/CURRENT_PRODUCT_STATE.md`
-- `docs/IMPLEMENTATION_STATUS.md`
-- `docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md`
+- `README/CURRENT_PRODUCT_STATE.md` — historisk status er merket direkte i filen
+- `docs/IMPLEMENTATION_STATUS.md` — historisk status er merket direkte i filen
+- `docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md` — eldre audit basert på 2026-04-30-data
 
 ### Data og innholdsproduksjon
 
@@ -56,7 +56,7 @@ Følgende filer er snapshots og skal ikke brukes som nåstatus:
 3. lokale README-filer ved datasettet
 4. relevante audits og CI-gates
 
-Ved konflikt mellom en gammel path i dokumentasjon og manifestet er manifestet/runtime-koden sannhetskilden. Dokumentet skal deretter korrigeres.
+Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk-places. Ved konflikt mellom dokumentasjon og et aktivt manifest er manifestet/runtime-koden sannhetskilden, og dokumentasjonen skal korrigeres.
 
 ### Fag, emner og quiz
 
@@ -110,20 +110,22 @@ Workflowen `Documentation governance` validerer:
 - at inngangsdokumentenes lokale lenker ikke er brutte,
 - at denne indeksen omtaler alle canonical og transitional dokumenter.
 
-Kontrollen kjøres når sentrale dokumenter, registeret eller kontrollscriptet endres.
+Kontrollen kjører når sentrale dokumenter, registeret eller kontrollscriptet endres og lagrer en kort auditlogg som workflow-artifact.
 
-## Neste konsolideringsfaser
+## Konsolideringsstatus
 
-### Fase 2
+### Gjennomført
 
-- del `README/SYSTEM_REGISTRY.md` i aktiv kontrakt og arkivert legacytekst,
-- korriger gamle aggregate paths i `docs/DATA_PRODUCTION_CONTRACT.md`,
-- merk snapshot-status direkte øverst i `CURRENT_PRODUCT_STATE`, `IMPLEMENTATION_STATUS` og gap-auditen,
-- reduser `DOCS.md` til en ren inngang til denne filen.
+- canonical dokumentregister og dokumentasjonsgate
+- `DOCS.md` redusert til inngang
+- gamle politikk-aggregate-paths fjernet fra dataproduksjonskontrakten
+- `CURRENT_PRODUCT_STATE` og `IMPLEMENTATION_STATUS` merket som historiske snapshots
 
-### Fase 3
+### Neste
 
-- konsolider quizdokumentasjonen mot aktiv V5.1-/manifestpipeline,
-- opprett én Civication-dokumentindeks,
-- flytt daterte audits og migreringsstatus til `reports/archive/`,
-- standardiser extensionløse, feilstavede og dupliserte README-navn med redirects eller lenkeoppdatering.
+- konsolider aktiv kontrakt og innlimt legacytekst i `README/SYSTEM_REGISTRY.md`
+- merk gap-auditen direkte som historisk og flytt den senere til rapportarkiv
+- konsolider quizdokumentasjonen mot aktiv V5.1-/manifestpipeline
+- opprett én Civication-dokumentindeks
+- flytt daterte audits og migreringsstatus til `reports/archive/`
+- standardiser extensionløse, feilstavede og dupliserte README-navn med redirects eller lenkeoppdatering

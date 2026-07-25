@@ -1,4 +1,6 @@
-# Implementation Status
+# Implementation Status — historical snapshot
+
+> **Status: historical.** This file is a bounded implementation snapshot for HG Social, Civication Home and HG Spotmeeting. It is not the current product-wide implementation status. Use [`HISTORY_GO_PRODUCT_MAP.md`](./HISTORY_GO_PRODUCT_MAP.md) for current History GO completion priorities and the relevant subsystem contracts for active runtime rules.
 
 ## HG Social Layer
 
