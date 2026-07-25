@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-25T07:47:40.453Z
+Generated: 2026-07-25T10:42:13.691Z
 
 ## Sammendrag
-- People-filer lest: **723**
-- People lest: **1358**
+- People-filer lest: **730**
+- People lest: **1365**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1358**
+- Duplikate interne place-referanser: **1365**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -1376,5 +1376,12 @@ Generated: 2026-07-25T07:47:40.453Z
 - data/people/scenekunst/oslo/teater_manu/mira_zuckermann.json :: mira_zuckermann (Mira Zuckermann) -> teater_manu x2
 - data/people/scenekunst/oslo/centralteatret/harald_otto.json :: harald_otto (Harald Otto) -> centralteatret x2
 - data/people/scenekunst/oslo/dramatikkens_hus/anne_may_nilsen.json :: anne_may_nilsen (Anne-May Nilsen) -> dramatikkens_hus x2
+- data/people/scenekunst/oslo/black_box_teater/inger_buresund.json :: inger_buresund (Inger Buresund) -> black_box_teater x2
+- data/people/scenekunst/oslo/dansens_hus_oslo/randi_urdal.json :: randi_urdal (Randi Urdal) -> dansens_hus_oslo x2
+- data/people/scenekunst/oslo/kloden_teater_pilotscenen/aadne_sekkelsten.json :: aadne_sekkelsten (Ådne Sekkelsten) -> kloden_teater_pilotscenen x2
+- data/people/scenekunst/oslo/riksscenen/jan_lothe_eriksen.json :: jan_lothe_eriksen (Jan Lothe Eriksen) -> riksscenen x2
+- data/people/scenekunst/oslo/rommen_scene/erik_aldner.json :: erik_aldner (Erik Aldner) -> rommen_scene x2
+- data/people/scenekunst/oslo/salt_oslo/erlend_mogard_larsen.json :: erlend_mogard_larsen (Erlend Mogård-Larsen) -> salt_oslo x2
+- data/people/scenekunst/oslo/vega_scene/katinka_rydin_berge.json :: katinka_rydin_berge (Katinka Rydin Berge) -> vega_scene x2
 
 ## Anbefalt neste ryddebatch

@@ -11,11 +11,19 @@ function readJson(filePath: string): any {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
-function toArray(data: any): any[] {
+function toPlaceArray(data: any): any[] {
   if (Array.isArray(data)) return data;
   if (data && Array.isArray(data.places)) return data.places;
+  if (data && Array.isArray(data.items)) return data.items;
+  if (data && typeof data === 'object' && typeof data.id === 'string' && data.id.trim()) return [data];
+  return [];
+}
+
+function toPersonArray(data: any): any[] {
+  if (Array.isArray(data)) return data;
   if (data && Array.isArray(data.people)) return data.people;
   if (data && Array.isArray(data.items)) return data.items;
+  if (data && typeof data === 'object' && typeof data.id === 'string' && data.id.trim()) return [data];
   return [];
 }
 
@@ -79,7 +87,7 @@ const logicalPlaces = new Map<string, any[]>();
 for (const relPath of placesManifest.files ?? []) {
   const filePath = path.join(root, 'data', relPath);
   const sourceFile = path.relative(root, filePath).replace(/\\/g, '/');
-  for (const place of toArray(readJson(filePath))) {
+  for (const place of toPlaceArray(readJson(filePath))) {
     if (!place || typeof place.id !== 'string' || !place.id.trim()) continue;
     const id = place.id.trim();
     if (!logicalPlaces.has(id)) logicalPlaces.set(id, []);
@@ -92,7 +100,7 @@ const logicalPeople = new Map<string, { id: string; name: string; refs: Set<stri
 for (const relPath of peopleManifest.files ?? []) {
   const filePath = path.join(root, 'data', relPath);
   const sourceFile = path.relative(root, filePath).replace(/\\/g, '/');
-  for (const person of toArray(readJson(filePath))) {
+  for (const person of toPersonArray(readJson(filePath))) {
     if (!person || typeof person.id !== 'string' || !person.id.trim()) continue;
     const id = person.id.trim();
     const current = logicalPeople.get(id) ?? {
