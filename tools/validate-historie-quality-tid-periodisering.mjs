@@ -124,11 +124,11 @@ if (readiness) {
   check(domainReadiness?.issue_counts?.concepts === 0, 'time domain has zero concept issues');
   check(domainReadiness?.issue_counts?.theories === 0, 'time domain has zero theory issues');
 
-  // Exact queue counts intentionally catch rollback of the first curated domain.
-  check(readiness.quality_issue_totals?.concepts === 785, 'global concept queue reduced to 785');
-  check(readiness.quality_issue_totals?.theories === 190, 'global theory queue reduced to 190');
+  // Upper bounds catch rollback of this domain while allowing later domains to reduce the queue.
+  check(readiness.quality_issue_totals?.concepts <= 785, 'global concept queue does not exceed 785');
+  check(readiness.quality_issue_totals?.theories <= 190, 'global theory queue does not exceed 190');
   check(readiness.quality_issue_totals?.emner === 0, 'global emne queue remains zero');
-  check(readiness.quality_issue_totals?.domains_not_freeze_ready === 19, '19 domains remain');
+  check(readiness.quality_issue_totals?.domains_not_freeze_ready <= 19, 'at most 19 domains remain');
   check(readiness.v6_allowed === false, 'V6 remains blocked');
 }
 
