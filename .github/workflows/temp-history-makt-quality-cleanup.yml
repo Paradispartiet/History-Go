@@ -16,7 +16,7 @@ jobs:
         with:
           ref: agent/history-makt-quality-validator-cleanup
           fetch-depth: 0
-      - name: Remove transient runner artifacts and restore timestamp-only reports
+      - name: Remove transient artifacts and complete the recorded emne correction
         shell: bash
         run: |
           set -euo pipefail
@@ -26,6 +26,27 @@ jobs:
             reports/place-coordinate-intake-gate.md \
             reports/place-coordinate-quality-gate.md \
             reports/place-source-layout-audit.json
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = 'data/fag/historie/emner_historie_canonical_v4_5.json';
+          const emners = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const target = emners.find((item) => item.emne_id === 'em_his_statlig_kapasitet_skatt_infrastruktur');
+          if (!target) throw new Error('Target emne is missing');
+          let replacements = 0;
+          for (const key of ['key_concepts', 'core_concepts', 'sub_concepts']) {
+            if (!Array.isArray(target[key])) continue;
+            target[key] = target[key].map((label) => {
+              if (label !== 'statlig') return label;
+              replacements += 1;
+              return 'territoriell konsolidering';
+            });
+          }
+          if (replacements < 1 || replacements > 3) {
+            throw new Error(`Expected 1-3 stale references in one emne, found ${replacements}`);
+          }
+          fs.writeFileSync(path, JSON.stringify(emners, null, 2) + '\n');
+          console.log(`Replaced ${replacements} stale emne concept reference(s)`);
+          NODE
       - name: Install dependencies
         run: npm ci
       - name: Run permanent history freeze validators
@@ -53,7 +74,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          unexpected="$(git diff --name-only | grep -Ev '^(tools/validate-historie-makt-stat-institusjoner\.mjs|reports/historie-v5/makt-stat-institusjoner-curation-command-v2\.log|reports/coordinate-branch-runner/agent_oslo-coordinate-history-v5-5-power-curation-v3/|reports/coordinate-evidence-audit\.md|reports/place-coordinate-intake-gate\.md|reports/place-coordinate-quality-gate\.md|reports/place-source-layout-audit\.json)$' || true)"
+          unexpected="$(git diff --name-only | grep -Ev '^(tools/validate-historie-makt-stat-institusjoner\.mjs|data/fag/historie/emner_historie_canonical_v4_5\.json|reports/historie-v5/makt-stat-institusjoner-curation-command-v2\.log|reports/coordinate-branch-runner/agent_oslo-coordinate-history-v5-5-power-curation-v3/|reports/coordinate-evidence-audit\.md|reports/place-coordinate-intake-gate\.md|reports/place-coordinate-quality-gate\.md|reports/place-source-layout-audit\.json)$' || true)"
           test -z "$unexpected" || { echo 'Unexpected changed files:'; echo "$unexpected"; exit 1; }
       - name: Upload validation log
         if: always()
