@@ -187,9 +187,9 @@
   {
     "concept_id": "con_his_alderdom",
     "label": "alderdom",
-    "definition": "I Velferd, rett og hverdagsliv betegner «alderdom» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En historisk skiftende livsfase formet av helse, arbeidsevne, forsørgelse, familieposisjon, institusjoner og kulturelle forestillinger om eldre.",
+    "concept_type": "life_course_stage_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv",
       "his_kjonn_familie_livslop"
@@ -198,12 +198,19 @@
       "em_his_barndom_familie_livslop",
       "em_his_kjonn_familie_barndom_ungdom_alderdom_og_livslop"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_livslop"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_barndom",
+      "con_his_ungdom"
+    ],
+    "distinguish_from": [
+      "con_his_kategori"
+    ],
     "common_misuse": [
-      "Å bruke «alderdom» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «alderdom» som biologisk gitt og ensartet uten å undersøke rettslig status, arbeid, skole, familie, helse og historisk forventning."
     ],
     "status": "canonical_v5_5"
   },
@@ -472,9 +479,9 @@
   {
     "concept_id": "con_his_arbeid",
     "label": "arbeid",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «arbeid» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Formålsrettet innsats som produserer varer, tjenester, omsorg eller sosial reproduksjon, lønnet eller ulønnet og organisert gjennom historiske makt- og kjønnsrelasjoner.",
+    "concept_type": "labor_practice_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie",
       "his_migrasjon_minoritet_tilhorighet",
@@ -487,11 +494,21 @@
       "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_omsorg",
+      "con_his_ulonnet_arbeid",
+      "con_his_sosial_reproduksjon"
+    ],
+    "related_concepts": [
+      "con_his_omsorg",
+      "con_his_ulonnet_arbeid",
+      "con_his_sosial_reproduksjon"
+    ],
+    "distinguish_from": [
+      "con_his_familie"
+    ],
     "common_misuse": [
-      "Å bruke «arbeid» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å redusere «arbeid» til lønnet markedarbeid uten å inkludere husholdsarbeid, omsorg, reproduksjon og uformelle bidrag."
     ],
     "status": "canonical_v5_5"
   },
@@ -1085,9 +1102,9 @@
   {
     "concept_id": "con_his_arv",
     "label": "arv",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «arv» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Overføring av eiendom, penger, rettigheter og forpliktelser mellom generasjoner etter lov, sedvane, testament og familieforhandling.",
+    "concept_type": "intergenerational_transfer_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
@@ -1102,12 +1119,19 @@
       "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_eiendom"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_ekteskap",
+      "con_his_hushold"
+    ],
+    "distinguish_from": [
+      "con_his_omsorg"
+    ],
     "common_misuse": [
-      "Å bruke «arv» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «arv» som formelt regelverk alene uten å undersøke faktisk disposisjon, kjønnede rettigheter, forhandling og praksis."
     ],
     "status": "canonical_v5_5"
   },
@@ -1442,9 +1466,9 @@
   {
     "concept_id": "con_his_barndom",
     "label": "barndom",
-    "definition": "I Velferd, rett og hverdagsliv betegner «barndom» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En historisk definert livsfase formet av avhengighet, oppdragelse, skole, arbeid, familie, rettslig status og forestillinger om utvikling.",
+    "concept_type": "life_course_stage_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv",
       "his_kjonn_familie_livslop"
@@ -1453,12 +1477,19 @@
       "em_his_barndom_familie_livslop",
       "em_his_kjonn_familie_barndom_ungdom_alderdom_og_livslop"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_livslop"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_ungdom",
+      "con_his_alderdom"
+    ],
+    "distinguish_from": [
+      "con_his_kategori"
+    ],
     "common_misuse": [
-      "Å bruke «barndom» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «barndom» som biologisk gitt og ensartet uten å undersøke rettslig status, arbeid, skole, familie, helse og historisk forventning."
     ],
     "status": "canonical_v5_5"
   },
@@ -3502,9 +3533,9 @@
   {
     "concept_id": "con_his_eiendom",
     "label": "eiendom",
-    "definition": "I Middelalder, kirke og kongemakt betegner «eiendom» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk regulerte rettigheter til å eie, bruke, overføre, arve og kontrollere jord, bolig, løsøre og andre ressurser.",
+    "concept_type": "property_relations_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_middelalder_kirke_kongemakt",
       "his_byhistorie_stedsendring",
@@ -3527,10 +3558,16 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_arv",
+      "con_his_ekteskap",
+      "con_his_hushold"
+    ],
+    "distinguish_from": [
+      "con_his_omsorg"
+    ],
     "common_misuse": [
-      "Å bruke «eiendom» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «eiendom» som formelt regelverk alene uten å undersøke faktisk disposisjon, kjønnede rettigheter, forhandling og praksis."
     ],
     "status": "canonical_v5_5"
   },
@@ -3680,9 +3717,9 @@
   {
     "concept_id": "con_his_ekteskap",
     "label": "ekteskap",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «ekteskap» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En sosial og rettslig institusjon som regulerer samliv, seksualitet, forsørgelse, arv, foreldreansvar og tilhørighet mellom familier.",
+    "concept_type": "family_legal_institution_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
@@ -3697,12 +3734,19 @@
       "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_familie"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_hushold",
+      "con_his_slektskap"
+    ],
+    "distinguish_from": [
+      "con_his_livslop"
+    ],
     "common_misuse": [
-      "Å bruke «ekteskap» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «ekteskap» som en stabil kjernefamilie uten å undersøke husholdsmedlemmer, slektskap, tjeneste, adopsjon, økonomi og rett."
     ],
     "status": "canonical_v5_5"
   },
@@ -4460,9 +4504,9 @@
   {
     "concept_id": "con_his_familie",
     "label": "familie",
-    "definition": "I Velferd, rett og hverdagsliv betegner «familie» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk skiftende relasjoner av slektskap, ekteskap, omsorg, forsørgelse og tilhørighet, ikke nødvendigvis sammenfallende med husholdet.",
+    "concept_type": "kinship_household_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv",
       "his_migrasjon_minoritet_tilhorighet",
@@ -4475,11 +4519,21 @@
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_hushold",
+      "con_his_slektskap",
+      "con_his_ekteskap"
+    ],
+    "related_concepts": [
+      "con_his_hushold",
+      "con_his_slektskap",
+      "con_his_ekteskap"
+    ],
+    "distinguish_from": [
+      "con_his_livslop"
+    ],
     "common_misuse": [
-      "Å bruke «familie» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «familie» som en stabil kjernefamilie uten å undersøke husholdsmedlemmer, slektskap, tjeneste, adopsjon, økonomi og rett."
     ],
     "status": "canonical_v5_5"
   },
@@ -4730,9 +4784,9 @@
   {
     "concept_id": "con_his_femininitet",
     "label": "femininitet",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «femininitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk bestemte normer, uttrykk og forventninger knyttet til det feminine, formet av klasse, alder, seksualitet, arbeid og institusjoner.",
+    "concept_type": "gender_norm_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
@@ -4747,33 +4801,48 @@
       "em_his_kjonn_familie_kvinnebevegelse_likestilling_og_skeiv_historie",
       "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kjonn"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_maskulinitet",
+      "con_his_interseksjonalitet"
+    ],
+    "distinguish_from": [
+      "con_his_kjonnskategori"
+    ],
     "common_misuse": [
-      "Å bruke «femininitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «femininitet» som en universell eller binær egenskap uten å undersøke historiske kategorier, klasse, alder, seksualitet og institusjonell sammenheng."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_femininiteter",
-    "label": "femininiteter",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «femininiteter» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "femininitetsformer",
+    "definition": "Flere samtidige og konkurrerende måter å uttrykke og organisere femininitet på innenfor ulike klasser, yrker, aldre, seksualiteter og miljøer.",
+    "concept_type": "gender_variation_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
     "source_emne_ids": [
       "em_his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kjonn"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_femininitet",
+      "con_his_maskulinitet",
+      "con_his_interseksjonalitet"
+    ],
+    "distinguish_from": [
+      "con_his_kjonnskategori"
+    ],
     "common_misuse": [
-      "Å bruke «femininiteter» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «femininitetsformer» som en universell eller binær egenskap uten å undersøke historiske kategorier, klasse, alder, seksualitet og institusjonell sammenheng."
     ],
     "status": "canonical_v5_5"
   },
@@ -5145,10 +5214,10 @@
   },
   {
     "concept_id": "con_his_fordypning",
-    "label": "fordypning",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «fordypning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "statsborgerskap",
+    "definition": "Formelt medlemskap i en stat med historisk skiftende rettigheter, plikter, adgang til politisk deltakelse og grenser for inkludering.",
+    "concept_type": "legal_membership_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker",
       "his_kjonn_familie_livslop"
@@ -5157,12 +5226,20 @@
       "em_his_katastrofer_brudd_gjenoppbygging_resiliens_og_minne",
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_likestilling"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kvinnebevegelse",
+      "con_his_statsborgerskap",
+      "con_his_eiendom"
+    ],
+    "distinguish_from": [
+      "con_his_identitet"
+    ],
     "common_misuse": [
-      "Å bruke «fordypning» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å likestille formell «statsborgerskap» med faktisk likhet uten å undersøke adgang, ressurser, håndheving, organisering og sosiale normer."
     ],
     "status": "canonical_v5_5"
   },
@@ -6743,9 +6820,9 @@
   {
     "concept_id": "con_his_hushold",
     "label": "hushold",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «hushold» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En gruppe som deler bolig, ressurser, arbeid og forsørgelse, med medlemskap som kan bygge på slektskap, tjeneste, leie eller omsorg.",
+    "concept_type": "domestic_economic_unit_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie",
       "his_velferd_rett_hverdagsliv",
@@ -6764,12 +6841,19 @@
       "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_familie"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_slektskap",
+      "con_his_ekteskap"
+    ],
+    "distinguish_from": [
+      "con_his_livslop"
+    ],
     "common_misuse": [
-      "Å bruke «hushold» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «hushold» som en stabil kjernefamilie uten å undersøke husholdsmedlemmer, slektskap, tjeneste, adopsjon, økonomi og rett."
     ],
     "status": "canonical_v5_5"
   },
@@ -6988,9 +7072,9 @@
   {
     "concept_id": "con_his_identitet",
     "label": "identitet",
-    "definition": "I 1814, grunnlov og statsdannelse betegner «identitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk situerte forståelser av hvem en person eller gruppe er, skapt gjennom selvfortolkning, kategorisering, relasjoner og institusjonell anerkjennelse.",
+    "concept_type": "relational_identity_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_1814_statsdannelse",
       "his_migrasjon_minoritet_tilhorighet",
@@ -7001,12 +7085,19 @@
       "em_his_tilhorighet_ekskludering",
       "em_his_kjonn_familie_seksualitet_regulering_og_identitet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_seksualitet"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_regulering",
+      "con_his_skeiv"
+    ],
+    "distinguish_from": [
+      "con_his_kjonn"
+    ],
     "common_misuse": [
-      "Å bruke «identitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å projisere moderne identitetskategorier på «identitet» uten å undersøke samtidens språk, praksiser, rett, medisin og selvidentifikasjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -7855,9 +7946,9 @@
   {
     "concept_id": "con_his_interseksjonalitet",
     "label": "interseksjonalitet",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «interseksjonalitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En analyse av hvordan kjønn, klasse, rase, seksualitet, alder, funksjonsevne og andre maktforhold virker sammen og ikke kan reduseres til én akse.",
+    "concept_type": "analytical_framework_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
@@ -7872,12 +7963,19 @@
       "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kjonn"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_femininitet",
+      "con_his_maskulinitet"
+    ],
+    "distinguish_from": [
+      "con_his_kjonnskategori"
+    ],
     "common_misuse": [
-      "Å bruke «interseksjonalitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «interseksjonalitet» som en universell eller binær egenskap uten å undersøke historiske kategorier, klasse, alder, seksualitet og institusjonell sammenheng."
     ],
     "status": "canonical_v5_5"
   },
@@ -8378,22 +8476,30 @@
   },
   {
     "concept_id": "con_his_kategori",
-    "label": "kategori",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «kategori» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "historisk kategori",
+    "definition": "En betegnelse som samtidige eller senere aktører bruker for å ordne mennesker og erfaringer, med historisk skiftende grenser og konsekvenser.",
+    "concept_type": "classification_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
     "source_emne_ids": [
       "em_his_kjonn_familie_kjonn_som_historisk_kategori"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kjonn"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_femininitet",
+      "con_his_maskulinitet",
+      "con_his_interseksjonalitet"
+    ],
+    "distinguish_from": [
+      "con_his_kjonnskategori"
+    ],
     "common_misuse": [
-      "Å bruke «kategori» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «historisk kategori» som en universell eller binær egenskap uten å undersøke historiske kategorier, klasse, alder, seksualitet og institusjonell sammenheng."
     ],
     "status": "canonical_v5_5"
   },
@@ -8830,9 +8936,9 @@
   {
     "concept_id": "con_his_kjonnskategori",
     "label": "kjønnskategori",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «kjønnskategori» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En sosial, juridisk eller administrativ inndeling av mennesker etter kjønn, med skiftende kriterier, status og virkninger.",
+    "concept_type": "classification_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
@@ -8847,12 +8953,18 @@
       "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kjonn"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
+    "related_concepts": [
+      "con_his_femininitet",
+      "con_his_maskulinitet",
+      "con_his_interseksjonalitet"
+    ],
     "distinguish_from": [],
     "common_misuse": [
-      "Å bruke «kjønnskategori» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «kjønnskategori» som en universell eller binær egenskap uten å undersøke historiske kategorier, klasse, alder, seksualitet og institusjonell sammenheng."
     ],
     "status": "canonical_v5_5"
   },
@@ -10254,9 +10366,9 @@
   {
     "concept_id": "con_his_kropp",
     "label": "kropp",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «kropp» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Den levde og materielle kroppen slik den formes av arbeid, helse, kjønn, seksualitet, ernæring, vold, medisin og sosial regulering.",
+    "concept_type": "embodied_history_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
@@ -10264,11 +10376,20 @@
       "em_his_kjonn_familie_kropp_reproduksjon_og_medisinsk_makt"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_reproduksjon",
+      "con_his_medisinsk"
+    ],
+    "related_concepts": [
+      "con_his_reproduksjon",
+      "con_his_medisinsk",
+      "con_his_seksualitet"
+    ],
+    "distinguish_from": [
+      "con_his_identitet"
+    ],
     "common_misuse": [
-      "Å bruke «kropp» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å lese «kropp» som rent biologisk uten å analysere medisin, arbeid, makt, normer, erfaring og materielle livsvilkår."
     ],
     "status": "canonical_v5_5"
   },
@@ -10644,9 +10765,9 @@
   {
     "concept_id": "con_his_kvinnebevegelse",
     "label": "kvinnebevegelse",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «kvinnebevegelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Organisering og mobilisering for kvinners politiske, økonomiske, sosiale og kroppslige rettigheter gjennom foreninger, kampanjer, offentlighet og institusjoner.",
+    "concept_type": "collective_action_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop",
       "his_offentlighet_mobilisering_bevegelser"
@@ -10663,12 +10784,19 @@
       "em_his_offentlighet_mobilisering_digital_mobilisering_overvakning_og_motmakt",
       "em_his_offentlighet_mobilisering_digitale_offentligheter_nettverk_og_nye_mobiliseringsformer"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_likestilling"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_statsborgerskap",
+      "con_his_eiendom"
+    ],
+    "distinguish_from": [
+      "con_his_identitet"
+    ],
     "common_misuse": [
-      "Å bruke «kvinnebevegelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å likestille formell «kvinnebevegelse» med faktisk likhet uten å undersøke adgang, ressurser, håndheving, organisering og sosiale normer."
     ],
     "status": "canonical_v5_5"
   },
@@ -11156,9 +11284,9 @@
   {
     "concept_id": "con_his_likestilling",
     "label": "likestilling",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «likestilling» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Et politisk og rettslig ideal om like rettigheter, muligheter og status, historisk fortolket gjennom ulike mål, virkemidler og konfliktlinjer.",
+    "concept_type": "equality_policy_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
@@ -11166,20 +11294,29 @@
       "em_his_kjonn_familie_kvinnebevegelse_likestilling_og_skeiv_historie"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_kvinnebevegelse",
+      "con_his_statsborgerskap"
+    ],
+    "related_concepts": [
+      "con_his_kvinnebevegelse",
+      "con_his_statsborgerskap",
+      "con_his_eiendom"
+    ],
+    "distinguish_from": [
+      "con_his_identitet"
+    ],
     "common_misuse": [
-      "Å bruke «likestilling» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å likestille formell «likestilling» med faktisk likhet uten å undersøke adgang, ressurser, håndheving, organisering og sosiale normer."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_livslop",
     "label": "livsløp",
-    "definition": "I Velferd, rett og hverdagsliv betegner «livsløp» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Rekkefølgen og sammenhengen mellom livsfaser og overganger, formet av familie, arbeid, utdanning, helse, kjønn og historiske hendelser.",
+    "concept_type": "life_course_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv",
       "his_kjonn_familie_livslop"
@@ -11207,11 +11344,21 @@
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_barndom",
+      "con_his_ungdom",
+      "con_his_alderdom"
+    ],
+    "related_concepts": [
+      "con_his_barndom",
+      "con_his_ungdom",
+      "con_his_alderdom"
+    ],
+    "distinguish_from": [
+      "con_his_kategori"
+    ],
     "common_misuse": [
-      "Å bruke «livsløp» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «livsløp» som biologisk gitt og ensartet uten å undersøke rettslig status, arbeid, skole, familie, helse og historisk forventning."
     ],
     "status": "canonical_v5_5"
   },
@@ -11718,9 +11865,9 @@
   {
     "concept_id": "con_his_maskulinitet",
     "label": "maskulinitet",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «maskulinitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk bestemte normer, uttrykk og forventninger knyttet til det maskuline, formet av makt, klasse, alder, seksualitet og arbeid.",
+    "concept_type": "gender_norm_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
@@ -11735,33 +11882,48 @@
       "em_his_kjonn_familie_kvinnebevegelse_likestilling_og_skeiv_historie",
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kjonn"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_femininitet",
+      "con_his_interseksjonalitet"
+    ],
+    "distinguish_from": [
+      "con_his_kjonnskategori"
+    ],
     "common_misuse": [
-      "Å bruke «maskulinitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «maskulinitet» som en universell eller binær egenskap uten å undersøke historiske kategorier, klasse, alder, seksualitet og institusjonell sammenheng."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_maskuliniteter",
-    "label": "maskuliniteter",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «maskuliniteter» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "maskulinitetsformer",
+    "definition": "Flere samtidige og hierarkisk ordnede måter å uttrykke maskulinitet på innenfor ulike klasser, yrker, generasjoner og seksualiteter.",
+    "concept_type": "gender_variation_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
     "source_emne_ids": [
       "em_his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kjonn"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_femininitet",
+      "con_his_maskulinitet",
+      "con_his_interseksjonalitet"
+    ],
+    "distinguish_from": [
+      "con_his_kjonnskategori"
+    ],
     "common_misuse": [
-      "Å bruke «maskuliniteter» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «maskulinitetsformer» som en universell eller binær egenskap uten å undersøke historiske kategorier, klasse, alder, seksualitet og institusjonell sammenheng."
     ],
     "status": "canonical_v5_5"
   },
@@ -12016,22 +12178,29 @@
   },
   {
     "concept_id": "con_his_medisinsk",
-    "label": "medisinsk",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «medisinsk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "medisinsk regulering",
+    "definition": "Medisinske kategorier, undersøkelser og inngrep brukt til å definere, behandle eller kontrollere kropp, reproduksjon, seksualitet og avvik.",
+    "concept_type": "medical_governance_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
     "source_emne_ids": [
       "em_his_kjonn_familie_kropp_reproduksjon_og_medisinsk_makt"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kropp"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_reproduksjon",
+      "con_his_seksualitet"
+    ],
+    "distinguish_from": [
+      "con_his_identitet"
+    ],
     "common_misuse": [
-      "Å bruke «medisinsk» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å lese «medisinsk regulering» som rent biologisk uten å analysere medisin, arbeid, makt, normer, erfaring og materielle livsvilkår."
     ],
     "status": "canonical_v5_5"
   },
@@ -14208,9 +14377,9 @@
   {
     "concept_id": "con_his_omsorg",
     "label": "omsorg",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «omsorg» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Arbeid og relasjoner som opprettholder liv, helse og tilhørighet gjennom pleie, støtte, oppdragelse og praktisk ansvar, lønnet eller ulønnet.",
+    "concept_type": "care_practice_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
@@ -14226,12 +14395,19 @@
       "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_arbeid"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_ulonnet_arbeid",
+      "con_his_sosial_reproduksjon"
+    ],
+    "distinguish_from": [
+      "con_his_familie"
+    ],
     "common_misuse": [
-      "Å bruke «omsorg» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å redusere «omsorg» til lønnet markedarbeid uten å inkludere husholdsarbeid, omsorg, reproduksjon og uformelle bidrag."
     ],
     "status": "canonical_v5_5"
   },
@@ -16208,22 +16384,29 @@
   },
   {
     "concept_id": "con_his_regulering",
-    "label": "regulering",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «regulering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "sosial regulering",
+    "definition": "Formelle og uformelle mekanismer som styrer kropp, samliv, seksualitet, familie og identitet gjennom lov, medisin, religion, normer og institusjoner.",
+    "concept_type": "governance_practice_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
     "source_emne_ids": [
       "em_his_kjonn_familie_seksualitet_regulering_og_identitet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_seksualitet"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_identitet",
+      "con_his_skeiv"
+    ],
+    "distinguish_from": [
+      "con_his_kjonn"
+    ],
     "common_misuse": [
-      "Å bruke «regulering» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å projisere moderne identitetskategorier på «sosial regulering» uten å undersøke samtidens språk, praksiser, rett, medisin og selvidentifikasjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -16553,9 +16736,9 @@
   {
     "concept_id": "con_his_reproduksjon",
     "label": "reproduksjon",
-    "definition": "I Velferd, rett og hverdagsliv betegner «reproduksjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Biologiske og sosiale prosesser knyttet til graviditet, fødsel, foreldreskap og videreføring av befolkning og samfunn.",
+    "concept_type": "biological_social_reproduction_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv",
       "his_kjonn_familie_livslop"
@@ -16572,12 +16755,19 @@
       "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kropp"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_medisinsk",
+      "con_his_seksualitet"
+    ],
+    "distinguish_from": [
+      "con_his_identitet"
+    ],
     "common_misuse": [
-      "Å bruke «reproduksjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å lese «reproduksjon» som rent biologisk uten å analysere medisin, arbeid, makt, normer, erfaring og materielle livsvilkår."
     ],
     "status": "canonical_v5_5"
   },
@@ -17507,9 +17697,9 @@
   {
     "concept_id": "con_his_seksualitet",
     "label": "seksualitet",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «seksualitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk skiftende begjær, praksiser, identiteter og kategorier formet av kropp, relasjoner, lov, religion, medisin og offentlighet.",
+    "concept_type": "historical_sexuality_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
@@ -17525,11 +17715,19 @@
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_skeiv"
+    ],
+    "related_concepts": [
+      "con_his_identitet",
+      "con_his_regulering",
+      "con_his_skeiv"
+    ],
+    "distinguish_from": [
+      "con_his_kjonn"
+    ],
     "common_misuse": [
-      "Å bruke «seksualitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å projisere moderne identitetskategorier på «seksualitet» uten å undersøke samtidens språk, praksiser, rett, medisin og selvidentifikasjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -18062,22 +18260,29 @@
   },
   {
     "concept_id": "con_his_skeiv",
-    "label": "skeiv",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «skeiv» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "skeiv historie",
+    "definition": "Historisk forskning på liv, praksiser, identiteter og regulering som utfordrer normative forestillinger om kjønn og seksualitet.",
+    "concept_type": "historiographical_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
     "source_emne_ids": [
       "em_his_kjonn_familie_kvinnebevegelse_likestilling_og_skeiv_historie"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_seksualitet"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_identitet",
+      "con_his_regulering"
+    ],
+    "distinguish_from": [
+      "con_his_kjonn"
+    ],
     "common_misuse": [
-      "Å bruke «skeiv» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å projisere moderne identitetskategorier på «skeiv historie» uten å undersøke samtidens språk, praksiser, rett, medisin og selvidentifikasjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -18294,9 +18499,9 @@
   {
     "concept_id": "con_his_slektskap",
     "label": "slektskap",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «slektskap» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Sosialt og juridisk anerkjente forbindelser gjennom avstamning, ekteskap, adopsjon og andre relasjoner som organiserer tilhørighet og plikter.",
+    "concept_type": "kinship_relations_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
@@ -18311,12 +18516,19 @@
       "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_familie"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_hushold",
+      "con_his_ekteskap"
+    ],
+    "distinguish_from": [
+      "con_his_livslop"
+    ],
     "common_misuse": [
-      "Å bruke «slektskap» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «slektskap» som en stabil kjernefamilie uten å undersøke husholdsmedlemmer, slektskap, tjeneste, adopsjon, økonomi og rett."
     ],
     "status": "canonical_v5_5"
   },
@@ -18443,10 +18655,10 @@
   },
   {
     "concept_id": "con_his_sosial",
-    "label": "sosial",
-    "definition": "I Velferd, rett og hverdagsliv betegner «sosial» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "sosial reproduksjon",
+    "definition": "Arbeid, institusjoner og praksiser som daglig og generasjonelt opprettholder mennesker, arbeidskraft, hushold og samfunnsforhold.",
+    "concept_type": "social_reproduction_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv",
       "his_kjonn_familie_livslop"
@@ -18456,12 +18668,20 @@
       "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon",
       "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_arbeid"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_omsorg",
+      "con_his_ulonnet_arbeid",
+      "con_his_sosial_reproduksjon"
+    ],
+    "distinguish_from": [
+      "con_his_familie"
+    ],
     "common_misuse": [
-      "Å bruke «sosial» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å redusere «sosial reproduksjon» til lønnet markedarbeid uten å inkludere husholdsarbeid, omsorg, reproduksjon og uformelle bidrag."
     ],
     "status": "canonical_v5_5"
   },
@@ -20592,22 +20812,30 @@
   },
   {
     "concept_id": "con_his_ulonnet",
-    "label": "ulønnet",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «ulønnet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "ulønnet arbeid",
+    "definition": "Produktivt, reproduktivt eller omsorgsrelatert arbeid uten direkte lønn, ofte utført i hushold, familie, frivillighet eller uformell økonomi.",
+    "concept_type": "labor_form_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
     "source_emne_ids": [
       "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_arbeid"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_omsorg",
+      "con_his_ulonnet_arbeid",
+      "con_his_sosial_reproduksjon"
+    ],
+    "distinguish_from": [
+      "con_his_familie"
+    ],
     "common_misuse": [
-      "Å bruke «ulønnet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å redusere «ulønnet arbeid» til lønnet markedarbeid uten å inkludere husholdsarbeid, omsorg, reproduksjon og uformelle bidrag."
     ],
     "status": "canonical_v5_5"
   },
@@ -20720,21 +20948,28 @@
   {
     "concept_id": "con_his_ungdom",
     "label": "ungdom",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «ungdom» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En historisk skiftende overgangsfase mellom barndom og voksenstatus, formet av skole, arbeid, familie, forbruk, rett og generasjonskultur.",
+    "concept_type": "life_course_stage_concept",
+    "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop"
     ],
     "source_emne_ids": [
       "em_his_kjonn_familie_barndom_ungdom_alderdom_og_livslop"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_livslop"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_barndom",
+      "con_his_alderdom"
+    ],
+    "distinguish_from": [
+      "con_his_kategori"
+    ],
     "common_misuse": [
-      "Å bruke «ungdom» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «ungdom» som biologisk gitt og ensartet uten å undersøke rettslig status, arbeid, skole, familie, helse og historisk forventning."
     ],
     "status": "canonical_v5_5"
   },

@@ -1,0 +1,2067 @@
+Historie V5.5 – Kjønn, familie, seksualitet og livsløp
+
+$ /opt/hostedtoolcache/node/22.23.1/x64/bin/node /home/runner/work/History-Go/History-Go/tools/validate-historie-kjonn-familie-livslop.mjs
+his_kjonn_familie_livslop: PASS
+
+$ /opt/hostedtoolcache/node/22.23.1/x64/bin/node tools/validate-historie-v5.mjs --write
+{
+  "version": "v5.5-quality-freeze-contract",
+  "subject_id": "historie",
+  "status": "QUALITY_REVIEW_REQUIRED",
+  "v6_allowed": false,
+  "generated_at": "2026-07-25T18:12:29.600Z",
+  "coverage_counts": {
+    "domains": 20,
+    "emner": 200,
+    "mappings": 200,
+    "methods": 87,
+    "concepts": 826,
+    "theories": 200
+  },
+  "quality_issue_totals": {
+    "concepts": 540,
+    "theories": 120,
+    "emner": 0,
+    "domains_not_freeze_ready": 12
+  },
+  "global_gates": {
+    "structural_integrity": true,
+    "coverage_counts_match": true,
+    "generator_counts_match_production": true,
+    "all_domains_coverage_complete": true,
+    "concept_registry_curated": false,
+    "theory_registry_curated": false,
+    "emner_individually_curated": true,
+    "all_domains_freeze_ready": false
+  },
+  "quality": {
+    "concept_issue_counts": {
+      "synthetic_template_definition": 540,
+      "missing_semantic_relations": 540,
+      "generic_or_missing_misuse_guard": 540,
+      "numeric_reference_mistyped_as_concept": 3
+    },
+    "theory_issue_counts": {
+      "only_generic_limitations": 120,
+      "mass_repeated_limitation_profile": 120
+    },
+    "emne_issue_counts": {}
+  },
+  "domains": [
+    {
+      "domain_id": "his_tid_periodisering",
+      "label": "Historisk tid og periodisering",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_kilder_arkiv_spor",
+      "label": "Kilder, arkiv og spor",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_makt_stat_institusjoner",
+      "label": "Makt, stat og institusjoner",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 66,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_middelalder_kirke_kongemakt",
+      "label": "Middelalder, kirke og kongemakt",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 42,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_1814_statsdannelse",
+      "label": "1814, grunnlov og statsdannelse",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 45,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_industri_arbeid_sosialhistorie",
+      "label": "Industri, arbeid og sosialhistorie",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 74,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_krig_okkupasjon_motstand",
+      "label": "Krig, okkupasjon og motstand",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 41,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_velferd_rett_hverdagsliv",
+      "label": "Velferd, rett og hverdagsliv",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 65,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_migrasjon_minoritet_tilhorighet",
+      "label": "Migrasjon, minoritet og tilhørighet",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 58,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "label": "Minne, kulturarv og historiebruk",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 67,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_byhistorie_stedsendring",
+      "label": "Byhistorie og stedsendring",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 44,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_katastrofer_brudd_ulykker",
+      "label": "Katastrofer, branner, ulykker og historiske brudd",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 37,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_kjonn_familie_livslop",
+      "label": "Kjønn, familie, seksualitet og livsløp",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_okonomi_handel_materielle_systemer",
+      "label": "Økonomi, handel og materielle systemer",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 29,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_religion_reformasjon_livssyn",
+      "label": "Religion, reformasjon og livssyn",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_samisk_urfolkshistorie",
+      "label": "Samisk og urfolkshistorie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_miljo_klima_landskap",
+      "label": "Miljø-, klima- og landskapshistorie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_vitenskap_teknologi_kunnskap",
+      "label": "Vitenskap-, teknologi- og kunnskapshistorie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_global_kolonial_transnasjonal",
+      "label": "Global, kolonial og transnasjonal historie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_offentlighet_mobilisering_bevegelser",
+      "label": "Offentlighet, mobilisering og sosiale bevegelser",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 36,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    }
+  ],
+  "samples": {
+    "concepts": [
+      {
+        "concept_id": "con_his_1814",
+        "label": "1814",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "numeric_reference_mistyped_as_concept",
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_1900",
+        "label": "1900",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "numeric_reference_mistyped_as_concept",
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_1905",
+        "label": "1905",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "numeric_reference_mistyped_as_concept",
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_3d_modell",
+        "label": "3D-modell",
+        "domain_ids": [
+          "his_minne_kulturarv_historiebruk"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_adgang",
+        "label": "adgang",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_adgangsvilkar",
+        "label": "adgangsvilkår",
+        "domain_ids": [
+          "his_velferd_rett_hverdagsliv"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_akkumulering",
+        "label": "akkumulering",
+        "domain_ids": [
+          "his_okonomi_handel_materielle_systemer"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_ankomst",
+        "label": "ankomst",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_ankomst_vs_varig_bosetting",
+        "label": "ankomst vs varig bosetting",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_ankomstadresse_vs_varig_bosted",
+        "label": "ankomstadresse vs varig bosted",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_antirasisme",
+        "label": "antirasisme",
+        "domain_ids": [
+          "his_offentlighet_mobilisering_bevegelser"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeider",
+        "label": "arbeider-",
+        "domain_ids": [
+          "his_offentlighet_mobilisering_bevegelser"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderbevegelse",
+        "label": "arbeiderbevegelse",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie",
+          "his_offentlighet_mobilisering_bevegelser"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderbolig",
+        "label": "arbeiderbolig",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderbydel_vs_ensartet_klassemiljo",
+        "label": "arbeiderbydel vs ensartet klassemiljø",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderliv",
+        "label": "arbeiderliv",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsdag_vs_betalte_timer",
+        "label": "arbeidsdag vs betalte timer",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsdeling",
+        "label": "arbeidsdeling",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie",
+          "his_okonomi_handel_materielle_systemer"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsdisiplin",
+        "label": "arbeidsdisiplin",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidskraft",
+        "label": "arbeidskraft",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmigrasjon",
+        "label": "arbeidsmigrasjon",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmigrasjon_vs_arbeid_etter_ankomst",
+        "label": "arbeidsmigrasjon vs arbeid etter ankomst",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmiljo",
+        "label": "arbeidsmiljø",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsorganisering",
+        "label": "arbeidsorganisering",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsprosess",
+        "label": "arbeidsprosess",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      }
+    ],
+    "theories": [
+      {
+        "theory_id": "theory_his_institusjonsbygging_funksjon",
+        "label": "Institusjonsbygging, mandat og funksjon",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_embetsverk_byrakrati",
+        "label": "Embetsverk, kontor og byråkrati",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_beslutningskjede_kompetanse",
+        "label": "Beslutningskjede, kompetanse og ansvar",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_statlig_kapasitet_ressurser",
+        "label": "Statlig kapasitet, ressurser og gjennomføring",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_rettigheter_borgerskap_forvaltning",
+        "label": "Rettigheter, medborgerskap og forvaltning",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_lov_domstol_rettsstat",
+        "label": "Lov, domstol og rettsstat",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_politi_fengsel_straff",
+        "label": "Politi, fengsel og strafferegime",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_register_overvakning_disiplin",
+        "label": "Register, overvåkning og disiplin",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_krise_unntak_kontinuitet",
+        "label": "Krise, unntak og institusjonell kontinuitet",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_rettsoppgjor_legitimitet_minne",
+        "label": "Rettsoppgjør, legitimitet og minne",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_by_kirke",
+        "label": "Middelalderbyen og kirkemakten",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_kongemakt_kirke_og_konflikt",
+        "label": "Kongemakt, kirke og konflikt: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_middelalderens_oslo",
+        "label": "Middelalderens Oslo: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+        "label": "Lov, ting og jurisdiksjon: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_jord_eiendom_og_patronasje",
+        "label": "Jord, eiendom og patronasje: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "label": "Handel, håndverk og bydannelse: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+        "label": "Bondehushold, demografi og dagligliv: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming",
+        "label": "Svartedauden og senmiddelalderens omforming: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_skriftkultur_diplom_og_muntlig_rett",
+        "label": "Skriftkultur, diplom og muntlig rett: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_samiske_kontaktsoner_handel_og_statsgrenser_i_middelalderen",
+        "label": "Samiske kontaktsoner, handel og statsgrenser i middelalderen: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_grunnlov_rom_tekst",
+        "label": "Grunnlov som rom og tekst",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_embetsstat_og_demokratisering",
+        "label": "Embetsstat og demokratisering: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_nasjonal_identitet_og_historiske_fortellinger",
+        "label": "Nasjonal identitet og historiske fortellinger: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+        "label": "Embetsstat og kommunalt selvstyre: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+        "label": "Stemmerett, partier og parlamentarisme: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      }
+    ],
+    "emner": []
+  }
+}
+
+$ /opt/hostedtoolcache/node/22.23.1/x64/bin/node scripts/build-quiz-production-context.mjs --category historie --target grindheim_runestein --output data/quiz/production_context/historie/grindheim_runestein.json
+Skrev data/quiz/production_context/historie/grindheim_runestein.json
+
+$ /opt/hostedtoolcache/node/22.23.1/x64/bin/node scripts/build-quiz-production-context.mjs --category historie --target grindheim_steinkross --output data/quiz/production_context/historie/grindheim_steinkross.json
+Skrev data/quiz/production_context/historie/grindheim_steinkross.json
+
+$ /opt/hostedtoolcache/node/22.23.1/x64/bin/node scripts/build-quiz-production-context.mjs --category historie --target grindheimsveien_nord_gravfelt --output data/quiz/production_context/historie/grindheimsveien_nord_gravfelt.json
+Skrev data/quiz/production_context/historie/grindheimsveien_nord_gravfelt.json
+
+$ /opt/hostedtoolcache/node/22.23.1/x64/bin/node scripts/build-quiz-production-context.mjs --category historie --target hoyland_gravhaug_etne --output data/quiz/production_context/historie/hoyland_gravhaug_etne.json
+Skrev data/quiz/production_context/historie/hoyland_gravhaug_etne.json
+
+$ npm run audit:quiz-production-context
+
+> history-go@0.0.0 audit:quiz-production-context
+> node scripts/audit-quiz-production-context.mjs
+
+{
+  "status": "passed",
+  "categoriesWithQuizProduction": 3,
+  "quizFilesChecked": 8,
+  "checked": [
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "targetId": "deichman_bjorvika",
+      "questions": 35
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "targetId": "grindheim_runestein",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "targetId": "grindheim_steinkross",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "targetId": "grindheimsveien_nord_gravfelt",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "targetId": "hoyland_gravhaug_etne",
+      "questions": 21
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "targetId": "telegrafbygningen",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "targetId": "oslo_posthus",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "targetId": "havnelageret",
+      "questions": 35
+    }
+  ],
+  "failures": []
+}
+
+$ npm run audit:quiz-theory-binding
+
+> history-go@0.0.0 audit:quiz-theory-binding
+> node scripts/audit-quiz-theory-binding.mjs
+
+{
+  "status": "passed",
+  "quizFilesChecked": 8,
+  "checked": [
+    {
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "questions": 35,
+      "theoryQuestions": 3,
+      "methodQuestions": 2
+    },
+    {
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "questions": 21,
+      "theoryQuestions": 2,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "questions": 21,
+      "theoryQuestions": 2,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "questions": 21,
+      "theoryQuestions": 2,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "questions": 21,
+      "theoryQuestions": 1,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    }
+  ],
+  "failures": []
+}
+
+$ npm run test:quiz-production
+
+> history-go@0.0.0 test:quiz-production
+> node --test tests/quiz-production-pipeline.test.mjs
+
+TAP version 13
+# Subtest: builds the full by production context through the manifest
+ok 1 - builds the full by production context through the manifest
+  ---
+  duration_ms: 182.547406
+  type: 'test'
+  ...
+# Subtest: builds the full history production context through domain-based curriculum
+ok 2 - builds the full history production context through domain-based curriculum
+  ---
+  duration_ms: 248.132533
+  type: 'test'
+  ...
+# Subtest: isolates each history target in the manifest proof
+ok 3 - isolates each history target in the manifest proof
+  ---
+  duration_ms: 228.915949
+  type: 'test'
+  ...
+# Subtest: builds the Grindheimsvegen grave-field context before quiz writing
+ok 4 - builds the Grindheimsvegen grave-field context before quiz writing
+  ---
+  duration_ms: 229.95614
+  type: 'test'
+  ...
+# Subtest: builds the Høyland grave-mound context before quiz writing
+ok 5 - builds the Høyland grave-mound context before quiz writing
+  ---
+  duration_ms: 227.172187
+  type: 'test'
+  ...
+# Subtest: passes production-context, progression and theory-binding audits
+ok 6 - passes production-context, progression and theory-binding audits
+  ---
+  duration_ms: 1501.232951
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2700.866791
+
+$ npm run knowledge:canonical:write
+
+> history-go@0.0.0 knowledge:canonical:write
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --write
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Knowledge canonical data: 2843 questions, 3995 units, 144 unresolved emne links.
+Updated: data/quiz/historie/nedre_foss_sets.json, data/knowledge/knowledge_emne_review_queue.generated.json, reports/knowledge-id-backfill.json
+Knowledge contract audit: 0 error question(s), 480 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+
+$ npm run knowledge:canonical:check
+
+> history-go@0.0.0 knowledge:canonical:check
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --check
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Knowledge canonical data: 2843 questions, 3995 units, 144 unresolved emne links.
+Knowledge contract audit: 0 error question(s), 480 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+
+$ npm run knowledge:legacy:check
+
+> history-go@0.0.0 knowledge:legacy:check
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --legacy-only
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Legacy Knowledge audit: 0 active reference(s).
+
+$ /opt/hostedtoolcache/node/22.23.1/x64/bin/node tools/validate-historie-v5.mjs --write
+{
+  "version": "v5.5-quality-freeze-contract",
+  "subject_id": "historie",
+  "status": "QUALITY_REVIEW_REQUIRED",
+  "v6_allowed": false,
+  "generated_at": "2026-07-25T18:12:43.313Z",
+  "coverage_counts": {
+    "domains": 20,
+    "emner": 200,
+    "mappings": 200,
+    "methods": 87,
+    "concepts": 826,
+    "theories": 200
+  },
+  "quality_issue_totals": {
+    "concepts": 540,
+    "theories": 120,
+    "emner": 0,
+    "domains_not_freeze_ready": 12
+  },
+  "global_gates": {
+    "structural_integrity": true,
+    "coverage_counts_match": true,
+    "generator_counts_match_production": true,
+    "all_domains_coverage_complete": true,
+    "concept_registry_curated": false,
+    "theory_registry_curated": false,
+    "emner_individually_curated": true,
+    "all_domains_freeze_ready": false
+  },
+  "quality": {
+    "concept_issue_counts": {
+      "synthetic_template_definition": 540,
+      "missing_semantic_relations": 540,
+      "generic_or_missing_misuse_guard": 540,
+      "numeric_reference_mistyped_as_concept": 3
+    },
+    "theory_issue_counts": {
+      "only_generic_limitations": 120,
+      "mass_repeated_limitation_profile": 120
+    },
+    "emne_issue_counts": {}
+  },
+  "domains": [
+    {
+      "domain_id": "his_tid_periodisering",
+      "label": "Historisk tid og periodisering",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_kilder_arkiv_spor",
+      "label": "Kilder, arkiv og spor",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_makt_stat_institusjoner",
+      "label": "Makt, stat og institusjoner",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 66,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_middelalder_kirke_kongemakt",
+      "label": "Middelalder, kirke og kongemakt",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 42,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_1814_statsdannelse",
+      "label": "1814, grunnlov og statsdannelse",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 45,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_industri_arbeid_sosialhistorie",
+      "label": "Industri, arbeid og sosialhistorie",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 74,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_krig_okkupasjon_motstand",
+      "label": "Krig, okkupasjon og motstand",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 41,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_velferd_rett_hverdagsliv",
+      "label": "Velferd, rett og hverdagsliv",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 65,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_migrasjon_minoritet_tilhorighet",
+      "label": "Migrasjon, minoritet og tilhørighet",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 58,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "label": "Minne, kulturarv og historiebruk",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 67,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_byhistorie_stedsendring",
+      "label": "Byhistorie og stedsendring",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 44,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_katastrofer_brudd_ulykker",
+      "label": "Katastrofer, branner, ulykker og historiske brudd",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 37,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_kjonn_familie_livslop",
+      "label": "Kjønn, familie, seksualitet og livsløp",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_okonomi_handel_materielle_systemer",
+      "label": "Økonomi, handel og materielle systemer",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 29,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_religion_reformasjon_livssyn",
+      "label": "Religion, reformasjon og livssyn",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_samisk_urfolkshistorie",
+      "label": "Samisk og urfolkshistorie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_miljo_klima_landskap",
+      "label": "Miljø-, klima- og landskapshistorie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_vitenskap_teknologi_kunnskap",
+      "label": "Vitenskap-, teknologi- og kunnskapshistorie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_global_kolonial_transnasjonal",
+      "label": "Global, kolonial og transnasjonal historie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_offentlighet_mobilisering_bevegelser",
+      "label": "Offentlighet, mobilisering og sosiale bevegelser",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 36,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    }
+  ],
+  "samples": {
+    "concepts": [
+      {
+        "concept_id": "con_his_1814",
+        "label": "1814",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "numeric_reference_mistyped_as_concept",
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_1900",
+        "label": "1900",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "numeric_reference_mistyped_as_concept",
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_1905",
+        "label": "1905",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "numeric_reference_mistyped_as_concept",
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_3d_modell",
+        "label": "3D-modell",
+        "domain_ids": [
+          "his_minne_kulturarv_historiebruk"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_adgang",
+        "label": "adgang",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_adgangsvilkar",
+        "label": "adgangsvilkår",
+        "domain_ids": [
+          "his_velferd_rett_hverdagsliv"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_akkumulering",
+        "label": "akkumulering",
+        "domain_ids": [
+          "his_okonomi_handel_materielle_systemer"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_ankomst",
+        "label": "ankomst",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_ankomst_vs_varig_bosetting",
+        "label": "ankomst vs varig bosetting",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_ankomstadresse_vs_varig_bosted",
+        "label": "ankomstadresse vs varig bosted",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_antirasisme",
+        "label": "antirasisme",
+        "domain_ids": [
+          "his_offentlighet_mobilisering_bevegelser"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeider",
+        "label": "arbeider-",
+        "domain_ids": [
+          "his_offentlighet_mobilisering_bevegelser"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderbevegelse",
+        "label": "arbeiderbevegelse",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie",
+          "his_offentlighet_mobilisering_bevegelser"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderbolig",
+        "label": "arbeiderbolig",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderbydel_vs_ensartet_klassemiljo",
+        "label": "arbeiderbydel vs ensartet klassemiljø",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderliv",
+        "label": "arbeiderliv",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsdag_vs_betalte_timer",
+        "label": "arbeidsdag vs betalte timer",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsdeling",
+        "label": "arbeidsdeling",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie",
+          "his_okonomi_handel_materielle_systemer"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsdisiplin",
+        "label": "arbeidsdisiplin",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidskraft",
+        "label": "arbeidskraft",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmigrasjon",
+        "label": "arbeidsmigrasjon",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmigrasjon_vs_arbeid_etter_ankomst",
+        "label": "arbeidsmigrasjon vs arbeid etter ankomst",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmiljo",
+        "label": "arbeidsmiljø",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsorganisering",
+        "label": "arbeidsorganisering",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsprosess",
+        "label": "arbeidsprosess",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      }
+    ],
+    "theories": [
+      {
+        "theory_id": "theory_his_institusjonsbygging_funksjon",
+        "label": "Institusjonsbygging, mandat og funksjon",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_embetsverk_byrakrati",
+        "label": "Embetsverk, kontor og byråkrati",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_beslutningskjede_kompetanse",
+        "label": "Beslutningskjede, kompetanse og ansvar",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_statlig_kapasitet_ressurser",
+        "label": "Statlig kapasitet, ressurser og gjennomføring",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_rettigheter_borgerskap_forvaltning",
+        "label": "Rettigheter, medborgerskap og forvaltning",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_lov_domstol_rettsstat",
+        "label": "Lov, domstol og rettsstat",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_politi_fengsel_straff",
+        "label": "Politi, fengsel og strafferegime",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_register_overvakning_disiplin",
+        "label": "Register, overvåkning og disiplin",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_krise_unntak_kontinuitet",
+        "label": "Krise, unntak og institusjonell kontinuitet",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_rettsoppgjor_legitimitet_minne",
+        "label": "Rettsoppgjør, legitimitet og minne",
+        "domain_ids": [
+          "his_makt_stat_institusjoner"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_by_kirke",
+        "label": "Middelalderbyen og kirkemakten",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_kongemakt_kirke_og_konflikt",
+        "label": "Kongemakt, kirke og konflikt: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_middelalderens_oslo",
+        "label": "Middelalderens Oslo: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+        "label": "Lov, ting og jurisdiksjon: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_jord_eiendom_og_patronasje",
+        "label": "Jord, eiendom og patronasje: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "label": "Handel, håndverk og bydannelse: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+        "label": "Bondehushold, demografi og dagligliv: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming",
+        "label": "Svartedauden og senmiddelalderens omforming: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_skriftkultur_diplom_og_muntlig_rett",
+        "label": "Skriftkultur, diplom og muntlig rett: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_samiske_kontaktsoner_handel_og_statsgrenser_i_middelalderen",
+        "label": "Samiske kontaktsoner, handel og statsgrenser i middelalderen: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_grunnlov_rom_tekst",
+        "label": "Grunnlov som rom og tekst",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_embetsstat_og_demokratisering",
+        "label": "Embetsstat og demokratisering: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_nasjonal_identitet_og_historiske_fortellinger",
+        "label": "Nasjonal identitet og historiske fortellinger: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+        "label": "Embetsstat og kommunalt selvstyre: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+        "label": "Stemmerett, partier og parlamentarisme: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      }
+    ],
+    "emner": []
+  }
+}
+
+$ git diff --check
+
+Historie V5.5 – Kjønn, familie, seksualitet og livsløp
+Status: CURATED_FREEZE_READY
+Begreper kuratert: 31
+Teoriobjekter kuratert: 10
+Emner korrigert: 10
+Placeholder erstattet: Kjønn, rett og statsborgerskap
+Domene freeze_ready: true
+Domene kvalitetsfeil: emner=0, begreper=0, teorier=0
+Global V6 tillatt: false
+
+$ git config user.name github-actions[bot]
+
+$ git config user.email 41898282+github-actions[bot]@users.noreply.github.com
