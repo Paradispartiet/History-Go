@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "tanum_kirke",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch2/tanum_kirke.json",
+  "evidenceStatus": "candidate_sources_collected",
+  "coordinateDecision": "current_coordinate_likely_wrong_needs_official_address_or_geometry",
+  "currentCoordinate": {
+    "lat": 59.8898,
+    "lon": 10.47669,
+    "r": 220,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "coordNote": "Legacy marker retained during source audit; no coordinate metadata was present."
+  },
+  "identity": {
+    "currentName": "Tanum kirke",
+    "resolvedIdentity": "Tanum medieval church at Tanumveien 133 on the Tanum plateau in Bærum",
+    "identityStatus": "resolved",
+    "identityProblem": "The legacy marker is about 678.8 metres from the identified named church-building candidate and appears to represent the wider Tanum locality rather than the church.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "The canonical record represents one coherent church or church-site destination."
+  },
+  "requiredEvidence": [
+    "exact Geonorge address object for Tanumveien 133",
+    "raw geometry for named OSM way 112593369 or an official church-building representation point",
+    "visual QA confirming building versus churchyard scope"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kirkelig fellesråd i Bærum – Tanum contact information",
+      "sourceUrl": "https://www.baerum.kirken.no/Om-oss/Tanum-Kontakt-oss",
+      "sourceObjectId": "baerum-kirken:tanumveien-133",
+      "sourceQuality": "official_identity_and_address",
+      "finding": "The church organization lists Tanum menighet at Tanumveien 133, 1341 Slependen.",
+      "canVerifyCoordinate": false,
+      "reason": "The page supplies the address but not an inspectable address object or coordinate."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Bærum kommune – Tanum kirke",
+      "sourceUrl": "https://www.baerum.kommune.no/om-barum-kommune/historisk-arkiv-barumskilden/kulturminner-i-barum/tanum-kirke/",
+      "sourceObjectId": "baerum-kommune:tanum-kirke",
+      "sourceQuality": "official_identity_and_landscape_location",
+      "finding": "Bærum municipality identifies the medieval church on the highest point of Tanumåsen.",
+      "canVerifyCoordinate": false,
+      "reason": "Identity and landscape position are official, but no machine-readable point or geometry is exposed."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 112593369 – Tanum kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/112593369",
+      "sourceObjectId": "osm-way:112593369",
+      "sourceQuality": "exact_named_building_candidate",
+      "finding": "A named church-building way is identified at approximately 59.89577, 10.47923.",
+      "canVerifyCoordinate": false,
+      "reason": "The raw node geometry and deterministic representation-point derivation are not yet stored."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Tanumveien",
+        "number": "133",
+        "postcode": "1341",
+        "city": "Slependen",
+        "country": "NO"
+      },
+      "sourceUrl": "https://www.baerum.kirken.no/Om-oss/Tanum-Kontakt-oss",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:112593369",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:112593369",
+      "geometryType": "Polygon",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:tanum_kirke",
+      "lat": 59.8898,
+      "lon": 10.47669,
+      "coordRole": "unverified_locality_anchor",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:112593369",
+      "lat": 59.89577,
+      "lon": 10.47923,
+      "coordRole": "building_center_candidate",
+      "distanceFromCurrentM": 678.8,
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "The official address is known and an exact named building object is identified, but neither the Geonorge address object nor raw building geometry has been captured.",
+    "nextAction": "Resolve Tanumveien 133 through Geonorge first; if the address point does not represent the church building well, materialize OSM way 112593369 and derive a deterministic building point."
+  },
+  "notes": [
+    "Do not verify or retain the current point merely because it lies in the wider Tanum landscape.",
+    "Tanum is the only church in this batch with a clearly large legacy displacement and should be first in the church production queue."
+  ]
+}
