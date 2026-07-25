@@ -1,37 +1,38 @@
-# History Go – domain contract
+# History GO — domenekontrakt
 
-Status: active and binding category decision  
-Owner: History Go data/runtime  
-Last updated: 2026-07-24
+Status: **canonical og bindende kategoribeslutning**  
+Eier: History GO data/runtime  
+Sist kontrollert: **2026-07-25**
 
-Machine-readable source of truth:
+Maskinlesbar sannhetskilde:
 
 ```text
 data/categories/category_contract.json
 ```
 
-Runtime and editorial files must agree with this contract. `scripts/audit-category-governance.mjs` enforces the agreement.
+Runtime-, UI- og redaksjonelle filer skal samsvare med maskinkontrakten. `scripts/audit-category-governance.mjs` håndhever samsvaret.
 
-## 1. Core rule
+## 1. Kjerneprinsipp
 
-One concept has one runtime category and one editorial subject.
+Ett domene har én runtime-id og én fag-id.
 
-The same category identity must be consistent across:
+I dagens kontrakt er runtime-id og fag-id identiske for alle canonical toppkategorier. Alias er bare tillatt ved eksplisitte import-, migrerings- og normaliseringsgrenser.
+
+Samme kategoriidentitet skal være konsistent i:
 
 - `place.category`
 - `merits_by_category`
-- badge id and badge index
+- badge-id og badgeindeks
 - quiz `categoryId`
 - `data/fag/fag_manifest.json`
+- `data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`
 - `js/DomainRegistry.js`
 - `js/core/categories.ts`
-- place validation policy
+- place-valideringspolicyen
 
-Aliases are allowed only at explicit import and normalization boundaries.
+## 2. Canonical toppkategorier
 
-## 2. Canonical top-level categories
-
-| Runtime id | Fag id | Display name |
+| Runtime-id | Fag-id | Visningsnavn |
 |---|---|---|
 | `by` | `by` | By & arkitektur |
 | `historie` | `historie` | Historie |
@@ -42,74 +43,86 @@ Aliases are allowed only at explicit import and normalization boundaries.
 | `naeringsliv` | `naeringsliv` | Næringsliv |
 | `natur` | `natur` | Natur & miljø |
 | `politikk` | `politikk` | Politikk & samfunn |
-| `populaerkultur` | `popkultur` | Populærkultur |
 | `psykologi` | `psykologi` | Psykologi |
 | `religion` | `religion` | Religion |
 | `scenekunst` | `scenekunst` | Scenekunst |
 | `sport` | `sport` | Sport & lek |
 | `subkultur` | `subkultur` | Subkultur |
-| `vitenskap` | `vitenskap` | Vitenskap |
+| `vitenskap` | `vitenskap` | Vitenskap & teknologi |
 | `filosofi` | `filosofi` | Filosofi |
 | `film_tv` | `film_tv` | Film & TV |
 
-`populaerkultur` and `popkultur` are two names for the same category. Runtime uses `populaerkultur`; fag/editorial data uses `popkultur`.
+Listen skal ikke vedlikeholdes manuelt i andre dokumenter. Ved tvil gjelder `data/categories/category_contract.json`.
 
-## 3. Locked domain decisions
+## 3. Låste domenebeslutninger
 
 ### Kunst
 
-`kunst` covers visual and material art: painting, sculpture, drawing, printmaking, photography, contemporary art, design, public art, museums, galleries and collections.
+`kunst` dekker visuell og materiell kunst: maleri, skulptur, tegning, grafikk, fotografi, samtidskunst, design, offentlig kunst, museer, gallerier og samlinger.
 
 ### Scenekunst
 
-`scenekunst` covers theatre, drama, dance, choreography, musicals, revue, standup, improvisation, performance and scene institutions. `teater`, `theatre` and `theater` normalize to `scenekunst`.
+`scenekunst` dekker teater, drama, dans, koreografi, musikal, revy, standup, improvisasjon, performance og sceneinstitusjoner. `teater`, `theatre` og `theater` normaliseres til `scenekunst` ved kompatibilitetsgrenser.
 
 ### Musikk
 
-`musikk` covers artists, ensembles, concerts, venues, genres, composition, performance, sound and production.
+`musikk` dekker artister, ensembler, konserter, scener, sjangre, komposisjon, framføring, lyd og produksjon.
 
 ### Kultur
 
-`kultur` is not a top-level badge or category. It remains a cross-disciplinary description.
+`kultur` er ikke toppkategori eller badge. Begrepet brukes som tverrfaglig beskrivelse.
 
 ### Film & TV
 
-`film_tv` is a separate top-level category. Legacy `film` and `tv` normalize to it.
+`film_tv` er selvstendig toppkategori. Legacy-id-ene `film` og `tv` normaliseres til `film_tv`.
 
 ### Media
 
-`media` covers journalism, editorial institutions, press history, media ethics, public spheres, platforms and distribution. `journalistikk` normalizes to `media`.
+`media` dekker journalistikk, redaksjonelle institusjoner, pressehistorie, medieetikk, offentlighet, plattformer og distribusjon. `journalistikk` normaliseres til `media`.
 
 ### Religion
 
-`religion` covers religion, faith, ritual practice, active sacred places and religious institutions. Present primary function controls place classification.
+`religion` dekker religion, tro, ritualpraksis, aktive hellige steder og religiøse institusjoner. Dagens primærfunksjon styrer place-klassifiseringen.
 
-### Vitenskap
+### Vitenskap & teknologi
 
-`vitenskap` covers empirical and formal knowledge production: observation, measurement, experiments, mathematical models, research methods, scientific institutions and documented technological research.
+`vitenskap` dekker empirisk og formell kunnskapsproduksjon samt teknologi, ingeniørfag og IT: observasjon, måling, eksperimenter, matematiske modeller, forskning, maskiner, elektronikk, programvare, algoritmer, data, nettverk, datasentre, cybersikkerhet og digital infrastruktur.
+
+Bedriften som virksomhet hører normalt til `naeringsliv`; medieinnholdet hører til `media`; den tekniske løsningen og kunnskapen hører til `vitenskap`.
 
 ### Filosofi
 
-`filosofi` is an independent runtime and editorial subject. It covers:
+`filosofi` er selvstendig runtime- og fagkategori. Det dekker:
 
-- argumentation, logic and conceptual analysis
-- epistemology, metaphysics and philosophy of mind
-- ethics and applied ethics
-- political philosophy and public reason
-- aesthetics and hermeneutics
-- philosophy of science and technology
-- existentialism and phenomenology
-- intellectual history and environmental philosophy
+- argumentasjon, logikk og begrepsanalyse
+- epistemologi, metafysikk og bevissthetsfilosofi
+- etikk og anvendt etikk
+- politisk filosofi og offentlig fornuft
+- estetikk og hermeneutikk
+- vitenskaps- og teknologifilosofi
+- eksistensialisme og fenomenologi
+- idéhistorie og miljøfilosofi
 
-`philosophy` normalizes to `filosofi`. A place is primary `filosofi` when philosophical thinking, a documented thinker, an intellectual tradition or a philosophical public practice is its central relevance. Empirical research institutions remain primary `vitenskap`. Real overlap uses `secondaryBadgeIds`.
+`philosophy` normaliseres til `filosofi`. Et sted er primært `filosofi` når filosofisk tenkning, en dokumentert tenker, en intellektuell tradisjon eller en filosofisk offentlig praksis er stedets sentrale relevans. Empiriske forskningsinstitusjoner forblir normalt `vitenskap`. Reell tverrfaglighet uttrykkes med `secondaryBadgeIds`.
 
-### Social learning
+### Populærkultur
 
-`sosial_laering` is a non-place progression badge. It must not appear in `place.category`, runtime category lists or the fag manifest.
+`populaerkultur` og `popkultur` er ikke canonical toppkategorier. Populærkultur brukes som tagg, linse og mediefaglig analysefelt.
 
-## 4. Primary and secondary badge use
+Legacy-kode kan fortsatt ha eksplisitte kompatibilitetsaliaser for eldre lagring eller filer. Disse aliasene:
 
-Every place has one primary category:
+- skal ikke returneres av canonical kategori-lister
+- skal ikke brukes i nye places, badges, quizpakker eller fagmanifest
+- skal ikke tolkes som et ekstra domene
+- skal fases ut gjennom kontrollerte migreringer, ikke skjult monkey-patching
+
+### Sosial læring
+
+`sosial_laering` er et non-place progression badge. Det skal ikke forekomme i `place.category`, runtime-kategorilister eller fagmanifestet.
+
+## 4. Primær og sekundær badgebruk
+
+Hvert sted har én primær kategori:
 
 ```json
 {
@@ -118,38 +131,38 @@ Every place has one primary category:
 }
 ```
 
-Rules:
+Regler:
 
-- `category` is singular and required.
-- `secondaryBadgeIds` is optional.
-- Secondary badges must be active runtime categories.
-- The primary category must not be repeated as secondary.
-- Secondary badges express real cross-domain relevance; they do not replace the primary decision.
+- `category` er obligatorisk og entall.
+- `secondaryBadgeIds` er valgfritt.
+- Sekundærbadges må være aktive runtimekategorier.
+- Primærkategorien skal ikke gjentas som sekundær.
+- Sekundærbadges uttrykker reell tverrfaglighet; de erstatter ikke primærbeslutningen.
 
-Examples:
+Eksempler:
 
-- A philosophical cabin or documented thinking place may be primary `filosofi`, with `natur` secondary.
-- A philosophy-of-science institution may be primary `filosofi`, with `vitenskap` secondary.
-- A laboratory is normally primary `vitenskap`.
-- A theatre is primary `scenekunst`, with `litteratur` secondary when dramatic literature is central.
-- A newsroom is primary `media`.
-- A cinema or film studio is primary `film_tv`.
+- Et dokumentert filosofisk tenkested kan være primært `filosofi`, med `natur` sekundært.
+- En institusjon for vitenskapsfilosofi kan være primært `filosofi`, med `vitenskap` sekundært.
+- Et laboratorium er normalt primært `vitenskap`.
+- Et teater er primært `scenekunst`, med `litteratur` sekundært når dramatisk litteratur er sentral.
+- En redaksjon er primært `media`.
+- En kino eller et filmstudio er primært `film_tv`.
 
-## 5. File ownership
+## 5. Fileierskap
 
-Canonical machine contract:
+Canonical maskinkontrakt:
 
 ```text
 data/categories/category_contract.json
 ```
 
-Alias and runtime conversion:
+Alias og runtimekonvertering:
 
 ```text
 js/DomainRegistry.js
 ```
 
-Category UI list:
+Kategori-UI:
 
 ```text
 js/core/categories.ts
@@ -162,37 +175,28 @@ data/badges/index.json
 data/badges/<runtime-id>.json
 ```
 
-Fag and quiz profile registry:
+Fag- og quizprofilregister:
 
 ```text
 data/fag/fag_manifest.json
 data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json
 ```
 
-Philosophy foundation:
-
-```text
-data/fag/filosofi/filosofipensum_canonical_v1.json
-data/fag/filosofi/emner_filosofi_canonical_v1.json
-data/fag/filosofi/fagkart_filosofi_canonical_v1.json
-data/fag/filosofi/methods_filosofi_canonical_v1.json
-data/fag/filosofi/supersetQUIZMAL_filosofi.json
-```
-
-Place validation:
+Place-validering:
 
 ```text
 tools/placeSchemaPolicy.mts
 ```
 
-## 6. Production rule
+## 6. Produksjonsregel
 
-Before creating or moving category-level data:
+Før kategori-data opprettes eller flyttes:
 
-1. Check `data/categories/category_contract.json`.
-2. Do not invent a new top-level id in place, people, quiz or fag data.
-3. If a new category is desired, update the contract first.
-4. Update registry, badges, manifest, UI and validation in the same change.
-5. Run `npm run audit:categories`.
+1. Kontroller `data/categories/category_contract.json`.
+2. Ikke opprett en ny toppnivå-id lokalt i place-, people-, quiz- eller fagdata.
+3. Dersom en ny kategori ønskes, endres maskinkontrakten først.
+4. Oppdater DomainRegistry, badges, fagmanifest, quizprofilregister, kategori-UI og validering i samme endring.
+5. Oppdater denne beslutningskontrakten.
+6. Kjør `npm run audit:categories`.
 
-Existing `vitenskap` places must be migrated to `filosofi` only in controlled, evidence-based batches. Do not move universities, schools or research institutions merely because philosophy is taught there. The primary place story must be philosophical.
+Eksisterende data skal bare flyttes mellom domener i kontrollerte, evidensbaserte batcher. Universiteter, skoler og forskningsinstitusjoner flyttes for eksempel ikke automatisk til `filosofi` bare fordi filosofi undervises der; den primære stedshistorien må være filosofisk.
