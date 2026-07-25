@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "haslum_kirke",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch2/haslum_kirke.json",
+  "evidenceStatus": "candidate_sources_collected",
+  "coordinateDecision": "needs_exact_address_or_raw_building_geometry",
+  "currentCoordinate": {
+    "lat": 59.92387,
+    "lon": 10.5658,
+    "r": 200,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "coordNote": "Legacy marker retained during source audit; no coordinate metadata was present."
+  },
+  "identity": {
+    "currentName": "Haslum kirke",
+    "resolvedIdentity": "Haslum medieval church on Kirkeveien in Bærum",
+    "identityStatus": "resolved",
+    "identityProblem": "The official church page lists Kirkeveien without a house number, so address-first lookup cannot yet be made deterministic.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "The canonical record represents one coherent church or church-site destination."
+  },
+  "requiredEvidence": [
+    "exact official address object or stable municipal church-property identifier",
+    "raw geometry for named OSM way 35947041",
+    "visual QA confirming church building rather than surrounding graveyard"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kirkelig fellesråd i Bærum – Haslum contact information",
+      "sourceUrl": "https://www.baerum.kirken.no/Om-oss/Haslum-menighet-Kontakt-oss",
+      "sourceObjectId": "baerum-kirken:haslum-kirke-kirkeveien",
+      "sourceQuality": "official_identity_and_partial_address",
+      "finding": "The church organization lists Haslum kirke on Kirkeveien, without a house number.",
+      "canVerifyCoordinate": false,
+      "reason": "A street-only address is insufficient for a deterministic official address point."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Bærum kommune – Kirker og kirkegårder",
+      "sourceUrl": "https://www.baerum.kommune.no/tjenester/kultur-idrett-og-fritid/kunst-og-kultur/rik-pa-historie/2.-kirker-og-kirkegarder/",
+      "sourceObjectId": "baerum-kommune:haslum-middelalderkirke",
+      "sourceQuality": "official_identity_and_history",
+      "finding": "Bærum municipality identifies Haslum as one of the municipality's medieval stone churches.",
+      "canVerifyCoordinate": false,
+      "reason": "The page verifies identity, not an exact source coordinate."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 35947041 – Haslum kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/35947041",
+      "sourceObjectId": "osm-way:35947041",
+      "sourceQuality": "exact_named_building_candidate",
+      "finding": "A named church-building way is identified at approximately 59.92379, 10.56575, about 9.3 metres from the legacy marker.",
+      "canVerifyCoordinate": false,
+      "reason": "Raw geometry and deterministic point derivation are not yet stored."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Kirkeveien",
+        "number": null,
+        "postcode": null,
+        "city": "Bærum",
+        "country": "NO"
+      },
+      "sourceUrl": "https://www.baerum.kirken.no/Om-oss/Haslum-menighet-Kontakt-oss",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:35947041",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:35947041",
+      "geometryType": "Polygon",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:haslum_kirke",
+      "lat": 59.92387,
+      "lon": 10.5658,
+      "coordRole": "unverified_building_anchor",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:35947041",
+      "lat": 59.92379,
+      "lon": 10.56575,
+      "coordRole": "building_center_candidate",
+      "distanceFromCurrentM": 9.3,
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "The current marker is close to the named building candidate, but the official address lacks a house number and raw geometry has not been captured.",
+    "nextAction": "Resolve a stable municipal/Kartverket church-property object or materialize OSM way 35947041 before adding verified metadata."
+  },
+  "notes": [
+    "Retain the current coordinate until the exact source object is captured; proximity alone is not verification.",
+    "Do not use the Haslum menighet office address at Gml. Ringeriksvei 86 as a proxy for the church."
+  ]
+}
