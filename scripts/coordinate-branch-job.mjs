@@ -16,6 +16,7 @@ if (!source.includes(testMarker)) throw new Error('Could not find exact quiz-pro
 const migration = String.raw`
 {
   const legacyHook = 'his_historiebruk_minne';
+  const legacyEmne = 'em_his_kulturminner_bevaring';
   const memorySiteHook = 'his_minnested_ritual_offentlig_sorg';
   const memorySiteEmne = 'em_his_minnesteder_historiebruk';
   const migrations = [
@@ -56,6 +57,10 @@ const migration = String.raw`
     return null;
   };
 
+  const migrateEmneIds = (ids) => [...new Set(
+    ids.map((id) => id === legacyEmne ? memorySiteEmne : id)
+  )];
+
   for (const item of migrations) {
     const quiz = j(item.quiz);
     const question = findObject(quiz, 'id', item.questionId);
@@ -63,10 +68,7 @@ const migration = String.raw`
     question.topic_hook_id = memorySiteHook;
     question.emne_id = memorySiteEmne;
     if (question.theory_ref) question.theory_ref.topic_hook_id = memorySiteHook;
-    quiz.production_context.emne_ids = [...new Set([
-      ...quiz.production_context.emne_ids,
-      memorySiteEmne
-    ])];
+    quiz.production_context.emne_ids = migrateEmneIds(quiz.production_context.emne_ids);
     w(item.quiz, quiz);
 
     const brief = j(item.brief);
@@ -77,10 +79,7 @@ const migration = String.raw`
     brief.selected_curriculum.topic_hook_ids = [...new Set(
       brief.selected_curriculum.topic_hook_ids.map((id) => id === legacyHook ? memorySiteHook : id)
     )];
-    brief.selected_curriculum.emne_ids = [...new Set([
-      ...brief.selected_curriculum.emne_ids,
-      memorySiteEmne
-    ])];
+    brief.selected_curriculum.emne_ids = migrateEmneIds(brief.selected_curriculum.emne_ids);
     w(item.brief, brief);
 
     for (const file of [item.quiz, item.brief]) {
