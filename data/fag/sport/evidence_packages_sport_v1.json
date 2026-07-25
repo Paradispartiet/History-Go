@@ -2,7 +2,7 @@
   "version": "1.0",
   "subject_id": "sport",
   "type": "evidence_package_registry",
-  "status": "first_priority_package_registered_search_seeded_screening_pending",
+  "status": "first_priority_package_search_strategy_locked_execution_pending",
   "updated_at": "2026-07-25",
   "packages": [
     {
@@ -22,7 +22,7 @@
         "rq_sport_concussion_return_activity_01",
         "rq_sport_concussion_early_activity_01"
       ],
-      "phase_status": "authoritative_seed_completed_database_search_and_dual_screening_pending",
+      "phase_status": "search_strategy_locked_peer_review_assignment_and_execution_pending",
       "candidate_record_ids": [
         "candidate_sport_concussion_amsterdam_consensus_2023",
         "candidate_sport_concussion_amsterdam_methodology_2023",
@@ -40,7 +40,20 @@
       "publication_ready_claim_ids": [],
       "independent_review_required": true,
       "safety_priority": "highest",
-      "update_due": "2027-06-30"
+      "update_due": "2027-06-30",
+      "search_amendment_anchor": {
+        "repository": "Paradispartiet/History-Go",
+        "commit_sha": "3605f292cb1bb290c09acf99af394007e7690efa",
+        "path": "data/fag/sport/protocols/concussion_search_strategy_amendment_001.json",
+        "immutable_snapshot": true
+      },
+      "search_strategy_registry": "data/fag/sport/concussion_search_strategy_sport_v2.json",
+      "search_run_registry": "data/fag/sport/concussion_search_runs_sport_v1.json",
+      "deduplication_protocol": "data/fag/sport/concussion_deduplication_protocol_sport_v1.json",
+      "screening_schema": "data/fag/sport/concussion_screening_schema_sport_v1.json",
+      "reviewer_role_registry": "data/fag/sport/concussion_reviewer_roles_sport_v1.json",
+      "completed_database_searches": 0,
+      "assigned_human_reviewers": 0
     }
   ]
 }

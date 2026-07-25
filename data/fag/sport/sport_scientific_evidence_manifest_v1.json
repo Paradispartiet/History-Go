@@ -28,7 +28,7 @@
     "claims": 16,
     "models": 12,
     "measurements": 15,
-    "production_gates": 18,
+    "production_gates": 22,
     "classified_hooks": 56,
     "research_questions": 56,
     "planned_protocols": 56,
@@ -40,7 +40,10 @@
     "completed_syntheses": 0,
     "certainty_assessments": 0,
     "publication_ready_claims": 0,
-    "provisional_legacy_claims": 16
+    "provisional_legacy_claims": 16,
+    "locked_database_strategies": 6,
+    "completed_database_searches": 0,
+    "assigned_human_reviewers": 0
   },
   "integration": {
     "quality_manifest": "sport_quality_manifest_v5.json",
@@ -49,7 +52,12 @@
     "theory_depth_manifest": "sport_theory_depth_manifest_v6.json",
     "evidence_packages": "evidence_packages_sport_v1.json",
     "first_priority_search_log": "concussion_search_log_sport_v1.json",
-    "review_appraisal_tools": "review_appraisal_tools_sport_v1.json"
+    "review_appraisal_tools": "review_appraisal_tools_sport_v1.json",
+    "first_priority_search_strategy": "concussion_search_strategy_sport_v2.json",
+    "first_priority_search_runs": "concussion_search_runs_sport_v1.json",
+    "first_priority_deduplication_protocol": "concussion_deduplication_protocol_sport_v1.json",
+    "first_priority_screening_schema": "concussion_screening_schema_sport_v1.json",
+    "first_priority_reviewer_roles": "concussion_reviewer_roles_sport_v1.json"
   },
   "invariants": [
     "Alle source_ids, claim_ids, model_ids og measurement_ids skal løse.",
@@ -75,6 +83,14 @@
     "publication_ready_claims": 0
   },
   "pipeline_status": "scientific_pipeline_infrastructure_ready_evidence_materialization_pending",
-  "first_priority_package_status": "protocol_registered_candidate_seed_ready_screening_pending",
-  "review_appraisal_status": "registry_ready_no_appraisals_completed"
+  "first_priority_package_status": "search_strategy_locked_peer_review_assignment_and_execution_pending",
+  "review_appraisal_status": "registry_ready_no_appraisals_completed",
+  "search_readiness_status": {
+    "locked_database_strategies": 6,
+    "completed_database_searches": 0,
+    "PRESS_peer_review": "pending",
+    "assigned_human_reviewers": 0,
+    "deduplication": "protocol_locked_not_run",
+    "screening": "schema_locked_not_started"
+  }
 }

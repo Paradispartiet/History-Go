@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-25T06:29:27.256Z
+Generated: 2026-07-25T06:57:39.849Z
 
 ## Sammendrag
-- People-filer lest: **690**
-- People lest: **1325**
+- People-filer lest: **695**
+- People lest: **1330**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1325**
+- Duplikate interne place-referanser: **1330**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -1343,5 +1343,10 @@ Generated: 2026-07-25T06:29:27.256Z
 - data/people/naeringsliv/oslo/kafe_grei/amalie_sofie_bekkevold.json :: amalie_sofie_bekkevold (Amalie Sofie Bekkevold) -> kafe_grei x2
 - data/people/historie/oslo/oslo_ladegard/karen_toller.json :: karen_toller (Karen Toller) -> oslo_ladegard x2
 - data/people/historie/oslo/oslo_ladegard/caspar_herman_von_storm.json :: caspar_herman_von_storm (Caspar Herman von Storm) -> oslo_ladegard x2
+- data/people/historie/oslo/palehaven_paleet/christian_ancher.json :: christian_ancher (Christian Ancher) -> palehaven_paleet x2
+- data/people/kunst/oslo/mustadgarden_kongens_gate_3/otto_kunzli.json :: otto_kunzli (Otto Künzli) -> mustadgarden_kongens_gate_3 x2
+- data/people/historie/oslo/magistratgarden/helge_berntsen.json :: helge_berntsen (Helge Berntsen) -> magistratgarden x2
+- data/people/historie/oslo/magistratgarden/morten_leuch_eliesen.json :: morten_leuch_eliesen (Morten Leuch Eliesen) -> magistratgarden x2
+- data/people/historie/oslo/magistratgarden/dorthea_monsen.json :: dorthea_monsen (Dorthea Monsen) -> magistratgarden x2
 
 ## Anbefalt neste ryddebatch

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "anatomigarden",
+  "placeFile": "data/places/historie/oslo/places_historie_next_batch_straff_sosial_01.json",
+  "evidenceStatus": "research_complete_needs_source",
+  "coordinateDecision": "keep_current_point_as_unverified_historical_proxy",
+  "currentCoordinate": {
+    "lat": 59.9081,
+    "lon": 10.7414,
+    "r": 80,
+    "coordStatus": "needs_source",
+    "coordSource": "manual_historical_research",
+    "coordType": "unverified_historical_anchor",
+    "coordNote": "Den publiserte Anatomigården-posisjonen reverse-resolver til et unavngitt huspunkt, mens navnesøket returnerer Rådmannsgårdens hovedvolum. Ingen kildebelagt geometri skiller Anatomibygget entydig fra resten av anlegget. Dagens koordinat beholdes kun som uverifisert historisk proxy og skal ikke tolkes som dokumentert fysisk sentrum."
+  },
+  "identity": {
+    "currentName": "anatomigarden",
+    "resolvedIdentity": "anatomigarden",
+    "identityStatus": "resolved_identity_unresolved_geometry",
+    "identityProblem": "Den publiserte Anatomigården-posisjonen reverse-resolver til et unavngitt huspunkt, mens navnesøket returnerer Rådmannsgårdens hovedvolum. Ingen kildebelagt geometri skiller Anatomibygget entydig fra resten av anlegget.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig fysisk historisk objekt eller reproducerbar historisk geometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go final historical coordinate review",
+      "sourceUrl": "reports/oslo-coordinate-historical-sites-research-20260725/final-decisions.json",
+      "sourceObjectId": "history-go-research:historical-sites-20260725:anatomigarden",
+      "sourceQuality": "canonical_scope_and_object_audit",
+      "finding": "Den publiserte Anatomigården-posisjonen reverse-resolver til et unavngitt huspunkt, mens navnesøket returnerer Rådmannsgårdens hovedvolum. Ingen kildebelagt geometri skiller Anatomibygget entydig fra resten av anlegget.",
+      "canVerifyCoordinate": false,
+      "reason": "De identifiserte nabobyggene eller skiltobjektene kan ikke brukes som erstatning for canonical-stedet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:112506377",
+      "canApplyToPlace": false,
+      "reason": "Forkastet: Rådmannsgården"
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:2785919745",
+      "canApplyToPlace": false,
+      "reason": "Forkastet: unavngitt huspunkt ved Christiania torv 1"
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9081,
+      "lon": 10.7414,
+      "coordRole": "historical_anchor",
+      "sourceObjectId": "history-go-research:historical-sites-20260725:anatomigarden",
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Den publiserte Anatomigården-posisjonen reverse-resolver til et unavngitt huspunkt, mens navnesøket returnerer Rådmannsgårdens hovedvolum. Ingen kildebelagt geometri skiller Anatomibygget entydig fra resten av anlegget.",
+    "nextAction": "Finn entydig historisk geometri eller et reproducerbart fysisk kildeobjekt før oppgradering."
+  },
+  "notes": [
+    "Den publiserte Anatomigården-posisjonen reverse-resolver til et unavngitt huspunkt, mens navnesøket returnerer Rådmannsgårdens hovedvolum. Ingen kildebelagt geometri skiller Anatomibygget entydig fra resten av anlegget. Dagens koordinat beholdes kun som uverifisert historisk proxy og skal ikke tolkes som dokumentert fysisk sentrum.",
+    "Decision file: reports/oslo-coordinate-historical-sites-research-20260725/final-decisions.json"
+  ]
+}

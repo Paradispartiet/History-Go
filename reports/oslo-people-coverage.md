@@ -1,6 +1,6 @@
 # Oslo People of Places coverage
 
-Generert: 2026-07-25T06:29:24.056Z
+Generert: 2026-07-25T06:57:35.819Z
 
 ## Policy
 
@@ -12,9 +12,9 @@ Generert: 2026-07-25T06:29:24.056Z
 
 - Oslo-steder totalt: **389**
 - Kravpliktige steder utenom natur: **340**
-- Dekket: **182**
-- Uten People: **158**
-- Dekningsgrad: **53.53%**
+- Dekket: **188**
+- Uten People: **152**
+- Dekningsgrad: **55.29%**
 - Natursteder: **49** (45 uten People)
 - Geografikonflikter holdt utenfor Oslo-tellingen: **0**
 - Ugyldige People→place-referanser globalt: **50**
@@ -25,7 +25,7 @@ Generert: 2026-07-25T06:29:24.056Z
 |---|---:|---:|---:|---:|
 | by | 78 | 47 | 31 | 166 |
 | film_tv | 2 | 2 | 0 | 12 |
-| historie | 66 | 30 | 36 | 151 |
+| historie | 66 | 36 | 30 | 167 |
 | kunst | 10 | 7 | 3 | 17 |
 | litteratur | 19 | 19 | 0 | 52 |
 | media | 5 | 5 | 0 | 19 |
@@ -77,21 +77,17 @@ Generert: 2026-07-25T06:29:24.056Z
 | by | `okern` | Økern | data/places/by/oslo/places_by.json |
 | historie | `avisen_tiden_radhusgata_10` | Avisen Tiden – Rådhusgata 10 | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_hovedstaden_batch_01.json |
 | historie | `bankall_gard` | Bånkall gård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_13.json |
-| historie | `den_gamle_krigsskolen` | Den gamle Krigsskolen | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_01.json |
 | historie | `forsvarsmuseet` | Forsvarsmuseet | data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json |
 | historie | `galgeberg` | Galgeberg | data/places/historie/oslo/places_historie_added_batch_01.json |
 | historie | `gamlebyen_gravlund` | Gamlebyen gravlund | data/places/historie/oslo/places_historie.json |
 | historie | `geitmyra_gard` | Geitmyra gård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_04.json |
 | historie | `gronland_politistasjon` | Grønland politistasjon | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_04.json |
 | historie | `hovedoya_kloster` | Hovedøya kloster | data/places/historie/oslo/places_historie.json |
-| historie | `kirkeristen_basarene_brannvakten` | Kirkeristen, Basarene og Brannvakten | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_01.json |
 | historie | `kjaerlighetskarusellen` | Kjærlighetskarusellen | data/places/historie/oslo/places_historie_added_batch_01.json |
 | historie | `kontraskjaeret` | Kontraskjæret | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_04.json |
 | historie | `lambertseter_gard` | Lambertseter gård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
 | historie | `lokomotivverkstedet` | Lokomotivverkstedet | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
-| historie | `magistratgarden` | Magistratgården | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_02.json |
 | historie | `minneparken_gamlebyen` | Minneparken | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_11.json |
-| historie | `mustadgarden_kongens_gate_3` | Mustadgården – Kongens gate 3 | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_art_sites_batch_01.json |
 | historie | `myntgatakvartalet` | Myntgatakvartalet | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02.json |
 | historie | `hellerud_gard` | Nedre Hellerud – historisk gårdssted | data/places/natur/oslo/places_oslo_alna.json |
 | historie | `nonneseter_kloster` | Nonneseter kloster | data/places/historie/oslo/places_historie_added_batch_01.json |
@@ -99,9 +95,7 @@ Generert: 2026-07-25T06:29:24.056Z
 | historie | `nordre_skoyen_hovedgard` | Nordre Skøyen hovedgård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
 | historie | `norges_hjemmefrontmuseum` | Norges Hjemmefrontmuseum | data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json |
 | historie | `oslo_hospital` | Oslo hospital | data/places/historie/oslo/places_historie_added_batch_01.json |
-| historie | `palehaven_paleet` | Paléhaven og Paleet | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_04.json |
 | historie | `peststotten_krist_kirkegard` | Peststøtten – Krist kirkegård | data/places/historie/oslo/places_historie_added_batch_01.json |
-| historie | `radmannsgarden_og_anatomibygget` | Rådmannsgården og Anatomibygget | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_02.json |
 | historie | `sagene_festivitetshus` | Sagene festivitetshus | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_05.json |
 | historie | `saxegarden` | Saxegården | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
 | historie | `slurpen_lakkegata` | Slurpen | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_03.json |
