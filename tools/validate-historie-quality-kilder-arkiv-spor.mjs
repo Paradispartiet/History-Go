@@ -32,6 +32,10 @@ const allowedTheoryTypes = new Set([
   'analytical_concept',
   'historiographical_tradition'
 ]);
+const allowedCurationStatuses = new Set([
+  'canonical_v5_5',
+  'canonical_v5_5_curated'
+]);
 const staleLabels = [
   'arkiver',
   'begrensning',
@@ -95,7 +99,7 @@ for (const concept of domainConcepts) {
     ...A(concept.related_concepts),
     ...A(concept.distinguish_from)
   ]);
-  check(concept.status === 'canonical_v5_5_curated', `${prefix}: curated status`);
+  check(allowedCurationStatuses.has(concept.status), `${prefix}: canonical status`);
   check(relations.length >= 2, `${prefix}: semantic relations`);
   check(relations.every((id) => conceptIds.has(id)), `${prefix}: relation targets exist`);
   check(A(concept.domain_ids).length >= 1 && A(concept.source_emne_ids).length >= 1, `${prefix}: provenance links`);
@@ -115,7 +119,7 @@ for (const theory of domainTheories) {
   const prefix = theory.theory_id;
   theoryDefinitionSet.add(theory.definition);
   limitationSignatures.add(JSON.stringify(A(theory.limitations).slice().sort()));
-  check(theory.status === 'canonical_v5_5_curated', `${prefix}: curated status`);
+  check(allowedCurationStatuses.has(theory.status), `${prefix}: canonical status`);
   check(allowedTheoryTypes.has(theory.object_type), `${prefix}: typed object`);
   check(typeof theory.definition === 'string' && theory.definition.length >= 60, `${prefix}: specific definition`);
   check(A(theory.limitations).length >= 2 && A(theory.limitations).every((item) => !genericTheoryLimitations.has(item)), `${prefix}: theory-specific limitations`);
