@@ -1,11 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const write = (file, value) => {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, JSON.stringify(value, null, 2) + '\n');
 };
+const run = (cmd, args) => execFileSync(cmd, args, { stdio: 'inherit', encoding: 'utf8' });
 
 const files = {
   pensum: 'data/fag/historie/historiepensum_canonical_v4_5.json',
@@ -66,6 +68,14 @@ const report = {
   test_snippets: fs.readFileSync(files.tests, 'utf8').split('\n').filter((line) => /85 emner|75 hooks|48 metoder|85 mappinger|migrasjon|historie production context/i.test(line)).slice(0, 120)
 };
 
-write('reports/historie-canonical-migration/phase8-audit.json', report);
+const reportPath = 'reports/historie-canonical-migration/phase8-audit.json';
+write(reportPath, report);
 fs.rmSync('scripts/coordinate-branch-job.mjs');
-console.log('Wrote compact phase 8 audit and removed one-shot script.');
+run('git', ['config', 'user.name', 'github-actions[bot]']);
+run('git', ['config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com']);
+run('git', ['add', reportPath, 'scripts/coordinate-branch-job.mjs']);
+run('git', ['commit', '-m', 'Report Historie phase 8 audit']);
+const branch = process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF_NAME;
+if (!branch) throw new Error('Could not resolve branch name');
+run('git', ['push', 'origin', `HEAD:${branch}`]);
+console.log('Published compact phase 8 audit and removed one-shot script.');
