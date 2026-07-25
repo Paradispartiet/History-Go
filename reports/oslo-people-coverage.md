@@ -1,6 +1,6 @@
 # Oslo People of Places coverage
 
-Generert: 2026-07-24T06:58:45.370Z
+Generert: 2026-07-25T04:31:34.022Z
 
 ## Policy
 
@@ -10,12 +10,12 @@ Generert: 2026-07-24T06:58:45.370Z
 
 ## Sammendrag
 
-- Oslo-steder totalt: **383**
-- Kravpliktige steder utenom natur: **333**
-- Dekket: **148**
-- Uten People: **185**
-- Dekningsgrad: **44.44%**
-- Natursteder: **50** (46 uten People)
+- Oslo-steder totalt: **389**
+- Kravpliktige steder utenom natur: **340**
+- Dekket: **164**
+- Uten People: **176**
+- Dekningsgrad: **48.24%**
+- Natursteder: **49** (45 uten People)
 - Geografikonflikter holdt utenfor Oslo-tellingen: **0**
 - Ugyldige People→place-referanser globalt: **50**
 
@@ -23,7 +23,7 @@ Generert: 2026-07-24T06:58:45.370Z
 
 | Kategori | Totalt | Dekket | Uten People | People-lenker |
 |---|---:|---:|---:|---:|
-| by | 78 | 40 | 38 | 158 |
+| by | 78 | 46 | 32 | 165 |
 | film_tv | 2 | 2 | 0 | 12 |
 | historie | 66 | 23 | 43 | 134 |
 | kunst | 10 | 5 | 5 | 14 |
@@ -31,8 +31,8 @@ Generert: 2026-07-24T06:58:45.370Z
 | media | 5 | 5 | 0 | 19 |
 | musikk | 9 | 9 | 0 | 16 |
 | naeringsliv | 46 | 6 | 40 | 18 |
-| natur | 50 | 4 | 46 | 11 |
-| politikk | 11 | 8 | 3 | 87 |
+| natur | 49 | 4 | 45 | 11 |
+| politikk | 18 | 18 | 0 | 163 |
 | populaerkultur | 11 | 2 | 9 | 2 |
 | psykologi | 1 | 0 | 1 | 0 |
 | scenekunst | 22 | 7 | 15 | 241 |
@@ -50,15 +50,12 @@ Generert: 2026-07-24T06:58:45.370Z
 | by | `bogstadveien` | Bogstadveien | data/places/by/oslo/places_by.json |
 | by | `botsparken` | Botsparken | data/places/by/oslo/places_by.json |
 | by | `damstredet_telthusbakken` | Damstredet og Telthusbakken | data/places/by/oslo/damstredet_telthusbakken.json |
-| by | `egertorget` | Egertorget | data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03.json |
 | by | `gamle_trikkestallen` | Gamle trikkestallen på Sagene | data/places/by/oslo/gamle_trikkestallen.json |
-| by | `grev_wedels_plass` | Grev Wedels plass | data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03.json |
 | by | `grorud` | Grorud | data/places/by/oslo/places_by.json |
 | by | `gronland_basarene` | Grønland basarene | data/places/by/oslo/places_by.json |
 | by | `gronlandsleiret` | Grønlandsleiret | data/places/by/oslo/places_by.json |
 | by | `hausmannsomradet_elvelop` | Hausmannskvartalene – elveløp | data/places/natur/oslo/places_oslo_natur_akerselvarute.json |
 | by | `jernbanetorget` | Jernbanetorget | data/places/by/oslo/places_by.json |
-| by | `kampen_kirke` | Kampen kirke | data/places/by/oslo/places_by.json |
 | by | `majorstuen_krysset` | Majorstuen krysset | data/places/by/oslo/places_by.json |
 | by | `majorstuen_tbanestasjon` | Majorstuen T-banestasjon | data/places/by/oslo/places_by.json |
 | by | `nationaltheatret_stasjon` | Nationaltheatret stasjon | data/places/by/oslo/places_by.json |
@@ -69,7 +66,6 @@ Generert: 2026-07-24T06:58:45.370Z
 | by | `sagene` | Sagene | data/places/by/oslo/places_by.json |
 | by | `schiollgarden_prinsens_gate_26` | Schiøllgården | data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_hovedstaden_batch_02.json |
 | by | `skoyen` | Skøyen | data/places/by/oslo/places_by.json |
-| by | `sofienberg_kirke` | Sofienberg kirke | data/places/by/oslo/sofienberg_kirke.json |
 | by | `spikersuppa` | Spikersuppa | data/places/by/oslo/places_by.json |
 | by | `storgata` | Storgata | data/places/by/oslo/places_by.json |
 | by | `stortorget` | Stortorget | data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03.json |
@@ -79,9 +75,7 @@ Generert: 2026-07-24T06:58:45.370Z
 | by | `ullern` | Ullern | data/places/by/oslo/places_by.json |
 | by | `vinderen` | Vinderen | data/places/by/oslo/places_by.json |
 | by | `vaalerenga` | Vålerenga | data/places/by/oslo/places_by.json |
-| by | `wessels_plass` | Wessels plass | data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03.json |
 | by | `okern` | Økern | data/places/by/oslo/places_by.json |
-| by | `ostbanestasjonen` | Østbanestasjonen | data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_04.json |
 | historie | `avisen_tiden_radhusgata_10` | Avisen Tiden – Rådhusgata 10 | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_hovedstaden_batch_01.json |
 | historie | `bankall_gard` | Bånkall gård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_13.json |
 | historie | `den_gamle_krigsskolen` | Den gamle Krigsskolen | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_01.json |
@@ -172,9 +166,6 @@ Generert: 2026-07-24T06:58:45.370Z
 | naeringsliv | `toyen_trafo` | Tøyen trafo | data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04.json |
 | naeringsliv | `vinmonopolet_lager` | Vinmonopolets hovedlager | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `ovre_foss` | Øvre Foss – Hjula Veveri | data/places/naeringsliv/oslo/places_naeringsliv.json |
-| politikk | `hoyesteretts_hus` | Høyesteretts hus | data/places/politikk/oslo/places_politikk.json |
-| politikk | `tinghuset` | Oslo tinghus | data/places/politikk/oslo/places_politikk.json |
-| politikk | `politihuset_gronland` | Politihuset på Grønland | data/places/politikk/oslo/places_politikk.json |
 | populaerkultur | `chateau_neuf` | Chateau Neuf | data/places/popkultur/oslo/places_oslo_populaerkultur.json |
 | populaerkultur | `frognerstranda` | Frognerstranda | data/places/popkultur/oslo/places_oslo_populaerkultur.json |
 | populaerkultur | `gimle_kino` | Gimle kino | data/places/film/oslo/places_oslo_film.json |
@@ -252,7 +243,6 @@ Generert: 2026-07-24T06:58:45.370Z
 | `bygdoy_kongeskogen` | Bygdøy Kongeskogen | data/places/natur/oslo/places_oslo_natur_bygdoy.json |
 | `bygdoy_kongsgard_salamanderdam` | Bygdøy Kongsgård salamanderdam | data/places/natur/oslo/places_oslo_natur_salamanderdammer.json |
 | `bygdoy_paradisbukta` | Bygdøy Paradisbukta | data/places/natur/oslo/places_oslo_natur_bygdoy.json |
-| `bygdoy_roykenvika` | Bygdøy Røykensvika | data/places/natur/oslo/places_oslo_natur_bygdoy.json |
 | `ostensjovannet_sor` | Bølerbekkens utløp i Østensjøvannet | data/places/natur/oslo/places_oslo_natur_ostensjovannet.json |
 | `bantjern_salamanderlokalitet` | Båntjern salamanderlokalitet | data/places/natur/oslo/places_oslo_natur_salamanderdammer.json |
 | `stilla_nydalen` | Elvepartiet nedenfor Nydalsdammen | data/places/natur/oslo/places_oslo_natur_akerselvarute.json |

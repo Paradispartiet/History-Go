@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-24T12:39:44.736Z
+Generated: 2026-07-25T04:31:38.046Z
 
 ## Sammendrag
-- People-filer lest: **659**
-- People lest: **1294**
+- People-filer lest: **663**
+- People lest: **1298**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1294**
+- Duplikate interne place-referanser: **1298**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -1312,5 +1312,9 @@ Generated: 2026-07-24T12:39:44.736Z
 - data/people/historie/oslo/people_historie_oslo_politics_places_batch_04.json :: curt_brauer (Curt Bräuer) -> victoria_terrasse x2
 - data/people/historie/oslo/people_historie_oslo_politics_places_batch_04.json :: christian_mohr (Christian Mohr) -> victoria_terrasse x2
 - data/people/historie/oslo/people_historie_oslo_politics_places_batch_04.json :: christian_p_reusch (Christian P. Reusch) -> victoria_terrasse x2
+- data/people/by/oslo/wessels_plass/johan_herman_wessel.json :: johan_herman_wessel (Johan Herman Wessel) -> wessels_plass x2
+- data/people/by/oslo/egertorget/herman_eger.json :: herman_eger (Herman Eger) -> egertorget x2
+- data/people/by/oslo/egertorget/thorvald_eger.json :: thorvald_eger (Thorvald Eger) -> egertorget x2
+- data/people/by/oslo/ostbanestasjonen/georg_bull.json :: georg_bull (Georg Andreas Bull) -> ostbanestasjonen x2
 
 ## Anbefalt neste ryddebatch
