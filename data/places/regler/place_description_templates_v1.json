@@ -1,56 +1,72 @@
 {
-  "schema": "history_go_place_description_templates_v2",
-  "version": "2.0.0",
-  "status": "canonical_fact_first",
-  "purpose": "Sikre at desc og popupDesc først og fremst gir konkrete, kildebelagte og interessante fakta. Tolkning, læringskoblinger og forbindelser til i dag hører primært i Mer info og People-popup.",
+  "schema": "history_go_place_description_templates_v3",
+  "version": "3.0.0",
+  "status": "canonical_fact_first_content_rich",
+  "purpose": "Sikre at desc og popupDesc gir konkrete, kildebelagte, innholdsrike og underholdende fakta. Utfyllende analyse og generelle koblinger til i dag hører primært i Mer info og People-popup.",
   "categoryAliases": {
     "popkultur": "populaerkultur"
   },
   "informationHierarchy": {
-    "desc": "Førstelinjeinformasjon: hva stedet er, når, hvem, hva som skjedde eller hva som gjør det spesielt.",
-    "popupDesc": "Andrelinjeinformasjon: flere konkrete fakta, en hendelse, et særtrekk eller en overraskende detalj.",
-    "merInfo": "Utfyllende kontekst, årsaker, konsekvenser, faglig tolkning, konflikter, forbindelser og kobling til i dag.",
-    "peoplePopup": "Biografisk sammenheng, personens rolle, verk, nettverk, etterliv og forbindelse til i dag."
+    "desc": "Innholdsrikt hovedsammendrag: hva stedet er, når, hvem, hva som skjedde, og hva som gjør det spesielt.",
+    "popupDesc": "Selvstendig miniatyrartikkel med flere fakta, hendelser, bruk, personer og minneverdige detaljer.",
+    "merInfo": "Større kontekst, årsaker, konsekvenser, faglig analyse, tolkninger, forbindelser, omfattende kronologi og kobling til i dag.",
+    "peoplePopup": "Biografi, personens rolle, verk, nettverk, konflikter, etterliv og forbindelse til i dag."
   },
   "global": {
     "desc": {
-      "targetWords": [16, 45],
-      "targetSentences": [1, 2],
-      "job": "Gi de viktigste og mest interessante faktaene uten innledning, analyse eller kategorispråk.",
-      "minimumConcreteFacts": 2,
+      "targetWords": [40, 80],
+      "targetSentences": [2, 4],
+      "rangeType": "soft_normal_range",
+      "job": "Gi et konsentrert og innholdsrikt faktasammendrag, ikke bare en teaser.",
+      "minimumConcreteFacts": 4,
       "mustDifferFromPopupDesc": true
     },
     "popupDesc": {
-      "targetWords": [45, 130],
-      "targetSentences": [2, 6],
-      "job": "Utvid med flere fakta og en underholdende, stedsspesifikk detalj. Teksten skal fortsatt være informasjon, ikke en faglig konklusjon.",
-      "minimumConcreteFacts": 4,
+      "targetWords": [160, 320],
+      "targetSentences": [6, 14],
+      "exceptionalMaximumWords": 400,
+      "rangeType": "soft_normal_range",
+      "job": "Gi en selvstendig, innholdsrik miniatyrartikkel med reell kunnskap og dokumenterte, minneverdige detaljer.",
+      "minimumConcreteFacts": 8,
+      "minimumNewInformationShare": 0.6667,
       "mustAddNewInformation": true
     },
     "factTypes": [
       "navngitt person, gruppe eller institusjon",
       "årstall eller tydelig tidsrom",
       "hva stedet er eller ble brukt til",
-      "hendelse, beslutning eller produksjon",
-      "arkitekt, kunstner, forsker, eier eller utøver",
-      "materiale, mål, art, instrument, produkt eller fysisk detalj",
-      "verk, vare, rute, rekord eller oppdagelse",
-      "konkret endring, skade, flytting eller restaurering",
-      "overraskende, morsom eller minneverdig dokumentert detalj"
+      "hendelse, vedtak, produksjon, forestilling, kamp eller oppdagelse",
+      "arkitekt, kunstner, forsker, eier, grunnlegger eller utøver",
+      "materiale, mål, art, instrument, maskin, produkt eller fysisk detalj",
+      "verk, vare, rute, rekord eller resultat",
+      "konkret endring, skade, brann, flytting, restaurering, konkurs eller ombygging",
+      "overraskende, morsom, dramatisk eller minneverdig dokumentert detalj"
+    ],
+    "researchOrder": [
+      "Les og vurder kildene før teksten planlegges.",
+      "Finn stedets viktigste grunnfakta.",
+      "Finn den mest interessante dokumenterte hendelsen eller detaljen.",
+      "Finn hva stedet har som lignende steder ikke har.",
+      "Prioriter fakta etter relevans og interesse.",
+      "Skriv teksten uten å presse den inn i en kategorifortelling."
     ],
     "writingRules": [
-      "Start direkte med fakta. Ikke innled med hva stedet symboliserer, viser eller kan lære oss.",
-      "Bruk egennavn, årstall, handlinger, gjenstander og resultater når de finnes i kildene.",
+      "Start direkte med et interessant faktum. Ikke innled med hva stedet symboliserer, viser eller kan lære oss.",
+      "Bruk egennavn, årstall, handlinger, funksjoner, gjenstander og resultater når de finnes i kildene.",
       "Prioriter det særegne ved akkurat dette stedet framfor kategoridefinisjoner.",
-      "Underholdning skal komme fra gode fakta, overraskelser, kontraster og presise detaljer, ikke fra oppdiktet stemning.",
+      "Hver setning skal helst tilføre minst én ny opplysning.",
+      "Underholdning skal komme fra gode fakta, overraskelser, kontraster og presise detaljer, ikke oppdiktet stemning.",
+      "Organiser fakta rundt det viktigste ved stedet; unngå både løs oppramsing og fast fortellertvang.",
       "Tolkning kan brukes kort når den er nødvendig for å forstå et faktum, men skal ikke dominere.",
-      "Ikke press alle steder inn i en fortelling om samfunn, identitet, system, hverdagsbruk eller dagens betydning."
+      "Ikke press alle steder inn i fortellinger om samfunn, identitet, system, arbeid, metode, hverdagsbruk, bevegelse eller dagens betydning.",
+      "Ikke fyll tekst for å nå normalrammen; ved svak kildebase skal teksten være kortere og presis.",
+      "En popupDesc mellom 320 og 400 ord krever nok godt stoff og stram redigering."
     ],
     "notFirstLineContent": [
       "læringsmål eller hva spilleren bør forstå",
       "hvilken kategori eller quizvinkel stedet bør ha",
       "generelle koblinger til vår tid",
-      "lange forklaringer av samfunnssystemer",
+      "lange forklaringer av samfunnssystemer eller teori",
       "redaksjonell begrunnelse for hvorfor stedet er med",
       "koordinatstatus, kildearbeid, validering eller interne produksjonsnotater"
     ],
@@ -75,7 +91,8 @@
         "symbol",
         "betydning",
         "rolle",
-        "sammenheng"
+        "sammenheng",
+        "møteplass"
       ],
       "rule": "Abstrakte ord er tillatt når de forklarer et konkret faktum, men ikke som erstatning for fakta."
     },
@@ -83,11 +100,22 @@
       "maxSameOpeningPatternInTen": 2,
       "requirements": [
         "Ikke bruk samme setningsform på alle stedene.",
-        "Ikke avslutt hver popupDesc med en generell læresetning.",
+        "Ikke avslutt hver popupDesc med en generell læresetning eller kobling til i dag.",
         "Ingen tekst skal kunne flyttes til et annet sted ved bare å bytte egennavnet.",
-        "Kontroller at hvert sted har minst ett faktum som ikke passer på nabostedet."
+        "Hvert sted skal ha minst ett faktum som ikke passer på et lignende nabosted."
       ]
-    }
+    },
+    "reviewQuestions": [
+      "Lærer spilleren flere konkrete ting?",
+      "Finnes det navn, hendelser, årstall, funksjoner eller særegne detaljer?",
+      "Inneholder teksten minst én opplysning som ikke passer på et annet lignende sted?",
+      "Kan flere normale quizspørsmål lages direkte fra teksten?",
+      "Tilfører popupDesc vesentlig mer enn desc?",
+      "Er minst to tredeler av opplysningene i popupDesc nye?",
+      "Er teksten interessant uten generiske fagkonklusjoner?",
+      "Er alle faktiske påstander kildebelagte?",
+      "Er generell analyse og kobling til i dag holdt utenfor førstelinjen når den ikke er nødvendig?"
+    ]
   },
   "categories": {
     "by": {
