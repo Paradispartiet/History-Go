@@ -1,6 +1,6 @@
 # Oslo latent People coverage audit
 
-Generert: 2026-07-25T07:47:37.222Z
+Generert: 2026-07-25T08:47:18.439Z
 
 ## Sammendrag
 

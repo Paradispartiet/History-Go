@@ -1,6 +1,6 @@
 # Oslo People of Places coverage
 
-Generert: 2026-07-25T07:47:36.356Z
+Generert: 2026-07-25T08:47:18.347Z
 
 ## Policy
 
