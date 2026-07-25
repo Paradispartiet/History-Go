@@ -16,6 +16,7 @@ if (!source.includes(testMarker)) throw new Error('Could not find exact quiz-pro
 const migration = String.raw`
 {
   const legacyHook = 'his_historiebruk_minne';
+  const legacyEmne = 'em_his_kulturminner_bevaring';
   const memorySiteHook = 'his_minnested_ritual_offentlig_sorg';
   const memorySiteEmne = 'em_his_minnesteder_historiebruk';
   const migrations = [
@@ -73,16 +74,15 @@ const migration = String.raw`
     brief.selected_curriculum.topic_hook_ids = [...new Set(
       brief.selected_curriculum.topic_hook_ids.map((id) => id === legacyHook ? memorySiteHook : id)
     )];
-    brief.selected_curriculum.emne_ids = [...new Set([
-      ...brief.selected_curriculum.emne_ids,
-      memorySiteEmne
-    ])];
+    brief.selected_curriculum.emne_ids = [...new Set(
+      brief.selected_curriculum.emne_ids.map((id) => id === legacyEmne ? memorySiteEmne : id)
+    )];
     w(item.brief, brief);
 
     for (const file of [item.quiz, item.brief]) {
-      const text = fs.readFileSync(file, 'utf8').replaceAll(legacyHook, memorySiteHook);
-      fs.writeFileSync(file, text);
-      if (text.includes(legacyHook)) throw new Error('Legacy memory hook remains in ' + file);
+      const content = fs.readFileSync(file, 'utf8').replaceAll(legacyHook, memorySiteHook);
+      fs.writeFileSync(file, content);
+      if (content.includes(legacyHook)) throw new Error('Legacy memory hook remains in ' + file);
     }
   }
 
