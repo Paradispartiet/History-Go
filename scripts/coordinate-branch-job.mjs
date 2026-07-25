@@ -31,7 +31,6 @@ const emner = readJson('emner_historie_canonical_v4_5.json');
 const concepts = readJson('concepts_historie_canonical_v5_5.json');
 const theories = readJson('theory_objects_historie_canonical_v5_5.json');
 const methods = readJson('methods_historie_canonical_v4_5.json');
-const thinkers = readJson('thinkers_historie_canonical_v4_5.json');
 const mappings = readJson('emnemapping_historie_canonical_v4_5.json');
 
 const domain = pensum.domains.find((item) => item.domain_id === domainId);
@@ -60,7 +59,7 @@ const report = {
   concepts: domainConcepts,
   theories: domainTheories,
   methods: (methods.methods || methods).filter((item) => methodIds.includes(item.method_id)),
-  thinkers: (thinkers.thinkers || thinkers).filter((item) => thinkerIds.includes(item.thinker_id)),
+  thinker_ids: thinkerIds,
   mappings: mappings.filter((item) => domain.emne_ids.includes(item.emne_id))
 };
 
