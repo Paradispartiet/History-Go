@@ -903,9 +903,9 @@
   {
     "concept_id": "con_his_arkiv",
     "label": "arkiv",
-    "definition": "I Kilder, arkiv og spor betegner «arkiv» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En institusjonelt eller privat ordnet samling av dokumenter og data som er skapt eller mottatt gjennom virksomhet og bevart som belegg for handlinger, rettigheter og erfaringer.",
+    "concept_type": "archival_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_minne_kulturarv_historiebruk"
@@ -915,12 +915,26 @@
       "em_his_arkiv_og_dokumentasjon",
       "em_his_digital_kulturarv_formidling"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "broader_concepts": [
+      "con_his_dokumentasjon"
+    ],
+    "narrower_concepts": [
+      "con_his_arkiver",
+      "con_his_arkivorden",
+      "con_his_arkivtaushet",
+      "con_his_kataloger",
+      "con_his_registre"
+    ],
+    "related_concepts": [
+      "con_his_proveniens",
+      "con_his_noen",
+      "con_his_arkivorden"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «arkiv» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «arkiv» som en nøytral og fullstendig avspeiling av fortiden uten å undersøke proveniens, seleksjon og ordningshistorie."
     ],
     "status": "canonical_v5_5"
   },
@@ -947,31 +961,39 @@
   },
   {
     "concept_id": "con_his_arkiver",
-    "label": "arkiver",
-    "definition": "I Kilder, arkiv og spor betegner «arkiver» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "arkivbestand",
+    "definition": "Den avgrensede helheten av arkivmateriale etter én arkivskaper, med en bestemt proveniens, ordningshistorie, dekningsgrad og bevaringssituasjon.",
+    "concept_type": "archival_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_arkiv_og_dokumentasjon"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_dokumentasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_proveniens",
+      "con_his_noen",
+      "con_his_arkivorden"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «arkiver» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «arkivbestand» som en nøytral og fullstendig avspeiling av fortiden uten å undersøke proveniens, seleksjon og ordningshistorie."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_arkivorden",
     "label": "arkivorden",
-    "definition": "I Kilder, arkiv og spor betegner «arkivorden» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Prinsippene og praksisene som organiserer arkivmateriale, muliggjør gjenfinning og samtidig former hvilke forbindelser og hierarkier forskeren kan se.",
+    "concept_type": "archival_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -985,21 +1007,28 @@
       "em_his_serielle_kilder_kvantifisering",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_dokumentasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_proveniens",
+      "con_his_noen"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «arkivorden» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «arkivorden» som en nøytral og fullstendig avspeiling av fortiden uten å undersøke proveniens, seleksjon og ordningshistorie."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_arkivtaushet",
     "label": "arkivtaushet",
-    "definition": "I Kilder, arkiv og spor betegner «arkivtaushet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Et systematisk fravær eller en skjev synlighet i arkivet som kan oppstå ved manglende registrering, seleksjon, kassasjon, tap, sperring eller utilgjengelighet.",
+    "concept_type": "absence_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -1009,12 +1038,19 @@
       "em_his_kilder_taushet_blindsoner",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_fravaer"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_manglende",
+      "con_his_viktig"
+    ],
+    "distinguish_from": [
+      "con_his_ikke"
+    ],
     "common_misuse": [
-      "Å bruke «arkivtaushet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å tolke «arkivtaushet» som bevis for at noe ikke hendte uten å dokumentere forventet kildeproduksjon, bevaring, tilgang og søkeomfang."
     ],
     "status": "canonical_v5_5"
   },
@@ -1050,9 +1086,9 @@
   {
     "concept_id": "con_his_autentisitet",
     "label": "autentisitet",
-    "definition": "I Kilder, arkiv og spor betegner «autentisitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Graden av tillit til at et dokument eller objekt er det det utgir seg for å være, vurdert gjennom opphav, form, overlevering, integritet og eventuelle endringer.",
+    "concept_type": "methodological_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_minne_kulturarv_historiebruk"
@@ -1073,12 +1109,19 @@
       "em_his_minnesteder_historiebruk",
       "em_his_monumenter_kontrovers"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_dokumentasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_dokumentform",
+      "con_his_proveniens"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «autentisitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «autentisitet» som sannhetsgaranti uten å prøve opphav, dokumentform, integritet, formål og representativitet."
     ],
     "status": "canonical_v5_5"
   },
@@ -1414,10 +1457,10 @@
   },
   {
     "concept_id": "con_his_begrensning",
-    "label": "begrensning",
-    "definition": "I Kilder, arkiv og spor betegner «begrensning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "kildebegrensning",
+    "definition": "En spesifikk egenskap ved en kilde eller kildesamling som avgrenser hvilke påstander den kan støtte, for eksempel perspektiv, formål, dekning, lesbarhet eller bevaring.",
+    "concept_type": "methodological_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -1427,12 +1470,20 @@
       "em_his_serielle_kilder_kvantifisering",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kildekritikk"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kildegrunnlag",
+      "con_his_usikkerhet",
+      "con_his_korroborering"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «begrensning» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «kildebegrensning» som en mekanisk sjekkliste uten å knytte vurderingen til et konkret historisk spørsmål og kildegrunnlag."
     ],
     "status": "canonical_v5_5"
   },
@@ -1500,9 +1551,9 @@
   {
     "concept_id": "con_his_beretning",
     "label": "beretning",
-    "definition": "I Kilder, arkiv og spor betegner «beretning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En kilde brukt for det den forteller om hendelser, forhold eller erfaringer, der utsagnet vurderes i lys av produsentens situasjon, kunnskap, avhengighet og formål.",
+    "concept_type": "source_use_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -1515,12 +1566,20 @@
       "em_his_serielle_kilder_kvantifisering",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kilder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_produksjonskontekst",
+      "con_his_opphav",
+      "con_his_formal"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «beretning» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «beretning» som en ferdig historisk forklaring uten å skille kildeobservasjon, produksjonskontekst og tolkning."
     ],
     "status": "canonical_v5_5"
   },
@@ -1762,9 +1821,9 @@
   {
     "concept_id": "con_his_blindsoner",
     "label": "blindsoner",
-    "definition": "I Kilder, arkiv og spor betegner «blindsoner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Aktører, erfaringer eller prosesser som blir vanskelige å undersøke fordi kildeproduksjon, arkivordning, tilgang eller forskningsspørsmål systematisk gjør dem lite synlige.",
+    "concept_type": "absence_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_minne_kulturarv_historiebruk"
@@ -1773,12 +1832,20 @@
       "em_his_kilder_taushet_blindsoner",
       "em_his_fravaer_taushet_motminne"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_fravaer"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_arkivtaushet",
+      "con_his_manglende",
+      "con_his_viktig"
+    ],
+    "distinguish_from": [
+      "con_his_ikke"
+    ],
     "common_misuse": [
-      "Å bruke «blindsoner» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å tolke «blindsoner» som bevis for at noe ikke hendte uten å dokumentere forventet kildeproduksjon, bevaring, tilgang og søkeomfang."
     ],
     "status": "canonical_v5_5"
   },
@@ -2274,22 +2341,30 @@
   },
   {
     "concept_id": "con_his_bygninger",
-    "label": "bygninger",
-    "definition": "I Kilder, arkiv og spor betegner «bygninger» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "bygningsspor",
+    "definition": "Fysiske deler, merker eller konstruksjoner i en bygning som dokumenterer tidligere faser, materialvalg, bruk, ombygging, skade eller reparasjon.",
+    "concept_type": "material_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_spor_materialitet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_spor"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_materialitet",
+      "con_his_stedlig_spor",
+      "con_his_funksjoner"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «bygninger» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra «bygningsspor» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
     ],
     "status": "canonical_v5_5"
   },
@@ -2318,21 +2393,29 @@
   {
     "concept_id": "con_his_bygningsrester",
     "label": "bygningsrester",
-    "definition": "I Kilder, arkiv og spor betegner «bygningsrester» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Bevarte fragmenter av en tidligere bygning eller konstruksjon som kan undersøkes for datering, materialbruk, funksjon, ødeleggelse og senere ombruk.",
+    "concept_type": "material_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_ruiner_rester_ombruk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_spor"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_materialitet",
+      "con_his_stedlig_spor",
+      "con_his_funksjoner"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «bygningsrester» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra «bygningsrester» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
     ],
     "status": "canonical_v5_5"
   },
@@ -2461,10 +2544,10 @@
   },
   {
     "concept_id": "con_his_claim_basis",
-    "label": "claim_basis",
-    "definition": "I Kilder, arkiv og spor betegner «claim_basis» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "påstandsgrunnlag",
+    "definition": "Den konkrete kombinasjonen av kilder, observasjoner, metode og slutningsrekke som gjør en avgrenset historisk påstand synlig og etterprøvbar.",
+    "concept_type": "evidentiary_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -2474,12 +2557,20 @@
       "em_his_serielle_kilder_kvantifisering",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kildegrunnlag"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kildekritikk",
+      "con_his_kontrollkilde",
+      "con_his_korroborering"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «claim_basis» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å presentere «påstandsgrunnlag» som tilstrekkelig bevis uten å vise slutningsrekken, alternative forklaringer og kildens begrensning."
     ],
     "status": "canonical_v5_5"
   },
@@ -2873,9 +2964,9 @@
   {
     "concept_id": "con_his_digital_proveniens",
     "label": "digital proveniens",
-    "definition": "I Kilder, arkiv og spor betegner «digital proveniens» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Dokumentert opprinnelse, versjonshistorikk, teknisk behandling, migrering og forvaltningskjede for digitalt skapte eller digitaliserte kilder.",
+    "concept_type": "documentary_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -2884,12 +2975,20 @@
       "em_his_skrift_hand_lesning",
       "em_his_serielle_kilder_kvantifisering"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_dokumentasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_dokumentform",
+      "con_his_proveniens",
+      "con_his_autentisitet"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «digital proveniens» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «digital proveniens» som sannhetsgaranti uten å prøve opphav, dokumentform, integritet, formål og representativitet."
     ],
     "status": "canonical_v5_5"
   },
@@ -3097,9 +3196,9 @@
   {
     "concept_id": "con_his_dokumentasjon",
     "label": "dokumentasjon",
-    "definition": "I Kilder, arkiv og spor betegner «dokumentasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Materiale som er skapt eller bevart for å registrere, administrere, kommunisere eller bevise handlinger, forhold, rettigheter og beslutninger.",
+    "concept_type": "documentary_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_velferd_rett_hverdagsliv"
@@ -3110,53 +3209,79 @@
       "em_his_velferd_hverdagsliv"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_dokumentasjonsformer",
+      "con_his_dokumentform",
+      "con_his_registre",
+      "con_his_historiefagets"
+    ],
+    "related_concepts": [
+      "con_his_dokumentform",
+      "con_his_proveniens",
+      "con_his_autentisitet"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «dokumentasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «dokumentasjon» som sannhetsgaranti uten å prøve opphav, dokumentform, integritet, formål og representativitet."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_dokumentasjonsformer",
     "label": "dokumentasjonsformer",
-    "definition": "I Kilder, arkiv og spor betegner «dokumentasjonsformer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Ulike sjangre og medier som registrerer virksomhet, fra protokoller, brev og kart til fotografi, lydopptak, databaser og metadata.",
+    "concept_type": "source_type_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_arkiv_og_dokumentasjon"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_dokumentasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_dokumentform",
+      "con_his_proveniens",
+      "con_his_autentisitet"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «dokumentasjonsformer» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «dokumentasjonsformer» som sannhetsgaranti uten å prøve opphav, dokumentform, integritet, formål og representativitet."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_dokumentform",
     "label": "dokumentform",
-    "definition": "I Kilder, arkiv og spor betegner «dokumentform» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Et dokuments strukturelle og sjangermessige kjennetegn, som formular, oppsett, segl, underskrift, materiale og administrativ funksjon.",
+    "concept_type": "documentary_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_dokument_autentisitet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_dokumentasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_proveniens",
+      "con_his_autentisitet"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «dokumentform» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «dokumentform» som sannhetsgaranti uten å prøve opphav, dokumentform, integritet, formål og representativitet."
     ],
     "status": "canonical_v5_5"
   },
@@ -4568,22 +4693,30 @@
   },
   {
     "concept_id": "con_his_finnes",
-    "label": "finnes",
-    "definition": "I Kilder, arkiv og spor betegner «finnes» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "kildebelegg",
+    "definition": "En identifiserbar opplysning, observasjon eller kildekombinasjon som direkte eller indirekte støtter en presist formulert historisk påstand.",
+    "concept_type": "evidentiary_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_kilder_taushet_blindsoner"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kildegrunnlag"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kildekritikk",
+      "con_his_kontrollkilde",
+      "con_his_korroborering"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «finnes» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å presentere «kildebelegg» som tilstrekkelig bevis uten å vise slutningsrekken, alternative forklaringer og kildens begrensning."
     ],
     "status": "canonical_v5_5"
   },
@@ -5023,9 +5156,9 @@
   {
     "concept_id": "con_his_formal",
     "label": "formål",
-    "definition": "I Kilder, arkiv og spor betegner «formål» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Den tilsiktede funksjonen en kilde ble produsert for, som administrasjon, overtalelse, minne, rapportering, dokumentasjon eller kontroll.",
+    "concept_type": "source_context_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -5035,12 +5168,19 @@
       "em_his_serielle_kilder_kvantifisering",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kilder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_produksjonskontekst",
+      "con_his_opphav"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «formål» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «formål» som en ferdig historisk forklaring uten å skille kildeobservasjon, produksjonskontekst og tolkning."
     ],
     "status": "canonical_v5_5"
   },
@@ -5281,22 +5421,30 @@
   },
   {
     "concept_id": "con_his_fortsatt",
-    "label": "fortsatt",
-    "definition": "I Kilder, arkiv og spor betegner «fortsatt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "brukskontinuitet",
+    "definition": "At et sted, objekt eller dokumentasjonsregime fortsetter å være i bruk gjennom historiske endringer, eventuelt med justert funksjon, brukergruppe eller mening.",
+    "concept_type": "material_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_ruiner_rester_ombruk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_spor"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_materialitet",
+      "con_his_stedlig_spor",
+      "con_his_funksjoner"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «fortsatt» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra «brukskontinuitet» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
     ],
     "status": "canonical_v5_5"
   },
@@ -5445,9 +5593,9 @@
   {
     "concept_id": "con_his_fravaer",
     "label": "fravær",
-    "definition": "I Kilder, arkiv og spor betegner «fravær» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Manglende forekomst av forventet materiale eller informasjon, som først blir analytisk meningsfullt når forventningen, søkeomfanget og bevaringsforholdene er begrunnet.",
+    "concept_type": "absence_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_minne_kulturarv_historiebruk"
@@ -5457,11 +5605,23 @@
       "em_his_fravaer_taushet_motminne"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_arkivtaushet",
+      "con_his_manglende",
+      "con_his_tapte",
+      "con_his_utelatt",
+      "con_his_odelagt"
+    ],
+    "related_concepts": [
+      "con_his_arkivtaushet",
+      "con_his_manglende",
+      "con_his_viktig"
+    ],
+    "distinguish_from": [
+      "con_his_ikke"
+    ],
     "common_misuse": [
-      "Å bruke «fravær» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å tolke «fravær» som bevis for at noe ikke hendte uten å dokumentere forventet kildeproduksjon, bevaring, tilgang og søkeomfang."
     ],
     "status": "canonical_v5_5"
   },
@@ -5489,22 +5649,29 @@
   },
   {
     "concept_id": "con_his_funksjoner",
-    "label": "funksjoner",
-    "definition": "I Kilder, arkiv og spor betegner «funksjoner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "historisk funksjon",
+    "definition": "Den dokumenterte rollen et sted, objekt, rom eller dokument hadde i en bestemt periode, virksomhet og sosial sammenheng.",
+    "concept_type": "material_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_ruiner_rester_ombruk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_spor"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_materialitet",
+      "con_his_stedlig_spor"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «funksjoner» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra «historisk funksjon» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
     ],
     "status": "canonical_v5_5"
   },
@@ -5689,22 +5856,30 @@
   },
   {
     "concept_id": "con_his_gjor",
-    "label": "gjør",
-    "definition": "I Kilder, arkiv og spor betegner «gjør» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "registreringsvirkning",
+    "definition": "Måten en dokumentasjonspraksis skaper administrative kategorier, synlighet og handlemuligheter ved å registrere noe, standardisere det og utelate annet.",
+    "concept_type": "archival_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_arkiv_og_dokumentasjon"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_dokumentasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_proveniens",
+      "con_his_noen",
+      "con_his_arkivorden"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «gjør» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «registreringsvirkning» som en nøytral og fullstendig avspeiling av fortiden uten å undersøke proveniens, seleksjon og ordningshistorie."
     ],
     "status": "canonical_v5_5"
   },
@@ -5853,21 +6028,29 @@
   {
     "concept_id": "con_his_gravminner",
     "label": "gravminner",
-    "definition": "I Kilder, arkiv og spor betegner «gravminner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Fysiske markeringer knyttet til gravlegging som kan belyse ritual, identitet, sosial forskjell, materiale, landskapsbruk og senere minnepraksis.",
+    "concept_type": "material_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_spor_materialitet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_spor"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_materialitet",
+      "con_his_stedlig_spor",
+      "con_his_funksjoner"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «gravminner» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra «gravminner» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
     ],
     "status": "canonical_v5_5"
   },
@@ -5915,22 +6098,30 @@
   },
   {
     "concept_id": "con_his_grunnsporsmal",
-    "label": "grunnspørsmål",
-    "definition": "I Kilder, arkiv og spor betegner «grunnspørsmål» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "kildekritiske spørsmål",
+    "definition": "Systematiske spørsmål om opphav, tid, formål, avhengighet, representativitet, overlevering og bevaring som avgrenser en kildes utsagnskraft.",
+    "concept_type": "methodological_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_kildekritikk_arkiv_spor"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kildekritikk"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kildegrunnlag",
+      "con_his_usikkerhet",
+      "con_his_korroborering"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «grunnspørsmål» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «kildekritiske spørsmål» som en mekanisk sjekkliste uten å knytte vurderingen til et konkret historisk spørsmål og kildegrunnlag."
     ],
     "status": "canonical_v5_5"
   },
@@ -6163,22 +6354,30 @@
   },
   {
     "concept_id": "con_his_historiefagets",
-    "label": "historiefagets",
-    "definition": "I Kilder, arkiv og spor betegner «historiefagets» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "historisk dokumentasjon",
+    "definition": "Den samlede praksisen med å identifisere, bevare, ordne, kontrollere og tolke spor som kan brukes til å undersøke avgrensede spørsmål om fortiden.",
+    "concept_type": "methodological_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_kildekritikk_arkiv_spor"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kildekritikk"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kildegrunnlag",
+      "con_his_usikkerhet",
+      "con_his_korroborering"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «historiefagets» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «historisk dokumentasjon» som en mekanisk sjekkliste uten å knytte vurderingen til et konkret historisk spørsmål og kildegrunnlag."
     ],
     "status": "canonical_v5_5"
   },
@@ -6378,10 +6577,10 @@
   },
   {
     "concept_id": "con_his_hvem",
-    "label": "hvem",
-    "definition": "I Kilder, arkiv og spor betegner «hvem» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "kildeprodusent",
+    "definition": "Personen, gruppen, virksomheten eller institusjonen som skapte eller fikk skapt en kilde innenfor en bestemt arbeidsprosess og maktrelasjon.",
+    "concept_type": "source_context_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_makt_stat_institusjoner"
@@ -6390,12 +6589,20 @@
       "em_his_kildekritikk_arkiv_spor",
       "em_his_beslutningskjeder_kompetanse_ansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kilder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_produksjonskontekst",
+      "con_his_opphav",
+      "con_his_formal"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «hvem» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «kildeprodusent» som en ferdig historisk forklaring uten å skille kildeobservasjon, produksjonskontekst og tolkning."
     ],
     "status": "canonical_v5_5"
   },
@@ -6580,22 +6787,28 @@
   },
   {
     "concept_id": "con_his_ikke",
-    "label": "ikke",
-    "definition": "I Kilder, arkiv og spor betegner «ikke» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "negativ evidens",
+    "definition": "En slutning fra at forventet materiale ikke forekommer, bare gyldig når sannsynlig kildeproduksjon, bevaring, tilgang og søkeomfang er dokumentert.",
+    "concept_type": "evidentiary_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_kilder_taushet_blindsoner"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_fravaer"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
+    "related_concepts": [
+      "con_his_arkivtaushet",
+      "con_his_manglende",
+      "con_his_viktig"
+    ],
     "distinguish_from": [],
     "common_misuse": [
-      "Å bruke «ikke» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å tolke «negativ evidens» som bevis for at noe ikke hendte uten å dokumentere forventet kildeproduksjon, bevaring, tilgang og søkeomfang."
     ],
     "status": "canonical_v5_5"
   },
@@ -7680,9 +7893,9 @@
   {
     "concept_id": "con_his_kart",
     "label": "kart",
-    "definition": "I Kilder, arkiv og spor betegner «kart» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En selektiv og målrettet framstilling av romlige forhold som både dokumenterer og produserer kategorier, grenser, målestokk og perspektiver.",
+    "concept_type": "media_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_vitenskap_teknologi_kunnskap"
@@ -7691,12 +7904,20 @@
       "em_his_spor_materialitet",
       "em_his_vitenskap_teknologi_maling_statistikk_kart_og_klassifikasjon"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kilder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_produksjonskontekst",
+      "con_his_materialitet",
+      "con_his_kildekritikk"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «kart» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å lese «kart» som en nøytral gjengivelse uten å analysere produksjon, medium, utsnitt, mottak og senere bearbeiding."
     ],
     "status": "canonical_v5_5"
   },
@@ -7732,21 +7953,29 @@
   {
     "concept_id": "con_his_kataloger",
     "label": "kataloger",
-    "definition": "I Kilder, arkiv og spor betegner «kataloger» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Gjenfinningsverktøy som beskriver og klassifiserer arkiv-, biblioteks- eller museumsmateriale, men som ikke er nøytrale speil av samlingen.",
+    "concept_type": "archival_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_arkiv_og_dokumentasjon"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_dokumentasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_proveniens",
+      "con_his_noen",
+      "con_his_arkivorden"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «kataloger» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «kataloger» som en nøytral og fullstendig avspeiling av fortiden uten å undersøke proveniens, seleksjon og ordningshistorie."
     ],
     "status": "canonical_v5_5"
   },
@@ -7998,9 +8227,9 @@
   {
     "concept_id": "con_his_kildekritikk",
     "label": "kildekritikk",
-    "definition": "I Kilder, arkiv og spor betegner «kildekritikk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Metodisk vurdering av hvordan en kildes opphav, formål, situasjon, avhengighet, overlevering og representativitet påvirker hva den kan brukes til.",
+    "concept_type": "methodological_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -8013,41 +8242,60 @@
       "em_his_visuelle_kilder_fotografi"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_proveniens",
+      "con_his_autentisitet",
+      "con_his_representativitet",
+      "con_his_korroborering",
+      "con_his_kontrollkilde"
+    ],
+    "related_concepts": [
+      "con_his_kildegrunnlag",
+      "con_his_usikkerhet",
+      "con_his_korroborering"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «kildekritikk» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «kildekritikk» som en mekanisk sjekkliste uten å knytte vurderingen til et konkret historisk spørsmål og kildegrunnlag."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_kildene",
-    "label": "kildene",
-    "definition": "I Kilder, arkiv og spor betegner «kildene» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "kildeutvalg",
+    "definition": "Den delen av tilgjengelig eller bevart materiale som faktisk inngår i en undersøkelse, valgt gjennom eksplisitte eller implisitte kriterier.",
+    "concept_type": "archival_process",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_kilder_taushet_blindsoner"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_arkiv"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_noen",
+      "con_his_viktig"
+    ],
+    "distinguish_from": [
+      "con_his_representativitet"
+    ],
     "common_misuse": [
-      "Å bruke «kildene» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «kildeutvalg» uten å vise hvilke kriterier, institusjoner, ressurser og tap som formet materialet."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_kildeobjekt",
     "label": "kildeobjekt",
-    "definition": "I Kilder, arkiv og spor betegner «kildeobjekt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Det konkrete dokumentet, bildet, gjenstanden, datasettet, lydopptaket eller materielle sporet som undersøkes som historisk kilde.",
+    "concept_type": "source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -8057,21 +8305,29 @@
       "em_his_serielle_kilder_kvantifisering",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kilder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_produksjonskontekst",
+      "con_his_opphav",
+      "con_his_formal"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «kildeobjekt» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «kildeobjekt» som en ferdig historisk forklaring uten å skille kildeobservasjon, produksjonskontekst og tolkning."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_kilder",
-    "label": "kilder",
-    "definition": "I Kilder, arkiv og spor betegner «kilder» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "historisk kilde",
+    "definition": "Et bevart eller rekonstruert spor fra fortiden som brukes til å besvare et historisk spørsmål; kildeverdien oppstår i forholdet mellom objekt, spørsmål og metode.",
+    "concept_type": "source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -8081,11 +8337,26 @@
       "em_his_taushet_og_manglende_kilder"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_kildeobjekt",
+      "con_his_levning",
+      "con_his_beretning",
+      "con_his_serielle_kilder",
+      "con_his_muntlig_historie",
+      "con_his_visuelle",
+      "con_his_kart",
+      "con_his_skrift"
+    ],
+    "related_concepts": [
+      "con_his_produksjonskontekst",
+      "con_his_opphav",
+      "con_his_formal"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «kilder» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «historisk kilde» som en ferdig historisk forklaring uten å skille kildeobservasjon, produksjonskontekst og tolkning."
     ],
     "status": "canonical_v5_5"
   },
@@ -9061,9 +9332,9 @@
   {
     "concept_id": "con_his_kontekst",
     "label": "kontekst",
-    "definition": "I Kilder, arkiv og spor betegner «kontekst» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "De tidslige, romlige, institusjonelle og sosiale forholdene som gir en kilde mening og påvirker dens produksjon, innhold, bevaring og bruk.",
+    "concept_type": "contextual_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -9073,12 +9344,20 @@
       "em_his_serielle_kilder_kvantifisering",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_produksjonskontekst"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_opphav",
+      "con_his_formal",
+      "con_his_hvem"
+    ],
+    "distinguish_from": [
+      "con_his_ettertid"
+    ],
     "common_misuse": [
-      "Å bruke «kontekst» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «kontekst» generelt uten å avgrense tid, sted, produsent, virksomhet og målgruppe."
     ],
     "status": "canonical_v5_5"
   },
@@ -9188,9 +9467,9 @@
   {
     "concept_id": "con_his_kontrollkilde",
     "label": "kontrollkilde",
-    "definition": "I Kilder, arkiv og spor betegner «kontrollkilde» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En uavhengig eller metodisk forskjellig kilde som brukes til å prøve, nyansere eller motsi en opplysning, datering eller tolkning.",
+    "concept_type": "evidentiary_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -9200,12 +9479,19 @@
       "em_his_serielle_kilder_kvantifisering",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kildegrunnlag"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kildekritikk",
+      "con_his_korroborering"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «kontrollkilde» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å presentere «kontrollkilde» som tilstrekkelig bevis uten å vise slutningsrekken, alternative forklaringer og kildens begrensning."
     ],
     "status": "canonical_v5_5"
   },
@@ -9234,9 +9520,9 @@
   {
     "concept_id": "con_his_korroborering",
     "label": "korroborering",
-    "definition": "I Kilder, arkiv og spor betegner «korroborering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Sammenstilling av flere uavhengige eller komplementære kilder for å vurdere om en historisk påstand styrkes, nyanseres, avgrenses eller svekkes.",
+    "concept_type": "methodological_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -9248,12 +9534,19 @@
       "em_his_serielle_kilder_kvantifisering",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kildekritikk"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kildegrunnlag",
+      "con_his_usikkerhet"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «korroborering» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «korroborering» som en mekanisk sjekkliste uten å knytte vurderingen til et konkret historisk spørsmål og kildegrunnlag."
     ],
     "status": "canonical_v5_5"
   },
@@ -10305,9 +10598,9 @@
   {
     "concept_id": "con_his_levning",
     "label": "levning",
-    "definition": "I Kilder, arkiv og spor betegner «levning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En kilde brukt som et spor etter virksomheten, situasjonen eller praksisen som produserte den, uavhengig av hva den uttrykkelig forteller.",
+    "concept_type": "source_use_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -10320,12 +10613,20 @@
       "em_his_serielle_kilder_kvantifisering",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kilder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_produksjonskontekst",
+      "con_his_opphav",
+      "con_his_formal"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «levning» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «levning» som en ferdig historisk forklaring uten å skille kildeobservasjon, produksjonskontekst og tolkning."
     ],
     "status": "canonical_v5_5"
   },
@@ -10713,22 +11014,29 @@
   },
   {
     "concept_id": "con_his_manglende",
-    "label": "manglende",
-    "definition": "I Kilder, arkiv og spor betegner «manglende» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "kildehull",
+    "definition": "Et avgrenset område der forventet dokumentasjon mangler eller er utilgjengelig, med en identifiserbar årsak, dekningsgrense eller usikkerhet.",
+    "concept_type": "absence_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_taushet_og_manglende_kilder"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_fravaer"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_arkivtaushet",
+      "con_his_viktig"
+    ],
+    "distinguish_from": [
+      "con_his_ikke"
+    ],
     "common_misuse": [
-      "Å bruke «manglende» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å tolke «kildehull» som bevis for at noe ikke hendte uten å dokumentere forventet kildeproduksjon, bevaring, tilgang og søkeomfang."
     ],
     "status": "canonical_v5_5"
   },
@@ -10900,31 +11208,39 @@
   },
   {
     "concept_id": "con_his_materialer",
-    "label": "materialer",
-    "definition": "I Kilder, arkiv og spor betegner «materialer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "materialspor",
+    "definition": "Fysiske materialer og deres bearbeiding, slitasje, sammensetning eller plassering brukt som belegg for tidligere handlinger, bruksmåter og miljøer.",
+    "concept_type": "material_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_spor_materialitet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_spor"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_materialitet",
+      "con_his_stedlig_spor",
+      "con_his_funksjoner"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «materialer» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra «materialspor» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_materialitet",
     "label": "materialitet",
-    "definition": "I Kilder, arkiv og spor betegner «materialitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Kildens fysiske eller tekniske egenskaper og hvordan de påvirker produksjon, bruk, bevaring, tilgjengelighet og historisk fortolkning.",
+    "concept_type": "material_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_byhistorie_stedsendring"
@@ -10936,12 +11252,24 @@
       "em_his_taushet_og_manglende_kilder",
       "em_his_riving_ombruk_bevaring"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "broader_concepts": [
+      "con_his_spor"
+    ],
+    "narrower_concepts": [
+      "con_his_materialer",
+      "con_his_bygninger",
+      "con_his_gravminner",
+      "con_his_rester"
+    ],
+    "related_concepts": [
+      "con_his_stedlig_spor",
+      "con_his_funksjoner"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «materialitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra «materialitet» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
     ],
     "status": "canonical_v5_5"
   },
@@ -11954,9 +12282,9 @@
   {
     "concept_id": "con_his_monumenter",
     "label": "monumenter",
-    "definition": "I Kilder, arkiv og spor betegner «monumenter» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Bevisst oppførte eller omformede minneobjekter som kan undersøkes både som materielle spor og som uttrykk for senere historiebruk.",
+    "concept_type": "material_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_minne_kulturarv_historiebruk"
@@ -11965,12 +12293,20 @@
       "em_his_spor_materialitet",
       "em_his_monumenter_kontrovers"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_spor"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_materialitet",
+      "con_his_stedlig_spor",
+      "con_his_funksjoner"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «monumenter» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra «monumenter» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
     ],
     "status": "canonical_v5_5"
   },
@@ -12192,9 +12528,9 @@
   {
     "concept_id": "con_his_muntlig_historie",
     "label": "muntlig historie",
-    "definition": "I Kilder, arkiv og spor betegner «muntlig historie» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Metode og kildetype basert på innsamlede muntlige fortellinger, der både erindret erfaring, senere meningsdannelse og intervjusituasjonen inngår i analysen.",
+    "concept_type": "media_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -12203,12 +12539,20 @@
       "em_his_dokument_autentisitet",
       "em_his_skrift_hand_lesning"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kilder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_produksjonskontekst",
+      "con_his_materialitet",
+      "con_his_kildekritikk"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «muntlig historie» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å lese «muntlig historie» som en nøytral gjengivelse uten å analysere produksjon, medium, utsnitt, mottak og senere bearbeiding."
     ],
     "status": "canonical_v5_5"
   },
@@ -12563,22 +12907,33 @@
   },
   {
     "concept_id": "con_his_noen",
-    "label": "noen",
-    "definition": "I Kilder, arkiv og spor betegner «noen» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "seleksjon",
+    "definition": "Prosessen der materiale velges for registrering, innsamling, bevaring, kassasjon, tilgjengeliggjøring eller forskning etter bestemte kriterier.",
+    "concept_type": "archival_process",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_arkiv_og_dokumentasjon"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "broader_concepts": [
+      "con_his_arkiv"
+    ],
+    "narrower_concepts": [
+      "con_his_samler",
+      "con_his_kildene",
+      "con_his_viktig"
+    ],
+    "related_concepts": [
+      "con_his_viktig",
+      "con_his_kildene"
+    ],
+    "distinguish_from": [
+      "con_his_representativitet"
+    ],
     "common_misuse": [
-      "Å bruke «noen» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «seleksjon» uten å vise hvilke kriterier, institusjoner, ressurser og tap som formet materialet."
     ],
     "status": "canonical_v5_5"
   },
@@ -12693,22 +13048,30 @@
   },
   {
     "concept_id": "con_his_odelagt",
-    "label": "ødelagt",
-    "definition": "I Kilder, arkiv og spor betegner «ødelagt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "dokumenttap",
+    "definition": "Tap av dokumenter gjennom brann, kassasjon, sensur, krig, teknisk foreldelse eller annen ødeleggelse, med følger for hva som kan undersøkes.",
+    "concept_type": "absence_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_kilder_taushet_blindsoner"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_fravaer"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_arkivtaushet",
+      "con_his_manglende",
+      "con_his_viktig"
+    ],
+    "distinguish_from": [
+      "con_his_ikke"
+    ],
     "common_misuse": [
-      "Å bruke «ødelagt» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å tolke «dokumenttap» som bevis for at noe ikke hendte uten å dokumentere forventet kildeproduksjon, bevaring, tilgang og søkeomfang."
     ],
     "status": "canonical_v5_5"
   },
@@ -13015,9 +13378,9 @@
   {
     "concept_id": "con_his_ombruk",
     "label": "ombruk",
-    "definition": "I Kilder, arkiv og spor betegner «ombruk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Ny bruk av et eldre sted, objekt eller materiale som både kan bevare, dekke til og endre spor etter tidligere funksjoner.",
+    "concept_type": "material_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_industri_arbeid_sosialhistorie",
@@ -13035,12 +13398,20 @@
       "em_his_byhistorie_stedsendring_sanering_byfornyelse_og_modernisme",
       "em_his_byhistorie_stedsendring_gentrifisering_ombruk_og_bevaring"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_spor"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_materialitet",
+      "con_his_stedlig_spor",
+      "con_his_funksjoner"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «ombruk» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra «ombruk» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
     ],
     "status": "canonical_v5_5"
   },
@@ -13208,9 +13579,9 @@
   {
     "concept_id": "con_his_opphav",
     "label": "opphav",
-    "definition": "I Kilder, arkiv og spor betegner «opphav» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Den dokumenterte eller sannsynlige tilknytningen mellom en kilde og dens produsent, tid, sted, virksomhet og første bruksområde.",
+    "concept_type": "source_context_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -13220,12 +13591,19 @@
       "em_his_serielle_kilder_kvantifisering",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kilder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_produksjonskontekst",
+      "con_his_formal"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «opphav» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «opphav» som en ferdig historisk forklaring uten å skille kildeobservasjon, produksjonskontekst og tolkning."
     ],
     "status": "canonical_v5_5"
   },
@@ -14272,9 +14650,9 @@
   {
     "concept_id": "con_his_produksjonskontekst",
     "label": "produksjonskontekst",
-    "definition": "I Kilder, arkiv og spor betegner «produksjonskontekst» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Den konkrete situasjonen, arbeidsprosessen og institusjonen der en kilde ble skapt, inkludert regler, målgruppe, teknologi og tilgjengelige kategorier.",
+    "concept_type": "source_context_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_industri_arbeid_sosialhistorie"
@@ -14297,10 +14675,16 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_opphav",
+      "con_his_formal",
+      "con_his_hvem"
+    ],
+    "distinguish_from": [
+      "con_his_ettertid"
+    ],
     "common_misuse": [
-      "Å bruke «produksjonskontekst» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «produksjonskontekst» generelt uten å avgrense tid, sted, produsent, virksomhet og målgruppe."
     ],
     "status": "canonical_v5_5"
   },
@@ -14580,9 +14964,9 @@
   {
     "concept_id": "con_his_proveniens",
     "label": "proveniens",
-    "definition": "I Kilder, arkiv og spor betegner «proveniens» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Kildens opprinnelse og sammenhengende forvaltnings- eller overleveringshistorie fra produksjon til nåværende plassering eller digitale versjon.",
+    "concept_type": "methodological_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_minne_kulturarv_historiebruk"
@@ -14595,12 +14979,19 @@
       "em_his_visuelle_kilder_fotografi",
       "em_his_museum_samling_kanon"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_dokumentasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_dokumentform",
+      "con_his_autentisitet"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «proveniens» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «proveniens» som sannhetsgaranti uten å prøve opphav, dokumentform, integritet, formål og representativitet."
     ],
     "status": "canonical_v5_5"
   },
@@ -14857,9 +15248,9 @@
   {
     "concept_id": "con_his_registre",
     "label": "registre",
-    "definition": "I Kilder, arkiv og spor betegner «registre» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Systematiske fortegnelser over personer, hendelser, eiendom, rettigheter eller transaksjoner, produsert etter bestemte administrative kategorier og rutiner.",
+    "concept_type": "source_type_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_makt_stat_institusjoner"
@@ -14868,12 +15259,20 @@
       "em_his_arkiv_og_dokumentasjon",
       "em_his_kontroll_overvakning"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_dokumentasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_proveniens",
+      "con_his_noen",
+      "con_his_arkivorden"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «registre» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «registre» som en nøytral og fullstendig avspeiling av fortiden uten å undersøke proveniens, seleksjon og ordningshistorie."
     ],
     "status": "canonical_v5_5"
   },
@@ -15271,9 +15670,9 @@
   {
     "concept_id": "con_his_representativitet",
     "label": "representativitet",
-    "definition": "I Kilder, arkiv og spor betegner «representativitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "I hvilken grad et kildeutvalg gir grunnlag for å si noe om en større gruppe, periode eller prosess enn de observerte og bevarte tilfellene.",
+    "concept_type": "methodological_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_minne_kulturarv_historiebruk"
@@ -15285,12 +15684,20 @@
       "em_his_visuelle_kilder_fotografi",
       "em_his_kulturminner_bevaring"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kildekritikk"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kildegrunnlag",
+      "con_his_usikkerhet",
+      "con_his_korroborering"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «representativitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «representativitet» som en mekanisk sjekkliste uten å knytte vurderingen til et konkret historisk spørsmål og kildegrunnlag."
     ],
     "status": "canonical_v5_5"
   },
@@ -15456,22 +15863,30 @@
   },
   {
     "concept_id": "con_his_rester",
-    "label": "rester",
-    "definition": "I Kilder, arkiv og spor betegner «rester» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "materielle rester",
+    "definition": "Fysiske fragmenter eller avleiringer som har overlevd en tidligere aktivitet, bygning eller livsform uten nødvendigvis å være bevisst bevart.",
+    "concept_type": "material_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_ruiner_rester_ombruk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_spor"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_materialitet",
+      "con_his_stedlig_spor",
+      "con_his_funksjoner"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «rester» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra «materielle rester» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
     ],
     "status": "canonical_v5_5"
   },
@@ -15714,9 +16129,9 @@
   {
     "concept_id": "con_his_ruiner",
     "label": "ruiner",
-    "definition": "I Kilder, arkiv og spor betegner «ruiner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Delvis bevarte bygningsstrukturer der tap, forvitring, restaurering og senere bruk må skilles fra den opprinnelige konstruksjonen.",
+    "concept_type": "material_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -15724,12 +16139,20 @@
       "em_his_spor_materialitet",
       "em_his_ruiner_rester_ombruk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_spor"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_materialitet",
+      "con_his_stedlig_spor",
+      "con_his_funksjoner"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «ruiner» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra «ruiner» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
     ],
     "status": "canonical_v5_5"
   },
@@ -15848,22 +16271,30 @@
   },
   {
     "concept_id": "con_his_samler",
-    "label": "samler",
-    "definition": "I Kilder, arkiv og spor betegner «samler» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "innsamling",
+    "definition": "Planlagt eller tilfeldig opptak av dokumenter, objekter og fortellinger i en samling, styrt av mandat, kriterier, ressurser og tilgang.",
+    "concept_type": "archival_process",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_kildekritikk_arkiv_spor"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_arkiv"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_noen",
+      "con_his_viktig",
+      "con_his_kildene"
+    ],
+    "distinguish_from": [
+      "con_his_representativitet"
+    ],
     "common_misuse": [
-      "Å bruke «samler» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «innsamling» uten å vise hvilke kriterier, institusjoner, ressurser og tap som formet materialet."
     ],
     "status": "canonical_v5_5"
   },
@@ -16474,31 +16905,39 @@
   },
   {
     "concept_id": "con_his_serielle",
-    "label": "serielle",
-    "definition": "I Kilder, arkiv og spor betegner «serielle» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "kvantifisering",
+    "definition": "Omforming av kildeopplysninger til tellbare kategorier for å analysere omfang, fordeling og endring, med eksplisitt kontroll av kategorienes historiske stabilitet.",
+    "concept_type": "methodological_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_serielle_kilder_kvantifisering"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kildekritikk"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kildegrunnlag",
+      "con_his_usikkerhet",
+      "con_his_korroborering"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «serielle» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «kvantifisering» som en mekanisk sjekkliste uten å knytte vurderingen til et konkret historisk spørsmål og kildegrunnlag."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_serielle_kilder",
     "label": "serielle kilder",
-    "definition": "I Kilder, arkiv og spor betegner «serielle kilder» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Gjentatte og sammenlignbare registreringer produsert over tid etter relativt stabile rutiner, som protokoller, lister, regnskaper eller folketellinger.",
+    "concept_type": "source_type_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -16507,12 +16946,20 @@
       "em_his_taushet_og_manglende_kilder",
       "em_his_dokument_autentisitet"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kilder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_produksjonskontekst",
+      "con_his_materialitet",
+      "con_his_kildekritikk"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «serielle kilder» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å lese «serielle kilder» som en nøytral gjengivelse uten å analysere produksjon, medium, utsnitt, mottak og senere bearbeiding."
     ],
     "status": "canonical_v5_5"
   },
@@ -16788,21 +17235,29 @@
   {
     "concept_id": "con_his_skrift",
     "label": "skrift",
-    "definition": "I Kilder, arkiv og spor betegner «skrift» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Grafiske tegn og konvensjoner som bærer språk i et bestemt materiale, skriftsystem og historisk skrivefellesskap.",
+    "concept_type": "media_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_skrift_hand_lesning"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kilder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_produksjonskontekst",
+      "con_his_materialitet",
+      "con_his_kildekritikk"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «skrift» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å lese «skrift» som en nøytral gjengivelse uten å analysere produksjon, medium, utsnitt, mottak og senere bearbeiding."
     ],
     "status": "canonical_v5_5"
   },
@@ -17187,9 +17642,9 @@
   {
     "concept_id": "con_his_spor",
     "label": "spor",
-    "definition": "I Kilder, arkiv og spor betegner «spor» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Et bevart resultat av tidligere handlinger eller prosesser som får kildeverdi gjennom datering, kontekstualisering og et formulert historisk spørsmål.",
+    "concept_type": "evidentiary_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -17199,11 +17654,24 @@
       "em_his_ruiner_rester_ombruk"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_stedlig_spor",
+      "con_his_materialer",
+      "con_his_bygninger",
+      "con_his_bygningsrester",
+      "con_his_ruiner",
+      "con_his_gravminner"
+    ],
+    "related_concepts": [
+      "con_his_materialitet",
+      "con_his_stedlig_spor",
+      "con_his_funksjoner"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «spor» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra «spor» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
     ],
     "status": "canonical_v5_5"
   },
@@ -18118,31 +18586,39 @@
   },
   {
     "concept_id": "con_his_tapte",
-    "label": "tapte",
-    "definition": "I Kilder, arkiv og spor betegner «tapte» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "kildetap",
+    "definition": "Dokumentasjon eller materiale som er kjent eller sannsynlig å ha eksistert, men som er forsvunnet gjennom kassasjon, ødeleggelse, forvitring eller teknisk svikt.",
+    "concept_type": "absence_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_taushet_og_manglende_kilder"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_fravaer"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_arkivtaushet",
+      "con_his_manglende",
+      "con_his_viktig"
+    ],
+    "distinguish_from": [
+      "con_his_ikke"
+    ],
     "common_misuse": [
-      "Å bruke «tapte» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å tolke «kildetap» som bevis for at noe ikke hendte uten å dokumentere forventet kildeproduksjon, bevaring, tilgang og søkeomfang."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_taushet",
     "label": "taushet",
-    "definition": "I Kilder, arkiv og spor betegner «taushet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Det som ikke uttrykkes eller registreres i en kilde, selv om temaet, hendelsen eller aktøren kan være indirekte til stede.",
+    "concept_type": "absence_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
       "his_minne_kulturarv_historiebruk"
@@ -18152,12 +18628,20 @@
       "em_his_taushet_og_manglende_kilder",
       "em_his_fravaer_taushet_motminne"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_fravaer"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_arkivtaushet",
+      "con_his_manglende",
+      "con_his_viktig"
+    ],
+    "distinguish_from": [
+      "con_his_ikke"
+    ],
     "common_misuse": [
-      "Å bruke «taushet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å tolke «taushet» som bevis for at noe ikke hendte uten å dokumentere forventet kildeproduksjon, bevaring, tilgang og søkeomfang."
     ],
     "status": "canonical_v5_5"
   },
@@ -18310,22 +18794,30 @@
   },
   {
     "concept_id": "con_his_tidligere",
-    "label": "tidligere",
-    "definition": "I Kilder, arkiv og spor betegner «tidligere» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "funksjonsskifte",
+    "definition": "Overgangen fra en tidligere dokumentert bruk til en ny funksjon, der både materielle kontinuiteter, avbrudd og omforming må undersøkes.",
+    "concept_type": "material_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_ruiner_rester_ombruk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_spor"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_materialitet",
+      "con_his_stedlig_spor",
+      "con_his_funksjoner"
+    ],
+    "distinguish_from": [
+      "con_his_beretning"
+    ],
     "common_misuse": [
-      "Å bruke «tidligere» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å slutte fra «funksjonsskifte» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
     ],
     "status": "canonical_v5_5"
   },
@@ -18663,9 +19155,9 @@
   {
     "concept_id": "con_his_tolkning",
     "label": "tolkning",
-    "definition": "I Kilder, arkiv og spor betegner «tolkning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En begrunnet slutning som knytter kildeobservasjoner til et historisk spørsmål ved hjelp av metode, begreper, sammenligning og synlig usikkerhet.",
+    "concept_type": "methodological_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
@@ -18675,12 +19167,20 @@
       "em_his_serielle_kilder_kvantifisering",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kildekritikk"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kildegrunnlag",
+      "con_his_usikkerhet",
+      "con_his_korroborering"
+    ],
+    "distinguish_from": [
+      "con_his_kilder"
+    ],
     "common_misuse": [
-      "Å bruke «tolkning» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «tolkning» som en mekanisk sjekkliste uten å knytte vurderingen til et konkret historisk spørsmål og kildegrunnlag."
     ],
     "status": "canonical_v5_5"
   },
@@ -19489,22 +19989,30 @@
   },
   {
     "concept_id": "con_his_utelatt",
-    "label": "utelatt",
-    "definition": "I Kilder, arkiv og spor betegner «utelatt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "utelatelse",
+    "definition": "Fravær som følger av at en produsent, registreringspraksis, redaktør eller arkivordning bevisst eller rutinemessig ikke tok noe med.",
+    "concept_type": "absence_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_kilder_taushet_blindsoner"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_fravaer"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_arkivtaushet",
+      "con_his_manglende",
+      "con_his_viktig"
+    ],
+    "distinguish_from": [
+      "con_his_ikke"
+    ],
     "common_misuse": [
-      "Å bruke «utelatt» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å tolke «utelatelse» som bevis for at noe ikke hendte uten å dokumentere forventet kildeproduksjon, bevaring, tilgang og søkeomfang."
     ],
     "status": "canonical_v5_5"
   },
@@ -19624,22 +20132,30 @@
   },
   {
     "concept_id": "con_his_vaere",
-    "label": "være",
-    "definition": "I Kilder, arkiv og spor betegner «være» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "indirekte belegg",
+    "definition": "Opplysninger som ikke viser et forhold direkte, men som gjennom mønster, kontekst, fravær eller sammenligning støtter en begrenset historisk slutning.",
+    "concept_type": "evidentiary_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_taushet_og_manglende_kilder"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kildegrunnlag"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kildekritikk",
+      "con_his_kontrollkilde",
+      "con_his_korroborering"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «være» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å presentere «indirekte belegg» som tilstrekkelig bevis uten å vise slutningsrekken, alternative forklaringer og kildens begrensning."
     ],
     "status": "canonical_v5_5"
   },
@@ -19905,22 +20421,29 @@
   },
   {
     "concept_id": "con_his_viktig",
-    "label": "viktig",
-    "definition": "I Kilder, arkiv og spor betegner «viktig» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "bevaringsskjevhet",
+    "definition": "Ulik sannsynlighet for at bestemte materialer, aktører, institusjoner og praksiser blir bevart og dermed synlige i ettertidens kilder.",
+    "concept_type": "archival_process",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_taushet_og_manglende_kilder"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_arkiv"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_noen",
+      "con_his_kildene"
+    ],
+    "distinguish_from": [
+      "con_his_representativitet"
+    ],
     "common_misuse": [
-      "Å bruke «viktig» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «bevaringsskjevhet» uten å vise hvilke kriterier, institusjoner, ressurser og tap som formet materialet."
     ],
     "status": "canonical_v5_5"
   },
@@ -19947,22 +20470,30 @@
   },
   {
     "concept_id": "con_his_visuelle",
-    "label": "visuelle",
-    "definition": "I Kilder, arkiv og spor betegner «visuelle» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "visuell representasjon",
+    "definition": "En produsert framstilling i bilde, fotografi, film, diagram eller kart som organiserer synlighet gjennom utsnitt, teknikk, iscenesettelse og konvensjon.",
+    "concept_type": "media_source_concept",
+    "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor"
     ],
     "source_emne_ids": [
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kilder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_produksjonskontekst",
+      "con_his_materialitet",
+      "con_his_kildekritikk"
+    ],
+    "distinguish_from": [
+      "con_his_tolkning"
+    ],
     "common_misuse": [
-      "Å bruke «visuelle» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å lese «visuell representasjon» som en nøytral gjengivelse uten å analysere produksjon, medium, utsnitt, mottak og senere bearbeiding."
     ],
     "status": "canonical_v5_5"
   },
