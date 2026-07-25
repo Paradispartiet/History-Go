@@ -1,0 +1,219 @@
+name: Temporary Næringsliv fagpakke audit
+
+on:
+  push:
+    branches:
+      - agent/naeringsliv-fagpakke-audit
+    paths:
+      - '.github/workflows/temp-naeringsliv-fagpakke-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+
+      - name: Build full fagpakke audit
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const crypto = require('crypto');
+
+          const root = 'data/fag/naeringsliv';
+          const read = (name) => JSON.parse(fs.readFileSync(`${root}/${name}`, 'utf8'));
+          const pensum = read('naeringslivpensum_canonical_v4_5.json');
+          const emnerRaw = read('emner_naeringsliv_canonical_v4_5.json');
+          const fagkart = read('fagkart_naeringsliv_canonical_v4_5.json');
+          const methodsRaw = read('methods_naeringsliv_canonical_v4_5.json');
+          const profile = read('supersetQUIZMAL_naeringsliv.json');
+
+          const emner = Array.isArray(emnerRaw) ? emnerRaw : (emnerRaw.emner || []);
+          const methods = Array.isArray(methodsRaw) ? methodsRaw : (methodsRaw.methods || []);
+          const categories = fagkart.categories || [];
+          const hooks = categories.flatMap(category => (category.topic_hooks || []).map(hook => ({...hook, category_id: category.id})));
+          const domains = pensum.domains || pensum.modules || [];
+
+          const stable = value => JSON.stringify(value, Object.keys(value || {}).sort());
+          const fingerprint = value => crypto.createHash('sha1').update(JSON.stringify(value)).digest('hex').slice(0, 12);
+          const norm = value => String(value ?? '')
+            .normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase()
+            .replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+          const tokens = value => new Set(norm(value).split(/\s+/).filter(token => token.length > 2));
+          const jaccard = (a, b) => {
+            const A = tokens(a); const B = tokens(b);
+            if (!A.size && !B.size) return 1;
+            let intersection = 0;
+            for (const token of A) if (B.has(token)) intersection++;
+            return intersection / new Set([...A, ...B]).size;
+          };
+          const duplicateGroups = (items, field, idField) => {
+            const groups = new Map();
+            for (const item of items) {
+              const value = item[field];
+              if (value === undefined || value === null || value === '' || (Array.isArray(value) && !value.length)) continue;
+              const key = JSON.stringify(value);
+              if (!groups.has(key)) groups.set(key, []);
+              groups.get(key).push(item[idField] || item.id || item.title);
+            }
+            return [...groups.entries()]
+              .filter(([, ids]) => ids.length > 1)
+              .map(([value, ids]) => ({count: ids.length, ids, value: JSON.parse(value)}))
+              .sort((a,b) => b.count - a.count || String(a.ids[0]).localeCompare(String(b.ids[0])));
+          };
+          const nearPairs = (items, field, idField, threshold = 0.86) => {
+            const pairs = [];
+            for (let i = 0; i < items.length; i++) {
+              for (let j = i + 1; j < items.length; j++) {
+                const a = items[i][field]; const b = items[j][field];
+                if (typeof a !== 'string' || typeof b !== 'string' || !a.trim() || !b.trim()) continue;
+                const score = jaccard(a, b);
+                if (score >= threshold && norm(a) !== norm(b)) {
+                  pairs.push({score: Number(score.toFixed(3)), a: items[i][idField], b: items[j][idField], a_value: a, b_value: b});
+                }
+              }
+            }
+            return pairs.sort((x,y) => y.score - x.score).slice(0, 100);
+          };
+          const fieldCoverage = items => {
+            const fields = [...new Set(items.flatMap(item => Object.keys(item)))].sort();
+            return Object.fromEntries(fields.map(field => {
+              const values = items.map(item => item[field]).filter(value => value !== undefined && value !== null && value !== '' && (!Array.isArray(value) || value.length));
+              const distinct = new Set(values.map(value => JSON.stringify(value))).size;
+              return [field, {present: values.length, total: items.length, distinct}];
+            }));
+          };
+          const arrayAliasAudit = emner.map(item => ({
+            emne_id: item.emne_id,
+            related_alias_equal: JSON.stringify(item.related_emners || null) === JSON.stringify(item.related_emner || null),
+            methods_alias_equal: JSON.stringify(item.methods || null) === JSON.stringify(item.method_ids || null),
+            key_core_equal: JSON.stringify(item.key_concepts || null) === JSON.stringify(item.core_concepts || null),
+            key_sub_equal: JSON.stringify(item.key_concepts || null) === JSON.stringify(item.sub_concepts || null),
+            good_place_equal: JSON.stringify(item.good_for_places || null) === JSON.stringify(item.place_type_fit || null)
+          }));
+
+          const emneIds = new Set(emner.map(x => x.emne_id));
+          const methodIds = new Set(methods.map(x => x.method_id));
+          const hookIds = new Set(hooks.map(x => x.id));
+          const refs = {
+            missing_domain_emnes: domains.flatMap(domain => (domain.emne_ids || domain.emner || []).filter(id => !emneIds.has(id)).map(id => ({domain: domain.domain_id || domain.module_id, id}))),
+            unlisted_emnes: emner.filter(item => !domains.some(domain => (domain.emne_ids || domain.emner || []).includes(item.emne_id))).map(item => item.emne_id),
+            missing_emne_methods: emner.flatMap(item => [...new Set([...(item.methods || []), ...(item.method_ids || [])])].filter(id => !methodIds.has(id)).map(id => ({emne_id: item.emne_id, id}))),
+            missing_emne_hooks: emner.flatMap(item => [...new Set([...(item.primary_theory_hooks || []), ...(item.secondary_theory_hooks || []), ...(item.reserve_theory_hooks || [])])].filter(id => !hookIds.has(id)).map(id => ({emne_id: item.emne_id, id}))),
+            missing_hook_emnes: hooks.flatMap(hook => (hook.emne_ids || []).filter(id => !emneIds.has(id)).map(id => ({hook_id: hook.id, id}))),
+            missing_hook_methods: hooks.flatMap(hook => (hook.recommended_method_ids || []).filter(id => !methodIds.has(id)).map(id => ({hook_id: hook.id, id})))
+          };
+
+          const repeatedPhrases = [
+            'Emnet studerer',
+            'som næringslivsfaglig inngang til konkrete virksomheter',
+            'Hvilken konkret virksomhet, arbeidsplass, kapitalstrøm, marked, teknologi eller infrastruktur gjør emnet relevant?',
+            'Hvordan skapes, organiseres, måles, fordeles eller skjules økonomisk verdi her?',
+            'Hvilke eiere, arbeidere, kunder, reguleringer, risikoforhold, miljøkostnader eller maktstrukturer blir synlige?',
+            'Start fra konkret arbeid, virksomhet, produksjon, kapital, eierskap, marked, teknologi, logistikk, infrastruktur, økonomisk institusjon eller ekstern næringslivsfaglig kilde.'
+          ];
+          const phraseCounts = Object.fromEntries(repeatedPhrases.map(phrase => [phrase, emner.filter(item => JSON.stringify(item).includes(phrase)).length]));
+
+          const byDomain = Object.fromEntries(domains.map(domain => {
+            const id = domain.domain_id || domain.module_id;
+            const ids = domain.emne_ids || domain.emner || [];
+            return [id, {
+              label: domain.label || domain.title,
+              declared_count: domain.emne_count ?? ids.length,
+              listed_count: ids.length,
+              actual_count: emner.filter(item => (item.domain || item.area_id) === id).length,
+              emne_ids: ids,
+              titles: ids.map(x => emner.find(item => item.emne_id === x)?.title || null)
+            }];
+          }));
+
+          const report = {
+            generated_at: new Date().toISOString(),
+            source_branch: process.env.GITHUB_REF_NAME || null,
+            counts: {
+              pensum_declared_domains: pensum.summary?.domain_count ?? null,
+              pensum_declared_emner: pensum.summary?.emne_count ?? null,
+              pensum_declared_methods: pensum.summary?.method_count ?? null,
+              actual_domains: domains.length,
+              actual_emner: emner.length,
+              actual_methods: methods.length,
+              actual_categories: categories.length,
+              actual_hooks: hooks.length
+            },
+            versions: {
+              pensum: pensum.version,
+              profile: profile.version,
+              profile_status: profile.status,
+              emner_registry_versions: [...new Set(emner.map(x => x.registry_version).filter(Boolean))],
+              methods_versions: [...new Set(methods.map(x => x.version).filter(Boolean))],
+              fagkart_version: fagkart.version
+            },
+            by_domain: byDomain,
+            cross_references: refs,
+            emne_field_coverage: fieldCoverage(emner),
+            method_field_coverage: fieldCoverage(methods),
+            hook_field_coverage: fieldCoverage(hooks),
+            exact_duplicates: {
+              emne_definition: duplicateGroups(emner, 'definition', 'emne_id'),
+              emne_why_it_matters: duplicateGroups(emner, 'why_it_matters', 'emne_id'),
+              emne_key_questions: duplicateGroups(emner, 'key_questions', 'emne_id'),
+              emne_conflicts: duplicateGroups(emner, 'conflicts', 'emne_id'),
+              emne_ideological_dimensions: duplicateGroups(emner, 'ideological_dimensions', 'emne_id'),
+              emne_analysis_axes: duplicateGroups(emner, 'analysis_axes', 'emne_id'),
+              emne_blindspots: duplicateGroups(emner, 'blindspots', 'emne_id'),
+              emne_generator_use_note: duplicateGroups(emner, 'generator_use_note', 'emne_id'),
+              emne_anti_patterns: duplicateGroups(emner, 'anti_patterns', 'emne_id'),
+              method_definition: duplicateGroups(methods, 'definition', 'method_id'),
+              method_questions: duplicateGroups(methods, 'questions', 'method_id'),
+              method_steps: duplicateGroups(methods, 'steps', 'method_id'),
+              hook_definition: duplicateGroups(hooks, 'definition', 'id'),
+              hook_questions: duplicateGroups(hooks, 'questions', 'id')
+            },
+            near_duplicates: {
+              emne_definition: nearPairs(emner, 'definition', 'emne_id'),
+              emne_why_it_matters: nearPairs(emner, 'why_it_matters', 'emne_id'),
+              method_definition: nearPairs(methods, 'definition', 'method_id'),
+              hook_definition: nearPairs(hooks, 'definition', 'id')
+            },
+            alias_duplication: {
+              related_emners_equal_related_emner: arrayAliasAudit.filter(x => x.related_alias_equal).map(x => x.emne_id),
+              methods_equal_method_ids: arrayAliasAudit.filter(x => x.methods_alias_equal).map(x => x.emne_id),
+              key_concepts_equal_core_concepts: arrayAliasAudit.filter(x => x.key_core_equal).map(x => x.emne_id),
+              key_concepts_equal_sub_concepts: arrayAliasAudit.filter(x => x.key_sub_equal).map(x => x.emne_id),
+              good_for_places_equal_place_type_fit: arrayAliasAudit.filter(x => x.good_place_equal).map(x => x.emne_id)
+            },
+            repeated_phrase_counts: phraseCounts,
+            emne_inventory: emner.map(item => ({
+              emne_id: item.emne_id,
+              domain: item.domain,
+              title: item.title,
+              level: item.level,
+              emne_role: item.emne_role,
+              quiz_priority: item.quiz_priority,
+              broadness: item.broadness,
+              mapping_count: item.mapping_count,
+              primary_hooks: item.primary_theory_hooks || [],
+              methods: item.method_ids || item.methods || [],
+              definition_fingerprint: fingerprint(item.definition || ''),
+              key_questions_fingerprint: fingerprint(item.key_questions || [])
+            })),
+            method_inventory: methods.map(item => ({method_id: item.method_id, title: item.title, domain: item.domain || item.area_id, definition_fingerprint: fingerprint(item.definition || '')})),
+            hook_inventory: hooks.map(item => ({id: item.id, title: item.title, category_id: item.category_id, emne_ids: item.emne_ids || [], definition_fingerprint: fingerprint(item.definition || '')}))
+          };
+
+          fs.writeFileSync('/tmp/naeringsliv-fagpakke-audit.json', JSON.stringify(report, null, 2));
+          console.log(JSON.stringify(report.counts));
+          console.log(`exact duplicate definition groups: ${report.exact_duplicates.emne_definition.length}`);
+          console.log(`near duplicate definition pairs: ${report.near_duplicates.emne_definition.length}`);
+          NODE
+
+      - name: Upload audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: naeringsliv-fagpakke-audit
+          path: /tmp/naeringsliv-fagpakke-audit.json
+          if-no-files-found: error
