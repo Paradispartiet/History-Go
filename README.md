@@ -10,6 +10,9 @@ Dette repoet gjelder **History GO-spillet**. Civication behandles som eget prosj
 
 ## Start her
 
+- [`docs/README.md`](./docs/README.md) — **canonical dokumentasjonskart: hva som er aktivt, historisk og bindende**
+- [`docs/documentation_registry.json`](./docs/documentation_registry.json) — maskinlesbart dokumentregister og eierskap
+- [`AGENTS.md`](./AGENTS.md) — felles agentregler og connector-first arbeidsflyt
 - [`README/README.md`](./README/README.md) — hoved-README for History GO
 - [`docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md`](./docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md) — **canonical teknisk målarkitektur: TypeScript-klient, Python/FastAPI-backend, PostgreSQL/Supabase og JSON-data**
 - [`docs/HISTORY_GO_PRODUCT_MAP.md`](./docs/HISTORY_GO_PRODUCT_MAP.md) — ferdigstillelseskart: hva som mangler, hva som fullføres først, og hva som bør videreutvikles
@@ -88,10 +91,11 @@ Rot-README er bare inngang. Den skal ikke være idébibel, historisk lager eller
 
 Én sannhet per dokument:
 
+- dokumentstatus og dokumenteierskap: `docs/README.md` + `docs/documentation_registry.json`
 - teknisk målarkitektur og språk-/plattformvalg: `docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md`
 - produktstatus og ferdigstillelse: `docs/HISTORY_GO_PRODUCT_MAP.md`
 - daglig utvikling: `README/README_DEV.md`
 - fag/pensum: `README/README.pensum.md`
 - hovedoversikt: `README/README.md`
 
-Gamle tekstblokker skal konsolideres inn i riktig dokument, ikke kopieres videre i nye README-filer.
+Gamle tekstblokker skal konsolideres inn i riktig dokument, ikke kopieres videre i nye README-filer. Nye status-, plan- og auditdokumenter skal registreres før de får en styrende rolle.
