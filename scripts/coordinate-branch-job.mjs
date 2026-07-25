@@ -49,10 +49,10 @@ if (!source.includes(validationMarker)) throw new Error('Could not locate V5.5 v
 const testPatch = [
   "const quizTestPath=path.join(root,'tests/quiz-production-pipeline.test.mjs');",
   "let quizTest=fs.readFileSync(quizTestPath,'utf8');",
-  "quizTest=quizTest.replaceAll('context.considered_curriculum.counts.pensum_modules, 12','context.considered_curriculum.counts.pensum_modules, 20');",
-  "quizTest=quizTest.replaceAll('context.considered_curriculum.counts.emner, 92','context.considered_curriculum.counts.emner, 200');",
-  "quizTest=quizTest.replaceAll('context.considered_curriculum.counts.topic_hooks, 84','context.considered_curriculum.counts.topic_hooks, 200');",
-  "quizTest=quizTest.replaceAll('context.considered_curriculum.counts.methods, 54','context.considered_curriculum.counts.methods, 87');",
+  "quizTest=quizTest.replace(/context\\.considered_curriculum\\.counts\\.pensum_modules, \\d+/g,'context.considered_curriculum.counts.pensum_modules, 20');",
+  "quizTest=quizTest.replace(/context\\.considered_curriculum\\.counts\\.emner, \\d+/g,'context.considered_curriculum.counts.emner, 200');",
+  "quizTest=quizTest.replace(/context\\.considered_curriculum\\.counts\\.topic_hooks, \\d+/g,'context.considered_curriculum.counts.topic_hooks, 200');",
+  "quizTest=quizTest.replace(/context\\.considered_curriculum\\.counts\\.methods, \\d+/g,'context.considered_curriculum.counts.methods, 87');",
   "fs.writeFileSync(quizTestPath,quizTest);",
   ""
 ].join('\n');
