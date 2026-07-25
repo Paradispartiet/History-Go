@@ -14,7 +14,7 @@ Dette dokumentet svarer på tre spørsmål:
 
 > Én sannhet per ansvarsområde.
 
-Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av source-data, manifester, loadere og validering. Dokumentasjonen styrer arkitektur, arbeidsmåte og kontrakter; CI må håndheve de reglene som ikke kan overlates til tekst alene.
+Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av source-data, manifester, loadere og validering. Dokumentasjonen styrer arkitektur, arbeidsmåte og kontrakter; CI må håndheve reglene som ikke kan overlates til tekst alene.
 
 ## Leserekkefølge
 
@@ -30,12 +30,12 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 
 1. [`../README/SYSTEM_REGISTRY.md`](../README/SYSTEM_REGISTRY.md) — overordnet runtime-eierskap og kjernegrenser
 2. [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — aktive API-, storage-, privacy- og UI-kontrakter for subsystemene
-3. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — hva skjer i flyten
+3. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — runtime-flyt og modulkjeder
 4. [`APP_STRUCTURE_INDEX.md`](./APP_STRUCTURE_INDEX.md) — canonical entry-, boot-, router-, MapView- og sidegrensekontrakt for `index.html`
 5. [`../README/README_DEV.md`](../README/README_DEV.md) — kjøring, debugging og validering
 6. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
 
-`SYSTEM_REGISTRY.md` og `SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md` utgjør sammen den aktive runtime-kontrakten. `APP_STRUCTURE_INDEX.md` eier bare index-appens interne struktur. Den tidligere pre-split-filen er bevart byte-identisk i [`../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md) som historisk sporbarhet, ikke som bindende regelverk.
+`SYSTEM_REGISTRY.md` og `SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md` utgjør sammen den aktive runtime-kontrakten. `APP_STRUCTURE_INDEX.md` eier bare index-appens interne struktur. Den tidligere pre-split-filen er bevart i [`../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md) som historisk sporbarhet, ikke som bindende regelverk.
 
 ### Produkt og ferdigstillelse
 
@@ -72,7 +72,7 @@ Aktive domenebeslutninger:
 - `populaerkultur`/`popkultur` er ikke toppkategori; eventuelle aliaser er bare legacy-kompatibilitet.
 - `sosial_laering` er et non-place badge.
 
-Ved konflikt gjelder maskinkontrakten og valideringen. Dokumentasjonen skal da korrigeres; det skal ikke opprettes lokale aliaslister eller parallelle kategorier.
+Ved konflikt gjelder maskinkontrakten og valideringen. Dokumentasjonen skal korrigeres; det skal ikke opprettes lokale aliaslister eller parallelle kategorier.
 
 Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk-places. Ved konflikt mellom dokumentasjon og et aktivt manifest er manifestet/runtime-koden sannhetskilden, og dokumentasjonen skal korrigeres.
 
@@ -86,7 +86,7 @@ Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk
 6. [`../js/knowledgeQuizMemory.ts`](../js/knowledgeQuizMemory.ts) — quiz-bundles og synkronisering til V2
 7. [`../README/knowledgeREADME.md`](../README/knowledgeREADME.md) — compatibility-pointer fra eldre README-lenker
 
-De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People/Places/Relations-modellene er bevart byte-identisk under `reports/archive/2026-07/knowledge/`. De er historikk, ikke aktive kontrakter.
+De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People/Places/Relations-modellene er bevart under `reports/archive/2026-07/knowledge/`. De er historikk, ikke aktive kontrakter.
 
 ### Fag, emner og quiz
 
@@ -98,16 +98,53 @@ De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People
 6. [`../data/quiz/manifest.json`](../data/quiz/manifest.json) — runtime-aktivering av quizfiler og target-bundne sett
 7. [`../README/quizREADME.md`](../README/quizREADME.md) — compatibility-pointer til canonical produksjon, schemas, audits og runtime-eierskap
 
-Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. Den tidligere 913-linjers quiz-/lærings-/observations-/popup-README-en er bevart byte-identisk i `README/archive/QUIZ_README_PRE_CONSOLIDATION_2026-07-25.md`; den er historisk og eier ingen aktiv regel.
+Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. Den tidligere kombinerte quiz-/lærings-/observations-/popup-README-en ligger i `README/archive/QUIZ_README_PRE_CONSOLIDATION_2026-07-25.md`; den er historisk og eier ingen aktiv regel.
 
 ### AHA-lokal kvalitetsstatus
 
-- [`AHA_QUALITY_STATUS_SURFACE_V1.md`](./AHA_QUALITY_STATUS_SURFACE_V1.md) — operativ, dokumentasjonsdefinert målkontrakt for en lokal og read-only kvalitetsstatus
+- [`AHA_QUALITY_STATUS_SURFACE_V1.md`](./AHA_QUALITY_STATUS_SURFACE_V1.md) — operativ, dokumentasjonsdefinert målkontrakt for lokal og read-only kvalitetsstatus
 - [`QUALITY_GATES.md`](./QUALITY_GATES.md) — compatibility-pointer til AHA-kontrakten
 
 Disse dokumentene gjelder kvaliteten på én aktuell AHA-samtale eller analyse. De er ikke generelle kvalitetsporter for History GO, Civication, quiz, data eller repository-CI.
 
 AHA-statusmodellen er dokumentasjons-only i V1. Den starter ikke runtime, sync, EchoNet, permanent minne eller backendskriving. Generelle kontroller eies av de konkrete data-, runtime-, utviklings- og workflowkontraktene.
+
+### Social Meet / HG Social
+
+Autoritativ leserekkefølge:
+
+1. [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — dagens aktive lokale runtime-, storage- og privacy-grenser
+2. [`HG_SOCIAL_README.md`](./HG_SOCIAL_README.md) — operativ produktoversikt, terminologi og samlet inngang
+3. [`HG_SOCIAL_PRIVACY_RULES.md`](./HG_SOCIAL_PRIVACY_RULES.md) — canonical privacy-policy og defaults
+4. [`HG_SPOTMEETING.md`](./HG_SPOTMEETING.md) — canonical produkt- og lifecycle-kontrakt for Spotmeeting
+5. [`HG_SOCIAL_ARCHITECTURE.md`](./HG_SOCIAL_ARCHITECTURE.md) — operativ produkt-/målarkitektur; ikke bevis på implementert backend
+6. [`HG_SOCIAL_QA.md`](./HG_SOCIAL_QA.md) — operativ QA- og privacy-guard-guide
+7. [`HG_SOCIAL_DEMO_MODE.md`](./HG_SOCIAL_DEMO_MODE.md) — operativ lokal demo-/smoke-test-guide
+
+Framtidige serverkontrakter:
+
+- [`HG_SOCIAL_BACKEND_CONTRACT.md`](./HG_SOCIAL_BACKEND_CONTRACT.md)
+- [`HG_SOCIAL_MEET_IDENTITY_CONTRACT.md`](./HG_SOCIAL_MEET_IDENTITY_CONTRACT.md)
+- [`HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md`](./HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md)
+- [`HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md`](./HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md)
+
+De fire serverdokumentene er `transitional` og contract-only. De implementerer ikke autentisering, database, API, moderation runtime eller produksjonsdiscovery.
+
+Dagens Social-status:
+
+- Social-signaler, public-profile read-model, match graph, demo og Spotmeeting-validering er lokale og privacy-safe.
+- Produksjonsdiscovery skal returnere `backend_not_enabled` fram til serverkravene er implementert og verifisert.
+- TEST_MODE kan bruke seedede demo-profiler; disse skal aldri skrives til `PEOPLE` eller produksjonsstorage.
+- GPS, live location, nearby people, distance-to-person, last seen, followers/feed, offentlig besøkshistorikk, passiv tracking og fri chat er forbudt.
+- Formuleringen `backend-ready` i eldre Social-tekst betyr bare kontrakt-/migreringsklar datamodell. Den betyr ikke at backend finnes.
+
+Eierskap:
+
+- subsystemregisteret eier dagens runtime;
+- privacy-filen eier Socials privacy-policy;
+- Spotmeeting-filen eier den konkrete møteflyten;
+- Social README er inngang og terminologi, ikke en parallell runtimefasit;
+- serverdokumentene eier bare framtidige målgrenser.
 
 ### Civication
 
@@ -116,7 +153,7 @@ AHA-statusmodellen er dokumentasjons-only i V1. Den starter ikke runtime, sync, 
 - [`../js/Civication/README.md`](../js/Civication/README.md) — motoroversikt og aktiv dagflyt
 - [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — bindende subsystemkontrakter
 
-Gamle generelle Civication-utkast, den innlimte `CivicationGameREADME`-chatloggen og de to dupliserte jobbmodellene er fjernet. Genererte role-pack- og FWG-statusfiler har nå én registrert output-path hver. Nye Civication-dokumenter skal plasseres under riktig kontrakt eller som tidsbundne rapporter, ikke som nye parallelle hoved-READMEs.
+Gamle generelle Civication-utkast, den innlimte `CivicationGameREADME`-chatloggen og de to dupliserte jobbmodellene er fjernet. Genererte role-pack- og FWG-statusfiler har én registrert output-path hver. Nye Civication-dokumenter skal plasseres under riktig kontrakt eller som tidsbundne rapporter, ikke som nye parallelle hoved-READMEs.
 
 ### Rapporter og audits
 
@@ -131,7 +168,7 @@ Gamle generelle Civication-utkast, den innlimte `CivicationGameREADME`-chatlogge
 |---|---|
 | `canonical` | Normativ kilde for ett avgrenset område |
 | `operational` | Aktiv inngang, arbeidsinstruks eller compatibility-pointer som peker til canonical kilder |
-| `transitional` | Aktiv, men med kjent konsoliderings- eller legacygjeld |
+| `transitional` | Aktiv målkontrakt eller dokument med kjent implementasjons-/konsolideringsgjeld |
 | `historical` | Snapshot, rapport eller journal; ikke nåstatus |
 | `local` | Gjelder bare subsystemet eller datamappen den ligger ved |
 
@@ -193,12 +230,13 @@ Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation
 - daterte TypeScript- og AHA-statusfiler flyttet til `reports/archive/2026-07/`
 - `Mestergrad` fjernet fra ferdigmodellen; Bronse → Sølv → Gull er canonical nivåregel
 - `APP_STRUCTURE_INDEX.md` synkronisert med `#/debate/:id` og registrert som canonical index-appkontrakt
-- domene- og DomainRegistry-dokumentasjonen synkronisert med maskinkontrakten: filosofi er selvstendig, og populærkultur er ikke toppkategori
+- domene- og DomainRegistry-dokumentasjonen synkronisert med maskinkontrakten
 - parallelle Knowledge-, ontology- og knaggemodeller samlet under én canonical arkitektur og maskinpolicy
-- `QUALITY_GATES.md` redusert til AHA-kompatibilitetspeker; AHA-statusmodellen er eksplisitt lokal og dokumentasjons-only
+- `QUALITY_GATES.md` redusert til AHA-kompatibilitetspeker
+- gamle relations-, oppgave- og badge-/merke-READMEs arkivert
+- Social-dokumentene klassifisert med én leserekkefølge og tydelig skille mellom lokal runtime og framtidig backend
 
 ### Neste
 
-- klassifiser Social-kontraktene og lag én autoritativ Social-leserekkefølge
 - fortsett å flytte daterte audits og statuspunkter til `reports/archive/YYYY-MM/`
-- konsolider gamle relations-, oppgave- og badge-/merke-dokumenter mot aktive data- og runtimekontrakter
+- klassifiser øvrige aktive subsystemguider uten å gjøre målarkitektur til nåstatus
