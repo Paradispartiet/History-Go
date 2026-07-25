@@ -64,13 +64,14 @@ Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk
 
 ### Fag, emner og quiz
 
-1. [`../README/README.pensum.md`](../README/README.pensum.md)
-2. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md)
-3. [`../README/quizREADME.md`](../README/quizREADME.md)
-4. [`../data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) — aktiv mapping fra fag til pensum, emner, fagkart, metoder og quizproduksjon
-5. canonical JSON-registre og generatorregler under `data/fag/` og `data/quiz/`
+1. [`../README/README.pensum.md`](../README/README.pensum.md) — fagkart, emner og pensum
+2. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md) — fagstruktur
+3. [`../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`](../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md) — eneste bindende quizproduksjonsprosedyre
+4. [`../data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) — filresolver, full fagpakke og aktive `quizProduction.targets`
+5. [`../data/quiz/manifest.json`](../data/quiz/manifest.json) — runtime-aktivering av quizfiler og target-bundne sett
+6. [`../README/quizREADME.md`](../README/quizREADME.md) — compatibility-pointer til canonical produksjon, schemas, audits og runtime-eierskap
 
-Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. `README/quizREADME.md` er fortsatt merket `transitional` inntil gamle eksempelpaths og generatorversjoner er synkronisert med dagens manifest- og V5.1-pipeline.
+Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. Den tidligere 913-linjers quiz-/lærings-/observations-/popup-README-en er bevart byte-identisk i `README/archive/QUIZ_README_PRE_CONSOLIDATION_2026-07-25.md`; den er historisk og eier ingen aktiv regel.
 
 ### Civication
 
@@ -150,10 +151,10 @@ Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation
 - seks feilformede/extensionløse README-filer fjernet
 - én Civication-dokumentasjonsinngang opprettet
 - foreldet `badge_refs`-regel og biologispesifikk emnearkitektur fjernet fra aktiv dokumentflate
+- gammel quiz-README erstattet med compatibility-pointer; canonical produksjonsprosedyre og manifests er eksplisitt prioritert
 
 ### Neste
 
 - bruk inventaret til å klassifisere de gjenværende uregistrerte globale dokumentkandidatene
-- konsolider quizdokumentasjonen mot aktiv V5.1-/manifestpipeline
 - flytt daterte audits og migreringsstatus til `reports/archive/`
 - slå sammen konkrete overlappgrupper, først Civication job model og role-pack index
