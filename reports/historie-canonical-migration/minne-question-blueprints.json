@@ -1,0 +1,896 @@
+{
+  "schema": "history_go_historie_minne_blueprints_v1",
+  "domain_id": "his_minne_kulturarv_historiebruk",
+  "blueprints": [
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "hook_id": "his_kulturminneutvelgelse_verdi",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "title": "Kulturminner, utvelgelse og bevaring",
+      "normal_opening": {
+        "set_1": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "navn",
+            "sted",
+            "dato",
+            "objekt",
+            "aktor",
+            "funksjon",
+            "synlig_spor"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        },
+        "set_2": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "opprinnelig_hendelse",
+            "senere_inngrep",
+            "institusjon",
+            "vedtak_eller_mandat",
+            "gruppe",
+            "offentlig_bruk",
+            "enkel_kildekontroll"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        }
+      },
+      "analysis_begins_from_set": 3,
+      "theory_begins_from_set": 4,
+      "required_chain": [
+        "ekstern kilde eller synlig minne- eller kulturarvsspor",
+        "navngitt minneaktør, institusjon, kulturarvobjekt, samling, seremoni eller offentlig fortelling",
+        "datert opprinnelig hendelse, objekt eller bruk og datert senere minne- eller kulturarvsinngrep",
+        "dokumentert utvelgelse, bevaring, restaurering, innsamling, navngivning, ritual, utstilling, fjerning eller omtolking",
+        "uttalt verdi, argument, mandat eller autorisert aktør",
+        "identifisert gruppe som inkluderes, utelates, utfordrer eller berøres",
+        "dokumentert offentlig konsekvens, bruk, konflikt eller endret forståelse",
+        "kontrollkilde, sammenligning eller tidligere/senere representasjon",
+        "kildebegrensning, autentisitetsusikkerhet og etisk håndtering",
+        "kritisk distinksjon",
+        "eventuelt teori etter at minne- og kulturarvskjeden er etablert"
+      ],
+      "primary_hook": "his_kulturminneutvelgelse_verdi",
+      "secondary_hook": "his_bevaring_restaurering_autentisitet",
+      "method_ids": [
+        "met_kulturarvutvelgelsesanalyse",
+        "met_sporlesning",
+        "met_kildekritikk"
+      ],
+      "thinker_ids": [
+        "alois_riegl",
+        "laurajane_smith",
+        "anne_eriksen",
+        "torgrim_sneve_guttormsen"
+      ],
+      "recommended_cases": [
+        "Vår Frelsers gravlund",
+        "HL-senteret / Villa Grande",
+        "22. juli-senteret",
+        "Eidsvollsbygningen",
+        "Akershus festning"
+      ],
+      "critical_distinctions": [
+        "opprinnelig hendelse vs senere historiebruk",
+        "vern vs historisk representativitet",
+        "original vs rekonstruksjon",
+        "offisiell fortelling vs motminne"
+      ],
+      "forbidden_shortcuts": [
+        "alder behandlet som kulturarvstatus",
+        "vern behandlet som bevis for representativitet",
+        "monument behandlet som nøytral fortelling",
+        "museumstekst behandlet som fullstendig kilde",
+        "rekonstruksjon behandlet som original",
+        "offentlig sorg behandlet som enhetlig erfaring",
+        "digital tilgjengelighet behandlet som representativitet",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ]
+    },
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "hook_id": "his_bevaring_restaurering_autentisitet",
+      "emne_id": "em_his_restaurering_autentisitet",
+      "title": "Restaurering, rekonstruksjon og autentisitet",
+      "normal_opening": {
+        "set_1": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "navn",
+            "sted",
+            "dato",
+            "objekt",
+            "aktor",
+            "funksjon",
+            "synlig_spor"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        },
+        "set_2": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "opprinnelig_hendelse",
+            "senere_inngrep",
+            "institusjon",
+            "vedtak_eller_mandat",
+            "gruppe",
+            "offentlig_bruk",
+            "enkel_kildekontroll"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        }
+      },
+      "analysis_begins_from_set": 3,
+      "theory_begins_from_set": 4,
+      "required_chain": [
+        "ekstern kilde eller synlig minne- eller kulturarvsspor",
+        "navngitt minneaktør, institusjon, kulturarvobjekt, samling, seremoni eller offentlig fortelling",
+        "datert opprinnelig hendelse, objekt eller bruk og datert senere minne- eller kulturarvsinngrep",
+        "dokumentert utvelgelse, bevaring, restaurering, innsamling, navngivning, ritual, utstilling, fjerning eller omtolking",
+        "uttalt verdi, argument, mandat eller autorisert aktør",
+        "identifisert gruppe som inkluderes, utelates, utfordrer eller berøres",
+        "dokumentert offentlig konsekvens, bruk, konflikt eller endret forståelse",
+        "kontrollkilde, sammenligning eller tidligere/senere representasjon",
+        "kildebegrensning, autentisitetsusikkerhet og etisk håndtering",
+        "kritisk distinksjon",
+        "eventuelt teori etter at minne- og kulturarvskjeden er etablert"
+      ],
+      "primary_hook": "his_bevaring_restaurering_autentisitet",
+      "secondary_hook": "his_kulturminneutvelgelse_verdi",
+      "method_ids": [
+        "met_restaurerings_autentisitetsanalyse",
+        "met_sporlesning",
+        "met_kildekritikk"
+      ],
+      "thinker_ids": [
+        "alois_riegl",
+        "francoise_choay",
+        "david_lowenthal",
+        "torgrim_sneve_guttormsen"
+      ],
+      "recommended_cases": [
+        "HL-senteret / Villa Grande",
+        "22. juli-senteret",
+        "Eidsvollsbygningen",
+        "Akershus festning",
+        "Oslo Museum"
+      ],
+      "critical_distinctions": [
+        "opprinnelig hendelse vs senere historiebruk",
+        "vern vs historisk representativitet",
+        "original vs rekonstruksjon",
+        "offisiell fortelling vs motminne"
+      ],
+      "forbidden_shortcuts": [
+        "alder behandlet som kulturarvstatus",
+        "vern behandlet som bevis for representativitet",
+        "monument behandlet som nøytral fortelling",
+        "museumstekst behandlet som fullstendig kilde",
+        "rekonstruksjon behandlet som original",
+        "offentlig sorg behandlet som enhetlig erfaring",
+        "digital tilgjengelighet behandlet som representativitet",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ]
+    },
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "hook_id": "his_museum_samling_kanon",
+      "emne_id": "em_his_museum_samling_kanon",
+      "title": "Museum, samling og historisk kanon",
+      "normal_opening": {
+        "set_1": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "navn",
+            "sted",
+            "dato",
+            "objekt",
+            "aktor",
+            "funksjon",
+            "synlig_spor"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        },
+        "set_2": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "opprinnelig_hendelse",
+            "senere_inngrep",
+            "institusjon",
+            "vedtak_eller_mandat",
+            "gruppe",
+            "offentlig_bruk",
+            "enkel_kildekontroll"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        }
+      },
+      "analysis_begins_from_set": 3,
+      "theory_begins_from_set": 4,
+      "required_chain": [
+        "ekstern kilde eller synlig minne- eller kulturarvsspor",
+        "navngitt minneaktør, institusjon, kulturarvobjekt, samling, seremoni eller offentlig fortelling",
+        "datert opprinnelig hendelse, objekt eller bruk og datert senere minne- eller kulturarvsinngrep",
+        "dokumentert utvelgelse, bevaring, restaurering, innsamling, navngivning, ritual, utstilling, fjerning eller omtolking",
+        "uttalt verdi, argument, mandat eller autorisert aktør",
+        "identifisert gruppe som inkluderes, utelates, utfordrer eller berøres",
+        "dokumentert offentlig konsekvens, bruk, konflikt eller endret forståelse",
+        "kontrollkilde, sammenligning eller tidligere/senere representasjon",
+        "kildebegrensning, autentisitetsusikkerhet og etisk håndtering",
+        "kritisk distinksjon",
+        "eventuelt teori etter at minne- og kulturarvskjeden er etablert"
+      ],
+      "primary_hook": "his_museum_samling_kanon",
+      "secondary_hook": "his_fravaer_taushet_motminne",
+      "method_ids": [
+        "met_museums_og_samlingsanalyse",
+        "met_historiebruksanalyse",
+        "met_kildekritikk"
+      ],
+      "thinker_ids": [
+        "sharon_macdonald",
+        "tony_bennett",
+        "brita_brenna",
+        "anne_eriksen"
+      ],
+      "recommended_cases": [
+        "22. juli-senteret",
+        "Eidsvollsbygningen",
+        "Akershus festning",
+        "Oslo Museum",
+        "Interkulturelt museum"
+      ],
+      "critical_distinctions": [
+        "opprinnelig hendelse vs senere historiebruk",
+        "vern vs historisk representativitet",
+        "original vs rekonstruksjon",
+        "offisiell fortelling vs motminne"
+      ],
+      "forbidden_shortcuts": [
+        "alder behandlet som kulturarvstatus",
+        "vern behandlet som bevis for representativitet",
+        "monument behandlet som nøytral fortelling",
+        "museumstekst behandlet som fullstendig kilde",
+        "rekonstruksjon behandlet som original",
+        "offentlig sorg behandlet som enhetlig erfaring",
+        "digital tilgjengelighet behandlet som representativitet",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ]
+    },
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "hook_id": "his_minnested_ritual_offentlig_sorg",
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "title": "Minnesteder, ritual og offentlig historiebruk",
+      "normal_opening": {
+        "set_1": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "navn",
+            "sted",
+            "dato",
+            "objekt",
+            "aktor",
+            "funksjon",
+            "synlig_spor"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        },
+        "set_2": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "opprinnelig_hendelse",
+            "senere_inngrep",
+            "institusjon",
+            "vedtak_eller_mandat",
+            "gruppe",
+            "offentlig_bruk",
+            "enkel_kildekontroll"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        }
+      },
+      "analysis_begins_from_set": 3,
+      "theory_begins_from_set": 4,
+      "required_chain": [
+        "ekstern kilde eller synlig minne- eller kulturarvsspor",
+        "navngitt minneaktør, institusjon, kulturarvobjekt, samling, seremoni eller offentlig fortelling",
+        "datert opprinnelig hendelse, objekt eller bruk og datert senere minne- eller kulturarvsinngrep",
+        "dokumentert utvelgelse, bevaring, restaurering, innsamling, navngivning, ritual, utstilling, fjerning eller omtolking",
+        "uttalt verdi, argument, mandat eller autorisert aktør",
+        "identifisert gruppe som inkluderes, utelates, utfordrer eller berøres",
+        "dokumentert offentlig konsekvens, bruk, konflikt eller endret forståelse",
+        "kontrollkilde, sammenligning eller tidligere/senere representasjon",
+        "kildebegrensning, autentisitetsusikkerhet og etisk håndtering",
+        "kritisk distinksjon",
+        "eventuelt teori etter at minne- og kulturarvskjeden er etablert"
+      ],
+      "primary_hook": "his_minnested_ritual_offentlig_sorg",
+      "secondary_hook": "his_jubileum_seremoni_historiebruk",
+      "method_ids": [
+        "met_minnesteds_og_ritualanalyse",
+        "met_minneanalyse",
+        "met_kildekritikk"
+      ],
+      "thinker_ids": [
+        "pierre_nora",
+        "maurice_halbwachs",
+        "paul_connerton",
+        "claudia_lenz"
+      ],
+      "recommended_cases": [
+        "Eidsvollsbygningen",
+        "Akershus festning",
+        "Oslo Museum",
+        "Interkulturelt museum",
+        "Jødisk museum"
+      ],
+      "critical_distinctions": [
+        "opprinnelig hendelse vs senere historiebruk",
+        "vern vs historisk representativitet",
+        "original vs rekonstruksjon",
+        "offisiell fortelling vs motminne"
+      ],
+      "forbidden_shortcuts": [
+        "alder behandlet som kulturarvstatus",
+        "vern behandlet som bevis for representativitet",
+        "monument behandlet som nøytral fortelling",
+        "museumstekst behandlet som fullstendig kilde",
+        "rekonstruksjon behandlet som original",
+        "offentlig sorg behandlet som enhetlig erfaring",
+        "digital tilgjengelighet behandlet som representativitet",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ]
+    },
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "hook_id": "his_monument_symbol_makt",
+      "emne_id": "em_his_monumenter_kontrovers",
+      "title": "Monumenter, symbolsk makt og kontrovers",
+      "normal_opening": {
+        "set_1": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "navn",
+            "sted",
+            "dato",
+            "objekt",
+            "aktor",
+            "funksjon",
+            "synlig_spor"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        },
+        "set_2": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "opprinnelig_hendelse",
+            "senere_inngrep",
+            "institusjon",
+            "vedtak_eller_mandat",
+            "gruppe",
+            "offentlig_bruk",
+            "enkel_kildekontroll"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        }
+      },
+      "analysis_begins_from_set": 3,
+      "theory_begins_from_set": 4,
+      "required_chain": [
+        "ekstern kilde eller synlig minne- eller kulturarvsspor",
+        "navngitt minneaktør, institusjon, kulturarvobjekt, samling, seremoni eller offentlig fortelling",
+        "datert opprinnelig hendelse, objekt eller bruk og datert senere minne- eller kulturarvsinngrep",
+        "dokumentert utvelgelse, bevaring, restaurering, innsamling, navngivning, ritual, utstilling, fjerning eller omtolking",
+        "uttalt verdi, argument, mandat eller autorisert aktør",
+        "identifisert gruppe som inkluderes, utelates, utfordrer eller berøres",
+        "dokumentert offentlig konsekvens, bruk, konflikt eller endret forståelse",
+        "kontrollkilde, sammenligning eller tidligere/senere representasjon",
+        "kildebegrensning, autentisitetsusikkerhet og etisk håndtering",
+        "kritisk distinksjon",
+        "eventuelt teori etter at minne- og kulturarvskjeden er etablert"
+      ],
+      "primary_hook": "his_monument_symbol_makt",
+      "secondary_hook": "his_kontrovers_fjerning_omtolking",
+      "method_ids": [
+        "met_symbol_og_minneanalyse",
+        "met_historiebruksanalyse",
+        "met_kildekritikk"
+      ],
+      "thinker_ids": [
+        "pierre_nora",
+        "james_e_young",
+        "andreas_huyssen",
+        "anne_eriksen"
+      ],
+      "recommended_cases": [
+        "Akershus festning",
+        "Oslo Museum",
+        "Interkulturelt museum",
+        "Jødisk museum",
+        "Arbeidermuseet"
+      ],
+      "critical_distinctions": [
+        "opprinnelig hendelse vs senere historiebruk",
+        "vern vs historisk representativitet",
+        "original vs rekonstruksjon",
+        "offisiell fortelling vs motminne"
+      ],
+      "forbidden_shortcuts": [
+        "alder behandlet som kulturarvstatus",
+        "vern behandlet som bevis for representativitet",
+        "monument behandlet som nøytral fortelling",
+        "museumstekst behandlet som fullstendig kilde",
+        "rekonstruksjon behandlet som original",
+        "offentlig sorg behandlet som enhetlig erfaring",
+        "digital tilgjengelighet behandlet som representativitet",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ]
+    },
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "hook_id": "his_kontrovers_fjerning_omtolking",
+      "emne_id": "em_his_kontrovers_fjerning_omtolking",
+      "title": "Kulturarvskonflikt, fjerning og omtolking",
+      "normal_opening": {
+        "set_1": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "navn",
+            "sted",
+            "dato",
+            "objekt",
+            "aktor",
+            "funksjon",
+            "synlig_spor"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        },
+        "set_2": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "opprinnelig_hendelse",
+            "senere_inngrep",
+            "institusjon",
+            "vedtak_eller_mandat",
+            "gruppe",
+            "offentlig_bruk",
+            "enkel_kildekontroll"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        }
+      },
+      "analysis_begins_from_set": 3,
+      "theory_begins_from_set": 4,
+      "required_chain": [
+        "ekstern kilde eller synlig minne- eller kulturarvsspor",
+        "navngitt minneaktør, institusjon, kulturarvobjekt, samling, seremoni eller offentlig fortelling",
+        "datert opprinnelig hendelse, objekt eller bruk og datert senere minne- eller kulturarvsinngrep",
+        "dokumentert utvelgelse, bevaring, restaurering, innsamling, navngivning, ritual, utstilling, fjerning eller omtolking",
+        "uttalt verdi, argument, mandat eller autorisert aktør",
+        "identifisert gruppe som inkluderes, utelates, utfordrer eller berøres",
+        "dokumentert offentlig konsekvens, bruk, konflikt eller endret forståelse",
+        "kontrollkilde, sammenligning eller tidligere/senere representasjon",
+        "kildebegrensning, autentisitetsusikkerhet og etisk håndtering",
+        "kritisk distinksjon",
+        "eventuelt teori etter at minne- og kulturarvskjeden er etablert"
+      ],
+      "primary_hook": "his_kontrovers_fjerning_omtolking",
+      "secondary_hook": "his_monument_symbol_makt",
+      "method_ids": [
+        "met_historiebruksanalyse",
+        "met_symbol_og_minneanalyse",
+        "met_kildekritikk"
+      ],
+      "thinker_ids": [
+        "james_e_young",
+        "laurajane_smith",
+        "andreas_huyssen",
+        "torgrim_sneve_guttormsen"
+      ],
+      "recommended_cases": [
+        "Oslo Museum",
+        "Interkulturelt museum",
+        "Jødisk museum",
+        "Arbeidermuseet",
+        "Middelalderbyen Oslo"
+      ],
+      "critical_distinctions": [
+        "opprinnelig hendelse vs senere historiebruk",
+        "vern vs historisk representativitet",
+        "original vs rekonstruksjon",
+        "offisiell fortelling vs motminne"
+      ],
+      "forbidden_shortcuts": [
+        "alder behandlet som kulturarvstatus",
+        "vern behandlet som bevis for representativitet",
+        "monument behandlet som nøytral fortelling",
+        "museumstekst behandlet som fullstendig kilde",
+        "rekonstruksjon behandlet som original",
+        "offentlig sorg behandlet som enhetlig erfaring",
+        "digital tilgjengelighet behandlet som representativitet",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ]
+    },
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "hook_id": "his_jubileum_seremoni_historiebruk",
+      "emne_id": "em_his_jubileum_seremoni_historiebruk",
+      "title": "Jubileer, seremonier og historiske fortellinger",
+      "normal_opening": {
+        "set_1": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "navn",
+            "sted",
+            "dato",
+            "objekt",
+            "aktor",
+            "funksjon",
+            "synlig_spor"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        },
+        "set_2": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "opprinnelig_hendelse",
+            "senere_inngrep",
+            "institusjon",
+            "vedtak_eller_mandat",
+            "gruppe",
+            "offentlig_bruk",
+            "enkel_kildekontroll"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        }
+      },
+      "analysis_begins_from_set": 3,
+      "theory_begins_from_set": 4,
+      "required_chain": [
+        "ekstern kilde eller synlig minne- eller kulturarvsspor",
+        "navngitt minneaktør, institusjon, kulturarvobjekt, samling, seremoni eller offentlig fortelling",
+        "datert opprinnelig hendelse, objekt eller bruk og datert senere minne- eller kulturarvsinngrep",
+        "dokumentert utvelgelse, bevaring, restaurering, innsamling, navngivning, ritual, utstilling, fjerning eller omtolking",
+        "uttalt verdi, argument, mandat eller autorisert aktør",
+        "identifisert gruppe som inkluderes, utelates, utfordrer eller berøres",
+        "dokumentert offentlig konsekvens, bruk, konflikt eller endret forståelse",
+        "kontrollkilde, sammenligning eller tidligere/senere representasjon",
+        "kildebegrensning, autentisitetsusikkerhet og etisk håndtering",
+        "kritisk distinksjon",
+        "eventuelt teori etter at minne- og kulturarvskjeden er etablert"
+      ],
+      "primary_hook": "his_jubileum_seremoni_historiebruk",
+      "secondary_hook": "his_minnested_ritual_offentlig_sorg",
+      "method_ids": [
+        "met_historiebruksanalyse",
+        "met_minnesteds_og_ritualanalyse",
+        "met_minneanalyse"
+      ],
+      "thinker_ids": [
+        "anne_eriksen",
+        "paul_connerton",
+        "benedict_anderson",
+        "jan_assmann"
+      ],
+      "recommended_cases": [
+        "Interkulturelt museum",
+        "Jødisk museum",
+        "Arbeidermuseet",
+        "Middelalderbyen Oslo",
+        "Hovedøya kloster"
+      ],
+      "critical_distinctions": [
+        "opprinnelig hendelse vs senere historiebruk",
+        "vern vs historisk representativitet",
+        "original vs rekonstruksjon",
+        "offisiell fortelling vs motminne"
+      ],
+      "forbidden_shortcuts": [
+        "alder behandlet som kulturarvstatus",
+        "vern behandlet som bevis for representativitet",
+        "monument behandlet som nøytral fortelling",
+        "museumstekst behandlet som fullstendig kilde",
+        "rekonstruksjon behandlet som original",
+        "offentlig sorg behandlet som enhetlig erfaring",
+        "digital tilgjengelighet behandlet som representativitet",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ]
+    },
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "hook_id": "his_stedsnavn_navnepolitikk",
+      "emne_id": "em_his_stedsnavn_navnepolitikk",
+      "title": "Stedsnavn, navnepolitikk og offentlig minne",
+      "normal_opening": {
+        "set_1": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "navn",
+            "sted",
+            "dato",
+            "objekt",
+            "aktor",
+            "funksjon",
+            "synlig_spor"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        },
+        "set_2": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "opprinnelig_hendelse",
+            "senere_inngrep",
+            "institusjon",
+            "vedtak_eller_mandat",
+            "gruppe",
+            "offentlig_bruk",
+            "enkel_kildekontroll"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        }
+      },
+      "analysis_begins_from_set": 3,
+      "theory_begins_from_set": 4,
+      "required_chain": [
+        "ekstern kilde eller synlig minne- eller kulturarvsspor",
+        "navngitt minneaktør, institusjon, kulturarvobjekt, samling, seremoni eller offentlig fortelling",
+        "datert opprinnelig hendelse, objekt eller bruk og datert senere minne- eller kulturarvsinngrep",
+        "dokumentert utvelgelse, bevaring, restaurering, innsamling, navngivning, ritual, utstilling, fjerning eller omtolking",
+        "uttalt verdi, argument, mandat eller autorisert aktør",
+        "identifisert gruppe som inkluderes, utelates, utfordrer eller berøres",
+        "dokumentert offentlig konsekvens, bruk, konflikt eller endret forståelse",
+        "kontrollkilde, sammenligning eller tidligere/senere representasjon",
+        "kildebegrensning, autentisitetsusikkerhet og etisk håndtering",
+        "kritisk distinksjon",
+        "eventuelt teori etter at minne- og kulturarvskjeden er etablert"
+      ],
+      "primary_hook": "his_stedsnavn_navnepolitikk",
+      "secondary_hook": "his_fravaer_taushet_motminne",
+      "method_ids": [
+        "met_navnepolitisk_analyse",
+        "met_historiebruksanalyse",
+        "met_kildekritikk"
+      ],
+      "thinker_ids": [
+        "benedict_anderson",
+        "maurice_halbwachs",
+        "anne_eriksen",
+        "michel_rolph_trouillot"
+      ],
+      "recommended_cases": [
+        "Jødisk museum",
+        "Arbeidermuseet",
+        "Middelalderbyen Oslo",
+        "Hovedøya kloster",
+        "Regjeringskvartalet"
+      ],
+      "critical_distinctions": [
+        "opprinnelig hendelse vs senere historiebruk",
+        "vern vs historisk representativitet",
+        "original vs rekonstruksjon",
+        "offisiell fortelling vs motminne"
+      ],
+      "forbidden_shortcuts": [
+        "alder behandlet som kulturarvstatus",
+        "vern behandlet som bevis for representativitet",
+        "monument behandlet som nøytral fortelling",
+        "museumstekst behandlet som fullstendig kilde",
+        "rekonstruksjon behandlet som original",
+        "offentlig sorg behandlet som enhetlig erfaring",
+        "digital tilgjengelighet behandlet som representativitet",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ]
+    },
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "hook_id": "his_fravaer_taushet_motminne",
+      "emne_id": "em_his_fravaer_taushet_motminne",
+      "title": "Fravær, taushet og motminne",
+      "normal_opening": {
+        "set_1": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "navn",
+            "sted",
+            "dato",
+            "objekt",
+            "aktor",
+            "funksjon",
+            "synlig_spor"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        },
+        "set_2": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "opprinnelig_hendelse",
+            "senere_inngrep",
+            "institusjon",
+            "vedtak_eller_mandat",
+            "gruppe",
+            "offentlig_bruk",
+            "enkel_kildekontroll"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        }
+      },
+      "analysis_begins_from_set": 3,
+      "theory_begins_from_set": 4,
+      "required_chain": [
+        "ekstern kilde eller synlig minne- eller kulturarvsspor",
+        "navngitt minneaktør, institusjon, kulturarvobjekt, samling, seremoni eller offentlig fortelling",
+        "datert opprinnelig hendelse, objekt eller bruk og datert senere minne- eller kulturarvsinngrep",
+        "dokumentert utvelgelse, bevaring, restaurering, innsamling, navngivning, ritual, utstilling, fjerning eller omtolking",
+        "uttalt verdi, argument, mandat eller autorisert aktør",
+        "identifisert gruppe som inkluderes, utelates, utfordrer eller berøres",
+        "dokumentert offentlig konsekvens, bruk, konflikt eller endret forståelse",
+        "kontrollkilde, sammenligning eller tidligere/senere representasjon",
+        "kildebegrensning, autentisitetsusikkerhet og etisk håndtering",
+        "kritisk distinksjon",
+        "eventuelt teori etter at minne- og kulturarvskjeden er etablert"
+      ],
+      "primary_hook": "his_fravaer_taushet_motminne",
+      "secondary_hook": "his_museum_samling_kanon",
+      "method_ids": [
+        "met_historiebruksanalyse",
+        "met_minneanalyse",
+        "met_kildekritikk"
+      ],
+      "thinker_ids": [
+        "michel_rolph_trouillot",
+        "james_e_young",
+        "michel_foucault",
+        "claudia_lenz"
+      ],
+      "recommended_cases": [
+        "Arbeidermuseet",
+        "Middelalderbyen Oslo",
+        "Hovedøya kloster",
+        "Regjeringskvartalet",
+        "Stortinget"
+      ],
+      "critical_distinctions": [
+        "opprinnelig hendelse vs senere historiebruk",
+        "vern vs historisk representativitet",
+        "original vs rekonstruksjon",
+        "offisiell fortelling vs motminne"
+      ],
+      "forbidden_shortcuts": [
+        "alder behandlet som kulturarvstatus",
+        "vern behandlet som bevis for representativitet",
+        "monument behandlet som nøytral fortelling",
+        "museumstekst behandlet som fullstendig kilde",
+        "rekonstruksjon behandlet som original",
+        "offentlig sorg behandlet som enhetlig erfaring",
+        "digital tilgjengelighet behandlet som representativitet",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ]
+    },
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "hook_id": "his_digital_kulturarv_formidling",
+      "emne_id": "em_his_digital_kulturarv_formidling",
+      "title": "Digital kulturarv, arkiv og formidling",
+      "normal_opening": {
+        "set_1": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "navn",
+            "sted",
+            "dato",
+            "objekt",
+            "aktor",
+            "funksjon",
+            "synlig_spor"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        },
+        "set_2": {
+          "question_count": 7,
+          "surface": "normal_quiz",
+          "required": [
+            "opprinnelig_hendelse",
+            "senere_inngrep",
+            "institusjon",
+            "vedtak_eller_mandat",
+            "gruppe",
+            "offentlig_bruk",
+            "enkel_kildekontroll"
+          ],
+          "theory_names_forbidden": true,
+          "method_names_forbidden": true
+        }
+      },
+      "analysis_begins_from_set": 3,
+      "theory_begins_from_set": 4,
+      "required_chain": [
+        "ekstern kilde eller synlig minne- eller kulturarvsspor",
+        "navngitt minneaktør, institusjon, kulturarvobjekt, samling, seremoni eller offentlig fortelling",
+        "datert opprinnelig hendelse, objekt eller bruk og datert senere minne- eller kulturarvsinngrep",
+        "dokumentert utvelgelse, bevaring, restaurering, innsamling, navngivning, ritual, utstilling, fjerning eller omtolking",
+        "uttalt verdi, argument, mandat eller autorisert aktør",
+        "identifisert gruppe som inkluderes, utelates, utfordrer eller berøres",
+        "dokumentert offentlig konsekvens, bruk, konflikt eller endret forståelse",
+        "kontrollkilde, sammenligning eller tidligere/senere representasjon",
+        "kildebegrensning, autentisitetsusikkerhet og etisk håndtering",
+        "kritisk distinksjon",
+        "eventuelt teori etter at minne- og kulturarvskjeden er etablert"
+      ],
+      "primary_hook": "his_digital_kulturarv_formidling",
+      "secondary_hook": "his_museum_samling_kanon",
+      "method_ids": [
+        "met_historiebruksanalyse",
+        "met_museums_og_samlingsanalyse",
+        "met_kildekritikk"
+      ],
+      "thinker_ids": [
+        "andrew_hoskins",
+        "aleida_assmann",
+        "sharon_macdonald",
+        "brita_brenna"
+      ],
+      "recommended_cases": [
+        "Middelalderbyen Oslo",
+        "Hovedøya kloster",
+        "Regjeringskvartalet",
+        "Stortinget",
+        "Vigelandsanlegget"
+      ],
+      "critical_distinctions": [
+        "opprinnelig hendelse vs senere historiebruk",
+        "vern vs historisk representativitet",
+        "original vs rekonstruksjon",
+        "offisiell fortelling vs motminne"
+      ],
+      "forbidden_shortcuts": [
+        "alder behandlet som kulturarvstatus",
+        "vern behandlet som bevis for representativitet",
+        "monument behandlet som nøytral fortelling",
+        "museumstekst behandlet som fullstendig kilde",
+        "rekonstruksjon behandlet som original",
+        "offentlig sorg behandlet som enhetlig erfaring",
+        "digital tilgjengelighet behandlet som representativitet",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ]
+    }
+  ]
+}

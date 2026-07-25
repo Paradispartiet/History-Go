@@ -8259,25 +8259,395 @@
     {
       "id": "his_minne_kulturarv_historiebruk",
       "title": "Minne, kulturarv og historiebruk",
-      "tagline": "Hvordan fortiden brukes, bevares og bestrides",
-      "definition": "Dette området handler om minnesteder, monumenter, gravlunder, museer, kulturminner, jubileer, navngivning og debatter om hva som skal bevares eller fjernes. Det undersøker historie som offentlig bruk, symbolsk makt og konflikt om representasjon.",
+      "tagline": "Fra historisk objekt og senere inngrep til utvelgelse, representasjon, konflikt og offentlig bruk",
+      "definition": "Området undersøker hvordan fortiden velges ut, bevares, restaureres, samles, navngis, markeres, digitaliseres og bestrides. Minne og kulturarv behandles som dokumenterte historiske praksiser med aktører, datoer, mandater, målgrupper og konsekvenser.",
       "focus": [
-        "minnesteder og monumenter",
-        "museer og kulturarv",
-        "historiebruk",
-        "kanon og blindsoner",
-        "bevaring, riving og omtolking"
+        "Kulturminneutvelgelse og verdi",
+        "Bevaring, restaurering og autentisitet",
+        "Museum, samling og kanon",
+        "Minnested, ritual og offentlig sorg",
+        "Monument, symbol og makt",
+        "Kontrovers, fjerning og omtolking",
+        "Jubileum, seremoni og historiebruk",
+        "Stedsnavn og navnepolitikk",
+        "Fravær, taushet og motminne",
+        "Digital kulturarv og formidling"
       ],
       "topic_hooks": [
         {
-          "id": "his_historiebruk_minne",
-          "title": "Historiebruk og minnekultur",
+          "id": "his_kulturminneutvelgelse_verdi",
+          "title": "Kulturminneutvelgelse og verdi",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "alois_riegl",
+                "name": "Alois Riegl",
+                "why": "Monumentverdier, alder, bruk og bevaringskonflikt",
+                "tier": "core",
+                "works": [
+                  "The Modern Cult of Monuments"
+                ]
+              },
+              {
+                "id": "laurajane_smith",
+                "name": "Laurajane Smith",
+                "why": "Kulturarv som sosial praksis og autorisert diskurs",
+                "tier": "core",
+                "works": [
+                  "Uses of Heritage"
+                ]
+              },
+              {
+                "id": "anne_eriksen",
+                "name": "Anne Eriksen",
+                "why": "Norsk minnekultur, museum, jubileer og historiebruk",
+                "tier": "core",
+                "works": [
+                  "Det var noe annet under krigen"
+                ]
+              },
+              {
+                "id": "torgrim_sneve_guttormsen",
+                "name": "Torgrim Sneve Guttormsen",
+                "why": "Kritisk kulturarv, demokrati og offentlig forhandling",
+                "tier": "core",
+                "works": []
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_kulturminner_bevaring"
+          ],
+          "best_place_types": [
+            "minnested",
+            "monument",
+            "museum",
+            "gravlund",
+            "kulturmiljo",
+            "ruinomrade",
+            "plass",
+            "digital_samling"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_minnebruk_eller_kulturarvspraksis"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_theorist",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hva symboliserer dette generelt",
+            "Ren hyllest uten å spørre hva som utelates"
+          ],
+          "preferred_question_moves": [
+            "identify the later memory or heritage intervention",
+            "name the actor who selected or authorised it",
+            "ask who is included, absent or contesting",
+            "compare original event with later public use"
+          ],
+          "comparison_pairs": [
+            [
+              "alois_riegl",
+              "laurajane_smith"
+            ],
+            [
+              "anne_eriksen",
+              "torgrim_sneve_guttormsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "anne_eriksen",
+            "torgrim_sneve_guttormsen"
+          ],
+          "recommended_oslo_cases": [
+            "Vår Frelsers gravlund",
+            "HL-senteret / Villa Grande",
+            "22. juli-senteret",
+            "Eidsvollsbygningen",
+            "Akershus festning",
+            "Oslo Museum",
+            "Interkulturelt museum",
+            "Jødisk museum"
+          ],
+          "recommended_method_ids": [
+            "met_kulturarvutvelgelsesanalyse",
+            "met_sporlesning",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 3,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_original_and_later_date": true,
+            "require_public_use_or_consequence": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_bevaring_restaurering_autentisitet",
+          "title": "Bevaring, restaurering og autentisitet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "alois_riegl",
+                "name": "Alois Riegl",
+                "why": "Monumentverdier, alder, bruk og bevaringskonflikt",
+                "tier": "core",
+                "works": [
+                  "The Modern Cult of Monuments"
+                ]
+              },
+              {
+                "id": "francoise_choay",
+                "name": "Françoise Choay",
+                "why": "Historiske monumenter og kulturarvens institusjonalisering",
+                "tier": "advanced",
+                "works": [
+                  "The Invention of the Historic Monument"
+                ]
+              },
+              {
+                "id": "david_lowenthal",
+                "name": "David Lowenthal",
+                "why": "Fortiden som samtidsskapt ressurs og rekonstruksjon",
+                "tier": "core",
+                "works": [
+                  "The Past Is a Foreign Country"
+                ]
+              },
+              {
+                "id": "torgrim_sneve_guttormsen",
+                "name": "Torgrim Sneve Guttormsen",
+                "why": "Kritisk kulturarv, demokrati og offentlig forhandling",
+                "tier": "core",
+                "works": []
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_restaurering_autentisitet"
+          ],
+          "best_place_types": [
+            "minnested",
+            "monument",
+            "museum",
+            "gravlund",
+            "kulturmiljo",
+            "ruinomrade",
+            "plass",
+            "digital_samling"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_minnebruk_eller_kulturarvspraksis"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_theorist",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hva symboliserer dette generelt",
+            "Ren hyllest uten å spørre hva som utelates"
+          ],
+          "preferred_question_moves": [
+            "identify the later memory or heritage intervention",
+            "name the actor who selected or authorised it",
+            "ask who is included, absent or contesting",
+            "compare original event with later public use"
+          ],
+          "comparison_pairs": [
+            [
+              "alois_riegl",
+              "francoise_choay"
+            ],
+            [
+              "david_lowenthal",
+              "torgrim_sneve_guttormsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "torgrim_sneve_guttormsen"
+          ],
+          "recommended_oslo_cases": [
+            "Vår Frelsers gravlund",
+            "HL-senteret / Villa Grande",
+            "22. juli-senteret",
+            "Eidsvollsbygningen",
+            "Akershus festning",
+            "Oslo Museum",
+            "Interkulturelt museum",
+            "Jødisk museum"
+          ],
+          "recommended_method_ids": [
+            "met_restaurerings_autentisitetsanalyse",
+            "met_sporlesning",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 3,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_original_and_later_date": true,
+            "require_public_use_or_consequence": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_museum_samling_kanon",
+          "title": "Museum, samling og kanon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "sharon_macdonald",
+                "name": "Sharon Macdonald",
+                "why": "Museum, minnelandskap og vanskelig kulturarv",
+                "tier": "advanced",
+                "works": [
+                  "Memorylands"
+                ]
+              },
+              {
+                "id": "tony_bennett",
+                "name": "Tony Bennett",
+                "why": "Museet som kunnskaps-, ordens- og styringsinstitusjon",
+                "tier": "advanced",
+                "works": [
+                  "The Birth of the Museum"
+                ]
+              },
+              {
+                "id": "brita_brenna",
+                "name": "Brita Brenna",
+                "why": "Norsk museumshistorie, samlinger og kunnskapsordener",
+                "tier": "core",
+                "works": []
+              },
+              {
+                "id": "anne_eriksen",
+                "name": "Anne Eriksen",
+                "why": "Norsk minnekultur, museum, jubileer og historiebruk",
+                "tier": "core",
+                "works": [
+                  "Det var noe annet under krigen"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_museum_samling_kanon"
+          ],
+          "best_place_types": [
+            "minnested",
+            "monument",
+            "museum",
+            "gravlund",
+            "kulturmiljo",
+            "ruinomrade",
+            "plass",
+            "digital_samling"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_minnebruk_eller_kulturarvspraksis"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_theorist",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hva symboliserer dette generelt",
+            "Ren hyllest uten å spørre hva som utelates"
+          ],
+          "preferred_question_moves": [
+            "identify the later memory or heritage intervention",
+            "name the actor who selected or authorised it",
+            "ask who is included, absent or contesting",
+            "compare original event with later public use"
+          ],
+          "comparison_pairs": [
+            [
+              "sharon_macdonald",
+              "tony_bennett"
+            ],
+            [
+              "brita_brenna",
+              "anne_eriksen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "brita_brenna",
+            "anne_eriksen"
+          ],
+          "recommended_oslo_cases": [
+            "Vår Frelsers gravlund",
+            "HL-senteret / Villa Grande",
+            "22. juli-senteret",
+            "Eidsvollsbygningen",
+            "Akershus festning",
+            "Oslo Museum",
+            "Interkulturelt museum",
+            "Jødisk museum"
+          ],
+          "recommended_method_ids": [
+            "met_museums_og_samlingsanalyse",
+            "met_historiebruksanalyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 3,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_original_and_later_date": true,
+            "require_public_use_or_consequence": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_minnested_ritual_offentlig_sorg",
+          "title": "Minnested, ritual og offentlig sorg",
           "canon": {
             "thinkers": [
               {
                 "id": "pierre_nora",
                 "name": "Pierre Nora",
-                "why": "Minnesteder og forholdet mellom levende minne og historisk representasjon",
+                "why": "Minnesteder og offentlig representasjon av fortiden",
                 "tier": "core",
                 "works": [
                   "Realms of Memory"
@@ -8293,41 +8663,38 @@
                 ]
               },
               {
-                "id": "jan_assmann",
-                "name": "Jan Assmann",
-                "why": "Kulturelt minne og institusjonalisert erindring",
+                "id": "paul_connerton",
+                "name": "Paul Connerton",
+                "why": "Ritual, kropp og samfunnets erindringspraksiser",
                 "tier": "advanced",
                 "works": [
-                  "Cultural Memory and Early Civilization"
+                  "How Societies Remember"
                 ]
               },
               {
-                "id": "anne_eriksen",
-                "name": "Anne Eriksen",
-                "why": "Norsk minnekultur, museum, jubileer og historiebruk",
+                "id": "claudia_lenz",
+                "name": "Claudia Lenz",
+                "why": "Minnekultur, demokrati og bearbeiding av voldshistorie",
                 "tier": "core",
-                "works": [
-                  "Det var noe annet under krigen"
-                ]
+                "works": []
               }
             ]
           },
           "emne_ids": [
-            "em_his_minnesteder_historiebruk",
-            "em_his_kulturminner_bevaring",
-            "em_his_monumenter_kontrovers"
+            "em_his_minnesteder_historiebruk"
           ],
           "best_place_types": [
             "minnested",
             "monument",
-            "gravlund",
             "museum",
+            "gravlund",
             "kulturmiljo",
             "ruinomrade",
-            "plass"
+            "plass",
+            "digital_samling"
           ],
           "avoid_place_types": [
-            "sted_uten_minnebruk_eller_historisk_representasjon"
+            "sted_uten_dokumentert_minnebruk_eller_kulturarvspraksis"
           ],
           "set_phase_fit": [
             "facts",
@@ -8342,10 +8709,10 @@
             "Ren hyllest uten å spørre hva som utelates"
           ],
           "preferred_question_moves": [
-            "read monument as argument",
-            "ask who is remembered and who is absent",
-            "compare official and unofficial memory",
-            "connect museum or grave to canon formation"
+            "identify the later memory or heritage intervention",
+            "name the actor who selected or authorised it",
+            "ask who is included, absent or contesting",
+            "compare original event with later public use"
           ],
           "comparison_pairs": [
             [
@@ -8353,23 +8720,26 @@
               "maurice_halbwachs"
             ],
             [
-              "jan_assmann",
-              "anne_eriksen"
+              "paul_connerton",
+              "claudia_lenz"
             ]
           ],
           "norwegian_thinker_ids": [
-            "anne_eriksen"
+            "claudia_lenz"
           ],
           "recommended_oslo_cases": [
             "Vår Frelsers gravlund",
             "HL-senteret / Villa Grande",
+            "22. juli-senteret",
             "Eidsvollsbygningen",
-            "22. juli-senteret"
+            "Akershus festning",
+            "Oslo Museum",
+            "Interkulturelt museum",
+            "Jødisk museum"
           ],
           "recommended_method_ids": [
+            "met_minnesteds_og_ritualanalyse",
             "met_minneanalyse",
-            "met_symbol_og_minneanalyse",
-            "met_sporlesning",
             "met_kildekritikk"
           ],
           "canonical_status": "canonical",
@@ -8381,14 +8751,745 @@
           "theory_rotation_required": true,
           "canonical_file_role": "active",
           "generator_constraints": {
-            "min_case_count": 2,
-            "min_method_count": 1,
+            "min_case_count": 3,
+            "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_original_and_later_date": true,
+            "require_public_use_or_consequence": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_monument_symbol_makt",
+          "title": "Monument, symbol og makt",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "pierre_nora",
+                "name": "Pierre Nora",
+                "why": "Minnesteder og offentlig representasjon av fortiden",
+                "tier": "core",
+                "works": [
+                  "Realms of Memory"
+                ]
+              },
+              {
+                "id": "james_e_young",
+                "name": "James E. Young",
+                "why": "Minnesmerker, fravær og motmonumenter",
+                "tier": "core",
+                "works": [
+                  "The Texture of Memory"
+                ]
+              },
+              {
+                "id": "andreas_huyssen",
+                "name": "Andreas Huyssen",
+                "why": "Minneboom, byrom og samtidens bruk av fortiden",
+                "tier": "advanced",
+                "works": [
+                  "Present Pasts"
+                ]
+              },
+              {
+                "id": "anne_eriksen",
+                "name": "Anne Eriksen",
+                "why": "Norsk minnekultur, museum, jubileer og historiebruk",
+                "tier": "core",
+                "works": [
+                  "Det var noe annet under krigen"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_monumenter_kontrovers"
+          ],
+          "best_place_types": [
+            "minnested",
+            "monument",
+            "museum",
+            "gravlund",
+            "kulturmiljo",
+            "ruinomrade",
+            "plass",
+            "digital_samling"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_minnebruk_eller_kulturarvspraksis"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_theorist",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hva symboliserer dette generelt",
+            "Ren hyllest uten å spørre hva som utelates"
+          ],
+          "preferred_question_moves": [
+            "identify the later memory or heritage intervention",
+            "name the actor who selected or authorised it",
+            "ask who is included, absent or contesting",
+            "compare original event with later public use"
+          ],
+          "comparison_pairs": [
+            [
+              "pierre_nora",
+              "james_e_young"
+            ],
+            [
+              "andreas_huyssen",
+              "anne_eriksen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "anne_eriksen"
+          ],
+          "recommended_oslo_cases": [
+            "Vår Frelsers gravlund",
+            "HL-senteret / Villa Grande",
+            "22. juli-senteret",
+            "Eidsvollsbygningen",
+            "Akershus festning",
+            "Oslo Museum",
+            "Interkulturelt museum",
+            "Jødisk museum"
+          ],
+          "recommended_method_ids": [
+            "met_symbol_og_minneanalyse",
+            "met_historiebruksanalyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 3,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_original_and_later_date": true,
+            "require_public_use_or_consequence": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_kontrovers_fjerning_omtolking",
+          "title": "Kontrovers, fjerning og omtolking",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "james_e_young",
+                "name": "James E. Young",
+                "why": "Minnesmerker, fravær og motmonumenter",
+                "tier": "core",
+                "works": [
+                  "The Texture of Memory"
+                ]
+              },
+              {
+                "id": "laurajane_smith",
+                "name": "Laurajane Smith",
+                "why": "Kulturarv som sosial praksis og autorisert diskurs",
+                "tier": "core",
+                "works": [
+                  "Uses of Heritage"
+                ]
+              },
+              {
+                "id": "andreas_huyssen",
+                "name": "Andreas Huyssen",
+                "why": "Minneboom, byrom og samtidens bruk av fortiden",
+                "tier": "advanced",
+                "works": [
+                  "Present Pasts"
+                ]
+              },
+              {
+                "id": "torgrim_sneve_guttormsen",
+                "name": "Torgrim Sneve Guttormsen",
+                "why": "Kritisk kulturarv, demokrati og offentlig forhandling",
+                "tier": "core",
+                "works": []
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_kontrovers_fjerning_omtolking"
+          ],
+          "best_place_types": [
+            "minnested",
+            "monument",
+            "museum",
+            "gravlund",
+            "kulturmiljo",
+            "ruinomrade",
+            "plass",
+            "digital_samling"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_minnebruk_eller_kulturarvspraksis"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_theorist",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hva symboliserer dette generelt",
+            "Ren hyllest uten å spørre hva som utelates"
+          ],
+          "preferred_question_moves": [
+            "identify the later memory or heritage intervention",
+            "name the actor who selected or authorised it",
+            "ask who is included, absent or contesting",
+            "compare original event with later public use"
+          ],
+          "comparison_pairs": [
+            [
+              "james_e_young",
+              "laurajane_smith"
+            ],
+            [
+              "andreas_huyssen",
+              "torgrim_sneve_guttormsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "torgrim_sneve_guttormsen"
+          ],
+          "recommended_oslo_cases": [
+            "Vår Frelsers gravlund",
+            "HL-senteret / Villa Grande",
+            "22. juli-senteret",
+            "Eidsvollsbygningen",
+            "Akershus festning",
+            "Oslo Museum",
+            "Interkulturelt museum",
+            "Jødisk museum"
+          ],
+          "recommended_method_ids": [
+            "met_historiebruksanalyse",
+            "met_symbol_og_minneanalyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 3,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_original_and_later_date": true,
+            "require_public_use_or_consequence": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_jubileum_seremoni_historiebruk",
+          "title": "Jubileum, seremoni og historiebruk",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "anne_eriksen",
+                "name": "Anne Eriksen",
+                "why": "Norsk minnekultur, museum, jubileer og historiebruk",
+                "tier": "core",
+                "works": [
+                  "Det var noe annet under krigen"
+                ]
+              },
+              {
+                "id": "paul_connerton",
+                "name": "Paul Connerton",
+                "why": "Ritual, kropp og samfunnets erindringspraksiser",
+                "tier": "advanced",
+                "works": [
+                  "How Societies Remember"
+                ]
+              },
+              {
+                "id": "benedict_anderson",
+                "name": "Benedict Anderson",
+                "why": "Navn, symboler og forestilte fellesskap",
+                "tier": "advanced",
+                "works": [
+                  "Imagined Communities"
+                ]
+              },
+              {
+                "id": "jan_assmann",
+                "name": "Jan Assmann",
+                "why": "Kulturelt minne og institusjonalisert erindring",
+                "tier": "advanced",
+                "works": [
+                  "Cultural Memory and Early Civilization"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_jubileum_seremoni_historiebruk"
+          ],
+          "best_place_types": [
+            "minnested",
+            "monument",
+            "museum",
+            "gravlund",
+            "kulturmiljo",
+            "ruinomrade",
+            "plass",
+            "digital_samling"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_minnebruk_eller_kulturarvspraksis"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_theorist",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hva symboliserer dette generelt",
+            "Ren hyllest uten å spørre hva som utelates"
+          ],
+          "preferred_question_moves": [
+            "identify the later memory or heritage intervention",
+            "name the actor who selected or authorised it",
+            "ask who is included, absent or contesting",
+            "compare original event with later public use"
+          ],
+          "comparison_pairs": [
+            [
+              "anne_eriksen",
+              "paul_connerton"
+            ],
+            [
+              "benedict_anderson",
+              "jan_assmann"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "anne_eriksen"
+          ],
+          "recommended_oslo_cases": [
+            "Vår Frelsers gravlund",
+            "HL-senteret / Villa Grande",
+            "22. juli-senteret",
+            "Eidsvollsbygningen",
+            "Akershus festning",
+            "Oslo Museum",
+            "Interkulturelt museum",
+            "Jødisk museum"
+          ],
+          "recommended_method_ids": [
+            "met_historiebruksanalyse",
+            "met_minnesteds_og_ritualanalyse",
+            "met_minneanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 3,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_original_and_later_date": true,
+            "require_public_use_or_consequence": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_stedsnavn_navnepolitikk",
+          "title": "Stedsnavn og navnepolitikk",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "benedict_anderson",
+                "name": "Benedict Anderson",
+                "why": "Navn, symboler og forestilte fellesskap",
+                "tier": "advanced",
+                "works": [
+                  "Imagined Communities"
+                ]
+              },
+              {
+                "id": "maurice_halbwachs",
+                "name": "Maurice Halbwachs",
+                "why": "Kollektivt minne og sosiale rammer for erindring",
+                "tier": "core",
+                "works": [
+                  "On Collective Memory"
+                ]
+              },
+              {
+                "id": "anne_eriksen",
+                "name": "Anne Eriksen",
+                "why": "Norsk minnekultur, museum, jubileer og historiebruk",
+                "tier": "core",
+                "works": [
+                  "Det var noe annet under krigen"
+                ]
+              },
+              {
+                "id": "michel_rolph_trouillot",
+                "name": "Michel-Rolph Trouillot",
+                "why": "Makt, taushet og produksjon av historiske fortellinger",
+                "tier": "core",
+                "works": [
+                  "Silencing the Past"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_stedsnavn_navnepolitikk"
+          ],
+          "best_place_types": [
+            "minnested",
+            "monument",
+            "museum",
+            "gravlund",
+            "kulturmiljo",
+            "ruinomrade",
+            "plass",
+            "digital_samling"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_minnebruk_eller_kulturarvspraksis"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_theorist",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hva symboliserer dette generelt",
+            "Ren hyllest uten å spørre hva som utelates"
+          ],
+          "preferred_question_moves": [
+            "identify the later memory or heritage intervention",
+            "name the actor who selected or authorised it",
+            "ask who is included, absent or contesting",
+            "compare original event with later public use"
+          ],
+          "comparison_pairs": [
+            [
+              "benedict_anderson",
+              "maurice_halbwachs"
+            ],
+            [
+              "anne_eriksen",
+              "michel_rolph_trouillot"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "anne_eriksen"
+          ],
+          "recommended_oslo_cases": [
+            "Vår Frelsers gravlund",
+            "HL-senteret / Villa Grande",
+            "22. juli-senteret",
+            "Eidsvollsbygningen",
+            "Akershus festning",
+            "Oslo Museum",
+            "Interkulturelt museum",
+            "Jødisk museum"
+          ],
+          "recommended_method_ids": [
+            "met_navnepolitisk_analyse",
+            "met_historiebruksanalyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 3,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_original_and_later_date": true,
+            "require_public_use_or_consequence": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_fravaer_taushet_motminne",
+          "title": "Fravær, taushet og motminne",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "michel_rolph_trouillot",
+                "name": "Michel-Rolph Trouillot",
+                "why": "Makt, taushet og produksjon av historiske fortellinger",
+                "tier": "core",
+                "works": [
+                  "Silencing the Past"
+                ]
+              },
+              {
+                "id": "james_e_young",
+                "name": "James E. Young",
+                "why": "Minnesmerker, fravær og motmonumenter",
+                "tier": "core",
+                "works": [
+                  "The Texture of Memory"
+                ]
+              },
+              {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "why": "Motminne, diskurs og makt over historisk synlighet",
+                "tier": "advanced",
+                "works": []
+              },
+              {
+                "id": "claudia_lenz",
+                "name": "Claudia Lenz",
+                "why": "Minnekultur, demokrati og bearbeiding av voldshistorie",
+                "tier": "core",
+                "works": []
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_fravaer_taushet_motminne"
+          ],
+          "best_place_types": [
+            "minnested",
+            "monument",
+            "museum",
+            "gravlund",
+            "kulturmiljo",
+            "ruinomrade",
+            "plass",
+            "digital_samling"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_minnebruk_eller_kulturarvspraksis"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_theorist",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hva symboliserer dette generelt",
+            "Ren hyllest uten å spørre hva som utelates"
+          ],
+          "preferred_question_moves": [
+            "identify the later memory or heritage intervention",
+            "name the actor who selected or authorised it",
+            "ask who is included, absent or contesting",
+            "compare original event with later public use"
+          ],
+          "comparison_pairs": [
+            [
+              "michel_rolph_trouillot",
+              "james_e_young"
+            ],
+            [
+              "michel_foucault",
+              "claudia_lenz"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "claudia_lenz"
+          ],
+          "recommended_oslo_cases": [
+            "Vår Frelsers gravlund",
+            "HL-senteret / Villa Grande",
+            "22. juli-senteret",
+            "Eidsvollsbygningen",
+            "Akershus festning",
+            "Oslo Museum",
+            "Interkulturelt museum",
+            "Jødisk museum"
+          ],
+          "recommended_method_ids": [
+            "met_historiebruksanalyse",
+            "met_minneanalyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 3,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_original_and_later_date": true,
+            "require_public_use_or_consequence": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_digital_kulturarv_formidling",
+          "title": "Digital kulturarv og formidling",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "andrew_hoskins",
+                "name": "Andrew Hoskins",
+                "why": "Digitalt minne, medialisering og nettverksbasert erindring",
+                "tier": "advanced",
+                "works": []
+              },
+              {
+                "id": "aleida_assmann",
+                "name": "Aleida Assmann",
+                "why": "Kanon, arkiv og kulturell overføring",
+                "tier": "advanced",
+                "works": [
+                  "Cultural Memory and Western Civilization"
+                ]
+              },
+              {
+                "id": "sharon_macdonald",
+                "name": "Sharon Macdonald",
+                "why": "Museum, minnelandskap og vanskelig kulturarv",
+                "tier": "advanced",
+                "works": [
+                  "Memorylands"
+                ]
+              },
+              {
+                "id": "brita_brenna",
+                "name": "Brita Brenna",
+                "why": "Norsk museumshistorie, samlinger og kunnskapsordener",
+                "tier": "core",
+                "works": []
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_digital_kulturarv_formidling"
+          ],
+          "best_place_types": [
+            "minnested",
+            "monument",
+            "museum",
+            "gravlund",
+            "kulturmiljo",
+            "ruinomrade",
+            "plass",
+            "digital_samling"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_minnebruk_eller_kulturarvspraksis"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_theorist",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hva symboliserer dette generelt",
+            "Ren hyllest uten å spørre hva som utelates"
+          ],
+          "preferred_question_moves": [
+            "identify the later memory or heritage intervention",
+            "name the actor who selected or authorised it",
+            "ask who is included, absent or contesting",
+            "compare original event with later public use"
+          ],
+          "comparison_pairs": [
+            [
+              "andrew_hoskins",
+              "aleida_assmann"
+            ],
+            [
+              "sharon_macdonald",
+              "brita_brenna"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "brita_brenna"
+          ],
+          "recommended_oslo_cases": [
+            "Vår Frelsers gravlund",
+            "HL-senteret / Villa Grande",
+            "22. juli-senteret",
+            "Eidsvollsbygningen",
+            "Akershus festning",
+            "Oslo Museum",
+            "Interkulturelt museum",
+            "Jødisk museum"
+          ],
+          "recommended_method_ids": [
+            "met_historiebruksanalyse",
+            "met_museums_og_samlingsanalyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 3,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_original_and_later_date": true,
+            "require_public_use_or_consequence": true,
             "rotate_theorists": true
           }
         }
-      ]
+      ],
+      "status": "complete_revised"
     },
     {
       "id": "his_byhistorie_stedsendring",

@@ -1,0 +1,102 @@
+
+> history-go@0.0.0 knowledge:canonical:write
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --write
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Knowledge canonical data: 2843 questions, 3995 units, 146 unresolved emne links.
+Knowledge contract audit: 0 error question(s), 480 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+Skrev data/quiz/production_context/historie/grindheim_runestein.json
+Skrev data/quiz/production_context/historie/grindheim_steinkross.json
+Skrev data/quiz/production_context/historie/grindheimsveien_nord_gravfelt.json
+Skrev data/quiz/production_context/historie/hoyland_gravhaug_etne.json
+
+> history-go@0.0.0 knowledge:canonical:write
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --write
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Knowledge canonical data: 2843 questions, 3995 units, 146 unresolved emne links.
+Updated: data/knowledge/knowledge_units.generated.json
+Knowledge contract audit: 0 error question(s), 480 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+Skrev data/quiz/production_context/historie/grindheim_runestein.json
+Skrev data/quiz/production_context/historie/grindheim_steinkross.json
+Skrev data/quiz/production_context/historie/grindheimsveien_nord_gravfelt.json
+Skrev data/quiz/production_context/historie/hoyland_gravhaug_etne.json
+Migrated memory bindings and regenerated Knowledge after phase 8 materialization.
+
+> history-go@0.0.0 test:quiz-production
+> node --test tests/quiz-production-pipeline.test.mjs
+
+TAP version 13
+# Subtest: builds the full by production context through the manifest
+ok 1 - builds the full by production context through the manifest
+  ---
+  duration_ms: 176.342216
+  type: 'test'
+  ...
+# Subtest: builds the full history production context through domain-based curriculum
+ok 2 - builds the full history production context through domain-based curriculum
+  ---
+  duration_ms: 157.772459
+  type: 'test'
+  ...
+# Subtest: isolates each history target in the manifest proof
+ok 3 - isolates each history target in the manifest proof
+  ---
+  duration_ms: 145.69237
+  type: 'test'
+  ...
+# Subtest: builds the Grindheimsvegen grave-field context before quiz writing
+ok 4 - builds the Grindheimsvegen grave-field context before quiz writing
+  ---
+  duration_ms: 144.984991
+  type: 'test'
+  ...
+# Subtest: builds the Høyland grave-mound context before quiz writing
+ok 5 - builds the Høyland grave-mound context before quiz writing
+  ---
+  duration_ms: 143.004781
+  type: 'test'
+  ...
+# Subtest: passes production-context, progression and theory-binding audits
+ok 6 - passes production-context, progression and theory-binding audits
+  ---
+  duration_ms: 1132.489027
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1968.247834
+
+> history-go@0.0.0 knowledge:canonical:check
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --check
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Knowledge canonical data: 2843 questions, 3995 units, 146 unresolved emne links.
+Knowledge contract audit: 0 error question(s), 480 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+
+> history-go@0.0.0 knowledge:legacy:check
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --legacy-only
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Legacy Knowledge audit: 0 active reference(s).
