@@ -9,15 +9,14 @@ const run = (command, args) => {
 
 const validator = 'tools/validate-historie-v5.mjs';
 const before = fs.readFileSync(validator, 'utf8');
-const after = before.replaceAll('counts.emners', 'counts.emner');
-fs.writeFileSync(validator, after);
+fs.writeFileSync(validator, before.replaceAll('counts.emners', 'counts.emner'));
 run(process.execPath, [validator, '--write']);
 
+fs.rmSync('reports/coordinate-branch-runner/agent_historie-v5-5-readiness', { recursive: true, force: true });
 fs.rmSync('scripts/coordinate-branch-job.mjs', { force: true });
 run('git', ['config', 'user.name', 'github-actions[bot]']);
 run('git', ['config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com']);
 run('git', ['add', '-A']);
 run('git', ['commit', '-m', 'Materialize Historie V5.5 readiness baseline']);
 const branch = process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF_NAME;
-run('git', ['pull', '--rebase', 'origin', branch]);
 run('git', ['push', 'origin', `HEAD:${branch}`]);
