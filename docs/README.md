@@ -100,6 +100,15 @@ De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People
 
 Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. Den tidligere 913-linjers quiz-/lærings-/observations-/popup-README-en er bevart byte-identisk i `README/archive/QUIZ_README_PRE_CONSOLIDATION_2026-07-25.md`; den er historisk og eier ingen aktiv regel.
 
+### AHA-lokal kvalitetsstatus
+
+- [`AHA_QUALITY_STATUS_SURFACE_V1.md`](./AHA_QUALITY_STATUS_SURFACE_V1.md) — operativ, dokumentasjonsdefinert målkontrakt for en lokal og read-only kvalitetsstatus
+- [`QUALITY_GATES.md`](./QUALITY_GATES.md) — compatibility-pointer til AHA-kontrakten
+
+Disse dokumentene gjelder kvaliteten på én aktuell AHA-samtale eller analyse. De er ikke generelle kvalitetsporter for History GO, Civication, quiz, data eller repository-CI.
+
+AHA-statusmodellen er dokumentasjons-only i V1. Den starter ikke runtime, sync, EchoNet, permanent minne eller backendskriving. Generelle kontroller eies av de konkrete data-, runtime-, utviklings- og workflowkontraktene.
+
 ### Civication
 
 - [`CIVICATION_README.md`](./CIVICATION_README.md) — operativ inngang til Civication-runtime, data-, rolle-, mail-, debatt- og FWG-dokumentasjon
@@ -186,9 +195,10 @@ Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation
 - `APP_STRUCTURE_INDEX.md` synkronisert med `#/debate/:id` og registrert som canonical index-appkontrakt
 - domene- og DomainRegistry-dokumentasjonen synkronisert med maskinkontrakten: filosofi er selvstendig, og populærkultur er ikke toppkategori
 - parallelle Knowledge-, ontology- og knaggemodeller samlet under én canonical arkitektur og maskinpolicy
+- `QUALITY_GATES.md` redusert til AHA-kompatibilitetspeker; AHA-statusmodellen er eksplisitt lokal og dokumentasjons-only
 
 ### Neste
 
-- klassifiser kvalitets- og Social-kontraktene uten å gjøre subsystemspesifikke guider til globale fasiter
+- klassifiser Social-kontraktene og lag én autoritativ Social-leserekkefølge
 - fortsett å flytte daterte audits og statuspunkter til `reports/archive/YYYY-MM/`
 - konsolider gamle relations-, oppgave- og badge-/merke-dokumenter mot aktive data- og runtimekontrakter
