@@ -1,0 +1,93 @@
+name: One-off popkultur migration executor
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.event.head_commit.message == 'Run one-off popkultur migration executor'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out migration branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/remove-popkultur-domain
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Execute, validate and publish migration
+        shell: bash
+        run: |
+          set +e
+          {
+            echo '=== npm ci ==='
+            npm ci
+            s=$?
+            if [ $s -ne 0 ]; then exit $s; fi
+
+            echo '=== migrate ==='
+            node scripts/remove-popkultur-domain.mjs
+            s=$?
+            if [ $s -ne 0 ]; then exit $s; fi
+
+            echo '=== places index build ==='
+            npm run places:index:build
+            s=$?
+            if [ $s -ne 0 ]; then exit $s; fi
+
+            echo '=== web build ==='
+            npm run build:web
+            s=$?
+            if [ $s -ne 0 ]; then exit $s; fi
+
+            echo '=== places index check ==='
+            npm run places:index:check
+            s=$?
+            if [ $s -ne 0 ]; then exit $s; fi
+
+            echo '=== web bundle check ==='
+            npm run build:web:check
+            s=$?
+            if [ $s -ne 0 ]; then exit $s; fi
+
+            echo '=== web typecheck ==='
+            npm run typecheck:web
+            s=$?
+            if [ $s -ne 0 ]; then exit $s; fi
+
+            echo '=== active place health ==='
+            npm run health:places
+          } > /tmp/popkultur-migration.log 2>&1
+          status=$?
+          set -e
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+          if [ $status -ne 0 ]; then
+            git reset --hard origin/agent/remove-popkultur-domain
+            mkdir -p reports
+            cp /tmp/popkultur-migration.log reports/remove-popkultur-domain-ci-failure.log
+            git add reports/remove-popkultur-domain-ci-failure.log
+            git commit -m 'Record popkultur migration failure'
+            git push origin HEAD:agent/remove-popkultur-domain
+            cat /tmp/popkultur-migration.log
+            exit $status
+          fi
+
+          rm -f scripts/remove-popkultur-domain.mjs
+          rm -f .github/workflows/remove-popkultur-domain-migration.yml
+          rm -f reports/remove-popkultur-domain-ci-failure.log
+          git add -A
+          git commit -m 'Remove popkultur as a top-level domain'
+          git push origin HEAD:agent/remove-popkultur-domain
+          cat /tmp/popkultur-migration.log
