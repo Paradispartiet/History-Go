@@ -1,0 +1,79 @@
+{
+  "version": "2026-07-25",
+  "protocolMaxBatch": 195,
+  "placeId": "universitetets_gamle_hovedbygning",
+  "researchOnly": true,
+  "canonicalChanged": false,
+  "identity": {
+    "canonicalScope": "three-building university complex",
+    "resolvedIdentity": "Universitetsanlegget at Karl Johans gate 47: Domus Media, Domus Academica and Domus Bibliotheca",
+    "identityStatus": "resolved",
+    "scopeEvidence": "data/stories/stories_universitetets_gamle_hovedbygning.json",
+    "locatorTypeCandidate": "current_place"
+  },
+  "currentCoordinate": {
+    "lat": 59.9118,
+    "lon": 10.7411,
+    "r": 150
+  },
+  "officialAddress": {
+    "addressText": "Karl Johans gate 47",
+    "postcode": "0162",
+    "postArea": "OSLO",
+    "lat": 59.91535567609494,
+    "lon": 10.735178716853644,
+    "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Karl%20Johans%20gate&nummer=47&kommunenummer=0301&treffPerSide=50",
+    "sourceObjectId": "geonorge-adresser-v1:0301:13630:47:59.91535568,10.73517872",
+    "uniqueUnletteredCandidateCount": 1
+  },
+  "legalPropertyVerification": {
+    "sourceUrl": "https://lovdata.no/dokument/LF/forskrift/2001-05-04-449",
+    "confirmsUniversityPropertyAndAddress": true
+  },
+  "buildingVerification": {
+    "buildings": [
+      {
+        "canonicalName": "Domus Media",
+        "sourceObjectId": "osm-way:5004366",
+        "identificationMethod": "direct OSM building name"
+      },
+      {
+        "canonicalName": "Domus Academica",
+        "sourceObjectId": "osm-way:111845745",
+        "identificationMethod": "unique nearest unnamed university-complex footprint to the documented Gamle festsal locator after exhaustive nearby-building audit",
+        "locatorSource": "https://commons.wikimedia.org/wiki/File:Gamle_festsal,_Domus_Academica,_University_of_Oslo_-_20140617-02.jpg",
+        "locatorDistanceToBuildingCenterMeters": 52.6
+      },
+      {
+        "canonicalName": "Domus Bibliotheca",
+        "sourceObjectId": "osm-way:5004360",
+        "identificationMethod": "direct OSM building name"
+      }
+    ],
+    "maximumCenterSeparationMeters": 167.6,
+    "maximumComplexDistanceMeters": 128.4
+  },
+  "radiusRecommendation": {
+    "method": "maximum official-address-point-to-vertex distance across the three canonical buildings plus 30 metre buffer",
+    "bufferMeters": 30,
+    "recommendedRadius": 160
+  },
+  "displacementMeters": 515,
+  "decision": {
+    "canBecomeVerified": true,
+    "coordinateDecision": "use_official_address_point_with_three_building_complex_radius",
+    "recommendedLat": 59.91535567609494,
+    "recommendedLon": 10.735178716853644,
+    "recommendedRadius": 160,
+    "coordStatus": "verified",
+    "coordType": "address_point",
+    "coordRole": "display_marker",
+    "sourceProvider": "official_address",
+    "locatorType": "current_place",
+    "nextAction": "Create a separate production PR with the three-building scope preserved."
+  },
+  "validation": {
+    "runnerValidatedBeforeCleanResearchDiff": true,
+    "coordinateSourceContract": "PASS"
+  }
+}
