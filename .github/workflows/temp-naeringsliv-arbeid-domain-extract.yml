@@ -1,4 +1,4 @@
-name: Temporary Næringsliv work-domain extract
+name: Temporary Næringsliv work-domain curation
 
 on:
   push:
@@ -6,24 +6,44 @@ on:
       - agent/naeringsliv-arbeid-produksjon-curation
     paths:
       - '.github/workflows/temp-naeringsliv-arbeid-domain-extract.yml'
-  pull_request:
-    paths:
-      - '.github/workflows/temp-naeringsliv-arbeid-domain-extract.yml'
 
 permissions:
   contents: write
 
 jobs:
-  extract:
+  curate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref || github.ref_name }}
+          ref: ${{ github.ref_name }}
           fetch-depth: 0
-      - name: Extract nine emne objects
-        shell: bash
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Curate nine emners individually
         run: |
+          node scripts/temp-curate-naeringsliv-arbeid-domain.mjs
+          node scripts/temp-mark-naeringsliv-arbeid-curation.mjs
+
+      - name: Regenerate Næringsliv production contexts
+        run: |
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
+
+      - name: Validate curation
+        run: |
+          npm run audit:quiz-templates
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-content-audit
           node <<'NODE'
           const fs = require('fs');
           const ids = [
@@ -38,32 +58,27 @@ jobs:
             'em_naering_usynlig_arbeid'
           ];
           const all = JSON.parse(fs.readFileSync('data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json','utf8'));
-          const keep = [
-            'emne_id','title','level','definition','why_it_matters','keywords','key_concepts','core_concepts','sub_concepts',
-            'key_questions','conflicts','ideological_dimensions','methods','analysis_axes','canonical_thinkers','canonical_thinker_ids',
-            'related_emner','good_for_places','quiz_angles','blindspots','broadness','opening_use_ok','question_surface_mode',
-            'generator_use_note','primary_theory_hooks','secondary_theory_hooks','method_ids','recommended_oslo_cases',
-            'distinguish_from_emners','overlap_resolution_note','anti_patterns','recommended_methods'
-          ];
-          const out = ids.map(id => {
-            const item = all.find(x => x.emne_id === id);
-            if (!item) throw new Error(`Mangler ${id}`);
-            return Object.fromEntries(keep.filter(key => item[key] !== undefined).map(key => [key,item[key]]));
-          });
-          fs.mkdirSync('reports',{recursive:true});
-          fs.writeFileSync('reports/naeringsliv-arbeid-domain-working.json',JSON.stringify(out,null,2)+'\n');
+          const selected = ids.map(id => all.find(item => item.emne_id === id));
+          if (selected.some(item => !item)) throw new Error('Mangler kuratert emne');
+          const fields = ['definition','why_it_matters','key_questions','conflicts','ideological_dimensions','analysis_axes','blindspots','generator_use_note','overlap_resolution_note','anti_patterns'];
+          for (const field of fields) {
+            const values = selected.map(item => JSON.stringify(item[field]));
+            if (new Set(values).size !== selected.length) throw new Error(`${field} er ikke individuelt for alle ni emner`);
+          }
+          if (selected.some(item => item.curation_status !== 'individually_curated')) throw new Error('Kurateringsstatus mangler');
+          const pensum = JSON.parse(fs.readFileSync('data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json','utf8'));
+          if (pensum.summary.individually_curated_core_emne_count !== 9) throw new Error('Pensumtellingen er feil');
           NODE
-      - name: Commit working extract
-        if: github.event_name == 'push'
+
+      - name: Commit curated data
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/naeringsliv-arbeid-domain-working.json
-          git commit -m 'Materialiser arbeidsdomenets emneutdrag'
+          git add data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json
+          git add data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json
+          git add data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          git add data/quiz/production_context/naeringsliv/oslo_posthus.json
+          git add data/quiz/production_context/naeringsliv/havnelageret.json
+          git commit -m 'Kurater arbeids- og produksjonsemnene individuelt'
           git push origin HEAD:${{ github.ref_name }}
-      - name: Upload working extract
-        uses: actions/upload-artifact@v4
-        with:
-          name: naeringsliv-arbeid-domain-working
-          path: reports/naeringsliv-arbeid-domain-working.json
