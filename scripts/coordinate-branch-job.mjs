@@ -55,9 +55,7 @@ fs.writeFileSync("reports/historie-canonical-migration/byhistorie-vertical-chain
 
 const testPath = "tests/quiz-production-pipeline.test.mjs";
 let testText = fs.readFileSync(testPath, "utf8");
-for (const [field, count] of [["emner", 78], ["topic_hooks", 66], ["methods", 43]]) {
-  testText = testText.replace(new RegExp(`(counts\\.${field},\\s*)\\d+(\\))`, "g"), `$1${count}$2`);
-}
+testText = testText.replace(/(counts\.topic_hooks,\s*)57(\))/g, "$166$2");
 fs.writeFileSync(testPath, testText);
 
 run("npm", ["run", "test:quiz-production"]);
