@@ -1,0 +1,118 @@
+name: Probe Hurdal Verk source objects
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/probe-hurdal-verk-source.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/akershus-hurdal-verk-glassverk-production
+          fetch-depth: 0
+
+      - name: Fetch and persist address and OSM objects
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=reports/akershus-coordinate-hurdal-verk-source-probe
+          mkdir -p "$out"
+
+          curl --fail --silent --show-error --get \
+            'https://ws.geonorge.no/adresser/v1/sok' \
+            --data-urlencode 'adressenavn=Hurdal Verk' \
+            --data-urlencode 'nummer=5' \
+            --data-urlencode 'bokstav=A' \
+            --data-urlencode 'postnummer=2090' \
+            --data-urlencode 'treffPerSide=100' \
+            | tee "$out/geonorge-hurdal-verk-5a.json"
+
+          curl --fail --silent --show-error --get \
+            'https://nominatim.openstreetmap.org/search' \
+            --data-urlencode 'q=Hurdal Verk Folkehøgskole, Hurdal, Norway' \
+            --data-urlencode 'format=jsonv2' \
+            --data-urlencode 'addressdetails=1' \
+            --data-urlencode 'extratags=1' \
+            --data-urlencode 'namedetails=1' \
+            --user-agent 'History-Go-coordinate-audit/1.0' \
+            | tee "$out/nominatim-hurdal-verk.json"
+
+          bbox='11.0455,60.4494,11.0502,60.4520'
+          echo "bbox=${bbox}" | tee "$out/osm-map-request.txt"
+          curl --fail --silent --show-error \
+            --retry 4 --retry-delay 3 --retry-all-errors \
+            "https://api.openstreetmap.org/api/0.6/map?bbox=${bbox}" \
+            | tee "$out/osm-hurdal-verk-map.xml" > /dev/null
+
+          python - <<'PY' 2>&1 | tee "$out/source-summary.txt"
+          import json
+          import math
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          legacy = (60.45029, 11.04809)
+
+          def distance_m(a, b):
+              r = 6371000
+              p1 = math.radians(a[0]); p2 = math.radians(b[0])
+              dp = math.radians(b[0] - a[0]); dl = math.radians(b[1] - a[1])
+              x = math.sin(dp/2)**2 + math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2
+              return 2*r*math.atan2(math.sqrt(x), math.sqrt(1-x))
+
+          address = json.loads(Path('reports/akershus-coordinate-hurdal-verk-source-probe/geonorge-hurdal-verk-5a.json').read_text(encoding='utf-8'))
+          rows = address.get('adresser', [])
+          exact = [row for row in rows if str(row.get('nummer', '')) == '5' and str(row.get('bokstav', '')).upper() == 'A' and str(row.get('postnummer', '')) == '2090']
+          print(f'address_total={len(rows)}')
+          print(f'address_exact={len(exact)}')
+          for row in exact:
+              print('ADDRESS ' + json.dumps(row, ensure_ascii=False, sort_keys=True))
+          if len(exact) != 1:
+              raise SystemExit('Expected exactly one Hurdal Verk 5A, 2090 Hurdal address')
+
+          root = ET.fromstring(Path('reports/akershus-coordinate-hurdal-verk-source-probe/osm-hurdal-verk-map.xml').read_text(encoding='utf-8'))
+          nodes = {}
+          for node in root.findall('node'):
+              nodes[int(node.attrib['id'])] = (float(node.attrib['lat']), float(node.attrib['lon']))
+
+          candidates = []
+          for node in root.findall('node'):
+              tags = {tag.attrib['k']: tag.attrib['v'] for tag in node.findall('tag')}
+              if tags.get('name') or tags.get('amenity') or tags.get('historic'):
+                  point = nodes[int(node.attrib['id'])]
+                  candidates.append({'type':'node','id':int(node.attrib['id']),'lat':point[0],'lon':point[1],'distance_from_legacy_m':round(distance_m(legacy, point),1),'tags':tags})
+
+          for way in root.findall('way'):
+              tags = {tag.attrib['k']: tag.attrib['v'] for tag in way.findall('tag')}
+              if not (tags.get('name') or tags.get('amenity') or tags.get('historic') or tags.get('building')):
+                  continue
+              points = [nodes.get(int(nd.attrib['ref'])) for nd in way.findall('nd')]
+              points = [p for p in points if p is not None]
+              if not points:
+                  continue
+              point = (sum(p[0] for p in points)/len(points), sum(p[1] for p in points)/len(points))
+              candidates.append({'type':'way','id':int(way.attrib['id']),'lat':point[0],'lon':point[1],'distance_from_legacy_m':round(distance_m(legacy, point),1),'tags':tags})
+
+          candidates.sort(key=lambda row: row['distance_from_legacy_m'])
+          for row in candidates:
+              if row['distance_from_legacy_m'] <= 250:
+                  print('OSM ' + json.dumps(row, ensure_ascii=False, sort_keys=True))
+          PY
+
+      - name: Remove probe workflow and commit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/probe-hurdal-verk-source.yml
+          git add reports/akershus-coordinate-hurdal-verk-source-probe
+          git commit -m 'Materialize Hurdal Verk coordinate sources'
+          git push origin HEAD:agent/akershus-hurdal-verk-glassverk-production
