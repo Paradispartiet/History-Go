@@ -1,0 +1,195 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "stunner_boplass",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch3/stunner_boplass.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_archaeological_field_anchor_applied",
+  "currentCoordinate": {
+    "lat": 59.74976,
+    "lon": 10.91695,
+    "r": 420,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Ski Historielag – Stunner; OpenStreetMap node 1784728445 – Stunner Steinalderboplass",
+    "coordType": "documented_stone_age_settlement_field_anchor",
+    "coordRole": "historical_anchor",
+    "sourceObjectId": "ski-historielag:stunner-boplass",
+    "coordNote": "Specific named archaeological-site point beside the Stunner memorial stone; used as a historical field anchor, not an exact protected-site polygon."
+  },
+  "previousCoordinate": {
+    "lat": 59.74657,
+    "lon": 10.91747,
+    "r": 420,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 355.9,
+    "reasonReplaced": "The legacy coordinate matches a broad and ambiguous Stunner archaeological/settlement node south of the specifically named Stone Age settlement field."
+  },
+  "identity": {
+    "currentName": "Stunner steinalderboplass",
+    "resolvedIdentity": "The approximately 11,000-year-old Stone Age settlement field at Stunner, discovered through Johannes Mikkelsen's flint finds in 1928 and marked by Stunnersteinen",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The archaeological field, flint-find history, memorial marker and former-shoreline interpretation form one coherent historical destination."
+  },
+  "requiredEvidence": [
+    "stable historical identity for the archaeological settlement",
+    "specific named physical field point",
+    "independent on-site memorial marker",
+    "archaeological and landscape interpretation",
+    "explicit rejection of generic Stunner farm, hamlet and legacy points"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Ski Historielag – Stunner",
+      "sourceUrl": "https://www.ski-historielag.no/ski/Stunner",
+      "sourceObjectId": "ski-historielag:stunner-boplass",
+      "sourceQuality": "local_detailed_archaeological_identity_and_field_history",
+      "finding": "Ski Historielag documents the approximately 11,000-year-old settlement, Johannes Mikkelsen's 1928 flint finds, Anders Nummedal's Fosna interpretation and the site's later recognition and marking as a local cultural monument.",
+      "canVerifyCoordinate": true,
+      "reason": "The detailed local history establishes the specific archaeological identity represented by the named field point and memorial."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Stunner",
+      "sourceUrl": "https://snl.no/Stunner",
+      "sourceObjectId": "snl:stunner-arkeologisk-funnsted",
+      "sourceQuality": "independent_archaeological_identity_cross_check",
+      "finding": "SNL identifies Stunner as an archaeological find site east of Ski with remains of an approximately 11,000-year-old settlement associated with the Fosna complex.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as an independent identity, dating and interpretation cross-check rather than the physical coordinate source."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 1784728445 – Stunner Steinalderboplass",
+      "sourceUrl": "https://www.openstreetmap.org/node/1784728445",
+      "sourceObjectId": "osm-node:1784728445",
+      "sourceQuality": "specific_named_archaeological_site_point",
+      "finding": "The specifically named archaeological-site node lies at 59.74976, 10.91695 and directly identifies Stunner Steinalderboplass.",
+      "canVerifyCoordinate": true,
+      "reason": "Supplies the stable physical field anchor for the historically documented settlement identity."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 1784728449 – Stunnersteinen",
+      "sourceUrl": "https://www.openstreetmap.org/node/1784728449",
+      "sourceObjectId": "osm-node:1784728449",
+      "sourceQuality": "on_site_memorial_field_marker",
+      "finding": "Stunnersteinen stands approximately 4.4 metres from the named settlement point. Its inscription identifies the 11,000-year-old settlement, Johannes Mikkelsen's 1928 discovery and Ski Historielag's 2004 memorial.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the field identity on site, but the memorial is a marker for the archaeological place rather than the settlement itself."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Former Ski municipality – Stone Age shoreline context",
+      "sourceUrl": "https://www.ski.kommune.no/",
+      "sourceObjectId": "ski-kommune:stunner-former-shoreline-context",
+      "sourceQuality": "municipal_landscape_interpretation",
+      "finding": "Municipal historical material explains that the shoreline reached Stunner around 11,000 years ago and that the settlement must be understood in relation to that former coastal landscape.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the retained landscape radius and archaeological interpretation, not the exact point."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Stunner point / OpenStreetMap node 1779117990",
+      "sourceUrl": "https://www.openstreetmap.org/node/1779117990",
+      "sourceObjectId": "osm-node:1779117990",
+      "sourceQuality": "ambiguous_generic_archaeological_or_settlement_point",
+      "finding": "The broad Stunner node lies at the legacy coordinate 59.74657, 10.91747, approximately 355.9 metres south of the specifically named settlement field.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because the object identity is broader and more ambiguous than the named Stone Age settlement and its on-site memorial."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap Stunner hamlet and Stunner nordre farm exclusions",
+      "sourceUrl": "https://www.openstreetmap.org/",
+      "sourceObjectId": "exclusion:stunner-hamlet;stunner-nordre-farm",
+      "sourceQuality": "wrong_object_exclusion",
+      "finding": "The Stunner hamlet point lies approximately 778 metres from the applied anchor, while Stunner nordre farm lies approximately 384 metres away.",
+      "canVerifyCoordinate": false,
+      "reason": "The archaeological settlement was named after the local area, but modern settlement and farm points are not the archaeological field."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "ski-historielag:stunner-boplass",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1784728445",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1784728449",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1779117990",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "anchors": [
+    {
+      "id": "stunner_named_archaeological_site",
+      "name": "Stunner Stone Age settlement – named archaeological field anchor",
+      "lat": 59.74976,
+      "lon": 10.91695,
+      "r": 90,
+      "type": "historical_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1784728445",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "osm-node:1779117990",
+      "lat": 59.74657,
+      "lon": 10.91747,
+      "coordRole": "ambiguous_generic_stunner_point",
+      "distanceFromAppliedM": 355.9,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1784728445",
+      "lat": 59.74976,
+      "lon": 10.91695,
+      "coordRole": "historical_anchor",
+      "distanceFromPreviousM": 355.9,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:1784728449",
+      "lat": 59.74973,
+      "lon": 10.917,
+      "coordRole": "memorial_field_marker",
+      "distanceFromAppliedM": 4.4,
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the specifically named archaeological-field anchor and rejected the generic legacy Stunner point. Continue with Ski middelalderkirke."
+  },
+  "notes": [
+    "The applied point represents the documented archaeological field, not the memorial stone alone.",
+    "The 420-metre radius supports landscape and former-shoreline interpretation but is not an exact Askeladden or excavation polygon.",
+    "The modern hamlet and Stunner nordre farm are separate identities.",
+    "The coordinate correction is approximately 355.9 metres.",
+    "No generic locality or nearest-result coordinate was promoted over the specifically named archaeological site."
+  ]
+}
