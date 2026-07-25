@@ -1,0 +1,51 @@
+name: Temporary regenerate Næringsliv contexts
+
+on:
+  push:
+    branches:
+      - agent/naeringsliv-fagprofil-normal-opening-v2
+    paths:
+      - '.github/workflows/temp-regenerate-naeringsliv-contexts.yml'
+      - 'data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json'
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Regenerate Næringsliv production contexts
+        run: |
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
+
+      - name: Commit regenerated artifacts
+        shell: bash
+        run: |
+          if git diff --quiet -- data/quiz/production_context/naeringsliv; then
+            echo 'No regenerated context changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          git add data/quiz/production_context/naeringsliv/oslo_posthus.json
+          git add data/quiz/production_context/naeringsliv/havnelageret.json
+          git commit -m 'Regenerer næringslivets produksjonskontekster'
+          git push origin HEAD:${{ github.ref_name }}
