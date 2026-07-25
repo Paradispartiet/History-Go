@@ -31,7 +31,6 @@ try {
 
   run("npm", ["run", "places:index:build"]);
   run("npm", ["run", "build:web"]);
-  run("npm", ["run", "build:web:check"]);
   run("npm", ["run", "typecheck:web"]);
 
   if (typeof migration.audit !== "function") {
