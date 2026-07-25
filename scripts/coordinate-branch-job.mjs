@@ -14,7 +14,17 @@ const run = (command, args) => {
 run('git', ['config', 'user.name', 'github-actions[bot]']);
 run('git', ['config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com']);
 run('git', ['fetch', 'origin', 'main']);
-run('git', ['merge', '--no-edit', '-X', 'theirs', 'origin/main']);
+const mergeResult = spawnSync('git', ['merge', '--no-edit', '-X', 'theirs', 'origin/main'], { cwd: root, stdio: 'inherit' });
+if (mergeResult.error) throw mergeResult.error;
+if (mergeResult.status !== 0) {
+  const unresolved = spawnSync('git', ['diff', '--name-only', '--diff-filter=U'], { cwd: root, encoding: 'utf8' });
+  if (unresolved.error) throw unresolved.error;
+  const conflicts = String(unresolved.stdout || '').trim().split('\n').filter(Boolean);
+  if (!conflicts.length) throw new Error(`Merge failed without resolvable conflicts (${mergeResult.status})`);
+  for (const file of conflicts) run('git', ['checkout', '--theirs', '--', file]);
+  run('git', ['add', '--', ...conflicts]);
+  run('git', ['commit', '--no-edit']);
+}
 
 const parts = [
   'scripts/.historie-v55-completion.gz.b64.00',
