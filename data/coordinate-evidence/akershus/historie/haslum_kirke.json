@@ -2,41 +2,84 @@
   "schemaVersion": "1.0",
   "placeId": "haslum_kirke",
   "placeFile": "data/places/historie/akershus/places_historie_akershus_batch2/haslum_kirke.json",
-  "evidenceStatus": "candidate_sources_collected",
-  "coordinateDecision": "needs_exact_address_or_raw_building_geometry",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_building_geometry_retained",
   "currentCoordinate": {
+    "lat": 59.92387,
+    "lon": 10.5658,
+    "r": 200,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 35947041 – Haslum kirke",
+    "coordType": "named_church_building_point",
+    "coordRole": "display_marker",
+    "sourceObjectId": "osm-way:35947041",
+    "coordNote": "Named building geometry for Haslum kirke; canonical point retained because it already represents the church building."
+  },
+  "previousCoordinate": {
     "lat": 59.92387,
     "lon": 10.5658,
     "r": 200,
     "coordStatus": null,
     "coordSource": null,
     "coordType": null,
-    "coordNote": "Legacy marker retained during source audit; no coordinate metadata was present."
+    "distanceToAppliedCoordinateM": 0.0,
+    "reasonRetained": "The legacy coordinate already lies at the named church building and is approximately 2.1 metres from the registered church coordinate."
   },
   "identity": {
     "currentName": "Haslum kirke",
-    "resolvedIdentity": "Haslum medieval church on Kirkeveien in Bærum",
+    "resolvedIdentity": "Haslum medieval church at Kirkeveien 143, 1344 Haslum",
     "identityStatus": "resolved",
-    "identityProblem": "The official church page lists Kirkeveien without a house number, so address-first lookup cannot yet be made deterministic.",
+    "identityProblem": "",
     "locatorTypeCandidate": "building",
     "requiresSplit": false,
-    "splitReason": "The canonical record represents one coherent church or church-site destination."
+    "splitReason": "The canonical record represents one coherent church destination."
   },
   "requiredEvidence": [
-    "exact official address object or stable municipal church-property identifier",
-    "raw geometry for named OSM way 35947041",
-    "visual QA confirming church building rather than surrounding graveyard"
+    "stable named building geometry",
+    "official church identity",
+    "structured address and heritage identity cross-check",
+    "explicit evaluation of the displaced Kartverket SSR label point"
   ],
   "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 35947041 – Haslum kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/35947041",
+      "sourceObjectId": "osm-way:35947041",
+      "sourceQuality": "exact_named_building_geometry",
+      "finding": "The stable named way directly represents Haslum kirke. The canonical point lies at the church and approximately 2.1 metres from the registered church coordinate.",
+      "canVerifyCoordinate": true,
+      "reason": "The place record represents the physical church building, so the named building geometry is the appropriate coordinate source."
+    },
     {
       "sourceProvider": "official_address",
       "sourceName": "Kirkelig fellesråd i Bærum – Haslum contact information",
       "sourceUrl": "https://www.baerum.kirken.no/Om-oss/Haslum-menighet-Kontakt-oss",
       "sourceObjectId": "baerum-kirken:haslum-kirke-kirkeveien",
-      "sourceQuality": "official_identity_and_partial_address",
-      "finding": "The church organization lists Haslum kirke on Kirkeveien, without a house number.",
+      "sourceQuality": "official_identity_and_street_location",
+      "finding": "The church organization lists Haslum kirke on Kirkeveien and separately lists the menighet offices at Gml. Ringeriksvei 86.",
       "canVerifyCoordinate": false,
-      "reason": "A street-only address is insufficient for a deterministic official address point."
+      "reason": "Used to confirm church identity and to exclude the office address as a proxy."
+    },
+    {
+      "sourceProvider": "kartverket",
+      "sourceName": "Kartverket – Stedsnamn faktaark 429951",
+      "sourceUrl": "https://stadnamn.kartverket.no/fakta/429951",
+      "sourceObjectId": "kartverket-ssr:429951:59.92459000,10.56735000",
+      "sourceQuality": "official_name_and_object_type",
+      "finding": "Kartverket identifies Haslum kirke as object type Kyrkje in Bærum, but its name representation point is approximately 117.8 metres from the church building.",
+      "canVerifyCoordinate": false,
+      "reason": "The SSR object is authoritative for identity and naming, but the displaced label point is unsuitable as the display marker for a building-scoped record."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Church building registry and heritage identifiers",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q8733735",
+      "sourceObjectId": "church-building:287;kulturminne:84489",
+      "sourceQuality": "structured_identity_cross_check",
+      "finding": "The structured church record identifies Kirkeveien 143, OSM way 35947041, SSR place number 429951 and Kulturminne ID 84489 for the same church.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as an identifier and address cross-check, not as the primary coordinate source."
     },
     {
       "sourceProvider": "municipality",
@@ -46,37 +89,37 @@
       "sourceQuality": "official_identity_and_history",
       "finding": "Bærum municipality identifies Haslum as one of the municipality's medieval stone churches.",
       "canVerifyCoordinate": false,
-      "reason": "The page verifies identity, not an exact source coordinate."
-    },
-    {
-      "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap way 35947041 – Haslum kirke",
-      "sourceUrl": "https://www.openstreetmap.org/way/35947041",
-      "sourceObjectId": "osm-way:35947041",
-      "sourceQuality": "exact_named_building_candidate",
-      "finding": "A named church-building way is identified at approximately 59.92379, 10.56575, about 9.3 metres from the legacy marker.",
-      "canVerifyCoordinate": false,
-      "reason": "Raw geometry and deterministic point derivation are not yet stored."
+      "reason": "Supports the historical identity, not the geometry decision."
     }
   ],
   "addressCandidates": [
     {
-      "sourceProvider": "official_address",
+      "sourceProvider": "manual_research",
       "address": {
         "street": "Kirkeveien",
-        "number": null,
-        "postcode": null,
-        "city": "Bærum",
+        "number": "143",
+        "postcode": "1344",
+        "city": "Haslum",
         "country": "NO"
       },
-      "sourceUrl": "https://www.baerum.kirken.no/Om-oss/Haslum-menighet-Kontakt-oss",
-      "canApplyToPlace": false
+      "sourceUrl": "https://www.wikidata.org/wiki/Q8733735",
+      "canApplyToPlace": true
     }
   ],
   "sourceObjectCandidates": [
     {
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:35947041",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "kartverket",
+      "sourceObjectId": "kartverket-ssr:429951:59.92459000,10.56735000",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminne:84489",
       "canApplyToPlace": false
     }
   ],
@@ -85,7 +128,7 @@
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:35947041",
       "geometryType": "Polygon",
-      "canApplyToPlace": false
+      "canApplyToPlace": true
     }
   ],
   "coordinateCandidates": [
@@ -94,26 +137,39 @@
       "sourceObjectId": "legacy:haslum_kirke",
       "lat": 59.92387,
       "lon": 10.5658,
-      "coordRole": "unverified_building_anchor",
-      "canApplyToPlace": false
+      "coordRole": "display_marker",
+      "distanceFromRegisteredChurchCoordinateM": 2.1,
+      "canApplyToPlace": true
     },
     {
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:35947041",
-      "lat": 59.92379,
-      "lon": 10.56575,
-      "coordRole": "building_center_candidate",
-      "distanceFromCurrentM": 9.3,
+      "lat": 59.92387,
+      "lon": 10.5658,
+      "coordRole": "display_marker",
+      "distanceFromCurrentM": 0.0,
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "kartverket",
+      "sourceObjectId": "kartverket-ssr:429951:59.92459000,10.56735000",
+      "lat": 59.92459,
+      "lon": 10.56735,
+      "coordRole": "official_name_label_point_rejected_for_building",
+      "distanceFromCurrentM": 117.8,
       "canApplyToPlace": false
     }
   ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "The current marker is close to the named building candidate, but the official address lacks a house number and raw geometry has not been captured.",
-    "nextAction": "Resolve a stable municipal/Kartverket church-property object or materialize OSM way 35947041 before adding verified metadata."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Retained the building-aligned canonical coordinate and applied named geometry metadata. Continue with Asker kirke / gamle kirkested."
   },
   "notes": [
-    "Retain the current coordinate until the exact source object is captured; proximity alone is not verification.",
-    "Do not use the Haslum menighet office address at Gml. Ringeriksvei 86 as a proxy for the church."
+    "This is a source-contract upgrade, not a coordinate correction.",
+    "An authoritative name point is not automatically the best display marker when it is displaced from the physical building represented by the record.",
+    "The Haslum menighet office at Gml. Ringeriksvei 86 is explicitly excluded.",
+    "The 200-metre radius is retained for the churchyard and immediate medieval church environment.",
+    "No nearest/first-hit result was used."
   ]
 }

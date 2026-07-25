@@ -286,7 +286,6 @@ Eksempel:
 | Bronse | flere steder eller quizzer fullført |
 | Sølv | rute, emnedekning eller flere steder fullført |
 | Gull | flere ruter/steder/personer/funn fullført |
-| Mestergrad | større kategori-prøve, diplom eller definert hovedmål fullført |
 
 Kategori-progresjon må respektere fag-/pensumarkitekturen:
 
