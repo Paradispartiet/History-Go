@@ -1,6 +1,6 @@
 # Oslo People of Places coverage
 
-Generert: 2026-07-25T06:57:35.819Z
+Generert: 2026-07-25T07:47:36.356Z
 
 ## Policy
 
@@ -10,34 +10,32 @@ Generert: 2026-07-25T06:57:35.819Z
 
 ## Sammendrag
 
-- Oslo-steder totalt: **389**
-- Kravpliktige steder utenom natur: **340**
-- Dekket: **188**
-- Uten People: **152**
-- Dekningsgrad: **55.29%**
+- Oslo-steder totalt: **381**
+- Kravpliktige steder utenom natur: **332**
+- Dekket: **189**
+- Uten People: **143**
+- Dekningsgrad: **56.93%**
 - Natursteder: **49** (45 uten People)
 - Geografikonflikter holdt utenfor Oslo-tellingen: **0**
-- Ugyldige People→place-referanser globalt: **50**
+- Ugyldige People→place-referanser globalt: **62**
 
 ## Dekning per kategori
 
 | Kategori | Totalt | Dekket | Uten People | People-lenker |
 |---|---:|---:|---:|---:|
-| by | 78 | 47 | 31 | 166 |
-| film_tv | 2 | 2 | 0 | 12 |
+| by | 79 | 47 | 32 | 166 |
 | historie | 66 | 36 | 30 | 167 |
 | kunst | 10 | 7 | 3 | 17 |
 | litteratur | 19 | 19 | 0 | 52 |
 | media | 5 | 5 | 0 | 19 |
 | musikk | 9 | 9 | 0 | 16 |
-| naeringsliv | 46 | 12 | 34 | 32 |
+| naeringsliv | 48 | 12 | 36 | 32 |
 | natur | 49 | 4 | 45 | 11 |
 | politikk | 18 | 18 | 0 | 163 |
-| populaerkultur | 11 | 2 | 9 | 2 |
 | psykologi | 1 | 0 | 1 | 0 |
-| scenekunst | 22 | 7 | 15 | 241 |
-| sport | 1 | 0 | 1 | 0 |
-| subkultur | 33 | 17 | 16 | 31 |
+| scenekunst | 22 | 12 | 10 | 218 |
+| sport | 2 | 0 | 2 | 0 |
+| subkultur | 34 | 17 | 17 | 31 |
 | vitenskap | 19 | 7 | 12 | 47 |
 
 ## Arbeidskø: Oslo uten natur og uten People
@@ -72,6 +70,7 @@ Generert: 2026-07-25T06:57:35.819Z
 | by | `torshov` | Torshov | data/places/by/oslo/places_by.json |
 | by | `trikk_17_18` | Trikkelinje 17/18 | data/places/by/oslo/places_by.json |
 | by | `ullern` | Ullern | data/places/by/oslo/places_by.json |
+| by | `vika_kino` | Vika kino | data/places/film/oslo/places_oslo_film.json |
 | by | `vinderen` | Vinderen | data/places/by/oslo/places_by.json |
 | by | `vaalerenga` | Vålerenga | data/places/by/oslo/places_by.json |
 | by | `okern` | Økern | data/places/by/oslo/places_by.json |
@@ -120,6 +119,7 @@ Generert: 2026-07-25T06:57:35.819Z
 | naeringsliv | `flop_museum` | FLOP Museum | data/places/naeringsliv/oslo/places_naeringsliv_atlas_obscura_flop_batch_07.json |
 | naeringsliv | `frysja_33_brekke_kraftstasjon` | Frysja 33 – Brekke kraftstasjon | data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_13.json |
 | naeringsliv | `frysja_industriomrade` | Frysja industriområde | data/places/naeringsliv/oslo/places_naeringsliv.json |
+| naeringsliv | `gimle_kino` | Gimle kino | data/places/film/oslo/places_oslo_film.json |
 | naeringsliv | `grensen_kjopesenter` | Grensen – handelsgate | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `gronlikaia` | Grønlikaia | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `hotel_du_nord` | Hotel du Nord | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_02.json |
@@ -133,6 +133,7 @@ Generert: 2026-07-25T06:57:35.819Z
 | naeringsliv | `oslo_gassverk` | Oslo Gassverk | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `havnelageret` | Oslo Havnelager | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `oslo_kraftselskap` | Oslo Lysverkers hovedkontor | data/places/naeringsliv/oslo/places_naeringsliv.json |
+| naeringsliv | `saga_kino` | Saga kino | data/places/film/oslo/places_oslo_film.json |
 | naeringsliv | `sjofartsbygningen` | Sjøfartsbygningen | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_hovedstaden_batch_01.json |
 | naeringsliv | `st_halvard_bryggeri` | St. Halvard bryggeri | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `telegrafbygningen` | Telegrafbygningen | data/places/naeringsliv/oslo/places_naeringsliv.json |
@@ -142,37 +143,25 @@ Generert: 2026-07-25T06:57:35.819Z
 | naeringsliv | `toyen_trafo` | Tøyen trafo | data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04.json |
 | naeringsliv | `vinmonopolet_lager` | Vinmonopolets hovedlager | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `ovre_foss` | Øvre Foss – Hjula Veveri | data/places/naeringsliv/oslo/places_naeringsliv.json |
-| populaerkultur | `chateau_neuf` | Chateau Neuf | data/places/popkultur/oslo/places_oslo_populaerkultur.json |
-| populaerkultur | `frognerstranda` | Frognerstranda | data/places/popkultur/oslo/places_oslo_populaerkultur.json |
-| populaerkultur | `gimle_kino` | Gimle kino | data/places/film/oslo/places_oslo_film.json |
-| populaerkultur | `grand_hotel` | Grand Hotel | data/places/popkultur/oslo/places_oslo_populaerkultur.json |
-| populaerkultur | `hartvig_nissens_skole_skam` | Hartvig Nissens skole (SKAM) | data/places/film/oslo/places_oslo_film.json |
-| populaerkultur | `klingenberg_kino` | Klingenberg kino | data/places/film/oslo/places_oslo_film.json |
-| populaerkultur | `saga_kino` | Saga kino | data/places/film/oslo/places_oslo_film.json |
-| populaerkultur | `slottsplassen` | Slottsplassen | data/places/popkultur/oslo/places_oslo_populaerkultur.json |
-| populaerkultur | `vika_kino` | Vika kino | data/places/film/oslo/places_oslo_film.json |
 | psykologi | `psykologisk_institutt_uio` | Psykologisk institutt, UiO | data/places/psykologi/oslo/places_psykologi.json |
 | scenekunst | `black_box_teater` | Black Box teater | data/places/scenekunst/oslo/places_scenekunst.json |
-| scenekunst | `centralteatret` | Centralteatret | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `dansens_hus_oslo` | Dansens Hus | data/places/scenekunst/oslo/places_scenekunst.json |
-| scenekunst | `det_andre_teatret` | Det Andre Teatret | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `det_andre_teatret_intimscenen` | Det Andre Teatret – Intimscenen | data/places/scenekunst/oslo/places_scenekunst.json |
-| scenekunst | `dramatikkens_hus` | Dramatikkens hus | data/places/scenekunst/oslo/dramatikkens_hus.json |
-| scenekunst | `grusomhetens_teater` | Grusomhetens Teater | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `kloden_teater_pilotscenen` | Kloden teater – Pilotscenen | data/places/scenekunst/oslo/places_scenekunst.json |
-| scenekunst | `nordic_black_theatre_cafeteatret` | Nordic Black Theatre / Cafeteatret | data/places/scenekunst/oslo/places_scenekunst.json |
+| scenekunst | `latter` | Latter | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `oslo_nye_teater_hovedscenen` | Oslo Nye Teater – Hovedscenen | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `riksscenen` | Riksscenen | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `rommen_scene` | Rommen Scene | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `salt_oslo` | SALT | data/places/scenekunst/oslo/places_scenekunst.json |
-| scenekunst | `teater_manu` | Teater Manu | data/places/scenekunst/oslo/teater_manu.json |
 | scenekunst | `vega_scene` | Vega Scene | data/places/scenekunst/oslo/vega_scene.json |
+| sport | `klingenberg_kino` | Klingenberg kino | data/places/film/oslo/places_oslo_film.json |
 | sport | `voldslokka_pumptrack` | Voldsløkka pumptrack | data/places/sport/oslo/voldslokka_pumptrack.json |
 | subkultur | `brugata_storgata_rusmiljo` | Brugata / Storgata – det åpne rusmiljøet | data/places/subkultur/oslo/places_subkultur.json |
 | subkultur | `evangeliesenteret_kontaktsenter_oslo` | Evangeliesenterets kontaktsenter | data/places/subkultur/oslo/places_subkultur.json |
 | subkultur | `fyrlyset_oslo` | Fyrlyset | data/places/subkultur/oslo/places_subkultur.json |
 | subkultur | `grunerlokka_bakgardsvegger` | Grünerløkka bakgårdsvegger | data/places/subkultur/oslo/places_subkultur.json |
 | subkultur | `gronland_underganger` | Grønland underganger | data/places/subkultur/oslo/places_subkultur.json |
+| subkultur | `hartvig_nissens_skole_skam` | Hartvig Nissens skole (SKAM) | data/places/film/oslo/places_oslo_film.json |
 | subkultur | `hausmannsgate_aksen` | Hausmannsgate-aksen | data/places/subkultur/oslo/places_subkultur.json |
 | subkultur | `huset_oslo` | Huset Oslo | data/places/subkultur/oslo/places_subkultur.json |
 | subkultur | `kolstadgata_toyen_vegger` | Kolstadgata veggmiljø | data/places/subkultur/oslo/places_subkultur.json |
