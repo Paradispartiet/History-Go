@@ -54,12 +54,25 @@ Historisk snapshot som ikke skal brukes som nåstatus:
 
 - `docs/IMPLEMENTATION_STATUS.md` — avgrenset snapshot for Social, Civication Home og Spotmeeting
 
-### Data og innholdsproduksjon
+### Domener, data og innholdsproduksjon
 
-1. [`DATA_PRODUCTION_CONTRACT.md`](./DATA_PRODUCTION_CONTRACT.md)
-2. relevante manifests under `data/**/manifest.json`
-3. lokale README-filer ved datasettet
-4. relevante audits og CI-gates
+1. [`DOMAIN_CONTRACT.md`](./DOMAIN_CONTRACT.md) — bindende kategoribeslutninger
+2. [`../data/categories/category_contract.json`](../data/categories/category_contract.json) — maskinlesbar sannhetskilde for runtime- og fagkategorier
+3. [`DOMAIN_REGISTRY_README.md`](./DOMAIN_REGISTRY_README.md) — operativ bruk av DomainRegistry og eksplisitte legacy-aliasgrenser
+4. [`DATA_PRODUCTION_CONTRACT.md`](./DATA_PRODUCTION_CONTRACT.md) — aktiv dataproduksjonskontrakt
+5. relevante manifests under `data/**/manifest.json`
+6. lokale README-filer ved datasettet
+7. relevante audits og CI-gates
+
+`npm run audit:categories` håndhever samsvar mellom maskinkontrakten, fagmanifestet, quizprofilregisteret, badgeindeksen, DomainRegistry, kategori-UI og place-policyen.
+
+Aktive domenebeslutninger:
+
+- `filosofi` er selvstendig fag- og runtimekategori.
+- `populaerkultur`/`popkultur` er ikke toppkategori; eventuelle aliaser er bare legacy-kompatibilitet.
+- `sosial_laering` er et non-place badge.
+
+Ved konflikt gjelder maskinkontrakten og valideringen. Dokumentasjonen skal da korrigeres; det skal ikke opprettes lokale aliaslister eller parallelle kategorier.
 
 Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk-places. Ved konflikt mellom dokumentasjon og et aktivt manifest er manifestet/runtime-koden sannhetskilden, og dokumentasjonen skal korrigeres.
 
@@ -159,8 +172,9 @@ Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation
 - daterte TypeScript- og AHA-statusfiler flyttet til `reports/archive/2026-07/`
 - `Mestergrad` fjernet fra ferdigmodellen; Bronse → Sølv → Gull er canonical nivåregel
 - `APP_STRUCTURE_INDEX.md` synkronisert med `#/debate/:id` og registrert som canonical index-appkontrakt
+- domene- og DomainRegistry-dokumentasjonen synkronisert med maskinkontrakten: filosofi er selvstendig, og populærkultur er ikke toppkategori
 
 ### Neste
 
-- klassifiser øvrige aktive produkt-/runtimekontrakter, først domene- og kvalitetskontraktene
+- klassifiser kvalitets- og Social-kontraktene uten å gjøre subsystemspesifikke guider til globale fasiter
 - fortsett å flytte daterte audits og statuspunkter til `reports/archive/YYYY-MM/`
