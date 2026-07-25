@@ -1,9 +1,42 @@
 {
   "id": "vollen_maudbukta",
   "name": "Vollen / Maudbukta",
-  "lat": 59.81056,
-  "lon": 10.4825,
+  "lat": 59.80709179773664,
+  "lon": 10.490986627468192,
   "r": 320,
+  "locatorType": "historic_site",
+  "sourceProvider": "manual_research",
+  "sourceObjectId": "mia-oslofjordmuseet:maudbukta-launch-site",
+  "address": {
+    "street": "Chr. Jensens vei",
+    "number": "8",
+    "postcode": "1390",
+    "city": "Vollen",
+    "country": "NO"
+  },
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "historical_anchor",
+  "coordType": "documented_maudbukta_launch_area_anchor",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "Oslofjordmuseet – Maudbukta og Mauds sjøsettingssted; Kartverket adressepunkt Chr. Jensens vei 8",
+  "coordSourceId": "mia-oslofjordmuseet:maudbukta-launch-site",
+  "coordSourceUrl": "https://mia.no/oslofjordmuseet/om-gammel",
+  "coordVerifiedAt": "2026-07-26",
+  "coordChangeReason": "Markøren flyttes om lag 611,5 meter fra et generisk Vollen-punkt til Kartverkets offisielle adressepunkt for Oslofjordmuseet i Maudbukta, der MiA dokumenterer at Maud ble sjøsatt rett ved dagens museum.",
+  "coordNote": "MiA dokumenterer at Oslofjordmuseet ligger i Maudbukta fordi Roald Amundsens polarskute Maud ble bygget av Christian Jensen og sjøsatt her 7. juni 1917, rett ved stedet der museet ligger i dag. Kartverkets adresse-API returnerer ett entydig objekt for Chr. Jensens vei 8, 1390 Vollen med representasjonspunkt 59.80709179773664, 10.490986627468192, matrikkel 3203-66/85 og adressekode 1358. Adressepunktet brukes som fysisk historical_anchor for det dokumenterte sjøsettings- og båtbyggingsområdet. Det hevdes ikke å være den eksakte slipprennen eller vannlinjen fra 1917, og heller ikke et generelt punkt for Vollen sentrum, marinaen eller badeplassen. Radius 320 meter beholdes for Maudbukta, museumsområdet, den nære historiske verftsflaten og fjordkulturmiljøet.",
+  "anchors": [
+    {
+      "id": "vollen_maudbukta_oslofjordmuseet_same_area",
+      "name": "Oslofjordmuseet i Maudbukta – fysisk anker for sjøsettingsområdet",
+      "lat": 59.80709179773664,
+      "lon": 10.490986627468192,
+      "r": 90,
+      "type": "historical_anchor",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "kartverket-address:3203:66/85:1358:8",
+      "note": "Offisielt adressepunkt for museet som MiA plasserer rett ved Mauds dokumenterte sjøsettingssted."
+    }
+  ],
   "category": "historie",
   "fylke": "akershus",
   "kommune": "Asker",
@@ -17,14 +50,14 @@
     "oslofjorden"
   ],
   "desc": "Kystkultursted i Vollen, der Roald Amundsens polarskute Maud ble sjøsatt i 1917. Maudbukta kobler lokal båtbygging, Oslofjordens hverdagsliv og norsk polarhistorie.",
-  "popupDesc": "Vollen og Maudbukta gjør polarhistorien lokal. Roald Amundsens polarskute Maud ble bygget av den lokale båtbyggeren Christian Jensen og sjøsatt her i 1917. Oslofjordmuseet ligger nettopp her fordi stedet bærer arven fra båtbygging, fjordliv og polare ekspedisjoner. Samtidig har området nyere industrihistorie gjennom Arnestad Bruk. I History Go bør Vollen brukes til å vise hvordan store nasjonale ekspedisjoner også hadde lokale håndverkere, verft og fjordmiljøer bak seg.",
+  "popupDesc": "Vollen og Maudbukta gjør polarhistorien lokal. Roald Amundsens polarskute Maud ble bygget av Christian Jensen og sjøsatt her 7. juni 1917. Oslofjordmuseet ligger i Maudbukta nettopp fordi dagens museumsområde ligger rett ved det historiske sjøsettingsstedet. Stedet bærer også spor etter Anker & Jensens båtbyggeri og den senere møbelfabrikken Arnestad Bruk. I History Go viser Maudbukta hvordan store nasjonale ekspedisjoner var avhengige av lokale håndverkere, verft, arbeidsplasser og fjordmiljøer.",
   "quiz_profile": {
     "place_type": "kystkultursted",
     "subtype": "maudbukta_batbygging_og_polarhistorie",
     "signature_features": [
-      "Maud ble sjøsatt i Maudbukta i 1917",
+      "Maud ble sjøsatt i Maudbukta 7. juni 1917",
       "lokal båtbygging ved Christian Jensen",
-      "Oslofjordmuseet formidler fjordliv og båthistorie"
+      "Oslofjordmuseet ligger ved det dokumenterte sjøsettingsområdet"
     ],
     "primary_angles": [
       "historie",
@@ -50,6 +83,36 @@
       "roald_amundsens_hjem_uranienborg",
       "hvitsten_sjobodene"
     ],
-    "notes": "Skal spørres som kobling mellom lokal kystkultur og polarhistorie."
-  }
+    "notes": "Skal spørres som kobling mellom lokal kystkultur og polarhistorie, ikke som vanlig museumsadresse eller marina."
+  },
+  "externalLinks": [
+    {
+      "type": "official",
+      "label": "Oslofjordmuseet – Om museet og Maudbukta",
+      "url": "https://mia.no/oslofjordmuseet/om-gammel",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "official",
+      "label": "Oslofjordmuseet – Maud-jubileum",
+      "url": "https://mia.no/oslofjordmuseet/maud-jubileum",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "official",
+      "label": "Oslofjordmuseet – Finn oss",
+      "url": "https://mia.no/oslofjordmuseet/finn-oss",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "Kartverket – Adresse-API, Chr. Jensens vei 8",
+      "url": "https://ws.geonorge.no/adresser/v1/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    }
+  ]
 }
