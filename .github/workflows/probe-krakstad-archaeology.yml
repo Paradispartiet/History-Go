@@ -1,0 +1,94 @@
+name: Probe Kråkstad archaeological anchors
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/probe-krakstad-archaeology.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/akershus-krakstad-kirke-gravhaug-production
+          fetch-depth: 0
+
+      - name: Fetch and persist nearby OSM archaeology
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=reports/akershus-coordinate-krakstad-source-probe
+          mkdir -p "$out"
+
+          cat > "$out/overpass-query.txt" <<'QUERY'
+          [out:json][timeout:60];
+          (
+            nwr(around:700,59.67658,10.88091)[historic=archaeological_site];
+            nwr(around:700,59.67658,10.88091)[archaeological_site];
+            nwr(around:700,59.67658,10.88091)[historic=tomb];
+            nwr(around:700,59.67658,10.88091)[tomb];
+          );
+          out center tags;
+          QUERY
+
+          curl --fail --silent --show-error \
+            --data-urlencode "data@${out}/overpass-query.txt" \
+            'https://overpass-api.de/api/interpreter' \
+            | tee "$out/overpass-krakstad-archaeology.json"
+
+          python - <<'PY' 2>&1 | tee "$out/overpass-krakstad-archaeology-summary.txt"
+          import json
+          import math
+          from pathlib import Path
+
+          center = (59.67658, 10.88091)
+          path = Path('reports/akershus-coordinate-krakstad-source-probe/overpass-krakstad-archaeology.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+
+          def distance_m(a, b):
+              r = 6371000
+              p1 = math.radians(a[0]); p2 = math.radians(b[0])
+              dp = math.radians(b[0] - a[0]); dl = math.radians(b[1] - a[1])
+              x = math.sin(dp/2)**2 + math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2
+              return 2*r*math.atan2(math.sqrt(x), math.sqrt(1-x))
+
+          rows = []
+          for item in data.get('elements', []):
+              lat = item.get('lat', item.get('center', {}).get('lat'))
+              lon = item.get('lon', item.get('center', {}).get('lon'))
+              if lat is None or lon is None:
+                  continue
+              tags = item.get('tags', {})
+              rows.append({
+                  'type': item.get('type'),
+                  'id': item.get('id'),
+                  'lat': lat,
+                  'lon': lon,
+                  'distance_from_church_m': round(distance_m(center, (lat, lon)), 1),
+                  'tags': tags,
+              })
+
+          rows.sort(key=lambda row: row['distance_from_church_m'])
+          print(f'total_elements={len(rows)}')
+          for row in rows:
+              print(json.dumps(row, ensure_ascii=False, sort_keys=True))
+          if not rows:
+              raise SystemExit('No nearby archaeological objects returned')
+          PY
+
+      - name: Remove probe workflow and commit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/probe-krakstad-archaeology.yml
+          git add reports/akershus-coordinate-krakstad-source-probe
+          git commit -m 'Materialize Kråkstad archaeological source probe'
+          git push origin HEAD:agent/akershus-krakstad-kirke-gravhaug-production
