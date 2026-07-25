@@ -15,11 +15,11 @@ if (original.error || original.status !== 0) {
   throw new Error(`Kunne ikke hente den opprinnelige økonomirunneren\n${original.stderr || ''}`);
 }
 
-const before = `function isCurated(object) {
+const oldClassifier = `function isCurated(object) {
   return String(object?.status || '').includes('curated') &&
     !String(object?.definition || '').includes('betegner «');
 }`;
-const after = `function isCurated(object) {
+const newClassifier = `function isCurated(object) {
   const definition = String(object?.definition || '');
   const misuse = (object?.common_misuse || []).join(' ');
   const semanticRelations = [
@@ -33,10 +33,25 @@ const after = `function isCurated(object) {
     semanticRelations.length > 0 &&
     !misuse.includes('som en tidløs etikett');
 }`;
-if (!original.stdout.includes(before)) {
+const oldContextSeed = `affectedContexts.add(path.join(contextRoot, 'by', 'deichman_bjorvika.json'));`;
+const newContextSeed = `affectedContexts.add(path.join(contextRoot, 'by', 'deichman_bjorvika.json'));
+for (const targetId of [
+  'grindheim_runestein',
+  'grindheim_steinkross',
+  'grindheimsveien_nord_gravfelt',
+  'hoyland_gravhaug_etne'
+]) {
+  affectedContexts.add(path.join(contextRoot, 'historie', \`${'${targetId}'}.json\`));
+}`;
+if (!original.stdout.includes(oldClassifier)) {
   throw new Error('Fant ikke isCurated-blokken i den opprinnelige runneren');
 }
-const transformed = original.stdout.replace(before, after);
+if (!original.stdout.includes(oldContextSeed)) {
+  throw new Error('Fant ikke quizkontekstfrøet i den opprinnelige runneren');
+}
+const transformed = original.stdout
+  .replace(oldClassifier, newClassifier)
+  .replace(oldContextSeed, newContextSeed);
 const target = path.join('/tmp', 'history-economy-curation-fixed.mjs');
 fs.writeFileSync(target, transformed);
 await import(`file://${target}?v=${Date.now()}`);
