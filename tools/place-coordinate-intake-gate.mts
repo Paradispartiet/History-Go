@@ -41,7 +41,7 @@ const readJson = (file: string) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const rel = (p: string) => path.relative(root, p).replace(/\\/g, '/');
 const isNum = (v: unknown) => typeof v === 'number' && Number.isFinite(v);
 const isArchivePath = (p: string) => /(^|\/)arkiv(\/|$)/i.test(p);
-const toPlaces = (payload: any): any[] => Array.isArray(payload) ? payload : Array.isArray(payload?.places) ? payload.places : Array.isArray(payload?.items) ? payload.items : [];
+const toPlaces = (payload: any): any[] => Array.isArray(payload) ? payload : Array.isArray(payload?.places) ? payload.places : Array.isArray(payload?.items) ? payload.items : payload && typeof payload === 'object' && typeof payload.id === 'string' ? [payload] : [];
 const hasText = (v: unknown) => typeof v === 'string' && v.trim().length > 0;
 const decimals = (v: number) => {
   const s = String(v);
@@ -114,18 +114,49 @@ if (strictNew && !base) {
   process.exit(2);
 }
 
-function readBasePlacesById(file: string): Map<string, any> {
+function readBasePlacesById(): Map<string, any> {
   if (!base) return new Map();
+  const out = new Map<string, any>();
+  const checkoutDir = path.join(root, '..', `.history-go-place-base-${process.pid}`);
   try {
-    const raw = git(['show', `${base}:${file}`]);
-    return new Map(toPlaces(JSON.parse(raw)).filter((p) => p?.id).map((p) => [String(p.id), p]));
-  } catch {
-    return new Map();
+    fs.rmSync(checkoutDir, { recursive: true, force: true });
+    git(['worktree', 'add', '--detach', checkoutDir, base]);
+    const baseManifestPath = path.join(checkoutDir, 'data/places/manifest.json');
+    const baseManifest = readJson(baseManifestPath);
+    const entries = Array.isArray(baseManifest?.files) ? baseManifest.files : [];
+    const addData = (data: any) => {
+      for (const place of toPlaces(data)) {
+        if (place?.id) out.set(String(place.id), place);
+      }
+    };
+    for (const rawEntry of entries) {
+      const rel = String(rawEntry || '').trim();
+      if (!rel) continue;
+      const sourceFile = path.join(checkoutDir, rel.startsWith('data/') ? rel : path.join('data', rel));
+      const parsed = path.parse(sourceFile);
+      const splitManifestFile = path.join(parsed.dir, `${parsed.name}_manifest${parsed.ext || '.json'}`);
+      if (fs.existsSync(splitManifestFile)) {
+        const splitManifest = readJson(splitManifestFile);
+        if (Array.isArray(splitManifest?.places)) {
+          for (const row of splitManifest.places) {
+            if (typeof row?.file !== 'string' || !row.file.trim()) continue;
+            const childFile = path.join(path.dirname(splitManifestFile), row.file.trim());
+            if (fs.existsSync(childFile)) addData(readJson(childFile));
+          }
+          continue;
+        }
+      }
+      if (fs.existsSync(sourceFile)) addData(readJson(sourceFile));
+    }
+    return out;
+  } finally {
+    try { git(['worktree', 'remove', '--force', checkoutDir]); } catch {}
+    fs.rmSync(checkoutDir, { recursive: true, force: true });
   }
 }
 function changedAgainstBase(place: any, previous: any) {
   if (!previous) return true;
-  const fields = ['lat', 'lon', 'r', 'coordType', 'coordStatus', 'coordSource', 'coordVerifiedAt', 'coordNote', 'locatorType', 'sourceProvider', 'sourceObjectId', 'address', 'geocodeAccuracy', 'coordRole', 'geometry', 'anchors'];
+  const fields = ['lat', 'lon', 'r', 'coordType', 'coordStatus', 'coordSource', 'coordVerifiedAt', 'coordNote', 'locatorType', 'sourceProvider', 'sourceObjectId', 'address', 'geocodeAccuracy', 'coordRole'];
   return fields.some((f) => JSON.stringify(place?.[f]) !== JSON.stringify(previous?.[f]));
 }
 
@@ -141,6 +172,7 @@ function add(place: any, file: string, changed: boolean, field: string, problem:
   findings.push({ level, id: place?.id ?? '(mangler-id)', name: place?.name ?? '(mangler-name)', file, field, problem, fix, changed });
 }
 
+const basePlacesById = readBasePlacesById();
 const manifest = readJson(manifestPath);
 const activeFiles = (Array.isArray(manifest.files) ? manifest.files : [])
   .map((f: string) => rel(path.join(root, 'data', f)))
@@ -158,10 +190,9 @@ for (const file of activeFiles) {
     continue;
   }
   filesRead.push(file);
-  const previousById = readBasePlacesById(file);
   for (const place of toPlaces(payload)) {
     placesValidated += 1;
-    const previous = place?.id ? previousById.get(String(place.id)) : undefined;
+    const previous = place?.id ? basePlacesById.get(String(place.id)) : undefined;
     const changed = base ? changedAgainstBase(place, previous) : false;
     if (changed) changedPlaces += 1;
     const lat = place?.lat; const lon = place?.lon; const r = place?.r;
