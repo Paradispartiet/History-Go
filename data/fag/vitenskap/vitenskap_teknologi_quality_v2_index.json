@@ -1,0 +1,84 @@
+{
+  "schema": "vitenskap_teknologi_quality_index_v2",
+  "version": "2.0",
+  "status": "canonical_quality_extension",
+  "updated_at": "2026-07-25",
+  "subject_id": "vitenskap",
+  "subject_title": "Vitenskap & teknologi",
+  "canonical_category_id": "vitenskap",
+  "purpose": "Kanonisk kvalitetsindeks for vitenskap, ingeniørfag og informasjonsteknologi. Indeksen samler fagområder, emner, metoder, teorihooks, begreper, fagpersoner og pensummoduler i fire validerbare shard-filer.",
+  "governance": {
+    "canonical_id_unchanged": true,
+    "new_runtime_category": false,
+    "quiz_is_place_bound_not_topic_bound": true,
+    "external_claim_basis_required": true,
+    "personal_opinion_is_not_scored_knowledge": true,
+    "start_with_concrete_anchor_before_theory": true,
+    "avoid_name_guessing": true,
+    "avoid_technology_as_inevitable_progress": true,
+    "category_boundaries": {
+      "natur": "Natur når organismen, landskapet eller opplevelsen står i sentrum; vitenskap når måling, modell eller forskningspraksis er hovedsaken.",
+      "naeringsliv": "Næringsliv når virksomhet, marked eller eierskap står i sentrum; vitenskap når teknologi, forskning eller systemarkitektur er hovedsaken.",
+      "media": "Media når innhold og formidling står i sentrum; vitenskap når programvare, algoritmer, nettverk eller infrastruktur er hovedsaken.",
+      "filosofi": "Filosofi når argumentet om kunnskap, etikk eller virkelighet står i sentrum; vitenskap når empirisk metode, instrument, modell eller teknisk system er hovedsaken."
+    }
+  },
+  "category_boundaries": {
+    "natur": "Natur når organismen, landskapet eller opplevelsen står i sentrum; vitenskap når måling, modell eller forskningspraksis er hovedsaken.",
+    "naeringsliv": "Næringsliv når virksomhet, marked eller eierskap står i sentrum; vitenskap når teknologi, forskning eller systemarkitektur er hovedsaken.",
+    "media": "Media når innhold og formidling står i sentrum; vitenskap når programvare, algoritmer, nettverk eller infrastruktur er hovedsaken.",
+    "filosofi": "Filosofi når argumentet om kunnskap, etikk eller virkelighet står i sentrum; vitenskap når empirisk metode, instrument, modell eller teknisk system er hovedsaken."
+  },
+  "counts": {
+    "areas": 16,
+    "topics": 64,
+    "methods": 32,
+    "hooks": 48,
+    "concepts": 96,
+    "thinkers": 65,
+    "modules": 16
+  },
+  "shard_files": [
+    "vitenskap_teknologi_quality_v2_shard_1.json",
+    "vitenskap_teknologi_quality_v2_shard_2.json",
+    "vitenskap_teknologi_quality_v2_shard_3.json",
+    "vitenskap_teknologi_quality_v2_shard_4.json"
+  ],
+  "area_order": [
+    "metode_evidens_replikasjon",
+    "maling_instrumenter_standarder",
+    "matematikk_modeller_simulering",
+    "fysikk_astronomi_kosmologi",
+    "kjemi_materialer",
+    "jord_klima_miljo",
+    "biologi_evolusjon_okologi",
+    "medisin_folkehelse_hjerne",
+    "ingenior_design_systemer",
+    "energi_maskiner_produksjon",
+    "elektronikk_robotikk_automatisering",
+    "datamaskiner_programvare",
+    "data_algoritmer_ai",
+    "nettverk_sikkerhet_infrastruktur",
+    "institusjoner_kommunikasjon_politikk",
+    "teknologihistorie_etikk_risiko"
+  ],
+  "production_rules": {
+    "sequence": [
+      "konkret fenomen, sted, instrument, system, materiale, datasett eller kode",
+      "mekanisme, metode, arkitektur eller målekjede",
+      "evidens, usikkerhet, gyldighetsområde og alternative forklaringer",
+      "teknisk bruk, institusjon, risiko og samfunnsvirkning"
+    ],
+    "blocked": [
+      "navnegjetting",
+      "generisk fremskrittsfortelling",
+      "AI, data, internett, web og programvare brukt som synonymer",
+      "personlig mening vurdert som fagkunnskap",
+      "påstander bygget bare fra emnenavn eller teorietikett"
+    ]
+  },
+  "validation": {
+    "tool": "tools/validate-vitenskap-teknologi-quality.mjs",
+    "report": "reports/vitenskap-teknologi-quality-validation.json"
+  }
+}
