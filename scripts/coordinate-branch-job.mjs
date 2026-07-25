@@ -16,6 +16,7 @@ function run(command, args) {
 run('git', ['fetch', 'origin', 'main']);
 run('git', ['checkout', 'origin/main', '--', ...cleanReports]);
 fs.rmSync(runnerDir, { recursive: true, force: true });
+fs.mkdirSync(runnerDir, { recursive: true });
 
 const hook = `#!/usr/bin/env bash
 set -euo pipefail
