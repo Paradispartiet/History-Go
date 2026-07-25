@@ -140,6 +140,11 @@
       "gate_id": "gate_sport_living_update",
       "rule": "Tidsfølsomme kliniske, regulatoriske, teknologiske og retningslinjebaserte synteser må ha update_due og blokkeres etter utløp.",
       "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_candidate_record_not_evidence",
+      "rule": "En kandidatpost fra søk eller frøsøk er ikke evidens og kan ikke støtte claim, quiztekst eller sikkerhetsgrad før dobbelt screening, inklusjonsbeslutning og relevant metodevurdering er dokumentert.",
+      "failure_action": "block"
     }
   ],
   "forbidden_inferences": [
@@ -222,5 +227,15 @@
     "required_for": "all new or modified scientific content",
     "legacy_claim_status": "provisional_legacy_claim",
     "publication_ready_requires_all_links": true
+  },
+  "candidate_record_policy": {
+    "candidate_registry": "data/fag/sport/concussion_search_log_sport_v1.json",
+    "may_support_publication": false,
+    "promotion_requires": [
+      "protokollstyrt dobbelt screening",
+      "dokumentert inklusjonsbeslutning",
+      "riktig vurderingsverktøy",
+      "proveniens og identifikator"
+    ]
   }
 }

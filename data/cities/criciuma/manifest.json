@@ -1,0 +1,66 @@
+{
+  "schema": "history_go_city_package_v1",
+  "cityId": "criciuma",
+  "label": "Criciúma",
+  "country": "BR",
+  "region": "Santa Catarina",
+  "templateCity": "oslo",
+  "createdAt": "2026-07-25",
+  "places": {
+    "count": 40,
+    "files": [
+      "data/places/by/america/brazil/criciuma/places_criciuma_01.json",
+      "data/places/by/america/brazil/criciuma/places_criciuma_02.json",
+      "data/places/by/america/brazil/criciuma/places_criciuma_03.json",
+      "data/places/by/america/brazil/criciuma/places_criciuma_04.json",
+      "data/places/by/america/brazil/criciuma/places_criciuma_05.json",
+      "data/places/by/america/brazil/criciuma/places_criciuma_06.json",
+      "data/places/by/america/brazil/criciuma/places_criciuma_07.json",
+      "data/places/by/america/brazil/criciuma/places_criciuma_08.json"
+    ],
+    "byCategory": {
+      "by": 8,
+      "historie": 11,
+      "kunst": 5,
+      "naeringsliv": 4,
+      "sport": 3,
+      "vitenskap": 3,
+      "natur": 2,
+      "politikk": 1,
+      "scenekunst": 1,
+      "litteratur": 1,
+      "popkultur": 1
+    }
+  },
+  "people": {
+    "count": 31,
+    "file": "data/people/by/america/brazil/criciuma/people_criciuma.json"
+  },
+  "relations": {
+    "count": 47,
+    "file": "data/relations/america/brazil/criciuma/relations_criciuma.json"
+  },
+  "coordinateEvidence": {
+    "count": 40,
+    "directory": "data/coordinate-evidence/brasil/santa-catarina/criciuma",
+    "status": "needs_research"
+  },
+  "coordinateStatus": {
+    "needsSource": 40,
+    "verified": 0
+  },
+  "runtimeIntegration": {
+    "registry": "data/cities/manifest.json",
+    "loader": "js/data/city-package-loader.js"
+  },
+  "sources": [
+    "https://viva.criciuma.sc.gov.br/pontosturisticos",
+    "https://www.viva.criciuma.sc.gov.br/historia",
+    "https://www.viva.criciuma.sc.gov.br/historia/patrimonio-historico"
+  ],
+  "notes": [
+    "Oslo is the content template: concrete place anchors, people links, rounds, quiz profiles and Wonderkammer prompts.",
+    "The central city-package loader reads this manifest without changing unrelated city data.",
+    "All foundation coordinates remain needs_source until separate evidence review."
+  ]
+}

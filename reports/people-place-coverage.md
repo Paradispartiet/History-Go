@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-07-25T06:02:42.193Z
+Generert: 2026-07-25T06:57:40.131Z
 
 ## Sammendrag
 
-- People totalt: **1319**
+- People totalt: **1332**
 - Places totalt: **1291**
-- Places med people: **355**
-- Places uten people: **936**
-- People-place-lenker: **1553**
-- People koblet til flere gyldige steder: **259**
+- Places med people: **367**
+- Places uten people: **924**
+- People-place-lenker: **1582**
+- People koblet til flere gyldige steder: **267**
 - People uten gyldig sted: **122**
 - Ugyldige place-referanser: **50**
-- Duplikate place-referanser inne på people: **1238**
-- People uten image: **978**
-- People uten cardImage: **979**
+- Duplikate place-referanser inne på people: **1251**
+- People uten image: **991**
+- People uten cardImage: **992**
 - People uten popupDesc: **105**
 
 ## Dekning per place-kategori
@@ -23,12 +23,12 @@ Generert: 2026-07-25T06:02:42.193Z
 |---|---:|---:|---:|---:|---:|
 | by | 213 | 63 | 150 | 186 | 154 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 449 | 66 | 383 | 232 | 158 |
+| historie | 449 | 75 | 374 | 255 | 177 |
 | kunst | 34 | 22 | 12 | 53 | 49 |
 | litteratur | 40 | 34 | 6 | 70 | 59 |
 | media | 11 | 8 | 3 | 28 | 27 |
 | musikk | 15 | 13 | 2 | 30 | 22 |
-| naeringsliv | 144 | 38 | 106 | 83 | 77 |
+| naeringsliv | 144 | 41 | 103 | 89 | 83 |
 | natur | 98 | 8 | 90 | 18 | 18 |
 | politikk | 35 | 23 | 12 | 213 | 175 |
 | populaerkultur | 17 | 2 | 15 | 2 | 2 |
@@ -41,7 +41,7 @@ Generert: 2026-07-25T06:02:42.193Z
 
 ## People tags
 
-- historie: 248
+- historie: 258
 - sport: 245
 - teater: 202
 - scenekunst: 193
@@ -51,9 +51,9 @@ Generert: 2026-07-25T06:02:42.193Z
 - musikk: 121
 - holmenkollen: 105
 - holmenkollrennet: 80
-- kunst: 79
-- naeringsliv: 67
-- arkitektur: 64
+- kunst: 80
+- naeringsliv: 71
+- arkitektur: 66
 - subkultur: 64
 - by: 60
 - regissor: 56
@@ -66,7 +66,7 @@ Generert: 2026-07-25T06:02:42.193Z
 - film: 44
 - valerenga: 43
 - norge_for_1500: 40
-- 1814: 38
+- 1814: 39
 - kollektivt_miljoanker: 38
 - riksforsamlingen: 38
 - vitenskap: 36
@@ -275,7 +275,7 @@ Generert: 2026-07-25T06:02:42.193Z
 - haakon_v_magnusson (Håkon V Magnusson) -> akershus_festning
 - st_hallvard (St. Hallvard) -> middelalder_oslo
 - harald_hardrade (Harald Hardråde) -> middelalder_oslo
-- ... 1138 flere
+- ... 1151 flere
 
 ## Anbefalt første people-batch
 
@@ -329,6 +329,6 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - lisbon_torre_de_belem | Torre de Belém | historie | high
 - nonneseter_kloster | Nonneseter kloster | historie | high
 - oslo_hospital | Oslo hospital | historie | high
-- oslo_ladegard | Oslo ladegård | historie | high
 - lisbon_centro_cultural_de_belem | Centro Cultural de Belém | kunst | high
+- lisbon_culturgest | Culturgest | kunst | high
 

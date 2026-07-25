@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-25T06:02:42.007Z
+Generated: 2026-07-25T06:57:39.849Z
 
 ## Sammendrag
-- People-filer lest: **682**
-- People lest: **1317**
+- People-filer lest: **695**
+- People lest: **1330**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1317**
+- Duplikate interne place-referanser: **1330**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -1335,5 +1335,18 @@ Generated: 2026-07-25T06:02:42.007Z
 - data/people/naeringsliv/oslo/steen_og_strom/samuel_strom_jr.json :: samuel_strom_jr (Samuel Strøm jr.) -> steen_og_strom x2
 - data/people/naeringsliv/oslo/steen_og_strom/ole_sverre.json :: ole_sverre (Ole Sverre) -> steen_og_strom x2
 - data/people/naeringsliv/oslo/cafe_engebret/engebret_christophersen.json :: engebret_christophersen (Engebret Christophersen) -> cafe_engebret x2
+- data/people/historie/oslo/garmanngarden/johan_garmann.json :: johan_garmann (Johan Garmann) -> garmanngarden x2
+- data/people/historie/oslo/gol_stavkirke_bygdoy/oscar_ii.json :: oscar_ii (Oscar II) -> gol_stavkirke_bygdoy x2
+- data/people/historie/oslo/gol_stavkirke_bygdoy/torolf_prytz.json :: torolf_prytz (Torolf Prytz) -> gol_stavkirke_bygdoy x2
+- data/people/historie/oslo/gol_stavkirke_bygdoy/waldemar_hansteen.json :: waldemar_hansteen (Waldemar Hansteen) -> gol_stavkirke_bygdoy x2
+- data/people/naeringsliv/oslo/kafe_grei/christian_brinch.json :: christian_brinch (Christian Brinch) -> kafe_grei x2
+- data/people/naeringsliv/oslo/kafe_grei/amalie_sofie_bekkevold.json :: amalie_sofie_bekkevold (Amalie Sofie Bekkevold) -> kafe_grei x2
+- data/people/historie/oslo/oslo_ladegard/karen_toller.json :: karen_toller (Karen Toller) -> oslo_ladegard x2
+- data/people/historie/oslo/oslo_ladegard/caspar_herman_von_storm.json :: caspar_herman_von_storm (Caspar Herman von Storm) -> oslo_ladegard x2
+- data/people/historie/oslo/palehaven_paleet/christian_ancher.json :: christian_ancher (Christian Ancher) -> palehaven_paleet x2
+- data/people/kunst/oslo/mustadgarden_kongens_gate_3/otto_kunzli.json :: otto_kunzli (Otto Künzli) -> mustadgarden_kongens_gate_3 x2
+- data/people/historie/oslo/magistratgarden/helge_berntsen.json :: helge_berntsen (Helge Berntsen) -> magistratgarden x2
+- data/people/historie/oslo/magistratgarden/morten_leuch_eliesen.json :: morten_leuch_eliesen (Morten Leuch Eliesen) -> magistratgarden x2
+- data/people/historie/oslo/magistratgarden/dorthea_monsen.json :: dorthea_monsen (Dorthea Monsen) -> magistratgarden x2
 
 ## Anbefalt neste ryddebatch
