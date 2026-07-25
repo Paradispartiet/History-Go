@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "universitetet_i_oslo_blindern",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/universitetet_i_oslo_blindern.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_official_main_address_point_with_blindern_relation_component_radius",
+  "currentCoordinate": {
+    "lat": 59.94013280617488,
+    "lon": 10.720291655207404,
+    "r": 920,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Kartverket/Geonorge for Universitetet i Oslo, Problemveien 7, 0371 Oslo. Brønnøysundregistrene bekrefter Universitetet i Oslo på samme forretningsadresse. Campusavgrensningen bruker bare den ene ytre ringen i OSM relation 7757342 som fysisk inneholder Problemveien 7; tre øvrige UiO-komponenter er uttrykkelig utelatt. Maksimal avstand fra adressepunktet til Blindern-komponentens grense er 892 meter; radius 920 meter inkluderer 20 meters buffer. Den tidligere markøren lå 177 meter unna. Canonical year 1937 beholdes."
+  },
+  "identity": {
+    "currentName": "Universitetet i Oslo, Blindern",
+    "resolvedIdentity": "Universitetet i Oslo, campus Blindern, anchored at the registered UiO address in Lucy Smiths hus, Problemveien 7, 0371 Oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "current_place",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisielt UiO-adressepunkt",
+    "organisasjonsbekreftelse",
+    "fysisk avgrenset Blindern-komponent",
+    "målt campusradius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket/Geonorge – Problemveien 7",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Problemveien&nummer=7&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15752:7:59.94013281,10.72029166",
+      "sourceQuality": "official_address",
+      "finding": "Ett unikt offisielt adressepunkt: 59.94013280617488, 10.720291655207404.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical display-marker under address-first policy."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Brønnøysundregistrene – Universitetet i Oslo",
+      "sourceUrl": "https://data.brreg.no/enhetsregisteret/api/enheter/971035854",
+      "sourceObjectId": "brreg:971035854",
+      "sourceQuality": "official_current_register",
+      "finding": "Universitetet i Oslo er registrert på Problemveien 7, 0371 Oslo.",
+      "canVerifyCoordinate": false,
+      "reason": "Organisasjons- og adressekryssjekk."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap relation 7757342 – Blindern-komponenten",
+      "sourceUrl": "https://www.openstreetmap.org/relation/7757342",
+      "sourceObjectId": "osm-relation:7757342:outer-ring-containing-problemveien-7",
+      "sourceQuality": "named_university_multipolygon_component",
+      "finding": "Bare den ytre ringen som inneholder Problemveien 7 brukes. Maksimal grenseavstand 892 meter gir radius 920 meter med buffer.",
+      "canVerifyCoordinate": true,
+      "reason": "Avgrenser Blindern uten å inkludere andre UiO-campuskomponenter."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go UiO Blindern research report",
+      "sourceUrl": "reports/oslo-coordinate-uio-blindern-research-post-195/summary.json",
+      "sourceObjectId": "history-go-research:uio-blindern-post-195",
+      "sourceQuality": "reproducible_multi_source_research",
+      "finding": "Den tidligere markøren var forskjøvet 177 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Samlet beslutningsgrunnlag."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Problemveien 7, 0371 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15752:7:59.94013281,10.72029166",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15752:7:59.94013281,10.72029166",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:7757342:outer-ring-containing-problemveien-7",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-relation:7757342:outer-ring-containing-problemveien-7",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.94013280617488,
+      "lon": 10.720291655207404,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:15752:7:59.94013281,10.72029166",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Problemveien 7 er anvendt med Blindern-radius 920 meter."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Kartverket/Geonorge for Universitetet i Oslo, Problemveien 7, 0371 Oslo. Brønnøysundregistrene bekrefter Universitetet i Oslo på samme forretningsadresse. Campusavgrensningen bruker bare den ene ytre ringen i OSM relation 7757342 som fysisk inneholder Problemveien 7; tre øvrige UiO-komponenter er uttrykkelig utelatt. Maksimal avstand fra adressepunktet til Blindern-komponentens grense er 892 meter; radius 920 meter inkluderer 20 meters buffer. Den tidligere markøren lå 177 meter unna. Canonical year 1937 beholdes.",
+    "Research report: reports/oslo-coordinate-uio-blindern-research-post-195/summary.json"
+  ]
+}

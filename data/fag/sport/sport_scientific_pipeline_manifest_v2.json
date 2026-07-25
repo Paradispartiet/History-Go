@@ -1,0 +1,53 @@
+{
+  "version": "2.0",
+  "subject_id": "sport",
+  "type": "scientific_pipeline_manifest",
+  "status": "infrastructure_and_classification_ready_evidence_materialization_pending",
+  "updated_at": "2026-07-25",
+  "files": {
+    "hook_classification": "hook_scientific_classification_sport_v1.json",
+    "research_questions": "research_questions_sport_v1.json",
+    "review_protocols": "review_protocols_sport_v1.json",
+    "study_registry": "study_registry_sport_v1.json",
+    "risk_of_bias": "risk_of_bias_sport_v1.json",
+    "evidence_syntheses": "evidence_syntheses_sport_v1.json",
+    "certainty_assessments": "certainty_assessments_sport_v1.json",
+    "claims": "claims_sport_canonical_v1.json",
+    "method_policy": "sport_scientific_method_policy_v1.json",
+    "validator": "../../../tools/validate-sport-scientific-pipeline-v2.mjs",
+    "report": "../../../reports/sport-scientific-pipeline-v2-validation.json"
+  },
+  "counts": {
+    "classified_hooks": 56,
+    "research_questions": 56,
+    "planned_protocols": 56,
+    "registered_protocols": 0,
+    "studies": 0,
+    "results": 0,
+    "risk_of_bias_assessments": 0,
+    "planned_syntheses": 56,
+    "completed_syntheses": 0,
+    "certainty_assessments": 0,
+    "publication_ready_claims": 0,
+    "provisional_legacy_claims": 16
+  },
+  "readiness": {
+    "theory_layer": "validated_v6",
+    "scientific_classification": "complete",
+    "protocol_schemas": "complete_but_unregistered",
+    "study_materialization": "not_started",
+    "result_level_bias": "not_started",
+    "syntheses": "planned_not_completed",
+    "certainty_assessments": "not_started",
+    "evidence_claim_publication": "blocked"
+  },
+  "invariants": [
+    "Alle 56 hooks klassifiseres nøyaktig én gang etter vitenskapelig spørsmålstype.",
+    "Hver hook har ett primært forskningsspørsmål, én versjonert protokoll og én planlagt syntese.",
+    "Studieresultater lagres separat fra studier og claims.",
+    "Bias vurderes per relevant resultat av to uavhengige vurderere.",
+    "Sikkerhet vurderes per synteseutfall eller normativ/historisk konklusjon, ikke per enkeltkilde.",
+    "Ingen claim er publication_ready uten full kjede og godkjent sikkerhetsvurdering.",
+    "Eksisterende claims er provisoriske til de er migrert."
+  ]
+}

@@ -143,7 +143,10 @@
       "population",
       "context",
       "uncertainty_note",
-      "external_validity_note"
+      "external_validity_note",
+      "research_question_id",
+      "synthesis_id",
+      "certainty_assessment_id"
     ],
     "conditional_fields": {
       "measurement": [
@@ -259,5 +262,20 @@
     "emne_coverage_matrix": "data/fag/sport/emne_theory_coverage_sport_v6.json",
     "required_for_all_sport_questions": true,
     "rule": "Velg validert emne, primær teorienhet og eksplisitt mekanisme. Ved teorispørsmål kreves rival, kritikk og bruksgrense."
+  },
+  "scientific_pipeline_v2": {
+    "version": "2.0",
+    "manifest": "data/fag/sport/sport_scientific_pipeline_manifest_v2.json",
+    "hook_classification": "data/fag/sport/hook_scientific_classification_sport_v1.json",
+    "research_questions": "data/fag/sport/research_questions_sport_v1.json",
+    "protocols": "data/fag/sport/review_protocols_sport_v1.json",
+    "studies_and_results": "data/fag/sport/study_registry_sport_v1.json",
+    "risk_of_bias": "data/fag/sport/risk_of_bias_sport_v1.json",
+    "syntheses": "data/fag/sport/evidence_syntheses_sport_v1.json",
+    "certainty_assessments": "data/fag/sport/certainty_assessments_sport_v1.json",
+    "validator": "tools/validate-sport-scientific-pipeline-v2.mjs",
+    "required_for_new_or_modified_scientific_content": true,
+    "publication_ready_requires_complete_chain": true,
+    "legacy_claims_are_provisional": true
   }
 }

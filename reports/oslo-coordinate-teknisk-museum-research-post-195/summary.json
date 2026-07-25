@@ -1,0 +1,100 @@
+{
+  "version": "2026-07-25",
+  "protocolMaxBatch": 195,
+  "placeId": "teknisk_museum",
+  "researchOnly": true,
+  "canonicalChanged": false,
+  "identity": {
+    "resolvedIdentity": "Norsk Teknisk Museum, Kjelsåsveien 143, 0491 Oslo",
+    "identityStatus": "resolved",
+    "locatorTypeCandidate": "building"
+  },
+  "currentCoordinate": {
+    "lat": 59.9463,
+    "lon": 10.7755,
+    "r": 170
+  },
+  "officialAddress": {
+    "addressText": "Kjelsåsveien 143",
+    "postcode": "0491",
+    "postArea": "OSLO",
+    "lat": 59.96642806414705,
+    "lon": 10.78270731715194,
+    "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Kjels%C3%A5sveien&nummer=143&kommunenummer=0301&treffPerSide=20",
+    "sourceObjectId": "geonorge-adresser-v1:0301:13747:143:59.96642806,10.78270732",
+    "returnedCandidateCount": 4,
+    "selectionMethod": "The unlettered official address candidate lies inside the named main museum building. The 143B, 143C and 143D candidates lie in separate side buildings.",
+    "candidateResults": [
+      {
+        "addressText": "Kjelsåsveien 143",
+        "lat": 59.96642806414705,
+        "lon": 10.78270731715194,
+        "containingBuildingId": 54031035,
+        "selected": true
+      },
+      {
+        "addressText": "Kjelsåsveien 143B",
+        "lat": 59.96617618535059,
+        "lon": 10.780741114914456,
+        "containingBuildingId": 106880687,
+        "selected": false
+      },
+      {
+        "addressText": "Kjelsåsveien 143C",
+        "lat": 59.966245797485,
+        "lon": 10.78110672279537,
+        "containingBuildingId": 106880681,
+        "selected": false
+      },
+      {
+        "addressText": "Kjelsåsveien 143D",
+        "lat": 59.96660266891244,
+        "lon": 10.781749313390506,
+        "containingBuildingId": 106880670,
+        "selected": false
+      }
+    ]
+  },
+  "officialPage": {
+    "url": "https://www.tekniskmuseum.no/finn-veien",
+    "containsIdentityAndAddress": true
+  },
+  "buildingVerification": {
+    "selectedBuilding": {
+      "type": "way",
+      "id": 54031035,
+      "sourceObjectId": "osm-way:54031035",
+      "name": "Norsk Teknisk Museum",
+      "building": "civic",
+      "tourism": "museum",
+      "wikidata": "Q7061184",
+      "refBygningsnr": "80943385"
+    },
+    "addressPointInsideBuilding": true,
+    "maximumFootprintDistanceMeters": 136.9
+  },
+  "radiusRecommendation": {
+    "method": "maximum selected-address-point-to-building-vertex distance plus 30 metre buffer",
+    "bufferMeters": 30,
+    "recommendedRadius": 170
+  },
+  "displacementMeters": 2273.8,
+  "decision": {
+    "canBecomeVerified": true,
+    "coordinateDecision": "use_physically_resolved_official_address_point",
+    "recommendedLat": 59.96642806414705,
+    "recommendedLon": 10.78270731715194,
+    "recommendedRadius": 170,
+    "coordStatus": "verified",
+    "coordType": "address_point",
+    "coordRole": "display_marker",
+    "sourceProvider": "official_address",
+    "locatorType": "building",
+    "nextAction": "Create a separate production PR with verified metadata and evidence."
+  },
+  "validation": {
+    "runnerValidatedBeforeCleanResearchDiff": true,
+    "coordinateSourceContract": "PASS",
+    "coordinateEvidenceAudit": "338 files, 0 problems"
+  }
+}

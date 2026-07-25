@@ -1,0 +1,72 @@
+{
+  "version": "2026-07-25",
+  "protocolMaxBatch": 195,
+  "placeId": "universitetet_i_oslo_blindern",
+  "researchOnly": true,
+  "canonicalChanged": false,
+  "identity": {
+    "resolvedIdentity": "Universitetet i Oslo, campus Blindern, anchored at the registered UiO address in Lucy Smiths hus, Problemveien 7, 0371 Oslo",
+    "identityStatus": "resolved",
+    "locatorTypeCandidate": "current_place"
+  },
+  "currentCoordinate": {
+    "lat": 59.9393,
+    "lon": 10.723,
+    "r": 220
+  },
+  "officialAddress": {
+    "addressText": "Problemveien 7",
+    "postcode": "0371",
+    "postArea": "OSLO",
+    "lat": 59.94013280617488,
+    "lon": 10.720291655207404,
+    "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Problemveien&nummer=7&kommunenummer=0301&treffPerSide=20",
+    "sourceObjectId": "geonorge-adresser-v1:0301:15752:7:59.94013281,10.72029166",
+    "uniqueExactMatchCount": 1
+  },
+  "organisationVerification": {
+    "sourceUrl": "https://data.brreg.no/enhetsregisteret/api/enheter/971035854",
+    "organisationNumber": "971035854",
+    "name": "UNIVERSITETET I OSLO",
+    "businessAddress": "Problemveien 7 0371 OSLO",
+    "confirmsIdentityAndAddress": true
+  },
+  "campusGeometry": {
+    "parentRelation": "osm-relation:7757342",
+    "parentRelationName": "Universitetet i Oslo",
+    "parentOuterRingCount": 4,
+    "selectedArea": {
+      "type": "relation_component",
+      "sourceObjectId": "osm-relation:7757342:outer-ring-containing-problemveien-7",
+      "selectionMethod": "the single outer ring in UiO relation 7757342 that contains the official Problemveien 7 address point",
+      "selectedOuterRingVertexCount": 325
+    },
+    "addressPointInsideSelectedArea": true,
+    "namedUiOAnchorCount": 8,
+    "maximumCampusBoundaryDistanceMeters": 892,
+    "excludesOtherUiOCampusComponents": true
+  },
+  "radiusRecommendation": {
+    "method": "maximum official-address-point-to-the Blindern relation component boundary plus 20 metre buffer",
+    "bufferMeters": 20,
+    "recommendedRadius": 920
+  },
+  "displacementMeters": 177,
+  "decision": {
+    "canBecomeVerified": true,
+    "coordinateDecision": "use_official_main_address_point_with_blindern_relation_component_radius",
+    "recommendedLat": 59.94013280617488,
+    "recommendedLon": 10.720291655207404,
+    "recommendedRadius": 920,
+    "coordStatus": "verified",
+    "coordType": "address_point",
+    "coordRole": "display_marker",
+    "sourceProvider": "official_address",
+    "locatorType": "current_place",
+    "nextAction": "Create a separate production PR using only the Blindern component of the UiO multipolygon."
+  },
+  "validation": {
+    "runnerValidatedBeforeCleanResearchDiff": true,
+    "coordinateSourceContract": "PASS"
+  }
+}

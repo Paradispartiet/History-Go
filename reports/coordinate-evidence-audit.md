@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-25T05:54:07.467Z
+Generert: 2026-07-25T05:52:02.223Z
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -279,15 +279,15 @@ Generert: 2026-07-25T05:54:07.467Z
 | regjeringskvartalet | data/coordinate-evidence/oslo/politikk/regjeringskvartalet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | stortinget | data/coordinate-evidence/oslo/politikk/stortinget.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | youngstorget | data/coordinate-evidence/oslo/politikk/youngstorget.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| chat_noir | data/coordinate-evidence/oslo/scenekunst/chat_noir.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| cinemateket_oslo | data/coordinate-evidence/oslo/film_tv/cinemateket_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| colosseum_kino | data/coordinate-evidence/oslo/film_tv/colosseum_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| edderkoppen_scene | data/coordinate-evidence/oslo/scenekunst/edderkoppen_scene.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| frognerstranda | data/coordinate-evidence/oslo/media/frognerstranda.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| grand_hotel | data/coordinate-evidence/oslo/media/grand_hotel.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| house_of_nerds | data/coordinate-evidence/oslo/subkultur/house_of_nerds.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| latter | data/coordinate-evidence/oslo/scenekunst/latter.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| slottsplassen | data/coordinate-evidence/oslo/politikk/slottsplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| chat_noir | data/coordinate-evidence/oslo/popkultur/chat_noir.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| cinemateket_oslo | data/coordinate-evidence/oslo/popkultur/cinemateket_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| colosseum_kino | data/coordinate-evidence/oslo/popkultur/colosseum_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| edderkoppen_scene | data/coordinate-evidence/oslo/popkultur/edderkoppen_scene.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| frognerstranda | data/coordinate-evidence/oslo/popkultur/frognerstranda.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| grand_hotel | data/coordinate-evidence/oslo/popkultur/grand_hotel.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| house_of_nerds | data/coordinate-evidence/oslo/popkultur/house_of_nerds.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| latter | data/coordinate-evidence/oslo/popkultur/latter.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| slottsplassen | data/coordinate-evidence/oslo/popkultur/slottsplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bislett_stadion | data/coordinate-evidence/oslo/sport/bislett_stadion.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | daelenenga_idrettspark | data/coordinate-evidence/oslo/sport/daelenenga_idrettspark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ekebergsletta | data/coordinate-evidence/oslo/sport/ekebergsletta.json | applied_to_place | do_not_change_coordinates_yet | OK |

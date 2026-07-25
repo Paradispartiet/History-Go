@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-25T05:53:38.226Z
+Generert: 2026-07-25T06:02:42.039Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-25T05:53:38.226Z |
-| peopleFilesRead | 684 |
-| totalPeople | 1319 |
-| uniquePeopleIds | 1319 |
+| generatedAt | 2026-07-25T06:02:42.039Z |
+| peopleFilesRead | 682 |
+| totalPeople | 1317 |
+| uniquePeopleIds | 1317 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 684 |
+| geographicPeopleFiles | 682 |
 | categoriesRepresented | 16 |
 
 ## People-filer
@@ -33,8 +33,6 @@ Generert: 2026-07-25T05:53:38.226Z
 | data/people/by/oslo/akerselva/people_nybrua_vaterlandsparken.json | by | ja | 7 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/egertorget/herman_eger.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/egertorget/thorvald_eger.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/by/oslo/folketeateret/arne_eide.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/by/oslo/folketeateret/christian_morgenstierne.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/gamle_aker_kirke/heinrich_ernst_schirmer.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/gamle_radhus/carl_berner_arkitekt.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/gamle_radhus/lars_backer.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -48,11 +46,11 @@ Generert: 2026-07-25T05:53:38.226Z
 | data/people/by/oslo/people_by_oslo.json | by | ja | 25 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/st_hallvard_kirke_kloster/kjell_lund.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/st_hallvard_kirke_kloster/nils_slaatto.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/tullin/claus_tullin.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/wessels_plass/johan_herman_wessel.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/vestland/etne/people_by_etne_rounds_batch1.json | by | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/filantroper/oslo/people_filantroper_oslo.json | filantroper | ja | 17 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
 | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json | film_tv | ja | 13 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/film_tv/oslo/colosseum_kino/colosseum_premierepublikummet.json | film_tv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/film_tv/oslo/people_film_tv_oslo.json | film_tv | ja | 10 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | historie | ja | 40 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/akerselva/axel_ingvald_spone_amundsen.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -89,11 +87,18 @@ Generert: 2026-07-25T05:53:38.226Z
 | data/people/historie/oslo/bla_skilt_2026/nils_helverschou.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/botsfengselet/paul_magnus_norum.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/botsfengselet/richard_petersen_fengselsdirektor.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/frammuseet/colin_archer.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/frammuseet/otto_sverdrup.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/gamle_radhus/lauritz_hansen.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/hauges_minde/hans_nielsen_hauge.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/hauges_minde/johan_cordt_harmens_storjohann.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/kon_tiki_museet/knut_haugland.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/kon_tiki_museet/thor_heyerdahl.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/people_historie_oslo_politics_places_batch_03.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/people_historie_oslo_politics_places_batch_04.json | historie | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/people_historie_oslo.json | historie | ja | 65 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/st_hallvard_kirke_kloster/johan_castricum.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/stattholdergarden/peter_gruner.json | historie | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/vestland/etne/people_historie_etne_rounds_batch1.json | historie | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/vestland/etne/people_historie_etne_rounds_batch2.json | historie | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/vestland/etne/people_historie_etne_rounds_batch3.json | historie | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -110,6 +115,7 @@ Generert: 2026-07-25T05:53:38.226Z
 | data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json | kunst | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/christiania_torv/wenche_gulbransen.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/dyre_vaa.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/kunst/oslo/framtidsbiblioteket_nordmarka/katie_paterson.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/gamle_aker_kirke/torvald_moseid.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/helsfyr/katrine_giaever.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/ibsen_quotes/gustavo_aguerre.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -118,6 +124,8 @@ Generert: 2026-07-25T05:53:38.226Z
 | data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_03.json | kunst | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_04.json | kunst | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/people_kunst_oslo.json | kunst | ja | 17 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/kunst/oslo/roseslottet/eimund_sand.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/kunst/oslo/roseslottet/vebjorn_sand.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/vestland/etne/fugl_fonix/people_fugl_fonix_batch1.json | kunst | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/vestland/etne/people_musikkpaviljongen_doktorhagen_batch1.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/vestland/etne/people_skanevik_kultur_og_idrettshall_batch1.json | kunst | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -126,9 +134,8 @@ Generert: 2026-07-25T05:53:38.226Z
 | data/people/litteratur/buskerud/portaasen_wildenvey/herman_wildenvey.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json | litteratur | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/innlandet/aulestad_bjornson/karoline_bjornson.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/litteratur/oslo/alexander_kiellands_plass/alexander_lange_kielland.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/bla_skilt_2026/stein_mehren.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/litteratur/oslo/chat_noir/vilhelm_dybwad.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/litteratur/oslo/edderkoppen_scene/per_kvist.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json | litteratur | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -251,14 +258,10 @@ Generert: 2026-07-25T05:53:38.226Z
 | data/people/litteratur/oslo/people_litteratur_oslo.json | litteratur | ja | 34 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/vestland/etne/ivar_aasen.json | litteratur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/vestland/etne/people_litteratur_etne_batch1.json | litteratur | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/media/europe/portugal/lisbon/filomena_cautela.json | media | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/media/europe/portugal/lisbon/nuno_markl.json | media | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/media/europe/portugal/lisbon/people_media_lisbon.json | media | ja | 7 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/media/oslo/people_media_oslo.json | media | ja | 19 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/media/vestland/etne/ann_margit_gronstad.json | media | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/musikk/europe/portugal/lisbon/amalia_rodrigues.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | musikk | ja | 10 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/musikk/oslo/chat_noir/jens_book_jenssen.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/agnes_mowinckel_det_norske_teatret.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/alfred_maurstad_det_norske_teatret.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/amund_rydland.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -331,13 +334,8 @@ Generert: 2026-07-25T05:53:38.226Z
 | data/people/musikk/oslo/det_norske_teatret/ulrikke_hansen_dovigen.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/vidar_magnussen.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/det_norske_teatret/vidar_sandem.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/musikk/oslo/edderkoppen_scene/inger_lise_rypdal.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/musikk/oslo/edderkoppen_scene/kirsti_sparboe.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/musikk/oslo/edderkoppen_scene/ole_paus.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/musikk/oslo/folketeateret/rein_alexander.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/gamle_radhus/gjoril_songvoll.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/people_musikk_oslo.json | musikk | ja | 20 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/musikk/oslo/sorenga/astrid_s.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/vestland/etne/abc_studio/kjetil_ulland.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/vestland/etne/abc_studio/knut_bjarne_bjorkhaug.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/vestland/etne/abc_studio/nils_osmund_halleland.json | musikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -353,9 +351,16 @@ Generert: 2026-07-25T05:53:38.226Z
 | data/people/naeringsliv/buskerud/blaafarvevaerket_modum/karl_friedrich_bobert.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/buskerud/blaafarvevaerket_modum/wilhelm_christian_benecke.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json | naeringsliv | ja | 33 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/oslo/borsen_oslo/thor_olsen.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/oslo/cafe_engebret/engebret_christophersen.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_03.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_04.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | naeringsliv | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/oslo/steen_og_strom/elise_marie_strom.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/oslo/steen_og_strom/ole_sverre.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/oslo/steen_og_strom/peter_emil_steen.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/oslo/steen_og_strom/samuel_strom_jr.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/oslo/steen_og_strom/samuel_strom.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/telemark/dalen_hotel_tokke/haldor_larsen_borve.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/vestland/etne/people_hardeland_kraftverk_batch1.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/vestland/etne/people_litledalen_kraftverk_batch1.json | naeringsliv | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -415,40 +420,34 @@ Generert: 2026-07-25T05:53:38.226Z
 | data/people/politikk/vestland/etne/inge_seim.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/vestland/etne/mette_heidi_ekrheim_bergsvaag.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/vestland/etne/people_etne_tinghus_batch1.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d/aud_schonemann.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/chat_noir/bokken_lasson.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/chat_noir/dag_froland.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/chat_noir/jens_book_jenssen.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/chat_noir/victor_bernau.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/chat_noir/vilhelm_dybwad.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/anders_moland.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/arvid_nilssen.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/dan_fosse.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/einar_schanke.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/ernst_diesen.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/harald_heide_steen_jr.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/inger_lise_rypdal.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/jon_eikemo.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/kari_diesen.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/ketil_aamodt.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/kirsti_sparboe.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/lalla_carlsen.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/leif_juster.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/oivind_blunck.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/ole_paus.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/per_kvist.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/rolv_wesenlund.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/tom_sterri.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/edderkoppen_scene/willie_hoel.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/house_of_nerds/andreas_sollund.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/latter/elina_krantz.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/psykologi/vestland/etne/people_etne_psykisk_helse_rus_batch1.json | psykologi | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/europe/portugal/lisbon/bruno_nogueira.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/europe/portugal/lisbon/herman_jose.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/europe/portugal/lisbon/ricardo_araujo_pereira.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d/aud_schonemann.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/chat_noir/bokken_lasson.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/chat_noir/dag_froland.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/chat_noir/victor_bernau.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/chateau_neuf/bard_tufte_johansen.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/chateau_neuf/harald_eia.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/anders_moland.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/arvid_nilssen.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/dan_fosse.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/einar_schanke.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/ernst_diesen.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/harald_heide_steen_jr.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/jon_eikemo.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/kari_diesen.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/ketil_aamodt.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/lalla_carlsen.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/leif_juster.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/oivind_blunck.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/rolv_wesenlund.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/tom_sterri.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/edderkoppen_scene/willie_hoel.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/folketeateret/folketeateret_musikalmiljoet.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/folketeateret/oystein_wiik.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/folketeateret/wenche_foss.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/latter/elina_krantz.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/latter/else_kass_furuseth.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/latter/kristoffer_olsen.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/nrk_huset_marienlyst/herman_flesvig.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/nrk_huset_marienlyst/morten_ramm.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/scenekunst/oslo/nrk_huset_marienlyst/nils_vogt.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json | sport | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/anton_ploderer.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/arild_mathisen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -697,7 +696,6 @@ Generert: 2026-07-25T05:53:38.226Z
 | data/people/sport/vestland/etne/roar_knudsen_skanevik.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json | subkultur | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/abelonegarden/abelone_kristensen.json | subkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/subkultur/oslo/house_of_nerds/andreas_sollund.json | subkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json | subkultur | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json | subkultur | ja | 15 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json | subkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -711,26 +709,26 @@ Generert: 2026-07-25T05:53:38.226Z
 
 | Kategori | People | Flate filer | Geofiler | Foreslått neste steg | Begrunnelse |
 |---|---:|---:|---:|---|---|
-| by | 58 | 0 | 28 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| by | 57 | 0 | 27 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | filantroper | 17 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| film_tv | 24 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| historie | 199 | 0 | 51 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| kunst | 60 | 0 | 21 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| litteratur | 171 | 0 | 128 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| media | 29 | 0 | 5 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| musikk | 123 | 0 | 89 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| naeringsliv | 72 | 0 | 17 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| film_tv | 23 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| historie | 206 | 0 | 58 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| kunst | 63 | 0 | 24 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| litteratur | 170 | 0 | 127 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| media | 27 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| musikk | 116 | 0 | 82 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| naeringsliv | 79 | 0 | 24 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 22 | 0 | 4 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 101 | 0 | 49 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| populaerkultur | 27 | 0 | 27 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | psykologi | 1 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| scenekunst | 33 | 0 | 33 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | sport | 323 | 0 | 245 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| subkultur | 57 | 0 | 8 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| subkultur | 56 | 0 | 7 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | vitenskap | 29 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 684
+- Allerede geografisk strukturert: 682
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -766,8 +764,6 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/by/oslo/akerselva/people_nybrua_vaterlandsparken.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=7/7; source_place_id=0/7; placesArray=7/7; categories=by,historie,kunst; category_mismatch=6
 - data/people/by/oslo/egertorget/herman_eger.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/egertorget/thorvald_eger.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
-- data/people/by/oslo/folketeateret/arne_eide.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
-- data/people/by/oslo/folketeateret/christian_morgenstierne.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/gamle_aker_kirke/heinrich_ernst_schirmer.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/gamle_radhus/carl_berner_arkitekt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/gamle_radhus/lars_backer.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
@@ -781,11 +777,11 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/by/oslo/people_by_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=25/25; source_place_id=0/25; placesArray=25/25; categories=by
 - data/people/by/oslo/st_hallvard_kirke_kloster/kjell_lund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/st_hallvard_kirke_kloster/nils_slaatto.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
+- data/people/by/oslo/tullin/claus_tullin.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/wessels_plass/johan_herman_wessel.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/vestland/etne/people_by_etne_rounds_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=by
 - data/people/filantroper/oslo/people_filantroper_oslo.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=17/17; source_place_id=0/17; placesArray=17/17; collectionGroup=17/17; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=13/13; source_place_id=0/13; placesArray=13/13; categories=film_tv
-- data/people/film_tv/oslo/colosseum_kino/colosseum_premierepublikummet.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=film_tv
 - data/people/film_tv/oslo/people_film_tv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=10/10; source_place_id=0/10; placesArray=10/10; categories=film_tv
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=40/40; source_place_id=0/40; placesArray=40/40; categories=historie
 - data/people/historie/oslo/akerselva/axel_ingvald_spone_amundsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
@@ -822,11 +818,18 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/historie/oslo/bla_skilt_2026/nils_helverschou.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/botsfengselet/paul_magnus_norum.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/botsfengselet/richard_petersen_fengselsdirektor.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
+- data/people/historie/oslo/frammuseet/colin_archer.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
+- data/people/historie/oslo/frammuseet/otto_sverdrup.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/gamle_radhus/lauritz_hansen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
+- data/people/historie/oslo/hauges_minde/hans_nielsen_hauge.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
+- data/people/historie/oslo/hauges_minde/johan_cordt_harmens_storjohann.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
+- data/people/historie/oslo/kon_tiki_museet/knut_haugland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
+- data/people/historie/oslo/kon_tiki_museet/thor_heyerdahl.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/people_historie_oslo_politics_places_batch_03.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/oslo/people_historie_oslo_politics_places_batch_04.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=historie
 - data/people/historie/oslo/people_historie_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=65/65; source_place_id=0/65; placesArray=65/65; categories=historie
 - data/people/historie/oslo/st_hallvard_kirke_kloster/johan_castricum.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
+- data/people/historie/oslo/stattholdergarden/peter_gruner.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie
 - data/people/historie/vestland/etne/people_historie_etne_rounds_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=historie
 - data/people/historie/vestland/etne/people_historie_etne_rounds_batch2.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=historie
 - data/people/historie/vestland/etne/people_historie_etne_rounds_batch3.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=historie
@@ -843,6 +846,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=kunst
 - data/people/kunst/oslo/christiania_torv/wenche_gulbransen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/oslo/dyre_vaa.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
+- data/people/kunst/oslo/framtidsbiblioteket_nordmarka/katie_paterson.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/oslo/gamle_aker_kirke/torvald_moseid.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/oslo/helsfyr/katrine_giaever.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/oslo/ibsen_quotes/gustavo_aguerre.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
@@ -851,6 +855,8 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_03.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=kunst
 - data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_04.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=kunst
 - data/people/kunst/oslo/people_kunst_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=17/17; source_place_id=0/17; placesArray=17/17; categories=kunst
+- data/people/kunst/oslo/roseslottet/eimund_sand.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
+- data/people/kunst/oslo/roseslottet/vebjorn_sand.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/vestland/etne/fugl_fonix/people_fugl_fonix_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=kunst
 - data/people/kunst/vestland/etne/people_musikkpaviljongen_doktorhagen_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/vestland/etne/people_skanevik_kultur_og_idrettshall_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=kunst
@@ -859,9 +865,8 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/litteratur/buskerud/portaasen_wildenvey/herman_wildenvey.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=litteratur
 - data/people/litteratur/innlandet/aulestad_bjornson/karoline_bjornson.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
+- data/people/litteratur/oslo/alexander_kiellands_plass/alexander_lange_kielland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/bla_skilt_2026/stein_mehren.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
-- data/people/litteratur/oslo/chat_noir/vilhelm_dybwad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
-- data/people/litteratur/oslo/edderkoppen_scene/per_kvist.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nasjonalbiblioteket/people_nasjonalbiblioteket.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
@@ -984,14 +989,10 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/litteratur/oslo/people_litteratur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=34/34; source_place_id=0/34; placesArray=34/34; categories=litteratur
 - data/people/litteratur/vestland/etne/ivar_aasen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=litteratur
 - data/people/litteratur/vestland/etne/people_litteratur_etne_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=litteratur
-- data/people/media/europe/portugal/lisbon/filomena_cautela.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=media
-- data/people/media/europe/portugal/lisbon/nuno_markl.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=media
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=7/7; source_place_id=0/7; placesArray=7/7; categories=media
 - data/people/media/oslo/people_media_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=19/19; source_place_id=0/19; placesArray=19/19; categories=media
 - data/people/media/vestland/etne/ann_margit_gronstad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=media
-- data/people/musikk/europe/portugal/lisbon/amalia_rodrigues.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=10/10; source_place_id=0/10; placesArray=10/10; categories=musikk
-- data/people/musikk/oslo/chat_noir/jens_book_jenssen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/agnes_mowinckel_det_norske_teatret.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/alfred_maurstad_det_norske_teatret.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/amund_rydland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
@@ -1064,13 +1065,8 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/musikk/oslo/det_norske_teatret/ulrikke_hansen_dovigen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/vidar_magnussen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/det_norske_teatret/vidar_sandem.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
-- data/people/musikk/oslo/edderkoppen_scene/inger_lise_rypdal.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
-- data/people/musikk/oslo/edderkoppen_scene/kirsti_sparboe.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
-- data/people/musikk/oslo/edderkoppen_scene/ole_paus.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
-- data/people/musikk/oslo/folketeateret/rein_alexander.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/gamle_radhus/gjoril_songvoll.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/oslo/people_musikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=20/20; source_place_id=0/20; placesArray=20/20; categories=musikk
-- data/people/musikk/oslo/sorenga/astrid_s.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/vestland/etne/abc_studio/kjetil_ulland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/vestland/etne/abc_studio/knut_bjarne_bjorkhaug.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
 - data/people/musikk/vestland/etne/abc_studio/nils_osmund_halleland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=musikk
@@ -1086,9 +1082,16 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/naeringsliv/buskerud/blaafarvevaerket_modum/karl_friedrich_bobert.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/buskerud/blaafarvevaerket_modum/wilhelm_christian_benecke.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=33/33; source_place_id=0/33; placesArray=33/33; categories=naeringsliv
+- data/people/naeringsliv/oslo/borsen_oslo/thor_olsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
+- data/people/naeringsliv/oslo/cafe_engebret/engebret_christophersen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_03.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo_politics_places_batch_04.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=22/22; placesArray=22/22; categories=naeringsliv; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
+- data/people/naeringsliv/oslo/steen_og_strom/elise_marie_strom.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
+- data/people/naeringsliv/oslo/steen_og_strom/ole_sverre.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
+- data/people/naeringsliv/oslo/steen_og_strom/peter_emil_steen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
+- data/people/naeringsliv/oslo/steen_og_strom/samuel_strom_jr.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
+- data/people/naeringsliv/oslo/steen_og_strom/samuel_strom.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/telemark/dalen_hotel_tokke/haldor_larsen_borve.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/vestland/etne/people_hardeland_kraftverk_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
 - data/people/naeringsliv/vestland/etne/people_litledalen_kraftverk_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=naeringsliv
@@ -1148,40 +1151,34 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/politikk/vestland/etne/inge_seim.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/vestland/etne/mette_heidi_ekrheim_bergsvaag.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/vestland/etne/people_etne_tinghus_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
+- data/people/popkultur/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d/aud_schonemann.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/chat_noir/bokken_lasson.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/chat_noir/dag_froland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/chat_noir/jens_book_jenssen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/chat_noir/victor_bernau.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/chat_noir/vilhelm_dybwad.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/anders_moland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/arvid_nilssen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/dan_fosse.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/einar_schanke.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/ernst_diesen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/harald_heide_steen_jr.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/inger_lise_rypdal.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/jon_eikemo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/kari_diesen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/ketil_aamodt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/kirsti_sparboe.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/lalla_carlsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/leif_juster.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/oivind_blunck.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/ole_paus.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/per_kvist.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/rolv_wesenlund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/tom_sterri.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/edderkoppen_scene/willie_hoel.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/house_of_nerds/andreas_sollund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
+- data/people/popkultur/oslo/latter/elina_krantz.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/psykologi/vestland/etne/people_etne_psykisk_helse_rus_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=psykologi
-- data/people/scenekunst/europe/portugal/lisbon/bruno_nogueira.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/europe/portugal/lisbon/herman_jose.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/europe/portugal/lisbon/ricardo_araujo_pereira.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d/aud_schonemann.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/chat_noir/bokken_lasson.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/chat_noir/dag_froland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/chat_noir/victor_bernau.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/chateau_neuf/bard_tufte_johansen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/chateau_neuf/harald_eia.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/anders_moland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/arvid_nilssen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/dan_fosse.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/einar_schanke.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/ernst_diesen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/harald_heide_steen_jr.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/jon_eikemo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/kari_diesen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/ketil_aamodt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/lalla_carlsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/leif_juster.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/oivind_blunck.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/rolv_wesenlund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/tom_sterri.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/edderkoppen_scene/willie_hoel.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/folketeateret/folketeateret_musikalmiljoet.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/folketeateret/oystein_wiik.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/folketeateret/wenche_foss.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/latter/elina_krantz.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/latter/else_kass_furuseth.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/latter/kristoffer_olsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/nrk_huset_marienlyst/herman_flesvig.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/nrk_huset_marienlyst/morten_ramm.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
-- data/people/scenekunst/oslo/nrk_huset_marienlyst/nils_vogt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=sport
 - data/people/sport/oslo/bislett_stadion/anton_ploderer.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/arild_mathisen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
@@ -1430,7 +1427,6 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/sport/vestland/etne/roar_knudsen_skanevik.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=subkultur
 - data/people/subkultur/oslo/abelonegarden/abelone_kristensen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=subkultur
-- data/people/subkultur/oslo/house_of_nerds/andreas_sollund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=15/15; source_place_id=0/15; placesArray=15/15; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=subkultur
@@ -1470,7 +1466,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 
 ## Image/cardImage audit
 
-Mangler filer for image/cardImage/media: 629
+Mangler filer for image/cardImage/media: 609
 
 | Fil | Person | Felt | Bane |
 |---|---|---|---|
@@ -1853,8 +1849,6 @@ Mangler filer for image/cardImage/media: 629
 | data/people/media/oslo/people_media_oslo.json | mari_skurdal / Mari Skurdal | cardImage | bilder/kort/people/mari_skurdal.PNG |
 | data/people/media/oslo/people_media_oslo.json | rune_fjeld_olsen / Rune Fjeld Olsen | image | bilder/kort/people/rune_fjeld_olsen.PNG |
 | data/people/media/oslo/people_media_oslo.json | rune_fjeld_olsen / Rune Fjeld Olsen | cardImage | bilder/kort/people/rune_fjeld_olsen.PNG |
-| data/people/musikk/europe/portugal/lisbon/amalia_rodrigues.json | amalia_rodrigues / Amália Rodrigues | image | bilder/kort/people/amalia_rodrigues.PNG |
-| data/people/musikk/europe/portugal/lisbon/amalia_rodrigues.json | amalia_rodrigues / Amália Rodrigues | cardImage | bilder/kort/people/amalia_rodrigues.PNG |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | maria_severa / Maria Severa | image | bilder/kort/people/maria_severa.PNG |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | maria_severa / Maria Severa | cardImage | bilder/kort/people/maria_severa.PNG |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | alfredo_marceneiro / Alfredo Marceneiro | image | bilder/kort/people/alfredo_marceneiro.PNG |
@@ -1863,8 +1857,6 @@ Mangler filer for image/cardImage/media: 629
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | carlos_do_carmo / Carlos do Carmo | cardImage | bilder/kort/people/carlos_do_carmo.PNG |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | luis_villas_boas / Luís Villas-Boas | image | bilder/kort/people/luis_villas_boas.PNG |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | luis_villas_boas / Luís Villas-Boas | cardImage | bilder/kort/people/luis_villas_boas.PNG |
-| data/people/musikk/oslo/folketeateret/rein_alexander.json | rein_alexander / Rein Alexander | image | bilder/kort/people/rein_alexander.PNG |
-| data/people/musikk/oslo/folketeateret/rein_alexander.json | rein_alexander / Rein Alexander | cardImage | bilder/kort/people/rein_alexander.PNG |
 | data/people/musikk/oslo/people_musikk_oslo.json | jan_garbarek / Jan Garbarek | image | bilder/kort/people/jan_garbarek.PNG |
 | data/people/musikk/oslo/people_musikk_oslo.json | jan_garbarek / Jan Garbarek | cardImage | bilder/kort/people/jan_garbarek.PNG |
 | data/people/musikk/oslo/people_musikk_oslo.json | bugge_wesseltoft / Bugge Wesseltoft | image | bilder/kort/people/bugge_wesseltoft.PNG |
@@ -1895,8 +1887,6 @@ Mangler filer for image/cardImage/media: 629
 | data/people/musikk/oslo/people_musikk_oslo.json | arif / Arif | cardImage | bilder/kort/people/arif_stovner.PNG |
 | data/people/musikk/oslo/people_musikk_oslo.json | edvard_grieg / Edvard Grieg | image | bilder/kort/people/edvard_grieg.PNG |
 | data/people/musikk/oslo/people_musikk_oslo.json | edvard_grieg / Edvard Grieg | cardImage | bilder/kort/people/edvard_grieg.PNG |
-| data/people/musikk/oslo/sorenga/astrid_s.json | astrid_s / Astrid S | image | bilder/kort/people/astridS_sorenga.PNG |
-| data/people/musikk/oslo/sorenga/astrid_s.json | astrid_s / Astrid S | cardImage | bilder/kort/people/astridS_sorenga.PNG |
 | data/people/natur/oslo/people_natur_oslo.json | peter_christen_asbjornsen / Peter Christen Asbjørnsen | image | bilder/kort/people/peter_christen_asbjornsen.PNG |
 | data/people/natur/oslo/people_natur_oslo.json | peter_christen_asbjornsen / Peter Christen Asbjørnsen | cardImage | bilder/kort/people/peter_christen_asbjornsen.PNG |
 | data/people/natur/oslo/people_natur_oslo.json | michael_sars / Michael Sars | image | bilder/kort/people/michael_sars.PNG |
@@ -1967,20 +1957,6 @@ Mangler filer for image/cardImage/media: 629
 | data/people/politikk/oslo/people_politikk_oslo.json | jo_benkow / Jo Benkow | cardImage | bilder/kort/people/jo_benkow.PNG |
 | data/people/politikk/oslo/people_politikk_oslo.json | carl_i_hagen / Carl I. Hagen | image | bilder/kort/people/carl_i_hagen.PNG |
 | data/people/politikk/oslo/people_politikk_oslo.json | carl_i_hagen / Carl I. Hagen | cardImage | bilder/kort/people/carl_i_hagen.PNG |
-| data/people/scenekunst/oslo/chateau_neuf/bard_tufte_johansen.json | bard_tufte_johansen / Bård Tufte Johansen | image | bilder/kort/people/bard_tufte_johansen.PNG |
-| data/people/scenekunst/oslo/chateau_neuf/bard_tufte_johansen.json | bard_tufte_johansen / Bård Tufte Johansen | cardImage | bilder/kort/people/bard_tufte_johansen.PNG |
-| data/people/scenekunst/oslo/chateau_neuf/harald_eia.json | harald_eia / Harald Eia | image | bilder/kort/people/harald_eia.PNG |
-| data/people/scenekunst/oslo/chateau_neuf/harald_eia.json | harald_eia / Harald Eia | cardImage | bilder/kort/people/harald_eia.PNG |
-| data/people/scenekunst/oslo/folketeateret/oystein_wiik.json | oystein_wiik / Øystein Wiik | image | bilder/kort/people/oystein_wiik.PNG |
-| data/people/scenekunst/oslo/folketeateret/oystein_wiik.json | oystein_wiik / Øystein Wiik | cardImage | bilder/kort/people/oystein_wiik.PNG |
-| data/people/scenekunst/oslo/latter/else_kass_furuseth.json | else_kass_furuseth / Else Kåss Furuseth | image | bilder/kort/people/else_kass_furuseth.PNG |
-| data/people/scenekunst/oslo/latter/else_kass_furuseth.json | else_kass_furuseth / Else Kåss Furuseth | cardImage | bilder/kort/people/else_kass_furuseth.PNG |
-| data/people/scenekunst/oslo/latter/kristoffer_olsen.json | kristoffer_olsen / Kristoffer Olsen | image | bilder/kort/people/kristoffer_olsen.PNG |
-| data/people/scenekunst/oslo/latter/kristoffer_olsen.json | kristoffer_olsen / Kristoffer Olsen | cardImage | bilder/kort/people/kristoffer_olsen.PNG |
-| data/people/scenekunst/oslo/nrk_huset_marienlyst/herman_flesvig.json | herman_flesvig / Herman Flesvig | media.image | bilder/people/herman_flesvig.PNG |
-| data/people/scenekunst/oslo/nrk_huset_marienlyst/herman_flesvig.json | herman_flesvig / Herman Flesvig | media.imageCard | bilder/kort/people/herman_flesvig.PNG |
-| data/people/scenekunst/oslo/nrk_huset_marienlyst/morten_ramm.json | morten_ramm / Morten Ramm | media.image | bilder/people/morten_ramm.PNG |
-| data/people/scenekunst/oslo/nrk_huset_marienlyst/morten_ramm.json | morten_ramm / Morten Ramm | media.imageCard | bilder/kort/people/morten_ramm.PNG |
 | data/people/sport/oslo/people_sport_oslo.json | ada_hegerberg / Ada Hegerberg | image | bilder/kort/people/ada_hegerberg.PNG |
 | data/people/sport/oslo/people_sport_oslo.json | ada_hegerberg / Ada Hegerberg | cardImage | bilder/kort/people/ada_hegerberg.PNG |
 | data/people/sport/oslo/people_sport_oslo.json | erling_haaland / Erling Braut Haaland | image | bilder/kort/people/erling_haaland.PNG |
