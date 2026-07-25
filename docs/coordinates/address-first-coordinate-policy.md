@@ -1,96 +1,48 @@
 # Address-first coordinate policy
 
-## Prinsipp
+Status: **operational compatibility-peker**  
+Dokumentasjonskart: [`README.md`](./README.md)  
+Canonical regler: [`coordinate-source-contract-v1.md`](./coordinate-source-contract-v1.md)  
+Arbeidsflyt: [`../coordinate-finder.md`](../coordinate-finder.md)  
+Sist kontrollert: **2026-07-25**
 
-For de fleste aktive steder skal koordinatarbeidet være enkelt:
+Denne siden bevarer den korte address-first-inngangen. Den eier ikke coordinate-felter, statuser, trust eller full arbeidsflyt.
 
-```text
-Har stedet en konkret adresse?
-→ bruk offisiell adressekilde
-→ hent representasjonspunkt
-→ plott punktet
-→ verified
-```
+## Når address-first gjelder
 
-Vi skal ikke gjøre vanlige adresse-steder vanskeligere enn nødvendig. En offisiell adresse med representasjonspunkt er et godt kartanker for History Go, når punktet merkes korrekt som adressepunkt/display-marker.
+Bruk offisiell norsk adressekilde først når alle disse vilkårene er oppfylt:
 
-## Standardløype for norske steder
+1. stedet er aktivt og fysisk eksisterende;
+2. det har en konkret norsk gateadresse;
+3. adressen representerer selve History Go-objektet, ikke bare eiendommen, administrasjonen eller et nærliggende bygg;
+4. markøren skal være et adressepunkt/display-marker.
 
-For norske steder med konkret adresse bruker History Go Geonorge Adresser API først.
-
-Eksempel:
+Standardkommando:
 
 ```bash
-curl "https://ws.geonorge.no/adresser/v1/sok?sok=Langkaia%201%20Oslo" | jq
+mkdir -p reports/<coordinate-batch>
+
+npm run places:coords:find:address -- --address "<full adresse>" \
+  | tee reports/<coordinate-batch>/<place-id>.json
 ```
 
-Når Geonorge returnerer ett tydelig treff, kan stedet settes til `verified` med:
+Verktøyet produserer en kandidat. Kandidaten kan først bli `verified` etter fysisk identitetskontroll, komplett Coordinate Source Contract og relevante validators.
 
-```json
-{
-  "locatorType": "building",
-  "sourceProvider": "official_address",
-  "sourceObjectId": "geonorge-adresser-v1:<kommunenummer>:<adressekode>:<nummer><bokstav>",
-  "address": {
-    "street": "...",
-    "number": "...",
-    "postcode": "...",
-    "city": "...",
-    "country": "NO"
-  },
-  "geocodeAccuracy": "rooftop",
-  "coordRole": "display_marker",
-  "coordStatus": "verified",
-  "coordSource": "geonorge_adresser_v1",
-  "coordType": "address_point"
-}
-```
+## Når address-first ikke gjelder
 
-## Hvorfor `display_marker`, ikke alltid `building_center`
+Ikke bruk et adressepunkt automatisk for:
 
-Geonorge returnerer et offisielt representasjonspunkt for adressen. Det er godt nok for kartvisning og spillanker, men det er ikke nødvendigvis geometrisk midtpunkt i bygningskroppen.
+- parker, baner, pumptracks, skateparker og andre uteanlegg;
+- kaier, brygger, strender, vannflater, gater, ruter og større områder;
+- monumenter eller objekter som står et annet sted enn adressebygget;
+- revne, flyttede eller historiske steder;
+- steder med flere plausible adressetreff eller uklar fysisk identitet.
 
-Derfor er standarden:
+Bruk da offisiell objekt-/geometrikilde, dokumentert historisk kilde eller evidensløypen. Uavklart resultat skal bli `needs_review`, ikke et kompromisspunkt.
 
-```text
-coordType: address_point
-coordRole: display_marker
-```
+## Fast grense
 
-Bruk `building_center` bare når vi faktisk har bygningsgeometri eller en kilde som sier at punktet er bygningsmidtpunkt.
-
-## Beslutningsrekkefølge
-
-1. **Aktivt bygg, butikk, institusjon, arena, kontor, museum, restaurant, venue med adresse**
-   - Bruk Geonorge/offisiell adresse først.
-   - `sourceProvider: official_address`
-   - `coordType: address_point`
-   - `coordRole: display_marker`
-   - `coordStatus: verified`
-
-2. **POI uten tydelig adresse**
-   - Bruk offisiell POI-kilde, OSM POI, Google Places eller Mapbox etter behov.
-   - Krev `sourceObjectId` eller strukturert adresse.
-
-3. **Park, kai, gate, rute, område**
-   - Ikke bruk tilfeldig adressepunkt som hovedregel.
-   - Bruk geometri, `line_anchor` eller `area_anchor`.
-   - Forklar hva ankeret representerer.
-
-4. **Historiske/revne/flyttede steder**
-   - Ikke bruk dagens adresse som eneste bevis hvis stedet ikke lenger finnes der.
-   - Bruk historisk kart, manual research eller dokumentert historisk kilde.
-
-## Ikke bruk som primærkilde
-
-- Wikipedia/Wikidata kan brukes som research-spor, men ikke som primærkilde for `verified`.
+- `coordType: address_point` og `coordRole: display_marker` er standard for et egnet offisielt adresserepresentasjonspunkt.
+- `building_center` krever faktisk bygningsgeometri eller en kilde som dokumenterer midtpunktet.
 - `manual_map_check` kan aldri alene gi `verified`.
-- Nominatim/OSM-public geokoding skal ikke være standardløype for norske adresser når Geonorge finnes.
-
-## Praktisk regel
-
-```text
-Adresse først.
-Geometri bare når adresse ikke passer.
-Historisk særbehandling bare når stedet ikke lenger finnes eller identiteten er uklar.
-```
+- Nominatim/OSM-public geokoding skal ikke være standard for norske adresser når Geonorge finnes.
