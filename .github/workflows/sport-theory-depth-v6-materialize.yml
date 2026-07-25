@@ -28,6 +28,31 @@ jobs:
           set -euo pipefail
           git clone --quiet --depth 1 --branch '${{ github.head_ref }}' "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" repo
 
+      - name: Add final curated emne routes
+        working-directory: repo
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tools/refine-sport-theory-mapping-v6.mjs')
+          text = path.read_text()
+          old = '''  em_sport_arena_samling: ["hook_sport_groundhopping_stedsidentitet", "hook_sport_idrettsminne_kulturarv"],
+            em_sport_arenaendring_byutvikling: ["hook_sport_anlegg_byutvikling", "hook_sport_stadion_sosialt_rom"]
+          };'''
+          new = '''  em_sport_arena_samling: ["hook_sport_groundhopping_stedsidentitet", "hook_sport_idrettsminne_kulturarv"],
+            em_sport_arenaendring_byutvikling: ["hook_sport_anlegg_byutvikling", "hook_sport_stadion_sosialt_rom"],
+            em_sport_bevegelseskvalitet: ["hook_sport_bevegelsesmekanikk", "hook_sport_variabilitet_tilpasning"],
+            em_sport_kropp_disiplin: ["hook_sport_kjonnede_kropper_ulikhet", "hook_sport_indre_goder_praksis"],
+            em_sport_kroppslig_laring: ["hook_sport_persepsjon_handling", "hook_sport_begrensningsstyrt_laring"],
+            em_sport_taus_idrettskunnskap: ["hook_sport_persepsjon_handling", "hook_sport_feedback_oppmerksomhet"],
+            em_sport_teknikk: ["hook_sport_bevegelsesmekanikk", "hook_sport_persepsjon_handling"],
+            em_sport_trening_oving: ["hook_sport_feedback_oppmerksomhet", "hook_sport_begrensningsstyrt_laring"],
+            em_sport_treningsregime: ["hook_sport_belastning_tilpasning", "hook_sport_restitusjon_overtrening"]
+          };'''
+          if old not in text:
+              raise SystemExit('Fant ikke explicitEmneRoutes-blokken')
+          path.write_text(text.replace(old, new, 1))
+          PY
+
       - name: Build theory depth and coverage
         working-directory: repo
         run: node tools/build-sport-theory-depth-v6.mjs
