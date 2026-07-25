@@ -46,13 +46,16 @@ Disse er to ulike systemflater og skal ikke slås sammen uten en eksplisitt runt
 
 Filer med `AUDIT`, `REVIEW`, `STATUS` eller datostempel er snapshots med mindre de er registrert som canonical i `documentation_registry.json`. Genererte operational-filer er reproducerbare statusflater og skal ikke overstyre de normative kontraktene de kontrollerer.
 
-Eksempler:
+Følgende håndskrevne snapshots er flyttet byte-identisk til [`../reports/archive/2026-07/`](../reports/archive/2026-07/):
 
-- `CIVICATION_RUNTIME_OWNERSHIP_AUDIT.md`
+- `CIVICATION_BADGE_ROLE_MAPPING_AUDIT.md`
 - `CIVICATION_FLOW_AUDIT.md`
 - `CIVICATION_FUNCTIONALITY_REVIEW.md`
+- `CIVICATION_RUNTIME_OWNERSHIP_AUDIT.md`
 - `CIVICATION_WORKDAY_PHASE_INTEGRATION_AUDIT.md`
 - `civication-status-audit.md`
+
+Arkivfilene er sporbarhet, ikke runtimefasit. Bruk de aktive kontraktene og faktisk kode-/teststatus for nåsituasjonen.
 
 ## Overordnet teknisk prioritet
 
