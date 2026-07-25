@@ -1,6 +1,6 @@
 # Oslo People of Places coverage
 
-Generert: 2026-07-25T05:00:47.124Z
+Generert: 2026-07-25T06:02:39.335Z
 
 ## Policy
 
@@ -12,9 +12,9 @@ Generert: 2026-07-25T05:00:47.124Z
 
 - Oslo-steder totalt: **389**
 - Kravpliktige steder utenom natur: **340**
-- Dekket: **170**
-- Uten People: **170**
-- Dekningsgrad: **50%**
+- Dekket: **176**
+- Uten People: **164**
+- Dekningsgrad: **51.76%**
 - Natursteder: **49** (45 uten People)
 - Geografikonflikter holdt utenfor Oslo-tellingen: **0**
 - Ugyldige People→place-referanser globalt: **50**
@@ -25,12 +25,12 @@ Generert: 2026-07-25T05:00:47.124Z
 |---|---:|---:|---:|---:|
 | by | 78 | 47 | 31 | 166 |
 | film_tv | 2 | 2 | 0 | 12 |
-| historie | 66 | 24 | 42 | 138 |
+| historie | 66 | 27 | 39 | 144 |
 | kunst | 10 | 7 | 3 | 17 |
 | litteratur | 19 | 19 | 0 | 52 |
 | media | 5 | 5 | 0 | 19 |
 | musikk | 9 | 9 | 0 | 16 |
-| naeringsliv | 46 | 6 | 40 | 18 |
+| naeringsliv | 46 | 9 | 37 | 26 |
 | natur | 49 | 4 | 45 | 11 |
 | politikk | 18 | 18 | 0 | 163 |
 | populaerkultur | 11 | 2 | 9 | 2 |
@@ -85,11 +85,9 @@ Generert: 2026-07-25T05:00:47.124Z
 | historie | `geitmyra_gard` | Geitmyra gård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_04.json |
 | historie | `gol_stavkirke_bygdoy` | Gol stavkirke – Bygdøy | data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json |
 | historie | `gronland_politistasjon` | Grønland politistasjon | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_04.json |
-| historie | `hauges_minde` | Hauges Minde | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_03.json |
 | historie | `hovedoya_kloster` | Hovedøya kloster | data/places/historie/oslo/places_historie.json |
 | historie | `kirkeristen_basarene_brannvakten` | Kirkeristen, Basarene og Brannvakten | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_01.json |
 | historie | `kjaerlighetskarusellen` | Kjærlighetskarusellen | data/places/historie/oslo/places_historie_added_batch_01.json |
-| historie | `kon_tiki_museet` | Kon-Tiki Museet | data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json |
 | historie | `kontraskjaeret` | Kontraskjæret | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_04.json |
 | historie | `lambertseter_gard` | Lambertseter gård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
 | historie | `lokomotivverkstedet` | Lokomotivverkstedet | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
@@ -111,7 +109,6 @@ Generert: 2026-07-25T05:00:47.124Z
 | historie | `saxegarden` | Saxegården | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
 | historie | `slurpen_lakkegata` | Slurpen | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_03.json |
 | historie | `sporveismuseet` | Sporveismuseet | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
-| historie | `stattholdergarden` | Stattholdergården | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02.json |
 | historie | `stubljan_paviljongen_hvervenbukta` | Stubljan-paviljongen i Hvervenbukta | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_07.json |
 | historie | `trosterudvillaen` | Trosterudvillaen | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_08.json |
 | historie | `tveten_gard` | Tveten gård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
@@ -124,7 +121,6 @@ Generert: 2026-07-25T05:00:47.124Z
 | naeringsliv | `amerikalinjen` | Amerikalinjen | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_03.json |
 | naeringsliv | `akershus_slott_bakeriet` | Bakeriet ved Akershus | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `bryn_industriomrade` | Bryn industriområde | data/places/naeringsliv/oslo/places_naeringsliv.json |
-| naeringsliv | `cafe_engebret` | Café Engebret | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_02.json |
 | naeringsliv | `centralbanken_kirkegata` | Centralbanken | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01.json |
 | naeringsliv | `christiania_seildugsfabrik` | Christiania Seildugsfabrik | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `ulven_handelspark` | Construction City | data/places/naeringsliv/oslo/places_naeringsliv.json |
@@ -145,13 +141,11 @@ Generert: 2026-07-25T05:00:47.124Z
 | naeringsliv | `norges_bank_bankplassen_2` | Norges Bank – Bankplassen 2 | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_under_bakken_batch_01.json |
 | naeringsliv | `norges_bank_bankplassen_4` | Norges Bank – Bankplassen 4 | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04.json |
 | naeringsliv | `norges_varemesse` | Norges Varemesse – Sjølystsenteret | data/places/naeringsliv/oslo/places_naeringsliv.json |
-| naeringsliv | `borsen_oslo` | Oslo Børs | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01.json |
 | naeringsliv | `oslo_gassverk` | Oslo Gassverk | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `havnelageret` | Oslo Havnelager | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `oslo_kraftselskap` | Oslo Lysverkers hovedkontor | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `sjofartsbygningen` | Sjøfartsbygningen | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_hovedstaden_batch_01.json |
 | naeringsliv | `st_halvard_bryggeri` | St. Halvard bryggeri | data/places/naeringsliv/oslo/places_naeringsliv.json |
-| naeringsliv | `steen_og_strom` | Steen & Strøm | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01.json |
 | naeringsliv | `telegrafbygningen` | Telegrafbygningen | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `tollboden_oslo` | Tollboden | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04.json |
 | naeringsliv | `tollbukaia` | Tollbukaia | data/places/naeringsliv/oslo/places_naeringsliv.json |
