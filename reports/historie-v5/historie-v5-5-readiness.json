@@ -3,7 +3,7 @@
   "subject_id": "historie",
   "status": "QUALITY_REVIEW_REQUIRED",
   "v6_allowed": false,
-  "generated_at": "2026-07-25T21:44:27.364Z",
+  "generated_at": "2026-07-25T22:05:43.100Z",
   "coverage_counts": {
     "domains": 20,
     "emner": 200,
@@ -13,10 +13,10 @@
     "theories": 200
   },
   "quality_issue_totals": {
-    "concepts": 308,
-    "theories": 60,
+    "concepts": 273,
+    "theories": 50,
     "emner": 0,
-    "domains_not_freeze_ready": 6
+    "domains_not_freeze_ready": 5
   },
   "global_gates": {
     "structural_integrity": true,
@@ -30,14 +30,14 @@
   },
   "quality": {
     "concept_issue_counts": {
-      "synthetic_template_definition": 308,
-      "missing_semantic_relations": 308,
-      "generic_or_missing_misuse_guard": 308,
+      "synthetic_template_definition": 273,
+      "missing_semantic_relations": 273,
+      "generic_or_missing_misuse_guard": 273,
       "numeric_reference_mistyped_as_concept": 3
     },
     "theory_issue_counts": {
-      "only_generic_limitations": 60,
-      "mass_repeated_limitation_profile": 60
+      "only_generic_limitations": 50,
+      "mass_repeated_limitation_profile": 50
     },
     "emne_issue_counts": {}
   },
@@ -82,16 +82,13 @@
       "domain_id": "his_middelalder_kirke_kongemakt",
       "label": "Middelalder, kirke og kongemakt",
       "coverage_complete": true,
-      "freeze_ready": false,
+      "freeze_ready": true,
       "issue_counts": {
         "emner": 0,
-        "concepts": 35,
-        "theories": 10
+        "concepts": 0,
+        "theories": 0
       },
-      "issues": [
-        "concept_quality_incomplete",
-        "theory_quality_incomplete"
-      ]
+      "issues": []
     },
     {
       "domain_id": "his_1814_statsdannelse",
@@ -571,18 +568,6 @@
         ]
       },
       {
-        "concept_id": "con_his_aristokrati",
-        "label": "aristokrati",
-        "domain_ids": [
-          "his_middelalder_kirke_kongemakt"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
         "concept_id": "con_his_avindustrialisering",
         "label": "avindustrialisering",
         "domain_ids": [
@@ -605,119 +590,21 @@
           "missing_semantic_relations",
           "generic_or_missing_misuse_guard"
         ]
+      },
+      {
+        "concept_id": "con_his_avreisested_vs_opprinnelsesidentitet",
+        "label": "avreisested vs opprinnelsesidentitet",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
       }
     ],
     "theories": [
-      {
-        "theory_id": "theory_his_middelalder_by_kirke",
-        "label": "Middelalderbyen og kirkemakten",
-        "domain_ids": [
-          "his_middelalder_kirke_kongemakt"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_middelalder_kirke_kongemakt_kirke_og_konflikt",
-        "label": "Kongemakt, kirke og konflikt: forklarings- og kildebane",
-        "domain_ids": [
-          "his_middelalder_kirke_kongemakt"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_middelalder_kirke_middelalderens_oslo",
-        "label": "Middelalderens Oslo: forklarings- og kildebane",
-        "domain_ids": [
-          "his_middelalder_kirke_kongemakt"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
-        "label": "Lov, ting og jurisdiksjon: forklarings- og kildebane",
-        "domain_ids": [
-          "his_middelalder_kirke_kongemakt"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_middelalder_kirke_jord_eiendom_og_patronasje",
-        "label": "Jord, eiendom og patronasje: forklarings- og kildebane",
-        "domain_ids": [
-          "his_middelalder_kirke_kongemakt"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_middelalder_kirke_handel_handverk_og_bydannelse",
-        "label": "Handel, håndverk og bydannelse: forklarings- og kildebane",
-        "domain_ids": [
-          "his_middelalder_kirke_kongemakt"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
-        "label": "Bondehushold, demografi og dagligliv: forklarings- og kildebane",
-        "domain_ids": [
-          "his_middelalder_kirke_kongemakt"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming",
-        "label": "Svartedauden og senmiddelalderens omforming: forklarings- og kildebane",
-        "domain_ids": [
-          "his_middelalder_kirke_kongemakt"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_middelalder_kirke_skriftkultur_diplom_og_muntlig_rett",
-        "label": "Skriftkultur, diplom og muntlig rett: forklarings- og kildebane",
-        "domain_ids": [
-          "his_middelalder_kirke_kongemakt"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_middelalder_kirke_samiske_kontaktsoner_handel_og_statsgrenser_i_middelalderen",
-        "label": "Samiske kontaktsoner, handel og statsgrenser i middelalderen: forklarings- og kildebane",
-        "domain_ids": [
-          "his_middelalder_kirke_kongemakt"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
       {
         "theory_id": "theory_his_grunnlov_rom_tekst",
         "label": "Grunnlov som rom og tekst",
@@ -877,6 +764,116 @@
         "label": "Arbeiderbolig, hushold og livsvilkår",
         "domain_ids": [
           "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_kjonn_arbeidsdeling_lonn",
+        "label": "Kjønn, arbeidsdeling og lønn",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_arbeidsvandring_rekruttering",
+        "label": "Arbeidsvandring, rekruttering og arbeidskraft",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_organisering_streik_forhandling",
+        "label": "Organisering, streik og forhandling",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_folkedannelse_arbeideroffentlighet",
+        "label": "Folkedannelse og arbeideroffentlighet",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_avindustrialisering_ombruk_industriarv",
+        "label": "Avindustrialisering, ombruk og industriarv",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_fattigvesen_veldedighet_sosial_kontroll",
+        "label": "Fattigvesen, veldedighet og sosial kontroll",
+        "domain_ids": [
+          "his_velferd_rett_hverdagsliv"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_helse_epidemi_profesjonalisering",
+        "label": "Helse, epidemi og profesjonalisering",
+        "domain_ids": [
+          "his_velferd_rett_hverdagsliv"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_skole_folkedannelse_medborgerskap",
+        "label": "Skole, folkedannelse og medborgerskap",
+        "domain_ids": [
+          "his_velferd_rett_hverdagsliv"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_barndom_familie_livslop",
+        "label": "Barndom, familie og livsløp",
+        "domain_ids": [
+          "his_velferd_rett_hverdagsliv"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_sosialforsikring_pensjon_universalisme",
+        "label": "Sosialforsikring, pensjon og universalisme",
+        "domain_ids": [
+          "his_velferd_rett_hverdagsliv"
         ],
         "issues": [
           "only_generic_limitations",
