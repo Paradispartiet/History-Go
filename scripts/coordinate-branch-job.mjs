@@ -93,9 +93,10 @@ await fs.rm(sportFile, { force: true });
 
 const manifest = JSON.parse(await fs.readFile(manifestFile, "utf8"));
 const vgEntry = (manifest.sets || []).find((entry) => entry.targetId === "vg_huset");
-if (!vgEntry) throw new Error("Fant ikke vg_huset i quizmanifestet.");
-vgEntry.file = "data/quiz/media/vg_huset_sets.json";
-await fs.writeFile(manifestFile, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+if (vgEntry) {
+  vgEntry.file = "data/quiz/media/vg_huset_sets.json";
+  await fs.writeFile(manifestFile, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+}
 await fs.rm(staleFailureLog, { force: true });
 
 const verify = JSON.parse(await fs.readFile(mediaFile, "utf8"));
@@ -112,7 +113,8 @@ run("npm", ["run", "places:emner:check"]);
 
 console.log(JSON.stringify({
   vg_huset: "media",
-  manifest: vgEntry.file,
+  activeManifestEntry: Boolean(vgEntry),
+  manifestPath: vgEntry?.file ?? null,
   branchSyncedWithMain: true,
   mergeBase,
   mergeConflicted
