@@ -36,6 +36,10 @@ const packageId = "evidence_package_sport_concussion_acute_safety_v1";
 const registrationSha = "bd774539101304f3e0f62333e9950678983152d3";
 const evidencePackage = (packageFile.packages || []).find((item) => item.package_id === packageId);
 const candidates = searchLog.authoritative_seed?.records || [];
+const allowedPackagePhases = new Set([
+  "authoritative_seed_completed_database_search_and_dual_screening_pending",
+  "search_strategy_locked_peer_review_assignment_and_execution_pending"
+]);
 
 check(protocol.status === "registered_before_screening", "protokollen er ikke registrert før screening");
 check(protocol.registration_anchor?.commit_sha === registrationSha, "protokollen bruker feil registreringscommit");
@@ -53,7 +57,7 @@ check(protocol.appraisal_plan?.result_level_bias_registry === "../risk_of_bias_s
 
 check(Boolean(evidencePackage), "evidenspakken mangler");
 check(evidencePackage?.registration_anchor?.commit_sha === registrationSha, "pakken bruker feil registreringsanker");
-check(evidencePackage?.phase_status === "authoritative_seed_completed_database_search_and_dual_screening_pending", "pakken overdriver fremdrift");
+check(allowedPackagePhases.has(evidencePackage?.phase_status), "pakken overdriver eller har ukjent fremdrift", evidencePackage?.phase_status);
 check((evidencePackage?.candidate_record_ids || []).length === 7, "pakken har feil kandidatopptelling");
 for (const key of ["study_ids", "result_ids", "risk_of_bias_assessment_ids", "synthesis_ids", "certainty_assessment_ids", "publication_ready_claim_ids"]) {
   check((evidencePackage?.[key] || []).length === 0, `pakken har for tidlige ${key}`);
@@ -108,7 +112,7 @@ check(!(claimFile.claims || []).some((item) => item.publication_ready === true),
 
 const report = {
   status: failures.length ? "failed" : "passed",
-  version: "1.0",
+  version: "1.1",
   subject_id: "sport",
   package_id: packageId,
   counts: {

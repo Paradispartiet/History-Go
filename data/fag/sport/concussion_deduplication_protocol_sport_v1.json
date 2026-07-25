@@ -1,0 +1,73 @@
+{
+  "version": "1.0",
+  "subject_id": "sport",
+  "package_id": "evidence_package_sport_concussion_acute_safety_v1",
+  "type": "deterministic_deduplication_protocol",
+  "status": "protocol_locked_execution_pending",
+  "updated_at": "2026-07-25",
+  "input_requirements": [
+    "Alle rå databaseeksporter bevares uendret med filsti, format, record_count og SHA-256.",
+    "Hver importert post beholder database, run_id og original record identifier.",
+    "Ingen post slettes fysisk under deduplisering."
+  ],
+  "normalization": {
+    "doi": "lowercase; remove https://doi.org/, doi: and surrounding whitespace",
+    "pmid": "digits only",
+    "trial_registration": "uppercase registry prefix and normalized identifier",
+    "title": "Unicode NFKD; lowercase; remove punctuation; collapse whitespace; preserve meaningful numbers",
+    "first_author": "lowercase family name without punctuation",
+    "year": "four-digit publication year; online-first and print year retained separately"
+  },
+  "automatic_duplicate_rules_in_order": [
+    {
+      "rule_id": "dedup_exact_doi",
+      "condition": "same normalized non-empty DOI",
+      "action": "merge_into_cluster"
+    },
+    {
+      "rule_id": "dedup_exact_pmid",
+      "condition": "same non-empty PMID",
+      "action": "merge_into_cluster"
+    },
+    {
+      "rule_id": "dedup_exact_trial_registration",
+      "condition": "same non-empty trial registration identifier",
+      "action": "merge_into_cluster"
+    },
+    {
+      "rule_id": "dedup_exact_title_author_year",
+      "condition": "same normalized title, same normalized first author and same publication year",
+      "action": "merge_into_cluster"
+    }
+  ],
+  "possible_duplicate_rule": {
+    "condition": "normalized title similarity >= 0.95 with same first author and year difference <= 1, or conflicting identifiers on otherwise matching records",
+    "action": "manual_dual_review_required",
+    "automatic_merge_forbidden": true
+  },
+  "preferred_record_rule": [
+    "record with DOI or PMID",
+    "record with complete abstract",
+    "record with most complete bibliographic metadata",
+    "record from the database with the richest indexing",
+    "stable deterministic tie-break by source priority and original record identifier"
+  ],
+  "audit_output": {
+    "cluster_registry_required": true,
+    "source_record_ids_required": true,
+    "chosen_primary_record_required": true,
+    "merge_rule_id_required": true,
+    "manual_decision_required_for_possible_duplicates": true,
+    "before_count_required": true,
+    "after_count_required": true,
+    "output_sha256_required": true
+  },
+  "execution": {
+    "status": "not_run",
+    "before_count": null,
+    "after_count": null,
+    "duplicate_clusters": null,
+    "output_file": null,
+    "output_sha256": null
+  }
+}
