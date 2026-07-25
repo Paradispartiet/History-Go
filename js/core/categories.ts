@@ -37,7 +37,7 @@ const win = window as RuntimeWindow;
 const CATEGORY_LIST: CategoryDefinition[] = [
   { id: "historie", name: "Historie", icon: "🏛️", color: "#603E1E", secondaryColor: "#533217", scope: "runtime_domain" },
   { id: "religion", name: "Religion", icon: "🛐", color: "#d7b46a", secondaryColor: "#151B28", scope: "runtime_domain" },
-  { id: "vitenskap", name: "Vitenskap", icon: "🔬", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain" },
+  { id: "vitenskap", name: "Vitenskap & teknologi", icon: "🔬", color: "#6A5AE0", secondaryColor: "#332B51", scope: "runtime_domain" },
   { id: "filosofi", name: "Filosofi", icon: "Φ", color: "#7A5FD0", secondaryColor: "#3E2E73", scope: "runtime_domain" },
   { id: "kunst", name: "Kunst", icon: "🎨", color: "#0057B8", secondaryColor: "#D71920", scope: "runtime_domain" },
   { id: "scenekunst", name: "Scenekunst", icon: "🎭", color: "#B35C9E", secondaryColor: "#3A1836", scope: "runtime_domain" },
@@ -105,6 +105,7 @@ function catIdFromDisplay(display: unknown): string | null {
   for (const category of CATEGORY_LIST) {
     if (category.name.toLowerCase() === normalizedDisplay) return category.id;
   }
+
   return null;
 }
 
