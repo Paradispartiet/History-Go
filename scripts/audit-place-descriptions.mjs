@@ -5,6 +5,7 @@ const root = process.cwd();
 const args = new Set(process.argv.slice(2));
 const writeReport = args.has('--report');
 const strict = args.has('--strict');
+const enforcePopupMinimum = args.has('--enforce-popup-minimum');
 
 const templatePath = path.join(root, 'data/places/regler/place_description_templates_v1.json');
 const reportJsonPath = path.join(root, 'reports/place-description-audit.json');
@@ -32,6 +33,12 @@ function normalizeText(value) {
 function wordCount(value) {
   const normalized = normalizeText(value);
   return normalized ? normalized.split(' ').length : 0;
+}
+
+function paragraphCount(value) {
+  const text = String(value ?? '').trim();
+  if (!text) return 0;
+  return text.split(/\n\s*\n/u).filter((part) => part.trim()).length;
 }
 
 function rel(filePath) {
@@ -83,8 +90,9 @@ const templates = readJson(templatePath);
 const aliases = templates.categoryAliases ?? {};
 const categoryTemplates = templates.categories ?? {};
 const descRange = templates.global?.desc?.targetWords ?? [40, 80];
-const popupRange = templates.global?.popupDesc?.targetWords ?? [160, 320];
-const popupExceptionalMaximum = templates.global?.popupDesc?.exceptionalMaximumWords ?? popupRange[1];
+const popupMinimumWords = templates.global?.popupDesc?.minimumWords ?? 300;
+const popupRecommendedWords = templates.global?.popupDesc?.recommendedWords ?? [300, 600];
+const popupMinimumParagraphs = templates.global?.popupDesc?.minimumParagraphs ?? 3;
 const watchWords = templates.global?.antiFormula?.watchWords ?? [];
 
 const genericPatterns = [
@@ -129,6 +137,7 @@ for (const filePath of placeFiles) {
     const category = aliases[rawCategory] ?? rawCategory;
     const descWords = wordCount(desc);
     const popupWords = wordCount(popupDesc);
+    const popupParagraphs = paragraphCount(popupDesc);
     const normalizedDesc = normalizeText(desc);
     const normalizedPopup = normalizeText(popupDesc);
     const combined = `${desc}\n${popupDesc}`;
@@ -143,11 +152,9 @@ for (const filePath of placeFiles) {
     if (desc && popupDesc && normalizedDesc === normalizedPopup) issues.push('identical_desc_popupDesc');
     if (desc && descWords < descRange[0]) issues.push('desc_below_normal_range');
     if (desc && descWords > descRange[1]) issues.push('desc_above_normal_range');
-    if (popupDesc && popupWords < popupRange[0]) issues.push('popupDesc_below_normal_range');
-    if (popupDesc && popupWords > popupRange[1] && popupWords <= popupExceptionalMaximum) {
-      issues.push('popupDesc_above_normal_range_allowed_exception');
-    }
-    if (popupDesc && popupWords > popupExceptionalMaximum) issues.push('popupDesc_exceeds_exceptional_maximum');
+    if (popupDesc && popupWords < popupMinimumWords) issues.push('popupDesc_below_hard_minimum');
+    if (popupDesc && popupWords > popupRecommendedWords[1]) issues.push('popupDesc_above_recommended_range_allowed');
+    if (popupDesc && popupParagraphs < popupMinimumParagraphs) issues.push('popupDesc_too_few_paragraphs');
     if (desc && popupDesc && popupWords <= descWords + 8) issues.push('popupDesc_adds_too_little');
     if (!categoryTemplates[category]) issues.push('missing_category_template');
 
@@ -180,6 +187,7 @@ for (const filePath of placeFiles) {
       file: rel(filePath),
       descWords,
       popupWords,
+      popupParagraphs,
       issues,
       formulaHits,
       watchWordHits: wordHits
@@ -187,13 +195,28 @@ for (const filePath of placeFiles) {
   }
 }
 
+const baseCriticalIssueIds = new Set([
+  'missing_desc',
+  'missing_popupDesc',
+  'identical_desc_popupDesc',
+  'missing_category_template'
+]);
+const migrationRuleIssueIds = new Set([
+  'popupDesc_below_hard_minimum',
+  'popupDesc_too_few_paragraphs'
+]);
+const criticalIssueIds = new Set(baseCriticalIssueIds);
+if (enforcePopupMinimum) {
+  for (const issue of migrationRuleIssueIds) criticalIssueIds.add(issue);
+}
+
 const issueCounts = new Map();
 for (const finding of findings) {
   for (const issue of finding.issues) issueCounts.set(issue, (issueCounts.get(issue) ?? 0) + 1);
 }
 
-const criticalIssueIds = new Set(['missing_desc', 'missing_popupDesc', 'identical_desc_popupDesc', 'missing_category_template']);
 const criticalFindings = findings.filter((finding) => finding.issues.some((issue) => criticalIssueIds.has(issue)));
+const hardMinimumViolations = findings.filter((finding) => finding.issues.some((issue) => migrationRuleIssueIds.has(issue)));
 const revisionCandidates = findings
   .filter((finding) => finding.issues.length || finding.formulaHits.length || finding.watchWordHits.length)
   .sort((a, b) => {
@@ -205,19 +228,25 @@ const revisionCandidates = findings
   });
 
 const report = {
-  schema: 'history_go_place_description_audit_v2',
+  schema: 'history_go_place_description_audit_v3',
   generatedAt: new Date().toISOString(),
   template: rel(templatePath),
-  normalRanges: {
+  enforcement: {
+    popupMinimumIsCanonical: true,
+    popupMinimumEnforcedAsExitFailure: enforcePopupMinimum
+  },
+  ranges: {
     desc: descRange,
-    popupDesc: popupRange,
-    popupDescExceptionalMaximum: popupExceptionalMaximum
+    popupDescMinimum: popupMinimumWords,
+    popupDescRecommended: popupRecommendedWords,
+    popupDescMinimumParagraphs: popupMinimumParagraphs
   },
   scannedFiles: placeFiles.length,
   scannedPlaces: findings.length,
   fileErrors,
   totals: {
     criticalPlaces: criticalFindings.length,
+    hardMinimumViolations: hardMinimumViolations.length,
     revisionCandidates: revisionCandidates.length,
     issues: Object.fromEntries([...issueCounts.entries()].sort()),
     formulaHits: Object.fromEntries([...phraseCounts.entries()].sort()),
@@ -234,29 +263,32 @@ function renderMarkdown(data) {
   lines.push('## Sammendrag', '');
   lines.push(`- Skannede place-filer: **${data.scannedFiles}**`);
   lines.push(`- Skannede steder: **${data.scannedPlaces}**`);
-  lines.push(`- Kritiske steder: **${data.totals.criticalPlaces}**`);
+  lines.push(`- Kritiske steder i denne kjøringen: **${data.totals.criticalPlaces}**`);
+  lines.push(`- Brudd på bindende popupDesc-minimum/avsnittsregel: **${data.totals.hardMinimumViolations}**`);
   lines.push(`- Revisjonskandidater: **${data.totals.revisionCandidates}**`);
   lines.push(`- Filfeil: **${data.fileErrors.length}**`, '');
-  lines.push('## Normalrammer', '');
-  lines.push(`- desc: **${data.normalRanges.desc[0]}–${data.normalRanges.desc[1]} ord**`);
-  lines.push(`- popupDesc: **${data.normalRanges.popupDesc[0]}–${data.normalRanges.popupDesc[1]} ord**`);
-  lines.push(`- Tillatt unntaksrom for særlig innholdsrik popupDesc: opptil **${data.normalRanges.popupDescExceptionalMaximum} ord**`, '');
+  lines.push('## Lengderegler', '');
+  lines.push(`- desc normalramme: **${data.ranges.desc[0]}–${data.ranges.desc[1]} ord**`);
+  lines.push(`- popupDesc bindende minimum: **${data.ranges.popupDescMinimum} ord**`);
+  lines.push(`- popupDesc anbefalt arbeidsramme: **${data.ranges.popupDescRecommended[0]}–${data.ranges.popupDescRecommended[1]} ord**`);
+  lines.push(`- popupDesc minimum avsnitt: **${data.ranges.popupDescMinimumParagraphs}**`);
+  lines.push('- Det finnes ingen automatisk hard maksimumsgrense for popupDesc.', '');
   lines.push('## Funn etter type', '');
   lines.push('| Funn | Antall |', '|---|---:|');
   for (const [key, count] of Object.entries(data.totals.issues)) lines.push(`| \`${key}\` | ${count} |`);
   lines.push('', '## Gjentatte formler', '');
   lines.push('| Formel | Treff |', '|---|---:|');
   for (const [key, count] of Object.entries(data.totals.formulaHits)) lines.push(`| \`${key}\` | ${count} |`);
-  lines.push('', '## Overbrukte observasjonsord', '');
+  lines.push('', '## Overbrukte abstraksjonsord', '');
   lines.push('| Ord | Treff |', '|---|---:|');
   for (const [key, count] of Object.entries(data.totals.watchWords)) lines.push(`| ${key} | ${count} |`);
   lines.push('', '## Første revisjonskandidater', '');
-  lines.push('| Sted | Kategori | desc | popupDesc | Funn | Fil |', '|---|---|---:|---:|---|---|');
+  lines.push('| Sted | Kategori | desc | popupDesc | Avsnitt | Funn | Fil |', '|---|---|---:|---:|---:|---|---|');
   for (const item of data.candidates.slice(0, 250)) {
     const flags = [...item.issues, ...item.formulaHits.map((hit) => `formel:${hit.id}`)].join(', ');
-    lines.push(`| ${item.name} (\`${item.id}\`) | ${item.category} | ${item.descWords} | ${item.popupWords} | ${flags || 'ordvariasjon'} | \`${item.file}\` |`);
+    lines.push(`| ${item.name} (\`${item.id}\`) | ${item.category} | ${item.descWords} | ${item.popupWords} | ${item.popupParagraphs} | ${flags || 'ordvariasjon'} | \`${item.file}\` |`);
   }
-  lines.push('', 'Auditresultatet er en arbeidsliste. Normalrammene er redaksjonelle signaler, ikke automatiske sannhetsdommer. En popupDesc på 320–400 ord kan godkjennes når kildene og innholdet forsvarer lengden. Faktisk revisjon skal følge kildene og den canonical faktaførst-kontrakten.', '');
+  lines.push('', '300 ord er et bindende redaksjonelt minimum. Under migreringen flagges bruddene alltid i rapporten. Bruk `--enforce-popup-minimum` sammen med `--strict` når hele det kontrollerte materialet skal blokkeres ved slike brudd.', '');
   return lines.join('\n');
 }
 
@@ -268,6 +300,6 @@ if (writeReport) {
 }
 
 console.log(`Place descriptions: ${report.scannedPlaces} steder i ${report.scannedFiles} filer`);
-console.log(`Kritiske: ${report.totals.criticalPlaces}; revisjonskandidater: ${report.totals.revisionCandidates}; filfeil: ${report.fileErrors.length}`);
+console.log(`Kritiske: ${report.totals.criticalPlaces}; minimumsbrudd: ${report.totals.hardMinimumViolations}; revisjonskandidater: ${report.totals.revisionCandidates}; filfeil: ${report.fileErrors.length}`);
 
 if (strict && (criticalFindings.length > 0 || fileErrors.length > 0)) process.exitCode = 1;
