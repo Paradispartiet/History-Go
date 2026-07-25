@@ -6,6 +6,9 @@ on:
       - agent/naeringsliv-arbeid-produksjon-curation
     paths:
       - '.github/workflows/temp-naeringsliv-arbeid-domain-extract.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/temp-naeringsliv-arbeid-domain-extract.yml'
 
 permissions:
   contents: write
@@ -16,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
       - name: Extract nine emne objects
         shell: bash
@@ -51,6 +54,7 @@ jobs:
           fs.writeFileSync('reports/naeringsliv-arbeid-domain-working.json',JSON.stringify(out,null,2)+'\n');
           NODE
       - name: Commit working extract
+        if: github.event_name == 'push'
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
@@ -58,3 +62,8 @@ jobs:
           git add reports/naeringsliv-arbeid-domain-working.json
           git commit -m 'Materialiser arbeidsdomenets emneutdrag'
           git push origin HEAD:${{ github.ref_name }}
+      - name: Upload working extract
+        uses: actions/upload-artifact@v4
+        with:
+          name: naeringsliv-arbeid-domain-working
+          path: reports/naeringsliv-arbeid-domain-working.json
