@@ -3,23 +3,23 @@
   "subject_id": "historie",
   "status": "NOT_READY",
   "v6_allowed": false,
-  "generated_at": "2026-07-25T11:17:49.163Z",
+  "generated_at": "2026-07-25T13:03:06.881Z",
   "authoritative_counts": {
     "planned_domains": 20,
     "production_domains": 12,
-    "production_emner": 85,
-    "production_methods": 48,
-    "production_mappings": 85
+    "production_emner": 92,
+    "production_methods": 54,
+    "production_mappings": 92
   },
   "maturity_counts": {
-    "production_complete": 7,
-    "production_partial": 5,
+    "production_complete": 8,
+    "production_partial": 4,
     "planned_only": 8
   },
   "global_gates": {
     "exactly_20_planned_domains": true,
     "production_domain_ids_unique": true,
-    "generator_counts_match_production": false,
+    "generator_counts_match_production": true,
     "concept_noise_zero": false,
     "synthetic_generator_language_zero": true,
     "typed_curated_theory_registry_present": false,
@@ -709,33 +709,21 @@
     {
       "domain_id": "his_minne_kulturarv_historiebruk",
       "label": "Minne, kulturarv og historiebruk",
-      "maturity": "production_partial",
-      "production_complete": false,
+      "maturity": "production_complete",
+      "production_complete": true,
       "freeze_ready": false,
       "counts": {
-        "emner": 3,
-        "resolved_emner": 3,
-        "hooks": 1,
-        "methods": 4,
-        "mappings": 3,
-        "two_lane_mappings": 0,
-        "cases": 4,
-        "thinkers": 4,
-        "norwegian_thinkers": 1
+        "emner": 10,
+        "resolved_emner": 10,
+        "hooks": 10,
+        "methods": 10,
+        "mappings": 10,
+        "two_lane_mappings": 10,
+        "cases": 15,
+        "thinkers": 21,
+        "norwegian_thinkers": 4
       },
       "gaps": [
-        "status_not_complete_revised",
-        "too_few_emner",
-        "too_few_hooks",
-        "too_few_methods",
-        "too_few_mappings",
-        "too_few_cases",
-        "too_few_thinkers",
-        "missing_domain_chain",
-        "missing_boundary_rules",
-        "missing_source_limitation_gate",
-        "missing_critical_distinction_gate",
-        "two_lane_mapping_incomplete",
         "missing_domain_validator",
         "emne_curation_incomplete"
       ],
@@ -743,21 +731,60 @@
         {
           "emne_id": "em_his_kulturminner_bevaring",
           "gaps": [
-            "missing_temporal_scope_guard",
+            "missing_critical_distinction_guard"
+          ]
+        },
+        {
+          "emne_id": "em_his_restaurering_autentisitet",
+          "gaps": [
+            "missing_critical_distinction_guard"
+          ]
+        },
+        {
+          "emne_id": "em_his_museum_samling_kanon",
+          "gaps": [
             "missing_critical_distinction_guard"
           ]
         },
         {
           "emne_id": "em_his_minnesteder_historiebruk",
           "gaps": [
-            "missing_temporal_scope_guard",
             "missing_critical_distinction_guard"
           ]
         },
         {
           "emne_id": "em_his_monumenter_kontrovers",
           "gaps": [
-            "missing_temporal_scope_guard",
+            "missing_critical_distinction_guard"
+          ]
+        },
+        {
+          "emne_id": "em_his_kontrovers_fjerning_omtolking",
+          "gaps": [
+            "missing_critical_distinction_guard"
+          ]
+        },
+        {
+          "emne_id": "em_his_jubileum_seremoni_historiebruk",
+          "gaps": [
+            "missing_critical_distinction_guard"
+          ]
+        },
+        {
+          "emne_id": "em_his_stedsnavn_navnepolitikk",
+          "gaps": [
+            "missing_critical_distinction_guard"
+          ]
+        },
+        {
+          "emne_id": "em_his_fravaer_taushet_motminne",
+          "gaps": [
+            "missing_critical_distinction_guard"
+          ]
+        },
+        {
+          "emne_id": "em_his_digital_kulturarv_formidling",
+          "gaps": [
             "missing_critical_distinction_guard"
           ]
         }
