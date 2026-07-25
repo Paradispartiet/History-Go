@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "subject_id": "sport",
+  "type": "review_and_guideline_appraisal_tool_registry",
+  "status": "canonical_pipeline_tools",
+  "updated_at": "2026-07-25",
+  "scope": "Dokumentnivåvurdering av systematiske oversikter, kliniske retningslinjer, folkehelseråd og konsensusuttalelser. Resultatspesifikk risiko for bias for primærstudier forblir i risk_of_bias_sport_v1.json.",
+  "principles": {
+    "independent_reviewers_required": 2,
+    "adjudication_required_on_disagreement": true,
+    "reporting_quality_is_not_evidence_certainty": true,
+    "document_appraisal_does_not_replace_result_level_bias": true
+  },
+  "tools": [
+    {
+      "tool_id": "tool_sport_systematic_review_appraisal_v1",
+      "version": "1.0",
+      "applicability": "Systematiske oversikter og metaanalyser",
+      "domains": [
+        "forhåndsregistrert protokoll",
+        "søkeomfang og oppdateringsdato",
+        "duplikat screening og ekstraksjon",
+        "biasvurdering av inkluderte resultater",
+        "syntesemetode",
+        "heterogenitet og robusthet",
+        "publiseringsskjevhet",
+        "finansiering og interessekonflikter"
+      ],
+      "result_level_required": false,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool",
+      "appraisal_level": "review_document"
+    },
+    {
+      "tool_id": "tool_sport_guideline_consensus_appraisal_v1",
+      "version": "1.0",
+      "applicability": "Kliniske retningslinjer, folkehelseråd og konsensusuttalelser",
+      "domains": [
+        "formål og målgruppe",
+        "interessent- og pasientrepresentasjon",
+        "systematisk evidensinnhenting",
+        "kobling mellom evidens og anbefaling",
+        "uenighet og konsensusmetode",
+        "anvendbarhet og implementering",
+        "redaksjonell uavhengighet og interessekonflikter",
+        "oppdateringsplan"
+      ],
+      "result_level_required": false,
+      "independent_reviewers_required": 2,
+      "adjudication_required_on_disagreement": true,
+      "status": "canonical_pipeline_tool",
+      "appraisal_level": "review_document"
+    }
+  ]
+}
