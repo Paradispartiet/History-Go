@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "mariakirken",
+  "placeFile": "data/places/historie/oslo/places_historie_next_batch_middelalder_01.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "historical_site_geometry_anchor",
+  "currentCoordinate": {
+    "lat": 59.90346038983052,
+    "lon": 10.762135864406781,
+    "r": 70,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "manual_historical_research",
+    "coordType": "historical_site_geometry_anchor",
+    "coordNote": "Oslo kommune bekrefter Mariakirken. Det eksakte navngitte OSM-objektet er et historic=ruins-polygon; kunstverk, monument og informasjonsskilt ble ikke valgt. Den tidligere markøren lå 144.2 meter fra det valgte ankeret."
+  },
+  "identity": {
+    "currentName": "mariakirken",
+    "resolvedIdentity": "mariakirken",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "archaeological_site",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "historisk identitetskilde",
+    "stabilt koordinat- eller geometriobjekt",
+    "målt eller konservativ radius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Historisk identitetskilde",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/middelalderparken",
+      "sourceObjectId": "history-source:mariakirken:identity",
+      "sourceQuality": "authoritative_or_specialist_historical_source",
+      "finding": "Oslo kommune bekrefter Mariakirken. Det eksakte navngitte OSM-objektet er et historic=ruins-polygon; kunstverk, monument og informasjonsskilt ble ikke valgt.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter canonical historisk identitet og stedskontekst."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Navngitt historisk ruinpolygon",
+      "sourceUrl": "https://www.openstreetmap.org/way/257875433",
+      "sourceObjectId": "osm-way:257875433",
+      "sourceQuality": "named_historical_geometry",
+      "finding": "59.90346038983052, 10.762135864406781; radius 70 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt ruin-/kulturminnegeometri."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go final historical coordinate review",
+      "sourceUrl": "reports/oslo-coordinate-historical-sites-research-20260725/final-decisions.json",
+      "sourceObjectId": "history-go-research:historical-sites-20260725:mariakirken",
+      "sourceQuality": "reproducible_multi_source_research",
+      "finding": "Oslo kommune bekrefter Mariakirken. Det eksakte navngitte OSM-objektet er et historic=ruins-polygon; kunstverk, monument og informasjonsskilt ble ikke valgt. Den tidligere markøren lå 144.2 meter fra det valgte ankeret.",
+      "canVerifyCoordinate": true,
+      "reason": "Dokumenterer valg, radius og forkastede feilobjekter."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "osm-way:257875433",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:257875433",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.90346038983052,
+      "lon": 10.762135864406781,
+      "coordRole": "historical_anchor",
+      "sourceObjectId": "osm-way:257875433",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Final historisk koordinatbeslutning er anvendt i canonical-data."
+  },
+  "notes": [
+    "Oslo kommune bekrefter Mariakirken. Det eksakte navngitte OSM-objektet er et historic=ruins-polygon; kunstverk, monument og informasjonsskilt ble ikke valgt. Den tidligere markøren lå 144.2 meter fra det valgte ankeret.",
+    "Decision file: reports/oslo-coordinate-historical-sites-research-20260725/final-decisions.json"
+  ]
+}

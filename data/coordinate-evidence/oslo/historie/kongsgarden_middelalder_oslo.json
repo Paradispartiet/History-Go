@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "kongsgarden_middelalder_oslo",
+  "placeFile": "data/places/historie/oslo/places_historie_next_batch_middelalder_01.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "historical_site_point",
+  "currentCoordinate": {
+    "lat": 59.903528,
+    "lon": 10.76321,
+    "r": 80,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "manual_historical_research",
+    "coordType": "historical_site_point",
+    "coordNote": "Oslo kommune bekrefter Kongsgården, og den publiserte historiske kilden oppgir punktet. Det nærliggende OSM-informasjonsskiltet er ikke brukt som canonical kildeobjekt. Den tidligere markøren lå 241.5 meter fra det valgte ankeret. OSM node 2679052764 ble forkastet fordi objektet er et informasjonsskilt."
+  },
+  "identity": {
+    "currentName": "kongsgarden_middelalder_oslo",
+    "resolvedIdentity": "kongsgarden_middelalder_oslo",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "archaeological_site",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "historisk identitetskilde",
+    "stabilt koordinat- eller geometriobjekt",
+    "målt eller konservativ radius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Historisk identitetskilde",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/middelalderparken",
+      "sourceObjectId": "history-source:kongsgarden_middelalder_oslo:identity",
+      "sourceQuality": "authoritative_or_specialist_historical_source",
+      "finding": "Oslo kommune bekrefter Kongsgården, og den publiserte historiske kilden oppgir punktet. Det nærliggende OSM-informasjonsskiltet er ikke brukt som canonical kildeobjekt.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter canonical historisk identitet og stedskontekst."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Publisert historisk locatorpunkt",
+      "sourceUrl": "https://lokalhistoriewiki.no/Oslo_kongsg%C3%A5rd",
+      "sourceObjectId": "published-historical-locator:kongsgarden_middelalder_oslo:59.903528,10.763210",
+      "sourceQuality": "published_historical_locator",
+      "finding": "59.903528, 10.76321; radius 80 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Kildebelagt historisk punkt som uttrykkelig behandles som approksimasjon."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go final historical coordinate review",
+      "sourceUrl": "reports/oslo-coordinate-historical-sites-research-20260725/final-decisions.json",
+      "sourceObjectId": "history-go-research:historical-sites-20260725:kongsgarden_middelalder_oslo",
+      "sourceQuality": "reproducible_multi_source_research",
+      "finding": "Oslo kommune bekrefter Kongsgården, og den publiserte historiske kilden oppgir punktet. Det nærliggende OSM-informasjonsskiltet er ikke brukt som canonical kildeobjekt. Den tidligere markøren lå 241.5 meter fra det valgte ankeret. OSM node 2679052764 ble forkastet fordi objektet er et informasjonsskilt.",
+      "canVerifyCoordinate": true,
+      "reason": "Dokumenterer valg, radius og forkastede feilobjekter."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "published-historical-locator:kongsgarden_middelalder_oslo:59.903528,10.763210",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.903528,
+      "lon": 10.76321,
+      "coordRole": "historical_anchor",
+      "sourceObjectId": "published-historical-locator:kongsgarden_middelalder_oslo:59.903528,10.763210",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Final historisk koordinatbeslutning er anvendt i canonical-data."
+  },
+  "notes": [
+    "Oslo kommune bekrefter Kongsgården, og den publiserte historiske kilden oppgir punktet. Det nærliggende OSM-informasjonsskiltet er ikke brukt som canonical kildeobjekt. Den tidligere markøren lå 241.5 meter fra det valgte ankeret. OSM node 2679052764 ble forkastet fordi objektet er et informasjonsskilt.",
+    "Decision file: reports/oslo-coordinate-historical-sites-research-20260725/final-decisions.json"
+  ]
+}

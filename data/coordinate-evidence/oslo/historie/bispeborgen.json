@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "bispeborgen",
+  "placeFile": "data/places/historie/oslo/places_historie_next_batch_middelalder_01.json",
+  "evidenceStatus": "research_complete_needs_source",
+  "coordinateDecision": "keep_current_point_as_unverified_historical_proxy",
+  "currentCoordinate": {
+    "lat": 59.9059,
+    "lon": 10.762,
+    "r": 110,
+    "coordStatus": "needs_source",
+    "coordSource": "manual_historical_research",
+    "coordType": "unverified_historical_anchor",
+    "coordNote": "Oslo kommune bekrefter identiteten, men det publiserte eksterne locatorgrunnlaget var utilgjengelig for reproduksjon, og reverse-oppslaget returnerte Ladegården i stedet for Bispeborgen. Dagens koordinat beholdes kun som uverifisert historisk proxy og skal ikke tolkes som dokumentert fysisk sentrum."
+  },
+  "identity": {
+    "currentName": "bispeborgen",
+    "resolvedIdentity": "bispeborgen",
+    "identityStatus": "resolved_identity_unresolved_geometry",
+    "identityProblem": "Oslo kommune bekrefter identiteten, men det publiserte eksterne locatorgrunnlaget var utilgjengelig for reproduksjon, og reverse-oppslaget returnerte Ladegården i stedet for Bispeborgen.",
+    "locatorTypeCandidate": "archaeological_site",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "entydig fysisk historisk objekt eller reproducerbar historisk geometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go final historical coordinate review",
+      "sourceUrl": "reports/oslo-coordinate-historical-sites-research-20260725/final-decisions.json",
+      "sourceObjectId": "history-go-research:historical-sites-20260725:bispeborgen",
+      "sourceQuality": "canonical_scope_and_object_audit",
+      "finding": "Oslo kommune bekrefter identiteten, men det publiserte eksterne locatorgrunnlaget var utilgjengelig for reproduksjon, og reverse-oppslaget returnerte Ladegården i stedet for Bispeborgen.",
+      "canVerifyCoordinate": false,
+      "reason": "De identifiserte nabobyggene eller skiltobjektene kan ikke brukes som erstatning for canonical-stedet."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:111546665",
+      "canApplyToPlace": false,
+      "reason": "Forkastet: Ladegården"
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9059,
+      "lon": 10.762,
+      "coordRole": "historical_anchor",
+      "sourceObjectId": "history-go-research:historical-sites-20260725:bispeborgen",
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "Oslo kommune bekrefter identiteten, men det publiserte eksterne locatorgrunnlaget var utilgjengelig for reproduksjon, og reverse-oppslaget returnerte Ladegården i stedet for Bispeborgen.",
+    "nextAction": "Finn entydig historisk geometri eller et reproducerbart fysisk kildeobjekt før oppgradering."
+  },
+  "notes": [
+    "Oslo kommune bekrefter identiteten, men det publiserte eksterne locatorgrunnlaget var utilgjengelig for reproduksjon, og reverse-oppslaget returnerte Ladegården i stedet for Bispeborgen. Dagens koordinat beholdes kun som uverifisert historisk proxy og skal ikke tolkes som dokumentert fysisk sentrum.",
+    "Decision file: reports/oslo-coordinate-historical-sites-research-20260725/final-decisions.json"
+  ]
+}

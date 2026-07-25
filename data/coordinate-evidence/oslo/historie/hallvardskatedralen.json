@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hallvardskatedralen",
+  "placeFile": "data/places/historie/oslo/places_historie_next_batch_middelalder_01.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "historical_site_point",
+  "currentCoordinate": {
+    "lat": 59.905903,
+    "lon": 10.768789,
+    "r": 80,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "manual_historical_research",
+    "coordType": "historical_site_point",
+    "coordNote": "Oslo kommune bekrefter Hallvardskatedralen, og den publiserte historiske kilden oppgir punktet. Nominatim reverse returnerte Olavsklosteret og ble eksplisitt forkastet. Den tidligere markøren lå 407 meter fra det valgte ankeret. OSM way 1286772112 ble forkastet fordi objektet er Olavsklosteret."
+  },
+  "identity": {
+    "currentName": "hallvardskatedralen",
+    "resolvedIdentity": "hallvardskatedralen",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "archaeological_site",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "historisk identitetskilde",
+    "stabilt koordinat- eller geometriobjekt",
+    "målt eller konservativ radius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Historisk identitetskilde",
+      "sourceUrl": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/",
+      "sourceObjectId": "history-source:hallvardskatedralen:identity",
+      "sourceQuality": "authoritative_or_specialist_historical_source",
+      "finding": "Oslo kommune bekrefter Hallvardskatedralen, og den publiserte historiske kilden oppgir punktet. Nominatim reverse returnerte Olavsklosteret og ble eksplisitt forkastet.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter canonical historisk identitet og stedskontekst."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Publisert historisk locatorpunkt",
+      "sourceUrl": "https://lokalhistoriewiki.no/index.php/Hallvardskatedralen",
+      "sourceObjectId": "published-historical-locator:hallvardskatedralen:59.905903,10.768789",
+      "sourceQuality": "published_historical_locator",
+      "finding": "59.905903, 10.768789; radius 80 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Kildebelagt historisk punkt som uttrykkelig behandles som approksimasjon."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go final historical coordinate review",
+      "sourceUrl": "reports/oslo-coordinate-historical-sites-research-20260725/final-decisions.json",
+      "sourceObjectId": "history-go-research:historical-sites-20260725:hallvardskatedralen",
+      "sourceQuality": "reproducible_multi_source_research",
+      "finding": "Oslo kommune bekrefter Hallvardskatedralen, og den publiserte historiske kilden oppgir punktet. Nominatim reverse returnerte Olavsklosteret og ble eksplisitt forkastet. Den tidligere markøren lå 407 meter fra det valgte ankeret. OSM way 1286772112 ble forkastet fordi objektet er Olavsklosteret.",
+      "canVerifyCoordinate": true,
+      "reason": "Dokumenterer valg, radius og forkastede feilobjekter."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "published-historical-locator:hallvardskatedralen:59.905903,10.768789",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.905903,
+      "lon": 10.768789,
+      "coordRole": "historical_anchor",
+      "sourceObjectId": "published-historical-locator:hallvardskatedralen:59.905903,10.768789",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Final historisk koordinatbeslutning er anvendt i canonical-data."
+  },
+  "notes": [
+    "Oslo kommune bekrefter Hallvardskatedralen, og den publiserte historiske kilden oppgir punktet. Nominatim reverse returnerte Olavsklosteret og ble eksplisitt forkastet. Den tidligere markøren lå 407 meter fra det valgte ankeret. OSM way 1286772112 ble forkastet fordi objektet er Olavsklosteret.",
+    "Decision file: reports/oslo-coordinate-historical-sites-research-20260725/final-decisions.json"
+  ]
+}
