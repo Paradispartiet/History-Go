@@ -1,8 +1,10 @@
-# Current Product State – History Go
+# Current Product State – History Go — historical snapshot
 
-This document summarizes what History Go currently is after HG Social v3, Civication Home/Nabolag gameplay, Runtime Health, Min dag, and the Norge før 1500 quiz activation.
+> **Status: historical.** This document records a product snapshot from the period after HG Social v3, Civication Home/Nabolag, Runtime Health, Min dag and the Norge før 1500 activation. It is not the current product-wide source of truth. Use [`README.md`](./README.md) for the active History GO overview and [`../docs/HISTORY_GO_PRODUCT_MAP.md`](../docs/HISTORY_GO_PRODUCT_MAP.md) for current completion priorities. Civication is now treated as a separate project in History GO product documentation.
 
-It is a product/state README only. It does not define new features, runtime behavior, gameplay rules, or data manifests.
+This document summarizes what History Go was understood to be at that snapshot.
+
+It is a product/state snapshot only. It does not define new features, runtime behavior, gameplay rules, data manifests or current product boundaries.
 
 ## 1. What History Go is now
 
