@@ -162,7 +162,6 @@ lines.push('');
 const markdown = `${lines.join('\n')}\n`;
 fs.mkdirSync(path.join(repoRoot, 'reports'), { recursive: true });
 fs.writeFileSync(path.join(repoRoot, 'reports/civication-role-pack-index.md'), markdown);
-fs.writeFileSync(path.join(repoRoot, 'docs/CIVICATION_ROLE_PACK_INDEX.md'), markdown);
 
 // Runtime-indeks: leses av js/Civication/systems/civicationRolePackDepth.js slik at
 // jobbtilbud kan vise pakkedybde (full/delvis/generisk) før spilleren takker ja.
@@ -179,4 +178,4 @@ const runtimeIndex = {
   }))
 };
 fs.writeFileSync(path.join(repoRoot, 'data/Civication/rolePackIndex.json'), `${JSON.stringify(runtimeIndex, null, 2)}\n`);
-console.log(`Wrote ${sorted.length} role rows to docs/CIVICATION_ROLE_PACK_INDEX.md, reports/civication-role-pack-index.md and data/Civication/rolePackIndex.json`);
+console.log(`Wrote ${sorted.length} role rows to reports/civication-role-pack-index.md and data/Civication/rolePackIndex.json`);
