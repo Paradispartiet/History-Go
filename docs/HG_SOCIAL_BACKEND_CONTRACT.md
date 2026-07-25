@@ -1,42 +1,66 @@
-# HG Social Backend Contract
+# HG Social — backend documentation entry
 
-HG Social v3 is backend-ready. It is a knowledge graph social system, never a location graph.
+Status: **operational compatibility-pointer**  
+Sist kontrollert: **2026-07-25**
 
-## Hard boundaries
+Denne filstien beholdes som inngang for eldre lenker. Den eier ikke en egen API-kontrakt og skal ikke brukes som bevis på at Social Meet er enten «bare demo» eller bredt produksjonsaktivert.
 
-The backend must never store GPS, live presence, visit history, last seen, nearby people, follower graph, or public activity feed data. Social objects are scoped to explicit knowledge actions: profile visibility, match queries, meet invites, circles, blocks, and reports.
+## Dagens sannhet
 
-## API endpoints
+History GO har en implementert Python/FastAPI- og PostgreSQL-grense for Social Meet med:
 
-### `POST /profile`
-Creates or updates a user knowledge profile and privacy settings.
+- autentisert identitet og eksplisitt publisert læringsprofil;
+- participant safety, block, report, export og deletion;
+- moderator-/admin-kø, restrictions og appeals;
+- abuse controls, rate limits, duplicate suppression og cooldowns;
+- serverautoritativ Spotmeeting invite-lifecycle og cross-device sync;
+- privacy-safe candidate discovery;
+- typed FastAPI-klient og adaptergrense i nettleseren;
+- retention, holds og privacy-safe observability.
 
-Request body: `displayName`, `bio`, `avatar`, `badges`, `completedEmner`, `coreConcepts`, `interests`, `privacySettings`.
+Implementasjon betyr ikke automatisk bred produksjonsaktivering. Discovery, invite writes og destruktiv retention er fail-closed og krever eksplisitt deployment-konfigurasjon, private rollout-flagg og godkjent operativ prosedyre.
 
-### `GET /profile/:id`
-Returns a profile only when `canSeeProfile(viewerId, id)` passes.
+Aktiv implementasjonsinngang:
 
-### `POST /match/query`
-Returns knowledge matches only when both sides allow `visibleInMatchLists` and no block exists.
+- [`../backend/README.md`](../backend/README.md)
+- [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md)
 
-### `POST /meet/invite`
-Creates a pending invite only when `canSendInvite(viewerId, targetId)` and moderation checks pass.
+## Kravkontrakter
 
-### `POST /meet/respond`
-Accepts, declines, or cancels an invite. Declined and cancelled invites are auto-deleted after 30 days.
+Disse dokumentene definerer sikkerhets- og produktkrav. De implementerer ikke kode alene:
 
-### `POST /circle/create`
-Creates a learning circle with explicit members, focus domains, and optional active knowledge spots. Spots are thematic context, not location tracking.
+- [`HG_SOCIAL_MEET_IDENTITY_CONTRACT.md`](./HG_SOCIAL_MEET_IDENTITY_CONTRACT.md)
+- [`HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md`](./HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md)
+- [`HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md`](./HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md)
 
-### `POST /circle/join`
-Joins a circle only when privacy, block, moderation, and circle membership rules pass.
+Statusavsnitt i de opprinnelige kontraktene beskriver tidspunktet de ble skrevet. Gjeldende implementasjonsstatus leses fra backendinngangen og de konkrete slice-dokumentene nedenfor.
 
-### `POST /block`
-Blocks a target user and applies mutual invisibility immediately.
+## Implementerte server- og klientslices
 
-### `POST /report`
-Creates a moderation report. Valid reasons: Harassment, Spam, Manipulation, Unsafe behavior, Other.
+- [`HG_SOCIAL_MEET_MODERATION_BACKEND.md`](./HG_SOCIAL_MEET_MODERATION_BACKEND.md)
+- [`HG_SOCIAL_MEET_ABUSE_CONTROLS.md`](./HG_SOCIAL_MEET_ABUSE_CONTROLS.md)
+- [`HG_SPOTMEETING_INVITE_BACKEND.md`](./HG_SPOTMEETING_INVITE_BACKEND.md)
+- [`HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md`](./HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md)
+- [`HG_SOCIAL_MEET_FASTAPI_CLIENT.md`](./HG_SOCIAL_MEET_FASTAPI_CLIENT.md)
+- [`HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md`](./HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md)
 
-## Canonical client index
+Identity- og participant-safety-slicene dokumenteres samlet i [`../backend/README.md`](../backend/README.md) og i migrasjonene `002_social_meet_identity_profiles.sql` og `003_social_meet_safety.sql`.
 
-The client exposes `window.HG_SOCIAL_INDEX` as the local single source-of-truth mirror for backend transition fields: profiles, matches, invites, confirmedMeets, trust, circles, sharedRoutes, sharedQuiz, sharedObservations, blocks, reports, and privacySettings.
+## Produkt- og privacyinnganger
+
+- [`HG_SOCIAL_README.md`](./HG_SOCIAL_README.md) — produktoversikt og terminologi
+- [`HG_SOCIAL_PRIVACY_RULES.md`](./HG_SOCIAL_PRIVACY_RULES.md) — bindende privacy-policy
+- [`HG_SPOTMEETING.md`](./HG_SPOTMEETING.md) — Spotmeeting-produkt og lifecycle
+- [`HG_SOCIAL_QA.md`](./HG_SOCIAL_QA.md) — privacy guards og QA
+- [`HG_SOCIAL_DEMO_MODE.md`](./HG_SOCIAL_DEMO_MODE.md) — eksplisitt lokal TEST_MODE/demo
+
+## Historiske overgangsdokumenter
+
+- `docs/HG_SOCIAL_MEET_BACKEND_ROADMAP.md` er roadmap-snapshotet fra før slicene ble implementert.
+- `docs/social-meet-backend.md` beskriver den tidlige direkte Supabase-foundationen før FastAPI-strangleren ble hovedgrensen for migrerte Spotmeeting-operasjoner.
+
+De kan brukes som historikk, men skal ikke overstyre dagens backendinngang, kravkontrakter, implementasjonsdokumenter eller runtimekode.
+
+## Hard grense
+
+Social Meet skal fortsatt ikke bruke eller eksponere GPS, live location, nearby people, distance-to-person, last seen/presence, followers/feed, offentlig besøkshistorikk, passiv tracking eller fri chat.
