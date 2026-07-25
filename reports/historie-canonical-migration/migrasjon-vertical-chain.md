@@ -56,3 +56,5 @@ Sett 1 og 2 skal fortsatt være nøyaktig 7 + 7 normale, direkte og kildebaserte
 ## Validering
 
 Den permanente fase-7-validatoren gir **288 PASS, 0 FAIL**. Alle seks quizproduksjonstestene består, og Knowledge canonical- og legacy-kontrollene er i sync.
+
+Etter oppdateringen av den globale quizproduksjonskontrakten ble også kontekstene for Deichman Bjørvika, Telegrafbygningen, Oslo posthus og Havnelageret deterministisk regenerert og kontrollert.
