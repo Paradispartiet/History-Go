@@ -40,7 +40,7 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 
 1. [`../README/README.md`](../README/README.md) — hovedoversikt
 2. [`HISTORY_GO_PRODUCT_MAP.md`](./HISTORY_GO_PRODUCT_MAP.md) — canonical produktkart og prioritet
-3. [`COMPLETION_DEFINITIONS.md`](./COMPLETION_DEFINITIONS.md) — transitional ferdigmodell; Bronse → Sølv → Gull er aktiv nivåregel, og den gamle `Mestergrad`-resten må fjernes før dokumentet kan bli canonical
+3. [`COMPLETION_DEFINITIONS.md`](./COMPLETION_DEFINITIONS.md) — canonical ferdigmodell; aktiv nivåregel er Bronse → Sølv → Gull
 4. [`PROGRESSION_MODEL.md`](./PROGRESSION_MODEL.md) — operativ mål-/adaptermodell for samlet progresjonslesing; erstatter ikke runtime-lagring
 5. [`PLACE_STANDARD.md`](./PLACE_STANDARD.md) — canonical produktstandard for et History GO-sted
 
@@ -156,9 +156,9 @@ Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation
 - foreldet `badge_refs`-regel og biologispesifikk emnearkitektur fjernet fra aktiv dokumentflate
 - gammel quiz-README erstattet med compatibility-pointer; canonical produksjonsprosedyre, template-register og manifests er eksplisitt prioritert
 - daterte TypeScript- og AHA-statusfiler flyttet til `reports/archive/2026-07/`
+- `Mestergrad` fjernet fra ferdigmodellen; Bronse → Sølv → Gull er canonical nivåregel
 
 ### Neste
 
-- fjern den foreldede `Mestergrad`-raden fra ferdigdefinisjonene og løft dokumentet fra transitional til canonical
 - klassifiser `APP_STRUCTURE_INDEX.md` og øvrige aktive produkt-/runtimekontrakter
 - fortsett å flytte daterte audits og statuspunkter til `reports/archive/YYYY-MM/`
