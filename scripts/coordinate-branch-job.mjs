@@ -26,7 +26,7 @@ const builderFiles = [
 const validatorFiles = ["scripts/history-phase6-validator.b64"];
 
 reconstruct("History phase 6 spec", specFiles, 10692, "171b8b402431c72008c4171aa2215c8bcf4e6965ba63745ffc6dae7c9a9eb27a", "/tmp/history-phase6-spec.json");
-reconstruct("History phase 6 builder", builderFiles, 8596, "9447ddd8e9e86750642391a15baad608b339a6e3825bf4464b7f2b4f8fe14f23", "/tmp/history-phase6-builder.mjs");
+reconstruct("History phase 6 builder", builderFiles, 8592, "449334dcc5082f078a673ac300e67f3e6cf7e2b85c9baabe0cf22f45a219fe0f", "/tmp/history-phase6-builder.mjs");
 reconstruct("History phase 6 validator", validatorFiles, 2576, "12cac84e4735eeaa0873587cd0c376e841c5784ccc37953c6bd3c7a43f21ebfa", "tools/validate-historie-byhistorie.mjs");
 
 await import(pathToFileURL("/tmp/history-phase6-builder.mjs").href);
