@@ -12,10 +12,11 @@ function readJson(filePath: string): any {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
-function toArray(data: any): any[] {
+function toPersonArray(data: any): any[] {
   if (Array.isArray(data)) return data;
   if (data && Array.isArray(data.people)) return data.people;
   if (data && Array.isArray(data.items)) return data.items;
+  if (data && typeof data === 'object' && typeof data.id === 'string' && data.id.trim()) return [data];
   return [];
 }
 
@@ -65,7 +66,7 @@ for (const sourceFile of listedFiles) {
   if (!fs.existsSync(filePath)) continue;
   let data: any;
   try { data = readJson(filePath); } catch { continue; }
-  for (const person of toArray(data)) {
+  for (const person of toPersonArray(data)) {
     if (!person || typeof person.id !== 'string' || !person.id.trim()) continue;
     const id = person.id.trim();
     const rows = manifestPeopleById.get(id) ?? [];
@@ -96,7 +97,7 @@ for (const sourceFile of unlistedFiles) {
     continue;
   }
 
-  const people = toArray(data).filter((person) => person && typeof person.id === 'string' && person.id.trim());
+  const people = toPersonArray(data).filter((person) => person && typeof person.id === 'string' && person.id.trim());
   if (people.length === 0) continue;
 
   let existingIds = 0;

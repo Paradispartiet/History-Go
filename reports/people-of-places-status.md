@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-25T07:47:40.498Z
+Generert: 2026-07-25T10:42:13.736Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-25T07:47:40.498Z |
-| peopleFilesRead | 723 |
-| totalPeople | 1358 |
-| uniquePeopleIds | 1358 |
+| generatedAt | 2026-07-25T10:42:13.736Z |
+| peopleFilesRead | 730 |
+| totalPeople | 1365 |
+| uniquePeopleIds | 1365 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 723 |
+| geographicPeopleFiles | 730 |
 | categoriesRepresented | 16 |
 
 ## People-filer
@@ -452,12 +452,14 @@ Generert: 2026-07-25T07:47:40.498Z
 | data/people/scenekunst/europe/portugal/lisbon/herman_jose.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/europe/portugal/lisbon/ricardo_araujo_pereira.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d/aud_schonemann.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/black_box_teater/inger_buresund.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/centralteatret/harald_otto.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/chat_noir/bokken_lasson.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/chat_noir/dag_froland.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/chat_noir/victor_bernau.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/chateau_neuf/bard_tufte_johansen.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/chateau_neuf/harald_eia.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/dansens_hus_oslo/randi_urdal.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/det_andre_teatret/nils_petter_morland.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/dramatikkens_hus/anne_may_nilsen.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/edderkoppen_scene/anders_moland.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -479,6 +481,7 @@ Generert: 2026-07-25T07:47:40.498Z
 | data/people/scenekunst/oslo/folketeateret/oystein_wiik.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/folketeateret/wenche_foss.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/grusomhetens_teater/lars_oyno.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/kloden_teater_pilotscenen/aadne_sekkelsten.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/latter/elina_krantz.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/latter/else_kass_furuseth.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/latter/kristoffer_olsen.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -487,7 +490,11 @@ Generert: 2026-07-25T07:47:40.498Z
 | data/people/scenekunst/oslo/nrk_huset_marienlyst/herman_flesvig.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/nrk_huset_marienlyst/morten_ramm.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/nrk_huset_marienlyst/nils_vogt.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/riksscenen/jan_lothe_eriksen.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/rommen_scene/erik_aldner.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/salt_oslo/erlend_mogard_larsen.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/scenekunst/oslo/teater_manu/mira_zuckermann.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/vega_scene/katinka_rydin_berge.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json | sport | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/anton_ploderer.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/arild_mathisen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -762,14 +769,14 @@ Generert: 2026-07-25T07:47:40.498Z
 | natur | 22 | 0 | 4 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 101 | 0 | 49 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | psykologi | 1 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| scenekunst | 40 | 0 | 40 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| scenekunst | 47 | 0 | 47 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | sport | 323 | 0 | 245 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | subkultur | 57 | 0 | 8 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | vitenskap | 29 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 723
+- Allerede geografisk strukturert: 730
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -1224,12 +1231,14 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/scenekunst/europe/portugal/lisbon/herman_jose.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/europe/portugal/lisbon/ricardo_araujo_pereira.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d/aud_schonemann.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
+- data/people/scenekunst/oslo/black_box_teater/inger_buresund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/centralteatret/harald_otto.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/chat_noir/bokken_lasson.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/chat_noir/dag_froland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/chat_noir/victor_bernau.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/chateau_neuf/bard_tufte_johansen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/chateau_neuf/harald_eia.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
+- data/people/scenekunst/oslo/dansens_hus_oslo/randi_urdal.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/det_andre_teatret/nils_petter_morland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/dramatikkens_hus/anne_may_nilsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/edderkoppen_scene/anders_moland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
@@ -1251,6 +1260,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/scenekunst/oslo/folketeateret/oystein_wiik.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/folketeateret/wenche_foss.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/grusomhetens_teater/lars_oyno.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
+- data/people/scenekunst/oslo/kloden_teater_pilotscenen/aadne_sekkelsten.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/latter/elina_krantz.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/latter/else_kass_furuseth.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/latter/kristoffer_olsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
@@ -1259,7 +1269,11 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/scenekunst/oslo/nrk_huset_marienlyst/herman_flesvig.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/nrk_huset_marienlyst/morten_ramm.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/nrk_huset_marienlyst/nils_vogt.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
+- data/people/scenekunst/oslo/riksscenen/jan_lothe_eriksen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
+- data/people/scenekunst/oslo/rommen_scene/erik_aldner.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
+- data/people/scenekunst/oslo/salt_oslo/erlend_mogard_larsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/scenekunst/oslo/teater_manu/mira_zuckermann.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
+- data/people/scenekunst/oslo/vega_scene/katinka_rydin_berge.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=sport
 - data/people/sport/oslo/bislett_stadion/anton_ploderer.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/arild_mathisen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
