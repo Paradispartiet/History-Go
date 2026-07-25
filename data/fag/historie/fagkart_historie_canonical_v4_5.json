@@ -4,7 +4,7 @@
   "scope": "oslo_og_omegn",
   "type": "fagkart",
   "version": "v4.5-canonical-draft-1",
-  "updated_at": "2026-07-24",
+  "updated_at": "2026-07-25",
   "principles": {
     "locked_categories": true,
     "dev_happens_through": [
@@ -5561,18 +5561,545 @@
       "id": "his_velferd_rett_hverdagsliv",
       "title": "Velferd, rett og hverdagsliv",
       "tagline": "Fra veldedighet til rettigheter og livsløp",
-      "definition": "Dette området handler om skole, helse, omsorg, fattigvesen, trygd, barn, alderdom og hvordan staten gradvis griper inn i hverdagsliv og kropp. Det undersøker velferd som institusjonshistorie, sosialhistorie og livsløpshistorie.",
+      "definition": "Undersøker hvordan fattigvesen, helse, skole, trygd, bolig og omsorg ble organisert som historiske institusjoner, rettigheter og tjenester, og hvordan vilkår, praksis og forvaltning formet hverdagsliv og livsløp.",
       "focus": [
-        "skole og folkedannelse",
-        "helse og omsorg",
-        "fattigvesen og trygd",
-        "normalbiografi og livsløp",
-        "velferdsstatens institusjoner"
+        "fattigvesen, veldedighet og sosial kontroll",
+        "helse, skole og profesjonalisering",
+        "barndom, familie og livsløp",
+        "trygd, pensjon og velferdsrett",
+        "bolig, omsorgsarbeid og institusjonshverdag"
       ],
       "topic_hooks": [
         {
-          "id": "his_velferd_institusjoner",
-          "title": "Velferdsinstitusjoner og livsløp",
+          "id": "his_fattigvesen_veldedighet_sosial_kontroll",
+          "title": "Fattigvesen, veldedighet og sosial kontroll",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "anne_lise_seip",
+                "name": "Anne-Lise Seip",
+                "why": "Norsk sosialpolitikk og velferdsstatens historiske utvikling",
+                "tier": "core",
+                "works": [
+                  "Sosialhjelpstaten blir til"
+                ]
+              },
+              {
+                "id": "abram_de_swaan",
+                "name": "Abram de Swaan",
+                "why": "Kollektivisering av omsorg, utdanning og sosial trygghet",
+                "tier": "advanced",
+                "works": [
+                  "In Care of the State"
+                ]
+              },
+              {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "why": "Biopolitikk, normalisering og institusjonell styring av liv",
+                "tier": "core",
+                "works": [
+                  "The History of Sexuality, Vol. 1"
+                ]
+              },
+              {
+                "id": "linda_gordon",
+                "name": "Linda Gordon",
+                "why": "Historien om sosialpolitikk, familieintervensjon og velferd",
+                "tier": "advanced",
+                "works": [
+                  "Pitied but Not Entitled"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_fattigvesen_veldedighet_sosial_kontroll"
+          ],
+          "best_place_types": [
+            "hospital",
+            "fattighus",
+            "institusjonsbygg",
+            "arkiv",
+            "omsorgssted"
+          ],
+          "avoid_place_types": [
+            "privat_sted_uten_dokumentert_velferdskobling"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "case-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+            "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+            "Rettighet behandlet som identisk med faktisk tilgang",
+            "Institusjonens formål behandlet som dokumentert praksis",
+            "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify the responsible institution and rule",
+            "name the recipient category and eligibility test",
+            "compare declared relief with disciplinary practice",
+            "trace transition from charity to public entitlement"
+          ],
+          "comparison_pairs": [
+            [
+              "anne_lise_seip",
+              "abram_de_swaan"
+            ],
+            [
+              "michel_foucault",
+              "linda_gordon"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "anne_lise_seip"
+          ],
+          "recommended_oslo_cases": [
+            "Oslo Hospital",
+            "Prinds Christian Augusts Minde",
+            "Oslo byarkiv",
+            "Arbeidersamfunnets plass"
+          ],
+          "recommended_method_ids": [
+            "met_arkivlesning",
+            "met_velferdsordningsanalyse",
+            "met_seriell_kildeanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 3,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan hjelp til fattige ble organisert gjennom veldedighet, fattigvesen og kommunale ordninger, og hvordan støtte samtidig kunne innebære kontroll, kategorisering og tap av selvbestemmelse.",
+          "critical_distinctions": [
+            "veldedighet vs rettighet",
+            "hjelp vs kontroll",
+            "formell kategori vs levd situasjon",
+            "institusjonens formål vs faktisk praksis"
+          ]
+        },
+        {
+          "id": "his_helse_epidemi_profesjonalisering",
+          "title": "Helse, epidemi og profesjonalisering",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "why": "Biopolitikk, normalisering og institusjonell styring av liv",
+                "tier": "core",
+                "works": [
+                  "The History of Sexuality, Vol. 1"
+                ]
+              },
+              {
+                "id": "anne_lise_seip",
+                "name": "Anne-Lise Seip",
+                "why": "Norsk sosialpolitikk og velferdsstatens historiske utvikling",
+                "tier": "core",
+                "works": [
+                  "Sosialhjelpstaten blir til"
+                ]
+              },
+              {
+                "id": "ida_blom",
+                "name": "Ida Blom",
+                "why": "Kjønns-, familie- og velferdshistorie i norsk og nordisk sammenheng",
+                "tier": "core",
+                "works": [
+                  "Det er forskjell på folk – nå som før"
+                ]
+              },
+              {
+                "id": "harold_wilensky",
+                "name": "Harold L. Wilensky",
+                "why": "Industrialisering, sosialpolitikk og institusjonell velferdsutvikling",
+                "tier": "advanced",
+                "works": [
+                  "The Welfare State and Equality"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_helse_omsorg_institusjoner"
+          ],
+          "best_place_types": [
+            "hospital",
+            "sykehus",
+            "institusjonsbygg",
+            "arkiv",
+            "helseinstitusjon"
+          ],
+          "avoid_place_types": [
+            "privat_sted_uten_dokumentert_velferdskobling"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "institution-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+            "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+            "Rettighet behandlet som identisk med faktisk tilgang",
+            "Institusjonens formål behandlet som dokumentert praksis",
+            "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+          ],
+          "preferred_question_moves": [
+            "date the health problem and institutional response",
+            "identify profession, mandate and target group",
+            "compare formal treatment regime with patient experience",
+            "separate medical knowledge from welfare administration"
+          ],
+          "comparison_pairs": [
+            [
+              "michel_foucault",
+              "anne_lise_seip"
+            ],
+            [
+              "ida_blom",
+              "harold_wilensky"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "anne_lise_seip",
+            "ida_blom"
+          ],
+          "recommended_oslo_cases": [
+            "Oslo Hospital",
+            "Ullevål sykehus",
+            "Rikshospitalet",
+            "Oslo byarkiv"
+          ],
+          "recommended_method_ids": [
+            "met_institusjonshistorisk_analyse",
+            "met_seriell_kildeanalyse",
+            "met_velferdsordningsanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 3,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker epidemier, sykehus, offentlig helsearbeid og profesjonalisering som historiske ordninger med bestemte målgrupper, kunnskapsformer, adgangsvilkår og konsekvenser.",
+          "critical_distinctions": [
+            "sykdomsutbrudd vs institusjonell respons",
+            "medisinsk behandling vs sosial omsorg",
+            "profesjonell standard vs lokal praksis",
+            "pasientkategori vs menneskelig erfaring"
+          ]
+        },
+        {
+          "id": "his_skole_folkedannelse_medborgerskap",
+          "title": "Skole, folkedannelse og medborgerskap",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "gro_hagemann",
+                "name": "Gro Hagemann",
+                "why": "Skole, kjønn, arbeid og sosialhistorie i Norge",
+                "tier": "core",
+                "works": [
+                  "Skolefolk"
+                ]
+              },
+              {
+                "id": "t_h_marshall",
+                "name": "T. H. Marshall",
+                "why": "Sosialt medborgerskap og utviklingen av sivile, politiske og sosiale rettigheter",
+                "tier": "core",
+                "works": [
+                  "Citizenship and Social Class"
+                ]
+              },
+              {
+                "id": "bengt_sandin",
+                "name": "Bengt Sandin",
+                "why": "Barndom, skole, sosialpolitikk og barns medborgerskap",
+                "tier": "advanced",
+                "works": [
+                  "The Century of the Child"
+                ]
+              },
+              {
+                "id": "ellen_schrumpf",
+                "name": "Ellen Schrumpf",
+                "why": "Barndommens, skolens og familiens historie i Norge",
+                "tier": "core",
+                "works": [
+                  "Barnearbeid – plikt eller privilegium?"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_skole_folkedannelse"
+          ],
+          "best_place_types": [
+            "skole",
+            "bibliotek",
+            "forsamlingshus",
+            "arkiv",
+            "institusjonsbygg"
+          ],
+          "avoid_place_types": [
+            "privat_sted_uten_dokumentert_velferdskobling"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "school-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+            "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+            "Rettighet behandlet som identisk med faktisk tilgang",
+            "Institusjonens formål behandlet som dokumentert praksis",
+            "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify school rule, curriculum or admission condition",
+            "name pupils, teachers and governing authority",
+            "compare stated educational aim with attendance and exclusion",
+            "connect schooling to later civic participation without assuming causality"
+          ],
+          "comparison_pairs": [
+            [
+              "gro_hagemann",
+              "t_h_marshall"
+            ],
+            [
+              "bengt_sandin",
+              "ellen_schrumpf"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "gro_hagemann",
+            "ellen_schrumpf"
+          ],
+          "recommended_oslo_cases": [
+            "Sagene skole",
+            "Gamle Deichman på Hammersborg",
+            "Arbeidersamfunnets plass",
+            "Oslo byarkiv"
+          ],
+          "recommended_method_ids": [
+            "met_institusjonshistorisk_analyse",
+            "met_seriell_kildeanalyse",
+            "met_livslopsanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 3,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker skole, bibliotek og folkeopplysning som institusjoner som formet leseferdighet, disiplin, deltakelse og forestillinger om medborgerskap.",
+          "critical_distinctions": [
+            "skoleplikt vs faktisk skolegang",
+            "leseferdighet vs medborgerskap",
+            "formelt tilbud vs reell tilgang",
+            "folkedannelse vs sosial disiplin"
+          ]
+        },
+        {
+          "id": "his_barndom_familie_livslop",
+          "title": "Barndom, familie og livsløp",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "ellen_schrumpf",
+                "name": "Ellen Schrumpf",
+                "why": "Barndommens, skolens og familiens historie i Norge",
+                "tier": "core",
+                "works": [
+                  "Barnearbeid – plikt eller privilegium?"
+                ]
+              },
+              {
+                "id": "bengt_sandin",
+                "name": "Bengt Sandin",
+                "why": "Barndom, skole, sosialpolitikk og barns medborgerskap",
+                "tier": "advanced",
+                "works": [
+                  "The Century of the Child"
+                ]
+              },
+              {
+                "id": "ida_blom",
+                "name": "Ida Blom",
+                "why": "Kjønns-, familie- og velferdshistorie i norsk og nordisk sammenheng",
+                "tier": "core",
+                "works": [
+                  "Det er forskjell på folk – nå som før"
+                ]
+              },
+              {
+                "id": "jacques_donzelot",
+                "name": "Jacques Donzelot",
+                "why": "Familiepolitikk, sosial kontroll og profesjonell intervensjon",
+                "tier": "advanced",
+                "works": [
+                  "The Policing of Families"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_barndom_familie_livslop"
+          ],
+          "best_place_types": [
+            "skole",
+            "bolig",
+            "institusjonsbygg",
+            "omsorgssted",
+            "arkiv"
+          ],
+          "avoid_place_types": [
+            "privat_sted_uten_dokumentert_velferdskobling"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "life-course-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+            "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+            "Rettighet behandlet som identisk med faktisk tilgang",
+            "Institusjonens formål behandlet som dokumentert praksis",
+            "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify life stage and household position",
+            "trace institutional intervention across time",
+            "compare normative life course with actual biography",
+            "separate age category from lived dependency"
+          ],
+          "comparison_pairs": [
+            [
+              "ellen_schrumpf",
+              "bengt_sandin"
+            ],
+            [
+              "ida_blom",
+              "jacques_donzelot"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "ellen_schrumpf",
+            "ida_blom"
+          ],
+          "recommended_oslo_cases": [
+            "Sagene skole",
+            "Oslo Hospital",
+            "Arbeidermuseet",
+            "Oslo byarkiv"
+          ],
+          "recommended_method_ids": [
+            "met_livslopsanalyse",
+            "met_husholdsanalyse",
+            "met_muntlig_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 3,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan barndom, familieansvar, alderdom og overgangene mellom livsfaser ble formet av hushold, skole, arbeid og velferdsinstitusjoner.",
+          "critical_distinctions": [
+            "alder vs livsfase",
+            "normalbiografi vs faktisk livsløp",
+            "familieansvar vs offentlig ansvar",
+            "barn som forsørget vs barn som rettighetssubjekt"
+          ]
+        },
+        {
+          "id": "his_sosialforsikring_pensjon_universalisme",
+          "title": "Sosialforsikring, pensjon og universalisme",
           "canon": {
             "thinkers": [
               {
@@ -5585,76 +6112,207 @@
                 ]
               },
               {
-                "id": "michel_foucault",
-                "name": "Michel Foucault",
-                "why": "Biopolitikk, institusjoner, normalisering og styring av liv",
+                "id": "t_h_marshall",
+                "name": "T. H. Marshall",
+                "why": "Sosialt medborgerskap og utviklingen av sivile, politiske og sosiale rettigheter",
                 "tier": "core",
                 "works": [
-                  "The History of Sexuality, Vol. 1"
+                  "Citizenship and Social Class"
                 ]
               },
               {
                 "id": "anne_lise_seip",
                 "name": "Anne-Lise Seip",
-                "why": "Norsk velferdsstatshistorie og omsorgsstatens utvikling",
+                "why": "Norsk sosialpolitikk og velferdsstatens historiske utvikling",
                 "tier": "core",
                 "works": [
                   "Sosialhjelpstaten blir til"
                 ]
               },
               {
-                "id": "gro_hagemann",
-                "name": "Gro Hagemann",
-                "why": "Kjønn, arbeid, skole og sosialhistorie i Norge",
-                "tier": "core",
+                "id": "peter_baldwin",
+                "name": "Peter Baldwin",
+                "why": "Komparativ historie om sosial solidaritet og velferdsstat",
+                "tier": "advanced",
                 "works": [
-                  "Skolefolk"
+                  "The Politics of Social Solidarity"
                 ]
               }
             ]
           },
           "emne_ids": [
-            "em_his_velferd_hverdagsliv",
-            "em_his_skole_folkedannelse",
-            "em_his_helse_omsorg_institusjoner"
+            "em_his_sosialforsikring_pensjon_universalisme"
           ],
           "best_place_types": [
-            "skole",
-            "hospital",
-            "institusjonsbygg",
-            "omsorgssted",
+            "arkiv",
+            "rådhus",
+            "forsamlingshus",
             "bydel",
-            "arkiv"
+            "institusjonsbygg"
           ],
           "avoid_place_types": [
-            "privat_sted_uten_velferdskobling"
+            "privat_sted_uten_dokumentert_velferdskobling"
           ],
           "set_phase_fit": [
             "facts",
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "institution-first",
+          "question_surface_mode": "scheme-rule-first",
           "fact_anchor_required": true,
           "history_anchor_required": true,
           "avoid_surface_forms": [
-            "Generisk velferdsstat uten konkret institusjon",
-            "Moralsk vurdering uten historisk kilde"
+            "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+            "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+            "Rettighet behandlet som identisk med faktisk tilgang",
+            "Institusjonens formål behandlet som dokumentert praksis",
+            "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
           ],
           "preferred_question_moves": [
-            "connect institution to right or obligation",
-            "compare charity and entitlement",
-            "read school or hospital as social reform",
-            "show who falls outside standard life course"
+            "identify scheme, date and responsible authority",
+            "name contribution, eligibility and benefit",
+            "compare formal coverage with excluded groups",
+            "trace shift from occupational scheme to broader entitlement"
           ],
           "comparison_pairs": [
             [
               "gosta_esping_andersen",
-              "anne_lise_seip"
+              "t_h_marshall"
             ],
             [
-              "michel_foucault",
-              "gro_hagemann"
+              "anne_lise_seip",
+              "peter_baldwin"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "anne_lise_seip"
+          ],
+          "recommended_oslo_cases": [
+            "Oslo byarkiv",
+            "Arbeidersamfunnets plass",
+            "Sagene",
+            "Oslo rådhus"
+          ],
+          "recommended_method_ids": [
+            "met_velferdsordningsanalyse",
+            "met_seriell_kildeanalyse",
+            "met_rettighets_og_tilgangsanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 3,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan forsikring, trygd og pensjon ble bygd ut, hvem som var omfattet, hvilke bidrag og vilkår som gjaldt, og når ordninger ble presentert som universelle.",
+          "critical_distinctions": [
+            "forsikring vs sosialhjelp",
+            "universell regel vs faktisk dekning",
+            "rettighet vs skjønn",
+            "ytelsesnivå vs sosial trygghet"
+          ]
+        },
+        {
+          "id": "his_boligpolitikk_materiell_velferd",
+          "title": "Boligpolitikk og materiell velferd",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "anne_lise_seip",
+                "name": "Anne-Lise Seip",
+                "why": "Norsk sosialpolitikk og velferdsstatens historiske utvikling",
+                "tier": "core",
+                "works": [
+                  "Sosialhjelpstaten blir til"
+                ]
+              },
+              {
+                "id": "harold_wilensky",
+                "name": "Harold L. Wilensky",
+                "why": "Industrialisering, sosialpolitikk og institusjonell velferdsutvikling",
+                "tier": "advanced",
+                "works": [
+                  "The Welfare State and Equality"
+                ]
+              },
+              {
+                "id": "gro_hagemann",
+                "name": "Gro Hagemann",
+                "why": "Skole, kjønn, arbeid og sosialhistorie i Norge",
+                "tier": "core",
+                "works": [
+                  "Skolefolk"
+                ]
+              },
+              {
+                "id": "robert_castel",
+                "name": "Robert Castel",
+                "why": "Sosial usikkerhet, lønnsarbeid og beskyttelsessystemer",
+                "tier": "advanced",
+                "works": [
+                  "From Manual Workers to Wage Laborers"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_boligpolitikk_materiell_velferd"
+          ],
+          "best_place_types": [
+            "boligområde",
+            "bydel",
+            "arbeiderbolig",
+            "arkiv",
+            "institusjonsbygg"
+          ],
+          "avoid_place_types": [
+            "privat_sted_uten_dokumentert_velferdskobling"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "housing-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+            "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+            "Rettighet behandlet som identisk med faktisk tilgang",
+            "Institusjonens formål behandlet som dokumentert praksis",
+            "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify dwelling, occupancy and governing standard",
+            "connect housing measure to target group",
+            "compare plan or reform with lived conditions",
+            "separate physical improvement from social security"
+          ],
+          "comparison_pairs": [
+            [
+              "anne_lise_seip",
+              "harold_wilensky"
+            ],
+            [
+              "gro_hagemann",
+              "robert_castel"
             ]
           ],
           "norwegian_thinker_ids": [
@@ -5662,32 +6320,572 @@
             "gro_hagemann"
           ],
           "recommended_oslo_cases": [
-            "Sagene skole",
-            "Oslo Hospital",
-            "Gamle Deichman på Hammersborg",
-            "Arbeidersamfunnets plass"
+            "Sagene",
+            "Torshov",
+            "Grünerløkka",
+            "Oslo byarkiv",
+            "Arbeidermuseet"
           ],
           "recommended_method_ids": [
-            "met_institusjonshistorisk_analyse",
-            "met_arkivlesning",
-            "met_mikrohistorisk_analyse",
-            "met_muntlig_historie"
+            "met_husholdsanalyse",
+            "met_seriell_kildeanalyse",
+            "met_velferdsordningsanalyse"
           ],
           "canonical_status": "canonical",
           "registry_version": "historiepensum_v4_5",
-          "min_recommended_oslo_cases": 2,
-          "min_recommended_methods": 1,
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 3,
           "case_gate_required": true,
           "method_gate_required": true,
           "theory_rotation_required": true,
           "canonical_file_role": "active",
           "generator_constraints": {
-            "min_case_count": 2,
-            "min_method_count": 1,
+            "min_case_count": 4,
+            "min_method_count": 3,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
             "rotate_theorists": true
-          }
+          },
+          "definition": "Undersøker boligstandard, trangboddhet, hygiene, kommunal boligpolitikk og hvordan materielle vilkår inngikk i historiske velferdsordninger.",
+          "critical_distinctions": [
+            "boligtype vs faktisk belegg",
+            "boligpolitikk vs byform",
+            "standardheving vs sosial inkludering",
+            "tildelt bolig vs varig trygghet"
+          ]
+        },
+        {
+          "id": "his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+          "title": "Omsorgsarbeid, kjønn og sosial reproduksjon",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "jane_lewis",
+                "name": "Jane Lewis",
+                "why": "Omsorgsregimer, familiepolitikk og kjønnet velferd",
+                "tier": "advanced",
+                "works": [
+                  "Women and Social Policies in Europe"
+                ]
+              },
+              {
+                "id": "nancy_fraser",
+                "name": "Nancy Fraser",
+                "why": "Sosial reproduksjon, omfordeling og anerkjennelse",
+                "tier": "advanced",
+                "works": [
+                  "Fortunes of Feminism"
+                ]
+              },
+              {
+                "id": "ida_blom",
+                "name": "Ida Blom",
+                "why": "Kjønns-, familie- og velferdshistorie i norsk og nordisk sammenheng",
+                "tier": "core",
+                "works": [
+                  "Det er forskjell på folk – nå som før"
+                ]
+              },
+              {
+                "id": "kari_melby",
+                "name": "Kari Melby",
+                "why": "Nordisk kjønnshistorie, familiepolitikk og velferdsstat",
+                "tier": "advanced",
+                "works": [
+                  "Inte ett ord om kärlek"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon"
+          ],
+          "best_place_types": [
+            "omsorgssted",
+            "hospital",
+            "skole",
+            "bolig",
+            "arkiv"
+          ],
+          "avoid_place_types": [
+            "privat_sted_uten_dokumentert_velferdskobling"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "care-work-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+            "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+            "Rettighet behandlet som identisk med faktisk tilgang",
+            "Institusjonens formål behandlet som dokumentert praksis",
+            "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify care task and responsible actor",
+            "separate paid service from unpaid household work",
+            "compare policy assumption with actual division of labour",
+            "trace professionalisation without erasing informal care"
+          ],
+          "comparison_pairs": [
+            [
+              "jane_lewis",
+              "nancy_fraser"
+            ],
+            [
+              "ida_blom",
+              "kari_melby"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "ida_blom",
+            "kari_melby"
+          ],
+          "recommended_oslo_cases": [
+            "Oslo Hospital",
+            "Sagene skole",
+            "Arbeidermuseet",
+            "Oslo byarkiv"
+          ],
+          "recommended_method_ids": [
+            "met_omsorgsregimeanalyse",
+            "met_husholdsanalyse",
+            "met_muntlig_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 3,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan lønnet og ulønnet omsorg ble fordelt mellom familie, marked, frivillighet og offentlig sektor, og hvordan kjønn formet ansvar, yrker og rettigheter.",
+          "critical_distinctions": [
+            "omsorgsbehov vs omsorgsarbeid",
+            "lønnet vs ulønnet omsorg",
+            "familieansvar vs offentlig ansvar",
+            "profesjonalisering vs avhengighet av uformelt arbeid"
+          ]
+        },
+        {
+          "id": "his_institusjonalisering_avinstitusjonalisering",
+          "title": "Institusjonalisering og avinstitusjonalisering",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "erving_goffman",
+                "name": "Erving Goffman",
+                "why": "Totalinstitusjoner, roller og institusjonshverdag",
+                "tier": "core",
+                "works": [
+                  "Asylums"
+                ]
+              },
+              {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "why": "Biopolitikk, normalisering og institusjonell styring av liv",
+                "tier": "core",
+                "works": [
+                  "The History of Sexuality, Vol. 1"
+                ]
+              },
+              {
+                "id": "nikolas_rose",
+                "name": "Nikolas Rose",
+                "why": "Ekspertise, styring og brukerposisjoner i moderne velferdstjenester",
+                "tier": "advanced",
+                "works": [
+                  "Powers of Freedom"
+                ]
+              },
+              {
+                "id": "anne_lise_seip",
+                "name": "Anne-Lise Seip",
+                "why": "Norsk sosialpolitikk og velferdsstatens historiske utvikling",
+                "tier": "core",
+                "works": [
+                  "Sosialhjelpstaten blir til"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_institusjonalisering_avinstitusjonalisering"
+          ],
+          "best_place_types": [
+            "institusjonsbygg",
+            "hospital",
+            "asyl",
+            "fengsel",
+            "arkiv"
+          ],
+          "avoid_place_types": [
+            "privat_sted_uten_dokumentert_velferdskobling"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "institutional-practice-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+            "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+            "Rettighet behandlet som identisk med faktisk tilgang",
+            "Institusjonens formål behandlet som dokumentert praksis",
+            "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify admission rule and authority",
+            "reconstruct everyday institutional routine",
+            "compare stated care purpose with restriction",
+            "trace closure or reform to actual living arrangements"
+          ],
+          "comparison_pairs": [
+            [
+              "erving_goffman",
+              "michel_foucault"
+            ],
+            [
+              "nikolas_rose",
+              "anne_lise_seip"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "anne_lise_seip"
+          ],
+          "recommended_oslo_cases": [
+            "Gaustad sykehus",
+            "Oslo Hospital",
+            "Botsfengselet",
+            "Oslo byarkiv"
+          ],
+          "recommended_method_ids": [
+            "met_institusjonshistorisk_analyse",
+            "met_institusjonshverdagsanalyse",
+            "met_muntlig_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 3,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker innleggelse, plassering, segregasjon og senere avinstitusjonalisering gjennom regler, hverdagspraksis, brukerhistorier og endrede rettighetsforståelser.",
+          "critical_distinctions": [
+            "institusjonsbygg vs institusjonell praksis",
+            "omsorg vs frihetsbegrensning",
+            "reformvedtak vs faktisk avinstitusjonalisering",
+            "pasient eller klientkategori vs egen stemme"
+          ]
+        },
+        {
+          "id": "his_rettighet_vilkar_tilgang",
+          "title": "Velferdsrett, vilkår og tilgang",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "t_h_marshall",
+                "name": "T. H. Marshall",
+                "why": "Sosialt medborgerskap og utviklingen av sivile, politiske og sosiale rettigheter",
+                "tier": "core",
+                "works": [
+                  "Citizenship and Social Class"
+                ]
+              },
+              {
+                "id": "amartya_sen",
+                "name": "Amartya Sen",
+                "why": "Reelle handlingsmuligheter, tilgang og forskjellen mellom formell rett og faktisk mulighet",
+                "tier": "advanced",
+                "works": [
+                  "Development as Freedom"
+                ]
+              },
+              {
+                "id": "anne_lise_seip",
+                "name": "Anne-Lise Seip",
+                "why": "Norsk sosialpolitikk og velferdsstatens historiske utvikling",
+                "tier": "core",
+                "works": [
+                  "Sosialhjelpstaten blir til"
+                ]
+              },
+              {
+                "id": "robert_castel",
+                "name": "Robert Castel",
+                "why": "Sosial usikkerhet, lønnsarbeid og beskyttelsessystemer",
+                "tier": "advanced",
+                "works": [
+                  "From Manual Workers to Wage Laborers"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_velferd_hverdagsliv"
+          ],
+          "best_place_types": [
+            "rådhus",
+            "arkiv",
+            "institusjonsbygg",
+            "skole",
+            "hospital"
+          ],
+          "avoid_place_types": [
+            "privat_sted_uten_dokumentert_velferdskobling"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "entitlement-record-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+            "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+            "Rettighet behandlet som identisk med faktisk tilgang",
+            "Institusjonens formål behandlet som dokumentert praksis",
+            "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify right, rule and decision maker",
+            "name eligibility evidence and excluded category",
+            "compare formal entitlement with actual access",
+            "trace appeal, discretion or administrative barrier"
+          ],
+          "comparison_pairs": [
+            [
+              "t_h_marshall",
+              "amartya_sen"
+            ],
+            [
+              "anne_lise_seip",
+              "robert_castel"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "anne_lise_seip"
+          ],
+          "recommended_oslo_cases": [
+            "Oslo rådhus",
+            "Oslo byarkiv",
+            "Oslo Hospital",
+            "Sagene skole"
+          ],
+          "recommended_method_ids": [
+            "met_rettighets_og_tilgangsanalyse",
+            "met_velferdsordningsanalyse",
+            "met_arkivlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 3,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan formelle velferdsrettigheter ble knyttet til vilkår, dokumentasjon, bosted, arbeid, alder eller skjønn, og om mennesker faktisk fikk tilgang til ytelsen eller tjenesten.",
+          "critical_distinctions": [
+            "rettighet vs ytelse",
+            "formell adgang vs faktisk tilgang",
+            "regelbundet vedtak vs skjønn",
+            "lik regel vs ulik konsekvens"
+          ]
+        },
+        {
+          "id": "his_bruker_tjeneste_forvaltning",
+          "title": "Bruker, tjeneste og forvaltning",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "nikolas_rose",
+                "name": "Nikolas Rose",
+                "why": "Ekspertise, styring og brukerposisjoner i moderne velferdstjenester",
+                "tier": "advanced",
+                "works": [
+                  "Powers of Freedom"
+                ]
+              },
+              {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "why": "Biopolitikk, normalisering og institusjonell styring av liv",
+                "tier": "core",
+                "works": [
+                  "The History of Sexuality, Vol. 1"
+                ]
+              },
+              {
+                "id": "amartya_sen",
+                "name": "Amartya Sen",
+                "why": "Reelle handlingsmuligheter, tilgang og forskjellen mellom formell rett og faktisk mulighet",
+                "tier": "advanced",
+                "works": [
+                  "Development as Freedom"
+                ]
+              },
+              {
+                "id": "anne_lise_seip",
+                "name": "Anne-Lise Seip",
+                "why": "Norsk sosialpolitikk og velferdsstatens historiske utvikling",
+                "tier": "core",
+                "works": [
+                  "Sosialhjelpstaten blir til"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_bruker_tjeneste_forvaltning"
+          ],
+          "best_place_types": [
+            "tjenestested",
+            "rådhus",
+            "institusjonsbygg",
+            "arkiv",
+            "skole",
+            "hospital"
+          ],
+          "avoid_place_types": [
+            "privat_sted_uten_dokumentert_velferdskobling"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "case-file-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+            "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+            "Rettighet behandlet som identisk med faktisk tilgang",
+            "Institusjonens formål behandlet som dokumentert praksis",
+            "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify request, office and case route",
+            "separate professional assessment from formal decision",
+            "trace what documentation the person had to provide",
+            "compare institutional record with user experience"
+          ],
+          "comparison_pairs": [
+            [
+              "nikolas_rose",
+              "michel_foucault"
+            ],
+            [
+              "amartya_sen",
+              "anne_lise_seip"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "anne_lise_seip"
+          ],
+          "recommended_oslo_cases": [
+            "Oslo rådhus",
+            "Oslo byarkiv",
+            "Oslo Hospital",
+            "Sagene skole"
+          ],
+          "recommended_method_ids": [
+            "met_institusjonshverdagsanalyse",
+            "met_rettighets_og_tilgangsanalyse",
+            "met_mikrohistorisk_analyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 3,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 3,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_welfare_institution_or_scheme": true,
+            "require_eligibility_or_target_group": true,
+            "require_practice_or_service": true,
+            "require_right_control_or_provision": true,
+            "require_everyday_or_life_course_consequence": true,
+            "require_source_limitation": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker møtet mellom person og velferdstjeneste gjennom søknader, journaler, saksbehandling, profesjonelle vurderinger og hverdagslige konsekvenser.",
+          "critical_distinctions": [
+            "bruker vs administrativ kategori",
+            "tjenestevedtak vs faktisk hjelp",
+            "profesjonell vurdering vs rettslig grunnlag",
+            "saksmappe vs levd erfaring"
+          ]
         }
       ]
     },

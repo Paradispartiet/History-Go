@@ -559,46 +559,124 @@
     {
       "domain_id": "his_velferd_rett_hverdagsliv",
       "label": "Velferd, rett og hverdagsliv",
-      "tagline": "Fra veldedighet til rettigheter og livsløp",
-      "status": "strong",
-      "emne_count": 3,
-      "hook_count": 1,
-      "method_count": 4,
+      "tagline": "Fra hjelp og kontroll til rettigheter, tjenester og livsløp",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
       "emne_ids": [
         "em_his_helse_omsorg_institusjoner",
         "em_his_skole_folkedannelse",
-        "em_his_velferd_hverdagsliv"
+        "em_his_velferd_hverdagsliv",
+        "em_his_fattigvesen_veldedighet_sosial_kontroll",
+        "em_his_barndom_familie_livslop",
+        "em_his_sosialforsikring_pensjon_universalisme",
+        "em_his_boligpolitikk_materiell_velferd",
+        "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+        "em_his_institusjonalisering_avinstitusjonalisering",
+        "em_his_bruker_tjeneste_forvaltning"
       ],
       "hook_ids": [
-        "his_velferd_institusjoner"
+        "his_fattigvesen_veldedighet_sosial_kontroll",
+        "his_helse_epidemi_profesjonalisering",
+        "his_skole_folkedannelse_medborgerskap",
+        "his_barndom_familie_livslop",
+        "his_sosialforsikring_pensjon_universalisme",
+        "his_boligpolitikk_materiell_velferd",
+        "his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+        "his_institusjonalisering_avinstitusjonalisering",
+        "his_rettighet_vilkar_tilgang",
+        "his_bruker_tjeneste_forvaltning"
       ],
       "method_ids": [
         "met_institusjonshistorisk_analyse",
         "met_arkivlesning",
         "met_mikrohistorisk_analyse",
-        "met_muntlig_historie"
+        "met_muntlig_historie",
+        "met_seriell_kildeanalyse",
+        "met_livslopsanalyse",
+        "met_husholdsanalyse",
+        "met_velferdsordningsanalyse",
+        "met_rettighets_og_tilgangsanalyse",
+        "met_omsorgsregimeanalyse"
       ],
       "recommended_oslo_cases": [
-        "Sagene skole",
         "Oslo Hospital",
+        "Sagene skole",
         "Gamle Deichman på Hammersborg",
-        "Arbeidersamfunnets plass"
+        "Arbeidersamfunnets plass",
+        "Oslo byarkiv",
+        "Oslo rådhus",
+        "Arbeidermuseet",
+        "Sagene",
+        "Torshov",
+        "Grünerløkka",
+        "Ullevål sykehus",
+        "Rikshospitalet",
+        "Gaustad sykehus",
+        "Prinds Christian Augusts Minde"
       ],
       "canonical_thinker_ids": [
         "gosta_esping_andersen",
         "michel_foucault",
         "anne_lise_seip",
-        "gro_hagemann"
+        "gro_hagemann",
+        "t_h_marshall",
+        "abram_de_swaan",
+        "erving_goffman",
+        "robert_castel",
+        "jane_lewis",
+        "nancy_fraser",
+        "linda_gordon",
+        "jacques_donzelot",
+        "ida_blom",
+        "ellen_schrumpf",
+        "kari_melby",
+        "bengt_sandin",
+        "peter_baldwin",
+        "nikolas_rose",
+        "harold_wilensky",
+        "amartya_sen"
       ],
       "norwegian_thinker_ids": [
         "anne_lise_seip",
-        "gro_hagemann"
+        "gro_hagemann",
+        "ida_blom",
+        "ellen_schrumpf",
+        "kari_melby"
       ],
       "canonical_status": "canonical",
       "case_anchor_required": true,
       "method_anchor_required": true,
       "source_anchor_required": true,
-      "external_claim_basis_required": true
+      "external_claim_basis_required": true,
+      "welfare_institution_or_scheme_required": true,
+      "eligibility_or_target_group_required": true,
+      "practice_or_service_required": true,
+      "right_control_or_provision_required": true,
+      "everyday_or_life_course_consequence_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "ekstern kilde eller synlig velferdsspor",
+        "navngitt institusjon, ordning, tjeneste eller ytelse",
+        "datert regel, målgruppe eller adgangsvilkår",
+        "dokumentert forvaltnings-, behandlings- eller omsorgspraksis",
+        "rettighet, plikt, kontroll, ytelse eller tjeneste",
+        "konsekvens for person, hushold, hverdagsliv eller livsløp",
+        "kontrollkilde eller sammenligningsgrunnlag",
+        "kildebegrensning",
+        "kritisk distinksjon",
+        "eventuelt teori etter at velferdskjeden er etablert"
+      ],
+      "boundary_rules": {
+        "industri_arbeid_sosialhistorie": "Bruk velferd når ordningen, tjenesten eller rettigheten er hovedkjeden; arbeidsforhold og produksjon som hovedårsak hører til arbeidshistorie.",
+        "politikk": "Historisk gjennomføring og virkning av velferdsordninger hører hit; samtidige partier, programmer og politiske strategier som hovedsak hører til politikk.",
+        "makt_stat_institusjoner": "Bruk velferd når tjeneste, målgruppe og hverdagskonsekvens bærer spørsmålet; mandat, myndighet og beslutningskjede alene hører til makt og stat.",
+        "byhistorie_stedsendring": "Bolig som velferd, tildeling og livsvilkår hører hit; arealbruk, sanering og byform uten velferdskjede hører til byhistorie.",
+        "vitenskap_medisin": "Helseinstitusjon, adgang og sosial konsekvens hører hit; medisinsk kunnskap, diagnose og behandling som hovedsak hører til vitenskap.",
+        "kjonn_familie_livslop": "Omsorg og familie hører hit når velferdsordning eller institusjon er årsakskjeden; normer, slektskap, seksualitet og kjønnsrelasjoner som hovedsak hører til kjønn/familie."
+      }
     },
     {
       "domain_id": "his_migrasjon_minoritet_tilhorighet",

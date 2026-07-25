@@ -6123,13 +6123,13 @@
   },
   {
     "emne_id": "em_his_helse_omsorg_institusjoner",
-    "title": "Helse, omsorg og institusjoner",
+    "title": "Helse, epidemi og profesjonalisering",
     "mappings": [
       {
         "fagkart_kategori": "his_velferd_rett_hverdagsliv",
         "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
-        "topic_hook": "his_velferd_institusjoner",
-        "topic_hook_tittel": "Velferdsinstitusjoner og livsløp",
+        "topic_hook": "his_helse_epidemi_profesjonalisering",
+        "topic_hook_tittel": "Helse, epidemi og profesjonalisering",
         "mapping_tier": "primary",
         "priority_score": 10,
         "set_phase_fit": [
@@ -6137,160 +6137,300 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-first",
+        "question_surface_mode": "institution-record-first",
         "history_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
+        "use_note": "Primær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
         "tenkere": [
-          "Gøsta Esping-Andersen",
           "Michel Foucault",
           "Anne-Lise Seip",
-          "Gro Hagemann"
+          "Ida Blom",
+          "Harold L. Wilensky"
         ],
         "thinker_ids": [
-          "gosta_esping_andersen",
           "michel_foucault",
           "anne_lise_seip",
-          "gro_hagemann"
+          "ida_blom",
+          "harold_wilensky"
         ],
         "norwegian_thinker_ids": [
           "anne_lise_seip",
-          "gro_hagemann"
+          "ida_blom"
         ],
         "norwegian_thinkers": [
           "Anne-Lise Seip",
-          "Gro Hagemann"
+          "Ida Blom"
         ],
         "comparison_pairs": [
           [
-            "gosta_esping_andersen",
+            "michel_foucault",
             "anne_lise_seip"
           ],
           [
-            "michel_foucault",
-            "gro_hagemann"
+            "ida_blom",
+            "harold_wilensky"
           ]
         ],
         "preferred_question_moves": [
-          "connect institution to right or obligation",
-          "compare charity and entitlement",
-          "read school or hospital as social reform",
-          "show who falls outside standard life course"
+          "date the health problem and institutional response",
+          "identify profession, mandate and target group",
+          "compare formal treatment regime with patient experience",
+          "separate medical knowledge from welfare administration"
         ],
         "best_place_types": [
-          "skole",
           "hospital",
+          "sykehus",
           "institusjonsbygg",
-          "omsorgssted",
-          "bydel",
-          "arkiv"
+          "arkiv",
+          "helseinstitusjon"
         ],
         "avoid_place_types": [
-          "privat_sted_uten_velferdskobling"
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
         ],
         "anti_patterns": [
-          "Generisk velferdsstat uten konkret institusjon",
-          "Moralsk vurdering uten historisk kilde",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Sagene skole",
           "Oslo Hospital",
-          "Gamle Deichman på Hammersborg",
-          "Arbeidersamfunnets plass"
+          "Ullevål sykehus",
+          "Rikshospitalet",
+          "Oslo byarkiv"
         ],
         "recommended_method_ids": [
           "met_institusjonshistorisk_analyse",
-          "met_arkivlesning",
-          "met_mikrohistorisk_analyse",
+          "met_seriell_kildeanalyse",
+          "met_velferdsordningsanalyse"
+        ],
+        "critical_distinctions": [
+          "sykdomsutbrudd vs institusjonell respons",
+          "medisinsk behandling vs sosial omsorg",
+          "profesjonell standard vs lokal praksis",
+          "pasientkategori vs menneskelig erfaring"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      },
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_institusjonalisering_avinstitusjonalisering",
+        "topic_hook_tittel": "Institusjonalisering og avinstitusjonalisering",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "institution-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "Erving Goffman",
+          "Michel Foucault",
+          "Nikolas Rose",
+          "Anne-Lise Seip"
+        ],
+        "thinker_ids": [
+          "erving_goffman",
+          "michel_foucault",
+          "nikolas_rose",
+          "anne_lise_seip"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_lise_seip"
+        ],
+        "norwegian_thinkers": [
+          "Anne-Lise Seip"
+        ],
+        "comparison_pairs": [
+          [
+            "erving_goffman",
+            "michel_foucault"
+          ],
+          [
+            "nikolas_rose",
+            "anne_lise_seip"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify admission rule and authority",
+          "reconstruct everyday institutional routine",
+          "compare stated care purpose with restriction",
+          "trace closure or reform to actual living arrangements"
+        ],
+        "best_place_types": [
+          "institusjonsbygg",
+          "hospital",
+          "asyl",
+          "fengsel",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Gaustad sykehus",
+          "Oslo Hospital",
+          "Botsfengselet",
+          "Oslo byarkiv"
+        ],
+        "recommended_method_ids": [
+          "met_institusjonshistorisk_analyse",
+          "met_institusjonshverdagsanalyse",
           "met_muntlig_historie"
-        ]
+        ],
+        "critical_distinctions": [
+          "institusjonsbygg vs institusjonell praksis",
+          "omsorg vs frihetsbegrensning",
+          "reformvedtak vs faktisk avinstitusjonalisering",
+          "pasient eller klientkategori vs egen stemme"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
       }
     ],
-    "mapping_status": "tiered+canonical",
+    "mapping_status": "two-lane+canonical",
     "primary_hooks": [
-      "his_velferd_institusjoner"
+      "his_helse_epidemi_profesjonalisering"
     ],
-    "secondary_hooks": [],
+    "secondary_hooks": [
+      "his_institusjonalisering_avinstitusjonalisering"
+    ],
     "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane krever egen dokumentert påstand og må ikke erstatte ordningens grunnfakta.",
     "history_anchor_required": true,
     "source_anchor_required": true,
     "external_claim_basis_required": true,
     "canonical_thinkers": [
-      "Gøsta Esping-Andersen",
       "Michel Foucault",
       "Anne-Lise Seip",
-      "Gro Hagemann"
+      "Ida Blom",
+      "Harold L. Wilensky",
+      "Erving Goffman",
+      "Nikolas Rose"
     ],
     "canonical_thinker_ids": [
-      "gosta_esping_andersen",
       "michel_foucault",
       "anne_lise_seip",
-      "gro_hagemann"
+      "ida_blom",
+      "harold_wilensky",
+      "erving_goffman",
+      "nikolas_rose"
     ],
     "norwegian_thinker_ids": [
       "anne_lise_seip",
-      "gro_hagemann"
+      "ida_blom"
     ],
     "norwegian_thinkers": [
       "Anne-Lise Seip",
-      "Gro Hagemann"
+      "Ida Blom"
     ],
-    "theory_diversity_score": 4,
+    "theory_diversity_score": 6,
     "has_norwegian_theory_path": true,
     "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "generator_theory_note": "Bruk teori først etter institusjon, målgruppe, adgangsvilkår, praksis og konsekvens.",
     "recommended_oslo_cases": [
-      "Sagene skole",
       "Oslo Hospital",
-      "Gamle Deichman på Hammersborg",
-      "Arbeidersamfunnets plass"
+      "Ullevål sykehus",
+      "Rikshospitalet",
+      "Oslo byarkiv"
     ],
     "recommended_method_ids": [
       "met_institusjonshistorisk_analyse",
-      "met_arkivlesning",
-      "met_mikrohistorisk_analyse",
-      "met_muntlig_historie"
+      "met_seriell_kildeanalyse",
+      "met_velferdsordningsanalyse",
+      "met_arkivlesning"
     ],
     "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "overlap_resolution_note": "Avgrens mot arbeid, politikk, medisin, byhistorie og stat ved å identifisere hva som bærer årsakskjeden.",
     "theory_overreach_risk": "medium",
     "progression_stage": "full_ladder",
     "theory_spread_priority": "spread_more",
     "canonical_status": "canonical",
     "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
+    "min_recommended_oslo_cases": 4,
     "case_gate_required": true,
     "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
+    "recommended_max_primary_hooks": 2,
     "generator_risk_mode": "guarded",
     "canonical_file_role": "active",
     "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
-      "risk_mode": "guarded",
-      "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
+      "min_case_count": 4,
+      "min_method_count": 3,
+      "require_fact_or_history_anchor": true,
+      "require_external_claim_basis": true,
+      "require_welfare_institution_or_scheme": true,
+      "require_eligibility_or_target_group": true,
+      "require_practice_or_service": true,
+      "require_right_control_or_provision": true,
+      "require_everyday_or_life_course_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true,
+      "rotate_theorists": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
   },
   {
     "emne_id": "em_his_skole_folkedannelse",
-    "title": "Skole og folkedannelse",
+    "title": "Skole, folkedannelse og medborgerskap",
     "mappings": [
       {
         "fagkart_kategori": "his_velferd_rett_hverdagsliv",
         "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
-        "topic_hook": "his_velferd_institusjoner",
-        "topic_hook_tittel": "Velferdsinstitusjoner og livsløp",
+        "topic_hook": "his_skole_folkedannelse_medborgerskap",
+        "topic_hook_tittel": "Skole, folkedannelse og medborgerskap",
         "mapping_tier": "primary",
         "priority_score": 10,
         "set_phase_fit": [
@@ -6298,160 +6438,304 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-first",
+        "question_surface_mode": "school-record-first",
         "history_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
+        "use_note": "Primær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
         "tenkere": [
-          "Gøsta Esping-Andersen",
-          "Michel Foucault",
-          "Anne-Lise Seip",
-          "Gro Hagemann"
+          "Gro Hagemann",
+          "T. H. Marshall",
+          "Bengt Sandin",
+          "Ellen Schrumpf"
         ],
         "thinker_ids": [
-          "gosta_esping_andersen",
-          "michel_foucault",
-          "anne_lise_seip",
-          "gro_hagemann"
+          "gro_hagemann",
+          "t_h_marshall",
+          "bengt_sandin",
+          "ellen_schrumpf"
         ],
         "norwegian_thinker_ids": [
-          "anne_lise_seip",
-          "gro_hagemann"
+          "gro_hagemann",
+          "ellen_schrumpf"
         ],
         "norwegian_thinkers": [
-          "Anne-Lise Seip",
-          "Gro Hagemann"
+          "Gro Hagemann",
+          "Ellen Schrumpf"
         ],
         "comparison_pairs": [
           [
-            "gosta_esping_andersen",
-            "anne_lise_seip"
+            "gro_hagemann",
+            "t_h_marshall"
           ],
           [
-            "michel_foucault",
-            "gro_hagemann"
+            "bengt_sandin",
+            "ellen_schrumpf"
           ]
         ],
         "preferred_question_moves": [
-          "connect institution to right or obligation",
-          "compare charity and entitlement",
-          "read school or hospital as social reform",
-          "show who falls outside standard life course"
+          "identify school rule, curriculum or admission condition",
+          "name pupils, teachers and governing authority",
+          "compare stated educational aim with attendance and exclusion",
+          "connect schooling to later civic participation without assuming causality"
         ],
         "best_place_types": [
           "skole",
-          "hospital",
+          "bibliotek",
+          "forsamlingshus",
+          "arkiv",
+          "institusjonsbygg"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Sagene skole",
+          "Gamle Deichman på Hammersborg",
+          "Arbeidersamfunnets plass",
+          "Oslo byarkiv"
+        ],
+        "recommended_method_ids": [
+          "met_institusjonshistorisk_analyse",
+          "met_seriell_kildeanalyse",
+          "met_livslopsanalyse"
+        ],
+        "critical_distinctions": [
+          "skoleplikt vs faktisk skolegang",
+          "leseferdighet vs medborgerskap",
+          "formelt tilbud vs reell tilgang",
+          "folkedannelse vs sosial disiplin"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      },
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_barndom_familie_livslop",
+        "topic_hook_tittel": "Barndom, familie og livsløp",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "school-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "Ellen Schrumpf",
+          "Bengt Sandin",
+          "Ida Blom",
+          "Jacques Donzelot"
+        ],
+        "thinker_ids": [
+          "ellen_schrumpf",
+          "bengt_sandin",
+          "ida_blom",
+          "jacques_donzelot"
+        ],
+        "norwegian_thinker_ids": [
+          "ellen_schrumpf",
+          "ida_blom"
+        ],
+        "norwegian_thinkers": [
+          "Ellen Schrumpf",
+          "Ida Blom"
+        ],
+        "comparison_pairs": [
+          [
+            "ellen_schrumpf",
+            "bengt_sandin"
+          ],
+          [
+            "ida_blom",
+            "jacques_donzelot"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify life stage and household position",
+          "trace institutional intervention across time",
+          "compare normative life course with actual biography",
+          "separate age category from lived dependency"
+        ],
+        "best_place_types": [
+          "skole",
+          "bolig",
           "institusjonsbygg",
           "omsorgssted",
-          "bydel",
           "arkiv"
         ],
         "avoid_place_types": [
-          "privat_sted_uten_velferdskobling"
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
         ],
         "anti_patterns": [
-          "Generisk velferdsstat uten konkret institusjon",
-          "Moralsk vurdering uten historisk kilde",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
           "Sagene skole",
           "Oslo Hospital",
-          "Gamle Deichman på Hammersborg",
-          "Arbeidersamfunnets plass"
+          "Arbeidermuseet",
+          "Oslo byarkiv"
         ],
         "recommended_method_ids": [
-          "met_institusjonshistorisk_analyse",
-          "met_arkivlesning",
-          "met_mikrohistorisk_analyse",
+          "met_livslopsanalyse",
+          "met_husholdsanalyse",
           "met_muntlig_historie"
-        ]
+        ],
+        "critical_distinctions": [
+          "alder vs livsfase",
+          "normalbiografi vs faktisk livsløp",
+          "familieansvar vs offentlig ansvar",
+          "barn som forsørget vs barn som rettighetssubjekt"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
       }
     ],
-    "mapping_status": "tiered+canonical",
+    "mapping_status": "two-lane+canonical",
     "primary_hooks": [
-      "his_velferd_institusjoner"
+      "his_skole_folkedannelse_medborgerskap"
     ],
-    "secondary_hooks": [],
+    "secondary_hooks": [
+      "his_barndom_familie_livslop"
+    ],
     "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane krever egen dokumentert påstand og må ikke erstatte ordningens grunnfakta.",
     "history_anchor_required": true,
     "source_anchor_required": true,
     "external_claim_basis_required": true,
     "canonical_thinkers": [
-      "Gøsta Esping-Andersen",
-      "Michel Foucault",
-      "Anne-Lise Seip",
-      "Gro Hagemann"
+      "Gro Hagemann",
+      "T. H. Marshall",
+      "Bengt Sandin",
+      "Ellen Schrumpf",
+      "Ida Blom",
+      "Jacques Donzelot"
     ],
     "canonical_thinker_ids": [
-      "gosta_esping_andersen",
-      "michel_foucault",
-      "anne_lise_seip",
-      "gro_hagemann"
+      "gro_hagemann",
+      "t_h_marshall",
+      "bengt_sandin",
+      "ellen_schrumpf",
+      "ida_blom",
+      "jacques_donzelot"
     ],
     "norwegian_thinker_ids": [
-      "anne_lise_seip",
-      "gro_hagemann"
+      "gro_hagemann",
+      "ellen_schrumpf",
+      "ida_blom"
     ],
     "norwegian_thinkers": [
-      "Anne-Lise Seip",
-      "Gro Hagemann"
+      "Gro Hagemann",
+      "Ellen Schrumpf",
+      "Ida Blom"
     ],
-    "theory_diversity_score": 4,
+    "theory_diversity_score": 6,
     "has_norwegian_theory_path": true,
     "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "generator_theory_note": "Bruk teori først etter institusjon, målgruppe, adgangsvilkår, praksis og konsekvens.",
     "recommended_oslo_cases": [
       "Sagene skole",
-      "Oslo Hospital",
       "Gamle Deichman på Hammersborg",
-      "Arbeidersamfunnets plass"
+      "Arbeidersamfunnets plass",
+      "Oslo byarkiv"
     ],
     "recommended_method_ids": [
       "met_institusjonshistorisk_analyse",
-      "met_arkivlesning",
-      "met_mikrohistorisk_analyse",
-      "met_muntlig_historie"
+      "met_seriell_kildeanalyse",
+      "met_livslopsanalyse",
+      "met_arkivlesning"
     ],
     "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "overlap_resolution_note": "Avgrens mot arbeid, politikk, medisin, byhistorie og stat ved å identifisere hva som bærer årsakskjeden.",
     "theory_overreach_risk": "medium",
     "progression_stage": "full_ladder",
     "theory_spread_priority": "spread_more",
     "canonical_status": "canonical",
     "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
+    "min_recommended_oslo_cases": 4,
     "case_gate_required": true,
     "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
+    "recommended_max_primary_hooks": 2,
     "generator_risk_mode": "guarded",
     "canonical_file_role": "active",
     "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
-      "risk_mode": "guarded",
-      "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
+      "min_case_count": 4,
+      "min_method_count": 3,
+      "require_fact_or_history_anchor": true,
+      "require_external_claim_basis": true,
+      "require_welfare_institution_or_scheme": true,
+      "require_eligibility_or_target_group": true,
+      "require_practice_or_service": true,
+      "require_right_control_or_provision": true,
+      "require_everyday_or_life_course_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true,
+      "rotate_theorists": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
   },
   {
     "emne_id": "em_his_velferd_hverdagsliv",
-    "title": "Velferd og hverdagsliv",
+    "title": "Velferdsrett, vilkår og tilgang",
     "mappings": [
       {
         "fagkart_kategori": "his_velferd_rett_hverdagsliv",
         "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
-        "topic_hook": "his_velferd_institusjoner",
-        "topic_hook_tittel": "Velferdsinstitusjoner og livsløp",
+        "topic_hook": "his_rettighet_vilkar_tilgang",
+        "topic_hook_tittel": "Velferdsrett, vilkår og tilgang",
         "mapping_tier": "primary",
         "priority_score": 10,
         "set_phase_fit": [
@@ -6459,24 +6743,1223 @@
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "institution-first",
+        "question_surface_mode": "entitlement-record-first",
         "history_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
+        "use_note": "Primær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "T. H. Marshall",
+          "Amartya Sen",
+          "Anne-Lise Seip",
+          "Robert Castel"
+        ],
+        "thinker_ids": [
+          "t_h_marshall",
+          "amartya_sen",
+          "anne_lise_seip",
+          "robert_castel"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_lise_seip"
+        ],
+        "norwegian_thinkers": [
+          "Anne-Lise Seip"
+        ],
+        "comparison_pairs": [
+          [
+            "t_h_marshall",
+            "amartya_sen"
+          ],
+          [
+            "anne_lise_seip",
+            "robert_castel"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify right, rule and decision maker",
+          "name eligibility evidence and excluded category",
+          "compare formal entitlement with actual access",
+          "trace appeal, discretion or administrative barrier"
+        ],
+        "best_place_types": [
+          "rådhus",
+          "arkiv",
+          "institusjonsbygg",
+          "skole",
+          "hospital"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Oslo rådhus",
+          "Oslo byarkiv",
+          "Oslo Hospital",
+          "Sagene skole"
+        ],
+        "recommended_method_ids": [
+          "met_rettighets_og_tilgangsanalyse",
+          "met_velferdsordningsanalyse",
+          "met_arkivlesning"
+        ],
+        "critical_distinctions": [
+          "rettighet vs ytelse",
+          "formell adgang vs faktisk tilgang",
+          "regelbundet vedtak vs skjønn",
+          "lik regel vs ulik konsekvens"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      },
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_bruker_tjeneste_forvaltning",
+        "topic_hook_tittel": "Bruker, tjeneste og forvaltning",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "entitlement-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "Nikolas Rose",
+          "Michel Foucault",
+          "Amartya Sen",
+          "Anne-Lise Seip"
+        ],
+        "thinker_ids": [
+          "nikolas_rose",
+          "michel_foucault",
+          "amartya_sen",
+          "anne_lise_seip"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_lise_seip"
+        ],
+        "norwegian_thinkers": [
+          "Anne-Lise Seip"
+        ],
+        "comparison_pairs": [
+          [
+            "nikolas_rose",
+            "michel_foucault"
+          ],
+          [
+            "amartya_sen",
+            "anne_lise_seip"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify request, office and case route",
+          "separate professional assessment from formal decision",
+          "trace what documentation the person had to provide",
+          "compare institutional record with user experience"
+        ],
+        "best_place_types": [
+          "tjenestested",
+          "rådhus",
+          "institusjonsbygg",
+          "arkiv",
+          "skole",
+          "hospital"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Oslo rådhus",
+          "Oslo byarkiv",
+          "Oslo Hospital",
+          "Sagene skole"
+        ],
+        "recommended_method_ids": [
+          "met_institusjonshverdagsanalyse",
+          "met_rettighets_og_tilgangsanalyse",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "bruker vs administrativ kategori",
+          "tjenestevedtak vs faktisk hjelp",
+          "profesjonell vurdering vs rettslig grunnlag",
+          "saksmappe vs levd erfaring"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      }
+    ],
+    "mapping_status": "two-lane+canonical",
+    "primary_hooks": [
+      "his_rettighet_vilkar_tilgang"
+    ],
+    "secondary_hooks": [
+      "his_bruker_tjeneste_forvaltning"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane krever egen dokumentert påstand og må ikke erstatte ordningens grunnfakta.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "T. H. Marshall",
+      "Amartya Sen",
+      "Anne-Lise Seip",
+      "Robert Castel",
+      "Nikolas Rose",
+      "Michel Foucault"
+    ],
+    "canonical_thinker_ids": [
+      "t_h_marshall",
+      "amartya_sen",
+      "anne_lise_seip",
+      "robert_castel",
+      "nikolas_rose",
+      "michel_foucault"
+    ],
+    "norwegian_thinker_ids": [
+      "anne_lise_seip"
+    ],
+    "norwegian_thinkers": [
+      "Anne-Lise Seip"
+    ],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter institusjon, målgruppe, adgangsvilkår, praksis og konsekvens.",
+    "recommended_oslo_cases": [
+      "Oslo rådhus",
+      "Oslo byarkiv",
+      "Oslo Hospital",
+      "Sagene skole"
+    ],
+    "recommended_method_ids": [
+      "met_rettighets_og_tilgangsanalyse",
+      "met_velferdsordningsanalyse",
+      "met_arkivlesning",
+      "met_mikrohistorisk_analyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens mot arbeid, politikk, medisin, byhistorie og stat ved å identifisere hva som bærer årsakskjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 3,
+      "require_fact_or_history_anchor": true,
+      "require_external_claim_basis": true,
+      "require_welfare_institution_or_scheme": true,
+      "require_eligibility_or_target_group": true,
+      "require_practice_or_service": true,
+      "require_right_control_or_provision": true,
+      "require_everyday_or_life_course_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true,
+      "rotate_theorists": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_fattigvesen_veldedighet_sosial_kontroll",
+    "title": "Fattigvesen, veldedighet og sosial kontroll",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_fattigvesen_veldedighet_sosial_kontroll",
+        "topic_hook_tittel": "Fattigvesen, veldedighet og sosial kontroll",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "case-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "Anne-Lise Seip",
+          "Abram de Swaan",
+          "Michel Foucault",
+          "Linda Gordon"
+        ],
+        "thinker_ids": [
+          "anne_lise_seip",
+          "abram_de_swaan",
+          "michel_foucault",
+          "linda_gordon"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_lise_seip"
+        ],
+        "norwegian_thinkers": [
+          "Anne-Lise Seip"
+        ],
+        "comparison_pairs": [
+          [
+            "anne_lise_seip",
+            "abram_de_swaan"
+          ],
+          [
+            "michel_foucault",
+            "linda_gordon"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify the responsible institution and rule",
+          "name the recipient category and eligibility test",
+          "compare declared relief with disciplinary practice",
+          "trace transition from charity to public entitlement"
+        ],
+        "best_place_types": [
+          "hospital",
+          "fattighus",
+          "institusjonsbygg",
+          "arkiv",
+          "omsorgssted"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Oslo Hospital",
+          "Prinds Christian Augusts Minde",
+          "Oslo byarkiv",
+          "Arbeidersamfunnets plass"
+        ],
+        "recommended_method_ids": [
+          "met_arkivlesning",
+          "met_velferdsordningsanalyse",
+          "met_seriell_kildeanalyse"
+        ],
+        "critical_distinctions": [
+          "veldedighet vs rettighet",
+          "hjelp vs kontroll",
+          "formell kategori vs levd situasjon",
+          "institusjonens formål vs faktisk praksis"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      },
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_rettighet_vilkar_tilgang",
+        "topic_hook_tittel": "Velferdsrett, vilkår og tilgang",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "case-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "T. H. Marshall",
+          "Amartya Sen",
+          "Anne-Lise Seip",
+          "Robert Castel"
+        ],
+        "thinker_ids": [
+          "t_h_marshall",
+          "amartya_sen",
+          "anne_lise_seip",
+          "robert_castel"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_lise_seip"
+        ],
+        "norwegian_thinkers": [
+          "Anne-Lise Seip"
+        ],
+        "comparison_pairs": [
+          [
+            "t_h_marshall",
+            "amartya_sen"
+          ],
+          [
+            "anne_lise_seip",
+            "robert_castel"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify right, rule and decision maker",
+          "name eligibility evidence and excluded category",
+          "compare formal entitlement with actual access",
+          "trace appeal, discretion or administrative barrier"
+        ],
+        "best_place_types": [
+          "rådhus",
+          "arkiv",
+          "institusjonsbygg",
+          "skole",
+          "hospital"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Oslo rådhus",
+          "Oslo byarkiv",
+          "Oslo Hospital",
+          "Sagene skole"
+        ],
+        "recommended_method_ids": [
+          "met_rettighets_og_tilgangsanalyse",
+          "met_velferdsordningsanalyse",
+          "met_arkivlesning"
+        ],
+        "critical_distinctions": [
+          "rettighet vs ytelse",
+          "formell adgang vs faktisk tilgang",
+          "regelbundet vedtak vs skjønn",
+          "lik regel vs ulik konsekvens"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      }
+    ],
+    "mapping_status": "two-lane+canonical",
+    "primary_hooks": [
+      "his_fattigvesen_veldedighet_sosial_kontroll"
+    ],
+    "secondary_hooks": [
+      "his_rettighet_vilkar_tilgang"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane krever egen dokumentert påstand og må ikke erstatte ordningens grunnfakta.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Anne-Lise Seip",
+      "Abram de Swaan",
+      "Michel Foucault",
+      "Linda Gordon",
+      "T. H. Marshall",
+      "Amartya Sen",
+      "Robert Castel"
+    ],
+    "canonical_thinker_ids": [
+      "anne_lise_seip",
+      "abram_de_swaan",
+      "michel_foucault",
+      "linda_gordon",
+      "t_h_marshall",
+      "amartya_sen",
+      "robert_castel"
+    ],
+    "norwegian_thinker_ids": [
+      "anne_lise_seip"
+    ],
+    "norwegian_thinkers": [
+      "Anne-Lise Seip"
+    ],
+    "theory_diversity_score": 7,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter institusjon, målgruppe, adgangsvilkår, praksis og konsekvens.",
+    "recommended_oslo_cases": [
+      "Oslo Hospital",
+      "Prinds Christian Augusts Minde",
+      "Oslo byarkiv",
+      "Arbeidersamfunnets plass"
+    ],
+    "recommended_method_ids": [
+      "met_arkivlesning",
+      "met_velferdsordningsanalyse",
+      "met_seriell_kildeanalyse",
+      "met_mikrohistorisk_analyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens mot arbeid, politikk, medisin, byhistorie og stat ved å identifisere hva som bærer årsakskjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 3,
+      "require_fact_or_history_anchor": true,
+      "require_external_claim_basis": true,
+      "require_welfare_institution_or_scheme": true,
+      "require_eligibility_or_target_group": true,
+      "require_practice_or_service": true,
+      "require_right_control_or_provision": true,
+      "require_everyday_or_life_course_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true,
+      "rotate_theorists": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_barndom_familie_livslop",
+    "title": "Barndom, familie og livsløp",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_barndom_familie_livslop",
+        "topic_hook_tittel": "Barndom, familie og livsløp",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "life-course-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "Ellen Schrumpf",
+          "Bengt Sandin",
+          "Ida Blom",
+          "Jacques Donzelot"
+        ],
+        "thinker_ids": [
+          "ellen_schrumpf",
+          "bengt_sandin",
+          "ida_blom",
+          "jacques_donzelot"
+        ],
+        "norwegian_thinker_ids": [
+          "ellen_schrumpf",
+          "ida_blom"
+        ],
+        "norwegian_thinkers": [
+          "Ellen Schrumpf",
+          "Ida Blom"
+        ],
+        "comparison_pairs": [
+          [
+            "ellen_schrumpf",
+            "bengt_sandin"
+          ],
+          [
+            "ida_blom",
+            "jacques_donzelot"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify life stage and household position",
+          "trace institutional intervention across time",
+          "compare normative life course with actual biography",
+          "separate age category from lived dependency"
+        ],
+        "best_place_types": [
+          "skole",
+          "bolig",
+          "institusjonsbygg",
+          "omsorgssted",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Sagene skole",
+          "Oslo Hospital",
+          "Arbeidermuseet",
+          "Oslo byarkiv"
+        ],
+        "recommended_method_ids": [
+          "met_livslopsanalyse",
+          "met_husholdsanalyse",
+          "met_muntlig_historie"
+        ],
+        "critical_distinctions": [
+          "alder vs livsfase",
+          "normalbiografi vs faktisk livsløp",
+          "familieansvar vs offentlig ansvar",
+          "barn som forsørget vs barn som rettighetssubjekt"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      },
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_skole_folkedannelse_medborgerskap",
+        "topic_hook_tittel": "Skole, folkedannelse og medborgerskap",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "life-course-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "Gro Hagemann",
+          "T. H. Marshall",
+          "Bengt Sandin",
+          "Ellen Schrumpf"
+        ],
+        "thinker_ids": [
+          "gro_hagemann",
+          "t_h_marshall",
+          "bengt_sandin",
+          "ellen_schrumpf"
+        ],
+        "norwegian_thinker_ids": [
+          "gro_hagemann",
+          "ellen_schrumpf"
+        ],
+        "norwegian_thinkers": [
+          "Gro Hagemann",
+          "Ellen Schrumpf"
+        ],
+        "comparison_pairs": [
+          [
+            "gro_hagemann",
+            "t_h_marshall"
+          ],
+          [
+            "bengt_sandin",
+            "ellen_schrumpf"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify school rule, curriculum or admission condition",
+          "name pupils, teachers and governing authority",
+          "compare stated educational aim with attendance and exclusion",
+          "connect schooling to later civic participation without assuming causality"
+        ],
+        "best_place_types": [
+          "skole",
+          "bibliotek",
+          "forsamlingshus",
+          "arkiv",
+          "institusjonsbygg"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Sagene skole",
+          "Gamle Deichman på Hammersborg",
+          "Arbeidersamfunnets plass",
+          "Oslo byarkiv"
+        ],
+        "recommended_method_ids": [
+          "met_institusjonshistorisk_analyse",
+          "met_seriell_kildeanalyse",
+          "met_livslopsanalyse"
+        ],
+        "critical_distinctions": [
+          "skoleplikt vs faktisk skolegang",
+          "leseferdighet vs medborgerskap",
+          "formelt tilbud vs reell tilgang",
+          "folkedannelse vs sosial disiplin"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      }
+    ],
+    "mapping_status": "two-lane+canonical",
+    "primary_hooks": [
+      "his_barndom_familie_livslop"
+    ],
+    "secondary_hooks": [
+      "his_skole_folkedannelse_medborgerskap"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane krever egen dokumentert påstand og må ikke erstatte ordningens grunnfakta.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Ellen Schrumpf",
+      "Bengt Sandin",
+      "Ida Blom",
+      "Jacques Donzelot",
+      "Gro Hagemann",
+      "T. H. Marshall"
+    ],
+    "canonical_thinker_ids": [
+      "ellen_schrumpf",
+      "bengt_sandin",
+      "ida_blom",
+      "jacques_donzelot",
+      "gro_hagemann",
+      "t_h_marshall"
+    ],
+    "norwegian_thinker_ids": [
+      "ellen_schrumpf",
+      "ida_blom",
+      "gro_hagemann"
+    ],
+    "norwegian_thinkers": [
+      "Ellen Schrumpf",
+      "Ida Blom",
+      "Gro Hagemann"
+    ],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter institusjon, målgruppe, adgangsvilkår, praksis og konsekvens.",
+    "recommended_oslo_cases": [
+      "Sagene skole",
+      "Oslo Hospital",
+      "Arbeidermuseet",
+      "Oslo byarkiv"
+    ],
+    "recommended_method_ids": [
+      "met_livslopsanalyse",
+      "met_husholdsanalyse",
+      "met_muntlig_historie",
+      "met_seriell_kildeanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens mot arbeid, politikk, medisin, byhistorie og stat ved å identifisere hva som bærer årsakskjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 3,
+      "require_fact_or_history_anchor": true,
+      "require_external_claim_basis": true,
+      "require_welfare_institution_or_scheme": true,
+      "require_eligibility_or_target_group": true,
+      "require_practice_or_service": true,
+      "require_right_control_or_provision": true,
+      "require_everyday_or_life_course_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true,
+      "rotate_theorists": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_sosialforsikring_pensjon_universalisme",
+    "title": "Sosialforsikring, pensjon og universalisme",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_sosialforsikring_pensjon_universalisme",
+        "topic_hook_tittel": "Sosialforsikring, pensjon og universalisme",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "scheme-rule-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
         "tenkere": [
           "Gøsta Esping-Andersen",
-          "Michel Foucault",
+          "T. H. Marshall",
           "Anne-Lise Seip",
-          "Gro Hagemann"
+          "Peter Baldwin"
         ],
         "thinker_ids": [
           "gosta_esping_andersen",
-          "michel_foucault",
+          "t_h_marshall",
           "anne_lise_seip",
-          "gro_hagemann"
+          "peter_baldwin"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_lise_seip"
+        ],
+        "norwegian_thinkers": [
+          "Anne-Lise Seip"
+        ],
+        "comparison_pairs": [
+          [
+            "gosta_esping_andersen",
+            "t_h_marshall"
+          ],
+          [
+            "anne_lise_seip",
+            "peter_baldwin"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify scheme, date and responsible authority",
+          "name contribution, eligibility and benefit",
+          "compare formal coverage with excluded groups",
+          "trace shift from occupational scheme to broader entitlement"
+        ],
+        "best_place_types": [
+          "arkiv",
+          "rådhus",
+          "forsamlingshus",
+          "bydel",
+          "institusjonsbygg"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Oslo byarkiv",
+          "Arbeidersamfunnets plass",
+          "Sagene",
+          "Oslo rådhus"
+        ],
+        "recommended_method_ids": [
+          "met_velferdsordningsanalyse",
+          "met_seriell_kildeanalyse",
+          "met_rettighets_og_tilgangsanalyse"
+        ],
+        "critical_distinctions": [
+          "forsikring vs sosialhjelp",
+          "universell regel vs faktisk dekning",
+          "rettighet vs skjønn",
+          "ytelsesnivå vs sosial trygghet"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      },
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_rettighet_vilkar_tilgang",
+        "topic_hook_tittel": "Velferdsrett, vilkår og tilgang",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "scheme-rule-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "T. H. Marshall",
+          "Amartya Sen",
+          "Anne-Lise Seip",
+          "Robert Castel"
+        ],
+        "thinker_ids": [
+          "t_h_marshall",
+          "amartya_sen",
+          "anne_lise_seip",
+          "robert_castel"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_lise_seip"
+        ],
+        "norwegian_thinkers": [
+          "Anne-Lise Seip"
+        ],
+        "comparison_pairs": [
+          [
+            "t_h_marshall",
+            "amartya_sen"
+          ],
+          [
+            "anne_lise_seip",
+            "robert_castel"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify right, rule and decision maker",
+          "name eligibility evidence and excluded category",
+          "compare formal entitlement with actual access",
+          "trace appeal, discretion or administrative barrier"
+        ],
+        "best_place_types": [
+          "rådhus",
+          "arkiv",
+          "institusjonsbygg",
+          "skole",
+          "hospital"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Oslo rådhus",
+          "Oslo byarkiv",
+          "Oslo Hospital",
+          "Sagene skole"
+        ],
+        "recommended_method_ids": [
+          "met_rettighets_og_tilgangsanalyse",
+          "met_velferdsordningsanalyse",
+          "met_arkivlesning"
+        ],
+        "critical_distinctions": [
+          "rettighet vs ytelse",
+          "formell adgang vs faktisk tilgang",
+          "regelbundet vedtak vs skjønn",
+          "lik regel vs ulik konsekvens"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      }
+    ],
+    "mapping_status": "two-lane+canonical",
+    "primary_hooks": [
+      "his_sosialforsikring_pensjon_universalisme"
+    ],
+    "secondary_hooks": [
+      "his_rettighet_vilkar_tilgang"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane krever egen dokumentert påstand og må ikke erstatte ordningens grunnfakta.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Gøsta Esping-Andersen",
+      "T. H. Marshall",
+      "Anne-Lise Seip",
+      "Peter Baldwin",
+      "Amartya Sen",
+      "Robert Castel"
+    ],
+    "canonical_thinker_ids": [
+      "gosta_esping_andersen",
+      "t_h_marshall",
+      "anne_lise_seip",
+      "peter_baldwin",
+      "amartya_sen",
+      "robert_castel"
+    ],
+    "norwegian_thinker_ids": [
+      "anne_lise_seip"
+    ],
+    "norwegian_thinkers": [
+      "Anne-Lise Seip"
+    ],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter institusjon, målgruppe, adgangsvilkår, praksis og konsekvens.",
+    "recommended_oslo_cases": [
+      "Oslo byarkiv",
+      "Arbeidersamfunnets plass",
+      "Sagene",
+      "Oslo rådhus"
+    ],
+    "recommended_method_ids": [
+      "met_velferdsordningsanalyse",
+      "met_seriell_kildeanalyse",
+      "met_rettighets_og_tilgangsanalyse",
+      "met_arkivlesning"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens mot arbeid, politikk, medisin, byhistorie og stat ved å identifisere hva som bærer årsakskjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 3,
+      "require_fact_or_history_anchor": true,
+      "require_external_claim_basis": true,
+      "require_welfare_institution_or_scheme": true,
+      "require_eligibility_or_target_group": true,
+      "require_practice_or_service": true,
+      "require_right_control_or_provision": true,
+      "require_everyday_or_life_course_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true,
+      "rotate_theorists": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_boligpolitikk_materiell_velferd",
+    "title": "Boligpolitikk og materiell velferd",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_boligpolitikk_materiell_velferd",
+        "topic_hook_tittel": "Boligpolitikk og materiell velferd",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "housing-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "Anne-Lise Seip",
+          "Harold L. Wilensky",
+          "Gro Hagemann",
+          "Robert Castel"
+        ],
+        "thinker_ids": [
+          "anne_lise_seip",
+          "harold_wilensky",
+          "gro_hagemann",
+          "robert_castel"
         ],
         "norwegian_thinker_ids": [
           "anne_lise_seip",
@@ -6488,75 +7971,205 @@
         ],
         "comparison_pairs": [
           [
-            "gosta_esping_andersen",
-            "anne_lise_seip"
+            "anne_lise_seip",
+            "harold_wilensky"
           ],
           [
-            "michel_foucault",
-            "gro_hagemann"
+            "gro_hagemann",
+            "robert_castel"
           ]
         ],
         "preferred_question_moves": [
-          "connect institution to right or obligation",
-          "compare charity and entitlement",
-          "read school or hospital as social reform",
-          "show who falls outside standard life course"
+          "identify dwelling, occupancy and governing standard",
+          "connect housing measure to target group",
+          "compare plan or reform with lived conditions",
+          "separate physical improvement from social security"
         ],
         "best_place_types": [
-          "skole",
-          "hospital",
-          "institusjonsbygg",
-          "omsorgssted",
+          "boligområde",
           "bydel",
-          "arkiv"
+          "arbeiderbolig",
+          "arkiv",
+          "institusjonsbygg"
         ],
         "avoid_place_types": [
-          "privat_sted_uten_velferdskobling"
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
         ],
         "anti_patterns": [
-          "Generisk velferdsstat uten konkret institusjon",
-          "Moralsk vurdering uten historisk kilde",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Sagene skole",
+          "Sagene",
+          "Torshov",
+          "Grünerløkka",
+          "Oslo byarkiv",
+          "Arbeidermuseet"
+        ],
+        "recommended_method_ids": [
+          "met_husholdsanalyse",
+          "met_seriell_kildeanalyse",
+          "met_velferdsordningsanalyse"
+        ],
+        "critical_distinctions": [
+          "boligtype vs faktisk belegg",
+          "boligpolitikk vs byform",
+          "standardheving vs sosial inkludering",
+          "tildelt bolig vs varig trygghet"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      },
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_fattigvesen_veldedighet_sosial_kontroll",
+        "topic_hook_tittel": "Fattigvesen, veldedighet og sosial kontroll",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "housing-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "Anne-Lise Seip",
+          "Abram de Swaan",
+          "Michel Foucault",
+          "Linda Gordon"
+        ],
+        "thinker_ids": [
+          "anne_lise_seip",
+          "abram_de_swaan",
+          "michel_foucault",
+          "linda_gordon"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_lise_seip"
+        ],
+        "norwegian_thinkers": [
+          "Anne-Lise Seip"
+        ],
+        "comparison_pairs": [
+          [
+            "anne_lise_seip",
+            "abram_de_swaan"
+          ],
+          [
+            "michel_foucault",
+            "linda_gordon"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify the responsible institution and rule",
+          "name the recipient category and eligibility test",
+          "compare declared relief with disciplinary practice",
+          "trace transition from charity to public entitlement"
+        ],
+        "best_place_types": [
+          "hospital",
+          "fattighus",
+          "institusjonsbygg",
+          "arkiv",
+          "omsorgssted"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
           "Oslo Hospital",
-          "Gamle Deichman på Hammersborg",
+          "Prinds Christian Augusts Minde",
+          "Oslo byarkiv",
           "Arbeidersamfunnets plass"
         ],
         "recommended_method_ids": [
-          "met_institusjonshistorisk_analyse",
           "met_arkivlesning",
-          "met_mikrohistorisk_analyse",
-          "met_muntlig_historie"
-        ]
+          "met_velferdsordningsanalyse",
+          "met_seriell_kildeanalyse"
+        ],
+        "critical_distinctions": [
+          "veldedighet vs rettighet",
+          "hjelp vs kontroll",
+          "formell kategori vs levd situasjon",
+          "institusjonens formål vs faktisk praksis"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
       }
     ],
-    "mapping_status": "tiered+canonical",
+    "mapping_status": "two-lane+canonical",
     "primary_hooks": [
-      "his_velferd_institusjoner"
+      "his_boligpolitikk_materiell_velferd"
     ],
-    "secondary_hooks": [],
+    "secondary_hooks": [
+      "his_fattigvesen_veldedighet_sosial_kontroll"
+    ],
     "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane krever egen dokumentert påstand og må ikke erstatte ordningens grunnfakta.",
     "history_anchor_required": true,
     "source_anchor_required": true,
     "external_claim_basis_required": true,
     "canonical_thinkers": [
-      "Gøsta Esping-Andersen",
-      "Michel Foucault",
       "Anne-Lise Seip",
-      "Gro Hagemann"
+      "Harold L. Wilensky",
+      "Gro Hagemann",
+      "Robert Castel",
+      "Abram de Swaan",
+      "Michel Foucault",
+      "Linda Gordon"
     ],
     "canonical_thinker_ids": [
-      "gosta_esping_andersen",
-      "michel_foucault",
       "anne_lise_seip",
-      "gro_hagemann"
+      "harold_wilensky",
+      "gro_hagemann",
+      "robert_castel",
+      "abram_de_swaan",
+      "michel_foucault",
+      "linda_gordon"
     ],
     "norwegian_thinker_ids": [
       "anne_lise_seip",
@@ -6566,43 +8179,957 @@
       "Anne-Lise Seip",
       "Gro Hagemann"
     ],
-    "theory_diversity_score": 4,
+    "theory_diversity_score": 7,
     "has_norwegian_theory_path": true,
     "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "generator_theory_note": "Bruk teori først etter institusjon, målgruppe, adgangsvilkår, praksis og konsekvens.",
     "recommended_oslo_cases": [
-      "Sagene skole",
-      "Oslo Hospital",
-      "Gamle Deichman på Hammersborg",
-      "Arbeidersamfunnets plass"
+      "Sagene",
+      "Torshov",
+      "Grünerløkka",
+      "Oslo byarkiv"
     ],
     "recommended_method_ids": [
-      "met_institusjonshistorisk_analyse",
-      "met_arkivlesning",
-      "met_mikrohistorisk_analyse",
-      "met_muntlig_historie"
+      "met_husholdsanalyse",
+      "met_seriell_kildeanalyse",
+      "met_velferdsordningsanalyse",
+      "met_mikrohistorisk_analyse"
     ],
     "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "overlap_resolution_note": "Avgrens mot arbeid, politikk, medisin, byhistorie og stat ved å identifisere hva som bærer årsakskjeden.",
     "theory_overreach_risk": "medium",
     "progression_stage": "full_ladder",
     "theory_spread_priority": "spread_more",
     "canonical_status": "canonical",
     "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
+    "min_recommended_oslo_cases": 4,
     "case_gate_required": true,
     "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
+    "recommended_max_primary_hooks": 2,
     "generator_risk_mode": "guarded",
     "canonical_file_role": "active",
     "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
-      "risk_mode": "guarded",
-      "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
+      "min_case_count": 4,
+      "min_method_count": 3,
+      "require_fact_or_history_anchor": true,
+      "require_external_claim_basis": true,
+      "require_welfare_institution_or_scheme": true,
+      "require_eligibility_or_target_group": true,
+      "require_practice_or_service": true,
+      "require_right_control_or_provision": true,
+      "require_everyday_or_life_course_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true,
+      "rotate_theorists": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+    "title": "Omsorgsarbeid, kjønn og sosial reproduksjon",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+        "topic_hook_tittel": "Omsorgsarbeid, kjønn og sosial reproduksjon",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "care-work-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "Jane Lewis",
+          "Nancy Fraser",
+          "Ida Blom",
+          "Kari Melby"
+        ],
+        "thinker_ids": [
+          "jane_lewis",
+          "nancy_fraser",
+          "ida_blom",
+          "kari_melby"
+        ],
+        "norwegian_thinker_ids": [
+          "ida_blom",
+          "kari_melby"
+        ],
+        "norwegian_thinkers": [
+          "Ida Blom",
+          "Kari Melby"
+        ],
+        "comparison_pairs": [
+          [
+            "jane_lewis",
+            "nancy_fraser"
+          ],
+          [
+            "ida_blom",
+            "kari_melby"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify care task and responsible actor",
+          "separate paid service from unpaid household work",
+          "compare policy assumption with actual division of labour",
+          "trace professionalisation without erasing informal care"
+        ],
+        "best_place_types": [
+          "omsorgssted",
+          "hospital",
+          "skole",
+          "bolig",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Oslo Hospital",
+          "Sagene skole",
+          "Arbeidermuseet",
+          "Oslo byarkiv"
+        ],
+        "recommended_method_ids": [
+          "met_omsorgsregimeanalyse",
+          "met_husholdsanalyse",
+          "met_muntlig_historie"
+        ],
+        "critical_distinctions": [
+          "omsorgsbehov vs omsorgsarbeid",
+          "lønnet vs ulønnet omsorg",
+          "familieansvar vs offentlig ansvar",
+          "profesjonalisering vs avhengighet av uformelt arbeid"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      },
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_barndom_familie_livslop",
+        "topic_hook_tittel": "Barndom, familie og livsløp",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "care-work-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "Ellen Schrumpf",
+          "Bengt Sandin",
+          "Ida Blom",
+          "Jacques Donzelot"
+        ],
+        "thinker_ids": [
+          "ellen_schrumpf",
+          "bengt_sandin",
+          "ida_blom",
+          "jacques_donzelot"
+        ],
+        "norwegian_thinker_ids": [
+          "ellen_schrumpf",
+          "ida_blom"
+        ],
+        "norwegian_thinkers": [
+          "Ellen Schrumpf",
+          "Ida Blom"
+        ],
+        "comparison_pairs": [
+          [
+            "ellen_schrumpf",
+            "bengt_sandin"
+          ],
+          [
+            "ida_blom",
+            "jacques_donzelot"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify life stage and household position",
+          "trace institutional intervention across time",
+          "compare normative life course with actual biography",
+          "separate age category from lived dependency"
+        ],
+        "best_place_types": [
+          "skole",
+          "bolig",
+          "institusjonsbygg",
+          "omsorgssted",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Sagene skole",
+          "Oslo Hospital",
+          "Arbeidermuseet",
+          "Oslo byarkiv"
+        ],
+        "recommended_method_ids": [
+          "met_livslopsanalyse",
+          "met_husholdsanalyse",
+          "met_muntlig_historie"
+        ],
+        "critical_distinctions": [
+          "alder vs livsfase",
+          "normalbiografi vs faktisk livsløp",
+          "familieansvar vs offentlig ansvar",
+          "barn som forsørget vs barn som rettighetssubjekt"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      }
+    ],
+    "mapping_status": "two-lane+canonical",
+    "primary_hooks": [
+      "his_omsorgsarbeid_kjonn_sosial_reproduksjon"
+    ],
+    "secondary_hooks": [
+      "his_barndom_familie_livslop"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane krever egen dokumentert påstand og må ikke erstatte ordningens grunnfakta.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Jane Lewis",
+      "Nancy Fraser",
+      "Ida Blom",
+      "Kari Melby",
+      "Ellen Schrumpf",
+      "Bengt Sandin",
+      "Jacques Donzelot"
+    ],
+    "canonical_thinker_ids": [
+      "jane_lewis",
+      "nancy_fraser",
+      "ida_blom",
+      "kari_melby",
+      "ellen_schrumpf",
+      "bengt_sandin",
+      "jacques_donzelot"
+    ],
+    "norwegian_thinker_ids": [
+      "ida_blom",
+      "kari_melby",
+      "ellen_schrumpf"
+    ],
+    "norwegian_thinkers": [
+      "Ida Blom",
+      "Kari Melby",
+      "Ellen Schrumpf"
+    ],
+    "theory_diversity_score": 7,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter institusjon, målgruppe, adgangsvilkår, praksis og konsekvens.",
+    "recommended_oslo_cases": [
+      "Oslo Hospital",
+      "Sagene skole",
+      "Arbeidermuseet",
+      "Oslo byarkiv"
+    ],
+    "recommended_method_ids": [
+      "met_omsorgsregimeanalyse",
+      "met_husholdsanalyse",
+      "met_muntlig_historie",
+      "met_seriell_kildeanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens mot arbeid, politikk, medisin, byhistorie og stat ved å identifisere hva som bærer årsakskjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 3,
+      "require_fact_or_history_anchor": true,
+      "require_external_claim_basis": true,
+      "require_welfare_institution_or_scheme": true,
+      "require_eligibility_or_target_group": true,
+      "require_practice_or_service": true,
+      "require_right_control_or_provision": true,
+      "require_everyday_or_life_course_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true,
+      "rotate_theorists": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_institusjonalisering_avinstitusjonalisering",
+    "title": "Institusjonalisering og avinstitusjonalisering",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_institusjonalisering_avinstitusjonalisering",
+        "topic_hook_tittel": "Institusjonalisering og avinstitusjonalisering",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "institutional-practice-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "Erving Goffman",
+          "Michel Foucault",
+          "Nikolas Rose",
+          "Anne-Lise Seip"
+        ],
+        "thinker_ids": [
+          "erving_goffman",
+          "michel_foucault",
+          "nikolas_rose",
+          "anne_lise_seip"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_lise_seip"
+        ],
+        "norwegian_thinkers": [
+          "Anne-Lise Seip"
+        ],
+        "comparison_pairs": [
+          [
+            "erving_goffman",
+            "michel_foucault"
+          ],
+          [
+            "nikolas_rose",
+            "anne_lise_seip"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify admission rule and authority",
+          "reconstruct everyday institutional routine",
+          "compare stated care purpose with restriction",
+          "trace closure or reform to actual living arrangements"
+        ],
+        "best_place_types": [
+          "institusjonsbygg",
+          "hospital",
+          "asyl",
+          "fengsel",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Gaustad sykehus",
+          "Oslo Hospital",
+          "Botsfengselet",
+          "Oslo byarkiv"
+        ],
+        "recommended_method_ids": [
+          "met_institusjonshistorisk_analyse",
+          "met_institusjonshverdagsanalyse",
+          "met_muntlig_historie"
+        ],
+        "critical_distinctions": [
+          "institusjonsbygg vs institusjonell praksis",
+          "omsorg vs frihetsbegrensning",
+          "reformvedtak vs faktisk avinstitusjonalisering",
+          "pasient eller klientkategori vs egen stemme"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      },
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_bruker_tjeneste_forvaltning",
+        "topic_hook_tittel": "Bruker, tjeneste og forvaltning",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "institutional-practice-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "Nikolas Rose",
+          "Michel Foucault",
+          "Amartya Sen",
+          "Anne-Lise Seip"
+        ],
+        "thinker_ids": [
+          "nikolas_rose",
+          "michel_foucault",
+          "amartya_sen",
+          "anne_lise_seip"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_lise_seip"
+        ],
+        "norwegian_thinkers": [
+          "Anne-Lise Seip"
+        ],
+        "comparison_pairs": [
+          [
+            "nikolas_rose",
+            "michel_foucault"
+          ],
+          [
+            "amartya_sen",
+            "anne_lise_seip"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify request, office and case route",
+          "separate professional assessment from formal decision",
+          "trace what documentation the person had to provide",
+          "compare institutional record with user experience"
+        ],
+        "best_place_types": [
+          "tjenestested",
+          "rådhus",
+          "institusjonsbygg",
+          "arkiv",
+          "skole",
+          "hospital"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Oslo rådhus",
+          "Oslo byarkiv",
+          "Oslo Hospital",
+          "Sagene skole"
+        ],
+        "recommended_method_ids": [
+          "met_institusjonshverdagsanalyse",
+          "met_rettighets_og_tilgangsanalyse",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "bruker vs administrativ kategori",
+          "tjenestevedtak vs faktisk hjelp",
+          "profesjonell vurdering vs rettslig grunnlag",
+          "saksmappe vs levd erfaring"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      }
+    ],
+    "mapping_status": "two-lane+canonical",
+    "primary_hooks": [
+      "his_institusjonalisering_avinstitusjonalisering"
+    ],
+    "secondary_hooks": [
+      "his_bruker_tjeneste_forvaltning"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane krever egen dokumentert påstand og må ikke erstatte ordningens grunnfakta.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Erving Goffman",
+      "Michel Foucault",
+      "Nikolas Rose",
+      "Anne-Lise Seip",
+      "Amartya Sen"
+    ],
+    "canonical_thinker_ids": [
+      "erving_goffman",
+      "michel_foucault",
+      "nikolas_rose",
+      "anne_lise_seip",
+      "amartya_sen"
+    ],
+    "norwegian_thinker_ids": [
+      "anne_lise_seip"
+    ],
+    "norwegian_thinkers": [
+      "Anne-Lise Seip"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter institusjon, målgruppe, adgangsvilkår, praksis og konsekvens.",
+    "recommended_oslo_cases": [
+      "Gaustad sykehus",
+      "Oslo Hospital",
+      "Botsfengselet",
+      "Oslo byarkiv"
+    ],
+    "recommended_method_ids": [
+      "met_institusjonshistorisk_analyse",
+      "met_institusjonshverdagsanalyse",
+      "met_muntlig_historie",
+      "met_arkivlesning"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens mot arbeid, politikk, medisin, byhistorie og stat ved å identifisere hva som bærer årsakskjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 3,
+      "require_fact_or_history_anchor": true,
+      "require_external_claim_basis": true,
+      "require_welfare_institution_or_scheme": true,
+      "require_eligibility_or_target_group": true,
+      "require_practice_or_service": true,
+      "require_right_control_or_provision": true,
+      "require_everyday_or_life_course_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true,
+      "rotate_theorists": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_bruker_tjeneste_forvaltning",
+    "title": "Bruker, tjeneste og forvaltning",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_bruker_tjeneste_forvaltning",
+        "topic_hook_tittel": "Bruker, tjeneste og forvaltning",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "case-file-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "Nikolas Rose",
+          "Michel Foucault",
+          "Amartya Sen",
+          "Anne-Lise Seip"
+        ],
+        "thinker_ids": [
+          "nikolas_rose",
+          "michel_foucault",
+          "amartya_sen",
+          "anne_lise_seip"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_lise_seip"
+        ],
+        "norwegian_thinkers": [
+          "Anne-Lise Seip"
+        ],
+        "comparison_pairs": [
+          [
+            "nikolas_rose",
+            "michel_foucault"
+          ],
+          [
+            "amartya_sen",
+            "anne_lise_seip"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify request, office and case route",
+          "separate professional assessment from formal decision",
+          "trace what documentation the person had to provide",
+          "compare institutional record with user experience"
+        ],
+        "best_place_types": [
+          "tjenestested",
+          "rådhus",
+          "institusjonsbygg",
+          "arkiv",
+          "skole",
+          "hospital"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Oslo rådhus",
+          "Oslo byarkiv",
+          "Oslo Hospital",
+          "Sagene skole"
+        ],
+        "recommended_method_ids": [
+          "met_institusjonshverdagsanalyse",
+          "met_rettighets_og_tilgangsanalyse",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "bruker vs administrativ kategori",
+          "tjenestevedtak vs faktisk hjelp",
+          "profesjonell vurdering vs rettslig grunnlag",
+          "saksmappe vs levd erfaring"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      },
+      {
+        "fagkart_kategori": "his_velferd_rett_hverdagsliv",
+        "fagkart_kategori_tittel": "Velferd, rett og hverdagsliv",
+        "topic_hook": "his_rettighet_vilkar_tilgang",
+        "topic_hook_tittel": "Velferdsrett, vilkår og tilgang",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "case-file-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: dokumenter ordning, målgruppe, vilkår, praksis og konsekvens før teori.",
+        "tenkere": [
+          "T. H. Marshall",
+          "Amartya Sen",
+          "Anne-Lise Seip",
+          "Robert Castel"
+        ],
+        "thinker_ids": [
+          "t_h_marshall",
+          "amartya_sen",
+          "anne_lise_seip",
+          "robert_castel"
+        ],
+        "norwegian_thinker_ids": [
+          "anne_lise_seip"
+        ],
+        "norwegian_thinkers": [
+          "Anne-Lise Seip"
+        ],
+        "comparison_pairs": [
+          [
+            "t_h_marshall",
+            "amartya_sen"
+          ],
+          [
+            "anne_lise_seip",
+            "robert_castel"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify right, rule and decision maker",
+          "name eligibility evidence and excluded category",
+          "compare formal entitlement with actual access",
+          "trace appeal, discretion or administrative barrier"
+        ],
+        "best_place_types": [
+          "rådhus",
+          "arkiv",
+          "institusjonsbygg",
+          "skole",
+          "hospital"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_velferdsordning_eller_praksis"
+        ],
+        "anti_patterns": [
+          "Generisk velferdsstat uten navngitt institusjon, ordning eller kilde",
+          "Moralsk vurdering uten historisk kilde og samtidig regelgrunnlag",
+          "Rettighet behandlet som identisk med faktisk tilgang",
+          "Institusjonens formål behandlet som dokumentert praksis",
+          "Navngitt teori før målgruppe, vilkår og tjeneste er etablert"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Oslo rådhus",
+          "Oslo byarkiv",
+          "Oslo Hospital",
+          "Sagene skole"
+        ],
+        "recommended_method_ids": [
+          "met_rettighets_og_tilgangsanalyse",
+          "met_velferdsordningsanalyse",
+          "met_arkivlesning"
+        ],
+        "critical_distinctions": [
+          "rettighet vs ytelse",
+          "formell adgang vs faktisk tilgang",
+          "regelbundet vedtak vs skjønn",
+          "lik regel vs ulik konsekvens"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true
+      }
+    ],
+    "mapping_status": "two-lane+canonical",
+    "primary_hooks": [
+      "his_bruker_tjeneste_forvaltning"
+    ],
+    "secondary_hooks": [
+      "his_rettighet_vilkar_tilgang"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane krever egen dokumentert påstand og må ikke erstatte ordningens grunnfakta.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Nikolas Rose",
+      "Michel Foucault",
+      "Amartya Sen",
+      "Anne-Lise Seip",
+      "T. H. Marshall",
+      "Robert Castel"
+    ],
+    "canonical_thinker_ids": [
+      "nikolas_rose",
+      "michel_foucault",
+      "amartya_sen",
+      "anne_lise_seip",
+      "t_h_marshall",
+      "robert_castel"
+    ],
+    "norwegian_thinker_ids": [
+      "anne_lise_seip"
+    ],
+    "norwegian_thinkers": [
+      "Anne-Lise Seip"
+    ],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter institusjon, målgruppe, adgangsvilkår, praksis og konsekvens.",
+    "recommended_oslo_cases": [
+      "Oslo rådhus",
+      "Oslo byarkiv",
+      "Oslo Hospital",
+      "Sagene skole"
+    ],
+    "recommended_method_ids": [
+      "met_institusjonshverdagsanalyse",
+      "met_rettighets_og_tilgangsanalyse",
+      "met_mikrohistorisk_analyse",
+      "met_arkivlesning"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens mot arbeid, politikk, medisin, byhistorie og stat ved å identifisere hva som bærer årsakskjeden.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 3,
+      "require_fact_or_history_anchor": true,
+      "require_external_claim_basis": true,
+      "require_welfare_institution_or_scheme": true,
+      "require_eligibility_or_target_group": true,
+      "require_practice_or_service": true,
+      "require_right_control_or_provision": true,
+      "require_everyday_or_life_course_consequence": true,
+      "require_source_limitation": true,
+      "require_critical_distinction": true,
+      "rotate_theorists": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true
   },
   {
     "emne_id": "em_his_migrasjon_mangfold",

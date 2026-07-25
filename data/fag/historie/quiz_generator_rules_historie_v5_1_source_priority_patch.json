@@ -11,9 +11,9 @@
     "emnemapping": "emnemapping_historie_canonical_v4_5.json",
     "pensum": "historiepensum_canonical_v4_5.json",
     "domain_count": 12,
-    "emne_count": 64,
-    "method_count": 33,
-    "mapping_count": 64
+    "emne_count": 71,
+    "method_count": 38,
+    "mapping_count": 71
   },
   "hard_rules": {
     "source_dominance_rule": "External historical/local sources must dominate the factual substance of every history quiz. Canonical files may guide emne choice, method choice, theory choice, set progression and risk control, but may not be the main source of visible question content.",
@@ -539,6 +539,66 @@
         "byhistorie": "Produksjon, arbeid og tap av arbeidsplasser hører hit; arealbruk, riving og byform uten arbeidskjede hører til byhistorie.",
         "politikk": "Historiske foreninger, streiker og forhandlinger hører hit; samtidige partier, programmer og beslutningsprosesser som hovedsak hører til politikk."
       }
+    },
+    "his_velferd_rett_hverdagsliv": {
+      "status": "complete_revised",
+      "purpose": "Bygge velferdshistoriske spørsmål fra navngitte ordninger, målgrupper, adgangsvilkår, praksiser og konsekvenser uten å redusere feltet til institusjonsnavn, fremskrittsfortelling eller løs teori.",
+      "required_chain": [
+        "ekstern kilde eller synlig velferdsspor",
+        "navngitt institusjon, ordning, tjeneste eller ytelse",
+        "datert regel, målgruppe eller adgangsvilkår",
+        "dokumentert forvaltnings-, behandlings- eller omsorgspraksis",
+        "rettighet, plikt, kontroll, ytelse eller tjeneste",
+        "konsekvens for person, hushold, hverdagsliv eller livsløp",
+        "kontrollkilde eller sammenligningsgrunnlag",
+        "kildebegrensning",
+        "kritisk distinksjon",
+        "eventuelt teori etter at velferdskjeden er etablert"
+      ],
+      "hook_ids": [
+        "his_fattigvesen_veldedighet_sosial_kontroll",
+        "his_helse_epidemi_profesjonalisering",
+        "his_skole_folkedannelse_medborgerskap",
+        "his_barndom_familie_livslop",
+        "his_sosialforsikring_pensjon_universalisme",
+        "his_boligpolitikk_materiell_velferd",
+        "his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+        "his_institusjonalisering_avinstitusjonalisering",
+        "his_rettighet_vilkar_tilgang",
+        "his_bruker_tjeneste_forvaltning"
+      ],
+      "emne_ids": [
+        "em_his_helse_omsorg_institusjoner",
+        "em_his_skole_folkedannelse",
+        "em_his_velferd_hverdagsliv",
+        "em_his_fattigvesen_veldedighet_sosial_kontroll",
+        "em_his_barndom_familie_livslop",
+        "em_his_sosialforsikring_pensjon_universalisme",
+        "em_his_boligpolitikk_materiell_velferd",
+        "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon",
+        "em_his_institusjonalisering_avinstitusjonalisering",
+        "em_his_bruker_tjeneste_forvaltning"
+      ],
+      "method_ids": [
+        "met_institusjonshistorisk_analyse",
+        "met_arkivlesning",
+        "met_mikrohistorisk_analyse",
+        "met_muntlig_historie",
+        "met_seriell_kildeanalyse",
+        "met_livslopsanalyse",
+        "met_husholdsanalyse",
+        "met_velferdsordningsanalyse",
+        "met_rettighets_og_tilgangsanalyse",
+        "met_omsorgsregimeanalyse"
+      ],
+      "forbidden_shortcuts": [
+        "institusjonens navn som tilstrekkelig velferdshistorie",
+        "lovfestet rett behandlet som dokumentert tilgang",
+        "formelt formål behandlet som faktisk praksis",
+        "ytelsesnivå behandlet som full beskrivelse av livsvilkår",
+        "pasient-, elev- eller brukerregister behandlet som nøytral beskrivelse av personen",
+        "velferdsstat eller teoretikernavn som tilstrekkelig svar"
+      ]
     }
   }
 }
