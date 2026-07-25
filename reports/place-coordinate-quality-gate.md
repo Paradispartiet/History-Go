@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-25T22:41:30.916Z
+Generert: 2026-07-25T23:12:26.981Z
 
 ## Oppsummering
 - Aktive filer validert: **1444**
 - Antall steder validert: **1444**
 - Harde feil: **0**
 - Varsler: **604**
-- Coordinate review candidates: **748** signaler fordelt på **646** steder
+- Coordinate review candidates: **747** signaler fordelt på **645** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -2074,7 +2074,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 748 signaler fordelt på 646 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 747 signaler fordelt på 645 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -2082,7 +2082,7 @@ Totalt 748 signaler fordelt på 646 steder. Et sted kan ha flere signaler. Kandi
 | --- | --- |
 | coordStatus=verified uten coordPrecisionM | 326 |
 | lineært sted uten anchors | 82 |
-| stasjon/park/gate/torg/elv uten coordinate metadata | 65 |
+| stasjon/park/gate/torg/elv uten coordinate metadata | 64 |
 | lav koordinatpresisjon (<4 desimaler) | 70 |
 | park/stort område uten anchors eller coordNote | 126 |
 | svært stor r (>=500 m) uten coordNote | 66 |
@@ -2507,14 +2507,13 @@ Totalt 748 signaler fordelt på 646 steder. Et sted kan ha flere signaler. Kandi
 | galleri_schaeffers_gate_5 | Galleri Schaeffers Gate 5 | kunst | data/places/kunst/oslo/places_kunst/galleri_schaeffers_gate_5.json | 59.92127390279403 | 10.762304822006952 | 50 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | lisbon_santo_antonio_festival | Santo António-festivalen i Lisboa | religion | data/places/religion/europe/portugal/lisbon/lisbon_santo_antonio_festival.json | 38.7117 | -9.1297 | 700 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### stasjon/park/gate/torg/elv uten coordinate metadata (65)
+### stasjon/park/gate/torg/elv uten coordinate metadata (64)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | nostvet_boplass | Nøstvet-boplassen | historie | data/places/historie/akershus/places_historie_akershus_batch1/nostvet_boplass.json | 59.75109 | 10.7996 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | eidsvoll_verk_andelva | Eidsvoll Verk / Andelva | naeringsliv | data/places/naeringsliv/akershus/eidsvoll_verk_andelva/eidsvoll_verk_andelva.json | 60.3297 | 11.2575 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | kjeller_flyplass | Kjeller flyplass | by | data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json | 59.96944 | 11.03889 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| stunner_boplass | Stunner steinalderboplass | historie | data/places/historie/akershus/places_historie_akershus_batch3/stunner_boplass.json | 59.74657 | 10.91747 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | kornsjo_grensestasjon | Kornsjø stasjon / grensestasjon | by | data/places/by/ostfold/kornsjo_grensestasjon/kornsjo_grensestasjon.json | 59.0974 | 11.6682 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | momarken_markedsplass | Momarken markedsplass | historie | data/places/historie/ostfold/places_historie_ostfold_batch6/momarken_markedsplass.json | 59.5584 | 11.3229 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | veien_kulturminnepark | Veien Kulturminnepark | historie | data/places/historie/buskerud/places_historie_buskerud_batch1/veien_kulturminnepark.json | 60.1842 | 10.2504 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
