@@ -1,0 +1,83 @@
+name: Sport theory depth v6
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: sport-theory-depth-v6-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: startsWith(github.head_ref, 'agent/sport-theory-depth-v6')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Build theory depth and coverage
+        run: |
+          set -euo pipefail
+          node tools/build-sport-theory-depth-v6.mjs
+
+      - name: Validate Sport theory and evidence integration
+        run: |
+          set -euo pipefail
+          node tools/validate-sport-theory-depth-v6.mjs --write
+          node tools/validate-sport-theory-quality.mjs
+          node tools/validate-sport-evidence.mjs
+          node scripts/audit-category-governance.mjs
+          node scripts/audit-quiz-template-governance.mjs
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const files = [
+            'data/fag/sport/theory_units_sport_canonical_v6.json',
+            'data/fag/sport/emne_theory_coverage_sport_v6.json',
+            'data/fag/sport/sport_theory_depth_manifest_v6.json',
+            'data/fag/sport/theory_hooks_sport_canonical_v5.json',
+            'data/fag/sport/teoretikere_sport_canonical_v5.json',
+            'data/fag/sport/claims_sport_canonical_v1.json',
+            'data/fag/sport/sport_quality_manifest_v5.json',
+            'data/fag/sport/sport_scientific_evidence_manifest_v1.json',
+            'data/fag/sport/supersetQUIZMAL_sport.json',
+            'reports/sport-theory-depth-validation.json'
+          ];
+          for (const file of files) JSON.parse(fs.readFileSync(file, 'utf8'));
+          console.log('Sport V6 JSON parse: PASS');
+          NODE
+          git diff --check
+
+      - name: Commit final Sport theory files
+        run: |
+          set -euo pipefail
+          rm .github/workflows/sport-theory-depth-v6-materialize.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fag/sport/theory_units_sport_canonical_v6.json
+          git add data/fag/sport/emne_theory_coverage_sport_v6.json
+          git add data/fag/sport/sport_theory_depth_manifest_v6.json
+          git add data/fag/sport/theory_hooks_sport_canonical_v5.json
+          git add data/fag/sport/teoretikere_sport_canonical_v5.json
+          git add data/fag/sport/claims_sport_canonical_v1.json
+          git add data/fag/sport/sport_quality_manifest_v5.json
+          git add data/fag/sport/sport_scientific_evidence_manifest_v1.json
+          git add data/fag/sport/supersetQUIZMAL_sport.json
+          git add tools/build-sport-theory-depth-v6.mjs
+          git add tools/validate-sport-theory-depth-v6.mjs
+          git add reports/sport-theory-depth-lift.md
+          git add reports/sport-theory-depth-validation.json
+          git add -u .github/workflows/sport-theory-depth-v6-materialize.yml
+          git diff --cached --check
+          git commit -m 'Sport: fullfør teoridybde og emnedekning V6'
+          git push origin HEAD:${{ github.head_ref }}
