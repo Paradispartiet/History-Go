@@ -10075,164 +10075,336 @@
   },
   {
     "emne_id": "em_his_byutvidelse_gentrifisering",
-    "title": "Byutvidelse, transformasjon og gentrifisering",
+    "title": "Byutvidelse, grenser og innlemmelse",
     "mappings": [
       {
         "fagkart_kategori": "his_byhistorie_stedsendring",
         "fagkart_kategori_tittel": "Byhistorie og stedsendring",
-        "topic_hook": "his_stedsendring_for_etter",
-        "topic_hook_tittel": "Stedsendring før og etter",
+        "topic_hook": "his_byutvidelse_grense_innlemmelse",
+        "topic_hook_tittel": "Byutvidelse, grenser og innlemmelse",
         "mapping_tier": "primary",
         "priority_score": 10,
         "set_phase_fit": [
+          "facts",
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "before-after-first",
+        "question_surface_mode": "map-boundary-first",
         "history_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
+        "use_note": "Primær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
         "tenkere": [
-          "Sharon Zukin",
-          "David Harvey",
-          "Tone Huse",
-          "Knut Kjeldstadli"
+          "Jan Eivind Myhre",
+          "Knut Kjeldstadli",
+          "Lewis Mumford",
+          "Peter Hall"
         ],
         "thinker_ids": [
-          "sharon_zukin",
-          "david_harvey",
-          "tone_huse",
-          "knut_kjeldstadli"
+          "jan_eivind_myhre",
+          "knut_kjeldstadli",
+          "lewis_mumford",
+          "peter_hall"
         ],
         "norwegian_thinker_ids": [
-          "tone_huse",
+          "jan_eivind_myhre",
           "knut_kjeldstadli"
         ],
         "norwegian_thinkers": [
-          "Tone Huse",
+          "Jan Eivind Myhre",
           "Knut Kjeldstadli"
         ],
         "comparison_pairs": [
           [
-            "sharon_zukin",
-            "david_harvey"
+            "jan_eivind_myhre",
+            "knut_kjeldstadli"
           ],
           [
-            "tone_huse",
-            "knut_kjeldstadli"
+            "lewis_mumford",
+            "peter_hall"
           ]
         ],
         "preferred_question_moves": [
-          "compare former and current function",
-          "show who gains and who loses through change",
-          "connect material change to social history",
-          "separate historical process from present impression"
+          "date a boundary or annexation",
+          "compare mapped urban extent before and after",
+          "connect transport or infrastructure to expansion",
+          "separate administrative inclusion from built-up continuity"
         ],
         "best_place_types": [
-          "omrade",
+          "bydel",
           "gate",
-          "transformasjonsomrade",
-          "arbeiderbydel",
-          "havneomrade",
-          "boligomrade"
+          "transportknutepunkt",
+          "kulturmiljo",
+          "kartfestet_omrade"
         ],
         "avoid_place_types": [
-          "ren_byform_uten_historisk_kilde",
-          "kommersielt_sted_uten_for_etter"
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
         ],
         "anti_patterns": [
-          "Generisk gentrifisering uten lokal tidslinje",
-          "Ren byanalyse som egentlig hører til byfaget",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
-          "Bjørvika",
-          "Aker Brygge",
-          "Vulkan",
-          "Torggata"
+          "Christiania torv",
+          "Grønland",
+          "Tøyen",
+          "Aker kommune",
+          "Majorstuen",
+          "Bryn"
         ],
         "recommended_method_ids": [
           "met_for_etter_historisk",
-          "met_sporlesning",
-          "met_arkivlesning",
-          "met_komparativ_historie"
-        ]
+          "met_historisk_gis",
+          "met_arkivlesning"
+        ],
+        "critical_distinctions": [
+          "administrativ grense vs sammenhengende bebyggelse",
+          "innlemmelse vs umiddelbar urbanisering",
+          "forstad vs selvstendig lokalsamfunn",
+          "transportforbindelse vs full årsaksforklaring"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      },
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_gentrifisering_verdi_befolkning",
+        "topic_hook_tittel": "Gentrifisering, verdi og befolkningsendring",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "series-and-household-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Neil Smith",
+          "Sharon Zukin",
+          "Tone Huse",
+          "David Harvey"
+        ],
+        "thinker_ids": [
+          "neil_smith",
+          "sharon_zukin",
+          "tone_huse",
+          "david_harvey"
+        ],
+        "norwegian_thinker_ids": [
+          "tone_huse"
+        ],
+        "norwegian_thinkers": [
+          "Tone Huse"
+        ],
+        "comparison_pairs": [
+          [
+            "neil_smith",
+            "sharon_zukin"
+          ],
+          [
+            "tone_huse",
+            "david_harvey"
+          ]
+        ],
+        "preferred_question_moves": [
+          "compare rent or value series",
+          "trace investor and ownership change",
+          "compare population or business composition",
+          "test displacement claim against evidence"
+        ],
+        "best_place_types": [
+          "bydel",
+          "gate",
+          "boligomrade",
+          "næringsgate",
+          "transformasjonsomrade",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Tøyen",
+          "Grünerløkka",
+          "Gamlebyen",
+          "Vulkan",
+          "Bjørvika",
+          "Sagene"
+        ],
+        "recommended_method_ids": [
+          "met_eiendoms_og_verdidynamikkanalyse",
+          "met_seriell_kildeanalyse",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "prisvekst vs gentrifisering",
+          "befolkningsendring vs tvungen fortrengning",
+          "ny servering vs full funksjonsendring",
+          "områdeprofil vs variasjon mellom gater og gårder"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
       }
     ],
     "mapping_status": "tiered+canonical",
     "primary_hooks": [
-      "his_stedsendring_for_etter"
+      "his_byutvidelse_grense_innlemmelse"
     ],
-    "secondary_hooks": [],
+    "secondary_hooks": [
+      "his_gentrifisering_verdi_befolkning"
+    ],
     "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane skal forklare en annen dokumentert del av samme stedsendringsforløp.",
     "history_anchor_required": true,
     "source_anchor_required": true,
     "external_claim_basis_required": true,
     "canonical_thinkers": [
+      "Jan Eivind Myhre",
+      "Knut Kjeldstadli",
+      "Lewis Mumford",
+      "Peter Hall",
+      "Neil Smith",
       "Sharon Zukin",
-      "David Harvey",
       "Tone Huse",
-      "Knut Kjeldstadli"
+      "David Harvey"
     ],
     "canonical_thinker_ids": [
+      "jan_eivind_myhre",
+      "knut_kjeldstadli",
+      "lewis_mumford",
+      "peter_hall",
+      "neil_smith",
       "sharon_zukin",
-      "david_harvey",
       "tone_huse",
-      "knut_kjeldstadli"
+      "david_harvey"
     ],
     "norwegian_thinker_ids": [
-      "tone_huse",
-      "knut_kjeldstadli"
+      "jan_eivind_myhre",
+      "knut_kjeldstadli",
+      "tone_huse"
     ],
     "norwegian_thinkers": [
-      "Tone Huse",
-      "Knut Kjeldstadli"
+      "Jan Eivind Myhre",
+      "Knut Kjeldstadli",
+      "Tone Huse"
     ],
-    "theory_diversity_score": 4,
+    "theory_diversity_score": 8,
     "has_norwegian_theory_path": true,
     "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "generator_theory_note": "Bruk teori først etter at førtilstand, inngrep, ettertilstand og konsekvens er dokumentert.",
     "recommended_oslo_cases": [
-      "Bjørvika",
-      "Aker Brygge",
-      "Vulkan",
-      "Torggata"
+      "Christiania torv",
+      "Grønland",
+      "Tøyen",
+      "Aker kommune"
     ],
     "recommended_method_ids": [
+      "met_historisk_gis",
       "met_for_etter_historisk",
-      "met_sporlesning",
       "met_arkivlesning",
       "met_komparativ_historie"
     ],
     "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "overlap_resolution_note": "Avgrens med romlig enhet, tidsspenn og hoveddriver.",
     "theory_overreach_risk": "medium",
     "progression_stage": "full_ladder",
     "theory_spread_priority": "spread_more",
     "canonical_status": "canonical",
     "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
+    "min_recommended_oslo_cases": 4,
     "case_gate_required": true,
     "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
+    "recommended_max_primary_hooks": 2,
     "generator_risk_mode": "guarded",
     "canonical_file_role": "active",
     "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
       "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
+      "require_external_claim_basis": true,
+      "require_defined_spatial_unit": true,
+      "require_before_after_state": true,
+      "require_intervention_or_driver": true,
+      "require_physical_or_function_change": true,
+      "require_affected_group": true,
+      "require_limitation": true,
+      "require_critical_distinction": true
+    },
+    "defined_spatial_unit_required": true,
+    "before_after_state_required": true,
+    "intervention_or_driver_required": true,
+    "physical_or_function_change_required": true,
+    "affected_group_required": true,
+    "limitation_required": true,
+    "critical_distinction_required": true
   },
   {
     "emne_id": "em_his_riving_ombruk_bevaring",
@@ -10241,29 +10413,30 @@
       {
         "fagkart_kategori": "his_byhistorie_stedsendring",
         "fagkart_kategori_tittel": "Byhistorie og stedsendring",
-        "topic_hook": "his_stedsendring_for_etter",
-        "topic_hook_tittel": "Stedsendring før og etter",
+        "topic_hook": "his_sanering_riving_fortrengning",
+        "topic_hook_tittel": "Sanering, riving og fortrengning",
         "mapping_tier": "primary",
         "priority_score": 10,
         "set_phase_fit": [
+          "facts",
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "before-after-first",
+        "question_surface_mode": "demolition-record-first",
         "history_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
+        "use_note": "Primær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
         "tenkere": [
-          "Sharon Zukin",
+          "Jane Jacobs",
           "David Harvey",
           "Tone Huse",
           "Knut Kjeldstadli"
         ],
         "thinker_ids": [
-          "sharon_zukin",
+          "jane_jacobs",
           "david_harvey",
           "tone_huse",
           "knut_kjeldstadli"
@@ -10278,7 +10451,7 @@
         ],
         "comparison_pairs": [
           [
-            "sharon_zukin",
+            "jane_jacobs",
             "david_harvey"
           ],
           [
@@ -10287,67 +10460,219 @@
           ]
         ],
         "preferred_question_moves": [
-          "compare former and current function",
-          "show who gains and who loses through change",
-          "connect material change to social history",
-          "separate historical process from present impression"
+          "date demolition and relocation",
+          "identify residents or businesses displaced",
+          "compare stated sanitation goal with outcome",
+          "separate building loss from community dissolution"
         ],
         "best_place_types": [
-          "omrade",
+          "saneringsomrade",
+          "boligomrade",
+          "kvartal",
           "gate",
-          "transformasjonsomrade",
-          "arbeiderbydel",
-          "havneomrade",
-          "boligomrade"
+          "bydel",
+          "arkiv"
         ],
         "avoid_place_types": [
-          "ren_byform_uten_historisk_kilde",
-          "kommersielt_sted_uten_for_etter"
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
         ],
         "anti_patterns": [
-          "Generisk gentrifisering uten lokal tidslinje",
-          "Ren byanalyse som egentlig hører til byfaget",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
+          "Enerhaugen",
+          "Vaterland",
+          "Pipervika",
           "Bjørvika",
-          "Aker Brygge",
-          "Vulkan",
-          "Torggata"
+          "Regjeringskvartalet",
+          "Tøyen"
         ],
         "recommended_method_ids": [
           "met_for_etter_historisk",
+          "met_planhistorisk_analyse",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "saneringsvedtak vs faktisk riving",
+          "flytting vs frivillig mobilitet",
+          "dårlig boligstandard vs legitimert totalriving",
+          "revet bygg vs oppløst sosialt miljø"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      },
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_bevaring_ombruk_kulturmiljo",
+        "topic_hook_tittel": "Bevaring, ombruk og kulturmiljø",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "heritage-decision-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Dolores Hayden",
+          "Françoise Choay",
+          "Alois Riegl",
+          "Kevin Lynch"
+        ],
+        "thinker_ids": [
+          "dolores_hayden",
+          "francoise_choay",
+          "alois_riegl",
+          "kevin_lynch"
+        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
+        "comparison_pairs": [
+          [
+            "dolores_hayden",
+            "francoise_choay"
+          ],
+          [
+            "alois_riegl",
+            "kevin_lynch"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify protected element and legal basis",
+          "compare original and reused function",
+          "trace what was removed despite preservation",
+          "separate material continuity from social continuity"
+        ],
+        "best_place_types": [
+          "kulturmiljo",
+          "vernet_bygg",
+          "industriarv",
+          "gate",
+          "kvartal",
+          "transformasjonsomrade"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vulkan",
+          "Aker Brygge",
+          "Kvadraturen",
+          "Møllergata 19",
+          "Bjørvika",
+          "Telthusbakken"
+        ],
+        "recommended_method_ids": [
           "met_sporlesning",
-          "met_arkivlesning",
-          "met_komparativ_historie"
-        ]
+          "met_planhistorisk_analyse",
+          "met_for_etter_historisk"
+        ],
+        "critical_distinctions": [
+          "vern av fasade vs vern av helhet",
+          "ombruk vs historisk kontinuitet",
+          "kulturminneverdi vs bruksverdi",
+          "bevart materiale vs bevart sosial erfaring"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
       }
     ],
     "mapping_status": "tiered+canonical",
     "primary_hooks": [
-      "his_stedsendring_for_etter"
+      "his_sanering_riving_fortrengning"
     ],
-    "secondary_hooks": [],
+    "secondary_hooks": [
+      "his_bevaring_ombruk_kulturmiljo"
+    ],
     "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane skal forklare en annen dokumentert del av samme stedsendringsforløp.",
     "history_anchor_required": true,
     "source_anchor_required": true,
     "external_claim_basis_required": true,
     "canonical_thinkers": [
-      "Sharon Zukin",
+      "Jane Jacobs",
       "David Harvey",
       "Tone Huse",
-      "Knut Kjeldstadli"
+      "Knut Kjeldstadli",
+      "Dolores Hayden",
+      "Françoise Choay",
+      "Alois Riegl",
+      "Kevin Lynch"
     ],
     "canonical_thinker_ids": [
-      "sharon_zukin",
+      "jane_jacobs",
       "david_harvey",
       "tone_huse",
-      "knut_kjeldstadli"
+      "knut_kjeldstadli",
+      "dolores_hayden",
+      "francoise_choay",
+      "alois_riegl",
+      "kevin_lynch"
     ],
     "norwegian_thinker_ids": [
       "tone_huse",
@@ -10357,74 +10682,89 @@
       "Tone Huse",
       "Knut Kjeldstadli"
     ],
-    "theory_diversity_score": 4,
+    "theory_diversity_score": 8,
     "has_norwegian_theory_path": true,
     "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "generator_theory_note": "Bruk teori først etter at førtilstand, inngrep, ettertilstand og konsekvens er dokumentert.",
     "recommended_oslo_cases": [
-      "Bjørvika",
-      "Aker Brygge",
+      "Vaterland",
       "Vulkan",
-      "Torggata"
+      "Aker Brygge",
+      "Kvadraturen"
     ],
     "recommended_method_ids": [
       "met_for_etter_historisk",
       "met_sporlesning",
-      "met_arkivlesning",
-      "met_komparativ_historie"
+      "met_planhistorisk_analyse",
+      "met_arkivlesning"
     ],
     "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "overlap_resolution_note": "Avgrens med romlig enhet, tidsspenn og hoveddriver.",
     "theory_overreach_risk": "medium",
     "progression_stage": "full_ladder",
     "theory_spread_priority": "spread_more",
     "canonical_status": "canonical",
     "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
+    "min_recommended_oslo_cases": 4,
     "case_gate_required": true,
     "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
+    "recommended_max_primary_hooks": 2,
     "generator_risk_mode": "guarded",
     "canonical_file_role": "active",
     "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
       "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
+      "require_external_claim_basis": true,
+      "require_defined_spatial_unit": true,
+      "require_before_after_state": true,
+      "require_intervention_or_driver": true,
+      "require_physical_or_function_change": true,
+      "require_affected_group": true,
+      "require_limitation": true,
+      "require_critical_distinction": true
+    },
+    "defined_spatial_unit_required": true,
+    "before_after_state_required": true,
+    "intervention_or_driver_required": true,
+    "physical_or_function_change_required": true,
+    "affected_group_required": true,
+    "limitation_required": true,
+    "critical_distinction_required": true
   },
   {
     "emne_id": "em_his_sanering_byfornyelse",
-    "title": "Sanering og byfornyelse",
+    "title": "Sanering, byfornyelse og fortrengning",
     "mappings": [
       {
         "fagkart_kategori": "his_byhistorie_stedsendring",
         "fagkart_kategori_tittel": "Byhistorie og stedsendring",
-        "topic_hook": "his_stedsendring_for_etter",
-        "topic_hook_tittel": "Stedsendring før og etter",
+        "topic_hook": "his_sanering_riving_fortrengning",
+        "topic_hook_tittel": "Sanering, riving og fortrengning",
         "mapping_tier": "primary",
         "priority_score": 10,
         "set_phase_fit": [
+          "facts",
           "bridge_facts_theory",
           "late_theory"
         ],
-        "question_surface_mode": "before-after-first",
+        "question_surface_mode": "demolition-record-first",
         "history_anchor_required": true,
         "fact_anchor_required": true,
         "source_anchor_required": true,
         "external_claim_basis_required": true,
         "visible_trace_required": true,
-        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom stedlig fakta og historisk teori.",
+        "use_note": "Primær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
         "tenkere": [
-          "Sharon Zukin",
+          "Jane Jacobs",
           "David Harvey",
           "Tone Huse",
           "Knut Kjeldstadli"
         ],
         "thinker_ids": [
-          "sharon_zukin",
+          "jane_jacobs",
           "david_harvey",
           "tone_huse",
           "knut_kjeldstadli"
@@ -10439,7 +10779,7 @@
         ],
         "comparison_pairs": [
           [
-            "sharon_zukin",
+            "jane_jacobs",
             "david_harvey"
           ],
           [
@@ -10448,113 +10788,283 @@
           ]
         ],
         "preferred_question_moves": [
-          "compare former and current function",
-          "show who gains and who loses through change",
-          "connect material change to social history",
-          "separate historical process from present impression"
+          "date demolition and relocation",
+          "identify residents or businesses displaced",
+          "compare stated sanitation goal with outcome",
+          "separate building loss from community dissolution"
         ],
         "best_place_types": [
-          "omrade",
+          "saneringsomrade",
+          "boligomrade",
+          "kvartal",
           "gate",
-          "transformasjonsomrade",
-          "arbeiderbydel",
-          "havneomrade",
-          "boligomrade"
+          "bydel",
+          "arkiv"
         ],
         "avoid_place_types": [
-          "ren_byform_uten_historisk_kilde",
-          "kommersielt_sted_uten_for_etter"
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
         ],
         "anti_patterns": [
-          "Generisk gentrifisering uten lokal tidslinje",
-          "Ren byanalyse som egentlig hører til byfaget",
-          "Ikke bruk emnet som synlig quizinnhold uten kildegrunnlag.",
-          "Ikke gjør en person eller et sted historisk bare fordi det er gammelt.",
-          "Ikke bland inn by, media eller næringsliv som hovedfag hvis historiefaget bare er sekundærlag."
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
         ],
         "theory_depth": "high",
         "recommended_oslo_cases": [
+          "Enerhaugen",
+          "Vaterland",
+          "Pipervika",
           "Bjørvika",
-          "Aker Brygge",
-          "Vulkan",
-          "Torggata"
+          "Regjeringskvartalet",
+          "Tøyen"
         ],
         "recommended_method_ids": [
           "met_for_etter_historisk",
-          "met_sporlesning",
-          "met_arkivlesning",
-          "met_komparativ_historie"
-        ]
+          "met_planhistorisk_analyse",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "saneringsvedtak vs faktisk riving",
+          "flytting vs frivillig mobilitet",
+          "dårlig boligstandard vs legitimert totalriving",
+          "revet bygg vs oppløst sosialt miljø"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      },
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_byfornyelse_bolig_standard",
+        "topic_hook_tittel": "Byfornyelse, boligstandard og oppgradering",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "housing-renewal-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Tone Huse",
+          "Sharon Zukin",
+          "David Harvey",
+          "Jan Eivind Myhre"
+        ],
+        "thinker_ids": [
+          "tone_huse",
+          "sharon_zukin",
+          "david_harvey",
+          "jan_eivind_myhre"
+        ],
+        "norwegian_thinker_ids": [
+          "tone_huse",
+          "jan_eivind_myhre"
+        ],
+        "norwegian_thinkers": [
+          "Tone Huse",
+          "Jan Eivind Myhre"
+        ],
+        "comparison_pairs": [
+          [
+            "tone_huse",
+            "sharon_zukin"
+          ],
+          [
+            "david_harvey",
+            "jan_eivind_myhre"
+          ]
+        ],
+        "preferred_question_moves": [
+          "compare dwelling standard before and after",
+          "trace ownership and rent change",
+          "identify renewal programme and eligibility",
+          "separate physical improvement from social retention"
+        ],
+        "best_place_types": [
+          "boligomrade",
+          "bygård",
+          "bydel",
+          "gate",
+          "arkiv",
+          "kulturmiljo"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Grünerløkka",
+          "Tøyen",
+          "Sagene",
+          "Torshov",
+          "Gamlebyen",
+          "Vålerenga"
+        ],
+        "recommended_method_ids": [
+          "met_arealbruksendringsanalyse",
+          "met_eiendoms_og_verdidynamikkanalyse",
+          "met_arkivlesning"
+        ],
+        "critical_distinctions": [
+          "rehabilitering vs sosial bevaring",
+          "standardheving vs rimeligere bolig",
+          "gårdsfornyelse vs områdefornyelse",
+          "beboerutskifting vs dokumentert fortrengning"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
       }
     ],
     "mapping_status": "tiered+canonical",
     "primary_hooks": [
-      "his_stedsendring_for_etter"
+      "his_sanering_riving_fortrengning"
     ],
-    "secondary_hooks": [],
+    "secondary_hooks": [
+      "his_byfornyelse_bolig_standard"
+    ],
     "reserve_hooks": [],
-    "recommended_max_active_hooks": 3,
-    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når stedet tydelig støtter mer enn én analytisk hale.",
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane skal forklare en annen dokumentert del av samme stedsendringsforløp.",
     "history_anchor_required": true,
     "source_anchor_required": true,
     "external_claim_basis_required": true,
     "canonical_thinkers": [
-      "Sharon Zukin",
+      "Jane Jacobs",
       "David Harvey",
       "Tone Huse",
-      "Knut Kjeldstadli"
+      "Knut Kjeldstadli",
+      "Sharon Zukin",
+      "Jan Eivind Myhre"
     ],
     "canonical_thinker_ids": [
-      "sharon_zukin",
+      "jane_jacobs",
       "david_harvey",
       "tone_huse",
-      "knut_kjeldstadli"
+      "knut_kjeldstadli",
+      "sharon_zukin",
+      "jan_eivind_myhre"
     ],
     "norwegian_thinker_ids": [
       "tone_huse",
-      "knut_kjeldstadli"
+      "knut_kjeldstadli",
+      "jan_eivind_myhre"
     ],
     "norwegian_thinkers": [
       "Tone Huse",
-      "Knut Kjeldstadli"
+      "Knut Kjeldstadli",
+      "Jan Eivind Myhre"
     ],
-    "theory_diversity_score": 4,
+    "theory_diversity_score": 6,
     "has_norwegian_theory_path": true,
     "theory_sync_version": "v1-historie",
-    "generator_theory_note": "Bruk kilder, spor, steder og hendelser først; løft teori inn i bro- og teorisett når stedet allerede er etablert.",
+    "generator_theory_note": "Bruk teori først etter at førtilstand, inngrep, ettertilstand og konsekvens er dokumentert.",
     "recommended_oslo_cases": [
-      "Bjørvika",
-      "Aker Brygge",
-      "Vulkan",
-      "Torggata"
+      "Enerhaugen",
+      "Tøyen",
+      "Grünerløkka",
+      "Vålerenga"
     ],
     "recommended_method_ids": [
+      "met_planhistorisk_analyse",
       "met_for_etter_historisk",
-      "met_sporlesning",
-      "met_arkivlesning",
-      "met_komparativ_historie"
+      "met_eiendoms_og_verdidynamikkanalyse",
+      "met_mikrohistorisk_analyse"
     ],
     "overlap_risk": "medium",
-    "overlap_resolution_note": "Avgrens mot nærliggende emner ved å starte i konkret kilde, tidslag, institusjon, stedstype eller hendelse.",
+    "overlap_resolution_note": "Avgrens med romlig enhet, tidsspenn og hoveddriver.",
     "theory_overreach_risk": "medium",
     "progression_stage": "full_ladder",
     "theory_spread_priority": "spread_more",
     "canonical_status": "canonical",
     "registry_version": "historiepensum_v4_5",
-    "min_recommended_oslo_cases": 2,
+    "min_recommended_oslo_cases": 4,
     "case_gate_required": true,
     "method_gate_required": true,
-    "recommended_max_primary_hooks": 3,
+    "recommended_max_primary_hooks": 2,
     "generator_risk_mode": "guarded",
     "canonical_file_role": "active",
     "mapping_constraints": {
-      "min_case_count": 2,
-      "min_method_count": 1,
-      "max_primary_hooks": 3,
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
       "risk_mode": "guarded",
       "require_case_anchor_before_theory": true,
-      "require_external_claim_basis": true
-    }
+      "require_external_claim_basis": true,
+      "require_defined_spatial_unit": true,
+      "require_before_after_state": true,
+      "require_intervention_or_driver": true,
+      "require_physical_or_function_change": true,
+      "require_affected_group": true,
+      "require_limitation": true,
+      "require_critical_distinction": true
+    },
+    "defined_spatial_unit_required": true,
+    "before_after_state_required": true,
+    "intervention_or_driver_required": true,
+    "physical_or_function_change_required": true,
+    "affected_group_required": true,
+    "limitation_required": true,
+    "critical_distinction_required": true
   },
   {
     "emne_id": "em_his_branner_ulykker_brudd",
@@ -16930,5 +17440,2308 @@
     "worker_or_household_consequence_required": true,
     "source_limitation_required": true,
     "critical_distinction_required": true
+  },
+  {
+    "emne_id": "em_his_gatenett_tomtestruktur_infrastruktur",
+    "title": "Gatenett, tomtestruktur og infrastruktur",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_gatenett_tomtestruktur_infrastruktur",
+        "topic_hook_tittel": "Gatenett, tomtestruktur og infrastruktur",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "map-network-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Lewis Mumford",
+          "Henri Lefebvre",
+          "Kevin Lynch",
+          "Jan Eivind Myhre"
+        ],
+        "thinker_ids": [
+          "lewis_mumford",
+          "henri_lefebvre",
+          "kevin_lynch",
+          "jan_eivind_myhre"
+        ],
+        "norwegian_thinker_ids": [
+          "jan_eivind_myhre"
+        ],
+        "norwegian_thinkers": [
+          "Jan Eivind Myhre"
+        ],
+        "comparison_pairs": [
+          [
+            "lewis_mumford",
+            "henri_lefebvre"
+          ],
+          [
+            "kevin_lynch",
+            "jan_eivind_myhre"
+          ]
+        ],
+        "preferred_question_moves": [
+          "compare street and parcel maps",
+          "identify infrastructure that enabled land use",
+          "trace persistence of an old street line",
+          "separate physical network from social use"
+        ],
+        "best_place_types": [
+          "gate",
+          "kvartal",
+          "kai",
+          "jernbaneomrade",
+          "infrastruktur",
+          "bydel"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Kvadraturen",
+          "Torggata",
+          "Bjørvika",
+          "Akerselva",
+          "Bryn",
+          "Oslo S"
+        ],
+        "recommended_method_ids": [
+          "met_historisk_gis",
+          "met_romlig_historie",
+          "met_sporlesning"
+        ],
+        "critical_distinctions": [
+          "gatelinje vs faktisk ferdsel",
+          "tomtegrense vs bruksgrense",
+          "infrastrukturtilgang vs lik tilgang",
+          "kartlagt struktur vs levd byrom"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      },
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_byutvidelse_grense_innlemmelse",
+        "topic_hook_tittel": "Byutvidelse, grenser og innlemmelse",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "map-boundary-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Jan Eivind Myhre",
+          "Knut Kjeldstadli",
+          "Lewis Mumford",
+          "Peter Hall"
+        ],
+        "thinker_ids": [
+          "jan_eivind_myhre",
+          "knut_kjeldstadli",
+          "lewis_mumford",
+          "peter_hall"
+        ],
+        "norwegian_thinker_ids": [
+          "jan_eivind_myhre",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Jan Eivind Myhre",
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "jan_eivind_myhre",
+            "knut_kjeldstadli"
+          ],
+          [
+            "lewis_mumford",
+            "peter_hall"
+          ]
+        ],
+        "preferred_question_moves": [
+          "date a boundary or annexation",
+          "compare mapped urban extent before and after",
+          "connect transport or infrastructure to expansion",
+          "separate administrative inclusion from built-up continuity"
+        ],
+        "best_place_types": [
+          "bydel",
+          "gate",
+          "transportknutepunkt",
+          "kulturmiljo",
+          "kartfestet_omrade"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Christiania torv",
+          "Grønland",
+          "Tøyen",
+          "Aker kommune",
+          "Majorstuen",
+          "Bryn"
+        ],
+        "recommended_method_ids": [
+          "met_for_etter_historisk",
+          "met_historisk_gis",
+          "met_arkivlesning"
+        ],
+        "critical_distinctions": [
+          "administrativ grense vs sammenhengende bebyggelse",
+          "innlemmelse vs umiddelbar urbanisering",
+          "forstad vs selvstendig lokalsamfunn",
+          "transportforbindelse vs full årsaksforklaring"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "his_gatenett_tomtestruktur_infrastruktur"
+    ],
+    "secondary_hooks": [
+      "his_byutvidelse_grense_innlemmelse"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane skal forklare en annen dokumentert del av samme stedsendringsforløp.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Lewis Mumford",
+      "Henri Lefebvre",
+      "Kevin Lynch",
+      "Jan Eivind Myhre",
+      "Knut Kjeldstadli",
+      "Peter Hall"
+    ],
+    "canonical_thinker_ids": [
+      "lewis_mumford",
+      "henri_lefebvre",
+      "kevin_lynch",
+      "jan_eivind_myhre",
+      "knut_kjeldstadli",
+      "peter_hall"
+    ],
+    "norwegian_thinker_ids": [
+      "jan_eivind_myhre",
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Jan Eivind Myhre",
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 6,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter at førtilstand, inngrep, ettertilstand og konsekvens er dokumentert.",
+    "recommended_oslo_cases": [
+      "Kvadraturen",
+      "Torggata",
+      "Bjørvika",
+      "Bryn"
+    ],
+    "recommended_method_ids": [
+      "met_historisk_gis",
+      "met_romlig_historie",
+      "met_sporlesning",
+      "met_komparativ_historie"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med romlig enhet, tidsspenn og hoveddriver.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_defined_spatial_unit": true,
+      "require_before_after_state": true,
+      "require_intervention_or_driver": true,
+      "require_physical_or_function_change": true,
+      "require_affected_group": true,
+      "require_limitation": true,
+      "require_critical_distinction": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true,
+    "defined_spatial_unit_required": true,
+    "before_after_state_required": true,
+    "intervention_or_driver_required": true,
+    "physical_or_function_change_required": true,
+    "affected_group_required": true,
+    "limitation_required": true
+  },
+  {
+    "emne_id": "em_his_regulering_plan_ekspropriasjon",
+    "title": "Regulering, plan og ekspropriasjon",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_regulering_plan_ekspropriasjon",
+        "topic_hook_tittel": "Regulering, plan og ekspropriasjon",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "plan-document-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Peter Hall",
+          "David Harvey",
+          "Jane Jacobs",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "peter_hall",
+          "david_harvey",
+          "jane_jacobs",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "peter_hall",
+            "david_harvey"
+          ],
+          [
+            "jane_jacobs",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify the dated plan and authority",
+          "compare planned and implemented change",
+          "trace expropriation or acquisition",
+          "name groups affected by implementation or delay"
+        ],
+        "best_place_types": [
+          "planomrade",
+          "kvartal",
+          "gate",
+          "institusjonsbygg",
+          "bydel",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Bjørvika",
+          "Enerhaugen",
+          "Vaterland",
+          "Regjeringskvartalet",
+          "Tøyen",
+          "Bispelokket"
+        ],
+        "recommended_method_ids": [
+          "met_planhistorisk_analyse",
+          "met_arkivlesning",
+          "met_for_etter_historisk"
+        ],
+        "critical_distinctions": [
+          "planvedtak vs gjennomført tiltak",
+          "reguleringsformål vs faktisk bruk",
+          "ekspropriasjonshjemmel vs gjennomført overtakelse",
+          "offentlig begrunnelse vs dokumentert konsekvens"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      },
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_offentlig_rom_tilgang_konflikt",
+        "topic_hook_tittel": "Offentlig rom, tilgang og konflikt",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "access-rule-and-use-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Henri Lefebvre",
+          "Setha Low",
+          "Don Mitchell",
+          "Richard Sennett"
+        ],
+        "thinker_ids": [
+          "henri_lefebvre",
+          "setha_low",
+          "don_mitchell",
+          "richard_sennett"
+        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
+        "comparison_pairs": [
+          [
+            "henri_lefebvre",
+            "setha_low"
+          ],
+          [
+            "don_mitchell",
+            "richard_sennett"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify rule or design change affecting access",
+          "compare formal public status with actual use",
+          "trace conflict over presence or activity",
+          "name groups enabled or excluded"
+        ],
+        "best_place_types": [
+          "plass",
+          "gate",
+          "park",
+          "torg",
+          "havnepromenade",
+          "moteplass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Youngstorget",
+          "Eidsvolls plass",
+          "Torggata",
+          "Bjørvika",
+          "Tøyen torg",
+          "Aker Brygge"
+        ],
+        "recommended_method_ids": [
+          "met_romlig_historie",
+          "met_planhistorisk_analyse",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "offentlig eid vs offentlig tilgjengelig",
+          "designintensjon vs faktisk bruk",
+          "ordenstiltak vs sosial ekskludering",
+          "åpen plass vs lik rett til opphold"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "his_regulering_plan_ekspropriasjon"
+    ],
+    "secondary_hooks": [
+      "his_offentlig_rom_tilgang_konflikt"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane skal forklare en annen dokumentert del av samme stedsendringsforløp.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Peter Hall",
+      "David Harvey",
+      "Jane Jacobs",
+      "Knut Kjeldstadli",
+      "Henri Lefebvre",
+      "Setha Low",
+      "Don Mitchell",
+      "Richard Sennett"
+    ],
+    "canonical_thinker_ids": [
+      "peter_hall",
+      "david_harvey",
+      "jane_jacobs",
+      "knut_kjeldstadli",
+      "henri_lefebvre",
+      "setha_low",
+      "don_mitchell",
+      "richard_sennett"
+    ],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 8,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter at førtilstand, inngrep, ettertilstand og konsekvens er dokumentert.",
+    "recommended_oslo_cases": [
+      "Bjørvika",
+      "Vaterland",
+      "Regjeringskvartalet",
+      "Tøyen"
+    ],
+    "recommended_method_ids": [
+      "met_planhistorisk_analyse",
+      "met_arkivlesning",
+      "met_for_etter_historisk",
+      "met_romlig_historie"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med romlig enhet, tidsspenn og hoveddriver.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_defined_spatial_unit": true,
+      "require_before_after_state": true,
+      "require_intervention_or_driver": true,
+      "require_physical_or_function_change": true,
+      "require_affected_group": true,
+      "require_limitation": true,
+      "require_critical_distinction": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true,
+    "defined_spatial_unit_required": true,
+    "before_after_state_required": true,
+    "intervention_or_driver_required": true,
+    "physical_or_function_change_required": true,
+    "affected_group_required": true,
+    "limitation_required": true
+  },
+  {
+    "emne_id": "em_his_naring_funksjonsskifte",
+    "title": "Næring, funksjonsskifte og hverdagsbruk",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_naring_funksjonsskifte",
+        "topic_hook_tittel": "Næring, funksjonsskifte og hverdagsbruk",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "function-change-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Sharon Zukin",
+          "Henri Lefebvre",
+          "Richard Sennett",
+          "Doreen Massey"
+        ],
+        "thinker_ids": [
+          "sharon_zukin",
+          "henri_lefebvre",
+          "richard_sennett",
+          "doreen_massey"
+        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
+        "comparison_pairs": [
+          [
+            "sharon_zukin",
+            "henri_lefebvre"
+          ],
+          [
+            "richard_sennett",
+            "doreen_massey"
+          ]
+        ],
+        "preferred_question_moves": [
+          "name former and later function",
+          "date conversion or tenant shift",
+          "compare daytime and evening use",
+          "identify users gained or displaced"
+        ],
+        "best_place_types": [
+          "gate",
+          "kvartal",
+          "næringsbygg",
+          "kulturbygg",
+          "bydel",
+          "moteplass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Torggata",
+          "Youngstorget",
+          "Aker Brygge",
+          "Vulkan",
+          "Kvadraturen",
+          "Bjørvika"
+        ],
+        "recommended_method_ids": [
+          "met_arealbruksendringsanalyse",
+          "met_for_etter_historisk",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "bygningens funksjon vs virksomhetens identitet",
+          "formelt formål vs faktisk bruk",
+          "ny aktivitet vs sammenhengende lokal tradisjon",
+          "økt besøk vs bredere sosial tilgang"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      },
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_gentrifisering_verdi_befolkning",
+        "topic_hook_tittel": "Gentrifisering, verdi og befolkningsendring",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "series-and-household-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Neil Smith",
+          "Sharon Zukin",
+          "Tone Huse",
+          "David Harvey"
+        ],
+        "thinker_ids": [
+          "neil_smith",
+          "sharon_zukin",
+          "tone_huse",
+          "david_harvey"
+        ],
+        "norwegian_thinker_ids": [
+          "tone_huse"
+        ],
+        "norwegian_thinkers": [
+          "Tone Huse"
+        ],
+        "comparison_pairs": [
+          [
+            "neil_smith",
+            "sharon_zukin"
+          ],
+          [
+            "tone_huse",
+            "david_harvey"
+          ]
+        ],
+        "preferred_question_moves": [
+          "compare rent or value series",
+          "trace investor and ownership change",
+          "compare population or business composition",
+          "test displacement claim against evidence"
+        ],
+        "best_place_types": [
+          "bydel",
+          "gate",
+          "boligomrade",
+          "næringsgate",
+          "transformasjonsomrade",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Tøyen",
+          "Grünerløkka",
+          "Gamlebyen",
+          "Vulkan",
+          "Bjørvika",
+          "Sagene"
+        ],
+        "recommended_method_ids": [
+          "met_eiendoms_og_verdidynamikkanalyse",
+          "met_seriell_kildeanalyse",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "prisvekst vs gentrifisering",
+          "befolkningsendring vs tvungen fortrengning",
+          "ny servering vs full funksjonsendring",
+          "områdeprofil vs variasjon mellom gater og gårder"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "his_naring_funksjonsskifte"
+    ],
+    "secondary_hooks": [
+      "his_gentrifisering_verdi_befolkning"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane skal forklare en annen dokumentert del av samme stedsendringsforløp.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Sharon Zukin",
+      "Henri Lefebvre",
+      "Richard Sennett",
+      "Doreen Massey",
+      "Neil Smith",
+      "Tone Huse",
+      "David Harvey"
+    ],
+    "canonical_thinker_ids": [
+      "sharon_zukin",
+      "henri_lefebvre",
+      "richard_sennett",
+      "doreen_massey",
+      "neil_smith",
+      "tone_huse",
+      "david_harvey"
+    ],
+    "norwegian_thinker_ids": [
+      "tone_huse"
+    ],
+    "norwegian_thinkers": [
+      "Tone Huse"
+    ],
+    "theory_diversity_score": 7,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter at førtilstand, inngrep, ettertilstand og konsekvens er dokumentert.",
+    "recommended_oslo_cases": [
+      "Torggata",
+      "Youngstorget",
+      "Vulkan",
+      "Kvadraturen"
+    ],
+    "recommended_method_ids": [
+      "met_arealbruksendringsanalyse",
+      "met_for_etter_historisk",
+      "met_mikrohistorisk_analyse",
+      "met_arkivlesning"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med romlig enhet, tidsspenn og hoveddriver.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_defined_spatial_unit": true,
+      "require_before_after_state": true,
+      "require_intervention_or_driver": true,
+      "require_physical_or_function_change": true,
+      "require_affected_group": true,
+      "require_limitation": true,
+      "require_critical_distinction": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true,
+    "defined_spatial_unit_required": true,
+    "before_after_state_required": true,
+    "intervention_or_driver_required": true,
+    "physical_or_function_change_required": true,
+    "affected_group_required": true,
+    "limitation_required": true
+  },
+  {
+    "emne_id": "em_his_industrihavn_transformasjon",
+    "title": "Industri-, havne- og jernbanetransformasjon",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_industrihavn_transformasjon",
+        "topic_hook_tittel": "Industri-, havne- og jernbanetransformasjon",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "industrial-land-use-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "David Harvey",
+          "Sharon Zukin",
+          "Saskia Sassen",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "david_harvey",
+          "sharon_zukin",
+          "saskia_sassen",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "david_harvey",
+            "sharon_zukin"
+          ],
+          [
+            "saskia_sassen",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "date closure and redevelopment phase",
+          "compare industrial and post-industrial land use",
+          "trace ownership or planning transition",
+          "separate preserved industrial form from continuity of work"
+        ],
+        "best_place_types": [
+          "industriomrade",
+          "havneomrade",
+          "jernbaneomrade",
+          "transformasjonsomrade",
+          "bydel",
+          "kai"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Bjørvika",
+          "Aker Brygge",
+          "Vulkan",
+          "Nydalen",
+          "Kværnerbyen",
+          "Filipstad"
+        ],
+        "recommended_method_ids": [
+          "met_arealbruksendringsanalyse",
+          "met_historisk_gis",
+          "met_for_etter_historisk"
+        ],
+        "critical_distinctions": [
+          "nedlagt virksomhet vs ferdig transformasjon",
+          "industriarv vs industriell kontinuitet",
+          "opprydding vs sosial inkludering",
+          "ny bydel vs integrert byområde"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      },
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_naring_funksjonsskifte",
+        "topic_hook_tittel": "Næring, funksjonsskifte og hverdagsbruk",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "function-change-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Sharon Zukin",
+          "Henri Lefebvre",
+          "Richard Sennett",
+          "Doreen Massey"
+        ],
+        "thinker_ids": [
+          "sharon_zukin",
+          "henri_lefebvre",
+          "richard_sennett",
+          "doreen_massey"
+        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
+        "comparison_pairs": [
+          [
+            "sharon_zukin",
+            "henri_lefebvre"
+          ],
+          [
+            "richard_sennett",
+            "doreen_massey"
+          ]
+        ],
+        "preferred_question_moves": [
+          "name former and later function",
+          "date conversion or tenant shift",
+          "compare daytime and evening use",
+          "identify users gained or displaced"
+        ],
+        "best_place_types": [
+          "gate",
+          "kvartal",
+          "næringsbygg",
+          "kulturbygg",
+          "bydel",
+          "moteplass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Torggata",
+          "Youngstorget",
+          "Aker Brygge",
+          "Vulkan",
+          "Kvadraturen",
+          "Bjørvika"
+        ],
+        "recommended_method_ids": [
+          "met_arealbruksendringsanalyse",
+          "met_for_etter_historisk",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "bygningens funksjon vs virksomhetens identitet",
+          "formelt formål vs faktisk bruk",
+          "ny aktivitet vs sammenhengende lokal tradisjon",
+          "økt besøk vs bredere sosial tilgang"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "his_industrihavn_transformasjon"
+    ],
+    "secondary_hooks": [
+      "his_naring_funksjonsskifte"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane skal forklare en annen dokumentert del av samme stedsendringsforløp.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "David Harvey",
+      "Sharon Zukin",
+      "Saskia Sassen",
+      "Knut Kjeldstadli",
+      "Henri Lefebvre",
+      "Richard Sennett",
+      "Doreen Massey"
+    ],
+    "canonical_thinker_ids": [
+      "david_harvey",
+      "sharon_zukin",
+      "saskia_sassen",
+      "knut_kjeldstadli",
+      "henri_lefebvre",
+      "richard_sennett",
+      "doreen_massey"
+    ],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 7,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter at førtilstand, inngrep, ettertilstand og konsekvens er dokumentert.",
+    "recommended_oslo_cases": [
+      "Bjørvika",
+      "Aker Brygge",
+      "Vulkan",
+      "Nydalen"
+    ],
+    "recommended_method_ids": [
+      "met_arealbruksendringsanalyse",
+      "met_historisk_gis",
+      "met_for_etter_historisk",
+      "met_sporlesning"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med romlig enhet, tidsspenn og hoveddriver.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_defined_spatial_unit": true,
+      "require_before_after_state": true,
+      "require_intervention_or_driver": true,
+      "require_physical_or_function_change": true,
+      "require_affected_group": true,
+      "require_limitation": true,
+      "require_critical_distinction": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true,
+    "defined_spatial_unit_required": true,
+    "before_after_state_required": true,
+    "intervention_or_driver_required": true,
+    "physical_or_function_change_required": true,
+    "affected_group_required": true,
+    "limitation_required": true
+  },
+  {
+    "emne_id": "em_his_gentrifisering_verdi_befolkning",
+    "title": "Gentrifisering, verdi og befolkningsendring",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_gentrifisering_verdi_befolkning",
+        "topic_hook_tittel": "Gentrifisering, verdi og befolkningsendring",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "series-and-household-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Neil Smith",
+          "Sharon Zukin",
+          "Tone Huse",
+          "David Harvey"
+        ],
+        "thinker_ids": [
+          "neil_smith",
+          "sharon_zukin",
+          "tone_huse",
+          "david_harvey"
+        ],
+        "norwegian_thinker_ids": [
+          "tone_huse"
+        ],
+        "norwegian_thinkers": [
+          "Tone Huse"
+        ],
+        "comparison_pairs": [
+          [
+            "neil_smith",
+            "sharon_zukin"
+          ],
+          [
+            "tone_huse",
+            "david_harvey"
+          ]
+        ],
+        "preferred_question_moves": [
+          "compare rent or value series",
+          "trace investor and ownership change",
+          "compare population or business composition",
+          "test displacement claim against evidence"
+        ],
+        "best_place_types": [
+          "bydel",
+          "gate",
+          "boligomrade",
+          "næringsgate",
+          "transformasjonsomrade",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Tøyen",
+          "Grünerløkka",
+          "Gamlebyen",
+          "Vulkan",
+          "Bjørvika",
+          "Sagene"
+        ],
+        "recommended_method_ids": [
+          "met_eiendoms_og_verdidynamikkanalyse",
+          "met_seriell_kildeanalyse",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "prisvekst vs gentrifisering",
+          "befolkningsendring vs tvungen fortrengning",
+          "ny servering vs full funksjonsendring",
+          "områdeprofil vs variasjon mellom gater og gårder"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      },
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_byfornyelse_bolig_standard",
+        "topic_hook_tittel": "Byfornyelse, boligstandard og oppgradering",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "housing-renewal-record-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Tone Huse",
+          "Sharon Zukin",
+          "David Harvey",
+          "Jan Eivind Myhre"
+        ],
+        "thinker_ids": [
+          "tone_huse",
+          "sharon_zukin",
+          "david_harvey",
+          "jan_eivind_myhre"
+        ],
+        "norwegian_thinker_ids": [
+          "tone_huse",
+          "jan_eivind_myhre"
+        ],
+        "norwegian_thinkers": [
+          "Tone Huse",
+          "Jan Eivind Myhre"
+        ],
+        "comparison_pairs": [
+          [
+            "tone_huse",
+            "sharon_zukin"
+          ],
+          [
+            "david_harvey",
+            "jan_eivind_myhre"
+          ]
+        ],
+        "preferred_question_moves": [
+          "compare dwelling standard before and after",
+          "trace ownership and rent change",
+          "identify renewal programme and eligibility",
+          "separate physical improvement from social retention"
+        ],
+        "best_place_types": [
+          "boligomrade",
+          "bygård",
+          "bydel",
+          "gate",
+          "arkiv",
+          "kulturmiljo"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Grünerløkka",
+          "Tøyen",
+          "Sagene",
+          "Torshov",
+          "Gamlebyen",
+          "Vålerenga"
+        ],
+        "recommended_method_ids": [
+          "met_arealbruksendringsanalyse",
+          "met_eiendoms_og_verdidynamikkanalyse",
+          "met_arkivlesning"
+        ],
+        "critical_distinctions": [
+          "rehabilitering vs sosial bevaring",
+          "standardheving vs rimeligere bolig",
+          "gårdsfornyelse vs områdefornyelse",
+          "beboerutskifting vs dokumentert fortrengning"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "his_gentrifisering_verdi_befolkning"
+    ],
+    "secondary_hooks": [
+      "his_byfornyelse_bolig_standard"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane skal forklare en annen dokumentert del av samme stedsendringsforløp.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Neil Smith",
+      "Sharon Zukin",
+      "Tone Huse",
+      "David Harvey",
+      "Jan Eivind Myhre"
+    ],
+    "canonical_thinker_ids": [
+      "neil_smith",
+      "sharon_zukin",
+      "tone_huse",
+      "david_harvey",
+      "jan_eivind_myhre"
+    ],
+    "norwegian_thinker_ids": [
+      "tone_huse",
+      "jan_eivind_myhre"
+    ],
+    "norwegian_thinkers": [
+      "Tone Huse",
+      "Jan Eivind Myhre"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter at førtilstand, inngrep, ettertilstand og konsekvens er dokumentert.",
+    "recommended_oslo_cases": [
+      "Tøyen",
+      "Grünerløkka",
+      "Gamlebyen",
+      "Sagene"
+    ],
+    "recommended_method_ids": [
+      "met_eiendoms_og_verdidynamikkanalyse",
+      "met_seriell_kildeanalyse",
+      "met_mikrohistorisk_analyse",
+      "met_komparativ_historie"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med romlig enhet, tidsspenn og hoveddriver.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_defined_spatial_unit": true,
+      "require_before_after_state": true,
+      "require_intervention_or_driver": true,
+      "require_physical_or_function_change": true,
+      "require_affected_group": true,
+      "require_limitation": true,
+      "require_critical_distinction": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true,
+    "defined_spatial_unit_required": true,
+    "before_after_state_required": true,
+    "intervention_or_driver_required": true,
+    "physical_or_function_change_required": true,
+    "affected_group_required": true,
+    "limitation_required": true
+  },
+  {
+    "emne_id": "em_his_offentlig_rom_tilgang_konflikt",
+    "title": "Offentlig rom, tilgang og konflikt",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_offentlig_rom_tilgang_konflikt",
+        "topic_hook_tittel": "Offentlig rom, tilgang og konflikt",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "access-rule-and-use-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Henri Lefebvre",
+          "Setha Low",
+          "Don Mitchell",
+          "Richard Sennett"
+        ],
+        "thinker_ids": [
+          "henri_lefebvre",
+          "setha_low",
+          "don_mitchell",
+          "richard_sennett"
+        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
+        "comparison_pairs": [
+          [
+            "henri_lefebvre",
+            "setha_low"
+          ],
+          [
+            "don_mitchell",
+            "richard_sennett"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify rule or design change affecting access",
+          "compare formal public status with actual use",
+          "trace conflict over presence or activity",
+          "name groups enabled or excluded"
+        ],
+        "best_place_types": [
+          "plass",
+          "gate",
+          "park",
+          "torg",
+          "havnepromenade",
+          "moteplass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Youngstorget",
+          "Eidsvolls plass",
+          "Torggata",
+          "Bjørvika",
+          "Tøyen torg",
+          "Aker Brygge"
+        ],
+        "recommended_method_ids": [
+          "met_romlig_historie",
+          "met_planhistorisk_analyse",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "offentlig eid vs offentlig tilgjengelig",
+          "designintensjon vs faktisk bruk",
+          "ordenstiltak vs sosial ekskludering",
+          "åpen plass vs lik rett til opphold"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      },
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_regulering_plan_ekspropriasjon",
+        "topic_hook_tittel": "Regulering, plan og ekspropriasjon",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "plan-document-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Peter Hall",
+          "David Harvey",
+          "Jane Jacobs",
+          "Knut Kjeldstadli"
+        ],
+        "thinker_ids": [
+          "peter_hall",
+          "david_harvey",
+          "jane_jacobs",
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinker_ids": [
+          "knut_kjeldstadli"
+        ],
+        "norwegian_thinkers": [
+          "Knut Kjeldstadli"
+        ],
+        "comparison_pairs": [
+          [
+            "peter_hall",
+            "david_harvey"
+          ],
+          [
+            "jane_jacobs",
+            "knut_kjeldstadli"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify the dated plan and authority",
+          "compare planned and implemented change",
+          "trace expropriation or acquisition",
+          "name groups affected by implementation or delay"
+        ],
+        "best_place_types": [
+          "planomrade",
+          "kvartal",
+          "gate",
+          "institusjonsbygg",
+          "bydel",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Bjørvika",
+          "Enerhaugen",
+          "Vaterland",
+          "Regjeringskvartalet",
+          "Tøyen",
+          "Bispelokket"
+        ],
+        "recommended_method_ids": [
+          "met_planhistorisk_analyse",
+          "met_arkivlesning",
+          "met_for_etter_historisk"
+        ],
+        "critical_distinctions": [
+          "planvedtak vs gjennomført tiltak",
+          "reguleringsformål vs faktisk bruk",
+          "ekspropriasjonshjemmel vs gjennomført overtakelse",
+          "offentlig begrunnelse vs dokumentert konsekvens"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "his_offentlig_rom_tilgang_konflikt"
+    ],
+    "secondary_hooks": [
+      "his_regulering_plan_ekspropriasjon"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane skal forklare en annen dokumentert del av samme stedsendringsforløp.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Henri Lefebvre",
+      "Setha Low",
+      "Don Mitchell",
+      "Richard Sennett",
+      "Peter Hall",
+      "David Harvey",
+      "Jane Jacobs",
+      "Knut Kjeldstadli"
+    ],
+    "canonical_thinker_ids": [
+      "henri_lefebvre",
+      "setha_low",
+      "don_mitchell",
+      "richard_sennett",
+      "peter_hall",
+      "david_harvey",
+      "jane_jacobs",
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "norwegian_thinkers": [
+      "Knut Kjeldstadli"
+    ],
+    "theory_diversity_score": 8,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter at førtilstand, inngrep, ettertilstand og konsekvens er dokumentert.",
+    "recommended_oslo_cases": [
+      "Youngstorget",
+      "Eidsvolls plass",
+      "Torggata",
+      "Tøyen torg"
+    ],
+    "recommended_method_ids": [
+      "met_romlig_historie",
+      "met_planhistorisk_analyse",
+      "met_mikrohistorisk_analyse",
+      "met_arkivlesning"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med romlig enhet, tidsspenn og hoveddriver.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_defined_spatial_unit": true,
+      "require_before_after_state": true,
+      "require_intervention_or_driver": true,
+      "require_physical_or_function_change": true,
+      "require_affected_group": true,
+      "require_limitation": true,
+      "require_critical_distinction": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true,
+    "defined_spatial_unit_required": true,
+    "before_after_state_required": true,
+    "intervention_or_driver_required": true,
+    "physical_or_function_change_required": true,
+    "affected_group_required": true,
+    "limitation_required": true
+  },
+  {
+    "emne_id": "em_his_stedsnavn_fortelling_tilhorighet",
+    "title": "Stedsnavn, fortelling og urban tilhørighet",
+    "mappings": [
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_offentlig_rom_tilgang_konflikt",
+        "topic_hook_tittel": "Offentlig rom, tilgang og konflikt",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "access-rule-and-use-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Primær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Henri Lefebvre",
+          "Setha Low",
+          "Don Mitchell",
+          "Richard Sennett"
+        ],
+        "thinker_ids": [
+          "henri_lefebvre",
+          "setha_low",
+          "don_mitchell",
+          "richard_sennett"
+        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
+        "comparison_pairs": [
+          [
+            "henri_lefebvre",
+            "setha_low"
+          ],
+          [
+            "don_mitchell",
+            "richard_sennett"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify rule or design change affecting access",
+          "compare formal public status with actual use",
+          "trace conflict over presence or activity",
+          "name groups enabled or excluded"
+        ],
+        "best_place_types": [
+          "plass",
+          "gate",
+          "park",
+          "torg",
+          "havnepromenade",
+          "moteplass"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Youngstorget",
+          "Eidsvolls plass",
+          "Torggata",
+          "Bjørvika",
+          "Tøyen torg",
+          "Aker Brygge"
+        ],
+        "recommended_method_ids": [
+          "met_romlig_historie",
+          "met_planhistorisk_analyse",
+          "met_mikrohistorisk_analyse"
+        ],
+        "critical_distinctions": [
+          "offentlig eid vs offentlig tilgjengelig",
+          "designintensjon vs faktisk bruk",
+          "ordenstiltak vs sosial ekskludering",
+          "åpen plass vs lik rett til opphold"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      },
+      {
+        "fagkart_kategori": "his_byhistorie_stedsendring",
+        "fagkart_kategori_tittel": "Byhistorie og stedsendring",
+        "topic_hook": "his_bevaring_ombruk_kulturmiljo",
+        "topic_hook_tittel": "Bevaring, ombruk og kulturmiljø",
+        "mapping_tier": "secondary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "heritage-decision-first",
+        "history_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "visible_trace_required": true,
+        "use_note": "Sekundær bane: etabler kart/kilde, førtilstand, endringsdriver, ettertilstand og berørt gruppe før teori.",
+        "tenkere": [
+          "Dolores Hayden",
+          "Françoise Choay",
+          "Alois Riegl",
+          "Kevin Lynch"
+        ],
+        "thinker_ids": [
+          "dolores_hayden",
+          "francoise_choay",
+          "alois_riegl",
+          "kevin_lynch"
+        ],
+        "norwegian_thinker_ids": [],
+        "norwegian_thinkers": [],
+        "comparison_pairs": [
+          [
+            "dolores_hayden",
+            "francoise_choay"
+          ],
+          [
+            "alois_riegl",
+            "kevin_lynch"
+          ]
+        ],
+        "preferred_question_moves": [
+          "identify protected element and legal basis",
+          "compare original and reused function",
+          "trace what was removed despite preservation",
+          "separate material continuity from social continuity"
+        ],
+        "best_place_types": [
+          "kulturmiljo",
+          "vernet_bygg",
+          "industriarv",
+          "gate",
+          "kvartal",
+          "transformasjonsomrade"
+        ],
+        "avoid_place_types": [
+          "sted_uten_dokumentert_for_etter_tilstand_eller_avgrenset_endringsforlop"
+        ],
+        "anti_patterns": [
+          "Generisk byutvikling uten datert før- og ettertilstand",
+          "Dagens byform brukt som eneste bevis for historisk endring",
+          "Planvedtak behandlet som identisk med gjennomført tiltak",
+          "Teoretikernavn brukt før sted, kilde og endringsforløp er etablert",
+          "dagens byform behandlet som bevis for historisk prosess",
+          "planvedtak behandlet som identisk med gjennomføring",
+          "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
+          "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
+          "synlig riving behandlet som full forklaring på hvem som flyttet",
+          "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Vulkan",
+          "Aker Brygge",
+          "Kvadraturen",
+          "Møllergata 19",
+          "Bjørvika",
+          "Telthusbakken"
+        ],
+        "recommended_method_ids": [
+          "met_sporlesning",
+          "met_planhistorisk_analyse",
+          "met_for_etter_historisk"
+        ],
+        "critical_distinctions": [
+          "vern av fasade vs vern av helhet",
+          "ombruk vs historisk kontinuitet",
+          "kulturminneverdi vs bruksverdi",
+          "bevart materiale vs bevart sosial erfaring"
+        ],
+        "source_objects": [
+          "lov, forskrift, reglement eller kommunalt vedtak",
+          "institusjonsprotokoll, saksmappe, journal eller register",
+          "budsjett, statistikk, medlems-, elev-, pasient- eller ytelsesliste",
+          "bruker-, elev-, pasient-, familie- eller omsorgskilde",
+          "uavhengig kontrollkilde, gransking eller sammenligningsserie"
+        ],
+        "welfare_institution_or_scheme_required": true,
+        "eligibility_or_target_group_required": true,
+        "practice_or_service_required": true,
+        "right_control_or_provision_required": true,
+        "everyday_or_life_course_consequence_required": true,
+        "limitation_required": true,
+        "critical_distinction_required": true,
+        "defined_spatial_unit_required": true,
+        "before_after_state_required": true,
+        "intervention_or_driver_required": true,
+        "physical_or_function_change_required": true,
+        "affected_group_required": true
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "his_offentlig_rom_tilgang_konflikt"
+    ],
+    "secondary_hooks": [
+      "his_bevaring_ombruk_kulturmiljo"
+    ],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 2,
+    "generator_rule": "Bruk primær bane først; sekundær bane skal forklare en annen dokumentert del av samme stedsendringsforløp.",
+    "history_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "canonical_thinkers": [
+      "Henri Lefebvre",
+      "Setha Low",
+      "Don Mitchell",
+      "Richard Sennett",
+      "Dolores Hayden",
+      "Françoise Choay",
+      "Alois Riegl",
+      "Kevin Lynch"
+    ],
+    "canonical_thinker_ids": [
+      "henri_lefebvre",
+      "setha_low",
+      "don_mitchell",
+      "richard_sennett",
+      "dolores_hayden",
+      "francoise_choay",
+      "alois_riegl",
+      "kevin_lynch"
+    ],
+    "norwegian_thinker_ids": [],
+    "norwegian_thinkers": [],
+    "theory_diversity_score": 8,
+    "has_norwegian_theory_path": false,
+    "theory_sync_version": "v1-historie",
+    "generator_theory_note": "Bruk teori først etter at førtilstand, inngrep, ettertilstand og konsekvens er dokumentert.",
+    "recommended_oslo_cases": [
+      "Grønland",
+      "Tøyen",
+      "Vaterland",
+      "Bjørvika"
+    ],
+    "recommended_method_ids": [
+      "met_romlig_historie",
+      "met_mikrohistorisk_analyse",
+      "met_sporlesning",
+      "met_komparativ_historie"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Avgrens med romlig enhet, tidsspenn og hoveddriver.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "historiepensum_v4_5",
+    "min_recommended_oslo_cases": 4,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 2,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 4,
+      "min_method_count": 2,
+      "max_primary_hooks": 2,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_defined_spatial_unit": true,
+      "require_before_after_state": true,
+      "require_intervention_or_driver": true,
+      "require_physical_or_function_change": true,
+      "require_affected_group": true,
+      "require_limitation": true,
+      "require_critical_distinction": true
+    },
+    "welfare_institution_or_scheme_required": true,
+    "eligibility_or_target_group_required": true,
+    "practice_or_service_required": true,
+    "right_control_or_provision_required": true,
+    "everyday_or_life_course_consequence_required": true,
+    "source_limitation_required": true,
+    "critical_distinction_required": true,
+    "defined_spatial_unit_required": true,
+    "before_after_state_required": true,
+    "intervention_or_driver_required": true,
+    "physical_or_function_change_required": true,
+    "affected_group_required": true,
+    "limitation_required": true
   }
 ]
