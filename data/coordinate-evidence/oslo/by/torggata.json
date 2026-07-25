@@ -4,17 +4,17 @@
   "evidenceStatus": "applied_to_place",
   "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.91535,
-    "lon": 10.75335,
+    "lat": 59.91700148933685,
+    "lon": 10.75330911912394,
     "r": 180,
     "coordStatus": "verified_geometry",
-    "coordSource": "Oslo byleksikon – Torggata + dokumenterte ruteankre",
-    "coordType": "street_midpoint",
-    "coordNote": "Dokumentert linjeanker for Torggata. Oslo byleksikon avgrenser gata fra Stortorvet til Ankertorget. History Go bruker et representativt midtpunkt mellom de eksisterende ruteankrene ved Youngstorget og Ankerbrua for den sentrale gate-/serveringsstrekningen; punktet er ikke et adressepunkt eller et påstått geometrisk sentrum for hele gateløpet."
+    "coordSource": "OpenStreetMap exact-name street topology",
+    "coordType": "street_geometry_midpoint",
+    "coordNote": "Torggata bruker nå et deterministisk lengdemidtpunkt direkte på den sammenhengende navngitte Torggata-strekningen mellom Youngstorget og Ankertorget. Fresh OSM-research ordnet 12 navngitte way-segmenter over 574.5 meter. Det tidligere punktet lå 125.9 meter fra riktig gategeometri; nytt punkt ligger 0 meter fra gategeometrien og ble flyttet 183.7 meter. Midtpunktet ligger på osm-way:467290774. Eksisterende gameplay-radius 180 meter beholdes; hele gateløpet lagres som ordnede routeSegments."
   },
   "identity": {
     "currentName": "Torggata",
-    "resolvedIdentity": "Torggata fra Stortorvet til Ankertorget, med History Go-linjeanker i den sentrale strekningen",
+    "resolvedIdentity": "Torggata som navngitt OSM-gateløp med dokumentert utstrekning",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "street",
@@ -22,9 +22,10 @@
     "splitReason": ""
   },
   "requiredEvidence": [
-    "stabil kildeidentitet",
-    "representasjonsregel som passer stedstypen",
-    "kildekontroll av eksisterende kartanker"
+    "dokumentert gateidentitet",
+    "eksakt navngitte OSM-way-segmenter",
+    "endepunktkontroll",
+    "lengdemidtpunkt på gategeometri"
   ],
   "evidence": [
     {
@@ -33,34 +34,173 @@
       "sourceUrl": "https://oslobyleksikon.no/side/Torggata",
       "sourceObjectId": "oslobyleksikon:torggata",
       "sourceQuality": "documented_street_extent",
-      "finding": "Oslo byleksikon dokumenterer hele gateløpet og gatehistorien; eksisterende ruteankre gir en eksplisitt lineær representasjon.",
+      "finding": "Kilden dokumenterer Torggata og det aktuelle gateløpet.",
       "canVerifyCoordinate": true,
-      "reason": "Dokumentert linjeanker for Torggata. Oslo byleksikon avgrenser gata fra Stortorvet til Ankertorget. History Go bruker et representativt midtpunkt mellom de eksisterende ruteankrene ved Youngstorget og Ankerbrua for den sentrale gate-/serveringsstrekningen; punktet er ikke et adressepunkt eller et påstått geometrisk sentrum for hele gateløpet."
+      "reason": "Stabil identitet og gateutstrekning."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap exact-name Torggata topology",
+      "sourceUrl": "https://www.openstreetmap.org/way/467290774",
+      "sourceObjectId": "osm-way:467290774",
+      "sourceQuality": "named_street_route_geometry",
+      "finding": "12 ordnede way-segmenter over 574.5 meter; displaypunktet ligger direkte på osm-way:467290774.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt gategeometri og deterministisk lengdemidtpunkt."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go street topology research",
+      "sourceUrl": "reports/oslo-coordinate-torggata-storgata-research-20260725/summary-v2.json",
+      "sourceObjectId": "history-go-research:torggata-storgata-20260725:torggata",
+      "sourceQuality": "reproducible_topology_research",
+      "finding": "Tidligere punkt lå 125.9 meter fra gategeometrien og ble flyttet 183.7 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Dokumenterer feilårsak, rutevalg og koordinatbeslutning."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "oslobyleksikon:torggata",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4844706",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4844705",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1299259716",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4879530",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:883404202",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:41390228",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:467290774",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:39444223",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:469717783",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:41390229",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1150436561",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:480987739",
       "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4844706",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4844705",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1299259716",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4879530",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:883404202",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:41390228",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:467290774",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:39444223",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:469717783",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:41390229",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1150436561",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:480987739",
+      "canApplyToPlace": true
+    }
+  ],
   "coordinateCandidates": [
     {
-      "lat": 59.91535,
-      "lon": 10.75335,
+      "lat": 59.91700148933685,
+      "lon": 10.75330911912394,
       "coordRole": "line_anchor",
+      "sourceObjectId": "osm-way:467290774",
       "canApplyToPlace": true
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+    "nextAction": "Eksakt gategeometri, routeSegments og displaypunkt er anvendt på canonical place."
   },
   "notes": [
-    "Dokumentert linjeanker for Torggata. Oslo byleksikon avgrenser gata fra Stortorvet til Ankertorget. History Go bruker et representativt midtpunkt mellom de eksisterende ruteankrene ved Youngstorget og Ankerbrua for den sentrale gate-/serveringsstrekningen; punktet er ikke et adressepunkt eller et påstått geometrisk sentrum for hele gateløpet."
-  ]
+    "Torggata bruker nå et deterministisk lengdemidtpunkt direkte på den sammenhengende navngitte Torggata-strekningen mellom Youngstorget og Ankertorget. Fresh OSM-research ordnet 12 navngitte way-segmenter over 574.5 meter. Det tidligere punktet lå 125.9 meter fra riktig gategeometri; nytt punkt ligger 0 meter fra gategeometrien og ble flyttet 183.7 meter. Midtpunktet ligger på osm-way:467290774. Eksisterende gameplay-radius 180 meter beholdes; hele gateløpet lagres som ordnede routeSegments.",
+    "Research report: reports/oslo-coordinate-torggata-storgata-research-20260725/summary-v2.json"
+  ],
+  "schemaVersion": "1.0"
 }
