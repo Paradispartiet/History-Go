@@ -30,13 +30,31 @@ jobs:
         run: npm ci
 
       - name: Materialize batch
-        run: npx tsx tools/materialize-oslo-people-zero-gap-batch2.mts
+        id: materialize
+        shell: bash
+        run: |
+          set +e
+          npx tsx tools/materialize-oslo-people-zero-gap-batch2.mts > reports/oslo-people-batch2-materializer.log 2>&1
+          status=$?
+          cat reports/oslo-people-batch2-materializer.log
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload failure log
+        if: steps.materialize.outputs.status != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-people-batch2-materializer-failure
+          path: reports/oslo-people-batch2-materializer.log
+          if-no-files-found: error
 
       - name: Publish clean data commit
+        if: steps.materialize.outputs.status == '0'
         run: |
           rm -f tools/audit-oslo-people-batch2-candidates.mts
           rm -f tools/materialize-oslo-people-zero-gap-batch2.mts
           rm -f .github/workflows/oslo-people-batch2-audit.yml
+          rm -f reports/oslo-people-batch2-materializer.log
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
@@ -44,3 +62,7 @@ jobs:
           git diff --cached --check
           git commit -m "Add Oslo People zero-gap batch 2"
           git push origin HEAD:agent/oslo-people-zero-gap-batch2
+
+      - name: Fail on materializer error
+        if: steps.materialize.outputs.status != '0'
+        run: exit 1
