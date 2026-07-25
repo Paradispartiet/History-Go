@@ -31,16 +31,17 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 1. [`../README/SYSTEM_REGISTRY.md`](../README/SYSTEM_REGISTRY.md) — overordnet runtime-eierskap og kjernegrenser
 2. [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — aktive API-, storage-, privacy- og UI-kontrakter for subsystemene
 3. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — hva skjer i flyten
-4. [`../README/README_DEV.md`](../README/README_DEV.md) — kjøring, debugging og validering
-5. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
+4. [`APP_STRUCTURE_INDEX.md`](./APP_STRUCTURE_INDEX.md) — canonical entry-, boot-, router-, MapView- og sidegrensekontrakt for `index.html`
+5. [`../README/README_DEV.md`](../README/README_DEV.md) — kjøring, debugging og validering
+6. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
 
-`SYSTEM_REGISTRY.md` og `SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md` utgjør sammen den aktive runtime-kontrakten. Den tidligere pre-split-filen er bevart byte-identisk i [`../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md) som historisk sporbarhet, ikke som bindende regelverk.
+`SYSTEM_REGISTRY.md` og `SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md` utgjør sammen den aktive runtime-kontrakten. `APP_STRUCTURE_INDEX.md` eier bare index-appens interne struktur. Den tidligere pre-split-filen er bevart byte-identisk i [`../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md) som historisk sporbarhet, ikke som bindende regelverk.
 
 ### Produkt og ferdigstillelse
 
 1. [`../README/README.md`](../README/README.md) — hovedoversikt
 2. [`HISTORY_GO_PRODUCT_MAP.md`](./HISTORY_GO_PRODUCT_MAP.md) — canonical produktkart og prioritet
-3. [`COMPLETION_DEFINITIONS.md`](./COMPLETION_DEFINITIONS.md) — transitional ferdigmodell; Bronse → Sølv → Gull er aktiv nivåregel, og den gamle `Mestergrad`-resten må fjernes før dokumentet kan bli canonical
+3. [`COMPLETION_DEFINITIONS.md`](./COMPLETION_DEFINITIONS.md) — canonical ferdigmodell; aktiv nivåregel er Bronse → Sølv → Gull
 4. [`PROGRESSION_MODEL.md`](./PROGRESSION_MODEL.md) — operativ mål-/adaptermodell for samlet progresjonslesing; erstatter ikke runtime-lagring
 5. [`PLACE_STANDARD.md`](./PLACE_STANDARD.md) — canonical produktstandard for et History GO-sted
 
@@ -156,9 +157,10 @@ Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation
 - foreldet `badge_refs`-regel og biologispesifikk emnearkitektur fjernet fra aktiv dokumentflate
 - gammel quiz-README erstattet med compatibility-pointer; canonical produksjonsprosedyre, template-register og manifests er eksplisitt prioritert
 - daterte TypeScript- og AHA-statusfiler flyttet til `reports/archive/2026-07/`
+- `Mestergrad` fjernet fra ferdigmodellen; Bronse → Sølv → Gull er canonical nivåregel
+- `APP_STRUCTURE_INDEX.md` synkronisert med `#/debate/:id` og registrert som canonical index-appkontrakt
 
 ### Neste
 
-- fjern den foreldede `Mestergrad`-raden fra ferdigdefinisjonene og løft dokumentet fra transitional til canonical
-- klassifiser `APP_STRUCTURE_INDEX.md` og øvrige aktive produkt-/runtimekontrakter
+- klassifiser øvrige aktive produkt-/runtimekontrakter, først domene- og kvalitetskontraktene
 - fortsett å flytte daterte audits og statuspunkter til `reports/archive/YYYY-MM/`

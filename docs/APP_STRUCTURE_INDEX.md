@@ -1,130 +1,147 @@
-# Index app structure
+# History GO — index-appstruktur
 
-This document describes the current `index.html` app structure after the app-shell, fast boot, router, and MapView work.
+Status: **canonical kontrakt for `index.html`-appen**  
+Sist kontrollert: **2026-07-25**
 
-The goal is to keep the index app understandable and avoid accidental large rewrites.
+Dette dokumentet beskriver dagens `index.html`-struktur etter app-shell-, fast-boot-, router- og MapView-arbeidet.
 
-## Current status
+Målet er å holde index-appen forståelig og hindre utilsiktede storskalaomskrivinger. Dokumentet eier bare index-appens struktur og grenser; overordnet runtime-eierskap ligger fortsatt i `README/SYSTEM_REGISTRY.md` og `README/SYSTEM_MAP.md`.
 
-`index.html` is the main History Go app shell.
+## Dagens eierskap
 
-It owns:
+`index.html` er History GOs hoved-app-shell.
 
-- the map surface
-- the header
-- the nearby/left panel
-- the place card / bottom sheet
-- the quiz modal flow
-- miniProfile as a quick profile status surface
-- the lightweight hash router for index-only routes
+Det eier:
 
-`index.html` keeps miniProfile for quick status. `profile.html` is the canonical full profile page. `#/profile` is not an internal view now; it redirects/navigates to `profile.html`. Profile migration into index is paused because miniProfile already covers quick status.
+- kartflaten
+- headeren
+- Nearby-/venstrepanelet
+- PlaceCard/bottom sheet
+- quiz-overlayen
+- miniProfile som rask profilstatus
+- den lette hash-routeren for index-interne ruter
 
-`Civication.html` is still a separate page. It is not an internal index view.
+`index.html` beholder miniProfile for rask status. `profile.html` er canonical full profilside. `#/profile` er ikke en intern index-visning; routeren navigerer til `profile.html`.
 
-## Boot model
+`Civication.html` er fortsatt en separat side. `#/civication` navigerer dit og er ikke en intern index-visning.
 
-The index app now uses a split boot model.
+## Entry- og bootmodell
+
+`index.html` laster den minimale app-shell-flaten og starter modul-entryen:
+
+```html
+<script type="module" src="./js/app.js"></script>
+```
+
+`js/app.js` eier eksplisitt lastrekkefølge for index-runtime. Den laster kritiske avhengigheter, `js/boot-fast.js`, `js/views/MapView.js` og `js/router/AppRouter.js`, kaller `bootCritical()`, markerer appen klar, starter routeren og planlegger `bootBackground()`.
+
+`js/boot-fast.js` eier selve splitten mellom kritisk og ikke-kritisk dataarbeid.
 
 ### Critical boot
 
-`bootCritical()` should only do the work needed to make the map usable quickly:
+`bootCritical()` skal bare gjøre arbeidet som trengs for å få første brukbare kartskjerm:
 
-- initialize core app/runtime basics
-- initialize open/test mode state
-- initialize the map
-- load the light places base/index
-- expose `window.PLACES`
-- set map places and marker click handling
-- render the initial app shell state
+- initialisere kjerne-/runtimegrunnlag som boot-funksjonen selv eier
+- initialisere open/test mode
+- initialisere viewport og kart
+- laste den lette place-basen via DataHub/manifest
+- eksponere `window.PLACES`
+- sette kartets places og marker-click
+- rendre første brukbare shell-/kartstatus
 
-Critical boot should stay small.
-
-It should not wait for large secondary data.
+Critical boot skal holdes liten og skal ikke vente på tunge sekundærdata.
 
 ### Background boot
 
-`bootBackground()` loads non-critical data after the app is already usable:
+`bootBackground()` laster og indekserer ikke-kritiske data etter at kartet allerede er brukbart, blant annet:
 
 - people
 - relations
-- Wonderkammer
+- Wonderkammer/leksikon-grunnlag
 - tags
 - nature
 - Lesespor
 - stories
 - events
 - brands
-- badges/secondary UI data where applicable
+- sekundære badge-/UI-data der det er relevant
 
-Background boot should be defensive. One failing background module should not prevent the map shell from working.
+Bakgrunnsboot skal være defensiv. Én sviktende bakgrunnsmodul skal ikke gjøre kartskallet ubrukelig.
 
-## Router model
+## Routermodell
 
-The index app uses `js/router/AppRouter.js` for index-only hash routes. `#/profile` is intentionally not listed as an index route because it navigates to `profile.html`.
+`js/router/AppRouter.js` eier index-interne hash-ruter.
 
-Supported routes:
+Aktive index-ruter:
 
 ```txt
 #/map
 #/place/:id
 #/quiz/:id
+#/debate/:id
 ```
 
-Route helpers should be used instead of manually building hashes:
+Eksterne sidegrenser:
+
+```txt
+#/profile     → profile.html
+#/civication → Civication.html
+```
+
+Bruk route-helperne i stedet for å spre manuelle hash-strenger i UI-filer:
 
 ```js
 window.HGAppRouter?.toMap?.();
 window.HGAppRouter?.toPlace?.(placeId);
 window.HGAppRouter?.toQuiz?.(targetId);
+window.HGAppRouter?.toDebate?.(debateId);
 ```
 
-Avoid scattering manual route strings like `#/place/...` across UI files.
+## MapView-modell
 
-## MapView model
+`js/views/MapView.js` eier det tynne view-state-laget for index-rutene.
 
-`js/views/MapView.js` owns the lightweight view-state for index routes.
+Det koordinerer:
 
-It is responsible for:
+- grunnkartet for `#/map`
+- kartflytting og PlaceCard for `#/place/:id`
+- quiz-overlay for `#/quiz/:id`
+- debattåpning for `#/debate/:id`
+- lukking/skjuling av rutespesifikk UI ved retur til kartet
+- felles pending-navigation slik at søk, Nearby og place-ruter venter på ferdig kartbevegelse før PlaceCard vises
 
-- showing the base map route
-- opening a place card for `#/place/:id`
-- starting quiz flow for `#/quiz/:id`
-- closing or hiding route-specific UI when returning to `#/map`
+MapView skal forbli tynt. Det skal koordinere eksisterende DOM-/runtimeadferd, ikke erstatte kartmotoren, PlaceCard, QuizEngine eller debattmotoren.
 
-MapView should stay thin. It should coordinate existing DOM/runtime behavior, not replace the place card, map engine, or quiz engine.
+## Skal ikke flyttes uten egen migreringsfase
 
-## What should not be moved yet
+Ikke flytt disse inn i index-routeren som del av en urelatert endring:
 
-Do not move these into the index router without a separate migration plan:
-
-- `profile.html` (canonical full profile page)
+- `profile.html`
 - `js/profile.js`
 - `Civication.html`
 - `js/Civication/**`
 
-Those pages have their own boot/runtime assumptions and should remain separate until a dedicated phase is planned.
+Sidene har egne boot-/runtimeforutsetninger og skal forbli separate til en eksplisitt migreringsplan vedtas.
 
-## Safe next steps
+## Sikker endringsregel
 
-Good next steps:
+Gode neste steg:
 
-- keep using `bootCritical()` / `bootBackground()` boundaries
-- keep index route helpers centralized in `AppRouter`
-- add small route/state fixes in `MapView` when needed
-- document new index-only behavior here
-- keep miniProfile as quick status in index and `profile.html` as the full profile
+- behold grensen mellom `bootCritical()` og `bootBackground()`
+- hold route-helperne sentralisert i `AppRouter`
+- gjør små route-/state-korreksjoner i `MapView`
+- oppdater dette dokumentet når en index-rute, sidegrense eller boot-eier endres
+- behold miniProfile som rask status og `profile.html` som full profil
 
-Avoid:
+Unngå:
 
-- large router rewrites
-- moving profile/Civication into index as part of unrelated patches
-- restarting ProfileView migration while miniProfile already covers quick profile status
-- changing boot order without checking loading behavior
-- mixing app-structure work with data migrations or UI redesigns
+- store routeromskrivinger
+- å flytte profile/Civication inn i index som del av andre patches
+- å endre bootrekkefølge uten å kontrollere første brukbare kartskjerm og bakgrunnslasting
+- å blande appstruktur med dataflytting eller visuell redesign
 
-## Rule of thumb
+## Tommelfingerregel
 
-If a change is needed for the first usable map screen, it belongs near critical boot.
+Hvis en endring er nødvendig for første brukbare kartskjerm, hører den til den kritiske entry-/bootkjeden.
 
-If a change enriches cards, people, stories, relations, brands, nature, or secondary panels, it belongs in background boot or event-driven refresh.
+Hvis en endring beriker cards, people, stories, relations, brands, nature eller sekundærpaneler, hører den til bakgrunnsboot, eventdrevet refresh eller et avgrenset subsystem.
