@@ -18,6 +18,9 @@
     "docs/APP_STRUCTURE_INDEX.md",
     "docs/DOMAIN_CONTRACT.md",
     "docs/DATA_PRODUCTION_CONTRACT.md",
+    "docs/coordinates/README.md",
+    "docs/coordinates/coordinate-source-contract-v1.md",
+    "docs/coordinates/coordinate-evidence-files-v1.md",
     "docs/KNOWLEDGE_ARCHITECTURE.md",
     "data/knowledge/knowledge_system_policy_v1.json",
     "data/knowledge/knowledge_unit_schema_v1.json",
@@ -32,49 +35,65 @@
       "path": "README.md",
       "status": "operational",
       "role": "Kort menneskelig inngang til repoet",
-      "owns": ["repository_entry"],
+      "owns": [
+        "repository_entry"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "AGENTS.md",
       "status": "operational",
       "role": "Felles agentregler og connector-first arbeidsflyt",
-      "owns": ["agent_entry"],
+      "owns": [
+        "agent_entry"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "CLAUDE.md",
       "status": "operational",
       "role": "Claude-spesifikk repo-orientering; skal følge canonical dokumenter",
-      "owns": ["claude_adapter"],
+      "owns": [
+        "claude_adapter"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "DOCS.md",
       "status": "operational",
       "role": "Kort dokumentasjonsinngang",
-      "owns": ["documentation_entry"],
+      "owns": [
+        "documentation_entry"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/README.md",
       "status": "canonical",
       "role": "Autoritativt dokumentasjonskart og statusoversikt",
-      "owns": ["documentation_map"],
+      "owns": [
+        "documentation_map"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md",
       "status": "canonical",
       "role": "Normativ målarkitektur og språk-, plattform- og dataeierskap",
-      "owns": ["target_architecture", "language_ownership", "platform_ownership"],
+      "owns": [
+        "target_architecture",
+        "language_ownership",
+        "platform_ownership"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/AHA_QUALITY_STATUS_SURFACE_V1.md",
       "status": "operational",
       "role": "Dokumentasjonsdefinert målkontrakt for lokal, read-only AHA-kvalitetsstatus uten runtime, sync eller EchoNet",
-      "owns": ["aha_quality_status_surface_target"],
+      "owns": [
+        "aha_quality_status_surface_target"
+      ],
       "last_verified": "2026-07-25"
     },
     {
@@ -88,42 +107,54 @@
       "path": "docs/HG_SOCIAL_README.md",
       "status": "operational",
       "role": "Samlet produktoversikt, terminologi og dokumentasjonsinngang for HG Social og Social Meet",
-      "owns": ["social_documentation_entry"],
+      "owns": [
+        "social_documentation_entry"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HG_SOCIAL_PRIVACY_RULES.md",
       "status": "canonical",
       "role": "Bindende privacy-defaults og permanente Social-grenser",
-      "owns": ["social_privacy_policy"],
+      "owns": [
+        "social_privacy_policy"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HG_SPOTMEETING.md",
       "status": "canonical",
       "role": "Produkt-, context-, lifecycle-, privacy- og rollout-kontrakt for Spotmeeting",
-      "owns": ["spotmeeting_product_contract"],
+      "owns": [
+        "spotmeeting_product_contract"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HG_SOCIAL_ARCHITECTURE.md",
       "status": "operational",
       "role": "Produkt- og målarkitektur for kunnskapsbasert Social",
-      "owns": ["social_target_architecture"],
+      "owns": [
+        "social_target_architecture"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HG_SOCIAL_QA.md",
       "status": "operational",
       "role": "QA-sjekkliste og runtime-guide for Social privacy guards",
-      "owns": ["social_qa_operations"],
+      "owns": [
+        "social_qa_operations"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HG_SOCIAL_DEMO_MODE.md",
       "status": "operational",
       "role": "Lokal demo-, seed- og smoke-test-guide for HG Social",
-      "owns": ["social_demo_operations"],
+      "owns": [
+        "social_demo_operations"
+      ],
       "last_verified": "2026-07-25"
     },
     {
@@ -137,14 +168,18 @@
       "path": "backend/README.md",
       "status": "local",
       "role": "Gjeldende lokal implementasjonsinngang for FastAPI-foundation og servereide Social Meet-slices",
-      "owns": ["social_backend_implementation_entry"],
+      "owns": [
+        "social_backend_implementation_entry"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HG_SOCIAL_MEET_IDENTITY_CONTRACT.md",
       "status": "transitional",
       "role": "Aktiv kravkontrakt for autentisert Social Meet-identitet og opt-in public profile",
-      "owns": ["social_identity_requirements"],
+      "owns": [
+        "social_identity_requirements"
+      ],
       "last_verified": "2026-07-25",
       "debt": "Kravinnholdet er aktivt, men statusavsnittet beskriver perioden før identity-backenden ble implementert."
     },
@@ -152,7 +187,9 @@
       "path": "docs/HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md",
       "status": "transitional",
       "role": "Aktiv kravkontrakt for context-bound invite-persistence, authorization og lifecycle",
-      "owns": ["social_invite_requirements"],
+      "owns": [
+        "social_invite_requirements"
+      ],
       "last_verified": "2026-07-25",
       "debt": "Kravinnholdet er aktivt, men statusavsnittet er eldre enn den implementerte servereide invite-lifecyclen."
     },
@@ -160,7 +197,9 @@
       "path": "docs/HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md",
       "status": "transitional",
       "role": "Aktiv kravkontrakt for block, report, moderation, retention, deletion og safety audit",
-      "owns": ["social_safety_requirements"],
+      "owns": [
+        "social_safety_requirements"
+      ],
       "last_verified": "2026-07-25",
       "debt": "Kravinnholdet er aktivt, men statusavsnittet er eldre enn safety-, moderation- og retention-implementasjonen."
     },
@@ -168,49 +207,63 @@
       "path": "docs/HG_SOCIAL_MEET_MODERATION_BACKEND.md",
       "status": "operational",
       "role": "Implementert FastAPI/PostgreSQL moderation-, restrictions- og appeals-slice",
-      "owns": ["social_moderation_implementation"],
+      "owns": [
+        "social_moderation_implementation"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HG_SOCIAL_MEET_ABUSE_CONTROLS.md",
       "status": "operational",
       "role": "Implementert server-side preflight-policy for rate limits, duplicates og cooldowns",
-      "owns": ["social_abuse_controls_implementation"],
+      "owns": [
+        "social_abuse_controls_implementation"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HG_SPOTMEETING_INVITE_BACKEND.md",
       "status": "operational",
       "role": "Implementert servereid Spotmeeting invite-, lifecycle-, inbox- og sync-grense",
-      "owns": ["spotmeeting_invite_backend_implementation"],
+      "owns": [
+        "spotmeeting_invite_backend_implementation"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md",
       "status": "operational",
       "role": "Implementert privacy-safe candidate discovery bak fail-closed rollout",
-      "owns": ["social_candidate_discovery_implementation"],
+      "owns": [
+        "social_candidate_discovery_implementation"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HG_SOCIAL_MEET_FASTAPI_CLIENT.md",
       "status": "operational",
       "role": "Implementert typed FastAPI-klient og browser-adaptermigrering for Spotmeeting",
-      "owns": ["social_fastapi_client_implementation"],
+      "owns": [
+        "social_fastapi_client_implementation"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md",
       "status": "operational",
       "role": "Implementert servereid retention-, holds- og privacy-safe observability-slice",
-      "owns": ["social_retention_observability_implementation"],
+      "owns": [
+        "social_retention_observability_implementation"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HG_SOCIAL_MODERATION.md",
       "status": "local",
       "role": "Eldre lokal/localStorage-kompatibilitetsguide; eier ikke servermoderasjon",
-      "owns": ["social_local_moderation_compatibility"],
+      "owns": [
+        "social_local_moderation_compatibility"
+      ],
       "last_verified": "2026-07-25"
     },
     {
@@ -218,7 +271,10 @@
       "status": "historical",
       "role": "Roadmap-snapshot fra før Social Meet-slicene ble implementert",
       "owns": [],
-      "superseded_by": ["backend/README.md", "docs/HG_SOCIAL_BACKEND_CONTRACT.md"],
+      "superseded_by": [
+        "backend/README.md",
+        "docs/HG_SOCIAL_BACKEND_CONTRACT.md"
+      ],
       "historical_reason": "Faseplanen beskriver arbeid som i stor grad senere ble implementert og kan ikke brukes som nåstatus."
     },
     {
@@ -226,21 +282,29 @@
       "status": "historical",
       "role": "Tidlig Supabase-foundation og direkte adapterfase før FastAPI-strangleren",
       "owns": [],
-      "superseded_by": ["backend/README.md", "docs/HG_SOCIAL_MEET_FASTAPI_CLIENT.md", "docs/HG_SPOTMEETING_INVITE_BACKEND.md"],
+      "superseded_by": [
+        "backend/README.md",
+        "docs/HG_SOCIAL_MEET_FASTAPI_CLIENT.md",
+        "docs/HG_SPOTMEETING_INVITE_BACKEND.md"
+      ],
       "historical_reason": "Dokumenterer den opprinnelige schema/RLS- og direkte Supabase-fasen; migrerte Spotmeeting-operasjoner er nå serverautoritativt rutet gjennom FastAPI."
     },
     {
       "path": "docs/CIVICATION_README.md",
       "status": "operational",
       "role": "Felles inngang til Civication-runtime, data-, rolle-, mail-, debatt- og FWG-dokumentasjon",
-      "owns": ["civication_documentation_entry"],
+      "owns": [
+        "civication_documentation_entry"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/CIVICATION_DEBATE_SYSTEM.md",
       "status": "operational",
       "role": "Produkt- og runtimeforklaring for Civications interne konfrontasjonsmotor",
-      "owns": ["civication_debate_documentation"],
+      "owns": [
+        "civication_debate_documentation"
+      ],
       "last_verified": "2026-07-25"
     },
     {
@@ -261,7 +325,9 @@
       "path": "README/SYSTEM_REGISTRY.md",
       "status": "canonical",
       "role": "Overordnet runtime-eierskap, kjernegrenser og globale kontrakter",
-      "owns": ["current_runtime_ownership"],
+      "owns": [
+        "current_runtime_ownership"
+      ],
       "last_verified": "2026-07-25"
     },
     {
@@ -282,126 +348,218 @@
       "status": "historical",
       "role": "Byte-identisk snapshot av SYSTEM_REGISTRY før aktiv kontrakt og innlimt legacytekst ble splittet",
       "owns": [],
-      "superseded_by": ["README/SYSTEM_REGISTRY.md", "README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md"],
+      "superseded_by": [
+        "README/SYSTEM_REGISTRY.md",
+        "README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md"
+      ],
       "historical_reason": "Bevarer hele pre-split-filen for sporbarhet. Legacytekst er ikke bindende; aktive appendiksregler er konsolidert i subsystemkontrakten."
     },
     {
       "path": "README/SYSTEM_MAP.md",
       "status": "canonical",
       "role": "Dagens runtime-flyt og modulkjeder",
-      "owns": ["current_runtime_flow"],
+      "owns": [
+        "current_runtime_flow"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/APP_STRUCTURE_INDEX.md",
       "status": "canonical",
       "role": "Index-appens entry-, boot-, router-, MapView- og sidegrensekontrakt",
-      "owns": ["index_app_structure"],
+      "owns": [
+        "index_app_structure"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/DOMAIN_CONTRACT.md",
       "status": "canonical",
       "role": "Bindende kategoribeslutninger med maskinkontrakten som sannhetskilde",
-      "owns": ["domain_category_contract"],
+      "owns": [
+        "domain_category_contract"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/DOMAIN_REGISTRY_README.md",
       "status": "operational",
       "role": "Praktisk runtime-guide for DomainRegistry-konvertering og legacy-aliasgrenser",
-      "owns": ["domain_registry_usage"],
+      "owns": [
+        "domain_registry_usage"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "README/README_DEV.md",
       "status": "canonical",
       "role": "Daglig utvikling, lokal kjøring, validering og debugging",
-      "owns": ["development_operations"],
+      "owns": [
+        "development_operations"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "README/TEAM_WORKFLOW.md",
       "status": "canonical",
       "role": "Arbeidsflyt og dokumentprioritet ved endringer",
-      "owns": ["team_workflow"],
+      "owns": [
+        "team_workflow"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "README/README.md",
       "status": "canonical",
       "role": "Hovedoversikt for History GO-produktet",
-      "owns": ["product_overview"],
+      "owns": [
+        "product_overview"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/HISTORY_GO_PRODUCT_MAP.md",
       "status": "canonical",
       "role": "Produktkart og ferdigstillelsesprioritet for History GO",
-      "owns": ["product_completion_map"],
+      "owns": [
+        "product_completion_map"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/COMPLETION_DEFINITIONS.md",
       "status": "canonical",
       "role": "Samlet ferdigmodell for History GO-handlinger og moduler",
-      "owns": ["completion_definitions"],
+      "owns": [
+        "completion_definitions"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/PLACE_STANDARD.md",
       "status": "canonical",
       "role": "Produktstandard og modenhetsmodell for et History GO-sted",
-      "owns": ["place_product_standard"],
+      "owns": [
+        "place_product_standard"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/PROGRESSION_MODEL.md",
       "status": "operational",
       "role": "Mål- og adaptermodell for samlet progresjonslesing uten å erstatte eksisterende runtime-lagring",
-      "owns": ["progression_read_model_target"],
-      "last_verified": "2026-07-25"
-    },
-    {
-      "path": "docs/PROFILE_PROGRESS_READER_RUNTIME.md",
-      "status": "operational",
-      "role": "Aktiv read-only runtimeguide for HGProfileProgressReader og eksisterende progresjonskilder",
-      "owns": ["profile_progress_reader_runtime"],
+      "owns": [
+        "progression_read_model_target"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/DATA_PRODUCTION_CONTRACT.md",
       "status": "canonical",
       "role": "Aktiv dataproduksjonskontrakt for places, people, quiz og manifester",
-      "owns": ["data_production_contract"],
+      "owns": [
+        "data_production_contract"
+      ],
       "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/coordinates/README.md",
+      "status": "canonical",
+      "role": "Autoritativ dokumentasjonsinngang og leserekkefølge for koordinater, kildeevidens og kontroll",
+      "owns": [
+        "coordinate_documentation_map"
+      ],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/coordinates/coordinate-source-contract-v1.md",
+      "status": "canonical",
+      "role": "Bindende felt-, kilde-, status- og trust-kontrakt for canonical place-koordinater",
+      "owns": [
+        "coordinate_source_contract"
+      ],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/coordinate-finder.md",
+      "status": "operational",
+      "role": "Operativ metode for coordinate-research, fysisk kontroll, endring og kart-QA",
+      "owns": [
+        "coordinate_workflow"
+      ],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/coordinates/coordinate-evidence-files-v1.md",
+      "status": "canonical",
+      "role": "Bindende evidensformat og livsløp før coordinate-endring eller verified-status",
+      "owns": [
+        "coordinate_evidence_contract"
+      ],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/coordinates/coordinate-control-protocol.md",
+      "status": "operational",
+      "role": "Løpende kontrollprotokoll og ledger for fullførte coordinate-batcher",
+      "owns": [
+        "coordinate_control_ledger"
+      ],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/coordinates/address-first-coordinate-policy.md",
+      "status": "operational",
+      "role": "Compatibility-peker til source contract og coordinate-finder for den avgrensede address-first-løypen",
+      "owns": [],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "reports/coordinate-source-contract-v1-implementation.md",
+      "status": "historical",
+      "role": "Implementasjonssnapshot fra innføringen av Coordinate Source Contract v1",
+      "owns": [],
+      "superseded_by": [
+        "docs/coordinates/coordinate-source-contract-v1.md",
+        "docs/coordinates/coordinate-control-protocol.md"
+      ],
+      "historical_reason": "Rapporten er datert 2026-07-09 og beskriver innføringsstatus og konkrete daværende migreringsfunn, ikke gjeldende kontrakt eller fullføringsstatus."
     },
     {
       "path": "docs/KNOWLEDGE_ARCHITECTURE.md",
       "status": "canonical",
       "role": "Menneskelesbar Knowledge-arkitektur, storage-eierskap og grense mellom produksjonskrav og overgangsruntime",
-      "owns": ["knowledge_architecture", "knowledge_storage_ownership"],
+      "owns": [
+        "knowledge_architecture",
+        "knowledge_storage_ownership"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "data/knowledge/knowledge_system_policy_v1.json",
       "status": "canonical",
       "role": "Maskinlesbar Knowledge-systempolicy og canonical faglig kjede",
-      "owns": ["knowledge_system_policy"],
+      "owns": [
+        "knowledge_system_policy"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "data/knowledge/knowledge_unit_schema_v1.json",
       "status": "canonical",
       "role": "Maskinlesbart schema for canonical knowledge units",
-      "owns": ["knowledge_unit_schema"],
+      "owns": [
+        "knowledge_unit_schema"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "data/quiz/quiz_knowledge_delivery_contract_v1.json",
       "status": "canonical",
       "role": "Maskinlesbar kontrakt for quiz som kunnskaps-, vurderings- og evidensflate",
-      "owns": ["quiz_knowledge_delivery_contract"],
+      "owns": [
+        "quiz_knowledge_delivery_contract"
+      ],
       "last_verified": "2026-07-25"
     },
     {
@@ -415,21 +573,27 @@
       "path": "README/README.pensum.md",
       "status": "canonical",
       "role": "Fagkart, emner, pensum og faglig progresjon",
-      "owns": ["curriculum_model"],
+      "owns": [
+        "curriculum_model"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
       "status": "canonical",
       "role": "Eneste bindende produksjonsprosedyre for nye og reviderte quizer",
-      "owns": ["quiz_production_contract"],
+      "owns": [
+        "quiz_production_contract"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json",
       "status": "canonical",
       "role": "Maskinlesbar autoritetsrekkefølge, globale quiz-invariants og kategori-profiler",
-      "owns": ["quiz_template_authority_registry"],
+      "owns": [
+        "quiz_template_authority_registry"
+      ],
       "last_verified": "2026-07-25"
     },
     {
@@ -444,21 +608,29 @@
       "status": "historical",
       "role": "Byte-identisk snapshot av den tidligere kombinerte quiz-, lærings-, observations- og popup-README-en",
       "owns": [],
-      "superseded_by": ["data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md", "README/quizREADME.md", "README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md"],
+      "superseded_by": [
+        "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+        "README/quizREADME.md",
+        "README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md"
+      ],
       "historical_reason": "Blandet utdaterte filpaths, eldre generatorregler, runtime-notater og feilsøking i én konkurrerende fasit."
     },
     {
       "path": "docs/TYPESCRIPT_FIRST_POLICY.md",
       "status": "canonical",
       "role": "TypeScript-policy for klient og Node-tooling",
-      "owns": ["typescript_policy"],
+      "owns": [
+        "typescript_policy"
+      ],
       "last_verified": "2026-07-25"
     },
     {
       "path": "docs/typescript-migration-plan.md",
       "status": "operational",
       "role": "Operativ migreringsplan for browser-runtime",
-      "owns": ["typescript_migration_plan"],
+      "owns": [
+        "typescript_migration_plan"
+      ],
       "last_verified": "2026-07-25"
     },
     {
@@ -480,7 +652,9 @@
       "status": "historical",
       "role": "Avgrenset implementasjonssnapshot for Social, Civication Home og Spotmeeting",
       "owns": [],
-      "superseded_by": ["docs/HISTORY_GO_PRODUCT_MAP.md"],
+      "superseded_by": [
+        "docs/HISTORY_GO_PRODUCT_MAP.md"
+      ],
       "historical_reason": "Navnet er bredere enn faktisk innhold og dokumentet er tidsbundet. Historisk status er også merket direkte i filen."
     },
     {
@@ -494,7 +668,9 @@
       "path": "reports/README.md",
       "status": "canonical",
       "role": "Regel for aktive kontra historiske rapporter",
-      "owns": ["report_governance"],
+      "owns": [
+        "report_governance"
+      ],
       "last_verified": "2026-07-25"
     },
     {

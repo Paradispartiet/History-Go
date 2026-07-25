@@ -1,0 +1,210 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "vollen_maudbukta",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch3/vollen_maudbukta.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_maudbukta_same_area_historical_anchor_applied",
+  "currentCoordinate": {
+    "lat": 59.80709179773664,
+    "lon": 10.490986627468192,
+    "r": 320,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Oslofjordmuseet – Maudbukta og Mauds sjøsettingssted; Kartverket adressepunkt Chr. Jensens vei 8",
+    "coordType": "documented_maudbukta_launch_area_anchor",
+    "coordRole": "historical_anchor",
+    "sourceObjectId": "mia-oslofjordmuseet:maudbukta-launch-site",
+    "coordNote": "The official museum address point physically anchors the documented launch and boatbuilding area; it is not presented as the exact 1917 slipway geometry."
+  },
+  "previousCoordinate": {
+    "lat": 59.81056,
+    "lon": 10.4825,
+    "r": 320,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 611.5,
+    "reasonReplaced": "The legacy point lay northwest of Maudbukta and could not be tied to the museum, the documented launch area or a stable source object."
+  },
+  "identity": {
+    "currentName": "Vollen / Maudbukta",
+    "resolvedIdentity": "The Maudbukta boatbuilding and launch environment beside Oslofjordmuseet, where Roald Amundsen's polar ship Maud was launched on 7 June 1917",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The documented launch area, former boatyard setting, present museum and immediate Maudbukta coastal environment form one coherent historical destination."
+  },
+  "requiredEvidence": [
+    "official historical source connecting the present museum area to Maud's launch",
+    "official visitor address for the physical anchor",
+    "official address representation point",
+    "explicit distinction between a same-area historical anchor and an exact slipway point",
+    "rejection of generic Vollen, marina and beach candidates"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslofjordmuseet – Om museet",
+      "sourceUrl": "https://mia.no/oslofjordmuseet/om-gammel",
+      "sourceObjectId": "mia-oslofjordmuseet:maudbukta-launch-site",
+      "sourceQuality": "official_same_area_historical_continuity",
+      "finding": "MiA states that Oslofjordmuseet is located in Maudbukta because this is where Roald Amundsen's polar ship Maud was launched in 1917 after being built by local boatbuilder Christian Jensen.",
+      "canVerifyCoordinate": true,
+      "reason": "The official institution directly connects the current museum area to the historical launch location represented by the record."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslofjordmuseet – Maud-jubileum",
+      "sourceUrl": "https://mia.no/oslofjordmuseet/maud-jubileum",
+      "sourceObjectId": "mia-oslofjordmuseet:maud-launched-beside-museum-1917-06-07",
+      "sourceQuality": "official_launch_date_and_relative_location",
+      "finding": "MiA states that Maud was completed and launched on 7 June 1917 directly beside the place where Oslofjordmuseet stands today.",
+      "canVerifyCoordinate": true,
+      "reason": "Provides the explicit same-area derivation needed to use the current museum as the physical historical anchor."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Oslofjordmuseet – Finn oss",
+      "sourceUrl": "https://mia.no/oslofjordmuseet/finn-oss",
+      "sourceObjectId": "mia-oslofjordmuseet:address:chr-jensens-vei-8",
+      "sourceQuality": "official_visitor_address",
+      "finding": "MiA lists Oslofjordmuseet at Chr. Jensens vei 8, 1390 Vollen and describes the museum as lying beside the fjord in Maudbukta.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as the authoritative active-site address and identity cross-check."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Chr. Jensens vei 8",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "kartverket-address:3203:66/85:1358:8",
+      "sourceQuality": "official_address_representation_point",
+      "finding": "Kartverket returns exactly one Chr. Jensens vei 8, 1390 Vollen object: municipality 3203, farm/use number 66/85, address code 1358, representation point 59.80709179773664, 10.490986627468192.",
+      "canVerifyCoordinate": true,
+      "reason": "Supplies the official physical representation point for the museum address used in the historical-anchor derivation."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6593405632 – Oslofjordmuseet",
+      "sourceUrl": "https://www.openstreetmap.org/node/6593405632",
+      "sourceObjectId": "osm-node:6593405632",
+      "sourceQuality": "stable_named_museum_point_cross_check",
+      "finding": "The stable named museum point lies at approximately 59.80703, 10.49102, about 7 metres from the official address representation point.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as an independent physical-location cross-check, not as the primary source."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Oslofjordmuseet – Arnestad Bruk",
+      "sourceUrl": "https://mia.no/oslofjordmuseet/arnestad-bruk",
+      "sourceObjectId": "mia-oslofjordmuseet:arnestad-bruk-former-boatyard-area",
+      "sourceQuality": "official_later_site_history",
+      "finding": "MiA documents that Arnestad Bruk and its predecessor boatbuilding activity occupied approximately the area where the museum is located today, and that Maud was launched in Maudbukta in 1917.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the wider boatbuilding and industrial-area scope represented by the retained radius."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy canonical point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:vollen_maudbukta",
+      "sourceQuality": "unresolved_vollen_scale_point",
+      "finding": "The previous coordinate 59.81056, 10.4825 lies approximately 611.5 metres northwest of the official museum address point and lacks stable source identity.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it does not represent the documented Maudbukta launch and museum area."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Chr. Jensens vei",
+        "number": "8",
+        "postcode": "1390",
+        "city": "Vollen",
+        "country": "NO"
+      },
+      "sourceUrl": "https://mia.no/oslofjordmuseet/finn-oss",
+      "sourceObjectId": "kartverket-address:3203:66/85:1358:8",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "mia-oslofjordmuseet:maudbukta-launch-site",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "kartverket-address:3203:66/85:1358:8",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405632",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:vollen_maudbukta",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "anchors": [
+    {
+      "id": "vollen_maudbukta_oslofjordmuseet_same_area",
+      "name": "Oslofjordmuseet in Maudbukta – physical anchor for the launch area",
+      "lat": 59.80709179773664,
+      "lon": 10.490986627468192,
+      "r": 90,
+      "type": "historical_anchor",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "kartverket-address:3203:66/85:1358:8",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:vollen_maudbukta",
+      "lat": 59.81056,
+      "lon": 10.4825,
+      "coordRole": "unresolved_vollen_scale_point",
+      "distanceFromAppliedM": 611.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "kartverket-address:3203:66/85:1358:8",
+      "lat": 59.80709179773664,
+      "lon": 10.490986627468192,
+      "coordRole": "historical_anchor",
+      "distanceFromPreviousM": 611.5,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-vollen-maudbukta-source-probe/geonorge-chr-jensens-vei-8.json",
+      "description": "Raw Kartverket Address API response persisted by the one-time source probe."
+    },
+    {
+      "path": "reports/akershus-coordinate-vollen-maudbukta-source-probe/geonorge-chr-jensens-vei-8-summary.txt",
+      "description": "Deterministic exact-match summary for Chr. Jensens vei 8, 1390 Vollen."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the official museum address point as physical anchor for the officially documented Maudbukta launch and boatbuilding area. Continue with Roald Amundsens hjem / Uranienborg."
+  },
+  "notes": [
+    "The coordinate is a documented same-area historical anchor, not an exact reconstruction of the 1917 slipway or shoreline.",
+    "The record represents the launch, boatbuilding and coastal-history environment rather than only the present museum building.",
+    "Generic Vollen centre, marina, beach and medical-office coordinates are explicitly outside the intended identity.",
+    "The 320-metre radius is retained for Maudbukta, the museum, the immediate former boatyard area and associated coastal setting.",
+    "No map-preview or nearest-result coordinate was promoted without a stable source identity."
+  ]
+}

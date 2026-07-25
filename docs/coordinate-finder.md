@@ -1,6 +1,11 @@
 # Koordinatfinner – metode og arbeidsflyt
 
-Denne dokumentasjonen er den normative arbeidsflyten for å finne, kontrollere og dokumentere koordinater til History Go-steder.
+Status: **operational arbeidsflyt**  
+Dokumentasjonskart: [`coordinates/README.md`](./coordinates/README.md)  
+Canonical felt-, kilde- og statusregler: [`coordinates/coordinate-source-contract-v1.md`](./coordinates/coordinate-source-contract-v1.md)  
+Sist kontrollert: **2026-07-25**
+
+Denne dokumentasjonen eier arbeidsflyten for å finne, kontrollere og dokumentere koordinater til History Go-steder. Den oppretter ikke egne felt, statuser eller trust-regler; slike regler eies av Coordinate Source Contract v1.
 
 Målet er ikke bare å finne et punkt som ser riktig ut på kartet. Målet er å bruke riktig koordinatkilde for riktig type sted, bevare sporbarhet og unngå at et adressepunkt, et tilfeldig POI-treff eller et visuelt anslag blir behandlet som et verifisert fysisk anker.
 
@@ -188,3 +193,18 @@ mkdir -p reports/<coordinate-batch>
 npm run places:coords:find:address -- --address "<adresse>" \
   | tee reports/<coordinate-batch>/<place-id>.json
 ```
+
+## Obligatorisk kontrollkjede
+
+Et fullført koordinatbatch skal minst kjøre de portene som berøres av endringen:
+
+```bash
+npm run test:coordinate-source-contract
+npm run places:coords:evidence:audit
+npm run places:coords:quality
+npm run places:coords:intake
+npm run audit:places-split-manifest-sync
+npm run places:index:check
+```
+
+Kjør `npm run tools:check` før merge når batchen inngår i en bredere dataendring. Før batchen i [`coordinates/coordinate-control-protocol.md`](./coordinates/coordinate-control-protocol.md) i samme PR eller i en umiddelbar dokumentasjons-PR før neste koordinatbatch starter.
