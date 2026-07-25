@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
+// One-shot diagnostic; self-removes before publishing the report.
 const branch = 'agent/history-phase8-final-diagnostic';
 const reportPath = 'reports/historie-canonical-migration/phase8-final-audit-diagnostic.json';
 
