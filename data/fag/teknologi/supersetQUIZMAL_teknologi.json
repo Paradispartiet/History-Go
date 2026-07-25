@@ -1,1 +1,82 @@
-{"version":"1.0","status":"canonical_category_profile","type":"category_quiz_profile","categoryId":"teknologi","title":"Teknologi","governance":{"production_standard":"data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md","question_schema":"data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json","template_registry":"data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json","authority":"category_content_only","may_override_global_rules":false},"required_emne_prefix":"em_tek_","content_priorities":["konkret teknisk system, komponent, materiale, kode, protokoll eller infrastruktur","oppfinnelse, designkrav, prototype, test og dokumentert historisk kontekst","maskiner, energi, produksjon, elektronikk, sensorer, robotikk og regulering","datamaskiner, operativsystemer, programvarearkitektur, testing og drift","data, algoritmer, kunstig intelligens, nettverk og cybersikkerhet","feilmodi, vedlikehold, standarder, risiko, miljø og samfunnsvirkning"],"essential_concepts":["system","krav","prototype","feilmodus","energi","materiale","sensor","regulering","programvare","algoritme","datastruktur","protokoll","trusselmodell","infrastruktur"],"preferred_source_types":["offisiell teknisk dokumentasjon, standarder og spesifikasjoner","museer, arkiver, universiteter og ingeniørfaglige institusjoner","produsent- og vedlikeholdsdokumentasjon når den er relevant og etterprøvbar","kildekode, versjonshistorikk og åpne tekniske arkiver","teknologi- og industrihistoriske fagkilder"],"category_rules":["Start med et dokumentert teknisk objekt, system, komponent eller hendelse.","Skille teknologi fra bedriften som virksomhet, forskningen som vitenskap og innholdet som media.","Bruk bare emne_id som finnes i kategoriens canonical emnefil.","Forklar data, programvare, internett, web og AI som ulike nivåer og systemer.","Kategori-profilen styrer faglig utvalg, men ikke global quizbalanse eller språk."],"question_design":{"blocked_moves":["navnegjetting uten teknisk problem eller objekt","generisk spørsmål om at teknologi er viktig","fremtidsprofeti uten dokumentert teknisk grunnlag","AI, data, internett, web og programvare behandlet som synonymer","personlig mening vurdert som kunnskap"]},"example_question":{"question":"Hva er hovedfunksjonen til et operativsystem?","options":["Å fordele maskinressurser og tilby tjenester til programmer","Å lagre alle nettsider på internett","Å kryptere enhver fil automatisk"],"answer":"Å fordele maskinressurser og tilby tjenester til programmer","question_type":"concept","knowledge":"Operativsystemet håndterer blant annet prosesser, minne, filer, enheter og brukerrettigheter.","emne_id":"em_tek_datamaskinarkitektur_operativsystem","source":["<konkret_kilde>"],"note":"Eksempel, ikke ferdig produksjonsquiz."}}
+{
+  "version": "3.0",
+  "status": "canonical_category_profile",
+  "type": "category_quiz_profile",
+  "categoryId": "teknologi",
+  "title": "Teknologi",
+  "required_emne_prefix": "em_tek_",
+  "governance": {
+    "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+    "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "template_registry": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json",
+    "authority": "category_content_only",
+    "may_override_global_rules": false
+  },
+  "scientific_identity": {
+    "object_of_study": "konstruerte artefakter, programvare, tekniske prosesser, infrastrukturer og sosiotekniske systemer",
+    "required_reasoning_sequence": [
+      "konkret teknisk anker",
+      "mekanisme eller arkitektur",
+      "evidens og usikkerhet",
+      "feilmodus eller alternativ",
+      "avveining og konsekvens"
+    ],
+    "knowledge_is_not": [
+      "personlig preferanse",
+      "markedsføring",
+      "oppfinnernavn uten bidrag",
+      "generell påstand om fremgang"
+    ]
+  },
+  "content_priorities": [
+    "ingeniørdesign, krav, prototyper, verifikasjon og validering",
+    "systemarkitektur, grensesnitt, pålitelighet, sikkerhet og vedlikehold",
+    "mekanikk, energiomforming, materialer, produksjon og livsløp",
+    "elektronikk, signaler, sensorer, regulering og innebygde systemer",
+    "robotikk, automatisering, lokalisering og menneske–robot-sikkerhet",
+    "datamaskinarkitektur, operativsystemer, samtidighet og lagring",
+    "programvarearkitektur, testing, korrekthet, drift og teknisk gjeld",
+    "algoritmer, kompleksitet, data, maskinlæring og modellfeil",
+    "nettverk, protokoller, distribuerte systemer, kryptografi og robusthet",
+    "menneskelige faktorer, HCI, tilgjengelighet og universell utforming",
+    "teknologihistorie, standarder, stiavhengighet og infrastruktur",
+    "risiko, ansvar, makt, bærekraft og teknologisk styring"
+  ],
+  "preferred_source_types": [
+    "tekniske standarder og offisiell systemdokumentasjon",
+    "fagfellevurdert ingeniør- og teknologiforskning",
+    "patenter, designrapporter, testprotokoller og ulykkesrapporter",
+    "måledata, kode, datasett, arkitekturbeskrivelser og vedlikeholdsdokumentasjon",
+    "anerkjent teknologi-, ingeniør- og STS-historie"
+  ],
+  "question_design": {
+    "required_moves": [
+      "spør etter mekanisme, funksjon, grensesnitt, målekriterium, feilkilde eller designavveining",
+      "bruk et konkret system, sted, dokumentert hendelse eller teknisk objekt",
+      "oppgi eksplisitt sammenligningsgrunnlag ved sammenligning",
+      "skill beskrivelse fra normativ vurdering"
+    ],
+    "blocked_moves": [
+      "navnegjetting uten verk, oppfinnelse, standard eller teknisk problem",
+      "teknologi fremstilt som automatisk og uunngåelig fremskritt",
+      "AI, data, internett, web, programvare og digitalisering brukt som synonymer",
+      "markedsføringspåstander uten teknisk dokumentasjon",
+      "personlig mening vurdert som fagkunnskap"
+    ]
+  },
+  "essential_concepts": [
+    "artefakt","funksjon","krav","begrensning","prototype","validering",
+    "systemgrense","grensesnitt","arkitektur","palitelighet","redundans","sikkerhetsbarriere",
+    "kraft","moment","arbeid","effekt","virkningsgrad","eksergi",
+    "mikrostruktur","fasthet","utmattelse","korrosjon","toleranse","prosesskapabilitet",
+    "spenning","strom","impedans","signal","tilbakemelding","stabilitet",
+    "aktuator","frihetsgrad","lokalisering","sensorfusjon","autonominiva","feilsikker",
+    "bit","instruksjon","prosessor","minnehierarki","prosess","samtidighet",
+    "abstraksjon","modul","api","invariant","testorakel","teknisk_gjeld",
+    "algoritme","kompleksitet","datastruktur","treningsdata","generalisering","modellskjevhet",
+    "protokoll","ruting","latens","kryptering","angrepsflate","tilgjengelighet",
+    "brukbarhet","affordans","kognitiv_belastning","tilgjengelighet_hci","menneskelig_feil","automasjonsskjevhet",
+    "standard","interoperabilitet","stiavhengighet","risiko","ansvar","baerekraft"
+  ],
+  "scientificPackage": "data/fag/teknologi/teknologi_scientific_v2/index.json"
+}
