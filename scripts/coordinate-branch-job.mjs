@@ -91,6 +91,16 @@ const runtimePath = path.join(process.cwd(), 'scripts/.coordinate-branch-job-run
 fs.writeFileSync(runtimePath, source, 'utf8');
 try {
   await import(`${pathToFileURL(runtimePath).href}?run=${Date.now()}`);
+  const evidenceReport = path.join(process.cwd(), 'reports/coordinate-evidence-audit.md');
+  if (fs.existsSync(evidenceReport)) {
+    if (process.env.RUNNER_REPORT_DIR) {
+      const target = path.join(process.cwd(), process.env.RUNNER_REPORT_DIR, 'coordinate-evidence-audit.md');
+      fs.mkdirSync(path.dirname(target), { recursive: true });
+      fs.copyFileSync(evidenceReport, target);
+    }
+    const problemRows = fs.readFileSync(evidenceReport, 'utf8').split('\n').filter((line) => line.startsWith('| ') && !line.includes('| OK |') && !line.startsWith('| placeId ') && !line.startsWith('|---'));
+    if (problemRows.length) console.error(`[evidence-report] ${problemRows.length} rows with problems\n${problemRows.join('\n')}`);
+  }
 } finally {
   fs.rmSync(runtimePath, { force: true });
   fs.rmSync(sourcePath, { force: true });
