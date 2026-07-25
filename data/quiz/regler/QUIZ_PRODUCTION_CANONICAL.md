@@ -1,6 +1,6 @@
 # History Go – kanonisk quizproduksjon
 
-**Versjon:** 3.1
+**Versjon:** 3.2
 
 **Status:** eneste bindende produksjonsprosedyre for nye og reviderte quizer
 
@@ -113,6 +113,16 @@ Påstandsbanken skal for hver enhet registrere:
 - hvilke spørsmål som eventuelt allerede bruker den
 
 En URL som bare er samlet inn, er ikke det samme som en lest og verifisert kilde. Hver kilde i `source_brief` skal ha `review_status` og et kort `review_note`. Produsenten må åpne og kontrollere kilden før status settes til `reviewed`; kontekstbyggeren laster og validerer dette grunnlaget uten å være avhengig av ferdige spørsmål.
+
+### 5.1 Produktfase og utsatt institusjonell evidenssyntese
+
+`data/fag/FAGPRODUKSJON_CANONICAL.md` fastsetter gjeldende produktfase for fagproduksjon. Vanlig quizproduksjon skal fortsette med relevante, leste og sporbare kilder, presist språk og nødvendige sikkerhetsforbehold.
+
+En egen systematisk evidenssyntese utført av History Go er ikke et generelt krav for hver vanlig fakta-, teori- eller metodepåstand. Påstandens styrke skal likevel aldri overstige det kontrollerte kildegrunnlaget.
+
+Full systematisk evidenssyntese er en utsatt institusjonell forskningsfase. PRESS-review, betalte databasesøk, dobbelt screening, biasvurdering, syntese og sikkerhetsgradering kan ikke startes eller markeres som utført uten en eksplisitt prosjektbeslutning etter at appen har tilstrekkelig økonomi, databaseadgang og uavhengige menneskelige fagroller.
+
+Forskningsinfrastruktur som allerede finnes skal bevares. Beredskap, schemas og låste søkestrategier er ikke det samme som gjennomført evidensarbeid eller publiseringsklare claims.
 
 ## 6. Adaptiv quizprofil
 

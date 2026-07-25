@@ -25,7 +25,8 @@
     "first_priority_deduplication_protocol": "concussion_deduplication_protocol_sport_v1.json",
     "first_priority_screening_schema": "concussion_screening_schema_sport_v1.json",
     "first_priority_reviewer_roles": "concussion_reviewer_roles_sport_v1.json",
-    "first_priority_search_readiness_validator": "../../../tools/validate-sport-concussion-search-readiness-v2.mjs"
+    "first_priority_search_readiness_validator": "../../../tools/validate-sport-concussion-search-readiness-v2.mjs",
+    "fagproduksjon_policy": "../FAGPRODUKSJON_CANONICAL.md"
   },
   "counts": {
     "classified_hooks": 56,
@@ -61,7 +62,8 @@
     "search_strategy": "six_database_translations_locked",
     "search_peer_review": "pending",
     "deduplication": "protocol_locked_not_run",
-    "screening": "schema_locked_human_assignments_pending"
+    "screening": "schema_locked_human_assignments_pending",
+    "execution_phase": "deferred_by_product_phase_policy"
   },
   "invariants": [
     "Alle 56 hooks klassifiseres nøyaktig én gang etter vitenskapelig spørsmålstype.",
@@ -78,6 +80,35 @@
     "Alle seks databasestrenger er låst og hashfestet før kjøring.",
     "Ingen databasesøk regnes som kjørt uten eksportfil og SHA-256.",
     "Deduplisering bevarer råposter og full clusterproveniens.",
-    "Screening krever to forskjellige mennesker; KI kan bare assistere."
-  ]
+    "Screening krever to forskjellige mennesker; KI kan bare assistere.",
+    "Avansert evidensutførelse er utsatt til økonomisk bærekraft og en ny eksplisitt prosjektbeslutning."
+  ],
+  "execution_policy": {
+    "status": "deferred_until_financially_sustainable_and_explicitly_reactivated",
+    "decision_date": "2026-07-25",
+    "policy_document": "../FAGPRODUKSJON_CANONICAL.md",
+    "explicit_reactivation_required": true,
+    "rationale": "Institusjonell evidenssyntese krever finansiering, databaseadgang og uavhengige menneskelige fagroller. Produkt, lansering og økonomisk bærekraft prioriteres nå.",
+    "allowed_while_deferred": [
+      "teknisk vedlikehold av eksisterende pipeline",
+      "retting av schemas, validatorer og proveniensfeil",
+      "vanlig fag- og quizproduksjon etter kilde- og sikkerhetsreglene"
+    ],
+    "forbidden_while_deferred": [
+      "markere databasesøk som utført",
+      "tildele fiktive reviewerroller",
+      "materialisere screeningbeslutninger, studier eller biasvurderinger",
+      "fullføre synteser eller sikkerhetsvurderinger",
+      "opprette publication-ready claims fra V2-pipelinen"
+    ],
+    "reactivation_requirements": [
+      "eksplisitt beslutning fra prosjektledelsen",
+      "tilstrekkelig og forutsigbar prosjektøkonomi",
+      "nødvendig databaseadgang",
+      "navngitt uavhengig søkefaglig reviewer",
+      "minst to navngitte uavhengige menneskelige screenere",
+      "dokumenterte roller, interessekonflikter og adjudikasjon",
+      "godkjent evidenspakke, tidsplan og budsjett"
+    ]
+  }
 }
