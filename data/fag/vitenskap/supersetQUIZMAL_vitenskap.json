@@ -1,9 +1,9 @@
 {
-  "version": "2.0",
+  "version": "2.1",
   "status": "canonical_category_profile",
   "type": "category_quiz_profile",
   "categoryId": "vitenskap",
-  "title": "Vitenskap",
+  "title": "Vitenskap & teknologi",
   "governance": {
     "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
@@ -13,11 +13,12 @@
   },
   "required_emne_prefix": "em_vit_",
   "content_priorities": [
-    "forsker, oppdagelse, teori og historisk kontekst",
-    "forsøk, observasjon, instrument og måling",
-    "metode, evidens, reproduksjon og feilkilder",
-    "usikkerhet, modell og faglig uenighet",
-    "anvendelse, teknologi og samfunnsvirkning"
+    "forsker, ingeniør, utvikler, oppdagelse, oppfinnelse, teori og historisk kontekst",
+    "forsøk, observasjon, instrument, maskin, måling og teknisk løsning",
+    "metode, evidens, reproduksjon, testing, feilsøking og feilkilder",
+    "data, algoritmer, programvare, nettverk, sikkerhet og digital infrastruktur",
+    "usikkerhet, modell, standard, protokoll og faglig uenighet",
+    "anvendelse, teknologi, IT og samfunnsvirkning"
   ],
   "essential_concepts": [
     "hypotese",
@@ -27,28 +28,44 @@
     "modell",
     "korrelasjon",
     "kausalitet",
-    "fagfellevurdering"
+    "fagfellevurdering",
+    "algoritme",
+    "programvare",
+    "datastruktur",
+    "nettverk",
+    "protokoll",
+    "digital_infrastruktur",
+    "cybersikkerhet"
   ],
   "preferred_source_types": [
     "original forskning og datasett",
-    "universiteter og forskningsinstitusjoner",
-    "vitenskapshistorie og faglige oppslagsverk",
-    "metode- og instrumentdokumentasjon"
+    "universiteter, forskningsinstitusjoner og teknologiske fagmiljøer",
+    "offisiell dokumentasjon for programvare, standarder, protokoller, maskinvare og digitale systemer",
+    "vitenskaps-, teknologi- og IT-historie og faglige oppslagsverk",
+    "metode-, instrument- og systemdokumentasjon"
   ],
   "category_rules": [
     "Start med dokumentert stoff fra kategorien, ikke med emneetiketten.",
     "Bevar relevante faguttrykk i spørsmål, knowledge eller metadata.",
-    "Bruk bare emne_id som finnes i kategoriens emnefil.",
+    "Bruk bare emne_id som finnes i kategoriens canonical emnefil i produksjonsquiz.",
+    "Bruk teknologi- og IT-supplementet som faglig utvidelsesregister for dekning, metodevalg og framtidig emneproduksjon.",
+    "For IT-spørsmål skal konkrete systemer, programvare, maskinvare, nettverk, protokoller, datasett eller dokumenterte teknologiske hendelser komme før generell digitaliseringsteori.",
     "Kategori-profilen styrer faglig utvalg, men ikke global quizbalanse eller språk."
   ],
   "example_question": {
-    "question": "Hva kalles kravet om at andre forskere skal kunne gjenta en undersøkelse og få sammenlignbare resultater?",
-    "options": ["Reproduserbarhet", "Autoritet", "Popularitet"],
-    "answer": "Reproduserbarhet",
+    "question": "Hva kalles reglene som gjør at datamaskiner kan utveksle informasjon over et nettverk?",
+    "options": [
+      "Protokoller",
+      "Piksler",
+      "Variabler"
+    ],
+    "answer": "Protokoller",
     "question_type": "concept",
-    "knowledge": "Reproduserbarhet er viktig fordi vitenskapelige resultater skal kunne etterprøves av andre.",
-    "emne_id": "em_vit_<velg_gyldig_emne>",
-    "source": ["<konkret_kilde>"],
-    "note": "Eksempelet viser konkret bruk av et fagbegrep. Det er ikke en ferdig produksjonsquiz."
+    "knowledge": "Nettverksprotokoller beskriver hvordan data formateres, sendes, mottas og kontrolleres mellom digitale systemer.",
+    "emne_id": "em_vit_datainfrastruktur",
+    "source": [
+      "<konkret_kilde>"
+    ],
+    "note": "Eksempelet viser et konkret IT-begrep med et eksisterende canonical emne. Det er ikke en ferdig produksjonsquiz."
   }
 }
