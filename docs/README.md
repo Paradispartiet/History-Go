@@ -76,6 +76,19 @@ Ved konflikt gjelder maskinkontrakten og valideringen. Dokumentasjonen skal korr
 
 Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk-places. Ved konflikt mellom dokumentasjon og et aktivt manifest er manifestet/runtime-koden sannhetskilden, og dokumentasjonen skal korrigeres.
 
+### Koordinater og geografisk evidens
+
+1. [`coordinates/README.md`](./coordinates/README.md) — canonical dokumentasjonskart og leserekkefølge
+2. [`coordinates/coordinate-source-contract-v1.md`](./coordinates/coordinate-source-contract-v1.md) — bindende felter, kildekrav, statuser og trust-regler
+3. [`coordinate-finder.md`](./coordinate-finder.md) — operativ research-, kontroll- og kart-QA-arbeidsflyt
+4. [`coordinates/coordinate-evidence-files-v1.md`](./coordinates/coordinate-evidence-files-v1.md) — bindende evidenskrav før endring og `verified*`
+5. [`coordinates/coordinate-control-protocol.md`](./coordinates/coordinate-control-protocol.md) — løpende kontroll-ledger for fullførte batcher
+6. [`coordinates/address-first-coordinate-policy.md`](./coordinates/address-first-coordinate-policy.md) — compatibility-peker for address-first-løypen
+
+Coordinate Source Contract v1 eier coordinate-semantikken. `coordinate-finder.md` eier arbeidsmåten, evidenskontrakten eier pre-change-sporbarheten, og kontrollprotokollen dokumenterer hva som faktisk er fullført. `address-first-coordinate-policy.md` kan ikke overstyre disse kildene.
+
+Produksjonens sannhet ligger i canonical place JSON, aktive manifests, generert places-index og validatorene. Relevante porter er `places:coords:evidence:audit`, `places:coords:quality`, `places:coords:intake`, `places:index:check` og `test:coordinate-source-contract`; full kjede inngår i `tools:check`.
+
 ### Knowledge og personlig minne
 
 1. [`KNOWLEDGE_ARCHITECTURE.md`](./KNOWLEDGE_ARCHITECTURE.md) — canonical menneskelesbar arkitektur og storage-eierskap
@@ -240,6 +253,7 @@ Workflowen bygger også et inventar som viser totalt antall dokumentlignende fil
 - `QUALITY_GATES.md` redusert til AHA-kompatibilitetspeker
 - gamle relations-, oppgave- og badge-/merke-READMEs arkivert
 - Social-dokumentasjonen delt i canonical produkt/privacy, aktive backend-slices, transitional kravtekster og historiske overgangsdokumenter
+- koordinatdokumentasjonen samlet under én source-kontrakt, én evidenskontrakt, én arbeidsflyt og én kontrollprotokoll
 
 ### Neste
 

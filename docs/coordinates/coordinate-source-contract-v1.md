@@ -1,20 +1,25 @@
 # Coordinate Source Contract v1
 
-Coordinate Source Contract v1 er det kanoniske koordinatsystemet for History Go. Kontrakten finnes for å hindre at `verified` betyr «noen så på kartet» uten etterprøvbar kilde.
+Status: **canonical coordinate-kontrakt**  
+Dokumentasjonskart: [`README.md`](./README.md)  
+Operativ arbeidsflyt: [`../coordinate-finder.md`](../coordinate-finder.md)  
+Sist kontrollert: **2026-07-25**
+
+Coordinate Source Contract v1 er det kanoniske koordinatsystemet for History Go. Kontrakten eier felt, tillatte verdier, kildekrav, status og trust-regler og finnes for å hindre at `verified` betyr «noen så på kartet» uten etterprøvbar kilde.
 
 ## 0. Address-first policy
 
-For aktive steder med konkret adresse skal koordinatfinneren bruke offisiell adressekilde først.
+For aktive steder med en konkret adresse som faktisk representerer det fysiske History Go-objektet, skal koordinatfinneren bruke offisiell adressekilde først.
 
 ```text
-Har stedet konkret adresse?
+Har stedet en relevant konkret adresse?
 → bruk offisiell adressekilde
 → hent representasjonspunkt
-→ plott punktet
-→ verified
+→ kontroller fysisk identitet og komplett kontrakt
+→ verified-kandidat eller needs_review
 ```
 
-For norske adresser er standardkilden Geonorge Adresser API. Et offisielt adresserepresentasjonspunkt kan brukes som `verified` når det lagres som `coordType: "address_point"` og `coordRole: "display_marker"` med `sourceProvider: "official_address"`.
+For norske adresser er standardkilden Geonorge Adresser API. Et offisielt adresserepresentasjonspunkt kan brukes som `verified` når det gjelder riktig fysisk objekt, alle obligatoriske kontraktfelt er lagret, og punktet er kontrollert som `coordType: "address_point"`, `coordRole: "display_marker"` og `sourceProvider: "official_address"`. Et entydig geokodingstreff alene er ikke tilstrekkelig for parker, uteanlegg, kaier, gater, områder eller historiske steder.
 
 Dette er ikke det samme som `building_center`. Adressepunktet er et presist, offisielt display-/spillanker for adressen, ikke nødvendigvis geometrisk sentrum av bygningskroppen.
 
