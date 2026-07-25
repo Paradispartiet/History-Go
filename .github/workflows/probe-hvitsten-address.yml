@@ -1,0 +1,67 @@
+name: Probe Hvitsten address source
+
+on:
+  push:
+    paths:
+      - '.github/workflows/probe-hvitsten-address.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/akershus-hvitsten-sjobodene-production
+          fetch-depth: 0
+
+      - name: Fetch and persist Kartverket address result
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=reports/akershus-coordinate-hvitsten-sjobodene-source-probe
+          mkdir -p "$out"
+
+          curl --fail --silent --show-error --get \
+            'https://ws.geonorge.no/adresser/v1/sok' \
+            --data-urlencode 'adressenavn=Fjordveien' \
+            --data-urlencode 'nummer=1' \
+            --data-urlencode 'postnummer=1545' \
+            --data-urlencode 'treffPerSide=100' \
+            | tee "$out/geonorge-fjordveien-1.json"
+
+          python - <<'PY' 2>&1 | tee "$out/geonorge-fjordveien-1-summary.txt"
+          import json
+          from pathlib import Path
+
+          path = Path('reports/akershus-coordinate-hvitsten-sjobodene-source-probe/geonorge-fjordveien-1.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          rows = data.get('adresser', [])
+          exact = [
+              row for row in rows
+              if str(row.get('adressenavn', '')).casefold() == 'fjordveien'
+              and str(row.get('nummer', '')) == '1'
+              and str(row.get('postnummer', '')) == '1545'
+          ]
+          print(f'total_results={len(rows)}')
+          print(f'exact_results={len(exact)}')
+          for row in exact:
+              print(json.dumps(row, ensure_ascii=False, sort_keys=True))
+          if len(exact) != 1:
+              raise SystemExit('Expected exactly one Fjordveien 1, 1545 Hvitsten result')
+          PY
+
+      - name: Remove probe workflow and commit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/probe-hvitsten-address.yml
+          git add reports/akershus-coordinate-hvitsten-sjobodene-source-probe
+          git commit -m 'Materialize Hvitsten address source probe'
+          git push origin HEAD:agent/akershus-hvitsten-sjobodene-production
