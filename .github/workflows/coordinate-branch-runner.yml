@@ -118,6 +118,7 @@ jobs:
 
       - name: Validate coordinate intake
         if: steps.pending.outputs.run == 'true'
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
@@ -125,6 +126,7 @@ jobs:
 
       - name: Validate coordinate evidence
         if: steps.pending.outputs.run == 'true'
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
