@@ -1,0 +1,187 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "ski_middelalderkirke",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch3/ski_middelalderkirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_medieval_church_geometry_retained",
+  "currentCoordinate": {
+    "lat": 59.72241,
+    "lon": 10.86144,
+    "r": 220,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 167092121 – Ski middelalderkirke",
+    "coordType": "named_medieval_church_building_point",
+    "coordRole": "display_marker",
+    "sourceObjectId": "osm-way:167092121",
+    "coordNote": "Stable named geometry for the medieval church building; the retained radius covers the churchyard and immediate historic church site."
+  },
+  "previousCoordinate": {
+    "lat": 59.72241,
+    "lon": 10.86144,
+    "r": 220,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 0.0,
+    "reasonRetained": "The legacy coordinate already lies at the named church building and is approximately 2.5 metres from the published building position."
+  },
+  "identity": {
+    "currentName": "Ski middelalderkirke",
+    "resolvedIdentity": "Ski medieval stone church at Kirkeveien 57, 1400 Ski, heritage site 85453",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "The active medieval church building and its immediate churchyard form one coherent visitor destination."
+  },
+  "requiredEvidence": [
+    "stable named church-building geometry",
+    "official church address",
+    "official medieval-building history",
+    "stable heritage identity",
+    "explicit exclusion of Ski new church and parish offices"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 167092121 – Ski middelalderkirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/167092121",
+      "sourceObjectId": "osm-way:167092121",
+      "sourceQuality": "exact_named_medieval_church_geometry",
+      "finding": "The stable named way directly represents Ski middelalderkirke. The canonical point lies at the church and approximately 2.5 metres from the published building position 59.72242, 10.86148.",
+      "canVerifyCoordinate": true,
+      "reason": "The canonical record is centred on the standing medieval church building, so the named building geometry is the appropriate marker source."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Nordre Follo kirkelige fellesråd – Church addresses",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/nordre-follo/kontakt/adresser/",
+      "sourceObjectId": "nordre-follo-kirken:address:kirkeveien-57",
+      "sourceQuality": "official_church_address_and_identity",
+      "finding": "The church authority lists Ski Middelalderkirke at Kirkeveien 57, 1400 Ski and separately lists Ski Nye kirke in Birkelunden.",
+      "canVerifyCoordinate": false,
+      "reason": "Used to confirm the historic church address and exclude the newer church and administrative location."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Ski menighet – Ski middelalderkirke",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/nordre-follo/menigheter/ski/om%20oss/kirkene/ski%20kirke/",
+      "sourceObjectId": "ski-menighet:middelalderkirke-history",
+      "sourceQuality": "official_building_history_and_features",
+      "finding": "The official church history dates the Romanesque stone church to the middle of the 12th century and documents surviving medieval walls and portal traces, the 1860 tower and the 1934 sacristy.",
+      "canVerifyCoordinate": false,
+      "reason": "Establishes the exact historical building identity represented by the named geometry."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Kulturminnesøk / Askeladden – Ski kirkested",
+      "sourceUrl": "https://www.kulturminnesok.no/minne?queryString=https://data.kulturminne.no/askeladden/lokalitet/85453",
+      "sourceObjectId": "kulturminne:85453",
+      "sourceQuality": "official_heritage_identity",
+      "finding": "Cultural heritage ID 85453 identifies Ski church site and the protected medieval church building.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as the stable heritage identity cross-check, not as the primary geometry source."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Ski Historielag – Ski middelalderkirke",
+      "sourceUrl": "https://www.ski-historielag.no/ski/Ski%20middelalderkirke",
+      "sourceObjectId": "ski-historielag:middelalderkirke-settlement-ridge",
+      "sourceQuality": "local_church_site_and_settlement_context",
+      "finding": "Ski Historielag places the church on the moraine ridge associated with the earliest known settlement in Ski and documents the church site's long local centrality.",
+      "canVerifyCoordinate": false,
+      "reason": "Supports the retained churchyard and historic-site radius rather than the exact building point."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Explicit new-church and office exclusion",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/nordre-follo/menigheter/ski/om%20oss/kontakt%20oss/",
+      "sourceObjectId": "exclusion:ski-nye-kirke-birkelunden",
+      "sourceQuality": "wrong_object_exclusion",
+      "finding": "Ski Nye kirke and the parish/fellesråd offices are located in Birkelunden and are separate from the medieval church at Kirkeveien 57.",
+      "canVerifyCoordinate": false,
+      "reason": "Prevents the newer church or administrative address from replacing the medieval church coordinate."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Kirkeveien",
+        "number": "57",
+        "postcode": "1400",
+        "city": "Ski",
+        "country": "NO"
+      },
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/nordre-follo/kontakt/adresser/",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Birkelunden",
+        "number": "4",
+        "postcode": "1423",
+        "city": "Ski",
+        "country": "NO"
+      },
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/nordre-follo/kontakt/adresser/",
+      "canApplyToPlace": false,
+      "reasonRejected": "This is Ski Nye kirke, not Ski middelalderkirke."
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:167092121",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminne:85453",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:167092121",
+      "geometryType": "Polygon",
+      "geometryRole": "medieval_church_building",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:ski_middelalderkirke",
+      "lat": 59.72241,
+      "lon": 10.86144,
+      "coordRole": "unverified_building_point",
+      "distanceFromPublishedBuildingPositionM": 2.5,
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:167092121",
+      "lat": 59.72241,
+      "lon": 10.86144,
+      "coordRole": "display_marker",
+      "distanceFromPreviousM": 0.0,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Retained the building-aligned canonical coordinate and applied the full medieval-church source contract. Continue with Kråkstad kirke og gravhaug."
+  },
+  "notes": [
+    "This is a source-contract upgrade, not a coordinate correction.",
+    "The marker represents the standing medieval church building; the radius covers the immediate churchyard and historic church site.",
+    "Ski Nye kirke and the Birkelunden offices are explicitly excluded.",
+    "Heritage ID 85453 supports identity but does not replace the named building geometry.",
+    "No town-centre, station or generic cemetery point was promoted to verified."
+  ]
+}
