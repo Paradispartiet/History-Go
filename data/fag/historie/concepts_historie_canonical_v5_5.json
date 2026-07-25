@@ -209,22 +209,29 @@
   },
   {
     "concept_id": "con_his_alta",
-    "label": "alta",
-    "definition": "I Samisk og urfolkshistorie betegner «alta» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "Alta-konflikten",
+    "definition": "Konflikten om utbyggingen av Alta–Kautokeino-vassdraget, samisk rettighetsmobilisering og statlig natur- og energipolitikk fra 1960-årene til tidlig 1980-tall.",
+    "concept_type": "historical_conflict_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
     "source_emne_ids": [
       "em_his_samisk_urfolkshistorie_organisering_alta_og_rettighetskamp"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_rettighetskamp"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_organisering",
+      "con_his_ressursrett"
+    ],
+    "distinguish_from": [
+      "con_his_forsoning"
+    ],
     "common_misuse": [
-      "Å bruke «alta» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «Alta-konflikten» som en enhetlig og lineær bevegelse uten å dokumentere aktører, uenighet, organisasjoner, strategier og konkrete rettskrav."
     ],
     "status": "canonical_v5_5"
   },
@@ -341,10 +348,10 @@
   },
   {
     "concept_id": "con_his_ansvar",
-    "label": "ansvar",
-    "definition": "I Makt, stat og institusjoner betegner «ansvar» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "institusjonelt ansvar",
+    "definition": "Forpliktelsen offentlige, kirkelige, vitenskapelige og kulturelle institusjoner har til å undersøke, erkjenne og reparere dokumenterte skadevirkninger av egen virksomhet.",
+    "concept_type": "accountability_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_makt_stat_institusjoner",
       "his_katastrofer_brudd_ulykker",
@@ -360,12 +367,19 @@
       "em_his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
       "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_forsoning"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_sannhet",
+      "con_his_arkivenes"
+    ],
+    "distinguish_from": [
+      "con_his_rettighetskamp"
+    ],
     "common_misuse": [
-      "Å bruke «ansvar» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «institusjonelt ansvar» som avsluttet ved en rapport eller beklagelse uten å undersøke ansvar, reparasjon, rettighetsendring og berørte gruppers vurdering."
     ],
     "status": "canonical_v5_5"
   },
@@ -947,22 +961,29 @@
   },
   {
     "concept_id": "con_his_arkivenes",
-    "label": "arkivenes",
-    "definition": "I Samisk og urfolkshistorie betegner «arkivenes» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "arkivansvar",
+    "definition": "Arkivinstitusjoners ansvar for proveniens, tilgang, beskrivelse, urfolkssensitivt materiale, tilbakeføring av kunnskap og synliggjøring av koloniale klassifikasjoner og tausheter.",
+    "concept_type": "archival_accountability_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
     "source_emne_ids": [
       "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kunnskapsmakt"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_raseforskning",
+      "con_his_vitenskapelig"
+    ],
+    "distinguish_from": [
+      "con_his_sannhet"
+    ],
     "common_misuse": [
-      "Å bruke «arkivenes» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «arkivansvar» som nøytral kunnskap uten å analysere kategorier, institusjoner, samtykke, arkivproveniens og politisk bruk."
     ],
     "status": "canonical_v5_5"
   },
@@ -5378,9 +5399,9 @@
   {
     "concept_id": "con_his_fornorskning",
     "label": "fornorskning",
-    "definition": "I 1814, grunnlov og statsdannelse betegner «fornorskning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Statlige og institusjonelle tiltak som presset samer, kvener og andre minoriteter til norsk språk, kultur og identitet gjennom skole, kirke, jordpolitikk og administrasjon.",
+    "concept_type": "assimilation_policy_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_1814_statsdannelse",
       "his_samisk_urfolkshistorie"
@@ -5397,21 +5418,28 @@
       "em_his_samisk_urfolkshistorie_revitalisering_sannhet_og_forsoning",
       "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kolonisering"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_misjon",
+      "con_his_skole"
+    ],
+    "distinguish_from": [
+      "con_his_kristning"
+    ],
     "common_misuse": [
-      "Å bruke «fornorskning» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å redusere «fornorskning» til kulturell påvirkning uten å undersøke territorium, ressurser, institusjonell makt, språk og motstand."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_forsoning",
     "label": "forsoning",
-    "definition": "I Samisk og urfolkshistorie betegner «forsoning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En langvarig og omstridt prosess for å endre relasjoner etter historisk urett gjennom sannhetsarbeid, ansvar, reparasjon, rettigheter og institusjonell reform.",
+    "concept_type": "reconciliation_process_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
@@ -5420,11 +5448,20 @@
       "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_sannhet",
+      "con_his_ansvar"
+    ],
+    "related_concepts": [
+      "con_his_sannhet",
+      "con_his_ansvar",
+      "con_his_arkivenes"
+    ],
+    "distinguish_from": [
+      "con_his_rettighetskamp"
+    ],
     "common_misuse": [
-      "Å bruke «forsoning» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «forsoning» som avsluttet ved en rapport eller beklagelse uten å undersøke ansvar, reparasjon, rettighetsendring og berørte gruppers vurdering."
     ],
     "status": "canonical_v5_5"
   },
@@ -6290,9 +6327,9 @@
   {
     "concept_id": "con_his_handel",
     "label": "handel",
-    "definition": "I Middelalder, kirke og kongemakt betegner «handel» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Utveksling av varer, tjenester og kreditt gjennom markeder og nettverk, formet av pris, transport, rettigheter, makt og gjensidighet.",
+    "concept_type": "exchange_system_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_middelalder_kirke_kongemakt",
       "his_okonomi_handel_materielle_systemer",
@@ -6312,12 +6349,19 @@
       "em_his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet",
       "em_his_samisk_urfolkshistorie_kontaktsoner_handel_og_statsgrenser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kontaktsoner"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_statsgrense",
+      "con_his_statsgrenser"
+    ],
+    "distinguish_from": [
+      "con_his_kolonisering"
+    ],
     "common_misuse": [
-      "Å bruke «handel» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å framstille «handel» som et likeverdig møte uten å analysere jurisdiksjon, skatt, markedsmakt, tvang og ulik kildeproduksjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -7768,10 +7812,10 @@
   },
   {
     "concept_id": "con_his_jord",
-    "label": "jord",
-    "definition": "I Middelalder, kirke og kongemakt betegner «jord» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "land og vann",
+    "definition": "Territorier og naturgrunnlag brukt til beite, jakt, fiske, ferdsel, bosetting og kulturell praksis, med overlappende rettigheter og kunnskapssystemer.",
+    "concept_type": "territorial_resource_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_middelalder_kirke_kongemakt",
       "his_samisk_urfolkshistorie"
@@ -7781,11 +7825,20 @@
       "em_his_samisk_urfolkshistorie_jord_ressursrett_og_kolonisering"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_ressursrett",
+      "con_his_naeringsformer"
+    ],
+    "related_concepts": [
+      "con_his_ressursrett",
+      "con_his_naeringsformer",
+      "con_his_siida"
+    ],
+    "distinguish_from": [
+      "con_his_statsgrense"
+    ],
     "common_misuse": [
-      "Å bruke «jord» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «land og vann» som privat eiendom alene uten å undersøke kollektiv bruk, sedvane, sesongmobilitet, økologi og overlappende rettigheter."
     ],
     "status": "canonical_v5_5"
   },
@@ -9066,9 +9119,9 @@
   {
     "concept_id": "con_his_kolonisering",
     "label": "kolonisering",
-    "definition": "I Samisk og urfolkshistorie betegner «kolonisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Prosesser der stater eller bosetterbefolkninger utvider kontroll over territorium, ressurser, styring og kunnskap på bekostning av eksisterende samfunn.",
+    "concept_type": "colonial_process_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
@@ -9084,11 +9137,20 @@
       "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_fornorskning",
+      "con_his_misjon"
+    ],
+    "related_concepts": [
+      "con_his_fornorskning",
+      "con_his_misjon",
+      "con_his_skole"
+    ],
+    "distinguish_from": [
+      "con_his_kristning"
+    ],
     "common_misuse": [
-      "Å bruke «kolonisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å redusere «kolonisering» til kulturell påvirkning uten å undersøke territorium, ressurser, institusjonell makt, språk og motstand."
     ],
     "status": "canonical_v5_5"
   },
@@ -9530,9 +9592,9 @@
   {
     "concept_id": "con_his_kontaktsoner",
     "label": "kontaktsoner",
-    "definition": "I Middelalder, kirke og kongemakt betegner «kontaktsoner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Områder der grupper med ulike språk, maktposisjoner og praksiser møtes gjennom handel, skatt, misjon, konflikt, ekteskap og kunnskapsutveksling.",
+    "concept_type": "relational_space_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_middelalder_kirke_kongemakt",
       "his_samisk_urfolkshistorie"
@@ -9556,11 +9618,20 @@
       "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_handel",
+      "con_his_statsgrenser"
+    ],
+    "related_concepts": [
+      "con_his_handel",
+      "con_his_statsgrense",
+      "con_his_statsgrenser"
+    ],
+    "distinguish_from": [
+      "con_his_kolonisering"
+    ],
     "common_misuse": [
-      "Å bruke «kontaktsoner» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å framstille «kontaktsoner» som et likeverdig møte uten å analysere jurisdiksjon, skatt, markedsmakt, tvang og ulik kildeproduksjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -10080,9 +10151,9 @@
   {
     "concept_id": "con_his_kulturarv",
     "label": "kulturarv",
-    "definition": "I Minne, kulturarv og historiebruk betegner «kulturarv» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Utvalgte materielle og immaterielle praksiser, steder, objekter og fortellinger som bevares, forvaltes og gis betydning i nåtiden.",
+    "concept_type": "heritage_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk",
       "his_samisk_urfolkshistorie"
@@ -10096,11 +10167,20 @@
       "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_kunst",
+      "con_his_revitalisering"
+    ],
+    "related_concepts": [
+      "con_his_kunst",
+      "con_his_praksis",
+      "con_his_revitalisering"
+    ],
+    "distinguish_from": [
+      "con_his_sannhet"
+    ],
     "common_misuse": [
-      "Å bruke «kulturarv» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «kulturarv» som statisk tradisjon uten å undersøke skapere, endring, institusjonell kontroll, tilbakeføring og nåtidig bruk."
     ],
     "status": "canonical_v5_5"
   },
@@ -10324,9 +10404,9 @@
   {
     "concept_id": "con_his_kunnskapsmakt",
     "label": "kunnskapsmakt",
-    "definition": "I Samisk og urfolkshistorie betegner «kunnskapsmakt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Makt til å definere kategorier, gyldig kunnskap, forskningsspørsmål og representasjoner av mennesker, land og historie.",
+    "concept_type": "epistemic_power_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
@@ -10334,32 +10414,48 @@
       "em_his_samisk_urfolkshistorie_misjon_kristning_og_kunnskapsmakt"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_raseforskning",
+      "con_his_vitenskapelig"
+    ],
+    "related_concepts": [
+      "con_his_raseforskning",
+      "con_his_vitenskapelig",
+      "con_his_arkivenes"
+    ],
+    "distinguish_from": [
+      "con_his_sannhet"
+    ],
     "common_misuse": [
-      "Å bruke «kunnskapsmakt» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «kunnskapsmakt» som nøytral kunnskap uten å analysere kategorier, institusjoner, samtykke, arkivproveniens og politisk bruk."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_kunst",
     "label": "kunst",
-    "definition": "I Samisk og urfolkshistorie betegner «kunst» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk situert skapende praksis i visuelle, materielle, performative og språklige former, knyttet til uttrykk, identitet, marked og institusjoner.",
+    "concept_type": "cultural_practice_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
     "source_emne_ids": [
       "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kulturarv"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_praksis",
+      "con_his_revitalisering"
+    ],
+    "distinguish_from": [
+      "con_his_sannhet"
+    ],
     "common_misuse": [
-      "Å bruke «kunst» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «kunst» som statisk tradisjon uten å undersøke skapere, endring, institusjonell kontroll, tilbakeføring og nåtidig bruk."
     ],
     "status": "canonical_v5_5"
   },
@@ -12486,9 +12582,9 @@
   {
     "concept_id": "con_his_misjon",
     "label": "misjon",
-    "definition": "I Samisk og urfolkshistorie betegner «misjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Organisert arbeid for religiøs omvendelse og kirkelig integrasjon gjennom forkynnelse, skole, språk, reiser, kartlegging og institusjonsbygging.",
+    "concept_type": "religious_colonial_practice_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie",
       "his_global_kolonial_transnasjonal"
@@ -12513,12 +12609,19 @@
       "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kolonisering"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_fornorskning",
+      "con_his_skole"
+    ],
+    "distinguish_from": [
+      "con_his_kristning"
+    ],
     "common_misuse": [
-      "Å bruke «misjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å redusere «misjon» til kulturell påvirkning uten å undersøke territorium, ressurser, institusjonell makt, språk og motstand."
     ],
     "status": "canonical_v5_5"
   },
@@ -13016,21 +13119,28 @@
   {
     "concept_id": "con_his_naeringsformer",
     "label": "næringsformer",
-    "definition": "I Samisk og urfolkshistorie betegner «næringsformer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk organiserte måter å skaffe livsgrunnlag på gjennom reindrift, fiske, jakt, jordbruk, håndverk, lønnsarbeid og kombinasjoner av disse.",
+    "concept_type": "livelihood_system_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
     "source_emne_ids": [
       "em_his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_jord"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_ressursrett",
+      "con_his_siida"
+    ],
+    "distinguish_from": [
+      "con_his_statsgrense"
+    ],
     "common_misuse": [
-      "Å bruke «næringsformer» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «næringsformer» som privat eiendom alene uten å undersøke kollektiv bruk, sedvane, sesongmobilitet, økologi og overlappende rettigheter."
     ],
     "status": "canonical_v5_5"
   },
@@ -14248,9 +14358,9 @@
   {
     "concept_id": "con_his_organisering",
     "label": "organisering",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «organisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Prosessen der mennesker bygger foreninger, nettverk, ledelse, ressurser og strategier for å fremme felles krav eller praksiser.",
+    "concept_type": "collective_action_process_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie",
       "his_migrasjon_minoritet_tilhorighet",
@@ -14262,12 +14372,19 @@
       "em_his_organisering_motstand_offentlighet",
       "em_his_samisk_urfolkshistorie_organisering_alta_og_rettighetskamp"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_rettighetskamp"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_alta",
+      "con_his_ressursrett"
+    ],
+    "distinguish_from": [
+      "con_his_forsoning"
+    ],
     "common_misuse": [
-      "Å bruke «organisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «organisering» som en enhetlig og lineær bevegelse uten å dokumentere aktører, uenighet, organisasjoner, strategier og konkrete rettskrav."
     ],
     "status": "canonical_v5_5"
   },
@@ -15010,9 +15127,9 @@
   {
     "concept_id": "con_his_praksis",
     "label": "praksis",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «praksis» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Gjentatte og situerte handlinger der kunnskap, normer, ferdigheter, materialer og relasjoner blir utført og endret.",
+    "concept_type": "social_practice_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet",
       "his_samisk_urfolkshistorie"
@@ -15030,12 +15147,19 @@
       "em_his_organisering_motstand_offentlighet",
       "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kulturarv"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kunst",
+      "con_his_revitalisering"
+    ],
+    "distinguish_from": [
+      "con_his_sannhet"
+    ],
     "common_misuse": [
-      "Å bruke «praksis» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «praksis» som statisk tradisjon uten å undersøke skapere, endring, institusjonell kontroll, tilbakeføring og nåtidig bruk."
     ],
     "status": "canonical_v5_5"
   },
@@ -15530,9 +15654,9 @@
   {
     "concept_id": "con_his_raseforskning",
     "label": "raseforskning",
-    "definition": "I Samisk og urfolkshistorie betegner «raseforskning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk forskning som målte, klassifiserte og rangerte mennesker gjennom forestillinger om biologisk rase, ofte koblet til kolonial og assimilatorisk politikk.",
+    "concept_type": "racial_science_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
@@ -15548,12 +15672,19 @@
       "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar",
       "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kunnskapsmakt"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_vitenskapelig",
+      "con_his_arkivenes"
+    ],
+    "distinguish_from": [
+      "con_his_sannhet"
+    ],
     "common_misuse": [
-      "Å bruke «raseforskning» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «raseforskning» som nøytral kunnskap uten å analysere kategorier, institusjoner, samtykke, arkivproveniens og politisk bruk."
     ],
     "status": "canonical_v5_5"
   },
@@ -16363,9 +16494,9 @@
   {
     "concept_id": "con_his_ressursrett",
     "label": "ressursrett",
-    "definition": "I Samisk og urfolkshistorie betegner «ressursrett» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk og rettslig adgang til å bruke, forvalte og beskytte land, vann, beite, jakt, fiske og andre naturressurser.",
+    "concept_type": "collective_rights_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
@@ -16380,12 +16511,19 @@
       "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar",
       "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_jord"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_naeringsformer",
+      "con_his_siida"
+    ],
+    "distinguish_from": [
+      "con_his_statsgrense"
+    ],
     "common_misuse": [
-      "Å bruke «ressursrett» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «ressursrett» som privat eiendom alene uten å undersøke kollektiv bruk, sedvane, sesongmobilitet, økologi og overlappende rettigheter."
     ],
     "status": "canonical_v5_5"
   },
@@ -16490,9 +16628,9 @@
   {
     "concept_id": "con_his_rettighetskamp",
     "label": "rettighetskamp",
-    "definition": "I Samisk og urfolkshistorie betegner «rettighetskamp» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Organisert mobilisering for politisk, kulturell, språklig, territoriell eller rettslig anerkjennelse og endring.",
+    "concept_type": "collective_action_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
@@ -16509,11 +16647,20 @@
       "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_alta",
+      "con_his_organisering"
+    ],
+    "related_concepts": [
+      "con_his_organisering",
+      "con_his_alta",
+      "con_his_ressursrett"
+    ],
+    "distinguish_from": [
+      "con_his_forsoning"
+    ],
     "common_misuse": [
-      "Å bruke «rettighetskamp» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «rettighetskamp» som en enhetlig og lineær bevegelse uten å dokumentere aktører, uenighet, organisasjoner, strategier og konkrete rettskrav."
     ],
     "status": "canonical_v5_5"
   },
@@ -16567,9 +16714,9 @@
   {
     "concept_id": "con_his_revitalisering",
     "label": "revitalisering",
-    "definition": "I Samisk og urfolkshistorie betegner «revitalisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Arbeid for å styrke språk, kunnskap, kunst, institusjoner og praksiser etter assimilering, marginalisering eller avbrudd.",
+    "concept_type": "cultural_recovery_process_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
@@ -16584,12 +16731,19 @@
       "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar",
       "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kulturarv"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kunst",
+      "con_his_praksis"
+    ],
+    "distinguish_from": [
+      "con_his_sannhet"
+    ],
     "common_misuse": [
-      "Å bruke «revitalisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «revitalisering» som statisk tradisjon uten å undersøke skapere, endring, institusjonell kontroll, tilbakeføring og nåtidig bruk."
     ],
     "status": "canonical_v5_5"
   },
@@ -16807,10 +16961,10 @@
   },
   {
     "concept_id": "con_his_samiske",
-    "label": "samiske",
-    "definition": "I Middelalder, kirke og kongemakt betegner «samiske» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "samiske samfunn",
+    "definition": "Mangfoldige samiske lokalsamfunn og nettverk med ulike språk, næringsformer, institusjoner og historiske erfaringer på tvers av statsgrenser.",
+    "concept_type": "indigenous_society_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_middelalder_kirke_kongemakt",
       "his_samisk_urfolkshistorie"
@@ -16819,12 +16973,19 @@
       "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
       "em_his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_urfolk"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_siida",
+      "con_his_naeringsformer"
+    ],
+    "distinguish_from": [
+      "con_his_minoriteter"
+    ],
     "common_misuse": [
-      "Å bruke «samiske» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «samiske samfunn» som en ensartet identitet uten å avgrense språk, sted, institusjon, næring og intern variasjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -17074,10 +17235,10 @@
   },
   {
     "concept_id": "con_his_sannhet",
-    "label": "sannhet",
-    "definition": "I Samisk og urfolkshistorie betegner «sannhet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "sannhetsarbeid",
+    "definition": "Systematisk innsamling og offentlig behandling av dokumentasjon og erfaringer om historisk urett, med kildekritikk, deltakelse og synliggjøring av uenighet.",
+    "concept_type": "historical_accountability_process",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
@@ -17085,12 +17246,19 @@
       "em_his_samisk_urfolkshistorie_revitalisering_sannhet_og_forsoning",
       "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_forsoning"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_ansvar",
+      "con_his_arkivenes"
+    ],
+    "distinguish_from": [
+      "con_his_rettighetskamp"
+    ],
     "common_misuse": [
-      "Å bruke «sannhet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «sannhetsarbeid» som avsluttet ved en rapport eller beklagelse uten å undersøke ansvar, reparasjon, rettighetsendring og berørte gruppers vurdering."
     ],
     "status": "canonical_v5_5"
   },
@@ -17539,9 +17707,9 @@
   {
     "concept_id": "con_his_siida",
     "label": "siida",
-    "definition": "I Samisk og urfolkshistorie betegner «siida» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En historisk og nåværende samisk lokal institusjon for samarbeid, ressursbruk, sosial organisering og i reindriften koordinering mellom hushold og grupper.",
+    "concept_type": "indigenous_institution_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
@@ -17556,12 +17724,19 @@
       "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar",
       "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_urfolk"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_samiske",
+      "con_his_naeringsformer"
+    ],
+    "distinguish_from": [
+      "con_his_minoriteter"
+    ],
     "common_misuse": [
-      "Å bruke «siida» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «siida» som en ensartet identitet uten å avgrense språk, sted, institusjon, næring og intern variasjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -17770,9 +17945,9 @@
   {
     "concept_id": "con_his_skole",
     "label": "skole",
-    "definition": "I 1814, grunnlov og statsdannelse betegner «skole» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Institusjon for organisert undervisning og oppdragelse som formidler språk, kunnskap, normer, disiplin og statsborgerskap.",
+    "concept_type": "educational_institution_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_1814_statsdannelse",
       "his_velferd_rett_hverdagsliv",
@@ -17783,12 +17958,19 @@
       "em_his_skole_folkedannelse",
       "em_his_samisk_urfolkshistorie_fornorskning_skole_og_sprak"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kolonisering"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_fornorskning",
+      "con_his_misjon"
+    ],
+    "distinguish_from": [
+      "con_his_kristning"
+    ],
     "common_misuse": [
-      "Å bruke «skole» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å redusere «skole» til kulturell påvirkning uten å undersøke territorium, ressurser, institusjonell makt, språk og motstand."
     ],
     "status": "canonical_v5_5"
   },
@@ -18259,9 +18441,9 @@
   {
     "concept_id": "con_his_sprak",
     "label": "språk",
-    "definition": "I 1814, grunnlov og statsdannelse betegner «språk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk skiftende systemer og praksiser for kommunikasjon, identitet og kunnskap, formet av brukere, institusjoner og makt.",
+    "concept_type": "linguistic_practice_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_1814_statsdannelse",
       "his_migrasjon_minoritet_tilhorighet",
@@ -18275,11 +18457,19 @@
       "em_his_offentlighet_mobilisering_lekmanns_sprak_og_motkulturelle_bevegelser"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_sprakpolitikk"
+    ],
+    "related_concepts": [
+      "con_his_sprakpolitikk",
+      "con_his_fornorskning",
+      "con_his_revitalisering"
+    ],
+    "distinguish_from": [
+      "con_his_kulturarv"
+    ],
     "common_misuse": [
-      "Å bruke «språk» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å måle «språk» bare gjennom formell status uten å undersøke faktisk bruk, overføring, domener, skole og generasjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -18307,9 +18497,9 @@
   {
     "concept_id": "con_his_sprakpolitikk",
     "label": "språkpolitikk",
-    "definition": "I Samisk og urfolkshistorie betegner «språkpolitikk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Formelle og uformelle tiltak som regulerer hvilke språk som kan brukes, læres, dokumenteres og gis offentlig status.",
+    "concept_type": "language_governance_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
@@ -18324,12 +18514,19 @@
       "em_his_samisk_urfolkshistorie_revitalisering_sannhet_og_forsoning",
       "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_sprak"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_fornorskning",
+      "con_his_revitalisering"
+    ],
+    "distinguish_from": [
+      "con_his_kulturarv"
+    ],
     "common_misuse": [
-      "Å bruke «språkpolitikk» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å måle «språkpolitikk» bare gjennom formell status uten å undersøke faktisk bruk, overføring, domener, skole og generasjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -18580,9 +18777,9 @@
   {
     "concept_id": "con_his_statsgrense",
     "label": "statsgrense",
-    "definition": "I Samisk og urfolkshistorie betegner «statsgrense» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En statlig definert territoriell grense som regulerer jurisdiksjon, ferdsel, skatt, handel, statsborgerskap og ressursbruk.",
+    "concept_type": "political_boundary_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
@@ -18597,21 +18794,28 @@
       "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar",
       "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kontaktsoner"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_handel",
+      "con_his_statsgrenser"
+    ],
+    "distinguish_from": [
+      "con_his_kolonisering"
+    ],
     "common_misuse": [
-      "Å bruke «statsgrense» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å framstille «statsgrense» som et likeverdig møte uten å analysere jurisdiksjon, skatt, markedsmakt, tvang og ulik kildeproduksjon."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_statsgrenser",
-    "label": "statsgrenser",
-    "definition": "I Middelalder, kirke og kongemakt betegner «statsgrenser» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "grensekryssende mobilitet",
+    "definition": "Ferdsel, flytting og nettverk på tvers av statsgrenser, knyttet til næring, familie, marked, politikk og kulturell praksis.",
+    "concept_type": "mobility_practice_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_middelalder_kirke_kongemakt",
       "his_samisk_urfolkshistorie"
@@ -18620,12 +18824,19 @@
       "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
       "em_his_samisk_urfolkshistorie_kontaktsoner_handel_og_statsgrenser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kontaktsoner"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_handel",
+      "con_his_statsgrense"
+    ],
+    "distinguish_from": [
+      "con_his_kolonisering"
+    ],
     "common_misuse": [
-      "Å bruke «statsgrenser» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å framstille «grensekryssende mobilitet» som et likeverdig møte uten å analysere jurisdiksjon, skatt, markedsmakt, tvang og ulik kildeproduksjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -20533,9 +20744,9 @@
   {
     "concept_id": "con_his_urfolk",
     "label": "urfolk",
-    "definition": "I Samisk og urfolkshistorie betegner «urfolk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Folk med historisk kontinuitet til samfunn før stats- eller kolonial kontroll, særskilte kulturelle og politiske institusjoner og kollektive rettighetskrav.",
+    "concept_type": "collective_rights_category",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
@@ -20551,11 +20762,19 @@
       "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_samiske"
+    ],
+    "related_concepts": [
+      "con_his_samiske",
+      "con_his_siida",
+      "con_his_naeringsformer"
+    ],
+    "distinguish_from": [
+      "con_his_minoriteter"
+    ],
     "common_misuse": [
-      "Å bruke «urfolk» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «urfolk» som en ensartet identitet uten å avgrense språk, sted, institusjon, næring og intern variasjon."
     ],
     "status": "canonical_v5_5"
   },
@@ -21214,22 +21433,29 @@
   },
   {
     "concept_id": "con_his_vitenskapelig",
-    "label": "vitenskapelig",
-    "definition": "I Samisk og urfolkshistorie betegner «vitenskapelig» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "vitenskapelig klassifikasjon",
+    "definition": "Systematisk inndeling av mennesker, språk, kultur eller natur etter vitenskapelige kategorier som både produserer kunnskap og kan legitimere styring og hierarki.",
+    "concept_type": "knowledge_classification_concept",
+    "historical_scope": "cross_period_indigenous_context_dependent",
     "domain_ids": [
       "his_samisk_urfolkshistorie"
     ],
     "source_emne_ids": [
       "em_his_samisk_urfolkshistorie_raseforskning_og_vitenskapelig_klassifikasjon"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kunnskapsmakt"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_raseforskning",
+      "con_his_arkivenes"
+    ],
+    "distinguish_from": [
+      "con_his_sannhet"
+    ],
     "common_misuse": [
-      "Å bruke «vitenskapelig» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «vitenskapelig klassifikasjon» som nøytral kunnskap uten å analysere kategorier, institusjoner, samtykke, arkivproveniens og politisk bruk."
     ],
     "status": "canonical_v5_5"
   },

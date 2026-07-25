@@ -3,7 +3,7 @@
   "subject_id": "historie",
   "status": "QUALITY_REVIEW_REQUIRED",
   "v6_allowed": false,
-  "generated_at": "2026-07-25T17:40:27.498Z",
+  "generated_at": "2026-07-25T17:49:01.977Z",
   "coverage_counts": {
     "domains": 20,
     "emner": 200,
@@ -13,10 +13,10 @@
     "theories": 200
   },
   "quality_issue_totals": {
-    "concepts": 631,
-    "theories": 150,
+    "concepts": 601,
+    "theories": 140,
     "emner": 0,
-    "domains_not_freeze_ready": 15
+    "domains_not_freeze_ready": 14
   },
   "global_gates": {
     "structural_integrity": true,
@@ -30,14 +30,14 @@
   },
   "quality": {
     "concept_issue_counts": {
-      "synthetic_template_definition": 631,
-      "missing_semantic_relations": 631,
-      "generic_or_missing_misuse_guard": 631,
+      "synthetic_template_definition": 601,
+      "missing_semantic_relations": 601,
+      "generic_or_missing_misuse_guard": 601,
       "numeric_reference_mistyped_as_concept": 3
     },
     "theory_issue_counts": {
-      "only_generic_limitations": 150,
-      "mass_repeated_limitation_profile": 150
+      "only_generic_limitations": 140,
+      "mass_repeated_limitation_profile": 140
     },
     "emne_issue_counts": {}
   },
@@ -73,7 +73,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 67,
+        "concepts": 66,
         "theories": 10
       },
       "issues": [
@@ -88,7 +88,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 48,
+        "concepts": 43,
         "theories": 10
       },
       "issues": [
@@ -103,7 +103,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 49,
+        "concepts": 46,
         "theories": 10
       },
       "issues": [
@@ -118,7 +118,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 77,
+        "concepts": 76,
         "theories": 10
       },
       "issues": [
@@ -148,7 +148,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 74,
+        "concepts": 73,
         "theories": 10
       },
       "issues": [
@@ -163,7 +163,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 65,
+        "concepts": 62,
         "theories": 10
       },
       "issues": [
@@ -178,7 +178,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 68,
+        "concepts": 67,
         "theories": 10
       },
       "issues": [
@@ -208,7 +208,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 39,
+        "concepts": 38,
         "theories": 10
       },
       "issues": [
@@ -238,7 +238,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 33,
+        "concepts": 32,
         "theories": 10
       },
       "issues": [
@@ -262,16 +262,13 @@
       "domain_id": "his_samisk_urfolkshistorie",
       "label": "Samisk og urfolkshistorie",
       "coverage_complete": true,
-      "freeze_ready": false,
+      "freeze_ready": true,
       "issue_counts": {
         "emner": 0,
-        "concepts": 30,
-        "theories": 10
+        "concepts": 0,
+        "theories": 0
       },
-      "issues": [
-        "concept_quality_incomplete",
-        "theory_quality_incomplete"
-      ]
+      "issues": []
     },
     {
       "domain_id": "his_miljo_klima_landskap",
@@ -304,7 +301,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 31,
+        "concepts": 30,
         "theories": 10
       },
       "issues": [
@@ -319,7 +316,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 39,
+        "concepts": 38,
         "theories": 10
       },
       "issues": [
@@ -431,18 +428,6 @@
         ]
       },
       {
-        "concept_id": "con_his_alta",
-        "label": "alta",
-        "domain_ids": [
-          "his_samisk_urfolkshistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
         "concept_id": "con_his_ankomst",
         "label": "ankomst",
         "domain_ids": [
@@ -471,20 +456,6 @@
         "label": "ankomstadresse vs varig bosted",
         "domain_ids": [
           "his_migrasjon_minoritet_tilhorighet"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_ansvar",
-        "label": "ansvar",
-        "domain_ids": [
-          "his_makt_stat_institusjoner",
-          "his_katastrofer_brudd_ulykker",
-          "his_samisk_urfolkshistorie"
         ],
         "issues": [
           "synthetic_template_definition",
@@ -633,6 +604,30 @@
         "label": "arbeidsmigrasjon",
         "domain_ids": [
           "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmigrasjon_vs_arbeid_etter_ankomst",
+        "label": "arbeidsmigrasjon vs arbeid etter ankomst",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmiljo",
+        "label": "arbeidsmiljø",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
         ],
         "issues": [
           "synthetic_template_definition",
