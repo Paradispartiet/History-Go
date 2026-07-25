@@ -15,8 +15,8 @@ function run(command, args) {
 run('npm', ['run', 'build:tools']);
 run('node', ['dist/tools/audit-people-of-places-status.mjs']);
 run('node', ['dist/tools/check-people-of-places-gate.mjs']);
-run('node', ['dist/tools/audit-oslo-people-coverage.mjs']);
-run('node', ['dist/tools/audit-oslo-latent-people-coverage.mjs']);
+run('node', ['--experimental-strip-types', 'tools/audit-oslo-people-coverage.mts']);
+run('node', ['--experimental-strip-types', 'tools/audit-oslo-latent-people-coverage.mts']);
 
 const coverage = JSON.parse(fs.readFileSync('reports/oslo-people-coverage.json', 'utf8'));
 const scenekunst = coverage.categories.find((entry) => entry.category === 'scenekunst') ?? null;
