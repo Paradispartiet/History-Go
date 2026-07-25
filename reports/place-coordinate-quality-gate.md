@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-25T06:27:44.997Z
+Generert: 2026-07-25T06:38:52.147Z
 
 ## Oppsummering
 - Aktive filer validert: **690**
 - Antall steder validert: **1291**
 - Harde feil: **0**
-- Varsler: **518**
-- Coordinate review candidates: **779** signaler fordelt på **653** steder
+- Varsler: **517**
+- Coordinate review candidates: **775** signaler fordelt på **653** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -1016,7 +1016,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/subkultur/oslo/places_subkultur.json#torggata_blad: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#hausmannsgate_aksen: lineært sted uten anchors
 - data/places/subkultur/oslo/places_subkultur.json#schweigaards_gate_lodalen: lineært sted uten anchors
-- data/places/subkultur/oslo/places_subkultur.json#schweigaards_gate_lodalen: stort område uten coordNote/coordStatus
 - data/places/subkultur/oslo/places_subkultur.json#kuba_akselpassasjer: lineært sted uten anchors
 - data/places/subkultur/oslo/places_subkultur.json#blitzhuset: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#kafe_haerverk: coordStatus=verified uten coordPrecisionM
@@ -1234,7 +1233,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 779 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -1242,9 +1241,9 @@ Totalt 779 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | --- | --- |
 | coordStatus=verified uten coordPrecisionM | 240 |
 | lineært sted uten anchors | 80 |
-| stasjon/park/gate/torg/elv uten coordinate metadata | 68 |
+| stasjon/park/gate/torg/elv uten coordinate metadata | 65 |
 | lav koordinatpresisjon (<4 desimaler) | 70 |
-| park/stort område uten anchors eller coordNote | 128 |
+| park/stort område uten anchors eller coordNote | 127 |
 | svært stor r (>=500 m) uten coordNote | 66 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 8 |
@@ -1580,7 +1579,7 @@ Totalt 779 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | mosneselva_etne | Mosneselva | natur | data/places/natur/vestland/etne/mosneselva_etne.json | 59.86656 | 6.32955 | 1000 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | vaulaelva_vassdraget | Vaulaelva og Vaulovassdraget | natur | data/places/natur/vestland/etne/vaulaelva_vassdraget.json | 59.81337 | 6.35371 | 1400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### stasjon/park/gate/torg/elv uten coordinate metadata (68)
+### stasjon/park/gate/torg/elv uten coordinate metadata (65)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1643,9 +1642,6 @@ Totalt 779 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | audnedal_stasjon_lyngdal | Audnedal stasjon Lyngdal | by | data/places/by/agder/audnedal_stasjon_lyngdal.json | 58.3238 | 7.354 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | gardermoen_motorpark | Gardermoen Motorpark | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.1832 | 11.1399 | 280 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | selhurst_park_london | Selhurst Park | sport | data/places/sport/europa/england/footballgrounds_london.json | 51.3983 | -0.0855 | 190 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| hausmannsgate_aksen | Hausmannsgate-aksen | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9189 | 10.7513 | 240 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| schweigaards_gate_lodalen | Schweigaards gate–Lodalen veggakse | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9077 | 10.7725 | 260 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
-| kuba_akselpassasjer | Kuba-passasjene ved Akerselva | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9236 | 10.7558 | 180 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | lisbon_maat | MAAT / Tejo-kraftstasjonen | kunst | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | 38.6953 | -9.1937 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | lisbon_terminal_de_cruzeiros | Terminal de Cruzeiros de Lisboa | naeringsliv | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | 38.7142 | -9.1242 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | lisbon_santa_apolonia_station | Santa Apolónia Station | naeringsliv | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | 38.714 | -9.1228 | 180 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
@@ -1728,7 +1724,7 @@ Totalt 779 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | vikedalselva | Vikedalselva | natur | data/places/natur/rogaland/vikedalselva.json | 59.4977 | 5.903 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | suldalslagen | Suldalslågen | natur | data/places/natur/rogaland/suldalslagen.json | 59.48333 | 6.25 | 900 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### park/stort område uten anchors eller coordNote (128)
+### park/stort område uten anchors eller coordNote (127)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1858,7 +1854,6 @@ Totalt 779 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | rudskogen_motorsenter | Rudskogen Motorsenter | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 59.3759 | 11.2552 | 520 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | gardermoen_motorpark | Gardermoen Motorpark | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.1832 | 11.1399 | 280 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | finnskogbanen | Finnskogbanen | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.4513 | 12.1864 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
-| schweigaards_gate_lodalen | Schweigaards gate–Lodalen veggakse | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9077 | 10.7725 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | etne_bmx_og_skatepark | Etne BMX- og skatepark | sport | data/places/sport/vestland/etne/etne_bmx_og_skatepark.json | 59.66795396985244 | 5.942168981207253 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 
 ### svært stor r (>=500 m) uten coordNote (66)
