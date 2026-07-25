@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-25T05:32:02.956Z
+Generert: 2026-07-25T05:40:56.782Z
 
 ## Oppsummering
 - Aktive filer validert: **690**
 - Antall steder validert: **1291**
 - Harde feil: **0**
-- Varsler: **516**
-- Coordinate review candidates: **777** signaler fordelt på **652** steder
+- Varsler: **517**
+- Coordinate review candidates: **778** signaler fordelt på **653** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -1041,6 +1041,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/subkultur/oslo/places_subkultur.json#huset_oslo: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#nadheim_oslo: coordStatus=verified uten coordPrecisionM
 - data/places/subkultur/oslo/places_subkultur.json#motestedet_tollbugata: coordStatus=verified uten coordPrecisionM
+- data/places/vitenskap/oslo/places_vitenskap.json#universitetets_gamle_hovedbygning: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#universitetets_gamle_kjemi: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#gamlebyen_skole: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#universitetet_i_oslo_blindern: coordStatus=verified uten coordPrecisionM
@@ -1232,13 +1233,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 777 signaler fordelt på 652 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 778 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 238 |
+| coordStatus=verified uten coordPrecisionM | 239 |
 | lineært sted uten anchors | 80 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 68 |
 | lav koordinatpresisjon (<4 desimaler) | 70 |
@@ -1248,7 +1249,7 @@ Totalt 777 signaler fordelt på 652 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 8 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (238)
+### coordStatus=verified uten coordPrecisionM (239)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1364,6 +1365,7 @@ Totalt 777 signaler fordelt på 652 steder. Et sted kan ha flere signaler. Kandi
 | huset_oslo | Huset Oslo | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.923969075170824 | 10.726541485081306 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nadheim_oslo | Nadheim | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.91270580984919 | 10.765642283295504 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | motestedet_tollbugata | Møtestedet – Tollbugata | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.90976205545865 | 10.747280208188046 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| universitetets_gamle_hovedbygning | Universitetets gamle hovedbygning | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.91535567609494 | 10.735178716853644 | 160 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | universitetets_gamle_kjemi | Universitetets gamle kjemibygning | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.917023156193885 | 10.73472914137377 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamlebyen_skole | Gamlebyen skole | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.90681241 | 10.77044366 | 150 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | universitetet_i_oslo_blindern | Universitetet i Oslo, Blindern | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.94013280617488 | 10.720291655207404 | 920 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |

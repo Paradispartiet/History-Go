@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "universitetets_gamle_hovedbygning",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/universitetets_gamle_hovedbygning.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_official_address_point_with_three_building_complex_radius",
+  "currentCoordinate": {
+    "lat": 59.91535567609494,
+    "lon": 10.735178716853644,
+    "r": 160,
+    "coordStatus": "verified",
+    "coordSource": "geonorge_adresser_v1",
+    "coordType": "address_point",
+    "coordNote": "Offisiell adressekoordinat fra Kartverket/Geonorge for Karl Johans gate 47, 0162 Oslo. Canonical record omfatter hele universitetsanlegget med Domus Media, Domus Academica og Domus Bibliotheca. Lovdata bekrefter Universitetet i Oslo-eiendommen på adressen. De tre fysiske byggene er OSM way 5004366, 111845745 og 5004360. Maksimal avstand fra adressepunktet til anleggets tre fotavtrykk er 128.4 meter; radius 160 meter inkluderer 30 meters buffer. Den tidligere markøren lå 515 meter unna. Canonical year 1852 beholdes."
+  },
+  "identity": {
+    "currentName": "Universitetets gamle hovedbygning",
+    "resolvedIdentity": "Universitetsanlegget at Karl Johans gate 47: Domus Media, Domus Academica and Domus Bibliotheca",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "current_place",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisielt adressepunkt",
+    "juridisk eiendomsbekreftelse",
+    "tre canonical bygningsfotavtrykk",
+    "målt kompleksradius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket/Geonorge – Karl Johans gate 47",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Karl%20Johans%20gate&nummer=47&kommunenummer=0301&treffPerSide=50",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13630:47:59.91535568,10.73517872",
+      "sourceQuality": "official_address",
+      "finding": "Ett uletterert offisielt adressepunkt: 59.91535567609494, 10.735178716853644.",
+      "canVerifyCoordinate": true,
+      "reason": "Canonical display-marker under address-first policy."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lovdata – Universitetet i Oslo, Karl Johans gate 47",
+      "sourceUrl": "https://lovdata.no/dokument/LF/forskrift/2001-05-04-449",
+      "sourceObjectId": "lovdata:forskrift:2001-05-04-449",
+      "sourceQuality": "official_legal_source",
+      "finding": "Fredningsforskriften bekrefter Universitetet i Oslo-eiendommen på Karl Johans gate 47.",
+      "canVerifyCoordinate": false,
+      "reason": "Eiendoms- og identitetskryssjekk."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Domus Media",
+      "sourceUrl": "https://www.openstreetmap.org/way/5004366",
+      "sourceObjectId": "osm-way:5004366",
+      "sourceQuality": "resolved_university_building_geometry",
+      "finding": "Domus Media inngår i canonical trebygninganlegg. Identifikasjon: direct OSM building name.",
+      "canVerifyCoordinate": true,
+      "reason": "Fysisk byggstøtte for kompleksradius."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Domus Academica",
+      "sourceUrl": "https://www.openstreetmap.org/way/111845745",
+      "sourceObjectId": "osm-way:111845745",
+      "sourceQuality": "resolved_university_building_geometry",
+      "finding": "Domus Academica inngår i canonical trebygninganlegg. Identifikasjon: unique nearest unnamed university-complex footprint to the documented Gamle festsal locator after exhaustive nearby-building audit.",
+      "canVerifyCoordinate": true,
+      "reason": "Fysisk byggstøtte for kompleksradius."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Domus Bibliotheca",
+      "sourceUrl": "https://www.openstreetmap.org/way/5004360",
+      "sourceObjectId": "osm-way:5004360",
+      "sourceQuality": "resolved_university_building_geometry",
+      "finding": "Domus Bibliotheca inngår i canonical trebygninganlegg. Identifikasjon: direct OSM building name.",
+      "canVerifyCoordinate": true,
+      "reason": "Fysisk byggstøtte for kompleksradius."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go UiO sentrum research report",
+      "sourceUrl": "reports/oslo-coordinate-uio-sentrum-anlegg-research-post-195/summary.json",
+      "sourceObjectId": "history-go-research:uio-sentrum-anlegg-post-195",
+      "sourceQuality": "reproducible_multi_source_research",
+      "finding": "Maksimal kompleksavstand 128.4 meter + 30 meter buffer gir radius 160 meter. Gammel markør var 515 meter feil.",
+      "canVerifyCoordinate": true,
+      "reason": "Samlet beslutningsgrunnlag."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "address": "Karl Johans gate 47, 0162 Oslo",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13630:47:59.91535568,10.73517872",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13630:47:59.91535568,10.73517872",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:5004366",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:111845745",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:5004360",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:5004366",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:111845745",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:5004360",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 59.91535567609494,
+      "lon": 10.735178716853644,
+      "coordRole": "display_marker",
+      "sourceObjectId": "geonorge-adresser-v1:0301:13630:47:59.91535568,10.73517872",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Karl Johans gate 47 er anvendt med radius 160 meter over trebygninganlegget."
+  },
+  "notes": [
+    "Offisiell adressekoordinat fra Kartverket/Geonorge for Karl Johans gate 47, 0162 Oslo. Canonical record omfatter hele universitetsanlegget med Domus Media, Domus Academica og Domus Bibliotheca. Lovdata bekrefter Universitetet i Oslo-eiendommen på adressen. De tre fysiske byggene er OSM way 5004366, 111845745 og 5004360. Maksimal avstand fra adressepunktet til anleggets tre fotavtrykk er 128.4 meter; radius 160 meter inkluderer 30 meters buffer. Den tidligere markøren lå 515 meter unna. Canonical year 1852 beholdes.",
+    "Research report: reports/oslo-coordinate-uio-sentrum-anlegg-research-post-195/summary.json"
+  ]
+}
