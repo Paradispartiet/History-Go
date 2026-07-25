@@ -33,7 +33,7 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 3. [`../README/README_DEV.md`](../README/README_DEV.md) — kjøring, debugging og validering
 4. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
 
-`SYSTEM_REGISTRY.md` er fortsatt bindende, men er merket `transitional` fordi aktiv kontrakt og gammel innlimt historikk fortsatt ligger i samme fil. Den skal konsolideres uten å miste gjeldende runtime-regler.
+`SYSTEM_REGISTRY.md` er canonical og inneholder bare den aktive kontrakten. Den tidligere pre-split-filen er bevart byte-identisk i [`../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md) som historisk sporbarhet, ikke som bindende regelverk.
 
 ### Produkt og ferdigstillelse
 
@@ -47,7 +47,7 @@ Følgende filer er snapshots og skal ikke brukes som nåstatus:
 
 - `README/CURRENT_PRODUCT_STATE.md` — historisk status er merket direkte i filen
 - `docs/IMPLEMENTATION_STATUS.md` — historisk status er merket direkte i filen
-- `docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md` — eldre audit basert på 2026-04-30-data
+- `reports/archive/HISTORY_GO_PLAYABLE_GAP_AUDIT_2026-04-30.md` — full eldre gaprapport; `docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md` er bare en peker til aktive erstatningskilder
 
 ### Data og innholdsproduksjon
 
@@ -72,6 +72,7 @@ Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk
 
 - [`../reports/README.md`](../reports/README.md) eier rapportreglene.
 - `reports/data-health-summary.md` er aktiv planleggingsbaseline når den er regenerert.
+- `reports/archive/` inneholder tidsbundne snapshots som er flyttet ut av aktive docs-paths.
 - Andre markdown-rapporter i `reports/` er tidsbundne snapshots med mindre de uttrykkelig er registrert som canonical.
 
 ## Statusmodell
@@ -120,12 +121,12 @@ Kontrollen kjører når sentrale dokumenter, registeret eller kontrollscriptet e
 - `DOCS.md` redusert til inngang
 - gamle politikk-aggregate-paths fjernet fra dataproduksjonskontrakten
 - `CURRENT_PRODUCT_STATE` og `IMPLEMENTATION_STATUS` merket som historiske snapshots
+- aktiv `SYSTEM_REGISTRY` skilt fra byte-identisk pre-split-arkiv
+- spillbarhets-gaprapporten flyttet til `reports/archive/` med kort historisk peker i `docs/`
 
 ### Neste
 
-- konsolider aktiv kontrakt og innlimt legacytekst i `README/SYSTEM_REGISTRY.md`
-- merk gap-auditen direkte som historisk og flytt den senere til rapportarkiv
 - konsolider quizdokumentasjonen mot aktiv V5.1-/manifestpipeline
 - opprett én Civication-dokumentindeks
-- flytt daterte audits og migreringsstatus til `reports/archive/`
+- flytt flere daterte audits og migreringsstatuser til `reports/archive/`
 - standardiser extensionløse, feilstavede og dupliserte README-navn med redirects eller lenkeoppdatering
