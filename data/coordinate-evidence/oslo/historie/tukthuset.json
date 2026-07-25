@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "tukthuset",
+  "placeFile": "data/places/historie/oslo/places_historie_next_batch_tidlig_moderne_01.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "historical_address_anchor",
+  "currentCoordinate": {
+    "lat": 59.9146165881438,
+    "lon": 10.753026513871012,
+    "r": 140,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "manual_historical_research",
+    "coordType": "historical_address_anchor",
+    "coordNote": "Oslo byleksikon dokumenterer det revne Tukthuset ved Storgata 33. Dagens Geonorge-adressepunkt brukes uttrykkelig som historisk approksimasjon, ikke som bevart bygningsgeometri. Den tidligere markøren lå 347.1 meter fra det valgte ankeret. Adressepunktet representerer historisk lokalisering av et revet anlegg og er ikke bevart bygningsgeometri."
+  },
+  "identity": {
+    "currentName": "tukthuset",
+    "resolvedIdentity": "tukthuset",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "historisk identitetskilde",
+    "stabilt koordinat- eller geometriobjekt",
+    "målt eller konservativ radius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Historisk identitetskilde",
+      "sourceUrl": "https://oslobyleksikon.no/side/Tukthuset",
+      "sourceObjectId": "history-source:tukthuset:identity",
+      "sourceQuality": "authoritative_or_specialist_historical_source",
+      "finding": "Oslo byleksikon dokumenterer det revne Tukthuset ved Storgata 33. Dagens Geonorge-adressepunkt brukes uttrykkelig som historisk approksimasjon, ikke som bevart bygningsgeometri.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter canonical historisk identitet og stedskontekst."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Historisk adresseanker",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/sok?adressenavn=Storgata&nummer=33&kommunenummer=0301&treffPerSide=20",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17059:33:59.91461659,10.75302651",
+      "sourceQuality": "published_historical_locator",
+      "finding": "59.9146165881438, 10.753026513871012; radius 140 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Kildebelagt historisk punkt som uttrykkelig behandles som approksimasjon."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go final historical coordinate review",
+      "sourceUrl": "reports/oslo-coordinate-historical-sites-research-20260725/final-decisions.json",
+      "sourceObjectId": "history-go-research:historical-sites-20260725:tukthuset",
+      "sourceQuality": "reproducible_multi_source_research",
+      "finding": "Oslo byleksikon dokumenterer det revne Tukthuset ved Storgata 33. Dagens Geonorge-adressepunkt brukes uttrykkelig som historisk approksimasjon, ikke som bevart bygningsgeometri. Den tidligere markøren lå 347.1 meter fra det valgte ankeret. Adressepunktet representerer historisk lokalisering av et revet anlegg og er ikke bevart bygningsgeometri.",
+      "canVerifyCoordinate": true,
+      "reason": "Dokumenterer valg, radius og forkastede feilobjekter."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17059:33:59.91461659,10.75302651",
+      "canApplyToPlace": true
+    }
+  ],
+  "geometryCandidates": [],
+  "coordinateCandidates": [
+    {
+      "lat": 59.9146165881438,
+      "lon": 10.753026513871012,
+      "coordRole": "historical_anchor",
+      "sourceObjectId": "geonorge-adresser-v1:0301:17059:33:59.91461659,10.75302651",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Final historisk koordinatbeslutning er anvendt i canonical-data."
+  },
+  "notes": [
+    "Oslo byleksikon dokumenterer det revne Tukthuset ved Storgata 33. Dagens Geonorge-adressepunkt brukes uttrykkelig som historisk approksimasjon, ikke som bevart bygningsgeometri. Den tidligere markøren lå 347.1 meter fra det valgte ankeret. Adressepunktet representerer historisk lokalisering av et revet anlegg og er ikke bevart bygningsgeometri.",
+    "Decision file: reports/oslo-coordinate-historical-sites-research-20260725/final-decisions.json"
+  ]
+}
