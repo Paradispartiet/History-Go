@@ -16,6 +16,7 @@
     "README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md",
     "README/SYSTEM_MAP.md",
     "docs/DATA_PRODUCTION_CONTRACT.md",
+    "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "README/README_DEV.md",
     "README/TEAM_WORKFLOW.md"
   ],
@@ -147,12 +148,26 @@
       "last_verified": "2026-07-25"
     },
     {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "status": "canonical",
+      "role": "Eneste bindende produksjonsprosedyre for nye og reviderte quizer",
+      "owns": ["quiz_production_contract"],
+      "last_verified": "2026-07-25"
+    },
+    {
       "path": "README/quizREADME.md",
-      "status": "transitional",
-      "role": "Quiz-, lærings- og reward-kontrakt",
-      "owns": ["quiz_runtime_contract"],
-      "last_verified": "2026-07-25",
-      "debt": "Filpaths og generatorversjoner må synkroniseres med dagens manifest- og V5.1-pipeline."
+      "status": "operational",
+      "role": "Compatibility-pointer til canonical quizproduksjon, manifests, schemas, audits og runtime-eierskap",
+      "owns": [],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "README/archive/QUIZ_README_PRE_CONSOLIDATION_2026-07-25.md",
+      "status": "historical",
+      "role": "Byte-identisk snapshot av den tidligere kombinerte quiz-, lærings-, observations- og popup-README-en",
+      "owns": [],
+      "superseded_by": ["data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md", "README/quizREADME.md", "README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md"],
+      "historical_reason": "Blandet utdaterte filpaths, eldre generatorregler, runtime-notater og feilsøking i én konkurrerende fasit."
     },
     {
       "path": "docs/TYPESCRIPT_FIRST_POLICY.md",
