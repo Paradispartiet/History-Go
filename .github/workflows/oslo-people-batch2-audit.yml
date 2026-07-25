@@ -9,18 +9,18 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   audit:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Check out branch
         uses: actions/checkout@v4
         with:
           ref: agent/oslo-people-zero-gap-batch2
-          fetch-depth: 0
+          fetch-depth: 1
+          show-progress: false
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -34,11 +34,11 @@ jobs:
       - name: Audit candidates
         run: npx tsx tools/audit-oslo-people-batch2-candidates.mts
 
-      - name: Publish audit report
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f reports/oslo-people-batch2-candidate-audit.json reports/oslo-people-batch2-candidate-audit.md
-          git diff --cached --check
-          git commit -m "Audit Oslo People batch 2 candidates"
-          git push origin HEAD:agent/oslo-people-zero-gap-batch2
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-people-batch2-candidate-audit
+          path: |
+            reports/oslo-people-batch2-candidate-audit.json
+            reports/oslo-people-batch2-candidate-audit.md
+          if-no-files-found: error
