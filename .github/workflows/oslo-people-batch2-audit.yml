@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - agent/oslo-people-zero-gap-batch2
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
