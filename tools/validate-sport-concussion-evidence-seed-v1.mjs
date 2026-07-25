@@ -92,7 +92,8 @@ require((searchLog.database_searches || []).every((item) => item.status === "not
 require(searchLog.screening?.status === "not_started", "screening er feilaktig markert startet");
 require(searchLog.screening?.independent_reviewers_required === 2, "søkeloggen krever ikke to screenere");
 require(searchLog.deduplication?.status === "not_run", "deduplisering er feilaktig markert kjørt");
-require(/ikke evidens/i.test(searchLog.publication_rule || ""), "søkeloggen skiller ikke kandidatposter fra evidens");
+const publicationRule = searchLog.publication_rule || "";
+require(/kan ikke flyttes/i.test(publicationRule) && /uten protokollstyrt dobbelt screening/i.test(publicationRule), "søkeloggen mangler eksplisitt screeningblokkering");
 
 const question = questionFile.research_questions.find((item) => item.research_question_id === protocol.parent_research_question_id);
 require(question?.evidence_package_ids?.includes(packageId), "forskningsspørsmålet peker ikke til pakken");
