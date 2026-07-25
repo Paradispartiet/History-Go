@@ -1,6 +1,6 @@
 # Oslo People of Places coverage
 
-Generert: 2026-07-25T06:57:35.819Z
+Generert: 2026-07-25T07:26:53.992Z
 
 ## Policy
 
@@ -12,9 +12,9 @@ Generert: 2026-07-25T06:57:35.819Z
 
 - Oslo-steder totalt: **389**
 - Kravpliktige steder utenom natur: **340**
-- Dekket: **188**
-- Uten People: **152**
-- Dekningsgrad: **55.29%**
+- Dekket: **194**
+- Uten People: **146**
+- Dekningsgrad: **57.06%**
 - Natursteder: **49** (45 uten People)
 - Geografikonflikter holdt utenfor Oslo-tellingen: **0**
 - Ugyldige People→place-referanser globalt: **50**
@@ -35,7 +35,7 @@ Generert: 2026-07-25T06:57:35.819Z
 | politikk | 18 | 18 | 0 | 163 |
 | populaerkultur | 11 | 2 | 9 | 2 |
 | psykologi | 1 | 0 | 1 | 0 |
-| scenekunst | 22 | 7 | 15 | 241 |
+| scenekunst | 22 | 13 | 9 | 248 |
 | sport | 1 | 0 | 1 | 0 |
 | subkultur | 33 | 17 | 16 | 31 |
 | vitenskap | 19 | 7 | 12 | 47 |
@@ -153,19 +153,13 @@ Generert: 2026-07-25T06:57:35.819Z
 | populaerkultur | `vika_kino` | Vika kino | data/places/film/oslo/places_oslo_film.json |
 | psykologi | `psykologisk_institutt_uio` | Psykologisk institutt, UiO | data/places/psykologi/oslo/places_psykologi.json |
 | scenekunst | `black_box_teater` | Black Box teater | data/places/scenekunst/oslo/places_scenekunst.json |
-| scenekunst | `centralteatret` | Centralteatret | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `dansens_hus_oslo` | Dansens Hus | data/places/scenekunst/oslo/places_scenekunst.json |
-| scenekunst | `det_andre_teatret` | Det Andre Teatret | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `det_andre_teatret_intimscenen` | Det Andre Teatret – Intimscenen | data/places/scenekunst/oslo/places_scenekunst.json |
-| scenekunst | `dramatikkens_hus` | Dramatikkens hus | data/places/scenekunst/oslo/dramatikkens_hus.json |
-| scenekunst | `grusomhetens_teater` | Grusomhetens Teater | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `kloden_teater_pilotscenen` | Kloden teater – Pilotscenen | data/places/scenekunst/oslo/places_scenekunst.json |
-| scenekunst | `nordic_black_theatre_cafeteatret` | Nordic Black Theatre / Cafeteatret | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `oslo_nye_teater_hovedscenen` | Oslo Nye Teater – Hovedscenen | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `riksscenen` | Riksscenen | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `rommen_scene` | Rommen Scene | data/places/scenekunst/oslo/places_scenekunst.json |
 | scenekunst | `salt_oslo` | SALT | data/places/scenekunst/oslo/places_scenekunst.json |
-| scenekunst | `teater_manu` | Teater Manu | data/places/scenekunst/oslo/teater_manu.json |
 | scenekunst | `vega_scene` | Vega Scene | data/places/scenekunst/oslo/vega_scene.json |
 | sport | `voldslokka_pumptrack` | Voldsløkka pumptrack | data/places/sport/oslo/voldslokka_pumptrack.json |
 | subkultur | `brugata_storgata_rusmiljo` | Brugata / Storgata – det åpne rusmiljøet | data/places/subkultur/oslo/places_subkultur.json |

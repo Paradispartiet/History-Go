@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-25T06:57:39.849Z
+Generated: 2026-07-25T07:26:58.399Z
 
 ## Sammendrag
-- People-filer lest: **695**
-- People lest: **1330**
+- People-filer lest: **702**
+- People lest: **1337**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1330**
+- Duplikate interne place-referanser: **1337**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -1348,5 +1348,12 @@ Generated: 2026-07-25T06:57:39.849Z
 - data/people/historie/oslo/magistratgarden/helge_berntsen.json :: helge_berntsen (Helge Berntsen) -> magistratgarden x2
 - data/people/historie/oslo/magistratgarden/morten_leuch_eliesen.json :: morten_leuch_eliesen (Morten Leuch Eliesen) -> magistratgarden x2
 - data/people/historie/oslo/magistratgarden/dorthea_monsen.json :: dorthea_monsen (Dorthea Monsen) -> magistratgarden x2
+- data/people/scenekunst/oslo/det_andre_teatret/nils_petter_morland.json :: nils_petter_morland (Nils Petter Mørland) -> det_andre_teatret x2
+- data/people/scenekunst/oslo/grusomhetens_teater/lars_oyno.json :: lars_oyno (Lars Øyno) -> grusomhetens_teater x2
+- data/people/scenekunst/oslo/nordic_black_theatre_cafeteatret/cliff_a_moustache.json :: cliff_a_moustache (Cliff A. Moustache) -> nordic_black_theatre_cafeteatret x2
+- data/people/scenekunst/oslo/nordic_black_theatre_cafeteatret/jarl_solberg.json :: jarl_solberg (Jarl Solberg) -> nordic_black_theatre_cafeteatret x2
+- data/people/scenekunst/oslo/teater_manu/mira_zuckermann.json :: mira_zuckermann (Mira Zuckermann) -> teater_manu x2
+- data/people/scenekunst/oslo/centralteatret/harald_otto.json :: harald_otto (Harald Otto) -> centralteatret x2
+- data/people/scenekunst/oslo/dramatikkens_hus/anne_may_nilsen.json :: anne_may_nilsen (Anne-May Nilsen) -> dramatikkens_hus x2
 
 ## Anbefalt neste ryddebatch

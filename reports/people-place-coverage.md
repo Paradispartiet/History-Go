@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-07-25T06:57:40.131Z
+Generert: 2026-07-25T07:26:58.722Z
 
 ## Sammendrag
 
-- People totalt: **1332**
+- People totalt: **1339**
 - Places totalt: **1291**
-- Places med people: **367**
-- Places uten people: **924**
-- People-place-lenker: **1582**
+- Places med people: **373**
+- Places uten people: **918**
+- People-place-lenker: **1589**
 - People koblet til flere gyldige steder: **267**
 - People uten gyldig sted: **122**
 - Ugyldige place-referanser: **50**
-- Duplikate place-referanser inne på people: **1251**
-- People uten image: **991**
-- People uten cardImage: **992**
+- Duplikate place-referanser inne på people: **1258**
+- People uten image: **998**
+- People uten cardImage: **999**
 - People uten popupDesc: **105**
 
 ## Dekning per place-kategori
@@ -34,7 +34,7 @@ Generert: 2026-07-25T06:57:40.131Z
 | populaerkultur | 17 | 2 | 15 | 2 | 2 |
 | psykologi | 3 | 2 | 1 | 2 | 1 |
 | religion | 3 | 0 | 3 | 0 | 0 |
-| scenekunst | 59 | 7 | 52 | 241 | 223 |
+| scenekunst | 59 | 13 | 46 | 248 | 230 |
 | sport | 71 | 30 | 41 | 260 | 245 |
 | subkultur | 54 | 19 | 35 | 35 | 32 |
 | vitenskap | 37 | 12 | 25 | 55 | 45 |
@@ -44,7 +44,7 @@ Generert: 2026-07-25T06:57:40.131Z
 - historie: 258
 - sport: 245
 - teater: 202
-- scenekunst: 193
+- scenekunst: 200
 - litteratur: 181
 - skuespiller: 147
 - politikk: 137
@@ -57,9 +57,9 @@ Generert: 2026-07-25T06:57:40.131Z
 - subkultur: 64
 - by: 60
 - regissor: 56
+- teatersjef: 51
 - langrenn: 49
 - fotball: 47
-- teatersjef: 47
 - ensemble: 45
 - ibsen: 45
 - bislett: 44
@@ -275,7 +275,7 @@ Generert: 2026-07-25T06:57:40.131Z
 - haakon_v_magnusson (Håkon V Magnusson) -> akershus_festning
 - st_hallvard (St. Hallvard) -> middelalder_oslo
 - harald_hardrade (Harald Hardråde) -> middelalder_oslo
-- ... 1151 flere
+- ... 1158 flere
 
 ## Anbefalt første people-batch
 

@@ -1,22 +1,22 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-25T06:57:39.892Z
+Generert: 2026-07-25T07:26:58.446Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-25T06:57:39.892Z |
-| peopleFilesRead | 695 |
-| totalPeople | 1330 |
-| uniquePeopleIds | 1330 |
+| generatedAt | 2026-07-25T07:26:58.446Z |
+| peopleFilesRead | 702 |
+| totalPeople | 1337 |
+| uniquePeopleIds | 1337 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 695 |
-| categoriesRepresented | 16 |
+| geographicPeopleFiles | 702 |
+| categoriesRepresented | 17 |
 
 ## People-filer
 
@@ -461,6 +461,13 @@ Generert: 2026-07-25T06:57:39.892Z
 | data/people/popkultur/oslo/house_of_nerds/andreas_sollund.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/latter/elina_krantz.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/psykologi/vestland/etne/people_etne_psykisk_helse_rus_batch1.json | psykologi | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/centralteatret/harald_otto.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/det_andre_teatret/nils_petter_morland.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/dramatikkens_hus/anne_may_nilsen.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/grusomhetens_teater/lars_oyno.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/nordic_black_theatre_cafeteatret/cliff_a_moustache.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/nordic_black_theatre_cafeteatret/jarl_solberg.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/scenekunst/oslo/teater_manu/mira_zuckermann.json | scenekunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json | sport | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/anton_ploderer.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/bislett_stadion/arild_mathisen.json | sport | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -735,13 +742,14 @@ Generert: 2026-07-25T06:57:39.892Z
 | politikk | 101 | 0 | 49 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | populaerkultur | 27 | 0 | 27 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | psykologi | 1 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| scenekunst | 7 | 0 | 7 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | sport | 323 | 0 | 245 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | subkultur | 56 | 0 | 7 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | vitenskap | 29 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 695
+- Allerede geografisk strukturert: 702
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -1205,6 +1213,13 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/popkultur/oslo/house_of_nerds/andreas_sollund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/popkultur/oslo/latter/elina_krantz.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/psykologi/vestland/etne/people_etne_psykisk_helse_rus_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=psykologi
+- data/people/scenekunst/oslo/centralteatret/harald_otto.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
+- data/people/scenekunst/oslo/det_andre_teatret/nils_petter_morland.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
+- data/people/scenekunst/oslo/dramatikkens_hus/anne_may_nilsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
+- data/people/scenekunst/oslo/grusomhetens_teater/lars_oyno.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
+- data/people/scenekunst/oslo/nordic_black_theatre_cafeteatret/cliff_a_moustache.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
+- data/people/scenekunst/oslo/nordic_black_theatre_cafeteatret/jarl_solberg.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
+- data/people/scenekunst/oslo/teater_manu/mira_zuckermann.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=scenekunst
 - data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=sport
 - data/people/sport/oslo/bislett_stadion/anton_ploderer.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/oslo/bislett_stadion/arild_mathisen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
