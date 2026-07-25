@@ -2,32 +2,54 @@
   "schemaVersion": "1.0",
   "placeId": "enebakk_kirke",
   "placeFile": "data/places/historie/akershus/places_historie_akershus_batch2/enebakk_kirke.json",
-  "evidenceStatus": "candidate_sources_collected",
-  "coordinateDecision": "coordinate_likely_correct_but_needs_source_contract",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_building_geometry_applied",
   "currentCoordinate": {
+    "lat": 59.76234,
+    "lon": 11.14683,
+    "r": 220,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 274137233 – Enebakk kirke",
+    "coordType": "named_church_building_point",
+    "coordRole": "display_marker",
+    "sourceObjectId": "osm-way:274137233",
+    "coordNote": "Named building geometry for Enebakk kirke; canonical coordinate retained because it already matched the source point."
+  },
+  "previousCoordinate": {
     "lat": 59.76234,
     "lon": 11.14683,
     "r": 220,
     "coordStatus": null,
     "coordSource": null,
     "coordType": null,
-    "coordNote": "Legacy marker retained during source audit; no coordinate metadata was present."
+    "distanceToAppliedCoordinateM": 0.0,
+    "reasonRetained": "The legacy coordinate already matched the named church-building point at stored precision."
   },
   "identity": {
     "currentName": "Enebakk kirke",
     "resolvedIdentity": "Enebakk medieval church at Ignaveien 14, 1912 Enebakk",
     "identityStatus": "resolved",
-    "identityProblem": "The legacy coordinate matches the rounded centre of the named church-building candidate, but it has no source metadata.",
+    "identityProblem": "",
     "locatorTypeCandidate": "building",
     "requiresSplit": false,
     "splitReason": "The canonical record represents one coherent church destination."
   },
   "requiredEvidence": [
-    "exact Geonorge address object for Ignaveien 14",
-    "raw geometry for named OSM way 274137233 or official building point",
-    "source-contract metadata and visual QA"
+    "stable named building geometry",
+    "official address cross-check",
+    "wrong-object exclusion for the neighbouring chapel"
   ],
   "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 274137233 – Enebakk kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/274137233",
+      "sourceObjectId": "osm-way:274137233",
+      "sourceQuality": "exact_named_building_geometry",
+      "finding": "The named church-building object has display point 59.76234, 11.14683, matching the canonical coordinate at stored precision.",
+      "canVerifyCoordinate": true,
+      "reason": "The stable named way directly represents the church building and supplies a building geometry source."
+    },
     {
       "sourceProvider": "official_address",
       "sourceName": "Enebakk sokn – contact information",
@@ -36,17 +58,27 @@
       "sourceQuality": "official_identity_and_address",
       "finding": "The official church page lists Enebakk kirke at Ignaveien 14, 1912 Enebakk.",
       "canVerifyCoordinate": false,
-      "reason": "The page supplies the address but no inspectable address object or coordinate."
+      "reason": "Used as official identity and address cross-check for the named building geometry."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Riksantikvaren / Kulturminnesøk identity cross-check",
+      "sourceUrl": "https://www.kulturminnesok.no/",
+      "sourceObjectId": "kulturminne:84094",
+      "sourceQuality": "official_heritage_identity",
+      "finding": "Enebakk kirke is associated with Kulturminne ID 84094.",
+      "canVerifyCoordinate": false,
+      "reason": "Used to confirm the protected medieval church identity, not as the geometry source."
     },
     {
       "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap way 274137233 – Enebakk kirke",
-      "sourceUrl": "https://www.openstreetmap.org/way/274137233",
-      "sourceObjectId": "osm-way:274137233",
-      "sourceQuality": "exact_named_building_candidate",
-      "finding": "A named church-building way is identified at approximately 59.76234, 11.14683, matching the rounded legacy marker.",
+      "sourceName": "OpenStreetMap way 274137234 – Enebakk kapell",
+      "sourceUrl": "https://www.openstreetmap.org/way/274137234",
+      "sourceObjectId": "osm-way:274137234",
+      "sourceQuality": "wrong_object_exclusion",
+      "finding": "Enebakk kapell is a separate building north of the church.",
       "canVerifyCoordinate": false,
-      "reason": "Raw geometry and deterministic point derivation are not yet stored."
+      "reason": "Explicitly excluded so the church record cannot be anchored to the neighbouring chapel."
     }
   ],
   "addressCandidates": [
@@ -60,13 +92,23 @@
         "country": "NO"
       },
       "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/enebakk/omoss/ansatte2/",
-      "canApplyToPlace": false
+      "canApplyToPlace": true
     }
   ],
   "sourceObjectCandidates": [
     {
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:274137233",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminne:84094",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:274137234",
       "canApplyToPlace": false
     }
   ],
@@ -75,7 +117,7 @@
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:274137233",
       "geometryType": "Polygon",
-      "canApplyToPlace": false
+      "canApplyToPlace": true
     }
   ],
   "coordinateCandidates": [
@@ -92,18 +134,20 @@
       "sourceObjectId": "osm-way:274137233",
       "lat": 59.76234,
       "lon": 11.14683,
-      "coordRole": "building_center_candidate",
+      "coordRole": "display_marker",
       "distanceFromCurrentM": 0.0,
-      "canApplyToPlace": false
+      "canApplyToPlace": true
     }
   ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "The marker is geometrically plausible and matches the named candidate at current precision, but no exact official address object or raw geometry is stored.",
-    "nextAction": "Resolve Ignaveien 14 through Geonorge; if it confirms the same display point, add verified address metadata without an unnecessary coordinate move."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named building geometry to canonical production without moving the coordinate. Continue with Haslum kirke."
   },
   "notes": [
-    "A coordinate can be correct yet still remain unverified when source identity and metadata are missing.",
-    "Prefer the official address point for production unless building geometry materially improves the display marker."
+    "This is a source-contract upgrade, not a coordinate correction.",
+    "The neighbouring chapel is explicitly excluded from the representation decision.",
+    "The 220-metre radius is retained for the churchyard and immediate medieval church environment.",
+    "No nearest/first-hit result was used."
   ]
 }
