@@ -1,0 +1,287 @@
+{
+  "schema": "history_go_place_description_templates_v1",
+  "version": "1.0.0",
+  "status": "canonical_foundation",
+  "purpose": "Gi desc og popupDesc kategorispesifikk fortellerkraft uten at tekstene blir mekaniske varianter av samme akademiske formel.",
+  "categoryAliases": {
+    "popkultur": "populaerkultur"
+  },
+  "global": {
+    "desc": {
+      "targetWords": [28, 58],
+      "targetSentences": [1, 3],
+      "job": "Gi en konkret, minneverdig inngang til stedet og én tydelig grunn til å åpne det.",
+      "minimumConcreteElements": 2,
+      "mustDifferFromPopupDesc": true
+    },
+    "popupDesc": {
+      "targetWords": [75, 155],
+      "targetSentences": [3, 7],
+      "job": "Utvid stedet til en liten fortelling med personer, handling, fysisk detalj, bruk, konflikt, endring eller overraskelse.",
+      "minimumConcreteElements": 4,
+      "mustAddNewInformation": true
+    },
+    "concreteElementTypes": [
+      "navngitt person eller gruppe",
+      "årstall eller tidsrom",
+      "hendelse eller beslutning",
+      "materiale, form, lyd, art eller fysisk detalj",
+      "lokal bruk eller hverdagsaktivitet",
+      "før-og-nå-endring",
+      "konflikt, risiko eller omstridt valg",
+      "uventet eller minneverdig detalj",
+      "konsekvens for mennesker eller sted"
+    ],
+    "antiFormula": {
+      "doNotUseAsDefaultOpenings": [
+        "Stedet viser hvordan",
+        "Stedet er et viktig spor etter",
+        "Stedet er et institusjonelt tyngdepunkt",
+        "Stedet gjør ... lesbart",
+        "Stedet representerer overgangen fra",
+        "Stedet er et møte mellom"
+      ],
+      "watchWords": [
+        "lesbarhet",
+        "lesbart",
+        "akse",
+        "spor",
+        "overgang",
+        "tyngdepunkt",
+        "knutepunkt",
+        "identitet",
+        "transformasjon",
+        "samfunnsutvikling"
+      ],
+      "rule": "Ordene er ikke forbudt, men skal bare brukes når de er presise og ikke allerede dominerer batchen. Konkrete verb og stedlige detaljer skal komme før abstrakte etiketter."
+    },
+    "batchDiversification": {
+      "maxSameOpeningPatternInTen": 2,
+      "maxIdenticalWatchWordInTen": 3,
+      "requirements": [
+        "Varier åpningstype mellom person, handling, fysisk trekk, lyd, konflikt, hendelse og overraskelse.",
+        "Ikke la alle popupDesc følge kronologisk før-så-nå-struktur.",
+        "Ikke bruk kategorinavnet som konklusjon i hver tekst.",
+        "Ingen tekst skal kunne flyttes til et annet sted ved bare å bytte egennavnet."
+      ]
+    }
+  },
+  "categories": {
+    "by": {
+      "label": "By & arkitektur",
+      "coreQuestion": "Hvordan merkes planlegging, bygging og bevegelse i kroppen og hverdagen på akkurat dette stedet?",
+      "descIngredients": ["konkret romlig trekk", "hvem som bruker stedet", "hva som ble endret eller løst"],
+      "popupIngredients": ["gate, bygg eller landskapsform", "transport eller bevegelse", "planvedtak eller utbygging", "hverdagsbruk", "før-og-nå-kontrast", "utilsiktet konsekvens"],
+      "storyPatterns": [
+        ["fysisk trekk", "hverdagsbruk", "historisk endring"],
+        ["problem byen forsøkte å løse", "løsningen", "hvordan den oppleves i dag"],
+        ["rute gjennom stedet", "det man passerer", "hva ruten avslører"]
+      ],
+      "avoid": ["abstrakt byutvikling uten mennesker", "akse som standardord", "påstand om lesbarhet uten synlig detalj"]
+    },
+    "historie": {
+      "label": "Historie",
+      "coreQuestion": "Hva skjedde her, hvem handlet, og hvilke følger kan fortsatt oppdages?",
+      "descIngredients": ["hendelse eller periode", "aktør", "konsekvens eller rest"],
+      "popupIngredients": ["navngitt aktør", "hendelsesforløp", "makt eller valg", "konsekvens", "bevart eller forsvunnet detalj", "senere bruk av historien"],
+      "storyPatterns": [
+        ["øyeblikk", "aktør", "følge"],
+        ["gjenstand eller bygning i dag", "hendelsen den overlevde", "hva som mangler"],
+        ["to konkurrerende fortellinger", "hvem som fremmet dem", "hva stedet minnes"]
+      ],
+      "avoid": ["generisk kulturminnespråk", "historisk betydning uten hendelse", "identitet som erstatning for konkrete konflikter"]
+    },
+    "kunst": {
+      "label": "Kunst",
+      "coreQuestion": "Hva møter øyet eller kroppen, hvem laget det, og hva skjer i møtet mellom verk og sted?",
+      "descIngredients": ["verk eller samling", "kunstner eller miljø", "materiale, motiv eller plassering"],
+      "popupIngredients": ["kunstner", "materiale eller teknikk", "motiv eller form", "bestilling eller tilblivelse", "plassering", "publikumsreaksjon eller tolkningsspenning"],
+      "storyPatterns": [
+        ["slående detalj", "kunstnerens valg", "virkning i rommet"],
+        ["hvordan verket ble til", "hvorfor det står her", "hvordan stedet endrer verket"],
+        ["førsteinntrykk", "detalj som forstyrrer inntrykket", "åpent tolkningsspørsmål"]
+      ],
+      "avoid": ["kunst møter samfunn som tom formel", "bare oppramsing av stilretning", "symbolikk uten beskrivelse av form eller materiale"]
+    },
+    "litteratur": {
+      "label": "Litteratur",
+      "coreQuestion": "Hvordan ble stedet skrevet, lest, brukt av en forfatter eller forvandlet til litterær forestilling?",
+      "descIngredients": ["forfatter, verk eller litterært miljø", "konkret forbindelse til stedet", "scene, arbeidsmåte eller etterliv"],
+      "popupIngredients": ["forfatter eller lesergruppe", "verk", "skrivesituasjon", "stedlig detalj i teksten eller livet", "mottakelse", "litterært etterliv"],
+      "storyPatterns": [
+        ["scene fra forfatterlivet", "verket", "hvordan stedet ble omformet i skrift"],
+        ["rommet der litteratur ble produsert eller delt", "hvem som møttes", "hva som kom ut av det"],
+        ["virkelig sted", "litterær versjon", "forskjellen mellom dem"]
+      ],
+      "avoid": ["bare fødested eller bosted", "generisk inspirasjon", "handlingsreferat uten stedstilknytning"]
+    },
+    "media": {
+      "label": "Medier",
+      "coreQuestion": "Hvordan ble informasjon produsert, valgt, distribuert eller bestridt her?",
+      "descIngredients": ["medium eller institusjon", "redaksjonell handling", "publikum eller konsekvens"],
+      "popupIngredients": ["redaksjon eller produsent", "teknologi eller kanal", "sak eller sending", "publikum", "redaksjonelt valg", "konflikt om troverdighet eller makt"],
+      "storyPatterns": [
+        ["nyhet eller sending", "hvordan den ble laget", "hvem den nådde"],
+        ["maskin eller distribusjonsform", "arbeidsprosessen", "endringen den skapte"],
+        ["redaksjonelt dilemma", "valget", "offentlig reaksjon"]
+      ],
+      "avoid": ["offentlighet som eneste substans", "mediehistorie uten konkret produksjon", "plattform uten mennesker"]
+    },
+    "musikk": {
+      "label": "Musikk",
+      "coreQuestion": "Hva kunne høres her, hvem skapte lyden, og hvordan formet rommet musikken eller publikum?",
+      "descIngredients": ["artist, ensemble eller sjanger", "lyd eller framføring", "stedets rolle"],
+      "popupIngredients": ["artist eller arrangør", "konsert eller innspilling", "sjanger", "akustikk eller teknologi", "publikum", "minneverdig hendelse eller musikalsk arv"],
+      "storyPatterns": [
+        ["lydbilde", "utøver", "publikumsopplevelse"],
+        ["konsertkveld", "det uventede som skjedde", "etterliv"],
+        ["rommets akustikk eller funksjon", "musikken den favoriserte", "miljøet som vokste fram"]
+      ],
+      "avoid": ["viktig musikkscene uten hendelser", "sjangerliste", "kultur og identitet som standardkonklusjon"]
+    },
+    "naeringsliv": {
+      "label": "Næringsliv",
+      "coreQuestion": "Hva ble produsert, solgt eller finansiert her, hvem gjorde arbeidet, og hvem tjente eller tapte på det?",
+      "descIngredients": ["vare eller tjeneste", "arbeidsprosess eller bedrift", "lokal virkning"],
+      "popupIngredients": ["gründer, eier eller arbeidere", "produkt", "maskin eller arbeidsmåte", "marked", "arbeidsvilkår", "vekst, krise eller omstilling"],
+      "storyPatterns": [
+        ["produktets vei", "arbeidet bak", "kunden eller markedet"],
+        ["arbeidsdag", "maskin eller ferdighet", "risiko og belønning"],
+        ["forretningsidé", "vekst", "kostnad eller konflikt"]
+      ],
+      "avoid": ["økonomisk utvikling uten vare eller arbeid", "innovasjon som tom ros", "bedriftshistorie som bare årstall"]
+    },
+    "natur": {
+      "label": "Natur & miljø",
+      "coreQuestion": "Hva lever eller virker her, når kan det oppleves, og hvilke forbindelser holder naturstedet i gang?",
+      "descIngredients": ["art, naturtype eller prosess", "sesong eller sanselig kjennetegn", "økologisk forbindelse"],
+      "popupIngredients": ["navngitte arter", "habitat", "årstid", "atferd eller prosess", "samspill", "trussel, vern eller observasjonstips"],
+      "storyPatterns": [
+        ["det man kan se, høre eller lukte", "arten eller prosessen", "hvorfor det skjer akkurat her"],
+        ["årstidens forandring", "hvem som ankommer eller forsvinner", "økologisk følge"],
+        ["liten detalj", "større næringsnett eller kretsløp", "hvordan man observerer uten å forstyrre"]
+      ],
+      "avoid": ["grønn lunge som standard", "naturmangfold uten arter", "økologisk viktig uten prosess"]
+    },
+    "politikk": {
+      "label": "Politikk & samfunn",
+      "coreQuestion": "Hvilken beslutning, konflikt eller organisering fant sted her, og hvem fikk mer eller mindre makt?",
+      "descIngredients": ["institusjon eller bevegelse", "sak eller beslutning", "berørt gruppe"],
+      "popupIngredients": ["politikere, organisasjoner eller borgere", "sak", "prosedyre eller aksjon", "uenighet", "beslutning", "konsekvens"],
+      "storyPatterns": [
+        ["beslutningsøyeblikk", "motstand", "resultat"],
+        ["demonstrasjon eller møte", "kravet", "myndighetenes svar"],
+        ["institusjonens daglige makt", "hvem som får adgang", "hva som står på spill"]
+      ],
+      "avoid": ["demokrati som pyntord", "samfunnsutvikling uten beslutning", "politisk betydning uten konflikt eller konsekvens"]
+    },
+    "populaerkultur": {
+      "label": "Populærkultur",
+      "coreQuestion": "Hva gjorde mange mennesker her for moro, fellesskap eller gjenkjennelse, og hvordan ble praksisen en del av felles minne?",
+      "descIngredients": ["aktivitet, fenomen eller arrangement", "publikum eller fans", "minneverdig særtrekk"],
+      "popupIngredients": ["utøver, arrangør eller fanmiljø", "format", "gjentakelse eller ritual", "mediespredning", "publikumsbruk", "nostalgi, konflikt eller etterliv"],
+      "storyPatterns": [
+        ["folkelig ritual", "hvem som deltok", "hva folk husker"],
+        ["fenomenets gjennombrudd", "hvordan det spredte seg", "lokal variant"],
+        ["gjenstand eller arena", "bruken", "hvorfor den ble ikonisk"]
+      ],
+      "avoid": ["levende kultur som tom ros", "popularitet uten praksis", "mangfold som eneste poeng"]
+    },
+    "psykologi": {
+      "label": "Psykologi",
+      "coreQuestion": "Hvilken erfaring, atferd, behandling eller undersøkelse er knyttet til stedet, og hvordan påvirket den mennesker?",
+      "descIngredients": ["konkret psykologisk praksis eller erfaring", "person eller gruppe", "virkning"],
+      "popupIngredients": ["forsker, behandler eller deltaker", "metode eller situasjon", "opplevelse eller atferd", "etisk spørsmål", "resultat", "endret praksis"],
+      "storyPatterns": [
+        ["menneskelig situasjon", "hvordan den ble undersøkt eller møtt", "hva man lærte"],
+        ["behandlingspraksis", "pasientens eller gruppens erfaring", "reform eller kritikk"],
+        ["psykologisk mekanisme i hverdagen", "stedlig utløsende faktor", "observerbar konsekvens"]
+      ],
+      "avoid": ["diagnostisering av navngitte personer uten kilder", "sinnet som abstraksjon", "teoribegrep uten menneskelig situasjon"]
+    },
+    "religion": {
+      "label": "Religion",
+      "coreQuestion": "Hvilke ritualer, trosforestillinger og fellesskap gir stedet liv, og hvordan merkes det i rommet?",
+      "descIngredients": ["trossamfunn eller tradisjon", "ritual eller bruk", "hellig eller sosial detalj"],
+      "popupIngredients": ["menighet eller gruppe", "ritual", "gjenstand eller arkitektur", "høytid", "grunnleggelse eller endring", "forhold til nabolaget"],
+      "storyPatterns": [
+        ["ritual i rommet", "deltakerne", "betydningen"],
+        ["hellig gjenstand eller byggdetalj", "bruk", "historisk endring"],
+        ["fellesskapets behov", "stedet de skapte", "hvordan det brukes i dag"]
+      ],
+      "avoid": ["religiøs symbolikk uten ritual", "tro som homogen størrelse", "kirkehistorie uten mennesker"]
+    },
+    "scenekunst": {
+      "label": "Scenekunst",
+      "coreQuestion": "Hva ble framført her, hvem skapte forestillingen, og hva oppstod mellom scene og sal?",
+      "descIngredients": ["forestilling, kompani eller scene", "scenisk særtrekk", "publikum eller betydning"],
+      "popupIngredients": ["utøver, dramatiker, regissør eller kompani", "produksjon", "sceneform eller teknikk", "publikum", "institusjonshistorie", "gjennombrudd, konflikt eller minneverdig kveld"],
+      "storyPatterns": [
+        ["øyeblikk på scenen", "kunstnerisk grep", "reaksjon i salen"],
+        ["produksjonen bak teppet", "premieren", "etterlivet"],
+        ["rommets sceneteknikk", "hva den muliggjorde", "typen forestillinger som vokste fram"]
+      ],
+      "avoid": ["viktig kulturarena uten forestillinger", "oppramsing av sjangre", "møteplass som eneste funksjon"]
+    },
+    "sport": {
+      "label": "Sport & lek",
+      "coreQuestion": "Hva ble konkurrert, trent eller lekt her, hvem deltok, og hvilket øyeblikk ga stedet energi?",
+      "descIngredients": ["idrett eller lek", "utøver, lag eller publikum", "prestasjon eller særtrekk"],
+      "popupIngredients": ["utøver eller lag", "kamp, løp eller trening", "regel eller ferdighet", "arenaens fysiske trekk", "publikum", "rekord, rivalisering eller lokal tradisjon"],
+      "storyPatterns": [
+        ["avgjørende øyeblikk", "prestasjonen", "publikumsreaksjon"],
+        ["treningshverdag", "ferdighet", "konkurransen den forberedte"],
+        ["lekens eller idrettens rom", "hvem som fikk delta", "hvordan miljøet endret seg"]
+      ],
+      "avoid": ["idrettsglede som standard", "arena uten kamp eller aktivitet", "lokal identitet uten konkret minne"]
+    },
+    "subkultur": {
+      "label": "Subkultur",
+      "coreQuestion": "Hvordan tok en gruppe stedet i bruk, hvilke koder eller uttrykk skapte den, og hva stod den imot?",
+      "descIngredients": ["miljø eller gruppe", "praksis eller stil", "stedlig konflikt eller særpreg"],
+      "popupIngredients": ["deltakere", "musikk, klær, språk, kunst eller aktivitet", "egenorganisering", "rombruk", "konflikt med myndigheter eller mainstream", "etterliv"],
+      "storyPatterns": [
+        ["kode eller uttrykk", "hvem som forstod den", "hva den markerte avstand til"],
+        ["midlertidig eller uoffisielt sted", "hvordan gruppen bygde miljø", "presset utenfra"],
+        ["kveld eller hendelse", "nettverket", "spredningen videre"]
+      ],
+      "avoid": ["alternativ som tom etikett", "opprør uten sak", "miljø uten deltakere eller praksis"]
+    },
+    "vitenskap": {
+      "label": "Vitenskap",
+      "coreQuestion": "Hvilket spørsmål ble undersøkt, med hvilken metode eller teknologi, og hva endret funnet?",
+      "descIngredients": ["forskningsspørsmål eller fagfelt", "metode, instrument eller institusjon", "resultat eller anvendelse"],
+      "popupIngredients": ["forsker eller team", "problem", "metode", "instrument eller datagrunnlag", "funn", "usikkerhet, kritikk eller praktisk konsekvens"],
+      "storyPatterns": [
+        ["spørsmål", "forsøk eller måling", "funn"],
+        ["instrument", "hva det kunne registrere", "ny kunnskap det åpnet"],
+        ["praktisk problem", "forskningsarbeid", "løsning og begrensning"]
+      ],
+      "avoid": ["kunnskapsproduksjon uten metode", "innovasjon uten problem", "vitenskapelig betydning uten funn"]
+    },
+    "filosofi": {
+      "label": "Filosofi",
+      "coreQuestion": "Hvilket spørsmål, argument eller livsproblem ble tenkt gjennom her, og hvordan ble tenkningen praktisert?",
+      "descIngredients": ["tenker, miljø eller praksis", "konkret spørsmål eller argument", "stedstilknytning"],
+      "popupIngredients": ["tenker eller gruppe", "verk eller samtale", "problem", "argument eller uenighet", "arbeidsmåte", "senere virkning"],
+      "storyPatterns": [
+        ["spørsmål som oppstod i en situasjon", "argumentet", "konsekvensen"],
+        ["samtale, forelesning eller skrivearbeid", "uenighet", "idé som ble stående"],
+        ["stedlig erfaring", "begrep den utløste", "hvordan begrepet ble brukt"]
+      ],
+      "avoid": ["stedet reiser spørsmål som standardformel", "abstrakte begreper uten argument", "liv og mening uten konkret praksis"]
+    },
+    "film_tv": {
+      "label": "Film & TV",
+      "coreQuestion": "Hva ble spilt inn, produsert eller vist her, hvilke filmatiske valg ble gjort, og hvordan møtte publikum resultatet?",
+      "descIngredients": ["produksjon, scene eller institusjon", "filmisk eller teknisk grep", "stedets rolle"],
+      "popupIngredients": ["regissør, skuespiller eller produksjonsteam", "verk eller episode", "innspillingssted eller studio", "kamera, lys, lyd, klipp eller scenografi", "produksjonshendelse", "mottakelse eller etterliv"],
+      "storyPatterns": [
+        ["scene publikum kjenner", "hvordan den ble laget", "hva stedet bidro med"],
+        ["produksjonsproblem", "teknisk løsning", "virkning på uttrykket"],
+        ["virkelig sted", "versjonen på skjermen", "hvordan publikum husker det"]
+      ],
+      "avoid": ["filmhistorisk viktig uten produksjonsdetalj", "bare handlingen i verket", "stedet som kulisse uten forklaring"]
+    }
+  }
+}
