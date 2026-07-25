@@ -1,14 +1,59 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-25T07:29:36.931Z
+Generert: 2026-07-25T07:41:52.859Z
+
+Aktive steder: 1484
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
 | grini_fangeleir | data/coordinate-evidence/akershus/baerum/grini_fangeleir.json | needs_research | needs_geometry | OK |
+| tjernsmyr_salamanderlokalitet | data/coordinate-evidence/akershus/baerum/tjernsmyr_salamanderlokalitet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ingierstrand_bad | data/coordinate-evidence/akershus/historie/ingierstrand_bad.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | steilene | data/coordinate-evidence/akershus/historie/steilene.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| akershus_energi | data/coordinate-evidence/akershus/naeringsliv/akershus_energi.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| fornebu_teknologipark | data/coordinate-evidence/akershus/naeringsliv/fornebu_teknologipark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | langoyene | data/coordinate-evidence/akershus/natur/langoyene.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alf_proysen_statue_nittedal | data/coordinate-evidence/akershus/nittedal/alf_proysen_statue_nittedal.json | needs_research | needs_geometry | OK |
+| criciuma_avenida_centenario | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_avenida_centenario.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_biblioteca_donatila_borba | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_biblioteca_donatila_borba.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_caixa_de_embarque | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_caixa_de_embarque.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_capela_sao_bras | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_capela_sao_bras.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_capela_sao_roque | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_capela_sao_roque.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_capela_sao_sebastiao | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_capela_sao_sebastiao.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_casa_da_cultura | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_casa_da_cultura.json | candidate_sources_collected | needs_geometry | OK |
+| criciuma_casa_do_vo_justi | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_casa_do_vo_justi.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_casa_londres | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_casa_londres.json | candidate_sources_collected | needs_address_source | OK |
+| criciuma_casarao_atafona | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_casarao_atafona.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_castelo_britanico | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_castelo_britanico.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_catedral_sao_jose | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_catedral_sao_jose.json | candidate_sources_collected | needs_geometry | OK |
+| criciuma_centro_cultural_jorge_zanatta | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_centro_cultural_jorge_zanatta.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_cruz_sao_paulo_apostolo | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_cruz_sao_paulo_apostolo.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_ct_antenor_angeloni | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_ct_antenor_angeloni.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_estacao_ferroviaria_replica | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_estacao_ferroviaria_replica.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_estadio_heriberto_hulse | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_estadio_heriberto_hulse.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_ginasio_walmir_orsi | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_ginasio_walmir_orsi.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_gruta_lourdes | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_gruta_lourdes.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_igreja_nossa_senhora_salete | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_igreja_nossa_senhora_salete.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_mina_octavio_fontana | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_mina_octavio_fontana.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_mirante_realdo_guglielmi | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_mirante_realdo_guglielmi.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_monumento_ao_mineiro | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_monumento_ao_mineiro.json | candidate_sources_collected | needs_geometry | OK |
+| criciuma_monumento_as_etnias | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_monumento_as_etnias.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_morro_cechinel | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_morro_cechinel.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_museu_augusto_casagrande | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_museu_augusto_casagrande.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_museu_zoologia | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_museu_zoologia.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_paco_municipal | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_paco_municipal.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_parque_astronomico | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_parque_astronomico.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_parque_da_prefeitura | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_parque_da_prefeitura.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_parque_das_nacoes | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_parque_das_nacoes.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_parque_dos_imigrantes | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_parque_dos_imigrantes.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_pavilhao_jose_ijair_conti | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_pavilhao_jose_ijair_conti.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_praca_da_chamine | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_praca_da_chamine.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_praca_do_congresso | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_praca_do_congresso.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_praca_nereu_ramos | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_praca_nereu_ramos.json | candidate_sources_collected | needs_geometry | OK |
+| criciuma_satc | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_satc.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_teatro_elias_angeloni | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_teatro_elias_angeloni.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_terminal_central | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_terminal_central.json | needs_research | do_not_change_coordinates_yet | OK |
+| criciuma_unesc | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_unesc.json | needs_research | do_not_change_coordinates_yet | OK |
 | proysenhuset_rudshogda | data/coordinate-evidence/innlandet/ringsaker/proysenhuset_rudshogda.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | aker_brygge | data/coordinate-evidence/oslo/by/aker_brygge.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akerselva | data/coordinate-evidence/oslo/by/akerselva.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -31,6 +76,7 @@ Generert: 2026-07-25T07:29:36.931Z
 | gamle_trikkestallen | data/coordinate-evidence/oslo/by/gamle_trikkestallen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gronlandsleiret | data/coordinate-evidence/oslo/by/gronlandsleiret.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grorud | data/coordinate-evidence/oslo/by/grorud.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| grorudparken | data/coordinate-evidence/oslo/by/grorudparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grunerlokka_helgesens_tm | data/coordinate-evidence/oslo/by/grunerlokka_helgesens_tm.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | helsfyr | data/coordinate-evidence/oslo/by/helsfyr.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | holmenkollen_kapell | data/coordinate-evidence/oslo/by/holmenkollen_kapell.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -81,11 +127,13 @@ Generert: 2026-07-25T07:29:36.931Z
 | ulvoya | data/coordinate-evidence/oslo/by/ulvoya.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | universitetsplassen | data/coordinate-evidence/oslo/by/universitetsplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | uranienborg_kirke | data/coordinate-evidence/oslo/by/uranienborg_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| vaalerenga | data/coordinate-evidence/oslo/by/vaalerenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vigelandsparken | data/coordinate-evidence/oslo/by/vigelandsparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vikaterrassen | data/coordinate-evidence/oslo/by/vikaterrassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vinderen | data/coordinate-evidence/oslo/by/vinderen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | voienvolden | data/coordinate-evidence/oslo/by/voienvolden.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| vaalerenga | data/coordinate-evidence/oslo/by/vaalerenga.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| cinemateket_oslo | data/coordinate-evidence/oslo/film_tv/cinemateket_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| colosseum_kino | data/coordinate-evidence/oslo/film_tv/colosseum_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gimle_kino | data/coordinate-evidence/oslo/film/gimle_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | hartvig_nissens_skole_skam | data/coordinate-evidence/oslo/film/hartvig_nissens_skole_skam.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | klingenberg_kino | data/coordinate-evidence/oslo/film/klingenberg_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -96,6 +144,7 @@ Generert: 2026-07-25T07:29:36.931Z
 | oslo_mek | data/coordinate-evidence/oslo/havnefront/oslo_mek.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | salt | data/coordinate-evidence/oslo/havnefront/salt.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | tollbukaia | data/coordinate-evidence/oslo/havnefront/tollbukaia.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| aamot_bru | data/coordinate-evidence/oslo/historie/aamot_bru.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akershus_festning | data/coordinate-evidence/oslo/historie/akershus_festning.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | arbeidermuseet | data/coordinate-evidence/oslo/historie/arbeidermuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bankall_gard | data/coordinate-evidence/oslo/historie/bankall_gard.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -135,6 +184,7 @@ Generert: 2026-07-25T07:29:36.931Z
 | prinds_christian_augusts_minde | data/coordinate-evidence/oslo/historie/prinds_christian_augusts_minde.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | sagene_skole | data/coordinate-evidence/oslo/historie/sagene_skole.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | st_hallvard_kirke_kloster | data/coordinate-evidence/oslo/historie/st_hallvard_kirke_kloster.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| the_mini_bottle_gallery | data/coordinate-evidence/oslo/historie/the_mini_bottle_gallery.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | toyen_hovedgard | data/coordinate-evidence/oslo/historie/toyen_hovedgard.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | valerenga_kirke | data/coordinate-evidence/oslo/historie/valerenga_kirke.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | var_frelsers_gravlund | data/coordinate-evidence/oslo/historie/var_frelsers_gravlund.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -144,23 +194,35 @@ Generert: 2026-07-25T07:29:36.931Z
 | villa_stenersen | data/coordinate-evidence/oslo/historie/villa_stenersen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | det_internasjonale_barnekunstmuseet | data/coordinate-evidence/oslo/kunst/det_internasjonale_barnekunstmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | dronning_sonja_kunststall | data/coordinate-evidence/oslo/kunst/dronning_sonja_kunststall.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| edvard_munchs_atelier_ekely | data/coordinate-evidence/oslo/kunst/edvard_munchs_atelier_ekely.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ekebergparken | data/coordinate-evidence/oslo/kunst/ekebergparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | emanuel_vigeland_mausoleum | data/coordinate-evidence/oslo/kunst/emanuel_vigeland_mausoleum.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| fotogalleriet | data/coordinate-evidence/oslo/kunst/fotogalleriet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | fotografiens_hus | data/coordinate-evidence/oslo/kunst/fotografiens_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | framtidsbiblioteket_nordmarka | data/coordinate-evidence/oslo/kunst/framtidsbiblioteket_nordmarka.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| galleri_lnm | data/coordinate-evidence/oslo/kunst/galleri_lnm.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | galleri_map | data/coordinate-evidence/oslo/kunst/galleri_map.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | galleri_mini_oslo | data/coordinate-evidence/oslo/kunst/galleri_mini_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| galleri_schaeffers_gate_5 | data/coordinate-evidence/oslo/kunst/galleri_schaeffers_gate_5.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| grafill | data/coordinate-evidence/oslo/kunst/grafill.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | hodet_nn_torshovdalen | data/coordinate-evidence/oslo/kunst/hodet_nn_torshovdalen.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| klosterenga_skulpturpark | data/coordinate-evidence/oslo/kunst/klosterenga_skulpturpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kollentrollet | data/coordinate-evidence/oslo/kunst/kollentrollet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kosk_oslo | data/coordinate-evidence/oslo/kunst/kosk_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kragstotten | data/coordinate-evidence/oslo/kunst/kragstotten.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kunsthall_oslo | data/coordinate-evidence/oslo/kunst/kunsthall_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| kunstnerforbundet | data/coordinate-evidence/oslo/kunst/kunstnerforbundet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | kunstnernes_hus | data/coordinate-evidence/oslo/kunst/kunstnernes_hus.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| norske_grafikere | data/coordinate-evidence/oslo/kunst/norske_grafikere.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | oslo_prosjektrom | data/coordinate-evidence/oslo/kunst/oslo_prosjektrom.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| peer_gynt_parken | data/coordinate-evidence/oslo/kunst/peer_gynt_parken.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | purenkel_galleri | data/coordinate-evidence/oslo/kunst/purenkel_galleri.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| ram_galleri | data/coordinate-evidence/oslo/kunst/ram_galleri.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | roseslottet | data/coordinate-evidence/oslo/kunst/roseslottet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | tbs_gallery | data/coordinate-evidence/oslo/kunst/tbs_gallery.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| tegnerforbundet | data/coordinate-evidence/oslo/kunst/tegnerforbundet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | the_oslo_gallery | data/coordinate-evidence/oslo/kunst/the_oslo_gallery.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| unge_kunstneres_samfund | data/coordinate-evidence/oslo/kunst/unge_kunstneres_samfund.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | van_etten | data/coordinate-evidence/oslo/kunst/van_etten.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vi_vii_gallery | data/coordinate-evidence/oslo/kunst/vi_vii_gallery.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | vigelandmuseet | data/coordinate-evidence/oslo/kunst/vigelandmuseet.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -181,6 +243,8 @@ Generert: 2026-07-25T07:29:36.931Z
 | sigrid_undset_statue | data/coordinate-evidence/oslo/litteratur/sigrid_undset_statue.json | needs_research | needs_geometry | OK |
 | aftenposten_akersgata | data/coordinate-evidence/oslo/media/aftenposten_akersgata.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | dagbladet_akersgata | data/coordinate-evidence/oslo/media/dagbladet_akersgata.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| frognerstranda | data/coordinate-evidence/oslo/media/frognerstranda.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| grand_hotel | data/coordinate-evidence/oslo/media/grand_hotel.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | klassekampen_redaksjon | data/coordinate-evidence/oslo/media/klassekampen_redaksjon.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akershus_slott_bakeriet | data/coordinate-evidence/oslo/naeringsliv/akershus_slott_bakeriet.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bryn_industriomrade | data/coordinate-evidence/oslo/naeringsliv/bryn_industriomrade.json | needs_research | needs_geometry | OK |
@@ -225,6 +289,7 @@ Generert: 2026-07-25T07:29:36.931Z
 | blindern_forskningsparken_salamanderdam | data/coordinate-evidence/oslo/natur/blindern_forskningsparken_salamanderdam.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bogerudmyra | data/coordinate-evidence/oslo/natur/bogerudmyra.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bogstadvannet | data/coordinate-evidence/oslo/natur/bogstadvannet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| brekkedammen | data/coordinate-evidence/oslo/natur/brekkedammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bygdoy_bygdoynes | data/coordinate-evidence/oslo/natur/bygdoy_bygdoynes.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bygdoy_dronningberget | data/coordinate-evidence/oslo/natur/bygdoy_dronningberget.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bygdoy_huk | data/coordinate-evidence/oslo/natur/bygdoy_huk.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -277,17 +342,12 @@ Generert: 2026-07-25T07:29:36.931Z
 | oslo_radhus | data/coordinate-evidence/oslo/politikk/oslo_radhus.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | politihuset_gronland | data/coordinate-evidence/oslo/politikk/politihuset_gronland.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | regjeringskvartalet | data/coordinate-evidence/oslo/politikk/regjeringskvartalet.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| slottsplassen | data/coordinate-evidence/oslo/politikk/slottsplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | stortinget | data/coordinate-evidence/oslo/politikk/stortinget.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | youngstorget | data/coordinate-evidence/oslo/politikk/youngstorget.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | chat_noir | data/coordinate-evidence/oslo/scenekunst/chat_noir.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| cinemateket_oslo | data/coordinate-evidence/oslo/film_tv/cinemateket_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| colosseum_kino | data/coordinate-evidence/oslo/film_tv/colosseum_kino.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | edderkoppen_scene | data/coordinate-evidence/oslo/scenekunst/edderkoppen_scene.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| frognerstranda | data/coordinate-evidence/oslo/media/frognerstranda.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| grand_hotel | data/coordinate-evidence/oslo/media/grand_hotel.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| house_of_nerds | data/coordinate-evidence/oslo/subkultur/house_of_nerds.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | latter | data/coordinate-evidence/oslo/scenekunst/latter.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| slottsplassen | data/coordinate-evidence/oslo/politikk/slottsplassen.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | bislett_stadion | data/coordinate-evidence/oslo/sport/bislett_stadion.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | daelenenga_idrettspark | data/coordinate-evidence/oslo/sport/daelenenga_idrettspark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | ekebergsletta | data/coordinate-evidence/oslo/sport/ekebergsletta.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -316,6 +376,7 @@ Generert: 2026-07-25T07:29:36.931Z
 | vallhall_arena | data/coordinate-evidence/oslo/sport/vallhall_arena.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | club_7_vika | data/coordinate-evidence/oslo/subkultur/club_7_vika.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | helvete_neseblod_records | data/coordinate-evidence/oslo/subkultur/helvete_neseblod_records.json | applied_to_place | do_not_change_coordinates_yet | OK |
+| house_of_nerds | data/coordinate-evidence/oslo/subkultur/house_of_nerds.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | revolver_oslo | data/coordinate-evidence/oslo/subkultur/revolver_oslo.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | skur13 | data/coordinate-evidence/oslo/subkultur/skur13.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | stovnertarnet | data/coordinate-evidence/oslo/subkultur/stovnertarnet.json | applied_to_place | do_not_change_coordinates_yet | OK |
@@ -323,22 +384,3 @@ Generert: 2026-07-25T07:29:36.931Z
 | oslo_reptilpark | data/coordinate-evidence/oslo/vitenskap/oslo_reptilpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | grindheim_jernvinne | data/coordinate-evidence/vestland/bomlo/grindheim_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | gjerdesvagen_jernvinne | data/coordinate-evidence/vestland/kvinnherad/gjerdesvagen_jernvinne.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| fotogalleriet | data/coordinate-evidence/oslo/kunst/fotogalleriet.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| kunstnerforbundet | data/coordinate-evidence/oslo/kunst/kunstnerforbundet.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| brekkedammen | data/coordinate-evidence/oslo/natur/brekkedammen.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| grorudparken | data/coordinate-evidence/oslo/by/grorudparken.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| aamot_bru | data/coordinate-evidence/oslo/historie/aamot_bru.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| klosterenga_skulpturpark | data/coordinate-evidence/oslo/kunst/klosterenga_skulpturpark.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| peer_gynt_parken | data/coordinate-evidence/oslo/kunst/peer_gynt_parken.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| edvard_munchs_atelier_ekely | data/coordinate-evidence/oslo/kunst/edvard_munchs_atelier_ekely.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| tegnerforbundet | data/coordinate-evidence/oslo/kunst/tegnerforbundet.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| unge_kunstneres_samfund | data/coordinate-evidence/oslo/kunst/unge_kunstneres_samfund.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| norske_grafikere | data/coordinate-evidence/oslo/kunst/norske_grafikere.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| the_mini_bottle_gallery | data/coordinate-evidence/oslo/historie/the_mini_bottle_gallery.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| galleri_lnm | data/coordinate-evidence/oslo/kunst/galleri_lnm.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| ram_galleri | data/coordinate-evidence/oslo/kunst/ram_galleri.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| galleri_schaeffers_gate_5 | data/coordinate-evidence/oslo/kunst/galleri_schaeffers_gate_5.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| grafill | data/coordinate-evidence/oslo/kunst/grafill.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| akershus_energi | data/coordinate-evidence/akershus/naeringsliv/akershus_energi.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| fornebu_teknologipark | data/coordinate-evidence/akershus/naeringsliv/fornebu_teknologipark.json | applied_to_place | do_not_change_coordinates_yet | OK |
-| tjernsmyr_salamanderlokalitet | data/coordinate-evidence/akershus/baerum/tjernsmyr_salamanderlokalitet.json | applied_to_place | do_not_change_coordinates_yet | OK |
