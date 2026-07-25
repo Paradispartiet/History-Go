@@ -1,0 +1,37 @@
+{
+  "version": "6.0",
+  "subject_id": "sport",
+  "type": "theory_depth_and_coverage_manifest",
+  "status": "canonical_theory_depth_layer",
+  "updated_at": "2026-07-25",
+  "files": {
+    "theory_units": "theory_units_sport_canonical_v6.json",
+    "emne_coverage_matrix": "emne_theory_coverage_sport_v6.json",
+    "enriched_hooks": "theory_hooks_sport_canonical_v5.json",
+    "enriched_thinkers": "teoretikere_sport_canonical_v5.json",
+    "claims_with_theory_mapping": "claims_sport_canonical_v1.json",
+    "builder": "../../../tools/build-sport-theory-depth-v6.mjs",
+    "validator": "../../../tools/validate-sport-theory-depth-v6.mjs",
+    "report": "../../../reports/sport-theory-depth-validation.json",
+    "readme": "../../../reports/sport-theory-depth-lift.md"
+  },
+  "counts": {
+    "active_emners": 116,
+    "theory_hooks": 56,
+    "theory_units": 56,
+    "mapped_emners": 116,
+    "hooks_with_evidence_claims": 56,
+    "documented_work_thinkers": 122,
+    "contextual_or_practice_thinkers": 61
+  },
+  "coverage_counts": {
+    "theory_and_partial_evidence_ready": 116
+  },
+  "invariants": [
+    "Hvert aktivt emne skal ha minst to primære hooks og tilhørende teorienheter.",
+    "Hver hook skal ha eksplisitt hovedteori, rival, mekanisme, primærverk, kritikk, bruksgrense og skilleevidens.",
+    "Aktive personer uten dokumentert verk kan ikke brukes som direkte teori-autoritet.",
+    "Evidenspåstander skal være koblet til teorihooks og teorienheter.",
+    "Evidenslaget forblir delvis dekket til alle hooks har materialiserte claim-kjeder."
+  ]
+}

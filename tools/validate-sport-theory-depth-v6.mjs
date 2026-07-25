@@ -20,7 +20,7 @@ const paths = {
 };
 
 const [emners, hookFile, thinkerFile, claimFile, unitFile, matrixFile, manifest, qualityManifest, evidenceManifest, profile] = await Promise.all([
-  readJson(paths.emners), readJson(paths.hooks), readJson(paths.thinkers), readJson(paths.claims),
+  readJson(paths.emner), readJson(paths.hooks), readJson(paths.thinkers), readJson(paths.claims),
   readJson(paths.units), readJson(paths.matrix), readJson(paths.manifest), readJson(paths.qualityManifest),
   readJson(paths.evidenceManifest), readJson(paths.profile)
 ]);
