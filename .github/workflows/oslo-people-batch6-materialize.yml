@@ -1,0 +1,66 @@
+name: Oslo People zero-gap batch 6 materialize
+
+on:
+  push:
+    branches:
+      - agent/oslo-people-zero-gap-batch6
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-people-zero-gap-batch6
+          fetch-depth: 0
+          show-progress: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize batch
+        id: materialize
+        shell: bash
+        run: |
+          set +e
+          npx tsx tools/materialize-oslo-people-batch6.mts > /tmp/oslo-people-batch6-materializer.log 2>&1
+          status=$?
+          cat /tmp/oslo-people-batch6-materializer.log
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload failure log
+        if: steps.materialize.outputs.status != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-people-batch6-materializer-failure
+          path: /tmp/oslo-people-batch6-materializer.log
+
+      - name: Publish clean data commit
+        if: steps.materialize.outputs.status == '0'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/oslo-people-batch6-audit.yml
+          rm -f .github/workflows/oslo-people-batch6-materialize.yml
+          rm -f tools/audit-oslo-people-batch6-candidates.mts
+          rm -f tools/materialize-oslo-people-batch6.mts
+          git add -A
+          git diff --cached --check
+          git commit -m "Add Oslo People zero-gap batch 6"
+          git push origin HEAD:agent/oslo-people-zero-gap-batch6
+
+      - name: Fail on materializer error
+        if: steps.materialize.outputs.status != '0'
+        run: exit 1
