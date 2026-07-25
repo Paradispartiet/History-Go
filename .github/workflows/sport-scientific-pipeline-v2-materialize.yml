@@ -28,6 +28,10 @@ jobs:
           set -euo pipefail
           git clone --quiet --depth 1 --branch '${{ github.head_ref }}' "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" repo
 
+      - name: Preserve V6 theory manifest version
+        working-directory: repo
+        run: sed -i 's/qualityManifest.version = "6.1";/qualityManifest.version = "6.0";/' tools/build-sport-scientific-pipeline-v2.mjs
+
       - name: Build scientific pipeline V2
         working-directory: repo
         run: node tools/build-sport-scientific-pipeline-v2.mjs
