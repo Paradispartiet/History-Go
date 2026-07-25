@@ -1,4 +1,5 @@
 // One-shot editorial correction after the structural popkultur migration.
+// This explicit table replaces the broad classification heuristic used by the first pass.
 import fs from "node:fs/promises";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
