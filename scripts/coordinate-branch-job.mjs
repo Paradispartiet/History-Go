@@ -6,12 +6,10 @@ const researchPath = 'reports/oslo-coordinate-subculture-anchors-research-202607
 const research = JSON.parse(await fs.readFile(path.join(root, researchPath), 'utf8'));
 const reportDir = path.join(root, 'reports/oslo-coordinate-subculture-anchors-production-20260725');
 await fs.mkdir(reportDir, { recursive: true });
+await fs.mkdir(path.join(root, 'data/coordinate-evidence/oslo/subkultur'), { recursive: true });
 
 const aggregatePath = 'data/places/subkultur/oslo/places_subkultur.json';
 const indexPath = 'data/places/subkultur/oslo/places_subkultur_index.json';
-const evidenceDir = path.join(root, 'data/coordinate-evidence/oslo/subkultur');
-await fs.mkdir(evidenceDir, { recursive: true });
-
 const splitPaths = {
   gronland_underganger: 'data/places/subkultur/oslo/places_subkultur/gronland_underganger.json',
   grunerlokka_bakgardsvegger: 'data/places/subkultur/oslo/places_subkultur/grunerlokka_bakgardsvegger.json',
@@ -63,7 +61,7 @@ for (const [placeId, splitPath] of Object.entries(splitPaths)) {
     if (!bridgeWay) throw new Error('Nybrua bridge geometry missing');
     const ssr = item.kartverketSsr.selected;
     const center = item.bridgeGeometry.geometryCenter;
-    const note = `Canonical record gjelder pilarrommet under og rundt den navngitte Nybrua. Kartverket SSR stedsnummer ${ssr.stedsnummer}, objekttype Bru, ligger ${item.bridgeGeometry.nearestBridgeDistanceMeters} meter fra OSM way ${bridgeWay.id}, navngitt Nybrua. Display-markøren settes til geometrisenteret for den navngitte brogeometrien; SSR-punktet og geometrisenteret lagres som eksplisitte ankre. Maksimal geometriavstand er ${item.bridgeGeometry.maximumGeometryDistanceMeters} meter, og radius ${item.decision.recommendedRadius} meter inkluderer 30 meters buffer og minimum 80 meter for pilarrommet. Den tidligere markøren lå ${item.displacementMeters} meter unna.`;
+    const note = `Canonical record gjelder pilarrommet under og rundt den navngitte Nybrua. Kartverket SSR stedsnummer ${ssr.stedsnummer}, objekttype Bru, ligger ${item.bridgeGeometry.nearestBridgeDistanceMeters} meter fra OSM way ${bridgeWay.id}, navngitt Nybrua. Display-markøren settes til geometrisenteret for den navngitte brogeometrien, mens SSR-punktet dokumenterer den offisielle broidentiteten. Maksimal geometriavstand er ${item.bridgeGeometry.maximumGeometryDistanceMeters} meter, og radius ${item.decision.recommendedRadius} meter inkluderer 30 meters buffer og minimum 80 meter for pilarrommet. Den tidligere markøren lå ${item.displacementMeters} meter unna.`;
     after = {
       ...before,
       lat: item.decision.recommendedLat,
@@ -81,29 +79,12 @@ for (const [placeId, splitPath] of Object.entries(splitPaths)) {
       coordSourceUrl: item.kartverketSsr.sourceUrl,
       coordVerifiedAt: '2026-07-25',
       coordNote: note,
-      anchors: [
-        {
-          id: 'nybrua_ssr_bridge_point',
-          lat: ssr.lat,
-          lon: ssr.lon,
-          role: 'official_place_name_anchor',
-          sourceProvider: 'kartverket',
-          sourceObjectId: item.decision.sourceObjectId,
-        },
-        {
-          id: 'nybrua_osm_geometry_center',
-          lat: center.lat,
-          lon: center.lon,
-          role: 'bridge_geometry_center',
-          sourceProvider: 'osm',
-          sourceObjectId: `osm-way:${bridgeWay.id}`,
-        },
-      ],
       geometry: {
         type: 'source_object_reference',
         role: 'named_bridge_geometry',
         sourceProvider: 'osm',
         sourceObjectId: `osm-way:${bridgeWay.id}`,
+        center: { lat: center.lat, lon: center.lon },
         maximumDistanceMeters: item.bridgeGeometry.maximumGeometryDistanceMeters,
       },
       externalLinks: [
@@ -147,7 +128,7 @@ for (const [placeId, splitPath] of Object.entries(splitPaths)) {
         requiresSplit: false,
         splitReason: '',
       },
-      requiredEvidence: ['offisielt brostedsobjekt', 'navngitt brogeometri', 'eksplisitte ankre', 'målt radius'],
+      requiredEvidence: ['offisielt brostedsobjekt', 'navngitt brogeometri', 'målt radius'],
       evidence: [
         {
           sourceProvider: 'kartverket',
@@ -275,8 +256,23 @@ for (const [placeId, splitPath] of Object.entries(splitPaths)) {
   syncIndex(after);
   production.push({
     placeId,
-    before: { lat: before.lat, lon: before.lon, r: before.r, coordStatus: before.coordStatus ?? null, coordType: before.coordType ?? null },
-    after: { lat: after.lat, lon: after.lon, r: after.r, coordStatus: after.coordStatus, coordType: after.coordType, locatorType: after.locatorType, sourceProvider: after.sourceProvider, sourceObjectId: after.sourceObjectId },
+    before: {
+      lat: before.lat,
+      lon: before.lon,
+      r: before.r,
+      coordStatus: before.coordStatus ?? null,
+      coordType: before.coordType ?? null,
+    },
+    after: {
+      lat: after.lat,
+      lon: after.lon,
+      r: after.r,
+      coordStatus: after.coordStatus,
+      coordType: after.coordType,
+      locatorType: after.locatorType,
+      sourceProvider: after.sourceProvider,
+      sourceObjectId: after.sourceObjectId,
+    },
     evidenceFile: `data/coordinate-evidence/oslo/subkultur/${placeId}.json`,
     canonicalYearPreserved: before.year === after.year,
   });
@@ -295,5 +291,9 @@ const summary = {
   categoryIndexSynchronized: true,
 };
 await writeJson('reports/oslo-coordinate-subculture-anchors-production-20260725/summary.json', summary);
-await fs.writeFile(path.join(reportDir, 'README.md'), `# Oslo subculture coordinate anchor production — 2026-07-25\n\nApplied ${summary.verifiedGeometryCount} verified geometry decision and ${summary.needsSourceCount} needs-source decisions.\n`, 'utf8');
+await fs.writeFile(
+  path.join(reportDir, 'README.md'),
+  `# Oslo subculture coordinate anchor production — 2026-07-25\n\nApplied ${summary.verifiedGeometryCount} verified geometry decision and ${summary.needsSourceCount} needs-source decisions.\n`,
+  'utf8',
+);
 console.log(JSON.stringify(summary, null, 2));
