@@ -1,8 +1,25 @@
-import { existsSync, readFileSync, statSync } from "node:fs";
-import { dirname, extname, isAbsolute, normalize, resolve } from "node:path";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
+import {
+  basename,
+  dirname,
+  extname,
+  isAbsolute,
+  normalize,
+  relative,
+  resolve,
+  sep,
+} from "node:path";
 
 const repoRoot = resolve(process.env.GITHUB_WORKSPACE ?? process.cwd());
 const registryPath = resolve(repoRoot, "docs/documentation_registry.json");
+const reportDir = resolve(repoRoot, "reports/documentation-governance");
 
 const allowedStatuses = new Set([
   "canonical",
@@ -10,6 +27,15 @@ const allowedStatuses = new Set([
   "transitional",
   "historical",
   "local",
+]);
+
+const activeStatuses = new Set(["canonical", "operational", "transitional"]);
+const ignoredDirectories = new Set([
+  ".git",
+  ".cache",
+  "node_modules",
+  "dist",
+  "coverage",
 ]);
 
 interface DocumentationEntry {
@@ -32,6 +58,29 @@ interface DocumentationRegistry {
   documents: DocumentationEntry[];
 }
 
+interface HistoricalLink {
+  source: string;
+  target: string;
+  target_status: string;
+}
+
+interface DocumentationInventory {
+  generated_at: string;
+  totals: {
+    documentation_like_files: number;
+    registered_files: number;
+    unregistered_governance_candidates: number;
+    suspicious_filenames: number;
+    active_links_to_historical_documents: number;
+    duplicate_basename_groups: number;
+  };
+  by_location: Record<string, number>;
+  suspicious_files: string[];
+  active_links_to_historical_documents: HistoricalLink[];
+  unregistered_governance_candidates: string[];
+  duplicate_basenames: Record<string, string[]>;
+}
+
 const failures: string[] = [];
 const warnings: string[] = [];
 
@@ -41,6 +90,10 @@ function fail(message: string): void {
 
 function warn(message: string): void {
   warnings.push(message);
+}
+
+function toRepoPath(absolutePath: string): string {
+  return relative(repoRoot, absolutePath).split(sep).join("/");
 }
 
 function repoPathExists(relativePath: string): boolean {
@@ -89,7 +142,7 @@ function validateRegistry(registry: DocumentationRegistry): void {
       continue;
     }
 
-    if ((entry.status === "canonical" || entry.status === "operational" || entry.status === "transitional") && !entry.last_verified) {
+    if (activeStatuses.has(entry.status) && !entry.last_verified) {
       fail(`${entry.path} mangler last_verified`);
     }
 
@@ -166,10 +219,12 @@ function localLinkTarget(sourcePath: string, rawTarget: string): string | null {
   }
 
   if (isAbsolute(decoded) || decoded.startsWith("/")) {
-    return normalize(decoded.replace(/^\/+/, ""));
+    return normalize(decoded.replace(/^\/+/, "")).split(sep).join("/");
   }
 
-  return normalize(resolve(dirname(resolve(repoRoot, sourcePath)), decoded).slice(repoRoot.length + 1));
+  return normalize(
+    resolve(dirname(resolve(repoRoot, sourcePath)), decoded).slice(repoRoot.length + 1),
+  ).split(sep).join("/");
 }
 
 function validateEntryLinks(sourcePaths: string[]): void {
@@ -202,8 +257,8 @@ function validateDocumentationIndex(registry: DocumentationRegistry): void {
 
   for (const entry of registry.documents) {
     if (entry.status !== "canonical" && entry.status !== "transitional") continue;
-    const basename = entry.path.split("/").at(-1) ?? entry.path;
-    if (!index.includes(entry.path) && !index.includes(basename)) {
+    const name = entry.path.split("/").at(-1) ?? entry.path;
+    if (!index.includes(entry.path) && !index.includes(name)) {
       fail(`docs/README.md omtaler ikke aktivt dokument: ${entry.path}`);
     }
   }
@@ -218,11 +273,173 @@ function validateNoDirectoryEntries(registry: DocumentationRegistry): void {
   }
 }
 
+function isDocumentationLike(relativePath: string): boolean {
+  const name = basename(relativePath);
+  const lower = name.toLowerCase();
+  const extension = extname(lower);
+
+  if (extension === ".md" || extension === ".mdx") return true;
+  if (lower.includes("readme")) return true;
+
+  return /(?:^|[_-])(docs?|documentation|changelog|status|roadmap|plan|audit|contract|architecture|migration)(?:[_\-.]|$)/i.test(name);
+}
+
+function collectDocumentationFiles(directory: string, result: string[] = []): string[] {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    if (entry.isDirectory() && ignoredDirectories.has(entry.name)) continue;
+
+    const absolute = resolve(directory, entry.name);
+    if (entry.isDirectory()) {
+      collectDocumentationFiles(absolute, result);
+      continue;
+    }
+
+    const relativePath = toRepoPath(absolute);
+    if (isDocumentationLike(relativePath)) result.push(relativePath);
+  }
+
+  return result;
+}
+
+function locationBucket(path: string): string {
+  if (!path.includes("/")) return "root";
+  if (path.startsWith("README/")) return "README";
+  if (path.startsWith("docs/")) return "docs";
+  if (path.startsWith("reports/")) return "reports";
+  if (path.startsWith("data/")) return "data-local";
+  if (path.startsWith("js/")) return "code-local";
+  if (path.startsWith("backend/")) return "backend-local";
+  if (path.startsWith(".github/")) return "github";
+  return "other";
+}
+
+function suspiciousFilename(path: string): boolean {
+  const name = basename(path);
+  const lower = name.toLowerCase();
+  return (
+    name.endsWith(".") ||
+    !extname(name) ||
+    /rradme|readmmee|documeash|\s\(\d+\)/i.test(name) ||
+    (lower.includes("readme") && !lower.endsWith(".md") && !lower.endsWith(".mdx"))
+  );
+}
+
+function normalizedBasename(path: string): string {
+  return basename(path)
+    .replace(/\.(md|mdx)$/i, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9æøå]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+function findActiveHistoricalLinks(registry: DocumentationRegistry): HistoricalLink[] {
+  const byPath = new Map(registry.documents.map((entry) => [entry.path, entry]));
+  const links: HistoricalLink[] = [];
+
+  for (const source of registry.documents) {
+    if (!activeStatuses.has(source.status) || !repoPathExists(source.path)) continue;
+    if (extname(source.path).toLowerCase() !== ".md") continue;
+
+    const markdown = readFileSync(resolve(repoRoot, source.path), "utf8");
+    for (const rawTarget of extractMarkdownLinks(markdown)) {
+      const target = localLinkTarget(source.path, rawTarget);
+      if (!target) continue;
+      const targetEntry = byPath.get(target);
+      if (targetEntry?.status !== "historical") continue;
+
+      links.push({
+        source: source.path,
+        target,
+        target_status: targetEntry.status,
+      });
+    }
+  }
+
+  const unique = new Map(links.map((link) => [`${link.source}\n${link.target}`, link]));
+  return [...unique.values()].sort((a, b) =>
+    `${a.source}:${a.target}`.localeCompare(`${b.source}:${b.target}`),
+  );
+}
+
+function buildInventory(registry: DocumentationRegistry): DocumentationInventory {
+  const documentationFiles = collectDocumentationFiles(repoRoot).sort();
+  const registeredPaths = new Set(registry.documents.map((entry) => entry.path));
+  const suspiciousFiles = documentationFiles.filter(suspiciousFilename);
+  const activeHistoricalLinks = findActiveHistoricalLinks(registry);
+  const byLocation: Record<string, number> = {};
+  const basenameGroups = new Map<string, string[]>();
+
+  for (const path of documentationFiles) {
+    const bucket = locationBucket(path);
+    byLocation[bucket] = (byLocation[bucket] ?? 0) + 1;
+
+    const normalizedName = normalizedBasename(path);
+    if (!normalizedName) continue;
+    const group = basenameGroups.get(normalizedName) ?? [];
+    group.push(path);
+    basenameGroups.set(normalizedName, group);
+  }
+
+  const duplicateBasenames: Record<string, string[]> = {};
+  for (const [name, paths] of [...basenameGroups.entries()].sort(([a], [b]) => a.localeCompare(b))) {
+    if (paths.length < 2) continue;
+    duplicateBasenames[name] = paths.sort();
+  }
+
+  const unregisteredGovernanceCandidates = documentationFiles.filter(
+    (path) =>
+      !registeredPaths.has(path) &&
+      (!path.includes("/") || path.startsWith("README/") || path.startsWith("docs/")),
+  );
+
+  return {
+    generated_at: new Date().toISOString(),
+    totals: {
+      documentation_like_files: documentationFiles.length,
+      registered_files: registry.documents.length,
+      unregistered_governance_candidates: unregisteredGovernanceCandidates.length,
+      suspicious_filenames: suspiciousFiles.length,
+      active_links_to_historical_documents: activeHistoricalLinks.length,
+      duplicate_basename_groups: Object.keys(duplicateBasenames).length,
+    },
+    by_location: Object.fromEntries(
+      Object.entries(byLocation).sort(([a], [b]) => a.localeCompare(b)),
+    ),
+    suspicious_files: suspiciousFiles,
+    active_links_to_historical_documents: activeHistoricalLinks,
+    unregistered_governance_candidates: unregisteredGovernanceCandidates,
+    duplicate_basenames: duplicateBasenames,
+  };
+}
+
+function writeInventory(inventory: DocumentationInventory): void {
+  mkdirSync(reportDir, { recursive: true });
+  writeFileSync(
+    resolve(reportDir, "inventory.json"),
+    `${JSON.stringify(inventory, null, 2)}\n`,
+    "utf8",
+  );
+}
+
 const registry = parseRegistry();
 validateRegistry(registry);
 validateNoDirectoryEntries(registry);
 validateEntryLinks(["README.md", "DOCS.md", "docs/README.md", "AGENTS.md"]);
 validateDocumentationIndex(registry);
+
+const inventory = buildInventory(registry);
+writeInventory(inventory);
+
+for (const link of inventory.active_links_to_historical_documents) {
+  warn(`Aktivt dokument lenker til historisk snapshot: ${link.source} -> ${link.target}`);
+}
+
+console.log(
+  `Documentation inventory: ${inventory.totals.documentation_like_files} dokumentlignende filer, ` +
+    `${inventory.totals.registered_files} registrert, ` +
+    `${inventory.totals.unregistered_governance_candidates} uregistrerte globale kandidater, ` +
+    `${inventory.totals.suspicious_filenames} mistenkelige filnavn.`,
+);
 
 for (const message of warnings) {
   console.warn(`DOCS WARNING: ${message}`);
