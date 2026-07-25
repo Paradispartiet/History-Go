@@ -5,6 +5,7 @@ import { pathToFileURL } from "node:url";
 
 const ROOT = process.cwd();
 const tempScript = path.join(ROOT, "scripts", ".remove-popkultur-domain-runner.mjs");
+const evidenceReport = path.join(ROOT, "reports", "coordinate-evidence-audit.md");
 const sourceUrl = "https://raw.githubusercontent.com/Paradispartiet/History-Go/667fc1d0c72c1227b2a079148ddbb9bab8d0eb5d/scripts/remove-popkultur-domain.mjs";
 
 function run(command, args) {
@@ -37,6 +38,17 @@ try {
     throw new Error("Migreringsscriptet eksporterte ikke audit-funksjonen.");
   }
   await migration.audit();
+
+  try {
+    run("npm", ["run", "places:coords:evidence:audit"]);
+  } catch (error) {
+    try {
+      console.error(await fs.readFile(evidenceReport, "utf8"));
+    } catch {
+      console.error("Koordinat-evidensrapporten ble ikke skrevet.");
+    }
+    throw error;
+  }
 } finally {
   await fs.rm(tempScript, { force: true });
 }
