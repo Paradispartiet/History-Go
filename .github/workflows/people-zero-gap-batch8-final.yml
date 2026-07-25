@@ -1,0 +1,106 @@
+name: Oslo People zero-gap batch 8 finalizer
+
+on:
+  push:
+    branches:
+      - agent/oslo-people-zero-gap-batch8-final
+    paths:
+      - .github/workflows/people-zero-gap-batch8-final.yml
+      - .github/scripts/build-people-zero-gap-batch8-final.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: people-zero-gap-batch8-final
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - name: Check out triggering branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-people-zero-gap-batch8-final
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Preserve one-shot builder
+        run: cp .github/scripts/build-people-zero-gap-batch8-final.mjs /tmp/build-people-zero-gap-batch8-final.mjs
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Rebuild and validate on a stable current main
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BRANCH='agent/oslo-people-zero-gap-batch8-final'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+          for attempt in $(seq 1 12); do
+            echo "People batch replay attempt ${attempt}/12"
+            git fetch origin main
+            BASE_SHA="$(git rev-parse origin/main)"
+            git checkout -B "$BRANCH" origin/main
+            git clean -fd
+
+            node /tmp/build-people-zero-gap-batch8-final.mjs
+
+            bash scripts/check-people.sh
+            npm run audit:categories
+            npm run civication:history-people:check
+            npm run typecheck:tools
+            npm run typecheck:scripts
+            node --test tests/oslo-people-coverage-single-records.test.mjs
+            npm run health:data
+            git diff --check
+
+            node <<'NODE'
+            const fs = require('fs');
+            const file = 'reports/people-oslo-zero-gap-batch8-validation.md';
+            let text = fs.readFileSync(file, 'utf8');
+            text += '\n## Validation gates\n\n';
+            text += '- `scripts/check-people.sh`: **pass**\n';
+            text += '- `audit:categories`: **pass**\n';
+            text += '- `civication:history-people:check`: **pass**\n';
+            text += '- `typecheck:tools`: **pass**\n';
+            text += '- `typecheck:scripts`: **pass**\n';
+            text += '- single-record regression test: **pass**\n';
+            text += '- `health:data`: **pass**\n';
+            text += '- `git diff --check`: **pass**\n';
+            fs.writeFileSync(file, text);
+            NODE
+
+            git fetch origin main
+            CURRENT_MAIN="$(git rev-parse origin/main)"
+            if [[ "$CURRENT_MAIN" != "$BASE_SHA" ]]; then
+              echo 'main moved during validation; discarding generated state and retrying'
+              git reset --hard
+              git clean -fd
+              sleep 5
+              continue
+            fi
+
+            rm -f .github/workflows/people-zero-gap-batch8-final.yml
+            rm -f .github/scripts/build-people-zero-gap-batch8-final.mjs
+            git add -A
+            git commit -m 'Complete Oslo People zero-gap batch 8'
+            git push --force origin "HEAD:$BRANCH"
+            exit 0
+          done
+
+          echo 'main did not remain stable during twelve validated attempts'
+          exit 2
