@@ -22,6 +22,17 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
   };
 })();
 
+// Load city packages from the central registry without coupling them to an
+// existing city-specific manifest.
+(function loadCityPackageRuntime() {
+  if (document.querySelector('script[data-hg-city-package-runtime="1"]')) return;
+  const script = document.createElement("script");
+  script.src = "js/data/city-package-loader.js";
+  script.async = false;
+  script.dataset.hgCityPackageRuntime = "1";
+  document.head.appendChild(script);
+})();
+
 // Legacy bootstrap bridge only: the map-control implementation itself lives in
 // TypeScript and is built to dist/web according to docs/TYPESCRIPT_FIRST_POLICY.md.
 (function loadMapControlsRuntime() {
