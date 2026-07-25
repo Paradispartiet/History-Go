@@ -6892,28 +6892,975 @@
     {
       "id": "his_migrasjon_minoritet_tilhorighet",
       "title": "Migrasjon, minoritet og tilhørighet",
-      "tagline": "Hvem får høre hjemme i historien",
-      "definition": "Dette området handler om migrasjon, interne flyttestrømmer, minoriteter, tilhørighet, grensepraksiser, diaspora, integrasjon og ekskludering. Det legger vekt på både synlige spor i byen og historier som sjelden får monumenter.",
+      "tagline": "Fra flytting, status og institusjoner til hverdagsliv, motstand og tilhørighet",
+      "definition": "Dette området undersøker migrasjon og minoritetshistorie gjennom navngitte mennesker, grupper, institusjoner og nettverk, daterte mobilitets- og statusforløp, dokumenterte praksiser og konsekvenser for individ, hushold og fellesskap.",
       "focus": [
-        "migrasjonsbølger",
-        "minoritetshistorie",
-        "diaspora og transnasjonale nettverk",
-        "tilhørighet og ekskludering",
-        "historiske blindsoner"
+        "migrasjonsdrivere, ruter og bosetting",
+        "arbeid, nettverk og transnasjonale hushold",
+        "statsborgerskap, kategorisering og minoritetspolitikk",
+        "språk, religion, organisering og offentlighet",
+        "diskriminering, identitet, minne og tilhørighet"
       ],
       "topic_hooks": [
         {
-          "id": "his_migrasjon_tilhorighet",
-          "title": "Migrasjon og tilhørighet",
+          "id": "his_migrasjonsdrivere_flyttestrommer",
+          "title": "Migrasjonsdrivere og flyttestrømmer",
           "canon": {
             "thinkers": [
               {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk migrasjons-, arbeider- og sosialhistorie",
+                "tier": "core",
+                "works": [
+                  "Norsk innvandringshistorie"
+                ]
+              },
+              {
+                "id": "abdelmalek_sayad",
+                "name": "Abdelmalek Sayad",
+                "why": "Migrasjon som sosialt forhold mellom avreise, ankomst og stat",
+                "tier": "advanced",
+                "works": [
+                  "The Suffering of the Immigrant"
+                ]
+              },
+              {
+                "id": "saskia_sassen",
+                "name": "Saskia Sassen",
+                "why": "Globale byer, arbeidsmarkeder og transnasjonale migrasjonsstrømmer",
+                "tier": "advanced",
+                "works": [
+                  "The Global City"
+                ]
+              },
+              {
+                "id": "nancy_foner",
+                "name": "Nancy Foner",
+                "why": "Komparativ migrasjons- og byhistorie over generasjoner",
+                "tier": "advanced",
+                "works": [
+                  "From Ellis Island to JFK"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_migrasjon_mangfold",
+            "em_his_familie_transnasjonale_band"
+          ],
+          "best_place_types": [
+            "havn",
+            "jernbanestasjon",
+            "gate",
+            "bydel",
+            "arkiv",
+            "arbeidssted"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_migrasjons_minoritetsspor_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "route-source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Mangfold brukt som pynt uten dokumentert historisk prosess",
+            "En nåtidig gruppebetegnelse projisert bakover uten kildekritikk",
+            "Ett synlig symbol behandlet som bevis for en hel gruppes historie",
+            "Teoretikernavn brukt før person, gruppe, kilde og tidsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "date an arrival or mobility phase",
+            "trace a route through more than one source",
+            "separate stated motive from structural condition",
+            "compare individual and aggregate mobility"
+          ],
+          "comparison_pairs": [
+            [
+              "knut_kjeldstadli",
+              "abdelmalek_sayad"
+            ],
+            [
+              "saskia_sassen",
+              "nancy_foner"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Grønland",
+            "Vippetangen",
+            "Oslo S",
+            "Oslo byarkiv",
+            "Tøyen",
+            "Arbeidermuseet"
+          ],
+          "recommended_method_ids": [
+            "met_migrasjonsforlopsanalyse",
+            "met_seriell_kildeanalyse",
+            "met_arkivlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "require_migration_actor_or_group": true,
+            "require_origin_arrival_or_status": true,
+            "require_practice_or_network": true,
+            "require_boundary_resource_or_exclusion": true,
+            "require_individual_household_or_community_consequence": true,
+            "require_source_limitation": true,
+            "require_ethical_source_handling": true,
+            "require_critical_distinction": true
+          },
+          "definition": "Undersøker hvorfor og hvordan mennesker flyttet, hvilke ruter og mellomstasjoner de brukte, og hvordan krig, arbeid, familie, utdanning, tvang og muligheter virket sammen.",
+          "critical_distinctions": [
+            "avreisested vs opprinnelsesidentitet",
+            "migrasjonsmotiv vs dokumentert årsakskjede",
+            "ankomst vs varig bosetting",
+            "intern flytting vs grensekryssende migrasjon"
+          ]
+        },
+        {
+          "id": "his_ankomst_bosetting_bolig",
+          "title": "Ankomst, bosetting og bolig",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "jan_eivind_myhre",
+                "name": "Jan Eivind Myhre",
+                "why": "Norsk byhistorie, urbanisering, bosetting og hovedstadens vekst",
+                "tier": "core",
+                "works": [
+                  "Hovedstaden Christiania"
+                ]
+              },
+              {
+                "id": "thomas_hylland_eriksen",
+                "name": "Thomas Hylland Eriksen",
+                "why": "Etnisitet, identitet, minoritetsrelasjoner og kulturell kompleksitet",
+                "tier": "core",
+                "works": [
+                  "Ethnicity and Nationalism"
+                ]
+              },
+              {
+                "id": "doreen_massey",
+                "name": "Doreen Massey",
+                "why": "Relasjonelt sted, mobilitet og skiftende tilhørighet",
+                "tier": "advanced",
+                "works": [
+                  "Space, Place and Gender"
+                ]
+              },
+              {
+                "id": "nancy_foner",
+                "name": "Nancy Foner",
+                "why": "Komparativ migrasjons- og byhistorie over generasjoner",
+                "tier": "advanced",
+                "works": [
+                  "From Ellis Island to JFK"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_ankomst_bosetting_bolig",
+            "em_his_migrasjon_mangfold"
+          ],
+          "best_place_types": [
+            "bydel",
+            "gate",
+            "boligomrade",
+            "bygård",
+            "arkiv",
+            "moteplass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_migrasjons_minoritetsspor_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "address-household-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Mangfold brukt som pynt uten dokumentert historisk prosess",
+            "En nåtidig gruppebetegnelse projisert bakover uten kildekritikk",
+            "Ett synlig symbol behandlet som bevis for en hel gruppes historie",
+            "Teoretikernavn brukt før person, gruppe, kilde og tidsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "compare addresses across dated sources",
+            "connect household and lodging networks",
+            "identify access barrier or housing resource",
+            "separate concentration from chosen community"
+          ],
+          "comparison_pairs": [
+            [
+              "jan_eivind_myhre",
+              "thomas_hylland_eriksen"
+            ],
+            [
+              "doreen_massey",
+              "nancy_foner"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "jan_eivind_myhre",
+            "thomas_hylland_eriksen"
+          ],
+          "recommended_oslo_cases": [
+            "Grønland",
+            "Tøyen",
+            "Vaterland",
+            "Sagene",
+            "Oslo byarkiv",
+            "Interkulturelt museum"
+          ],
+          "recommended_method_ids": [
+            "met_bosettings_og_nettverksanalyse",
+            "met_seriell_kildeanalyse",
+            "met_arkivlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "require_migration_actor_or_group": true,
+            "require_origin_arrival_or_status": true,
+            "require_practice_or_network": true,
+            "require_boundary_resource_or_exclusion": true,
+            "require_individual_household_or_community_consequence": true,
+            "require_source_limitation": true,
+            "require_ethical_source_handling": true,
+            "require_critical_distinction": true
+          },
+          "definition": "Studerer hvordan nyankomne fant bolig, hvilke adresser og nabolag de ble konsentrert i, og hvordan marked, familie, vertskap, diskriminering og offentlig politikk formet bosettingen.",
+          "critical_distinctions": [
+            "ankomstadresse vs varig bosted",
+            "etnisk konsentrasjon vs segregasjon",
+            "familienettverk vs offentlig bosetting",
+            "boligmangel vs dokumentert diskriminering"
+          ]
+        },
+        {
+          "id": "his_arbeid_nettverk_naring",
+          "title": "Arbeid, nettverk og næringsliv",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk migrasjons-, arbeider- og sosialhistorie",
+                "tier": "core",
+                "works": [
+                  "Norsk innvandringshistorie"
+                ]
+              },
+              {
+                "id": "alejandro_portes",
+                "name": "Alejandro Portes",
+                "why": "Migrasjonsnettverk, arbeidsmarkeder og immigrantinstitusjoner",
+                "tier": "advanced",
+                "works": [
+                  "Immigrant America"
+                ]
+              },
+              {
+                "id": "donna_gabaccia",
+                "name": "Donna Gabaccia",
+                "why": "Arbeid, diaspora, kjønn og hverdagsliv i migrasjonshistorien",
+                "tier": "advanced",
+                "works": [
+                  "Italy's Many Diasporas"
+                ]
+              },
+              {
+                "id": "saskia_sassen",
+                "name": "Saskia Sassen",
+                "why": "Globale byer, arbeidsmarkeder og transnasjonale migrasjonsstrømmer",
+                "tier": "advanced",
+                "works": [
+                  "The Global City"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arbeid_nettverk_naring",
+            "em_his_migrasjon_mangfold"
+          ],
+          "best_place_types": [
+            "arbeidssted",
+            "gate",
+            "handelsmiljo",
+            "marked",
+            "industriomrade",
+            "moteplass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_migrasjons_minoritetsspor_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "work-network-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Mangfold brukt som pynt uten dokumentert historisk prosess",
+            "En nåtidig gruppebetegnelse projisert bakover uten kildekritikk",
+            "Ett synlig symbol behandlet som bevis for en hel gruppes historie",
+            "Teoretikernavn brukt før person, gruppe, kilde og tidsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "name recruitment chain and workplace",
+            "trace business or occupational network",
+            "compare formal occupation and actual work",
+            "separate migrant labour history from company history"
+          ],
+          "comparison_pairs": [
+            [
+              "knut_kjeldstadli",
+              "alejandro_portes"
+            ],
+            [
+              "donna_gabaccia",
+              "saskia_sassen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Grønland",
+            "Torggata",
+            "Youngstorget",
+            "Arbeidermuseet",
+            "Akerselva",
+            "Tøyen"
+          ],
+          "recommended_method_ids": [
+            "met_bosettings_og_nettverksanalyse",
+            "met_migrasjonsforlopsanalyse",
+            "met_muntlig_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "require_migration_actor_or_group": true,
+            "require_origin_arrival_or_status": true,
+            "require_practice_or_network": true,
+            "require_boundary_resource_or_exclusion": true,
+            "require_individual_household_or_community_consequence": true,
+            "require_source_limitation": true,
+            "require_ethical_source_handling": true,
+            "require_critical_distinction": true
+          },
+          "definition": "Undersøker hvordan arbeid, rekruttering, familie- og landsmannsnettverk, handel og selvstendig næring knyttet migrasjon til konkrete arbeidsplasser og bygater.",
+          "critical_distinctions": [
+            "arbeidsmigrasjon vs arbeid etter ankomst",
+            "nettverk vs automatisk solidaritet",
+            "selvstendig næring vs etnisk nisje",
+            "bedriftshistorie vs arbeider- og migrasjonshistorie"
+          ]
+        },
+        {
+          "id": "his_statsborgerskap_status_rettigheter",
+          "title": "Statsborgerskap, juridisk status og rettigheter",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "mae_ngai",
+                "name": "Mae Ngai",
+                "why": "Juridisk status, statsborgerskap og produksjonen av ulovlighet",
+                "tier": "advanced",
+                "works": [
+                  "Impossible Subjects"
+                ]
+              },
+              {
+                "id": "t_h_marshall",
+                "name": "T. H. Marshall",
+                "why": "Statsborgerskap, sivile, politiske og sosiale rettigheter",
+                "tier": "advanced",
+                "works": [
+                  "Citizenship and Social Class"
+                ]
+              },
+              {
+                "id": "grete_brochmann",
+                "name": "Grete Brochmann",
+                "why": "Norsk innvandringshistorie, velferdsstat, integrasjon og statsborgerskap",
+                "tier": "core",
+                "works": [
+                  "Hva er innvandring"
+                ]
+              },
+              {
+                "id": "bridget_anderson",
+                "name": "Bridget Anderson",
+                "why": "Grenser, medlemskap, arbeid og kategorien utlending",
+                "tier": "advanced",
+                "works": [
+                  "Us and Them?"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_statsborgerskap_status_rettigheter",
+            "em_his_minoritetshistorie"
+          ],
+          "best_place_types": [
+            "arkiv",
+            "forvaltningsbygg",
+            "grensekontroll",
+            "arbeidssted",
+            "bydel",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_migrasjons_minoritetsspor_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "status-rule-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Mangfold brukt som pynt uten dokumentert historisk prosess",
+            "En nåtidig gruppebetegnelse projisert bakover uten kildekritikk",
+            "Ett synlig symbol behandlet som bevis for en hel gruppes historie",
+            "Teoretikernavn brukt før person, gruppe, kilde og tidsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify legal category and date",
+            "connect status to a concrete right or restriction",
+            "compare formal rule and implementation",
+            "trace status change through a life course"
+          ],
+          "comparison_pairs": [
+            [
+              "mae_ngai",
+              "t_h_marshall"
+            ],
+            [
+              "grete_brochmann",
+              "bridget_anderson"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "grete_brochmann"
+          ],
+          "recommended_oslo_cases": [
+            "Oslo byarkiv",
+            "Jødisk museum",
+            "Villa Grande",
+            "Grønland",
+            "Stortinget",
+            "Regjeringskvartalet"
+          ],
+          "recommended_method_ids": [
+            "met_rettighetsstatusanalyse",
+            "met_arkivlesning",
+            "met_seriell_kildeanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "require_migration_actor_or_group": true,
+            "require_origin_arrival_or_status": true,
+            "require_practice_or_network": true,
+            "require_boundary_resource_or_exclusion": true,
+            "require_individual_household_or_community_consequence": true,
+            "require_source_limitation": true,
+            "require_ethical_source_handling": true,
+            "require_critical_distinction": true
+          },
+          "definition": "Studerer hvordan statsborgerskap, opphold, registrering, arbeidstillatelse og andre juridiske statuser åpnet eller stengte tilgang til arbeid, bolig, vern og politisk medlemskap.",
+          "critical_distinctions": [
+            "statsborgerskap vs faktisk medlemskap",
+            "oppholdsstatus vs sosial tilhørighet",
+            "formell rettighet vs reell tilgang",
+            "juridisk kategori vs selvvalgt identitet"
+          ]
+        },
+        {
+          "id": "his_minoritetspolitikk_kategorisering_registrering",
+          "title": "Minoritetspolitikk, kategorisering og registrering",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "rogers_brubaker",
+                "name": "Rogers Brubaker",
+                "why": "Kategorisering, gruppedannelse og statsborgerskapsregimer",
+                "tier": "advanced",
+                "works": [
+                  "Ethnicity without Groups"
+                ]
+              },
+              {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "why": "Registrering, klassifikasjon, overvåking og institusjonell makt",
+                "tier": "advanced",
+                "works": [
+                  "Discipline and Punish"
+                ]
+              },
+              {
+                "id": "cora_alexa_doving",
+                "name": "Cora Alexa Døving",
+                "why": "Norsk minoritets-, religions- og diskrimineringshistorie",
+                "tier": "core",
+                "works": [
+                  "Det norske jødehatet"
+                ]
+              },
+              {
                 "id": "benedict_anderson",
                 "name": "Benedict Anderson",
-                "why": "Nasjon, fellesskap og hvem som forestilles som del av historien",
+                "why": "Nasjon, forestilte fellesskap og medlemskap",
                 "tier": "core",
                 "works": [
                   "Imagined Communities"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_minoritetshistorie",
+            "em_his_diskriminering_rasisme_ekskludering"
+          ],
+          "best_place_types": [
+            "arkiv",
+            "museum",
+            "forvaltningsbygg",
+            "skole",
+            "institusjonsbygg",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_migrasjons_minoritetsspor_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "category-register-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Mangfold brukt som pynt uten dokumentert historisk prosess",
+            "En nåtidig gruppebetegnelse projisert bakover uten kildekritikk",
+            "Ett synlig symbol behandlet som bevis for en hel gruppes historie",
+            "Teoretikernavn brukt før person, gruppe, kilde og tidsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "name category and registering institution",
+            "date a classification rule",
+            "compare self-description and administrative label",
+            "trace consequence of registration"
+          ],
+          "comparison_pairs": [
+            [
+              "rogers_brubaker",
+              "michel_foucault"
+            ],
+            [
+              "cora_alexa_doving",
+              "benedict_anderson"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "cora_alexa_doving"
+          ],
+          "recommended_oslo_cases": [
+            "Jødisk museum",
+            "Villa Grande",
+            "Oslo byarkiv",
+            "Regjeringskvartalet",
+            "Stortinget",
+            "Interkulturelt museum"
+          ],
+          "recommended_method_ids": [
+            "met_minoritetspolitisk_kategorianalyse",
+            "met_arkivlesning",
+            "met_seriell_kildeanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "require_migration_actor_or_group": true,
+            "require_origin_arrival_or_status": true,
+            "require_practice_or_network": true,
+            "require_boundary_resource_or_exclusion": true,
+            "require_individual_household_or_community_consequence": true,
+            "require_source_limitation": true,
+            "require_ethical_source_handling": true,
+            "require_critical_distinction": true
+          },
+          "definition": "Undersøker hvordan myndigheter, institusjoner og kunnskapspraksiser navnga, registrerte og styrte minoriteter, og hvordan kategoriene endret seg over tid.",
+          "critical_distinctions": [
+            "gruppe vs administrativ kategori",
+            "registrering vs nøytral beskrivelse",
+            "minoritetsvern vs kontroll",
+            "samtidig betegnelse vs senere språkbruk"
+          ]
+        },
+        {
+          "id": "his_sprak_religion_institusjoner",
+          "title": "Språk, religion og minoritetsinstitusjoner",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "stuart_hall",
+                "name": "Stuart Hall",
+                "why": "Identitet, diaspora, representasjon og kulturell tilhørighet",
+                "tier": "core",
+                "works": [
+                  "Cultural Identity and Diaspora"
+                ]
+              },
+              {
+                "id": "sindre_bangstad",
+                "name": "Sindre Bangstad",
+                "why": "Religion, rasisme, islamofobi og offentlighet i Norge",
+                "tier": "core",
+                "works": [
+                  "Anders Breivik and the Rise of Islamophobia"
+                ]
+              },
+              {
+                "id": "thomas_hylland_eriksen",
+                "name": "Thomas Hylland Eriksen",
+                "why": "Etnisitet, identitet, minoritetsrelasjoner og kulturell kompleksitet",
+                "tier": "core",
+                "works": [
+                  "Ethnicity and Nationalism"
+                ]
+              },
+              {
+                "id": "jose_casanova",
+                "name": "José Casanova",
+                "why": "Religion, institusjoner og offentlighet i moderne samfunn",
+                "tier": "advanced",
+                "works": [
+                  "Public Religions in the Modern World"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_sprak_religion_institusjoner",
+            "em_his_tilhorighet_ekskludering"
+          ],
+          "best_place_types": [
+            "trossamfunn",
+            "skole",
+            "museum",
+            "bibliotek",
+            "handelsmiljo",
+            "moteplass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_migrasjons_minoritetsspor_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "institution-practice-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Mangfold brukt som pynt uten dokumentert historisk prosess",
+            "En nåtidig gruppebetegnelse projisert bakover uten kildekritikk",
+            "Ett synlig symbol behandlet som bevis for en hel gruppes historie",
+            "Teoretikernavn brukt før person, gruppe, kilde og tidsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify institution and founding phase",
+            "connect language or religious practice to place",
+            "compare public and internal institutional role",
+            "trace generational continuity and change"
+          ],
+          "comparison_pairs": [
+            [
+              "stuart_hall",
+              "sindre_bangstad"
+            ],
+            [
+              "thomas_hylland_eriksen",
+              "jose_casanova"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "sindre_bangstad",
+            "thomas_hylland_eriksen"
+          ],
+          "recommended_oslo_cases": [
+            "Jødisk museum",
+            "Interkulturelt museum",
+            "Grønland",
+            "Tøyen",
+            "Gamle Deichman på Hammersborg",
+            "Oslo byarkiv"
+          ],
+          "recommended_method_ids": [
+            "met_muntlig_historie",
+            "met_sporlesning",
+            "met_arkivlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "require_migration_actor_or_group": true,
+            "require_origin_arrival_or_status": true,
+            "require_practice_or_network": true,
+            "require_boundary_resource_or_exclusion": true,
+            "require_individual_household_or_community_consequence": true,
+            "require_source_limitation": true,
+            "require_ethical_source_handling": true,
+            "require_critical_distinction": true
+          },
+          "definition": "Studerer hvordan menigheter, foreninger, skoler, medier, butikker og andre institusjoner bar språk, religion, kunnskap og sosial støtte mellom generasjoner.",
+          "critical_distinctions": [
+            "religion vs etnisitet",
+            "institusjon vs hele gruppen",
+            "språkbevaring vs uforandret identitet",
+            "synlig bygg vs faktisk aktivitet"
+          ]
+        },
+        {
+          "id": "his_familie_transnasjonale_band",
+          "title": "Familie, livsløp og transnasjonale bånd",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "avtar_brah",
+                "name": "Avtar Brah",
+                "why": "Diaspora, hjem, forskjell og tilhørighet",
+                "tier": "advanced",
+                "works": [
+                  "Cartographies of Diaspora"
+                ]
+              },
+              {
+                "id": "peggy_levitt",
+                "name": "Peggy Levitt",
+                "why": "Transnasjonale familier, institusjoner og sosiale overføringer",
+                "tier": "advanced",
+                "works": [
+                  "The Transnational Villagers"
+                ]
+              },
+              {
+                "id": "nina_glick_schiller",
+                "name": "Nina Glick Schiller",
+                "why": "Transnasjonale sosiale felt og forbindelser på tvers av stater",
+                "tier": "advanced",
+                "works": [
+                  "Nations Unbound"
+                ]
+              },
+              {
+                "id": "grete_brochmann",
+                "name": "Grete Brochmann",
+                "why": "Norsk innvandringshistorie, velferdsstat, integrasjon og statsborgerskap",
+                "tier": "core",
+                "works": [
+                  "Hva er innvandring"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_familie_transnasjonale_band",
+            "em_his_migrasjon_mangfold"
+          ],
+          "best_place_types": [
+            "bolig",
+            "bydel",
+            "havn",
+            "jernbanestasjon",
+            "arkiv",
+            "moteplass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_migrasjons_minoritetsspor_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "household-life-course-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Mangfold brukt som pynt uten dokumentert historisk prosess",
+            "En nåtidig gruppebetegnelse projisert bakover uten kildekritikk",
+            "Ett synlig symbol behandlet som bevis for en hel gruppes historie",
+            "Teoretikernavn brukt før person, gruppe, kilde og tidsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "reconstruct household across more than one place",
+            "trace remittance letter or journey",
+            "separate family strategy from individual motive",
+            "compare first and later generations"
+          ],
+          "comparison_pairs": [
+            [
+              "avtar_brah",
+              "peggy_levitt"
+            ],
+            [
+              "nina_glick_schiller",
+              "grete_brochmann"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "grete_brochmann"
+          ],
+          "recommended_oslo_cases": [
+            "Grønland",
+            "Tøyen",
+            "Oslo byarkiv",
+            "Interkulturelt museum",
+            "Vippetangen",
+            "Oslo S"
+          ],
+          "recommended_method_ids": [
+            "met_transnasjonal_husholdsanalyse",
+            "met_migrasjonsforlopsanalyse",
+            "met_muntlig_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "require_migration_actor_or_group": true,
+            "require_origin_arrival_or_status": true,
+            "require_practice_or_network": true,
+            "require_boundary_resource_or_exclusion": true,
+            "require_individual_household_or_community_consequence": true,
+            "require_source_limitation": true,
+            "require_ethical_source_handling": true,
+            "require_critical_distinction": true
+          },
+          "definition": "Undersøker hvordan hushold, slektskap, omsorg, penger, brev, reiser og familieetablering bandt sammen steder og generasjoner på tvers av grenser.",
+          "critical_distinctions": [
+            "hushold vs samboende adresse",
+            "familiegjenforening vs opprinnelig migrasjonsmotiv",
+            "transnasjonalt bånd vs manglende lokal tilhørighet",
+            "generasjon vs ensartet erfaring"
+          ]
+        },
+        {
+          "id": "his_diskriminering_rasisme_ekskludering",
+          "title": "Diskriminering, rasisme og ekskludering",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "w_e_b_du_bois",
+                "name": "W. E. B. Du Bois",
+                "why": "Rasisme, medborgerskap, dobbelt bevissthet og historisk ulikhet",
+                "tier": "advanced",
+                "works": [
+                  "The Souls of Black Folk"
                 ]
               },
               {
@@ -6926,100 +7873,388 @@
                 ]
               },
               {
+                "id": "arnfinn_h_midtboen",
+                "name": "Arnfinn H. Midtbøen",
+                "why": "Diskriminering, inkludering og etniske grenser i norsk arbeids- og samfunnsliv",
+                "tier": "core",
+                "works": []
+              },
+              {
+                "id": "cora_alexa_doving",
+                "name": "Cora Alexa Døving",
+                "why": "Norsk minoritets-, religions- og diskrimineringshistorie",
+                "tier": "core",
+                "works": [
+                  "Det norske jødehatet"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_diskriminering_rasisme_ekskludering",
+            "em_his_tilhorighet_ekskludering"
+          ],
+          "best_place_types": [
+            "arbeidssted",
+            "boligomrade",
+            "skole",
+            "gate",
+            "arkiv",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_migrasjons_minoritetsspor_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "evidence-barrier-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Mangfold brukt som pynt uten dokumentert historisk prosess",
+            "En nåtidig gruppebetegnelse projisert bakover uten kildekritikk",
+            "Ett synlig symbol behandlet som bevis for en hel gruppes historie",
+            "Teoretikernavn brukt før person, gruppe, kilde og tidsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "identify documented unequal treatment",
+            "name institution or actor and affected group",
+            "compare rule testimony and outcome",
+            "state evidentiary limit and ethical risk"
+          ],
+          "comparison_pairs": [
+            [
+              "w_e_b_du_bois",
+              "stuart_hall"
+            ],
+            [
+              "arnfinn_h_midtboen",
+              "cora_alexa_doving"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "arnfinn_h_midtboen",
+            "cora_alexa_doving"
+          ],
+          "recommended_oslo_cases": [
+            "Jødisk museum",
+            "Villa Grande",
+            "Grønland",
+            "Tøyen",
+            "Oslo byarkiv",
+            "Regjeringskvartalet"
+          ],
+          "recommended_method_ids": [
+            "met_minoritetspolitisk_kategorianalyse",
+            "met_muntlig_historie",
+            "met_arkivlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "require_migration_actor_or_group": true,
+            "require_origin_arrival_or_status": true,
+            "require_practice_or_network": true,
+            "require_boundary_resource_or_exclusion": true,
+            "require_individual_household_or_community_consequence": true,
+            "require_source_limitation": true,
+            "require_ethical_source_handling": true,
+            "require_critical_distinction": true
+          },
+          "definition": "Studerer dokumenterte barrierer, stereotypier, vold, rettighetstap og ulik behandling, men også hvordan kildene kan skjule, normalisere eller overdrive slike erfaringer.",
+          "critical_distinctions": [
+            "fordom vs dokumentert diskriminering",
+            "rasialisering vs fast identitet",
+            "enkeltstående konflikt vs institusjonelt mønster",
+            "fravær i arkivet vs fravær av erfaring"
+          ]
+        },
+        {
+          "id": "his_organisering_motstand_offentlighet",
+          "title": "Organisering, motstand og offentlighet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "e_p_thompson",
+                "name": "E. P. Thompson",
+                "why": "Erfaring, kollektiv organisering og nedenfra-historie",
+                "tier": "advanced",
+                "works": [
+                  "The Making of the English Working Class"
+                ]
+              },
+              {
+                "id": "floya_anthias",
+                "name": "Floya Anthias",
+                "why": "Kjønn, etnisitet, klasse og transnasjonal tilhørighet",
+                "tier": "advanced",
+                "works": [
+                  "Translocational Belongings"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk migrasjons-, arbeider- og sosialhistorie",
+                "tier": "core",
+                "works": [
+                  "Norsk innvandringshistorie"
+                ]
+              },
+              {
+                "id": "sindre_bangstad",
+                "name": "Sindre Bangstad",
+                "why": "Religion, rasisme, islamofobi og offentlighet i Norge",
+                "tier": "core",
+                "works": [
+                  "Anders Breivik and the Rise of Islamophobia"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_organisering_motstand_offentlighet",
+            "em_his_minoritetshistorie"
+          ],
+          "best_place_types": [
+            "moteplass",
+            "foreningslokale",
+            "gate",
+            "museum",
+            "arkiv",
+            "arbeidssted"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_migrasjons_minoritetsspor_eller_kildegrunnlag"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "organization-action-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Mangfold brukt som pynt uten dokumentert historisk prosess",
+            "En nåtidig gruppebetegnelse projisert bakover uten kildekritikk",
+            "Ett synlig symbol behandlet som bevis for en hel gruppes historie",
+            "Teoretikernavn brukt før person, gruppe, kilde og tidsforløp er etablert"
+          ],
+          "preferred_question_moves": [
+            "name organization and demand",
+            "date campaign meeting or publication",
+            "trace response from authority or public",
+            "separate representation from full group consensus"
+          ],
+          "comparison_pairs": [
+            [
+              "e_p_thompson",
+              "floya_anthias"
+            ],
+            [
+              "knut_kjeldstadli",
+              "sindre_bangstad"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli",
+            "sindre_bangstad"
+          ],
+          "recommended_oslo_cases": [
+            "Youngstorget",
+            "Grønland",
+            "Tøyen",
+            "Jødisk museum",
+            "Interkulturelt museum",
+            "Oslo byarkiv"
+          ],
+          "recommended_method_ids": [
+            "met_muntlig_historie",
+            "met_arkivlesning",
+            "met_sporlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true,
+            "require_migration_actor_or_group": true,
+            "require_origin_arrival_or_status": true,
+            "require_practice_or_network": true,
+            "require_boundary_resource_or_exclusion": true,
+            "require_individual_household_or_community_consequence": true,
+            "require_source_limitation": true,
+            "require_ethical_source_handling": true,
+            "require_critical_distinction": true
+          },
+          "definition": "Undersøker hvordan minoriteter og migranter organiserte foreninger, protester, medier, møteplasser og krav, og hvordan de svarte på kontroll, diskriminering og usynliggjøring.",
+          "critical_distinctions": [
+            "organisasjon vs hele gruppen",
+            "motstand vs enhver uenighet",
+            "offentlig synlighet vs politisk innflytelse",
+            "selvrepresentasjon vs ekstern omtale"
+          ]
+        },
+        {
+          "id": "his_tilhorighet_identitet_minne",
+          "title": "Tilhørighet, identitet og minne",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "stuart_hall",
+                "name": "Stuart Hall",
+                "why": "Identitet, diaspora, representasjon og kulturell tilhørighet",
+                "tier": "core",
+                "works": [
+                  "Cultural Identity and Diaspora"
+                ]
+              },
+              {
+                "id": "nira_yuval_davis",
+                "name": "Nira Yuval-Davis",
+                "why": "Tilhørighet, medlemskap, grenser og identitetspolitikk",
+                "tier": "advanced",
+                "works": [
+                  "The Politics of Belonging"
+                ]
+              },
+              {
                 "id": "avtar_brah",
                 "name": "Avtar Brah",
-                "why": "Diaspora, hjem, tilhørighet og migrasjonserfaring",
+                "why": "Diaspora, hjem, forskjell og tilhørighet",
                 "tier": "advanced",
                 "works": [
                   "Cartographies of Diaspora"
                 ]
               },
               {
-                "id": "knut_kjeldstadli",
-                "name": "Knut Kjeldstadli",
-                "why": "Norsk migrasjons-, arbeider- og sosialhistorisk perspektiv",
+                "id": "benedict_anderson",
+                "name": "Benedict Anderson",
+                "why": "Nasjon, forestilte fellesskap og medlemskap",
                 "tier": "core",
                 "works": [
-                  "Norsk innvandringshistorie"
+                  "Imagined Communities"
                 ]
               }
             ]
           },
           "emne_ids": [
-            "em_his_migrasjon_mangfold",
-            "em_his_minoritetshistorie",
-            "em_his_tilhorighet_ekskludering"
+            "em_his_tilhorighet_ekskludering",
+            "em_his_sprak_religion_institusjoner",
+            "em_his_organisering_motstand_offentlighet"
           ],
           "best_place_types": [
-            "gate",
-            "bydel",
-            "moteplass",
-            "institusjonsbygg",
+            "museum",
             "minnested",
-            "handelsmiljo"
+            "bydel",
+            "gate",
+            "moteplass",
+            "arkiv"
           ],
           "avoid_place_types": [
-            "sted_uten_migrasjonsspor_eller_kilder"
+            "sted_uten_dokumentert_migrasjons_minoritetsspor_eller_kildegrunnlag"
           ],
           "set_phase_fit": [
+            "facts",
             "bridge_facts_theory",
             "late_theory"
           ],
-          "question_surface_mode": "place-first",
+          "question_surface_mode": "memory-belonging-first",
           "fact_anchor_required": true,
           "history_anchor_required": true,
           "avoid_surface_forms": [
-            "Mangfold som pynt uten historisk prosess",
-            "Generisk innvandringsspørsmål uten sted/kilde"
+            "Mangfold brukt som pynt uten dokumentert historisk prosess",
+            "En nåtidig gruppebetegnelse projisert bakover uten kildekritikk",
+            "Ett synlig symbol behandlet som bevis for en hel gruppes historie",
+            "Teoretikernavn brukt før person, gruppe, kilde og tidsforløp er etablert"
           ],
           "preferred_question_moves": [
-            "read street change as migration history",
-            "compare majority and minority memory",
-            "connect shops, language or institutions to migration",
-            "ask what becomes visible and what remains undocumented"
+            "compare contemporary and later self-description",
+            "connect memory to a place or institution",
+            "trace generational change in belonging",
+            "separate identity claim from administrative category"
           ],
           "comparison_pairs": [
             [
               "stuart_hall",
-              "avtar_brah"
+              "nira_yuval_davis"
             ],
             [
-              "benedict_anderson",
-              "knut_kjeldstadli"
+              "avtar_brah",
+              "benedict_anderson"
             ]
           ],
-          "norwegian_thinker_ids": [
-            "knut_kjeldstadli"
-          ],
+          "norwegian_thinker_ids": [],
           "recommended_oslo_cases": [
+            "Interkulturelt museum",
+            "Jødisk museum",
             "Grønland",
             "Tøyen",
             "Villa Grande",
-            "Jødisk museum"
+            "Oslo byarkiv"
           ],
           "recommended_method_ids": [
+            "met_minneanalyse",
             "met_muntlig_historie",
-            "met_arkivlesning",
-            "met_sporlesning",
-            "met_minneanalyse"
+            "met_sporlesning"
           ],
           "canonical_status": "canonical",
           "registry_version": "historiepensum_v4_5",
-          "min_recommended_oslo_cases": 2,
-          "min_recommended_methods": 1,
+          "min_recommended_oslo_cases": 4,
+          "min_recommended_methods": 2,
           "case_gate_required": true,
           "method_gate_required": true,
           "theory_rotation_required": true,
           "canonical_file_role": "active",
           "generator_constraints": {
-            "min_case_count": 2,
-            "min_method_count": 1,
+            "min_case_count": 4,
+            "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
-            "rotate_theorists": true
-          }
+            "rotate_theorists": true,
+            "require_migration_actor_or_group": true,
+            "require_origin_arrival_or_status": true,
+            "require_practice_or_network": true,
+            "require_boundary_resource_or_exclusion": true,
+            "require_individual_household_or_community_consequence": true,
+            "require_source_limitation": true,
+            "require_ethical_source_handling": true,
+            "require_critical_distinction": true
+          },
+          "definition": "Studerer hvordan mennesker og institusjoner skapte, forhandlet og minnet tilhørighet gjennom sted, språk, fortelling, symboler og generasjonserfaringer.",
+          "critical_distinctions": [
+            "identitet vs juridisk status",
+            "tilhørighet vs bosted",
+            "minne vs samtidig dokumentasjon",
+            "diaspora vs permanent utenforskap"
+          ]
         }
-      ]
+      ],
+      "status": "complete_revised"
     },
     {
       "id": "his_minne_kulturarv_historiebruk",
