@@ -36,6 +36,16 @@ jobs:
           set +e
           mkdir -p /tmp/quiz-audit-diagnostics
 
+          npm run quiz:context -- \
+            --category by \
+            --target deichman_bjorvika \
+            --output /tmp/quiz-audit-diagnostics/deichman_bjorvika.expected.json \
+            2>&1 | tee /tmp/quiz-audit-diagnostics/rebuild.log
+          rebuild_status=${PIPESTATUS[0]}
+
+          cp data/quiz/production_context/by/deichman_bjorvika.json \
+            /tmp/quiz-audit-diagnostics/deichman_bjorvika.current.json
+
           npm run audit:quiz-production-context 2>&1 | tee /tmp/quiz-audit-diagnostics/production-context.log
           context_status=${PIPESTATUS[0]}
 
@@ -46,12 +56,13 @@ jobs:
           theory_status=${PIPESTATUS[0]}
 
           {
+            echo "rebuild=${rebuild_status}"
             echo "production_context=${context_status}"
             echo "progression=${progression_status}"
             echo "theory_binding=${theory_status}"
           } | tee /tmp/quiz-audit-diagnostics/status.txt
 
-          if [ "${context_status}" -ne 0 ] || [ "${progression_status}" -ne 0 ] || [ "${theory_status}" -ne 0 ]; then
+          if [ "${rebuild_status}" -ne 0 ] || [ "${context_status}" -ne 0 ] || [ "${progression_status}" -ne 0 ] || [ "${theory_status}" -ne 0 ]; then
             exit 1
           fi
 
