@@ -42,7 +42,7 @@ const methodIds = [
 ];
 const category = fagkart.categories.find((item) => item.id === domainId);
 const domain = pensum.domains.find((item) => item.domain_id === domainId);
-const selectedEmners = emners.filter((item) => emneIds.includes(item.emne_id));
+const selectedEmners = emner.filter((item) => emneIds.includes(item.emne_id));
 const selectedMappings = mappings.filter((item) => emneIds.includes(item.emne_id));
 const selectedMethods = (methodsFile.methods || []).filter((item) => methodIds.includes(item.method_id));
 
