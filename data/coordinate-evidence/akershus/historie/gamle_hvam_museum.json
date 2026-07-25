@@ -1,0 +1,168 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "gamle_hvam_museum",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch2/gamle_hvam_museum.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_farm_museum_area_anchor_retained",
+  "currentCoordinate": {
+    "lat": 60.10201,
+    "lon": 11.38486,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap node 9671520670 – Gamle Hvam museum",
+    "coordType": "named_farm_museum_area_anchor",
+    "coordRole": "area_anchor",
+    "sourceObjectId": "osm-node:9671520670",
+    "coordNote": "Stable named point for the multi-building farm museum and its central historic farmyard; not an exact property boundary or a single-building centre."
+  },
+  "previousCoordinate": {
+    "lat": 60.10201,
+    "lon": 11.38486,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 0.0,
+    "reasonRetained": "The legacy coordinate is identical to the stable named OpenStreetMap point for Gamle Hvam museum and lies within the central museum farmyard."
+  },
+  "identity": {
+    "currentName": "Gamle Hvam museum",
+    "resolvedIdentity": "Gamle Hvam museum at the historic Store Hvam farm complex, Store-Hvamsvegen 26, 2165 Hvam",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "institutional_area",
+    "requiresSplit": false,
+    "splitReason": "The museum, historic farm buildings, inntun and uttun form one coherent visitor destination and interpretation area."
+  },
+  "requiredEvidence": [
+    "stable named museum or farm-site coordinate source",
+    "official visitor address",
+    "official evidence that the destination is a multi-building historic farm museum",
+    "explicit area-anchor representation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 9671520670 – Gamle Hvam museum",
+      "sourceUrl": "https://www.openstreetmap.org/node/9671520670",
+      "sourceObjectId": "osm-node:9671520670",
+      "sourceQuality": "stable_named_farm_museum_point",
+      "finding": "The stable named node represents Gamle Hvam museum / farm at 60.10201, 11.38486, exactly matching the canonical coordinate.",
+      "canVerifyCoordinate": true,
+      "reason": "The named source object is a direct physical anchor for the museum and historic farm site represented by the record."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "MiA – Gamle Hvam contact information",
+      "sourceUrl": "https://mia.no/gamlehvam/kontakt",
+      "sourceObjectId": "mia-gamle-hvam:address:store-hvamsvegen-26",
+      "sourceQuality": "official_visitor_address",
+      "finding": "MiA lists Store-Hvamsvegen 26, 2165 Hvam as the address for Gamle Hvam museum.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as the authoritative visitor-address and identity cross-check; MiA does not publish a machine-readable coordinate on the contact page."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "MiA – Buildings at Gamle Hvam",
+      "sourceUrl": "https://mia.no/gamlehvam/bygninger",
+      "sourceObjectId": "mia-gamle-hvam:buildings-and-farmyard",
+      "sourceQuality": "official_multi_building_site_scope",
+      "finding": "MiA describes a historic farm museum composed of multiple buildings and notes that parts of the building environment remain on their original locations.",
+      "canVerifyCoordinate": false,
+      "reason": "Establishes that the place must be represented as an institutional area rather than a single building."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "MiA – Visit Gamle Hvam",
+      "sourceUrl": "https://mia.no/gamlehvam/besok",
+      "sourceObjectId": "mia-gamle-hvam:visitor-destination",
+      "sourceQuality": "official_visitor_scope",
+      "finding": "MiA presents Gamle Hvam as a cultural-history museum and visitor destination centred on the historic farm environment.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the institutional destination and visitor-area interpretation."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Gamle Hvam museum",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Gamle_Hvam_museum",
+      "sourceObjectId": "lokalhistoriewiki:gamle-hvam-museum",
+      "sourceQuality": "independent_farmyard_structure_cross_check",
+      "finding": "The museum is described as a large historic farm environment with numerous antiquarian buildings organised around inntun and uttun.",
+      "canVerifyCoordinate": false,
+      "reason": "Used to cross-check the multi-building farmyard scope and retained 260-metre radius."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Store-Hvamsvegen",
+        "number": "26",
+        "postcode": "2165",
+        "city": "Hvam",
+        "country": "NO"
+      },
+      "sourceUrl": "https://mia.no/gamlehvam/kontakt",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:9671520670",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "mia-gamle-hvam:address:store-hvamsvegen-26",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "anchors": [
+    {
+      "id": "gamle_hvam_named_farm_museum_point",
+      "name": "Gamle Hvam museum – named farm and museum anchor",
+      "lat": 60.10201,
+      "lon": 11.38486,
+      "r": 80,
+      "type": "area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:9671520670",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:gamle_hvam_museum",
+      "lat": 60.10201,
+      "lon": 11.38486,
+      "coordRole": "unverified_area_point",
+      "distanceFromAppliedM": 0.0,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:9671520670",
+      "lat": 60.10201,
+      "lon": 11.38486,
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 0.0,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Retained the named farm-museum area anchor and applied the full source contract. Continue with Heggedal hovedgård."
+  },
+  "notes": [
+    "This is a source-contract upgrade, not a coordinate correction.",
+    "The canonical record represents a multi-building museum and historic farmyard, not one museum building.",
+    "The area anchor does not claim to be an exact property boundary or geometric centre.",
+    "The 260-metre radius is retained for the central inntun, uttun and visitor buildings.",
+    "No nearest/first-hit or map-preview coordinate was promoted to verified."
+  ]
+}
