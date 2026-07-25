@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "asker_kirke_kirkested",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch2/asker_kirke_kirkested.json",
+  "evidenceStatus": "candidate_sources_collected",
+  "coordinateDecision": "needs_historical_site_anchor_decision_and_geometry",
+  "currentCoordinate": {
+    "lat": 59.84333,
+    "lon": 10.43664,
+    "r": 220,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "coordNote": "Legacy marker retained during source audit; no coordinate metadata was present."
+  },
+  "identity": {
+    "currentName": "Asker kirke / gamle kirkested",
+    "resolvedIdentity": "Asker church site where the medieval stone church stood until the 1878 fire and the present church was built on the same site in 1879",
+    "identityStatus": "resolved",
+    "identityProblem": "The canonical record represents the layered church site, not merely the present church building or the adjacent Askertun offices.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The canonical record represents one coherent layered church-site destination."
+  },
+  "requiredEvidence": [
+    "stable historical source identity for the same-site continuity",
+    "raw current-church or church-site geometry for representation",
+    "explicit decision to use the present church as the anchor for the historical site"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Asker menighet – Asker kirkested",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/askerfellesrad/menigheter/askerkirke/virksomhetsomrader/Om%20kirkebygget/asker%20kirkested/",
+      "sourceObjectId": "asker-menighet:asker-kirkested",
+      "sourceQuality": "official_historical_site_identity",
+      "finding": "The official church history states that the present church was built where the medieval stone church had stood before the 1878 fire.",
+      "canVerifyCoordinate": false,
+      "reason": "The page resolves historical continuity and scope but does not expose a source geometry."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Asker kirkelige fellesråd – church election locations",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/askerfellesrad/aktuelt/kirkevalg%20i%20asker/",
+      "sourceObjectId": "asker-kirken:asker-kirke-kirkelia-7",
+      "sourceQuality": "official_current_church_address",
+      "finding": "The official page lists Asker kirke at Kirkelia 7 and distinguishes it from Askertun at Kirkelia 3.",
+      "canVerifyCoordinate": false,
+      "reason": "The address identifies the current church but does not alone verify the layered historical-site anchor."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 506440682 – Asker kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/506440682",
+      "sourceObjectId": "osm-way:506440682",
+      "sourceQuality": "exact_named_current_building_candidate",
+      "finding": "A named church-building way is identified at approximately 59.84333, 10.43670, about 3.4 metres from the legacy marker.",
+      "canVerifyCoordinate": false,
+      "reason": "Raw geometry and a documented historical-anchor derivation are not yet stored."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Kirkelia",
+        "number": "7",
+        "postcode": "1384",
+        "city": "Asker",
+        "country": "NO"
+      },
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/askerfellesrad/aktuelt/kirkevalg%20i%20asker/",
+      "canApplyToPlace": false
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "asker-menighet:asker-kirkested",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:506440682",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:506440682",
+      "geometryType": "Polygon",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:asker_kirke_kirkested",
+      "lat": 59.84333,
+      "lon": 10.43664,
+      "coordRole": "unverified_historical_anchor",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:506440682",
+      "lat": 59.84333,
+      "lon": 10.4367,
+      "coordRole": "current_building_center_candidate",
+      "distanceFromCurrentM": 3.4,
+      "canApplyToPlace": false
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": false,
+    "blockedReason": "The same-site historical continuity is officially documented, but the repository lacks the geometry and explicit derivation needed for a verified historical anchor.",
+    "nextAction": "Materialize current church/site geometry and document the present church as the physical anchor for the same-site medieval kirkested; do not use adjacent Askertun's Kirkelia 3 point."
+  },
+  "notes": [
+    "The correct production type is a historical/site anchor, not a simple address point for a modern office.",
+    "The current coordinate appears well placed, so this is primarily a representation and source-contract task rather than a likely coordinate move."
+  ]
+}
