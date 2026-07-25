@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
+// Cleanup retrigger after workflow validation.
 const root = process.cwd();
 const restorePaths = [
   'data/places/places_index.json',
