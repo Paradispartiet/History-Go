@@ -12181,19 +12181,15 @@
     {
       "id": "his_minne_kulturarv_historiebruk",
       "title": "Minne, kulturarv og historiebruk",
-      "tagline": "Fra historisk objekt og senere inngrep til utvelgelse, representasjon, konflikt og offentlig bruk",
-      "definition": "Området undersøker hvordan fortiden velges ut, bevares, restaureres, samles, navngis, markeres, digitaliseres og bestrides. Minne og kulturarv behandles som dokumenterte historiske praksiser med aktører, datoer, mandater, målgrupper og konsekvenser.",
+      "tagline": "Hvordan fortiden velges, bevares, brukes og bestrides",
+      "definition": "Minne, kulturarv og historiebruk undersøker utvelgelse, bevaring, autentisitet, samling, ritual, monument, kontrovers, navngivning og offentlig historiebruk. Domenet er kilde-, case- og tidsavgrenset og krever dokumentert konsekvens, kildebegrensning og kritisk distinksjon.",
       "focus": [
-        "Kulturminneutvelgelse og verdi",
-        "Bevaring, restaurering og autentisitet",
-        "Museum, samling og kanon",
-        "Minnested, ritual og offentlig sorg",
-        "Monument, symbol og makt",
-        "Kontrovers, fjerning og omtolking",
-        "Jubileum, seremoni og historiebruk",
-        "Stedsnavn og navnepolitikk",
-        "Fravær, taushet og motminne",
-        "Digital kulturarv og formidling"
+        "kollektivt minne",
+        "kulturelt minne",
+        "kommunikativt minne",
+        "kulturarv",
+        "autentisitet",
+        "restaurering"
       ],
       "topic_hooks": [
         {
@@ -12298,10 +12294,12 @@
           "recommended_method_ids": [
             "met_kulturarvutvelgelsesanalyse",
             "met_sporlesning",
-            "met_kildekritikk"
+            "met_kildekritikk",
+            "met_minneanalyse",
+            "met_symbol_og_minneanalyse"
           ],
           "canonical_status": "canonical",
-          "registry_version": "historiepensum_v4_5",
+          "registry_version": "historiepensum_v5_5",
           "min_recommended_oslo_cases": 2,
           "min_recommended_methods": 1,
           "case_gate_required": true,
@@ -12313,10 +12311,20 @@
             "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
             "require_original_and_later_date": true,
-            "require_public_use_or_consequence": true,
-            "rotate_theorists": true
-          }
+            "require_public_use_or_consequence": true
+          },
+          "definition": "Undersøker kulturminneutvelgelse og verdi gjennom utvelgelse, bevaring, autentisitet, samling, ritual, monument, kontrovers, navngivning og offentlig historiebruk. Analysen avgrenser aktører, sted og tidsrom, skiller dokumentasjon fra tolkning og viser hvilke historiske konsekvenser som kan underbygges.",
+          "critical_distinctions": [
+            "bevaring vs forandring",
+            "autentisitet vs rekonstruksjon",
+            "offisielt minne vs motminne",
+            "tilgjengelighet vs representativitet"
+          ]
         },
         {
           "id": "his_bevaring_restaurering_autentisitet",
@@ -12404,7 +12412,8 @@
             ]
           ],
           "norwegian_thinker_ids": [
-            "torgrim_sneve_guttormsen"
+            "torgrim_sneve_guttormsen",
+            "anne_eriksen"
           ],
           "recommended_oslo_cases": [
             "Vår Frelsers gravlund",
@@ -12419,10 +12428,12 @@
           "recommended_method_ids": [
             "met_restaurerings_autentisitetsanalyse",
             "met_sporlesning",
-            "met_kildekritikk"
+            "met_kildekritikk",
+            "met_symbol_og_minneanalyse",
+            "met_kulturarvutvelgelsesanalyse"
           ],
           "canonical_status": "canonical",
-          "registry_version": "historiepensum_v4_5",
+          "registry_version": "historiepensum_v5_5",
           "min_recommended_oslo_cases": 2,
           "min_recommended_methods": 1,
           "case_gate_required": true,
@@ -12434,10 +12445,20 @@
             "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
             "require_original_and_later_date": true,
-            "require_public_use_or_consequence": true,
-            "rotate_theorists": true
-          }
+            "require_public_use_or_consequence": true
+          },
+          "definition": "Undersøker bevaring, restaurering og autentisitet gjennom utvelgelse, bevaring, autentisitet, samling, ritual, monument, kontrovers, navngivning og offentlig historiebruk. Analysen avgrenser aktører, sted og tidsrom, skiller dokumentasjon fra tolkning og viser hvilke historiske konsekvenser som kan underbygges.",
+          "critical_distinctions": [
+            "autentisitet vs rekonstruksjon",
+            "offisielt minne vs motminne",
+            "tilgjengelighet vs representativitet",
+            "bevaring vs forandring"
+          ]
         },
         {
           "id": "his_museum_samling_kanon",
@@ -12541,10 +12562,12 @@
           "recommended_method_ids": [
             "met_museums_og_samlingsanalyse",
             "met_historiebruksanalyse",
-            "met_kildekritikk"
+            "met_kildekritikk",
+            "met_kulturarvutvelgelsesanalyse",
+            "met_restaurerings_autentisitetsanalyse"
           ],
           "canonical_status": "canonical",
-          "registry_version": "historiepensum_v4_5",
+          "registry_version": "historiepensum_v5_5",
           "min_recommended_oslo_cases": 2,
           "min_recommended_methods": 1,
           "case_gate_required": true,
@@ -12556,10 +12579,20 @@
             "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
             "require_original_and_later_date": true,
-            "require_public_use_or_consequence": true,
-            "rotate_theorists": true
-          }
+            "require_public_use_or_consequence": true
+          },
+          "definition": "Undersøker museum, samling og kanon gjennom utvelgelse, bevaring, autentisitet, samling, ritual, monument, kontrovers, navngivning og offentlig historiebruk. Analysen avgrenser aktører, sted og tidsrom, skiller dokumentasjon fra tolkning og viser hvilke historiske konsekvenser som kan underbygges.",
+          "critical_distinctions": [
+            "offisielt minne vs motminne",
+            "tilgjengelighet vs representativitet",
+            "bevaring vs forandring",
+            "autentisitet vs rekonstruksjon"
+          ]
         },
         {
           "id": "his_minnested_ritual_offentlig_sorg",
@@ -12647,7 +12680,8 @@
             ]
           ],
           "norwegian_thinker_ids": [
-            "claudia_lenz"
+            "claudia_lenz",
+            "anne_eriksen"
           ],
           "recommended_oslo_cases": [
             "Vår Frelsers gravlund",
@@ -12662,7 +12696,9 @@
           "recommended_method_ids": [
             "met_minnesteds_og_ritualanalyse",
             "met_minneanalyse",
-            "met_kildekritikk"
+            "met_kildekritikk",
+            "met_restaurerings_autentisitetsanalyse",
+            "met_museums_og_samlingsanalyse"
           ],
           "canonical_status": "canonical",
           "registry_version": "historiepensum_v5_5",
@@ -12677,10 +12713,20 @@
             "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
             "require_original_and_later_date": true,
-            "require_public_use_or_consequence": true,
-            "rotate_theorists": true
-          }
+            "require_public_use_or_consequence": true
+          },
+          "definition": "Undersøker minnested, ritual og offentlig sorg gjennom utvelgelse, bevaring, autentisitet, samling, ritual, monument, kontrovers, navngivning og offentlig historiebruk. Analysen avgrenser aktører, sted og tidsrom, skiller dokumentasjon fra tolkning og viser hvilke historiske konsekvenser som kan underbygges.",
+          "critical_distinctions": [
+            "tilgjengelighet vs representativitet",
+            "bevaring vs forandring",
+            "autentisitet vs rekonstruksjon",
+            "offisielt minne vs motminne"
+          ]
         },
         {
           "id": "his_monument_symbol_makt",
@@ -12785,10 +12831,12 @@
           "recommended_method_ids": [
             "met_symbol_og_minneanalyse",
             "met_historiebruksanalyse",
-            "met_kildekritikk"
+            "met_kildekritikk",
+            "met_museums_og_samlingsanalyse",
+            "met_minnesteds_og_ritualanalyse"
           ],
           "canonical_status": "canonical",
-          "registry_version": "historiepensum_v4_5",
+          "registry_version": "historiepensum_v5_5",
           "min_recommended_oslo_cases": 2,
           "min_recommended_methods": 1,
           "case_gate_required": true,
@@ -12800,10 +12848,20 @@
             "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
             "require_original_and_later_date": true,
-            "require_public_use_or_consequence": true,
-            "rotate_theorists": true
-          }
+            "require_public_use_or_consequence": true
+          },
+          "definition": "Undersøker monument, symbol og makt gjennom utvelgelse, bevaring, autentisitet, samling, ritual, monument, kontrovers, navngivning og offentlig historiebruk. Analysen avgrenser aktører, sted og tidsrom, skiller dokumentasjon fra tolkning og viser hvilke historiske konsekvenser som kan underbygges.",
+          "critical_distinctions": [
+            "bevaring vs forandring",
+            "autentisitet vs rekonstruksjon",
+            "offisielt minne vs motminne",
+            "tilgjengelighet vs representativitet"
+          ]
         },
         {
           "id": "his_kontrovers_fjerning_omtolking",
@@ -12891,7 +12949,8 @@
             ]
           ],
           "norwegian_thinker_ids": [
-            "torgrim_sneve_guttormsen"
+            "torgrim_sneve_guttormsen",
+            "anne_eriksen"
           ],
           "recommended_oslo_cases": [
             "Vår Frelsers gravlund",
@@ -12906,10 +12965,12 @@
           "recommended_method_ids": [
             "met_historiebruksanalyse",
             "met_symbol_og_minneanalyse",
-            "met_kildekritikk"
+            "met_kildekritikk",
+            "met_minnesteds_og_ritualanalyse",
+            "met_navnepolitisk_analyse"
           ],
           "canonical_status": "canonical",
-          "registry_version": "historiepensum_v4_5",
+          "registry_version": "historiepensum_v5_5",
           "min_recommended_oslo_cases": 2,
           "min_recommended_methods": 1,
           "case_gate_required": true,
@@ -12921,10 +12982,20 @@
             "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
             "require_original_and_later_date": true,
-            "require_public_use_or_consequence": true,
-            "rotate_theorists": true
-          }
+            "require_public_use_or_consequence": true
+          },
+          "definition": "Undersøker kontrovers, fjerning og omtolking gjennom utvelgelse, bevaring, autentisitet, samling, ritual, monument, kontrovers, navngivning og offentlig historiebruk. Analysen avgrenser aktører, sted og tidsrom, skiller dokumentasjon fra tolkning og viser hvilke historiske konsekvenser som kan underbygges.",
+          "critical_distinctions": [
+            "autentisitet vs rekonstruksjon",
+            "offisielt minne vs motminne",
+            "tilgjengelighet vs representativitet",
+            "bevaring vs forandring"
+          ]
         },
         {
           "id": "his_jubileum_seremoni_historiebruk",
@@ -13029,10 +13100,12 @@
           "recommended_method_ids": [
             "met_historiebruksanalyse",
             "met_minnesteds_og_ritualanalyse",
-            "met_minneanalyse"
+            "met_minneanalyse",
+            "met_navnepolitisk_analyse",
+            "met_sporlesning"
           ],
           "canonical_status": "canonical",
-          "registry_version": "historiepensum_v4_5",
+          "registry_version": "historiepensum_v5_5",
           "min_recommended_oslo_cases": 2,
           "min_recommended_methods": 1,
           "case_gate_required": true,
@@ -13044,10 +13117,20 @@
             "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
             "require_original_and_later_date": true,
-            "require_public_use_or_consequence": true,
-            "rotate_theorists": true
-          }
+            "require_public_use_or_consequence": true
+          },
+          "definition": "Undersøker jubileum, seremoni og historiebruk gjennom utvelgelse, bevaring, autentisitet, samling, ritual, monument, kontrovers, navngivning og offentlig historiebruk. Analysen avgrenser aktører, sted og tidsrom, skiller dokumentasjon fra tolkning og viser hvilke historiske konsekvenser som kan underbygges.",
+          "critical_distinctions": [
+            "offisielt minne vs motminne",
+            "tilgjengelighet vs representativitet",
+            "bevaring vs forandring",
+            "autentisitet vs rekonstruksjon"
+          ]
         },
         {
           "id": "his_stedsnavn_navnepolitikk",
@@ -13152,10 +13235,11 @@
           "recommended_method_ids": [
             "met_navnepolitisk_analyse",
             "met_historiebruksanalyse",
-            "met_kildekritikk"
+            "met_kildekritikk",
+            "met_sporlesning"
           ],
           "canonical_status": "canonical",
-          "registry_version": "historiepensum_v4_5",
+          "registry_version": "historiepensum_v5_5",
           "min_recommended_oslo_cases": 2,
           "min_recommended_methods": 1,
           "case_gate_required": true,
@@ -13167,10 +13251,20 @@
             "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
             "require_original_and_later_date": true,
-            "require_public_use_or_consequence": true,
-            "rotate_theorists": true
-          }
+            "require_public_use_or_consequence": true
+          },
+          "definition": "Undersøker stedsnavn og navnepolitikk gjennom utvelgelse, bevaring, autentisitet, samling, ritual, monument, kontrovers, navngivning og offentlig historiebruk. Analysen avgrenser aktører, sted og tidsrom, skiller dokumentasjon fra tolkning og viser hvilke historiske konsekvenser som kan underbygges.",
+          "critical_distinctions": [
+            "tilgjengelighet vs representativitet",
+            "bevaring vs forandring",
+            "autentisitet vs rekonstruksjon",
+            "offisielt minne vs motminne"
+          ]
         },
         {
           "id": "his_fravaer_taushet_motminne",
@@ -13256,7 +13350,8 @@
             ]
           ],
           "norwegian_thinker_ids": [
-            "claudia_lenz"
+            "claudia_lenz",
+            "anne_eriksen"
           ],
           "recommended_oslo_cases": [
             "Vår Frelsers gravlund",
@@ -13271,10 +13366,11 @@
           "recommended_method_ids": [
             "met_historiebruksanalyse",
             "met_minneanalyse",
-            "met_kildekritikk"
+            "met_kildekritikk",
+            "met_sporlesning"
           ],
           "canonical_status": "canonical",
-          "registry_version": "historiepensum_v4_5",
+          "registry_version": "historiepensum_v5_5",
           "min_recommended_oslo_cases": 2,
           "min_recommended_methods": 1,
           "case_gate_required": true,
@@ -13286,10 +13382,20 @@
             "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
             "require_original_and_later_date": true,
-            "require_public_use_or_consequence": true,
-            "rotate_theorists": true
-          }
+            "require_public_use_or_consequence": true
+          },
+          "definition": "Undersøker fravær, taushet og motminne gjennom utvelgelse, bevaring, autentisitet, samling, ritual, monument, kontrovers, navngivning og offentlig historiebruk. Analysen avgrenser aktører, sted og tidsrom, skiller dokumentasjon fra tolkning og viser hvilke historiske konsekvenser som kan underbygges.",
+          "critical_distinctions": [
+            "bevaring vs forandring",
+            "autentisitet vs rekonstruksjon",
+            "offisielt minne vs motminne",
+            "tilgjengelighet vs representativitet"
+          ]
         },
         {
           "id": "his_digital_kulturarv_formidling",
@@ -13375,7 +13481,8 @@
             ]
           ],
           "norwegian_thinker_ids": [
-            "brita_brenna"
+            "brita_brenna",
+            "anne_eriksen"
           ],
           "recommended_oslo_cases": [
             "Vår Frelsers gravlund",
@@ -13390,10 +13497,12 @@
           "recommended_method_ids": [
             "met_historiebruksanalyse",
             "met_museums_og_samlingsanalyse",
-            "met_kildekritikk"
+            "met_kildekritikk",
+            "met_minneanalyse",
+            "met_symbol_og_minneanalyse"
           ],
           "canonical_status": "canonical",
-          "registry_version": "historiepensum_v4_5",
+          "registry_version": "historiepensum_v5_5",
           "min_recommended_oslo_cases": 2,
           "min_recommended_methods": 1,
           "case_gate_required": true,
@@ -13405,13 +13514,26 @@
             "min_method_count": 2,
             "require_fact_or_history_anchor": true,
             "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "rotate_theorists": true,
             "require_original_and_later_date": true,
-            "require_public_use_or_consequence": true,
-            "rotate_theorists": true
-          }
+            "require_public_use_or_consequence": true
+          },
+          "definition": "Undersøker digital kulturarv og formidling gjennom utvelgelse, bevaring, autentisitet, samling, ritual, monument, kontrovers, navngivning og offentlig historiebruk. Analysen avgrenser aktører, sted og tidsrom, skiller dokumentasjon fra tolkning og viser hvilke historiske konsekvenser som kan underbygges.",
+          "critical_distinctions": [
+            "autentisitet vs rekonstruksjon",
+            "offisielt minne vs motminne",
+            "tilgjengelighet vs representativitet",
+            "bevaring vs forandring"
+          ]
         }
       ],
-      "status": "complete_revised"
+      "status": "complete_revised",
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_5",
+      "canonical_file_role": "active"
     },
     {
       "id": "his_byhistorie_stedsendring",
@@ -13917,7 +14039,8 @@
           "emne_ids": [
             "em_his_riving_ombruk_bevaring",
             "em_his_sanering_byfornyelse",
-            "em_his_gatenett_tomtestruktur_infrastruktur"
+            "em_his_gatenett_tomtestruktur_infrastruktur",
+            "em_his_byhistorie_stedsendring_bydannelse_og_urban_morfologi"
           ],
           "best_place_types": [
             "saneringsomrade",
@@ -14065,7 +14188,8 @@
           },
           "emne_ids": [
             "em_his_sanering_byfornyelse",
-            "em_his_regulering_plan_ekspropriasjon"
+            "em_his_regulering_plan_ekspropriasjon",
+            "em_his_byhistorie_stedsendring_sentrum_periferi_og_byutvidelse"
           ],
           "best_place_types": [
             "boligomrade",
@@ -14213,7 +14337,8 @@
             ]
           },
           "emne_ids": [
-            "em_his_naring_funksjonsskifte"
+            "em_his_naring_funksjonsskifte",
+            "em_his_byhistorie_stedsendring_infrastruktur_mobilitet_og_tekniske_systemer"
           ],
           "best_place_types": [
             "gate",
@@ -14361,7 +14486,8 @@
             ]
           },
           "emne_ids": [
-            "em_his_industrihavn_transformasjon"
+            "em_his_industrihavn_transformasjon",
+            "em_his_byhistorie_stedsendring_eiendom_boligregimer_og_tomtemarkeder"
           ],
           "best_place_types": [
             "industriomrade",
@@ -14511,7 +14637,8 @@
           },
           "emne_ids": [
             "em_his_byutvidelse_gentrifisering",
-            "em_his_gentrifisering_verdi_befolkning"
+            "em_his_gentrifisering_verdi_befolkning",
+            "em_his_byhistorie_stedsendring_klasse_segregasjon_og_offentlige_rom"
           ],
           "best_place_types": [
             "bydel",
@@ -14657,7 +14784,8 @@
           },
           "emne_ids": [
             "em_his_riving_ombruk_bevaring",
-            "em_his_offentlig_rom_tilgang_konflikt"
+            "em_his_offentlig_rom_tilgang_konflikt",
+            "em_his_byhistorie_stedsendring_sanering_byfornyelse_og_modernisme"
           ],
           "best_place_types": [
             "kulturmiljo",
@@ -14805,7 +14933,8 @@
           },
           "emne_ids": [
             "em_his_offentlig_rom_tilgang_konflikt",
-            "em_his_stedsnavn_fortelling_tilhorighet"
+            "em_his_stedsnavn_fortelling_tilhorighet",
+            "em_his_byhistorie_stedsendring_gentrifisering_ombruk_og_bevaring"
           ],
           "best_place_types": [
             "plass",
