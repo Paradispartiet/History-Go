@@ -107,44 +107,58 @@ Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast 
 
 Disse dokumentene gjelder kvaliteten på én aktuell AHA-samtale eller analyse. De er ikke generelle kvalitetsporter for History GO, Civication, quiz, data eller repository-CI.
 
-AHA-statusmodellen er dokumentasjons-only i V1. Den starter ikke runtime, sync, EchoNet, permanent minne eller backendskriving. Generelle kontroller eies av de konkrete data-, runtime-, utviklings- og workflowkontraktene.
-
 ### Social Meet / HG Social
 
-Autoritativ leserekkefølge:
+#### 1. Aktiv status og runtime
 
-1. [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — dagens aktive lokale runtime-, storage- og privacy-grenser
-2. [`HG_SOCIAL_README.md`](./HG_SOCIAL_README.md) — operativ produktoversikt, terminologi og samlet inngang
-3. [`HG_SOCIAL_PRIVACY_RULES.md`](./HG_SOCIAL_PRIVACY_RULES.md) — canonical privacy-policy og defaults
-4. [`HG_SPOTMEETING.md`](./HG_SPOTMEETING.md) — canonical produkt- og lifecycle-kontrakt for Spotmeeting
-5. [`HG_SOCIAL_ARCHITECTURE.md`](./HG_SOCIAL_ARCHITECTURE.md) — operativ produkt-/målarkitektur; ikke bevis på implementert backend
-6. [`HG_SOCIAL_QA.md`](./HG_SOCIAL_QA.md) — operativ QA- og privacy-guard-guide
-7. [`HG_SOCIAL_DEMO_MODE.md`](./HG_SOCIAL_DEMO_MODE.md) — operativ lokal demo-/smoke-test-guide
+1. [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — aktive lokale Social-signaler, read-models og subsystemgrenser
+2. [`../backend/README.md`](../backend/README.md) — gjeldende FastAPI/PostgreSQL-implementasjonskart og rolloutstatus
+3. [`HG_SOCIAL_MEET_FASTAPI_CLIENT.md`](./HG_SOCIAL_MEET_FASTAPI_CLIENT.md) — typed browsergrense og adaptermigrering
+4. [`HG_SOCIAL_BACKEND_CONTRACT.md`](./HG_SOCIAL_BACKEND_CONTRACT.md) — compatibility-inngang til hele backenddokumentasjonen
 
-Framtidige serverkontrakter:
+Sju servereide slices er implementert: identity/public profile, participant safety/export/deletion, moderation/appeals, abuse controls, durable Spotmeeting invites, candidate discovery og retention/observability. Migrerte production-operasjoner går gjennom typed FastAPI-klient når backend er eksplisitt konfigurert.
 
-- [`HG_SOCIAL_BACKEND_CONTRACT.md`](./HG_SOCIAL_BACKEND_CONTRACT.md)
+Implementert kode betyr ikke automatisk bred produksjonsaktivering. Discovery, invite writes og destructive retention er fail-closed bak egne deployment-, database-, cohort- og operations-gates.
+
+#### 2. Produkt og privacy
+
+1. [`HG_SOCIAL_README.md`](./HG_SOCIAL_README.md) — operativ produktoversikt og terminologi
+2. [`HG_SOCIAL_PRIVACY_RULES.md`](./HG_SOCIAL_PRIVACY_RULES.md) — canonical privacy-policy
+3. [`HG_SPOTMEETING.md`](./HG_SPOTMEETING.md) — canonical Spotmeeting-produkt og lifecycle
+4. [`HG_SOCIAL_ARCHITECTURE.md`](./HG_SOCIAL_ARCHITECTURE.md) — operativ produkt-/målarkitektur
+5. [`HG_SOCIAL_QA.md`](./HG_SOCIAL_QA.md) — QA og privacy guards
+6. [`HG_SOCIAL_DEMO_MODE.md`](./HG_SOCIAL_DEMO_MODE.md) — lokal TEST_MODE/demo
+
+#### 3. Kravkontrakter
+
 - [`HG_SOCIAL_MEET_IDENTITY_CONTRACT.md`](./HG_SOCIAL_MEET_IDENTITY_CONTRACT.md)
 - [`HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md`](./HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md)
 - [`HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md`](./HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md)
 
-De fire serverdokumentene er `transitional` og contract-only. De implementerer ikke autentisering, database, API, moderation runtime eller produksjonsdiscovery.
+Kravinnholdet er fortsatt aktivt. Filenes opprinnelige statusavsnitt er tidsbundne og delvis eldre enn implementasjonen, derfor er dokumentene transitional til statusdelene er synkronisert eller skilt fra kravteksten. Gjeldende implementasjonsstatus ligger i backendinngangen og slice-dokumentene.
 
-Dagens Social-status:
+#### 4. Implementerte slices
 
-- Social-signaler, public-profile read-model, match graph, demo og Spotmeeting-validering er lokale og privacy-safe.
-- Produksjonsdiscovery skal returnere `backend_not_enabled` fram til serverkravene er implementert og verifisert.
-- TEST_MODE kan bruke seedede demo-profiler; disse skal aldri skrives til `PEOPLE` eller produksjonsstorage.
-- GPS, live location, nearby people, distance-to-person, last seen, followers/feed, offentlig besøkshistorikk, passiv tracking og fri chat er forbudt.
-- Formuleringen `backend-ready` i eldre Social-tekst betyr bare kontrakt-/migreringsklar datamodell. Den betyr ikke at backend finnes.
+- [`HG_SOCIAL_MEET_MODERATION_BACKEND.md`](./HG_SOCIAL_MEET_MODERATION_BACKEND.md)
+- [`HG_SOCIAL_MEET_ABUSE_CONTROLS.md`](./HG_SOCIAL_MEET_ABUSE_CONTROLS.md)
+- [`HG_SPOTMEETING_INVITE_BACKEND.md`](./HG_SPOTMEETING_INVITE_BACKEND.md)
+- [`HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md`](./HG_SOCIAL_MEET_CANDIDATE_DISCOVERY_BACKEND.md)
+- [`HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md`](./HG_SOCIAL_MEET_RETENTION_OBSERVABILITY.md)
 
-Eierskap:
+Identity- og participant-safety-slicene dokumenteres samlet i `backend/README.md` og i migrasjonene `002_social_meet_identity_profiles.sql` og `003_social_meet_safety.sql`.
 
-- subsystemregisteret eier dagens runtime;
-- privacy-filen eier Socials privacy-policy;
-- Spotmeeting-filen eier den konkrete møteflyten;
-- Social README er inngang og terminologi, ikke en parallell runtimefasit;
-- serverdokumentene eier bare framtidige målgrenser.
+`HG_SOCIAL_MODERATION.md` er bare guide til den eldre lokale/localStorage-kompatibilitetsmodulen. Den eier ikke servermoderasjon.
+
+#### 5. Historiske overgangsdokumenter
+
+- `HG_SOCIAL_MEET_BACKEND_ROADMAP.md` — roadmap-snapshot fra før implementasjonsslicene landet
+- `social-meet-backend.md` — tidlig Supabase-foundation og direkte adapterfase før FastAPI-strangleren
+
+De kan brukes som historikk, men skal ikke overstyre dagens backendinngang, runtimekode eller implementasjonsdokumenter.
+
+#### Permanente grenser
+
+Social Meet skal fortsatt ikke bruke GPS, live location, nearby/distance, presence/last-seen, followers/feed, offentlig visit history, passiv tracking eller fri chat. TEST_MODE/demo skal forbli atskilt fra ekte profiler og servereid state.
 
 ### Civication
 
@@ -153,7 +167,7 @@ Eierskap:
 - [`../js/Civication/README.md`](../js/Civication/README.md) — motoroversikt og aktiv dagflyt
 - [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — bindende subsystemkontrakter
 
-Gamle generelle Civication-utkast, den innlimte `CivicationGameREADME`-chatloggen og de to dupliserte jobbmodellene er fjernet. Genererte role-pack- og FWG-statusfiler har én registrert output-path hver. Nye Civication-dokumenter skal plasseres under riktig kontrakt eller som tidsbundne rapporter, ikke som nye parallelle hoved-READMEs.
+Gamle generelle Civication-utkast, den innlimte `CivicationGameREADME`-chatloggen og de to dupliserte jobbmodellene er fjernet. Genererte role-pack- og FWG-statusfiler har én registrert output-path hver.
 
 ### Rapporter og audits
 
@@ -167,9 +181,9 @@ Gamle generelle Civication-utkast, den innlimte `CivicationGameREADME`-chatlogge
 | Status | Betydning |
 |---|---|
 | `canonical` | Normativ kilde for ett avgrenset område |
-| `operational` | Aktiv inngang, arbeidsinstruks eller compatibility-pointer som peker til canonical kilder |
-| `transitional` | Aktiv målkontrakt eller dokument med kjent implementasjons-/konsolideringsgjeld |
-| `historical` | Snapshot, rapport eller journal; ikke nåstatus |
+| `operational` | Aktiv inngang, implementasjonsstatus eller arbeidsinstruks uten parallell sannhet |
+| `transitional` | Aktiv krav-/måltekst eller runtime med kjent status-, implementasjons- eller migreringsgjeld |
+| `historical` | Snapshot, rapport, roadmap eller journal; ikke nåstatus |
 | `local` | Gjelder bare subsystemet eller datamappen den ligger ved |
 
 Maskinlesbar status ligger i [`documentation_registry.json`](./documentation_registry.json).
@@ -198,16 +212,7 @@ Workflowen `Documentation governance` validerer:
 - at inngangsdokumentenes lokale lenker ikke er brutte,
 - at denne indeksen omtaler alle canonical og transitional dokumenter.
 
-Workflowen bygger også et inventar som viser:
-
-- totalt antall dokumentlignende filer,
-- fordeling mellom rot, `README/`, `docs/`, `reports/` og lokale subsystemer,
-- uregistrerte globale dokumentkandidater,
-- mistenkelige og extensionløse filnavn,
-- grupper med overlappende basenames,
-- aktive dokumenter som lenker til registrerte historiske snapshots.
-
-Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation-governance-audit`.
+Workflowen bygger også et inventar som viser totalt antall dokumentlignende filer, uregistrerte globale kandidater, mistenkelige navn, overlappende basenames og aktive lenker til historiske snapshots.
 
 ## Konsolideringsstatus
 
@@ -226,17 +231,18 @@ Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation
 - Civication-dokumentasjonen samlet under én inngang; chatlogg og jobbmodellduplikater fjernet
 - genererte Civication role-pack- og FWG-statusfiler redusert til én output-path hver
 - foreldet `badge_refs`-regel og biologispesifikk emnearkitektur fjernet fra aktiv dokumentflate
-- gammel quiz-README erstattet med compatibility-pointer; canonical produksjonsprosedyre, template-register og manifests er eksplisitt prioritert
+- gammel quiz-README erstattet med compatibility-pointer
 - daterte TypeScript- og AHA-statusfiler flyttet til `reports/archive/2026-07/`
 - `Mestergrad` fjernet fra ferdigmodellen; Bronse → Sølv → Gull er canonical nivåregel
-- `APP_STRUCTURE_INDEX.md` synkronisert med `#/debate/:id` og registrert som canonical index-appkontrakt
+- `APP_STRUCTURE_INDEX.md` synkronisert og registrert som canonical index-appkontrakt
 - domene- og DomainRegistry-dokumentasjonen synkronisert med maskinkontrakten
 - parallelle Knowledge-, ontology- og knaggemodeller samlet under én canonical arkitektur og maskinpolicy
 - `QUALITY_GATES.md` redusert til AHA-kompatibilitetspeker
 - gamle relations-, oppgave- og badge-/merke-READMEs arkivert
-- Social-dokumentene klassifisert med én leserekkefølge og tydelig skille mellom lokal runtime og framtidig backend
+- Social-dokumentasjonen delt i canonical produkt/privacy, aktive backend-slices, transitional kravtekster og historiske overgangsdokumenter
 
 ### Neste
 
+- synkroniser de tidsbundne statusavsnittene i de tre Social Meet-kravkontraktene uten å endre kravinnholdet
 - fortsett å flytte daterte audits og statuspunkter til `reports/archive/YYYY-MM/`
 - klassifiser øvrige aktive subsystemguider uten å gjøre målarkitektur til nåstatus
