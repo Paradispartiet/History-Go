@@ -18,7 +18,7 @@ const outputAfter = "fs.writeFileSync(f,x);if(process.env.RUNNER_REPORT_DIR){con
 if (!source.includes(outputBefore)) throw new Error('Could not locate migration validation output handler');
 source = source.replace(outputBefore, outputAfter);
 const loopBefore = ",['tools-check','tools:check']])check(n,a);S.status='ok';";
-const loopAfter = "])check(n,a);try{check('tools-check','tools:check')}catch(error){S.baselineToolsCheck='failed_existing_etne_emne_ids';console.warn('[validation] tools-check retained as baseline failure: existing unrelated emne_id errors')}S.status='ok';";
+const loopAfter = "])check(n,a);try{check('coordinate-evidence-internal','places:coords:evidence:audit')}catch(error){S.coordinateEvidenceAudit='failed';console.warn('[validation] coordinate evidence report captured for migration follow-up')}try{check('tools-check','tools:check')}catch(error){S.baselineToolsCheck='failed_existing_etne_emne_ids';console.warn('[validation] tools-check retained as baseline failure: existing unrelated emne_id errors')}S.status='ok';";
 if (!source.includes(loopBefore)) throw new Error('Could not locate full validation loop');
 source = source.replace(loopBefore, loopAfter);
 
