@@ -63,6 +63,7 @@ function validateQuestion(q, { file, scope, entryTargetId, entryTargetKind }) {
   }
 }
 
+
 async function listJsonFiles(dir) {
   const root = abs(dir);
   if (!existsSync(root)) return [];
@@ -183,5 +184,5 @@ report.status = report.manifestJsonParses && report.norgeFor1500PeopleCoverageCo
 await mkdir(abs('reports'), { recursive: true });
 await writeFile(abs(reportPath), `${JSON.stringify(report, null, 2)}\n`);
 console.log(`Wrote ${reportPath}`);
-console.log(JSON.stringify(report, null, 2));
+console.log(JSON.stringify({ status: report.status, failureCounts, legacyQuizItemsCount: report.legacyQuizItemsCount, setManifestEntriesCount: report.setManifestEntriesCount, setQuestionsChecked: report.setQuestionsChecked }, null, 2));
 process.exitCode = report.status === 'passed' ? 0 : 1;
