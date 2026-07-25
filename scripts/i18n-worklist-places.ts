@@ -145,6 +145,7 @@ function sourceHash(place: JsonObject): string {
 function extractRows(data: any, relativePath: string): JsonObject[] {
   if (Array.isArray(data)) return data;
   if (Array.isArray(data?.places)) return data.places;
+  if (data && typeof data === "object" && typeof data.id === "string" && data.id.trim()) return [data];
   console.warn(`[i18n-worklist] ${relativePath} is not an array and has no .places array. Skipping.`);
   return [];
 }
