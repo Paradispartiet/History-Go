@@ -10,17 +10,23 @@ function run(command, args, capture = false) {
 
 run("npm", ["run", "knowledge:canonical:write"]);
 
-for (const target of [
-  "grindheim_runestein",
-  "grindheim_steinkross",
-  "grindheimsveien_nord_gravfelt",
-  "hoyland_gravhaug_etne"
-]) {
+const contexts = [
+  ["by", "deichman_bjorvika"],
+  ["naeringsliv", "telegrafbygningen"],
+  ["naeringsliv", "oslo_posthus"],
+  ["naeringsliv", "havnelageret"],
+  ["historie", "grindheim_runestein"],
+  ["historie", "grindheim_steinkross"],
+  ["historie", "grindheimsveien_nord_gravfelt"],
+  ["historie", "hoyland_gravhaug_etne"]
+];
+
+for (const [category, target] of contexts) {
   run("node", [
     "scripts/build-quiz-production-context.mjs",
-    "--category", "historie",
+    "--category", category,
     "--target", target,
-    "--output", `data/quiz/production_context/historie/${target}.json`
+    "--output", `data/quiz/production_context/${category}/${target}.json`
   ]);
 }
 
@@ -44,6 +50,10 @@ run("git", ["add",
   "data/knowledge/knowledge_emne_review_queue.generated.json",
   "data/knowledge/knowledge_units.generated.json",
   "data/quiz/historie/nedre_foss_sets.json",
+  "data/quiz/production_context/by/deichman_bjorvika.json",
+  "data/quiz/production_context/naeringsliv/telegrafbygningen.json",
+  "data/quiz/production_context/naeringsliv/oslo_posthus.json",
+  "data/quiz/production_context/naeringsliv/havnelageret.json",
   "data/quiz/production_context/historie/grindheim_runestein.json",
   "data/quiz/production_context/historie/grindheim_steinkross.json",
   "data/quiz/production_context/historie/grindheimsveien_nord_gravfelt.json",
@@ -56,4 +66,4 @@ run("git", ["add", "-A", "scripts/coordinate-branch-job.mjs"]);
 run("git", ["commit", "-m", "Apply History phase 7 generated outputs"]);
 run("git", ["push", "origin", `HEAD:${process.env.GITHUB_REF_NAME}`]);
 
-console.log("History phase 7 rebuilt, validated and published on fresh main.");
+console.log("History phase 7 and global quiz contexts rebuilt, validated and published.");
