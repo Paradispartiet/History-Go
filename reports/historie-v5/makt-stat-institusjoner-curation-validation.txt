@@ -1,0 +1,3069 @@
+
+$ node tools/validate-historie-v5.mjs --write
+
+{
+  "version": "v5.5-quality-freeze-contract",
+  "subject_id": "historie",
+  "status": "QUALITY_REVIEW_REQUIRED",
+  "v6_allowed": false,
+  "generated_at": "2026-07-25T18:42:01.926Z",
+  "coverage_counts": {
+    "domains": 20,
+    "emner": 200,
+    "mappings": 200,
+    "methods": 87,
+    "concepts": 826,
+    "theories": 200
+  },
+  "quality_issue_totals": {
+    "concepts": 474,
+    "theories": 110,
+    "emner": 0,
+    "domains_not_freeze_ready": 11
+  },
+  "global_gates": {
+    "structural_integrity": true,
+    "coverage_counts_match": true,
+    "generator_counts_match_production": true,
+    "all_domains_coverage_complete": true,
+    "concept_registry_curated": false,
+    "theory_registry_curated": false,
+    "emner_individually_curated": true,
+    "all_domains_freeze_ready": false
+  },
+  "quality": {
+    "concept_issue_counts": {
+      "synthetic_template_definition": 474,
+      "missing_semantic_relations": 474,
+      "generic_or_missing_misuse_guard": 474,
+      "numeric_reference_mistyped_as_concept": 3
+    },
+    "theory_issue_counts": {
+      "only_generic_limitations": 110,
+      "mass_repeated_limitation_profile": 110
+    },
+    "emne_issue_counts": {}
+  },
+  "domains": [
+    {
+      "domain_id": "his_tid_periodisering",
+      "label": "Historisk tid og periodisering",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_kilder_arkiv_spor",
+      "label": "Kilder, arkiv og spor",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_makt_stat_institusjoner",
+      "label": "Makt, stat og institusjoner",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_middelalder_kirke_kongemakt",
+      "label": "Middelalder, kirke og kongemakt",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 37,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_1814_statsdannelse",
+      "label": "1814, grunnlov og statsdannelse",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 40,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_industri_arbeid_sosialhistorie",
+      "label": "Industri, arbeid og sosialhistorie",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 73,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_krig_okkupasjon_motstand",
+      "label": "Krig, okkupasjon og motstand",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 37,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_velferd_rett_hverdagsliv",
+      "label": "Velferd, rett og hverdagsliv",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 60,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_migrasjon_minoritet_tilhorighet",
+      "label": "Migrasjon, minoritet og tilhørighet",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 57,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "label": "Minne, kulturarv og historiebruk",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 67,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_byhistorie_stedsendring",
+      "label": "Byhistorie og stedsendring",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 41,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_katastrofer_brudd_ulykker",
+      "label": "Katastrofer, branner, ulykker og historiske brudd",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 34,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_kjonn_familie_livslop",
+      "label": "Kjønn, familie, seksualitet og livsløp",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_okonomi_handel_materielle_systemer",
+      "label": "Økonomi, handel og materielle systemer",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 28,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_religion_reformasjon_livssyn",
+      "label": "Religion, reformasjon og livssyn",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_samisk_urfolkshistorie",
+      "label": "Samisk og urfolkshistorie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_miljo_klima_landskap",
+      "label": "Miljø-, klima- og landskapshistorie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_vitenskap_teknologi_kunnskap",
+      "label": "Vitenskap-, teknologi- og kunnskapshistorie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_global_kolonial_transnasjonal",
+      "label": "Global, kolonial og transnasjonal historie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_offentlighet_mobilisering_bevegelser",
+      "label": "Offentlighet, mobilisering og sosiale bevegelser",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 35,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    }
+  ],
+  "samples": {
+    "concepts": [
+      {
+        "concept_id": "con_his_1814",
+        "label": "1814",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "numeric_reference_mistyped_as_concept",
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_1900",
+        "label": "1900",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "numeric_reference_mistyped_as_concept",
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_1905",
+        "label": "1905",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "numeric_reference_mistyped_as_concept",
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_3d_modell",
+        "label": "3D-modell",
+        "domain_ids": [
+          "his_minne_kulturarv_historiebruk"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_adgangsvilkar",
+        "label": "adgangsvilkår",
+        "domain_ids": [
+          "his_velferd_rett_hverdagsliv"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_akkumulering",
+        "label": "akkumulering",
+        "domain_ids": [
+          "his_okonomi_handel_materielle_systemer"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_ankomst",
+        "label": "ankomst",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_ankomst_vs_varig_bosetting",
+        "label": "ankomst vs varig bosetting",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_ankomstadresse_vs_varig_bosted",
+        "label": "ankomstadresse vs varig bosted",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_antirasisme",
+        "label": "antirasisme",
+        "domain_ids": [
+          "his_offentlighet_mobilisering_bevegelser"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeider",
+        "label": "arbeider-",
+        "domain_ids": [
+          "his_offentlighet_mobilisering_bevegelser"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderbevegelse",
+        "label": "arbeiderbevegelse",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie",
+          "his_offentlighet_mobilisering_bevegelser"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderbolig",
+        "label": "arbeiderbolig",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderbydel_vs_ensartet_klassemiljo",
+        "label": "arbeiderbydel vs ensartet klassemiljø",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderliv",
+        "label": "arbeiderliv",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsdag_vs_betalte_timer",
+        "label": "arbeidsdag vs betalte timer",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsdeling",
+        "label": "arbeidsdeling",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie",
+          "his_okonomi_handel_materielle_systemer"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsdisiplin",
+        "label": "arbeidsdisiplin",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidskraft",
+        "label": "arbeidskraft",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmigrasjon",
+        "label": "arbeidsmigrasjon",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmigrasjon_vs_arbeid_etter_ankomst",
+        "label": "arbeidsmigrasjon vs arbeid etter ankomst",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmiljo",
+        "label": "arbeidsmiljø",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsorganisering",
+        "label": "arbeidsorganisering",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsprosess",
+        "label": "arbeidsprosess",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsrelasjon",
+        "label": "arbeidsrelasjon",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      }
+    ],
+    "theories": [
+      {
+        "theory_id": "theory_his_middelalder_by_kirke",
+        "label": "Middelalderbyen og kirkemakten",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_kongemakt_kirke_og_konflikt",
+        "label": "Kongemakt, kirke og konflikt: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_middelalderens_oslo",
+        "label": "Middelalderens Oslo: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+        "label": "Lov, ting og jurisdiksjon: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_jord_eiendom_og_patronasje",
+        "label": "Jord, eiendom og patronasje: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "label": "Handel, håndverk og bydannelse: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+        "label": "Bondehushold, demografi og dagligliv: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming",
+        "label": "Svartedauden og senmiddelalderens omforming: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_skriftkultur_diplom_og_muntlig_rett",
+        "label": "Skriftkultur, diplom og muntlig rett: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_samiske_kontaktsoner_handel_og_statsgrenser_i_middelalderen",
+        "label": "Samiske kontaktsoner, handel og statsgrenser i middelalderen: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_grunnlov_rom_tekst",
+        "label": "Grunnlov som rom og tekst",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_embetsstat_og_demokratisering",
+        "label": "Embetsstat og demokratisering: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_nasjonal_identitet_og_historiske_fortellinger",
+        "label": "Nasjonal identitet og historiske fortellinger: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+        "label": "Embetsstat og kommunalt selvstyre: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+        "label": "Stemmerett, partier og parlamentarisme: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+        "label": "Nasjon, språk, skole og institusjoner: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_union_selvstendighet_og_1905",
+        "label": "Union, selvstendighet og 1905: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_eksklusjon_fornorskning_og_statsborgerskap",
+        "label": "Eksklusjon, fornorskning og statsborgerskap: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_kommunalt_selvstyre_lokal_forvaltning_og_politisk_deltakelse",
+        "label": "Kommunalt selvstyre, lokal forvaltning og politisk deltakelse: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_1905_unionsopplosning_og_ny_utenrikspolitisk_orientering",
+        "label": "1905, unionsoppløsning og ny utenrikspolitisk orientering: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_industriby_arbeiderliv",
+        "label": "Industriby, produksjon og arbeiderliv",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_fabrikk_arbeidsorganisering",
+        "label": "Fabrikk, arbeidsprosess og organisering",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_arbeidstid_lonn_ferdighet",
+        "label": "Arbeidstid, lønn og ferdighet",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_arbeidsmiljo_risiko_helse",
+        "label": "Arbeidsmiljø, risiko og helse",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_arbeiderbolig_hushold_livsvilkar",
+        "label": "Arbeiderbolig, hushold og livsvilkår",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      }
+    ],
+    "emner": []
+  }
+}
+
+$ node tools/validate-historie-v5.mjs
+
+{
+  "version": "v5.5-quality-freeze-contract",
+  "subject_id": "historie",
+  "status": "QUALITY_REVIEW_REQUIRED",
+  "v6_allowed": false,
+  "generated_at": "2026-07-25T18:42:02.023Z",
+  "coverage_counts": {
+    "domains": 20,
+    "emner": 200,
+    "mappings": 200,
+    "methods": 87,
+    "concepts": 826,
+    "theories": 200
+  },
+  "quality_issue_totals": {
+    "concepts": 474,
+    "theories": 110,
+    "emner": 0,
+    "domains_not_freeze_ready": 11
+  },
+  "global_gates": {
+    "structural_integrity": true,
+    "coverage_counts_match": true,
+    "generator_counts_match_production": true,
+    "all_domains_coverage_complete": true,
+    "concept_registry_curated": false,
+    "theory_registry_curated": false,
+    "emner_individually_curated": true,
+    "all_domains_freeze_ready": false
+  },
+  "quality": {
+    "concept_issue_counts": {
+      "synthetic_template_definition": 474,
+      "missing_semantic_relations": 474,
+      "generic_or_missing_misuse_guard": 474,
+      "numeric_reference_mistyped_as_concept": 3
+    },
+    "theory_issue_counts": {
+      "only_generic_limitations": 110,
+      "mass_repeated_limitation_profile": 110
+    },
+    "emne_issue_counts": {}
+  },
+  "domains": [
+    {
+      "domain_id": "his_tid_periodisering",
+      "label": "Historisk tid og periodisering",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_kilder_arkiv_spor",
+      "label": "Kilder, arkiv og spor",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_makt_stat_institusjoner",
+      "label": "Makt, stat og institusjoner",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_middelalder_kirke_kongemakt",
+      "label": "Middelalder, kirke og kongemakt",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 37,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_1814_statsdannelse",
+      "label": "1814, grunnlov og statsdannelse",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 40,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_industri_arbeid_sosialhistorie",
+      "label": "Industri, arbeid og sosialhistorie",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 73,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_krig_okkupasjon_motstand",
+      "label": "Krig, okkupasjon og motstand",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 37,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_velferd_rett_hverdagsliv",
+      "label": "Velferd, rett og hverdagsliv",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 60,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_migrasjon_minoritet_tilhorighet",
+      "label": "Migrasjon, minoritet og tilhørighet",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 57,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_minne_kulturarv_historiebruk",
+      "label": "Minne, kulturarv og historiebruk",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 67,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_byhistorie_stedsendring",
+      "label": "Byhistorie og stedsendring",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 41,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_katastrofer_brudd_ulykker",
+      "label": "Katastrofer, branner, ulykker og historiske brudd",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 34,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_kjonn_familie_livslop",
+      "label": "Kjønn, familie, seksualitet og livsløp",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_okonomi_handel_materielle_systemer",
+      "label": "Økonomi, handel og materielle systemer",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 28,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    },
+    {
+      "domain_id": "his_religion_reformasjon_livssyn",
+      "label": "Religion, reformasjon og livssyn",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_samisk_urfolkshistorie",
+      "label": "Samisk og urfolkshistorie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_miljo_klima_landskap",
+      "label": "Miljø-, klima- og landskapshistorie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_vitenskap_teknologi_kunnskap",
+      "label": "Vitenskap-, teknologi- og kunnskapshistorie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_global_kolonial_transnasjonal",
+      "label": "Global, kolonial og transnasjonal historie",
+      "coverage_complete": true,
+      "freeze_ready": true,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 0,
+        "theories": 0
+      },
+      "issues": []
+    },
+    {
+      "domain_id": "his_offentlighet_mobilisering_bevegelser",
+      "label": "Offentlighet, mobilisering og sosiale bevegelser",
+      "coverage_complete": true,
+      "freeze_ready": false,
+      "issue_counts": {
+        "emner": 0,
+        "concepts": 35,
+        "theories": 10
+      },
+      "issues": [
+        "concept_quality_incomplete",
+        "theory_quality_incomplete"
+      ]
+    }
+  ],
+  "samples": {
+    "concepts": [
+      {
+        "concept_id": "con_his_1814",
+        "label": "1814",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "numeric_reference_mistyped_as_concept",
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_1900",
+        "label": "1900",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "numeric_reference_mistyped_as_concept",
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_1905",
+        "label": "1905",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "numeric_reference_mistyped_as_concept",
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_3d_modell",
+        "label": "3D-modell",
+        "domain_ids": [
+          "his_minne_kulturarv_historiebruk"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_adgangsvilkar",
+        "label": "adgangsvilkår",
+        "domain_ids": [
+          "his_velferd_rett_hverdagsliv"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_akkumulering",
+        "label": "akkumulering",
+        "domain_ids": [
+          "his_okonomi_handel_materielle_systemer"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_ankomst",
+        "label": "ankomst",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_ankomst_vs_varig_bosetting",
+        "label": "ankomst vs varig bosetting",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_ankomstadresse_vs_varig_bosted",
+        "label": "ankomstadresse vs varig bosted",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_antirasisme",
+        "label": "antirasisme",
+        "domain_ids": [
+          "his_offentlighet_mobilisering_bevegelser"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeider",
+        "label": "arbeider-",
+        "domain_ids": [
+          "his_offentlighet_mobilisering_bevegelser"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderbevegelse",
+        "label": "arbeiderbevegelse",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie",
+          "his_offentlighet_mobilisering_bevegelser"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderbolig",
+        "label": "arbeiderbolig",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderbydel_vs_ensartet_klassemiljo",
+        "label": "arbeiderbydel vs ensartet klassemiljø",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeiderliv",
+        "label": "arbeiderliv",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsdag_vs_betalte_timer",
+        "label": "arbeidsdag vs betalte timer",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsdeling",
+        "label": "arbeidsdeling",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie",
+          "his_okonomi_handel_materielle_systemer"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsdisiplin",
+        "label": "arbeidsdisiplin",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidskraft",
+        "label": "arbeidskraft",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmigrasjon",
+        "label": "arbeidsmigrasjon",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmigrasjon_vs_arbeid_etter_ankomst",
+        "label": "arbeidsmigrasjon vs arbeid etter ankomst",
+        "domain_ids": [
+          "his_migrasjon_minoritet_tilhorighet"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsmiljo",
+        "label": "arbeidsmiljø",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsorganisering",
+        "label": "arbeidsorganisering",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsprosess",
+        "label": "arbeidsprosess",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      },
+      {
+        "concept_id": "con_his_arbeidsrelasjon",
+        "label": "arbeidsrelasjon",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
+      }
+    ],
+    "theories": [
+      {
+        "theory_id": "theory_his_middelalder_by_kirke",
+        "label": "Middelalderbyen og kirkemakten",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_kongemakt_kirke_og_konflikt",
+        "label": "Kongemakt, kirke og konflikt: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_middelalderens_oslo",
+        "label": "Middelalderens Oslo: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+        "label": "Lov, ting og jurisdiksjon: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_jord_eiendom_og_patronasje",
+        "label": "Jord, eiendom og patronasje: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "label": "Handel, håndverk og bydannelse: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+        "label": "Bondehushold, demografi og dagligliv: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming",
+        "label": "Svartedauden og senmiddelalderens omforming: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_skriftkultur_diplom_og_muntlig_rett",
+        "label": "Skriftkultur, diplom og muntlig rett: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_middelalder_kirke_samiske_kontaktsoner_handel_og_statsgrenser_i_middelalderen",
+        "label": "Samiske kontaktsoner, handel og statsgrenser i middelalderen: forklarings- og kildebane",
+        "domain_ids": [
+          "his_middelalder_kirke_kongemakt"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_grunnlov_rom_tekst",
+        "label": "Grunnlov som rom og tekst",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_embetsstat_og_demokratisering",
+        "label": "Embetsstat og demokratisering: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_nasjonal_identitet_og_historiske_fortellinger",
+        "label": "Nasjonal identitet og historiske fortellinger: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+        "label": "Embetsstat og kommunalt selvstyre: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+        "label": "Stemmerett, partier og parlamentarisme: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+        "label": "Nasjon, språk, skole og institusjoner: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_union_selvstendighet_og_1905",
+        "label": "Union, selvstendighet og 1905: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_eksklusjon_fornorskning_og_statsborgerskap",
+        "label": "Eksklusjon, fornorskning og statsborgerskap: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_kommunalt_selvstyre_lokal_forvaltning_og_politisk_deltakelse",
+        "label": "Kommunalt selvstyre, lokal forvaltning og politisk deltakelse: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_1905_unionsopplosning_og_ny_utenrikspolitisk_orientering",
+        "label": "1905, unionsoppløsning og ny utenrikspolitisk orientering: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_industriby_arbeiderliv",
+        "label": "Industriby, produksjon og arbeiderliv",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_fabrikk_arbeidsorganisering",
+        "label": "Fabrikk, arbeidsprosess og organisering",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_arbeidstid_lonn_ferdighet",
+        "label": "Arbeidstid, lønn og ferdighet",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_arbeidsmiljo_risiko_helse",
+        "label": "Arbeidsmiljø, risiko og helse",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_arbeiderbolig_hushold_livsvilkar",
+        "label": "Arbeiderbolig, hushold og livsvilkår",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      }
+    ],
+    "emner": []
+  }
+}
+
+$ node tools/validate-historie-quality-tid-periodisering.mjs
+
+PASS | domain exists
+PASS | domain remains complete_revised
+PASS | 10 domain emners
+PASS | 41 curated concepts
+PASS | 10 curated theories
+PASS | curation result is freeze-ready
+PASS | curation result concept count
+PASS | curation result theory count
+PASS | curation result emne count
+PASS | 13 lexical fragments relabeled
+PASS | relabel replacements are unique
+PASS | con_his_1800_tallets: curated status
+PASS | con_his_1800_tallets: specific definition
+PASS | con_his_1800_tallets: semantic relations
+PASS | con_his_1800_tallets: relation targets exist
+PASS | con_his_1800_tallets: specific misuse guard
+PASS | con_his_1800_tallets: provenance links
+PASS | con_his_1800_tallets: no stale lexical label
+PASS | con_his_anakronisme: curated status
+PASS | con_his_anakronisme: specific definition
+PASS | con_his_anakronisme: semantic relations
+PASS | con_his_anakronisme: relation targets exist
+PASS | con_his_anakronisme: specific misuse guard
+PASS | con_his_anakronisme: provenance links
+PASS | con_his_anakronisme: no stale lexical label
+PASS | con_his_apne: curated status
+PASS | con_his_apne: specific definition
+PASS | con_his_apne: semantic relations
+PASS | con_his_apne: relation targets exist
+PASS | con_his_apne: specific misuse guard
+PASS | con_his_apne: provenance links
+PASS | con_his_apne: no stale lexical label
+PASS | con_his_begreper: curated status
+PASS | con_his_begreper: specific definition
+PASS | con_his_begreper: semantic relations
+PASS | con_his_begreper: relation targets exist
+PASS | con_his_begreper: specific misuse guard
+PASS | con_his_begreper: provenance links
+PASS | con_his_begreper: no stale lexical label
+PASS | con_his_brudd: curated status
+PASS | con_his_brudd: specific definition
+PASS | con_his_brudd: semantic relations
+PASS | con_his_brudd: relation targets exist
+PASS | con_his_brudd: specific misuse guard
+PASS | con_his_brudd: provenance links
+PASS | con_his_brudd: no stale lexical label
+PASS | con_his_byrom: curated status
+PASS | con_his_byrom: specific definition
+PASS | con_his_byrom: semantic relations
+PASS | con_his_byrom: relation targets exist
+PASS | con_his_byrom: specific misuse guard
+PASS | con_his_byrom: provenance links
+PASS | con_his_byrom: no stale lexical label
+PASS | con_his_datering: curated status
+PASS | con_his_datering: specific definition
+PASS | con_his_datering: semantic relations
+PASS | con_his_datering: relation targets exist
+PASS | con_his_datering: specific misuse guard
+PASS | con_his_datering: provenance links
+PASS | con_his_datering: no stale lexical label
+PASS | con_his_dateringsgrunnlag: curated status
+PASS | con_his_dateringsgrunnlag: specific definition
+PASS | con_his_dateringsgrunnlag: semantic relations
+PASS | con_his_dateringsgrunnlag: relation targets exist
+PASS | con_his_dateringsgrunnlag: specific misuse guard
+PASS | con_his_dateringsgrunnlag: provenance links
+PASS | con_his_dateringsgrunnlag: no stale lexical label
+PASS | con_his_dateringsusikkerhet: curated status
+PASS | con_his_dateringsusikkerhet: specific definition
+PASS | con_his_dateringsusikkerhet: semantic relations
+PASS | con_his_dateringsusikkerhet: relation targets exist
+PASS | con_his_dateringsusikkerhet: specific misuse guard
+PASS | con_his_dateringsusikkerhet: provenance links
+PASS | con_his_dateringsusikkerhet: no stale lexical label
+PASS | con_his_endringstempo: curated status
+PASS | con_his_endringstempo: specific definition
+PASS | con_his_endringstempo: semantic relations
+PASS | con_his_endringstempo: relation targets exist
+PASS | con_his_endringstempo: specific misuse guard
+PASS | con_his_endringstempo: provenance links
+PASS | con_his_endringstempo: no stale lexical label
+PASS | con_his_epoker: curated status
+PASS | con_his_epoker: specific definition
+PASS | con_his_epoker: semantic relations
+PASS | con_his_epoker: relation targets exist
+PASS | con_his_epoker: specific misuse guard
+PASS | con_his_epoker: provenance links
+PASS | con_his_epoker: no stale lexical label
+PASS | con_his_erfaring: curated status
+PASS | con_his_erfaring: specific definition
+PASS | con_his_erfaring: semantic relations
+PASS | con_his_erfaring: relation targets exist
+PASS | con_his_erfaring: specific misuse guard
+PASS | con_his_erfaring: provenance links
+PASS | con_his_erfaring: no stale lexical label
+PASS | con_his_erfaringsrom: curated status
+PASS | con_his_erfaringsrom: specific definition
+PASS | con_his_erfaringsrom: semantic relations
+PASS | con_his_erfaringsrom: relation targets exist
+PASS | con_his_erfaringsrom: specific misuse guard
+PASS | con_his_erfaringsrom: provenance links
+PASS | con_his_erfaringsrom: no stale lexical label
+PASS | con_his_ettertid: curated status
+PASS | con_his_ettertid: specific definition
+PASS | con_his_ettertid: semantic relations
+PASS | con_his_ettertid: relation targets exist
+PASS | con_his_ettertid: specific misuse guard
+PASS | con_his_ettertid: provenance links
+PASS | con_his_ettertid: no stale lexical label
+PASS | con_his_fortelling: curated status
+PASS | con_his_fortelling: specific definition
+PASS | con_his_fortelling: semantic relations
+PASS | con_his_fortelling: relation targets exist
+PASS | con_his_fortelling: specific misuse guard
+PASS | con_his_fortelling: provenance links
+PASS | con_his_fortelling: no stale lexical label
+PASS | con_his_forventningshorisont: curated status
+PASS | con_his_forventningshorisont: specific definition
+PASS | con_his_forventningshorisont: semantic relations
+PASS | con_his_forventningshorisont: relation targets exist
+PASS | con_his_forventningshorisont: specific misuse guard
+PASS | con_his_forventningshorisont: provenance links
+PASS | con_his_forventningshorisont: no stale lexical label
+PASS | con_his_framtider: curated status
+PASS | con_his_framtider: specific definition
+PASS | con_his_framtider: semantic relations
+PASS | con_his_framtider: relation targets exist
+PASS | con_his_framtider: specific misuse guard
+PASS | con_his_framtider: provenance links
+PASS | con_his_framtider: no stale lexical label
+PASS | con_his_hendelse: curated status
+PASS | con_his_hendelse: specific definition
+PASS | con_his_hendelse: semantic relations
+PASS | con_his_hendelse: relation targets exist
+PASS | con_his_hendelse: specific misuse guard
+PASS | con_his_hendelse: provenance links
+PASS | con_his_hendelse: no stale lexical label
+PASS | con_his_historisk_endring: curated status
+PASS | con_his_historisk_endring: specific definition
+PASS | con_his_historisk_endring: semantic relations
+PASS | con_his_historisk_endring: relation targets exist
+PASS | con_his_historisk_endring: specific misuse guard
+PASS | con_his_historisk_endring: provenance links
+PASS | con_his_historisk_endring: no stale lexical label
+PASS | con_his_historiske_rytmer: curated status
+PASS | con_his_historiske_rytmer: specific definition
+PASS | con_his_historiske_rytmer: semantic relations
+PASS | con_his_historiske_rytmer: relation targets exist
+PASS | con_his_historiske_rytmer: specific misuse guard
+PASS | con_his_historiske_rytmer: provenance links
+PASS | con_his_historiske_rytmer: no stale lexical label
+PASS | con_his_kildegrunnlag: curated status
+PASS | con_his_kildegrunnlag: specific definition
+PASS | con_his_kildegrunnlag: semantic relations
+PASS | con_his_kildegrunnlag: relation targets exist
+PASS | con_his_kildegrunnlag: specific misuse guard
+PASS | con_his_kildegrunnlag: provenance links
+PASS | con_his_kildegrunnlag: no stale lexical label
+PASS | con_his_kontinuitet: curated status
+PASS | con_his_kontinuitet: specific definition
+PASS | con_his_kontinuitet: semantic relations
+PASS | con_his_kontinuitet: relation targets exist
+PASS | con_his_kontinuitet: specific misuse guard
+PASS | con_his_kontinuitet: provenance links
+PASS | con_his_kontinuitet: no stale lexical label
+PASS | con_his_kronologi: curated status
+PASS | con_his_kronologi: specific definition
+PASS | con_his_kronologi: semantic relations
+PASS | con_his_kronologi: relation targets exist
+PASS | con_his_kronologi: specific misuse guard
+PASS | con_his_kronologi: provenance links
+PASS | con_his_kronologi: no stale lexical label
+PASS | con_his_lag: curated status
+PASS | con_his_lag: specific definition
+PASS | con_his_lag: semantic relations
+PASS | con_his_lag: relation targets exist
+PASS | con_his_lag: specific misuse guard
+PASS | con_his_lag: provenance links
+PASS | con_his_lag: no stale lexical label
+PASS | con_his_lang: curated status
+PASS | con_his_lang: specific definition
+PASS | con_his_lang: semantic relations
+PASS | con_his_lang: relation targets exist
+PASS | con_his_lang: specific misuse guard
+PASS | con_his_lang: provenance links
+PASS | con_his_lang: no stale lexical label
+PASS | con_his_lang_varighet: curated status
+PASS | con_his_lang_varighet: specific definition
+PASS | con_his_lang_varighet: semantic relations
+PASS | con_his_lang_varighet: relation targets exist
+PASS | con_his_lang_varighet: specific misuse guard
+PASS | con_his_lang_varighet: provenance links
+PASS | con_his_lang_varighet: no stale lexical label
+PASS | con_his_modernisering: curated status
+PASS | con_his_modernisering: specific definition
+PASS | con_his_modernisering: semantic relations
+PASS | con_his_modernisering: relation targets exist
+PASS | con_his_modernisering: specific misuse guard
+PASS | con_his_modernisering: provenance links
+PASS | con_his_modernisering: no stale lexical label
+PASS | con_his_periodisering: curated status
+PASS | con_his_periodisering: specific definition
+PASS | con_his_periodisering: semantic relations
+PASS | con_his_periodisering: relation targets exist
+PASS | con_his_periodisering: specific misuse guard
+PASS | con_his_periodisering: provenance links
+PASS | con_his_periodisering: no stale lexical label
+PASS | con_his_prosess: curated status
+PASS | con_his_prosess: specific definition
+PASS | con_his_prosess: semantic relations
+PASS | con_his_prosess: relation targets exist
+PASS | con_his_prosess: specific misuse guard
+PASS | con_his_prosess: provenance links
+PASS | con_his_prosess: no stale lexical label
+PASS | con_his_samtid: curated status
+PASS | con_his_samtid: specific definition
+PASS | con_his_samtid: semantic relations
+PASS | con_his_samtid: relation targets exist
+PASS | con_his_samtid: specific misuse guard
+PASS | con_his_samtid: provenance links
+PASS | con_his_samtid: no stale lexical label
+PASS | con_his_samtidighet: curated status
+PASS | con_his_samtidighet: specific definition
+PASS | con_his_samtidighet: semantic relations
+PASS | con_his_samtidighet: relation targets exist
+PASS | con_his_samtidighet: specific misuse guard
+PASS | con_his_samtidighet: provenance links
+PASS | con_his_samtidighet: no stale lexical label
+PASS | con_his_samtidshistorie: curated status
+PASS | con_his_samtidshistorie: specific definition
+PASS | con_his_samtidshistorie: semantic relations
+PASS | con_his_samtidshistorie: relation targets exist
+PASS | con_his_samtidshistorie: specific misuse guard
+PASS | con_his_samtidshistorie: provenance links
+PASS | con_his_samtidshistorie: no stale lexical label
+PASS | con_his_stedlig_spor: curated status
+PASS | con_his_stedlig_spor: specific definition
+PASS | con_his_stedlig_spor: semantic relations
+PASS | con_his_stedlig_spor: relation targets exist
+PASS | con_his_stedlig_spor: specific misuse guard
+PASS | con_his_stedlig_spor: provenance links
+PASS | con_his_stedlig_spor: no stale lexical label
+PASS | con_his_strukturer: curated status
+PASS | con_his_strukturer: specific definition
+PASS | con_his_strukturer: semantic relations
+PASS | con_his_strukturer: relation targets exist
+PASS | con_his_strukturer: specific misuse guard
+PASS | con_his_strukturer: provenance links
+PASS | con_his_strukturer: no stale lexical label
+PASS | con_his_tid: curated status
+PASS | con_his_tid: specific definition
+PASS | con_his_tid: semantic relations
+PASS | con_his_tid: relation targets exist
+PASS | con_his_tid: specific misuse guard
+PASS | con_his_tid: provenance links
+PASS | con_his_tid: no stale lexical label
+PASS | con_his_tidsforlop: curated status
+PASS | con_his_tidsforlop: specific definition
+PASS | con_his_tidsforlop: semantic relations
+PASS | con_his_tidsforlop: relation targets exist
+PASS | con_his_tidsforlop: specific misuse guard
+PASS | con_his_tidsforlop: provenance links
+PASS | con_his_tidsforlop: no stale lexical label
+PASS | con_his_tidsmessig: curated status
+PASS | con_his_tidsmessig: specific definition
+PASS | con_his_tidsmessig: semantic relations
+PASS | con_his_tidsmessig: relation targets exist
+PASS | con_his_tidsmessig: specific misuse guard
+PASS | con_his_tidsmessig: provenance links
+PASS | con_his_tidsmessig: no stale lexical label
+PASS | con_his_tidsmessig_usikkerhet: curated status
+PASS | con_his_tidsmessig_usikkerhet: specific definition
+PASS | con_his_tidsmessig_usikkerhet: semantic relations
+PASS | con_his_tidsmessig_usikkerhet: relation targets exist
+PASS | con_his_tidsmessig_usikkerhet: specific misuse guard
+PASS | con_his_tidsmessig_usikkerhet: provenance links
+PASS | con_his_tidsmessig_usikkerhet: no stale lexical label
+PASS | con_his_ulike: curated status
+PASS | con_his_ulike: specific definition
+PASS | con_his_ulike: semantic relations
+PASS | con_his_ulike: relation targets exist
+PASS | con_his_ulike: specific misuse guard
+PASS | con_his_ulike: provenance links
+PASS | con_his_ulike: no stale lexical label
+PASS | con_his_usikkerhet: curated status
+PASS | con_his_usikkerhet: specific definition
+PASS | con_his_usikkerhet: semantic relations
+PASS | con_his_usikkerhet: relation targets exist
+PASS | con_his_usikkerhet: specific misuse guard
+PASS | con_his_usikkerhet: provenance links
+PASS | con_his_usikkerhet: no stale lexical label
+PASS | con_his_varighet: curated status
+PASS | con_his_varighet: specific definition
+PASS | con_his_varighet: semantic relations
+PASS | con_his_varighet: relation targets exist
+PASS | con_his_varighet: specific misuse guard
+PASS | con_his_varighet: provenance links
+PASS | con_his_varighet: no stale lexical label
+PASS | 41 distinct concept definitions
+PASS | all replacement labels exist canonically
+PASS | theory_his_periodisering_epoker: curated status
+PASS | theory_his_periodisering_epoker: typed object
+PASS | theory_his_periodisering_epoker: specific definition
+PASS | theory_his_periodisering_epoker: theory-specific limitations
+PASS | theory_his_periodisering_epoker: method links
+PASS | theory_his_periodisering_epoker: thinker links
+PASS | theory_his_periodisering_epoker: hook provenance
+PASS | theory_his_periodisering_epoker: evidence gate remains closed
+PASS | theory_his_brudd_kontinuitet: curated status
+PASS | theory_his_brudd_kontinuitet: typed object
+PASS | theory_his_brudd_kontinuitet: specific definition
+PASS | theory_his_brudd_kontinuitet: theory-specific limitations
+PASS | theory_his_brudd_kontinuitet: method links
+PASS | theory_his_brudd_kontinuitet: thinker links
+PASS | theory_his_brudd_kontinuitet: hook provenance
+PASS | theory_his_brudd_kontinuitet: evidence gate remains closed
+PASS | theory_his_tidslag_samtidighet: curated status
+PASS | theory_his_tidslag_samtidighet: typed object
+PASS | theory_his_tidslag_samtidighet: specific definition
+PASS | theory_his_tidslag_samtidighet: theory-specific limitations
+PASS | theory_his_tidslag_samtidighet: method links
+PASS | theory_his_tidslag_samtidighet: thinker links
+PASS | theory_his_tidslag_samtidighet: hook provenance
+PASS | theory_his_tidslag_samtidighet: evidence gate remains closed
+PASS | theory_his_lang_varighet_strukturer: curated status
+PASS | theory_his_lang_varighet_strukturer: typed object
+PASS | theory_his_lang_varighet_strukturer: specific definition
+PASS | theory_his_lang_varighet_strukturer: theory-specific limitations
+PASS | theory_his_lang_varighet_strukturer: method links
+PASS | theory_his_lang_varighet_strukturer: thinker links
+PASS | theory_his_lang_varighet_strukturer: hook provenance
+PASS | theory_his_lang_varighet_strukturer: evidence gate remains closed
+PASS | theory_his_hendelse_prosess: curated status
+PASS | theory_his_hendelse_prosess: typed object
+PASS | theory_his_hendelse_prosess: specific definition
+PASS | theory_his_hendelse_prosess: theory-specific limitations
+PASS | theory_his_hendelse_prosess: method links
+PASS | theory_his_hendelse_prosess: thinker links
+PASS | theory_his_hendelse_prosess: hook provenance
+PASS | theory_his_hendelse_prosess: evidence gate remains closed
+PASS | theory_his_rytmer_tempo: curated status
+PASS | theory_his_rytmer_tempo: typed object
+PASS | theory_his_rytmer_tempo: specific definition
+PASS | theory_his_rytmer_tempo: theory-specific limitations
+PASS | theory_his_rytmer_tempo: method links
+PASS | theory_his_rytmer_tempo: thinker links
+PASS | theory_his_rytmer_tempo: hook provenance
+PASS | theory_his_rytmer_tempo: evidence gate remains closed
+PASS | theory_his_erfaringsrom_forventningshorisont: curated status
+PASS | theory_his_erfaringsrom_forventningshorisont: typed object
+PASS | theory_his_erfaringsrom_forventningshorisont: specific definition
+PASS | theory_his_erfaringsrom_forventningshorisont: theory-specific limitations
+PASS | theory_his_erfaringsrom_forventningshorisont: method links
+PASS | theory_his_erfaringsrom_forventningshorisont: thinker links
+PASS | theory_his_erfaringsrom_forventningshorisont: hook provenance
+PASS | theory_his_erfaringsrom_forventningshorisont: evidence gate remains closed
+PASS | theory_his_kronologi_datering: curated status
+PASS | theory_his_kronologi_datering: typed object
+PASS | theory_his_kronologi_datering: specific definition
+PASS | theory_his_kronologi_datering: theory-specific limitations
+PASS | theory_his_kronologi_datering: method links
+PASS | theory_his_kronologi_datering: thinker links
+PASS | theory_his_kronologi_datering: hook provenance
+PASS | theory_his_kronologi_datering: evidence gate remains closed
+PASS | theory_his_anakronisme_begrepsbruk: curated status
+PASS | theory_his_anakronisme_begrepsbruk: typed object
+PASS | theory_his_anakronisme_begrepsbruk: specific definition
+PASS | theory_his_anakronisme_begrepsbruk: theory-specific limitations
+PASS | theory_his_anakronisme_begrepsbruk: method links
+PASS | theory_his_anakronisme_begrepsbruk: thinker links
+PASS | theory_his_anakronisme_begrepsbruk: hook provenance
+PASS | theory_his_anakronisme_begrepsbruk: evidence gate remains closed
+PASS | theory_his_samtid_ettertid_fortelling: curated status
+PASS | theory_his_samtid_ettertid_fortelling: typed object
+PASS | theory_his_samtid_ettertid_fortelling: specific definition
+PASS | theory_his_samtid_ettertid_fortelling: theory-specific limitations
+PASS | theory_his_samtid_ettertid_fortelling: method links
+PASS | theory_his_samtid_ettertid_fortelling: thinker links
+PASS | theory_his_samtid_ettertid_fortelling: hook provenance
+PASS | theory_his_samtid_ettertid_fortelling: evidence gate remains closed
+PASS | 10 distinct theory definitions
+PASS | 10 distinct theory limitation profiles
+PASS | em_his_tid_periodisering_epoker: no stale concept labels
+PASS | em_his_brudd_kontinuitet: no stale concept labels
+PASS | em_his_historiske_lag_i_byrom: no stale concept labels
+PASS | em_his_lang_varighet_strukturer: no stale concept labels
+PASS | em_his_hendelse_prosess_tidsforlop: no stale concept labels
+PASS | em_his_modernisering_1800: no stale concept labels
+PASS | em_his_samtidshistorie_brudd: no stale concept labels
+PASS | em_his_kronologi_datering_usikkerhet: no stale concept labels
+PASS | em_his_anakronisme_historiske_begreper: no stale concept labels
+PASS | em_his_samtid_ettertid_fortelling: no stale concept labels
+PASS | global V5.5 validator executes
+PASS | time domain is freeze-ready
+PASS | time domain has zero emne issues
+PASS | time domain has zero concept issues
+PASS | time domain has zero theory issues
+PASS | global concept queue does not exceed 785
+PASS | global theory queue does not exceed 190
+PASS | global emne queue remains zero
+PASS | at most 19 domains remain
+PASS | V6 remains blocked
+RESULT | Historisk tid og periodisering quality freeze PASS
+
+$ node tools/validate-historie-quality-kilder-arkiv-spor.mjs
+
+PASS | domain exists
+PASS | domain remains complete_revised
+PASS | 10 domain emners
+PASS | 68 domain concepts
+PASS | 10 domain theories
+PASS | curation result is freeze-ready
+PASS | curation result concept count
+PASS | curation result theory count
+PASS | curation result emne count
+PASS | 64 individually curated concept records
+PASS | curated concept ids are unique
+PASS | curated concept labels are unique
+PASS | curation result keeps V6 blocked
+PASS | con_his_arkiv: canonical status
+PASS | con_his_arkiv: semantic relations
+PASS | con_his_arkiv: relation targets exist
+PASS | con_his_arkiv: provenance links
+PASS | con_his_arkiv: result label matches canonical object
+PASS | con_his_arkiv: specific definition
+PASS | con_his_arkiv: specific misuse guard
+PASS | con_his_arkiver: canonical status
+PASS | con_his_arkiver: semantic relations
+PASS | con_his_arkiver: relation targets exist
+PASS | con_his_arkiver: provenance links
+PASS | con_his_arkiver: result label matches canonical object
+PASS | con_his_arkiver: specific definition
+PASS | con_his_arkiver: specific misuse guard
+PASS | con_his_arkivorden: canonical status
+PASS | con_his_arkivorden: semantic relations
+PASS | con_his_arkivorden: relation targets exist
+PASS | con_his_arkivorden: provenance links
+PASS | con_his_arkivorden: result label matches canonical object
+PASS | con_his_arkivorden: specific definition
+PASS | con_his_arkivorden: specific misuse guard
+PASS | con_his_arkivtaushet: canonical status
+PASS | con_his_arkivtaushet: semantic relations
+PASS | con_his_arkivtaushet: relation targets exist
+PASS | con_his_arkivtaushet: provenance links
+PASS | con_his_arkivtaushet: result label matches canonical object
+PASS | con_his_arkivtaushet: specific definition
+PASS | con_his_arkivtaushet: specific misuse guard
+PASS | con_his_autentisitet: canonical status
+PASS | con_his_autentisitet: semantic relations
+PASS | con_his_autentisitet: relation targets exist
+PASS | con_his_autentisitet: provenance links
+PASS | con_his_autentisitet: result label matches canonical object
+PASS | con_his_autentisitet: specific definition
+PASS | con_his_autentisitet: specific misuse guard
+PASS | con_his_begrensning: canonical status
+PASS | con_his_begrensning: semantic relations
+PASS | con_his_begrensning: relation targets exist
+PASS | con_his_begrensning: provenance links
+PASS | con_his_begrensning: result label matches canonical object
+PASS | con_his_begrensning: specific definition
+PASS | con_his_begrensning: specific misuse guard
+PASS | con_his_beretning: canonical status
+PASS | con_his_beretning: semantic relations
+PASS | con_his_beretning: relation targets exist
+PASS | con_his_beretning: provenance links
+PASS | con_his_beretning: result label matches canonical object
+PASS | con_his_beretning: specific definition
+PASS | con_his_beretning: specific misuse guard
+PASS | con_his_blindsoner: canonical status
+PASS | con_his_blindsoner: semantic relations
+PASS | con_his_blindsoner: relation targets exist
+PASS | con_his_blindsoner: provenance links
+PASS | con_his_blindsoner: result label matches canonical object
+PASS | con_his_blindsoner: specific definition
+PASS | con_his_blindsoner: specific misuse guard
+PASS | con_his_bygninger: canonical status
+PASS | con_his_bygninger: semantic relations
+PASS | con_his_bygninger: relation targets exist
+PASS | con_his_bygninger: provenance links
+PASS | con_his_bygninger: result label matches canonical object
+PASS | con_his_bygninger: specific definition
+PASS | con_his_bygninger: specific misuse guard
+PASS | con_his_bygningsrester: canonical status
+PASS | con_his_bygningsrester: semantic relations
+PASS | con_his_bygningsrester: relation targets exist
+PASS | con_his_bygningsrester: provenance links
+PASS | con_his_bygningsrester: result label matches canonical object
+PASS | con_his_bygningsrester: specific definition
+PASS | con_his_bygningsrester: specific misuse guard
+PASS | con_his_claim_basis: canonical status
+PASS | con_his_claim_basis: semantic relations
+PASS | con_his_claim_basis: relation targets exist
+PASS | con_his_claim_basis: provenance links
+PASS | con_his_claim_basis: result label matches canonical object
+PASS | con_his_claim_basis: specific definition
+PASS | con_his_claim_basis: specific misuse guard
+PASS | con_his_digital_proveniens: canonical status
+PASS | con_his_digital_proveniens: semantic relations
+PASS | con_his_digital_proveniens: relation targets exist
+PASS | con_his_digital_proveniens: provenance links
+PASS | con_his_digital_proveniens: result label matches canonical object
+PASS | con_his_digital_proveniens: specific definition
+PASS | con_his_digital_proveniens: specific misuse guard
+PASS | con_his_dokumentasjon: canonical status
+PASS | con_his_dokumentasjon: semantic relations
+PASS | con_his_dokumentasjon: relation targets exist
+PASS | con_his_dokumentasjon: provenance links
+PASS | con_his_dokumentasjon: result label matches canonical object
+PASS | con_his_dokumentasjon: specific definition
+PASS | con_his_dokumentasjon: specific misuse guard
+PASS | con_his_dokumentasjonsformer: canonical status
+PASS | con_his_dokumentasjonsformer: semantic relations
+PASS | con_his_dokumentasjonsformer: relation targets exist
+PASS | con_his_dokumentasjonsformer: provenance links
+PASS | con_his_dokumentasjonsformer: result label matches canonical object
+PASS | con_his_dokumentasjonsformer: specific definition
+PASS | con_his_dokumentasjonsformer: specific misuse guard
+PASS | con_his_dokumentform: canonical status
+PASS | con_his_dokumentform: semantic relations
+PASS | con_his_dokumentform: relation targets exist
+PASS | con_his_dokumentform: provenance links
+PASS | con_his_dokumentform: result label matches canonical object
+PASS | con_his_dokumentform: specific definition
+PASS | con_his_dokumentform: specific misuse guard
+PASS | con_his_ettertid: canonical status
+PASS | con_his_ettertid: semantic relations
+PASS | con_his_ettertid: relation targets exist
+PASS | con_his_ettertid: provenance links
+PASS | con_his_finnes: canonical status
+PASS | con_his_finnes: semantic relations
+PASS | con_his_finnes: relation targets exist
+PASS | con_his_finnes: provenance links
+PASS | con_his_finnes: result label matches canonical object
+PASS | con_his_finnes: specific definition
+PASS | con_his_finnes: specific misuse guard
+PASS | con_his_formal: canonical status
+PASS | con_his_formal: semantic relations
+PASS | con_his_formal: relation targets exist
+PASS | con_his_formal: provenance links
+PASS | con_his_formal: result label matches canonical object
+PASS | con_his_formal: specific definition
+PASS | con_his_formal: specific misuse guard
+PASS | con_his_fortsatt: canonical status
+PASS | con_his_fortsatt: semantic relations
+PASS | con_his_fortsatt: relation targets exist
+PASS | con_his_fortsatt: provenance links
+PASS | con_his_fortsatt: result label matches canonical object
+PASS | con_his_fortsatt: specific definition
+PASS | con_his_fortsatt: specific misuse guard
+PASS | con_his_fravaer: canonical status
+PASS | con_his_fravaer: semantic relations
+PASS | con_his_fravaer: relation targets exist
+PASS | con_his_fravaer: provenance links
+PASS | con_his_fravaer: result label matches canonical object
+PASS | con_his_fravaer: specific definition
+PASS | con_his_fravaer: specific misuse guard
+PASS | con_his_funksjoner: canonical status
+PASS | con_his_funksjoner: semantic relations
+PASS | con_his_funksjoner: relation targets exist
+PASS | con_his_funksjoner: provenance links
+PASS | con_his_funksjoner: result label matches canonical object
+PASS | con_his_funksjoner: specific definition
+PASS | con_his_funksjoner: specific misuse guard
+PASS | con_his_gjor: canonical status
+PASS | con_his_gjor: semantic relations
+PASS | con_his_gjor: relation targets exist
+PASS | con_his_gjor: provenance links
+PASS | con_his_gjor: result label matches canonical object
+PASS | con_his_gjor: specific definition
+PASS | con_his_gjor: specific misuse guard
+PASS | con_his_gravminner: canonical status
+PASS | con_his_gravminner: semantic relations
+PASS | con_his_gravminner: relation targets exist
+PASS | con_his_gravminner: provenance links
+PASS | con_his_gravminner: result label matches canonical object
+PASS | con_his_gravminner: specific definition
+PASS | con_his_gravminner: specific misuse guard
+PASS | con_his_grunnsporsmal: canonical status
+PASS | con_his_grunnsporsmal: semantic relations
+PASS | con_his_grunnsporsmal: relation targets exist
+PASS | con_his_grunnsporsmal: provenance links
+PASS | con_his_grunnsporsmal: result label matches canonical object
+PASS | con_his_grunnsporsmal: specific definition
+PASS | con_his_grunnsporsmal: specific misuse guard
+PASS | con_his_historiefagets: canonical status
+PASS | con_his_historiefagets: semantic relations
+PASS | con_his_historiefagets: relation targets exist
+PASS | con_his_historiefagets: provenance links
+PASS | con_his_historiefagets: result label matches canonical object
+PASS | con_his_historiefagets: specific definition
+PASS | con_his_historiefagets: specific misuse guard
+PASS | con_his_hvem: canonical status
+PASS | con_his_hvem: semantic relations
+PASS | con_his_hvem: relation targets exist
+PASS | con_his_hvem: provenance links
+PASS | con_his_hvem: result label matches canonical object
+PASS | con_his_hvem: specific definition
+PASS | con_his_hvem: specific misuse guard
+PASS | con_his_ikke: canonical status
+PASS | con_his_ikke: semantic relations
+PASS | con_his_ikke: relation targets exist
+PASS | con_his_ikke: provenance links
+PASS | con_his_ikke: result label matches canonical object
+PASS | con_his_ikke: specific definition
+PASS | con_his_ikke: specific misuse guard
+PASS | con_his_kart: canonical status
+PASS | con_his_kart: semantic relations
+PASS | con_his_kart: relation targets exist
+PASS | con_his_kart: provenance links
+PASS | con_his_kart: result label matches canonical object
+PASS | con_his_kart: specific definition
+PASS | con_his_kart: specific misuse guard
+PASS | con_his_kataloger: canonical status
+PASS | con_his_kataloger: semantic relations
+PASS | con_his_kataloger: relation targets exist
+PASS | con_his_kataloger: provenance links
+PASS | con_his_kataloger: result label matches canonical object
+PASS | con_his_kataloger: specific definition
+PASS | con_his_kataloger: specific misuse guard
+PASS | con_his_kildegrunnlag: canonical status
+PASS | con_his_kildegrunnlag: semantic relations
+PASS | con_his_kildegrunnlag: relation targets exist
+PASS | con_his_kildegrunnlag: provenance links
+PASS | con_his_kildekritikk: canonical status
+PASS | con_his_kildekritikk: semantic relations
+PASS | con_his_kildekritikk: relation targets exist
+PASS | con_his_kildekritikk: provenance links
+PASS | con_his_kildekritikk: result label matches canonical object
+PASS | con_his_kildekritikk: specific definition
+PASS | con_his_kildekritikk: specific misuse guard
+PASS | con_his_kildene: canonical status
+PASS | con_his_kildene: semantic relations
+PASS | con_his_kildene: relation targets exist
+PASS | con_his_kildene: provenance links
+PASS | con_his_kildene: result label matches canonical object
+PASS | con_his_kildene: specific definition
+PASS | con_his_kildene: specific misuse guard
+PASS | con_his_kildeobjekt: canonical status
+PASS | con_his_kildeobjekt: semantic relations
+PASS | con_his_kildeobjekt: relation targets exist
+PASS | con_his_kildeobjekt: provenance links
+PASS | con_his_kildeobjekt: result label matches canonical object
+PASS | con_his_kildeobjekt: specific definition
+PASS | con_his_kildeobjekt: specific misuse guard
+PASS | con_his_kilder: canonical status
+PASS | con_his_kilder: semantic relations
+PASS | con_his_kilder: relation targets exist
+PASS | con_his_kilder: provenance links
+PASS | con_his_kilder: result label matches canonical object
+PASS | con_his_kilder: specific definition
+PASS | con_his_kilder: specific misuse guard
+PASS | con_his_kontekst: canonical status
+PASS | con_his_kontekst: semantic relations
+PASS | con_his_kontekst: relation targets exist
+PASS | con_his_kontekst: provenance links
+PASS | con_his_kontekst: result label matches canonical object
+PASS | con_his_kontekst: specific definition
+PASS | con_his_kontekst: specific misuse guard
+PASS | con_his_kontrollkilde: canonical status
+PASS | con_his_kontrollkilde: semantic relations
+PASS | con_his_kontrollkilde: relation targets exist
+PASS | con_his_kontrollkilde: provenance links
+PASS | con_his_kontrollkilde: result label matches canonical object
+PASS | con_his_kontrollkilde: specific definition
+PASS | con_his_kontrollkilde: specific misuse guard
+PASS | con_his_korroborering: canonical status
+PASS | con_his_korroborering: semantic relations
+PASS | con_his_korroborering: relation targets exist
+PASS | con_his_korroborering: provenance links
+PASS | con_his_korroborering: result label matches canonical object
+PASS | con_his_korroborering: specific definition
+PASS | con_his_korroborering: specific misuse guard
+PASS | con_his_levning: canonical status
+PASS | con_his_levning: semantic relations
+PASS | con_his_levning: relation targets exist
+PASS | con_his_levning: provenance links
+PASS | con_his_levning: result label matches canonical object
+PASS | con_his_levning: specific definition
+PASS | con_his_levning: specific misuse guard
+PASS | con_his_manglende: canonical status
+PASS | con_his_manglende: semantic relations
+PASS | con_his_manglende: relation targets exist
+PASS | con_his_manglende: provenance links
+PASS | con_his_manglende: result label matches canonical object
+PASS | con_his_manglende: specific definition
+PASS | con_his_manglende: specific misuse guard
+PASS | con_his_materialer: canonical status
+PASS | con_his_materialer: semantic relations
+PASS | con_his_materialer: relation targets exist
+PASS | con_his_materialer: provenance links
+PASS | con_his_materialer: result label matches canonical object
+PASS | con_his_materialer: specific definition
+PASS | con_his_materialer: specific misuse guard
+PASS | con_his_materialitet: canonical status
+PASS | con_his_materialitet: semantic relations
+PASS | con_his_materialitet: relation targets exist
+PASS | con_his_materialitet: provenance links
+PASS | con_his_materialitet: result label matches canonical object
+PASS | con_his_materialitet: specific definition
+PASS | con_his_materialitet: specific misuse guard
+PASS | con_his_monumenter: canonical status
+PASS | con_his_monumenter: semantic relations
+PASS | con_his_monumenter: relation targets exist
+PASS | con_his_monumenter: provenance links
+PASS | con_his_monumenter: result label matches canonical object
+PASS | con_his_monumenter: specific definition
+PASS | con_his_monumenter: specific misuse guard
+PASS | con_his_muntlig_historie: canonical status
+PASS | con_his_muntlig_historie: semantic relations
+PASS | con_his_muntlig_historie: relation targets exist
+PASS | con_his_muntlig_historie: provenance links
+PASS | con_his_muntlig_historie: result label matches canonical object
+PASS | con_his_muntlig_historie: specific definition
+PASS | con_his_muntlig_historie: specific misuse guard
+PASS | con_his_noen: canonical status
+PASS | con_his_noen: semantic relations
+PASS | con_his_noen: relation targets exist
+PASS | con_his_noen: provenance links
+PASS | con_his_noen: result label matches canonical object
+PASS | con_his_noen: specific definition
+PASS | con_his_noen: specific misuse guard
+PASS | con_his_odelagt: canonical status
+PASS | con_his_odelagt: semantic relations
+PASS | con_his_odelagt: relation targets exist
+PASS | con_his_odelagt: provenance links
+PASS | con_his_odelagt: result label matches canonical object
+PASS | con_his_odelagt: specific definition
+PASS | con_his_odelagt: specific misuse guard
+PASS | con_his_ombruk: canonical status
+PASS | con_his_ombruk: semantic relations
+PASS | con_his_ombruk: relation targets exist
+PASS | con_his_ombruk: provenance links
+PASS | con_his_ombruk: result label matches canonical object
+PASS | con_his_ombruk: specific definition
+PASS | con_his_ombruk: specific misuse guard
+PASS | con_his_opphav: canonical status
+PASS | con_his_opphav: semantic relations
+PASS | con_his_opphav: relation targets exist
+PASS | con_his_opphav: provenance links
+PASS | con_his_opphav: result label matches canonical object
+PASS | con_his_opphav: specific definition
+PASS | con_his_opphav: specific misuse guard
+PASS | con_his_produksjonskontekst: canonical status
+PASS | con_his_produksjonskontekst: semantic relations
+PASS | con_his_produksjonskontekst: relation targets exist
+PASS | con_his_produksjonskontekst: provenance links
+PASS | con_his_produksjonskontekst: result label matches canonical object
+PASS | con_his_produksjonskontekst: specific definition
+PASS | con_his_produksjonskontekst: specific misuse guard
+PASS | con_his_proveniens: canonical status
+PASS | con_his_proveniens: semantic relations
+PASS | con_his_proveniens: relation targets exist
+PASS | con_his_proveniens: provenance links
+PASS | con_his_proveniens: result label matches canonical object
+PASS | con_his_proveniens: specific definition
+PASS | con_his_proveniens: specific misuse guard
+PASS | con_his_registre: canonical status
+PASS | con_his_registre: semantic relations
+PASS | con_his_registre: relation targets exist
+PASS | con_his_registre: provenance links
+PASS | con_his_registre: result label matches canonical object
+PASS | con_his_registre: specific definition
+PASS | con_his_registre: specific misuse guard
+PASS | con_his_representativitet: canonical status
+PASS | con_his_representativitet: semantic relations
+PASS | con_his_representativitet: relation targets exist
+PASS | con_his_representativitet: provenance links
+PASS | con_his_representativitet: result label matches canonical object
+PASS | con_his_representativitet: specific definition
+PASS | con_his_representativitet: specific misuse guard
+PASS | con_his_rester: canonical status
+PASS | con_his_rester: semantic relations
+PASS | con_his_rester: relation targets exist
+PASS | con_his_rester: provenance links
+PASS | con_his_rester: result label matches canonical object
+PASS | con_his_rester: specific definition
+PASS | con_his_rester: specific misuse guard
+PASS | con_his_ruiner: canonical status
+PASS | con_his_ruiner: semantic relations
+PASS | con_his_ruiner: relation targets exist
+PASS | con_his_ruiner: provenance links
+PASS | con_his_ruiner: result label matches canonical object
+PASS | con_his_ruiner: specific definition
+PASS | con_his_ruiner: specific misuse guard
+PASS | con_his_samler: canonical status
+PASS | con_his_samler: semantic relations
+PASS | con_his_samler: relation targets exist
+PASS | con_his_samler: provenance links
+PASS | con_his_samler: result label matches canonical object
+PASS | con_his_samler: specific definition
+PASS | con_his_samler: specific misuse guard
+PASS | con_his_serielle: canonical status
+PASS | con_his_serielle: semantic relations
+PASS | con_his_serielle: relation targets exist
+PASS | con_his_serielle: provenance links
+PASS | con_his_serielle: result label matches canonical object
+PASS | con_his_serielle: specific definition
+PASS | con_his_serielle: specific misuse guard
+PASS | con_his_serielle_kilder: canonical status
+PASS | con_his_serielle_kilder: semantic relations
+PASS | con_his_serielle_kilder: relation targets exist
+PASS | con_his_serielle_kilder: provenance links
+PASS | con_his_serielle_kilder: result label matches canonical object
+PASS | con_his_serielle_kilder: specific definition
+PASS | con_his_serielle_kilder: specific misuse guard
+PASS | con_his_skrift: canonical status
+PASS | con_his_skrift: semantic relations
+PASS | con_his_skrift: relation targets exist
+PASS | con_his_skrift: provenance links
+PASS | con_his_skrift: result label matches canonical object
+PASS | con_his_skrift: specific definition
+PASS | con_his_skrift: specific misuse guard
+PASS | con_his_spor: canonical status
+PASS | con_his_spor: semantic relations
+PASS | con_his_spor: relation targets exist
+PASS | con_his_spor: provenance links
+PASS | con_his_spor: result label matches canonical object
+PASS | con_his_spor: specific definition
+PASS | con_his_spor: specific misuse guard
+PASS | con_his_stedlig_spor: canonical status
+PASS | con_his_stedlig_spor: semantic relations
+PASS | con_his_stedlig_spor: relation targets exist
+PASS | con_his_stedlig_spor: provenance links
+PASS | con_his_tapte: canonical status
+PASS | con_his_tapte: semantic relations
+PASS | con_his_tapte: relation targets exist
+PASS | con_his_tapte: provenance links
+PASS | con_his_tapte: result label matches canonical object
+PASS | con_his_tapte: specific definition
+PASS | con_his_tapte: specific misuse guard
+PASS | con_his_taushet: canonical status
+PASS | con_his_taushet: semantic relations
+PASS | con_his_taushet: relation targets exist
+PASS | con_his_taushet: provenance links
+PASS | con_his_taushet: result label matches canonical object
+PASS | con_his_taushet: specific definition
+PASS | con_his_taushet: specific misuse guard
+PASS | con_his_tidligere: canonical status
+PASS | con_his_tidligere: semantic relations
+PASS | con_his_tidligere: relation targets exist
+PASS | con_his_tidligere: provenance links
+PASS | con_his_tidligere: result label matches canonical object
+PASS | con_his_tidligere: specific definition
+PASS | con_his_tidligere: specific misuse guard
+PASS | con_his_tolkning: canonical status
+PASS | con_his_tolkning: semantic relations
+PASS | con_his_tolkning: relation targets exist
+PASS | con_his_tolkning: provenance links
+PASS | con_his_tolkning: result label matches canonical object
+PASS | con_his_tolkning: specific definition
+PASS | con_his_tolkning: specific misuse guard
+PASS | con_his_usikkerhet: canonical status
+PASS | con_his_usikkerhet: semantic relations
+PASS | con_his_usikkerhet: relation targets exist
+PASS | con_his_usikkerhet: provenance links
+PASS | con_his_utelatt: canonical status
+PASS | con_his_utelatt: semantic relations
+PASS | con_his_utelatt: relation targets exist
+PASS | con_his_utelatt: provenance links
+PASS | con_his_utelatt: result label matches canonical object
+PASS | con_his_utelatt: specific definition
+PASS | con_his_utelatt: specific misuse guard
+PASS | con_his_vaere: canonical status
+PASS | con_his_vaere: semantic relations
+PASS | con_his_vaere: relation targets exist
+PASS | con_his_vaere: provenance links
+PASS | con_his_vaere: result label matches canonical object
+PASS | con_his_vaere: specific definition
+PASS | con_his_vaere: specific misuse guard
+PASS | con_his_viktig: canonical status
+PASS | con_his_viktig: semantic relations
+PASS | con_his_viktig: relation targets exist
+PASS | con_his_viktig: provenance links
+PASS | con_his_viktig: result label matches canonical object
+PASS | con_his_viktig: specific definition
+PASS | con_his_viktig: specific misuse guard
+PASS | con_his_visuelle: canonical status
+PASS | con_his_visuelle: semantic relations
+PASS | con_his_visuelle: relation targets exist
+PASS | con_his_visuelle: provenance links
+PASS | con_his_visuelle: result label matches canonical object
+PASS | con_his_visuelle: specific definition
+PASS | con_his_visuelle: specific misuse guard
+PASS | 64 distinct curated concept definitions
+PASS | theory_his_kildekritikk: canonical status
+PASS | theory_his_kildekritikk: typed object
+PASS | theory_his_kildekritikk: specific definition
+PASS | theory_his_kildekritikk: theory-specific limitations
+PASS | theory_his_kildekritikk: method links
+PASS | theory_his_kildekritikk: thinker links
+PASS | theory_his_kildekritikk: hook provenance
+PASS | theory_his_kildekritikk: evidence gate remains closed
+PASS | theory_his_spor_materialitet: canonical status
+PASS | theory_his_spor_materialitet: typed object
+PASS | theory_his_spor_materialitet: specific definition
+PASS | theory_his_spor_materialitet: theory-specific limitations
+PASS | theory_his_spor_materialitet: method links
+PASS | theory_his_spor_materialitet: thinker links
+PASS | theory_his_spor_materialitet: hook provenance
+PASS | theory_his_spor_materialitet: evidence gate remains closed
+PASS | theory_his_arkiv_makt_orden: canonical status
+PASS | theory_his_arkiv_makt_orden: typed object
+PASS | theory_his_arkiv_makt_orden: specific definition
+PASS | theory_his_arkiv_makt_orden: theory-specific limitations
+PASS | theory_his_arkiv_makt_orden: method links
+PASS | theory_his_arkiv_makt_orden: thinker links
+PASS | theory_his_arkiv_makt_orden: hook provenance
+PASS | theory_his_arkiv_makt_orden: evidence gate remains closed
+PASS | theory_his_taushet_fravaer: canonical status
+PASS | theory_his_taushet_fravaer: typed object
+PASS | theory_his_taushet_fravaer: specific definition
+PASS | theory_his_taushet_fravaer: theory-specific limitations
+PASS | theory_his_taushet_fravaer: method links
+PASS | theory_his_taushet_fravaer: thinker links
+PASS | theory_his_taushet_fravaer: hook provenance
+PASS | theory_his_taushet_fravaer: evidence gate remains closed
+PASS | theory_his_dokument_autentisitet: canonical status
+PASS | theory_his_dokument_autentisitet: typed object
+PASS | theory_his_dokument_autentisitet: specific definition
+PASS | theory_his_dokument_autentisitet: theory-specific limitations
+PASS | theory_his_dokument_autentisitet: method links
+PASS | theory_his_dokument_autentisitet: thinker links
+PASS | theory_his_dokument_autentisitet: hook provenance
+PASS | theory_his_dokument_autentisitet: evidence gate remains closed
+PASS | theory_his_skrift_lesning: canonical status
+PASS | theory_his_skrift_lesning: typed object
+PASS | theory_his_skrift_lesning: specific definition
+PASS | theory_his_skrift_lesning: theory-specific limitations
+PASS | theory_his_skrift_lesning: method links
+PASS | theory_his_skrift_lesning: thinker links
+PASS | theory_his_skrift_lesning: hook provenance
+PASS | theory_his_skrift_lesning: evidence gate remains closed
+PASS | theory_his_serielle_kilder: canonical status
+PASS | theory_his_serielle_kilder: typed object
+PASS | theory_his_serielle_kilder: specific definition
+PASS | theory_his_serielle_kilder: theory-specific limitations
+PASS | theory_his_serielle_kilder: method links
+PASS | theory_his_serielle_kilder: thinker links
+PASS | theory_his_serielle_kilder: hook provenance
+PASS | theory_his_serielle_kilder: evidence gate remains closed
+PASS | theory_his_visuelle_kilder: canonical status
+PASS | theory_his_visuelle_kilder: typed object
+PASS | theory_his_visuelle_kilder: specific definition
+PASS | theory_his_visuelle_kilder: theory-specific limitations
+PASS | theory_his_visuelle_kilder: method links
+PASS | theory_his_visuelle_kilder: thinker links
+PASS | theory_his_visuelle_kilder: hook provenance
+PASS | theory_his_visuelle_kilder: evidence gate remains closed
+PASS | theory_his_muntlige_kilder: canonical status
+PASS | theory_his_muntlige_kilder: typed object
+PASS | theory_his_muntlige_kilder: specific definition
+PASS | theory_his_muntlige_kilder: theory-specific limitations
+PASS | theory_his_muntlige_kilder: method links
+PASS | theory_his_muntlige_kilder: thinker links
+PASS | theory_his_muntlige_kilder: hook provenance
+PASS | theory_his_muntlige_kilder: evidence gate remains closed
+PASS | theory_his_digitale_kilder: canonical status
+PASS | theory_his_digitale_kilder: typed object
+PASS | theory_his_digitale_kilder: specific definition
+PASS | theory_his_digitale_kilder: theory-specific limitations
+PASS | theory_his_digitale_kilder: method links
+PASS | theory_his_digitale_kilder: thinker links
+PASS | theory_his_digitale_kilder: hook provenance
+PASS | theory_his_digitale_kilder: evidence gate remains closed
+PASS | 10 distinct theory definitions
+PASS | 10 distinct theory limitation profiles
+PASS | em_his_kildekritikk_arkiv_spor: no stale concept labels
+PASS | em_his_spor_materialitet: no stale concept labels
+PASS | em_his_ruiner_rester_ombruk: no stale concept labels
+PASS | em_his_arkiv_og_dokumentasjon: no stale concept labels
+PASS | em_his_kilder_taushet_blindsoner: no stale concept labels
+PASS | em_his_taushet_og_manglende_kilder: no stale concept labels
+PASS | em_his_dokument_autentisitet: no stale concept labels
+PASS | em_his_skrift_hand_lesning: no stale concept labels
+PASS | em_his_serielle_kilder_kvantifisering: no stale concept labels
+PASS | em_his_visuelle_kilder_fotografi: no stale concept labels
+PASS | temporary command log is absent
+PASS | curation validation report exists
+PASS | global V5.5 validator executes
+PASS | source domain is freeze-ready
+PASS | source domain has zero emne issues
+PASS | source domain has zero concept issues
+PASS | source domain has zero theory issues
+PASS | global concept queue does not exceed 721
+PASS | global theory queue does not exceed 180
+PASS | global emne queue remains zero
+PASS | at most 18 domains remain
+PASS | V6 remains blocked
+RESULT | Kilder, arkiv og spor quality freeze PASS
+
+$ node scripts/build-quiz-production-context.mjs --category by --target deichman_bjorvika --output data/quiz/production_context/by/deichman_bjorvika.json
+
+Skrev data/quiz/production_context/by/deichman_bjorvika.json
+
+$ node scripts/build-quiz-production-context.mjs --category historie --target grindheim_runestein --output data/quiz/production_context/historie/grindheim_runestein.json
+
+Skrev data/quiz/production_context/historie/grindheim_runestein.json
+
+$ node scripts/build-quiz-production-context.mjs --category historie --target grindheim_steinkross --output data/quiz/production_context/historie/grindheim_steinkross.json
+
+Skrev data/quiz/production_context/historie/grindheim_steinkross.json
+
+$ node scripts/build-quiz-production-context.mjs --category historie --target grindheimsveien_nord_gravfelt --output data/quiz/production_context/historie/grindheimsveien_nord_gravfelt.json
+
+Skrev data/quiz/production_context/historie/grindheimsveien_nord_gravfelt.json
+
+$ node scripts/build-quiz-production-context.mjs --category historie --target hoyland_gravhaug_etne --output data/quiz/production_context/historie/hoyland_gravhaug_etne.json
+
+Skrev data/quiz/production_context/historie/hoyland_gravhaug_etne.json
+
+$ npm run audit:quiz-production-context
+
+
+> history-go@0.0.0 audit:quiz-production-context
+> node scripts/audit-quiz-production-context.mjs
+
+{
+  "status": "passed",
+  "categoriesWithQuizProduction": 3,
+  "quizFilesChecked": 8,
+  "checked": [
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "targetId": "deichman_bjorvika",
+      "questions": 35
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "targetId": "grindheim_runestein",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "targetId": "grindheim_steinkross",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "targetId": "grindheimsveien_nord_gravfelt",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "targetId": "hoyland_gravhaug_etne",
+      "questions": 21
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "targetId": "telegrafbygningen",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "targetId": "oslo_posthus",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "targetId": "havnelageret",
+      "questions": 35
+    }
+  ],
+  "failures": []
+}
+
+$ npm run audit:quiz-theory-binding
+
+
+> history-go@0.0.0 audit:quiz-theory-binding
+> node scripts/audit-quiz-theory-binding.mjs
+
+{
+  "status": "passed",
+  "quizFilesChecked": 8,
+  "checked": [
+    {
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "questions": 35,
+      "theoryQuestions": 3,
+      "methodQuestions": 2
+    },
+    {
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "questions": 21,
+      "theoryQuestions": 2,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "questions": 21,
+      "theoryQuestions": 2,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "questions": 21,
+      "theoryQuestions": 2,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "questions": 21,
+      "theoryQuestions": 1,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    }
+  ],
+  "failures": []
+}
+
+$ npm run test:quiz-production
+
+
+> history-go@0.0.0 test:quiz-production
+> node --test tests/quiz-production-pipeline.test.mjs
+
+TAP version 13
+# Subtest: builds the full by production context through the manifest
+ok 1 - builds the full by production context through the manifest
+  ---
+  duration_ms: 206.258831
+  type: 'test'
+  ...
+# Subtest: builds the full history production context through domain-based curriculum
+ok 2 - builds the full history production context through domain-based curriculum
+  ---
+  duration_ms: 262.210626
+  type: 'test'
+  ...
+# Subtest: isolates each history target in the manifest proof
+ok 3 - isolates each history target in the manifest proof
+  ---
+  duration_ms: 246.054567
+  type: 'test'
+  ...
+# Subtest: builds the Grindheimsvegen grave-field context before quiz writing
+ok 4 - builds the Grindheimsvegen grave-field context before quiz writing
+  ---
+  duration_ms: 229.813444
+  type: 'test'
+  ...
+# Subtest: builds the Høyland grave-mound context before quiz writing
+ok 5 - builds the Høyland grave-mound context before quiz writing
+  ---
+  duration_ms: 234.42321
+  type: 'test'
+  ...
+# Subtest: passes production-context, progression and theory-binding audits
+ok 6 - passes production-context, progression and theory-binding audits
+  ---
+  duration_ms: 1598.142757
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2851.650249
+
+$ npm run knowledge:canonical:write
+
+
+> history-go@0.0.0 knowledge:canonical:write
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --write
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Knowledge canonical data: 2843 questions, 3995 units, 144 unresolved emne links.
+Knowledge contract audit: 0 error question(s), 480 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+
+$ npm run knowledge:canonical:check
+
+
+> history-go@0.0.0 knowledge:canonical:check
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --check
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Knowledge canonical data: 2843 questions, 3995 units, 144 unresolved emne links.
+Knowledge contract audit: 0 error question(s), 480 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+
+$ npm run knowledge:legacy:check
+
+
+> history-go@0.0.0 knowledge:legacy:check
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --legacy-only
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Legacy Knowledge audit: 0 active reference(s).
+
+$ node -e const r=require('./reports/historie-v5/historie-v5-5-readiness.json');const d=r.domains.find(x=>x.domain_id==='his_makt_stat_institusjoner');if(!d||!d.freeze_ready||d.issue_counts.concepts||d.issue_counts.theories||d.issue_counts.emner){console.error(d);process.exit(1)}console.log(JSON.stringify(d,null,2))
+
+{
+  "domain_id": "his_makt_stat_institusjoner",
+  "label": "Makt, stat og institusjoner",
+  "coverage_complete": true,
+  "freeze_ready": true,
+  "issue_counts": {
+    "emner": 0,
+    "concepts": 0,
+    "theories": 0
+  },
+  "issues": []
+}
+
+$ node /tmp/apply-makt-curation.mjs --summary
+
+
+$ git diff --check
+

@@ -115,7 +115,7 @@
   {
     "concept_id": "con_his_adgang",
     "label": "adgang",
-    "definition": "I Makt, stat og institusjoner betegner «adgang» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Formelle og praktiske vilkår som avgjør hvem som kan få tilgang til en offentlig ordning, institusjon, rettighet eller beslutningsprosess.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -124,14 +124,32 @@
     "source_emne_ids": [
       "em_his_rettigheter_borgerskap_forvaltning"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «adgang» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rettigheter"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_medborgerskap",
+      "con_his_plikter",
+      "con_his_rettigheter"
+    ],
+    "distinguish_from": [
+      "con_his_rettigheter"
+    ],
+    "common_misuse": [
+      "Å bruke «adgang» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lover, vedtak, søknader, medlems- eller borgerregistre og klagesaker."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert status eller målgruppe",
+      "formelle vilkår",
+      "dokumentert adgang eller avslag",
+      "klage- eller kontrollmulighet"
+    ],
+    "source_requirements": [
+      "lover, vedtak, søknader, medlems- eller borgerregistre og klagesaker",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «adgang»"
+    ]
   },
   {
     "concept_id": "con_his_adgangsvilkar",
@@ -1702,8 +1720,8 @@
   },
   {
     "concept_id": "con_his_beslutningskjeder",
-    "label": "beslutningskjeder",
-    "definition": "I Makt, stat og institusjoner betegner «beslutningskjeder» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "beslutningskjede",
+    "definition": "Rekkefølgen av organer og roller som forbereder, avgjør, iverksetter, kontrollerer og eventuelt omgjør en offentlig beslutning.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -1714,17 +1732,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «beslutningskjeder» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_beslutningsspor",
+      "con_his_kompetanse",
+      "con_his_iverksetting"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_beslutningsspor"
+    ],
+    "common_misuse": [
+      "Å bruke «beslutningskjede» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert saksforløp",
+      "navngitte organer og roller",
+      "kompetanse på hvert trinn",
+      "spor etter vedtak og oppfølging"
+    ],
+    "source_requirements": [
+      "innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «beslutningskjede»"
+    ]
   },
   {
     "concept_id": "con_his_beslutningsspor",
     "label": "beslutningsspor",
-    "definition": "I Makt, stat og institusjoner betegner «beslutningsspor» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Dokumenterbare avtrykk etter en beslutningsprosess, som innstillinger, merknader, vedtak, ekspedisjoner og kontrollnotater.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -1742,14 +1776,32 @@
       "em_his_rettigheter_borgerskap_forvaltning",
       "em_his_politi_straff_institusjonshverdag"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «beslutningsspor» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_beslutningskjeder"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_kompetanse",
+      "con_his_iverksetting",
+      "con_his_beslutningskjeder"
+    ],
+    "distinguish_from": [
+      "con_his_beslutningskjeder"
+    ],
+    "common_misuse": [
+      "Å bruke «beslutningsspor» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert saksforløp",
+      "navngitte organer og roller",
+      "kompetanse på hvert trinn",
+      "spor etter vedtak og oppfølging"
+    ],
+    "source_requirements": [
+      "innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «beslutningsspor»"
+    ]
   },
   {
     "concept_id": "con_his_bestilling",
@@ -2176,7 +2228,7 @@
   {
     "concept_id": "con_his_borgerskap",
     "label": "borgerskap",
-    "definition": "I Makt, stat og institusjoner betegner «borgerskap» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Historisk avgrenset status som knytter personer til en by eller stat gjennom bestemte rettigheter, plikter, næringsadgang og politisk deltakelse.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -2188,14 +2240,32 @@
       "em_his_rettsoppgjor",
       "em_his_beslutningskjeder_kompetanse_ansvar"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «borgerskap» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rettigheter"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_medborgerskap",
+      "con_his_plikter",
+      "con_his_adgang"
+    ],
+    "distinguish_from": [
+      "con_his_medborgerskap"
+    ],
+    "common_misuse": [
+      "Å bruke «borgerskap» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lover, vedtak, søknader, medlems- eller borgerregistre og klagesaker."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert status eller målgruppe",
+      "formelle vilkår",
+      "dokumentert adgang eller avslag",
+      "klage- eller kontrollmulighet"
+    ],
+    "source_requirements": [
+      "lover, vedtak, søknader, medlems- eller borgerregistre og klagesaker",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «borgerskap»"
+    ]
   },
   {
     "concept_id": "con_his_bosetting",
@@ -2547,7 +2617,7 @@
   {
     "concept_id": "con_his_byrakrati",
     "label": "byråkrati",
-    "definition": "I Makt, stat og institusjoner betegner «byråkrati» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Styringsform der faste embeter, kompetansegrenser, skriftlige regler og dokumenterte saksrutiner gjør myndighetsutøvelse gjentakbar.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -2557,14 +2627,32 @@
       "em_his_stat_institusjoner",
       "em_his_embetsstat_forvaltning"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «byråkrati» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_institusjoner",
+      "con_his_forvaltning",
+      "con_his_mandat"
+    ],
+    "distinguish_from": [
+      "con_his_forvaltning"
+    ],
+    "common_misuse": [
+      "Å bruke «byråkrati» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «byråkrati»"
+    ]
   },
   {
     "concept_id": "con_his_byrom",
@@ -3434,7 +3522,7 @@
   {
     "concept_id": "con_his_dom",
     "label": "dom",
-    "definition": "I Makt, stat og institusjoner betegner «dom» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Rettslig avgjørelse som anvender et lov- eller regelgrunnlag på et konkret saksforhold og fastsetter rettsfølge.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -3443,19 +3531,38 @@
     "source_emne_ids": [
       "em_his_rettsoppgjor"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «dom» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rett"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_lovgrunnlag",
+      "con_his_jurisdiksjon",
+      "con_his_domstol",
+      "con_his_tiltale"
+    ],
+    "distinguish_from": [
+      "con_his_tiltale"
+    ],
+    "common_misuse": [
+      "Å bruke «dom» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "angitt hjemmel",
+      "historisk jurisdiksjon",
+      "dokumentert prosedyre",
+      "avgjørelse eller rettsfølge"
+    ],
+    "source_requirements": [
+      "lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «dom»"
+    ]
   },
   {
     "concept_id": "con_his_domstol",
     "label": "domstol",
-    "definition": "I Makt, stat og institusjoner betegner «domstol» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Institusjon med historisk bestemt jurisdiksjon og prosedyre for å avgjøre tvister, straffesaker eller prøving av myndighetsutøvelse.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -3464,19 +3571,37 @@
     "source_emne_ids": [
       "em_his_rett_politi_fengsel"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «domstol» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rett"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_lovgrunnlag",
+      "con_his_jurisdiksjon",
+      "con_his_forvaltning"
+    ],
+    "distinguish_from": [
+      "con_his_forvaltning"
+    ],
+    "common_misuse": [
+      "Å bruke «domstol» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "angitt hjemmel",
+      "historisk jurisdiksjon",
+      "dokumentert prosedyre",
+      "avgjørelse eller rettsfølge"
+    ],
+    "source_requirements": [
+      "lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «domstol»"
+    ]
   },
   {
     "concept_id": "con_his_domstoler",
-    "label": "domstoler",
-    "definition": "I Makt, stat og institusjoner betegner «domstoler» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "domstolsordning",
+    "definition": "Det historiske systemet av domstoler, instanser, jurisdiksjoner og ankemuligheter som fordeler dømmende myndighet.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -3485,14 +3610,32 @@
     "source_emne_ids": [
       "em_his_rett_politi_fengsel"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «domstoler» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rett"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_lovgrunnlag",
+      "con_his_jurisdiksjon",
+      "con_his_domstol"
+    ],
+    "distinguish_from": [
+      "con_his_domstol"
+    ],
+    "common_misuse": [
+      "Å bruke «domstolsordning» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "angitt hjemmel",
+      "historisk jurisdiksjon",
+      "dokumentert prosedyre",
+      "avgjørelse eller rettsfølge"
+    ],
+    "source_requirements": [
+      "lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «domstolsordning»"
+    ]
   },
   {
     "concept_id": "con_his_dyr",
@@ -3774,7 +3917,7 @@
   {
     "concept_id": "con_his_embetsstat",
     "label": "embetsstat",
-    "definition": "I Makt, stat og institusjoner betegner «embetsstat» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Historisk statsform der et utdannet embetsverk bar en stor del av forvaltningen og den politiske ledelsen, særlig i Norge på 1800-tallet.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -3793,14 +3936,33 @@
       "em_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
       "em_his_1814_statsdannelse_union_selvstendighet_og_1905"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «embetsstat» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_institusjoner",
+      "con_his_forvaltning",
+      "con_his_mandat",
+      "con_his_byrakrati"
+    ],
+    "distinguish_from": [
+      "con_his_byrakrati"
+    ],
+    "common_misuse": [
+      "Å bruke «embetsstat» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «embetsstat»"
+    ]
   },
   {
     "concept_id": "con_his_endrer",
@@ -4256,7 +4418,7 @@
   {
     "concept_id": "con_his_etterforskning",
     "label": "etterforskning",
-    "definition": "I Makt, stat og institusjoner betegner «etterforskning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Myndighetsstyrt innsamling og prøving av opplysninger for å avklare et mulig lovbrudd før tiltale eller annen reaksjon.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -4265,14 +4427,33 @@
     "source_emne_ids": [
       "em_his_rettsoppgjor"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «etterforskning» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_politi"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_politiarbeid",
+      "con_his_fengsel",
+      "con_his_straff",
+      "con_his_tiltale"
+    ],
+    "distinguish_from": [
+      "con_his_tiltale"
+    ],
+    "common_misuse": [
+      "Å bruke «etterforskning» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "reglement eller hjemmel",
+      "navngitt institusjon og personell",
+      "dokumentert inngrep eller rutine",
+      "spor etter den berørtes erfaring"
+    ],
+    "source_requirements": [
+      "politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «etterforskning»"
+    ]
   },
   {
     "concept_id": "con_his_etterkrig",
@@ -4646,8 +4827,8 @@
   },
   {
     "concept_id": "con_his_far",
-    "label": "får",
-    "definition": "I Makt, stat og institusjoner betegner «får» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "mandattildeling",
+    "definition": "Den formelle eller faktiske prosessen der et organ, embete eller person får myndighet, oppgaver og ressursrammer.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -4656,14 +4837,33 @@
     "source_emne_ids": [
       "em_his_stat_institusjoner"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «får» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_beslutningskjeder"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_beslutningsspor",
+      "con_his_kompetanse",
+      "con_his_iverksetting",
+      "con_his_mandat"
+    ],
+    "distinguish_from": [
+      "con_his_mandat"
+    ],
+    "common_misuse": [
+      "Å bruke «mandattildeling» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert saksforløp",
+      "navngitte organer og roller",
+      "kompetanse på hvert trinn",
+      "spor etter vedtak og oppfølging"
+    ],
+    "source_requirements": [
+      "innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «mandattildeling»"
+    ]
   },
   {
     "concept_id": "con_his_fare",
@@ -4849,7 +5049,7 @@
   {
     "concept_id": "con_his_fengsel",
     "label": "fengsel",
-    "definition": "I Makt, stat og institusjoner betegner «fengsel» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Institusjon for frihetsberøvelse der straff, varetekt, arbeid, disiplin og omsorg organiseres gjennom skiftende regimer.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -4858,14 +5058,32 @@
     "source_emne_ids": [
       "em_his_politi_straff_institusjonshverdag"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fengsel» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_politi"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_politiarbeid",
+      "con_his_straff",
+      "con_his_varetekt"
+    ],
+    "distinguish_from": [
+      "con_his_varetekt"
+    ],
+    "common_misuse": [
+      "Å bruke «fengsel» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "reglement eller hjemmel",
+      "navngitt institusjon og personell",
+      "dokumentert inngrep eller rutine",
+      "spor etter den berørtes erfaring"
+    ],
+    "source_requirements": [
+      "politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «fengsel»"
+    ]
   },
   {
     "concept_id": "con_his_fengsler",
@@ -5003,8 +5221,8 @@
   },
   {
     "concept_id": "con_his_flytter",
-    "label": "flytter",
-    "definition": "I Makt, stat og institusjoner betegner «flytter» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "institusjonell relokalisering",
+    "definition": "Flytting av et styringsorgan, arkiv, personell eller funksjon som endrer tilgang, beredskap eller beslutningsflyt.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -5013,14 +5231,31 @@
     "source_emne_ids": [
       "em_his_styring_krise_kontinuitet"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «flytter» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_krise"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_kontinuitet",
+      "con_his_omfordeler"
+    ],
+    "distinguish_from": [
+      "con_his_kontinuitet"
+    ],
+    "common_misuse": [
+      "Å bruke «institusjonell relokalisering» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot beredskapsplaner, krisevedtak, korrespondanse, logger og etterrapporter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert trussel eller brudd",
+      "endret kompetanse eller lokalisering",
+      "midlertidig eller varig tiltak",
+      "spor etter normalisering"
+    ],
+    "source_requirements": [
+      "beredskapsplaner, krisevedtak, korrespondanse, logger og etterrapporter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «institusjonell relokalisering»"
+    ]
   },
   {
     "concept_id": "con_his_flytting",
@@ -5295,8 +5530,8 @@
   },
   {
     "concept_id": "con_his_foreslo",
-    "label": "foreslo",
-    "definition": "I Makt, stat og institusjoner betegner «foreslo» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "forslagsmyndighet",
+    "definition": "Kompetansen til å fremme en sak, løsning eller regelendring inn i en formell beslutningsprosess.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -5305,14 +5540,33 @@
     "source_emne_ids": [
       "em_his_beslutningskjeder_kompetanse_ansvar"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «foreslo» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_beslutningskjeder"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_beslutningsspor",
+      "con_his_kompetanse",
+      "con_his_iverksetting",
+      "con_his_utredet"
+    ],
+    "distinguish_from": [
+      "con_his_utredet"
+    ],
+    "common_misuse": [
+      "Å bruke «forslagsmyndighet» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert saksforløp",
+      "navngitte organer og roller",
+      "kompetanse på hvert trinn",
+      "spor etter vedtak og oppfølging"
+    ],
+    "source_requirements": [
+      "innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «forslagsmyndighet»"
+    ]
   },
   {
     "concept_id": "con_his_forfolgelse",
@@ -5366,8 +5620,8 @@
   },
   {
     "concept_id": "con_his_forholdet",
-    "label": "forholdet",
-    "definition": "I Makt, stat og institusjoner betegner «forholdet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "institusjonell relasjon",
+    "definition": "Et historisk bestemt avhengighets-, kontroll- eller samarbeidsforhold mellom organer med ulike mandater og ressurser.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -5378,14 +5632,33 @@
       "em_his_embetsstat_forvaltning",
       "em_his_kongemakt_kirke_konflikt"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «forholdet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_institusjoner",
+      "con_his_forvaltning",
+      "con_his_mandat",
+      "con_his_mellom"
+    ],
+    "distinguish_from": [
+      "con_his_mellom"
+    ],
+    "common_misuse": [
+      "Å bruke «institusjonell relasjon» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «institusjonell relasjon»"
+    ]
   },
   {
     "concept_id": "con_his_forkristne",
@@ -5765,7 +6038,7 @@
   {
     "concept_id": "con_his_forvaltning",
     "label": "forvaltning",
-    "definition": "I Makt, stat og institusjoner betegner «forvaltning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Organer og praksiser som utreder, iverksetter og følger opp lover og politiske vedtak gjennom konkrete saker.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -5782,14 +6055,32 @@
       "em_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
       "em_his_bruker_tjeneste_forvaltning"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «forvaltning» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_institusjoner",
+      "con_his_mandat",
+      "con_his_styring"
+    ],
+    "distinguish_from": [
+      "con_his_styring"
+    ],
+    "common_misuse": [
+      "Å bruke «forvaltning» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «forvaltning»"
+    ]
   },
   {
     "concept_id": "con_his_forventningshorisont",
@@ -6080,8 +6371,8 @@
   },
   {
     "concept_id": "con_his_gjennom",
-    "label": "gjennom",
-    "definition": "I Makt, stat og institusjoner betegner «gjennom» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "rettsprosess",
+    "definition": "Den sammenhengende prosedyren fra etterforskning og tiltale til dom, reaksjon, anke og fullbyrdelse.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -6092,14 +6383,33 @@
       "em_his_rettsoppgjor",
       "em_his_nasjonal_identitet_fortellinger"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «gjennom» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rett"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_lovgrunnlag",
+      "con_his_jurisdiksjon",
+      "con_his_domstol",
+      "con_his_rettsoppgjor"
+    ],
+    "distinguish_from": [
+      "con_his_rettsoppgjor"
+    ],
+    "common_misuse": [
+      "Å bruke «rettsprosess» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "angitt hjemmel",
+      "historisk jurisdiksjon",
+      "dokumentert prosedyre",
+      "avgjørelse eller rettsfølge"
+    ],
+    "source_requirements": [
+      "lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «rettsprosess»"
+    ]
   },
   {
     "concept_id": "con_his_gjennomsnitt_vs_lonnsspredning",
@@ -6984,8 +7294,8 @@
   },
   {
     "concept_id": "con_his_hverdagsrutiner",
-    "label": "hverdagsrutiner",
-    "definition": "I Makt, stat og institusjoner betegner «hverdagsrutiner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "institusjonelle hverdagsrutiner",
+    "definition": "Gjentatte arbeids-, kontroll- og samhandlingsformer som viser hvordan regler faktisk ble praktisert i en institusjon.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -6994,19 +7304,38 @@
     "source_emne_ids": [
       "em_his_politi_straff_institusjonshverdag"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «hverdagsrutiner» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_politi"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_politiarbeid",
+      "con_his_fengsel",
+      "con_his_straff",
+      "con_his_regelgrunnlag"
+    ],
+    "distinguish_from": [
+      "con_his_regelgrunnlag"
+    ],
+    "common_misuse": [
+      "Å bruke «institusjonelle hverdagsrutiner» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "reglement eller hjemmel",
+      "navngitt institusjon og personell",
+      "dokumentert inngrep eller rutine",
+      "spor etter den berørtes erfaring"
+    ],
+    "source_requirements": [
+      "politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «institusjonelle hverdagsrutiner»"
+    ]
   },
   {
     "concept_id": "con_his_hvordan",
-    "label": "hvordan",
-    "definition": "I Makt, stat og institusjoner betegner «hvordan» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "styringsmekanisme",
+    "definition": "Den dokumenterbare forbindelsen mellom mandat, beslutning, ressurser, iverksetting og virkning i myndighetsutøvelse.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -7018,14 +7347,33 @@
       "em_his_statlig_kapasitet_skatt_infrastruktur",
       "em_his_rettigheter_borgerskap_forvaltning"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «hvordan» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_beslutningskjeder"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_beslutningsspor",
+      "con_his_kompetanse",
+      "con_his_iverksetting",
+      "con_his_konsekvens"
+    ],
+    "distinguish_from": [
+      "con_his_konsekvens"
+    ],
+    "common_misuse": [
+      "Å bruke «styringsmekanisme» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert saksforløp",
+      "navngitte organer og roller",
+      "kompetanse på hvert trinn",
+      "spor etter vedtak og oppfølging"
+    ],
+    "source_requirements": [
+      "innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «styringsmekanisme»"
+    ]
   },
   {
     "concept_id": "con_his_hygiene",
@@ -7050,8 +7398,8 @@
   },
   {
     "concept_id": "con_his_identifikasjon",
-    "label": "identifikasjon",
-    "definition": "I Makt, stat og institusjoner betegner «identifikasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "myndighetsidentifikasjon",
+    "definition": "Praksiser for å fastslå og dokumentere hvem en person er gjennom navn, kjennetegn, dokumenter eller registre.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -7060,14 +7408,33 @@
     "source_emne_ids": [
       "em_his_kontroll_overvakning"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «identifikasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_kontroll"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_overvakning",
+      "con_his_registre",
+      "con_his_rapportering",
+      "con_his_kategorier"
+    ],
+    "distinguish_from": [
+      "con_his_kategorier"
+    ],
+    "common_misuse": [
+      "Å bruke «myndighetsidentifikasjon» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot registre, skjemaer, rapporter, instrukser og kontrollsaker."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert informasjonsbehov",
+      "standardisert kategori eller skjema",
+      "gjentatt registrering",
+      "dokumentert bruk av opplysningene"
+    ],
+    "source_requirements": [
+      "registre, skjemaer, rapporter, instrukser og kontrollsaker",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «myndighetsidentifikasjon»"
+    ]
   },
   {
     "concept_id": "con_his_identitet",
@@ -7623,8 +7990,8 @@
   },
   {
     "concept_id": "con_his_inntekter",
-    "label": "inntekter",
-    "definition": "I Makt, stat og institusjoner betegner «inntekter» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "offentlige inntekter",
+    "definition": "Ressurser staten eller kommunen skaffer gjennom skatt, avgifter, eiendom, monopoler eller overføringer for å finansiere virksomhet.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -7633,14 +8000,32 @@
     "source_emne_ids": [
       "em_his_statlig_kapasitet_skatt_infrastruktur"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «inntekter» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_statlig_kapasitet"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_personell",
+      "con_his_infrastruktur",
+      "con_his_skatt"
+    ],
+    "distinguish_from": [
+      "con_his_skatt"
+    ],
+    "common_misuse": [
+      "Å bruke «offentlige inntekter» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot budsjetter, regnskaper, personalfortegnelser, planverk og gjennomføringsrapporter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "budsjett eller inntektsgrunnlag",
+      "tilgjengelig personell",
+      "logistikk eller infrastruktur",
+      "målbar gjennomføring eller svikt"
+    ],
+    "source_requirements": [
+      "budsjetter, regnskaper, personalfortegnelser, planverk og gjennomføringsrapporter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «offentlige inntekter»"
+    ]
   },
   {
     "concept_id": "con_his_institusjon_vs_hele_gruppen",
@@ -7739,8 +8124,8 @@
   },
   {
     "concept_id": "con_his_institusjoner",
-    "label": "institusjoner",
-    "definition": "I Makt, stat og institusjoner betegner «institusjoner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "offentlige institusjoner",
+    "definition": "Varige organer, regler og roller som organiserer myndighet og gjør bestemte styringsoppgaver gjentakbare over tid.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -7757,14 +8142,32 @@
       "em_his_branner_ulykker_brudd",
       "em_his_gjenoppbygging_minne"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «institusjoner» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_forvaltning",
+      "con_his_mandat",
+      "con_his_stat"
+    ],
+    "distinguish_from": [
+      "con_his_stat"
+    ],
+    "common_misuse": [
+      "Å bruke «offentlige institusjoner» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «offentlige institusjoner»"
+    ]
   },
   {
     "concept_id": "con_his_institusjonsbygging",
@@ -7790,7 +8193,7 @@
   {
     "concept_id": "con_his_institusjonshverdag",
     "label": "institusjonshverdag",
-    "definition": "I Makt, stat og institusjoner betegner «institusjonshverdag» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Levd praksis innenfor en offentlig institusjon, slik den framtrer i arbeid, venting, disiplin, forhandling og uformelle rutiner.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -7799,14 +8202,33 @@
     "source_emne_ids": [
       "em_his_politi_straff_institusjonshverdag"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «institusjonshverdag» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_politi"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_politiarbeid",
+      "con_his_fengsel",
+      "con_his_straff",
+      "con_his_institusjoner"
+    ],
+    "distinguish_from": [
+      "con_his_institusjoner"
+    ],
+    "common_misuse": [
+      "Å bruke «institusjonshverdag» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "reglement eller hjemmel",
+      "navngitt institusjon og personell",
+      "dokumentert inngrep eller rutine",
+      "spor etter den berørtes erfaring"
+    ],
+    "source_requirements": [
+      "politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «institusjonshverdag»"
+    ]
   },
   {
     "concept_id": "con_his_intern_flytting_vs_grensekryssende_migrasjon",
@@ -7982,7 +8404,7 @@
   {
     "concept_id": "con_his_iverksetting",
     "label": "iverksetting",
-    "definition": "I Makt, stat og institusjoner betegner «iverksetting» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Oversettelsen av et vedtak eller en regel til handling gjennom instrukser, personell, budsjetter, bygg og lokale rutiner.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -8000,14 +8422,32 @@
       "em_his_rettigheter_borgerskap_forvaltning",
       "em_his_politi_straff_institusjonshverdag"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «iverksetting» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_beslutningskjeder"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_beslutningsspor",
+      "con_his_kompetanse",
+      "con_his_beslutningskjeder"
+    ],
+    "distinguish_from": [
+      "con_his_beslutningskjeder"
+    ],
+    "common_misuse": [
+      "Å bruke «iverksetting» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert saksforløp",
+      "navngitte organer og roller",
+      "kompetanse på hvert trinn",
+      "spor etter vedtak og oppfølging"
+    ],
+    "source_requirements": [
+      "innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «iverksetting»"
+    ]
   },
   {
     "concept_id": "con_his_jord",
@@ -8177,7 +8617,7 @@
   {
     "concept_id": "con_his_jurisdiksjon",
     "label": "jurisdiksjon",
-    "definition": "I Makt, stat og institusjoner betegner «jurisdiksjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Historisk avgrenset myndighet til å gi regler, avgjøre saker eller håndheve vedtak over bestemte personer, steder eller saksfelt.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -8196,14 +8636,32 @@
       "em_his_middelalder_kirke_handel_handverk_og_bydannelse",
       "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «jurisdiksjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rett"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_lovgrunnlag",
+      "con_his_domstol",
+      "con_his_kompetanse"
+    ],
+    "distinguish_from": [
+      "con_his_kompetanse"
+    ],
+    "common_misuse": [
+      "Å bruke «jurisdiksjon» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "angitt hjemmel",
+      "historisk jurisdiksjon",
+      "dokumentert prosedyre",
+      "avgjørelse eller rettsfølge"
+    ],
+    "source_requirements": [
+      "lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «jurisdiksjon»"
+    ]
   },
   {
     "concept_id": "con_his_kald",
@@ -8277,8 +8735,8 @@
   },
   {
     "concept_id": "con_his_kapasitet",
-    "label": "kapasitet",
-    "definition": "I Makt, stat og institusjoner betegner «kapasitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "institusjonell kapasitet",
+    "definition": "Et organs faktiske evne til å utføre sitt mandat med tilgjengelig personell, kunnskap, økonomi, logistikk og legitimitet.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -8287,14 +8745,33 @@
     "source_emne_ids": [
       "em_his_statlig_kapasitet_skatt_infrastruktur"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kapasitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_statlig_kapasitet"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_inntekter",
+      "con_his_personell",
+      "con_his_infrastruktur",
+      "con_his_statlig_kapasitet"
+    ],
+    "distinguish_from": [
+      "con_his_statlig_kapasitet"
+    ],
+    "common_misuse": [
+      "Å bruke «institusjonell kapasitet» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot budsjetter, regnskaper, personalfortegnelser, planverk og gjennomføringsrapporter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "budsjett eller inntektsgrunnlag",
+      "tilgjengelig personell",
+      "logistikk eller infrastruktur",
+      "målbar gjennomføring eller svikt"
+    ],
+    "source_requirements": [
+      "budsjetter, regnskaper, personalfortegnelser, planverk og gjennomføringsrapporter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «institusjonell kapasitet»"
+    ]
   },
   {
     "concept_id": "con_his_kapital",
@@ -8505,8 +8982,8 @@
   },
   {
     "concept_id": "con_his_kategorier",
-    "label": "kategorier",
-    "definition": "I Makt, stat og institusjoner betegner «kategorier» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "administrative kategorier",
+    "definition": "Klassifikasjoner myndigheter bruker for å ordne personer, eiendom, hendelser eller rettigheter i registre og saksbehandling.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -8515,19 +8992,38 @@
     "source_emne_ids": [
       "em_his_kontroll_overvakning"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kategorier» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_kontroll"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_overvakning",
+      "con_his_registre",
+      "con_his_rapportering",
+      "con_his_identifikasjon"
+    ],
+    "distinguish_from": [
+      "con_his_identifikasjon"
+    ],
+    "common_misuse": [
+      "Å bruke «administrative kategorier» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot registre, skjemaer, rapporter, instrukser og kontrollsaker."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert informasjonsbehov",
+      "standardisert kategori eller skjema",
+      "gjentatt registrering",
+      "dokumentert bruk av opplysningene"
+    ],
+    "source_requirements": [
+      "registre, skjemaer, rapporter, instrukser og kontrollsaker",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «administrative kategorier»"
+    ]
   },
   {
     "concept_id": "con_his_kildebegrensning",
-    "label": "kildebegrensning",
-    "definition": "I Makt, stat og institusjoner betegner «kildebegrensning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "institusjonell kildebegrensning",
+    "definition": "Skjevheten som oppstår fordi myndighetsarkiver først og fremst dokumenterer organets egne behov, språk og arbeidsprosesser.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -8582,14 +9078,32 @@
       "em_his_riving_ombruk_bevaring",
       "em_his_sanering_byfornyelse"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kildebegrensning» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_beslutningsspor"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_rekonstruerer",
+      "con_his_konsekvens",
+      "con_his_beslutningsspor"
+    ],
+    "distinguish_from": [
+      "con_his_beslutningsspor"
+    ],
+    "common_misuse": [
+      "Å bruke «institusjonell kildebegrensning» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot proveniensbeskrivelser, journaler, saksmapper og uavhengige kontrollkilder."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifisert kildeprodusent",
+      "kjent administrativ funksjon",
+      "sammenholdte kildeserier",
+      "eksplisitt kildebegrensning"
+    ],
+    "source_requirements": [
+      "proveniensbeskrivelser, journaler, saksmapper og uavhengige kontrollkilder",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «institusjonell kildebegrensning»"
+    ]
   },
   {
     "concept_id": "con_his_kildegrunnlag",
@@ -8970,8 +9484,8 @@
   },
   {
     "concept_id": "con_his_klage",
-    "label": "klage",
-    "definition": "I Makt, stat og institusjoner betegner «klage» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "forvaltningsklage",
+    "definition": "Formell adgang til å be et organ eller en overordnet instans prøve en offentlig avgjørelse på nytt.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -8980,14 +9494,33 @@
     "source_emne_ids": [
       "em_his_rettigheter_borgerskap_forvaltning"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «klage» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rettigheter"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_medborgerskap",
+      "con_his_plikter",
+      "con_his_adgang",
+      "con_his_dom"
+    ],
+    "distinguish_from": [
+      "con_his_dom"
+    ],
+    "common_misuse": [
+      "Å bruke «forvaltningsklage» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lover, vedtak, søknader, medlems- eller borgerregistre og klagesaker."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert status eller målgruppe",
+      "formelle vilkår",
+      "dokumentert adgang eller avslag",
+      "klage- eller kontrollmulighet"
+    ],
+    "source_requirements": [
+      "lover, vedtak, søknader, medlems- eller borgerregistre og klagesaker",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «forvaltningsklage»"
+    ]
   },
   {
     "concept_id": "con_his_klasse",
@@ -9551,8 +10084,8 @@
   },
   {
     "concept_id": "con_his_kompetanse",
-    "label": "kompetanse",
-    "definition": "I Makt, stat og institusjoner betegner «kompetanse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "myndighetskompetanse",
+    "definition": "Rettslig eller institusjonelt avgrenset adgang til å foreslå, beslutte, iverksette eller kontrollere en handling.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -9570,14 +10103,32 @@
       "em_his_rettigheter_borgerskap_forvaltning",
       "em_his_politi_straff_institusjonshverdag"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kompetanse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_beslutningskjeder"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_beslutningsspor",
+      "con_his_iverksetting",
+      "con_his_kapasitet"
+    ],
+    "distinguish_from": [
+      "con_his_kapasitet"
+    ],
+    "common_misuse": [
+      "Å bruke «myndighetskompetanse» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert saksforløp",
+      "navngitte organer og roller",
+      "kompetanse på hvert trinn",
+      "spor etter vedtak og oppfølging"
+    ],
+    "source_requirements": [
+      "innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «myndighetskompetanse»"
+    ]
   },
   {
     "concept_id": "con_his_konfesjonalisering",
@@ -9762,8 +10313,8 @@
   },
   {
     "concept_id": "con_his_konsekvens",
-    "label": "konsekvens",
-    "definition": "I Makt, stat og institusjoner betegner «konsekvens» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "institusjonell konsekvens",
+    "definition": "Dokumentert virkning en beslutning eller praksis får for en bestemt gruppe, rettighet, ressurs eller institusjon.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -9781,14 +10332,32 @@
       "em_his_rettigheter_borgerskap_forvaltning",
       "em_his_politi_straff_institusjonshverdag"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «konsekvens» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_beslutningskjeder"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_beslutningsspor",
+      "con_his_kompetanse",
+      "con_his_iverksetting"
+    ],
+    "distinguish_from": [
+      "con_his_iverksetting"
+    ],
+    "common_misuse": [
+      "Å bruke «institusjonell konsekvens» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert saksforløp",
+      "navngitte organer og roller",
+      "kompetanse på hvert trinn",
+      "spor etter vedtak og oppfølging"
+    ],
+    "source_requirements": [
+      "innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «institusjonell konsekvens»"
+    ]
   },
   {
     "concept_id": "con_his_konstitusjonalisme",
@@ -9954,8 +10523,8 @@
   },
   {
     "concept_id": "con_his_kontorer",
-    "label": "kontorer",
-    "definition": "I Makt, stat og institusjoner betegner «kontorer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "forvaltningskontor",
+    "definition": "Organisatorisk og fysisk arbeidssted der embets- og tjenestepersoner mottar saker, produserer dokumenter og samordner avgjørelser.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -9964,19 +10533,38 @@
     "source_emne_ids": [
       "em_his_embetsstat_forvaltning"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kontorer» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_institusjoner",
+      "con_his_forvaltning",
+      "con_his_mandat",
+      "con_his_byrakrati"
+    ],
+    "distinguish_from": [
+      "con_his_byrakrati"
+    ],
+    "common_misuse": [
+      "Å bruke «forvaltningskontor» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «forvaltningskontor»"
+    ]
   },
   {
     "concept_id": "con_his_kontroll",
-    "label": "kontroll",
-    "definition": "I Makt, stat og institusjoner betegner «kontroll» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "myndighetskontroll",
+    "definition": "Praksiser for å undersøke, styre eller korrigere personer, organer og handlinger gjennom tilsyn, rapportering og sanksjoner.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -9992,12 +10580,28 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kontroll» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_overvakning",
+      "con_his_registre",
+      "con_his_rapportering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_overvakning"
+    ],
+    "common_misuse": [
+      "Å bruke «myndighetskontroll» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot registre, skjemaer, rapporter, instrukser og kontrollsaker."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert informasjonsbehov",
+      "standardisert kategori eller skjema",
+      "gjentatt registrering",
+      "dokumentert bruk av opplysningene"
+    ],
+    "source_requirements": [
+      "registre, skjemaer, rapporter, instrukser og kontrollsaker",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «myndighetskontroll»"
+    ]
   },
   {
     "concept_id": "con_his_kontrollkilde",
@@ -10207,8 +10811,8 @@
   },
   {
     "concept_id": "con_his_krise",
-    "label": "krise",
-    "definition": "I Makt, stat og institusjoner betegner «krise» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "styringskrise",
+    "definition": "Situasjon der etablerte rutiner, ressurser eller kompetanseordninger ikke håndterer en trussel uten ekstraordinær omorganisering.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -10221,12 +10825,28 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «krise» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kontinuitet",
+      "con_his_omfordeler",
+      "con_his_flytter"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_kontinuitet"
+    ],
+    "common_misuse": [
+      "Å bruke «styringskrise» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot beredskapsplaner, krisevedtak, korrespondanse, logger og etterrapporter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert trussel eller brudd",
+      "endret kompetanse eller lokalisering",
+      "midlertidig eller varig tiltak",
+      "spor etter normalisering"
+    ],
+    "source_requirements": [
+      "beredskapsplaner, krisevedtak, korrespondanse, logger og etterrapporter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «styringskrise»"
+    ]
   },
   {
     "concept_id": "con_his_kriseledelse",
@@ -11070,8 +11690,8 @@
   },
   {
     "concept_id": "con_his_legitimitet",
-    "label": "legitimitet",
-    "definition": "I Makt, stat og institusjoner betegner «legitimitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "institusjonell legitimitet",
+    "definition": "Historisk skiftende oppfatning av at en myndighet, prosedyre eller avgjørelse er rettmessig og bør etterleves.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -11080,14 +11700,33 @@
     "source_emne_ids": [
       "em_his_politi_straff_institusjonshverdag"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «legitimitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_institusjoner",
+      "con_his_forvaltning",
+      "con_his_mandat",
+      "con_his_lovgrunnlag"
+    ],
+    "distinguish_from": [
+      "con_his_lovgrunnlag"
+    ],
+    "common_misuse": [
+      "Å bruke «institusjonell legitimitet» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «institusjonell legitimitet»"
+    ]
   },
   {
     "concept_id": "con_his_lekmanns",
@@ -11553,8 +12192,8 @@
   },
   {
     "concept_id": "con_his_lover",
-    "label": "lover",
-    "definition": "I Makt, stat og institusjoner betegner «lover» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "lovgivning",
+    "definition": "Formelt vedtatte normer som etablerer rettigheter, plikter, organer og reaksjoner innenfor en historisk jurisdiksjon.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -11563,19 +12202,38 @@
     "source_emne_ids": [
       "em_his_rett_politi_fengsel"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «lover» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rett"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_lovgrunnlag",
+      "con_his_jurisdiksjon",
+      "con_his_domstol",
+      "con_his_regelgrunnlag"
+    ],
+    "distinguish_from": [
+      "con_his_regelgrunnlag"
+    ],
+    "common_misuse": [
+      "Å bruke «lovgivning» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "angitt hjemmel",
+      "historisk jurisdiksjon",
+      "dokumentert prosedyre",
+      "avgjørelse eller rettsfølge"
+    ],
+    "source_requirements": [
+      "lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «lovgivning»"
+    ]
   },
   {
     "concept_id": "con_his_lovgrunnlag",
     "label": "lovgrunnlag",
-    "definition": "I Makt, stat og institusjoner betegner «lovgrunnlag» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Den konkrete loven, forskriften eller rettslige normen som gir hjemmel for en myndighetshandling eller reaksjon.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -11584,14 +12242,32 @@
     "source_emne_ids": [
       "em_his_rettsoppgjor"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «lovgrunnlag» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rett"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_jurisdiksjon",
+      "con_his_domstol",
+      "con_his_regelgrunnlag"
+    ],
+    "distinguish_from": [
+      "con_his_regelgrunnlag"
+    ],
+    "common_misuse": [
+      "Å bruke «lovgrunnlag» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "angitt hjemmel",
+      "historisk jurisdiksjon",
+      "dokumentert prosedyre",
+      "avgjørelse eller rettsfølge"
+    ],
+    "source_requirements": [
+      "lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «lovgrunnlag»"
+    ]
   },
   {
     "concept_id": "con_his_makt",
@@ -11697,8 +12373,8 @@
   },
   {
     "concept_id": "con_his_mandat",
-    "label": "mandat",
-    "definition": "I Makt, stat og institusjoner betegner «mandat» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "institusjonelt mandat",
+    "definition": "Formelt fastsatt oppdrag som angir et organs formål, oppgaver, myndighet og ansvar.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -11709,14 +12385,32 @@
       "em_his_embetsstat_forvaltning",
       "em_his_styring_krise_kontinuitet"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «mandat» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_institusjoner",
+      "con_his_forvaltning",
+      "con_his_kompetanse"
+    ],
+    "distinguish_from": [
+      "con_his_kompetanse"
+    ],
+    "common_misuse": [
+      "Å bruke «institusjonelt mandat» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «institusjonelt mandat»"
+    ]
   },
   {
     "concept_id": "con_his_manglende",
@@ -12060,7 +12754,7 @@
   {
     "concept_id": "con_his_medborgerskap",
     "label": "medborgerskap",
-    "definition": "I Makt, stat og institusjoner betegner «medborgerskap» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Tilhørighet til et politisk fellesskap uttrykt gjennom rettigheter, plikter, deltakelse og faktisk adgang til offentlige institusjoner.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -12071,14 +12765,32 @@
       "em_his_rettigheter_borgerskap_forvaltning",
       "em_his_skole_folkedannelse"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «medborgerskap» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rettigheter"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_plikter",
+      "con_his_adgang",
+      "con_his_borgerskap"
+    ],
+    "distinguish_from": [
+      "con_his_borgerskap"
+    ],
+    "common_misuse": [
+      "Å bruke «medborgerskap» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lover, vedtak, søknader, medlems- eller borgerregistre og klagesaker."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert status eller målgruppe",
+      "formelle vilkår",
+      "dokumentert adgang eller avslag",
+      "klage- eller kontrollmulighet"
+    ],
+    "source_requirements": [
+      "lover, vedtak, søknader, medlems- eller borgerregistre og klagesaker",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «medborgerskap»"
+    ]
   },
   {
     "concept_id": "con_his_medier",
@@ -12227,8 +12939,8 @@
   },
   {
     "concept_id": "con_his_mellom",
-    "label": "mellom",
-    "definition": "I Makt, stat og institusjoner betegner «mellom» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "kompetansefordeling",
+    "definition": "Fordelingen av saksfelt, beslutningsmyndighet og kontroll mellom organer, nivåer eller jurisdiksjoner.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -12239,14 +12951,33 @@
       "em_his_embetsstat_forvaltning",
       "em_his_kongemakt_kirke_konflikt"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «mellom» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_beslutningskjeder"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_beslutningsspor",
+      "con_his_kompetanse",
+      "con_his_iverksetting",
+      "con_his_forholdet"
+    ],
+    "distinguish_from": [
+      "con_his_forholdet"
+    ],
+    "common_misuse": [
+      "Å bruke «kompetansefordeling» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert saksforløp",
+      "navngitte organer og roller",
+      "kompetanse på hvert trinn",
+      "spor etter vedtak og oppfølging"
+    ],
+    "source_requirements": [
+      "innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «kompetansefordeling»"
+    ]
   },
   {
     "concept_id": "con_his_menneske",
@@ -14097,8 +14828,8 @@
   },
   {
     "concept_id": "con_his_offentlige",
-    "label": "offentlige",
-    "definition": "I Makt, stat og institusjoner betegner «offentlige» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "offentlig myndighet",
+    "definition": "Myndighet som utøves på vegne av stat, kommune eller annet offentlig organ med hjemmel, ansvar og kontrollordninger.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -14109,14 +14840,33 @@
       "em_his_stat_institusjoner",
       "em_his_byhistorie_stedsendring_sentrum_periferi_og_byutvidelse"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «offentlige» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_institusjoner",
+      "con_his_forvaltning",
+      "con_his_mandat",
+      "con_his_statsmakt"
+    ],
+    "distinguish_from": [
+      "con_his_statsmakt"
+    ],
+    "common_misuse": [
+      "Å bruke «offentlig myndighet» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «offentlig myndighet»"
+    ]
   },
   {
     "concept_id": "con_his_offentlighet",
@@ -14334,8 +15084,8 @@
   },
   {
     "concept_id": "con_his_omfordeler",
-    "label": "omfordeler",
-    "definition": "I Makt, stat og institusjoner betegner «omfordeler» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "kompetanseomfordeling",
+    "definition": "Endring der myndighet, ansvar eller ressurser flyttes mellom organer under reform, krise eller administrativ omorganisering.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -14344,14 +15094,32 @@
     "source_emne_ids": [
       "em_his_styring_krise_kontinuitet"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «omfordeler» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_krise"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_kontinuitet",
+      "con_his_flytter",
+      "con_his_mellom"
+    ],
+    "distinguish_from": [
+      "con_his_mellom"
+    ],
+    "common_misuse": [
+      "Å bruke «kompetanseomfordeling» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot beredskapsplaner, krisevedtak, korrespondanse, logger og etterrapporter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert trussel eller brudd",
+      "endret kompetanse eller lokalisering",
+      "midlertidig eller varig tiltak",
+      "spor etter normalisering"
+    ],
+    "source_requirements": [
+      "beredskapsplaner, krisevedtak, korrespondanse, logger og etterrapporter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «kompetanseomfordeling»"
+    ]
   },
   {
     "concept_id": "con_his_omforming",
@@ -14840,7 +15608,7 @@
   {
     "concept_id": "con_his_overvakning",
     "label": "overvåkning",
-    "definition": "I Makt, stat og institusjoner betegner «overvåkning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Systematisk innsamling og sammenstilling av opplysninger for å følge, vurdere eller påvirke personer og handlinger.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -14856,14 +15624,32 @@
       "em_his_fangenskap_kontroll",
       "em_his_offentlighet_mobilisering_digital_mobilisering_overvakning_og_motmakt"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «overvåkning» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_kontroll"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_registre",
+      "con_his_rapportering",
+      "con_his_kontroll"
+    ],
+    "distinguish_from": [
+      "con_his_kontroll"
+    ],
+    "common_misuse": [
+      "Å bruke «overvåkning» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot registre, skjemaer, rapporter, instrukser og kontrollsaker."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert informasjonsbehov",
+      "standardisert kategori eller skjema",
+      "gjentatt registrering",
+      "dokumentert bruk av opplysningene"
+    ],
+    "source_requirements": [
+      "registre, skjemaer, rapporter, instrukser og kontrollsaker",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «overvåkning»"
+    ]
   },
   {
     "concept_id": "con_his_parlamentarisme",
@@ -15115,8 +15901,8 @@
   },
   {
     "concept_id": "con_his_personell",
-    "label": "personell",
-    "definition": "I Makt, stat og institusjoner betegner «personell» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "offentlig personell",
+    "definition": "Embets- og tjenestepersoner som bærer institusjonell kunnskap og utfører styring, kontroll eller tjenesteyting.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -15125,14 +15911,32 @@
     "source_emne_ids": [
       "em_his_statlig_kapasitet_skatt_infrastruktur"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «personell» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_statlig_kapasitet"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_inntekter",
+      "con_his_infrastruktur",
+      "con_his_profesjoner"
+    ],
+    "distinguish_from": [
+      "con_his_profesjoner"
+    ],
+    "common_misuse": [
+      "Å bruke «offentlig personell» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot budsjetter, regnskaper, personalfortegnelser, planverk og gjennomføringsrapporter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "budsjett eller inntektsgrunnlag",
+      "tilgjengelig personell",
+      "logistikk eller infrastruktur",
+      "målbar gjennomføring eller svikt"
+    ],
+    "source_requirements": [
+      "budsjetter, regnskaper, personalfortegnelser, planverk og gjennomføringsrapporter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «offentlig personell»"
+    ]
   },
   {
     "concept_id": "con_his_personer",
@@ -15285,8 +16089,8 @@
   },
   {
     "concept_id": "con_his_plikter",
-    "label": "plikter",
-    "definition": "I Makt, stat og institusjoner betegner «plikter» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "offentlige plikter",
+    "definition": "Historisk bestemte krav om handling, betaling, tjeneste eller lydighet som følger av status, lov eller vedtak.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -15295,14 +16099,32 @@
     "source_emne_ids": [
       "em_his_rettigheter_borgerskap_forvaltning"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «plikter» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rettigheter"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_medborgerskap",
+      "con_his_adgang",
+      "con_his_rettigheter"
+    ],
+    "distinguish_from": [
+      "con_his_rettigheter"
+    ],
+    "common_misuse": [
+      "Å bruke «offentlige plikter» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lover, vedtak, søknader, medlems- eller borgerregistre og klagesaker."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert status eller målgruppe",
+      "formelle vilkår",
+      "dokumentert adgang eller avslag",
+      "klage- eller kontrollmulighet"
+    ],
+    "source_requirements": [
+      "lover, vedtak, søknader, medlems- eller borgerregistre og klagesaker",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «offentlige plikter»"
+    ]
   },
   {
     "concept_id": "con_his_pluralisme",
@@ -15343,8 +16165,8 @@
   },
   {
     "concept_id": "con_his_politi",
-    "label": "politi",
-    "definition": "I Makt, stat og institusjoner betegner «politi» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "politiinstitusjon",
+    "definition": "Offentlig organisasjon med skiftende oppgaver innen orden, etterforskning, kontroll, forebygging og tvang.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -15355,17 +16177,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «politi» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_politiarbeid",
+      "con_his_fengsel",
+      "con_his_straff"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_politiarbeid"
+    ],
+    "common_misuse": [
+      "Å bruke «politiinstitusjon» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "reglement eller hjemmel",
+      "navngitt institusjon og personell",
+      "dokumentert inngrep eller rutine",
+      "spor etter den berørtes erfaring"
+    ],
+    "source_requirements": [
+      "politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «politiinstitusjon»"
+    ]
   },
   {
     "concept_id": "con_his_politiarbeid",
     "label": "politiarbeid",
-    "definition": "I Makt, stat og institusjoner betegner «politiarbeid» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Konkrete patrulje-, etterforsknings-, registrerings- og kontrollpraksiser utført av politiets personell.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -15374,14 +16212,32 @@
     "source_emne_ids": [
       "em_his_politi_straff_institusjonshverdag"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «politiarbeid» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_politi"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_fengsel",
+      "con_his_straff",
+      "con_his_politi"
+    ],
+    "distinguish_from": [
+      "con_his_politi"
+    ],
+    "common_misuse": [
+      "Å bruke «politiarbeid» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "reglement eller hjemmel",
+      "navngitt institusjon og personell",
+      "dokumentert inngrep eller rutine",
+      "spor etter den berørtes erfaring"
+    ],
+    "source_requirements": [
+      "politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «politiarbeid»"
+    ]
   },
   {
     "concept_id": "con_his_politikk",
@@ -15968,8 +16824,8 @@
   },
   {
     "concept_id": "con_his_rapportering",
-    "label": "rapportering",
-    "definition": "I Makt, stat og institusjoner betegner «rapportering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "institusjonell rapportering",
+    "definition": "Standardisert formidling av hendelser, resultater og avvik oppover eller mellom organer for å muliggjøre kontroll og beslutning.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -15978,14 +16834,32 @@
     "source_emne_ids": [
       "em_his_kontroll_overvakning"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rapportering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_kontroll"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_overvakning",
+      "con_his_registre",
+      "con_his_beslutningsspor"
+    ],
+    "distinguish_from": [
+      "con_his_beslutningsspor"
+    ],
+    "common_misuse": [
+      "Å bruke «institusjonell rapportering» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot registre, skjemaer, rapporter, instrukser og kontrollsaker."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert informasjonsbehov",
+      "standardisert kategori eller skjema",
+      "gjentatt registrering",
+      "dokumentert bruk av opplysningene"
+    ],
+    "source_requirements": [
+      "registre, skjemaer, rapporter, instrukser og kontrollsaker",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «institusjonell rapportering»"
+    ]
   },
   {
     "concept_id": "con_his_raseforskning",
@@ -16217,7 +17091,7 @@
   {
     "concept_id": "con_his_regelgrunnlag",
     "label": "regelgrunnlag",
-    "definition": "I Makt, stat og institusjoner betegner «regelgrunnlag» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Samlingen av lover, instrukser, reglementer og sedvaner som avgrenser en institusjons praksis.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -16235,14 +17109,32 @@
       "em_his_rettigheter_borgerskap_forvaltning",
       "em_his_politi_straff_institusjonshverdag"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «regelgrunnlag» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rett"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_lovgrunnlag",
+      "con_his_jurisdiksjon",
+      "con_his_domstol"
+    ],
+    "distinguish_from": [
+      "con_his_lovgrunnlag"
+    ],
+    "common_misuse": [
+      "Å bruke «regelgrunnlag» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "angitt hjemmel",
+      "historisk jurisdiksjon",
+      "dokumentert prosedyre",
+      "avgjørelse eller rettsfølge"
+    ],
+    "source_requirements": [
+      "lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «regelgrunnlag»"
+    ]
   },
   {
     "concept_id": "con_his_registre",
@@ -16433,8 +17325,8 @@
   },
   {
     "concept_id": "con_his_rekonstruerer",
-    "label": "rekonstruerer",
-    "definition": "I Makt, stat og institusjoner betegner «rekonstruerer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "beslutningsrekonstruksjon",
+    "definition": "Historisk metodegrep som ordner spredte spor for å vise hvem som visste, foreslo, avgjorde og iverksatte hva og når.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -16443,14 +17335,32 @@
     "source_emne_ids": [
       "em_his_beslutningskjeder_kompetanse_ansvar"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rekonstruerer» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_beslutningskjeder"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_beslutningsspor",
+      "con_his_kompetanse",
+      "con_his_iverksetting"
+    ],
+    "distinguish_from": [
+      "con_his_beslutningsspor"
+    ],
+    "common_misuse": [
+      "Å bruke «beslutningsrekonstruksjon» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert saksforløp",
+      "navngitte organer og roller",
+      "kompetanse på hvert trinn",
+      "spor etter vedtak og oppfølging"
+    ],
+    "source_requirements": [
+      "innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «beslutningsrekonstruksjon»"
+    ]
   },
   {
     "concept_id": "con_his_rekonstruksjon",
@@ -16945,8 +17855,8 @@
   },
   {
     "concept_id": "con_his_rett",
-    "label": "rett",
-    "definition": "I Makt, stat og institusjoner betegner «rett» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "rettsorden",
+    "definition": "Historisk system av normer, institusjoner og prosedyrer som definerer rettigheter, plikter og legitime reaksjoner.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -16961,17 +17871,34 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rett» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_lovgrunnlag",
+      "con_his_jurisdiksjon",
+      "con_his_domstol",
+      "con_his_rettigheter"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_rettigheter"
+    ],
+    "common_misuse": [
+      "Å bruke «rettsorden» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "angitt hjemmel",
+      "historisk jurisdiksjon",
+      "dokumentert prosedyre",
+      "avgjørelse eller rettsfølge"
+    ],
+    "source_requirements": [
+      "lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «rettsorden»"
+    ]
   },
   {
     "concept_id": "con_his_rettigheter",
     "label": "rettigheter",
-    "definition": "I Makt, stat og institusjoner betegner «rettigheter» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Historisk fastsatte krav eller friheter som institusjoner skal anerkjenne, beskytte eller yte adgang til.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -16982,12 +17909,28 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rettigheter» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_medborgerskap",
+      "con_his_plikter",
+      "con_his_adgang"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_plikter"
+    ],
+    "common_misuse": [
+      "Å bruke «rettigheter» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lover, vedtak, søknader, medlems- eller borgerregistre og klagesaker."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert status eller målgruppe",
+      "formelle vilkår",
+      "dokumentert adgang eller avslag",
+      "klage- eller kontrollmulighet"
+    ],
+    "source_requirements": [
+      "lover, vedtak, søknader, medlems- eller borgerregistre og klagesaker",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «rettigheter»"
+    ]
   },
   {
     "concept_id": "con_his_rettighetskamp",
@@ -17031,7 +17974,7 @@
   {
     "concept_id": "con_his_rettsoppgjor",
     "label": "rettsoppgjør",
-    "definition": "I Makt, stat og institusjoner betegner «rettsoppgjør» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Avgrenset prosess der lovbrudd knyttet til krig, regime eller omfattende maktmisbruk etterforskes, pådømmes og fortolkes offentlig.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -17043,19 +17986,38 @@
       "em_his_rettsoppgjor_etterkrig",
       "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rettsoppgjør» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rett"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_lovgrunnlag",
+      "con_his_jurisdiksjon",
+      "con_his_domstol",
+      "con_his_gjennom"
+    ],
+    "distinguish_from": [
+      "con_his_gjennom"
+    ],
+    "common_misuse": [
+      "Å bruke «rettsoppgjør» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "angitt hjemmel",
+      "historisk jurisdiksjon",
+      "dokumentert prosedyre",
+      "avgjørelse eller rettsfølge"
+    ],
+    "source_requirements": [
+      "lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «rettsoppgjør»"
+    ]
   },
   {
     "concept_id": "con_his_rettsstat",
     "label": "rettsstat",
-    "definition": "I Makt, stat og institusjoner betegner «rettsstat» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Styringsordning der myndighetsutøvelse bindes av offentlig kjente regler, kompetansegrenser, domstolsprøving og rettssikkerhet.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -17066,14 +18028,33 @@
       "em_his_kontroll_overvakning",
       "em_his_rettsoppgjor"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rettsstat» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rett"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_lovgrunnlag",
+      "con_his_jurisdiksjon",
+      "con_his_domstol",
+      "con_his_statsmakt"
+    ],
+    "distinguish_from": [
+      "con_his_statsmakt"
+    ],
+    "common_misuse": [
+      "Å bruke «rettsstat» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "angitt hjemmel",
+      "historisk jurisdiksjon",
+      "dokumentert prosedyre",
+      "avgjørelse eller rettsfølge"
+    ],
+    "source_requirements": [
+      "lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «rettsstat»"
+    ]
   },
   {
     "concept_id": "con_his_revitalisering",
@@ -17249,7 +18230,7 @@
   {
     "concept_id": "con_his_saksbehandling",
     "label": "saksbehandling",
-    "definition": "I Makt, stat og institusjoner betegner «saksbehandling» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Trinnvis behandling av en sak gjennom registrering, utredning, høring, vurdering, vedtak og ekspedisjon.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -17260,14 +18241,33 @@
       "em_his_embetsstat_forvaltning",
       "em_his_bruker_tjeneste_forvaltning"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «saksbehandling» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_institusjoner",
+      "con_his_forvaltning",
+      "con_his_mandat",
+      "con_his_beslutningskjeder"
+    ],
+    "distinguish_from": [
+      "con_his_beslutningskjeder"
+    ],
+    "common_misuse": [
+      "Å bruke «saksbehandling» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «saksbehandling»"
+    ]
   },
   {
     "concept_id": "con_his_samarbeid",
@@ -18230,7 +19230,7 @@
   {
     "concept_id": "con_his_skatt",
     "label": "skatt",
-    "definition": "I Makt, stat og institusjoner betegner «skatt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Pliktig ytelse som offentlig myndighet krever inn etter bestemte regler for å finansiere styring og felles oppgaver.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -18249,14 +19249,32 @@
       "em_his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
       "em_his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «skatt» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_statlig_kapasitet"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_inntekter",
+      "con_his_personell",
+      "con_his_infrastruktur"
+    ],
+    "distinguish_from": [
+      "con_his_inntekter"
+    ],
+    "common_misuse": [
+      "Å bruke «skatt» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot budsjetter, regnskaper, personalfortegnelser, planverk og gjennomføringsrapporter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "budsjett eller inntektsgrunnlag",
+      "tilgjengelig personell",
+      "logistikk eller infrastruktur",
+      "målbar gjennomføring eller svikt"
+    ],
+    "source_requirements": [
+      "budsjetter, regnskaper, personalfortegnelser, planverk og gjennomføringsrapporter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «skatt»"
+    ]
   },
   {
     "concept_id": "con_his_skeiv",
@@ -19079,8 +20097,8 @@
   },
   {
     "concept_id": "con_his_statlig",
-    "label": "statlig",
-    "definition": "I Makt, stat og institusjoner betegner «statlig» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "territoriell konsolidering",
+    "definition": "Prosessen der en stat utvider og stabiliserer sin myndighet over territorium gjennom administrasjon, skatt, rett og infrastruktur.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -19089,19 +20107,38 @@
     "source_emne_ids": [
       "em_his_statlig_kapasitet_skatt_infrastruktur"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «statlig» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_institusjoner",
+      "con_his_forvaltning",
+      "con_his_mandat",
+      "con_his_statsdannelse"
+    ],
+    "distinguish_from": [
+      "con_his_statsdannelse"
+    ],
+    "common_misuse": [
+      "Å bruke «territoriell konsolidering» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «territoriell konsolidering»"
+    ]
   },
   {
     "concept_id": "con_his_statlig_kapasitet",
     "label": "statlig kapasitet",
-    "definition": "I Makt, stat og institusjoner betegner «statlig kapasitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Statens faktiske evne til å innhente ressurser, produsere kunnskap, samordne organer og gjennomføre beslutninger i territoriet.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -19113,12 +20150,29 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «statlig kapasitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_inntekter",
+      "con_his_personell",
+      "con_his_infrastruktur",
+      "con_his_statsmakt"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_statsmakt"
+    ],
+    "common_misuse": [
+      "Å bruke «statlig kapasitet» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot budsjetter, regnskaper, personalfortegnelser, planverk og gjennomføringsrapporter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "budsjett eller inntektsgrunnlag",
+      "tilgjengelig personell",
+      "logistikk eller infrastruktur",
+      "målbar gjennomføring eller svikt"
+    ],
+    "source_requirements": [
+      "budsjetter, regnskaper, personalfortegnelser, planverk og gjennomføringsrapporter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «statlig kapasitet»"
+    ]
   },
   {
     "concept_id": "con_his_statsborgerskap",
@@ -19177,7 +20231,7 @@
   {
     "concept_id": "con_his_statsdannelse",
     "label": "statsdannelse",
-    "definition": "I Makt, stat og institusjoner betegner «statsdannelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Historisk prosess der territoriell myndighet, institusjoner, inntekter og legitimitet samles og stabiliseres som stat.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -19188,14 +20242,33 @@
       "em_his_stat_institusjoner",
       "em_his_1814_grunnlov_statsdannelse"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «statsdannelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_institusjoner",
+      "con_his_forvaltning",
+      "con_his_mandat",
+      "con_his_stat"
+    ],
+    "distinguish_from": [
+      "con_his_stat"
+    ],
+    "common_misuse": [
+      "Å bruke «statsdannelse» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «statsdannelse»"
+    ]
   },
   {
     "concept_id": "con_his_statsgrense",
@@ -19306,7 +20379,7 @@
   {
     "concept_id": "con_his_statsmakt",
     "label": "statsmakt",
-    "definition": "I Makt, stat og institusjoner betegner «statsmakt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Statens samlede evne og rettslige krav på å gi regler, fordele ressurser og bruke legitim tvang.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -19315,14 +20388,33 @@
     "source_emne_ids": [
       "em_his_stat_institusjoner"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «statsmakt» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_institusjoner",
+      "con_his_forvaltning",
+      "con_his_mandat",
+      "con_his_offentlige"
+    ],
+    "distinguish_from": [
+      "con_his_offentlige"
+    ],
+    "common_misuse": [
+      "Å bruke «statsmakt» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «statsmakt»"
+    ]
   },
   {
     "concept_id": "con_his_status",
@@ -19513,7 +20605,7 @@
   {
     "concept_id": "con_his_straff",
     "label": "straff",
-    "definition": "I Makt, stat og institusjoner betegner «straff» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Institusjonelt fastsatt reaksjon på lovbrudd som kan innebære frihetsberøvelse, økonomisk tap, arbeid eller andre inngrep.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -19525,14 +20617,32 @@
       "em_his_politi_straff_institusjonshverdag",
       "em_his_rettsoppgjor_etterkrig"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «straff» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_politi"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_politiarbeid",
+      "con_his_fengsel",
+      "con_his_varetekt"
+    ],
+    "distinguish_from": [
+      "con_his_varetekt"
+    ],
+    "common_misuse": [
+      "Å bruke «straff» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "reglement eller hjemmel",
+      "navngitt institusjon og personell",
+      "dokumentert inngrep eller rutine",
+      "spor etter den berørtes erfaring"
+    ],
+    "source_requirements": [
+      "politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «straff»"
+    ]
   },
   {
     "concept_id": "con_his_streik",
@@ -19592,8 +20702,8 @@
   },
   {
     "concept_id": "con_his_studerer",
-    "label": "studerer",
-    "definition": "I Makt, stat og institusjoner betegner «studerer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "institusjonsanalyse",
+    "definition": "Historisk analyse av hvordan mandat, organisasjon, personell, praksis og virkning endrer seg over tid.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -19610,19 +20720,38 @@
       "em_his_rettigheter_borgerskap_forvaltning",
       "em_his_politi_straff_institusjonshverdag"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «studerer» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_beslutningsspor"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_kildebegrensning",
+      "con_his_rekonstruerer",
+      "con_his_konsekvens",
+      "con_his_institusjoner"
+    ],
+    "distinguish_from": [
+      "con_his_institusjoner"
+    ],
+    "common_misuse": [
+      "Å bruke «institusjonsanalyse» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot proveniensbeskrivelser, journaler, saksmapper og uavhengige kontrollkilder."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifisert kildeprodusent",
+      "kjent administrativ funksjon",
+      "sammenholdte kildeserier",
+      "eksplisitt kildebegrensning"
+    ],
+    "source_requirements": [
+      "proveniensbeskrivelser, journaler, saksmapper og uavhengige kontrollkilder",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «institusjonsanalyse»"
+    ]
   },
   {
     "concept_id": "con_his_styring",
     "label": "styring",
-    "definition": "I Makt, stat og institusjoner betegner «styring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Samordning av regler, kunnskap, ressurser og handling for å påvirke samfunn og institusjoner.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -19633,14 +20762,32 @@
       "em_his_styring_krise_kontinuitet",
       "em_his_byhistorie_stedsendring_klasse_segregasjon_og_offentlige_rom"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «styring» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stat"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_institusjoner",
+      "con_his_forvaltning",
+      "con_his_mandat"
+    ],
+    "distinguish_from": [
+      "con_his_forvaltning"
+    ],
+    "common_misuse": [
+      "Å bruke «styring» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot instrukser, organisasjonsplaner, protokoller og saksarkiv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt organ eller embete",
+      "datert mandat eller instruks",
+      "dokumentert arbeidsdeling",
+      "spor etter faktisk praksis"
+    ],
+    "source_requirements": [
+      "instrukser, organisasjonsplaner, protokoller og saksarkiv",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «styring»"
+    ]
   },
   {
     "concept_id": "con_his_suverenitet",
@@ -20317,7 +21464,7 @@
   {
     "concept_id": "con_his_tiltale",
     "label": "tiltale",
-    "definition": "I Makt, stat og institusjoner betegner «tiltale» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Formell beslutning om å føre en straffesak for domstol på grunnlag av angitte handlinger og lovbestemmelser.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -20326,14 +21473,33 @@
     "source_emne_ids": [
       "em_his_rettsoppgjor"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tiltale» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_rett"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_lovgrunnlag",
+      "con_his_jurisdiksjon",
+      "con_his_domstol",
+      "con_his_etterforskning"
+    ],
+    "distinguish_from": [
+      "con_his_etterforskning"
+    ],
+    "common_misuse": [
+      "Å bruke «tiltale» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "angitt hjemmel",
+      "historisk jurisdiksjon",
+      "dokumentert prosedyre",
+      "avgjørelse eller rettsfølge"
+    ],
+    "source_requirements": [
+      "lovtekster, forarbeider, rettsbøker, dommer og saksdokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «tiltale»"
+    ]
   },
   {
     "concept_id": "con_his_ting",
@@ -21361,8 +22527,8 @@
   },
   {
     "concept_id": "con_his_utredet",
-    "label": "utredet",
-    "definition": "I Makt, stat og institusjoner betegner «utredet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "utredningsfase",
+    "definition": "Fasen der et saksforhold undersøkes, alternativer vurderes og konsekvenser beskrives før beslutning.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -21371,14 +22537,33 @@
     "source_emne_ids": [
       "em_his_beslutningskjeder_kompetanse_ansvar"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «utredet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_beslutningskjeder"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_beslutningsspor",
+      "con_his_kompetanse",
+      "con_his_iverksetting",
+      "con_his_foreslo"
+    ],
+    "distinguish_from": [
+      "con_his_foreslo"
+    ],
+    "common_misuse": [
+      "Å bruke «utredningsfase» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert saksforløp",
+      "navngitte organer og roller",
+      "kompetanse på hvert trinn",
+      "spor etter vedtak og oppfølging"
+    ],
+    "source_requirements": [
+      "innstillinger, møtebøker, vedtak, ekspedisjoner og kontrollspor",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «utredningsfase»"
+    ]
   },
   {
     "concept_id": "con_his_utstilling",
@@ -21520,7 +22705,7 @@
   {
     "concept_id": "con_his_varetekt",
     "label": "varetekt",
-    "definition": "I Makt, stat og institusjoner betegner «varetekt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Frihetsberøvelse før endelig dom, begrunnet i etterforskning, fluktfare eller andre historisk bestemte vilkår.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -21529,14 +22714,32 @@
     "source_emne_ids": [
       "em_his_politi_straff_institusjonshverdag"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «varetekt» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_politi"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_politiarbeid",
+      "con_his_fengsel",
+      "con_his_straff"
+    ],
+    "distinguish_from": [
+      "con_his_straff"
+    ],
+    "common_misuse": [
+      "Å bruke «varetekt» som en løs etikett uten å dokumentere tid, kompetanse, praksis og berørte aktører. Begrepet må prøves mot politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "reglement eller hjemmel",
+      "navngitt institusjon og personell",
+      "dokumentert inngrep eller rutine",
+      "spor etter den berørtes erfaring"
+    ],
+    "source_requirements": [
+      "politi- og fengselsprotokoller, rettsdokumenter, instrukser og egodokumenter",
+      "minst én uavhengig kontrollkilde som kan skille formell ordning fra faktisk praksis for «varetekt»"
+    ]
   },
   {
     "concept_id": "con_his_varighet",
