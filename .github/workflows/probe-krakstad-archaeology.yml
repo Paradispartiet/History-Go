@@ -26,54 +26,22 @@ jobs:
           out=reports/akershus-coordinate-krakstad-source-probe
           mkdir -p "$out"
 
-          cat > "$out/overpass-query.txt" <<'QUERY'
-          [out:json][timeout:60];
-          (
-            nwr(around:700,59.67658,10.88091)[historic=archaeological_site];
-            nwr(around:700,59.67658,10.88091)[archaeological_site];
-            nwr(around:700,59.67658,10.88091)[historic=tomb];
-            nwr(around:700,59.67658,10.88091)[tomb];
-          );
-          out center tags;
-          QUERY
+          bbox='10.868,59.670,10.894,59.683'
+          echo "bbox=${bbox}" | tee "$out/osm-map-request.txt"
+          curl --fail --silent --show-error \
+            --retry 4 --retry-delay 3 --retry-all-errors \
+            "https://api.openstreetmap.org/api/0.6/map?bbox=${bbox}" \
+            | tee "$out/osm-krakstad-map.xml" > /dev/null
 
-          query=$(cat "$out/overpass-query.txt")
-          : > "$out/overpass-endpoints.log"
-          success=0
-          for endpoint in \
-            'https://overpass.kumi.systems/api/interpreter' \
-            'https://overpass-api.de/api/interpreter'; do
-            echo "endpoint=${endpoint}" | tee -a "$out/overpass-endpoints.log"
-            if curl --fail --silent --show-error \
-              --retry 3 --retry-delay 3 --retry-all-errors \
-              --request POST \
-              --data-urlencode "data=${query}" \
-              "$endpoint" \
-              --output "$out/overpass-krakstad-archaeology.json" \
-              2>> "$out/overpass-endpoints.log"; then
-              echo "status=success" | tee -a "$out/overpass-endpoints.log"
-              success=1
-              break
-            else
-              echo "status=failure" | tee -a "$out/overpass-endpoints.log"
-            fi
-          done
-
-          if [ "$success" -ne 1 ]; then
-            cat "$out/overpass-endpoints.log"
-            exit 1
-          fi
-
-          cat "$out/overpass-krakstad-archaeology.json"
-
-          python - <<'PY' 2>&1 | tee "$out/overpass-krakstad-archaeology-summary.txt"
+          python - <<'PY' 2>&1 | tee "$out/osm-krakstad-archaeology-summary.txt"
           import json
           import math
+          import xml.etree.ElementTree as ET
           from pathlib import Path
 
-          center = (59.67658, 10.88091)
-          path = Path('reports/akershus-coordinate-krakstad-source-probe/overpass-krakstad-archaeology.json')
-          data = json.loads(path.read_text(encoding='utf-8'))
+          church = (59.67658, 10.88091)
+          path = Path('reports/akershus-coordinate-krakstad-source-probe/osm-krakstad-map.xml')
+          root = ET.fromstring(path.read_text(encoding='utf-8'))
 
           def distance_m(a, b):
               r = 6371000
@@ -82,19 +50,52 @@ jobs:
               x = math.sin(dp/2)**2 + math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2
               return 2*r*math.atan2(math.sqrt(x), math.sqrt(1-x))
 
+          nodes = {}
+          node_tags = {}
+          for node in root.findall('node'):
+              node_id = int(node.attrib['id'])
+              nodes[node_id] = (float(node.attrib['lat']), float(node.attrib['lon']))
+              node_tags[node_id] = {tag.attrib['k']: tag.attrib['v'] for tag in node.findall('tag')}
+
+          def relevant(tags):
+              return (
+                  tags.get('historic') in {'archaeological_site', 'tomb'}
+                  or 'archaeological_site' in tags
+                  or 'tomb' in tags
+                  or tags.get('site_type') in {'tumulus', 'burial_mound', 'barrow'}
+              )
+
           rows = []
-          for item in data.get('elements', []):
-              lat = item.get('lat', item.get('center', {}).get('lat'))
-              lon = item.get('lon', item.get('center', {}).get('lon'))
-              if lat is None or lon is None:
+          for node_id, point in nodes.items():
+              tags = node_tags[node_id]
+              if relevant(tags):
+                  rows.append({
+                      'type': 'node',
+                      'id': node_id,
+                      'lat': point[0],
+                      'lon': point[1],
+                      'distance_from_church_m': round(distance_m(church, point), 1),
+                      'tags': tags,
+                  })
+
+          for way in root.findall('way'):
+              tags = {tag.attrib['k']: tag.attrib['v'] for tag in way.findall('tag')}
+              if not relevant(tags):
                   continue
-              tags = item.get('tags', {})
+              points = [nodes.get(int(nd.attrib['ref'])) for nd in way.findall('nd')]
+              points = [point for point in points if point is not None]
+              if not points:
+                  continue
+              point = (
+                  sum(item[0] for item in points) / len(points),
+                  sum(item[1] for item in points) / len(points),
+              )
               rows.append({
-                  'type': item.get('type'),
-                  'id': item.get('id'),
-                  'lat': lat,
-                  'lon': lon,
-                  'distance_from_church_m': round(distance_m(center, (lat, lon)), 1),
+                  'type': 'way',
+                  'id': int(way.attrib['id']),
+                  'lat': point[0],
+                  'lon': point[1],
+                  'distance_from_church_m': round(distance_m(church, point), 1),
                   'tags': tags,
               })
 
@@ -103,7 +104,7 @@ jobs:
           for row in rows:
               print(json.dumps(row, ensure_ascii=False, sort_keys=True))
           if not rows:
-              raise SystemExit('No nearby archaeological objects returned')
+              raise SystemExit('No nearby archaeological objects returned from OSM map data')
           PY
 
       - name: Remove probe workflow and commit evidence
