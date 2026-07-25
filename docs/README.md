@@ -28,12 +28,13 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 
 ### Dagens runtime og arbeidsflyt
 
-1. [`../README/SYSTEM_REGISTRY.md`](../README/SYSTEM_REGISTRY.md) — hvem eier hva
-2. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — hva skjer i flyten
-3. [`../README/README_DEV.md`](../README/README_DEV.md) — kjøring, debugging og validering
-4. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
+1. [`../README/SYSTEM_REGISTRY.md`](../README/SYSTEM_REGISTRY.md) — overordnet runtime-eierskap og kjernegrenser
+2. [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — aktive API-, storage-, privacy- og UI-kontrakter for subsystemene
+3. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — hva skjer i flyten
+4. [`../README/README_DEV.md`](../README/README_DEV.md) — kjøring, debugging og validering
+5. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
 
-`SYSTEM_REGISTRY.md` er fortsatt bindende, men er merket `transitional` fordi aktiv kontrakt og gammel innlimt historikk fortsatt ligger i samme fil. Den skal konsolideres uten å miste gjeldende runtime-regler.
+`SYSTEM_REGISTRY.md` og `SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md` utgjør sammen den aktive runtime-kontrakten. Den tidligere pre-split-filen er bevart byte-identisk i [`../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md`](../README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md) som historisk sporbarhet, ikke som bindende regelverk.
 
 ### Produkt og ferdigstillelse
 
@@ -136,12 +137,13 @@ Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation
 - tidligere `CURRENT_PRODUCT_STATE` erstattet med compatibility-pointer
 - gammel spillbarhets-gaprapport erstattet med compatibility-tombstone
 - maskinlesbart dokumentinventar lagt til i dokumentasjonsgaten
+- aktiv `SYSTEM_REGISTRY` skilt fra byte-identisk pre-split-arkiv
+- aktive subsystemappendikser samlet i en egen canonical kontrakt
 
 ### Neste
 
-- bruk inventaret til å rydde 100 uregistrerte globale dokumentkandidater kontrollert
-- konsolider aktiv kontrakt og innlimt legacytekst i `README/SYSTEM_REGISTRY.md`
+- bruk inventaret til å rydde uregistrerte globale dokumentkandidater kontrollert
 - konsolider quizdokumentasjonen mot aktiv V5.1-/manifestpipeline
 - opprett én Civication-dokumentindeks
 - flytt daterte audits og migreringsstatus til `reports/archive/`
-- standardiser de seks mistenkelige README-filnavnene med redirects eller lenkeoppdatering
+- standardiser de mistenkelige README-filnavnene med redirects eller lenkeoppdatering
