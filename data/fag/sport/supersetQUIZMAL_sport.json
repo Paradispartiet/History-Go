@@ -39,7 +39,8 @@
       "risk_claim",
       "regulatory_claim"
     ],
-    "compatibility_rule": "Evidenslaget skjerper forskningsbaserte påstander uten å endre eksisterende emne_id- eller V5-hook-ID-er."
+    "compatibility_rule": "Evidenslaget skjerper forskningsbaserte påstander uten å endre eksisterende emne_id- eller V5-hook-ID-er.",
+    "coverage_status": "partial_until_all_theory_hooks_have_claim_chains"
   },
   "content_priorities": [
     "lek, regler, idrettens egenart og fair konkurranse",
@@ -110,7 +111,9 @@
       "sporbar kilde eller dokumentert observasjon",
       "presist begrep eller mekanisme",
       "knowledge-forklaring som viser hvorfor svaret er riktig",
-      "scientific_evidence-metadata for forsknings-, helse-, trenings-, måle-, modell-, risiko- og regulatoriske påstander"
+      "scientific_evidence-metadata for forsknings-, helse-, trenings-, måle-, modell-, risiko- og regulatoriske påstander",
+      "gyldig V6 theory_unit_id fra emne–teori-matrisen",
+      "hovedteori, rival, mekanisme og bruksgrense ved teoribruk"
     ],
     "forbidden": [
       "Hvem er best?",
@@ -183,7 +186,9 @@
     "Bruk V5-hook og begrepsregister som kvalitetslag, men la globale quizregler styre settrekkefølge og språk.",
     "Bruk evidenslaget for alle forskningsbaserte påstander, og la aldri påstandens språk være sterkere enn evidensgrunnlaget.",
     "Roter mellom steder, idretter, kjønn, nivåer, funksjonsevne, geografier og kildetyper.",
-    "Taktikk og treningslære skal ikke dominere på bekostning av historie, lek, samfunn, etikk og tilgang."
+    "Taktikk og treningslære skal ikke dominere på bekostning av historie, lek, samfunn, etikk og tilgang.",
+    "Prefikset em_sport_ beviser ikke teoridekning; emnet må finnes i V6-matrisen.",
+    "Bruk evidenspåstand først etter at teorienheten og dens alternative forklaring er etablert."
   ],
   "example_questions": [
     {
@@ -246,5 +251,13 @@
         ]
       }
     }
-  ]
+  ],
+  "theory_depth_layer": {
+    "version": "6.0",
+    "manifest": "data/fag/sport/sport_theory_depth_manifest_v6.json",
+    "theory_units": "data/fag/sport/theory_units_sport_canonical_v6.json",
+    "emne_coverage_matrix": "data/fag/sport/emne_theory_coverage_sport_v6.json",
+    "required_for_all_sport_questions": true,
+    "rule": "Velg validert emne, primær teorienhet og eksplisitt mekanisme. Ved teorispørsmål kreves rival, kritikk og bruksgrense."
+  }
 }

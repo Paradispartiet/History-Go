@@ -1,9 +1,9 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "subject_id": "sport",
   "type": "scientific_evidence_manifest",
-  "status": "canonical_scientific_evidence_layer",
-  "updated_at": "2026-07-24",
+  "status": "canonical_scientific_evidence_layer_partial_coverage",
+  "updated_at": "2026-07-25",
   "files": {
     "sources": "evidence_registry_sport_v1.json",
     "claims": "claims_sport_canonical_v1.json",
@@ -25,7 +25,8 @@
   "integration": {
     "quality_manifest": "sport_quality_manifest_v5.json",
     "quiz_profile": "supersetQUIZMAL_sport.json",
-    "legacy_emne_registry": "emner_sport_canonical_v4_5.json"
+    "legacy_emne_registry": "emner_sport_canonical_v4_5.json",
+    "theory_depth_manifest": "sport_theory_depth_manifest_v6.json"
   },
   "invariants": [
     "Alle source_ids, claim_ids, model_ids og measurement_ids skal løse.",
@@ -33,6 +34,17 @@
     "Kausalt språk skal være eksplisitt tillatt og støttet av claim_type.",
     "Kliniske påstander skal ha sikkerhetsgrense og kan ikke brukes til diagnose.",
     "Regulatoriske påstander skal ha gyldig versjon og kontrollfrist.",
-    "Forskningsbaserte quizspørsmål skal bruke scientific_evidence-metadata."
-  ]
+    "Forskningsbaserte quizspørsmål skal bruke scientific_evidence-metadata.",
+    "Alle claims skal være koblet til minst én V6-teorienhet.",
+    "Evidensdekning og teoridekning rapporteres separat."
+  ],
+  "coverage_status": {
+    "state": "partial",
+    "theory_prerequisite": "validated_v6",
+    "hooks_total": 56,
+    "hooks_with_claim_links": 19,
+    "rule": "Ingen påstand om full evidensdekning før alle teorihooks har minst én kontrollert claim-kjede.",
+    "emners_with_claim_links": 32,
+    "mapping_method": "curated claim-to-hook mapping"
+  }
 }

@@ -2,9 +2,9 @@
   "subject_id": "sport",
   "subject_title": "Sport & lek",
   "type": "quality_layer_manifest",
-  "version": "5.1",
+  "version": "6.0",
   "status": "canonical_quality_overlay",
-  "updated_at": "2026-07-24",
+  "updated_at": "2026-07-25",
   "compatibility": {
     "base_registry": "sportpensum_v4_5",
     "base_files": {
@@ -51,7 +51,12 @@
     "canonical_claims": 16,
     "scientific_models": 12,
     "measurements": 15,
-    "evidence_gates": 10
+    "evidence_gates": 10,
+    "active_emners": 116,
+    "theory_units": 56,
+    "emners_theory_mapped": 116,
+    "hooks_with_evidence_claims": 19,
+    "emners_with_evidence_claims": 32
   },
   "production_invariants": [
     "Et spørsmål starter i et konkret idrettsanker.",
@@ -63,7 +68,10 @@
     "Måledata må angi instrument, protokoll, enhet, versjon og målekvalitet.",
     "Modelloutput må angi modell, implementasjon, inputdefinisjon og valideringsområde.",
     "Barn og unge skal behandles med safeguarding, medvirkning og utviklingsperspektiv.",
-    "Personlig supporterpreferanse og hvem som er best vurderes ikke som fagkunnskap."
+    "Personlig supporterpreferanse og hvem som er best vurderes ikke som fagkunnskap.",
+    "Hvert emne må bruke en validert V6-teorienhet; prefikskontroll alene er ikke teoridekning.",
+    "Hver teoribruk skal angi rival, kritikk og bruksgrense, ikke bare teoretikernavn.",
+    "Evidenslaget er delvis til alle teorihooks har sporbare claim-kjeder."
   ],
   "coverage_balance": {
     "history_place_and_memory": 0.18,
@@ -72,5 +80,12 @@
     "organization_supporters_and_media": 0.16,
     "inclusion_ethics_and_safeguarding": 0.14,
     "health_play_and_environment": 0.1
+  },
+  "theory_depth_layer": {
+    "manifest": "sport_theory_depth_manifest_v6.json",
+    "theory_units": "theory_units_sport_canonical_v6.json",
+    "emne_coverage_matrix": "emne_theory_coverage_sport_v6.json",
+    "validator": "../../../tools/validate-sport-theory-depth-v6.mjs",
+    "report": "../../../reports/sport-theory-depth-validation.json"
   }
 }

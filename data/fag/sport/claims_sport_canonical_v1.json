@@ -1,9 +1,9 @@
 {
-  "version": "1.0",
+  "version": "1.2",
   "subject_id": "sport",
   "type": "canonical_claim_registry",
   "status": "canonical_scientific_evidence_layer",
-  "updated_at": "2026-07-24",
+  "updated_at": "2026-07-25",
   "production_rule": "Forsknings- eller helsepåstander må referere til claim_id. Språket kan ikke være sterkere enn claim_type, evidence_grade og usikkerhetsfeltene tillater.",
   "claims": [
     {
@@ -29,7 +29,18 @@
       "uncertainty_note": "Terskler er instrument-, protokoll- og populasjonsspesifikke.",
       "external_validity_note": "Validering fra én enhet, idrett eller fart kan ikke automatisk overføres til en annen.",
       "causal_language_allowed": false,
-      "quiz_use": "Skill tallforskjell fra dokumentert endring."
+      "quiz_use": "Skill tallforskjell fra dokumentert endring.",
+      "theory_hook_ids": [
+        "hook_sport_prestasjonsdata_validitet",
+        "hook_sport_teknologi_tracking",
+        "hook_sport_bevegelsesmekanikk"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_prestasjonsdata_validitet",
+        "theory_sport_teknologi_tracking",
+        "theory_sport_bevegelsesmekanikk"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_association_not_causation",
@@ -56,7 +67,18 @@
       "uncertainty_note": "Konfundering, seleksjon, målefeil, reversert årsaksretning og modellvalg kan forklare sammenhengen.",
       "external_validity_note": "Design, utvalg og setting bestemmer hvor langt funnet kan generaliseres.",
       "causal_language_allowed": false,
-      "quiz_use": "Krev egnet design og eksplisitte kausalantakelser."
+      "quiz_use": "Krev egnet design og eksplisitte kausalantakelser.",
+      "theory_hook_ids": [
+        "hook_sport_skade_risiko_epidemiologi",
+        "hook_sport_belastning_tilpasning",
+        "hook_sport_fysisk_aktivitet_folkehelse"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_skade_risiko_epidemiologi",
+        "theory_sport_belastning_tilpasning",
+        "theory_sport_fysisk_aktivitet_folkehelse"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_group_average_not_individual_prescription",
@@ -82,7 +104,18 @@
       "uncertainty_note": "Respons varierer med alder, treningserfaring, helse, søvn, ernæring, mål og kontekst.",
       "external_validity_note": "Studiepopulasjon og intervensjonsdose må samsvare med målgruppen.",
       "causal_language_allowed": false,
-      "quiz_use": "Blokker individuell anbefaling uten sikkerhetsramme."
+      "quiz_use": "Blokker individuell anbefaling uten sikkerhetsramme.",
+      "theory_hook_ids": [
+        "hook_sport_belastning_tilpasning",
+        "hook_sport_restitusjon_overtrening",
+        "hook_sport_skade_risiko_epidemiologi"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_belastning_tilpasning",
+        "theory_sport_restitusjon_overtrening",
+        "theory_sport_skade_risiko_epidemiologi"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_injury_rate_requires_exposure",
@@ -110,7 +143,14 @@
       "uncertainty_note": "Selvrapport, medisinsk registrering, time-loss og all-complaint fanger ulike helseproblemer.",
       "external_validity_note": "Eksponering og klassifikasjon må være sammenlignbare.",
       "causal_language_allowed": false,
-      "quiz_use": "Spør om nevner, definisjon og alvorlighet før rate tolkes."
+      "quiz_use": "Spør om nevner, definisjon og alvorlighet før rate tolkes.",
+      "theory_hook_ids": [
+        "hook_sport_skade_risiko_epidemiologi"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_skade_risiko_epidemiologi"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_physical_activity_population_benefit",
@@ -134,7 +174,16 @@
       "uncertainty_note": "Dose–respons og gjennomførbarhet varierer; dette er ikke en individuell behandlingsplan.",
       "external_validity_note": "Bruk riktig alders- og subpopulasjonsdel av retningslinjen.",
       "causal_language_allowed": true,
-      "quiz_use": "Bruk som befolkningskunnskap, ikke individuell behandling."
+      "quiz_use": "Bruk som befolkningskunnskap, ikke individuell behandling.",
+      "theory_hook_ids": [
+        "hook_sport_fysisk_aktivitet_folkehelse",
+        "hook_sport_lek_byrom_aktive_liv"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_fysisk_aktivitet_folkehelse",
+        "theory_sport_lek_byrom_aktive_liv"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_reds_requires_clinical_context",
@@ -159,7 +208,16 @@
       "uncertainty_note": "Symptomer og markører er ikke spesifikke; helhetsvurdering er nødvendig.",
       "external_validity_note": "Risikoindikatorer må tolkes i idretts-, kjønns-, alders- og helsekontekst.",
       "causal_language_allowed": true,
-      "quiz_use": "Lær bort mekanisme og sikkerhetsgrense; ikke produser diagnose."
+      "quiz_use": "Lær bort mekanisme og sikkerhetsgrense; ikke produser diagnose.",
+      "theory_hook_ids": [
+        "hook_sport_restitusjon_overtrening",
+        "hook_sport_belastning_tilpasning"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_restitusjon_overtrening",
+        "theory_sport_belastning_tilpasning"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_concussion_remove_assess",
@@ -183,7 +241,16 @@
       "uncertainty_note": "Symptombilde og forløp varierer, og vurderingsverktøy har avgrensede roller.",
       "external_validity_note": "Alder og setting påvirker vurderingsforløpet.",
       "causal_language_allowed": false,
-      "quiz_use": "Aldri individuell retur-til-spill-beslutning."
+      "quiz_use": "Aldri individuell retur-til-spill-beslutning.",
+      "theory_hook_ids": [
+        "hook_sport_skade_risiko_epidemiologi",
+        "hook_sport_safeguarding_barnets_rettigheter"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_skade_risiko_epidemiologi",
+        "theory_sport_safeguarding_barnets_rettigheter"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_youth_specialisation_contextual",
@@ -208,7 +275,16 @@
       "uncertainty_note": "Idretter har ulike aldersprofiler, og retrospektiv rapportering og frafall påvirker evidensen.",
       "external_validity_note": "Påstander må angi alder, idrett, nivå og definisjon av spesialisering.",
       "causal_language_allowed": false,
-      "quiz_use": "Unngå deterministiske talentpåstander."
+      "quiz_use": "Unngå deterministiske talentpåstander.",
+      "theory_hook_ids": [
+        "hook_sport_tidlig_spesialisering_frafall",
+        "hook_sport_deliberate_play_sampling"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_tidlig_spesialisering_frafall",
+        "theory_sport_deliberate_play_sampling"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_reporting_not_quality",
@@ -233,7 +309,16 @@
       "uncertainty_note": "Komplett rapportering er ikke bevis på lav risiko for bias.",
       "external_validity_note": "Velg eget verktøy for risiko for bias og evidensgrad.",
       "causal_language_allowed": false,
-      "quiz_use": "Test forskjellen mellom rapportering, bias og evidensgrad."
+      "quiz_use": "Test forskjellen mellom rapportering, bias og evidensgrad.",
+      "theory_hook_ids": [
+        "hook_sport_prestasjonsdata_validitet",
+        "hook_sport_teknologi_tracking"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_prestasjonsdata_validitet",
+        "theory_sport_teknologi_tracking"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_fair_not_open",
@@ -258,7 +343,16 @@
       "uncertainty_note": "Tilgang kan kreve autentisering og etisk styring mens metadata er tilgjengelige.",
       "external_validity_note": "Personvern, samtykke og regelverk må vurderes lokalt.",
       "causal_language_allowed": false,
-      "quiz_use": "Skill gjenbrukbarhet fra grenseløs publisering."
+      "quiz_use": "Skill gjenbrukbarhet fra grenseløs publisering.",
+      "theory_hook_ids": [
+        "hook_sport_dataovervakning_personvern",
+        "hook_sport_teknologi_tracking"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_dataovervakning_personvern",
+        "theory_sport_teknologi_tracking"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_doping_time_sensitive",
@@ -280,7 +374,14 @@
       "uncertainty_note": "Listen oppdateres minst årlig og kan skille mellom konkurransekontekster.",
       "external_validity_note": "Quizinnhold må kontrolleres mot listen som gjelder på spørsmålets dato.",
       "causal_language_allowed": false,
-      "quiz_use": "Krev effective_date og source_id."
+      "quiz_use": "Krev effective_date og source_id.",
+      "theory_hook_ids": [
+        "hook_sport_doping_enhancement"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_doping_enhancement"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_model_output_definition_dependent",
@@ -310,7 +411,18 @@
       "uncertainty_note": "To modeller kan gi ulike tall for samme hendelse.",
       "external_validity_note": "Ytelse må testes på data som ligner målsettingen og konkurransen.",
       "causal_language_allowed": false,
-      "quiz_use": "Krev modellnavn eller definisjon før tall sammenlignes."
+      "quiz_use": "Krev modellnavn eller definisjon før tall sammenlignes.",
+      "theory_hook_ids": [
+        "hook_sport_prestasjonsdata_validitet",
+        "hook_sport_teknologi_tracking",
+        "hook_sport_spillmodell_beslutning"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_prestasjonsdata_validitet",
+        "theory_sport_teknologi_tracking",
+        "theory_sport_spillmodell_beslutning"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_effect_requires_uncertainty",
@@ -338,7 +450,16 @@
       "uncertainty_note": "Intervall, modellforutsetninger og praktisk relevans påvirker tolkningen.",
       "external_validity_note": "Statistisk presisjon og generaliserbarhet er separate spørsmål.",
       "causal_language_allowed": true,
-      "quiz_use": "Spør etter effektstørrelse og usikkerhet."
+      "quiz_use": "Spør etter effektstørrelse og usikkerhet.",
+      "theory_hook_ids": [
+        "hook_sport_prestasjonsdata_validitet",
+        "hook_sport_belastning_tilpasning"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_prestasjonsdata_validitet",
+        "theory_sport_belastning_tilpasning"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_motivation_context",
@@ -365,7 +486,14 @@
       "uncertainty_note": "Måleinstrument, kultur, alder og setting påvirker registreringen.",
       "external_validity_note": "Teoribegreper må knyttes til validerte mål og konkret atferd.",
       "causal_language_allowed": false,
-      "quiz_use": "Unngå å stemple utøvere som permanent umotiverte."
+      "quiz_use": "Unngå å stemple utøvere som permanent umotiverte.",
+      "theory_hook_ids": [
+        "hook_sport_motivasjon_selvbestemmelse"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_motivasjon_selvbestemmelse"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_constraints_interaction",
@@ -391,7 +519,18 @@
       "uncertainty_note": "Modellen må operasjonaliseres gjennom konkrete oppgavevariabler.",
       "external_validity_note": "Effekten av en øvelse avhenger av idrett, nivå, mål og representativitet.",
       "causal_language_allowed": false,
-      "quiz_use": "Vis hvordan endret rom, regel eller utstyr endrer handling."
+      "quiz_use": "Vis hvordan endret rom, regel eller utstyr endrer handling.",
+      "theory_hook_ids": [
+        "hook_sport_begrensningsstyrt_laring",
+        "hook_sport_persepsjon_handling",
+        "hook_sport_variabilitet_tilpasning"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_begrensningsstyrt_laring",
+        "theory_sport_persepsjon_handling",
+        "theory_sport_variabilitet_tilpasning"
+      ],
+      "theory_coverage_status": "curated_v6"
     },
     {
       "claim_id": "claim_sport_reproducible_analysis",
@@ -418,7 +557,18 @@
       "uncertainty_note": "Reproduserbar kode sikrer ikke at designet eller dataene er valide.",
       "external_validity_note": "Tilgangsbegrensede data kan dokumenteres med metadata og kontrollert tilgang.",
       "causal_language_allowed": false,
-      "quiz_use": "Blokker tallpåstand uten provenance og definisjon."
+      "quiz_use": "Blokker tallpåstand uten provenance og definisjon.",
+      "theory_hook_ids": [
+        "hook_sport_prestasjonsdata_validitet",
+        "hook_sport_teknologi_tracking",
+        "hook_sport_rom_tid_overtall"
+      ],
+      "theory_unit_ids": [
+        "theory_sport_prestasjonsdata_validitet",
+        "theory_sport_teknologi_tracking",
+        "theory_sport_rom_tid_overtall"
+      ],
+      "theory_coverage_status": "curated_v6"
     }
   ]
 }
