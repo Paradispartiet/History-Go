@@ -22,7 +22,7 @@ function exec(command, args, options = {}) {
   return result.stdout || '';
 }
 
-const original = exec('git', ['show', 'HEAD^:scripts/coordinate-branch-job.mjs']);
+const original = exec('git', ['show', '9d8c9c6ffe67c1f7938135053a7186f7655262a4:scripts/coordinate-branch-job.mjs']);
 fs.writeFileSync(tempPath, original);
 exec('node', [tempPath]);
 fs.rmSync(tempPath, { force: true });
@@ -34,7 +34,6 @@ exec('git', ['add', '-A']);
 const staged = spawnSync('git', ['diff', '--cached', '--quiet'], { cwd: root, env: process.env });
 if (staged.status === 1) {
   exec('git', ['commit', '-m', 'Historie V5.5: complete global quality freeze']);
-  exec('git', ['pull', '--rebase', 'origin', branch]);
   exec('git', ['push', 'origin', `HEAD:${branch}`]);
 } else if (staged.status !== 0) {
   throw new Error(`git diff --cached --quiet failed with ${staged.status}`);
