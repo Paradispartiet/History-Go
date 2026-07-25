@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
-import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 
-const migrationSourceCommit = '91aac7a9168ff918a3daab936f33a6fb137a3a8e';
-let source = execFileSync('git', ['show', `${migrationSourceCommit}:scripts/coordinate-branch-job.mjs`], { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 });
+const sourcePath = path.join(process.cwd(), 'scripts/place-source-migration-source.mjs');
+let source = fs.readFileSync(sourcePath, 'utf8');
 const auditBefore = "}for(const f of walk(P)){if(path.dirname(f)===P)continue;";
 const auditAfter = "}const auditRoots=new Set([...sf].map(s=>s.split('/')[1]).filter(Boolean));for(const f of walk(P)){if(!auditRoots.has(path.relative(P,f).split(path.sep)[0]))continue;if(path.dirname(f)===P)continue;";
 if (!source.includes(auditBefore)) throw new Error('Could not locate source-layout audit loop');
@@ -94,4 +93,5 @@ try {
   await import(`${pathToFileURL(runtimePath).href}?run=${Date.now()}`);
 } finally {
   fs.rmSync(runtimePath, { force: true });
+  fs.rmSync(sourcePath, { force: true });
 }
