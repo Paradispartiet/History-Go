@@ -76,6 +76,18 @@ Ved konflikt gjelder maskinkontrakten og valideringen. Dokumentasjonen skal da k
 
 Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk-places. Ved konflikt mellom dokumentasjon og et aktivt manifest er manifestet/runtime-koden sannhetskilden, og dokumentasjonen skal korrigeres.
 
+### Knowledge og personlig minne
+
+1. [`KNOWLEDGE_ARCHITECTURE.md`](./KNOWLEDGE_ARCHITECTURE.md) — canonical menneskelesbar arkitektur og storage-eierskap
+2. [`../data/knowledge/knowledge_system_policy_v1.json`](../data/knowledge/knowledge_system_policy_v1.json) — maskinlesbar systempolicy
+3. [`../data/knowledge/knowledge_unit_schema_v1.json`](../data/knowledge/knowledge_unit_schema_v1.json) — canonical knowledge-unit-schema
+4. [`../data/quiz/quiz_knowledge_delivery_contract_v1.json`](../data/quiz/quiz_knowledge_delivery_contract_v1.json) — quizens kunnskaps-, vurderings- og evidenskontrakt
+5. [`../js/knowledgeV2.ts`](../js/knowledgeV2.ts) — varig V2-read-model og legacy-migrering
+6. [`../js/knowledgeQuizMemory.ts`](../js/knowledgeQuizMemory.ts) — quiz-bundles og synkronisering til V2
+7. [`../README/knowledgeREADME.md`](../README/knowledgeREADME.md) — compatibility-pointer fra eldre README-lenker
+
+De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People/Places/Relations-modellene er bevart byte-identisk under `reports/archive/2026-07/knowledge/`. De er historikk, ikke aktive kontrakter.
+
 ### Fag, emner og quiz
 
 1. [`../README/README.pensum.md`](../README/README.pensum.md) — fagkart, emner og pensum
@@ -173,8 +185,10 @@ Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation
 - `Mestergrad` fjernet fra ferdigmodellen; Bronse → Sølv → Gull er canonical nivåregel
 - `APP_STRUCTURE_INDEX.md` synkronisert med `#/debate/:id` og registrert som canonical index-appkontrakt
 - domene- og DomainRegistry-dokumentasjonen synkronisert med maskinkontrakten: filosofi er selvstendig, og populærkultur er ikke toppkategori
+- parallelle Knowledge-, ontology- og knaggemodeller samlet under én canonical arkitektur og maskinpolicy
 
 ### Neste
 
 - klassifiser kvalitets- og Social-kontraktene uten å gjøre subsystemspesifikke guider til globale fasiter
 - fortsett å flytte daterte audits og statuspunkter til `reports/archive/YYYY-MM/`
+- konsolider gamle relations-, oppgave- og badge-/merke-dokumenter mot aktive data- og runtimekontrakter

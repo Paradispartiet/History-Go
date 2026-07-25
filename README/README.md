@@ -162,9 +162,12 @@ Den gamle gaprapportstien er beholdt som compatibility-pointer, ikke som aktiv s
 
 - [`docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md`](../docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md)
 
-Korrigering for progresjonsarbeid:
+Aktiv progresjonslesing og gjenbruk beskrives av:
 
-- [`docs/PROFILE_PROGRESS_REUSE_AUDIT.md`](../docs/PROFILE_PROGRESS_REUSE_AUDIT.md) — profile leser allerede mye progresjon; neste arbeid bør gjenbruke profile-lesing, ikke lage ny parallell progresjonssannhet
+- [`docs/PROGRESSION_MODEL.md`](../docs/PROGRESSION_MODEL.md) — felles progresjons-read-model
+- [`docs/PROFILE_PROGRESS_READER_RUNTIME.md`](../docs/PROFILE_PROGRESS_READER_RUNTIME.md) — profile-reader og gjenbruk av eksisterende progresjonskilder
+
+Den tidligere `PROFILE_PROGRESS_REUSE_AUDIT.md` er arkivert som beslutningssnapshot og er ikke aktiv kontrakt.
 
 Ferdigmodellen er delt i tre dokumenter:
 
@@ -190,26 +193,34 @@ Kort prioritet:
 
 ---
 
-## 5. Fag / knowledge / progresjon
+## 5. Fag / Knowledge / progresjon
 
-History GO bruker fagkart, emner, steder, quiz og evidens for å bygge kunnskap.
+History GO bruker fagkart, emner, knowledge units, steder, quiz og evidens for å bygge kunnskap.
 
 Grunnstruktur:
 
 ```text
-Merke → Fagkart/fagplan → Emner → Quiz/steder/observasjon → Learning log → Courses/pensum → UI
+Merke → Fagkart/pensum → Emne → Begrep/term/knowledge unit → Formidlingsflate → Evidens → Personlig Knowledge → Courses/profil/UI
 ```
 
-Kunnskap bør ikke ligge tilfeldig i UI. Fagtekst og dybde skal ligge i fagkart/emner/steder/personer og vises gjennom knowledge/profil/PlaceCard/Wonderkammer.
+Kunnskap bør ikke ligge tilfeldig i UI. Fagtekst og dybde skal ligge i fagkart, emner, canonical knowledge units, steder, personer og historier, og vises gjennom Knowledge, profil, PlaceCard og Wonderkammer.
+
+Aktiv Knowledge-storage:
+
+- `hg_knowledge_entries_v2` — varig personlig read-model
+- `hg_knowledge_memory_v1` — quizens bundle- og evidenslager som synkroniseres til V2
+- `knowledge_universe` — legacy-importkilde, ikke parallell aktiv storage
 
 Se også:
 
+- [`../docs/KNOWLEDGE_ARCHITECTURE.md`](../docs/KNOWLEDGE_ARCHITECTURE.md)
 - [`README.pensum.md`](./README.pensum.md)
 - [`fagstrukturREADME.md`](./fagstrukturREADME.md)
 - [`quizREADME.md`](./quizREADME.md)
+- [`knowledgeREADME.md`](./knowledgeREADME.md) — compatibility-pointer
 - [`data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) — aktiv mapping fra fag til pensum, emner, fagkart, metoder og quizproduksjon
 
-Det gamle extensionløse `emnepackREADME` var et biologispesifikt utkast og er fjernet. Det skal ikke brukes som generell emnearkitektur.
+Det gamle extensionløse `emnepackREADME` var et biologispesifikt utkast og er fjernet. Det skal ikke brukes som generell emnearkitektur. Tidligere parallelle Knowledge-, ontology- og knaggemodeller er arkivert og kan ikke overstyre canonical Knowledge-policy eller runtime.
 
 ---
 
@@ -264,8 +275,9 @@ node tools/check_places_index_sync.mjs
 4. Ikke fjern gating for knowledge/trivia uten bevisst produktvalg.
 5. Ikke legg nye idébibler inn i rot-README.
 6. Ikke kopier gamle README-blokker videre; konsolider dem i riktig dokument.
-7. Ikke legg nye progresjonssannheter ved siden av `quiz_history`, `knowledge_universe`, `trivia_universe`, `hg_learning_log_v1`, courses/pensum og eksisterende profile/update-hooks uten migreringsplan.
-8. Ikke dupliser profile sin progresjonslesing i PlaceCard/Nearby/ruter; trekk heller ut små read-only helpers hvis gjenbruk trengs.
+7. Ikke legg nye progresjons- eller Knowledge-sannheter ved siden av `hg_knowledge_entries_v2`, `hg_knowledge_memory_v1`, `hg_learning_log_v1`, courses/pensum og eksisterende profile/update-hooks uten migreringsplan.
+8. Ikke gjeninnfør `knowledge_universe` som parallell storage; legacy-data skal migreres til V2.
+9. Ikke dupliser profile sin progresjonslesing i PlaceCard/Nearby/ruter; trekk heller ut små read-only helpers hvis gjenbruk trengs.
 
 ---
 
@@ -276,13 +288,15 @@ node tools/check_places_index_sync.mjs
 - `README/README.md`: denne hovedoversikten
 - `docs/HISTORY_GO_PRODUCT_MAP.md`: produktkart og ferdigstillelseskart
 - `docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md`: compatibility-pointer fra gamle gaprapportlenker
-- `docs/PROFILE_PROGRESS_REUSE_AUDIT.md`: audit av hva profile allerede leser og hvordan det bør gjenbrukes
 - `docs/COMPLETION_DEFINITIONS.md`: definisjon av fullført
 - `docs/PROGRESSION_MODEL.md`: progresjons-read-model
+- `docs/PROFILE_PROGRESS_READER_RUNTIME.md`: aktiv profile-reader og progresjonsgjenbruk
 - `docs/PLACE_STANDARD.md`: stedstandard
+- `docs/KNOWLEDGE_ARCHITECTURE.md`: canonical Knowledge-arkitektur og storage-eierskap
 - `README/README_DEV.md`: daglig drift, lokal kjøring, validering og debugging
 - `README/README.pensum.md`: fagkart, emner, pensum og progresjon
-- `README/quizREADME.md`: quiz, learning log, observations og rewards
+- `README/quizREADME.md`: compatibility-pointer til canonical quizproduksjon
+- `README/knowledgeREADME.md`: compatibility-pointer til canonical Knowledge-arkitektur
 - `data/places/README_place_rounds.md`: PlaceCard-rundinger
 - `data/wonderkammer/README.md`: Wonderkammer-datastandard
 - `docs/HG_SOCIAL_README.md`: Social Meet / HG Social / Spotmeeting
@@ -292,4 +306,4 @@ node tools/check_places_index_sync.mjs
 
 README-regel:
 
-> Én sannhet per dokument. Rot-README er inngang. Hoved-README er oversikt. Produktkartet eier ferdigstillelsesstatus. Compatibility-filer eier ingen produktsannhet. Fag-, data-, quiz-, social- og place-rounds-kontrakter skal ikke overstyres av nye planleggingsdokumenter.
+> Én sannhet per dokument. Rot-README er inngang. Hoved-README er oversikt. Produktkartet eier ferdigstillelsesstatus. Compatibility-filer eier ingen produktsannhet. Fag-, Knowledge-, data-, quiz-, social- og place-rounds-kontrakter skal ikke overstyres av nye planleggingsdokumenter.

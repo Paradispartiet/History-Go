@@ -18,6 +18,10 @@
     "docs/APP_STRUCTURE_INDEX.md",
     "docs/DOMAIN_CONTRACT.md",
     "docs/DATA_PRODUCTION_CONTRACT.md",
+    "docs/KNOWLEDGE_ARCHITECTURE.md",
+    "data/knowledge/knowledge_system_policy_v1.json",
+    "data/knowledge/knowledge_unit_schema_v1.json",
+    "data/quiz/quiz_knowledge_delivery_contract_v1.json",
     "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json",
     "README/README_DEV.md",
@@ -204,6 +208,41 @@
       "status": "canonical",
       "role": "Aktiv dataproduksjonskontrakt for places, people, quiz og manifester",
       "owns": ["data_production_contract"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/KNOWLEDGE_ARCHITECTURE.md",
+      "status": "canonical",
+      "role": "Menneskelesbar Knowledge-arkitektur, storage-eierskap og grense mellom produksjonskrav og overgangsruntime",
+      "owns": ["knowledge_architecture", "knowledge_storage_ownership"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "data/knowledge/knowledge_system_policy_v1.json",
+      "status": "canonical",
+      "role": "Maskinlesbar Knowledge-systempolicy og canonical faglig kjede",
+      "owns": ["knowledge_system_policy"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "data/knowledge/knowledge_unit_schema_v1.json",
+      "status": "canonical",
+      "role": "Maskinlesbart schema for canonical knowledge units",
+      "owns": ["knowledge_unit_schema"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "data/quiz/quiz_knowledge_delivery_contract_v1.json",
+      "status": "canonical",
+      "role": "Maskinlesbar kontrakt for quiz som kunnskaps-, vurderings- og evidensflate",
+      "owns": ["quiz_knowledge_delivery_contract"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "README/knowledgeREADME.md",
+      "status": "operational",
+      "role": "Compatibility-pointer til canonical Knowledge-arkitektur, maskinregler og TypeScript-runtime",
+      "owns": [],
       "last_verified": "2026-07-25"
     },
     {
