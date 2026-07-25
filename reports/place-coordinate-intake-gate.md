@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-25T23:18:20.682Z
+Generert: 2026-07-25T23:29:36.868Z
 
 ## Hvorfor denne gaten finnes
 
@@ -18,7 +18,7 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 - Place-objekter validert: **1444**
 - Nye/endrede koordinatobjekter mot base: **0**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **2801**
+- Backlog-funn: **2794**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -79,13 +79,6 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | kjeller_flyplass | Kjeller flyplass | data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | kjeller_flyplass | Kjeller flyplass | data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | kjeller_flyplass | Kjeller flyplass | data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json | coordNote | Stor radius r=360 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
-| backlog | nei | krakstad_kirke_og_gravhaug | Kråkstad kirke og gravhaug | data/places/historie/akershus/places_historie_akershus_batch3/krakstad_kirke_og_gravhaug.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | krakstad_kirke_og_gravhaug | Kråkstad kirke og gravhaug | data/places/historie/akershus/places_historie_akershus_batch3/krakstad_kirke_og_gravhaug.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | krakstad_kirke_og_gravhaug | Kråkstad kirke og gravhaug | data/places/historie/akershus/places_historie_akershus_batch3/krakstad_kirke_og_gravhaug.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | son_ladested | Son ladested | data/places/by/akershus/son_ladested/son_ladested.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | son_ladested | Son ladested | data/places/by/akershus/son_ladested/son_ladested.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | son_ladested | Son ladested | data/places/by/akershus/son_ladested/son_ladested.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | son_ladested | Son ladested | data/places/by/akershus/son_ladested/son_ladested.json | coordNote | Stor radius r=320 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
 | backlog | nei | holen_ladested | Hølen ladested | data/places/by/akershus/holen_ladested/holen_ladested.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | holen_ladested | Hølen ladested | data/places/by/akershus/holen_ladested/holen_ladested.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | holen_ladested | Hølen ladested | data/places/by/akershus/holen_ladested/holen_ladested.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
@@ -541,6 +534,13 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | atlungstad_brenneri | Atlungstad Brenneri | data/places/naeringsliv/innlandet/atlungstad_brenneri/atlungstad_brenneri.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | atlungstad_brenneri | Atlungstad Brenneri | data/places/naeringsliv/innlandet/atlungstad_brenneri/atlungstad_brenneri.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | atlungstad_brenneri | Atlungstad Brenneri | data/places/naeringsliv/innlandet/atlungstad_brenneri/atlungstad_brenneri.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | atlungstad_brenneri | Atlungstad Brenneri | data/places/naeringsliv/innlandet/atlungstad_brenneri/atlungstad_brenneri.json | coordNote | Stor radius r=320 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | norsk_jernbanemuseum_hamar | Norsk jernbanemuseum Hamar | data/places/historie/innlandet/places_historie_innlandet_batch2/norsk_jernbanemuseum_hamar.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | norsk_jernbanemuseum_hamar | Norsk jernbanemuseum Hamar | data/places/historie/innlandet/places_historie_innlandet_batch2/norsk_jernbanemuseum_hamar.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | norsk_jernbanemuseum_hamar | Norsk jernbanemuseum Hamar | data/places/historie/innlandet/places_historie_innlandet_batch2/norsk_jernbanemuseum_hamar.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | norsk_jernbanemuseum_hamar | Norsk jernbanemuseum Hamar | data/places/historie/innlandet/places_historie_innlandet_batch2/norsk_jernbanemuseum_hamar.json | coordNote | Stor radius r=360 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | gjovik_gard | Gjøvik gård | data/places/historie/innlandet/places_historie_innlandet_batch2/gjovik_gard.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | gjovik_gard | Gjøvik gård | data/places/historie/innlandet/places_historie_innlandet_batch2/gjovik_gard.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 2801 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 2794 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._

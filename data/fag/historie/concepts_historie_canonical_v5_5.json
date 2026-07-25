@@ -184,8 +184,8 @@
   {
     "concept_id": "con_his_adgangsvilkar",
     "label": "adgangsvilkår",
-    "definition": "I Velferd, rett og hverdagsliv betegner «adgangsvilkår» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Adgangsvilkår er de daterte juridiske og administrative kravene som avgjør hvem som kan søke, vurderes eller få en velferdsytelse eller tjeneste.",
+    "concept_type": "welfare_eligibility_condition",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -204,12 +204,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «adgangsvilkår» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_vilkar",
+      "con_his_soknad",
+      "con_his_velferdsrett"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_universalisme"
+    ],
+    "common_misuse": [
+      "Å omtale en ordning som tilgjengelig fordi den finnes, uten å undersøke alder, bosted, inntekt, arbeid, dokumentasjon og skjønn."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelle kvalifikasjonskrav",
+      "dokumentasjons- og søknadskrav",
+      "praktisert inkludering og avslag"
+    ],
+    "source_requirements": [
+      "lov, forskrift og rundskriv",
+      "søknads-, vedtaks- og klagesaker som viser praktiseringen"
+    ]
   },
   {
     "concept_id": "con_his_akkumulering",
@@ -1607,8 +1622,8 @@
   {
     "concept_id": "con_his_avinstitusjonalisering",
     "label": "avinstitusjonalisering",
-    "definition": "I Velferd, rett og hverdagsliv betegner «avinstitusjonalisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Avinstitusjonalisering er overføring av mennesker, ansvar og ressurser fra langvarige institusjonsopphold til bolig, nærmiljø og desentraliserte tjenester.",
+    "concept_type": "deinstitutionalization_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -1618,12 +1633,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «avinstitusjonalisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_institusjonalisering",
+      "con_his_boforhold",
+      "con_his_tjenestepraksis"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_utskrivning"
+    ],
+    "common_misuse": [
+      "Å telle nedlagte plasser som vellykket avinstitusjonalisering uten å undersøke bolig, bemanning, tvang, kontinuitet og brukerens eget liv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "redusert institusjonskapasitet",
+      "nye bolig- og tjenesteløsninger",
+      "dokumenterte livsvilkår etter utflytting"
+    ],
+    "source_requirements": [
+      "institusjons-, budsjett- og reformarkiv",
+      "bolig-, tjeneste- og brukerhistorier etter overføringen"
+    ]
   },
   {
     "concept_id": "con_his_avkolonisering",
@@ -2239,9 +2269,9 @@
   },
   {
     "concept_id": "con_his_bibliotek",
-    "label": "bibliotek",
-    "definition": "I Velferd, rett og hverdagsliv betegner «bibliotek» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "folkebibliotek",
+    "definition": "Folkebibliotek er en offentlig eller foreningsdrevet kunnskapsinstitusjon som organiserer samlinger, utlån, leserplasser og adgang til informasjon for definerte brukergrupper.",
+    "concept_type": "public_library_institution",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -2251,18 +2281,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «bibliotek» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_folkedannelse",
+      "con_his_leseferdighet",
+      "con_his_skoleplikt"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_skole"
+    ],
+    "common_misuse": [
+      "Å slutte fra etableringsår eller bokbestand til faktisk folkeopplysning uten å undersøke åpningstid, lånergrupper, språk, geografi og bruk."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "samling, lokale og utlånsordning",
+      "dokumenterte adgangsregler",
+      "låner- og aktivitetsmønster"
+    ],
+    "source_requirements": [
+      "kataloger, årsberetninger og utlånsstatistikk",
+      "lokale bruker-, presse- og foreningskilder"
+    ]
   },
   {
     "concept_id": "con_his_bidrag",
-    "label": "bidrag",
-    "definition": "I Velferd, rett og hverdagsliv betegner «bidrag» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "forsikringsbidrag",
+    "definition": "Forsikringsbidrag er innbetaling fra arbeidstaker, arbeidsgiver eller offentlig myndighet som gir eller finansierer rett til bestemte ytelser etter fastsatte regler.",
+    "concept_type": "social_insurance_contribution",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -2272,12 +2317,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «bidrag» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_sosialforsikring",
+      "con_his_ytelse",
+      "con_his_trygd"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sosialhjelp"
+    ],
+    "common_misuse": [
+      "Å behandle bidrag som frivillig sparing eller anta at innbetaling alene ga full og lik ytelsesrett."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert bidragsplikt og sats",
+      "registrert innbetaling og medlemskap",
+      "kobling mellom bidrag og rettighet"
+    ],
+    "source_requirements": [
+      "lov, regnskap og medlemsregister",
+      "enkeltsaker om opptjening, restanse og ytelse"
+    ]
   },
   {
     "concept_id": "con_his_bistand",
@@ -2342,8 +2402,8 @@
   {
     "concept_id": "con_his_boforhold",
     "label": "boforhold",
-    "definition": "I Velferd, rett og hverdagsliv betegner «boforhold» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Boforhold er den dokumenterte kombinasjonen av boligtype, areal, standard, kostnad, hushold, trygghet og adgang til tjenester i et bestemt tidsrom.",
+    "concept_type": "housing_conditions_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -2353,12 +2413,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «boforhold» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_trangboddhet",
+      "con_his_materiell_velferd",
+      "con_his_kommunal_bolig"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_boligpolitikk"
+    ],
+    "common_misuse": [
+      "Å vurdere boforhold ut fra dagens komfortnorm eller bare boligens tekniske tilstand uten hushold, pris og faktisk bruk."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "areal og personer per rom",
+      "sanitær-, varme- og sikkerhetsforhold",
+      "kostnad, kontrakt og botrygghet"
+    ],
+    "source_requirements": [
+      "takst, boligtilsyn, folketelling og leiekilder",
+      "beboer-, helse- og husholdskilder"
+    ]
   },
   {
     "concept_id": "con_his_boligmangel_vs_dokumentert_diskriminering",
@@ -2400,8 +2475,8 @@
   {
     "concept_id": "con_his_boligpolitikk",
     "label": "boligpolitikk",
-    "definition": "I Velferd, rett og hverdagsliv betegner «boligpolitikk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Boligpolitikk er offentlige mål, regler og virkemidler for bygging, finansiering, tildeling, regulering og standard i boligmarkedet.",
+    "concept_type": "housing_policy_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -2416,12 +2491,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «boligpolitikk» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kommunal_bolig",
+      "con_his_boforhold",
+      "con_his_materiell_velferd"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tildeling"
+    ],
+    "common_misuse": [
+      "Å likestille politisk program med gjennomførte boliger eller anta at økt boligproduksjon fordelte seg likt."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "lov- og programfestede boligtiltak",
+      "finansiering, regulering og produksjon",
+      "målgrupper, tildeling og fordelingsvirkning"
+    ],
+    "source_requirements": [
+      "lover, planer, budsjetter og byggestatistikk",
+      "tildelings-, pris- og husholdsdata"
+    ]
   },
   {
     "concept_id": "con_his_boligreform_vs_levd_boligforhold",
@@ -2847,9 +2937,9 @@
   },
   {
     "concept_id": "con_his_bruker",
-    "label": "bruker",
-    "definition": "I Velferd, rett og hverdagsliv betegner «bruker» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "velferdsbruker",
+    "definition": "Velferdsbruker er en historisk administrativ og politisk betegnelse på en person som mottar eller søker tjenester, og må skilles fra personens øvrige roller og selvforståelse.",
+    "concept_type": "welfare_user_category",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -2859,18 +2949,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «bruker» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_mottaker",
+      "con_his_pasient",
+      "con_his_brukerrettighet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_brukerhistorie"
+    ],
+    "common_misuse": [
+      "Å gjøre bruker til en tidløs identitet eller la tjenestens kategori erstatte personens hushold, arbeid, rettigheter og egne erfaringer."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "institusjonell bruk av betegnelsen",
+      "konkret tjeneste- eller ytelsesrelasjon",
+      "personens egne betegnelser og roller"
+    ],
+    "source_requirements": [
+      "saks-, journal- og tjenestedokumenter",
+      "brukerorganisasjons-, intervju- og livshistoriekilder"
+    ]
   },
   {
     "concept_id": "con_his_brukerhistorie",
     "label": "brukerhistorie",
-    "definition": "I Velferd, rett og hverdagsliv betegner «brukerhistorie» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Brukerhistorie rekonstruerer en persons møte med velferdsinstitusjoner gjennom egne fortellinger, saksforløp, hverdagsliv og skiftende rettigheter.",
+    "concept_type": "welfare_user_history",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -2880,18 +2985,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «brukerhistorie» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bruker",
+      "con_his_journal",
+      "con_his_tjenestepraksis"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_normalbiografi"
+    ],
+    "common_misuse": [
+      "Å bruke én journal som hele brukerhistorien eller anta at retrospektiv fortelling og samtidig saksdokument beskriver samme virkelighet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "livsløp før, under og etter tjenestekontakt",
+      "flere kildeposisjoner",
+      "dokumentert betydning for hverdagsliv"
+    ],
+    "source_requirements": [
+      "journal, vedtak og institusjonsarkiv",
+      "intervju, private dokumenter og pårørendekilder"
+    ]
   },
   {
     "concept_id": "con_his_brukerrettighet",
     "label": "brukerrettighet",
-    "definition": "I Velferd, rett og hverdagsliv betegner «brukerrettighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Brukerrettighet er en rettslig eller administrativt fastsatt adgang til informasjon, medvirkning, klage, tjeneste eller vern i møte med velferdsforvaltningen.",
+    "concept_type": "welfare_user_right",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -2904,12 +3024,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «brukerrettighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_velferdsrett",
+      "con_his_adgangsvilkar",
+      "con_his_skjonn"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tjeneste"
+    ],
+    "common_misuse": [
+      "Å anta at en formell brukerrettighet ble kjent, tilgjengelig og håndhevet likt for alle."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "lov- eller regelgrunnlag",
+      "informasjon, medvirkning eller klagekanal",
+      "dokumentert bruk og håndheving"
+    ],
+    "source_requirements": [
+      "lov, forskrift og veiledning",
+      "klager, ombudssaker og brukerundersøkelser"
+    ]
   },
   {
     "concept_id": "con_his_bydannelse",
@@ -3498,9 +3633,9 @@
   },
   {
     "concept_id": "con_his_dekning",
-    "label": "dekning",
-    "definition": "I Velferd, rett og hverdagsliv betegner «dekning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "velferdsdekning",
+    "definition": "Velferdsdekning er andelen og sammensetningen av den relevante befolkningen som faktisk er omfattet av en ordning eller tjeneste.",
+    "concept_type": "welfare_coverage_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -3510,12 +3645,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «dekning» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_universalisme",
+      "con_his_adgangsvilkar",
+      "con_his_ytelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_velferd"
+    ],
+    "common_misuse": [
+      "Å kalle en ordning universell eller utbredt uten å definere målgruppe, telleren, nevneren og geografisk eller sosial variasjon."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert mål- og mottakerbefolkning",
+      "dekningsgrad over tid og sted",
+      "grupper utenfor eller med lav bruk"
+    ],
+    "source_requirements": [
+      "register-, medlems- og befolkningsdata",
+      "lokale og sosiale fordelingsdata"
+    ]
   },
   {
     "concept_id": "con_his_deltakelse",
@@ -5083,8 +5233,8 @@
   {
     "concept_id": "con_his_epidemi",
     "label": "epidemi",
-    "definition": "I Velferd, rett og hverdagsliv betegner «epidemi» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Epidemi er en tids- og stedavgrenset økning i sykdom eller dødelighet som krever eksplisitt diagnosegrunnlag, befolkningsgrunnlag og registreringspraksis.",
+    "concept_type": "epidemic_event_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -5094,12 +5244,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «epidemi» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_folkehelse",
+      "con_his_offentlig_helse",
+      "con_his_hygiene"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sykehus"
+    ],
+    "common_misuse": [
+      "Å oppgi presis utbredelse eller årsak fra spredte dødsfall uten å kontrollere diagnoser, rapportering og befolkningsgrunnlag."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "økning over forventet nivå",
+      "avgrenset tidsrom og befolkning",
+      "smitte-, dødelighets- eller tiltaksmønster"
+    ],
+    "source_requirements": [
+      "dødsårsaks-, sykehus- og helserapporter",
+      "befolknings- og lokale kontrollkilder"
+    ]
   },
   {
     "concept_id": "con_his_epoker",
@@ -5659,8 +5824,8 @@
   {
     "concept_id": "con_his_familieansvar",
     "label": "familieansvar",
-    "definition": "I Velferd, rett og hverdagsliv betegner «familieansvar» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Familieansvar er historisk fordelte plikter og forventninger om forsørgelse, omsorg, oppdragelse og representasjon mellom familiemedlemmer.",
+    "concept_type": "family_welfare_responsibility",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -5670,12 +5835,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «familieansvar» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_omsorgsarbeid",
+      "con_his_ulonnet_arbeid",
+      "con_his_sosial_reproduksjon"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_omsorgsregime"
+    ],
+    "common_misuse": [
+      "Å omtale familien som én omsorgsaktør uten å undersøke kjønn, alder, økonomi, tvang og intern fordeling."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "rettslige og moralske forsørgelseskrav",
+      "faktisk omsorgs- og arbeidsdeling",
+      "konsekvenser for inntekt og livsløp"
+    ],
+    "source_requirements": [
+      "familie-, fattig- og trygdelovgivning",
+      "husholds-, tidsbruk- og livshistoriekilder"
+    ]
   },
   {
     "concept_id": "con_his_familiegjenforening_vs_opprinnelig_migrasjonsmotiv",
@@ -5931,8 +6111,8 @@
   {
     "concept_id": "con_his_fattiglov",
     "label": "fattiglov",
-    "definition": "I Velferd, rett og hverdagsliv betegner «fattiglov» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Fattiglov er et datert rettslig rammeverk for hvem som hadde krav på hjelp, hvilken kommune som var ansvarlig og hvilke plikter og kontrolltiltak som fulgte støtten.",
+    "concept_type": "poor_law_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -5942,18 +6122,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fattiglov» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fattigvesen",
+      "con_his_understottelse",
+      "con_his_sosial_kontroll"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sosialhjelp"
+    ],
+    "common_misuse": [
+      "Å lese lovens kategorier som direkte beskrivelser av fattige mennesker eller anta lik praktisering mellom kommuner."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "adgangs- og bostedsvilkår",
+      "ansvars- og finansieringsregler",
+      "plikter, tap av rettigheter og klage"
+    ],
+    "source_requirements": [
+      "lovtekst, forarbeider og rundskriv",
+      "kommunale fattigprotokoller og enkeltsaker"
+    ]
   },
   {
     "concept_id": "con_his_fattigvesen",
     "label": "fattigvesen",
-    "definition": "I Velferd, rett og hverdagsliv betegner «fattigvesen» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Fattigvesen er det lokale institusjons- og praksissystemet som undersøkte behov, fordelte understøttelse, plasserte mennesker og håndhevet fattiglovens vilkår.",
+    "concept_type": "poor_relief_system",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -5967,12 +6162,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fattigvesen» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fattiglov",
+      "con_his_understottelse",
+      "con_his_plassering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_veldedighet"
+    ],
+    "common_misuse": [
+      "Å redusere fattigvesenet til kontantstøtte eller bruke protokollkategorien som full beskrivelse av mottakerens liv."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "fattigstyre, budsjett og saksbehandling",
+      "støtte-, plassering- og kontrollpraksis",
+      "lokal variasjon og mottakerforløp"
+    ],
+    "source_requirements": [
+      "fattigprotokoller, budsjetter og korrespondanse",
+      "husholds-, arbeids- og livshistoriekilder"
+    ]
   },
   {
     "concept_id": "con_his_fellesskap",
@@ -6398,8 +6608,8 @@
   {
     "concept_id": "con_his_folkedannelse",
     "label": "folkedannelse",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «folkedannelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Folkedannelse er organiserte tiltak for kunnskap, lesning, debatt og deltakelse gjennom skole, bibliotek, foredrag og foreninger.",
+    "concept_type": "popular_education_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie",
@@ -6415,18 +6625,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «folkedannelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bibliotek",
+      "con_his_leseferdighet",
+      "con_his_skoleplikt"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_profesjonalisering"
+    ],
+    "common_misuse": [
+      "Å slutte fra institusjonens idealer til faktisk opplysning uten å undersøke adgang, pensum, bruk og deltakernes egne mål."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "utdannings- og opplysningstilbud utenfor eliteinstitusjoner",
+      "dokumenterte deltakere og aktiviteter",
+      "kobling til organisasjon og medborgerskap"
+    ],
+    "source_requirements": [
+      "skole-, bibliotek- og foreningsarkiv",
+      "deltaker-, presse- og lokale kilder"
+    ]
   },
   {
     "concept_id": "con_his_folkehelse",
     "label": "folkehelse",
-    "definition": "I Velferd, rett og hverdagsliv betegner «folkehelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Folkehelse er befolkningens fordelte helseforhold og de kollektive tiltakene som søker å påvirke sykdom, levekår og risiko.",
+    "concept_type": "population_health_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -6439,12 +6664,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «folkehelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_offentlig_helse",
+      "con_his_epidemi",
+      "con_his_hygiene"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_pasient"
+    ],
+    "common_misuse": [
+      "Å bruke gjennomsnittlig levealder eller dødelighet som uttrykk for hele befolkningens helse uten sosial og geografisk fordeling."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "dødelighet, sykdom og funksjon i befolkningen",
+      "sosiale og geografiske forskjeller",
+      "kollektive forebyggende tiltak"
+    ],
+    "source_requirements": [
+      "helse-, dødsårsaks- og befolkningsstatistikk",
+      "lokale miljø-, arbeid- og levekårskilder"
+    ]
   },
   {
     "concept_id": "con_his_folkerett",
@@ -8618,8 +8858,8 @@
   {
     "concept_id": "con_his_hospital",
     "label": "hospital",
-    "definition": "I Velferd, rett og hverdagsliv betegner «hospital» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Hospital er en historisk institusjon for opphold, forsørgelse, pleie eller isolasjon, ofte før det moderne behandlingssykehuset og med skiftende målgrupper.",
+    "concept_type": "historical_hospital_institution",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -8629,12 +8869,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «hospital» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_sykehus",
+      "con_his_innleggelse",
+      "con_his_plassering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_fattigvesen"
+    ],
+    "common_misuse": [
+      "Å oversette alle historiske hospitaler til moderne sykehus og dermed tilskrive dem behandlingsfunksjoner de ikke hadde."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "institusjonens samtidige målgruppe",
+      "oppholds-, pleie- og forsørgelsespraksis",
+      "økonomi, regelverk og bemanning"
+    ],
+    "source_requirements": [
+      "fundas, reglement, regnskap og beboerlister",
+      "bygnings-, journal- og lokale kilder"
+    ]
   },
   {
     "concept_id": "con_his_hushold",
@@ -8899,9 +9154,9 @@
   },
   {
     "concept_id": "con_his_hygiene",
-    "label": "hygiene",
-    "definition": "I Velferd, rett og hverdagsliv betegner «hygiene» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "offentlig hygiene",
+    "definition": "Offentlig hygiene er kunnskap, regler og praksiser om vann, avløp, renhold, bolig, mat og smitte som søker å forebygge sykdom.",
+    "concept_type": "public_hygiene_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -8911,12 +9166,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «hygiene» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_offentlig_helse",
+      "con_his_epidemi",
+      "con_his_boforhold"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_folkehelse"
+    ],
+    "common_misuse": [
+      "Å behandle hygienetiltak som rent medisinske framskritt uten å undersøke moral, klasse, tvang, infrastruktur og faktisk etterlevelse."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "sanitærregler og inspeksjon",
+      "vann-, avløps- og renholdstiltak",
+      "dokumentert praksis og helsevirkning"
+    ],
+    "source_requirements": [
+      "sunnhetskommisjons-, tilsyns- og infrastruktarkiv",
+      "husholds-, sykdoms- og nabolagskilder"
+    ]
   },
   {
     "concept_id": "con_his_identifikasjon",
@@ -9520,8 +9790,8 @@
   {
     "concept_id": "con_his_innleggelse",
     "label": "innleggelse",
-    "definition": "I Velferd, rett og hverdagsliv betegner «innleggelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Innleggelse er den formelle og praktiske overføringen av en person til en institusjon, med bestemte henvisnings-, samtykke-, tvangs- og utskrivningsvilkår.",
+    "concept_type": "institutional_admission_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -9531,12 +9801,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «innleggelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_institusjonalisering",
+      "con_his_pasient",
+      "con_his_journal"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_plassering"
+    ],
+    "common_misuse": [
+      "Å lese innleggelsesdato som direkte mål på sykdom, frivillighet eller sammenhengende opphold uten saksforløp."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "henvisning eller vedtak",
+      "samtykke, tvang og rettsgrunnlag",
+      "oppholds- og utskrivningsforløp"
+    ],
+    "source_requirements": [
+      "innleggelsesprotokoll, journal og vedtak",
+      "pasient-, pårørende- og tilsynskilder"
+    ]
   },
   {
     "concept_id": "con_his_innlemmelse",
@@ -9673,8 +9958,8 @@
   {
     "concept_id": "con_his_institusjonalisering",
     "label": "institusjonalisering",
-    "definition": "I Velferd, rett og hverdagsliv betegner «institusjonalisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Institusjonalisering er prosessen der mennesker og behov organiseres gjennom varig plassering, kategorisering, regler og hverdagsrutiner i avgrensede institusjoner.",
+    "concept_type": "institutionalization_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -9689,12 +9974,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «institusjonalisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_innleggelse",
+      "con_his_plassering",
+      "con_his_avinstitusjonalisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tjeneste"
+    ],
+    "common_misuse": [
+      "Å bruke institusjonalisering som synonym for enhver tjenestekontakt eller anta at alle institusjoner hadde samme kontroll- og omsorgsregime."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "langvarig eller gjentatt opphold",
+      "institusjonelle kategorier og regler",
+      "hverdagsrutiner, avhengighet og begrenset selvbestemmelse"
+    ],
+    "source_requirements": [
+      "institusjonsreglement, beboer- og personalarkiv",
+      "brukerhistorier, tilsyn og materielle spor"
+    ]
   },
   {
     "concept_id": "con_his_institusjonell",
@@ -10275,9 +10575,9 @@
   },
   {
     "concept_id": "con_his_journal",
-    "label": "journal",
-    "definition": "I Velferd, rett og hverdagsliv betegner «journal» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "velferds- og pasientjournal",
+    "definition": "Journal er en kronologisk institusjonell tekst som registrerer observasjoner, vurderinger, tiltak og kontakt, produsert for behandling eller forvaltning under bestemte dokumentasjonsregler.",
+    "concept_type": "welfare_case_record",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -10287,12 +10587,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «journal» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_profesjonell_vurdering",
+      "con_his_brukerhistorie",
+      "con_his_soknad"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_normalbiografi"
+    ],
+    "common_misuse": [
+      "Å lese journalen som personens fulle liv eller nøytral beskrivelse uten å undersøke sjanger, tilgang, kopiering og profesjonelt formål."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "daterte notater og forfatterrolle",
+      "institusjonelt dokumentasjonsformål",
+      "sporbare vurderinger og tiltak"
+    ],
+    "source_requirements": [
+      "original journal og dokumentasjonsregler",
+      "bruker-, pårørende- og andre institusjonskilder"
+    ]
   },
   {
     "concept_id": "con_his_jubileer",
@@ -11977,8 +12292,8 @@
   {
     "concept_id": "con_his_kommunal_bolig",
     "label": "kommunal bolig",
-    "definition": "I Velferd, rett og hverdagsliv betegner «kommunal bolig» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Kommunal bolig er en bolig eid, disponert eller tildelt av kommunen etter bestemte målgrupper, kontrakter og prioriteringsregler.",
+    "concept_type": "municipal_housing_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -11988,12 +12303,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kommunal bolig» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_boligpolitikk",
+      "con_his_tildeling",
+      "con_his_boforhold"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sosialhjelp"
+    ],
+    "common_misuse": [
+      "Å anta at kommunalt eierskap innebar lik standard, varig botrygghet eller rett til bolig."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "kommunal disposisjonsrett",
+      "målgruppe og tildelingsvedtak",
+      "kontrakt, standard og botid"
+    ],
+    "source_requirements": [
+      "eiendoms-, tildelings- og kontraktsarkiv",
+      "beboer-, vedlikeholds- og klagesaker"
+    ]
   },
   {
     "concept_id": "con_his_kommunalt",
@@ -14125,8 +14455,8 @@
   {
     "concept_id": "con_his_leseferdighet",
     "label": "leseferdighet",
-    "definition": "I Velferd, rett og hverdagsliv betegner «leseferdighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Leseferdighet er historisk situert evne og praksis til å avkode, forstå og bruke tekst i bestemte språk, sjangre og hverdagssituasjoner.",
+    "concept_type": "literacy_practice_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -14136,12 +14466,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «leseferdighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_skoleplikt",
+      "con_his_bibliotek",
+      "con_his_folkedannelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_profesjonalisering"
+    ],
+    "common_misuse": [
+      "Å utlede leseferdighet direkte fra skolegang, signatur eller boktilgang uten å spesifisere nivå og brukssituasjon."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "dokumentert lese- eller skrivehandling",
+      "språk, sjanger og ferdighetsnivå",
+      "bruk i arbeid, religion eller offentlighet"
+    ],
+    "source_requirements": [
+      "skoleprøver, signatur- og leseundersøkelser",
+      "brev, utlån og praksisnære tekster"
+    ]
   },
   {
     "concept_id": "con_his_leseferdighet_vs_politisk_deltakelse",
@@ -15118,9 +15463,9 @@
   },
   {
     "concept_id": "con_his_materiell",
-    "label": "materiell",
-    "definition": "I Velferd, rett og hverdagsliv betegner «materiell» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "materielle livsvilkår",
+    "definition": "Materielle livsvilkår er husholdets tilgang til bolig, klær, mat, varme, inventar, transport og tekniske forsyninger.",
+    "concept_type": "material_living_conditions",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -15130,18 +15475,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «materiell» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_materiell_velferd",
+      "con_his_boforhold",
+      "con_his_trangboddhet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_velferd"
+    ],
+    "common_misuse": [
+      "Å bruke én gjenstand, boligtype eller inntekt som fullstendig mål på levestandard uten pris, hushold og gjeld."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "bolig- og forbruksressurser",
+      "kosthold, klær og oppvarming",
+      "tilgang, kvalitet og fordeling i husholdet"
+    ],
+    "source_requirements": [
+      "budsjett, takst, skifte og forbruksdata",
+      "husholds-, pris- og materielle kilder"
+    ]
   },
   {
     "concept_id": "con_his_materiell_velferd",
     "label": "materiell velferd",
-    "definition": "I Velferd, rett og hverdagsliv betegner «materiell velferd» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Materiell velferd er graden av økonomisk og praktisk trygghet som følger av inntekt, bolig, forbruk, tjenester og sosial beskyttelse, sosialt fordelt over tid.",
+    "concept_type": "material_welfare_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -15151,12 +15511,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «materiell velferd» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_materiell",
+      "con_his_boligpolitikk",
+      "con_his_trygd"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_velferd"
+    ],
+    "common_misuse": [
+      "Å måle materiell velferd med nominell inntekt eller gjennomsnitt alene uten priser, husholdsstørrelse, gjeld og offentlig tjenestetilgang."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "realinntekt og forbruksmulighet",
+      "bolig- og forsyningsstandard",
+      "økonomisk risiko og sosial beskyttelse"
+    ],
+    "source_requirements": [
+      "inntekts-, pris-, bolig- og forbruksserier",
+      "husholdsbudsjett og fordelingsdata"
+    ]
   },
   {
     "concept_id": "con_his_materielle",
@@ -16821,9 +17196,9 @@
   },
   {
     "concept_id": "con_his_mottaker",
-    "label": "mottaker",
-    "definition": "I Velferd, rett og hverdagsliv betegner «mottaker» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "ytelsesmottaker",
+    "definition": "Ytelsesmottaker er en administrativ kategori for personer som faktisk mottar en bestemt støtte eller ytelse i et definert tidsrom.",
+    "concept_type": "benefit_recipient_category",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -16833,12 +17208,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «mottaker» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_ytelse",
+      "con_his_bruker",
+      "con_his_sosialhjelp"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_adgangsvilkar"
+    ],
+    "common_misuse": [
+      "Å bruke mottakerstatus som varig identitet eller anta at alle berettigede og trengende er registrerte mottakere."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifisert ytelse og periode",
+      "utbetaling eller tjenestemottak",
+      "inngang, varighet og avslutning"
+    ],
+    "source_requirements": [
+      "utbetalings- og mottakerregister",
+      "søknads-, avslags- og husholdskilder"
+    ]
   },
   {
     "concept_id": "con_his_muntlig",
@@ -17480,8 +17870,8 @@
   {
     "concept_id": "con_his_normalbiografi",
     "label": "normalbiografi",
-    "definition": "I Velferd, rett og hverdagsliv betegner «normalbiografi» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Normalbiografi er en normativ forventning om riktig rekkefølge og tidspunkt for skole, arbeid, familie, helse og pensjon, brukt til å vurdere livsløp og avvik.",
+    "concept_type": "normative_life_course_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -17491,12 +17881,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «normalbiografi» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_skoleplikt",
+      "con_his_familieansvar",
+      "con_his_pensjon"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_brukerhistorie"
+    ],
+    "common_misuse": [
+      "Å behandle normalbiografien som faktisk gjennomsnittsliv eller bruke avvik som individuell svikt uten klasse, kjønn, funksjon og institusjonell kontekst."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "normerte livsfaser og overgangstidspunkt",
+      "institusjonelle forventninger og vilkår",
+      "kategorisering av avvik og støttebehov"
+    ],
+    "source_requirements": [
+      "lov, veiledning, lærebok og profesjonskilder",
+      "livsløps-, bruker- og statistiske kilder"
+    ]
   },
   {
     "concept_id": "con_his_normalulykker",
@@ -17646,9 +18051,9 @@
   },
   {
     "concept_id": "con_his_offentlig_helse",
-    "label": "offentlig helse",
-    "definition": "I Velferd, rett og hverdagsliv betegner «offentlig helse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "offentlig helsearbeid",
+    "definition": "Offentlig helsearbeid er myndigheters organiserte overvåking, forebygging og regulering av sykdom, miljø, hygiene og helsetjenester.",
+    "concept_type": "public_health_governance",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -17658,12 +18063,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «offentlig helse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_folkehelse",
+      "con_his_hygiene",
+      "con_his_epidemi"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sykehus"
+    ],
+    "common_misuse": [
+      "Å redusere offentlig helse til medisinsk behandling eller anta at vedtak og kampanjer ble gjennomført og mottatt likt."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "helsemyndighet og mandat",
+      "overvåking, forebygging eller regulering",
+      "ressurser, gjennomføring og målgruppe"
+    ],
+    "source_requirements": [
+      "sunnhetslov, rapporter og budsjetter",
+      "lokale tiltak-, befolknings- og mottakerkilder"
+    ]
   },
   {
     "concept_id": "con_his_offentlig_konsekvens",
@@ -18228,8 +18648,8 @@
   {
     "concept_id": "con_his_omsorgsarbeid",
     "label": "omsorgsarbeid",
-    "definition": "I Velferd, rett og hverdagsliv betegner «omsorgsarbeid» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Omsorgsarbeid er lønnede og ulønnede handlinger som opprettholder helse, hverdagsliv og avhengige personers behov gjennom tid, kropp og relasjoner.",
+    "concept_type": "care_work_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -18244,18 +18664,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «omsorgsarbeid» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_ulonnet_arbeid",
+      "con_his_familieansvar",
+      "con_his_omsorgsregime"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tjeneste"
+    ],
+    "common_misuse": [
+      "Å omtale omsorg som naturlig familieinnsats eller bare profesjonell tjeneste uten å måle tid, kjønn, kompetanse og kostnad."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkrete omsorgsoppgaver og tidsbruk",
+      "lønnet eller ulønnet organisering",
+      "ansvar, kompetanse og belastning"
+    ],
+    "source_requirements": [
+      "arbeids-, institusjons- og tidsbruksdata",
+      "husholds-, intervju- og profesjonskilder"
+    ]
   },
   {
     "concept_id": "con_his_omsorgsregime",
     "label": "omsorgsregime",
-    "definition": "I Velferd, rett og hverdagsliv betegner «omsorgsregime» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Omsorgsregime er den historiske fordelingen av omsorgsansvar, finansiering og rettigheter mellom familie, marked, frivillighet og offentlig sektor.",
+    "concept_type": "care_regime_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -18265,12 +18700,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «omsorgsregime» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_omsorgsarbeid",
+      "con_his_familieansvar",
+      "con_his_tjeneste"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ulonnet_arbeid"
+    ],
+    "common_misuse": [
+      "Å beskrive et samfunn som familie- eller statsbasert uten å undersøke blandede ordninger, kjønn og praktisk dekning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "ansvarsdeling mellom sektorer",
+      "finansierings- og adgangsregler",
+      "kjønnet og sosial fordeling av arbeid"
+    ],
+    "source_requirements": [
+      "lov, budsjett og tjenestestatistikk",
+      "husholds-, arbeids- og frivillighetskilder"
+    ]
   },
   {
     "concept_id": "con_his_omtolking",
@@ -18936,9 +19386,9 @@
   },
   {
     "concept_id": "con_his_pasient",
-    "label": "pasient",
-    "definition": "I Velferd, rett og hverdagsliv betegner «pasient» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "pasientkategori",
+    "definition": "Pasient er en person definert i relasjon til undersøkelse, behandling eller pleie, med skiftende rettigheter og institusjonelle forventninger.",
+    "concept_type": "patient_category_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -18948,12 +19398,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «pasient» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_innleggelse",
+      "con_his_journal",
+      "con_his_bruker"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_mottaker"
+    ],
+    "common_misuse": [
+      "Å gjøre pasientstatus til hele personens identitet eller anta at medisinsk journal alene uttrykker opplevelse og samtykke."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "behandlings- eller pleierelasjon",
+      "diagnostisk og institusjonell kategorisering",
+      "rettigheter, samtykke og forløp"
+    ],
+    "source_requirements": [
+      "journal, innleggelses- og behandlingskilder",
+      "pasient-, pårørende- og tilsynskilder"
+    ]
   },
   {
     "concept_id": "con_his_patina",
@@ -19061,8 +19526,8 @@
   {
     "concept_id": "con_his_pensjon",
     "label": "pensjon",
-    "definition": "I Velferd, rett og hverdagsliv betegner «pensjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Pensjon er en regelbundet inntektsytelse ved alder, uførhet eller etterlattskap, basert på opptjening, bidrag, skatt eller bosted.",
+    "concept_type": "pension_benefit_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -19072,12 +19537,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «pensjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_sosialforsikring",
+      "con_his_trygd",
+      "con_his_universalisme"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sosialhjelp"
+    ],
+    "common_misuse": [
+      "Å omtale pensjon som universell alderstrygd uten å spesifisere ordning, opptjening, kjønn, sats og dekning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "utløsningsvilkår og alder/status",
+      "opptjening eller finansieringsgrunnlag",
+      "sats, varighet og faktisk dekning"
+    ],
+    "source_requirements": [
+      "pensjonslov, register og budsjett",
+      "enkeltvedtak, husholds- og fordelingsdata"
+    ]
   },
   {
     "concept_id": "con_his_periferi",
@@ -19335,9 +19815,9 @@
   },
   {
     "concept_id": "con_his_plassering",
-    "label": "plassering",
-    "definition": "I Velferd, rett og hverdagsliv betegner «plassering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "velferdsplassering",
+    "definition": "Velferdsplassering er et vedtak eller en praksis som flytter en person til fosterhjem, institusjon, arbeidssted eller annen omsorgsordning.",
+    "concept_type": "welfare_placement_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -19347,12 +19827,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «plassering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_institusjonalisering",
+      "con_his_innleggelse",
+      "con_his_fattigvesen"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tildeling"
+    ],
+    "common_misuse": [
+      "Å bruke plassering som nøytral lokalisering uten å undersøke samtykke, tvang, formål, varighet og relasjonsbrudd."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "vedtak, initiativ og rettsgrunnlag",
+      "målsted, varighet og tilsyn",
+      "samtykke, tvang og konsekvenser"
+    ],
+    "source_requirements": [
+      "plasserings-, barneverns- og institusjonsmapper",
+      "person-, familie- og tilsynskilder"
+    ]
   },
   {
     "concept_id": "con_his_plattform",
@@ -19975,8 +20470,8 @@
   {
     "concept_id": "con_his_profesjonalisering",
     "label": "profesjonalisering",
-    "definition": "I Velferd, rett og hverdagsliv betegner «profesjonalisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Profesjonalisering er utviklingen av avgrenset utdanning, autorisasjon, yrkesorganisering, kunnskapsmonopol og ansvar for bestemte samfunnsoppgaver.",
+    "concept_type": "professionalization_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -19990,18 +20485,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «profesjonalisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_profesjonell_vurdering",
+      "con_his_tjenestepraksis",
+      "con_his_offentlig_helse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_folkedannelse"
+    ],
+    "common_misuse": [
+      "Å likestille flere utdannede ansatte med profesjonalisering uten å undersøke jurisdiksjon, organisasjon og kontroll over arbeidet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "standardisert utdanning og kvalifikasjon",
+      "yrkesorganisasjon og etikk",
+      "myndighet over oppgaver og vurderinger"
+    ],
+    "source_requirements": [
+      "utdannings-, autorisasjons- og organisasjonsarkiv",
+      "arbeids-, konflikt- og tjenestepraksiskilder"
+    ]
   },
   {
     "concept_id": "con_his_profesjonell_vurdering",
     "label": "profesjonell vurdering",
-    "definition": "I Velferd, rett og hverdagsliv betegner «profesjonell vurdering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Profesjonell vurdering er en faglig begrunnet klassifikasjon eller anbefaling som bygger på utdanning, observasjon, regler og institusjonelt mandat.",
+    "concept_type": "professional_assessment_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -20011,12 +20521,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «profesjonell vurdering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_skjonn",
+      "con_his_journal",
+      "con_his_tildeling"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_vilkar"
+    ],
+    "common_misuse": [
+      "Å omtale vurderingen som objektiv fasit eller personlig mening uten å undersøke metode, mandat, dokumentasjon og alternative vurderinger."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifisert profesjon og mandat",
+      "begrunnelse, observasjon og kriterier",
+      "konsekvens for tiltak eller rettighet"
+    ],
+    "source_requirements": [
+      "vurderingsskjema, journal og faglige retningslinjer",
+      "klage-, kollega- og bruker-/pasientkilder"
+    ]
   },
   {
     "concept_id": "con_his_profesjoner",
@@ -23201,9 +23726,9 @@
   },
   {
     "concept_id": "con_his_skjonn",
-    "label": "skjønn",
-    "definition": "I Velferd, rett og hverdagsliv betegner «skjønn» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "forvaltningsskjønn",
+    "definition": "Forvaltningsskjønn er det lovlige handlingsrommet saksbehandlere og profesjoner har til å tolke vilkår og velge tiltak i enkeltsaker.",
+    "concept_type": "administrative_discretion_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -23213,12 +23738,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «skjønn» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_profesjonell_vurdering",
+      "con_his_vilkar",
+      "con_his_tildeling"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_adgangsvilkar"
+    ],
+    "common_misuse": [
+      "Å omtale skjønn som vilkårlighet eller omvendt som rent faglig uten å undersøke hjemmel, retningslinjer, ulik praksis og kontroll."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "rettslig eller administrativt handlingsrom",
+      "begrunnelse og anvendte hensyn",
+      "variasjon, overprøving og kontroll"
+    ],
+    "source_requirements": [
+      "lov, rundskriv og interne veiledere",
+      "vedtaksserier, klager og tilsyn"
+    ]
   },
   {
     "concept_id": "con_his_skog",
@@ -23284,8 +23824,8 @@
   {
     "concept_id": "con_his_skoleplikt",
     "label": "skoleplikt",
-    "definition": "I Velferd, rett og hverdagsliv betegner «skoleplikt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skoleplikt er det rettslige kravet om at barn skal motta undervisning i bestemte aldre og omfang, med ansvar fordelt mellom familie, kommune og skole.",
+    "concept_type": "compulsory_schooling_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -23295,12 +23835,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «skoleplikt» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_leseferdighet",
+      "con_his_folkedannelse",
+      "con_his_familieansvar"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bibliotek"
+    ],
+    "common_misuse": [
+      "Å bruke innført skoleplikt som bevis på lik skolegang, frammøte og læringsutbytte."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "lovfestet alder og undervisningskrav",
+      "skolekapasitet, frammøte og fritak",
+      "sosial og geografisk faktisk dekning"
+    ],
+    "source_requirements": [
+      "skolelov, protokoller og frammøtestatistikk",
+      "elev-, lærer- og lokale skolekilder"
+    ]
   },
   {
     "concept_id": "con_his_skrift",
@@ -23477,9 +24032,9 @@
   },
   {
     "concept_id": "con_his_soknad",
-    "label": "søknad",
-    "definition": "I Velferd, rett og hverdagsliv betegner «søknad» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "velferdssøknad",
+    "definition": "Velferdssøknad er en formalisert henvendelse der en person eller representant framsetter krav og dokumenterer forhold etter ordningens skjema og språk.",
+    "concept_type": "welfare_application_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -23489,12 +24044,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «søknad» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_adgangsvilkar",
+      "con_his_vilkar",
+      "con_his_tildeling"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_profesjonell_vurdering"
+    ],
+    "common_misuse": [
+      "Å behandle søknadsteksten som full selvrepresentasjon eller anta at manglende søknad betyr manglende behov."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifisert søker og ordning",
+      "framstilt behov og dokumentasjon",
+      "saksforløp, vedtak og eventuell klage"
+    ],
+    "source_requirements": [
+      "søknad, vedlegg og veiledningsmateriale",
+      "vedtak, journal og søkerens egne kilder"
+    ]
   },
   {
     "concept_id": "con_his_solidaritet",
@@ -23660,9 +24230,9 @@
   },
   {
     "concept_id": "con_his_sosial_kontroll",
-    "label": "sosial kontroll",
-    "definition": "I Velferd, rett og hverdagsliv betegner «sosial kontroll» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "sosial kontroll i velferdsordninger",
+    "definition": "Sosial kontroll i velferdsordninger er overvåking, kategorisering og krav til atferd som følger hjelp, behandling eller forsørgelse.",
+    "concept_type": "welfare_social_control_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -23675,18 +24245,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «sosial kontroll» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fattigvesen",
+      "con_his_vilkar",
+      "con_his_institusjonalisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_brukerrettighet"
+    ],
+    "common_misuse": [
+      "Å omtale all saksbehandling som kontroll eller overse kontroll fordi tiltaket også ga nødvendig hjelp."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "rapporterings-, inspeksjons- eller atferdskrav",
+      "sanksjon eller tap av støtte",
+      "inngrep i privatliv og selvbestemmelse"
+    ],
+    "source_requirements": [
+      "reglement, tilsyn, journal og vedtak",
+      "mottaker-, bruker- og klagekilder"
+    ]
   },
   {
     "concept_id": "con_his_sosial_reproduksjon",
     "label": "sosial reproduksjon",
-    "definition": "I Industri, arbeid og sosialhistorie betegner «sosial reproduksjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Sosial reproduksjon er arbeidet og institusjonene som opprettholder mennesker, hushold, arbeidskraft og sosiale forskjeller mellom dager og generasjoner.",
+    "concept_type": "social_reproduction_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_industri_arbeid_sosialhistorie",
@@ -23701,12 +24286,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «sosial reproduksjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_omsorgsarbeid",
+      "con_his_ulonnet_arbeid",
+      "con_his_familieansvar"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_materiell_velferd"
+    ],
+    "common_misuse": [
+      "Å bruke begrepet som abstrakt bakgrunn uten å spesifisere arbeid, ressurser, aktører og hvilke ulikheter som videreføres eller endres."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "daglig og generasjonell omsorg og forsørgelse",
+      "kobling mellom hushold, marked og stat",
+      "fordeling etter kjønn, klasse og alder"
+    ],
+    "source_requirements": [
+      "tidsbruk-, husholds- og arbeidsdata",
+      "velferds-, skole- og livsløpskilder"
+    ]
   },
   {
     "concept_id": "con_his_sosiale",
@@ -23747,8 +24347,8 @@
   {
     "concept_id": "con_his_sosialforsikring",
     "label": "sosialforsikring",
-    "definition": "I Velferd, rett og hverdagsliv betegner «sosialforsikring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Sosialforsikring er en regelstyrt ordning som fordeler risiko for sykdom, arbeidsløshet, alder eller tap av forsørger gjennom medlemskap, bidrag og kollektive fond.",
+    "concept_type": "social_insurance_system",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -23764,12 +24364,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «sosialforsikring» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bidrag",
+      "con_his_trygd",
+      "con_his_pensjon"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sosialhjelp"
+    ],
+    "common_misuse": [
+      "Å bruke sosialforsikring og trygd som synonymer eller anta at yrkes- og bidragsbaserte ordninger dekket hele befolkningen."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert risiko og medlemskap",
+      "bidrags- og finansieringsmodell",
+      "rettighetsbasert ytelse og dekning"
+    ],
+    "source_requirements": [
+      "lov, fond, medlems- og regnskapsdata",
+      "ytelses-, klage- og fordelingskilder"
+    ]
   },
   {
     "concept_id": "con_his_sosialhistorie",
@@ -23795,8 +24410,8 @@
   {
     "concept_id": "con_his_sosialhjelp",
     "label": "sosialhjelp",
-    "definition": "I Velferd, rett og hverdagsliv betegner «sosialhjelp» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Sosialhjelp er behovsprøvd økonomisk eller praktisk støtte etter individuell vurdering når andre inntekter og rettigheter ikke dekker livsoppholdet.",
+    "concept_type": "means_tested_social_assistance",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -23806,12 +24421,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «sosialhjelp» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_soknad",
+      "con_his_skjonn",
+      "con_his_ytelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sosialforsikring"
+    ],
+    "common_misuse": [
+      "Å omtale sosialhjelp som fast universell ytelse eller forklare mottak bare med individuelle egenskaper uten levekostnader og regelverk."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "behovs- og ressursprøving",
+      "individuelt vedtak og sats",
+      "midlertidighet, vilkår og klage"
+    ],
+    "source_requirements": [
+      "sosiallov, normer og vedtaksdata",
+      "husholdsbudsjett, klager og mottakerhistorier"
+    ]
   },
   {
     "concept_id": "con_his_spor",
@@ -24962,9 +25592,9 @@
   },
   {
     "concept_id": "con_his_sykehus",
-    "label": "sykehus",
-    "definition": "I Velferd, rett og hverdagsliv betegner «sykehus» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "moderne sykehus",
+    "definition": "Sykehus er en behandlingsinstitusjon med profesjonell bemanning, diagnostikk, sengeplasser, teknisk infrastruktur og organisert pasientforløp.",
+    "concept_type": "modern_hospital_institution",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -24974,12 +25604,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «sykehus» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_hospital",
+      "con_his_innleggelse",
+      "con_his_profesjonalisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_offentlig_helse"
+    ],
+    "common_misuse": [
+      "Å projisere dagens sykehusfunksjoner bakover eller bruke antall senger som direkte mål på tilgjengelig og effektiv behandling."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "spesialisert behandling og pleie",
+      "profesjonell bemanning og avdelinger",
+      "innleggelses-, utskrivnings- og kapasitetsdata"
+    ],
+    "source_requirements": [
+      "sykehusarkiv, årsberetninger og journaler",
+      "pasient-, personell- og budsjettdata"
+    ]
   },
   {
     "concept_id": "con_his_symbol",
@@ -25550,9 +26195,9 @@
   },
   {
     "concept_id": "con_his_tildeling",
-    "label": "tildeling",
-    "definition": "I Velferd, rett og hverdagsliv betegner «tildeling» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "velferdstildeling",
+    "definition": "Velferdstildeling er beslutningen som fordeler bolig, plass, tjeneste eller ytelse mellom søkere etter regler, prioritering og skjønn.",
+    "concept_type": "welfare_allocation_decision",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -25562,12 +26207,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tildeling» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_soknad",
+      "con_his_skjonn",
+      "con_his_adgangsvilkar"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_plassering"
+    ],
+    "common_misuse": [
+      "Å omtale tildeling som automatisk rettighetsoppfyllelse uten å undersøke kø, avslag, knapphet og faktisk levering."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifiserte søkere og ressurs",
+      "prioriteringskriterier og vedtak",
+      "ventetid, avslag og gjennomføring"
+    ],
+    "source_requirements": [
+      "tildelingsregler, søkerlister og vedtak",
+      "klager, kø- og leveringsdata"
+    ]
   },
   {
     "concept_id": "con_his_tilgang",
@@ -25816,9 +26476,9 @@
   },
   {
     "concept_id": "con_his_tjeneste",
-    "label": "tjeneste",
-    "definition": "I Velferd, rett og hverdagsliv betegner «tjeneste» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "velferdstjeneste",
+    "definition": "Velferdstjeneste er en organisert offentlig, privat eller frivillig aktivitet som leverer omsorg, behandling, opplæring eller praktisk bistand til definerte brukere.",
+    "concept_type": "welfare_service_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -25829,18 +26489,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tjeneste» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_tjenestepraksis",
+      "con_his_brukerrettighet",
+      "con_his_omsorgsregime"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ytelse"
+    ],
+    "common_misuse": [
+      "Å bruke tjenestens formelle navn og kapasitet som bevis på faktisk innhold, kvalitet og tilgjengelighet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "mandat, målgruppe og organisator",
+      "bemanning, kapasitet og finansiering",
+      "faktisk bruk, innhold og kontinuitet"
+    ],
+    "source_requirements": [
+      "reglement, budsjett og tjenestestatistikk",
+      "bruker-, personell- og tilsynskilder"
+    ]
   },
   {
     "concept_id": "con_his_tjenestepraksis",
     "label": "tjenestepraksis",
-    "definition": "I Velferd, rett og hverdagsliv betegner «tjenestepraksis» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Tjenestepraksis er de gjentatte handlingene, rutinene og prioriteringene som avgjør hvordan en velferdstjeneste faktisk møter brukere.",
+    "concept_type": "welfare_service_practice",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -25859,12 +26534,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tjenestepraksis» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_tjeneste",
+      "con_his_profesjonell_vurdering",
+      "con_his_brukerhistorie"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_vilkar"
+    ],
+    "common_misuse": [
+      "Å anta at praksis følger lov og retningslinjer direkte eller generalisere fra én sak uten serie og organisatorisk kontekst."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "arbeidsrutiner og møteformer",
+      "lokal fortolkning av regler",
+      "variasjon mellom ansatte, steder og grupper"
+    ],
+    "source_requirements": [
+      "rutiner, journaler og saksserier",
+      "observasjon, intervjuer, klager og tilsyn"
+    ]
   },
   {
     "concept_id": "con_his_tolkning",
@@ -26025,8 +26715,8 @@
   {
     "concept_id": "con_his_trangboddhet",
     "label": "trangboddhet",
-    "definition": "I Velferd, rett og hverdagsliv betegner «trangboddhet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Trangboddhet er en historisk definert situasjon der husholdets størrelse og boligrom gir høy tetthet og begrenset privatliv, søvn, hygiene eller hverdagsfunksjon.",
+    "concept_type": "overcrowding_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -26036,12 +26726,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «trangboddhet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_boforhold",
+      "con_his_materiell_velferd",
+      "con_his_boligpolitikk"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_materiell"
+    ],
+    "common_misuse": [
+      "Å bruke dagens romnorm bakover eller telle personer per adresse uten å kjenne rom, hushold og faktisk boligbruk."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "personer eller hushold per rom/areal",
+      "sove- og bruksordning",
+      "samtidige normer og helsevirkning"
+    ],
+    "source_requirements": [
+      "folketelling, takst og boligtilsyn",
+      "husholds-, plantegnings- og helsekilder"
+    ]
   },
   {
     "concept_id": "con_his_transnasjonal_bevegelse",
@@ -26263,8 +26968,8 @@
   {
     "concept_id": "con_his_trygd",
     "label": "trygd",
-    "definition": "I Velferd, rett og hverdagsliv betegner «trygd» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Trygd er en offentlig eller lovregulert inntektssikringsordning ved sykdom, uførhet, arbeidsløshet, alder eller forsørgertap, med bestemte vilkår og finansiering.",
+    "concept_type": "social_security_benefit_system",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -26274,12 +26979,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «trygd» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_sosialforsikring",
+      "con_his_ytelse",
+      "con_his_pensjon"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sosialhjelp"
+    ],
+    "common_misuse": [
+      "Å bruke trygd som samleord for all støtte uten å spesifisere risiko, rettsgrunnlag, sats, finansiering og dekning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "definert risiko eller livshendelse",
+      "rettsgrunnlag og finansieringsmåte",
+      "ytelse, varighet og mottakergruppe"
+    ],
+    "source_requirements": [
+      "trygdelov, register og budsjett",
+      "vedtak, klage- og husholdsdata"
+    ]
   },
   {
     "concept_id": "con_his_tvang",
@@ -26413,8 +27133,8 @@
   {
     "concept_id": "con_his_ulonnet_arbeid",
     "label": "ulønnet arbeid",
-    "definition": "I Velferd, rett og hverdagsliv betegner «ulønnet arbeid» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Ulønnet arbeid er produktive og omsorgsrelaterte oppgaver uten direkte lønn, utført i hushold, familie, frivillighet eller som vilkår for støtte.",
+    "concept_type": "unpaid_work_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -26424,12 +27144,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ulønnet arbeid» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_omsorgsarbeid",
+      "con_his_familieansvar",
+      "con_his_sosial_reproduksjon"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bidrag"
+    ],
+    "common_misuse": [
+      "Å behandle ulønnet arbeid som fritid eller naturlig familieinnsats og dermed skjule tidsbruk, verdi, tvang og kjønnsfordeling."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkrete oppgaver og tidsbruk",
+      "fravær av direkte lønn",
+      "økonomisk og sosial verdi samt fordeling"
+    ],
+    "source_requirements": [
+      "tidsbruk, husholds- og frivillighetskilder",
+      "intervju, dagbok og institusjonsregler"
+    ]
   },
   {
     "concept_id": "con_his_ulykke_vs_kronisk_eksponering",
@@ -26527,9 +27262,9 @@
   },
   {
     "concept_id": "con_his_understottelse",
-    "label": "understøttelse",
-    "definition": "I Velferd, rett og hverdagsliv betegner «understøttelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "fattigunderstøttelse",
+    "definition": "Fattigunderstøttelse er konkret økonomisk, natural- eller institusjonell hjelp gitt av fattigvesenet etter behovsprøving, bostedsansvar og kontrollvilkår.",
+    "concept_type": "poor_relief_benefit",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -26539,12 +27274,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «understøttelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fattigvesen",
+      "con_his_fattiglov",
+      "con_his_mottaker"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_veldedighet"
+    ],
+    "common_misuse": [
+      "Å bruke registrert understøttelse som fullstendig mål på fattigdom eller anta at all hjelp var kontant og frivillig mottatt."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "støttetype, verdi og periode",
+      "behovsvurdering og ansvarlig fattigstyre",
+      "vilkår, tilbakebetaling eller rettighetstap"
+    ],
+    "source_requirements": [
+      "fattigprotokoll, regnskap og vedtak",
+      "husholds-, arbeids- og mottakerkilder"
+    ]
   },
   {
     "concept_id": "con_his_ungdom",
@@ -26690,9 +27440,9 @@
   },
   {
     "concept_id": "con_his_universalisme",
-    "label": "universalisme",
-    "definition": "I Velferd, rett og hverdagsliv betegner «universalisme» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "velferdsuniversalisme",
+    "definition": "Velferdsuniversalisme er prinsippet om at en ordning omfatter en bredt definert befolkning etter generelle medlemskriterier framfor individuell behovsprøving.",
+    "concept_type": "welfare_universalism_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -26708,12 +27458,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «universalisme» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_dekning",
+      "con_his_velferdsrett",
+      "con_his_trygd"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sosialhjelp"
+    ],
+    "common_misuse": [
+      "Å kalle en ordning universell fordi den har nasjonal lovhjemmel uten å undersøke medlemskriterier, sats, bruk og grupper som faller utenfor."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "generelle medlems- eller bostedskriterier",
+      "fravær eller begrensning av individuell behovsprøving",
+      "høy faktisk dekning og sosial variasjon"
+    ],
+    "source_requirements": [
+      "lov, register og dekningsstatistikk",
+      "lokale, kjønnede og sosiale fordelingsdata"
+    ]
   },
   {
     "concept_id": "con_his_urban",
@@ -27344,8 +28109,8 @@
   {
     "concept_id": "con_his_veldedighet",
     "label": "veldedighet",
-    "definition": "I Velferd, rett og hverdagsliv betegner «veldedighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Veldedighet er frivillig eller religiøst begrunnet overføring av penger, varer, tjenester eller institusjonsplasser til personer definert som trengende.",
+    "concept_type": "charitable_relief_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -27355,18 +28120,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «veldedighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fattigvesen",
+      "con_his_understottelse",
+      "con_his_sosial_kontroll"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_velferdsrett"
+    ],
+    "common_misuse": [
+      "Å beskrive veldedighet som rettighetsbasert eller rent uegennyttig uten giverinteresse, moral, seleksjon og mottakerens handlingsrom."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "frivillig giver eller organisasjon",
+      "utvelgelse av mottakere og hjelp",
+      "moralske, religiøse eller sosiale vilkår"
+    ],
+    "source_requirements": [
+      "forenings-, menighets- og regnskapskilder",
+      "mottaker-, presse- og institusjonskilder"
+    ]
   },
   {
     "concept_id": "con_his_velferd",
     "label": "velferd",
-    "definition": "I Velferd, rett og hverdagsliv betegner «velferd» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Velferd er historisk fordelte livsvilkår og trygghet knyttet til helse, inntekt, bolig, omsorg, rettigheter og mulighet til å delta i samfunnet.",
+    "concept_type": "welfare_outcome_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -27376,18 +28156,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «velferd» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_materiell_velferd",
+      "con_his_folkehelse",
+      "con_his_velferdsrett"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tjeneste"
+    ],
+    "common_misuse": [
+      "Å bruke antall ordninger eller offentlige utgifter som direkte mål på menneskers velferd uten resultat, fordeling og egne erfaringer."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materielle, helsemessige og sosiale livsvilkår",
+      "risiko, trygghet og deltakelse",
+      "fordeling mellom grupper og over livsløpet"
+    ],
+    "source_requirements": [
+      "inntekts-, helse-, bolig- og tjenestedata",
+      "husholds-, bruker- og livshistoriekilder"
+    ]
   },
   {
     "concept_id": "con_his_velferdsrett",
     "label": "velferdsrett",
-    "definition": "I Velferd, rett og hverdagsliv betegner «velferdsrett» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Velferdsrett er rettslig krav på bestemte ytelser, tjenester, prosedyrer eller vern når lovens vilkår er oppfylt.",
+    "concept_type": "welfare_right_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -27397,12 +28192,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «velferdsrett» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_brukerrettighet",
+      "con_his_adgangsvilkar",
+      "con_his_vilkar"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_veldedighet"
+    ],
+    "common_misuse": [
+      "Å omtale politiske mål eller tjenestetilbud som individuell rettighet uten hjemmel, klageadgang og håndhevbar plikt."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "rettslig hjemmel og rettighetshaver",
+      "definert pliktsubjekt og ytelse/tjeneste",
+      "vedtak, klage og håndheving"
+    ],
+    "source_requirements": [
+      "lov, forskrift og rettspraksis",
+      "vedtak, klage- og ombudssaker"
+    ]
   },
   {
     "concept_id": "con_his_verdi",
@@ -27569,9 +28379,9 @@
   },
   {
     "concept_id": "con_his_vilkar",
-    "label": "vilkår",
-    "definition": "I Velferd, rett og hverdagsliv betegner «vilkår» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "velferdsvilkår",
+    "definition": "Velferdsvilkår er krav som må oppfylles før eller under mottak av ytelse eller tjeneste, inkludert dokumentasjon, aktivitet, bosted og atferd.",
+    "concept_type": "welfare_condition_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -27581,12 +28391,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «vilkår» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_adgangsvilkar",
+      "con_his_skjonn",
+      "con_his_sosial_kontroll"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_universalisme"
+    ],
+    "common_misuse": [
+      "Å slå sammen adgangsvilkår, løpende aktivitetskrav og sanksjoner eller omtale dem uten hjemmel og praktisering."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "rettslig eller administrativt krav",
+      "tidspunkt før eller under mottak",
+      "kontroll, sanksjon og unntak"
+    ],
+    "source_requirements": [
+      "lov, forskrift, rundskriv og vedtak",
+      "saksserier, klager og praksisdata"
+    ]
   },
   {
     "concept_id": "con_his_visuelle",
@@ -27763,9 +28588,9 @@
   },
   {
     "concept_id": "con_his_ytelse",
-    "label": "ytelse",
-    "definition": "I Velferd, rett og hverdagsliv betegner «ytelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "velferdsytelse",
+    "definition": "Velferdsytelse er en pengerelatert eller naturalytelse overført etter en bestemt ordning, med definert sats, varighet, vilkår og mottaker.",
+    "concept_type": "welfare_benefit_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv"
@@ -27776,11 +28601,26 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ytelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_trygd",
+      "con_his_sosialhjelp",
+      "con_his_mottaker"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tjeneste"
+    ],
+    "common_misuse": [
+      "Å bruke ytelse som synonym for hele velferdsordningen eller sammenligne nominelle beløp uten priser, skatt og hushold."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "ytelsestype, sats og utbetalingsform",
+      "rettsgrunnlag og varighet",
+      "mottakergruppe og faktisk verdi"
+    ],
+    "source_requirements": [
+      "lov, satsvedtak og utbetalingsregister",
+      "pris-, skatt-, husholds- og mottakerdata"
+    ]
   }
 ]
