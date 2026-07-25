@@ -8,7 +8,7 @@ const reportJson = 'reports/oslo-people-batch3-candidate-audit.json';
 const reportMd = 'reports/oslo-people-batch3-candidate-audit.md';
 
 const candidates = [
-  { key: 'christian_braunmann_tullin', names: ['Christian Braunmann Tullin', 'Christian Tullin'] },
+  { key: 'claus_tullin', names: ['Claus Tullin'] },
   { key: 'alexander_kielland', names: ['Alexander Kielland', 'Alexander L. Kielland', 'Alexander Lange Kielland'] },
   { key: 'oskar_braaten', names: ['Oskar Braaten', 'Oskar Bråten'] },
   { key: 'katie_paterson', names: ['Katie Paterson'] },
