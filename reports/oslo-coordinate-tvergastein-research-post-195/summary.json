@@ -1,0 +1,77 @@
+{
+  "version": "2026-07-25",
+  "protocolMaxBatch": 195,
+  "placeId": "tvergastein",
+  "researchOnly": true,
+  "canonicalChanged": false,
+  "identity": {
+    "resolvedIdentity": "Tvergastein, Arne Næss’ private mountain cabin below Hallingskarvet in Hol municipality",
+    "identityStatus": "resolved",
+    "locatorTypeCandidate": "building"
+  },
+  "currentCoordinate": {
+    "lat": 60.5322,
+    "lon": 8.1824,
+    "r": 400
+  },
+  "kartverketPlaceName": {
+    "sourceUrl": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Tvergastein&utkoordsys=4258&treffPerSide=50&side=1",
+    "sourceObjectId": "kartverket-ssr:1088119:60.54919000,7.97970000",
+    "stedsnummer": 1088119,
+    "objectType": "Fritidsbolig",
+    "municipality": "Hol",
+    "municipalityNumber": "3330",
+    "placeStatus": "aktiv",
+    "lat": 60.54919,
+    "lon": 7.9797,
+    "addressNameCandidate": {
+      "stedsnummer": 1033507,
+      "objectType": "Adressenavn",
+      "lat": 60.54915,
+      "lon": 7.97969,
+      "distanceToFritidsboligMeters": 4.5
+    },
+    "selectionReason": "The Fritidsbolig object represents the physical cabin; the other exact SSR result is only the road/address name."
+  },
+  "identitySources": {
+    "localSourceUrl": "https://hallingskarvet.com/products/tvergastein",
+    "confirmsArneNaess": true,
+    "confirmsElevation1505": true,
+    "confirmsYear1937": true
+  },
+  "buildingVerification": {
+    "selectedBuilding": {
+      "sourceObjectId": "osm-way:760918905",
+      "building": "cabin",
+      "name": "Tvergastein-hytta Arne Næss",
+      "refBygningsnr": "160146818",
+      "selectionMethod": "Kartverket Fritidsbolig point inside one OSM building footprint"
+    },
+    "namedFeatureDistanceMeters": 3.3,
+    "containingBuildingCount": 1,
+    "maximumFootprintDistanceMeters": 11.2
+  },
+  "radiusRecommendation": {
+    "method": "maximum Kartverket Fritidsbolig point-to-cabin-footprint vertex distance plus 30 metre buffer, minimum 80 metres",
+    "bufferMeters": 30,
+    "recommendedRadius": 80
+  },
+  "displacementMeters": 11244.7,
+  "decision": {
+    "canBecomeVerified": true,
+    "coordinateDecision": "use_official_fritidsbolig_point_with_cabin_radius",
+    "recommendedLat": 60.54919,
+    "recommendedLon": 7.9797,
+    "recommendedRadius": 80,
+    "coordStatus": "verified",
+    "coordType": "place_name_point",
+    "coordRole": "display_marker",
+    "sourceProvider": "official_place_name",
+    "locatorType": "building",
+    "nextAction": "Create a separate production PR."
+  },
+  "validation": {
+    "runnerValidatedBeforeCleanResearchDiff": true,
+    "coordinateSourceContract": "PASS"
+  }
+}
