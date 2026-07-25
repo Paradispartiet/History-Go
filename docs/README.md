@@ -26,11 +26,12 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 
 `TYPESCRIPT_MIGRATION.md` i repo-roten er historisk journal, ikke aktiv policy.
 
-### Dagens runtime
+### Dagens runtime og arbeidsflyt
 
 1. [`../README/SYSTEM_REGISTRY.md`](../README/SYSTEM_REGISTRY.md) — hvem eier hva
 2. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — hva skjer i flyten
 3. [`../README/README_DEV.md`](../README/README_DEV.md) — kjøring, debugging og validering
+4. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
 
 `SYSTEM_REGISTRY.md` er fortsatt bindende, men er merket `transitional` fordi aktiv kontrakt og gammel innlimt historikk fortsatt ligger i samme fil. Den skal deles i fase 2 uten å endre runtime-kontraktene tilfeldig.
 
