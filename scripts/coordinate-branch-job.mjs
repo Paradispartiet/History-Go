@@ -12,48 +12,28 @@ if (previous.error || previous.status !== 0) {
   throw new Error(`Could not load first power-curation runner\n${previous.stderr || ''}`);
 }
 
-const replacements = [
-  [
-    "const sourceEmners = gitShowJson(sourceRef, emnersPath);\n",
-    ""
-  ],
-  [
-    "const sourceTargetEmners = sourceEmners.filter((item) =>\n  belongsToDomain(item) || String(item?.emne_id || '').startsWith('em_his_makt_'));\n",
-    ""
-  ],
-  [
-    "if (sourceTargetEmners.length !== 10) {\n  throw new Error(`Expected 10 power-domain emner in source branch, found ${sourceTargetEmners.length}`);\n}\n",
-    ""
-  ],
-  [
-    "const currentEmneIndex = new Map(currentEmners.map((item, index) => [item.emne_id, index]));\nfor (const sourceEmne of sourceTargetEmners) {\n  const index = currentEmneIndex.get(sourceEmne.emne_id);\n  if (index === undefined) {\n    throw new Error(`Missing current emne ${sourceEmne.emne_id}`);\n  }\n  currentEmners[index] = sourceEmne;\n}\n",
-    "let emneConceptCorrections = 0;\nfor (const emne of currentEmners) {\n  for (const field of ['core_concepts', 'sub_concepts']) {\n    if (!Array.isArray(emne[field])) continue;\n    emne[field] = emne[field].map((label) => {\n      if (label !== 'statlig') return label;\n      emneConceptCorrections += 1;\n      return 'territoriell konsolidering';\n    });\n  }\n}\nif (emneConceptCorrections < 1) {\n  throw new Error('Expected at least one emne concept correction from statlig to territoriell konsolidering');\n}\n"
-  ],
-  [
-    "run('npm', ['run', 'quiz:context']);\n",
-    "for (const targetId of ['grindheim_runestein', 'grindheim_steinkross', 'grindheimsveien_nord_gravfelt', 'hoyland_gravhaug_etne']) {\n  run('npm', ['run', 'quiz:context', '--', '--category', 'historie', '--target', targetId]);\n}\n"
-  ],
-  [
-    "const finalEmners = readJson(emnersPath).filter((item) =>\n  belongsToDomain(item) || String(item?.emne_id || '').startsWith('em_his_makt_'));\n",
-    ""
-  ],
-  [
-    "  emner_corrected: finalEmners.length,\n",
-    "  emner_reviewed: 10,\n  emne_concept_corrections: emneConceptCorrections,\n"
-  ],
-  [
-    "  `Emner korrigert: ${finalEmners.length}`,\n",
-    "  'Emner faglig gjennomgått: 10',\n  `Emnebegreper korrigert: ${emneConceptCorrections}`,\n"
-  ]
-];
-
 let source = previous.stdout;
-for (const [before, after] of replacements) {
-  if (!source.includes(before)) {
-    throw new Error(`Expected runner fragment not found:\n${before}`);
-  }
-  source = source.replace(before, after);
+function replaceOnce(pattern, replacement, label) {
+  if (!pattern.test(source)) throw new Error(`Expected runner fragment not found: ${label}`);
+  source = source.replace(pattern, replacement);
 }
+
+replaceOnce(/^const sourceEmner = gitShowJson\(sourceRef, emnerPath\);\n/m, '', 'source emner load');
+replaceOnce(/^const sourceTargetEmner = sourceEmner\.filter\(\(item\) =>\n  belongsToDomain\(item\) \|\| String\(item\?\.emne_id \|\| ''\)\.startsWith\('em_his_makt_'\)\);\n/m, '', 'source emner selection');
+replaceOnce(/^if \(sourceTargetEmner\.length !== 10\) \{\n  throw new Error\(`Expected 10 power-domain emner in source branch, found \$\{sourceTargetEmner\.length\}`\);\n\}\n/m, '', 'source emner count guard');
+replaceOnce(
+  /^const currentEmneIndex = new Map\(currentEmner\.map\(\(item, index\) => \[item\.emne_id, index\]\)\);\nfor \(const sourceEmne of sourceTargetEmner\) \{\n  const index = currentEmneIndex\.get\(sourceEmne\.emne_id\);\n  if \(index === undefined\) \{\n    throw new Error\(`Missing current emne \$\{sourceEmne\.emne_id\}`\);\n  \}\n  currentEmner\[index\] = sourceEmne;\n\}\n/m,
+  "let emneConceptCorrections = 0;\nfor (const emne of currentEmner) {\n  for (const field of ['core_concepts', 'sub_concepts']) {\n    if (!Array.isArray(emne[field])) continue;\n    emne[field] = emne[field].map((label) => {\n      if (label !== 'statlig') return label;\n      emneConceptCorrections += 1;\n      return 'territoriell konsolidering';\n    });\n  }\n}\nif (emneConceptCorrections < 1) {\n  throw new Error('Expected at least one emne concept correction from statlig to territoriell konsolidering');\n}\n",
+  'emne import block'
+);
+replaceOnce(
+  /^run\('npm', \['run', 'quiz:context'\]\);\n/m,
+  "for (const targetId of ['grindheim_runestein', 'grindheim_steinkross', 'grindheimsveien_nord_gravfelt', 'hoyland_gravhaug_etne']) {\n  run('npm', ['run', 'quiz:context', '--', '--category', 'historie', '--target', targetId]);\n}\n",
+  'quiz context command'
+);
+replaceOnce(/^const finalEmner = readJson\(emnerPath\)\.filter\(\(item\) =>\n  belongsToDomain\(item\) \|\| String\(item\?\.emne_id \|\| ''\)\.startsWith\('em_his_makt_'\)\);\n/m, '', 'final emner selection');
+replaceOnce(/^  emner_corrected: finalEmner\.length,\n/m, "  emner_reviewed: 10,\n  emne_concept_corrections: emneConceptCorrections,\n", 'result emner field');
+replaceOnce(/^  `Emner korrigert: \$\{finalEmner\.length\}`,\n/m, "  'Emner faglig gjennomgått: 10',\n  `Emnebegreper korrigert: ${emneConceptCorrections}`,\n", 'validation emner line');
 
 const target = path.join('/tmp', 'history-power-v5-5-curation-v2-fixed.mjs');
 fs.writeFileSync(target, source);
