@@ -200,7 +200,7 @@ const candidateRecords = [
   },
   {
     candidate_id: "candidate_sport_concussion_cdc_return_sport_2025",
-    title: "Returning to Sports",
+    title: "CDC HEADS UP: Returning to Sports After a Concussion",
     authors_short: "US Centers for Disease Control and Prevention",
     year: 2025,
     source_type: "current_public_health_guidance",
@@ -296,6 +296,7 @@ const toolsToAdd = [
     tool_id: "tool_sport_systematic_review_appraisal_v1",
     version: "1.0",
     applicability: "Systematiske oversikter og metaanalyser",
+    appraisal_level: "review_document",
     domains: [
       "forhåndsregistrert protokoll",
       "søkeomfang og oppdateringsdato",
@@ -315,6 +316,7 @@ const toolsToAdd = [
     tool_id: "tool_sport_guideline_consensus_appraisal_v1",
     version: "1.0",
     applicability: "Kliniske retningslinjer, folkehelseråd og konsensusuttalelser",
+    appraisal_level: "review_document",
     domains: [
       "formål og målgruppe",
       "interessent- og pasientrepresentasjon",
@@ -387,7 +389,8 @@ evidenceManifest.updated_at = "2026-07-25";
 evidenceManifest.integration.evidence_packages = "evidence_packages_sport_v1.json";
 evidenceManifest.integration.first_priority_search_log = "concussion_search_log_sport_v1.json";
 evidenceManifest.counts.production_gates = policy.production_gates.length;
-evidenceManifest.pipeline_status = "first_priority_protocol_registered_candidate_seed_ready_screening_pending";
+evidenceManifest.pipeline_status = "scientific_pipeline_infrastructure_ready_evidence_materialization_pending";
+evidenceManifest.first_priority_package_status = "protocol_registered_candidate_seed_ready_screening_pending";
 
 qualityManifest.scientific_evidence_layer.evidence_packages = "evidence_packages_sport_v1.json";
 qualityManifest.scientific_evidence_layer.first_priority_protocol = "protocols/concussion_acute_safety_protocol_v1.json";

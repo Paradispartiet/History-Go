@@ -185,7 +185,11 @@ require((studyFile.required_result_fields || []).length >= 10, "studieregisteret
 
 for (const tool of tools) {
   require((tool.domains || []).length >= 5, "biasverktøy har for få domener", tool.tool_id);
+  if (tool.appraisal_level === "review_document") {
+  require(tool.result_level_required === false, "reviewverktøy er feilaktig resultatspesifikt", tool.tool_id);
+} else {
   require(tool.result_level_required === true, "biasverktøy er ikke resultatspesifikt", tool.tool_id);
+}
   require(tool.independent_reviewers_required === 2, "biasverktøy mangler to vurderere", tool.tool_id);
   require(tool.adjudication_required_on_disagreement === true, "biasverktøy mangler avgjørelse ved uenighet", tool.tool_id);
 }
@@ -296,7 +300,12 @@ const report = {
     one_question_protocol_and_synthesis_per_hook: questions.length === hooks.length && protocols.length === hooks.length && syntheses.length === hooks.length,
     epistemic_benchmarks_pass: Object.entries(expectedBenchmarks).every(([hookId, trackId]) => classificationByHook.get(hookId)?.epistemic_track === trackId),
     protocols_require_registration_and_dual_review: protocols.every((item) => item.registration?.required_before_screening && item.screening?.independent_reviewers === 2 && item.extraction?.independent_reviewers === 2),
-    result_level_bias_required: tools.every((item) => item.result_level_required && item.independent_reviewers_required === 2),
+    result_level_bias_required: tools
+    .filter((item) => item.appraisal_level !== "review_document")
+    .every((item) => item.result_level_required && item.independent_reviewers_required === 2),
+  review_document_appraisal_requires_dual_review: tools
+    .filter((item) => item.appraisal_level === "review_document")
+    .every((item) => item.result_level_required === false && item.independent_reviewers_required === 2),
     no_unreviewed_evidence_materialized: studies.length === 0 && results.length === 0 && biasAssessments.length === 0 && certaintyAssessments.length === 0,
     no_synthesis_claims_prematurely_approved: syntheses.every((item) => item.status === "not_started" && item.approved_claim_ids?.length === 0),
     all_legacy_claims_provisional: claims.every((item) => item.pipeline_v2?.status === "provisional_legacy_claim" && item.pipeline_v2?.publication_ready === false),

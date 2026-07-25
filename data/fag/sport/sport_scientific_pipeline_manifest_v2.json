@@ -15,7 +15,10 @@
     "claims": "claims_sport_canonical_v1.json",
     "method_policy": "sport_scientific_method_policy_v1.json",
     "validator": "../../../tools/validate-sport-scientific-pipeline-v2.mjs",
-    "report": "../../../reports/sport-scientific-pipeline-v2-validation.json"
+    "report": "../../../reports/sport-scientific-pipeline-v2-validation.json",
+    "evidence_packages": "evidence_packages_sport_v1.json",
+    "first_priority_search_log": "concussion_search_log_sport_v1.json",
+    "first_registered_protocol": "protocols/concussion_acute_safety_protocol_v1.json"
   },
   "counts": {
     "classified_hooks": 56,
@@ -29,7 +32,9 @@
     "completed_syntheses": 0,
     "certainty_assessments": 0,
     "publication_ready_claims": 0,
-    "provisional_legacy_claims": 16
+    "provisional_legacy_claims": 16,
+    "registered_package_protocols": 1,
+    "authoritative_seed_candidate_records": 7
   },
   "readiness": {
     "theory_layer": "validated_v6",
@@ -39,7 +44,8 @@
     "result_level_bias": "not_started",
     "syntheses": "planned_not_completed",
     "certainty_assessments": "not_started",
-    "evidence_claim_publication": "blocked"
+    "evidence_claim_publication": "blocked",
+    "first_priority_package": "registered_and_seeded_pending_database_search_and_dual_screening"
   },
   "invariants": [
     "Alle 56 hooks klassifiseres nøyaktig én gang etter vitenskapelig spørsmålstype.",
@@ -48,6 +54,8 @@
     "Bias vurderes per relevant resultat av to uavhengige vurderere.",
     "Sikkerhet vurderes per synteseutfall eller normativ/historisk konklusjon, ikke per enkeltkilde.",
     "Ingen claim er publication_ready uten full kjede og godkjent sikkerhetsvurdering.",
-    "Eksisterende claims er provisoriske til de er migrert."
+    "Eksisterende claims er provisoriske til de er migrert.",
+    "Kandidatposter fra søk er ikke studier, evidens eller claims.",
+    "En pakkeregistrering må peke til en commit som er opprettet før screening starter."
   ]
 }
