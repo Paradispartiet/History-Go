@@ -6,10 +6,23 @@ const root = process.cwd();
 const sportFile = path.join(root, "data/quiz/sport/vg_huset_sets.json");
 const mediaFile = path.join(root, "data/quiz/media/vg_huset_sets.json");
 const manifestFile = path.join(root, "data/quiz/manifest.json");
+const peopleManifestFile = path.join(root, "data/people/manifest.json");
 const staleFailureLog = path.join(root, "reports/remove-popkultur-domain-editorial-failure.log");
+
+const knownGeneratedConflicts = [
+  "reports/coordinate-evidence-audit.md",
+  "reports/people-of-places-status.json",
+  "reports/people-of-places-status.md",
+  "reports/place-coordinate-intake-gate.md",
+  "reports/place-coordinate-quality-gate.md"
+];
 
 function run(command, args) {
   execFileSync(command, args, { cwd: root, stdio: "inherit", env: process.env });
+}
+
+function readCommand(command, args) {
+  return execFileSync(command, args, { cwd: root, encoding: "utf8", env: process.env }).trim();
 }
 
 function rewriteCategory(value) {
@@ -26,7 +39,52 @@ function rewriteCategory(value) {
 run("git", ["config", "user.name", "github-actions[bot]"]);
 run("git", ["config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"]);
 run("git", ["fetch", "origin", "main"]);
-run("git", ["merge", "--no-edit", "origin/main"]);
+const mergeBase = readCommand("git", ["merge-base", "HEAD", "origin/main"]);
+
+let mergeConflicted = false;
+try {
+  run("git", ["merge", "--no-edit", "origin/main"]);
+} catch {
+  mergeConflicted = true;
+}
+
+if (mergeConflicted) {
+  const conflicts = readCommand("git", ["diff", "--name-only", "--diff-filter=U"])
+    .split("\n")
+    .filter(Boolean);
+  const allowed = new Set(["data/people/manifest.json", ...knownGeneratedConflicts]);
+  const unexpected = conflicts.filter((file) => !allowed.has(file));
+  if (unexpected.length) {
+    throw new Error(`Uventede mergekonflikter: ${unexpected.join(", ")}`);
+  }
+
+  const baseManifest = JSON.parse(readCommand("git", ["show", `${mergeBase}:data/people/manifest.json`]));
+  const oursManifest = JSON.parse(readCommand("git", ["show", ":2:data/people/manifest.json"]));
+  const mainManifest = JSON.parse(readCommand("git", ["show", ":3:data/people/manifest.json"]));
+  const baseFiles = new Set(baseManifest.files || []);
+  const oursFiles = new Set(oursManifest.files || []);
+  const removedByMigration = new Set([...baseFiles].filter((file) => !oursFiles.has(file)));
+  const addedByMigration = [...oursFiles].filter((file) => !baseFiles.has(file));
+  const mergedFiles = (mainManifest.files || []).filter((file) => {
+    if (removedByMigration.has(file)) return false;
+    return !String(file).includes("people/popkultur/");
+  });
+  for (const file of addedByMigration) {
+    if (!mergedFiles.includes(file)) mergedFiles.push(file);
+  }
+  await fs.writeFile(peopleManifestFile, `${JSON.stringify({ ...mainManifest, files: mergedFiles }, null, 2)}\n`, "utf8");
+  run("git", ["add", "data/people/manifest.json"]);
+
+  for (const file of knownGeneratedConflicts) {
+    if (!conflicts.includes(file)) continue;
+    run("git", ["checkout", "--theirs", "--", file]);
+    run("git", ["add", file]);
+  }
+
+  const unresolved = readCommand("git", ["diff", "--name-only", "--diff-filter=U"]);
+  if (unresolved) throw new Error(`Uavklarte mergekonflikter: ${unresolved}`);
+  run("git", ["commit", "--no-edit"]);
+}
 
 const vg = rewriteCategory(JSON.parse(await fs.readFile(sportFile, "utf8")));
 await fs.mkdir(path.dirname(mediaFile), { recursive: true });
@@ -55,5 +113,7 @@ run("npm", ["run", "places:emner:check"]);
 console.log(JSON.stringify({
   vg_huset: "media",
   manifest: vgEntry.file,
-  branchSyncedWithMain: true
+  branchSyncedWithMain: true,
+  mergeBase,
+  mergeConflicted
 }, null, 2));
