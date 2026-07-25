@@ -102,8 +102,8 @@ const evidence = JSON.parse(await fs.readFile(evidencePath, 'utf8'));
 const normalizedEvidence = {
   ...evidence,
   schemaVersion: '1.0',
-  evidenceStatus: 'research_complete_needs_source',
-  coordinateDecision: 'keep_current_point_as_unverified_area_proxy',
+  evidenceStatus: 'needs_research',
+  coordinateDecision: 'needs_geometry',
   currentCoordinate: {
     lat: before.lat,
     lon: before.lon,
