@@ -6,7 +6,7 @@
   "status_definitions": {
     "canonical": "Normativ kilde for et avgrenset ansvarsområde. Kan blokkere endringer og skal holdes oppdatert.",
     "operational": "Aktiv arbeidsinstruks eller navigasjon som peker til canonical kilder uten å opprette en parallell sannhet.",
-    "transitional": "Fortsatt brukt, men inneholder kjent legacy- eller konsolideringsgjeld.",
+    "transitional": "Aktiv målkontrakt eller dokument med kjent implementasjons- eller konsolideringsgjeld.",
     "historical": "Tidsbundet snapshot, journal eller arkiv. Skal ikke brukes som nåstatus.",
     "local": "Dokumentasjon som bare gjelder mappen eller subsystemet den ligger ved."
   },
@@ -83,6 +83,80 @@
       "role": "Compatibility-pointer til AHA-kvalitetsstatus; ikke en generell History GO- eller repository-kvalitetsgate",
       "owns": [],
       "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/HG_SOCIAL_README.md",
+      "status": "operational",
+      "role": "Samlet produktoversikt, terminologi og dokumentasjonsinngang for HG Social og Social Meet",
+      "owns": ["social_documentation_entry"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/HG_SOCIAL_PRIVACY_RULES.md",
+      "status": "canonical",
+      "role": "Bindende privacy-defaults, tilgangsregler, blokkering og forbudte Social-signaler",
+      "owns": ["social_privacy_policy"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/HG_SPOTMEETING.md",
+      "status": "canonical",
+      "role": "Produkt-, kontekst-, lifecycle- og privacy-kontrakt for Spotmeeting",
+      "owns": ["spotmeeting_product_contract"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/HG_SOCIAL_ARCHITECTURE.md",
+      "status": "operational",
+      "role": "Produkt- og målarkitektur for kunnskapsbasert Social uten å dokumentere implementert backend",
+      "owns": ["social_target_architecture"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/HG_SOCIAL_QA.md",
+      "status": "operational",
+      "role": "QA-sjekkliste og runtime-guide for Social privacy guards",
+      "owns": ["social_qa_operations"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/HG_SOCIAL_DEMO_MODE.md",
+      "status": "operational",
+      "role": "Lokal demo-, seed- og smoke-test-guide for HG Social",
+      "owns": ["social_demo_operations"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/HG_SOCIAL_BACKEND_CONTRACT.md",
+      "status": "transitional",
+      "role": "Contract-only målgrense for framtidig Social-backend; ingen backend eller produksjonsdiscovery er implementert",
+      "owns": ["social_backend_target_contract"],
+      "last_verified": "2026-07-25",
+      "debt": "Målendepunkter, autentisering, persistence og server-side policy må implementeres og verifiseres før dokumentet kan beskrive aktiv backend."
+    },
+    {
+      "path": "docs/HG_SOCIAL_MEET_IDENTITY_CONTRACT.md",
+      "status": "transitional",
+      "role": "Contract-only målgrense for autentisert Social Meet-identitet og offentlig profil",
+      "owns": ["social_identity_target_contract"],
+      "last_verified": "2026-07-25",
+      "debt": "Ingen produksjonsidentity- eller profile-backend er implementert gjennom dokumentet."
+    },
+    {
+      "path": "docs/HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md",
+      "status": "transitional",
+      "role": "Contract-only målgrense for context-bound invite-persistence og lifecycle",
+      "owns": ["social_invite_backend_target_contract"],
+      "last_verified": "2026-07-25",
+      "debt": "Invite-API, persistence, authorization, retention og cross-device state er ikke implementert gjennom dokumentet."
+    },
+    {
+      "path": "docs/HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md",
+      "status": "transitional",
+      "role": "Contract-only målgrense for server-side block, report, moderation, retention, deletion og audit",
+      "owns": ["social_moderation_backend_target_contract"],
+      "last_verified": "2026-07-25",
+      "debt": "Produksjonsdiscovery må forbli deaktivert til sikkerhets- og moderasjonsgrensen er implementert og verifisert."
     },
     {
       "path": "docs/CIVICATION_README.md",
