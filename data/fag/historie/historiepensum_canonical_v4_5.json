@@ -1,5 +1,5 @@
 {
-  "version": "v4.5-canonical",
+  "version": "v5.5-canonical",
   "subject_id": "historie",
   "subject_title": "Historie",
   "scope": "oslo_og_omegn",
@@ -7,7 +7,7 @@
     {
       "domain_id": "his_tid_periodisering",
       "label": "Historisk tid og periodisering",
-      "tagline": "Hvordan tid deles inn, erfares og forklares",
+      "tagline": "Hvordan tid avgrenses, erfares og forklares",
       "status": "complete_revised",
       "emne_count": 10,
       "hook_count": 10,
@@ -38,52 +38,34 @@
       ],
       "method_ids": [
         "met_periodisering",
-        "met_for_etter_historisk",
-        "met_sporlesning",
-        "met_komparativ_historie",
-        "met_begrepshistorie",
         "met_kronologisk_rekonstruksjon",
+        "met_for_etter_historisk",
+        "met_hendelsesforlop_analyse",
         "met_tidslagsanalyse",
         "met_langvarighetsanalyse",
-        "met_hendelsesforlop_analyse",
-        "met_temporalitetsanalyse"
+        "met_temporalitetsanalyse",
+        "met_begrepshistorie",
+        "met_komparativ_historie",
+        "met_kildekritikk"
       ],
       "recommended_oslo_cases": [
         "Middelalderbyen Oslo",
         "Eidsvollsbygningen",
         "Regjeringskvartalet",
         "Bjørvika",
-        "Møllergata 19",
+        "Akershus festning",
         "Aker Brygge",
         "Bispelokket",
-        "Gamle Aker kirke",
-        "Akershus festning",
-        "Akerselva",
-        "Oslo Hospital",
-        "Grønland",
-        "22. juli-senteret",
-        "Oscarsborg festning",
-        "Sagene skole",
-        "Stortinget",
-        "Hovedøya kloster",
-        "Villa Grande",
-        "Vår Frelsers gravlund"
+        "Gamle Aker kirke"
       ],
       "canonical_thinker_ids": [
         "reinhart_koselleck",
         "fernand_braudel",
         "jacques_le_goff",
-        "knut_kjeldstadli",
-        "marc_bloch",
-        "eric_hobsbawm",
-        "e_h_carr",
-        "paul_ricoeur",
-        "francis_sejersted",
-        "carlo_ginzburg"
+        "knut_kjeldstadli"
       ],
       "norwegian_thinker_ids": [
-        "knut_kjeldstadli",
-        "francis_sejersted"
+        "knut_kjeldstadli"
       ],
       "canonical_status": "canonical",
       "case_anchor_required": true,
@@ -94,16 +76,33 @@
       "temporal_claim_required": true,
       "temporal_scope_required": true,
       "uncertainty_note_required": true,
-      "critical_distinction_required": true
+      "critical_distinction_required": true,
+      "source_limitation_required": true,
+      "domain_chain": [
+        "ekstern kilde eller synlig tidslig spor",
+        "avgrenset sted, aktør eller institusjon",
+        "datert sekvens eller historisk lag",
+        "eksplisitt tidsrom og dateringsusikkerhet",
+        "dokumentert endring og dokumentert kontinuitet",
+        "sammenligningsgrunnlag",
+        "kritisk tidslig distinksjon",
+        "kildebegrensning",
+        "eventuelt teori etter kronologien"
+      ],
+      "boundary_rules": {
+        "byhistorie_stedsendring": "Tidsanalyse forklarer rekkefølge og endringstempo; fysisk og funksjonell stedsendring som hovedkjede hører til byhistorie.",
+        "kilder_arkiv_spor": "Kildens produksjon og proveniens hører til kildefeltet; dens bruk til å etablere tidsrekke hører hit.",
+        "minne_kulturarv_historiebruk": "Ettertidens periodisering hører hit når tidsordningen er hovedspørsmålet; offentlig minnebruk hører til minnefeltet."
+      }
     },
     {
       "domain_id": "his_kilder_arkiv_spor",
       "label": "Kilder, arkiv og spor",
-      "tagline": "Hvordan fortid blir etterprøvbar",
+      "tagline": "Hvordan fortiden blir dokumenterbar og hva kildene skjuler",
       "status": "complete_revised",
       "emne_count": 10,
       "hook_count": 10,
-      "method_count": 9,
+      "method_count": 10,
       "emne_ids": [
         "em_his_kildekritikk_arkiv_spor",
         "em_his_spor_materialitet",
@@ -137,62 +136,24 @@
         "met_proveniensanalyse",
         "met_seriell_kildeanalyse",
         "met_visuell_kildekritikk",
+        "met_muntlig_historie",
         "met_digital_kildekritikk"
       ],
       "recommended_oslo_cases": [
-        "Akershus festning",
-        "Arbeidermuseet",
-        "Bjørvika",
-        "Digitalarkivet",
-        "Eidsvollsbygningen",
-        "Gamle Aker kirke",
-        "Gamle Deichman på Hammersborg",
-        "Grini fangeleir",
-        "Grønland",
-        "Hovedøya kloster",
-        "Jødisk museum",
-        "Middelalderbyen Oslo",
-        "Møllergata 19",
-        "Nasjonalbiblioteket",
-        "Oslo Hospital",
-        "Oslo Museum",
-        "Oslo byarkiv",
         "Riksarkivet",
-        "Sagene skole",
-        "Stortinget",
-        "Tøyen",
-        "Villa Grande",
-        "Vår Frelsers gravlund"
+        "Oslo byarkiv",
+        "Nasjonalbiblioteket",
+        "Digitalarkivet",
+        "Gamle Deichman på Hammersborg",
+        "Akershus festning",
+        "Jødisk museum",
+        "Arbeidermuseet"
       ],
       "canonical_thinker_ids": [
-        "achille_mbembe",
-        "alessandro_portelli",
-        "ann_laura_stoler",
-        "arlette_farge",
-        "armando_petrucci",
-        "carlo_ginzburg",
-        "charles_tilly",
-        "e_h_carr",
-        "ernest_labrousse",
-        "fernand_braudel",
-        "gisele_freund",
-        "hilary_jenkinson",
-        "john_berger",
-        "knut_kjeldstadli",
-        "laura_mandell",
-        "leopold_von_ranke",
-        "lev_manovich",
-        "luciana_duranti",
-        "luisa_passerini",
-        "malcolm_parkes",
         "marc_bloch",
-        "michel_foucault",
+        "carlo_ginzburg",
         "michel_rolph_trouillot",
-        "paul_thompson",
-        "peter_burke",
-        "robert_henri_bautier",
-        "roger_chartier",
-        "roy_rosenzweig"
+        "knut_kjeldstadli"
       ],
       "norwegian_thinker_ids": [
         "knut_kjeldstadli"
@@ -206,12 +167,28 @@
       "production_context_required": true,
       "limitation_required": true,
       "corroboration_required": true,
-      "critical_distinction_required": true
+      "critical_distinction_required": true,
+      "source_limitation_required": true,
+      "domain_chain": [
+        "navngitt kilde eller materielt spor",
+        "produsent, tidspunkt og formål",
+        "proveniens og bevaringshistorikk",
+        "påstand kilden faktisk støtter",
+        "kontrollkilde eller korroborering",
+        "arkivtaushet eller representasjonsgrense",
+        "etisk håndtering",
+        "kritisk distinksjon"
+      ],
+      "boundary_rules": {
+        "tid_periodisering": "Kildedatering hører hit; periodisering og endringstempo hører til tidsdomenet.",
+        "minne_kulturarv_historiebruk": "Kildens produksjon og autentisitet hører hit; offentlig utvelgelse og historiebruk hører til minnefeltet.",
+        "vitenskap_teknologi_kunnskap": "Kildens status og proveniens hører hit; kunnskapsinstitusjonens autoritet og klassifikasjon hører til kunnskapshistorie."
+      }
     },
     {
       "domain_id": "his_makt_stat_institusjoner",
       "label": "Makt, stat og institusjoner",
-      "tagline": "Hvordan makt får rom, regler og bygninger",
+      "tagline": "Hvordan myndighet blir organisert, gjennomført og bestridt",
       "status": "complete_revised",
       "emne_count": 10,
       "hook_count": 10,
@@ -243,57 +220,34 @@
       "method_ids": [
         "met_institusjonshistorisk_analyse",
         "met_arkivlesning",
-        "met_for_etter_historisk",
-        "met_kildekritikk",
-        "met_minneanalyse",
         "met_beslutningskjedeanalyse",
         "met_forvaltningshistorisk_saksanalyse",
         "met_rettshistorisk_analyse",
+        "met_statskapasitetsanalyse",
         "met_kontrollregimeanalyse",
-        "met_statskapasitetsanalyse"
+        "met_prosopografi",
+        "met_kildekritikk",
+        "met_for_etter_historisk"
       ],
       "recommended_oslo_cases": [
-        "Akershus festning",
         "Stortinget",
         "Regjeringskvartalet",
         "Oslo rådhus",
         "Riksarkivet",
         "Høyesteretts hus",
-        "Tollboden",
-        "Oslo byarkiv",
         "Møllergata 19",
         "Botsfengselet",
-        "Grini fangeleir",
-        "Victoria terrasse",
-        "Villa Grande"
+        "Akershus festning"
       ],
       "canonical_thinker_ids": [
         "max_weber",
         "charles_tilly",
         "francis_sejersted",
-        "theda_skocpol",
-        "jens_arup_seip",
-        "rune_slagstad",
-        "hannah_arendt",
-        "michael_mann",
-        "t_h_marshall",
-        "anne_lise_seip",
-        "e_p_thompson",
-        "nils_christie",
-        "michel_foucault",
-        "david_garland",
-        "erving_goffman",
-        "james_c_scott",
-        "reinhart_koselleck",
-        "jorunn_sem_fure"
+        "jens_arup_seip"
       ],
       "norwegian_thinker_ids": [
         "francis_sejersted",
-        "jens_arup_seip",
-        "rune_slagstad",
-        "anne_lise_seip",
-        "nils_christie",
-        "jorunn_sem_fure"
+        "jens_arup_seip"
       ],
       "canonical_status": "canonical",
       "case_anchor_required": true,
@@ -303,39 +257,84 @@
       "institutional_chain_required": true,
       "authority_or_rule_basis_required": true,
       "implementation_or_consequence_required": true,
-      "critical_distinction_required": true
+      "critical_distinction_required": true,
+      "source_limitation_required": true,
+      "domain_chain": [
+        "ekstern kilde eller institusjonelt spor",
+        "navngitt organ eller embete",
+        "datert mandat, regel eller kompetanse",
+        "beslutningskjede",
+        "gjennomføring og ressursgrunnlag",
+        "konsekvens for identifisert gruppe",
+        "kontrollkilde",
+        "kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "boundary_rules": {
+        "politikk": "Historisk gjennomføring og institusjonell praksis hører hit; samtidige programmer og strategisk debatt hører til politikk.",
+        "velferd_rett_hverdagsliv": "Mandat og beslutningskjede hører hit; tjeneste, målgruppe og hverdagskonsekvens hører til velferd.",
+        "kilder_arkiv_spor": "Institusjonens arkivorden som maktpraksis hører hit når myndighetsutøvelsen er hovedspørsmålet; kildeproveniens alene hører til kildefeltet."
+      }
     },
     {
       "domain_id": "his_middelalder_kirke_kongemakt",
       "label": "Middelalder, kirke og kongemakt",
-      "tagline": "Byens eldste maktlag",
-      "status": "strong",
-      "emne_count": 3,
-      "hook_count": 1,
-      "method_count": 3,
+      "tagline": "Makt, tro, jord og hverdagsliv i middelalderens Norge",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
       "emne_ids": [
         "em_his_kirke_kloster_middelalder",
         "em_his_kongemakt_kirke_konflikt",
-        "em_his_middelalder_oslo"
+        "em_his_middelalder_oslo",
+        "em_his_middelalder_kirke_kristning_og_religios_omforming",
+        "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse",
+        "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+        "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+        "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
+        "em_his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv"
       ],
       "hook_ids": [
-        "his_middelalder_by_kirke"
+        "his_middelalder_by_kirke",
+        "his_middelalder_kirke_kongemakt_kirke_og_konflikt",
+        "his_middelalder_kirke_middelalderens_oslo",
+        "his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+        "his_middelalder_kirke_jord_eiendom_og_patronasje",
+        "his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+        "his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming",
+        "his_middelalder_kirke_skriftkultur_diplom_og_muntlig_rett",
+        "his_middelalder_kirke_samiske_kontaktsoner_handel_og_statsgrenser_i_middelalderen"
       ],
       "method_ids": [
         "met_sporlesning",
+        "met_materiell_kulturanalyse",
+        "met_rettshistorisk_analyse",
+        "met_prosopografi",
+        "met_diplomatikk",
+        "met_paleografi",
+        "met_arkeologisk_kontekstanalyse",
+        "met_kronologisk_rekonstruksjon",
         "met_kildekritikk",
-        "met_periodisering"
+        "met_komparativ_historie"
       ],
       "recommended_oslo_cases": [
         "Middelalderbyen Oslo",
         "Gamle Aker kirke",
         "Hovedøya kloster",
-        "Akershus festning"
+        "Akershus festning",
+        "Mariakirkeruinen",
+        "Hallvardskatedralen",
+        "Oslo bispegård",
+        "Eidsivating"
       ],
       "canonical_thinker_ids": [
         "sverre_bagge",
         "knut_helle",
-        "jacques_le_goff"
+        "jacques_le_goff",
+        "marc_bloch"
       ],
       "norwegian_thinker_ids": [
         "sverre_bagge",
@@ -345,56 +344,117 @@
       "case_anchor_required": true,
       "method_anchor_required": true,
       "source_anchor_required": true,
-      "external_claim_basis_required": true
+      "external_claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "arkeologisk, skriftlig eller materiell kilde",
+        "datert sted eller institusjon",
+        "aktør, jurisdiksjon eller eiendomsrelasjon",
+        "dokumentert praksis eller konflikt",
+        "regional eller transregional forbindelse",
+        "konsekvens for hushold eller lokalsamfunn",
+        "kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "boundary_rules": {
+        "religion_reformasjon_livssyn": "Middelalderens kirke som institusjon og maktstruktur hører hit; troslære og lengre religionshistorie hører til religionsdomenet.",
+        "makt_stat_institusjoner": "Middelalderlig statsdannelse hører hit når periodens kilder og institusjoner bærer spørsmålet; generell myndighetsanalyse hører til maktdomenet.",
+        "samisk_urfolkshistorie": "Kontaktsoner kan behandles her komparativt; samiske samfunn, rettigheter og kolonisering som hovedkjede hører til samisk historie."
+      }
     },
     {
       "domain_id": "his_1814_statsdannelse",
       "label": "1814, grunnlov og statsdannelse",
-      "tagline": "Da politiske ideer fikk hus, tekst og institusjoner",
-      "status": "strong",
-      "emne_count": 3,
-      "hook_count": 1,
-      "method_count": 3,
+      "tagline": "Fra enevelde og geopolitisk brudd til representasjon og selvstendighet",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
       "emne_ids": [
         "em_his_1814_grunnlov_statsdannelse",
         "em_his_embetsstat_demokratisering",
-        "em_his_nasjonal_identitet_fortellinger"
+        "em_his_nasjonal_identitet_fortellinger",
+        "em_his_1814_statsdannelse_enevelde_og_dansk_norsk_statsutvikling",
+        "em_his_1814_statsdannelse_kiel_1814_og_geopolitisk_brudd",
+        "em_his_1814_statsdannelse_suverenitet_grunnlov_og_representasjon",
+        "em_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+        "em_his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+        "em_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+        "em_his_1814_statsdannelse_union_selvstendighet_og_1905"
       ],
       "hook_ids": [
-        "his_grunnlov_rom_tekst"
+        "his_grunnlov_rom_tekst",
+        "his_1814_statsdannelse_embetsstat_og_demokratisering",
+        "his_1814_statsdannelse_nasjonal_identitet_og_historiske_fortellinger",
+        "his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+        "his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+        "his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+        "his_1814_statsdannelse_union_selvstendighet_og_1905",
+        "his_1814_statsdannelse_eksklusjon_fornorskning_og_statsborgerskap",
+        "his_1814_statsdannelse_kommunalt_selvstyre_lokal_forvaltning_og_politisk_deltakelse",
+        "his_1814_statsdannelse_1905_unionsopplosning_og_ny_utenrikspolitisk_orientering"
       ],
       "method_ids": [
+        "met_begrepshistorie",
         "met_institusjonshistorisk_analyse",
         "met_kildekritikk",
-        "met_symbol_og_minneanalyse"
+        "met_diskursanalyse",
+        "met_komparativ_historie",
+        "met_rettshistorisk_analyse",
+        "met_for_etter_historisk",
+        "met_prosopografi",
+        "met_beslutningskjedeanalyse",
+        "met_kronologisk_rekonstruksjon"
       ],
       "recommended_oslo_cases": [
         "Eidsvollsbygningen",
         "Stortinget",
         "Eidsvolls plass",
-        "Bogstad gård"
+        "Regjeringskvartalet",
+        "Oscarshall",
+        "Akershus festning",
+        "Oslo rådhus",
+        "Nasjonalbiblioteket"
       ],
       "canonical_thinker_ids": [
+        "francis_sejersted",
+        "jens_arup_seip",
         "benedict_anderson",
-        "jorunn_sem_fure",
-        "oyvind_osterud",
-        "francis_sejersted"
+        "reinhart_koselleck"
       ],
       "norwegian_thinker_ids": [
-        "jorunn_sem_fure",
-        "oyvind_osterud",
-        "francis_sejersted"
+        "francis_sejersted",
+        "jens_arup_seip"
       ],
       "canonical_status": "canonical",
       "case_anchor_required": true,
       "method_anchor_required": true,
       "source_anchor_required": true,
-      "external_claim_basis_required": true
+      "external_claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "samtidig tekst eller institusjonelt spor",
+        "datert geopolitisk og konstitusjonell situasjon",
+        "navngitt aktør eller forsamling",
+        "regel, vedtak eller representasjonsordning",
+        "gjennomføring i institusjonell praksis",
+        "inkludert og ekskludert gruppe",
+        "senere endring eller omfortolkning",
+        "kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "boundary_rules": {
+        "makt_stat_institusjoner": "1814 og unionsperioden hører hit når den historiske fasen bærer spørsmålet; generell institusjonsanalyse hører til maktdomenet.",
+        "offentlighet_mobilisering_bevegelser": "Historiske stemmeretts- og organisasjonsbevegelser kan kobles hit; kollektiv mobilisering som hovedkjede hører til offentlighetsdomenet.",
+        "minne_kulturarv_historiebruk": "Konstitusjonell hendelse og praksis hører hit; jubileer og offentlig bruk av 1814 hører til minnefeltet."
+      }
     },
     {
       "domain_id": "his_industri_arbeid_sosialhistorie",
       "label": "Industri, arbeid og sosialhistorie",
-      "tagline": "Hvordan produksjon, arbeid og livsvilkår formet byen",
+      "tagline": "Produksjon, arbeidsliv og hushold som historisk forandringskraft",
       "status": "complete_revised",
       "emne_count": 10,
       "hook_count": 10,
@@ -424,65 +484,36 @@
         "his_avindustrialisering_ombruk_industriarv"
       ],
       "method_ids": [
-        "met_sporlesning",
-        "met_arkivlesning",
-        "met_mikrohistorisk_analyse",
-        "met_for_etter_historisk",
-        "met_seriell_kildeanalyse",
         "met_industriell_stedsanalyse",
         "met_arbeidsprosessanalyse",
         "met_livsvilkarsanalyse",
         "met_arbeidskonfliktanalyse",
-        "met_arbeidsmiljohistorisk_analyse"
+        "met_arbeidsmiljohistorisk_analyse",
+        "met_seriell_kildeanalyse",
+        "met_arkivlesning",
+        "met_husholdsanalyse",
+        "met_mikrohistorisk_analyse",
+        "met_for_etter_historisk"
       ],
       "recommended_oslo_cases": [
         "Akerselva",
         "Hjula Væveri",
-        "Nydalen",
-        "Vulkan",
         "Christiania Seildugsfabrik",
+        "Vulkan",
+        "Nydalen",
         "Freia",
-        "Christiania Spigerverk",
         "Arbeidermuseet",
-        "Kværner",
-        "Sagene",
-        "Torshov",
-        "Grünerløkka",
-        "Arbeidersamfunnets plass",
-        "Youngstorget",
-        "Folkets Hus",
-        "Sagene skole",
-        "Gamle Deichman på Hammersborg",
-        "Aker Brygge",
-        "Kværnerbyen"
+        "Kværner"
       ],
       "canonical_thinker_ids": [
-        "eric_hobsbawm",
-        "sidney_pollard",
-        "knut_kjeldstadli",
-        "francis_sejersted",
         "e_p_thompson",
         "harry_braverman",
-        "david_montgomery",
         "gro_hagemann",
-        "arthur_mcivor",
-        "david_rosner",
-        "louise_tilly",
-        "joan_scott",
-        "alice_kessler_harris",
-        "marcel_van_der_linden",
-        "leslie_page_moch",
-        "edvard_bull",
-        "jurgen_habermas",
-        "steven_high",
-        "sharon_zukin",
-        "raphael_samuel"
+        "knut_kjeldstadli"
       ],
       "norwegian_thinker_ids": [
-        "knut_kjeldstadli",
-        "francis_sejersted",
         "gro_hagemann",
-        "edvard_bull"
+        "knut_kjeldstadli"
       ],
       "canonical_status": "canonical",
       "case_anchor_required": true,
@@ -496,65 +527,108 @@
       "critical_distinction_required": true,
       "domain_chain": [
         "ekstern kilde eller synlig industrispor",
-        "navngitt produksjonsenhet, arbeidsplass, hushold eller organisasjon",
-        "datert produksjons- eller arbeidsfase",
-        "arbeidsprosess, arbeidsrelasjon eller livsvilkår",
-        "dokumentert mål, vilkår, konflikt eller endring",
+        "navngitt produksjonsenhet eller arbeidsplass",
+        "datert produksjonsfase",
+        "arbeidsprosess eller arbeidsrelasjon",
+        "dokumentert vilkår, konflikt eller endring",
         "berørt arbeidergruppe eller hushold",
-        "kontrollkilde eller sammenligningsgrunnlag",
+        "kontrollkilde",
         "kildebegrensning",
-        "kritisk distinksjon",
-        "eventuelt teori etter at arbeidsforholdet er etablert"
+        "kritisk distinksjon"
       ],
       "boundary_rules": {
-        "naeringsliv": "Bruk historie som hovedfag bare når arbeidere, arbeidsprosess, livsvilkår eller konflikt bærer spørsmålet; bedrift, eier og marked alene hører til næringsliv.",
-        "velferd": "Arbeidsrelaterte helse-, bolig- og reformspor hører hit når arbeidslivet er årsakskjeden; rettighet, omsorgsinstitusjon og livsløp alene hører til velferd.",
-        "migrasjon": "Arbeidsrekruttering og arbeidsstyrkens mobilitet hører hit; tilhørighet, minoritetsposisjon og identitet som hovedsak hører til migrasjon.",
-        "byhistorie": "Produksjon, arbeid og tap av arbeidsplasser hører hit; arealbruk, riving og byform uten arbeidskjede hører til byhistorie.",
-        "politikk": "Historiske foreninger, streiker og forhandlinger hører hit; samtidige partier, programmer og beslutningsprosesser som hovedsak hører til politikk."
+        "naeringsliv": "Arbeidere, arbeidsprosess og livsvilkår hører hit; eierstrategi og marked alene hører til næringsliv.",
+        "byhistorie_stedsendring": "Produksjon og tap av arbeidsplasser hører hit; arealbruk og fysisk transformasjon som hovedkjede hører til byhistorie.",
+        "velferd_rett_hverdagsliv": "Arbeidsrelatert helse og bolig hører hit når arbeidslivet er årsakskjeden; ordninger og tjenester som hovedkjede hører til velferd."
       }
     },
     {
       "domain_id": "his_krig_okkupasjon_motstand",
       "label": "Krig, okkupasjon og motstand",
-      "tagline": "Når byrommet blir kontroll, fare og motstand",
-      "status": "strong",
-      "emne_count": 3,
-      "hook_count": 1,
-      "method_count": 4,
+      "tagline": "Krigens institusjoner, hverdagsliv, vold og etteroppgjør",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
       "emne_ids": [
         "em_his_fangenskap_kontroll",
         "em_his_okkupasjon_motstand",
-        "em_his_rettsoppgjor_etterkrig"
+        "em_his_rettsoppgjor_etterkrig",
+        "em_his_krig_okkupasjon_krig_mobilisering_og_statsdannelse",
+        "em_his_krig_okkupasjon_logistikk_forsyning_og_militaer_infrastruktur",
+        "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
+        "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+        "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+        "em_his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
+        "em_his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet"
       ],
       "hook_ids": [
-        "his_okkupasjon_byrom_kontroll"
+        "his_okkupasjon_byrom_kontroll",
+        "his_krig_okkupasjon_okkupasjon_og_motstand",
+        "his_krig_okkupasjon_rettsoppgjor_og_etterkrig",
+        "his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+        "his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+        "his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
+        "his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet",
+        "his_krig_okkupasjon_krigsminne_veteraner_og_ettervirkninger",
+        "his_krig_okkupasjon_motstand_samarbeid_tilpasning_og_grasoner",
+        "his_krig_okkupasjon_kald_krig_beredskap_og_sikkerhetsstat"
       ],
       "method_ids": [
         "met_kildekritikk",
-        "met_minneanalyse",
+        "met_muntlig_historie",
         "met_institusjonshistorisk_analyse",
-        "met_muntlig_historie"
+        "met_prosopografi",
+        "met_minneanalyse",
+        "met_for_etter_historisk",
+        "met_rettshistorisk_analyse",
+        "met_logistikkhistorisk_analyse",
+        "met_voldshistorisk_analyse",
+        "met_propagandaanalyse"
       ],
       "recommended_oslo_cases": [
         "Grini fangeleir",
         "Møllergata 19",
         "Oscarsborg festning",
-        "Villa Grande"
+        "Villa Grande",
+        "Akershus festning",
+        "Victoria terrasse",
+        "Hjemmefrontmuseet",
+        "Regjeringskvartalet"
       ],
       "canonical_thinker_ids": [
+        "jorunn_sem_fure",
+        "ole_kristian_grimnes",
         "hannah_arendt",
-        "michel_foucault",
-        "jorunn_sem_fure"
+        "omer_bartov"
       ],
       "norwegian_thinker_ids": [
-        "jorunn_sem_fure"
+        "jorunn_sem_fure",
+        "ole_kristian_grimnes"
       ],
       "canonical_status": "canonical",
       "case_anchor_required": true,
       "method_anchor_required": true,
       "source_anchor_required": true,
-      "external_claim_basis_required": true
+      "external_claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "samtidig kilde eller krigsspor",
+        "datert militær eller politisk situasjon",
+        "navngitt institusjon, gruppe eller person",
+        "dokumentert ordre, praksis eller handling",
+        "konsekvens for sivile eller stridende",
+        "alternativ eller motstridende kilde",
+        "etteroppgjør eller minne",
+        "etisk kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "boundary_rules": {
+        "minne_kulturarv_historiebruk": "Krigshendelsen og samtidens praksis hører hit; senere monument, ritual og offentlig minne hører til minnefeltet.",
+        "makt_stat_institusjoner": "Krigens unntaksinstitusjoner hører hit når krigssituasjonen bærer spørsmålet; generell kontroll- og forvaltningshistorie hører til maktdomenet.",
+        "katastrofer_brudd_ulykker": "Krig som organisert vold hører hit; ulykke, beredskap og systemsvikt uten krigskontekst hører til katastrofedomenet."
+      }
     },
     {
       "domain_id": "his_velferd_rett_hverdagsliv",
@@ -589,61 +663,36 @@
         "his_bruker_tjeneste_forvaltning"
       ],
       "method_ids": [
-        "met_institusjonshistorisk_analyse",
-        "met_arkivlesning",
-        "met_mikrohistorisk_analyse",
-        "met_muntlig_historie",
-        "met_seriell_kildeanalyse",
-        "met_livslopsanalyse",
-        "met_husholdsanalyse",
         "met_velferdsordningsanalyse",
         "met_rettighets_og_tilgangsanalyse",
-        "met_omsorgsregimeanalyse"
+        "met_omsorgsregimeanalyse",
+        "met_livslopsanalyse",
+        "met_husholdsanalyse",
+        "met_institusjonshistorisk_analyse",
+        "met_arkivlesning",
+        "met_seriell_kildeanalyse",
+        "met_muntlig_historie",
+        "met_mikrohistorisk_analyse"
       ],
       "recommended_oslo_cases": [
         "Oslo Hospital",
         "Sagene skole",
-        "Gamle Deichman på Hammersborg",
-        "Arbeidersamfunnets plass",
-        "Oslo byarkiv",
-        "Oslo rådhus",
-        "Arbeidermuseet",
-        "Sagene",
-        "Torshov",
-        "Grünerløkka",
         "Ullevål sykehus",
         "Rikshospitalet",
         "Gaustad sykehus",
-        "Prinds Christian Augusts Minde"
+        "Prinds Christian Augusts Minde",
+        "Oslo rådhus",
+        "Arbeidermuseet"
       ],
       "canonical_thinker_ids": [
-        "gosta_esping_andersen",
-        "michel_foucault",
         "anne_lise_seip",
         "gro_hagemann",
-        "t_h_marshall",
-        "abram_de_swaan",
-        "erving_goffman",
-        "robert_castel",
-        "jane_lewis",
-        "nancy_fraser",
-        "linda_gordon",
-        "jacques_donzelot",
-        "ida_blom",
-        "ellen_schrumpf",
-        "kari_melby",
-        "bengt_sandin",
-        "peter_baldwin",
-        "nikolas_rose",
-        "harold_wilensky",
-        "amartya_sen"
+        "gosta_esping_andersen",
+        "t_h_marshall"
       ],
       "norwegian_thinker_ids": [
         "anne_lise_seip",
-        "gro_hagemann",
-        "ida_blom",
-        "ellen_schrumpf",
-        "kari_melby"
+        "gro_hagemann"
       ],
       "canonical_status": "canonical",
       "case_anchor_required": true,
@@ -659,29 +708,25 @@
       "critical_distinction_required": true,
       "domain_chain": [
         "ekstern kilde eller synlig velferdsspor",
-        "navngitt institusjon, ordning, tjeneste eller ytelse",
+        "navngitt institusjon, ordning eller tjeneste",
         "datert regel, målgruppe eller adgangsvilkår",
-        "dokumentert forvaltnings-, behandlings- eller omsorgspraksis",
-        "rettighet, plikt, kontroll, ytelse eller tjeneste",
-        "konsekvens for person, hushold, hverdagsliv eller livsløp",
-        "kontrollkilde eller sammenligningsgrunnlag",
+        "dokumentert praksis",
+        "rettighet, plikt, kontroll eller ytelse",
+        "konsekvens for person eller hushold",
+        "kontrollkilde",
         "kildebegrensning",
-        "kritisk distinksjon",
-        "eventuelt teori etter at velferdskjeden er etablert"
+        "kritisk distinksjon"
       ],
       "boundary_rules": {
-        "industri_arbeid_sosialhistorie": "Bruk velferd når ordningen, tjenesten eller rettigheten er hovedkjeden; arbeidsforhold og produksjon som hovedårsak hører til arbeidshistorie.",
-        "politikk": "Historisk gjennomføring og virkning av velferdsordninger hører hit; samtidige partier, programmer og politiske strategier som hovedsak hører til politikk.",
-        "makt_stat_institusjoner": "Bruk velferd når tjeneste, målgruppe og hverdagskonsekvens bærer spørsmålet; mandat, myndighet og beslutningskjede alene hører til makt og stat.",
-        "byhistorie_stedsendring": "Bolig som velferd, tildeling og livsvilkår hører hit; arealbruk, sanering og byform uten velferdskjede hører til byhistorie.",
-        "vitenskap_medisin": "Helseinstitusjon, adgang og sosial konsekvens hører hit; medisinsk kunnskap, diagnose og behandling som hovedsak hører til vitenskap.",
-        "kjonn_familie_livslop": "Omsorg og familie hører hit når velferdsordning eller institusjon er årsakskjeden; normer, slektskap, seksualitet og kjønnsrelasjoner som hovedsak hører til kjønn/familie."
+        "makt_stat_institusjoner": "Tjeneste, målgruppe og hverdagskonsekvens hører hit; mandat og beslutningskjede alene hører til maktdomenet.",
+        "industri_arbeid_sosialhistorie": "Ordning og velferdstjeneste hører hit; arbeidsforhold som årsakskjede hører til arbeidshistorie.",
+        "kjonn_familie_livslop": "Omsorgsordning og institusjon hører hit; normer, slektskap og kjønnsrelasjoner som hovedspørsmål hører til kjønn/familie."
       }
     },
     {
       "domain_id": "his_migrasjon_minoritet_tilhorighet",
       "label": "Migrasjon, minoritet og tilhørighet",
-      "tagline": "Fra flytting, status og institusjoner til hverdagsliv, motstand og tilhørighet",
+      "tagline": "Mobilitet, status, nettverk og grenser i historisk perspektiv",
       "status": "complete_revised",
       "emne_count": 10,
       "hook_count": 10,
@@ -711,74 +756,36 @@
         "his_tilhorighet_identitet_minne"
       ],
       "method_ids": [
-        "met_muntlig_historie",
-        "met_arkivlesning",
-        "met_sporlesning",
-        "met_minneanalyse",
-        "met_seriell_kildeanalyse",
         "met_migrasjonsforlopsanalyse",
         "met_bosettings_og_nettverksanalyse",
         "met_rettighetsstatusanalyse",
         "met_minoritetspolitisk_kategorianalyse",
-        "met_transnasjonal_husholdsanalyse"
+        "met_transnasjonal_husholdsanalyse",
+        "met_muntlig_historie",
+        "met_arkivlesning",
+        "met_seriell_kildeanalyse",
+        "met_diskursanalyse",
+        "met_sporlesning"
       ],
       "recommended_oslo_cases": [
         "Grønland",
         "Vippetangen",
         "Oslo S",
-        "Oslo byarkiv",
         "Tøyen",
-        "Arbeidermuseet",
-        "Vaterland",
-        "Sagene",
         "Interkulturelt museum",
-        "Torggata",
-        "Youngstorget",
-        "Akerselva",
         "Jødisk museum",
         "Villa Grande",
-        "Stortinget",
-        "Regjeringskvartalet",
-        "Gamle Deichman på Hammersborg"
+        "Oslo byarkiv"
       ],
       "canonical_thinker_ids": [
         "knut_kjeldstadli",
-        "abdelmalek_sayad",
-        "saskia_sassen",
-        "nancy_foner",
-        "jan_eivind_myhre",
-        "thomas_hylland_eriksen",
-        "doreen_massey",
-        "alejandro_portes",
-        "donna_gabaccia",
-        "mae_ngai",
-        "t_h_marshall",
         "grete_brochmann",
-        "bridget_anderson",
-        "rogers_brubaker",
-        "michel_foucault",
-        "cora_alexa_doving",
-        "benedict_anderson",
-        "stuart_hall",
-        "sindre_bangstad",
-        "jose_casanova",
-        "avtar_brah",
-        "peggy_levitt",
-        "nina_glick_schiller",
-        "w_e_b_du_bois",
-        "arnfinn_h_midtboen",
-        "e_p_thompson",
-        "floya_anthias",
-        "nira_yuval_davis"
+        "abdelmalek_sayad",
+        "saskia_sassen"
       ],
       "norwegian_thinker_ids": [
         "knut_kjeldstadli",
-        "jan_eivind_myhre",
-        "thomas_hylland_eriksen",
-        "grete_brochmann",
-        "cora_alexa_doving",
-        "sindre_bangstad",
-        "arnfinn_h_midtboen"
+        "grete_brochmann"
       ],
       "canonical_status": "canonical",
       "case_anchor_required": true,
@@ -794,60 +801,81 @@
       "ethical_source_handling_required": true,
       "critical_distinction_required": true,
       "domain_chain": [
-        "ekstern kilde eller synlig migrasjons- eller minoritetshistorisk spor",
-        "navngitt person, gruppe, institusjon, nettverk eller migrasjonsbevegelse",
-        "datert opprinnelse, avreise, ankomst, bosetting, status eller kategorisering",
-        "dokumentert bolig-, arbeids-, familie-, religions-, språk- eller organisasjonspraksis",
-        "dokumentert juridisk eller sosial grense, ressurs, ekskludering eller kollektiv respons",
+        "migrasjons- eller minoritetshistorisk spor",
+        "navngitt person, gruppe eller nettverk",
+        "datert avreise, ankomst, bosetting eller status",
+        "dokumentert praksis i bolig, arbeid, familie, språk eller religion",
+        "juridisk eller sosial grense",
         "konsekvens for individ, hushold eller fellesskap",
-        "kontrollkilde, sammenligningsgrunnlag eller seriekryssjekk",
-        "kildebegrensning, arkivtaushet og etisk håndtering",
-        "kritisk distinksjon",
-        "eventuelt teori etter at migrasjons- og minoritetskjeden er etablert"
+        "kontrollkilde",
+        "etisk kildebegrensning",
+        "kritisk distinksjon"
       ],
       "boundary_rules": {
-        "industri_arbeid_sosialhistorie": "Migrasjon hører hit når mobilitet, status, nettverk eller minoritetsposisjon bærer årsakskjeden; arbeidsprosess, lønn og arbeidskonflikt som hovedsak hører til arbeidshistorie.",
-        "byhistorie_stedsendring": "Bosetting og nabolag hører hit når migrasjonsforløp og tilhørighet er hovedkjeden; fysisk arealbruk, planinngrep og funksjonsendring hører til byhistorie.",
-        "velferd_rett_hverdagsliv": "Status og tilgang hører hit når migrasjon eller minoritetskategori forklarer grensen; ordning, tjeneste og velferdsinstitusjon som hovedkjede hører til velferd.",
-        "makt_stat_institusjoner": "Registrering og statsborgerskap hører hit når konsekvensen for migrant eller minoritet bærer spørsmålet; mandat, kompetanse og statsbygging alene hører til makt og stat.",
-        "minne_kulturarv_historiebruk": "Identitet og minne hører hit når migrasjonserfaring eller minoritetsposisjon er kjernen; monument, bevaringspolitikk og historiebruk som hovedsak hører til minnefeltet.",
-        "politikk": "Historiske regler, organisering og gjennomføring hører hit; samtidige partier, programmer og strategisk debatt som hovedsak hører til politikk.",
-        "religion": "Religiøse institusjoner hører hit når de bærer migrasjon, minoritetsorganisering eller tilhørighet; troslære og religionshistorie uten migrasjonskjede hører til religion."
+        "industri_arbeid_sosialhistorie": "Mobilitet, status og nettverk hører hit; arbeidsprosess og lønn som hovedsak hører til arbeidshistorie.",
+        "velferd_rett_hverdagsliv": "Status og tilgang hører hit når migrasjon forklarer grensen; ordningen eller tjenesten som hovedkjede hører til velferd.",
+        "minne_kulturarv_historiebruk": "Migrasjonserfaring og minoritetsposisjon hører hit; offentlig representasjon og museumskanon hører til minnefeltet."
       }
     },
     {
       "domain_id": "his_minne_kulturarv_historiebruk",
       "label": "Minne, kulturarv og historiebruk",
-      "tagline": "Hvordan fortiden brukes, bevares og bestrides",
-      "status": "strong",
-      "emne_count": 3,
-      "hook_count": 1,
-      "method_count": 4,
+      "tagline": "Hvordan fortiden velges, bevares, brukes og bestrides",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
       "emne_ids": [
         "em_his_kulturminner_bevaring",
+        "em_his_restaurering_autentisitet",
+        "em_his_museum_samling_kanon",
         "em_his_minnesteder_historiebruk",
-        "em_his_monumenter_kontrovers"
+        "em_his_monumenter_kontrovers",
+        "em_his_kontrovers_fjerning_omtolking",
+        "em_his_jubileum_seremoni_historiebruk",
+        "em_his_stedsnavn_navnepolitikk",
+        "em_his_fravaer_taushet_motminne",
+        "em_his_digital_kulturarv_formidling"
       ],
       "hook_ids": [
-        "his_historiebruk_minne"
+        "his_kulturminneutvelgelse_verdi",
+        "his_bevaring_restaurering_autentisitet",
+        "his_museum_samling_kanon",
+        "his_minnested_ritual_offentlig_sorg",
+        "his_monument_symbol_makt",
+        "his_kontrovers_fjerning_omtolking",
+        "his_jubileum_seremoni_historiebruk",
+        "his_stedsnavn_navnepolitikk",
+        "his_fravaer_taushet_motminne",
+        "his_digital_kulturarv_formidling"
       ],
       "method_ids": [
         "met_minneanalyse",
         "met_symbol_og_minneanalyse",
+        "met_kulturarvutvelgelsesanalyse",
+        "met_restaurerings_autentisitetsanalyse",
+        "met_museums_og_samlingsanalyse",
+        "met_minnesteds_og_ritualanalyse",
+        "met_historiebruksanalyse",
+        "met_navnepolitisk_analyse",
         "met_sporlesning",
         "met_kildekritikk"
       ],
       "recommended_oslo_cases": [
         "Vår Frelsers gravlund",
-        "HL-senteret / Villa Grande",
+        "Villa Grande",
         "Eidsvollsbygningen",
-        "22. juli-senteret"
+        "22. juli-senteret",
+        "Regjeringskvartalet",
+        "Jødisk museum",
+        "Akershus festning",
+        "Oslo Museum"
       ],
       "canonical_thinker_ids": [
         "pierre_nora",
-        "maurice_halbwachs",
-        "jan_assmann",
-        "anne_eriksen"
+        "aleida_assmann",
+        "anne_eriksen",
+        "michael_rothberg"
       ],
       "norwegian_thinker_ids": [
         "anne_eriksen"
@@ -856,12 +884,38 @@
       "case_anchor_required": true,
       "method_anchor_required": true,
       "source_anchor_required": true,
-      "external_claim_basis_required": true
+      "external_claim_basis_required": true,
+      "heritage_object_or_memory_practice_required": true,
+      "original_event_and_later_use_date_required": true,
+      "selection_or_intervention_required": true,
+      "authorized_actor_or_claim_required": true,
+      "included_or_excluded_group_required": true,
+      "public_consequence_required": true,
+      "source_limitation_required": true,
+      "ethical_source_handling_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "minne- eller kulturarvsspor",
+        "navngitt aktør, institusjon eller objekt",
+        "datert opprinnelig hendelse og senere minneinngrep",
+        "utvelgelse, bevaring, ritual, utstilling eller omtolking",
+        "uttalt verdi eller mandat",
+        "inkludert, utelatt eller berørt gruppe",
+        "offentlig konsekvens eller konflikt",
+        "kontrollkilde",
+        "kildebegrensning og etisk håndtering",
+        "kritisk distinksjon"
+      ],
+      "boundary_rules": {
+        "kilder_arkiv_spor": "Kildens produksjon og autentisitet hører til kildefeltet; offentlig utvelgelse og representasjon hører hit.",
+        "byhistorie_stedsendring": "Fysisk transformasjon hører til byhistorie; verneverdier og minnepolitikk hører hit.",
+        "kunst": "Form og estetikk hører til kunst; autorisering og offentlig minnebruk hører hit."
+      }
     },
     {
       "domain_id": "his_byhistorie_stedsendring",
       "label": "Byhistorie og stedsendring",
-      "tagline": "Fra kart, vedtak og fysiske inngrep til endret bruk, verdi og tilhørighet",
+      "tagline": "Hvordan areal, infrastruktur, eiendom og bruk forandrer byen",
       "status": "complete_revised",
       "emne_count": 10,
       "hook_count": 10,
@@ -891,63 +945,36 @@
         "his_offentlig_rom_tilgang_konflikt"
       ],
       "method_ids": [
-        "met_for_etter_historisk",
-        "met_sporlesning",
-        "met_arkivlesning",
-        "met_komparativ_historie",
-        "met_mikrohistorisk_analyse",
         "met_historisk_gis",
         "met_romlig_historie",
         "met_planhistorisk_analyse",
         "met_arealbruksendringsanalyse",
-        "met_eiendoms_og_verdidynamikkanalyse"
+        "met_eiendoms_og_verdidynamikkanalyse",
+        "met_for_etter_historisk",
+        "met_sporlesning",
+        "met_arkivlesning",
+        "met_komparativ_historie",
+        "met_mikrohistorisk_analyse"
       ],
       "recommended_oslo_cases": [
         "Bjørvika",
         "Aker Brygge",
         "Vulkan",
-        "Torggata",
         "Grønland",
         "Tøyen",
         "Enerhaugen",
         "Vaterland",
-        "Kvadraturen",
-        "Youngstorget",
-        "Nydalen",
-        "Kværnerbyen",
-        "Sagene",
-        "Grünerløkka",
-        "Gamlebyen",
-        "Regjeringskvartalet",
-        "Bispelokket",
-        "Akerselva"
+        "Regjeringskvartalet"
       ],
       "canonical_thinker_ids": [
-        "sharon_zukin",
-        "david_harvey",
-        "tone_huse",
-        "knut_kjeldstadli",
         "jan_eivind_myhre",
+        "tone_huse",
         "henri_lefebvre",
-        "jane_jacobs",
-        "neil_smith",
-        "dolores_hayden",
-        "peter_hall",
-        "doreen_massey",
-        "saskia_sassen",
-        "lewis_mumford",
-        "manuel_castells",
-        "richard_sennett",
-        "setha_low",
-        "francoise_choay",
-        "alois_riegl",
-        "kevin_lynch",
-        "don_mitchell"
+        "sharon_zukin"
       ],
       "norwegian_thinker_ids": [
-        "tone_huse",
-        "knut_kjeldstadli",
-        "jan_eivind_myhre"
+        "jan_eivind_myhre",
+        "tone_huse"
       ],
       "canonical_status": "canonical",
       "case_anchor_required": true,
@@ -962,69 +989,815 @@
       "source_limitation_required": true,
       "critical_distinction_required": true,
       "domain_chain": [
-        "ekstern kilde eller synlig byhistorisk spor",
-        "presist avgrenset gate, kvartal, tomt, område eller forbindelseslinje",
-        "datert førtilstand med dokumentert funksjon, eierskap, bruk eller befolkning",
-        "navngitt plan, vedtak, investering, infrastruktur eller annen endringsdriver",
-        "dokumentert fysisk, funksjonell, juridisk, økonomisk eller sosial endring",
-        "identifisert beboer-, bruker-, arbeider- eller virksomhetsgruppe som ble berørt",
-        "datert ettertilstand og eksplisitt tidsspenn",
-        "kontrollkilde, kart- eller seriekryssjekk",
-        "kildebegrensning og skalausikkerhet",
-        "kritisk distinksjon",
-        "eventuelt teori etter at stedsendringskjeden er etablert"
+        "byhistorisk spor eller ekstern kilde",
+        "presist avgrenset gate, tomt eller område",
+        "datert førtilstand",
+        "navngitt plan, investering eller infrastruktur",
+        "dokumentert fysisk eller funksjonell endring",
+        "berørt gruppe",
+        "datert ettertilstand",
+        "kart- eller seriekryssjekk",
+        "kildebegrensning",
+        "kritisk distinksjon"
       ],
       "boundary_rules": {
-        "by": "Historisk dokumentert endring over tid hører hit; nåtidig byform, arkitektur, urban kvalitet og stedsanalyse uten historisk endringskjede hører til byfaget.",
-        "industri_arbeid_sosialhistorie": "Arealbruk, funksjon og fysisk transformasjon som hovedkjede hører hit; produksjon, arbeidsprosess, arbeidsvilkår og tap av arbeidsplasser som hovedsak hører til arbeidshistorie.",
-        "velferd_rett_hverdagsliv": "Sanering, regulering og områdeendring hører hit når byrommet er hovedkjeden; boligtildeling, velferdsordning, adgangsvilkår og livsløpskonsekvens hører til velferd.",
-        "minne_kulturarv_historiebruk": "Bevaring og ombruk hører hit når fysisk og funksjonell endring dokumenteres; minnepolitikk, historiebruk og kulturarvskonflikt som hovedsak hører til minnefeltet.",
-        "politikk": "Historiske planer, vedtak og gjennomførte inngrep hører hit; samtidige partier, program, styringsdebatt og pågående beslutningsprosess som hovedsak hører til politikk.",
-        "naeringsliv": "Byområdets funksjons- og verdiforandring hører hit; bedrift, eierstrategi, marked og virksomhetsøkonomi som hovedsak hører til næringsliv."
+        "by": "Historisk dokumentert endring over tid hører hit; nåtidig arkitektur og urban kvalitet uten endringskjede hører til byfaget.",
+        "industri_arbeid_sosialhistorie": "Arealbruk og fysisk transformasjon hører hit; arbeidsprosess og arbeidsvilkår hører til arbeidshistorie.",
+        "minne_kulturarv_historiebruk": "Fysisk og funksjonell endring hører hit; minnepolitikk og verneverdier som hovedspørsmål hører til minnefeltet."
       }
     },
     {
       "domain_id": "his_katastrofer_brudd_ulykker",
       "label": "Katastrofer, branner, ulykker og historiske brudd",
-      "tagline": "Når hendelser river opp normaliteten",
-      "status": "strong",
-      "emne_count": 3,
-      "hook_count": 1,
-      "method_count": 4,
+      "tagline": "Sårbarhet, systemsvikt, ansvar og gjenoppbygging",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
       "emne_ids": [
         "em_his_branner_ulykker_brudd",
         "em_his_gjenoppbygging_minne",
-        "em_his_terror_samtidshistorie"
+        "em_his_terror_samtidshistorie",
+        "em_his_katastrofer_brudd_katastrofe_som_sosial_prosess",
+        "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering",
+        "em_his_katastrofer_brudd_brann_epidemi_og_naturfare",
+        "em_his_katastrofer_brudd_teknologi_systemulykker_og_normalulykker",
+        "em_his_katastrofer_brudd_beredskap_kriseledelse_og_institusjonell_laering",
+        "em_his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
+        "em_his_katastrofer_brudd_gjenoppbygging_resiliens_og_minne"
       ],
       "hook_ids": [
-        "his_krise_gjenoppbygging"
+        "his_krise_gjenoppbygging",
+        "his_katastrofer_brudd_gjenoppbygging_og_minne_etter_krise",
+        "his_katastrofer_brudd_terror_og_samtidshistorie",
+        "his_katastrofer_brudd_teknologi_systemulykker_og_normalulykker",
+        "his_katastrofer_brudd_beredskap_kriseledelse_og_institusjonell_laering",
+        "his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
+        "his_katastrofer_brudd_gjenoppbygging_resiliens_og_minne",
+        "his_katastrofer_brudd_langsomme_katastrofer_og_miljoskade",
+        "his_katastrofer_brudd_langsomme_katastrofer_miljoskade_og_ulik_eksponering",
+        "his_katastrofer_brudd_katastrofer_branner_ulykker_og_historiske_brudd_fordypning_10"
       ],
       "method_ids": [
-        "met_minneanalyse",
-        "met_kildekritikk",
+        "met_kronologisk_rekonstruksjon",
+        "met_hendelsesforlop_analyse",
+        "met_institusjonshistorisk_analyse",
+        "met_risiko_og_saarbarhetsanalyse",
+        "met_ulykkesgranskningsanalyse",
+        "met_miljohistorisk_analyse",
         "met_for_etter_historisk",
-        "met_institusjonshistorisk_analyse"
+        "met_kildekritikk",
+        "met_seriell_kildeanalyse",
+        "met_minneanalyse"
       ],
       "recommended_oslo_cases": [
         "Regjeringskvartalet",
         "22. juli-senteret",
-        "Oslo brannhistoriske steder",
-        "Filipstadulykken"
+        "Filipstadulykken",
+        "Oslo brannmuseum",
+        "Akerselva",
+        "Loenga bru",
+        "Gaustad sykehus",
+        "Bjørvika"
       ],
       "canonical_thinker_ids": [
         "ulrich_beck",
+        "charles_perrow",
         "kai_erikson",
-        "pierre_nora"
+        "knut_kjeldstadli"
       ],
-      "norwegian_thinker_ids": [],
+      "norwegian_thinker_ids": [
+        "knut_kjeldstadli"
+      ],
       "canonical_status": "canonical",
       "case_anchor_required": true,
       "method_anchor_required": true,
       "source_anchor_required": true,
-      "external_claim_basis_required": true
+      "external_claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "samtidig kilde eller fysisk spor",
+        "datert hendelsesforløp",
+        "fare og eksponert gruppe",
+        "institusjonell eller teknisk sårbarhet",
+        "respons, beredskap eller svikt",
+        "tap og ulik konsekvens",
+        "gransking eller ansvar",
+        "gjenoppbygging eller langsom ettervirkning",
+        "kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "boundary_rules": {
+        "krig_okkupasjon_motstand": "Ulykke og systemsvikt hører hit; organisert krig og okkupasjonsstyre hører til krigshistorie.",
+        "miljo_klima_landskap": "Katastrofeforløp og beredskap hører hit; langsiktige miljøregimer og ressursendring hører til miljøhistorie.",
+        "minne_kulturarv_historiebruk": "Hendelse og gjenoppbygging hører hit; senere minnemarkering og ritual hører til minnefeltet."
+      }
+    },
+    {
+      "domain_id": "his_kjonn_familie_livslop",
+      "label": "Kjønn, familie, seksualitet og livsløp",
+      "tagline": "Historiske relasjoner mellom kropp, hushold, normer og rettigheter",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
+      "emne_ids": [
+        "em_his_kjonn_familie_kjonn_som_historisk_kategori",
+        "em_his_kjonn_familie_familie_hushold_og_slektskap",
+        "em_his_kjonn_familie_ekteskap_arv_og_eiendom",
+        "em_his_kjonn_familie_seksualitet_regulering_og_identitet",
+        "em_his_kjonn_familie_kropp_reproduksjon_og_medisinsk_makt",
+        "em_his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid",
+        "em_his_kjonn_familie_barndom_ungdom_alderdom_og_livslop",
+        "em_his_kjonn_familie_kvinnebevegelse_likestilling_og_skeiv_historie",
+        "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
+        "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
+      ],
+      "hook_ids": [
+        "his_kjonn_familie_kjonn_som_historisk_kategori",
+        "his_kjonn_familie_familie_hushold_og_slektskap",
+        "his_kjonn_familie_ekteskap_arv_og_eiendom",
+        "his_kjonn_familie_seksualitet_regulering_og_identitet",
+        "his_kjonn_familie_kropp_reproduksjon_og_medisinsk_makt",
+        "his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid",
+        "his_kjonn_familie_barndom_ungdom_alderdom_og_livslop",
+        "his_kjonn_familie_kvinnebevegelse_likestilling_og_skeiv_historie",
+        "his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
+        "his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_fordypning_10"
+      ],
+      "method_ids": [
+        "met_kjonnshistorisk_analyse",
+        "met_livslopsanalyse",
+        "met_husholdsanalyse",
+        "met_muntlig_historie",
+        "met_diskursanalyse",
+        "met_rettshistorisk_analyse",
+        "met_seriell_kildeanalyse",
+        "met_mikrohistorisk_analyse",
+        "met_arkivlesning",
+        "met_kildekritikk"
+      ],
+      "recommended_oslo_cases": [
+        "Kvinnemuseet",
+        "Oslo byarkiv",
+        "Nasjonalbiblioteket",
+        "Sagene skole",
+        "Gaustad sykehus",
+        "Stortinget",
+        "Arbeidermuseet",
+        "Grønland"
+      ],
+      "canonical_thinker_ids": [
+        "joan_scott",
+        "ida_blom",
+        "gro_hagemann",
+        "kimberle_crenshaw"
+      ],
+      "norwegian_thinker_ids": [
+        "ida_blom",
+        "gro_hagemann"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "kilde til person, hushold eller institusjon",
+        "datert norm, regel eller praksis",
+        "kjønnet eller aldersbestemt posisjon",
+        "arbeids-, omsorgs-, arve- eller kroppsrelasjon",
+        "handlingsrom og begrensning",
+        "konsekvens gjennom livsløpet",
+        "motstemme eller kontrollkilde",
+        "etisk kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "boundary_rules": {
+        "velferd_rett_hverdagsliv": "Familie og kjønn hører hit når relasjonen eller normen bærer spørsmålet; velferdsordning og tjeneste som hovedkjede hører til velferd.",
+        "medisin": "Kropp og reproduksjon hører hit når sosial regulering og kjønn er hovedspørsmålet; medisinsk kunnskap og behandling hører til vitenskap/medisin.",
+        "offentlighet_mobilisering_bevegelser": "Kvinne- og skeiv mobilisering hører til offentlighetsdomenet når organisasjonen og protesten bærer spørsmålet; kjønnsrelasjonen og livsløpet hører hit."
+      }
+    },
+    {
+      "domain_id": "his_okonomi_handel_materielle_systemer",
+      "label": "Økonomi, handel og materielle systemer",
+      "tagline": "Markeder, kreditt, eiendom, ressurser og globale forbindelser",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
+      "emne_ids": [
+        "em_his_okonomi_handel_markeder_og_markedsintegrasjon",
+        "em_his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
+        "em_his_okonomi_handel_penger_kreditt_bank_og_finans",
+        "em_his_okonomi_handel_eiendom_kapital_og_akkumulering",
+        "em_his_okonomi_handel_jordbruk_fiske_og_ressursokonomi",
+        "em_his_okonomi_handel_skatt_offentlig_okonomi_og_infrastruktur",
+        "em_his_okonomi_handel_forbruk_priser_og_levestandard",
+        "em_his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
+        "em_his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder",
+        "em_his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet"
+      ],
+      "hook_ids": [
+        "his_okonomi_handel_markeder_og_markedsintegrasjon",
+        "his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
+        "his_okonomi_handel_penger_kreditt_bank_og_finans",
+        "his_okonomi_handel_eiendom_kapital_og_akkumulering",
+        "his_okonomi_handel_jordbruk_fiske_og_ressursokonomi",
+        "his_okonomi_handel_skatt_offentlig_okonomi_og_infrastruktur",
+        "his_okonomi_handel_forbruk_priser_og_levestandard",
+        "his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
+        "his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder",
+        "his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet"
+      ],
+      "method_ids": [
+        "met_kvantitativ_historie",
+        "met_seriell_kildeanalyse",
+        "met_nettverksanalyse",
+        "met_transnasjonal_sporing",
+        "met_regnskapshistorisk_analyse",
+        "met_pris_og_lonnserieanalyse",
+        "met_varekjedeanalyse",
+        "met_institusjonshistorisk_analyse",
+        "met_komparativ_historie",
+        "met_kildekritikk"
+      ],
+      "recommended_oslo_cases": [
+        "Tollboden",
+        "Oslo havn",
+        "Børsen",
+        "Norges Bank",
+        "Akerselva",
+        "Vippetangen",
+        "Aker Brygge",
+        "Christiania torv"
+      ],
+      "canonical_thinker_ids": [
+        "fernand_braudel",
+        "douglass_north",
+        "francis_sejersted",
+        "jan_eivind_myhre"
+      ],
+      "norwegian_thinker_ids": [
+        "francis_sejersted",
+        "jan_eivind_myhre"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "økonomisk kilde eller materielt spor",
+        "navngitt aktør, vare, institusjon eller eiendom",
+        "datert marked, regel eller transaksjon",
+        "strøm av penger, varer eller ressurser",
+        "pris, kreditt, skatt eller investering",
+        "konsekvens for produsent, hushold eller region",
+        "serie- eller kontrollkilde",
+        "skala- og kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "boundary_rules": {
+        "naeringsliv": "Historisk marked, institusjon og materiell strøm hører hit; nåtidig virksomhetsstrategi hører til næringsliv.",
+        "industri_arbeid_sosialhistorie": "Marked og kapital hører hit når økonomiske systemer bærer spørsmålet; arbeidsprosess og livsvilkår hører til arbeidshistorie.",
+        "global_kolonial_transnasjonal": "Varekjede og handel hører hit når økonomisk mekanisme er hovedspørsmålet; imperial makt og kolonial relasjon hører til globalhistorie."
+      }
+    },
+    {
+      "domain_id": "his_religion_reformasjon_livssyn",
+      "label": "Religion, reformasjon og livssyn",
+      "tagline": "Tro, institusjon, praksis og pluralisme i historisk endring",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
+      "emne_ids": [
+        "em_his_religion_reformasjon_forkristne_religioner_og_kristning",
+        "em_his_religion_reformasjon_reformasjon_og_konfesjonalisering",
+        "em_his_religion_reformasjon_statskirke_disiplin_og_religios_orden",
+        "em_his_religion_reformasjon_pietisme_vekkelse_og_lekmannsbevegelse",
+        "em_his_religion_reformasjon_dissentere_trosfrihet_og_minoriteter",
+        "em_his_religion_reformasjon_sekularisering_og_livssynspluralisme",
+        "em_his_religion_reformasjon_religion_kjonn_og_hverdagsliv",
+        "em_his_religion_reformasjon_religion_politikk_og_offentlighet",
+        "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
+        "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
+      ],
+      "hook_ids": [
+        "his_religion_reformasjon_forkristne_religioner_og_kristning",
+        "his_religion_reformasjon_reformasjon_og_konfesjonalisering",
+        "his_religion_reformasjon_statskirke_disiplin_og_religios_orden",
+        "his_religion_reformasjon_pietisme_vekkelse_og_lekmannsbevegelse",
+        "his_religion_reformasjon_dissentere_trosfrihet_og_minoriteter",
+        "his_religion_reformasjon_sekularisering_og_livssynspluralisme",
+        "his_religion_reformasjon_religion_kjonn_og_hverdagsliv",
+        "his_religion_reformasjon_religion_politikk_og_offentlighet",
+        "his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
+        "his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
+      ],
+      "method_ids": [
+        "met_religionshistorisk_analyse",
+        "met_begrepshistorie",
+        "met_diskursanalyse",
+        "met_muntlig_historie",
+        "met_materiell_kulturanalyse",
+        "met_institusjonshistorisk_analyse",
+        "met_rettshistorisk_analyse",
+        "met_sporlesning",
+        "met_kildekritikk",
+        "met_komparativ_historie"
+      ],
+      "recommended_oslo_cases": [
+        "Gamle Aker kirke",
+        "Oslo domkirke",
+        "Hovedøya kloster",
+        "Trefoldighetskirken",
+        "Synagogen i Bergstien",
+        "Islamic Cultural Centre",
+        "Humanismens hus",
+        "Stortinget"
+      ],
+      "canonical_thinker_ids": [
+        "max_weber",
+        "jose_casanova",
+        "tarald_rasmussen",
+        "berge_furre"
+      ],
+      "norwegian_thinker_ids": [
+        "tarald_rasmussen",
+        "berge_furre"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "religiøst eller livssynshistorisk spor",
+        "datert institusjon, lære eller regel",
+        "navngitt aktør eller fellesskap",
+        "dokumentert ritual, organisasjon eller hverdagspraksis",
+        "rettighet, konflikt eller offentlig posisjon",
+        "konsekvens for gruppe eller individ",
+        "kontrollkilde",
+        "etisk kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "boundary_rules": {
+        "middelalder_kirke_kongemakt": "Middelalderens kirke som maktinstitusjon hører til middelalderdomenet; lengre tros- og religionshistorisk endring hører hit.",
+        "migrasjon_minoritet_tilhorighet": "Religion hører hit når lære, institusjon eller praksis bærer spørsmålet; migrasjon, status og minoritetsposisjon som hovedkjede hører til migrasjon.",
+        "politikk": "Historisk forhold mellom religion og stat hører hit; samtidige partiprogram og politisk strategi hører til politikk."
+      }
+    },
+    {
+      "domain_id": "his_samisk_urfolkshistorie",
+      "label": "Samisk og urfolkshistorie",
+      "tagline": "Samfunn, landskap, kolonisering, kunnskap og rettighetskamp",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
+      "emne_ids": [
+        "em_his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer",
+        "em_his_samisk_urfolkshistorie_kontaktsoner_handel_og_statsgrenser",
+        "em_his_samisk_urfolkshistorie_misjon_kristning_og_kunnskapsmakt",
+        "em_his_samisk_urfolkshistorie_jord_ressursrett_og_kolonisering",
+        "em_his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+        "em_his_samisk_urfolkshistorie_raseforskning_og_vitenskapelig_klassifikasjon",
+        "em_his_samisk_urfolkshistorie_organisering_alta_og_rettighetskamp",
+        "em_his_samisk_urfolkshistorie_revitalisering_sannhet_og_forsoning",
+        "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar",
+        "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
+      ],
+      "hook_ids": [
+        "his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer",
+        "his_samisk_urfolkshistorie_kontaktsoner_handel_og_statsgrenser",
+        "his_samisk_urfolkshistorie_misjon_kristning_og_kunnskapsmakt",
+        "his_samisk_urfolkshistorie_jord_ressursrett_og_kolonisering",
+        "his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+        "his_samisk_urfolkshistorie_raseforskning_og_vitenskapelig_klassifikasjon",
+        "his_samisk_urfolkshistorie_organisering_alta_og_rettighetskamp",
+        "his_samisk_urfolkshistorie_revitalisering_sannhet_og_forsoning",
+        "his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar",
+        "his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
+      ],
+      "method_ids": [
+        "met_urfolkshistorisk_analyse",
+        "met_muntlig_historie",
+        "met_transnasjonal_sporing",
+        "met_materiell_kulturanalyse",
+        "met_diskursanalyse",
+        "met_rettshistorisk_analyse",
+        "met_arkivlesning",
+        "met_stedsnavnanalyse",
+        "met_kildekritikk",
+        "met_sammenvevd_historie"
+      ],
+      "recommended_oslo_cases": [
+        "Sametinget",
+        "Norsk Folkemuseum",
+        "Kautokeino",
+        "Altaelva",
+        "Røros",
+        "Varanger",
+        "Universitetet i Oslo",
+        "Nasjonalbiblioteket"
+      ],
+      "canonical_thinker_ids": [
+        "henry_minde",
+        "einar_niemi",
+        "audra_simpson",
+        "patrick_wolfe"
+      ],
+      "norwegian_thinker_ids": [
+        "henry_minde",
+        "einar_niemi"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "samisk kilde, muntlig tradisjon eller landskapsspor",
+        "navngitt siida, lokalsamfunn, institusjon eller aktør",
+        "datert ressurs-, språk-, skole- eller grenseinngrep",
+        "dokumentert praksis eller motstand",
+        "rettslig, økonomisk eller kulturell konsekvens",
+        "samisk kunnskaps- eller motkilde",
+        "etisk kildehåndtering",
+        "kritisk kolonial distinksjon"
+      ],
+      "boundary_rules": {
+        "global_kolonial_transnasjonal": "Koloniale forbindelser kan sammenlignes globalt; samiske samfunn og rettigheter som hovedkjede hører hit.",
+        "miljo_klima_landskap": "Landskap og ressursbruk hører hit når samisk rett og kunnskap bærer spørsmålet; miljøregime som hovedkjede hører til miljøhistorie.",
+        "minne_kulturarv_historiebruk": "Revitalisering og kulturarv hører hit når urfolksposisjon og rettighet er kjernen; offentlig minnepolitikk alene hører til minnefeltet."
+      }
+    },
+    {
+      "domain_id": "his_miljo_klima_landskap",
+      "label": "Miljø-, klima- og landskapshistorie",
+      "tagline": "Energi, ressurser, forurensning og menneske–natur-relasjoner over tid",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
+      "emne_ids": [
+        "em_his_miljo_klima_klima_og_historisk_endring",
+        "em_his_miljo_klima_landskap_som_historisk_prosess",
+        "em_his_miljo_klima_energi_og_energiregimer",
+        "em_his_miljo_klima_skog_vann_og_naturressurser",
+        "em_his_miljo_klima_forurensning_og_urban_miljohistorie",
+        "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner",
+        "em_his_miljo_klima_naturforvaltning_og_miljobevegelse",
+        "em_his_miljo_klima_antropocen_langsom_vold_og_miljorettferdighet",
+        "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet",
+        "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
+      ],
+      "hook_ids": [
+        "his_miljo_klima_klima_og_historisk_endring",
+        "his_miljo_klima_landskap_som_historisk_prosess",
+        "his_miljo_klima_energi_og_energiregimer",
+        "his_miljo_klima_skog_vann_og_naturressurser",
+        "his_miljo_klima_forurensning_og_urban_miljohistorie",
+        "his_miljo_klima_dyr_og_menneske_natur_relasjoner",
+        "his_miljo_klima_naturforvaltning_og_miljobevegelse",
+        "his_miljo_klima_antropocen_langsom_vold_og_miljorettferdighet",
+        "his_miljo_klima_urban_natur_helse_og_miljoulikhet",
+        "his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
+      ],
+      "method_ids": [
+        "met_miljohistorisk_analyse",
+        "met_historisk_gis",
+        "met_seriell_kildeanalyse",
+        "met_materiell_kulturanalyse",
+        "met_energisystemanalyse",
+        "met_forurensningshistorisk_analyse",
+        "met_landskapshistorisk_analyse",
+        "met_dyrehistorisk_analyse",
+        "met_kildekritikk",
+        "met_komparativ_historie"
+      ],
+      "recommended_oslo_cases": [
+        "Akerselva",
+        "Maridalsvannet",
+        "Østmarka",
+        "Bygdøy",
+        "Oslo havn",
+        "Alnaelva",
+        "Sognsvann",
+        "Norsk Teknisk Museum"
+      ],
+      "canonical_thinker_ids": [
+        "william_cronon",
+        "j_r_mcneill",
+        "peder_anker",
+        "gro_harlem_brundtland"
+      ],
+      "norwegian_thinker_ids": [
+        "peder_anker"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "miljøhistorisk kilde eller landskapsspor",
+        "avgrenset økosystem, ressurs eller energisystem",
+        "datert inngrep eller miljøendring",
+        "aktør, teknologi eller forvaltningsregime",
+        "målbar eller dokumentert virkning",
+        "ulik konsekvens for gruppe, art eller sted",
+        "kontrollserie eller sammenligning",
+        "skala- og kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "boundary_rules": {
+        "natur": "Historisk endring i naturbruk og miljøregime hører hit; nåtidig naturinformasjon uten historisk kjede hører til naturfaget.",
+        "katastrofer_brudd_ulykker": "Langsiktig miljøendring hører hit; avgrenset katastrofeforløp og beredskap hører til katastrofedomenet.",
+        "samisk_urfolkshistorie": "Miljøregime hører hit når naturforhold og ressursbruk er hovedspørsmålet; samisk rett og kolonisering som hovedkjede hører til samisk historie."
+      }
+    },
+    {
+      "domain_id": "his_vitenskap_teknologi_kunnskap",
+      "label": "Vitenskap-, teknologi- og kunnskapshistorie",
+      "tagline": "Hvordan kunnskap, ekspertise og tekniske systemer får autoritet",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
+      "emne_ids": [
+        "em_his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise",
+        "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
+        "em_his_vitenskap_teknologi_maling_statistikk_kart_og_klassifikasjon",
+        "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
+        "em_his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning",
+        "em_his_vitenskap_teknologi_kommunikasjon_medier_og_informasjonsregimer",
+        "em_his_vitenskap_teknologi_digitalisering_og_datamakt",
+        "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
+        "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
+        "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
+      ],
+      "hook_ids": [
+        "his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise",
+        "his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
+        "his_vitenskap_teknologi_maling_statistikk_kart_og_klassifikasjon",
+        "his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
+        "his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning",
+        "his_vitenskap_teknologi_kommunikasjon_medier_og_informasjonsregimer",
+        "his_vitenskap_teknologi_digitalisering_og_datamakt",
+        "his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
+        "his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
+        "his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
+      ],
+      "method_ids": [
+        "met_teknologisystemanalyse",
+        "met_kunnskapsregimeanalyse",
+        "met_standardiseringsanalyse",
+        "met_ekspertisehistorisk_analyse",
+        "met_nettverksanalyse",
+        "met_diskursanalyse",
+        "met_institusjonshistorisk_analyse",
+        "met_seriell_kildeanalyse",
+        "met_materiell_kulturanalyse",
+        "met_kildekritikk"
+      ],
+      "recommended_oslo_cases": [
+        "Universitetet i Oslo",
+        "Norsk Teknisk Museum",
+        "Meteorologisk institutt",
+        "Rikshospitalet",
+        "Gaustad sykehus",
+        "Norges geologiske undersøkelse",
+        "Nasjonalbiblioteket",
+        "Regjeringskvartalet"
+      ],
+      "canonical_thinker_ids": [
+        "thomas_kuhn",
+        "sheila_jasanoff",
+        "rune_slagstad",
+        "peder_anker"
+      ],
+      "norwegian_thinker_ids": [
+        "rune_slagstad",
+        "peder_anker"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "kunnskaps- eller teknologihistorisk spor",
+        "navngitt institusjon, ekspertgruppe eller teknisk system",
+        "datert måling, standard, modell eller klassifikasjon",
+        "produksjons- og valideringspraksis",
+        "anvendelse i stat, industri, medisin eller hverdag",
+        "inkludert og ekskludert kunnskap eller gruppe",
+        "kontrollkilde",
+        "metode- og kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "boundary_rules": {
+        "vitenskap": "Historisk produksjon av kunnskap og ekspertise hører hit; nåtidig fagkunnskap uten historisk spørsmål hører til vitenskapsfaget.",
+        "makt_stat_institusjoner": "Ekspertise og måleteknikk hører hit når kunnskapsproduksjonen bærer spørsmålet; myndighetskjede som hovedsak hører til maktdomenet.",
+        "miljo_klima_landskap": "Miljøvitenskapens institusjoner hører hit; miljøendring og ressursregime som hovedkjede hører til miljøhistorie."
+      }
+    },
+    {
+      "domain_id": "his_global_kolonial_transnasjonal",
+      "label": "Global, kolonial og transnasjonal historie",
+      "tagline": "Imperier, forbindelser og bevegelser på tvers av grenser",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
+      "emne_ids": [
+        "em_his_global_kolonial_imperier_kolonialisme_og_makt",
+        "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
+        "em_his_global_kolonial_misjon_kunnskap_og_kulturelle_moter",
+        "em_his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
+        "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+        "em_his_global_kolonial_avkolonisering_og_utviklingspolitikk",
+        "em_his_global_kolonial_norge_i_imperiale_og_koloniale_forbindelser",
+        "em_his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie",
+        "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
+        "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
+      ],
+      "hook_ids": [
+        "his_global_kolonial_imperier_kolonialisme_og_makt",
+        "his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
+        "his_global_kolonial_misjon_kunnskap_og_kulturelle_moter",
+        "his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
+        "his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+        "his_global_kolonial_avkolonisering_og_utviklingspolitikk",
+        "his_global_kolonial_norge_i_imperiale_og_koloniale_forbindelser",
+        "his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie",
+        "his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
+        "his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
+      ],
+      "method_ids": [
+        "met_sammenvevd_historie",
+        "met_transnasjonal_sporing",
+        "met_nettverksanalyse",
+        "met_komparativ_historie",
+        "met_varekjedeanalyse",
+        "met_postkolonial_kildekritikk",
+        "met_muntlig_historie",
+        "met_diskursanalyse",
+        "met_arkivlesning",
+        "met_kildekritikk"
+      ],
+      "recommended_oslo_cases": [
+        "Oslo havn",
+        "Vippetangen",
+        "Norsk Maritimt Museum",
+        "Nasjonalbiblioteket",
+        "Misjonsarkivet",
+        "Villa Grande",
+        "Stortinget",
+        "Fredssenteret"
+      ],
+      "canonical_thinker_ids": [
+        "sanjay_subrahmanyam",
+        "frederick_cooper",
+        "jarle_simensen",
+        "knut_kjeldstadli"
+      ],
+      "norwegian_thinker_ids": [
+        "jarle_simensen",
+        "knut_kjeldstadli"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "kilde til vare, person, institusjon eller idé i bevegelse",
+        "minst to avgrensede steder eller jurisdiksjoner",
+        "datert forbindelse eller asymmetrisk relasjon",
+        "nettverk, transport, lov eller organisasjon",
+        "lokal appropriasjon, motstand eller omforming",
+        "konsekvens i flere ledd",
+        "kilder fra mer enn én posisjon",
+        "skala- og språkbegrensning",
+        "kritisk kolonial distinksjon"
+      ],
+      "boundary_rules": {
+        "okonomi_handel_materielle_systemer": "Global forbindelse hører hit når imperial eller transnasjonal maktrelasjon bærer spørsmålet; økonomisk mekanisme og pris hører til økonomihistorie.",
+        "migrasjon_minoritet_tilhorighet": "Transnasjonalt nettverk hører hit når forbindelsen mellom flere samfunn bærer spørsmålet; individets migrasjonsforløp og status hører til migrasjon.",
+        "samisk_urfolkshistorie": "Komparativ urfolk- og kolonihistorie kan kobles hit; samiske samfunn og rettigheter som hovedkjede hører til samisk historie."
+      }
+    },
+    {
+      "domain_id": "his_offentlighet_mobilisering_bevegelser",
+      "label": "Offentlighet, mobilisering og sosiale bevegelser",
+      "tagline": "Hvordan mennesker organiserer stemmer, konflikter og kollektiv handling",
+      "status": "complete_revised",
+      "emne_count": 10,
+      "hook_count": 10,
+      "method_count": 10,
+      "emne_ids": [
+        "em_his_offentlighet_mobilisering_presse_offentlighet_og_politisk_kommunikasjon",
+        "em_his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
+        "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer",
+        "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
+        "em_his_offentlighet_mobilisering_lekmanns_sprak_og_motkulturelle_bevegelser",
+        "em_his_offentlighet_mobilisering_borgerrettigheter_solidaritet_og_internasjonalisme",
+        "em_his_offentlighet_mobilisering_miljobevegelse_og_nye_sosiale_bevegelser",
+        "em_his_offentlighet_mobilisering_digital_mobilisering_overvakning_og_motmakt",
+        "em_his_offentlighet_mobilisering_borgerrettighetskamp_antirasisme_og_solidaritetsbevegelser",
+        "em_his_offentlighet_mobilisering_digitale_offentligheter_nettverk_og_nye_mobiliseringsformer"
+      ],
+      "hook_ids": [
+        "his_offentlighet_mobilisering_presse_offentlighet_og_politisk_kommunikasjon",
+        "his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
+        "his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer",
+        "his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
+        "his_offentlighet_mobilisering_lekmanns_sprak_og_motkulturelle_bevegelser",
+        "his_offentlighet_mobilisering_borgerrettigheter_solidaritet_og_internasjonalisme",
+        "his_offentlighet_mobilisering_miljobevegelse_og_nye_sosiale_bevegelser",
+        "his_offentlighet_mobilisering_digital_mobilisering_overvakning_og_motmakt",
+        "his_offentlighet_mobilisering_borgerrettighetskamp_antirasisme_og_solidaritetsbevegelser",
+        "his_offentlighet_mobilisering_digitale_offentligheter_nettverk_og_nye_mobiliseringsformer"
+      ],
+      "method_ids": [
+        "met_protesthendelsesanalyse",
+        "met_organisasjonshistorisk_analyse",
+        "met_offentlighetsanalyse",
+        "met_nettverksanalyse",
+        "met_diskursanalyse",
+        "met_muntlig_historie",
+        "met_seriell_kildeanalyse",
+        "met_arkivlesning",
+        "met_begrepshistorie",
+        "met_kildekritikk"
+      ],
+      "recommended_oslo_cases": [
+        "Youngstorget",
+        "Folkets Hus",
+        "Arbeidersamfunnets plass",
+        "Stortinget",
+        "Eidsvolls plass",
+        "Nasjonalbiblioteket",
+        "Blitz",
+        "Oslo byarkiv"
+      ],
+      "canonical_thinker_ids": [
+        "charles_tilly",
+        "jurgen_habermas",
+        "edvard_bull",
+        "gro_hagemann"
+      ],
+      "norwegian_thinker_ids": [
+        "edvard_bull",
+        "gro_hagemann"
+      ],
+      "canonical_status": "canonical",
+      "case_anchor_required": true,
+      "method_anchor_required": true,
+      "source_anchor_required": true,
+      "external_claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "domain_chain": [
+        "presse-, organisasjons- eller protestkilde",
+        "navngitt gruppe, forening eller nettverk",
+        "datert krav, konflikt eller mobiliseringsfase",
+        "repertoar, møteplass eller kommunikasjonskanal",
+        "respons fra motpart eller myndighet",
+        "dokumentert organisatorisk eller politisk konsekvens",
+        "medlems- eller motkilde",
+        "representasjonsbegrensning",
+        "kritisk distinksjon"
+      ],
+      "boundary_rules": {
+        "politikk": "Historisk organisering og mobilisering hører hit; samtidige partiprogram og styringsstrategi hører til politikk.",
+        "industri_arbeid_sosialhistorie": "Arbeiderbevegelsen hører hit når organisasjon og kollektiv handling bærer spørsmålet; arbeidsprosess og livsvilkår hører til arbeidshistorie.",
+        "religion_reformasjon_livssyn": "Lekmanns- og avholdsbevegelser hører hit når mobilisering og offentlighet er hovedkjeden; lære og religiøs praksis hører til religion."
+      }
     }
   ],
-  "canonical_registry_version": "historiepensum_v4_5",
+  "canonical_registry_version": "historiepensum_v5_5",
   "canonical_files": {
     "fagkart": "fagkart_historie_canonical_v4_5.json",
     "methods": "methods_historie_canonical_v4_5.json",
@@ -1043,5 +1816,5 @@
     "history_emne_prefix_required": "em_his_",
     "migration_note": "Historiske steder og personer skal bruke em_his_* fra denne pakken. Em_by_* kan brukes som inspirasjon i byfaget, men ikke som faglig emne-ID i places_historie eller people_historie."
   },
-  "updated_at": "2026-07-24"
+  "updated_at": "2026-07-25"
 }
