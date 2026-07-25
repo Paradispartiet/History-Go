@@ -1,3 +1,5 @@
+$ /opt/hostedtoolcache/node/22.23.1/x64/bin/node tools/validate-historie-domain.mjs his_krig_okkupasjon_motstand
+his_krig_okkupasjon_motstand: PASS
 $ /opt/hostedtoolcache/node/22.23.1/x64/bin/node tools/validate-historie-v5.mjs --write
 {
   "version": "v5.5-quality-freeze-contract",
@@ -891,4 +893,466 @@ $ /opt/hostedtoolcache/node/22.23.1/x64/bin/node tools/validate-historie-v5.mjs 
     ],
     "emner": []
   }
+}
+$ npm run quiz:context
+
+> history-go@0.0.0 quiz:context
+> node scripts/build-quiz-production-context.mjs
+
+Skrev data/quiz/production_context/by/deichman_bjorvika.json
+Skrev data/quiz/production_context/historie/grindheim_runestein.json
+Skrev data/quiz/production_context/historie/grindheim_steinkross.json
+Skrev data/quiz/production_context/historie/grindheimsveien_nord_gravfelt.json
+Skrev data/quiz/production_context/historie/hoyland_gravhaug_etne.json
+Skrev data/quiz/production_context/naeringsliv/havnelageret.json
+Skrev data/quiz/production_context/naeringsliv/oslo_posthus.json
+Skrev data/quiz/production_context/naeringsliv/telegrafbygningen.json
+Gjenbygde 8 produksjonskontekster.
+$ npm run knowledge:canonical:write
+
+> history-go@0.0.0 knowledge:canonical:write
+> npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --write
+
+
+> history-go@0.0.0 build:scripts
+> tsc -p tsconfig.scripts.build.json
+
+Knowledge canonical data: 2843 questions, 3995 units, 144 unresolved emne links.
+Knowledge contract audit: 0 error question(s), 480 warning question(s).
+Legacy Knowledge audit: 0 active reference(s).
+$ npm run audit:quiz-production-context
+
+> history-go@0.0.0 audit:quiz-production-context
+> node scripts/audit-quiz-production-context.mjs
+
+{
+  "status": "passed",
+  "categoriesWithQuizProduction": 3,
+  "quizFilesChecked": 8,
+  "checked": [
+    {
+      "categoryId": "by",
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "targetId": "deichman_bjorvika",
+      "questions": 35
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "targetId": "grindheim_runestein",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "targetId": "grindheim_steinkross",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "targetId": "grindheimsveien_nord_gravfelt",
+      "questions": 21
+    },
+    {
+      "categoryId": "historie",
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "targetId": "hoyland_gravhaug_etne",
+      "questions": 21
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "targetId": "telegrafbygningen",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "targetId": "oslo_posthus",
+      "questions": 35
+    },
+    {
+      "categoryId": "naeringsliv",
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "targetId": "havnelageret",
+      "questions": 35
+    }
+  ],
+  "failures": []
+}
+$ npm run audit:quiz-progression
+
+> history-go@0.0.0 audit:quiz-progression
+> node scripts/audit-quiz-progression.mjs
+
+{
+  "status": "passed",
+  "quizFilesChecked": 8,
+  "openingPolicy": "data/quiz/regler/QUIZ_NORMAL_OPENING_POLICY_V1.json",
+  "checked": [
+    {
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 19,
+          "context": 9,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.543,
+          "context": 0.257,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "profile": "narrow_3x7",
+      "balance": {
+        "total": 21,
+        "counts": {
+          "fact": 12,
+          "context": 5,
+          "concept_theory": 4
+        },
+        "ratios": {
+          "fact": 0.571,
+          "context": 0.238,
+          "concept_theory": 0.19
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 27,
+          "context": 1,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.771,
+          "context": 0.029,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 28,
+          "context": 0,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.8,
+          "context": 0,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    },
+    {
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "profile": "rich_5x7",
+      "balance": {
+        "total": 35,
+        "counts": {
+          "fact": 26,
+          "context": 2,
+          "concept_theory": 7
+        },
+        "ratios": {
+          "fact": 0.743,
+          "context": 0.057,
+          "concept_theory": 0.2
+        }
+      },
+      "normalOpening": {
+        "status": "checked",
+        "checkedSets": 2,
+        "checkedQuestions": 14
+      }
+    }
+  ],
+  "failures": []
+}
+$ npm run audit:quiz-theory-binding
+
+> history-go@0.0.0 audit:quiz-theory-binding
+> node scripts/audit-quiz-theory-binding.mjs
+
+{
+  "status": "passed",
+  "quizFilesChecked": 8,
+  "checked": [
+    {
+      "file": "data/quiz/by/deichman_bjorvika_sets.json",
+      "questions": 35,
+      "theoryQuestions": 3,
+      "methodQuestions": 2
+    },
+    {
+      "file": "data/quiz/historie/grindheim_runestein_sets.json",
+      "questions": 21,
+      "theoryQuestions": 2,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/grindheim_steinkross_sets.json",
+      "questions": 21,
+      "theoryQuestions": 2,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/grindheimsveien_nord_gravfelt_sets.json",
+      "questions": 21,
+      "theoryQuestions": 2,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/historie/hoyland_gravhaug_etne_sets.json",
+      "questions": 21,
+      "theoryQuestions": 1,
+      "methodQuestions": 4
+    },
+    {
+      "file": "data/quiz/naeringsliv/telegrafbygningen_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    },
+    {
+      "file": "data/quiz/naeringsliv/havnelageret_sets_merged.json",
+      "questions": 35,
+      "theoryQuestions": 1,
+      "methodQuestions": 7
+    }
+  ],
+  "failures": []
+}
+$ npm run test:quiz-production
+
+> history-go@0.0.0 test:quiz-production
+> node --test tests/quiz-production-pipeline.test.mjs
+
+TAP version 13
+# Subtest: builds the full by production context through the manifest
+ok 1 - builds the full by production context through the manifest
+  ---
+  duration_ms: 112.555108
+  type: 'test'
+  ...
+# Subtest: builds the full history production context through domain-based curriculum
+ok 2 - builds the full history production context through domain-based curriculum
+  ---
+  duration_ms: 193.765833
+  type: 'test'
+  ...
+# Subtest: isolates each history target in the manifest proof
+ok 3 - isolates each history target in the manifest proof
+  ---
+  duration_ms: 129.35852
+  type: 'test'
+  ...
+# Subtest: builds the Grindheimsvegen grave-field context before quiz writing
+ok 4 - builds the Grindheimsvegen grave-field context before quiz writing
+  ---
+  duration_ms: 136.47314
+  type: 'test'
+  ...
+# Subtest: builds the Høyland grave-mound context before quiz writing
+ok 5 - builds the Høyland grave-mound context before quiz writing
+  ---
+  duration_ms: 129.054077
+  type: 'test'
+  ...
+# Subtest: passes production-context, progression and theory-binding audits
+ok 6 - passes production-context, progression and theory-binding audits
+  ---
+  duration_ms: 923.274448
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1676.956082
+{
+  "generated_at": "2026-07-25T21:31:23.230Z",
+  "domain_id": "his_krig_okkupasjon_motstand",
+  "curated_concept_ids": [
+    "con_his_avhor",
+    "con_his_demokrati",
+    "con_his_etterkrig",
+    "con_his_ettervirkninger",
+    "con_his_fangeleirer",
+    "con_his_fangenskap",
+    "con_his_fengsler",
+    "con_his_folkerett",
+    "con_his_forfolgelse",
+    "con_his_grasoner",
+    "con_his_informasjonskontroll",
+    "con_his_internering",
+    "con_his_kald",
+    "con_his_kollaborasjon",
+    "con_his_krig",
+    "con_his_krigsminne",
+    "con_his_landssvik",
+    "con_his_mobilisering",
+    "con_his_motstand",
+    "con_his_norge",
+    "con_his_okkupasjon",
+    "con_his_okkupasjonen",
+    "con_his_oslo",
+    "con_his_overgangsrettferdighet",
+    "con_his_propaganda",
+    "con_his_registrering",
+    "con_his_samarbeid",
+    "con_his_sensur",
+    "con_his_sikkerhetsstat",
+    "con_his_tilpasning",
+    "con_his_total_krig",
+    "con_his_tvang",
+    "con_his_under",
+    "con_his_veteraner",
+    "con_his_vold"
+  ],
+  "curated_theory_ids": [
+    "theory_his_okkupasjon_byrom_kontroll",
+    "theory_his_krig_okkupasjon_okkupasjon_og_motstand",
+    "theory_his_krig_okkupasjon_rettsoppgjor_og_etterkrig",
+    "theory_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+    "theory_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+    "theory_his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
+    "theory_his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet",
+    "theory_his_krig_okkupasjon_krigsminne_veteraner_og_ettervirkninger",
+    "theory_his_krig_okkupasjon_motstand_samarbeid_tilpasning_og_grasoner",
+    "theory_his_krig_okkupasjon_kald_krig_beredskap_og_sikkerhetsstat"
+  ],
+  "domain_readiness": {
+    "domain_id": "his_krig_okkupasjon_motstand",
+    "label": "Krig, okkupasjon og motstand",
+    "coverage_complete": true,
+    "freeze_ready": true,
+    "issue_counts": {
+      "emner": 0,
+      "concepts": 0,
+      "theories": 0
+    },
+    "issues": []
+  },
+  "global_status": "QUALITY_REVIEW_REQUIRED",
+  "v6_allowed": false,
+  "quality_issue_totals": {
+    "concepts": 341,
+    "theories": 70,
+    "emner": 0,
+    "domains_not_freeze_ready": 7
+  },
+  "next_gate": "Continue individual curation of the remaining V5.5 domains before global freeze and V6 activation.",
+  "validated_against_current_main": true
 }
