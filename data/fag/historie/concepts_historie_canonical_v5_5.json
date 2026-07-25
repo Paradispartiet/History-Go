@@ -1891,8 +1891,8 @@
   {
     "concept_id": "con_his_bevaring",
     "label": "bevaring",
-    "definition": "I Minne, kulturarv og historiebruk betegner «bevaring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Bevaring er tiltak og beslutninger som opprettholder et historisk miljø, byggverk, anlegg eller spor slik at vesentlige materielle og historiske egenskaper kan følges over tid.",
+    "concept_type": "heritage_preservation_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk",
@@ -1905,12 +1905,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «bevaring» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_vern",
+      "con_his_kulturmiljo",
+      "con_his_ombruk"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_riving"
+    ],
+    "common_misuse": [
+      "Å kalle et miljø bevart bare fordi enkelte fasader står igjen, uten å undersøke materialtap, flytting, funksjonsskifte og hvilke historiske sammenhenger som er brutt."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "dokumentert kontinuitet i materiale eller struktur",
+      "vedtak eller praksis som begrenser endring",
+      "sporbar tilstand før og etter tiltak"
+    ],
+    "source_requirements": [
+      "vernedokument, bygningsundersøkelse eller samtidig foto som viser hva som faktisk ble bevart",
+      "kontrollkilde som skiller juridisk status fra materiell tilstand"
+    ]
   },
   {
     "concept_id": "con_his_bevaring_vs_arbeidsminne",
@@ -2163,8 +2178,8 @@
   {
     "concept_id": "con_his_boligregimer",
     "label": "boligregimer",
-    "definition": "I Byhistorie og stedsendring betegner «boligregimer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Boligregimer er historiske kombinasjoner av eierskap, leieformer, finansiering, regulering, boligpolitikk og sosial fordeling som bestemmer hvem som kan bo hvor og på hvilke vilkår.",
+    "concept_type": "housing_regime_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -2174,18 +2189,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «boligregimer» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_eiendom",
+      "con_his_boligstandard",
+      "con_his_tomtemarkeder"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_urban_morfologi"
+    ],
+    "common_misuse": [
+      "Å forklare et boligområde utelukkende med hustype eller arkitektur uten å dokumentere eierskap, pris, leievilkår, tildeling og offentlig regulering."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "eier- og leiestruktur",
+      "finansierings- og tildelingsordninger",
+      "regler for bygging, bruk og omsetning"
+    ],
+    "source_requirements": [
+      "matrikkel, leiekontrakter, boligstatistikk eller kommunale vedtak",
+      "kilde som viser faktisk bosetting og ikke bare planlagt målgruppe"
+    ]
   },
   {
     "concept_id": "con_his_boligstandard",
     "label": "boligstandard",
-    "definition": "I Velferd, rett og hverdagsliv betegner «boligstandard» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Boligstandard beskriver historisk målbare kvaliteter ved boliger, som areal, lys, ventilasjon, sanitærforhold, oppvarming, tetthet og teknisk sikkerhet, vurdert mot samtidens normer og levekår.",
+    "concept_type": "housing_standard_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv",
@@ -2197,12 +2227,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «boligstandard» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_boligregimer",
+      "con_his_rehabilitering",
+      "con_his_byfornyelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tomtemarkeder"
+    ],
+    "common_misuse": [
+      "Å bruke dagens komfortkrav som målestokk for eldre boliger eller anta at teknisk oppgradering automatisk ga bedre økonomisk og sosial tilgjengelighet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "sanitær- og forsyningsløsninger",
+      "personer eller hushold per rom",
+      "daterte bygnings- og helsekrav"
+    ],
+    "source_requirements": [
+      "takst, boligtilsyn, folketelling eller bygningsbeskrivelse fra den undersøkte perioden",
+      "kontrollkilde som viser brukernes faktiske boforhold"
+    ]
   },
   {
     "concept_id": "con_his_boligtype_vs_faktisk_trangboddhet",
@@ -2530,8 +2575,8 @@
   {
     "concept_id": "con_his_byfornyelse",
     "label": "byfornyelse",
-    "definition": "I Byhistorie og stedsendring betegner «byfornyelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Byfornyelse er samordnede inngrep som oppgraderer eksisterende byområder gjennom rehabilitering, infrastruktur, boligtiltak, eiendomsendringer og nye offentlige krav, uten nødvendigvis å rive hele området.",
+    "concept_type": "urban_renewal_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -2547,12 +2592,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «byfornyelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_rehabilitering",
+      "con_his_boligstandard",
+      "con_his_sanering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_gentrifisering"
+    ],
+    "common_misuse": [
+      "Å behandle all fysisk oppussing som byfornyelse eller likestille kommunale mål med gjennomførte forbedringer og fordelingsvirkninger."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "samordnet program eller offentlig virkemiddel",
+      "målbar oppgradering av bygninger og tekniske systemer",
+      "endringer i beboersammensetning eller kostnader"
+    ],
+    "source_requirements": [
+      "programdokument, budsjett, byggesak og gjennomføringsoversikt",
+      "beboer-, pris- eller flyttedata som viser hvem som fikk nytte eller belastning"
+    ]
   },
   {
     "concept_id": "con_his_bygges",
@@ -2660,8 +2720,8 @@
   {
     "concept_id": "con_his_bygrense",
     "label": "bygrense",
-    "definition": "I Byhistorie og stedsendring betegner «bygrense» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Bygrense er en datert juridisk eller administrativ avgrensning av byens myndighetsområde, og må skilles fra den sammenhengende bebyggelsens faktiske utstrekning.",
+    "concept_type": "administrative_boundary_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -2671,12 +2731,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «bygrense» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_innlemmelse",
+      "con_his_byutvidelse",
+      "con_his_grenser"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_urbanisering"
+    ],
+    "common_misuse": [
+      "Å lese en administrativ grense på ett kart som om den også viser hvor byen faktisk sluttet sosialt, økonomisk og fysisk."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert grensevedtak",
+      "kartfestet jurisdiksjon",
+      "endret skatte-, politi- eller planmyndighet"
+    ],
+    "source_requirements": [
+      "lov, kongelig resolusjon eller kommunalt grensevedtak",
+      "samtidig kart som kan sammenholdes med bebyggelse og funksjoner"
+    ]
   },
   {
     "concept_id": "con_his_byrakrati",
@@ -2780,8 +2855,8 @@
   {
     "concept_id": "con_his_byutvidelse",
     "label": "byutvidelse",
-    "definition": "I Byhistorie og stedsendring betegner «byutvidelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Byutvidelse er historisk vekst i byens territorium, bebyggelse eller funksjonelle rekkevidde gjennom innlemmelse, utbygging, transportforbindelser og nye tekniske eller økonomiske nettverk.",
+    "concept_type": "urban_expansion_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -2791,12 +2866,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «byutvidelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_innlemmelse",
+      "con_his_urbanisering",
+      "con_his_forstad"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_gentrifisering"
+    ],
+    "common_misuse": [
+      "Å anta at en formell innlemmelse straks skapte tett by eller at all befolkningsvekst skyldtes geografisk utvidelse."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "utvidet administrativt område",
+      "ny sammenhengende bebyggelse",
+      "utvidede transport- og forsyningsnett"
+    ],
+    "source_requirements": [
+      "sammenlignbare historiske kart og grensekilder",
+      "befolknings-, bygge- eller infrastrukturtall for minst to tidspunkter"
+    ]
   },
   {
     "concept_id": "con_his_claim_basis",
@@ -3752,7 +3842,7 @@
   {
     "concept_id": "con_his_eiendom",
     "label": "eiendom",
-    "definition": "Historisk regulerte rettigheter til å eie, bruke, overføre, arve og kontrollere jord, bolig, løsøre og andre ressurser.",
+    "definition": "Eiendom er historisk regulerte rettigheter til å eie, bruke, leie ut, overføre, arve og kontrollere jord, bolig, bygg og andre ressurser, slik rettighetene faktisk ble praktisert.",
     "concept_type": "property_relations_concept",
     "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
@@ -3778,17 +3868,26 @@
     "broader_concepts": [],
     "narrower_concepts": [],
     "related_concepts": [
-      "con_his_arv",
-      "con_his_ekteskap",
-      "con_his_hushold"
+      "con_his_tomtemarkeder",
+      "con_his_ekspropriasjon",
+      "con_his_boligregimer"
     ],
     "distinguish_from": [
-      "con_his_omsorg"
+      "con_his_tilgang"
     ],
     "common_misuse": [
-      "Å omtale «eiendom» som formelt regelverk alene uten å undersøke faktisk disposisjon, kjønnede rettigheter, forhandling og praksis."
+      "Å redusere eiendom til registrert eiernavn uten å undersøke bruksrett, leie, heftelser, husholdsposisjon og offentlig regulering."
     ],
-    "status": "canonical_v5_5"
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "registrert eller dokumentert rettighetshaver",
+      "overføring, leie eller pant",
+      "konkret kontroll over bruk og avkastning"
+    ],
+    "source_requirements": [
+      "matrikkel, skjøte, kontrakt, skifte eller rettsprotokoll",
+      "kilde som viser praktisk disposisjon i tillegg til formell tittel"
+    ]
   },
   {
     "concept_id": "con_his_ekskludering",
@@ -3907,8 +4006,8 @@
   {
     "concept_id": "con_his_ekspropriasjon",
     "label": "ekspropriasjon",
-    "definition": "I Byhistorie og stedsendring betegner «ekspropriasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Ekspropriasjon er offentlig tvangserverv av grunn eller rettigheter for et bestemt formål, gjennom en datert hjemmel, prosess, verdsetting og kompensasjon.",
+    "concept_type": "compulsory_acquisition_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -3926,12 +4025,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ekspropriasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_planmakt",
+      "con_his_eiendom",
+      "con_his_byfornyelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tomtemarkeder"
+    ],
+    "common_misuse": [
+      "Å bruke ekspropriasjon som synonym for enhver offentlig overtakelse eller anta at vedtaket alene viser når eiendommen faktisk ble overtatt og tiltaket gjennomført."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "hjemmel og vedtak",
+      "identifisert eiendom eller rettighet",
+      "takst, kompensasjon og overtakelsesdato"
+    ],
+    "source_requirements": [
+      "ekspropriasjonsvedtak, skjønn, kart og eiendomsprotokoll",
+      "gjennomføringskilde som viser faktisk overtakelse og arealbruk"
+    ]
   },
   {
     "concept_id": "con_his_ekteskap",
@@ -4624,8 +4738,8 @@
   {
     "concept_id": "con_his_ettertilstand",
     "label": "ettertilstand",
-    "definition": "I Byhistorie og stedsendring betegner «ettertilstand» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Ettertilstand er den dokumenterte fysiske, funksjonelle, juridiske, økonomiske og sosiale situasjonen på et avgrenset sted etter et definert inngrep eller endringsforløp.",
+    "concept_type": "before_after_analysis_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -4637,12 +4751,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ettertilstand» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fortilstand",
+      "con_his_materialitet",
+      "con_his_urban_morfologi"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_planmakt"
+    ],
+    "common_misuse": [
+      "Å velge et tilfeldig nyere bilde som ettertilstand uten å angi dato, avgrensning og om de sammenlignede kildene måler det samme."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "eksplisitt sluttdato eller observasjonstidspunkt",
+      "samme romlige enhet som førtilstanden",
+      "målbare endringer i bruk, form eller befolkning"
+    ],
+    "source_requirements": [
+      "sammenlignbar kart-, foto-, register- eller bygningskilde",
+      "kilde som dokumenterer gjennomføring og ikke bare planintensjon"
+    ]
   },
   {
     "concept_id": "con_his_ettervirkninger",
@@ -5370,8 +5499,8 @@
   {
     "concept_id": "con_his_flytting",
     "label": "flytting",
-    "definition": "I Minne, kulturarv og historiebruk betegner «flytting» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Flytting er dokumentert endring av bosted, virksomhet, monument, bygg eller funksjon fra ett identifisert sted til et annet, frivillig eller under økonomisk, juridisk eller fysisk press.",
+    "concept_type": "relocation_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk",
@@ -5383,12 +5512,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «flytting» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fortrengning",
+      "con_his_riving",
+      "con_his_gentrifisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_innlemmelse"
+    ],
+    "common_misuse": [
+      "Å tolke fravær fra en senere kilde som bevis på flytting uten å identifisere målsted, tidspunkt eller om aktøren ble nedlagt, registrert annerledes eller faktisk fortrengt."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert avreise og nytt sted",
+      "identifiserbar person, virksomhet eller fysisk objekt",
+      "frivillig, pålagt eller prisdrevet årsak"
+    ],
+    "source_requirements": [
+      "flyttemelding, adressebok, folkeregister, bedriftsregister eller transportdokument",
+      "kontrollkilde for målsted og årsak"
+    ]
   },
   {
     "concept_id": "con_his_fodested_vs_flyttemotiv",
@@ -5982,8 +6126,8 @@
   {
     "concept_id": "con_his_forstad",
     "label": "forstad",
-    "definition": "I Byhistorie og stedsendring betegner «forstad» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Forstad er et historisk bosettings- og funksjonsområde utenfor den samtidige bykjernen, knyttet til byen gjennom arbeid, handel, transport og tjenester, men med varierende administrativ status.",
+    "concept_type": "suburban_settlement_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -5993,12 +6137,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «forstad» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_sentrum",
+      "con_his_periferi",
+      "con_his_urbanisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bygrense"
+    ],
+    "common_misuse": [
+      "Å bruke forstad som tidløs betegnelse for alt utenfor sentrum eller anta at området manglet egen næring, institusjoner og lokal identitet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "pendlings- eller transportforbindelse",
+      "bolig- og funksjonsvekst utenfor kjernen",
+      "egen eller delt administrativ tilknytning"
+    ],
+    "source_requirements": [
+      "historisk kart, folketelling og transportkilde",
+      "lokal kilde som viser områdets egne funksjoner og relasjon til byen"
+    ]
   },
   {
     "concept_id": "con_his_fortelling",
@@ -6054,8 +6213,8 @@
   {
     "concept_id": "con_his_fortilstand",
     "label": "førtilstand",
-    "definition": "I Byhistorie og stedsendring betegner «førtilstand» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Førtilstand er den dokumenterte situasjonen på et avgrenset sted før et bestemt vedtak, inngrep eller endringsforløp, målt med kilder som kan sammenlignes med ettertilstanden.",
+    "concept_type": "before_after_analysis_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -6067,18 +6226,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «førtilstand» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_ettertilstand",
+      "con_his_materialitet",
+      "con_his_urban_morfologi"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_planmakt"
+    ],
+    "common_misuse": [
+      "Å rekonstruere førtilstanden fra nostalgiske ettertidsfortellinger alene eller sammenligne ulike geografiske utsnitt og registreringsmåter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "eksplisitt startdato",
+      "avgrenset sted og funksjon",
+      "dokumentert bebyggelse, bruk, eierskap eller befolkning"
+    ],
+    "source_requirements": [
+      "samtidig kart, foto, takst, telling eller virksomhetsregister",
+      "uavhengig kontrollkilde som avdekker mangler i hovedkilden"
+    ]
   },
   {
     "concept_id": "con_his_fortrengning",
     "label": "fortrengning",
-    "definition": "I Byhistorie og stedsendring betegner «fortrengning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Fortrengning er tap av faktisk mulighet til å bo, arbeide, drive virksomhet eller bruke et sted som følge av riving, prisvekst, regulering, kontraktsendring eller sosial eksklusjon.",
+    "concept_type": "displacement_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -6088,12 +6262,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fortrengning» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_gentrifisering",
+      "con_his_sanering",
+      "con_his_flytting"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_byutvidelse"
+    ],
+    "common_misuse": [
+      "Å slutte fra prisvekst eller befolkningsendring alene til fortrengning uten å dokumentere hvem som mistet tilgang, når og gjennom hvilken mekanisme."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "oppsigelse, utflytting eller bortfall av virksomhet",
+      "økte kostnader eller endrede adgangsvilkår",
+      "identifiserbar berørt gruppe"
+    ],
+    "source_requirements": [
+      "adresse-, leie-, pris- eller virksomhetsdata over tid",
+      "intervju, protokoll eller sakskilde som dokumenterer årsaken til tap av sted"
+    ]
   },
   {
     "concept_id": "con_his_fortsatt",
@@ -6407,8 +6596,8 @@
   {
     "concept_id": "con_his_gatenett",
     "label": "gatenett",
-    "definition": "I Byhistorie og stedsendring betegner «gatenett» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Gatenett er det historisk utviklede systemet av gater, forbindelser, kryss, hierarkier og stengninger som organiserer ferdsel, tomter, adresser og tilgang i byen.",
+    "concept_type": "street_network_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -6418,12 +6607,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «gatenett» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_tomtestruktur",
+      "con_his_transport",
+      "con_his_urban_morfologi"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bygrense"
+    ],
+    "common_misuse": [
+      "Å tilskrive hele dagens gatenett én plan eller periode uten å skille eldre traseer, senere gjennombrudd, navneendringer og bortfalte forbindelser."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "daterte traseer og kryss",
+      "gatebredde og hierarki",
+      "nye, flyttede eller stengte forbindelser"
+    ],
+    "source_requirements": [
+      "sammenlignbare bykart, reguleringsplaner og oppmålingsdata",
+      "felt- eller arkivkilde som kan datere gjennomføring"
+    ]
   },
   {
     "concept_id": "con_his_generasjon_vs_ensartet_erfaring",
@@ -6449,8 +6653,8 @@
   {
     "concept_id": "con_his_gentrifisering",
     "label": "gentrifisering",
-    "definition": "I Byhistorie og stedsendring betegner «gentrifisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Gentrifisering er en historisk prosess der investering, eiendomsverdi, virksomhetsmiks og befolkningssammensetning endres slik at et område får høyere status og svakere gruppers tilgang presses.",
+    "concept_type": "gentrification_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -6466,12 +6670,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «gentrifisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_tomtemarkeder",
+      "con_his_fortrengning",
+      "con_his_klasse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_byfornyelse"
+    ],
+    "common_misuse": [
+      "Å bruke gentrifisering om enhver oppgradering, ny kafé eller prisøkning uten tidsserie for kapital, befolkning, virksomheter og mulig fortrengning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "økende salgs- eller leieverdier",
+      "endret inntekts-, yrkes- eller eierprofil",
+      "utskifting av virksomheter og brukere"
+    ],
+    "source_requirements": [
+      "pris-, eiendoms-, folketellings- og virksomhetsdata fra flere tidspunkter",
+      "kvalitativ kilde som dokumenterer lokale erfaringer og fortrengningsmekanismer"
+    ]
   },
   {
     "concept_id": "con_his_geografisk",
@@ -6833,9 +7052,9 @@
   },
   {
     "concept_id": "con_his_grenser",
-    "label": "grenser",
-    "definition": "I Byhistorie og stedsendring betegner «grenser» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "administrative og romlige grenser",
+    "definition": "Grenser er historisk produserte skiller som fordeler jurisdiksjon, eierskap, ferdsel, adgang eller sosial tilhørighet mellom områder og grupper.",
+    "concept_type": "boundary_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -6845,12 +7064,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «grenser» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bygrense",
+      "con_his_tilgang",
+      "con_his_segregasjon"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_gatenett"
+    ],
+    "common_misuse": [
+      "Å behandle en synlig kant, vei eller administrativ linje som samme type grense uten å undersøke hvilken rett, praksis eller sosial virkning den faktisk bar."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "kartfestet eller beskrevet avgrensning",
+      "forskjell i regel, bruk eller adgang på hver side",
+      "aktører som håndhever eller utfordrer skillet"
+    ],
+    "source_requirements": [
+      "datert kart, vedtak, kontrakt eller ordensregel",
+      "brukskilde som viser om grensen faktisk virket i hverdagen"
+    ]
   },
   {
     "concept_id": "con_his_grunnloven",
@@ -8042,9 +8276,9 @@
   },
   {
     "concept_id": "con_his_infrastrukturer",
-    "label": "infrastrukturer",
-    "definition": "I Byhistorie og stedsendring betegner «infrastrukturer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "urban infrastruktur",
+    "definition": "Urban infrastruktur er sammenkoblede tekniske og organisatoriske systemer for transport, vann, avløp, energi, kommunikasjon og avfall som muliggjør og styrer byens vekst og hverdagsliv.",
+    "concept_type": "urban_infrastructure_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -8054,12 +8288,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «infrastrukturer» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_transport",
+      "con_his_tekniske",
+      "con_his_urban_morfologi"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_gatenett"
+    ],
+    "common_misuse": [
+      "Å beskrive infrastruktur som nøytral teknikk uten å undersøke finansiering, geografisk dekning, tilgang, vedlikehold og hvilke områder som ble prioritert eller utelatt."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "nettverk, knutepunkt og kapasitet",
+      "utbyggings- og tilkoblingsdatoer",
+      "forskjeller i dekning og adgang"
+    ],
+    "source_requirements": [
+      "tekniske planer, driftsarkiv, budsjett og kart",
+      "kilde om faktisk levering, feil, bruk og sosial fordeling"
+    ]
   },
   {
     "concept_id": "con_his_inkludering",
@@ -8115,8 +8364,8 @@
   {
     "concept_id": "con_his_innlemmelse",
     "label": "innlemmelse",
-    "definition": "I Byhistorie og stedsendring betegner «innlemmelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Innlemmelse er en formell endring der et område overføres til en bykommune eller annen administrativ enhet, med nye grenser, myndighetsforhold og ofte endrede skatter og tjenester.",
+    "concept_type": "municipal_annexation_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -8126,12 +8375,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «innlemmelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bygrense",
+      "con_his_byutvidelse",
+      "con_his_kommunal"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_urbanisering"
+    ],
+    "common_misuse": [
+      "Å anta at innlemmelse betyr at området straks fikk tett bebyggelse, lik tjenestedekning eller samme lokale identitet som den eldre byen."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt vedtak og ikrafttredelsesdato",
+      "overført areal og befolkning",
+      "endret kommunal myndighet og tjenesteansvar"
+    ],
+    "source_requirements": [
+      "lov, resolusjon, kommunestyresak og grensekart",
+      "kilde som viser praktiske følger etter ikrafttredelsen"
+    ]
   },
   {
     "concept_id": "con_his_innskrift",
@@ -9722,9 +9986,9 @@
   },
   {
     "concept_id": "con_his_klasse",
-    "label": "klasse",
-    "definition": "I Byhistorie og stedsendring betegner «klasse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "sosial klasse",
+    "definition": "Sosial klasse er historisk ulikhet i kontroll over arbeid, inntekt, eiendom, utdanning og institusjonell makt, slik ulikheten påvirker bosted, mobilitet og bruk av byen.",
+    "concept_type": "social_class_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -9734,12 +9998,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «klasse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_segregasjon",
+      "con_his_gentrifisering",
+      "con_his_tilgang"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_boligstandard"
+    ],
+    "common_misuse": [
+      "Å tilordne klasse direkte fra adresse, hustype eller yrkestittel uten å undersøke hushold, inntekt, eierskap, arbeidsrelasjon og endring over tid."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "yrke, inntekt og eierskap",
+      "bolig- og utdanningsmønstre",
+      "ulik tilgang til ressurser og beslutninger"
+    ],
+    "source_requirements": [
+      "folketelling, skatt, lønn, eiendom og husholdsdata",
+      "kvalitativ kilde som viser levd posisjon og lokale klassifikasjoner"
+    ]
   },
   {
     "concept_id": "con_his_klasseformasjon",
@@ -10154,9 +10433,9 @@
   },
   {
     "concept_id": "con_his_kommunal",
-    "label": "kommunal",
-    "definition": "I Byhistorie og stedsendring betegner «kommunal» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "kommunal forvaltning",
+    "definition": "Kommunal forvaltning er bykommunens historiske organisering av planlegging, byggesaker, tjenester, eiendom, finansiering og gjennomføring gjennom folkevalgte organer og administrasjon.",
+    "concept_type": "municipal_governance_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -10166,12 +10445,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kommunal» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_planmakt",
+      "con_his_politisk",
+      "con_his_byfornyelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_eiendom"
+    ],
+    "common_misuse": [
+      "Å omtale kommunen som én samlet aktør uten å skille politiske vedtak, administrativ utredning, etater, budsjett og faktisk gjennomføring."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifiserte organer og kompetanse",
+      "saksflyt fra forslag til vedtak",
+      "budsjett, utførelse og kontroll"
+    ],
+    "source_requirements": [
+      "møtebok, innstilling, etatsarkiv og budsjett",
+      "gjennomføringskilde som viser hva som faktisk ble gjort"
+    ]
   },
   {
     "concept_id": "con_his_kommunal_bolig",
@@ -10383,9 +10677,9 @@
   },
   {
     "concept_id": "con_his_konflikt",
-    "label": "konflikt",
-    "definition": "I Middelalder, kirke og kongemakt betegner «konflikt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "romlig konflikt",
+    "definition": "Romlig konflikt er dokumentert strid om bruk, eierskap, tilgang, representasjon eller fordeling av et avgrenset sted mellom identifiserbare aktører med ulike ressurser og mål.",
+    "concept_type": "spatial_conflict_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_middelalder_kirke_kongemakt",
@@ -10397,12 +10691,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «konflikt» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_tilgang",
+      "con_his_offentlig_rom",
+      "con_his_planmakt"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_grenser"
+    ],
+    "common_misuse": [
+      "Å kalle enhver meningsforskjell konflikt uten å vise partene, stridens gjenstand, handlingene, maktforholdet og det historiske utfallet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "navngitte parter og krav",
+      "protest, forhandling, rettssak eller håndheving",
+      "konkret omstridt areal eller funksjon"
+    ],
+    "source_requirements": [
+      "saksdokument, avis, organisasjonsarkiv eller rettskilde",
+      "kilde fra mer enn én part eller en uavhengig kontrollkilde"
+    ]
   },
   {
     "concept_id": "con_his_kongedomme",
@@ -11413,8 +11722,8 @@
   {
     "concept_id": "con_his_kulturmiljo",
     "label": "kulturmiljø",
-    "definition": "I Byhistorie og stedsendring betegner «kulturmiljø» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Kulturmiljø er et geografisk område der bygg, anlegg, landskap, bruk og historiske relasjoner danner en sammenheng som ikke kan forstås gjennom enkeltobjekter alene.",
+    "concept_type": "cultural_environment_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -11424,12 +11733,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kulturmiljø» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bevaring",
+      "con_his_vern",
+      "con_his_materialitet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_offentlig_rom"
+    ],
+    "common_misuse": [
+      "Å bruke kulturmiljø som estetisk kvalitetsstempel uten å avgrense området, datere lagene og dokumentere relasjonene mellom objekter, bruk og landskap."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "sammenhengende historiske strukturer",
+      "lesbare tidslag og funksjonsforbindelser",
+      "avgrenset geografisk helhet"
+    ],
+    "source_requirements": [
+      "kulturmiljøregistrering, historisk kart og bygningsdokumentasjon",
+      "brukshistorie eller feltkilde som viser sammenhengen mellom elementene"
+    ]
   },
   {
     "concept_id": "con_his_kulturminne",
@@ -12991,9 +13315,9 @@
   },
   {
     "concept_id": "con_his_materialitet",
-    "label": "materialitet",
-    "definition": "Kildens fysiske eller tekniske egenskaper og hvordan de påvirker produksjon, bruk, bevaring, tilgjengelighet og historisk fortolkning.",
-    "concept_type": "material_source_concept",
+    "label": "stedets materialitet",
+    "definition": "Stedets materialitet er de fysiske egenskapene, byggematerialene, strukturene, slitasjesporene og ombyggingene som bærer informasjon om produksjon, bruk og endring.",
+    "concept_type": "materiality_concept",
     "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
@@ -13006,26 +13330,29 @@
       "em_his_taushet_og_manglende_kilder",
       "em_his_riving_ombruk_bevaring"
     ],
-    "broader_concepts": [
-      "con_his_spor"
-    ],
-    "narrower_concepts": [
-      "con_his_materialer",
-      "con_his_bygninger",
-      "con_his_gravminner",
-      "con_his_rester"
-    ],
+    "broader_concepts": [],
+    "narrower_concepts": [],
     "related_concepts": [
-      "con_his_stedlig_spor",
-      "con_his_funksjoner"
+      "con_his_kulturmiljo",
+      "con_his_urban_morfologi",
+      "con_his_fortilstand"
     ],
     "distinguish_from": [
-      "con_his_beretning"
+      "con_his_politisk"
     ],
     "common_misuse": [
-      "Å slutte fra «materialitet» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
+      "Å lese et fysisk spor som direkte bevis for én bestemt hendelse eller bruk uten datering, stratigrafi og kontroll mot skriftlige eller visuelle kilder."
     ],
-    "status": "canonical_v5_5"
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materialtype og konstruksjon",
+      "spor etter ombygging, slitasje eller reparasjon",
+      "plassering i en datert fysisk sammenheng"
+    ],
+    "source_requirements": [
+      "bygningsundersøkelse, foto, tegning eller arkeologisk dokumentasjon",
+      "kontrollkilde som kan datere og tolke sporet"
+    ]
   },
   {
     "concept_id": "con_his_materiell",
@@ -14145,9 +14472,9 @@
   },
   {
     "concept_id": "con_his_modernisme",
-    "label": "modernisme",
-    "definition": "I Byhistorie og stedsendring betegner «modernisme» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "modernistisk byplanlegging",
+    "definition": "Modernistisk byplanlegging er en historisk plantradisjon som søkte funksjonsdeling, standardisering, lys, luft, trafikkseparasjon og storskala omforming gjennom ekspertstyrte planer.",
+    "concept_type": "planning_tradition_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -14157,12 +14484,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «modernisme» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_sanering",
+      "con_his_gatenett",
+      "con_his_tekniske"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_urban_morfologi"
+    ],
+    "common_misuse": [
+      "Å kalle alle etterkrigsbygg eller store prosjekter modernistiske uten å dokumentere planprinsipper, aktører, program og faktisk gjennomført form."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "funksjonsseparasjon og standardisering",
+      "storskala plan- eller utbyggingsenhet",
+      "prioritering av trafikk, lys og grønt"
+    ],
+    "source_requirements": [
+      "planbeskrivelse, arkitekttegning, fagdebatt og vedtak",
+      "felt- eller kartkilde som viser hvilke prinsipper som faktisk ble realisert"
+    ]
   },
   {
     "concept_id": "con_his_monument",
@@ -15150,8 +15492,8 @@
   {
     "concept_id": "con_his_offentlig_rom",
     "label": "offentlig rom",
-    "definition": "I Minne, kulturarv og historiebruk betegner «offentlig rom» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Offentlig rom er et byrom med rettslig eller praktisk allmenn tilgjengelighet der ferdsel, opphold, handel, protest og sosial kontroll organiseres gjennom regler, utforming og bruk.",
+    "concept_type": "public_space_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk",
@@ -15169,12 +15511,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «offentlig rom» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_tilgang",
+      "con_his_konflikt",
+      "con_his_planmakt"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_eiendom"
+    ],
+    "common_misuse": [
+      "Å anta at offentlig eierskap gir lik faktisk tilgang, eller at et privat eid rom ikke kan ha offentlig funksjon og regulert allmenn bruk."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "allmenn ferdsel eller opphold",
+      "regler for bruk og håndheving",
+      "mangfold eller konflikt mellom brukergrupper"
+    ],
+    "source_requirements": [
+      "eierskaps- og reguleringskilde, ordensregler og plan",
+      "observasjon, foto, politi- eller brukerdata som viser praktisk tilgang"
+    ]
   },
   {
     "concept_id": "con_his_offentlig_synlighet_vs_politisk_innflytelse",
@@ -15410,8 +15767,8 @@
   {
     "concept_id": "con_his_ombruk",
     "label": "ombruk",
-    "definition": "Ny bruk av et eldre sted, objekt eller materiale som både kan bevare, dekke til og endre spor etter tidligere funksjoner.",
-    "concept_type": "material_source_concept",
+    "definition": "Ombruk er videre bruk av et eksisterende bygg, anlegg, materiale eller område til en ny eller endret funksjon, med varierende grad av fysisk og historisk kontinuitet.",
+    "concept_type": "adaptive_reuse_concept",
     "historical_scope": "cross_period_source_dependent",
     "domain_ids": [
       "his_kilder_arkiv_spor",
@@ -15430,22 +15787,29 @@
       "em_his_byhistorie_stedsendring_sanering_byfornyelse_og_modernisme",
       "em_his_byhistorie_stedsendring_gentrifisering_ombruk_og_bevaring"
     ],
-    "broader_concepts": [
-      "con_his_spor"
-    ],
+    "broader_concepts": [],
     "narrower_concepts": [],
     "related_concepts": [
-      "con_his_materialitet",
-      "con_his_stedlig_spor",
-      "con_his_funksjoner"
+      "con_his_bevaring",
+      "con_his_rehabilitering",
+      "con_his_kulturmiljo"
     ],
     "distinguish_from": [
-      "con_his_beretning"
+      "con_his_riving"
     ],
     "common_misuse": [
-      "Å slutte fra «ombruk» direkte til opprinnelig funksjon, datering eller aktør uten kontekst og kontrollkilde."
+      "Å likestille ny funksjon i gammel fasade med full historisk kontinuitet uten å undersøke hvilke strukturer, arbeidsformer og brukergrupper som forsvant."
     ],
-    "status": "canonical_v5_5"
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "bevart fysisk struktur",
+      "dokumentert tidligere og ny funksjon",
+      "ombygging og ny adgang eller brukergruppe"
+    ],
+    "source_requirements": [
+      "byggesak, tegning, virksomhetsregister og foto før og etter",
+      "kilde som dokumenterer tapte så vel som videreførte elementer"
+    ]
   },
   {
     "concept_id": "con_his_omdoping",
@@ -16242,8 +16606,8 @@
   {
     "concept_id": "con_his_periferi",
     "label": "periferi",
-    "definition": "I Byhistorie og stedsendring betegner «periferi» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Periferi er en relasjonell posisjon med svakere tilgang til sentrale arbeidsplasser, tjenester, transport, investering eller beslutningsmakt i en bestemt historisk bystruktur.",
+    "concept_type": "centre_periphery_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -16261,12 +16625,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «periferi» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_sentrum",
+      "con_his_forstad",
+      "con_his_transport"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bygrense"
+    ],
+    "common_misuse": [
+      "Å definere periferi bare som fysisk avstand fra sentrum uten å måle forbindelser, funksjoner, investering og politisk eller økonomisk avhengighet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "reisetid og nettverkstilknytning",
+      "fordeling av tjenester og investering",
+      "avhengighet av sentrale funksjoner"
+    ],
+    "source_requirements": [
+      "transportkart, tjenesteoversikt, budsjett og arbeidsreisedata",
+      "lokal kilde som viser hvordan posisjonen ble erfart og endret"
+    ]
   },
   {
     "concept_id": "con_his_periodisering",
@@ -16401,8 +16780,8 @@
   {
     "concept_id": "con_his_planmakt",
     "label": "planmakt",
-    "definition": "I Byhistorie og stedsendring betegner «planmakt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Planmakt er institusjonell kapasitet til å definere arealbruk, byggevolum, forbindelser, vern, ekspropriasjon og gjennomføringsrekkefølge gjennom planer, vedtak og kontroll.",
+    "concept_type": "planning_power_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -16420,12 +16799,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «planmakt» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_politisk",
+      "con_his_kommunal",
+      "con_his_ekspropriasjon"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tomtemarkeder"
+    ],
+    "common_misuse": [
+      "Å behandle vedtatt plan som ferdig virkelighet eller overse at grunneiere, finansiering, klager, etater og uformell praksis kan endre utfallet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formell kompetanse og planvedtak",
+      "kontroll over tillatelser og rekkefølge",
+      "sanksjon, oppkjøp eller ekspropriasjon"
+    ],
+    "source_requirements": [
+      "plan, saksframstilling, vedtak og byggesak",
+      "gjennomførings- og konfliktkilde som viser planens faktiske virkning"
+    ]
   },
   {
     "concept_id": "con_his_plass",
@@ -16674,9 +17068,9 @@
   },
   {
     "concept_id": "con_his_politisk",
-    "label": "politisk",
-    "definition": "I 1814, grunnlov og statsdannelse betegner «politisk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "politisk beslutning",
+    "definition": "Politisk beslutning er et datert valg mellom handlingsalternativer gjort av et legitimert organ eller en mobilisert maktkoalisjon, med identifiserbare begrunnelser, motstand og konsekvenser.",
+    "concept_type": "political_decision_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_1814_statsdannelse",
@@ -16692,12 +17086,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «politisk» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_planmakt",
+      "con_his_kommunal",
+      "con_his_konflikt"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tekniske"
+    ],
+    "common_misuse": [
+      "Å forklare et byinngrep som politisk bare fordi kommunen var involvert, uten å identifisere beslutningsorgan, alternativer, flertall, interesser og gjennomføring."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt eller dokumentert beslutningspunkt",
+      "alternativer og begrunnelser",
+      "støttende og motsatte aktører"
+    ],
+    "source_requirements": [
+      "møtebok, votering, partiprogram, høring eller korrespondanse",
+      "kilde som viser gjennomføring og virkning etter beslutningen"
+    ]
   },
   {
     "concept_id": "con_his_postminne",
@@ -17771,8 +18180,8 @@
   {
     "concept_id": "con_his_rehabilitering",
     "label": "rehabilitering",
-    "definition": "I Byhistorie og stedsendring betegner «rehabilitering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Rehabilitering er teknisk og funksjonell oppgradering av eksisterende bygg eller anlegg slik at konstruksjon, installasjoner og bruksevne forbedres uten full riving.",
+    "concept_type": "building_rehabilitation_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -17782,12 +18191,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rehabilitering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_byfornyelse",
+      "con_his_boligstandard",
+      "con_his_ombruk"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bevaring"
+    ],
+    "common_misuse": [
+      "Å bruke rehabilitering som synonym for kosmetisk oppussing eller anta at teknisk forbedring bevarte historisk materiale og eksisterende beboere."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "utbedret konstruksjon eller teknisk anlegg",
+      "dokumentert standardheving",
+      "videreført hovedstruktur"
+    ],
+    "source_requirements": [
+      "tilstandsrapport, byggesak, tegninger og kostnadsoversikt",
+      "før- og etterkilde om materiale, brukere og økonomiske vilkår"
+    ]
   },
   {
     "concept_id": "con_his_rekonstruerer",
@@ -18642,8 +19066,8 @@
   {
     "concept_id": "con_his_riving",
     "label": "riving",
-    "definition": "I Byhistorie og stedsendring betegner «riving» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Riving er planlagt eller pålagt fysisk fjerning av hele eller deler av et bygg, anlegg eller bymiljø, med dokumenterbare beslutninger, metoder og etterfølgende arealbruk.",
+    "concept_type": "demolition_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -18653,12 +19077,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «riving» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_sanering",
+      "con_his_bevaring",
+      "con_his_fortrengning"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ombruk"
+    ],
+    "common_misuse": [
+      "Å behandle et bygg som revet fordi det ikke lenger er synlig, uten å undersøke brann, flytting, gradvis demontering, fasadebevaring eller innbygging i ny struktur."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "rivetillatelse eller pålegg",
+      "datert fysisk bortfall",
+      "registrert avfall, gjenbruk eller ny arealbruk"
+    ],
+    "source_requirements": [
+      "byggesak, foto, kart og entreprisedokument",
+      "kontrollkilde som avklarer omfang, dato og hva som kom etterpå"
+    ]
   },
   {
     "concept_id": "con_his_ruiner",
@@ -19070,8 +19509,8 @@
   {
     "concept_id": "con_his_sanering",
     "label": "sanering",
-    "definition": "I Byhistorie og stedsendring betegner «sanering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Sanering er offentlig eller privat program for å fjerne bebyggelse og funksjoner vurdert som helsefarlige, ineffektive eller uønskede, ofte for å muliggjøre ny planstruktur og bruk.",
+    "concept_type": "clearance_policy_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -19088,12 +19527,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «sanering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_riving",
+      "con_his_byfornyelse",
+      "con_his_fortrengning"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_rehabilitering"
+    ],
+    "common_misuse": [
+      "Å bruke sanering om enhver riving eller godta samtidens problembeskrivelse uten å undersøke seleksjon, alternativer, berørte grupper og etterbruk."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "avgrenset saneringsområde",
+      "offentlig problemdefinisjon og program",
+      "riving, flytting og ny planstruktur"
+    ],
+    "source_requirements": [
+      "saneringsplan, helse- og boligrapport, vedtak og kart",
+      "beboer-, flytte- og gjennomføringskilder som viser konsekvensene"
+    ]
   },
   {
     "concept_id": "con_his_sannhet",
@@ -19157,8 +19611,8 @@
   {
     "concept_id": "con_his_segregasjon",
     "label": "segregasjon",
-    "definition": "I Velferd, rett og hverdagsliv betegner «segregasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Segregasjon er vedvarende romlig konsentrasjon og adskillelse av grupper etter klasse, etnisitet, rettslig status eller livssituasjon, produsert gjennom marked, institusjoner og valg.",
+    "concept_type": "spatial_segregation_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv",
@@ -19170,12 +19624,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «segregasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_klasse",
+      "con_his_tilgang",
+      "con_his_boligregimer"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_grenser"
+    ],
+    "common_misuse": [
+      "Å konkludere med segregasjon fra ett kart eller en synlig gruppe uten sammenligning, mål på konsentrasjon og analyse av boligmarked, regler og mobilitet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "ulik gruppefordeling mellom områder",
+      "stabilitet eller endring over flere tidspunkter",
+      "mekanismer i bolig, skole, arbeid eller adgang"
+    ],
+    "source_requirements": [
+      "geokodet telling, register eller boligdata",
+      "kilde som dokumenterer institusjonelle og markedsmessige mekanismer"
+    ]
   },
   {
     "concept_id": "con_his_seksualitet",
@@ -19445,8 +19914,8 @@
   {
     "concept_id": "con_his_sentrum",
     "label": "sentrum",
-    "definition": "I Byhistorie og stedsendring betegner «sentrum» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Sentrum er den historisk skiftende konsentrasjonen av handel, institusjoner, transport, arbeid og symbolsk makt som fungerer som referansepunkt i en bestemt by og periode.",
+    "concept_type": "urban_centre_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -19464,12 +19933,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «sentrum» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_periferi",
+      "con_his_transport",
+      "con_his_tomtemarkeder"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bygrense"
+    ],
+    "common_misuse": [
+      "Å behandle dagens sentrum som uendret gjennom historien eller definere sentrum bare ved geometrisk midtpunkt uten funksjoner, forbindelser og samtidige betegnelser."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konsentrasjon av sentrale funksjoner",
+      "transport- og gangstrømmer",
+      "høy symbolsk eller økonomisk verdi"
+    ],
+    "source_requirements": [
+      "historisk kart, adressebok, virksomhets- og transportdata",
+      "samtidig språkbruk eller plan som viser hvordan sentrum ble avgrenset"
+    ]
   },
   {
     "concept_id": "con_his_seremoni",
@@ -19706,9 +20190,9 @@
   },
   {
     "concept_id": "con_his_skala",
-    "label": "skala",
-    "definition": "I Byhistorie og stedsendring betegner «skala» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "analytisk skala",
+    "definition": "Analytisk skala er valgt romlig og tidsmessig oppløsning, fra tomt og gate til bydel og region, som avgjør hvilke endringer, aktører og sammenhenger analysen kan se.",
+    "concept_type": "analytical_scale_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -19720,12 +20204,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «skala» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_urban_morfologi",
+      "con_his_bygrense",
+      "con_his_fortilstand"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sentrum"
+    ],
+    "common_misuse": [
+      "Å blande tall og forklaringer fra ulike geografiske enheter eller anta at en prosess som gjelder byen som helhet forklarer hvert kvartal likt."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "eksplisitt geografisk enhet",
+      "avgrenset tidsintervall",
+      "sammenlignbare data på samme nivå"
+    ],
+    "source_requirements": [
+      "kart- og metadata som dokumenterer enheten",
+      "sensitivitetskontroll mot minst én annen relevant skala"
+    ]
   },
   {
     "concept_id": "con_his_skatt",
@@ -21566,9 +22065,9 @@
   },
   {
     "concept_id": "con_his_tekniske",
-    "label": "tekniske",
-    "definition": "I Byhistorie og stedsendring betegner «tekniske» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "tekniske systemer",
+    "definition": "Tekniske systemer er sammenkoblede anlegg, standarder, kompetanser og driftsrutiner som leverer vann, avløp, energi, transport, kommunikasjon eller andre urbane tjenester.",
+    "concept_type": "technical_system_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -21578,12 +22077,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tekniske» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_infrastrukturer",
+      "con_his_transport",
+      "con_his_modernisme"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_politisk"
+    ],
+    "common_misuse": [
+      "Å forklare et system ut fra synlige anlegg alene uten å undersøke nettverk, standarder, operatører, finansiering, vedlikehold og faktisk tjenestedekning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "fysiske nettverk og knutepunkt",
+      "driftsorganisasjon og standarder",
+      "kapasitet, dekning og feil"
+    ],
+    "source_requirements": [
+      "teknisk tegning, driftsjournal, standard og budsjett",
+      "bruker- eller hendelseskilde som viser systemets faktiske ytelse"
+    ]
   },
   {
     "concept_id": "con_his_teknologi",
@@ -21885,9 +22399,9 @@
   },
   {
     "concept_id": "con_his_tilgang",
-    "label": "tilgang",
-    "definition": "I Velferd, rett og hverdagsliv betegner «tilgang» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "tilgang til byrom",
+    "definition": "Tilgang til byrom er faktisk mulighet til å nå, bruke og oppholde seg på et sted, bestemt av rettigheter, pris, åpningstid, utforming, transport, kontroll og sosial aksept.",
+    "concept_type": "urban_access_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv",
@@ -21901,12 +22415,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tilgang» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_offentlig_rom",
+      "con_his_grenser",
+      "con_his_segregasjon"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_eiendom"
+    ],
+    "common_misuse": [
+      "Å likestille formell adgang med reell tilgang uten å undersøke kostnad, universell utforming, vakthold, transport, diskriminering og tidsbegrensninger."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "juridiske og praktiske adgangsvilkår",
+      "reise- og oppholdsmulighet",
+      "bruksmønster mellom grupper"
+    ],
+    "source_requirements": [
+      "regelverk, kart, åpningstid, pris og transportdata",
+      "observasjon, klage, intervju eller håndhevingskilde"
+    ]
   },
   {
     "concept_id": "con_his_tilhorighet",
@@ -22140,8 +22669,8 @@
   {
     "concept_id": "con_his_tomtemarkeder",
     "label": "tomtemarkeder",
-    "definition": "I Byhistorie og stedsendring betegner «tomtemarkeder» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Tomtemarkeder er historiske systemer for prising, omsetning, oppdeling, finansiering og forventning knyttet til byggegrunn, påvirket av planer, infrastruktur og eiendomsrett.",
+    "concept_type": "land_market_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -22151,18 +22680,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tomtemarkeder» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_eiendom",
+      "con_his_gentrifisering",
+      "con_his_boligregimer"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_boligstandard"
+    ],
+    "common_misuse": [
+      "Å bruke enkeltstående salgspriser som mål på tomtemarkedet uten å kontrollere areal, regulering, bebyggelse, transaksjonstype og forventet framtidig bruk."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "daterte transaksjoner og pris per sammenlignbar enhet",
+      "endret regulering eller infrastruktur",
+      "oppdeling, sammenslåing og aktørkonsentrasjon"
+    ],
+    "source_requirements": [
+      "skjøte, takst, matrikkel, auksjon og prisserie",
+      "plan- og finansieringskilde som forklarer forventningsverdien"
+    ]
   },
   {
     "concept_id": "con_his_tomtestruktur",
     "label": "tomtestruktur",
-    "definition": "I Byhistorie og stedsendring betegner «tomtestruktur» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Tomtestruktur er mønsteret av eiendomsgrenser, størrelser, former, adkomster og sammenslåinger som organiserer bebyggelse, investering og bruk i et byområde.",
+    "concept_type": "parcel_structure_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -22180,12 +22724,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tomtestruktur» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_gatenett",
+      "con_his_eiendom",
+      "con_his_urban_morfologi"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bygrense"
+    ],
+    "common_misuse": [
+      "Å lese dagens tomtegrenser bakover i tid eller anta at fysisk sammenhengende bebyggelse alltid tilhørte én eier og én utbyggingsprosess."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "daterte parsellgrenser",
+      "deling og sammenslåing",
+      "adkomst og relasjon til gatenett"
+    ],
+    "source_requirements": [
+      "matrikkel, oppmålingskart, skjøte og delingssak",
+      "historisk kart eller byggesak som viser faktisk bruk på tomtene"
+    ]
   },
   {
     "concept_id": "con_his_total_krig",
@@ -22354,9 +22913,9 @@
   },
   {
     "concept_id": "con_his_transport",
-    "label": "transport",
-    "definition": "I Byhistorie og stedsendring betegner «transport» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "transportinfrastruktur",
+    "definition": "Transportinfrastruktur er historiske nettverk, anlegg og driftsordninger for å flytte mennesker og varer, og virker både som forbindelse, barriere og driver for lokalisering.",
+    "concept_type": "transport_infrastructure_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -22366,12 +22925,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «transport» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_infrastrukturer",
+      "con_his_byutvidelse",
+      "con_his_sentrum"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_gatenett"
+    ],
+    "common_misuse": [
+      "Å anta at åpning av en linje eller vei alene forklarer byvekst uten å dokumentere kapasitet, pris, rutetilbud, arealpolitikk og hvem som faktisk brukte forbindelsen."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "trase, stopp og kapasitet",
+      "åpnings- og endringsdatoer",
+      "reise-, vare- og lokaliseringsmønstre"
+    ],
+    "source_requirements": [
+      "ruteplan, trafikkdata, kart og anleggsarkiv",
+      "bosettings-, virksomhets- eller reisekilde som viser virkningen"
+    ]
   },
   {
     "concept_id": "con_his_trosfrihet",
@@ -22761,9 +23335,9 @@
   },
   {
     "concept_id": "con_his_urban",
-    "label": "urbanisering",
-    "definition": "Konsentrasjon av befolkning, bygging og infrastrukturer som omformer areal, vannløp, energibruk, avfall, helse og forholdet mellom by og omland.",
-    "concept_type": "spatial_process_concept",
+    "label": "urban utvikling",
+    "definition": "Urban utvikling er samlet historisk endring i bebyggelse, befolkning, funksjoner, infrastruktur, institusjoner og relasjoner som gjør et område mer bymessig eller endrer dets plass i byen.",
+    "concept_type": "urban_development_concept",
     "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring",
@@ -22774,28 +23348,35 @@
       "em_his_miljo_klima_forurensning_og_urban_miljohistorie",
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet"
     ],
-    "broader_concepts": [
-      "con_his_landskap"
-    ],
+    "broader_concepts": [],
     "narrower_concepts": [],
     "related_concepts": [
-      "con_his_urban_natur",
       "con_his_urbanisering",
-      "con_his_forurensning"
+      "con_his_urban_morfologi",
+      "con_his_byutvidelse"
     ],
     "distinguish_from": [
-      "con_his_natur"
+      "con_his_byfornyelse"
     ],
     "common_misuse": [
-      "Å generalisere fra «urbanisering» for hele byen uten å analysere nabolag, infrastruktur, sosial fordeling og historisk arealbruk."
+      "Å bruke urban som en estetisk eller moderne merkelapp uten å definere hvilke befolknings-, funksjons-, form- eller institusjonsendringer som undersøkes."
     ],
-    "status": "canonical_v5_5"
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "økt tetthet eller funksjonsmangfold",
+      "utvidet infrastruktur og institusjoner",
+      "endret relasjon til resten av byen"
+    ],
+    "source_requirements": [
+      "kart, telling, virksomhets- og infrastrukturdokumentasjon",
+      "kontrollkilde som skiller planlagt fra faktisk utvikling"
+    ]
   },
   {
     "concept_id": "con_his_urban_morfologi",
     "label": "urban morfologi",
-    "definition": "I Byhistorie og stedsendring betegner «urban morfologi» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Urban morfologi er den historiske formen byen får gjennom samspillet mellom gatenett, tomter, kvartaler, bygningstyper, høyder, åpne rom og terreng.",
+    "concept_type": "urban_morphology_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -22812,12 +23393,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «urban morfologi» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_gatenett",
+      "con_his_tomtestruktur",
+      "con_his_materialitet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_urbanisering"
+    ],
+    "common_misuse": [
+      "Å beskrive byform som statisk mønster uten å datere lagene, eiendomsprosessene og inngrepene som produserte og endret strukturen."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "gatenett og kvartalsstruktur",
+      "tomte- og bygningstypologi",
+      "daterte lag av utbygging og omforming"
+    ],
+    "source_requirements": [
+      "historiske kart, matrikkel, byggearkiv og feltregistrering",
+      "sammenlignbar kilde fra minst to tidspunkter"
+    ]
   },
   {
     "concept_id": "con_his_urban_natur",
@@ -22858,8 +23454,8 @@
   {
     "concept_id": "con_his_urbanisering",
     "label": "urbanisering",
-    "definition": "I Byhistorie og stedsendring betegner «urbanisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Urbanisering er historisk vekst i andelen mennesker, arbeid, tjenester og institusjoner knyttet til bymessige bosettinger, sammen med endrede forbindelser mellom by og omland.",
+    "concept_type": "urbanization_process_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_byhistorie_stedsendring"
@@ -22869,12 +23465,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «urbanisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_byutvidelse",
+      "con_his_forstad",
+      "con_his_urban"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_innlemmelse"
+    ],
+    "common_misuse": [
+      "Å måle urbanisering bare med kommunens folketall eller behandle administrativ innlemmelse som identisk med økonomisk, sosial og fysisk urbanisering."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "befolkningsvekst i bymessige områder",
+      "skifte i arbeid og tjenester",
+      "tettere regionale forbindelser"
+    ],
+    "source_requirements": [
+      "sammenlignbar befolknings- og yrkesstatistikk",
+      "kart- og institusjonskilder som avgrenser den faktiske bymessige bosettingen"
+    ]
   },
   {
     "concept_id": "con_his_urfolk",
@@ -23450,7 +24061,7 @@
   {
     "concept_id": "con_his_vern",
     "label": "vern",
-    "definition": "Juridiske, administrative og sosiale praksiser som begrenser inngrep for å beskytte arter, landskap, økosystemer eller kultur- og naturverdier.",
+    "definition": "Vern er juridiske, administrative eller avtalebaserte begrensninger som skal beskytte natur-, bygg-, anleggs- eller kulturmiljøverdier mot bestemte former for endring.",
     "concept_type": "governance_concept",
     "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
@@ -23471,21 +24082,29 @@
       "em_his_miljo_klima_antropocen_langsom_vold_og_miljorettferdighet",
       "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet"
     ],
-    "broader_concepts": [
-      "con_his_naturforvaltning"
-    ],
+    "broader_concepts": [],
     "narrower_concepts": [],
     "related_concepts": [
-      "con_his_miljobevegelse",
-      "con_his_framtidsansvar"
+      "con_his_bevaring",
+      "con_his_kulturmiljo",
+      "con_his_planmakt"
     ],
     "distinguish_from": [
-      "con_his_miljorettferdighet"
+      "con_his_ombruk"
     ],
     "common_misuse": [
-      "Å likestille formelle vedtak om «vern» med faktisk gjennomføring uten å undersøke konflikter, kapasitet og lokal praksis."
+      "Å anta at vernestatus betyr uendret materiale, bruk og omgivelser, eller at alle historiske verdier omfattes av vedtakets konkrete formål og bestemmelser."
     ],
-    "status": "canonical_v5_5"
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert vernevedtak eller bindende bestemmelse",
+      "avgrenset objekt eller område",
+      "tillatte og forbudte tiltak"
+    ],
+    "source_requirements": [
+      "vedtak, forskrift, planbestemmelse eller avtale",
+      "tilstands- og byggesakskilde som viser etterlevelse og endringer etter vern"
+    ]
   },
   {
     "concept_id": "con_his_veteraner",

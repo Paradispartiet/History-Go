@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-25T20:11:36.435Z
+Generert: 2026-07-25T20:33:48.574Z
 
 ## Oppsummering
 - Aktive filer validert: **1444**
 - Antall steder validert: **1444**
 - Harde feil: **0**
-- Varsler: **603**
-- Coordinate review candidates: **747** signaler fordelt på **645** steder
+- Varsler: **604**
+- Coordinate review candidates: **748** signaler fordelt på **646** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -1503,6 +1503,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/naeringsliv/akershus/eidsvoll_verk_andelva/eidsvoll_verk_andelva.json#eidsvoll_verk_andelva: stort område uten coordNote/coordStatus
 - data/places/by/akershus/tertitten_urskog_holandsbanen/tertitten_urskog_holandsbanen.json#tertitten_urskog_holandsbanen: stort område uten coordNote/coordStatus
 - data/places/historie/akershus/places_historie_akershus_batch2/tanum_kirke.json#tanum_kirke: coordStatus=verified uten coordPrecisionM
+- data/places/historie/akershus/places_historie_akershus_batch2/skedsmo_kirke.json#skedsmo_kirke: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/akershus/hurdal_verk_glassverk/hurdal_verk_glassverk.json#hurdal_verk_glassverk: stort område uten coordNote/coordStatus
 - data/places/naeringsliv/akershus/hakadal_verk/hakadal_verk.json#hakadal_verk: stort område uten coordNote/coordStatus
 - data/places/historie/akershus/places_historie_akershus_batch5/aurskog_holand_bygdetun.json#aurskog_holand_bygdetun: stort område uten coordNote/coordStatus
@@ -2073,13 +2074,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 747 signaler fordelt på 645 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 748 signaler fordelt på 646 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 325 |
+| coordStatus=verified uten coordPrecisionM | 326 |
 | lineært sted uten anchors | 82 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 65 |
 | lav koordinatpresisjon (<4 desimaler) | 70 |
@@ -2088,7 +2089,7 @@ Totalt 747 signaler fordelt på 645 steder. Et sted kan ha flere signaler. Kandi
 | svært liten r (<60 m) for sted som ser utstrakt ut | 3 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 10 |
 
-### coordStatus=verified uten coordPrecisionM (325)
+### coordStatus=verified uten coordPrecisionM (326)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -2120,6 +2121,7 @@ Totalt 747 signaler fordelt på 645 steder. Et sted kan ha flere signaler. Kandi
 | st_hallvard_kirke_kloster | St. Hallvard kirke og kloster | historie | data/places/historie/oslo/places_historie_added_batch_01/st_hallvard_kirke_kloster.json | 59.91294052851478 | 10.769571694450226 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamle_radhus | Gamle rådhus | by | data/places/by/oslo/gamle_radhus/gamle_radhus.json | 59.909847408217715 | 10.740149053425348 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | tanum_kirke | Tanum kirke | historie | data/places/historie/akershus/places_historie_akershus_batch2/tanum_kirke.json | 59.89562 | 10.47931 | 220 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| skedsmo_kirke | Skedsmo kirke | historie | data/places/historie/akershus/places_historie_akershus_batch2/skedsmo_kirke.json | 59.99381 | 11.04531 | 220 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | proysenhuset_rudshogda | Prøysenhuset – Rudshøgda | litteratur | data/places/litteratur/innlandet/proysenhuset_rudshogda.json | 60.912182010287836 | 10.791215743205731 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nationaltheatret | Nationaltheatret | scenekunst | data/places/scenekunst/oslo/places_scenekunst/nationaltheatret.json | 59.91456789100917 | 10.733617256734934 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | det_norske_teatret | Det Norske Teatret | scenekunst | data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json | 59.91521126103172 | 10.738641190958791 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
