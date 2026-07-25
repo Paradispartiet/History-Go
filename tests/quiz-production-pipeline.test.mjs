@@ -58,9 +58,9 @@ test("builds the full history production context through domain-based curriculum
   assert.equal(context.manifest.target_id, "grindheim_runestein");
   assert.equal(context.manifest.matches, 1);
   assert.equal(context.considered_curriculum.counts.pensum_modules, 12);
-  assert.equal(context.considered_curriculum.counts.emner, 64);
-  assert.equal(context.considered_curriculum.counts.topic_hooks, 48);
-  assert.equal(context.considered_curriculum.counts.methods, 33);
+  assert.equal(context.considered_curriculum.counts.emner, 71);
+  assert.equal(context.considered_curriculum.counts.topic_hooks, 57);
+  assert.equal(context.considered_curriculum.counts.methods, 38);
   assert.equal(context.claim_bank.length, 21);
   assert.equal(context.source_files.brief.path, "data/quiz/production_briefs/historie/grindheim_runestein.json");
   assert.equal(context.source_files.quiz, undefined);
@@ -98,9 +98,9 @@ test("isolates each history target in the manifest proof", async () => {
   assert.equal(context.manifest.target_id, "grindheim_steinkross");
   assert.equal(context.manifest.matches, 1);
   assert.equal(context.considered_curriculum.counts.pensum_modules, 12);
-  assert.equal(context.considered_curriculum.counts.emner, 64);
-  assert.equal(context.considered_curriculum.counts.topic_hooks, 48);
-  assert.equal(context.considered_curriculum.counts.methods, 33);
+  assert.equal(context.considered_curriculum.counts.emner, 71);
+  assert.equal(context.considered_curriculum.counts.topic_hooks, 57);
+  assert.equal(context.considered_curriculum.counts.methods, 38);
   assert.equal(context.claim_bank.length, 21);
   assert.equal(context.source_files.brief.path, "data/quiz/production_briefs/historie/grindheim_steinkross.json");
   assert.equal(context.source_files.quiz, undefined);
@@ -138,9 +138,9 @@ test("builds the Grindheimsvegen grave-field context before quiz writing", async
   assert.equal(context.manifest.target_id, "grindheimsveien_nord_gravfelt");
   assert.equal(context.manifest.matches, 1);
   assert.equal(context.considered_curriculum.counts.pensum_modules, 12);
-  assert.equal(context.considered_curriculum.counts.emner, 64);
-  assert.equal(context.considered_curriculum.counts.topic_hooks, 48);
-  assert.equal(context.considered_curriculum.counts.methods, 33);
+  assert.equal(context.considered_curriculum.counts.emner, 71);
+  assert.equal(context.considered_curriculum.counts.topic_hooks, 57);
+  assert.equal(context.considered_curriculum.counts.methods, 38);
   assert.equal(context.claim_bank.length, 21);
   assert.equal(
     context.source_files.brief.path,
@@ -184,9 +184,9 @@ test("builds the Høyland grave-mound context before quiz writing", async () => 
   assert.equal(context.manifest.target_id, "hoyland_gravhaug_etne");
   assert.equal(context.manifest.matches, 1);
   assert.equal(context.considered_curriculum.counts.pensum_modules, 12);
-  assert.equal(context.considered_curriculum.counts.emner, 64);
-  assert.equal(context.considered_curriculum.counts.topic_hooks, 48);
-  assert.equal(context.considered_curriculum.counts.methods, 33);
+  assert.equal(context.considered_curriculum.counts.emner, 71);
+  assert.equal(context.considered_curriculum.counts.topic_hooks, 57);
+  assert.equal(context.considered_curriculum.counts.methods, 38);
   assert.equal(context.claim_bank.length, 21);
   assert.equal(
     context.source_files.brief.path,
