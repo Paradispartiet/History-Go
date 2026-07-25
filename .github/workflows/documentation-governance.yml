@@ -42,19 +42,35 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: Synchronize status and restore workflows
+      - name: Capture exact synchronization failure
         run: |
-          python scripts/tmp-sync-social-contract-status-v2.py
+          mkdir -p reports/documentation-governance
+          set +e
+          python scripts/tmp-sync-social-contract-status-v2.py > reports/documentation-governance/social-contract-status-sync.log 2>&1
+          status=$?
+          set -e
+          cat reports/documentation-governance/social-contract-status-sync.log
+
+          if [ "$status" -ne 0 ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add reports/documentation-governance/social-contract-status-sync.log
+            git commit -m "Capture Social contract status sync failure"
+            git push origin "HEAD:${{ github.head_ref }}"
+            exit "$status"
+          fi
+
           git fetch origin main
           git checkout origin/main -- .github/workflows/documentation-governance.yml
           rm -f .github/workflows/tmp-sync-social-contract-status.yml
           rm -f .tmp-social-contract-status-trigger
           rm -f scripts/tmp-sync-social-contract-status.py
           rm -f scripts/tmp-sync-social-contract-status-v2.py
+          rm -f reports/documentation-governance/social-contract-status-sync.log
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs backend/README.md .github/workflows/documentation-governance.yml .github/workflows/tmp-sync-social-contract-status.yml .tmp-social-contract-status-trigger scripts/tmp-sync-social-contract-status.py scripts/tmp-sync-social-contract-status-v2.py
+          git add docs backend/README.md .github/workflows/documentation-governance.yml .github/workflows/tmp-sync-social-contract-status.yml .tmp-social-contract-status-trigger scripts/tmp-sync-social-contract-status.py scripts/tmp-sync-social-contract-status-v2.py reports/documentation-governance/social-contract-status-sync.log
           git diff --cached --check
           git commit -m "Synchronize Social Meet contract status"
           git push origin "HEAD:${{ github.head_ref }}"
