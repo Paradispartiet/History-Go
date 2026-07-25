@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "registry_status": "canonical",
+  "owner": "history-go-documentation",
+  "last_verified": "2026-07-25",
+  "status_definitions": {
+    "canonical": "Normativ kilde for et avgrenset ansvarsområde. Kan blokkere endringer og skal holdes oppdatert.",
+    "operational": "Aktiv arbeidsinstruks eller navigasjon som peker til canonical kilder uten å opprette en parallell sannhet.",
+    "transitional": "Fortsatt brukt, men inneholder kjent legacy- eller konsolideringsgjeld.",
+    "historical": "Tidsbundet snapshot, journal eller arkiv. Skal ikke brukes som nåstatus.",
+    "local": "Dokumentasjon som bare gjelder mappen eller subsystemet den ligger ved."
+  },
+  "priority_order": [
+    "docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md",
+    "README/SYSTEM_REGISTRY.md",
+    "README/SYSTEM_MAP.md",
+    "docs/DATA_PRODUCTION_CONTRACT.md",
+    "README/README_DEV.md",
+    "README/TEAM_WORKFLOW.md"
+  ],
+  "documents": [
+    {
+      "path": "README.md",
+      "status": "operational",
+      "role": "Kort menneskelig inngang til repoet",
+      "owns": ["repository_entry"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "AGENTS.md",
+      "status": "operational",
+      "role": "Felles agentregler og connector-first arbeidsflyt",
+      "owns": ["agent_entry"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "CLAUDE.md",
+      "status": "operational",
+      "role": "Claude-spesifikk repo-orientering; skal følge canonical dokumenter",
+      "owns": ["claude_adapter"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "DOCS.md",
+      "status": "operational",
+      "role": "Kort dokumentasjonsinngang",
+      "owns": ["documentation_entry"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/README.md",
+      "status": "canonical",
+      "role": "Autoritativt dokumentasjonskart og statusoversikt",
+      "owns": ["documentation_map"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md",
+      "status": "canonical",
+      "role": "Normativ målarkitektur og språk-, plattform- og dataeierskap",
+      "owns": ["target_architecture", "language_ownership", "platform_ownership"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "README/SYSTEM_REGISTRY.md",
+      "status": "transitional",
+      "role": "Bindende eierskap for dagens runtime, men med kjent innlimt legacy-historikk",
+      "owns": ["current_runtime_ownership"],
+      "last_verified": "2026-07-25",
+      "debt": "Skal deles i aktiv kontrakt og arkivert historikk i fase 2."
+    },
+    {
+      "path": "README/SYSTEM_MAP.md",
+      "status": "canonical",
+      "role": "Dagens runtime-flyt og modulkjeder",
+      "owns": ["current_runtime_flow"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "README/README_DEV.md",
+      "status": "canonical",
+      "role": "Daglig utvikling, lokal kjøring, validering og debugging",
+      "owns": ["development_operations"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "README/TEAM_WORKFLOW.md",
+      "status": "canonical",
+      "role": "Arbeidsflyt og dokumentprioritet ved endringer",
+      "owns": ["team_workflow"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "README/README.md",
+      "status": "canonical",
+      "role": "Hovedoversikt for History GO-produktet",
+      "owns": ["product_overview"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/HISTORY_GO_PRODUCT_MAP.md",
+      "status": "canonical",
+      "role": "Produktkart og ferdigstillelsesprioritet for History GO",
+      "owns": ["product_completion_map"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/DATA_PRODUCTION_CONTRACT.md",
+      "status": "transitional",
+      "role": "Aktiv dataproduksjonskontrakt for places, people, quiz og manifester",
+      "owns": ["data_production_contract"],
+      "last_verified": "2026-07-25",
+      "debt": "Enkelte konkrete aggregate paths må synkroniseres med dagens splittede data."
+    },
+    {
+      "path": "README/README.pensum.md",
+      "status": "canonical",
+      "role": "Fagkart, emner, pensum og faglig progresjon",
+      "owns": ["curriculum_model"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "README/quizREADME.md",
+      "status": "transitional",
+      "role": "Quiz-, lærings- og reward-kontrakt",
+      "owns": ["quiz_runtime_contract"],
+      "last_verified": "2026-07-25",
+      "debt": "Filpaths og generatorversjoner må synkroniseres med dagens manifest- og V5.1-pipeline."
+    },
+    {
+      "path": "docs/TYPESCRIPT_FIRST_POLICY.md",
+      "status": "canonical",
+      "role": "TypeScript-policy for klient og Node-tooling",
+      "owns": ["typescript_policy"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "docs/typescript-migration-plan.md",
+      "status": "operational",
+      "role": "Operativ migreringsplan for browser-runtime",
+      "owns": ["typescript_migration_plan"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "TYPESCRIPT_MIGRATION.md",
+      "status": "historical",
+      "role": "Historisk migreringsjournal",
+      "owns": [],
+      "historical_reason": "Journal, ikke nåværende policy eller plan."
+    },
+    {
+      "path": "README/CURRENT_PRODUCT_STATE.md",
+      "status": "historical",
+      "role": "Eldre produktsnapshot som blander History GO og Civication",
+      "owns": [],
+      "superseded_by": ["README/README.md", "docs/HISTORY_GO_PRODUCT_MAP.md"],
+      "historical_reason": "Motsier nyere avgrensning av Civication som eget prosjekt."
+    },
+    {
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "status": "historical",
+      "role": "Avgrenset implementasjonssnapshot for Social, Civication Home og Spotmeeting",
+      "owns": [],
+      "superseded_by": ["docs/HISTORY_GO_PRODUCT_MAP.md"],
+      "historical_reason": "Navnet er bredere enn faktisk innhold og dokumentet er tidsbundet."
+    },
+    {
+      "path": "docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md",
+      "status": "historical",
+      "role": "Spillbarhetsaudit basert på eldre place-audit fra 2026-04-30",
+      "owns": [],
+      "superseded_by": ["docs/HISTORY_GO_PRODUCT_MAP.md", "reports/data-health-summary.md"],
+      "historical_reason": "Snapshot med eldre aggregate place-paths og tall."
+    },
+    {
+      "path": "reports/README.md",
+      "status": "canonical",
+      "role": "Regel for aktive kontra historiske rapporter",
+      "owns": ["report_governance"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "README/CHANGELOG.md",
+      "status": "historical",
+      "role": "Kort endringshistorikk",
+      "owns": [],
+      "historical_reason": "Journal, ikke kontrakt."
+    },
+    {
+      "path": "README/CHANGELOG.FULL.md",
+      "status": "historical",
+      "role": "Full endringshistorikk",
+      "owns": [],
+      "historical_reason": "Journal, ikke kontrakt."
+    }
+  ]
+}

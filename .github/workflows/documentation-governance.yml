@@ -1,0 +1,66 @@
+name: Documentation governance
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "DOCS.md"
+      - "AGENTS.md"
+      - "CLAUDE.md"
+      - "README/**"
+      - "docs/**"
+      - "reports/README.md"
+      - "scripts/check-documentation-governance.mts"
+      - ".github/workflows/documentation-governance.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "README.md"
+      - "DOCS.md"
+      - "AGENTS.md"
+      - "CLAUDE.md"
+      - "README/**"
+      - "docs/**"
+      - "reports/README.md"
+      - "scripts/check-documentation-governance.mts"
+      - ".github/workflows/documentation-governance.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  documentation-governance:
+    name: Documentation registry and links
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build TypeScript scripts
+        run: npm run build:scripts
+
+      - name: Validate documentation governance
+        run: |
+          set -o pipefail
+          mkdir -p reports/documentation-governance
+          node dist/scripts/check-documentation-governance.mjs 2>&1 | tee reports/documentation-governance/audit.log
+
+      - name: Upload documentation governance audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-governance-audit
+          path: reports/documentation-governance/audit.log
+          if-no-files-found: error
