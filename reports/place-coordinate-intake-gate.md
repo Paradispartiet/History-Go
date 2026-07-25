@@ -1,6 +1,6 @@
 # Place coordinate intake gate
 
-Generert: 2026-07-25T22:20:21.231Z
+Generert: 2026-07-25T22:35:58.195Z
 
 ## Hvorfor denne gaten finnes
 
@@ -18,7 +18,7 @@ Koordinatfeil oppstår fordi aktive place-filer kan få lat/lon uten nok metadat
 - Place-objekter validert: **1444**
 - Nye/endrede koordinatobjekter mot base: **0**
 - Blokkerende feil i denne kjøringen: **0**
-- Backlog-funn: **2824**
+- Backlog-funn: **2818**
 - Rapport-warnings: **0**
 
 ## Regler som håndheves
@@ -79,12 +79,6 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | kjeller_flyplass | Kjeller flyplass | data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | kjeller_flyplass | Kjeller flyplass | data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | kjeller_flyplass | Kjeller flyplass | data/places/by/akershus/kjeller_flyplass/kjeller_flyplass.json | coordNote | Stor radius r=360 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
-| backlog | nei | gamle_hvam_museum | Gamle Hvam museum | data/places/historie/akershus/places_historie_akershus_batch2/gamle_hvam_museum.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | gamle_hvam_museum | Gamle Hvam museum | data/places/historie/akershus/places_historie_akershus_batch2/gamle_hvam_museum.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | gamle_hvam_museum | Gamle Hvam museum | data/places/historie/akershus/places_historie_akershus_batch2/gamle_hvam_museum.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
-| backlog | nei | heggedal_hovedgard | Heggedal hovedgård | data/places/historie/akershus/places_historie_akershus_batch2/heggedal_hovedgard.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
-| backlog | nei | heggedal_hovedgard | Heggedal hovedgård | data/places/historie/akershus/places_historie_akershus_batch2/heggedal_hovedgard.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
-| backlog | nei | heggedal_hovedgard | Heggedal hovedgård | data/places/historie/akershus/places_historie_akershus_batch2/heggedal_hovedgard.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | hvitsten_sjobodene | Hvitsten sjøbodene | data/places/by/akershus/hvitsten_sjobodene/hvitsten_sjobodene.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
 | backlog | nei | hvitsten_sjobodene | Hvitsten sjøbodene | data/places/by/akershus/hvitsten_sjobodene/hvitsten_sjobodene.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | hvitsten_sjobodene | Hvitsten sjøbodene | data/places/by/akershus/hvitsten_sjobodene/hvitsten_sjobodene.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
@@ -541,6 +535,12 @@ Gamle steder med manglende koordinatmetadata, avrundede koordinater, store områ
 | backlog | nei | maihaugen_lillehammer | Maihaugen | data/places/historie/innlandet/places_historie_innlandet_batch1/maihaugen_lillehammer.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 | backlog | nei | maihaugen_lillehammer | Maihaugen | data/places/historie/innlandet/places_historie_innlandet_batch1/maihaugen_lillehammer.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
 | backlog | nei | maihaugen_lillehammer | Maihaugen | data/places/historie/innlandet/places_historie_innlandet_batch1/maihaugen_lillehammer.json | coordNote | Stor radius r=520 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | ringebu_stavkirke | Ringebu stavkirke | data/places/historie/innlandet/places_historie_innlandet_batch1/ringebu_stavkirke.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | ringebu_stavkirke | Ringebu stavkirke | data/places/historie/innlandet/places_historie_innlandet_batch1/ringebu_stavkirke.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
+| backlog | nei | ringebu_stavkirke | Ringebu stavkirke | data/places/historie/innlandet/places_historie_innlandet_batch1/ringebu_stavkirke.json | coordNote | Mangler coordNote for sted med lat/lon. | Legg inn coordNote før stedet aktiveres som kartpunkt. |
+| backlog | nei | ringebu_stavkirke | Ringebu stavkirke | data/places/historie/innlandet/places_historie_innlandet_batch1/ringebu_stavkirke.json | coordNote | Stor radius r=300 mangler coordNote. | Forklar hvorfor punktet er et stort områdeanker. |
+| backlog | nei | lom_stavkirke | Lom stavkirke | data/places/historie/innlandet/places_historie_innlandet_batch1/lom_stavkirke.json | coordType | Mangler coordType for sted med lat/lon. | Legg inn coordType før stedet aktiveres som kartpunkt. |
+| backlog | nei | lom_stavkirke | Lom stavkirke | data/places/historie/innlandet/places_historie_innlandet_batch1/lom_stavkirke.json | coordStatus | Mangler coordStatus for sted med lat/lon. | Legg inn coordStatus før stedet aktiveres som kartpunkt. |
 
 
-_Listen er avkortet til 500 av 2824 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
+_Listen er avkortet til 500 av 2818 funn. Kjør lokalt for full stdout/rapportutvidelse ved behov._
