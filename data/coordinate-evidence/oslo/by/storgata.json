@@ -4,17 +4,17 @@
   "evidenceStatus": "applied_to_place",
   "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.9154,
-    "lon": 10.7539,
+    "lat": 59.91490519667192,
+    "lon": 10.754375735199776,
     "r": 230,
     "coordStatus": "verified_geometry",
-    "coordSource": "Oslo byleksikon – Storgata + dokumenterte ruteankre",
-    "coordType": "street_midpoint",
-    "coordNote": "Dokumentert linjeanker for Storgata. Oslo byleksikon avgrenser gaten fra Dronningens gate ved Kirkeristen til Nybrua. History Go beholder hovedpunktet på den sentrale strekningen og eksisterende ruteankre ved Kirkeristen og Nybrua; punktet er ikke et adressepunkt."
+    "coordSource": "OpenStreetMap exact-name street topology",
+    "coordType": "street_geometry_midpoint",
+    "coordNote": "Storgata bruker nå et deterministisk lengdemidtpunkt direkte på det endepunktstyrte navngitte Storgata-løpet fra Kirkeristen til Nybrua. Fresh OSM-research ordnet 15 navngitte way-segmenter over 875.1 meter. Det tidligere punktet lå 60.1 meter fra riktig gategeometri; nytt punkt ligger 0 meter fra gategeometrien og ble flyttet 61.1 meter. Midtpunktet ligger på osm-way:36973177. Eksisterende gameplay-radius 230 meter beholdes; hele gateløpet lagres som ordnede routeSegments."
   },
   "identity": {
     "currentName": "Storgata",
-    "resolvedIdentity": "Storgata fra Dronningens gate ved Kirkeristen til Nybrua",
+    "resolvedIdentity": "Storgata som navngitt OSM-gateløp med dokumentert utstrekning",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "street",
@@ -22,45 +22,215 @@
     "splitReason": ""
   },
   "requiredEvidence": [
-    "stabil kildeidentitet",
-    "objekttilpasset representasjonsanker",
-    "fysisk avgrensning mot nærliggende canonical steder"
+    "dokumentert gateidentitet",
+    "eksakt navngitte OSM-way-segmenter",
+    "endepunktkontroll",
+    "lengdemidtpunkt på gategeometri"
   ],
   "evidence": [
     {
       "sourceProvider": "manual_research",
-      "sourceName": "Oslo byleksikon – Storgata + dokumenterte ruteankre",
+      "sourceName": "Oslo byleksikon – Storgata",
       "sourceUrl": "https://oslobyleksikon.no/side/Storgata",
       "sourceObjectId": "oslobyleksikon:storgata",
-      "sourceQuality": "stable_object_or_extent",
-      "finding": "Oslo byleksikon dokumenterer gateutstrekningen; History Go har eksisterende ruteankre ved Kirkeristen og Nybrua.",
+      "sourceQuality": "documented_street_extent",
+      "finding": "Kilden dokumenterer Storgata og det aktuelle gateløpet.",
       "canVerifyCoordinate": true,
-      "reason": "Dokumentert linjeanker for Storgata. Oslo byleksikon avgrenser gaten fra Dronningens gate ved Kirkeristen til Nybrua. History Go beholder hovedpunktet på den sentrale strekningen og eksisterende ruteankre ved Kirkeristen og Nybrua; punktet er ikke et adressepunkt."
+      "reason": "Stabil identitet og gateutstrekning."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap exact-name Storgata topology",
+      "sourceUrl": "https://www.openstreetmap.org/way/36973177",
+      "sourceObjectId": "osm-way:36973177",
+      "sourceQuality": "named_street_route_geometry",
+      "finding": "15 ordnede way-segmenter over 875.1 meter; displaypunktet ligger direkte på osm-way:36973177.",
+      "canVerifyCoordinate": true,
+      "reason": "Eksakt navngitt gategeometri og deterministisk lengdemidtpunkt."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go street topology research",
+      "sourceUrl": "reports/oslo-coordinate-torggata-storgata-research-20260725/summary-v2.json",
+      "sourceObjectId": "history-go-research:torggata-storgata-20260725:storgata",
+      "sourceQuality": "reproducible_topology_research",
+      "finding": "Tidligere punkt lå 60.1 meter fra gategeometrien og ble flyttet 61.1 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Dokumenterer feilårsak, rutevalg og koordinatbeslutning."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "manual_research",
-      "sourceObjectId": "oslobyleksikon:storgata",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:36973175",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:883399869",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1253420462",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:38850916",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:36973177",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:39685305",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:39339790",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:956495889",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:108165782",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:956495890",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:36951082",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:908463032",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:315066338",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4826650",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:367428083",
       "canApplyToPlace": true
     }
   ],
-  "geometryCandidates": [],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:36973175",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:883399869",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1253420462",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:38850916",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:36973177",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:39685305",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:39339790",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:956495889",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:108165782",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:956495890",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:36951082",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:908463032",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:315066338",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4826650",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:367428083",
+      "canApplyToPlace": true
+    }
+  ],
   "coordinateCandidates": [
     {
-      "lat": 59.9154,
-      "lon": 10.7539,
+      "lat": 59.91490519667192,
+      "lon": 10.754375735199776,
       "coordRole": "line_anchor",
+      "sourceObjectId": "osm-way:36973177",
       "canApplyToPlace": true
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Kildekontrakt og representasjonsanker er anvendt på canonical place."
+    "nextAction": "Eksakt gategeometri, routeSegments og displaypunkt er anvendt på canonical place."
   },
   "notes": [
-    "Dokumentert linjeanker for Storgata. Oslo byleksikon avgrenser gaten fra Dronningens gate ved Kirkeristen til Nybrua. History Go beholder hovedpunktet på den sentrale strekningen og eksisterende ruteankre ved Kirkeristen og Nybrua; punktet er ikke et adressepunkt."
-  ]
+    "Storgata bruker nå et deterministisk lengdemidtpunkt direkte på det endepunktstyrte navngitte Storgata-løpet fra Kirkeristen til Nybrua. Fresh OSM-research ordnet 15 navngitte way-segmenter over 875.1 meter. Det tidligere punktet lå 60.1 meter fra riktig gategeometri; nytt punkt ligger 0 meter fra gategeometrien og ble flyttet 61.1 meter. Midtpunktet ligger på osm-way:36973177. Eksisterende gameplay-radius 230 meter beholdes; hele gateløpet lagres som ordnede routeSegments.",
+    "Research report: reports/oslo-coordinate-torggata-storgata-research-20260725/summary-v2.json"
+  ],
+  "schemaVersion": "1.0"
 }
