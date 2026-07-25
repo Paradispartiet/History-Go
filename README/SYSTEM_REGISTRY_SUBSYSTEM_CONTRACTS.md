@@ -41,27 +41,34 @@ Dette er **empirisk, situert data** – ikke verifisert fakta.
 }
 ```
 
-## Kunnskap, fagstruktur og progresjon
+## Knowledge, fagstruktur og progresjon
 
-Roller:
+Aktiv ansvarsdeling:
 
 - Merker: toppnivå-fagfelt/kategori.
-- Fagkart: faglig struktur (analyse-/feltkart). Ingen progresjonslogikk.
-- Emner: pensum/innhold (én sannhet).
-- Quiz/Observasjon/Notat: evidensgeneratorer.
-- Learning log (`hg_learning_log_v1`): sannhetskilde for brukerens evidens.
-- Courses (`HGCourses`): beregner progresjon, modulstatus og diplom (tolker evidens).
-- Knowledge (`knowledge_universe` + UI): viser lagret kunnskap + kursstatus.
+- Fagkart og pensum: faglig struktur, progresjon og produksjonsgrunnlag.
+- Emner: faglige beholdere for knowledge units, begreper, termer, metoder og historier.
+- Quiz/observasjon/notat: formidlings- og evidensgeneratorer med ulike sannhetsnivåer.
+- `hg_learning_log_v1`: supplerende hendelses-/evidenslogg.
+- `hg_knowledge_memory_v1`: quizens bundle-, lesings- og vurderingslager; synkroniseres til V2.
+- `hg_knowledge_entries_v2`: varig, søkbar personlig Knowledge-read-model.
+- Courses (`HGCourses`): tolker evidens og beregner modulstatus/diplom uten å opprette ny fagstruktur.
+- Profile/Knowledge UI: leser eksisterende modeller og skal ikke definere nye storage- eller progresjonssannheter.
 
-`structure_*.json` er tatt helt ut av runtime. Hvis eldre tekst refererer til «structure», regnes det som deprecated/historisk.
+Canonical Knowledge-rekkefølge:
 
-Ontologi som modell er fortsatt relevant, men runtimekjeden er:
+1. [`../docs/KNOWLEDGE_ARCHITECTURE.md`](../docs/KNOWLEDGE_ARCHITECTURE.md)
+2. [`../data/knowledge/knowledge_system_policy_v1.json`](../data/knowledge/knowledge_system_policy_v1.json)
+3. [`../data/knowledge/knowledge_unit_schema_v1.json`](../data/knowledge/knowledge_unit_schema_v1.json)
+4. [`../data/quiz/quiz_knowledge_delivery_contract_v1.json`](../data/quiz/quiz_knowledge_delivery_contract_v1.json)
+5. `js/knowledgeV2.ts` og `js/knowledgeQuizMemory.ts`
+6. relevante storage- og browsertester
 
-```text
-Merker → Fagkart → Emner → Evidens (learning log) → Courses → UI
-```
+`knowledge_universe` er en legacy-importkilde. Den migreres til `hg_knowledge_entries_v2` og skal ikke gjeninnføres som parallell aktiv storage. Eldre UI kan få en avledet legacy-projeksjon fra V2.
 
-`Courses` er progresjonsmotor (tolkningslag) og skal ikke introdusere ny fagstruktur. Knowledge-visningen er flat og kan vise kursprogresjon via `HGCourseUI` / `HGCourses.compute`.
+`structure_*.json`, den gamle seksnivå-ontologien og knaggeregistermodellen er tatt ut av aktiv Knowledge-arkitektur. Historiske kopier ligger i rapportarkivet og kan ikke overstyre canonical policy, schema, runtime eller tester.
+
+Reading og mastery er separate påstander. Et feil svar kan dokumentere at innholdet er møtt/lest og markere repetisjonsbehov, men kan ikke gi mestring.
 
 ---
 
