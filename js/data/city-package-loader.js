@@ -13,6 +13,9 @@
   const normalizeRows = (data, key) => {
     if (Array.isArray(data)) return data;
     if (Array.isArray(data?.[key])) return data[key];
+    if (key === "places" && data && typeof data === "object" && String(data.id || "").trim()) {
+      return [data];
+    }
     return [];
   };
 
