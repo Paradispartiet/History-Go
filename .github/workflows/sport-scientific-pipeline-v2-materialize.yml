@@ -45,6 +45,10 @@ jobs:
               'state: "partial_pipeline_v2",\n  classified_hooks:',
               'state: "partial",\n  pipeline_state: "infrastructure_ready_evidence_materialization_pending",\n  classified_hooks:'
           )
+          text = text.replace(
+              'evidenceManifest.counts = { ...(evidenceManifest.counts || {}), ...pipelineCounts };',
+              'evidenceManifest.counts = { ...(evidenceManifest.counts || {}), ...pipelineCounts, production_gates: methodPolicy.production_gates.length };'
+          )
           builder.write_text(text)
 
           validator = Path('tools/validate-sport-scientific-pipeline-v2.mjs')
