@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hvitsten_sjobodene",
+  "placeFile": "data/places/by/akershus/hvitsten_sjobodene/hvitsten_sjobodene.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_historical_boathouse_wharf_anchor_applied",
+  "currentCoordinate": {
+    "lat": 59.59803006034044,
+    "lon": 10.655030725129018,
+    "r": 260,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Vestby kommune – Hvitsten sjøbodene; Kartverket adressepunkt Fjordveien 1",
+    "coordType": "documented_historic_boathouse_wharf_anchor",
+    "coordRole": "area_anchor",
+    "sourceObjectId": "vestby-kommune:hvitsten-sjobodene-kulturminne-1997",
+    "coordNote": "The official address point for the southern boathouse at Andersbrygga is used as the physical anchor for the documented multi-building boathouse and wharf environment."
+  },
+  "previousCoordinate": {
+    "lat": 59.5979,
+    "lon": 10.6541,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 54.3,
+    "reasonReplaced": "The legacy point was a generic harbour/settlement-scale coordinate west of the documented boathouse address and lacked stable source identity."
+  },
+  "identity": {
+    "currentName": "Hvitsten sjøbodene",
+    "resolvedIdentity": "The historic multi-building sea-boathouse environment at Andersbrygga, physically anchored at the southern boathouse, Fjordveien 1, 1545 Hvitsten",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "The southern, southwestern and northern boathouse elements, Andersbrygga and their loading history form one coherent waterfront cultural environment."
+  },
+  "requiredEvidence": [
+    "official municipal identification of the sea boathouses as a cultural heritage site",
+    "local historical documentation of the boathouse components and Andersbrygga",
+    "official address point for a physically identified boathouse",
+    "explicit area-anchor derivation and exclusion of generic Hvitsten locations"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Vestby kommune – Hvitsten",
+      "sourceUrl": "https://www.vestby.kommune.no/hvitsten.531264.no.html",
+      "sourceObjectId": "vestby-kommune:hvitsten-sjobodene-kulturminne-1997",
+      "sourceQuality": "official_cultural_heritage_identity_and_harbour_history",
+      "finding": "Vestby municipality identifies the old sea boathouses on the pier as the municipality's 1997 cultural heritage monument and describes Hvitsten as a loading port for timber to Holland and ice to England.",
+      "canVerifyCoordinate": true,
+      "reason": "The official page establishes the historical identity and waterfront scope that the physical address anchor represents."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Hvitsten Vel – Sjøboden and the pier",
+      "sourceUrl": "https://www.hvitstenvel.no/Hvitsten-Vel",
+      "sourceObjectId": "hvitsten-vel:sjoboden-andersbrygga",
+      "sourceQuality": "local_institutional_site_identity",
+      "finding": "Hvitsten Vel identifies Andersbrygga as the pier at the sea boathouses and states that Hvitsten Seilforening occupies the southern boathouse.",
+      "canVerifyCoordinate": true,
+      "reason": "Links the physical southern boathouse and Andersbrygga to the wider historical site represented by the record."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Fjordveien 1",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "kartverket-address:3216:56/499:2905:1",
+      "sourceQuality": "official_address_representation_point",
+      "finding": "Kartverket returns exactly one Fjordveien 1, 1545 Hvitsten address object: municipality 3216, farm/use number 56/499, address code 2905, representation point 59.59803006034044, 10.655030725129018.",
+      "canVerifyCoordinate": true,
+      "reason": "Provides the official physical representation point for the documented southern boathouse address."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Hvitsten Seilforening founding notice",
+      "sourceUrl": "https://www.hvitstenvel.no/files/Seilforening/INNKALLING%20TIL%20STIFTELSESM%C3%98TE%20AV%20HVITSTEN%20SEILFORENING.pdf",
+      "sourceObjectId": "hvitsten-seilforening:sjoboden-sor-fjordveien-1",
+      "sourceQuality": "direct_building_address_identification",
+      "finding": "The notice names the meeting location as 'Sjøboden (sør), Fjordveien 1, 1545 Hvitsten'.",
+      "canVerifyCoordinate": false,
+      "reason": "Connects the official address object specifically to the southern sea boathouse rather than merely to an organisation's postal address."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Hvitsten Vel – Hvitsten i historie og tid",
+      "sourceUrl": "https://www.hvitstenvel.no/Hvitsten-i-historie-og-tid",
+      "sourceObjectId": "hvitsten-vel:boathouse-building-history",
+      "sourceQuality": "local_detailed_building_history",
+      "finding": "The southeastern boathouse was built on site in the 1720s, the southwestern section was moved from Emmerstad in the 1880s, and the northern boathouse was built on site in the 1870s. Water formerly reached the buildings for direct loading and unloading.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines the multi-building historic environment and prevents the record from being reduced to one modern-use building."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy canonical point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:hvitsten_sjobodene",
+      "sourceQuality": "generic_harbour_or_settlement_scale_point",
+      "finding": "The previous coordinate 59.5979, 10.6541 lies approximately 54.3 metres west of the official southern-boathouse address point and had no source contract.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it cannot be tied specifically to the sea-boathouse environment rather than generic Hvitsten harbour or settlement data."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Fjordveien",
+        "number": "1",
+        "postcode": "1545",
+        "city": "Hvitsten",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "kartverket-address:3216:56/499:2905:1",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "vestby-kommune:hvitsten-sjobodene-kulturminne-1997",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "kartverket-address:3216:56/499:2905:1",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hvitsten_sjobodene",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [],
+  "anchors": [
+    {
+      "id": "hvitsten_sjoboden_sor_fjordveien_1",
+      "name": "Southern sea boathouse at Andersbrygga",
+      "lat": 59.59803006034044,
+      "lon": 10.655030725129018,
+      "r": 70,
+      "type": "area_anchor",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "kartverket-address:3216:56/499:2905:1",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hvitsten_sjobodene",
+      "lat": 59.5979,
+      "lon": 10.6541,
+      "coordRole": "generic_harbour_or_settlement_point",
+      "distanceFromAppliedM": 54.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "kartverket-address:3216:56/499:2905:1",
+      "lat": 59.59803006034044,
+      "lon": 10.655030725129018,
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 54.3,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-hvitsten-sjobodene-source-probe/geonorge-fjordveien-1.json",
+      "description": "Raw Kartverket Address API response persisted by the one-time source probe."
+    },
+    {
+      "path": "reports/akershus-coordinate-hvitsten-sjobodene-source-probe/geonorge-fjordveien-1-summary.txt",
+      "description": "Deterministic exact-match summary for Fjordveien 1, 1545 Hvitsten."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the official southern-boathouse address point as physical anchor for the municipally documented sea-boathouse and Andersbrygga cultural environment. The original eight-place Akershus history batch-2 coordinate queue is complete."
+  },
+  "notes": [
+    "The record remains in category by after the later category migration, while retaining a historic-site coordinate contract.",
+    "The southern boathouse address point is a physical anchor for a multi-building environment, not a claim that all boathouses share one address point.",
+    "The coordinate does not represent all of Hvitsten beach, harbour or settlement.",
+    "The 260-metre radius covers the sea boathouses, Andersbrygga and immediate loading/shore environment, not an exact cultural-environment polygon.",
+    "No generic Hvitsten locality, port or beach coordinate was promoted to verified."
+  ]
+}
