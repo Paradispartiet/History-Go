@@ -63,11 +63,18 @@
     },
     {
       "path": "README/SYSTEM_REGISTRY.md",
-      "status": "transitional",
-      "role": "Bindende eierskap for dagens runtime, men med kjent innlimt legacy-historikk",
+      "status": "canonical",
+      "role": "Bindende eierskap og kontrakter for dagens runtime",
       "owns": ["current_runtime_ownership"],
-      "last_verified": "2026-07-25",
-      "debt": "Aktiv kontrakt og innlimt legacy-historikk må konsolideres uten å miste gjeldende runtime-regler."
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "README/archive/SYSTEM_REGISTRY_PRE_SPLIT_2026-07-25.md",
+      "status": "historical",
+      "role": "Byte-identisk snapshot av SYSTEM_REGISTRY før aktiv kontrakt og innlimt legacytekst ble splittet",
+      "owns": [],
+      "superseded_by": ["README/SYSTEM_REGISTRY.md"],
+      "historical_reason": "Bevarer hele pre-split-filen for sporbarhet; den inneholder utdaterte paths, sediment-lenker og appendikser som ikke er bindende."
     },
     {
       "path": "README/SYSTEM_MAP.md",
@@ -165,11 +172,18 @@
     },
     {
       "path": "docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md",
+      "status": "operational",
+      "role": "Kort historisk peker til arkivert spillbarhets-gaprapport og aktive erstatningskilder",
+      "owns": [],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "reports/archive/HISTORY_GO_PLAYABLE_GAP_AUDIT_2026-04-30.md",
       "status": "historical",
-      "role": "Spillbarhetsaudit basert på eldre place-audit fra 2026-04-30",
+      "role": "Full spillbarhets-gaprapport basert på place-auditen fra 2026-04-30",
       "owns": [],
       "superseded_by": ["docs/HISTORY_GO_PRODUCT_MAP.md", "reports/data-health-summary.md"],
-      "historical_reason": "Snapshot med eldre aggregate place-paths og tall."
+      "historical_reason": "Snapshot med 228 places, eldre aggregate place-paths og tidsbundne prioriteringer."
     },
     {
       "path": "reports/README.md",
