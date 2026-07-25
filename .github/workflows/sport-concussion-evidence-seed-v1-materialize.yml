@@ -28,9 +28,58 @@ jobs:
           set -euo pipefail
           git clone --quiet --depth 1 --branch '${{ github.head_ref }}' "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" repo
 
-      - name: Apply precise CDC candidate title
+      - name: Apply review-level appraisal compatibility
         working-directory: repo
-        run: sed -i 's/title: "Returning to Sports"/title: "CDC HEADS UP: Returning to Sports After a Concussion"/' tools/build-sport-concussion-evidence-seed-v1.mjs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          builder = Path('tools/build-sport-concussion-evidence-seed-v1.mjs')
+          text = builder.read_text()
+          text = text.replace(
+              'applicability: "Systematiske oversikter og metaanalyser",\n    domains:',
+              'applicability: "Systematiske oversikter og metaanalyser",\n    appraisal_level: "review_document",\n    domains:',
+              1,
+          )
+          text = text.replace(
+              'applicability: "Kliniske retningslinjer, folkehelseråd og konsensusuttalelser",\n    domains:',
+              'applicability: "Kliniske retningslinjer, folkehelseråd og konsensusuttalelser",\n    appraisal_level: "review_document",\n    domains:',
+              1,
+          )
+          text = text.replace(
+              'evidenceManifest.pipeline_status = "first_priority_protocol_registered_candidate_seed_ready_screening_pending";',
+              'evidenceManifest.pipeline_status = "scientific_pipeline_infrastructure_ready_evidence_materialization_pending";\nevidenceManifest.first_priority_package_status = "protocol_registered_candidate_seed_ready_screening_pending";',
+              1,
+          )
+          text = text.replace(
+              'title: "Returning to Sports",',
+              'title: "CDC HEADS UP: Returning to Sports After a Concussion",',
+              1,
+          )
+          builder.write_text(text)
+
+          validator = Path('tools/validate-sport-scientific-pipeline-v2.mjs')
+          vtext = validator.read_text()
+          old = '  require(tool.result_level_required === true, "biasverktøy er ikke resultatspesifikt", tool.tool_id);'
+          new = '''  if (tool.appraisal_level === "review_document") {
+            require(tool.result_level_required === false, "reviewverktøy er feilaktig resultatspesifikt", tool.tool_id);
+          } else {
+            require(tool.result_level_required === true, "biasverktøy er ikke resultatspesifikt", tool.tool_id);
+          }'''
+          if old not in vtext:
+              raise SystemExit('Fant ikke resultatnivåkontrollen i V2-validatoren')
+          vtext = vtext.replace(old, new, 1)
+          old_gate = '    result_level_bias_required: tools.every((item) => item.result_level_required && item.independent_reviewers_required === 2),'
+          new_gate = '''    result_level_bias_required: tools
+              .filter((item) => item.appraisal_level !== "review_document")
+              .every((item) => item.result_level_required && item.independent_reviewers_required === 2),
+            review_document_appraisal_requires_dual_review: tools
+              .filter((item) => item.appraisal_level === "review_document")
+              .every((item) => item.result_level_required === false && item.independent_reviewers_required === 2),'''
+          if old_gate not in vtext:
+              raise SystemExit('Fant ikke result_level_bias_required-porten')
+          validator.write_text(vtext.replace(old_gate, new_gate, 1))
+          PY
 
       - name: Build registered concussion package
         working-directory: repo
@@ -113,6 +162,7 @@ jobs:
           git add data/fag/sport/supersetQUIZMAL_sport.json
           git add tools/build-sport-concussion-evidence-seed-v1.mjs
           git add tools/validate-sport-concussion-evidence-seed-v1.mjs
+          git add tools/validate-sport-scientific-pipeline-v2.mjs
           git add reports/sport-concussion-evidence-seed-v1.md
           git add reports/sport-concussion-evidence-seed-v1-validation.json
           git add -u .github/workflows/sport-concussion-evidence-seed-v1-materialize.yml
