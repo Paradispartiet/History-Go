@@ -49,7 +49,7 @@ jobs:
           NODE
       - name: Install dependencies
         run: npm ci
-      - name: Run permanent history freeze validators
+      - name: Run permanent history freeze validators and dependent rebuilds
         shell: bash
         run: |
           set -euo pipefail
@@ -63,6 +63,10 @@ jobs:
           run node tools/validate-historie-quality-tid-periodisering.mjs
           run node tools/validate-historie-quality-kilder-arkiv-spor.mjs
           run node tools/validate-historie-v5.mjs
+          run node scripts/build-quiz-production-context.mjs --category historie --target grindheim_runestein --output data/quiz/production_context/historie/grindheim_runestein.json
+          run node scripts/build-quiz-production-context.mjs --category historie --target grindheim_steinkross --output data/quiz/production_context/historie/grindheim_steinkross.json
+          run node scripts/build-quiz-production-context.mjs --category historie --target grindheimsveien_nord_gravfelt --output data/quiz/production_context/historie/grindheimsveien_nord_gravfelt.json
+          run node scripts/build-quiz-production-context.mjs --category historie --target hoyland_gravhaug_etne --output data/quiz/production_context/historie/hoyland_gravhaug_etne.json
           run npm run audit:quiz-production-context
           run npm run audit:quiz-theory-binding
           run npm run test:quiz-production
@@ -74,7 +78,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          unexpected="$(git diff --name-only | grep -Ev '^(tools/validate-historie-makt-stat-institusjoner\.mjs|data/fag/historie/emner_historie_canonical_v4_5\.json|reports/historie-v5/makt-stat-institusjoner-curation-command-v2\.log|reports/coordinate-branch-runner/agent_oslo-coordinate-history-v5-5-power-curation-v3/|reports/coordinate-evidence-audit\.md|reports/place-coordinate-intake-gate\.md|reports/place-coordinate-quality-gate\.md|reports/place-source-layout-audit\.json)$' || true)"
+          unexpected="$(git diff --name-only | grep -Ev '^(tools/validate-historie-makt-stat-institusjoner\.mjs|data/fag/historie/emner_historie_canonical_v4_5\.json|data/quiz/production_context/historie/(grindheim_runestein|grindheim_steinkross|grindheimsveien_nord_gravfelt|hoyland_gravhaug_etne)\.json|reports/historie-v5/makt-stat-institusjoner-curation-command-v2\.log|reports/coordinate-branch-runner/agent_oslo-coordinate-history-v5-5-power-curation-v3/|reports/coordinate-evidence-audit\.md|reports/place-coordinate-intake-gate\.md|reports/place-coordinate-quality-gate\.md|reports/place-source-layout-audit\.json)$' || true)"
           test -z "$unexpected" || { echo 'Unexpected changed files:'; echo "$unexpected"; exit 1; }
       - name: Upload validation log
         if: always()
