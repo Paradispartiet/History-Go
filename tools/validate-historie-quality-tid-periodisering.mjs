@@ -120,12 +120,12 @@ try {
 if (readiness) {
   const domainReadiness = A(readiness.domains).find((item) => item.domain_id === domainId);
   check(domainReadiness?.freeze_ready === true, 'time domain is freeze-ready');
-  check(domainReadiness?.issue_counts?.emners === 0, 'time domain has zero emne issues');
+  check(domainReadiness?.issue_counts?.emner === 0, 'time domain has zero emne issues');
   check(domainReadiness?.issue_counts?.concepts === 0, 'time domain has zero concept issues');
   check(domainReadiness?.issue_counts?.theories === 0, 'time domain has zero theory issues');
   check(readiness.quality_issue_totals?.concepts === 785, 'global concept queue reduced to 785');
   check(readiness.quality_issue_totals?.theories === 190, 'global theory queue reduced to 190');
-  check(readiness.quality_issue_totals?.emners === 0, 'global emne queue remains zero');
+  check(readiness.quality_issue_totals?.emner === 0, 'global emne queue remains zero');
   check(readiness.quality_issue_totals?.domains_not_freeze_ready === 19, '19 domains remain');
   check(readiness.v6_allowed === false, 'V6 remains blocked');
 }
