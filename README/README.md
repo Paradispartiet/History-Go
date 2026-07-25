@@ -152,15 +152,15 @@ Det skal ikke være en generell møteapp. Det skal handle om preset-baserte, pri
 
 ---
 
-## 4. Ferdigstillelseskart, gaprapport og ferdigdefinisjoner
+## 4. Ferdigstillelseskart og ferdigdefinisjoner
 
 Det operative produktkartet ligger her:
 
 - [`docs/HISTORY_GO_PRODUCT_MAP.md`](../docs/HISTORY_GO_PRODUCT_MAP.md)
 
-Den operative gaprapporten ligger her:
+Den gamle gaprapportstien er beholdt som compatibility-pointer, ikke som aktiv statusrapport:
 
-- [`docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md`](../docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md) — kjent gap mellom bygget system og spillbar ferdig app
+- [`docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md`](../docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md)
 
 Korrigering for progresjonsarbeid:
 
@@ -206,8 +206,10 @@ Se også:
 
 - [`README.pensum.md`](./README.pensum.md)
 - [`fagstrukturREADME.md`](./fagstrukturREADME.md)
-- [`emnepackREADME`](./emnepackREADME)
 - [`quizREADME.md`](./quizREADME.md)
+- [`data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) — aktiv mapping fra fag til pensum, emner, fagkart, metoder og quizproduksjon
+
+Det gamle extensionløse `emnepackREADME` var et biologispesifikt utkast og er fjernet. Det skal ikke brukes som generell emnearkitektur.
 
 ---
 
@@ -270,9 +272,10 @@ node tools/check_places_index_sync.mjs
 ## 9. Dokumentasjonskart
 
 - `README.md` i repo-rot: kort inngang
+- `docs/README.md`: canonical dokumentasjonskart og statusregister
 - `README/README.md`: denne hovedoversikten
 - `docs/HISTORY_GO_PRODUCT_MAP.md`: produktkart og ferdigstillelseskart
-- `docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md`: spillbarhets-gaprapport
+- `docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md`: compatibility-pointer fra gamle gaprapportlenker
 - `docs/PROFILE_PROGRESS_REUSE_AUDIT.md`: audit av hva profile allerede leser og hvordan det bør gjenbrukes
 - `docs/COMPLETION_DEFINITIONS.md`: definisjon av fullført
 - `docs/PROGRESSION_MODEL.md`: progresjons-read-model
@@ -285,7 +288,8 @@ node tools/check_places_index_sync.mjs
 - `docs/HG_SOCIAL_README.md`: Social Meet / HG Social / Spotmeeting
 - `docs/DOMAIN_REGISTRY_README.md`: domene- og aliasstruktur
 - `docs/README_HistoryGo_Historiske_Ruter.md`: historiske ruter
+- `docs/CIVICATION_README.md`: separat dokumentasjonsinngang for Civication
 
 README-regel:
 
-> Én sannhet per dokument. Rot-README er inngang. Hoved-README er oversikt. Produktkartet eier ferdigstillelsesstatus. Gaprapporten eier kjent spillbarhetsgap. Profile-progress-auditen korrigerer progresjonsretningen: gjenbruk eksisterende profile-lesing før nye modeller lages. Fag-, data-, quiz-, social- og place-rounds-kontrakter skal ikke overstyres av nye planleggingsdokumenter.
+> Én sannhet per dokument. Rot-README er inngang. Hoved-README er oversikt. Produktkartet eier ferdigstillelsesstatus. Compatibility-filer eier ingen produktsannhet. Fag-, data-, quiz-, social- og place-rounds-kontrakter skal ikke overstyres av nye planleggingsdokumenter.
