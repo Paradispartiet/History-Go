@@ -66,11 +66,19 @@ Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk
 
 1. [`../README/README.pensum.md`](../README/README.pensum.md)
 2. [`../README/fagstrukturREADME.md`](../README/fagstrukturREADME.md)
-3. [`../README/emnepackREADME`](../README/emnepackREADME)
-4. [`../README/quizREADME.md`](../README/quizREADME.md)
+3. [`../README/quizREADME.md`](../README/quizREADME.md)
+4. [`../data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) — aktiv mapping fra fag til pensum, emner, fagkart, metoder og quizproduksjon
 5. canonical JSON-registre og generatorregler under `data/fag/` og `data/quiz/`
 
-`README/quizREADME.md` er merket `transitional` inntil gamle eksempelpaths og generatorversjoner er synkronisert med dagens manifest- og V5.1-pipeline.
+Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. `README/quizREADME.md` er fortsatt merket `transitional` inntil gamle eksempelpaths og generatorversjoner er synkronisert med dagens manifest- og V5.1-pipeline.
+
+### Civication
+
+- [`CIVICATION_README.md`](./CIVICATION_README.md) — operativ inngang til Civication-runtime, data-, rolle-, mail- og FWG-dokumentasjon
+- [`../js/Civication/README.md`](../js/Civication/README.md) — motoroversikt og aktiv dagflyt
+- [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — bindende subsystemkontrakter
+
+De to gamle generelle Civication-utkastene under `README/` er fjernet. Nye Civication-dokumenter skal plasseres under riktig kontrakt eller som tidsbundne rapporter, ikke som nye parallelle hoved-READMEs.
 
 ### Rapporter og audits
 
@@ -139,11 +147,13 @@ Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation
 - maskinlesbart dokumentinventar lagt til i dokumentasjonsgaten
 - aktiv `SYSTEM_REGISTRY` skilt fra byte-identisk pre-split-arkiv
 - aktive subsystemappendikser samlet i en egen canonical kontrakt
+- seks feilformede/extensionløse README-filer fjernet
+- én Civication-dokumentasjonsinngang opprettet
+- foreldet `badge_refs`-regel og biologispesifikk emnearkitektur fjernet fra aktiv dokumentflate
 
 ### Neste
 
-- bruk inventaret til å rydde uregistrerte globale dokumentkandidater kontrollert
+- bruk inventaret til å klassifisere de gjenværende uregistrerte globale dokumentkandidatene
 - konsolider quizdokumentasjonen mot aktiv V5.1-/manifestpipeline
-- opprett én Civication-dokumentindeks
 - flytt daterte audits og migreringsstatus til `reports/archive/`
-- standardiser de mistenkelige README-filnavnene med redirects eller lenkeoppdatering
+- slå sammen konkrete overlappgrupper, først Civication job model og role-pack index
