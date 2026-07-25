@@ -28,11 +28,12 @@ jobs:
           set -euo pipefail
           git clone --quiet --depth 1 --branch '${{ github.head_ref }}' "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" repo
 
-      - name: Add final curated emne routes
+      - name: Apply final curated routing rules
         working-directory: repo
         run: |
           python - <<'PY'
           from pathlib import Path
+
           path = Path('tools/refine-sport-theory-mapping-v6.mjs')
           text = path.read_text()
           old = '''  em_sport_arena_samling: ["hook_sport_groundhopping_stedsidentitet", "hook_sport_idrettsminne_kulturarv"],
@@ -51,6 +52,13 @@ jobs:
           if old not in text:
               raise SystemExit('Fant ikke explicitEmneRoutes-blokken')
           path.write_text(text.replace(old, new, 1))
+
+          validator = Path('tools/validate-sport-theory-depth-v6.mjs')
+          validator_text = validator.read_text()
+          old_status = 'claim.theory_coverage_status === "mapped_v6"'
+          if old_status not in validator_text:
+              raise SystemExit('Fant ikke gammel claim-status i validatoren')
+          validator.write_text(validator_text.replace(old_status, 'claim.theory_coverage_status === "curated_v6"', 1))
           PY
 
       - name: Build theory depth and coverage
