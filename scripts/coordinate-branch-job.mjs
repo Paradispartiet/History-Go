@@ -34,7 +34,7 @@ const replacements = [
     ""
   ],
   [
-    "  emners_corrected: finalEmner.length,\n",
+    "  emner_corrected: finalEmner.length,\n",
     "  emner_reviewed: 10,\n  emne_concept_corrections: emneConceptCorrections,\n"
   ],
   [
