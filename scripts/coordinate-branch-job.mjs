@@ -21,7 +21,7 @@ const domain = A(pensum.domains).find((item) => item.domain_id === domainId);
 const category = A(fagkart.categories).find((item) => item.id === domainId);
 const hookIds = new Set(A(category?.topic_hooks).map((item) => item.id));
 const emneIds = new Set(A(domain?.emne_ids));
-const domainEmners = emners.filter((item) => emneIds.has(item.emne_id));
+const domainEmners = emner.filter((item) => emneIds.has(item.emne_id));
 const domainMappings = mappings.filter((item) => emneIds.has(item.emne_id));
 const domainConcepts = concepts.filter((item) => A(item.domain_ids).includes(domainId));
 const domainTheories = theories.filter((item) => A(item.explanatory_scope).includes(domainId) || hookIds.has(item.source_hook_id));
