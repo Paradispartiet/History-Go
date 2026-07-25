@@ -4,10 +4,14 @@ import { spawnSync } from 'node:child_process';
 
 const branch = 'agent/history-phase8-builder';
 const targets = [
-  'grindheim_runestein',
-  'grindheim_steinkross',
-  'grindheimsveien_nord_gravfelt',
-  'hoyland_gravhaug_etne'
+  { category: 'by', target: 'deichman_bjorvika' },
+  { category: 'historie', target: 'grindheim_runestein' },
+  { category: 'historie', target: 'grindheim_steinkross' },
+  { category: 'historie', target: 'grindheimsveien_nord_gravfelt' },
+  { category: 'historie', target: 'hoyland_gravhaug_etne' },
+  { category: 'naeringsliv', target: 'telegrafbygningen' },
+  { category: 'naeringsliv', target: 'oslo_posthus' },
+  { category: 'naeringsliv', target: 'havnelageret' }
 ];
 
 function run(command, args) {
@@ -22,12 +26,12 @@ function run(command, args) {
   }
 }
 
-for (const target of targets) {
+for (const { category, target } of targets) {
   run(process.execPath, [
     'scripts/build-quiz-production-context.mjs',
-    '--category', 'historie',
+    '--category', category,
     '--target', target,
-    '--output', `data/quiz/production_context/historie/${target}.json`
+    '--output', `data/quiz/production_context/${category}/${target}.json`
   ]);
 }
 
@@ -56,7 +60,7 @@ fs.rmSync('scripts/coordinate-branch-job.mjs', { force: true });
 run('git', ['config', 'user.name', 'github-actions[bot]']);
 run('git', ['config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com']);
 run('git', ['add', '-A']);
-run('git', ['commit', '-m', 'Refresh phase 8 production artifacts after main sync']);
+run('git', ['commit', '-m', 'Refresh all quiz production artifacts after main sync']);
 run('git', ['push', 'origin', `HEAD:${branch}`]);
 
 console.log('Phase 8 finalization passed and was published.');
