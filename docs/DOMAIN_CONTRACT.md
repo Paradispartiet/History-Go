@@ -14,21 +14,9 @@ Runtime-, UI- og redaksjonelle filer skal samsvare med maskinkontrakten. `script
 
 ## 1. Kjerneprinsipp
 
-Ett domene har én runtime-id og én fag-id.
+Ett domene har én runtime-id og én fag-id. Runtime-id og fag-id er identiske for alle canonical toppkategorier. Alias er bare tillatt ved eksplisitte import-, migrerings- og normaliseringsgrenser.
 
-I dagens kontrakt er runtime-id og fag-id identiske for alle canonical toppkategorier. Alias er bare tillatt ved eksplisitte import-, migrerings- og normaliseringsgrenser.
-
-Samme kategoriidentitet skal være konsistent i:
-
-- `place.category`
-- `merits_by_category`
-- badge-id og badgeindeks
-- quiz `categoryId`
-- `data/fag/fag_manifest.json`
-- `data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`
-- `js/DomainRegistry.js`
-- `js/core/categories.ts`
-- place-valideringspolicyen
+Samme kategoriidentitet skal være konsistent i `place.category`, `merits_by_category`, badge-id, quiz `categoryId`, fagmanifest, quizregister, DomainRegistry, kategori-UI og place-valideringspolicy.
 
 ## 2. Canonical toppkategorier
 
@@ -48,155 +36,89 @@ Samme kategoriidentitet skal være konsistent i:
 | `scenekunst` | `scenekunst` | Scenekunst |
 | `sport` | `sport` | Sport & lek |
 | `subkultur` | `subkultur` | Subkultur |
-| `vitenskap` | `vitenskap` | Vitenskap & teknologi |
+| `vitenskap` | `vitenskap` | Vitenskap |
+| `teknologi` | `teknologi` | Teknologi |
 | `filosofi` | `filosofi` | Filosofi |
 | `film_tv` | `film_tv` | Film & TV |
 
-Listen skal ikke vedlikeholdes manuelt i andre dokumenter. Ved tvil gjelder `data/categories/category_contract.json`.
+Ved tvil gjelder `data/categories/category_contract.json`.
 
 ## 3. Låste domenebeslutninger
 
-### Kunst
+### Vitenskap
 
-`kunst` dekker visuell og materiell kunst: maleri, skulptur, tegning, grafikk, fotografi, samtidskunst, design, offentlig kunst, museer, gallerier og samlinger.
+`vitenskap` dekker empirisk og formell kunnskapsproduksjon: observasjon, måling, eksperimenter, matematikk, modeller, naturvitenskap, medisin, klima- og miljøvitenskap, forskning og vitenskapelige institusjoner.
 
-### Scenekunst
+Et laboratorium, observatorium eller forskningsinstitutt er normalt primært `vitenskap` når kunnskapsproduksjonen står i sentrum.
 
-`scenekunst` dekker teater, drama, dans, koreografi, musikal, revy, standup, improvisasjon, performance og sceneinstitusjoner. `teater`, `theatre` og `theater` normaliseres til `scenekunst` ved kompatibilitetsgrenser.
+### Teknologi
 
-### Musikk
+`teknologi` er en selvstendig runtime- og fagkategori. Den dekker:
 
-`musikk` dekker artister, ensembler, konserter, scener, sjangre, komposisjon, framføring, lyd og produksjon.
+- ingeniørprosess, design, prototyper og systemavveininger
+- maskiner, energi, materialer og produksjon
+- elektronikk, sensorer, robotikk og automatisering
+- datamaskinarkitektur, operativsystemer og programvare
+- data, algoritmer og kunstig intelligens
+- nettverk, internett, cybersikkerhet og digital infrastruktur
+- teknologihistorie, standarder, vedlikehold, etikk og risiko
 
-### Kultur
+`technology`, `tech`, `it` og `informasjonsteknologi` normaliseres til `teknologi`. `science` og `sci` normaliseres til `vitenskap`.
 
-`kultur` er ikke toppkategori eller badge. Begrepet brukes som tverrfaglig beskrivelse.
+Grenseflater:
 
-### Film & TV
-
-`film_tv` er selvstendig toppkategori. Legacy-id-ene `film` og `tv` normaliseres til `film_tv`.
-
-### Media
-
-`media` dekker journalistikk, redaksjonelle institusjoner, pressehistorie, medieetikk, offentlighet, plattformer og distribusjon. `journalistikk` normaliseres til `media`.
-
-### Religion
-
-`religion` dekker religion, tro, ritualpraksis, aktive hellige steder og religiøse institusjoner. Dagens primærfunksjon styrer place-klassifiseringen.
-
-### Vitenskap & teknologi
-
-`vitenskap` dekker empirisk og formell kunnskapsproduksjon samt teknologi, ingeniørfag og IT: observasjon, måling, eksperimenter, matematiske modeller, forskning, maskiner, elektronikk, programvare, algoritmer, data, nettverk, datasentre, cybersikkerhet og digital infrastruktur.
-
-Bedriften som virksomhet hører normalt til `naeringsliv`; medieinnholdet hører til `media`; den tekniske løsningen og kunnskapen hører til `vitenskap`.
+- Bedriften som virksomhet, marked og eierskap hører normalt til `naeringsliv`; den tekniske løsningen hører til `teknologi`.
+- Medieinnhold og journalistikk hører til `media`; plattformens programvare, algoritmer eller nettverk hører til `teknologi`.
+- Arkitektur, byrom og areal hører til `by`; byggets tekniske systemer kan gi `teknologi` som primær eller sekundær kategori.
+- Naturfenomenet eller økosystemet hører til `natur`; målingen og forskningen kan høre til `vitenskap`; den konstruerte løsningen hører til `teknologi`.
+- Vitenskaps- og teknologifilosofi hører til `filosofi` når argumentet står i sentrum.
 
 ### Filosofi
 
-`filosofi` er selvstendig runtime- og fagkategori. Det dekker:
+`filosofi` er selvstendig runtime- og fagkategori for argumentasjon, epistemologi, metafysikk, etikk, politisk filosofi, estetikk, fenomenologi, idéhistorie og vitenskaps- og teknologifilosofi.
 
-- argumentasjon, logikk og begrepsanalyse
-- epistemologi, metafysikk og bevissthetsfilosofi
-- etikk og anvendt etikk
-- politisk filosofi og offentlig fornuft
-- estetikk og hermeneutikk
-- vitenskaps- og teknologifilosofi
-- eksistensialisme og fenomenologi
-- idéhistorie og miljøfilosofi
+### Kultur, film, media, religion og scenekunst
 
-`philosophy` normaliseres til `filosofi`. Et sted er primært `filosofi` når filosofisk tenkning, en dokumentert tenker, en intellektuell tradisjon eller en filosofisk offentlig praksis er stedets sentrale relevans. Empiriske forskningsinstitusjoner forblir normalt `vitenskap`. Reell tverrfaglighet uttrykkes med `secondaryBadgeIds`.
+`kultur` er ikke toppkategori. `film_tv`, `media`, `religion`, `scenekunst`, `kunst` og `musikk` er selvstendige domener i henhold til maskinkontrakten.
 
 ### Populærkultur
 
 `populaerkultur` og `popkultur` er ikke canonical toppkategorier. Populærkultur brukes som tagg, linse og mediefaglig analysefelt.
 
-Legacy-kode kan fortsatt ha eksplisitte kompatibilitetsaliaser for eldre lagring eller filer. Disse aliasene:
-
-- skal ikke returneres av canonical kategori-lister
-- skal ikke brukes i nye places, badges, quizpakker eller fagmanifest
-- skal ikke tolkes som et ekstra domene
-- skal fases ut gjennom kontrollerte migreringer, ikke skjult monkey-patching
-
 ### Sosial læring
 
-`sosial_laering` er et non-place progression badge. Det skal ikke forekomme i `place.category`, runtime-kategorilister eller fagmanifestet.
+`sosial_laering` er et non-place progression badge og skal ikke forekomme i runtime-kategorilister eller fagmanifest.
 
 ## 4. Primær og sekundær badgebruk
 
-Hvert sted har én primær kategori:
-
-```json
-{
-  "category": "filosofi",
-  "secondaryBadgeIds": ["natur", "vitenskap"]
-}
-```
-
-Regler:
-
-- `category` er obligatorisk og entall.
-- `secondaryBadgeIds` er valgfritt.
-- Sekundærbadges må være aktive runtimekategorier.
-- Primærkategorien skal ikke gjentas som sekundær.
-- Sekundærbadges uttrykker reell tverrfaglighet; de erstatter ikke primærbeslutningen.
+Hvert sted har én primær kategori. `secondaryBadgeIds` uttrykker reell tverrfaglighet og erstatter ikke primærbeslutningen.
 
 Eksempler:
 
-- Et dokumentert filosofisk tenkested kan være primært `filosofi`, med `natur` sekundært.
-- En institusjon for vitenskapsfilosofi kan være primært `filosofi`, med `vitenskap` sekundært.
-- Et laboratorium er normalt primært `vitenskap`.
-- Et teater er primært `scenekunst`, med `litteratur` sekundært når dramatisk litteratur er sentral.
-- En redaksjon er primært `media`.
-- En kino eller et filmstudio er primært `film_tv`.
+- Et laboratorium er normalt `vitenskap`.
+- Et datasenter er normalt `teknologi`, eventuelt med `naeringsliv` eller `by` sekundært.
+- Et teknologiselskap er `naeringsliv` når virksomheten står i sentrum og `teknologi` når det tekniske systemet står i sentrum.
+- Et teknisk museum kan være `teknologi`, med `historie` og `vitenskap` sekundært.
+- En institusjon for teknologifilosofi er normalt `filosofi`, med `teknologi` sekundært.
 
 ## 5. Fileierskap
 
-Canonical maskinkontrakt:
+- Canonical maskinkontrakt: `data/categories/category_contract.json`
+- Alias og runtimekonvertering: `js/DomainRegistry.js`
+- Kategori-UI: `js/core/categories.ts`
+- Badges: `data/badges/index.json` og `data/badges/<runtime-id>.json`
+- Fag- og quizregister: `data/fag/fag_manifest.json` og `data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json`
+- Place-validering: `tools/placeSchemaPolicy.mts`
 
-```text
-data/categories/category_contract.json
-```
+## 6. Migreringsregel
 
-Alias og runtimekonvertering:
+Eksisterende steder, quiz og `em_vit_it_*`-koblinger flyttes ikke automatisk. Migrering skal skje i evidensbaserte batcher:
 
-```text
-js/DomainRegistry.js
-```
+1. Behold `vitenskap` når hovedsaken er forskning, observasjon, måling, modell eller natur-/medisinsk kunnskapsproduksjon.
+2. Bruk `teknologi` når hovedsaken er et konstruert system, maskin, materiale, programvare, algoritme, nettverk eller infrastruktur.
+3. Bruk sekundærbadges når begge lag er reelt sentrale.
+4. Dokumenter hver flytting og oppdater sted, emnekobling og quizprofil samlet.
 
-Kategori-UI:
+## 7. Produksjonsregel
 
-```text
-js/core/categories.ts
-```
-
-Badges:
-
-```text
-data/badges/index.json
-data/badges/<runtime-id>.json
-```
-
-Fag- og quizprofilregister:
-
-```text
-data/fag/fag_manifest.json
-data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json
-```
-
-Place-validering:
-
-```text
-tools/placeSchemaPolicy.mts
-```
-
-## 6. Produksjonsregel
-
-Før kategori-data opprettes eller flyttes:
-
-1. Kontroller `data/categories/category_contract.json`.
-2. Ikke opprett en ny toppnivå-id lokalt i place-, people-, quiz- eller fagdata.
-3. Dersom en ny kategori ønskes, endres maskinkontrakten først.
-4. Oppdater DomainRegistry, badges, fagmanifest, quizprofilregister, kategori-UI og validering i samme endring.
-5. Oppdater denne beslutningskontrakten.
-6. Kjør `npm run audit:categories`.
-
-Eksisterende data skal bare flyttes mellom domener i kontrollerte, evidensbaserte batcher. Universiteter, skoler og forskningsinstitusjoner flyttes for eksempel ikke automatisk til `filosofi` bare fordi filosofi undervises der; den primære stedshistorien må være filosofisk.
+Når en ny toppkategori opprettes, skal maskinkontrakt, DomainRegistry, badges, fagmanifest, quizprofilregister, kategori-UI, place-policy og denne kontrakten oppdateres i samme endring. Kjør `npm run audit:categories`.
