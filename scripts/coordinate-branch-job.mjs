@@ -26,6 +26,24 @@ const newImport = "const qlib=await import('file://' + path.join(root,'scripts/q
 if (!source.includes(oldImport)) throw new Error('Could not locate quiz production import in completion payload');
 source = source.replace(oldImport, newImport);
 
+const loopStart = "const hist=manifest.historie?.quizProduction?.targets||{};";
+const loopEnd = "run('npm',['run','knowledge:canonical:check']);";
+const startIndex = source.indexOf(loopStart);
+const endIndex = source.indexOf(loopEnd);
+if (startIndex < 0 || endIndex < 0 || endIndex <= startIndex) throw new Error('Could not locate production-context rebuild block');
+const globalLoop = [
+  "for(const [categoryId,entry] of Object.entries(manifest)){",
+  "  const targets=entry?.quizProduction?.targets||{};",
+  "  for(const [targetId,targetConfig] of Object.entries(targets)){",
+  "    const output=qlib.resolveFagPath(root,targetConfig.context_artifact);",
+  "    run(process.execPath,['scripts/build-quiz-production-context.mjs','--category',categoryId,'--target',targetId,'--output',output]);",
+  "  }",
+  "}",
+  ""
+].join('\n');
+source = source.slice(0, startIndex) + globalLoop + source.slice(endIndex);
+source = source.replace("'data/quiz/production_context/historie'", "'data/quiz/production_context'");
+
 const target = path.join('/tmp', 'history-v5-5-completion-job.mjs');
 fs.writeFileSync(target, source);
 for (const relative of parts) fs.rmSync(path.join(root, relative));
