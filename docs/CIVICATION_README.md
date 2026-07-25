@@ -17,9 +17,11 @@ Civication er et eget produkt/subsystem i samme repo. Denne filen er inngangen t
 
 - [`CIVICATION_ROLE_PACK.md`](./CIVICATION_ROLE_PACK.md) — inngang og dedup-kontrakt for rollepakken
 - [`CIVICATION_ROLE_PACK_STANDARD.md`](./CIVICATION_ROLE_PACK_STANDARD.md) — detaljert role-pack-kontrakt
-- [`CIVICATION_ROLE_PACK_INDEX.md`](./CIVICATION_ROLE_PACK_INDEX.md) — role-pack-oversikt
+- [`CIVICATION_ROLE_PACK_INDEX.md`](./CIVICATION_ROLE_PACK_INDEX.md) — eneste genererte markdown-index for role-pack-status; regenereres sammen med runtime-indeksen
 - [`CIVICATION_WORK_GRAMMAR_STANDARD.md`](./CIVICATION_WORK_GRAMMAR_STANDARD.md) — arbeidsgrammatikk
 - [`CIVICATION_FWG_GOVERNANCE.md`](./CIVICATION_FWG_GOVERNANCE.md) — styring av FWG-innhold
+
+`npm run audit:civication:role-packs` skriver `docs/CIVICATION_ROLE_PACK_INDEX.md` og `data/Civication/rolePackIndex.json`. Det skal ikke opprettes en parallell kopi under `reports/`.
 
 De tidligere filene `README/CIVICATION_JOB_MODEL.md` og `README/CIVICATION_job_model.md` var samme tidlige jobbmodell med formateringsforskjeller. De er fjernet. Aktiv modell for mestring, konsekvens, progresjon og komplett jobbinnhold ligger i role-pack-, work-grammar-, roleModel-, mailPlan- og mailFamily-kontraktene over.
 
