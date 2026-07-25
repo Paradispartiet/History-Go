@@ -1,31 +1,31 @@
 # People-place coverage audit
 
-Generert: 2026-07-25T04:31:38.322Z
+Generert: 2026-07-25T05:00:51.578Z
 
 ## Sammendrag
 
-- People totalt: **1300**
+- People totalt: **1307**
 - Places totalt: **1291**
-- Places med people: **343**
-- Places uten people: **948**
-- People-place-lenker: **1529**
-- People koblet til flere gyldige steder: **257**
+- Places med people: **349**
+- Places uten people: **942**
+- People-place-lenker: **1539**
+- People koblet til flere gyldige steder: **258**
 - People uten gyldig sted: **122**
 - Ugyldige place-referanser: **50**
-- Duplikate place-referanser inne på people: **1219**
-- People uten image: **959**
-- People uten cardImage: **960**
+- Duplikate place-referanser inne på people: **1226**
+- People uten image: **966**
+- People uten cardImage: **967**
 - People uten popupDesc: **105**
 
 ## Dekning per place-kategori
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 213 | 62 | 151 | 185 | 153 |
+| by | 213 | 63 | 150 | 186 | 154 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 449 | 62 | 387 | 222 | 149 |
-| kunst | 34 | 20 | 14 | 50 | 46 |
-| litteratur | 40 | 32 | 8 | 68 | 58 |
+| historie | 449 | 63 | 386 | 226 | 153 |
+| kunst | 34 | 22 | 12 | 53 | 49 |
+| litteratur | 40 | 34 | 6 | 70 | 59 |
 | media | 11 | 8 | 3 | 28 | 27 |
 | musikk | 15 | 13 | 2 | 30 | 22 |
 | naeringsliv | 144 | 35 | 109 | 75 | 69 |
@@ -42,20 +42,20 @@ Generert: 2026-07-25T04:31:38.322Z
 ## People tags
 
 - sport: 245
-- historie: 241
+- historie: 243
 - teater: 202
 - scenekunst: 193
-- litteratur: 179
+- litteratur: 181
 - skuespiller: 147
 - politikk: 137
 - musikk: 121
 - holmenkollen: 105
 - holmenkollrennet: 80
-- kunst: 76
+- kunst: 79
 - subkultur: 64
-- arkitektur: 62
+- arkitektur: 63
+- by: 60
 - naeringsliv: 60
-- by: 59
 - regissor: 56
 - langrenn: 49
 - fotball: 47
@@ -275,7 +275,7 @@ Generert: 2026-07-25T04:31:38.322Z
 - haakon_v_magnusson (Håkon V Magnusson) -> akershus_festning
 - st_hallvard (St. Hallvard) -> middelalder_oslo
 - harald_hardrade (Harald Hardråde) -> middelalder_oslo
-- ... 1119 flere
+- ... 1126 flere
 
 ## Anbefalt første people-batch
 
