@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-07-25T07:47:40.749Z
+Generert: 2026-07-25T10:42:13.952Z
 
 ## Sammendrag
 
-- People totalt: **1368**
+- People totalt: **1375**
 - Places totalt: **1277**
-- Places med people: **368**
-- Places uten people: **909**
-- People-place-lenker: **1545**
-- People koblet til flere gyldige steder: **259**
+- Places med people: **377**
+- Places uten people: **900**
+- People-place-lenker: **1554**
+- People koblet til flere gyldige steder: **261**
 - People uten gyldig sted: **186**
 - Ugyldige place-referanser: **62**
-- Duplikate place-referanser inne på people: **1231**
-- People uten image: **1027**
-- People uten cardImage: **1028**
+- Duplikate place-referanser inne på people: **1238**
+- People uten image: **1034**
+- People uten cardImage: **1035**
 - People uten popupDesc: **161**
 
 ## Dekning per place-kategori
@@ -33,7 +33,7 @@ Generert: 2026-07-25T07:47:40.749Z
 | politikk | 35 | 23 | 12 | 213 | 175 |
 | psykologi | 3 | 2 | 1 | 2 | 1 |
 | religion | 3 | 0 | 3 | 0 | 0 |
-| scenekunst | 59 | 12 | 47 | 218 | 205 |
+| scenekunst | 59 | 21 | 38 | 227 | 212 |
 | sport | 72 | 30 | 42 | 260 | 245 |
 | subkultur | 55 | 19 | 36 | 35 | 32 |
 | vitenskap | 37 | 12 | 25 | 55 | 45 |
@@ -42,7 +42,7 @@ Generert: 2026-07-25T07:47:40.749Z
 
 - historie: 258
 - sport: 245
-- scenekunst: 200
+- scenekunst: 207
 - teater: 197
 - litteratur: 181
 - skuespiller: 139
@@ -55,10 +55,10 @@ Generert: 2026-07-25T07:47:40.749Z
 - arkitektur: 66
 - subkultur: 64
 - by: 60
-- regissor: 55
+- regissor: 56
 - langrenn: 49
+- teatersjef: 49
 - fotball: 47
-- teatersjef: 46
 - ensemble: 45
 - ibsen: 45
 - bislett: 44
@@ -286,7 +286,7 @@ Generert: 2026-07-25T07:47:40.749Z
 - marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
 - martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
 - cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
-- ... 1131 flere
+- ... 1138 flere
 
 ## Anbefalt første people-batch
 
