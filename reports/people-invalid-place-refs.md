@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-25T05:00:51.291Z
+Generated: 2026-07-25T06:02:42.007Z
 
 ## Sammendrag
-- People-filer lest: **670**
-- People lest: **1305**
+- People-filer lest: **682**
+- People lest: **1317**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1305**
+- Duplikate interne place-referanser: **1317**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -1323,5 +1323,17 @@ Generated: 2026-07-25T05:00:51.291Z
 - data/people/kunst/oslo/roseslottet/eimund_sand.json :: eimund_sand (Eimund Sand) -> roseslottet x2
 - data/people/historie/oslo/frammuseet/otto_sverdrup.json :: otto_sverdrup (Otto Sverdrup) -> frammuseet x2
 - data/people/historie/oslo/frammuseet/colin_archer.json :: colin_archer (Colin Archer) -> frammuseet x2
+- data/people/historie/oslo/kon_tiki_museet/thor_heyerdahl.json :: thor_heyerdahl (Thor Heyerdahl) -> kon_tiki_museet x2
+- data/people/historie/oslo/kon_tiki_museet/knut_haugland.json :: knut_haugland (Knut Magne Haugland) -> kon_tiki_museet x2
+- data/people/historie/oslo/hauges_minde/hans_nielsen_hauge.json :: hans_nielsen_hauge (Hans Nielsen Hauge) -> hauges_minde x2
+- data/people/historie/oslo/hauges_minde/johan_cordt_harmens_storjohann.json :: johan_cordt_harmens_storjohann (Johan Cordt Harmens Storjohann) -> hauges_minde x2
+- data/people/historie/oslo/stattholdergarden/peter_gruner.json :: peter_gruner (Peter Grüner) -> stattholdergarden x2
+- data/people/naeringsliv/oslo/borsen_oslo/thor_olsen.json :: thor_olsen (Thor Olsen) -> borsen_oslo x2
+- data/people/naeringsliv/oslo/steen_og_strom/samuel_strom.json :: samuel_strom (Samuel Strøm) -> steen_og_strom x2
+- data/people/naeringsliv/oslo/steen_og_strom/elise_marie_strom.json :: elise_marie_strom (Elise Marie Strøm) -> steen_og_strom x2
+- data/people/naeringsliv/oslo/steen_og_strom/peter_emil_steen.json :: peter_emil_steen (Peter Emil Steen) -> steen_og_strom x2
+- data/people/naeringsliv/oslo/steen_og_strom/samuel_strom_jr.json :: samuel_strom_jr (Samuel Strøm jr.) -> steen_og_strom x2
+- data/people/naeringsliv/oslo/steen_og_strom/ole_sverre.json :: ole_sverre (Ole Sverre) -> steen_og_strom x2
+- data/people/naeringsliv/oslo/cafe_engebret/engebret_christophersen.json :: engebret_christophersen (Engebret Christophersen) -> cafe_engebret x2
 
 ## Anbefalt neste ryddebatch
