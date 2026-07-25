@@ -1,0 +1,73 @@
+name: Temporary Næringsliv final curation
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/temp-naeringsliv-final-curation.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  curate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Curate final three emners
+        run: |
+          node scripts/temp-curate-naeringsliv-baerekraft-emne.mjs
+          node scripts/temp-curate-naeringsliv-fagforening-emne.mjs
+          node scripts/temp-curate-naeringsliv-makt-emne.mjs
+          node scripts/temp-mark-naeringsliv-final-curation.mjs
+      - name: Regenerate Næringsliv production contexts
+        run: |
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
+      - name: Validate complete curation
+        run: |
+          npm run audit:quiz-templates
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-content-audit
+          node <<'NODE'
+          const fs=require('fs');
+          const all=JSON.parse(fs.readFileSync('data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json','utf8'));
+          const core=all.filter(item=>item.emne_role!=='field_module');
+          const modules=all.filter(item=>item.emne_role==='field_module');
+          if(core.length!==36)throw new Error(`Forventet 36 kjerneemner, fikk ${core.length}`);
+          if(modules.length!==2)throw new Error(`Forventet 2 feltmoduler, fikk ${modules.length}`);
+          if(core.some(item=>item.curation_status!=='individually_curated'))throw new Error('Ikke alle kjerneemner er individuelt kuratert');
+          const finalIds=['em_naering_baerekraft_eksternaliteter','em_naering_fagforeninger_og_interesser','em_naering_makt_ulikhet_arbeidsliv'];
+          const selected=finalIds.map(id=>core.find(item=>item.emne_id===id));
+          const fields=['definition','why_it_matters','key_questions','conflicts','ideological_dimensions','analysis_axes','blindspots','generator_use_note','overlap_resolution_note','anti_patterns'];
+          for(const field of fields){const values=selected.map(item=>JSON.stringify(item[field]));if(new Set(values).size!==3)throw new Error(`${field} er ikke individuelt i sluttbatchen`);}
+          const generic=['Hvilken konkret virksomhet, arbeidsplass, kapitalstrøm, marked, teknologi eller infrastruktur gjør emnet relevant?','Hvordan skapes, organiseres, måles, fordeles eller skjules økonomisk verdi her?','Hvilke eiere, arbeidere, kunder, reguleringer, risikoforhold, miljøkostnader eller maktstrukturer blir synlige?','Hold emnet avgrenset ved å starte i konkret virksomhet, arbeid, kapitalstrøm, marked, teknologi, logistikk, byrom eller kilde.'];
+          for(const item of core){const text=JSON.stringify(item);for(const phrase of generic){if(text.includes(phrase))throw new Error(`${item.emne_id} beholder generisk standardtekst`);}}
+          const pensum=JSON.parse(fs.readFileSync('data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json','utf8'));
+          if(pensum.summary.individually_curated_core_emne_count!==36)throw new Error('Kuraterte emner skal være 36');
+          if(pensum.summary.remaining_core_emne_count!==0)throw new Error('Gjenstående emner skal være 0');
+          if(pensum.content_curation.status!=='complete')throw new Error('Kurateringen er ikke markert complete');
+          if(pensum.content_curation.curated_domain_ids.length!==6)throw new Error('Seks domener skal være kuratert');
+          NODE
+      - name: Commit curated data
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json
+          git add data/fag/naeringsliv/naeringslivpensum_canonical_v4_5.json
+          git add data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          git add data/quiz/production_context/naeringsliv/oslo_posthus.json
+          git add data/quiz/production_context/naeringsliv/havnelageret.json
+          git commit -m 'Fullfør individuell kuratering av næringslivsemnene'
+          git push origin HEAD:${{ github.head_ref }}
