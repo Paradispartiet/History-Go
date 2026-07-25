@@ -3,6 +3,8 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 
 const root = process.cwd();
+const branch = "agent/oslo-coordinate-remove-popkultur-domain";
+const runnerScript = path.join(root, "scripts/coordinate-branch-job.mjs");
 const sportFile = path.join(root, "data/quiz/sport/vg_huset_sets.json");
 const mediaFile = path.join(root, "data/quiz/media/vg_huset_sets.json");
 const manifestFile = path.join(root, "data/quiz/manifest.json");
@@ -19,6 +21,15 @@ const knownGeneratedConflicts = [
 
 function run(command, args) {
   execFileSync(command, args, { cwd: root, stdio: "inherit", env: process.env });
+}
+
+function runAllowFailure(command, args) {
+  try {
+    run(command, args);
+    return 0;
+  } catch (error) {
+    return Number(error?.status ?? 1);
+  }
 }
 
 function readCommand(command, args) {
@@ -54,9 +65,7 @@ if (mergeConflicted) {
     .filter(Boolean);
   const allowed = new Set(["data/people/manifest.json", ...knownGeneratedConflicts]);
   const unexpected = conflicts.filter((file) => !allowed.has(file));
-  if (unexpected.length) {
-    throw new Error(`Uventede mergekonflikter: ${unexpected.join(", ")}`);
-  }
+  if (unexpected.length) throw new Error(`Uventede mergekonflikter: ${unexpected.join(", ")}`);
 
   const baseManifest = JSON.parse(readCommand("git", ["show", `${mergeBase}:data/people/manifest.json`]));
   const oursManifest = JSON.parse(readCommand("git", ["show", ":2:data/people/manifest.json"]));
@@ -69,9 +78,7 @@ if (mergeConflicted) {
     if (removedByMigration.has(file)) return false;
     return !String(file).includes("people/popkultur/");
   });
-  for (const file of addedByMigration) {
-    if (!mergedFiles.includes(file)) mergedFiles.push(file);
-  }
+  for (const file of addedByMigration) if (!mergedFiles.includes(file)) mergedFiles.push(file);
   await fs.writeFile(peopleManifestFile, `${JSON.stringify({ ...mainManifest, files: mergedFiles }, null, 2)}\n`, "utf8");
   run("git", ["add", "data/people/manifest.json"]);
 
@@ -110,6 +117,23 @@ for (const block of verify.sets || []) {
 run("npm", ["run", "audit:categories"]);
 run("npm", ["run", "audit:people-of-places"]);
 run("npm", ["run", "places:emner:check"]);
+run("npm", ["run", "places:index:build"]);
+run("npm", ["run", "audit:places-split-manifest-sync"]);
+run("npm", ["run", "places:index:check"]);
+run("npm", ["run", "test:coordinate-source-contract"]);
+run("npm", ["run", "places:coords:quality"]);
+run("npm", ["run", "places:coords:intake"]);
+run("npm", ["run", "places:coords:evidence:audit"]);
+const healthExit = runAllowFailure("npm", ["run", "health:places"]);
+run("git", ["diff", "--check"]);
+
+await fs.rm(runnerScript, { force: true });
+await fs.rm(path.join(root, "scripts/.coordinate-branch-job-complete"), { force: true });
+run("git", ["add", "-A"]);
+if (readCommand("git", ["diff", "--cached", "--name-only"])) {
+  run("git", ["commit", "-m", "Finalize popkultur domain migration"]);
+}
+run("git", ["push", "origin", `HEAD:${branch}`]);
 
 console.log(JSON.stringify({
   vg_huset: "media",
@@ -117,5 +141,7 @@ console.log(JSON.stringify({
   manifestPath: vgEntry?.file ?? null,
   branchSyncedWithMain: true,
   mergeBase,
-  mergeConflicted
+  mergeConflicted,
+  healthExit,
+  selfPublished: true
 }, null, 2));
