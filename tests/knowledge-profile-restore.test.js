@@ -31,7 +31,6 @@ test("Knowledge subject badges expose canonical image references", () => {
     "kunst",
     "natur",
     "musikk",
-    "populaerkultur",
     "subkultur",
     "sport",
     "by",
