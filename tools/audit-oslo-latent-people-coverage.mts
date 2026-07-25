@@ -16,6 +16,7 @@ function toArray(data: any): any[] {
   if (Array.isArray(data)) return data;
   if (data && Array.isArray(data.people)) return data.people;
   if (data && Array.isArray(data.items)) return data.items;
+  if (data && typeof data === 'object' && typeof data.id === 'string' && data.id.trim()) return [data];
   return [];
 }
 
