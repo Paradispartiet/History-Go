@@ -52,4 +52,15 @@ jobs:
         run: npm run build:scripts
 
       - name: Validate documentation governance
-        run: node dist/scripts/check-documentation-governance.mjs
+        run: |
+          set -o pipefail
+          mkdir -p reports/documentation-governance
+          node dist/scripts/check-documentation-governance.mjs 2>&1 | tee reports/documentation-governance/audit.log
+
+      - name: Upload documentation governance audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-governance-audit
+          path: reports/documentation-governance/audit.log
+          if-no-files-found: error
