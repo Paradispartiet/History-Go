@@ -27,18 +27,26 @@ jobs:
           node-version: 24
 
       - name: Build theory depth and coverage
-        run: |
-          set -euo pipefail
-          node tools/build-sport-theory-depth-v6.mjs
+        run: node tools/build-sport-theory-depth-v6.mjs
 
-      - name: Validate Sport theory and evidence integration
+      - name: Validate V6 emne and theory coverage
+        run: node tools/validate-sport-theory-depth-v6.mjs --write
+
+      - name: Validate existing Sport theory layer
+        run: node tools/validate-sport-theory-quality.mjs
+
+      - name: Validate Sport evidence layer
+        run: node tools/validate-sport-evidence.mjs
+
+      - name: Audit category governance
+        run: node scripts/audit-category-governance.mjs
+
+      - name: Audit quiz governance
+        run: node scripts/audit-quiz-template-governance.mjs
+
+      - name: Parse generated JSON and check diff
         run: |
           set -euo pipefail
-          node tools/validate-sport-theory-depth-v6.mjs --write
-          node tools/validate-sport-theory-quality.mjs
-          node tools/validate-sport-evidence.mjs
-          node scripts/audit-category-governance.mjs
-          node scripts/audit-quiz-template-governance.mjs
           node - <<'NODE'
           const fs = require('node:fs');
           const files = [
