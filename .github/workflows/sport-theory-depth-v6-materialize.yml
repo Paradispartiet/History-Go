@@ -17,34 +17,43 @@ jobs:
     if: startsWith(github.head_ref, 'agent/sport-theory-depth-v6')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-
       - uses: actions/setup-node@v4
         with:
           node-version: 24
 
+      - name: Clone branch quietly
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git clone --quiet --depth 1 --branch '${{ github.head_ref }}' "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" repo
+
       - name: Build theory depth and coverage
+        working-directory: repo
         run: node tools/build-sport-theory-depth-v6.mjs
 
       - name: Validate V6 emne and theory coverage
+        working-directory: repo
         run: node tools/validate-sport-theory-depth-v6.mjs --write
 
       - name: Validate existing Sport theory layer
+        working-directory: repo
         run: node tools/validate-sport-theory-quality.mjs
 
       - name: Validate Sport evidence layer
+        working-directory: repo
         run: node tools/validate-sport-evidence.mjs
 
       - name: Audit category governance
+        working-directory: repo
         run: node scripts/audit-category-governance.mjs
 
       - name: Audit quiz governance
+        working-directory: repo
         run: node scripts/audit-quiz-template-governance.mjs
 
       - name: Parse generated JSON and check diff
+        working-directory: repo
         run: |
           set -euo pipefail
           node - <<'NODE'
@@ -67,6 +76,7 @@ jobs:
           git diff --check
 
       - name: Commit final Sport theory files
+        working-directory: repo
         run: |
           set -euo pipefail
           rm .github/workflows/sport-theory-depth-v6-materialize.yml
