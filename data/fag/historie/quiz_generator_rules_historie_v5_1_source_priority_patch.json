@@ -1,5 +1,5 @@
 {
-  "version": "v5.1-source-priority-patch-historie",
+  "version": "v5.5-source-priority-historie",
   "subject_id": "historie",
   "subject_title": "Historie",
   "scope": "oslo_og_omegn",
@@ -10,10 +10,10 @@
     "emner": "emner_historie_canonical_v4_5.json",
     "emnemapping": "emnemapping_historie_canonical_v4_5.json",
     "pensum": "historiepensum_canonical_v4_5.json",
-    "domain_count": 12,
-    "emne_count": 92,
-    "method_count": 54,
-    "mapping_count": 92
+    "domain_count": 20,
+    "emne_count": 200,
+    "method_count": 87,
+    "mapping_count": 200
   },
   "hard_rules": {
     "source_dominance_rule": "External historical/local sources must dominate the factual substance of every history quiz. Canonical files may guide emne choice, method choice, theory choice, set progression and risk control, but may not be the main source of visible question content.",
@@ -299,16 +299,16 @@
   "domain_profiles": {
     "his_kilder_arkiv_spor": {
       "status": "complete_revised",
-      "purpose": "Bygge spørsmål fra identifiserte kildeobjekter og etterprøvbare påstander, ikke løse teorinavn.",
+      "purpose": "skiller dokumenterte påstander fra slutninger og viser hvilke erfaringer arkiv, gjenstander og digitale spor gjør synlige eller usynlige",
       "required_chain": [
-        "ekstern kilde eller konkret kildeobjekt",
-        "presis claim_basis",
-        "kildetype og produksjonskontekst",
-        "egnet historisk metode",
-        "eksplisitt begrensning",
-        "uavhengig kontroll eller dokumentert kildeknapphet",
-        "kritisk distinksjon",
-        "eventuelt teoribegrep etter at kilden er etablert"
+        "navngitt kilde eller materielt spor",
+        "produsent, tidspunkt og formål",
+        "proveniens og bevaringshistorikk",
+        "påstand kilden faktisk støtter",
+        "kontrollkilde eller korroborering",
+        "arkivtaushet eller representasjonsgrense",
+        "etisk håndtering",
+        "kritisk distinksjon"
       ],
       "hook_ids": [
         "his_kildekritikk",
@@ -343,29 +343,34 @@
         "met_proveniensanalyse",
         "met_seriell_kildeanalyse",
         "met_visuell_kildekritikk",
+        "met_muntlig_historie",
         "met_digital_kildekritikk"
       ],
       "forbidden_shortcuts": [
-        "canonical-fil som faktakilde",
-        "teoretikernavn som tilstrekkelig svar",
-        "arkivfravær som bevis for ikke-forekomst",
-        "digitalt søketreff som representativt utvalg",
-        "fotografi som nøytral avbildning",
-        "muntlig minne som uredigert hendelsesreferat"
-      ]
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "tid_periodisering": "Kildedatering hører hit; periodisering og endringstempo hører til tidsdomenet.",
+        "minne_kulturarv_historiebruk": "Kildens produksjon og autentisitet hører hit; offentlig utvelgelse og historiebruk hører til minnefeltet.",
+        "vitenskap_teknologi_kunnskap": "Kildens status og proveniens hører hit; kunnskapsinstitusjonens autoritet og klassifikasjon hører til kunnskapshistorie."
+      }
     },
     "his_tid_periodisering": {
       "status": "complete_revised",
-      "purpose": "Bygge tidslige historiske spørsmål fra dokumenterte datoer, sekvenser, tidslag og endringsforløp uten å gjøre epokenavn eller teori til løs fasit.",
+      "purpose": "gjør tidslige forklaringer etterprøvbare og hindrer at kalendergrenser eller senere epokenavn blir behandlet som naturlige brudd",
       "required_chain": [
-        "ekstern kilde, datert hendelse eller synlig tidslag",
-        "presis claim_basis",
-        "kronologi eller eksplisitt tidslig påstand",
-        "avgrenset tidsrom og relevant skala",
-        "egnet historisk metode",
-        "usikkerhet eller kildebegrensning",
+        "ekstern kilde eller synlig tidslig spor",
+        "avgrenset sted, aktør eller institusjon",
+        "datert sekvens eller historisk lag",
+        "eksplisitt tidsrom og dateringsusikkerhet",
+        "dokumentert endring og dokumentert kontinuitet",
+        "sammenligningsgrunnlag",
         "kritisk tidslig distinksjon",
-        "eventuelt teoribegrep etter at tidsforløpet er etablert"
+        "kildebegrensning",
+        "eventuelt teori etter kronologien"
       ],
       "hook_ids": [
         "his_periodisering_epoker",
@@ -393,39 +398,41 @@
       ],
       "method_ids": [
         "met_periodisering",
-        "met_for_etter_historisk",
-        "met_sporlesning",
-        "met_komparativ_historie",
-        "met_begrepshistorie",
         "met_kronologisk_rekonstruksjon",
+        "met_for_etter_historisk",
+        "met_hendelsesforlop_analyse",
         "met_tidslagsanalyse",
         "met_langvarighetsanalyse",
-        "met_hendelsesforlop_analyse",
-        "met_temporalitetsanalyse"
+        "met_temporalitetsanalyse",
+        "met_begrepshistorie",
+        "met_komparativ_historie",
+        "met_kildekritikk"
       ],
       "forbidden_shortcuts": [
-        "epokenavn som faktakilde",
-        "ett årstall som full årsaksforklaring",
-        "kronologisk rekkefølge som automatisk kausalitet",
-        "senere utfall som nødvendig for samtidens aktører",
-        "synlig ombygging som bevis for fullstendig institusjonelt brudd",
-        "teoretikernavn som tilstrekkelig svar"
-      ]
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "byhistorie_stedsendring": "Tidsanalyse forklarer rekkefølge og endringstempo; fysisk og funksjonell stedsendring som hovedkjede hører til byhistorie.",
+        "kilder_arkiv_spor": "Kildens produksjon og proveniens hører til kildefeltet; dens bruk til å etablere tidsrekke hører hit.",
+        "minne_kulturarv_historiebruk": "Ettertidens periodisering hører hit når tidsordningen er hovedspørsmålet; offentlig minnebruk hører til minnefeltet."
+      }
     },
     "his_makt_stat_institusjoner": {
       "status": "complete_revised",
-      "purpose": "Bygge spørsmål om stat og institusjoner fra dokumenterte mandater, regler, beslutningskjeder, praksiser og konsekvenser — ikke fra løse maktbegreper eller teoretikernavn.",
+      "purpose": "viser hvordan formelle regler blir til praksis og hvilke grupper som får rettigheter, plikter, beskyttelse eller kontroll",
       "required_chain": [
-        "ekstern kilde eller konkret institusjonelt kildeobjekt",
-        "presis claim_basis",
-        "identifisert institusjon, myndighet eller jurisdiksjon",
-        "kompetanse, mandat eller samtidig regelgrunnlag",
-        "dokumentert beslutning, saksbehandling eller institusjonell praksis",
-        "iverksetting, håndheving eller dokumentert manglende gjennomføring",
-        "berørt gruppe, rettighet, plikt eller konsekvens",
-        "kildebegrensning, motstridende dokumentasjon eller arkivtaushet",
-        "kritisk institusjonell distinksjon",
-        "eventuelt teoribegrep etter at kjeden er etablert"
+        "ekstern kilde eller institusjonelt spor",
+        "navngitt organ eller embete",
+        "datert mandat, regel eller kompetanse",
+        "beslutningskjede",
+        "gjennomføring og ressursgrunnlag",
+        "konsekvens for identifisert gruppe",
+        "kontrollkilde",
+        "kildebegrensning",
+        "kritisk distinksjon"
       ],
       "hook_ids": [
         "his_institusjonsbygging_funksjon",
@@ -454,38 +461,40 @@
       "method_ids": [
         "met_institusjonshistorisk_analyse",
         "met_arkivlesning",
-        "met_for_etter_historisk",
-        "met_kildekritikk",
-        "met_minneanalyse",
         "met_beslutningskjedeanalyse",
         "met_forvaltningshistorisk_saksanalyse",
         "met_rettshistorisk_analyse",
+        "met_statskapasitetsanalyse",
         "met_kontrollregimeanalyse",
-        "met_statskapasitetsanalyse"
+        "met_prosopografi",
+        "met_kildekritikk",
+        "met_for_etter_historisk"
       ],
       "forbidden_shortcuts": [
-        "bygning behandlet som identisk med institusjon",
-        "formelt mandat behandlet som dokumentert praksis",
-        "vedtak behandlet som bevis for iverksetting eller virkning",
-        "arkivets kategori behandlet som nøytral beskrivelse av personen",
-        "dagens rettsregler brukt som målestokk for fortidens prosess",
-        "maktbegrep eller teoretikernavn som tilstrekkelig svar"
-      ]
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "politikk": "Historisk gjennomføring og institusjonell praksis hører hit; samtidige programmer og strategisk debatt hører til politikk.",
+        "velferd_rett_hverdagsliv": "Mandat og beslutningskjede hører hit; tjeneste, målgruppe og hverdagskonsekvens hører til velferd.",
+        "kilder_arkiv_spor": "Institusjonens arkivorden som maktpraksis hører hit når myndighetsutøvelsen er hovedspørsmålet; kildeproveniens alene hører til kildefeltet."
+      }
     },
     "his_industri_arbeid_sosialhistorie": {
       "status": "complete_revised",
-      "purpose": "Bygge arbeidshistoriske spørsmål fra dokumenterte produksjonsenheter, arbeidsprosesser, livsvilkår, konflikter og berørte mennesker uten å redusere feltet til bedrift, teori eller gammel fabrikkfasade.",
+      "purpose": "gjør industrihistorie til mer enn bedrifts- og teknologihistorie ved å vise konsekvenser for arbeidere, familier og bydeler",
       "required_chain": [
         "ekstern kilde eller synlig industrispor",
-        "navngitt produksjonsenhet, arbeidsplass, hushold eller organisasjon",
-        "datert produksjons- eller arbeidsfase",
-        "arbeidsprosess, arbeidsrelasjon eller livsvilkår",
-        "dokumentert mål, vilkår, konflikt eller endring",
+        "navngitt produksjonsenhet eller arbeidsplass",
+        "datert produksjonsfase",
+        "arbeidsprosess eller arbeidsrelasjon",
+        "dokumentert vilkår, konflikt eller endring",
         "berørt arbeidergruppe eller hushold",
-        "kontrollkilde eller sammenligningsgrunnlag",
+        "kontrollkilde",
         "kildebegrensning",
-        "kritisk distinksjon",
-        "eventuelt teori etter at arbeidsforholdet er etablert"
+        "kritisk distinksjon"
       ],
       "hook_ids": [
         "his_industriby_arbeiderliv",
@@ -512,48 +521,42 @@
         "em_his_avindustrialisering_ombruk_industriarv"
       ],
       "method_ids": [
-        "met_sporlesning",
-        "met_arkivlesning",
-        "met_mikrohistorisk_analyse",
-        "met_for_etter_historisk",
-        "met_seriell_kildeanalyse",
         "met_industriell_stedsanalyse",
         "met_arbeidsprosessanalyse",
         "met_livsvilkarsanalyse",
         "met_arbeidskonfliktanalyse",
-        "met_arbeidsmiljohistorisk_analyse"
+        "met_arbeidsmiljohistorisk_analyse",
+        "met_seriell_kildeanalyse",
+        "met_arkivlesning",
+        "met_husholdsanalyse",
+        "met_mikrohistorisk_analyse",
+        "met_for_etter_historisk"
       ],
       "forbidden_shortcuts": [
-        "bedriftsnavn eller fabrikkeier som tilstrekkelig arbeidshistorie",
-        "gammel fabrikkfasade som bevis for arbeidsforhold",
-        "ett lønns- eller ulykkestall uten enhet, periode og sammenligning",
-        "manglende registerføring som bevis for manglende arbeid eller skade",
-        "arbeiderbevegelse redusert til partihistorie",
-        "migrasjon, velferd eller bytransformasjon uten dokumentert arbeidskjede",
-        "teoretikernavn som tilstrekkelig svar"
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
       ],
       "boundary_rules": {
-        "naeringsliv": "Bruk historie som hovedfag bare når arbeidere, arbeidsprosess, livsvilkår eller konflikt bærer spørsmålet; bedrift, eier og marked alene hører til næringsliv.",
-        "velferd": "Arbeidsrelaterte helse-, bolig- og reformspor hører hit når arbeidslivet er årsakskjeden; rettighet, omsorgsinstitusjon og livsløp alene hører til velferd.",
-        "migrasjon": "Arbeidsrekruttering og arbeidsstyrkens mobilitet hører hit; tilhørighet, minoritetsposisjon og identitet som hovedsak hører til migrasjon.",
-        "byhistorie": "Produksjon, arbeid og tap av arbeidsplasser hører hit; arealbruk, riving og byform uten arbeidskjede hører til byhistorie.",
-        "politikk": "Historiske foreninger, streiker og forhandlinger hører hit; samtidige partier, programmer og beslutningsprosesser som hovedsak hører til politikk."
+        "naeringsliv": "Arbeidere, arbeidsprosess og livsvilkår hører hit; eierstrategi og marked alene hører til næringsliv.",
+        "byhistorie_stedsendring": "Produksjon og tap av arbeidsplasser hører hit; arealbruk og fysisk transformasjon som hovedkjede hører til byhistorie.",
+        "velferd_rett_hverdagsliv": "Arbeidsrelatert helse og bolig hører hit når arbeidslivet er årsakskjeden; ordninger og tjenester som hovedkjede hører til velferd."
       }
     },
     "his_velferd_rett_hverdagsliv": {
       "status": "complete_revised",
-      "purpose": "Bygge velferdshistoriske spørsmål fra navngitte ordninger, målgrupper, adgangsvilkår, praksiser og konsekvenser uten å redusere feltet til institusjonsnavn, fremskrittsfortelling eller løs teori.",
+      "purpose": "viser hvordan formelle rettigheter og tjenester ble erfart ulikt av mennesker og hushold og hvordan hjelp kunne kombineres med kontroll",
       "required_chain": [
         "ekstern kilde eller synlig velferdsspor",
-        "navngitt institusjon, ordning, tjeneste eller ytelse",
+        "navngitt institusjon, ordning eller tjeneste",
         "datert regel, målgruppe eller adgangsvilkår",
-        "dokumentert forvaltnings-, behandlings- eller omsorgspraksis",
-        "rettighet, plikt, kontroll, ytelse eller tjeneste",
-        "konsekvens for person, hushold, hverdagsliv eller livsløp",
-        "kontrollkilde eller sammenligningsgrunnlag",
+        "dokumentert praksis",
+        "rettighet, plikt, kontroll eller ytelse",
+        "konsekvens for person eller hushold",
+        "kontrollkilde",
         "kildebegrensning",
-        "kritisk distinksjon",
-        "eventuelt teori etter at velferdskjeden er etablert"
+        "kritisk distinksjon"
       ],
       "hook_ids": [
         "his_fattigvesen_veldedighet_sosial_kontroll",
@@ -580,41 +583,43 @@
         "em_his_bruker_tjeneste_forvaltning"
       ],
       "method_ids": [
-        "met_institusjonshistorisk_analyse",
-        "met_arkivlesning",
-        "met_mikrohistorisk_analyse",
-        "met_muntlig_historie",
-        "met_seriell_kildeanalyse",
-        "met_livslopsanalyse",
-        "met_husholdsanalyse",
         "met_velferdsordningsanalyse",
         "met_rettighets_og_tilgangsanalyse",
-        "met_omsorgsregimeanalyse"
+        "met_omsorgsregimeanalyse",
+        "met_livslopsanalyse",
+        "met_husholdsanalyse",
+        "met_institusjonshistorisk_analyse",
+        "met_arkivlesning",
+        "met_seriell_kildeanalyse",
+        "met_muntlig_historie",
+        "met_mikrohistorisk_analyse"
       ],
       "forbidden_shortcuts": [
-        "institusjonens navn som tilstrekkelig velferdshistorie",
-        "lovfestet rett behandlet som dokumentert tilgang",
-        "formelt formål behandlet som faktisk praksis",
-        "ytelsesnivå behandlet som full beskrivelse av livsvilkår",
-        "pasient-, elev- eller brukerregister behandlet som nøytral beskrivelse av personen",
-        "velferdsstat eller teoretikernavn som tilstrekkelig svar"
-      ]
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "makt_stat_institusjoner": "Tjeneste, målgruppe og hverdagskonsekvens hører hit; mandat og beslutningskjede alene hører til maktdomenet.",
+        "industri_arbeid_sosialhistorie": "Ordning og velferdstjeneste hører hit; arbeidsforhold som årsakskjede hører til arbeidshistorie.",
+        "kjonn_familie_livslop": "Omsorgsordning og institusjon hører hit; normer, slektskap og kjønnsrelasjoner som hovedspørsmål hører til kjønn/familie."
+      }
     },
     "his_byhistorie_stedsendring": {
       "status": "complete_revised",
-      "purpose": "Bygge byhistoriske spørsmål fra kart, før- og ettertilstander, planer, inngrep, funksjonsskifter og berørte grupper uten å redusere feltet til løs byutviklingsteori eller dagens byform.",
+      "purpose": "gjør stedsendring etterprøvbar gjennom kart, vedtak og fysiske spor og skiller urban transformasjon fra løse påstander om at et område har blitt annerledes",
       "required_chain": [
-        "ekstern kilde eller synlig byhistorisk spor",
-        "presist avgrenset gate, kvartal, tomt, område eller forbindelseslinje",
-        "datert førtilstand med dokumentert funksjon, eierskap, bruk eller befolkning",
-        "navngitt plan, vedtak, investering, infrastruktur eller annen endringsdriver",
-        "dokumentert fysisk, funksjonell, juridisk, økonomisk eller sosial endring",
-        "identifisert beboer-, bruker-, arbeider- eller virksomhetsgruppe som ble berørt",
-        "datert ettertilstand og eksplisitt tidsspenn",
-        "kontrollkilde, kart- eller seriekryssjekk",
-        "kildebegrensning og skalausikkerhet",
-        "kritisk distinksjon",
-        "eventuelt teori etter at stedsendringskjeden er etablert"
+        "byhistorisk spor eller ekstern kilde",
+        "presist avgrenset gate, tomt eller område",
+        "datert førtilstand",
+        "navngitt plan, investering eller infrastruktur",
+        "dokumentert fysisk eller funksjonell endring",
+        "berørt gruppe",
+        "datert ettertilstand",
+        "kart- eller seriekryssjekk",
+        "kildebegrensning",
+        "kritisk distinksjon"
       ],
       "hook_ids": [
         "his_byutvidelse_grense_innlemmelse",
@@ -632,49 +637,51 @@
         "em_his_byutvidelse_gentrifisering",
         "em_his_riving_ombruk_bevaring",
         "em_his_sanering_byfornyelse",
-        "em_his_gatenett_tomtestruktur_infrastruktur",
-        "em_his_regulering_plan_ekspropriasjon",
-        "em_his_naring_funksjonsskifte",
-        "em_his_industrihavn_transformasjon",
-        "em_his_gentrifisering_verdi_befolkning",
-        "em_his_offentlig_rom_tilgang_konflikt",
-        "em_his_stedsnavn_fortelling_tilhorighet"
+        "em_his_byhistorie_stedsendring_bydannelse_og_urban_morfologi",
+        "em_his_byhistorie_stedsendring_sentrum_periferi_og_byutvidelse",
+        "em_his_byhistorie_stedsendring_infrastruktur_mobilitet_og_tekniske_systemer",
+        "em_his_byhistorie_stedsendring_eiendom_boligregimer_og_tomtemarkeder",
+        "em_his_byhistorie_stedsendring_klasse_segregasjon_og_offentlige_rom",
+        "em_his_byhistorie_stedsendring_sanering_byfornyelse_og_modernisme",
+        "em_his_byhistorie_stedsendring_gentrifisering_ombruk_og_bevaring"
       ],
       "method_ids": [
-        "met_for_etter_historisk",
-        "met_sporlesning",
-        "met_arkivlesning",
-        "met_komparativ_historie",
-        "met_mikrohistorisk_analyse",
         "met_historisk_gis",
         "met_romlig_historie",
         "met_planhistorisk_analyse",
         "met_arealbruksendringsanalyse",
-        "met_eiendoms_og_verdidynamikkanalyse"
+        "met_eiendoms_og_verdidynamikkanalyse",
+        "met_for_etter_historisk",
+        "met_sporlesning",
+        "met_arkivlesning",
+        "met_komparativ_historie",
+        "met_mikrohistorisk_analyse"
       ],
       "forbidden_shortcuts": [
-        "dagens byform behandlet som bevis for historisk prosess",
-        "planvedtak behandlet som identisk med gjennomføring",
-        "prisvekst behandlet som tilstrekkelig bevis for gentrifisering",
-        "bevart fasade behandlet som sosial eller funksjonell kontinuitet",
-        "synlig riving behandlet som full forklaring på hvem som flyttet",
-        "teoretikernavn eller bybegrep behandlet som tilstrekkelig svar"
-      ]
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "by": "Historisk dokumentert endring over tid hører hit; nåtidig arkitektur og urban kvalitet uten endringskjede hører til byfaget.",
+        "industri_arbeid_sosialhistorie": "Arealbruk og fysisk transformasjon hører hit; arbeidsprosess og arbeidsvilkår hører til arbeidshistorie.",
+        "minne_kulturarv_historiebruk": "Fysisk og funksjonell endring hører hit; minnepolitikk og verneverdier som hovedspørsmål hører til minnefeltet."
+      }
     },
     "his_migrasjon_minoritet_tilhorighet": {
       "status": "complete_revised",
-      "purpose": "Bygge migrasjons- og minoritetshistoriske spørsmål fra navngitte mennesker, grupper, institusjoner og nettverk, daterte mobilitets- og statusforløp, dokumenterte praksiser, grenser og konsekvenser uten å redusere feltet til generiske mangfolds- eller identitetsspørsmål.",
+      "purpose": "kobler migrasjon til konkrete livsforløp og institusjonelle grenser uten å redusere mennesker til kategorier eller behandle integrasjon som enveis prosess",
       "required_chain": [
-        "ekstern kilde eller synlig migrasjons- eller minoritetshistorisk spor",
-        "navngitt person, gruppe, institusjon, nettverk eller migrasjonsbevegelse",
-        "datert opprinnelse, avreise, ankomst, bosetting, status eller kategorisering",
-        "dokumentert bolig-, arbeids-, familie-, religions-, språk- eller organisasjonspraksis",
-        "dokumentert juridisk eller sosial grense, ressurs, ekskludering eller kollektiv respons",
+        "migrasjons- eller minoritetshistorisk spor",
+        "navngitt person, gruppe eller nettverk",
+        "datert avreise, ankomst, bosetting eller status",
+        "dokumentert praksis i bolig, arbeid, familie, språk eller religion",
+        "juridisk eller sosial grense",
         "konsekvens for individ, hushold eller fellesskap",
-        "kontrollkilde, sammenligningsgrunnlag eller seriekryssjekk",
-        "kildebegrensning, arkivtaushet og etisk håndtering",
-        "kritisk distinksjon",
-        "eventuelt teori etter at migrasjons- og minoritetskjeden er etablert"
+        "kontrollkilde",
+        "etisk kildebegrensning",
+        "kritisk distinksjon"
       ],
       "hook_ids": [
         "his_migrasjonsdrivere_flyttestrommer",
@@ -701,41 +708,43 @@
         "em_his_organisering_motstand_offentlighet"
       ],
       "method_ids": [
-        "met_muntlig_historie",
-        "met_arkivlesning",
-        "met_sporlesning",
-        "met_minneanalyse",
-        "met_seriell_kildeanalyse",
         "met_migrasjonsforlopsanalyse",
         "met_bosettings_og_nettverksanalyse",
         "met_rettighetsstatusanalyse",
         "met_minoritetspolitisk_kategorianalyse",
-        "met_transnasjonal_husholdsanalyse"
+        "met_transnasjonal_husholdsanalyse",
+        "met_muntlig_historie",
+        "met_arkivlesning",
+        "met_seriell_kildeanalyse",
+        "met_diskursanalyse",
+        "met_sporlesning"
       ],
       "forbidden_shortcuts": [
-        "nåtidig gruppenavn projisert bakover uten kildekritikk",
-        "mangfold eller identitet behandlet som forklaring uten datert forløp",
-        "ett synlig symbol behandlet som representativt for en hel gruppe",
-        "juridisk status behandlet som identisk med opplevd tilhørighet",
-        "arkivtaushet behandlet som bevis for at erfaringen ikke fantes",
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
         "teoretikernavn behandlet som tilstrekkelig svar"
-      ]
+      ],
+      "boundary_rules": {
+        "industri_arbeid_sosialhistorie": "Mobilitet, status og nettverk hører hit; arbeidsprosess og lønn som hovedsak hører til arbeidshistorie.",
+        "velferd_rett_hverdagsliv": "Status og tilgang hører hit når migrasjon forklarer grensen; ordningen eller tjenesten som hovedkjede hører til velferd.",
+        "minne_kulturarv_historiebruk": "Migrasjonserfaring og minoritetsposisjon hører hit; offentlig representasjon og museumskanon hører til minnefeltet."
+      }
     },
     "his_minne_kulturarv_historiebruk": {
       "status": "complete_revised",
-      "purpose": "Bygge minne- og kulturarvshistoriske spørsmål fra dokumenterte objekter, opprinnelige hendelser, senere inngrep, aktører, utvelgelser, grupper og offentlige konsekvenser uten å redusere feltet til løs symbolikk eller hyllest.",
+      "purpose": "viser at kulturarv og minne er historiske praksiser med aktører, verdier, konflikter og konsekvenser, ikke nøytrale beholdere for fortiden",
       "required_chain": [
-        "ekstern kilde eller synlig minne- eller kulturarvsspor",
-        "navngitt minneaktør, institusjon, kulturarvobjekt, samling, seremoni eller offentlig fortelling",
-        "datert opprinnelig hendelse, objekt eller bruk og datert senere minne- eller kulturarvsinngrep",
-        "dokumentert utvelgelse, bevaring, restaurering, innsamling, navngivning, ritual, utstilling, fjerning eller omtolking",
-        "uttalt verdi, argument, mandat eller autorisert aktør",
-        "identifisert gruppe som inkluderes, utelates, utfordrer eller berøres",
-        "dokumentert offentlig konsekvens, bruk, konflikt eller endret forståelse",
-        "kontrollkilde, sammenligning eller tidligere/senere representasjon",
-        "kildebegrensning, autentisitetsusikkerhet og etisk håndtering",
-        "kritisk distinksjon",
-        "eventuelt teori etter at minne- og kulturarvskjeden er etablert"
+        "minne- eller kulturarvsspor",
+        "navngitt aktør, institusjon eller objekt",
+        "datert opprinnelig hendelse og senere minneinngrep",
+        "utvelgelse, bevaring, ritual, utstilling eller omtolking",
+        "uttalt verdi eller mandat",
+        "inkludert, utelatt eller berørt gruppe",
+        "offentlig konsekvens eller konflikt",
+        "kontrollkilde",
+        "kildebegrensning og etisk håndtering",
+        "kritisk distinksjon"
       ],
       "hook_ids": [
         "his_kulturminneutvelgelse_verdi",
@@ -764,34 +773,768 @@
       "method_ids": [
         "met_minneanalyse",
         "met_symbol_og_minneanalyse",
-        "met_sporlesning",
-        "met_kildekritikk",
         "met_kulturarvutvelgelsesanalyse",
         "met_restaurerings_autentisitetsanalyse",
         "met_museums_og_samlingsanalyse",
         "met_minnesteds_og_ritualanalyse",
         "met_historiebruksanalyse",
-        "met_navnepolitisk_analyse"
+        "met_navnepolitisk_analyse",
+        "met_sporlesning",
+        "met_kildekritikk"
       ],
       "forbidden_shortcuts": [
-        "alder behandlet som kulturarvstatus",
-        "vern behandlet som bevis for representativitet",
-        "monument behandlet som nøytral fortelling",
-        "museumstekst behandlet som fullstendig kilde",
-        "rekonstruksjon behandlet som original",
-        "offentlig sorg behandlet som enhetlig erfaring",
-        "digital tilgjengelighet behandlet som representativitet",
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
         "teoretikernavn behandlet som tilstrekkelig svar"
       ],
       "boundary_rules": {
-        "kilder_arkiv_spor": "Kildeobjektets produksjon og autentisitet hører til kildefeltet; offentlig utvelgelse, representasjon og bruk hører hit.",
-        "byhistorie_stedsendring": "Fysisk og funksjonell transformasjon hører til byhistorie; minnepolitikk, verneverdier og kulturarvskonflikt hører hit.",
-        "migrasjon_minoritet_tilhorighet": "Migrasjonsforløp og minoritetsposisjon hører til migrasjon; offentlig representasjon, museumskanon og motminne hører hit.",
-        "katastrofer_brudd_ulykker": "Hendelse, beredskap og gjenoppbygging hører til katastrofehistorie; senere minnemarkering og offentlig sorg hører hit.",
-        "politikk": "Samtidige partiprogram og pågående beslutningsprosess hører til politikk; historisk dokumentert minnepraksis og dens konsekvens hører hit.",
-        "kunst": "Form, estetikk og kunstverk hører til kunst; bestilling, autorisering og offentlig minnebruk hører hit.",
-        "religion": "Troslære og religiøs praksis hører til religion; kulturarvsforvaltning og offentlig minnebruk av religiøse steder hører hit.",
-        "media": "Medieproduksjon og distribusjon hører til media; dokumentert mediert bruk av fortiden som offentlig minne hører hit."
+        "kilder_arkiv_spor": "Kildens produksjon og autentisitet hører til kildefeltet; offentlig utvelgelse og representasjon hører hit.",
+        "byhistorie_stedsendring": "Fysisk transformasjon hører til byhistorie; verneverdier og minnepolitikk hører hit.",
+        "kunst": "Form og estetikk hører til kunst; autorisering og offentlig minnebruk hører hit."
+      }
+    },
+    "his_middelalder_kirke_kongemakt": {
+      "status": "complete_revised",
+      "purpose": "kobler ruiner, kirker, lovtekster og landskap til institusjonsbygging og hverdagsliv uten å behandle middelalderen som én uforanderlig epoke",
+      "required_chain": [
+        "arkeologisk, skriftlig eller materiell kilde",
+        "datert sted eller institusjon",
+        "aktør, jurisdiksjon eller eiendomsrelasjon",
+        "dokumentert praksis eller konflikt",
+        "regional eller transregional forbindelse",
+        "konsekvens for hushold eller lokalsamfunn",
+        "kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "hook_ids": [
+        "his_middelalder_by_kirke",
+        "his_middelalder_kirke_kongemakt_kirke_og_konflikt",
+        "his_middelalder_kirke_middelalderens_oslo",
+        "his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+        "his_middelalder_kirke_jord_eiendom_og_patronasje",
+        "his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "his_middelalder_kirke_bondehushold_demografi_og_dagligliv",
+        "his_middelalder_kirke_svartedauden_og_senmiddelalderens_omforming",
+        "his_middelalder_kirke_skriftkultur_diplom_og_muntlig_rett",
+        "his_middelalder_kirke_samiske_kontaktsoner_handel_og_statsgrenser_i_middelalderen"
+      ],
+      "emne_ids": [
+        "em_his_kirke_kloster_middelalder",
+        "em_his_kongemakt_kirke_konflikt",
+        "em_his_middelalder_oslo",
+        "em_his_middelalder_kirke_kristning_og_religios_omforming",
+        "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse",
+        "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
+        "em_his_middelalder_kirke_lov_ting_og_jurisdiksjon",
+        "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
+        "em_his_middelalder_kirke_handel_handverk_og_bydannelse",
+        "em_his_middelalder_kirke_bondehushold_demografi_og_dagligliv"
+      ],
+      "method_ids": [
+        "met_sporlesning",
+        "met_materiell_kulturanalyse",
+        "met_rettshistorisk_analyse",
+        "met_prosopografi",
+        "met_diplomatikk",
+        "met_paleografi",
+        "met_arkeologisk_kontekstanalyse",
+        "met_kronologisk_rekonstruksjon",
+        "met_kildekritikk",
+        "met_komparativ_historie"
+      ],
+      "forbidden_shortcuts": [
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "religion_reformasjon_livssyn": "Middelalderens kirke som institusjon og maktstruktur hører hit; troslære og lengre religionshistorie hører til religionsdomenet.",
+        "makt_stat_institusjoner": "Middelalderlig statsdannelse hører hit når periodens kilder og institusjoner bærer spørsmålet; generell myndighetsanalyse hører til maktdomenet.",
+        "samisk_urfolkshistorie": "Kontaktsoner kan behandles her komparativt; samiske samfunn, rettigheter og kolonisering som hovedkjede hører til samisk historie."
+      }
+    },
+    "his_1814_statsdannelse": {
+      "status": "complete_revised",
+      "purpose": "viser hvordan grunnlovstekst, institusjoner og politisk praksis utviklet seg ulikt og hvordan nye rettigheter samtidig skapte nye grenser",
+      "required_chain": [
+        "samtidig tekst eller institusjonelt spor",
+        "datert geopolitisk og konstitusjonell situasjon",
+        "navngitt aktør eller forsamling",
+        "regel, vedtak eller representasjonsordning",
+        "gjennomføring i institusjonell praksis",
+        "inkludert og ekskludert gruppe",
+        "senere endring eller omfortolkning",
+        "kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "hook_ids": [
+        "his_grunnlov_rom_tekst",
+        "his_1814_statsdannelse_embetsstat_og_demokratisering",
+        "his_1814_statsdannelse_nasjonal_identitet_og_historiske_fortellinger",
+        "his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+        "his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+        "his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+        "his_1814_statsdannelse_union_selvstendighet_og_1905",
+        "his_1814_statsdannelse_eksklusjon_fornorskning_og_statsborgerskap",
+        "his_1814_statsdannelse_kommunalt_selvstyre_lokal_forvaltning_og_politisk_deltakelse",
+        "his_1814_statsdannelse_1905_unionsopplosning_og_ny_utenrikspolitisk_orientering"
+      ],
+      "emne_ids": [
+        "em_his_1814_grunnlov_statsdannelse",
+        "em_his_embetsstat_demokratisering",
+        "em_his_nasjonal_identitet_fortellinger",
+        "em_his_1814_statsdannelse_enevelde_og_dansk_norsk_statsutvikling",
+        "em_his_1814_statsdannelse_kiel_1814_og_geopolitisk_brudd",
+        "em_his_1814_statsdannelse_suverenitet_grunnlov_og_representasjon",
+        "em_his_1814_statsdannelse_embetsstat_og_kommunalt_selvstyre",
+        "em_his_1814_statsdannelse_stemmerett_partier_og_parlamentarisme",
+        "em_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+        "em_his_1814_statsdannelse_union_selvstendighet_og_1905"
+      ],
+      "method_ids": [
+        "met_begrepshistorie",
+        "met_institusjonshistorisk_analyse",
+        "met_kildekritikk",
+        "met_diskursanalyse",
+        "met_komparativ_historie",
+        "met_rettshistorisk_analyse",
+        "met_for_etter_historisk",
+        "met_prosopografi",
+        "met_beslutningskjedeanalyse",
+        "met_kronologisk_rekonstruksjon"
+      ],
+      "forbidden_shortcuts": [
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "makt_stat_institusjoner": "1814 og unionsperioden hører hit når den historiske fasen bærer spørsmålet; generell institusjonsanalyse hører til maktdomenet.",
+        "offentlighet_mobilisering_bevegelser": "Historiske stemmeretts- og organisasjonsbevegelser kan kobles hit; kollektiv mobilisering som hovedkjede hører til offentlighetsdomenet.",
+        "minne_kulturarv_historiebruk": "Konstitusjonell hendelse og praksis hører hit; jubileer og offentlig bruk av 1814 hører til minnefeltet."
+      }
+    },
+    "his_krig_okkupasjon_motstand": {
+      "status": "complete_revised",
+      "purpose": "viser hvordan krig endrer institusjoner og hverdagsliv og unngår en enkel todeling mellom helter og forrædere",
+      "required_chain": [
+        "samtidig kilde eller krigsspor",
+        "datert militær eller politisk situasjon",
+        "navngitt institusjon, gruppe eller person",
+        "dokumentert ordre, praksis eller handling",
+        "konsekvens for sivile eller stridende",
+        "alternativ eller motstridende kilde",
+        "etteroppgjør eller minne",
+        "etisk kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "hook_ids": [
+        "his_okkupasjon_byrom_kontroll",
+        "his_krig_okkupasjon_okkupasjon_og_motstand",
+        "his_krig_okkupasjon_rettsoppgjor_og_etterkrig",
+        "his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+        "his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+        "his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
+        "his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet",
+        "his_krig_okkupasjon_krigsminne_veteraner_og_ettervirkninger",
+        "his_krig_okkupasjon_motstand_samarbeid_tilpasning_og_grasoner",
+        "his_krig_okkupasjon_kald_krig_beredskap_og_sikkerhetsstat"
+      ],
+      "emne_ids": [
+        "em_his_fangenskap_kontroll",
+        "em_his_okkupasjon_motstand",
+        "em_his_rettsoppgjor_etterkrig",
+        "em_his_krig_okkupasjon_krig_mobilisering_og_statsdannelse",
+        "em_his_krig_okkupasjon_logistikk_forsyning_og_militaer_infrastruktur",
+        "em_his_krig_okkupasjon_sivilsamfunn_total_krig_og_hverdagsliv",
+        "em_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
+        "em_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
+        "em_his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
+        "em_his_krig_okkupasjon_folkerett_rettsoppgjor_og_overgangsrettferdighet"
+      ],
+      "method_ids": [
+        "met_kildekritikk",
+        "met_muntlig_historie",
+        "met_institusjonshistorisk_analyse",
+        "met_prosopografi",
+        "met_minneanalyse",
+        "met_for_etter_historisk",
+        "met_rettshistorisk_analyse",
+        "met_logistikkhistorisk_analyse",
+        "met_voldshistorisk_analyse",
+        "met_propagandaanalyse"
+      ],
+      "forbidden_shortcuts": [
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "minne_kulturarv_historiebruk": "Krigshendelsen og samtidens praksis hører hit; senere monument, ritual og offentlig minne hører til minnefeltet.",
+        "makt_stat_institusjoner": "Krigens unntaksinstitusjoner hører hit når krigssituasjonen bærer spørsmålet; generell kontroll- og forvaltningshistorie hører til maktdomenet.",
+        "katastrofer_brudd_ulykker": "Krig som organisert vold hører hit; ulykke, beredskap og systemsvikt uten krigskontekst hører til katastrofedomenet."
+      }
+    },
+    "his_katastrofer_brudd_ulykker": {
+      "status": "complete_revised",
+      "purpose": "viser at katastrofer ikke bare er plutselige natur- eller teknologihendelser, men historiske prosesser som fordeler risiko og tap ulikt",
+      "required_chain": [
+        "samtidig kilde eller fysisk spor",
+        "datert hendelsesforløp",
+        "fare og eksponert gruppe",
+        "institusjonell eller teknisk sårbarhet",
+        "respons, beredskap eller svikt",
+        "tap og ulik konsekvens",
+        "gransking eller ansvar",
+        "gjenoppbygging eller langsom ettervirkning",
+        "kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "hook_ids": [
+        "his_krise_gjenoppbygging",
+        "his_katastrofer_brudd_gjenoppbygging_og_minne_etter_krise",
+        "his_katastrofer_brudd_terror_og_samtidshistorie",
+        "his_katastrofer_brudd_teknologi_systemulykker_og_normalulykker",
+        "his_katastrofer_brudd_beredskap_kriseledelse_og_institusjonell_laering",
+        "his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
+        "his_katastrofer_brudd_gjenoppbygging_resiliens_og_minne",
+        "his_katastrofer_brudd_langsomme_katastrofer_og_miljoskade",
+        "his_katastrofer_brudd_langsomme_katastrofer_miljoskade_og_ulik_eksponering",
+        "his_katastrofer_brudd_katastrofer_branner_ulykker_og_historiske_brudd_fordypning_10"
+      ],
+      "emne_ids": [
+        "em_his_branner_ulykker_brudd",
+        "em_his_gjenoppbygging_minne",
+        "em_his_terror_samtidshistorie",
+        "em_his_katastrofer_brudd_katastrofe_som_sosial_prosess",
+        "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering",
+        "em_his_katastrofer_brudd_brann_epidemi_og_naturfare",
+        "em_his_katastrofer_brudd_teknologi_systemulykker_og_normalulykker",
+        "em_his_katastrofer_brudd_beredskap_kriseledelse_og_institusjonell_laering",
+        "em_his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
+        "em_his_katastrofer_brudd_gjenoppbygging_resiliens_og_minne"
+      ],
+      "method_ids": [
+        "met_kronologisk_rekonstruksjon",
+        "met_hendelsesforlop_analyse",
+        "met_institusjonshistorisk_analyse",
+        "met_risiko_og_saarbarhetsanalyse",
+        "met_ulykkesgranskningsanalyse",
+        "met_miljohistorisk_analyse",
+        "met_for_etter_historisk",
+        "met_kildekritikk",
+        "met_seriell_kildeanalyse",
+        "met_minneanalyse"
+      ],
+      "forbidden_shortcuts": [
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "krig_okkupasjon_motstand": "Ulykke og systemsvikt hører hit; organisert krig og okkupasjonsstyre hører til krigshistorie.",
+        "miljo_klima_landskap": "Katastrofeforløp og beredskap hører hit; langsiktige miljøregimer og ressursendring hører til miljøhistorie.",
+        "minne_kulturarv_historiebruk": "Hendelse og gjenoppbygging hører hit; senere minnemarkering og ritual hører til minnefeltet."
+      }
+    },
+    "his_kjonn_familie_livslop": {
+      "status": "complete_revised",
+      "purpose": "viser hvordan private relasjoner er formet av lov, økonomi, medisin og politisk mobilisering og unngår å behandle familie eller kjønn som tidløse størrelser",
+      "required_chain": [
+        "kilde til person, hushold eller institusjon",
+        "datert norm, regel eller praksis",
+        "kjønnet eller aldersbestemt posisjon",
+        "arbeids-, omsorgs-, arve- eller kroppsrelasjon",
+        "handlingsrom og begrensning",
+        "konsekvens gjennom livsløpet",
+        "motstemme eller kontrollkilde",
+        "etisk kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "hook_ids": [
+        "his_kjonn_familie_kjonn_som_historisk_kategori",
+        "his_kjonn_familie_familie_hushold_og_slektskap",
+        "his_kjonn_familie_ekteskap_arv_og_eiendom",
+        "his_kjonn_familie_seksualitet_regulering_og_identitet",
+        "his_kjonn_familie_kropp_reproduksjon_og_medisinsk_makt",
+        "his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid",
+        "his_kjonn_familie_barndom_ungdom_alderdom_og_livslop",
+        "his_kjonn_familie_kvinnebevegelse_likestilling_og_skeiv_historie",
+        "his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
+        "his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_fordypning_10"
+      ],
+      "emne_ids": [
+        "em_his_kjonn_familie_kjonn_som_historisk_kategori",
+        "em_his_kjonn_familie_familie_hushold_og_slektskap",
+        "em_his_kjonn_familie_ekteskap_arv_og_eiendom",
+        "em_his_kjonn_familie_seksualitet_regulering_og_identitet",
+        "em_his_kjonn_familie_kropp_reproduksjon_og_medisinsk_makt",
+        "em_his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid",
+        "em_his_kjonn_familie_barndom_ungdom_alderdom_og_livslop",
+        "em_his_kjonn_familie_kvinnebevegelse_likestilling_og_skeiv_historie",
+        "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
+        "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
+      ],
+      "method_ids": [
+        "met_kjonnshistorisk_analyse",
+        "met_livslopsanalyse",
+        "met_husholdsanalyse",
+        "met_muntlig_historie",
+        "met_diskursanalyse",
+        "met_rettshistorisk_analyse",
+        "met_seriell_kildeanalyse",
+        "met_mikrohistorisk_analyse",
+        "met_arkivlesning",
+        "met_kildekritikk"
+      ],
+      "forbidden_shortcuts": [
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "velferd_rett_hverdagsliv": "Familie og kjønn hører hit når relasjonen eller normen bærer spørsmålet; velferdsordning og tjeneste som hovedkjede hører til velferd.",
+        "medisin": "Kropp og reproduksjon hører hit når sosial regulering og kjønn er hovedspørsmålet; medisinsk kunnskap og behandling hører til vitenskap/medisin.",
+        "offentlighet_mobilisering_bevegelser": "Kvinne- og skeiv mobilisering hører til offentlighetsdomenet når organisasjonen og protesten bærer spørsmålet; kjønnsrelasjonen og livsløpet hører hit."
+      }
+    },
+    "his_okonomi_handel_materielle_systemer": {
+      "status": "complete_revised",
+      "purpose": "kobler priser og institusjoner til konkrete aktører og materielle strømmer og unngår å forklare økonomisk endring som et upersonlig marked alene",
+      "required_chain": [
+        "økonomisk kilde eller materielt spor",
+        "navngitt aktør, vare, institusjon eller eiendom",
+        "datert marked, regel eller transaksjon",
+        "strøm av penger, varer eller ressurser",
+        "pris, kreditt, skatt eller investering",
+        "konsekvens for produsent, hushold eller region",
+        "serie- eller kontrollkilde",
+        "skala- og kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "hook_ids": [
+        "his_okonomi_handel_markeder_og_markedsintegrasjon",
+        "his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
+        "his_okonomi_handel_penger_kreditt_bank_og_finans",
+        "his_okonomi_handel_eiendom_kapital_og_akkumulering",
+        "his_okonomi_handel_jordbruk_fiske_og_ressursokonomi",
+        "his_okonomi_handel_skatt_offentlig_okonomi_og_infrastruktur",
+        "his_okonomi_handel_forbruk_priser_og_levestandard",
+        "his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
+        "his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder",
+        "his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet"
+      ],
+      "emne_ids": [
+        "em_his_okonomi_handel_markeder_og_markedsintegrasjon",
+        "em_his_okonomi_handel_handel_sjofart_og_kommersielle_nettverk",
+        "em_his_okonomi_handel_penger_kreditt_bank_og_finans",
+        "em_his_okonomi_handel_eiendom_kapital_og_akkumulering",
+        "em_his_okonomi_handel_jordbruk_fiske_og_ressursokonomi",
+        "em_his_okonomi_handel_skatt_offentlig_okonomi_og_infrastruktur",
+        "em_his_okonomi_handel_forbruk_priser_og_levestandard",
+        "em_his_okonomi_handel_kriser_konjunkturer_og_global_arbeidsdeling",
+        "em_his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder",
+        "em_his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet"
+      ],
+      "method_ids": [
+        "met_kvantitativ_historie",
+        "met_seriell_kildeanalyse",
+        "met_nettverksanalyse",
+        "met_transnasjonal_sporing",
+        "met_regnskapshistorisk_analyse",
+        "met_pris_og_lonnserieanalyse",
+        "met_varekjedeanalyse",
+        "met_institusjonshistorisk_analyse",
+        "met_komparativ_historie",
+        "met_kildekritikk"
+      ],
+      "forbidden_shortcuts": [
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "naeringsliv": "Historisk marked, institusjon og materiell strøm hører hit; nåtidig virksomhetsstrategi hører til næringsliv.",
+        "industri_arbeid_sosialhistorie": "Marked og kapital hører hit når økonomiske systemer bærer spørsmålet; arbeidsprosess og livsvilkår hører til arbeidshistorie.",
+        "global_kolonial_transnasjonal": "Varekjede og handel hører hit når økonomisk mekanisme er hovedspørsmålet; imperial makt og kolonial relasjon hører til globalhistorie."
+      }
+    },
+    "his_religion_reformasjon_livssyn": {
+      "status": "complete_revised",
+      "purpose": "viser hvordan troslære, institusjoner og hverdagspraksis endres ulikt og unngår å behandle sekularisering som en enkel lineær nedgang i religion",
+      "required_chain": [
+        "religiøst eller livssynshistorisk spor",
+        "datert institusjon, lære eller regel",
+        "navngitt aktør eller fellesskap",
+        "dokumentert ritual, organisasjon eller hverdagspraksis",
+        "rettighet, konflikt eller offentlig posisjon",
+        "konsekvens for gruppe eller individ",
+        "kontrollkilde",
+        "etisk kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "hook_ids": [
+        "his_religion_reformasjon_forkristne_religioner_og_kristning",
+        "his_religion_reformasjon_reformasjon_og_konfesjonalisering",
+        "his_religion_reformasjon_statskirke_disiplin_og_religios_orden",
+        "his_religion_reformasjon_pietisme_vekkelse_og_lekmannsbevegelse",
+        "his_religion_reformasjon_dissentere_trosfrihet_og_minoriteter",
+        "his_religion_reformasjon_sekularisering_og_livssynspluralisme",
+        "his_religion_reformasjon_religion_kjonn_og_hverdagsliv",
+        "his_religion_reformasjon_religion_politikk_og_offentlighet",
+        "his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
+        "his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
+      ],
+      "emne_ids": [
+        "em_his_religion_reformasjon_forkristne_religioner_og_kristning",
+        "em_his_religion_reformasjon_reformasjon_og_konfesjonalisering",
+        "em_his_religion_reformasjon_statskirke_disiplin_og_religios_orden",
+        "em_his_religion_reformasjon_pietisme_vekkelse_og_lekmannsbevegelse",
+        "em_his_religion_reformasjon_dissentere_trosfrihet_og_minoriteter",
+        "em_his_religion_reformasjon_sekularisering_og_livssynspluralisme",
+        "em_his_religion_reformasjon_religion_kjonn_og_hverdagsliv",
+        "em_his_religion_reformasjon_religion_politikk_og_offentlighet",
+        "em_his_religion_reformasjon_religion_migrasjon_og_transnasjonale_nettverk",
+        "em_his_religion_reformasjon_livssyn_sekularitet_og_offentlighet"
+      ],
+      "method_ids": [
+        "met_religionshistorisk_analyse",
+        "met_begrepshistorie",
+        "met_diskursanalyse",
+        "met_muntlig_historie",
+        "met_materiell_kulturanalyse",
+        "met_institusjonshistorisk_analyse",
+        "met_rettshistorisk_analyse",
+        "met_sporlesning",
+        "met_kildekritikk",
+        "met_komparativ_historie"
+      ],
+      "forbidden_shortcuts": [
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "middelalder_kirke_kongemakt": "Middelalderens kirke som maktinstitusjon hører til middelalderdomenet; lengre tros- og religionshistorisk endring hører hit.",
+        "migrasjon_minoritet_tilhorighet": "Religion hører hit når lære, institusjon eller praksis bærer spørsmålet; migrasjon, status og minoritetsposisjon som hovedkjede hører til migrasjon.",
+        "politikk": "Historisk forhold mellom religion og stat hører hit; samtidige partiprogram og politisk strategi hører til politikk."
+      }
+    },
+    "his_samisk_urfolkshistorie": {
+      "status": "complete_revised",
+      "purpose": "setter samiske aktører og kunnskapssystemer i sentrum og unngår å gjøre urfolkshistorie til et tillegg til en ellers uendret nasjonal fortelling",
+      "required_chain": [
+        "samisk kilde, muntlig tradisjon eller landskapsspor",
+        "navngitt siida, lokalsamfunn, institusjon eller aktør",
+        "datert ressurs-, språk-, skole- eller grenseinngrep",
+        "dokumentert praksis eller motstand",
+        "rettslig, økonomisk eller kulturell konsekvens",
+        "samisk kunnskaps- eller motkilde",
+        "etisk kildehåndtering",
+        "kritisk kolonial distinksjon"
+      ],
+      "hook_ids": [
+        "his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer",
+        "his_samisk_urfolkshistorie_kontaktsoner_handel_og_statsgrenser",
+        "his_samisk_urfolkshistorie_misjon_kristning_og_kunnskapsmakt",
+        "his_samisk_urfolkshistorie_jord_ressursrett_og_kolonisering",
+        "his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+        "his_samisk_urfolkshistorie_raseforskning_og_vitenskapelig_klassifikasjon",
+        "his_samisk_urfolkshistorie_organisering_alta_og_rettighetskamp",
+        "his_samisk_urfolkshistorie_revitalisering_sannhet_og_forsoning",
+        "his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar",
+        "his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
+      ],
+      "emne_ids": [
+        "em_his_samisk_urfolkshistorie_samiske_samfunn_siida_og_naeringsformer",
+        "em_his_samisk_urfolkshistorie_kontaktsoner_handel_og_statsgrenser",
+        "em_his_samisk_urfolkshistorie_misjon_kristning_og_kunnskapsmakt",
+        "em_his_samisk_urfolkshistorie_jord_ressursrett_og_kolonisering",
+        "em_his_samisk_urfolkshistorie_fornorskning_skole_og_sprak",
+        "em_his_samisk_urfolkshistorie_raseforskning_og_vitenskapelig_klassifikasjon",
+        "em_his_samisk_urfolkshistorie_organisering_alta_og_rettighetskamp",
+        "em_his_samisk_urfolkshistorie_revitalisering_sannhet_og_forsoning",
+        "em_his_samisk_urfolkshistorie_sannhet_forsoning_og_arkivenes_ansvar",
+        "em_his_samisk_urfolkshistorie_kunst_kulturarv_og_revitalisering_som_historisk_praksis"
+      ],
+      "method_ids": [
+        "met_urfolkshistorisk_analyse",
+        "met_muntlig_historie",
+        "met_transnasjonal_sporing",
+        "met_materiell_kulturanalyse",
+        "met_diskursanalyse",
+        "met_rettshistorisk_analyse",
+        "met_arkivlesning",
+        "met_stedsnavnanalyse",
+        "met_kildekritikk",
+        "met_sammenvevd_historie"
+      ],
+      "forbidden_shortcuts": [
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "global_kolonial_transnasjonal": "Koloniale forbindelser kan sammenlignes globalt; samiske samfunn og rettigheter som hovedkjede hører hit.",
+        "miljo_klima_landskap": "Landskap og ressursbruk hører hit når samisk rett og kunnskap bærer spørsmålet; miljøregime som hovedkjede hører til miljøhistorie.",
+        "minne_kulturarv_historiebruk": "Revitalisering og kulturarv hører hit når urfolksposisjon og rettighet er kjernen; offentlig minnepolitikk alene hører til minnefeltet."
+      }
+    },
+    "his_miljo_klima_landskap": {
+      "status": "complete_revised",
+      "purpose": "viser hvordan natur og samfunn gjensidig formes og hvordan miljøkostnader fordeles ulikt mellom steder, grupper og generasjoner",
+      "required_chain": [
+        "miljøhistorisk kilde eller landskapsspor",
+        "avgrenset økosystem, ressurs eller energisystem",
+        "datert inngrep eller miljøendring",
+        "aktør, teknologi eller forvaltningsregime",
+        "målbar eller dokumentert virkning",
+        "ulik konsekvens for gruppe, art eller sted",
+        "kontrollserie eller sammenligning",
+        "skala- og kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "hook_ids": [
+        "his_miljo_klima_klima_og_historisk_endring",
+        "his_miljo_klima_landskap_som_historisk_prosess",
+        "his_miljo_klima_energi_og_energiregimer",
+        "his_miljo_klima_skog_vann_og_naturressurser",
+        "his_miljo_klima_forurensning_og_urban_miljohistorie",
+        "his_miljo_klima_dyr_og_menneske_natur_relasjoner",
+        "his_miljo_klima_naturforvaltning_og_miljobevegelse",
+        "his_miljo_klima_antropocen_langsom_vold_og_miljorettferdighet",
+        "his_miljo_klima_urban_natur_helse_og_miljoulikhet",
+        "his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
+      ],
+      "emne_ids": [
+        "em_his_miljo_klima_klima_og_historisk_endring",
+        "em_his_miljo_klima_landskap_som_historisk_prosess",
+        "em_his_miljo_klima_energi_og_energiregimer",
+        "em_his_miljo_klima_skog_vann_og_naturressurser",
+        "em_his_miljo_klima_forurensning_og_urban_miljohistorie",
+        "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner",
+        "em_his_miljo_klima_naturforvaltning_og_miljobevegelse",
+        "em_his_miljo_klima_antropocen_langsom_vold_og_miljorettferdighet",
+        "em_his_miljo_klima_urban_natur_helse_og_miljoulikhet",
+        "em_his_miljo_klima_miljorettferdighet_langsom_vold_og_framtidsansvar"
+      ],
+      "method_ids": [
+        "met_miljohistorisk_analyse",
+        "met_historisk_gis",
+        "met_seriell_kildeanalyse",
+        "met_materiell_kulturanalyse",
+        "met_energisystemanalyse",
+        "met_forurensningshistorisk_analyse",
+        "met_landskapshistorisk_analyse",
+        "met_dyrehistorisk_analyse",
+        "met_kildekritikk",
+        "met_komparativ_historie"
+      ],
+      "forbidden_shortcuts": [
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "natur": "Historisk endring i naturbruk og miljøregime hører hit; nåtidig naturinformasjon uten historisk kjede hører til naturfaget.",
+        "katastrofer_brudd_ulykker": "Langsiktig miljøendring hører hit; avgrenset katastrofeforløp og beredskap hører til katastrofedomenet.",
+        "samisk_urfolkshistorie": "Miljøregime hører hit når naturforhold og ressursbruk er hovedspørsmålet; samisk rett og kolonisering som hovedkjede hører til samisk historie."
+      }
+    },
+    "his_vitenskap_teknologi_kunnskap": {
+      "status": "complete_revised",
+      "purpose": "viser at fakta, standarder og teknologier har produksjonshistorier, institusjoner og blindsoner uten å redusere vitenskap til enten ren sannhet eller ren makt",
+      "required_chain": [
+        "kunnskaps- eller teknologihistorisk spor",
+        "navngitt institusjon, ekspertgruppe eller teknisk system",
+        "datert måling, standard, modell eller klassifikasjon",
+        "produksjons- og valideringspraksis",
+        "anvendelse i stat, industri, medisin eller hverdag",
+        "inkludert og ekskludert kunnskap eller gruppe",
+        "kontrollkilde",
+        "metode- og kildebegrensning",
+        "kritisk distinksjon"
+      ],
+      "hook_ids": [
+        "his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise",
+        "his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
+        "his_vitenskap_teknologi_maling_statistikk_kart_og_klassifikasjon",
+        "his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
+        "his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning",
+        "his_vitenskap_teknologi_kommunikasjon_medier_og_informasjonsregimer",
+        "his_vitenskap_teknologi_digitalisering_og_datamakt",
+        "his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
+        "his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
+        "his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
+      ],
+      "emne_ids": [
+        "em_his_vitenskap_teknologi_kunnskapsinstitusjoner_og_ekspertise",
+        "em_his_vitenskap_teknologi_profesjoner_standardisering_og_autoritet",
+        "em_his_vitenskap_teknologi_maling_statistikk_kart_og_klassifikasjon",
+        "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
+        "em_his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning",
+        "em_his_vitenskap_teknologi_kommunikasjon_medier_og_informasjonsregimer",
+        "em_his_vitenskap_teknologi_digitalisering_og_datamakt",
+        "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
+        "em_his_vitenskap_teknologi_kunnskap_makt_kjonn_og_ekskludering",
+        "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser"
+      ],
+      "method_ids": [
+        "met_teknologisystemanalyse",
+        "met_kunnskapsregimeanalyse",
+        "met_standardiseringsanalyse",
+        "met_ekspertisehistorisk_analyse",
+        "met_nettverksanalyse",
+        "met_diskursanalyse",
+        "met_institusjonshistorisk_analyse",
+        "met_seriell_kildeanalyse",
+        "met_materiell_kulturanalyse",
+        "met_kildekritikk"
+      ],
+      "forbidden_shortcuts": [
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "vitenskap": "Historisk produksjon av kunnskap og ekspertise hører hit; nåtidig fagkunnskap uten historisk spørsmål hører til vitenskapsfaget.",
+        "makt_stat_institusjoner": "Ekspertise og måleteknikk hører hit når kunnskapsproduksjonen bærer spørsmålet; myndighetskjede som hovedsak hører til maktdomenet.",
+        "miljo_klima_landskap": "Miljøvitenskapens institusjoner hører hit; miljøendring og ressursregime som hovedkjede hører til miljøhistorie."
+      }
+    },
+    "his_global_kolonial_transnasjonal": {
+      "status": "complete_revised",
+      "purpose": "plasserer norsk historie i sammenvevde forbindelser og unngår å gjøre globale prosesser til en fjern bakgrunn for nasjonal utvikling",
+      "required_chain": [
+        "kilde til vare, person, institusjon eller idé i bevegelse",
+        "minst to avgrensede steder eller jurisdiksjoner",
+        "datert forbindelse eller asymmetrisk relasjon",
+        "nettverk, transport, lov eller organisasjon",
+        "lokal appropriasjon, motstand eller omforming",
+        "konsekvens i flere ledd",
+        "kilder fra mer enn én posisjon",
+        "skala- og språkbegrensning",
+        "kritisk kolonial distinksjon"
+      ],
+      "hook_ids": [
+        "his_global_kolonial_imperier_kolonialisme_og_makt",
+        "his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
+        "his_global_kolonial_misjon_kunnskap_og_kulturelle_moter",
+        "his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
+        "his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+        "his_global_kolonial_avkolonisering_og_utviklingspolitikk",
+        "his_global_kolonial_norge_i_imperiale_og_koloniale_forbindelser",
+        "his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie",
+        "his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
+        "his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
+      ],
+      "emne_ids": [
+        "em_his_global_kolonial_imperier_kolonialisme_og_makt",
+        "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
+        "em_his_global_kolonial_misjon_kunnskap_og_kulturelle_moter",
+        "em_his_global_kolonial_migrasjon_diaspora_og_transnasjonale_nettverk",
+        "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
+        "em_his_global_kolonial_avkolonisering_og_utviklingspolitikk",
+        "em_his_global_kolonial_norge_i_imperiale_og_koloniale_forbindelser",
+        "em_his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie",
+        "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
+        "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
+      ],
+      "method_ids": [
+        "met_sammenvevd_historie",
+        "met_transnasjonal_sporing",
+        "met_nettverksanalyse",
+        "met_komparativ_historie",
+        "met_varekjedeanalyse",
+        "met_postkolonial_kildekritikk",
+        "met_muntlig_historie",
+        "met_diskursanalyse",
+        "met_arkivlesning",
+        "met_kildekritikk"
+      ],
+      "forbidden_shortcuts": [
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "okonomi_handel_materielle_systemer": "Global forbindelse hører hit når imperial eller transnasjonal maktrelasjon bærer spørsmålet; økonomisk mekanisme og pris hører til økonomihistorie.",
+        "migrasjon_minoritet_tilhorighet": "Transnasjonalt nettverk hører hit når forbindelsen mellom flere samfunn bærer spørsmålet; individets migrasjonsforløp og status hører til migrasjon.",
+        "samisk_urfolkshistorie": "Komparativ urfolk- og kolonihistorie kan kobles hit; samiske samfunn og rettigheter som hovedkjede hører til samisk historie."
+      }
+    },
+    "his_offentlighet_mobilisering_bevegelser": {
+      "status": "complete_revised",
+      "purpose": "viser hvordan politisk og sosial endring skapes gjennom organisasjoner og offentligheter og unngår å redusere bevegelser til enkeltledere eller spontane utbrudd",
+      "required_chain": [
+        "presse-, organisasjons- eller protestkilde",
+        "navngitt gruppe, forening eller nettverk",
+        "datert krav, konflikt eller mobiliseringsfase",
+        "repertoar, møteplass eller kommunikasjonskanal",
+        "respons fra motpart eller myndighet",
+        "dokumentert organisatorisk eller politisk konsekvens",
+        "medlems- eller motkilde",
+        "representasjonsbegrensning",
+        "kritisk distinksjon"
+      ],
+      "hook_ids": [
+        "his_offentlighet_mobilisering_presse_offentlighet_og_politisk_kommunikasjon",
+        "his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
+        "his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer",
+        "his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
+        "his_offentlighet_mobilisering_lekmanns_sprak_og_motkulturelle_bevegelser",
+        "his_offentlighet_mobilisering_borgerrettigheter_solidaritet_og_internasjonalisme",
+        "his_offentlighet_mobilisering_miljobevegelse_og_nye_sosiale_bevegelser",
+        "his_offentlighet_mobilisering_digital_mobilisering_overvakning_og_motmakt",
+        "his_offentlighet_mobilisering_borgerrettighetskamp_antirasisme_og_solidaritetsbevegelser",
+        "his_offentlighet_mobilisering_digitale_offentligheter_nettverk_og_nye_mobiliseringsformer"
+      ],
+      "emne_ids": [
+        "em_his_offentlighet_mobilisering_presse_offentlighet_og_politisk_kommunikasjon",
+        "em_his_offentlighet_mobilisering_foreninger_partier_og_organisasjonssamfunn",
+        "em_his_offentlighet_mobilisering_protest_kollektiv_handling_og_repertoarer",
+        "em_his_offentlighet_mobilisering_arbeider_kvinne_og_avholdsbevegelser",
+        "em_his_offentlighet_mobilisering_lekmanns_sprak_og_motkulturelle_bevegelser",
+        "em_his_offentlighet_mobilisering_borgerrettigheter_solidaritet_og_internasjonalisme",
+        "em_his_offentlighet_mobilisering_miljobevegelse_og_nye_sosiale_bevegelser",
+        "em_his_offentlighet_mobilisering_digital_mobilisering_overvakning_og_motmakt",
+        "em_his_offentlighet_mobilisering_borgerrettighetskamp_antirasisme_og_solidaritetsbevegelser",
+        "em_his_offentlighet_mobilisering_digitale_offentligheter_nettverk_og_nye_mobiliseringsformer"
+      ],
+      "method_ids": [
+        "met_protesthendelsesanalyse",
+        "met_organisasjonshistorisk_analyse",
+        "met_offentlighetsanalyse",
+        "met_nettverksanalyse",
+        "met_diskursanalyse",
+        "met_muntlig_historie",
+        "met_seriell_kildeanalyse",
+        "met_arkivlesning",
+        "met_begrepshistorie",
+        "met_kildekritikk"
+      ],
+      "forbidden_shortcuts": [
+        "generisk teorispørsmål uten kilde",
+        "case uten tidsrom eller aktør",
+        "én kilde behandlet som full forklaring",
+        "teoretikernavn behandlet som tilstrekkelig svar"
+      ],
+      "boundary_rules": {
+        "politikk": "Historisk organisering og mobilisering hører hit; samtidige partiprogram og styringsstrategi hører til politikk.",
+        "industri_arbeid_sosialhistorie": "Arbeiderbevegelsen hører hit når organisasjon og kollektiv handling bærer spørsmålet; arbeidsprosess og livsvilkår hører til arbeidshistorie.",
+        "religion_reformasjon_livssyn": "Lekmanns- og avholdsbevegelser hører hit når mobilisering og offentlighet er hovedkjeden; lære og religiøs praksis hører til religion."
       }
     }
   }
