@@ -36,13 +36,17 @@ jobs:
         working-directory: repo
         run: node tools/validate-sport-scientific-pipeline-v2.mjs --write
 
-      - name: Validate existing Sport theory and evidence layers
+      - name: Validate existing Sport theory depth
         working-directory: repo
-        run: |
-          set -euo pipefail
-          node tools/validate-sport-theory-depth-v6.mjs
-          node tools/validate-sport-theory-quality.mjs
-          node tools/validate-sport-evidence.mjs
+        run: node tools/validate-sport-theory-depth-v6.mjs
+
+      - name: Validate existing Sport theory quality
+        working-directory: repo
+        run: node tools/validate-sport-theory-quality.mjs
+
+      - name: Validate existing Sport evidence layer
+        working-directory: repo
+        run: node tools/validate-sport-evidence.mjs
 
       - name: Run governance audits
         working-directory: repo
