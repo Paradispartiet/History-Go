@@ -1,0 +1,110 @@
+name: Temporary Næringsliv audit report commit
+
+on:
+  push:
+    branches:
+      - agent/naeringsliv-fagpakke-audit
+    paths:
+      - '.github/workflows/temp-naeringsliv-fagpakke-audit-commit.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Generate compact full-file audit
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = 'data/fag/naeringsliv';
+          const read = n => JSON.parse(fs.readFileSync(`${p}/${n}`, 'utf8'));
+          const pensum = read('naeringslivpensum_canonical_v4_5.json');
+          const emner0 = read('emner_naeringsliv_canonical_v4_5.json');
+          const methods0 = read('methods_naeringsliv_canonical_v4_5.json');
+          const fagkart = read('fagkart_naeringsliv_canonical_v4_5.json');
+          const profile = read('supersetQUIZMAL_naeringsliv.json');
+          const emner = Array.isArray(emner0) ? emner0 : emner0.emner || [];
+          const methods = Array.isArray(methods0) ? methods0 : methods0.methods || [];
+          const domains = pensum.domains || pensum.modules || [];
+          const hooks = (fagkart.categories || []).flatMap(c => (c.topic_hooks || []).map(h => ({...h, category_id:c.id})));
+          const norm = x => String(x ?? '').normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+          const tok = x => new Set(norm(x).split(/\s+/).filter(w => w.length > 2));
+          const jac = (a,b) => { const A=tok(a),B=tok(b); if(!A.size&&!B.size)return 1; let n=0; for(const x of A)if(B.has(x))n++; return n/new Set([...A,...B]).size; };
+          const duplicates = (items, field, id='emne_id') => {
+            const m = new Map();
+            for (const x of items) { const v=x[field]; if(v==null||v===''||(Array.isArray(v)&&!v.length))continue; const k=JSON.stringify(v); if(!m.has(k))m.set(k,[]); m.get(k).push(x[id]||x.id||x.title); }
+            return [...m.entries()].filter(([,ids])=>ids.length>1).map(([v,ids])=>({count:ids.length,ids,value:JSON.parse(v)})).sort((a,b)=>b.count-a.count);
+          };
+          const near = (items, field, id, threshold=.82) => {
+            const out=[];
+            for(let i=0;i<items.length;i++)for(let j=i+1;j<items.length;j++){
+              const a=items[i][field],b=items[j][field]; if(typeof a!=='string'||typeof b!=='string'||!a||!b)continue;
+              const score=jac(a,b); if(score>=threshold&&norm(a)!==norm(b))out.push({score:+score.toFixed(3),a:items[i][id],b:items[j][id],a_value:a,b_value:b});
+            }
+            return out.sort((x,y)=>y.score-x.score).slice(0,200);
+          };
+          const coverage = items => Object.fromEntries([...new Set(items.flatMap(x=>Object.keys(x)))].sort().map(field=>{
+            const vals=items.map(x=>x[field]).filter(v=>v!==undefined&&v!==null&&v!==''&&(!Array.isArray(v)||v.length));
+            return [field,{present:vals.length,total:items.length,distinct:new Set(vals.map(JSON.stringify)).size}];
+          }));
+          const ids = {emne:new Set(emner.map(x=>x.emne_id)),method:new Set(methods.map(x=>x.method_id)),hook:new Set(hooks.map(x=>x.id))};
+          const cross = {
+            missing_domain_emnes: domains.flatMap(d=>(d.emne_ids||d.emner||[]).filter(x=>!ids.emne.has(x)).map(x=>({domain:d.domain_id||d.module_id,id:x}))),
+            unlisted_emnes: emner.filter(e=>!domains.some(d=>(d.emne_ids||d.emners||d.emner||[]).includes(e.emne_id))).map(e=>e.emne_id),
+            missing_emne_methods: emner.flatMap(e=>[...new Set([...(e.methods||[]),...(e.method_ids||[])])].filter(x=>!ids.method.has(x)).map(x=>({emne_id:e.emne_id,id:x}))),
+            missing_emne_hooks: emner.flatMap(e=>[...new Set([...(e.primary_theory_hooks||[]),...(e.secondary_theory_hooks||[]),...(e.reserve_theory_hooks||[])])].filter(x=>!ids.hook.has(x)).map(x=>({emne_id:e.emne_id,id:x}))),
+            missing_hook_emnes: hooks.flatMap(h=>(h.emne_ids||[]).filter(x=>!ids.emne.has(x)).map(x=>({hook_id:h.id,id:x}))),
+            missing_hook_methods: hooks.flatMap(h=>(h.recommended_method_ids||[]).filter(x=>!ids.method.has(x)).map(x=>({hook_id:h.id,id:x})))
+          };
+          const phraseList = [
+            'Hvilken konkret virksomhet, arbeidsplass, kapitalstrøm, marked, teknologi eller infrastruktur gjør emnet relevant?',
+            'Hvordan skapes, organiseres, måles, fordeles eller skjules økonomisk verdi her?',
+            'Hvilke eiere, arbeidere, kunder, reguleringer, risikoforhold, miljøkostnader eller maktstrukturer blir synlige?',
+            'Start fra konkret arbeid, virksomhet, produksjon, kapital, eierskap, marked, teknologi, logistikk, infrastruktur, økonomisk institusjon eller ekstern næringslivsfaglig kilde.'
+          ];
+          const alias = {
+            related_emners_equals_related_emner: emner.filter(e=>JSON.stringify(e.related_emners??null)===JSON.stringify(e.related_emner??null)).map(e=>e.emne_id),
+            key_equals_core: emner.filter(e=>JSON.stringify(e.key_concepts??null)===JSON.stringify(e.core_concepts??null)).map(e=>e.emne_id),
+            key_equals_sub: emner.filter(e=>JSON.stringify(e.key_concepts??null)===JSON.stringify(e.sub_concepts??null)).map(e=>e.emne_id),
+            good_places_equals_place_fit: emner.filter(e=>JSON.stringify(e.good_for_places??null)===JSON.stringify(e.place_type_fit??null)).map(e=>e.emne_id)
+          };
+          const report = {
+            generated_at:new Date().toISOString(),
+            counts:{declared_domains:pensum.summary?.domain_count,declared_emner:pensum.summary?.emne_count,declared_methods:pensum.summary?.method_count,actual_domains:domains.length,actual_emner:emner.length,actual_methods:methods.length,actual_hooks:hooks.length},
+            versions:{pensum:pensum.version,profile:profile.version,fagkart:fagkart.version,emne_registry:[...new Set(emner.map(e=>e.registry_version).filter(Boolean))]},
+            domains:Object.fromEntries(domains.map(d=>{const id=d.domain_id||d.module_id, listed=d.emne_ids||d.emners||d.emner||[]; return [id,{label:d.label||d.title,declared:d.emne_count,listed:listed.length,actual:emner.filter(e=>(e.domain||e.area_id)===id).length,titles:listed.map(x=>emner.find(e=>e.emne_id===x)?.title||null)}]})),
+            cross_references:cross,
+            phrase_counts:Object.fromEntries(phraseList.map(q=>[q,emner.filter(e=>JSON.stringify(e).includes(q)).length])),
+            alias_duplication:alias,
+            coverage:{emner:coverage(emner),methods:coverage(methods),hooks:coverage(hooks)},
+            exact_duplicates:{
+              emne_definition:duplicates(emner,'definition'),emne_why:duplicates(emner,'why_it_matters'),emne_questions:duplicates(emner,'key_questions'),emne_conflicts:duplicates(emner,'conflicts'),emne_axes:duplicates(emner,'analysis_axes'),emne_blindspots:duplicates(emner,'blindspots'),emne_generator_note:duplicates(emner,'generator_use_note'),emne_anti_patterns:duplicates(emner,'anti_patterns'),
+              method_definition:duplicates(methods,'definition','method_id'),method_questions:duplicates(methods,'questions','method_id'),method_steps:duplicates(methods,'steps','method_id'),
+              hook_definition:duplicates(hooks,'definition','id'),hook_questions:duplicates(hooks,'questions','id')
+            },
+            near_duplicates:{emne_definition:near(emner,'definition','emne_id'),emne_why:near(emner,'why_it_matters','emne_id'),method_definition:near(methods,'definition','method_id'),hook_definition:near(hooks,'definition','id')},
+            emne_inventory:emner.map(e=>({emne_id:e.emne_id,domain:e.domain,title:e.title,role:e.emne_role,level:e.level,priority:e.quiz_priority,broadness:e.broadness,mapping_count:e.mapping_count,methods:e.method_ids||e.methods||[],hooks:e.primary_theory_hooks||[]})),
+            method_inventory:methods.map(m=>({method_id:m.method_id,title:m.title,domain:m.domain||m.area_id})),
+            hook_inventory:hooks.map(h=>({id:h.id,title:h.title,category_id:h.category_id,emne_ids:h.emne_ids||[]}))
+          };
+          fs.mkdirSync('reports',{recursive:true});
+          fs.writeFileSync('reports/naeringsliv-fagpakke-audit-working.json',JSON.stringify(report,null,2)+'\n');
+          console.log(report.counts);
+          NODE
+
+      - name: Commit report
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/naeringsliv-fagpakke-audit-working.json
+          git commit -m 'Materialiser næringslivets fagpakkeaudit'
+          git push origin HEAD:${{ github.ref_name }}
