@@ -18,6 +18,8 @@ function readJson(relative) {
   return JSON.parse(fs.readFileSync(path.join(root, relative), 'utf8'));
 }
 
+run('git', ['config', 'user.name', 'github-actions[bot]']);
+run('git', ['config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com']);
 run('git', ['fetch', 'origin', 'main']);
 run('git', ['rebase', 'origin/main']);
 
@@ -40,7 +42,7 @@ const methodIds = [
 ];
 const category = fagkart.categories.find((item) => item.id === domainId);
 const domain = pensum.domains.find((item) => item.domain_id === domainId);
-const selectedEmner = emner.filter((item) => emneIds.includes(item.emne_id));
+const selectedEmners = emners.filter((item) => emneIds.includes(item.emne_id));
 const selectedMappings = mappings.filter((item) => emneIds.includes(item.emne_id));
 const selectedMethods = (methodsFile.methods || []).filter((item) => methodIds.includes(item.method_id));
 
@@ -75,8 +77,6 @@ if (runnerReportDir) {
   if (!existing.split(/\r?\n/).includes(rule)) fs.appendFileSync(excludePath, `${existing.endsWith('\n') || !existing ? '' : '\n'}${rule}\n`);
 }
 
-run('git', ['config', 'user.name', 'github-actions[bot]']);
-run('git', ['config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com']);
 run('git', ['add', '-A']);
 run('git', ['commit', '-m', 'Audit medieval V5.5 production structure']);
 run('git', ['push', '--force-with-lease', 'origin', `HEAD:${branch}`]);
