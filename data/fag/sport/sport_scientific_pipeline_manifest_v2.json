@@ -19,7 +19,13 @@
     "evidence_packages": "evidence_packages_sport_v1.json",
     "first_priority_search_log": "concussion_search_log_sport_v1.json",
     "first_registered_protocol": "protocols/concussion_acute_safety_protocol_v1.json",
-    "review_appraisal_tools": "review_appraisal_tools_sport_v1.json"
+    "review_appraisal_tools": "review_appraisal_tools_sport_v1.json",
+    "first_priority_search_strategy": "concussion_search_strategy_sport_v2.json",
+    "first_priority_search_runs": "concussion_search_runs_sport_v1.json",
+    "first_priority_deduplication_protocol": "concussion_deduplication_protocol_sport_v1.json",
+    "first_priority_screening_schema": "concussion_screening_schema_sport_v1.json",
+    "first_priority_reviewer_roles": "concussion_reviewer_roles_sport_v1.json",
+    "first_priority_search_readiness_validator": "../../../tools/validate-sport-concussion-search-readiness-v2.mjs"
   },
   "counts": {
     "classified_hooks": 56,
@@ -35,7 +41,11 @@
     "publication_ready_claims": 0,
     "provisional_legacy_claims": 16,
     "registered_package_protocols": 1,
-    "authoritative_seed_candidate_records": 7
+    "authoritative_seed_candidate_records": 7,
+    "locked_database_strategies": 6,
+    "completed_database_searches": 0,
+    "defined_reviewer_roles": 5,
+    "assigned_human_reviewers": 0
   },
   "readiness": {
     "theory_layer": "validated_v6",
@@ -46,8 +56,12 @@
     "syntheses": "planned_not_completed",
     "certainty_assessments": "not_started",
     "evidence_claim_publication": "blocked",
-    "first_priority_package": "registered_and_seeded_pending_database_search_and_dual_screening",
-    "first_priority_review_tools": "canonical_and_dual_review_required"
+    "first_priority_package": "search_strategy_locked_peer_review_assignment_and_execution_pending",
+    "first_priority_review_tools": "canonical_and_dual_review_required",
+    "search_strategy": "six_database_translations_locked",
+    "search_peer_review": "pending",
+    "deduplication": "protocol_locked_not_run",
+    "screening": "schema_locked_human_assignments_pending"
   },
   "invariants": [
     "Alle 56 hooks klassifiseres nøyaktig én gang etter vitenskapelig spørsmålstype.",
@@ -60,6 +74,10 @@
     "Kandidatposter fra søk er ikke studier, evidens eller claims.",
     "En pakkeregistrering må peke til en commit som er opprettet før screening starter.",
     "Review- og retningslinjeverktøy lagres separat fra resultatspesifikke biasverktøy.",
-    "Dokumentvurdering kan ikke erstatte resultatspesifikk risiko-for-bias-vurdering av primærstudier."
+    "Dokumentvurdering kan ikke erstatte resultatspesifikk risiko-for-bias-vurdering av primærstudier.",
+    "Alle seks databasestrenger er låst og hashfestet før kjøring.",
+    "Ingen databasesøk regnes som kjørt uten eksportfil og SHA-256.",
+    "Deduplisering bevarer råposter og full clusterproveniens.",
+    "Screening krever to forskjellige mennesker; KI kan bare assistere."
   ]
 }

@@ -145,6 +145,26 @@
       "gate_id": "gate_sport_candidate_record_not_evidence",
       "rule": "En kandidatpost fra søk eller frøsøk er ikke evidens og kan ikke støtte claim, quiztekst eller sikkerhetsgrad før dobbelt screening, inklusjonsbeslutning og relevant metodevurdering er dokumentert.",
       "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_search_peer_review",
+      "rule": "Databasesøk kan ikke kjøres før den låste strategien har dokumentert uavhengig PRESS-style peer review eller et forhåndsgodkjent begrunnet avvik.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_search_run_provenance",
+      "rule": "Et databasesøk kan ikke markeres completed uten navngitt menneskelig utfører, kjøretid, treffantall, eksakt query_sha256 og eksportfil med SHA-256.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_deduplication_reproducibility",
+      "rule": "Screening kan ikke starte før alle råeksporter er bevart, deterministisk deduplisering er kjørt og clusterlogg, før-/etterantall og output-SHA er dokumentert.",
+      "failure_action": "block"
+    },
+    {
+      "gate_id": "gate_sport_independent_screening_assignment",
+      "rule": "Screening kan ikke starte før to forskjellige menneskelige screenere og en adjudikator er navngitt, og beslutningsskjemaet er låst.",
+      "failure_action": "block"
     }
   ],
   "forbidden_inferences": [
@@ -237,5 +257,22 @@
       "riktig vurderingsverktøy",
       "proveniens og identifikator"
     ]
+  },
+  "search_execution_policy": {
+    "amendment_path": "data/fag/sport/protocols/concussion_search_strategy_amendment_001.json",
+    "amendment_anchor": {
+      "repository": "Paradispartiet/History-Go",
+      "commit_sha": "3605f292cb1bb290c09acf99af394007e7690efa",
+      "path": "data/fag/sport/protocols/concussion_search_strategy_amendment_001.json",
+      "immutable_snapshot": true
+    },
+    "strategy_registry": "data/fag/sport/concussion_search_strategy_sport_v2.json",
+    "run_registry": "data/fag/sport/concussion_search_runs_sport_v1.json",
+    "deduplication_protocol": "data/fag/sport/concussion_deduplication_protocol_sport_v1.json",
+    "screening_schema": "data/fag/sport/concussion_screening_schema_sport_v1.json",
+    "reviewer_role_registry": "data/fag/sport/concussion_reviewer_roles_sport_v1.json",
+    "search_execution_allowed": false,
+    "screening_allowed": false,
+    "next_gate": "independent PRESS review and human role assignment"
   }
 }
