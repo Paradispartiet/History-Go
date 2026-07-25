@@ -1,0 +1,188 @@
+{
+  "version": "historie-v5.5-middelalder-blueprint-1",
+  "domain_id": "his_middelalder_kirke_kongemakt",
+  "label": "Middelalder, kirke og kongemakt",
+  "baseline": {
+    "status": "strong",
+    "emner": 3,
+    "hooks": 1,
+    "methods": 3
+  },
+  "target": {
+    "status": "complete_revised",
+    "emner": 10,
+    "hooks": 10,
+    "minimum_methods": 10,
+    "two_lane_mapping_for_every_emne": true,
+    "permanent_validator": "tools/validate-historie-middelalder-kirke-kongemakt.mjs"
+  },
+  "domain_chain": [
+    "ekstern kilde eller synlig middelalderspor",
+    "presist navngitt sted, gjenstand, dokument, institusjon eller aktør",
+    "datert fase eller tidsintervall med eksplisitt dateringsusikkerhet",
+    "dokumentert eierskap, jurisdiksjon, ressursgrunnlag eller institusjonell funksjon",
+    "identifisert relasjon mellom konge, kirke, lokale eliter, hushold, handelsaktører eller samiske samfunn",
+    "dokumentert praksis, konflikt, utveksling, rettshåndheving, arbeid eller religiøs endring",
+    "konsekvens for makt, bosetting, rett, ressursbruk, hverdagsliv eller tilhørighet",
+    "kontrollkilde eller sammenstilling av skriftlig, arkeologisk og materiell dokumentasjon",
+    "kildebegrensning: sen sagatekst, normativ lovtekst, selektivt diplommateriale, arkeologisk fravær eller senere rekonstruksjon",
+    "kritisk distinksjon",
+    "eventuelt teori etter at den middelalderhistoriske kjeden er etablert"
+  ],
+  "tracks": [
+    {
+      "emne_id": "em_his_kirke_kloster_middelalder",
+      "existing": true,
+      "title": "Kristning, kirkeetablering og klosterliv",
+      "hook_id": "his_kristning_kirke_kloster_lokalsamfunn",
+      "core_concepts": ["kristning", "kirkested", "kloster", "liturgisk landskap"],
+      "method_ids": ["met_sporlesning", "met_arkeologisk_kontekstanalyse", "met_bygningsarkeologisk_analyse", "met_kildekritikk"],
+      "thinker_ids": ["sverre_bagge", "saebjorg_walaker_nordeide", "jacques_le_goff"],
+      "norwegian_thinker_ids": ["sverre_bagge", "saebjorg_walaker_nordeide"],
+      "recommended_cases": ["Hallvardskatedralen", "Hovedøya kloster", "Gamle Aker kirke", "Moster gamle kyrkje", "Stødle kyrkje"],
+      "critical_distinctions": ["kristent symbol er ikke alene bevis for full kristning", "dagens bygning må skilles fra eldre kirkefaser"]
+    },
+    {
+      "emne_id": "em_his_kongemakt_kirke_konflikt",
+      "existing": true,
+      "title": "Kongemakt, kirke og jurisdiksjonskonflikt",
+      "hook_id": "his_kongemakt_kirke_jurisdiksjon",
+      "core_concepts": ["kongedømme", "kirkelig jurisdiksjon", "legitimitet", "forhandling"],
+      "method_ids": ["met_rettshistorisk_analyse", "met_kildekritikk", "met_prosopografi", "met_periodisering"],
+      "thinker_ids": ["sverre_bagge", "hans_jacob_orning", "susan_reynolds"],
+      "norwegian_thinker_ids": ["sverre_bagge", "hans_jacob_orning"],
+      "recommended_cases": ["Oslo bispeborg", "Akershus festning", "Nidarosdomen", "Sverresborg"],
+      "critical_distinctions": ["kongelig krav må skilles fra faktisk styringskapasitet", "konflikt må skilles fra varig institusjonell ordning"]
+    },
+    {
+      "emne_id": "em_his_middelalder_oslo",
+      "existing": true,
+      "title": "Middelalderbyen Oslo som makt- og ressursknutepunkt",
+      "hook_id": "his_middelalder_by_kirke",
+      "core_concepts": ["bydannelse", "kongsgård", "bispesete", "ressursknutepunkt"],
+      "method_ids": ["met_historisk_gis", "met_sporlesning", "met_arkeologisk_kontekstanalyse", "met_komparativ_historie"],
+      "thinker_ids": ["knut_helle", "arnved_nedkvitne", "jacques_le_goff"],
+      "norwegian_thinker_ids": ["knut_helle", "arnved_nedkvitne"],
+      "recommended_cases": ["Middelalderbyen Oslo", "Kongsgården", "Mariakirken", "Hallvardskatedralen", "Oslo bispeborg", "Bjørvika"],
+      "critical_distinctions": ["enkeltstående aktivitet må skilles fra varig bydannelse", "middelalderbyen må skilles fra dagens administrative Oslo"]
+    },
+    {
+      "emne_id": "em_his_lov_ting_jurisdiksjon_middelalder",
+      "existing": false,
+      "title": "Lov, ting og rettshåndheving",
+      "hook_id": "his_lov_ting_rettshandheving",
+      "core_concepts": ["ting", "lov", "domsmyndighet", "sakefall"],
+      "method_ids": ["met_rettshistorisk_analyse", "met_diplomatikk", "met_kildekritikk", "met_komparativ_historie"],
+      "thinker_ids": ["knut_helle", "anne_irene_riisoy", "jon_vidar_sigurdsson"],
+      "norwegian_thinker_ids": ["knut_helle", "anne_irene_riisoy", "jon_vidar_sigurdsson"],
+      "recommended_cases": ["Eidsivatinget", "Gulatinget", "Frostatinget", "Oslo bispeborg", "Akershus festning"],
+      "critical_distinctions": ["lovtekst må skilles fra dokumentert rettspraksis", "lokal tingmyndighet må skilles fra kongelig domsmyndighet"]
+    },
+    {
+      "emne_id": "em_his_jord_eiendom_patronasje_middelalder",
+      "existing": false,
+      "title": "Jord, eiendom, landskyld og patronasje",
+      "hook_id": "his_jord_eiendom_patronasje",
+      "core_concepts": ["eiendom", "landskyld", "patronasje", "kirkelig gods"],
+      "method_ids": ["met_diplomatikk", "met_seriell_kildeanalyse", "met_prosopografi", "met_historisk_gis"],
+      "thinker_ids": ["knut_helle", "chris_wickham", "georges_duby"],
+      "norwegian_thinker_ids": ["knut_helle"],
+      "recommended_cases": ["Hovedøya kloster", "Nonneseter kloster", "Gamle Aker kirke", "Oslo Hospital", "Mariakirken"],
+      "critical_distinctions": ["juridisk eierskap må skilles fra faktisk bruk og kontroll", "gavebrev må skilles fra fullstendig eiendomshistorie"]
+    },
+    {
+      "emne_id": "em_his_handel_handverk_bynettverk_middelalder",
+      "existing": false,
+      "title": "Handel, håndverk og bynettverk",
+      "hook_id": "his_handel_handverk_bynettverk",
+      "core_concepts": ["handel", "håndverk", "havn", "bynettverk"],
+      "method_ids": ["met_arkeologisk_kontekstanalyse", "met_materiell_kulturanalyse", "met_historisk_gis", "met_komparativ_historie"],
+      "thinker_ids": ["knut_helle", "arnved_nedkvitne", "chris_wickham"],
+      "norwegian_thinker_ids": ["knut_helle", "arnved_nedkvitne"],
+      "recommended_cases": ["Middelalderbyen Oslo", "Bjørvika", "Kaupang", "Borgundkaupangen", "Bryggen"],
+      "critical_distinctions": ["importfunn må skilles fra dokumentert handelsorganisasjon", "havn må skilles fra permanent urban institusjon"]
+    },
+    {
+      "emne_id": "em_his_hushold_arbeid_hverdagsliv_middelalder",
+      "existing": false,
+      "title": "Hushold, arbeid og hverdagsliv",
+      "hook_id": "his_hushold_arbeid_hverdagsliv",
+      "core_concepts": ["hushold", "arbeid", "kjønnet arbeidsdeling", "materiell hverdag"],
+      "method_ids": ["met_materiell_kulturanalyse", "met_arkeologisk_kontekstanalyse", "met_mikrohistorisk_analyse", "met_kildekritikk"],
+      "thinker_ids": ["judith_bennett", "christopher_dyer", "else_roesdahl"],
+      "norwegian_thinker_ids": [],
+      "recommended_cases": ["Middelalderbyen Oslo", "Minneparken", "Hovedøya kloster", "Kaupang", "Borgundkaupangen"],
+      "critical_distinctions": ["elitekilder må ikke behandles som representativt hverdagsliv", "gjenstandsfunksjon må skilles fra tolkning av sosial rolle"]
+    },
+    {
+      "emne_id": "em_his_pest_demografi_senmiddelalder",
+      "existing": false,
+      "title": "Pest, demografi og senmiddelalder",
+      "hook_id": "his_pest_demografi_senmiddelalder",
+      "core_concepts": ["dødelighet", "bosettingsnedgang", "arbeidskraft", "senmiddelalder"],
+      "method_ids": ["met_seriell_kildeanalyse", "met_historisk_gis", "met_kildekritikk", "met_periodisering"],
+      "thinker_ids": ["ole_jorgen_benedictow", "bruce_campbell", "knut_helle"],
+      "norwegian_thinker_ids": ["ole_jorgen_benedictow", "knut_helle"],
+      "recommended_cases": ["Middelalderbyen Oslo", "Hamar domkirkeruin", "Borgundkaupangen", "Selja kloster"],
+      "critical_distinctions": ["pestårsak må skilles fra senere samfunnsvirkninger", "fravær i kilder må ikke automatisk tolkes som full avfolkning"]
+    },
+    {
+      "emne_id": "em_his_skrift_diplom_muntlighet_middelalder",
+      "existing": false,
+      "title": "Skriftkultur, diplomer og muntlighet",
+      "hook_id": "his_skrift_diplom_muntlighet",
+      "core_concepts": ["diplom", "paleografi", "pragmatisk skriftlighet", "muntlig tradisjon"],
+      "method_ids": ["met_diplomatikk", "met_paleografi", "met_kildekritikk", "met_proveniensanalyse"],
+      "thinker_ids": ["michael_clanchy", "else_mundal", "armando_petrucci"],
+      "norwegian_thinker_ids": ["else_mundal"],
+      "recommended_cases": ["Riksarkivet", "Nasjonalbiblioteket", "Oslo byarkiv", "Grindheim runestein", "Stødle kyrkje"],
+      "critical_distinctions": ["skriftlig belegg må skilles fra generell leseferdighet", "sen nedtegnelse må skilles fra samtidig muntlig tradisjon"]
+    },
+    {
+      "emne_id": "em_his_samiske_kontaktsoner_middelalder",
+      "existing": false,
+      "title": "Samiske kontaktsoner, ressursbruk og statsintegrasjon",
+      "hook_id": "his_samisk_kontaktsone_ressursrett",
+      "core_concepts": ["kontaktsone", "ressursrett", "skattlegging", "etnisk kategorisering"],
+      "method_ids": ["met_arkeologisk_kontekstanalyse", "met_materiell_kulturanalyse", "met_historisk_gis", "met_kildekritikk"],
+      "thinker_ids": ["lars_ivar_hansen", "bjornar_olsen", "sverre_bagge"],
+      "norwegian_thinker_ids": ["lars_ivar_hansen", "bjornar_olsen", "sverre_bagge"],
+      "recommended_cases": ["Varanger", "Pasvik", "Astafjord", "Trondenes", "Borg i Lofoten"],
+      "critical_distinctions": ["senere administrative etnisitetsbegreper må ikke projiseres bakover", "handel, skattlegging og politisk underordning må analyseres som ulike relasjoner"]
+    }
+  ],
+  "method_plan": {
+    "existing": [
+      "met_sporlesning",
+      "met_kildekritikk",
+      "met_periodisering",
+      "met_diplomatikk",
+      "met_paleografi",
+      "met_proveniensanalyse",
+      "met_rettshistorisk_analyse",
+      "met_historisk_gis",
+      "met_seriell_kildeanalyse",
+      "met_komparativ_historie",
+      "met_mikrohistorisk_analyse"
+    ],
+    "to_add": [
+      "met_arkeologisk_kontekstanalyse",
+      "met_bygningsarkeologisk_analyse",
+      "met_prosopografi",
+      "met_materiell_kulturanalyse"
+    ]
+  },
+  "boundary_rules": {
+    "religion": "Troslære, ritual og religionsutøvelse som hovedsak hører til religion; dokumentert kristning, kirkeetablering, jurisdiksjon og institusjonsendring over tid hører til historie.",
+    "by": "Nåtidig byform og urban kvalitet hører til byfaget; dokumentert middelaldersk bydannelse, funksjon og endring hører til historie.",
+    "politikk": "Samtidig politisk styring hører til politikk; historisk kongemakt, rettshåndheving og institusjonsdannelse hører til historie.",
+    "kunst": "Stil, ikonografi og estetisk analyse som hovedsak hører til kunst; patronasje, kirkelig bruk og institusjonell funksjon over tid hører til historie.",
+    "samisk_urfolkshistorie": "Middelalderske kontaktsoner kan ligge her når tidsperioden og rikspolitiske relasjoner bærer spørsmålet; lange urfolkshistoriske utviklingslinjer og rettighetskamp hører til det egne samiske domenet."
+  },
+  "quiz_progression": [
+    "sett 1–2: sted, spor, datering, funksjon og kilde",
+    "sett 3: relasjon, endring og sammenligning",
+    "sett 4: navngitt metode og forsker etter at caset er etablert",
+    "senere sett: historiografisk konflikt, kildebegrensning og konkurrerende forklaring"
+  ]
+}
