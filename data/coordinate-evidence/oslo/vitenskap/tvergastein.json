@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "tvergastein",
+  "placeFile": "data/places/vitenskap/oslo/places_vitenskap/tvergastein.json",
+  "evidenceStatus": "applied_to_place",
+  "coordinateDecision": "use_official_fritidsbolig_point_with_cabin_radius",
+  "currentCoordinate": {
+    "lat": 60.54919,
+    "lon": 7.9797,
+    "r": 80,
+    "coordStatus": "verified",
+    "coordSource": "kartverket_ssr_v1",
+    "coordType": "place_name_point",
+    "coordNote": "Offisielt stedsnavnpunkt fra Kartverkets Sentralt stedsnavnregister for Tvergastein, stedsnummer 1088119, objekttype Fritidsbolig, Hol kommune. Det andre eksakte Tvergastein-treffet er stedsnummer 1033507 med objekttype Adressenavn og ligger 4,5 meter unna; Fritidsbolig-objektet brukes fordi canonical record gjelder den fysiske hytta. Punktet ligger inne i OSM way 760918905, navngitt Tvergastein-hytta Arne Næss og merket building=cabin. Maksimal avstand fra SSR-punktet til hyttefotavtrykket er 11.2 meter; radius 80 meter bruker 30 meters buffer og minimum 80 meter for fjellterreng. Hallingskarvet-kilden bekrefter Arne Næss, 1505 moh. og byggeåret 1937. Den tidligere markøren lå 11244.7 meter unna. Canonical year 1937 beholdes."
+  },
+  "identity": {
+    "currentName": "Tvergastein",
+    "resolvedIdentity": "Tvergastein, Arne Næss’ private mountain cabin below Hallingskarvet in Hol municipality",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": ""
+  },
+  "requiredEvidence": [
+    "offisielt SSR-stedsobjekt",
+    "skille mellom Fritidsbolig og Adressenavn",
+    "navngitt hyttefotavtrykk",
+    "målt radius"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "kartverket",
+      "sourceName": "Kartverket SSR – Tvergastein Fritidsbolig",
+      "sourceUrl": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Tvergastein&utkoordsys=4258&treffPerSide=50&side=1",
+      "sourceObjectId": "kartverket-ssr:1088119:60.54919000,7.97970000",
+      "sourceQuality": "official_place_name_register",
+      "finding": "Stedsnummer 1088119 er aktivt Fritidsbolig-objekt i Hol på 60.54919, 7.9797.",
+      "canVerifyCoordinate": true,
+      "reason": "Offisielt fysisk stedsobjekt for canonical hyttested."
+    },
+    {
+      "sourceProvider": "kartverket",
+      "sourceName": "Kartverket SSR – Tvergastein Adressenavn",
+      "sourceUrl": "https://api.kartverket.no/stedsnavn/v1/sted?sok=Tvergastein&utkoordsys=4258&treffPerSide=50&side=1",
+      "sourceObjectId": "kartverket-ssr:1033507:60.54915000,7.97969000",
+      "sourceQuality": "official_place_name_register",
+      "finding": "Det alternative treffet er objekttype Adressenavn, 4,5 meter fra Fritidsbolig-punktet, og brukes ikke som canonical hyttepunkt.",
+      "canVerifyCoordinate": false,
+      "reason": "Dokumenterer kandidatoppløsningen."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap – Tvergastein-hytta Arne Næss",
+      "sourceUrl": "https://www.openstreetmap.org/way/760918905",
+      "sourceObjectId": "osm-way:760918905",
+      "sourceQuality": "named_cabin_building_geometry",
+      "finding": "SSR-punktet ligger inne i ett navngitt hyttefotavtrykk. Maksimal fotavtrykksavstand er 11.2 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter fysisk hytte og radius."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Hallingskarvet – Tvergastein",
+      "sourceUrl": "https://hallingskarvet.com/products/tvergastein",
+      "sourceObjectId": "hallingskarvet:tvergastein",
+      "sourceQuality": "local_subject_source",
+      "finding": "Kilden bekrefter Arne Næss, plasseringen ved Hallingskarvet, 1505 moh. og byggeåret 1937.",
+      "canVerifyCoordinate": false,
+      "reason": "Historisk identitetskryssjekk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "History Go Tvergastein research report",
+      "sourceUrl": "reports/oslo-coordinate-tvergastein-research-post-195/summary.json",
+      "sourceObjectId": "history-go-research:tvergastein-post-195",
+      "sourceQuality": "reproducible_multi_source_research",
+      "finding": "Gammel markør var 11244.7 meter feil; anbefalt radius er 80 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Samlet beslutningsgrunnlag."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "kartverket",
+      "sourceObjectId": "kartverket-ssr:1088119:60.54919000,7.97970000",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:760918905",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:760918905",
+      "canApplyToPlace": false
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "lat": 60.54919,
+      "lon": 7.9797,
+      "coordRole": "display_marker",
+      "sourceObjectId": "kartverket-ssr:1088119:60.54919000,7.97970000",
+      "canApplyToPlace": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Kartverket SSR Fritidsbolig 1088119 er anvendt med radius 80 meter."
+  },
+  "notes": [
+    "Offisielt stedsnavnpunkt fra Kartverkets Sentralt stedsnavnregister for Tvergastein, stedsnummer 1088119, objekttype Fritidsbolig, Hol kommune. Det andre eksakte Tvergastein-treffet er stedsnummer 1033507 med objekttype Adressenavn og ligger 4,5 meter unna; Fritidsbolig-objektet brukes fordi canonical record gjelder den fysiske hytta. Punktet ligger inne i OSM way 760918905, navngitt Tvergastein-hytta Arne Næss og merket building=cabin. Maksimal avstand fra SSR-punktet til hyttefotavtrykket er 11.2 meter; radius 80 meter bruker 30 meters buffer og minimum 80 meter for fjellterreng. Hallingskarvet-kilden bekrefter Arne Næss, 1505 moh. og byggeåret 1937. Den tidligere markøren lå 11244.7 meter unna. Canonical year 1937 beholdes.",
+    "Research report: reports/oslo-coordinate-tvergastein-research-post-195/summary.json"
+  ]
+}
