@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "son_ladested",
+  "placeFile": "data/places/by/akershus/son_ladested/son_ladested.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_thornegarden_anchor_for_historic_ladested_environment",
+  "currentCoordinate": {
+    "lat": 59.52352,
+    "lon": 10.68665,
+    "r": 320,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Vestby kommune – Son historisk byområde; OpenStreetMap way 369923177 – Thornegården",
+    "coordType": "documented_historic_ladested_center_anchor",
+    "coordRole": "area_anchor",
+    "sourceObjectId": "vestby-kommune:son-historisk-byomrade",
+    "coordNote": "Thornegården at Son torv is the physical anchor for the nationally important historic ladested environment; it is not presented as the entire cultural environment or an exact area centroid."
+  },
+  "previousCoordinate": {
+    "lat": 59.5208,
+    "lon": 10.6849,
+    "r": 320,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 318.1,
+    "reasonReplaced": "The legacy point lay southwest of the historic centre and could not be tied to a stable Son torv, trade-house or protected cultural-environment source identity."
+  },
+  "identity": {
+    "currentName": "Son ladested",
+    "resolvedIdentity": "The nationally important historic ladested and coastal-town environment centred on Son torv, the old trade houses, street structure and harbour connection",
+    "identityStatus": "resolved",
+    "identityProblem": "",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "Son torv, Thornegården, Stoltenberggården, Spinnerigården, the historic streets and the harbour connection form one coherent historic urban environment."
+  },
+  "requiredEvidence": [
+    "official municipal identification of Son as a historic ladested and nationally important urban area",
+    "official statement that the collective urban structure is more important than isolated buildings",
+    "stable named physical anchor in the historic centre",
+    "independent ladested and trade-history cross-check",
+    "explicit rejection of marina, beach and one-building-only interpretations"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Vestby kommune – Son",
+      "sourceUrl": "https://www.vestby.kommune.no/om-vestby/son",
+      "sourceObjectId": "vestby-kommune:son-historisk-byomrade",
+      "sourceQuality": "official_historic_ladested_and_national_urban_area_identity",
+      "finding": "Vestby municipality identifies Son as a historic ladested, timber-export and customs port with rights from 1604, and as one of Norway's nationally important historic urban areas. The page names Thornegården, Stoltenberggården and Spinnerigården as surviving structures from the trading period.",
+      "canVerifyCoordinate": true,
+      "reason": "The official source establishes the full historic urban identity represented by the physical centre anchor and retained radius."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Vestby kommune – Preservation and cultural heritage",
+      "sourceUrl": "https://www.vestby.kommune.no/tjenester/plan-bygg-og-eiendom/byggesak/skal-du-bygge-rive-eller-endre/bevaring-og-kulturminner",
+      "sourceObjectId": "vestby-kommune:son-collective-small-town-character",
+      "sourceQuality": "official_collective_cultural_environment_scope",
+      "finding": "The municipality states that Son's self-grown small-town character is largely preserved and that the collective cultural value of central Son is more important than the individual buildings in isolation.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly supports an area-anchor representation instead of reducing the record to one protected building."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 369923177 – Thornegården",
+      "sourceUrl": "https://www.openstreetmap.org/way/369923177",
+      "sourceObjectId": "osm-way:369923177",
+      "sourceQuality": "stable_named_historic_center_building_geometry",
+      "finding": "The stable named building way represents Thornegården at Son torv at approximately 59.52352, 10.68665.",
+      "canVerifyCoordinate": true,
+      "reason": "Thornegården is a stable physical object in the centre of the documented trade-house and square environment and is suitable as the area's gameplay anchor."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Kulturminnesøk / Askeladden – Thornegården",
+      "sourceUrl": "https://www.kulturminnesok.no/minne?queryString=https://data.kulturminne.no/askeladden/lokalitet/86110",
+      "sourceObjectId": "kulturminne:86110",
+      "sourceQuality": "official_protected_anchor_building_identity",
+      "finding": "Cultural heritage ID 86110 identifies the protected Thornegården building at the historic square.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as an official identity cross-check for the physical anchor, not as a substitute for the full urban environment."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Son",
+      "sourceUrl": "https://snl.no/Son_-_tettsted_i_Vestby",
+      "sourceObjectId": "snl:son-ladested-and-trade-houses",
+      "sourceQuality": "independent_ladested_and_trade_history",
+      "finding": "SNL documents Son's role as a timber port and customs place and identifies Thornegården, Stoltenberggården, Spinnerigården and other buildings as material evidence of the former prosperity.",
+      "canVerifyCoordinate": false,
+      "reason": "Provides an independent historical and urban-environment cross-check."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Thornegården",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Thorneg%C3%A5rden_(Son)",
+      "sourceObjectId": "lokalhistoriewiki:thornegarden-son",
+      "sourceQuality": "independent_anchor_coordinate_and_trade_history",
+      "finding": "Lokalhistoriewiki publishes Thornegården at 59.523619, 10.686456 and connects the building to Son torv, the historic quay relationship and the town's trading history.",
+      "canVerifyCoordinate": false,
+      "reason": "Used to cross-check the OSM anchor position and its historical-centre context."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Son point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:son_ladested",
+      "sourceQuality": "unresolved_harbour_or_settlement_scale_point",
+      "finding": "The previous coordinate 59.5208, 10.6849 lies approximately 318.1 metres southwest of Thornegården and lacks a stable source identity for the historic centre.",
+      "canVerifyCoordinate": false,
+      "reason": "Rejected because it cannot be tied specifically to the nationally important historic ladested environment."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "vestby-kommune:son-historisk-byomrade",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:369923177",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "kulturminne:86110",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:son_ladested",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:369923177",
+      "geometryType": "Polygon",
+      "geometryRole": "physical_anchor_in_historic_ladested_center",
+      "canApplyToPlace": true
+    }
+  ],
+  "anchors": [
+    {
+      "id": "son_thornegarden_historic_center",
+      "name": "Thornegården at Son torv – physical anchor for the ladested",
+      "lat": 59.52352,
+      "lon": 10.68665,
+      "r": 80,
+      "type": "area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:369923177",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:son_ladested",
+      "lat": 59.5208,
+      "lon": 10.6849,
+      "coordRole": "unresolved_harbour_or_settlement_point",
+      "distanceFromAppliedM": 318.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:369923177",
+      "lat": 59.52352,
+      "lon": 10.68665,
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 318.1,
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied Thornegården at Son torv as the physical anchor for the officially documented historic ladested environment. Continue with Hølen ladested."
+  },
+  "notes": [
+    "The canonical record represents the collective historic town environment, not Thornegården alone.",
+    "The area anchor is not presented as an exact historic-area centroid or conservation polygon.",
+    "Son marina, Sonsstranda and the modern wider settlement are explicitly outside the intended anchor identity.",
+    "The 320-metre radius covers Son torv, central historic streets, trade houses and the harbour relationship at gameplay scale.",
+    "The coordinate correction is approximately 318.1 metres."
+  ]
+}
