@@ -90,7 +90,14 @@ const explicitEmneRoutes = {
   em_sport_aktivitet_helse: ["hook_sport_fysisk_aktivitet_folkehelse", "hook_sport_sosial_inkludering_tilgang"],
   em_sport_anleggspolitikk: ["hook_sport_anlegg_byutvikling", "hook_sport_sosial_inkludering_tilgang"],
   em_sport_arena_samling: ["hook_sport_groundhopping_stedsidentitet", "hook_sport_idrettsminne_kulturarv"],
-  em_sport_arenaendring_byutvikling: ["hook_sport_anlegg_byutvikling", "hook_sport_stadion_sosialt_rom"]
+  em_sport_arenaendring_byutvikling: ["hook_sport_anlegg_byutvikling", "hook_sport_stadion_sosialt_rom"],
+  em_sport_bevegelseskvalitet: ["hook_sport_bevegelsesmekanikk", "hook_sport_variabilitet_tilpasning"],
+  em_sport_kropp_disiplin: ["hook_sport_kjonnede_kropper_ulikhet", "hook_sport_indre_goder_praksis"],
+  em_sport_kroppslig_laring: ["hook_sport_persepsjon_handling", "hook_sport_begrensningsstyrt_laring"],
+  em_sport_taus_idrettskunnskap: ["hook_sport_persepsjon_handling", "hook_sport_feedback_oppmerksomhet"],
+  em_sport_teknikk: ["hook_sport_bevegelsesmekanikk", "hook_sport_persepsjon_handling"],
+  em_sport_trening_oving: ["hook_sport_feedback_oppmerksomhet", "hook_sport_begrensningsstyrt_laring"],
+  em_sport_treningsregime: ["hook_sport_belastning_tilpasning", "hook_sport_restitusjon_overtrening"]
 };
 
 const claimHookMap = {

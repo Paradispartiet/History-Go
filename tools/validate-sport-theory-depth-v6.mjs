@@ -121,7 +121,7 @@ for (const thinker of thinkers) {
 for (const claim of claims) {
   require((claim.theory_hook_ids || []).length >= 1, "claim mangler teorihook", claim.claim_id);
   require((claim.theory_unit_ids || []).length >= 1, "claim mangler teorienhet", claim.claim_id);
-  require(claim.theory_coverage_status === "mapped_v6", "claim mangler V6-dekningsstatus", claim.claim_id);
+  require(claim.theory_coverage_status === "curated_v6", "claim mangler V6-dekningsstatus", claim.claim_id);
 }
 
 require(evidenceManifest.status === "canonical_scientific_evidence_layer_partial_coverage", "evidensmanifestet påstår feilaktig full dekning");

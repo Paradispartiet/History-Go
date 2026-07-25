@@ -4,34 +4,19 @@ Status: **validert**
 
 ## Omfang
 
-- 116 aktive emner kontrollert
-- 56 teorihooks
+- 116 aktive emner med minst to primære teorihooks
 - 56 eksplisitte teorienheter
-- 122 personer med dokumenterte verk
-- 61 personer begrenset til kontekst eller praksiskilde
-- 56 av 56 hooks har kobling til eksisterende evidensclaims
+- 19 av 56 hooks har en kuratert kobling til eksisterende evidensclaims
+- 32 av 116 emner har minst én relevant claim via sine primære teorienheter
 
-## Hva V6 endrer
+## Mappingkvalitet
 
-Hver hook har nå hovedteori, rival eller alternativ, forklaringsmekanisme, primærverk, kritikk, bruksgrense og skilleevidens. De generiske spørsmålsinstruksjonene er erstattet med hook-spesifikke analytiske operasjoner.
+- curated: 11
+- high: 97
+- medium: 8
 
-Alle aktive emner er materialisert i en egen emne–teori-matrise med minst to primære hooks. ID-prefikset `em_sport_` regnes ikke lenger som bevis på teoridekning.
-
-Personer uten dokumentert verk er ikke fjernet, men de er eksplisitt begrenset til kontekst- eller praksisbruk og kan ikke brukes som direkte teori-autoritet.
+Generisk definisjons- og begrunnelsestekst er ikke brukt til emnemapping. Kritiske kontroll-emner har eksplisitte faglige ruter.
 
 ## Evidensstatus
 
-Evidenslaget er nå korrekt markert som **delvis**. Det kan håndheve kilde-, metode- og sikkerhetskrav, men full dekning kan ikke hevdes før alle 56 teorihooks har minst én kontrollert claim-kjede.
-
-## Valideringsporter
-
-- PASS: every_active_emne_mapped
-- PASS: every_emne_has_two_primary_hooks
-- PASS: every_hook_has_theory_unit
-- PASS: every_unit_has_main_rival_mechanism
-- PASS: every_unit_has_primary_work
-- PASS: every_unit_has_criticism_and_boundary
-- PASS: generic_question_moves_replaced
-- PASS: thinkers_without_works_not_direct_authority
-- PASS: all_claims_mapped_to_theory_units
-- PASS: evidence_layer_explicitly_partial
+Evidenslaget er fortsatt **delvis**. De 16 eksisterende claims er koblet eksplisitt til relevante hooks; de brukes ikke lenger som løse semantiske treff på hele fagkartet.
