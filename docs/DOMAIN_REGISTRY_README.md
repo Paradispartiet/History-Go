@@ -1,97 +1,73 @@
-# DomainRegistry README
+# DomainRegistry — praktisk bruk
 
-Status: practical usage guide
-Runtime file: `js/DomainRegistry.js`
-Machine contract: `data/categories/category_contract.json`
-Decision contract: `docs/DOMAIN_CONTRACT.md`
+Status: **operational runtime-guide**  
+Runtimefil: `js/DomainRegistry.js`  
+Maskinkontrakt: `data/categories/category_contract.json`  
+Beslutningskontrakt: `docs/DOMAIN_CONTRACT.md`  
+Sist kontrollert: **2026-07-25**
 
-## Core rule
+Denne guiden forklarer hvordan eksisterende kode bruker DomainRegistry. Den oppretter ikke egne kategoribeslutninger.
 
-History Go has two id directions:
+## Kjerneprinsipp
 
-```text
-fag/editorial subject id  -> emner, pensum, fagkart, methods
-runtime category id       -> place.category, quiz categoryId, badges, merits, profile progression
-```
-
-For every category except popular culture, the fag id and runtime id are identical.
-
-Popular culture deliberately uses:
+History GO har to bruksretninger:
 
 ```text
-popkultur       = fag/editorial id
-populaerkultur  = runtime category, badge and progression id
+fag-/redaksjonell subject-id → emner, pensum, fagkart, methods
+runtime category-id          → place.category, quiz categoryId, badges, merits og profilprogresjon
 ```
 
-They are one domain, not two badges.
+I dagens canonical kontrakt er id-en den samme i begge retninger for alle toppkategorier.
 
-## Which method to use
+## Hvilken metode skal brukes?
 
 ### `toFagSubjectId()`
 
-Use for:
+Brukes for:
 
 - `data/fag/<subjectId>/`
-- fag manifest keys
-- emner, pensum, fagkart and methods
-- learning and course structure
+- fagmanifestnøkler
+- emner, pensum, fagkart og methods
+- lærings- og kursstruktur
 
-Examples:
+Eksempler:
 
 ```js
-DomainRegistry.toFagSubjectId("populaerkultur"); // "popkultur"
+DomainRegistry.toFagSubjectId("filosofi");      // "filosofi"
+DomainRegistry.toFagSubjectId("philosophy");    // "filosofi"
 DomainRegistry.toFagSubjectId("teater");         // "scenekunst"
 DomainRegistry.toFagSubjectId("film");           // "film_tv"
 DomainRegistry.toFagSubjectId("journalistikk");  // "media"
-DomainRegistry.toFagSubjectId("filosofi");       // "vitenskap"
+DomainRegistry.toFagSubjectId("technology");     // "vitenskap"
 ```
 
 ### `toRuntimeCategoryId()`
 
-Use for:
+Brukes for:
 
 - `place.category`
 - quiz `categoryId`
 - `merits_by_category`
-- badges and badge images
-- profile and progression statistics
+- badges og badgebilder
+- profil- og progresjonsstatistikk
 
-Examples:
+Eksempler:
 
 ```js
-DomainRegistry.toRuntimeCategoryId("popkultur");     // "populaerkultur"
+DomainRegistry.toRuntimeCategoryId("filosofi");     // "filosofi"
+DomainRegistry.toRuntimeCategoryId("philosophy");   // "filosofi"
 DomainRegistry.toRuntimeCategoryId("teater");        // "scenekunst"
 DomainRegistry.toRuntimeCategoryId("film");          // "film_tv"
 DomainRegistry.toRuntimeCategoryId("journalistikk"); // "media"
 ```
 
-Runtime writes must normalize explicitly at the source. Storage must not be monkey-patched to hide missing normalization.
+Runtime-writes skal normaliseres eksplisitt ved kilden. Storage skal ikke monkey-patches for å skjule manglende normalisering.
 
-## Canonical lists
+## Canonical lister
 
-`DomainRegistry.list()` returns these fag ids:
+`DomainRegistry.list()` og `DomainRegistry.listRuntimeCategories()` skal samsvare med henholdsvis `fagSubjects` og `runtimeCategories` i maskinkontrakten.
 
-```text
-by
-historie
-kunst
-litteratur
-media
-musikk
-naeringsliv
-natur
-politikk
-popkultur
-psykologi
-religion
-scenekunst
-sport
-subkultur
-vitenskap
-film_tv
-```
-
-`DomainRegistry.listRuntimeCategories()` returns these runtime ids:
+Begge listene består nå av:
 
 ```text
 by
@@ -103,43 +79,50 @@ musikk
 naeringsliv
 natur
 politikk
-populaerkultur
 psykologi
 religion
 scenekunst
 sport
 subkultur
 vitenskap
+filosofi
 film_tv
 ```
 
-## Category decisions
+Dersom denne listen avviker fra runtimekoden, fagmanifestet, quizprofilregisteret, badgeindeksen, kategori-UI eller place-policyen, skal `npm run audit:categories` feile.
 
-- `kunst` means visual and material art. The display name is **Kunst**.
-- `scenekunst` is its own category for theatre, dance, musicals, revue, standup, improvisation and live performance.
-- `musikk` means music. The display name is **Musikk**.
-- `kultur` is not a category id.
-- `film_tv` and `media` remain independent categories, not children of popular culture.
-- `religion` remains an independent category.
-- `filosofi` resolves to `vitenskap`.
-- `sosial_laering` is a non-place badge and is not returned by either category-list method.
+## Legacy populærkultur-kompatibilitet
 
-## Correct popular-culture files
+`populaerkultur` og `popkultur` er ikke canonical toppkategorier og returneres ikke av listemetodene.
 
-```text
-data/badges/populaerkultur.json
-data/quiz/quiz_populaerkultur.json
-data/fag/popkultur/
+`js/DomainRegistry.js` kan fortsatt inneholde eksplisitte aliaser for eldre dataflyt:
+
+```js
+DomainRegistry.toFagSubjectId("populaerkultur"); // legacy: "popkultur"
+DomainRegistry.toRuntimeCategoryId("popkultur"); // legacy: "populaerkultur"
 ```
 
-Do not create parallel runtime files named `popkultur` without a complete migration.
+Disse returverdiene er kompatibilitetsgrenser, ikke tillatelse til å lage nye place-, badge-, quiz- eller fagdata med id-ene. Nye produksjonsfiler skal følge maskinkontrakten; populærkultur uttrykkes som tagg/linse eller innen relevant faglig domene, særlig media.
 
-## Before adding a category
+## Låste kategoribeslutninger
 
-1. Update `data/categories/category_contract.json`.
-2. Update `docs/DOMAIN_CONTRACT.md`.
-3. Update `js/DomainRegistry.js`.
-4. Update badges, fag manifest, category UI and place policy.
-5. Run `npm run audit:categories`.
+- `kunst` betyr visuell og materiell kunst.
+- `scenekunst` er egen kategori for teater, dans, musikal, revy, standup, improvisasjon og live performance.
+- `musikk` betyr musikk, artister, konserter, scener, lyd og produksjon.
+- `kultur` er ikke kategori-id.
+- `film_tv` og `media` er separate kategorier.
+- `religion` er selvstendig kategori.
+- `vitenskap` omfatter også teknologi, ingeniørfag og IT.
+- `filosofi` er selvstendig fag- og runtimekategori og skal ikke normaliseres til `vitenskap`.
+- `sosial_laering` er et non-place badge og returneres ikke av kategorilistene.
+- `populaerkultur`/`popkultur` er ikke toppkategori.
 
-If the audit fails, do not add a local fallback or an extra alias map elsewhere.
+## Før en kategori legges til eller endres
+
+1. Oppdater `data/categories/category_contract.json`.
+2. Oppdater `docs/DOMAIN_CONTRACT.md`.
+3. Oppdater `js/DomainRegistry.js`.
+4. Oppdater badges, fagmanifest, quizprofilregister, kategori-UI og place-policy.
+5. Kjør `npm run audit:categories`.
+
+Dersom auditen feiler, skal det ikke legges inn en lokal fallback eller et ekstra alias-kart et annet sted.
