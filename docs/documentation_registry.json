@@ -13,6 +13,7 @@
   "priority_order": [
     "docs/HISTORY_GO_TECHNICAL_ARCHITECTURE.md",
     "README/SYSTEM_REGISTRY.md",
+    "README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md",
     "README/SYSTEM_MAP.md",
     "docs/DATA_PRODUCTION_CONTRACT.md",
     "README/README_DEV.md",
@@ -64,8 +65,21 @@
     {
       "path": "README/SYSTEM_REGISTRY.md",
       "status": "canonical",
-      "role": "Bindende eierskap og kontrakter for dagens runtime",
+      "role": "Overordnet runtime-eierskap, kjernegrenser og globale kontrakter",
       "owns": ["current_runtime_ownership"],
+      "last_verified": "2026-07-25"
+    },
+    {
+      "path": "README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md",
+      "status": "canonical",
+      "role": "Aktive API-, storage-, privacy- og UI-kontrakter for registrerte subsystemer",
+      "owns": [
+        "observation_runtime_contracts",
+        "knowledge_progression_runtime_contracts",
+        "civication_subsystem_contracts",
+        "social_subsystem_contracts",
+        "today_subsystem_contracts"
+      ],
       "last_verified": "2026-07-25"
     },
     {
@@ -73,8 +87,8 @@
       "status": "historical",
       "role": "Byte-identisk snapshot av SYSTEM_REGISTRY før aktiv kontrakt og innlimt legacytekst ble splittet",
       "owns": [],
-      "superseded_by": ["README/SYSTEM_REGISTRY.md"],
-      "historical_reason": "Bevarer hele pre-split-filen for sporbarhet; den inneholder utdaterte paths, sediment-lenker og appendikser som ikke er bindende."
+      "superseded_by": ["README/SYSTEM_REGISTRY.md", "README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md"],
+      "historical_reason": "Bevarer hele pre-split-filen for sporbarhet. Legacytekst er ikke bindende; aktive appendiksregler er konsolidert i subsystemkontrakten."
     },
     {
       "path": "README/SYSTEM_MAP.md",
