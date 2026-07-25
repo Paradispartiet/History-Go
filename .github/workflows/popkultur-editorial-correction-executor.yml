@@ -1,0 +1,80 @@
+name: Popkultur editorial correction executor
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/popkultur-editorial-trigger'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: popkultur-editorial-correction
+  cancel-in-progress: false
+
+jobs:
+  correct:
+    if: github.event.head_commit.message == 'Trigger popkultur editorial correction'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out correction branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-coordinate-remove-popkultur-domain
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Apply editorial correction
+        run: node scripts/coordinate-branch-job.mjs
+
+      - name: Rebuild generated data
+        run: |
+          npm run places:index:build
+          npm run build:web
+
+      - name: Validate corrected repository
+        run: |
+          npm run typecheck:web
+          npm run audit:places-split-manifest-sync
+          npm run places:index:check
+          npm run test:coordinate-source-contract
+          npm run places:coords:quality
+          npm run places:coords:intake
+          npm run places:coords:evidence:audit
+          npm run health:places
+          npm run audit:categories
+          npm run audit:people-of-places
+          npm run audit:quiz-manifest:v2
+          npm run places:emner:check
+          git diff --check
+
+      - name: Publish corrected migration
+        run: |
+          rm -f scripts/coordinate-branch-job.mjs scripts/.coordinate-branch-job-complete
+          rm -f reports/remove-popkultur-domain-editorial-failure.log
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Correct popkultur editorial classifications'
+          git push origin HEAD:agent/oslo-coordinate-remove-popkultur-domain
+
+      - name: Record failure on branch
+        if: failure()
+        run: |
+          git reset --hard origin/agent/oslo-coordinate-remove-popkultur-domain
+          mkdir -p reports
+          printf '%s\n' 'Popkultur editorial correction executor failed. Inspect the GitHub Actions run attached to the main trigger commit.' > reports/remove-popkultur-domain-editorial-failure.log
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/remove-popkultur-domain-editorial-failure.log
+          git commit -m 'Record popkultur editorial correction failure' || true
+          git push origin HEAD:agent/oslo-coordinate-remove-popkultur-domain || true
