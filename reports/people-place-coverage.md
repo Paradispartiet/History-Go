@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-07-25T06:29:27.480Z
+Generert: 2026-07-25T06:57:40.131Z
 
 ## Sammendrag
 
-- People totalt: **1327**
+- People totalt: **1332**
 - Places totalt: **1291**
-- Places med people: **361**
-- Places uten people: **930**
-- People-place-lenker: **1566**
-- People koblet til flere gyldige steder: **262**
+- Places med people: **367**
+- Places uten people: **924**
+- People-place-lenker: **1582**
+- People koblet til flere gyldige steder: **267**
 - People uten gyldig sted: **122**
 - Ugyldige place-referanser: **50**
-- Duplikate place-referanser inne på people: **1246**
-- People uten image: **986**
-- People uten cardImage: **987**
+- Duplikate place-referanser inne på people: **1251**
+- People uten image: **991**
+- People uten cardImage: **992**
 - People uten popupDesc: **105**
 
 ## Dekning per place-kategori
@@ -23,7 +23,7 @@ Generert: 2026-07-25T06:29:27.480Z
 |---|---:|---:|---:|---:|---:|
 | by | 213 | 63 | 150 | 186 | 154 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 449 | 69 | 380 | 239 | 164 |
+| historie | 449 | 75 | 374 | 255 | 177 |
 | kunst | 34 | 22 | 12 | 53 | 49 |
 | litteratur | 40 | 34 | 6 | 70 | 59 |
 | media | 11 | 8 | 3 | 28 | 27 |
@@ -41,7 +41,7 @@ Generert: 2026-07-25T06:29:27.480Z
 
 ## People tags
 
-- historie: 254
+- historie: 258
 - sport: 245
 - teater: 202
 - scenekunst: 193
@@ -51,8 +51,8 @@ Generert: 2026-07-25T06:29:27.480Z
 - musikk: 121
 - holmenkollen: 105
 - holmenkollrennet: 80
-- kunst: 79
-- naeringsliv: 70
+- kunst: 80
+- naeringsliv: 71
 - arkitektur: 66
 - subkultur: 64
 - by: 60
@@ -66,7 +66,7 @@ Generert: 2026-07-25T06:29:27.480Z
 - film: 44
 - valerenga: 43
 - norge_for_1500: 40
-- 1814: 38
+- 1814: 39
 - kollektivt_miljoanker: 38
 - riksforsamlingen: 38
 - vitenskap: 36
@@ -275,7 +275,7 @@ Generert: 2026-07-25T06:29:27.480Z
 - haakon_v_magnusson (Håkon V Magnusson) -> akershus_festning
 - st_hallvard (St. Hallvard) -> middelalder_oslo
 - harald_hardrade (Harald Hardråde) -> middelalder_oslo
-- ... 1146 flere
+- ... 1151 flere
 
 ## Anbefalt første people-batch
 
