@@ -128,7 +128,7 @@ function auditDomain(planned) {
   const f = contract.domain_freeze_contract;
   const productionGaps = [];
   if (domain.status !== f.required_status) productionGaps.push("status_not_complete_revised");
-  if (counts.emners < f.min_emner) productionGaps.push("too_few_emner");
+  if (counts.emner < f.min_emner) productionGaps.push("too_few_emner");
   if (counts.resolved_emner !== counts.emner) productionGaps.push("unresolved_emne_references");
   if (counts.hooks < f.min_theory_hooks) productionGaps.push("too_few_hooks");
   if (counts.methods < f.min_methods) productionGaps.push("too_few_methods");
