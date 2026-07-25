@@ -2,23 +2,30 @@
   "schemaVersion": "1.0",
   "placeId": "fetsund_lenser",
   "placeFile": "data/places/historie/akershus/places_historie_akershus_batch1/fetsund_lenser.json",
-  "evidenceStatus": "coordinate_ready",
-  "coordinateDecision": "candidate_ready_for_production",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_geometry_applied",
   "currentCoordinate": {
+    "lat": 59.92129383059753,
+    "lon": 11.151830033283264,
+    "r": 300,
+    "coordStatus": "verified_geometry",
+    "coordSource": "MiA / Fetsund lenser – offisielt publisert GPS-punkt",
+    "coordType": "official_visitor_area_anchor",
+    "coordRole": "area_anchor",
+    "coordNote": "Official visitor-area anchor; not the full linear extent of the preserved boom system."
+  },
+  "previousCoordinate": {
     "lat": 59.9256,
     "lon": 11.1598,
     "r": 300,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "distanceToAppliedCoordinateM": 653.1
   },
   "identity": {
     "currentName": "Fetsund lenser",
-    "resolvedIdentity": "Fetsund lenser museum and visitor area at Lundveien 3, 1900 Fetsund",
+    "resolvedIdentity": "Fetsund lenser museum and preserved boom visitor area at Lundveien 3, 1900 Fetsund",
     "identityStatus": "resolved",
     "identityProblem": "",
-    "locatorTypeCandidate": "museum_area",
+    "locatorTypeCandidate": "linear_area",
     "requiresSplit": false,
     "splitReason": "The record represents the museum and preserved boom site as one visitor destination."
   },
@@ -29,7 +36,7 @@
   ],
   "evidence": [
     {
-      "sourceProvider": "museum",
+      "sourceProvider": "official_map",
       "sourceName": "MiA / Fetsund lenser – Slik finner du oss",
       "sourceUrl": "https://mia.no/fetsundlenser/slik-finner-du-oss",
       "sourceObjectId": "mia-fetsundlenser:gps:32v-6644601-620295",
@@ -39,7 +46,7 @@
       "reason": "The coordinate is published by the institution for finding the visitor site."
     },
     {
-      "sourceProvider": "museum",
+      "sourceProvider": "official_address",
       "sourceName": "MiA / Fetsund lenser – Kontakt",
       "sourceUrl": "https://mia.no/fetsundlenser/kontakt-oss",
       "sourceObjectId": "mia-fetsundlenser:address:lundveien-3",
@@ -61,7 +68,7 @@
   ],
   "addressCandidates": [
     {
-      "sourceProvider": "museum",
+      "sourceProvider": "official_address",
       "address": {
         "street": "Lundveien",
         "number": "3",
@@ -75,7 +82,7 @@
   ],
   "sourceObjectCandidates": [
     {
-      "sourceProvider": "museum",
+      "sourceProvider": "official_map",
       "sourceObjectId": "mia-fetsundlenser:gps:32v-6644601-620295",
       "canApplyToPlace": true
     }
@@ -83,22 +90,23 @@
   "geometryCandidates": [],
   "coordinateCandidates": [
     {
-      "sourceProvider": "museum",
+      "sourceProvider": "official_map",
       "sourceObjectId": "mia-fetsundlenser:gps:32v-6644601-620295",
       "lat": 59.92129383059753,
       "lon": 11.151830033283264,
-      "coordRole": "display_marker",
-      "distanceFromCurrentM": 653.1,
-      "canApplyToPlace": true
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 653.1,
+      "canApplyToPlace": true,
+      "applied": true
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Apply the transformed official point to aggregate, split and indexes, with MiA as the coordinate source and the marker scoped to the visitor site."
+    "nextAction": "Production coordinate applied. Add extent anchors later only if gameplay should cover the full linear boom system."
   },
   "notes": [
     "The official point represents access to the museum/visitor destination, not the complete linear extent of the floating boom system.",
-    "Keep a broad radius or add extent anchors later if gameplay should cover the full preserved site."
+    "The coordinate source contract is satisfied with locatorType=linear_area, sourceProvider=official_map, geocodeAccuracy=semantic_anchor, coordRole=area_anchor and coordStatus=verified_geometry."
   ]
 }
