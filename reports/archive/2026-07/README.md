@@ -1,6 +1,6 @@
 # Dokumentarkiv — juli 2026
 
-Denne mappen inneholder tidsbundne dokumentasjonssnapshots som tidligere lå i den aktive `docs/`-flaten.
+Denne mappen inneholder tidsbundne dokumentasjonssnapshots som tidligere lå i aktive dokumentasjonsflater.
 
 Filene bevares for sporbarhet, men er **ikke** nåstatus og kan ikke overstyre registrerte canonical eller operational dokumenter.
 
@@ -15,6 +15,7 @@ Filene bevares for sporbarhet, men er **ikke** nåstatus og kan ikke overstyre r
 - [`CIVICATION_WORKDAY_PHASE_INTEGRATION_AUDIT.md`](./CIVICATION_WORKDAY_PHASE_INTEGRATION_AUDIT.md) — arbeidsdags-/faseintegrasjon fra 22. juni 2026
 - [`civication-status-audit.md`](./civication-status-audit.md) — merge-status fra 3. juni 2026
 - [`PROFILE_PROGRESS_REUSE_AUDIT.md`](./PROFILE_PROGRESS_REUSE_AUDIT.md) — beslutningsaudit før aktiv progress-reader-runtime
+- [`knowledge/`](./knowledge/) — seks tidligere Knowledge-, ontology-, knagge- og quiz-memory-modeller, bevart byte-identisk
 
 ## Aktive kilder
 
@@ -36,6 +37,13 @@ Profil og progresjon:
 
 - [`../../../docs/PROGRESSION_MODEL.md`](../../../docs/PROGRESSION_MODEL.md)
 - [`../../../docs/PROFILE_PROGRESS_READER_RUNTIME.md`](../../../docs/PROFILE_PROGRESS_READER_RUNTIME.md)
+
+Knowledge:
+
+- [`../../../docs/KNOWLEDGE_ARCHITECTURE.md`](../../../docs/KNOWLEDGE_ARCHITECTURE.md)
+- [`../../../data/knowledge/knowledge_system_policy_v1.json`](../../../data/knowledge/knowledge_system_policy_v1.json)
+- [`../../../data/knowledge/knowledge_unit_schema_v1.json`](../../../data/knowledge/knowledge_unit_schema_v1.json)
+- [`../../../data/quiz/quiz_knowledge_delivery_contract_v1.json`](../../../data/quiz/quiz_knowledge_delivery_contract_v1.json)
 
 AHA:
 

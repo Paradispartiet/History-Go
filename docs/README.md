@@ -54,14 +54,39 @@ Historisk snapshot som ikke skal brukes som nåstatus:
 
 - `docs/IMPLEMENTATION_STATUS.md` — avgrenset snapshot for Social, Civication Home og Spotmeeting
 
-### Data og innholdsproduksjon
+### Domener, data og innholdsproduksjon
 
-1. [`DATA_PRODUCTION_CONTRACT.md`](./DATA_PRODUCTION_CONTRACT.md)
-2. relevante manifests under `data/**/manifest.json`
-3. lokale README-filer ved datasettet
-4. relevante audits og CI-gates
+1. [`DOMAIN_CONTRACT.md`](./DOMAIN_CONTRACT.md) — bindende kategoribeslutninger
+2. [`../data/categories/category_contract.json`](../data/categories/category_contract.json) — maskinlesbar sannhetskilde for runtime- og fagkategorier
+3. [`DOMAIN_REGISTRY_README.md`](./DOMAIN_REGISTRY_README.md) — operativ bruk av DomainRegistry og eksplisitte legacy-aliasgrenser
+4. [`DATA_PRODUCTION_CONTRACT.md`](./DATA_PRODUCTION_CONTRACT.md) — aktiv dataproduksjonskontrakt
+5. relevante manifests under `data/**/manifest.json`
+6. lokale README-filer ved datasettet
+7. relevante audits og CI-gates
+
+`npm run audit:categories` håndhever samsvar mellom maskinkontrakten, fagmanifestet, quizprofilregisteret, badgeindeksen, DomainRegistry, kategori-UI og place-policyen.
+
+Aktive domenebeslutninger:
+
+- `filosofi` er selvstendig fag- og runtimekategori.
+- `populaerkultur`/`popkultur` er ikke toppkategori; eventuelle aliaser er bare legacy-kompatibilitet.
+- `sosial_laering` er et non-place badge.
+
+Ved konflikt gjelder maskinkontrakten og valideringen. Dokumentasjonen skal da korrigeres; det skal ikke opprettes lokale aliaslister eller parallelle kategorier.
 
 Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk-places. Ved konflikt mellom dokumentasjon og et aktivt manifest er manifestet/runtime-koden sannhetskilden, og dokumentasjonen skal korrigeres.
+
+### Knowledge og personlig minne
+
+1. [`KNOWLEDGE_ARCHITECTURE.md`](./KNOWLEDGE_ARCHITECTURE.md) — canonical menneskelesbar arkitektur og storage-eierskap
+2. [`../data/knowledge/knowledge_system_policy_v1.json`](../data/knowledge/knowledge_system_policy_v1.json) — maskinlesbar systempolicy
+3. [`../data/knowledge/knowledge_unit_schema_v1.json`](../data/knowledge/knowledge_unit_schema_v1.json) — canonical knowledge-unit-schema
+4. [`../data/quiz/quiz_knowledge_delivery_contract_v1.json`](../data/quiz/quiz_knowledge_delivery_contract_v1.json) — quizens kunnskaps-, vurderings- og evidenskontrakt
+5. [`../js/knowledgeV2.ts`](../js/knowledgeV2.ts) — varig V2-read-model og legacy-migrering
+6. [`../js/knowledgeQuizMemory.ts`](../js/knowledgeQuizMemory.ts) — quiz-bundles og synkronisering til V2
+7. [`../README/knowledgeREADME.md`](../README/knowledgeREADME.md) — compatibility-pointer fra eldre README-lenker
+
+De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People/Places/Relations-modellene er bevart byte-identisk under `reports/archive/2026-07/knowledge/`. De er historikk, ikke aktive kontrakter.
 
 ### Fag, emner og quiz
 
@@ -159,8 +184,11 @@ Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation
 - daterte TypeScript- og AHA-statusfiler flyttet til `reports/archive/2026-07/`
 - `Mestergrad` fjernet fra ferdigmodellen; Bronse → Sølv → Gull er canonical nivåregel
 - `APP_STRUCTURE_INDEX.md` synkronisert med `#/debate/:id` og registrert som canonical index-appkontrakt
+- domene- og DomainRegistry-dokumentasjonen synkronisert med maskinkontrakten: filosofi er selvstendig, og populærkultur er ikke toppkategori
+- parallelle Knowledge-, ontology- og knaggemodeller samlet under én canonical arkitektur og maskinpolicy
 
 ### Neste
 
-- klassifiser øvrige aktive produkt-/runtimekontrakter, først domene- og kvalitetskontraktene
+- klassifiser kvalitets- og Social-kontraktene uten å gjøre subsystemspesifikke guider til globale fasiter
 - fortsett å flytte daterte audits og statuspunkter til `reports/archive/YYYY-MM/`
+- konsolider gamle relations-, oppgave- og badge-/merke-dokumenter mot aktive data- og runtimekontrakter
