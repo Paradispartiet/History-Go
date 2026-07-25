@@ -2,51 +2,73 @@
   "schemaVersion": "1.0",
   "placeId": "skedsmo_kirke",
   "placeFile": "data/places/historie/akershus/places_historie_akershus_batch2/skedsmo_kirke.json",
-  "evidenceStatus": "candidate_sources_collected",
-  "coordinateDecision": "needs_geonorge_address_or_raw_building_geometry",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_kartverket_ssr_applied",
   "currentCoordinate": {
+    "lat": 59.99381,
+    "lon": 11.04531,
+    "r": 220,
+    "coordStatus": "verified",
+    "coordSource": "kartverket_ssr_v1",
+    "coordType": "official_church_place_name_point",
+    "coordRole": "display_marker",
+    "sourceObjectId": "kartverket-ssr:65554:59.99381000,11.04531000",
+    "coordNote": "Official Kartverket SSR representation point for Skedsmo kirke, place-number 65554."
+  },
+  "previousCoordinate": {
     "lat": 59.99387,
     "lon": 11.04598,
     "r": 220,
     "coordStatus": null,
     "coordSource": null,
     "coordType": null,
-    "coordNote": "Legacy marker retained during source audit; no coordinate metadata was present."
+    "distanceToAppliedCoordinateM": 37.8,
+    "reasonReplaced": "The legacy marker lay east of the official named-church representation point and had no coordinate-source metadata."
   },
   "identity": {
     "currentName": "Skedsmo kirke",
     "resolvedIdentity": "Skedsmo medieval church at Gjoleidveien 2, 2019 Skedsmokorset",
     "identityStatus": "resolved",
-    "identityProblem": "The current marker is about 44 metres from the named church-building candidate.",
+    "identityProblem": "",
     "locatorTypeCandidate": "building",
     "requiresSplit": false,
     "splitReason": "The canonical record represents one coherent church destination."
   },
   "requiredEvidence": [
-    "exact Geonorge address object for Gjoleidveien 2",
-    "raw geometry for named OSM way 189055303 or official building point",
-    "visual QA against the church footprint"
+    "stable official source object for the named church",
+    "official representation point",
+    "official address and independent named-building cross-check"
   ],
   "evidence": [
+    {
+      "sourceProvider": "kartverket",
+      "sourceName": "Kartverket – Stedsnamn faktaark 65554",
+      "sourceUrl": "https://stadnamn.kartverket.no/fakta/65554",
+      "sourceObjectId": "kartverket-ssr:65554:59.99381000,11.04531000",
+      "sourceQuality": "official_named_place_representation_point",
+      "finding": "Kartverket SSR identifies Skedsmo kirke with place-number 65554 and representation point 59.99381, 11.04531.",
+      "canVerifyCoordinate": true,
+      "reason": "The stable official place-name object directly represents the named church and exposes a precise representation point."
+    },
     {
       "sourceProvider": "official_address",
       "sourceName": "Lillestrøm kirkelige fellesråd – Skedsmo contact information",
       "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/lillestr%C3%B8m/menigheter/skedsmo-menighet/om%20oss/kontaktinformasjon/",
       "sourceObjectId": "lillestrom-kirken:skedsmo-kirke-gjoleidveien-2",
       "sourceQuality": "official_identity_and_address",
-      "finding": "The official church page lists Skedsmo kirke at Gjoleidveien 2, 2019 Skedsmokorset.",
+      "finding": "The official church page lists Skedsmo kirke at Gjoleidveien 2, 2019 Skedsmokorset and distinguishes it from Sten menighetshus at Gjoleidveien 5.",
       "canVerifyCoordinate": false,
-      "reason": "The page supplies the address but no inspectable address object or coordinate."
+      "reason": "Used as identity, address and wrong-building exclusion cross-check for the SSR point."
     },
     {
       "sourceProvider": "osm",
       "sourceName": "OpenStreetMap way 189055303 – Skedsmo kirke",
       "sourceUrl": "https://www.openstreetmap.org/way/189055303",
       "sourceObjectId": "osm-way:189055303",
-      "sourceQuality": "exact_named_building_candidate",
-      "finding": "A named church-building way is identified at approximately 59.99373, 11.04524.",
+      "sourceQuality": "exact_named_building_cross_check",
+      "finding": "The named church-building way lies at the same church location as the Kartverket SSR point.",
       "canVerifyCoordinate": false,
-      "reason": "Raw node geometry and deterministic point derivation are not yet stored."
+      "reason": "Used as independent building-scope cross-check; Kartverket remains the primary source."
     }
   ],
   "addressCandidates": [
@@ -60,10 +82,15 @@
         "country": "NO"
       },
       "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/lillestr%C3%B8m/menigheter/skedsmo-menighet/om%20oss/kontaktinformasjon/",
-      "canApplyToPlace": false
+      "canApplyToPlace": true
     }
   ],
   "sourceObjectCandidates": [
+    {
+      "sourceProvider": "kartverket",
+      "sourceObjectId": "kartverket-ssr:65554:59.99381000,11.04531000",
+      "canApplyToPlace": true
+    },
     {
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:189055303",
@@ -88,22 +115,33 @@
       "canApplyToPlace": false
     },
     {
+      "sourceProvider": "kartverket",
+      "sourceObjectId": "kartverket-ssr:65554:59.99381000,11.04531000",
+      "lat": 59.99381,
+      "lon": 11.04531,
+      "coordRole": "display_marker",
+      "distanceFromCurrentM": 37.8,
+      "canApplyToPlace": true
+    },
+    {
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:189055303",
       "lat": 59.99373,
       "lon": 11.04524,
-      "coordRole": "building_center_candidate",
-      "distanceFromCurrentM": 44.0,
+      "coordRole": "building_center_cross_check",
+      "distanceFromAppliedCoordinateM": 9.8,
       "canApplyToPlace": false
     }
   ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "A precise official address and exact named OSM object are known, but the Geonorge address object or raw building geometry has not been captured.",
-    "nextAction": "Run address-first lookup for Gjoleidveien 2 and compare the official address point with OSM way 189055303 before moving the marker."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the Kartverket SSR point to canonical production. Continue with Enebakk kirke."
   },
   "notes": [
-    "Do not confuse the church address Gjoleidveien 2 with Sten menighetshus at Gjoleidveien 5.",
-    "A 44-metre shift is plausible but must be source-derived rather than copied from a map preview."
+    "The official SSR point is preferred over a map-preview centre because it has a stable public source identity and directly represents Skedsmo kirke.",
+    "Gjoleidveien 5 belongs to Sten menighetshus and must not be substituted for the church at number 2.",
+    "The 220-metre radius is retained for the churchyard and immediate historical environment; the coordinate itself is the church display marker.",
+    "No nearest/first-hit result was used."
   ]
 }
