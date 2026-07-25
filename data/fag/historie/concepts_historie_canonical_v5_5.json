@@ -1,9 +1,9 @@
 [
   {
     "concept_id": "con_his_1800_tallets",
-    "label": "1800-tallets",
-    "definition": "I Historisk tid og periodisering betegner «1800-tallets» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "det lange 1800-tallet",
+    "definition": "En analytisk periodisering som lar revolusjonene rundt 1789 og første verdenskrig avgrense en sammenhengende epoke, fremfor å følge kalenderårhundret mekanisk.",
+    "concept_type": "periodization_model",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -11,14 +11,21 @@
     "source_emne_ids": [
       "em_his_modernisering_1800"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «1800-tallets» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_periodisering"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_modernisering",
+      "con_his_endringstempo"
+    ],
+    "distinguish_from": [
+      "con_his_epoker"
+    ],
+    "common_misuse": [
+      "Å bruke «det lange 1800-tallet» som en universell tidsramme uten å begrunne hvorfor grensene passer det undersøkte stedet og temaet."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_1814",
@@ -224,7 +231,7 @@
   {
     "concept_id": "con_his_anakronisme",
     "label": "anakronisme",
-    "definition": "I Historisk tid og periodisering betegner «anakronisme» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "En tidsforskyvning der begreper, verdier, institusjoner eller kunnskap fra én periode legges på aktører og forhold i en annen uten historisk begrunnelse.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -240,14 +247,21 @@
       "em_his_kronologi_datering_usikkerhet",
       "em_his_anakronisme_historiske_begreper"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «anakronisme» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_begreper"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_periodisering",
+      "con_his_samtid"
+    ],
+    "distinguish_from": [
+      "con_his_ettertid"
+    ],
+    "common_misuse": [
+      "Å kalle enhver bruk av et moderne ord anakronistisk; oversettende begreper kan brukes når forskjellen fra samtidens språk forklares."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_ankomst",
@@ -408,8 +422,8 @@
   },
   {
     "concept_id": "con_his_apne",
-    "label": "åpne",
-    "definition": "I Historisk tid og periodisering betegner «åpne» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "handlingsrom",
+    "definition": "Det historisk avgrensede settet av valg og handlinger som fremstod som mulige for en aktør innen samtidens institusjoner, ressurser, kunnskap og maktforhold.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -418,14 +432,21 @@
     "source_emne_ids": [
       "em_his_samtidshistorie_brudd"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «åpne» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_framtider"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_forventningshorisont",
+      "con_his_erfaringsrom"
+    ],
+    "distinguish_from": [
+      "con_his_ettertid"
+    ],
+    "common_misuse": [
+      "Å rekonstruere handlingsrommet ut fra hva som senere viste seg å lykkes, i stedet for hva aktørene kunne vite og gjøre i samtiden."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_arbeid",
@@ -1417,8 +1438,8 @@
   },
   {
     "concept_id": "con_his_begreper",
-    "label": "begreper",
-    "definition": "I Historisk tid og periodisering betegner «begreper» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "historiske begreper",
+    "definition": "Ord og kategorier hvis betydning, bruk og politiske eller sosiale rekkevidde må rekonstrueres i den perioden de inngikk i.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -1427,14 +1448,23 @@
     "source_emne_ids": [
       "em_his_anakronisme_historiske_begreper"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «begreper» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_kildegrunnlag"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_anakronisme"
+    ],
+    "related_concepts": [
+      "con_his_samtid",
+      "con_his_ettertid"
+    ],
+    "distinguish_from": [
+      "con_his_fortelling"
+    ],
+    "common_misuse": [
+      "Å anta at et kjent ord hadde samme betydning, sosiale rekkevidde og normative innhold i fortiden som i dag."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_beredskap",
@@ -2072,7 +2102,7 @@
   {
     "concept_id": "con_his_brudd",
     "label": "brudd",
-    "definition": "I Historisk tid og periodisering betegner «brudd» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "En dokumenterbar endring som omformer et historisk forløp så tydelig at tidligere ordninger, forventninger eller praksiser ikke fortsetter på samme måte.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -2089,14 +2119,21 @@
       "em_his_terror_samtidshistorie",
       "em_his_katastrofer_brudd_gjenoppbygging_resiliens_og_minne"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «brudd» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_historisk_endring"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_hendelse",
+      "con_his_kontinuitet"
+    ],
+    "distinguish_from": [
+      "con_his_prosess"
+    ],
+    "common_misuse": [
+      "Å likestille en dramatisk hendelse med et historisk brudd uten å vise at institusjoner, praksiser eller forventninger faktisk ble varig omformet."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_bruker",
@@ -2345,8 +2382,8 @@
   {
     "concept_id": "con_his_byrom",
     "label": "byrom",
-    "definition": "I Historisk tid og periodisering betegner «byrom» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Et avgrenset urbant rom der bygninger, infrastruktur, bruk, regulering og sosiale relasjoner virker sammen og kan endres i ulike tidslag.",
+    "concept_type": "spatial_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering",
@@ -2356,14 +2393,23 @@
       "em_his_historiske_lag_i_byrom",
       "em_his_branner_ulykker_brudd"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «byrom» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_stedlig_spor"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_lag"
+    ],
+    "related_concepts": [
+      "con_his_samtidighet",
+      "con_his_historisk_endring"
+    ],
+    "distinguish_from": [
+      "con_his_fortelling"
+    ],
+    "common_misuse": [
+      "Å behandle byrom som en uforanderlig fysisk kulisse og overse at funksjon, brukere, grenser og mening kan skifte over tid."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_byskaping",
@@ -2490,8 +2536,8 @@
   {
     "concept_id": "con_his_datering",
     "label": "datering",
-    "definition": "I Historisk tid og periodisering betegner «datering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Fastsettelse av når en hendelse, kilde, gjenstand eller fase hører hjemme, uttrykt med en presisjon som svarer til beleggene.",
+    "concept_type": "methodological_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -2499,20 +2545,29 @@
     "source_emne_ids": [
       "em_his_kronologi_datering_usikkerhet"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «datering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_kronologi"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_tidsmessig",
+      "con_his_dateringsusikkerhet"
+    ],
+    "related_concepts": [
+      "con_his_dateringsgrunnlag"
+    ],
+    "distinguish_from": [
+      "con_his_periodisering"
+    ],
+    "common_misuse": [
+      "Å oppgi et eksakt år når kildene bare støtter et intervall, en rekkefølge eller en omtrentlig datering."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_dateringsgrunnlag",
     "label": "dateringsgrunnlag",
-    "definition": "I Historisk tid og periodisering betegner «dateringsgrunnlag» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "De konkrete kildene, sporene, sammenligningene og metodene som begrunner at noe plasseres på et bestemt tidspunkt eller i et tidsintervall.",
+    "concept_type": "methodological_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -2529,20 +2584,27 @@
       "em_his_anakronisme_historiske_begreper",
       "em_his_samtid_ettertid_fortelling"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «dateringsgrunnlag» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_kildegrunnlag"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_datering",
+      "con_his_kronologi"
+    ],
+    "distinguish_from": [
+      "con_his_dateringsusikkerhet"
+    ],
+    "common_misuse": [
+      "Å presentere en datering uten å oppgi om den bygger på samtidig dokumentasjon, materiell analyse, typologi eller senere tradisjon."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_dateringsusikkerhet",
     "label": "dateringsusikkerhet",
-    "definition": "I Historisk tid og periodisering betegner «dateringsusikkerhet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Usikkerheten som følger av at beleggene bare tillater et intervall, en sannsynlig datering eller flere konkurrerende tidspunkt.",
+    "concept_type": "methodological_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -2554,14 +2616,21 @@
       "em_his_anakronisme_historiske_begreper",
       "em_his_samtid_ettertid_fortelling"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «dateringsusikkerhet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tidsmessig_usikkerhet"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_datering",
+      "con_his_dateringsgrunnlag"
+    ],
+    "distinguish_from": [
+      "con_his_usikkerhet"
+    ],
+    "common_misuse": [
+      "Å skjule et usikkert intervall bak ett enkelt årstall eller å behandle ulike dateringsforslag som like godt dokumentert."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_dekning",
@@ -3473,7 +3542,7 @@
   {
     "concept_id": "con_his_endringstempo",
     "label": "endringstempo",
-    "definition": "I Historisk tid og periodisering betegner «endringstempo» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Hastigheten og rytmen i en historisk endring, vurdert for et bestemt felt, sted og aktørsett fremfor for samfunnet som helhet.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -3482,14 +3551,23 @@
     "source_emne_ids": [
       "em_his_modernisering_1800"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «endringstempo» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_historiske_rytmer"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_ulike"
+    ],
+    "related_concepts": [
+      "con_his_modernisering",
+      "con_his_varighet"
+    ],
+    "distinguish_from": [
+      "con_his_brudd"
+    ],
+    "common_misuse": [
+      "Å beskrive en periode som rask eller langsom uten å angi hva som endret seg, for hvem, hvor og sammenlignet med hvilket tidsforløp."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_energi",
@@ -3660,9 +3738,9 @@
   },
   {
     "concept_id": "con_his_epoker",
-    "label": "epoker",
-    "definition": "I Historisk tid og periodisering betegner «epoker» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "epoke",
+    "definition": "En navngitt historisk periode som samler et tidsrom rundt bestemte kjennetegn, men som alltid er en analytisk avgrensning og ikke en naturlig tidsenhet.",
+    "concept_type": "periodization_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -3670,19 +3748,28 @@
     "source_emne_ids": [
       "em_his_tid_periodisering_epoker"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «epoker» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_periodisering"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_1800_tallets"
+    ],
+    "related_concepts": [
+      "con_his_kronologi",
+      "con_his_brudd"
+    ],
+    "distinguish_from": [
+      "con_his_varighet"
+    ],
+    "common_misuse": [
+      "Å bruke en epokebetegnelse som om alle steder, grupper og institusjoner gikk inn i og ut av epoken samtidig."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_erfaring",
-    "label": "erfaring",
-    "definition": "I Historisk tid og periodisering betegner «erfaring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "historisk erfaring",
+    "definition": "Fortidige aktørers situerte erfaringer slik de kan rekonstrueres gjennom samtidige uttrykk, praksiser og kilder, ikke gjennom senere fasit.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -3691,20 +3778,27 @@
     "source_emne_ids": [
       "em_his_samtidshistorie_brudd"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «erfaring» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_erfaringsrom"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_samtid",
+      "con_his_apne"
+    ],
+    "distinguish_from": [
+      "con_his_ettertid"
+    ],
+    "common_misuse": [
+      "Å tilskrive en hel befolkning én felles erfaring uten å skille mellom posisjon, alder, kjønn, klasse, sted eller tilgang til informasjon."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_erfaringsrom",
     "label": "erfaringsrom",
-    "definition": "I Historisk tid og periodisering betegner «erfaringsrom» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Det historisk akkumulerte repertoaret av minner, erfaringer og fortolkninger som aktører kunne trekke på i sin samtid.",
+    "concept_type": "theoretical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -3717,14 +3811,21 @@
       "em_his_kronologi_datering_usikkerhet",
       "em_his_anakronisme_historiske_begreper"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «erfaringsrom» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_erfaring"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_forventningshorisont",
+      "con_his_apne"
+    ],
+    "distinguish_from": [
+      "con_his_ettertid"
+    ],
+    "common_misuse": [
+      "Å omtale erfaringsrom som en fast mentalitet uten å dokumentere hvilke erfaringer som faktisk var tilgjengelige for bestemte aktører."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_erindring",
@@ -3858,8 +3959,8 @@
   {
     "concept_id": "con_his_ettertid",
     "label": "ettertid",
-    "definition": "I Historisk tid og periodisering betegner «ettertid» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Perioden og perspektivene som følger etter den undersøkte samtiden, og som kan omtolke, ordne og tillegge tidligere hendelser nye betydninger.",
+    "concept_type": "temporal_position",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering",
@@ -3910,14 +4011,21 @@
       "em_his_gjenoppbygging_minne",
       "em_his_terror_samtidshistorie"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ettertid» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tid"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_fortelling",
+      "con_his_samtid"
+    ],
+    "distinguish_from": [
+      "con_his_forventningshorisont"
+    ],
+    "common_misuse": [
+      "Å bruke ettertidens kjennskap til utfallet som bevis for hva samtidens aktører visste, ønsket eller forventet."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_ettertilstand",
@@ -5078,9 +5186,9 @@
   },
   {
     "concept_id": "con_his_fortelling",
-    "label": "fortelling",
-    "definition": "I Historisk tid og periodisering betegner «fortelling» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "historisk fortelling",
+    "definition": "En etterfølgende sammenstilling av hendelser og prosesser der utvalg, rekkefølge, årsakskoblinger og sluttpunkt skaper en bestemt historisk sammenheng.",
+    "concept_type": "narrative_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -5088,14 +5196,21 @@
     "source_emne_ids": [
       "em_his_samtid_ettertid_fortelling"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fortelling» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_ettertid"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_kronologi",
+      "con_his_samtid"
+    ],
+    "distinguish_from": [
+      "con_his_tidsforlop"
+    ],
+    "common_misuse": [
+      "Å behandle en sammenhengende fortelling som identisk med selve fortiden og overse hvilke kilder, fravær og sluttpunkter som former den."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_fortellinger",
@@ -5246,8 +5361,8 @@
   {
     "concept_id": "con_his_forventningshorisont",
     "label": "forventningshorisont",
-    "definition": "I Historisk tid og periodisering betegner «forventningshorisont» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Det spekteret av framtider som historiske aktører kunne forestille seg som mulige, sannsynlige eller ønskelige ut fra sin samtid.",
+    "concept_type": "theoretical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -5260,20 +5375,27 @@
       "em_his_anakronisme_historiske_begreper",
       "em_his_samtid_ettertid_fortelling"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «forventningshorisont» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_framtider"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_erfaringsrom",
+      "con_his_apne"
+    ],
+    "distinguish_from": [
+      "con_his_ettertid"
+    ],
+    "common_misuse": [
+      "Å redusere forventningshorisonten til det utfallet som faktisk kom, og dermed gjøre historien mer forutbestemt enn den var."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_framtider",
-    "label": "framtider",
-    "definition": "I Historisk tid og periodisering betegner «framtider» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "åpne framtider",
+    "definition": "Flere samtidige, uavklarte utviklingsmuligheter som eksisterte før utfallet var kjent, og som må rekonstrueres fra samtidens konflikter og forventninger.",
+    "concept_type": "temporal_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -5281,14 +5403,23 @@
     "source_emne_ids": [
       "em_his_samtidshistorie_brudd"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «framtider» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tid"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_apne",
+      "con_his_forventningshorisont"
+    ],
+    "related_concepts": [
+      "con_his_samtid"
+    ],
+    "distinguish_from": [
+      "con_his_ettertid"
+    ],
+    "common_misuse": [
+      "Å omtale fortidens framtid som åpen uten å identifisere konkrete alternativer, aktører og begrensninger som var historisk til stede."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_framtidsansvar",
@@ -5957,7 +6088,7 @@
   {
     "concept_id": "con_his_hendelse",
     "label": "hendelse",
-    "definition": "I Historisk tid og periodisering betegner «hendelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Et tids- og stedsavgrenset forløp som kan dateres og beskrives gjennom aktører, handlinger og umiddelbare konsekvenser.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -5968,14 +6099,21 @@
       "em_his_hendelse_prosess_tidsforlop",
       "em_his_1814_grunnlov_statsdannelse"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «hendelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tidsforlop"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_brudd",
+      "con_his_prosess"
+    ],
+    "distinguish_from": [
+      "con_his_lang_varighet"
+    ],
+    "common_misuse": [
+      "Å isolere en hendelse fra prosessene før og etter eller å anta at det mest synlige tidspunktet alene forklarer konsekvensene."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_historie",
@@ -6047,7 +6185,7 @@
   {
     "concept_id": "con_his_historisk_endring",
     "label": "historisk endring",
-    "definition": "I Historisk tid og periodisering betegner «historisk endring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "En dokumenterbar forskjell mellom historiske tilstander, praksiser eller relasjoner som må spesifiseres etter tid, sted, aktør og målestokk.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -6065,19 +6203,29 @@
       "em_his_anakronisme_historiske_begreper",
       "em_his_samtid_ettertid_fortelling"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «historisk endring» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tid"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_brudd",
+      "con_his_endringstempo"
+    ],
+    "related_concepts": [
+      "con_his_kontinuitet",
+      "con_his_prosess"
+    ],
+    "distinguish_from": [
+      "con_his_datering"
+    ],
+    "common_misuse": [
+      "Å bruke endring som synonym for enhver tidsforskjell uten å vise hva som faktisk ble omformet og hva som fortsatte."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_historiske_rytmer",
     "label": "historiske rytmer",
-    "definition": "I Historisk tid og periodisering betegner «historiske rytmer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Mønstre av gjentakelse, akselerasjon, stagnasjon og forsinkelse som gjør at ulike historiske prosesser utvikler seg i forskjellig tempo.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -6091,14 +6239,24 @@
       "em_his_modernisering_1800",
       "em_his_samtidshistorie_brudd"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «historiske rytmer» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tidsforlop"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_endringstempo",
+      "con_his_ulike"
+    ],
+    "related_concepts": [
+      "con_his_lang_varighet",
+      "con_his_samtidighet"
+    ],
+    "distinguish_from": [
+      "con_his_kronologi"
+    ],
+    "common_misuse": [
+      "Å beskrive rytmer metaforisk uten å knytte dem til observerbare serier, praksiser eller tidsintervaller."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_hospital",
@@ -7756,8 +7914,8 @@
   {
     "concept_id": "con_his_kildegrunnlag",
     "label": "kildegrunnlag",
-    "definition": "I Historisk tid og periodisering betegner «kildegrunnlag» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Den samlede dokumentasjonen en historisk påstand bygger på, inkludert kildetyper, proveniens, representativitet, tidsavstand og vesentlige fravær.",
+    "concept_type": "methodological_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering",
@@ -7819,14 +7977,23 @@
       "em_his_gjenoppbygging_minne",
       "em_his_terror_samtidshistorie"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kildegrunnlag» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_usikkerhet"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_dateringsgrunnlag",
+      "con_his_stedlig_spor"
+    ],
+    "related_concepts": [
+      "con_his_kronologi"
+    ],
+    "distinguish_from": [
+      "con_his_fortelling"
+    ],
+    "common_misuse": [
+      "Å omtale mange kilder som et sterkt kildegrunnlag uten å vurdere om de er uavhengige, samtidige, representative eller relevante for påstanden."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_kildekritikk",
@@ -8939,7 +9106,7 @@
   {
     "concept_id": "con_his_kontinuitet",
     "label": "kontinuitet",
-    "definition": "I Historisk tid og periodisering betegner «kontinuitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Dokumentert videreføring av praksiser, relasjoner eller institusjoner gjennom en periode, også når form, språk eller omgivelser endres.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -8955,14 +9122,21 @@
       "em_his_samtid_ettertid_fortelling",
       "em_his_styring_krise_kontinuitet"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kontinuitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_historisk_endring"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_brudd",
+      "con_his_lang_varighet"
+    ],
+    "distinguish_from": [
+      "con_his_brudd"
+    ],
+    "common_misuse": [
+      "Å likestille kontinuitet med uforanderlighet; noe kan videreføres samtidig som funksjon, omfang eller begrunnelse endres."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_kontorer",
@@ -9311,8 +9485,8 @@
   {
     "concept_id": "con_his_kronologi",
     "label": "kronologi",
-    "definition": "I Historisk tid og periodisering betegner «kronologi» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "En etterprøvbar ordning av hendelser, faser og kilder i tidsrekkefølge, med tydelig skille mellom sikre, relative og usikre plasseringer.",
+    "concept_type": "methodological_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -9329,14 +9503,23 @@
       "em_his_anakronisme_historiske_begreper",
       "em_his_samtid_ettertid_fortelling"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kronologi» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tid"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_datering",
+      "con_his_tidsforlop"
+    ],
+    "related_concepts": [
+      "con_his_dateringsgrunnlag"
+    ],
+    "distinguish_from": [
+      "con_his_periodisering"
+    ],
+    "common_misuse": [
+      "Å anta at korrekt rekkefølge i seg selv forklarer årsak, betydning eller sammenheng mellom leddene."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_kropp",
@@ -9724,9 +9907,9 @@
   },
   {
     "concept_id": "con_his_lag",
-    "label": "lag",
-    "definition": "I Historisk tid og periodisering betegner «lag» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "historiske lag",
+    "definition": "Materielle, funksjonelle eller fortolkende spor fra ulike perioder som er bevart, ombygd eller synlige samtidig på samme sted.",
+    "concept_type": "spatiotemporal_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -9734,14 +9917,21 @@
     "source_emne_ids": [
       "em_his_historiske_lag_i_byrom"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «lag» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_byrom"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_samtidighet",
+      "con_his_stedlig_spor"
+    ],
+    "distinguish_from": [
+      "con_his_kronologi"
+    ],
+    "common_misuse": [
+      "Å anta at synlige elementer fra ulike tider har vært i bruk samtidig eller at dagens utforming viser hele stedets historiske lagdeling."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_landskap",
@@ -9795,8 +9985,8 @@
   },
   {
     "concept_id": "con_his_lang",
-    "label": "lang",
-    "definition": "I Historisk tid og periodisering betegner «lang» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "strukturell treghet",
+    "definition": "Tendensen til at etablerte institusjoner, infrastrukturer og sosiale relasjoner begrenser hvor raskt historisk endring kan skje.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -9805,20 +9995,27 @@
     "source_emne_ids": [
       "em_his_lang_varighet_strukturer"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «lang» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_strukturer"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_lang_varighet",
+      "con_his_endringstempo"
+    ],
+    "distinguish_from": [
+      "con_his_kontinuitet"
+    ],
+    "common_misuse": [
+      "Å forklare manglende endring med strukturell treghet uten å identifisere mekanismene, interessene eller kostnadene som faktisk opprettholdt ordningen."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_lang_varighet",
     "label": "lang varighet",
-    "definition": "I Historisk tid og periodisering betegner «lang varighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Et analyseperspektiv på langsomme og seiglivede historiske forhold som bare blir synlige gjennom lange tidsserier og sammenlignbare kilder.",
+    "concept_type": "historiographical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -9830,14 +10027,23 @@
       "em_his_lang_varighet_strukturer",
       "em_his_hendelse_prosess_tidsforlop"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «lang varighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tid"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_lang"
+    ],
+    "related_concepts": [
+      "con_his_strukturer",
+      "con_his_historiske_rytmer"
+    ],
+    "distinguish_from": [
+      "con_his_hendelse"
+    ],
+    "common_misuse": [
+      "Å bruke lang varighet som en forklaring i seg selv uten å dokumentere hvilke strukturer som består og gjennom hvilke mekanismer."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_langsom",
@@ -11672,7 +11878,7 @@
   {
     "concept_id": "con_his_modernisering",
     "label": "modernisering",
-    "definition": "I Historisk tid og periodisering betegner «modernisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "En omstridt samlebetegnelse for sammenkoblede endringer i teknologi, stat, økonomi, infrastruktur og hverdagsliv som kan foregå i ulik retning og hastighet.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -11681,14 +11887,23 @@
     "source_emne_ids": [
       "em_his_modernisering_1800"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «modernisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_historisk_endring"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_endringstempo"
+    ],
+    "related_concepts": [
+      "con_his_1800_tallets",
+      "con_his_ulike"
+    ],
+    "distinguish_from": [
+      "con_his_brudd"
+    ],
+    "common_misuse": [
+      "Å framstille modernisering som én lineær, nødvendig og lik prosess for alle grupper og steder."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_modernisme",
@@ -13564,8 +13779,8 @@
   {
     "concept_id": "con_his_periodisering",
     "label": "periodisering",
-    "definition": "I Historisk tid og periodisering betegner «periodisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Analytisk inndeling av historisk tid i perioder etter eksplisitte kriterier, spørsmål og målestokk.",
+    "concept_type": "methodological_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -13576,14 +13791,24 @@
       "em_his_anakronisme_historiske_begreper",
       "em_his_samtid_ettertid_fortelling"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «periodisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tid"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_epoker",
+      "con_his_1800_tallets"
+    ],
+    "related_concepts": [
+      "con_his_kronologi",
+      "con_his_brudd"
+    ],
+    "distinguish_from": [
+      "con_his_datering"
+    ],
+    "common_misuse": [
+      "Å behandle en periodisering som nøytral eller naturlig uten å vise hvilke kriterier, perspektiver og geografiske avgrensninger som ligger bak."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_personell",
@@ -14273,7 +14498,7 @@
   {
     "concept_id": "con_his_prosess",
     "label": "prosess",
-    "definition": "I Historisk tid og periodisering betegner «prosess» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Et sammenhengende historisk forløp der flere handlinger, betingelser og mellomledd over tid bidrar til en endring eller reproduksjon.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -14284,14 +14509,21 @@
       "em_his_hendelse_prosess_tidsforlop",
       "em_his_miljo_klima_landskap_som_historisk_prosess"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «prosess» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tidsforlop"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_hendelse",
+      "con_his_historisk_endring"
+    ],
+    "distinguish_from": [
+      "con_his_brudd"
+    ],
+    "common_misuse": [
+      "Å kalle noe en prosess uten å identifisere mellomledd, aktører, tidsrom og mekanismer som binder forløpet sammen."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_protest",
@@ -15709,8 +15941,8 @@
   {
     "concept_id": "con_his_samtid",
     "label": "samtid",
-    "definition": "I Historisk tid og periodisering betegner «samtid» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Den historiske nåtiden aktørene levde i, med den informasjonen, erfaringen og de framtidsmulighetene som da var tilgjengelige.",
+    "concept_type": "temporal_position",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -15718,14 +15950,23 @@
     "source_emne_ids": [
       "em_his_samtid_ettertid_fortelling"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «samtid» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tid"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_erfaring"
+    ],
+    "related_concepts": [
+      "con_his_framtider",
+      "con_his_ettertid"
+    ],
+    "distinguish_from": [
+      "con_his_samtidighet"
+    ],
+    "common_misuse": [
+      "Å gjøre samtid til synonym for samtidshistorie eller å anta at alle aktører delte samme kunnskap om situasjonen."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_samtidig_betegnelse_vs_senere_sprakbruk",
@@ -15753,8 +15994,8 @@
   {
     "concept_id": "con_his_samtidighet",
     "label": "samtidighet",
-    "definition": "I Historisk tid og periodisering betegner «samtidighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "At hendelser, praksiser eller tidslag eksisterer innen samme tidsrom, uten at de nødvendigvis har samme rytme, betydning eller gjensidig forbindelse.",
+    "concept_type": "temporal_relation",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -15767,20 +16008,27 @@
       "em_his_hendelse_prosess_tidsforlop",
       "em_his_modernisering_1800"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «samtidighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tid"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_lag",
+      "con_his_ulike"
+    ],
+    "distinguish_from": [
+      "con_his_kronologi"
+    ],
+    "common_misuse": [
+      "Å tolke samtidighet som årsakssammenheng eller som bevis på at fenomener tilhører samme historiske prosess."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_samtidshistorie",
     "label": "samtidshistorie",
-    "definition": "I Historisk tid og periodisering betegner «samtidshistorie» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Historisk undersøkelse av en nær fortid der mange aktører, institusjoner og konsekvenser fortsatt finnes, og der kildeoverskudd kan kombineres med uavklarte utfall.",
+    "concept_type": "field_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering",
@@ -15790,14 +16038,21 @@
       "em_his_samtidshistorie_brudd",
       "em_his_terror_samtidshistorie"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «samtidshistorie» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tid"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_samtid",
+      "con_his_framtider"
+    ],
+    "distinguish_from": [
+      "con_his_ettertid"
+    ],
+    "common_misuse": [
+      "Å definere samtidshistorie bare med et fast antall år eller å behandle levende minner som ukritisk fasit."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_sanering",
@@ -17408,8 +17663,8 @@
   {
     "concept_id": "con_his_stedlig_spor",
     "label": "stedlig spor",
-    "definition": "I Historisk tid og periodisering betegner «stedlig spor» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Et fysisk, romlig eller dokumentert avtrykk på et bestemt sted som kan knyttes til en historisk fase gjennom kildekritikk og datering.",
+    "concept_type": "evidentiary_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering",
@@ -17449,14 +17704,23 @@
       "em_his_gjenoppbygging_minne",
       "em_his_terror_samtidshistorie"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «stedlig spor» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_kildegrunnlag"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_lag"
+    ],
+    "related_concepts": [
+      "con_his_byrom",
+      "con_his_dateringsgrunnlag"
+    ],
+    "distinguish_from": [
+      "con_his_fortelling"
+    ],
+    "common_misuse": [
+      "Å bruke et synlig spor som direkte bevis for funksjon, alder eller betydning uten å kontrollere om det er flyttet, ombygd eller senere rekonstruert."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_stedsnavn",
@@ -17583,8 +17847,8 @@
   },
   {
     "concept_id": "con_his_strukturer",
-    "label": "strukturer",
-    "definition": "I Historisk tid og periodisering betegner «strukturer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "historiske strukturer",
+    "definition": "Relativt stabile ordninger av institusjoner, ressurser, infrastruktur og sosiale relasjoner som former handlingsrom over tid.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -17593,14 +17857,23 @@
     "source_emne_ids": [
       "em_his_lang_varighet_strukturer"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «strukturer» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_lang_varighet"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_lang"
+    ],
+    "related_concepts": [
+      "con_his_kontinuitet",
+      "con_his_prosess"
+    ],
+    "distinguish_from": [
+      "con_his_hendelse"
+    ],
+    "common_misuse": [
+      "Å omtale «strukturer» som en usynlig totalforklaring uten å vise hvilke ordninger, relasjoner og mekanismer som kan dokumenteres."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_studerer",
@@ -18007,9 +18280,9 @@
   },
   {
     "concept_id": "con_his_tid",
-    "label": "tid",
-    "definition": "I Historisk tid og periodisering betegner «tid» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "historisk tid",
+    "definition": "Tid slik den ordnes, erfares og analyseres historisk gjennom kronologi, varighet, samtidighet, periodisering og skiftende forventninger.",
+    "concept_type": "foundational_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -18018,13 +18291,22 @@
       "em_his_tid_periodisering_epoker"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tid» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "narrower_concepts": [
+      "con_his_kronologi",
+      "con_his_periodisering",
+      "con_his_varighet"
     ],
-    "status": "canonical_v5_5"
+    "related_concepts": [
+      "con_his_samtid",
+      "con_his_ettertid"
+    ],
+    "distinguish_from": [
+      "con_his_datering"
+    ],
+    "common_misuse": [
+      "Å behandle historisk tid som en nøytral kalenderlinje og overse at ulike prosesser, aktører og steder kan ha forskjellige tidsrytmer."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_tidligere",
@@ -18050,7 +18332,7 @@
   {
     "concept_id": "con_his_tidsforlop",
     "label": "tidsforløp",
-    "definition": "I Historisk tid og periodisering betegner «tidsforløp» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "definition": "Den dokumenterte utviklingen fra en avgrenset begynnelse gjennom mellomledd til senere faser, med rekkefølge, varighet og usikkerhet synliggjort.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -18068,20 +18350,29 @@
       "em_his_anakronisme_historiske_begreper",
       "em_his_samtid_ettertid_fortelling"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tidsforløp» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_kronologi"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_hendelse",
+      "con_his_prosess"
+    ],
+    "related_concepts": [
+      "con_his_historiske_rytmer"
+    ],
+    "distinguish_from": [
+      "con_his_fortelling"
+    ],
+    "common_misuse": [
+      "Å konstruere et jevnt eller komplett tidsforløp der kildene egentlig har brudd, uklare mellomledd eller flere parallelle utviklinger."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_tidsmessig",
-    "label": "tidsmessig",
-    "definition": "I Historisk tid og periodisering betegner «tidsmessig» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "relativ datering",
+    "definition": "Plassering av noe som eldre, yngre, før, etter eller samtidig med noe annet uten at et eksakt kalenderår er kjent.",
+    "concept_type": "methodological_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -18089,20 +18380,27 @@
     "source_emne_ids": [
       "em_his_kronologi_datering_usikkerhet"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tidsmessig» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_datering"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_kronologi",
+      "con_his_dateringsgrunnlag"
+    ],
+    "distinguish_from": [
+      "con_his_dateringsusikkerhet"
+    ],
+    "common_misuse": [
+      "Å presentere en relativ rekkefølge som om den ga en absolutt dato eller et presist tidsintervall."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_tidsmessig_usikkerhet",
     "label": "tidsmessig usikkerhet",
-    "definition": "I Historisk tid og periodisering betegner «tidsmessig usikkerhet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Usikkerhet om rekkefølge, varighet, samtidighet eller faseinndeling i et historisk forløp, ikke bare om ett enkelt årstall.",
+    "concept_type": "methodological_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -18119,14 +18417,23 @@
       "em_his_anakronisme_historiske_begreper",
       "em_his_samtid_ettertid_fortelling"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tidsmessig usikkerhet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_usikkerhet"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_dateringsusikkerhet"
+    ],
+    "related_concepts": [
+      "con_his_kronologi",
+      "con_his_tidsforlop"
+    ],
+    "distinguish_from": [
+      "con_his_tidsmessig"
+    ],
+    "common_misuse": [
+      "Å samle all tidsusikkerhet i ett ubestemt forbehold uten å angi om problemet gjelder dato, rekkefølge, varighet eller samtidighet."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_tildeling",
@@ -18693,8 +19000,8 @@
   },
   {
     "concept_id": "con_his_ulike",
-    "label": "ulike",
-    "definition": "I Historisk tid og periodisering betegner «ulike» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
+    "label": "asynkron endring",
+    "definition": "At sammenkoblede historiske felt eller grupper endrer seg på ulike tidspunkt og i ulik hastighet, slik at samme periode rommer flere utviklingsstadier.",
     "concept_type": "analytical_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
@@ -18703,14 +19010,21 @@
     "source_emne_ids": [
       "em_his_modernisering_1800"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ulike» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_historiske_rytmer"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [],
+    "related_concepts": [
+      "con_his_endringstempo",
+      "con_his_samtidighet"
+    ],
+    "distinguish_from": [
+      "con_his_brudd"
+    ],
+    "common_misuse": [
+      "Å bruke asynkron endring som en generell forklaring uten å vise hvilke felt eller grupper som faktisk fulgte forskjellige tidsrytmer."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_ulonnet",
@@ -19090,8 +19404,8 @@
   {
     "concept_id": "con_his_usikkerhet",
     "label": "usikkerhet",
-    "definition": "I Historisk tid og periodisering betegner «usikkerhet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Graden av begrensning i en historisk påstand som følger av kildenes proveniens, representativitet, tidsavstand, motstrid, målepresisjon og fravær.",
+    "concept_type": "methodological_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering",
@@ -19104,14 +19418,23 @@
       "em_his_serielle_kilder_kvantifisering",
       "em_his_visuelle_kilder_fotografi"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «usikkerhet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_kildegrunnlag"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_tidsmessig_usikkerhet",
+      "con_his_dateringsusikkerhet"
+    ],
+    "related_concepts": [
+      "con_his_dateringsgrunnlag"
+    ],
+    "distinguish_from": [
+      "con_his_datering"
+    ],
+    "common_misuse": [
+      "Å bruke et generelt usikkerhetsforbehold uten å identifisere hvilken begrensning som skaper usikkerheten og hvor mye den påvirker konklusjonen."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_utdanningsinstitusjon_vs_arbeiderstyrt_offentlighet",
@@ -19365,8 +19688,8 @@
   {
     "concept_id": "con_his_varighet",
     "label": "varighet",
-    "definition": "I Historisk tid og periodisering betegner «varighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Hvor lenge en hendelse, prosess, praksis eller struktur består innen den avgrensningen og presisjonen kildene tillater.",
+    "concept_type": "temporal_measure",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_tid_periodisering"
@@ -19374,14 +19697,23 @@
     "source_emne_ids": [
       "em_his_lang_varighet_strukturer"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «varighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "broader_concepts": [
+      "con_his_tid"
     ],
-    "status": "canonical_v5_5"
+    "narrower_concepts": [
+      "con_his_lang_varighet"
+    ],
+    "related_concepts": [
+      "con_his_endringstempo",
+      "con_his_tidsforlop"
+    ],
+    "distinguish_from": [
+      "con_his_kronologi"
+    ],
+    "common_misuse": [
+      "Å anta at lang varighet innebærer stabil betydning eller uendret funksjon gjennom hele tidsrommet."
+    ],
+    "status": "canonical_v5_5_curated"
   },
   {
     "concept_id": "con_his_vekkelse",
