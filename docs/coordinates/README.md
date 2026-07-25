@@ -1,7 +1,7 @@
 # Koordinater — dokumentasjonskart
 
 Status: **canonical dokumentasjonsinngang**  
-Sist kontrollert: **2026-07-25**
+Sist kontrollert: **2026-07-26**
 
 Dette dokumentet samler coordinate-systemet uten å opprette en ny sannhetskilde. Produksjonen leser place-data, genererte indekser, manifester og kode — ikke Markdown-filene i denne mappen.
 
