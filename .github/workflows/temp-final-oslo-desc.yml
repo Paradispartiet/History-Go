@@ -1,0 +1,83 @@
+name: Temporary final Oslo description batch
+
+on:
+  push:
+    branches:
+      - agent/place-description-oslo-by-final-batch
+
+permissions:
+  contents: write
+
+jobs:
+  rewrite:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/place-description-oslo-by-final-batch
+          fetch-depth: 0
+
+      - name: Rewrite final Oslo descriptions
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          base = Path('data/places/by/oslo/places')
+          replacements = {
+              'torggata': {
+                  'desc': 'Torggata skifter karakter fra Stortorvet mot Ankertorget: gågate, sykkelprioritering, serveringssoner, småbutikker og eldre bakgårder ligger langs samme løp. Oppgraderingen har gitt mer opphold og kveldsaktivitet, men også høyere status, leiepress og en tydeligere kuratering av hvem som får plass.',
+                  'popupDesc': 'Torggata var lenge en sammensatt sentrumsgate med handel, små virksomheter, gjennomfart og et røffere preg. Den nyere gateprofilen prioriterer gående, syklende og servering tydeligere, og forskjellen kan leses i gategulvet, fortaussonene, skiltene og butikkfrontene. Når biltrafikken begrenses, blir det lettere å stanse og bruke gaten som oppholdsrom, men oppgraderingen endrer også økonomien. Nye serveringssteder og konseptbutikker løfter omdømmet og gjør området attraktivt for flere besøkende, samtidig som stigende leier kan presse ut andre aktører. Torggata viser derfor hvordan planlegging og marked virker sammen: en fysisk forbedret gate kan få rikere byliv, men også bli mer nøye sortert og dyrere å etablere seg i.'
+              },
+              'bjorvika': {
+                  'desc': 'Der containere, jernbanespor, motorveiramper og havnedrift tidligere stengte fjorden, ligger nå Operaen, Deichman, MUNCH, Barcode, boliger og promenader. Bjørvika åpnet vannkanten for publikum, men gjorde den samtidig til et prestisjefylt landskap for kultur, kontorer og svært kostbar eiendom.',
+                  'popupDesc': 'Bjørvika ble lenge brukt til havn, logistikk, sporområder og gjennomfart, og mange passerte stedet uten å kunne oppholde seg ved fjorden. Omformingen ble synlig for hele byen da Operahuset åpnet i 2008 med et tak publikum kunne gå på. Senere kom bibliotek, museum, høyhus, boliger, badesteder og en sammenhengende promenade. Dermed ble vannkanten et hverdagsrom for tur, løping, bading og opphold i stedet for en bakside dominert av transport. Men den nye tilgjengeligheten har en økonomisk motsetning. Barcode, prestisjearkitektur og dyre adresser viser hvor sterkt utviklingen drives av kapital og eiendomsverdi. Bjørvika gjør derfor både gevinsten og konflikten i Fjordbyen konkret: fjorden er åpnet, mens retten til å bo og etablere seg her er langt mer ulikt fordelt.'
+              },
+              'ring_3': {
+                  'desc': 'Avkjøringer, tunneler, køpunkter og feltskifter gjør Ring 3 til en daglig pulsåre mellom Oslos ytre bydeler og innfartsveier. Den flytter mennesker og varer effektivt, men legger samtidig støy, avstand og harde barrierer mellom nabolag langs den brede etterkrigsveien.',
+                  'popupDesc': 'Ring 3 ble bygget for en etterkrigsby der bilen, kapasiteten og rask gjennomstrømning stod sentralt. For bilisten oppleves veien som avkjøringer, tunneler, feltskifter og kjente køpunkter ved blant annet Smestad, Ullevål, Sinsen og Helsfyr. Når trafikken flyter, bindes arbeidsplasser, boliger og innfartsårer sammen; når en ulykke eller et veiarbeid stanser strømmen, sprer forsinkelsen seg til busser, leveranser og hverdagsavtaler over store deler av byen. Fra nabolagene langs traseen ser systemet annerledes ut. Støy, støyskjermer og brede veibaner skaper kanter som må krysses med broer eller kulverter. Ring 3 viser derfor infrastrukturens dobbelte virkning: den gjør Oslo mer sammenkoblet på regionalt nivå, samtidig som den kan gjøre naboområder mindre sammenhengende lokalt.'
+              },
+              'trikk_17_18': {
+                  'desc': 'Linje 17 og 18 deler reisen fra Gaustadalléen gjennom sentrum og Nybrua, før de går via henholdsvis Sinsen og Storo og møtes igjen ved Grefsen stasjon. Hvert stopp samler korte bytter, ganglinjer og små hverdagsøyeblikk rundt skinnene.',
+                  'popupDesc': 'Trikkelinjene 17 og 18 har felles vestende ved Gaustadalléen og følger samme sentrumsstrekning gjennom Nybrua. Derfra deler ruteparret seg: linje 17 går via Sinsen, mens linje 18 går via Storo, før begge ender ved Grefsen stasjon. Denne forgreningen gjør linjene til mer enn to nummer på et kart. De knytter ulike boligområder, handlegater, arbeidsplasser og knutepunkter til den samme daglige rytmen. Rundt hvert stopp oppstår små sentre: passasjerer går av, orienterer seg, krysser gaten, kjøper noe eller fortsetter til fots. Når trikken kommer, samles flere bevegelser i noen få minutter og løses deretter opp igjen. Linje 17 og 18 viser hvordan kollektivtransport ikke bare frakter mennesker mellom steder, men stadig produserer nytt gateliv langs traseen.'
+              },
+              'st_hanshaugen_park': {
+                  'desc': 'Stiene stiger mot toppen av St. Hanshaugen, der utsikten gjør parken til et orienteringspunkt over indre by. Trær, bakker, dam og oppholdsrom brukes både av mennesker som søker ro og av dem som tar den grønne snarveien gjennom nabolaget.',
+                  'popupDesc': 'St. Hanshaugen ble utviklet som offentlig park gjennom flere tiår. Fritz Heinrich Frølich tok initiativ rundt 1850, Christiania Byes Vel bidro til omfattende treplanting på 1860-tallet, og byen overtok ansvaret fra 1867. De store parkopparbeidingene fortsatte mellom 1876 og 1890. Historien merkes i terrenget: stier og trapper fører oppover, vegetasjonen rammer inn utsikten, og dam, paviljong og åpne flater lager ulike steder for opphold. Samtidig fungerer parken som en del av gatenettet. Noen går hit for utsikten, piknik eller ro, mens andre krysser høyden på vei mellom boligområdene rundt. Denne dobbeltheten gjør St. Hanshaugen til sosial infrastruktur: en historisk park som både er reisemål, utsiktspunkt og praktisk hverdagsrute.'
+              },
+              'storgata': {
+                  'desc': 'Mellom Kirkeristen og Nybrua deler trikkespor, butikker, serveringssteder og fotgjengere den samme historiske gaten. Storgata arbeider mer enn den poserer: holdeplasser, varelevering, raske ærender og blandede publikumsstrømmer gir sentrumsgaten et røffere tempo enn de polerte promenadene omkring.',
+                  'popupDesc': 'Storgata har lenge vært både ferdselsåre og handelsgate, og den doble rollen er fortsatt synlig mellom Kirkeristen og Nybrua. Trikken følger gaten gjennom et tett miljø av holdeplasser, butikkfronter, servering og sidegater. Når en vogn stanser, må fotgjengere, passasjerer og andre trafikanter tilpasse seg den samme smale korridoren; noen haster videre, andre gjør korte ærender eller blir stående ved en inngang. Derfor oppleves Storgata mindre som representativ promenade og mer som et arbeidende sentrumsgulv. Eldre fasader og handelsstrukturer brukes på dagens premisser, mens kollektivtrafikken holder strømmen i gang. Gaten viser hvordan mobilitet og handel kan være så tett vevd sammen at ingen av funksjonene kan forstås uten den andre.'
+              },
+              'stensparken': {
+                  'desc': 'Stensparken følger en lang kalksteinsrygg med Korpehaugen i sør og Blåsen i nord. Utsikt, tørrbakke, gangveier og Fagerborg kirke deler parken med hverdagsbruk, mens eldre lag fra Sten gård, parkutbygging og skeiv historie ligger tett under dagens rolige nabolagsrom.',
+                  'popupDesc': 'Stensparken ligger på en omtrent 500 meter lang kalksteinsrygg, med Korpehaugen og Blåsen som markerte høyder. Navnet fører tilbake til Sten gård, mens den første parkopparbeidingen skjedde omkring 1890–1900 og anlegget ble fullført i 1943. I dag beveger folk seg mellom utsiktspunkter, gangveier, tørrbakke, lekeområder og Fagerborg kirke. Flere mindre steder gjør parken historisk sammensatt. Sigrid Undset er markert med en skulptur, og Kjærlighetskarusellen – urinalet fra 1937 – er fredet og blåskiltet som del av skeiv Oslo-historie. Disse lagene gjør Stensparken til mer enn et grønt mellomrom. Den samler geologi, hverdagsliv, kirke, litteraturminne og sosial historie langs den samme høyderyggen.'
+              },
+              'nydalen': {
+                  'desc': 'Røde teglfabrikker, broer og Akerselva forteller at Nydalen først var et stort produksjons- og arbeidersamfunn. Spinnerier og Spigerverket er senere blitt avløst eller gjenbrukt av kontorer, utdanning og boliger, mens den tidligere lukkede elvebredden nå fungerer som offentlig turdrag.',
+                  'popupDesc': 'Nydalens industri vokste frem ved Akerselvas fall og vannføring. Bomullsspinneriet ble grunnlagt i 1845, det første spinneriet stod ferdig i 1847, og Christiania Spiger- og Valseværk kom i 1853. Fabrikker, broer, arbeiderboliger og servicefunksjoner gjorde området til et sammenhengende arbeids- og hverdagsmiljø. Da produksjonen senere ble redusert, startet en ny omforming. Teglbygninger ble rehabilitert i 1986–88, Nydalen Park åpnet i 1990, og en kommunedelplan gjorde elva til strukturerende offentlig parkdrag. I dag ligger kontorer, utdanning, boliger og service mellom de gamle industrisporene. Man kan gå langs vannet der fabrikkene tidligere kontrollerte store deler av elverommet. Nydalen viser dermed ombruk som fysisk forhandling: produksjonen forsvant, men bygningene, broene og elva ble ramme for en ny bydel.'
+              }
+          }
+
+          for place_id, values in replacements.items():
+              path = base / f'{place_id}.json'
+              with path.open(encoding='utf-8') as handle:
+                  data = json.load(handle)
+              data['desc'] = values['desc']
+              data['popupDesc'] = values['popupDesc']
+              with path.open('w', encoding='utf-8', newline='\n') as handle:
+                  json.dump(data, handle, ensure_ascii=False, indent=2)
+                  handle.write('\n')
+          PY
+
+      - name: Commit rewritten descriptions
+        shell: bash
+        run: |
+          rm .github/workflows/temp-final-oslo-desc.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/by/oslo/places .github/workflows/temp-final-oslo-desc.yml
+          git commit -m "Revider siste Oslo-beskrivelser"
+          git push origin HEAD:agent/place-description-oslo-by-final-batch
