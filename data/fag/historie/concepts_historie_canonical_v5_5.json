@@ -1183,9 +1183,9 @@
   {
     "concept_id": "con_his_avhengighet",
     "label": "avhengighet",
-    "definition": "I Velferd, rett og hverdagsliv betegner «avhengighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En asymmetrisk relasjon der et samfunns handlingsrom formes av tilgang til kapital, teknologi, markeder, sikkerhet eller beslutninger kontrollert andre steder.",
+    "concept_type": "relational_economy_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_velferd_rett_hverdagsliv",
       "his_okonomi_handel_materielle_systemer",
@@ -1196,12 +1196,19 @@
       "em_his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet",
       "em_his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_globalisering"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_sammenvevd",
+      "con_his_ravarekjede"
+    ],
+    "distinguish_from": [
+      "con_his_sammenvevd_historie"
+    ],
     "common_misuse": [
-      "Å bruke «avhengighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «avhengighet» som en automatisk økonomisk mekanisme uten å dokumentere konkrete aktører, kontrakter, priser, institusjoner og alternativer."
     ],
     "status": "canonical_v5_5"
   },
@@ -1324,9 +1331,9 @@
   {
     "concept_id": "con_his_avkolonisering",
     "label": "avkolonisering",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «avkolonisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Prosesser der kolonialt styre utfordres og avvikles gjennom politisk mobilisering, krig, forhandling, statsdannelse og fortsatt kamp om økonomisk og kulturell makt.",
+    "concept_type": "political_historical_process",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -1342,11 +1349,19 @@
       "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_utviklingspolitikk"
+    ],
+    "related_concepts": [
+      "con_his_utviklingspolitikk",
+      "con_his_bistand",
+      "con_his_kolonialisme"
+    ],
+    "distinguish_from": [
+      "con_his_globalisering"
+    ],
     "common_misuse": [
-      "Å bruke «avkolonisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å framstille «avkolonisering» som et fullført brudd uten å undersøke fortsatt økonomisk, militær, kulturell og kunnskapsmessig avhengighet."
     ],
     "status": "canonical_v5_5"
   },
@@ -1774,10 +1789,10 @@
   },
   {
     "concept_id": "con_his_bevegelser",
-    "label": "bevegelser",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «bevegelser» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "sosiale bevegelser",
+    "definition": "Løst eller formelt organiserte nettverk som mobiliserer mennesker, ressurser og fortolkninger for å endre eller forsvare samfunnsordninger.",
+    "concept_type": "collective_action_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal",
       "his_offentlighet_mobilisering_bevegelser"
@@ -1788,11 +1803,20 @@
       "em_his_offentlighet_mobilisering_miljobevegelse_og_nye_sosiale_bevegelser"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_transnasjonal_bevegelse",
+      "con_his_solidaritetsnettverk"
+    ],
+    "related_concepts": [
+      "con_his_transnasjonal_bevegelse",
+      "con_his_solidaritetsnettverk",
+      "con_his_medier"
+    ],
+    "distinguish_from": [
+      "con_his_internasjonal_organisasjon"
+    ],
     "common_misuse": [
-      "Å bruke «bevegelser» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «sosiale bevegelser» som en enhetlig aktør uten å dokumentere nettverk, ledelse, ressurser, uenighet og geografisk rekkevidde."
     ],
     "status": "canonical_v5_5"
   },
@@ -1841,21 +1865,29 @@
   {
     "concept_id": "con_his_bistand",
     "label": "bistand",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «bistand» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Overføring av penger, kompetanse, varer eller institusjonell støtte mellom stater og organisasjoner, formet av humanitære, strategiske, økonomiske og politiske mål.",
+    "concept_type": "international_policy_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
     "source_emne_ids": [
       "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_internasjonale"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_internasjonal_organisasjon",
+      "con_his_organisasjoner",
+      "con_his_kriger"
+    ],
+    "distinguish_from": [
+      "con_his_imperium"
+    ],
     "common_misuse": [
-      "Å bruke «bistand» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «bistand» som uttrykk for samlet internasjonal vilje uten å undersøke medlemskap, vetomakt, finansiering, gjennomføring og statlige interesser."
     ],
     "status": "canonical_v5_5"
   },
@@ -2903,9 +2935,9 @@
   {
     "concept_id": "con_his_diaspora",
     "label": "diaspora",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «diaspora» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Et spredt fellesskap med varige relasjoner til flere steder, formet av migrasjon, minne, organisering, identitet, politikk og transnasjonale nettverk.",
+    "concept_type": "transnational_community_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet",
       "his_global_kolonial_transnasjonal"
@@ -2925,12 +2957,19 @@
       "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_migrasjon"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_transnasjonal_bevegelse",
+      "con_his_nettverk"
+    ],
+    "distinguish_from": [
+      "con_his_koloniale"
+    ],
     "common_misuse": [
-      "Å bruke «diaspora» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «diaspora» som fast identitet eller ensrettet flytting uten å undersøke generasjon, stedstilknytning, retur, nettverk og rettslig status."
     ],
     "status": "canonical_v5_5"
   },
@@ -6112,10 +6151,10 @@
   },
   {
     "concept_id": "con_his_globale",
-    "label": "globale",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «globale» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "global skala",
+    "definition": "Et analytisk nivå som undersøker forbindelser og prosesser på tvers av verdensregioner uten å anta at virkninger er ensartede eller dekker hele verden.",
+    "concept_type": "analytical_scale_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -6123,33 +6162,50 @@
       "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
       "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_historie"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_globalisering",
+      "con_his_sammenvevd_historie"
+    ],
+    "distinguish_from": [
+      "con_his_norge"
+    ],
     "common_misuse": [
-      "Å bruke «globale» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «global skala» som synonym for hele verden uten å avgrense forbindelser, skala, regioner og områder som ikke var integrert på samme måte."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_globalisering",
     "label": "globalisering",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «globalisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Ujevne historiske prosesser som øker og omformer forbindelser mellom steder gjennom handel, kapital, migrasjon, kommunikasjon, politikk og kultur.",
+    "concept_type": "historical_connectivity_process",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
     "source_emne_ids": [
       "em_his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "broader_concepts": [
+      "con_his_historie"
+    ],
+    "narrower_concepts": [
+      "con_his_sammenvevd",
+      "con_his_avhengighet"
+    ],
+    "related_concepts": [
+      "con_his_sammenvevd_historie",
+      "con_his_globale"
+    ],
+    "distinguish_from": [
+      "con_his_norge"
+    ],
     "common_misuse": [
-      "Å bruke «globalisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «globalisering» som synonym for hele verden uten å avgrense forbindelser, skala, regioner og områder som ikke var integrert på samme måte."
     ],
     "status": "canonical_v5_5"
   },
@@ -6506,10 +6562,10 @@
   },
   {
     "concept_id": "con_his_historie",
-    "label": "historie",
-    "definition": "I Kjønn, familie, seksualitet og livsløp betegner «historie» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "globalhistorie",
+    "definition": "En historiografisk tilnærming som undersøker forbindelser, sammenligninger og prosesser på tvers av regioner og utfordrer isolerte nasjonale forklaringer.",
+    "concept_type": "historiographical_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_kjonn_familie_livslop",
       "his_global_kolonial_transnasjonal"
@@ -6519,11 +6575,19 @@
       "em_his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_sammenvevd_historie"
+    ],
+    "related_concepts": [
+      "con_his_globalisering",
+      "con_his_sammenvevd_historie",
+      "con_his_globale"
+    ],
+    "distinguish_from": [
+      "con_his_norge"
+    ],
     "common_misuse": [
-      "Å bruke «historie» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «globalhistorie» som synonym for hele verden uten å avgrense forbindelser, skala, regioner og områder som ikke var integrert på samme måte."
     ],
     "status": "canonical_v5_5"
   },
@@ -7019,52 +7083,67 @@
   },
   {
     "concept_id": "con_his_imperiale",
-    "label": "imperiale",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «imperiale» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "imperiale relasjoner",
+    "definition": "Asymmetriske politiske, økonomiske, militære og kulturelle forbindelser mellom et imperielt sentrum, mellomledd og underordnede territorier eller grupper.",
+    "concept_type": "imperial_relational_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
     "source_emne_ids": [
       "em_his_global_kolonial_norge_i_imperiale_og_koloniale_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_imperium"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kolonialisme",
+      "con_his_koloniale"
+    ],
+    "distinguish_from": [
+      "con_his_internasjonal_organisasjon"
+    ],
     "common_misuse": [
-      "Å bruke «imperiale» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «imperiale relasjoner» som bare formell territoriell kontroll uten å analysere handel, kunnskap, mellomledd, tvang og ulik status."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_imperier",
-    "label": "imperier",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «imperier» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "imperiale systemer",
+    "definition": "Sammenkoblede institusjoner, territorier, handelsruter, militære ordninger og kunnskapsformer som opprettholder imperial kontroll.",
+    "concept_type": "imperial_system_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
     "source_emne_ids": [
       "em_his_global_kolonial_imperier_kolonialisme_og_makt"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_imperium"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kolonialisme",
+      "con_his_imperiale",
+      "con_his_koloniale"
+    ],
+    "distinguish_from": [
+      "con_his_internasjonal_organisasjon"
+    ],
     "common_misuse": [
-      "Å bruke «imperier» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «imperiale systemer» som bare formell territoriell kontroll uten å analysere handel, kunnskap, mellomledd, tvang og ulik status."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_imperium",
     "label": "imperium",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «imperium» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En politisk orden der et sentrum styrer eller dominerer ulike territorier og befolkninger gjennom ulik status, tvang, mellomledd og ressursuttrekk.",
+    "concept_type": "political_territorial_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -7080,11 +7159,20 @@
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_imperier",
+      "con_his_imperiale"
+    ],
+    "related_concepts": [
+      "con_his_kolonialisme",
+      "con_his_imperiale",
+      "con_his_koloniale"
+    ],
+    "distinguish_from": [
+      "con_his_internasjonal_organisasjon"
+    ],
     "common_misuse": [
-      "Å bruke «imperium» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «imperium» som bare formell territoriell kontroll uten å analysere handel, kunnskap, mellomledd, tvang og ulik status."
     ],
     "status": "canonical_v5_5"
   },
@@ -7656,9 +7744,9 @@
   {
     "concept_id": "con_his_internasjonal_organisasjon",
     "label": "internasjonal organisasjon",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «internasjonal organisasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En varig organisasjon etablert av stater eller andre aktører for samarbeid, regulering, sikkerhet, handel, bistand eller normutvikling på tvers av grenser.",
+    "concept_type": "international_institution_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -7673,21 +7761,28 @@
       "em_his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie",
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_internasjonale"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_organisasjoner",
+      "con_his_kriger"
+    ],
+    "distinguish_from": [
+      "con_his_imperium"
+    ],
     "common_misuse": [
-      "Å bruke «internasjonal organisasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «internasjonal organisasjon» som uttrykk for samlet internasjonal vilje uten å undersøke medlemskap, vetomakt, finansiering, gjennomføring og statlige interesser."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_internasjonale",
-    "label": "internasjonale",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «internasjonale» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "multilateralt samarbeid",
+    "definition": "Koordinering mellom flere stater og organisasjoner gjennom avtaler, institusjoner, forhandlinger, regler og felles programmer.",
+    "concept_type": "international_relations_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -7697,10 +7792,16 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_internasjonal_organisasjon",
+      "con_his_organisasjoner",
+      "con_his_kriger"
+    ],
+    "distinguish_from": [
+      "con_his_imperium"
+    ],
     "common_misuse": [
-      "Å bruke «internasjonale» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «multilateralt samarbeid» som uttrykk for samlet internasjonal vilje uten å undersøke medlemskap, vetomakt, finansiering, gjennomføring og statlige interesser."
     ],
     "status": "canonical_v5_5"
   },
@@ -9068,31 +9169,38 @@
   },
   {
     "concept_id": "con_his_koloniale",
-    "label": "koloniale",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «koloniale» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "koloniale forbindelser",
+    "definition": "Politiske, økonomiske, kulturelle og kunnskapsmessige relasjoner skapt gjennom kolonial kontroll, handel, bosetting, misjon og administrasjon.",
+    "concept_type": "colonial_relational_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
     "source_emne_ids": [
       "em_his_global_kolonial_norge_i_imperiale_og_koloniale_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_imperium"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kolonialisme",
+      "con_his_imperiale"
+    ],
+    "distinguish_from": [
+      "con_his_internasjonal_organisasjon"
+    ],
     "common_misuse": [
-      "Å bruke «koloniale» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «koloniale forbindelser» som bare formell territoriell kontroll uten å analysere handel, kunnskap, mellomledd, tvang og ulik status."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_kolonialisme",
     "label": "kolonialisme",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «kolonialisme» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Praksiser og ideologier som legitimerer og organiserer kontroll over territorium og mennesker for bosetting, ressursuttrekk, strategisk makt eller kulturell omforming.",
+    "concept_type": "colonial_system_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -9107,12 +9215,21 @@
       "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
-    "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "broader_concepts": [
+      "con_his_imperium"
+    ],
+    "narrower_concepts": [
+      "con_his_koloniale"
+    ],
+    "related_concepts": [
+      "con_his_imperiale",
+      "con_his_koloniale"
+    ],
+    "distinguish_from": [
+      "con_his_internasjonal_organisasjon"
+    ],
     "common_misuse": [
-      "Å bruke «kolonialisme» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «kolonialisme» som bare formell territoriell kontroll uten å analysere handel, kunnskap, mellomledd, tvang og ulik status."
     ],
     "status": "canonical_v5_5"
   },
@@ -9929,22 +10046,29 @@
   },
   {
     "concept_id": "con_his_kriger",
-    "label": "kriger",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «kriger» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "globale kriger",
+    "definition": "Krigskonflikter der flere verdensregioner bindes sammen gjennom imperier, allianser, soldater, råvarer, logistikk, okkupasjon og internasjonale konsekvenser.",
+    "concept_type": "connected_warfare_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
     "source_emne_ids": [
       "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_internasjonale"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_internasjonal_organisasjon",
+      "con_his_organisasjoner"
+    ],
+    "distinguish_from": [
+      "con_his_imperium"
+    ],
     "common_misuse": [
-      "Å bruke «kriger» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «globale kriger» som uttrykk for samlet internasjonal vilje uten å undersøke medlemskap, vetomakt, finansiering, gjennomføring og statlige interesser."
     ],
     "status": "canonical_v5_5"
   },
@@ -10207,22 +10331,29 @@
   },
   {
     "concept_id": "con_his_kulturelle",
-    "label": "kulturelle",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «kulturelle» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "kulturell utveksling",
+    "definition": "Sirkulasjon og omforming av språk, ideer, estetikk, religion, varer og praksiser mellom grupper med ulike maktposisjoner.",
+    "concept_type": "cultural_transfer_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
     "source_emne_ids": [
       "em_his_global_kolonial_misjon_kunnskap_og_kulturelle_moter"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kulturmote"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_moter",
+      "con_his_misjon"
+    ],
+    "distinguish_from": [
+      "con_his_kolonialisme"
+    ],
     "common_misuse": [
-      "Å bruke «kulturelle» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «kulturell utveksling» som likeverdig utveksling uten å undersøke makt, oversettelse, vold, appropriasjon og hvem som produserte kildene."
     ],
     "status": "canonical_v5_5"
   },
@@ -10314,9 +10445,9 @@
   {
     "concept_id": "con_his_kulturmote",
     "label": "kulturmøte",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «kulturmøte» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Historisk kontakt mellom grupper med ulike språk, praksiser og maktposisjoner, preget av oversettelse, konflikt, tilpasning og nye blandingsformer.",
+    "concept_type": "contact_zone_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -10332,11 +10463,20 @@
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_kulturelle",
+      "con_his_moter"
+    ],
+    "related_concepts": [
+      "con_his_kulturelle",
+      "con_his_moter",
+      "con_his_misjon"
+    ],
+    "distinguish_from": [
+      "con_his_kolonialisme"
+    ],
     "common_misuse": [
-      "Å bruke «kulturmøte» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «kulturmøte» som likeverdig utveksling uten å undersøke makt, oversettelse, vold, appropriasjon og hvem som produserte kildene."
     ],
     "status": "canonical_v5_5"
   },
@@ -12827,22 +12967,29 @@
   },
   {
     "concept_id": "con_his_moter",
-    "label": "møter",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «møter» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "asymmetriske møter",
+    "definition": "Møter der partene har ulik kontroll over tvang, ressurser, kunnskapskategorier og institusjonell representasjon.",
+    "concept_type": "power_contact_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
     "source_emne_ids": [
       "em_his_global_kolonial_misjon_kunnskap_og_kulturelle_moter"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_kulturmote"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_kulturelle",
+      "con_his_misjon"
+    ],
+    "distinguish_from": [
+      "con_his_kolonialisme"
+    ],
     "common_misuse": [
-      "Å bruke «møter» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å behandle «asymmetriske møter» som likeverdig utveksling uten å undersøke makt, oversettelse, vold, appropriasjon og hvem som produserte kildene."
     ],
     "status": "canonical_v5_5"
   },
@@ -13530,10 +13677,10 @@
   },
   {
     "concept_id": "con_his_norge",
-    "label": "norge",
-    "definition": "I Krig, okkupasjon og motstand betegner «norge» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "norsk global deltakelse",
+    "definition": "Norske statlige, kommersielle, religiøse og individuelle forbindelser til imperier, kolonialisme, handel, sjøfart, misjon, migrasjon og internasjonale organisasjoner.",
+    "concept_type": "national_global_connection_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_krig_okkupasjon_motstand",
       "his_global_kolonial_transnasjonal"
@@ -13542,12 +13689,18 @@
       "em_his_okkupasjon_motstand",
       "em_his_global_kolonial_norge_i_imperiale_og_koloniale_forbindelser"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_historie"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
+    "related_concepts": [
+      "con_his_globalisering",
+      "con_his_sammenvevd_historie",
+      "con_his_globale"
+    ],
     "distinguish_from": [],
     "common_misuse": [
-      "Å bruke «norge» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «norsk global deltakelse» som synonym for hele verden uten å avgrense forbindelser, skala, regioner og områder som ikke var integrert på samme måte."
     ],
     "status": "canonical_v5_5"
   },
@@ -14314,10 +14467,10 @@
   },
   {
     "concept_id": "con_his_organisasjoner",
-    "label": "organisasjoner",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «organisasjoner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "multilaterale organisasjoner",
+    "definition": "Organisasjoner der flere stater eller samfunn samarbeider om regler, sikkerhet, økonomi, helse, arbeid, bistand eller konfliktløsning.",
+    "concept_type": "international_institution_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -14325,12 +14478,19 @@
       "em_his_global_kolonial_globale_kriger_og_internasjonale_organisasjoner",
       "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_internasjonale"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_internasjonal_organisasjon",
+      "con_his_kriger"
+    ],
+    "distinguish_from": [
+      "con_his_imperium"
+    ],
     "common_misuse": [
-      "Å bruke «organisasjoner» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «multilaterale organisasjoner» som uttrykk for samlet internasjonal vilje uten å undersøke medlemskap, vetomakt, finansiering, gjennomføring og statlige interesser."
     ],
     "status": "canonical_v5_5"
   },
@@ -15758,9 +15918,9 @@
   {
     "concept_id": "con_his_ravarekjede",
     "label": "råvarekjede",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «råvarekjede» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Forbindelsen fra utvinning eller dyrking via transport, finansiering og foredling til marked og forbruk, med skiftende makt og verdifordeling.",
+    "concept_type": "commodity_chain_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -15775,21 +15935,28 @@
       "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_verdikjeder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_ravarer",
+      "con_his_slaveri"
+    ],
+    "distinguish_from": [
+      "con_his_bistand"
+    ],
     "common_misuse": [
-      "Å bruke «råvarekjede» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å beskrive «råvarekjede» som en sammenhengende markedskjede uten å dokumentere arbeid, tvang, eierskap, finansiering, transport og verdifordeling."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_ravarer",
-    "label": "råvarer",
-    "definition": "I Økonomi, handel og materielle systemer betegner «råvarer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "råvareutvinning",
+    "definition": "Uttak av naturbaserte materialer for handel og produksjon gjennom arbeid, teknologi, eierskap, statlig regulering og miljøinngrep.",
+    "concept_type": "extractive_process_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_okonomi_handel_materielle_systemer",
       "his_global_kolonial_transnasjonal"
@@ -15798,12 +15965,19 @@
       "em_his_okonomi_handel_global_arbeidsdeling_ravarer_og_avhengighet",
       "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_verdikjeder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_ravarekjede",
+      "con_his_slaveri"
+    ],
+    "distinguish_from": [
+      "con_his_bistand"
+    ],
     "common_misuse": [
-      "Å bruke «råvarer» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å beskrive «råvareutvinning» som en sammenhengende markedskjede uten å dokumentere arbeid, tvang, eierskap, finansiering, transport og verdifordeling."
     ],
     "status": "canonical_v5_5"
   },
@@ -17041,31 +17215,39 @@
   },
   {
     "concept_id": "con_his_sammenvevd",
-    "label": "sammenvevd",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «sammenvevd» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "sammenveving",
+    "definition": "Prosessen der utvikling på ulike steder gjensidig formes gjennom forbindelser, oversettelse, konflikt og ujevne avhengigheter.",
+    "concept_type": "connected_history_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
     "source_emne_ids": [
       "em_his_global_kolonial_globalisering_avhengighet_og_sammenvevd_historie"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_historie"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_globalisering",
+      "con_his_sammenvevd_historie",
+      "con_his_globale"
+    ],
+    "distinguish_from": [
+      "con_his_norge"
+    ],
     "common_misuse": [
-      "Å bruke «sammenvevd» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «sammenveving» som synonym for hele verden uten å avgrense forbindelser, skala, regioner og områder som ikke var integrert på samme måte."
     ],
     "status": "canonical_v5_5"
   },
   {
     "concept_id": "con_his_sammenvevd_historie",
     "label": "sammenvevd historie",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «sammenvevd historie» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En historiografisk tilnærming som rekonstruerer gjensidig påvirkning mellom steder og utfordrer forklaringer basert på separate, parallelle historier.",
+    "concept_type": "historiographical_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -17080,12 +17262,19 @@
       "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_historie"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_globalisering",
+      "con_his_globale"
+    ],
+    "distinguish_from": [
+      "con_his_norge"
+    ],
     "common_misuse": [
-      "Å bruke «sammenvevd historie» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å bruke «sammenvevd historie» som synonym for hele verden uten å avgrense forbindelser, skala, regioner og områder som ikke var integrert på samme måte."
     ],
     "status": "canonical_v5_5"
   },
@@ -18069,9 +18258,9 @@
   {
     "concept_id": "con_his_slaveri",
     "label": "slaveri",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «slaveri» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Et system der mennesker behandles som eiendom eller underlegges tvangsarbeid med sterkt begrenset frihet, ofte knyttet til handel, imperium og rase.",
+    "concept_type": "coercive_labor_system_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -18086,12 +18275,19 @@
       "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_verdikjeder"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_ravarekjede",
+      "con_his_ravarer"
+    ],
+    "distinguish_from": [
+      "con_his_bistand"
+    ],
     "common_misuse": [
-      "Å bruke «slaveri» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å beskrive «slaveri» som en sammenhengende markedskjede uten å dokumentere arbeid, tvang, eierskap, finansiering, transport og verdifordeling."
     ],
     "status": "canonical_v5_5"
   },
@@ -18199,21 +18395,28 @@
   {
     "concept_id": "con_his_solidaritetsnettverk",
     "label": "solidaritetsnettverk",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «solidaritetsnettverk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Forbindelser mellom aktører i ulike land som deler informasjon, ressurser og kampanjer for politiske, faglige, antikoloniale eller humanitære formål.",
+    "concept_type": "transnational_movement_network",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
     "source_emne_ids": [
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_bevegelser"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_transnasjonal_bevegelse",
+      "con_his_medier"
+    ],
+    "distinguish_from": [
+      "con_his_internasjonal_organisasjon"
+    ],
     "common_misuse": [
-      "Å bruke «solidaritetsnettverk» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «solidaritetsnettverk» som en enhetlig aktør uten å dokumentere nettverk, ledelse, ressurser, uenighet og geografisk rekkevidde."
     ],
     "status": "canonical_v5_5"
   },
@@ -20127,9 +20330,9 @@
   {
     "concept_id": "con_his_transnasjonal_bevegelse",
     "label": "transnasjonal bevegelse",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «transnasjonal bevegelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "En sosial eller politisk bevegelse som organiserer aktører, ideer og ressurser på tvers av statsgrenser.",
+    "concept_type": "collective_action_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -20145,12 +20348,19 @@
       "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_bevegelser"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_solidaritetsnettverk",
+      "con_his_medier"
+    ],
+    "distinguish_from": [
+      "con_his_internasjonal_organisasjon"
+    ],
     "common_misuse": [
-      "Å bruke «transnasjonal bevegelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å omtale «transnasjonal bevegelse» som en enhetlig aktør uten å dokumentere nettverk, ledelse, ressurser, uenighet og geografisk rekkevidde."
     ],
     "status": "canonical_v5_5"
   },
@@ -20980,9 +21190,9 @@
   {
     "concept_id": "con_his_utviklingspolitikk",
     "label": "utviklingspolitikk",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «utviklingspolitikk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "definition": "Politikk som søker økonomisk og sosial omforming gjennom bistand, investering, ekspertise og institusjonsbygging, ofte preget av makt og historiske utviklingshierarkier.",
+    "concept_type": "international_policy_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -20998,12 +21208,19 @@
       "em_his_global_kolonial_internasjonale_organisasjoner_bistand_og_utviklingspolitikk",
       "em_his_global_kolonial_transnasjonale_bevegelser_medier_og_solidaritetsnettverk"
     ],
-    "broader_concepts": [],
+    "broader_concepts": [
+      "con_his_avkolonisering"
+    ],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "related_concepts": [
+      "con_his_bistand",
+      "con_his_kolonialisme"
+    ],
+    "distinguish_from": [
+      "con_his_globalisering"
+    ],
     "common_misuse": [
-      "Å bruke «utviklingspolitikk» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å framstille «utviklingspolitikk» som et fullført brudd uten å undersøke fortsatt økonomisk, militær, kulturell og kunnskapsmessig avhengighet."
     ],
     "status": "canonical_v5_5"
   },
@@ -21241,10 +21458,10 @@
   },
   {
     "concept_id": "con_his_verdikjeder",
-    "label": "verdikjeder",
-    "definition": "I Global, kolonial og transnasjonal historie betegner «verdikjeder» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
-    "historical_scope": "context_dependent",
+    "label": "globale verdikjeder",
+    "definition": "Transnasjonale nettverk som fordeler produksjon, tjenester, finansiering og verdiskaping mellom selskaper, arbeidere og steder.",
+    "concept_type": "production_network_concept",
+    "historical_scope": "cross_regional_context_dependent",
     "domain_ids": [
       "his_global_kolonial_transnasjonal"
     ],
@@ -21252,11 +21469,20 @@
       "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
+    "narrower_concepts": [
+      "con_his_ravarekjede",
+      "con_his_ravarer"
+    ],
+    "related_concepts": [
+      "con_his_ravarekjede",
+      "con_his_ravarer",
+      "con_his_slaveri"
+    ],
+    "distinguish_from": [
+      "con_his_bistand"
+    ],
     "common_misuse": [
-      "Å bruke «verdikjeder» som en tidløs etikett uten kilde, kronologi eller aktør."
+      "Å beskrive «globale verdikjeder» som en sammenhengende markedskjede uten å dokumentere arbeid, tvang, eierskap, finansiering, transport og verdifordeling."
     ],
     "status": "canonical_v5_5"
   },
