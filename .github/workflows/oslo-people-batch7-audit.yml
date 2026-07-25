@@ -1,0 +1,39 @@
+name: Oslo People batch 7 candidate audit
+
+on:
+  push:
+    branches:
+      - agent/oslo-people-zero-gap-batch7
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-people-zero-gap-batch7
+          fetch-depth: 1
+          show-progress: false
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Audit candidates
+        run: npx tsx tools/audit-oslo-people-batch7-candidates.mts
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-people-batch7-candidate-audit
+          path: |
+            reports/oslo-people-batch7-candidate-audit.json
+            reports/oslo-people-batch7-candidate-audit.md
