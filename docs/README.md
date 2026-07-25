@@ -47,7 +47,7 @@ Følgende filer er snapshots og skal ikke brukes som nåstatus:
 
 - `README/CURRENT_PRODUCT_STATE.md` — historisk status er merket direkte i filen
 - `docs/IMPLEMENTATION_STATUS.md` — historisk status er merket direkte i filen
-- `docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md` — eldre audit basert på 2026-04-30-data
+- `docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md` — historisk tombstone; den gamle rapporten ligger bare i Git-historikken
 
 ### Data og innholdsproduksjon
 
@@ -71,7 +71,8 @@ Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk
 ### Rapporter og audits
 
 - [`../reports/README.md`](../reports/README.md) eier rapportreglene.
-- `reports/data-health-summary.md` er aktiv planleggingsbaseline når den er regenerert.
+- `npm run health:data` regenererer datahelse.
+- `reports/data-health-summary.md` er en commit-bundet snapshot; kontroller alltid `Generated`-datoen.
 - Andre markdown-rapporter i `reports/` er tidsbundne snapshots med mindre de uttrykkelig er registrert som canonical.
 
 ## Statusmodell
@@ -110,7 +111,16 @@ Workflowen `Documentation governance` validerer:
 - at inngangsdokumentenes lokale lenker ikke er brutte,
 - at denne indeksen omtaler alle canonical og transitional dokumenter.
 
-Kontrollen kjører når sentrale dokumenter, registeret eller kontrollscriptet endres og lagrer en kort auditlogg som workflow-artifact.
+Workflowen bygger også et inventar som viser:
+
+- totalt antall dokumentlignende filer,
+- fordeling mellom rot, `README/`, `docs/`, `reports/` og lokale subsystemer,
+- uregistrerte globale dokumentkandidater,
+- mistenkelige og extensionløse filnavn,
+- grupper med overlappende basenames,
+- aktive dokumenter som lenker til registrerte historiske snapshots.
+
+Auditlogg og `inventory.json` lagres samlet i workflow-artifactet `documentation-governance-audit`.
 
 ## Konsolideringsstatus
 
@@ -120,11 +130,13 @@ Kontrollen kjører når sentrale dokumenter, registeret eller kontrollscriptet e
 - `DOCS.md` redusert til inngang
 - gamle politikk-aggregate-paths fjernet fra dataproduksjonskontrakten
 - `CURRENT_PRODUCT_STATE` og `IMPLEMENTATION_STATUS` merket som historiske snapshots
+- gammel spillbarhets-gaprapport erstattet med historisk tombstone
+- maskinlesbart dokumentinventar lagt til i dokumentasjonsgaten
 
 ### Neste
 
+- bruk inventaret til å rydde aktive lenker til historiske snapshots
 - konsolider aktiv kontrakt og innlimt legacytekst i `README/SYSTEM_REGISTRY.md`
-- merk gap-auditen direkte som historisk og flytt den senere til rapportarkiv
 - konsolider quizdokumentasjonen mot aktiv V5.1-/manifestpipeline
 - opprett én Civication-dokumentindeks
 - flytt daterte audits og migreringsstatus til `reports/archive/`
