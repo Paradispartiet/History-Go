@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-25T07:02:57.089Z
+Generert: 2026-07-25T07:07:46.793Z
 
 ## Oppsummering
-- Aktive filer validert: **690**
-- Antall steder validert: **1291**
+- Aktive filer validert: **701**
+- Antall steder validert: **1277**
 - Harde feil: **0**
-- Varsler: **517**
-- Coordinate review candidates: **775** signaler fordelt på **653** steder
+- Varsler: **510**
+- Coordinate review candidates: **763** signaler fordelt på **642** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -365,7 +365,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/natur/oslo/places_oslo_natur_ostensjovannet.json
 - data/places/natur/oslo/places_oslo_natur_salamanderdammer.json
 - data/places/politikk/oslo/places_politikk.json
-- data/places/popkultur/oslo/places_oslo_populaerkultur.json
 - data/places/sport/europa/norway/oslo_sport.json
 - data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json
 - data/places/sport/europa/norway/urban_movement/verdensparken_parkour.json
@@ -394,7 +393,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json
 - data/places/media/europe/portugal/lisbon/places_lisbon_media.json
 - data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json
-- data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json
 - data/places/historie/vestland/etne/stodle_kyrkje.json
 - data/places/historie/vestland/etne/helgaberget_etne.json
 - data/places/historie/vestland/etne/borgasen_etne.json
@@ -520,7 +518,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_hovedstaden_batch_02.json
 - data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_under_bakken_batch_01.json
 - data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_stil_arkitektur_batch_01.json
-- data/places/popkultur/oslo/places_populaerkultur_oslo_bla_skilt_2026_batch_01.json
 - data/places/litteratur/oslo/places_litteratur_oslo_bla_skilt_2026_batch_01.json
 - data/places/politikk/oslo/places_politikk_oslo_bla_skilt_2026_batch_01.json
 - data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json
@@ -708,6 +705,20 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/naeringsliv/akershus/akershus_energipark.json
 - data/places/naeringsliv/akershus/telenor_fornebu.json
 - data/places/natur/akershus/tjernsmyr_salamanderlokalitet.json
+- data/places/by/europe/portugal/lisbon/lisbon_tram_28.json
+- data/places/film_tv/oslo/cinemateket_oslo.json
+- data/places/film_tv/oslo/colosseum_kino.json
+- data/places/litteratur/europe/portugal/lisbon/lisbon_feira_do_livro.json
+- data/places/media/oslo/frognerstranda.json
+- data/places/media/oslo/grand_hotel.json
+- data/places/musikk/europe/portugal/lisbon/lisbon_casa_museu_amalia_rodrigues.json
+- data/places/naeringsliv/europe/portugal/lisbon/lisbon_feira_da_ladra.json
+- data/places/politikk/oslo/slottsplassen.json
+- data/places/religion/europe/portugal/lisbon/lisbon_santo_antonio_festival.json
+- data/places/scenekunst/europe/portugal/lisbon/lisbon_marchas_populares.json
+- data/places/scenekunst/oslo/chateau_neuf.json
+- data/places/subkultur/oslo/house_of_nerds.json
+- data/places/scenekunst/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d.json
 
 ## Harde feil
 - Ingen
@@ -1000,10 +1011,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/politikk/oslo/places_politikk.json#victoria_terrasse: coordStatus=verified uten coordPrecisionM
 - data/places/politikk/oslo/places_politikk.json#statsministerboligen: coordStatus=verified uten coordPrecisionM
 - data/places/politikk/oslo/places_politikk.json#hoyres_hus: coordStatus=verified uten coordPrecisionM
-- data/places/popkultur/oslo/places_oslo_populaerkultur.json#cinemateket_oslo: coordStatus=verified uten coordPrecisionM
-- data/places/popkultur/oslo/places_oslo_populaerkultur.json#house_of_nerds: coordStatus=verified uten coordPrecisionM
-- data/places/popkultur/oslo/places_oslo_populaerkultur.json#chateau_neuf: coordStatus=verified uten coordPrecisionM
-- data/places/popkultur/oslo/places_oslo_populaerkultur.json#grand_hotel: coordStatus=verified uten coordPrecisionM
 - data/places/sport/europa/norway/oslo_sport.json#kfum_arena: coordStatus=verified uten coordPrecisionM
 - data/places/sport/europa/norway/oslo_sport.json#nordre_aasen_idrettspark: coordStatus=verified uten coordPrecisionM
 - data/places/sport/europa/norway/places_motorsport_ostlandet.json#rudskogen_motorsenter: stort område uten coordNote/coordStatus
@@ -1098,8 +1105,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json#lisbon_instituto_higiene_medicina_tropical: lav koordinatpresisjon (<4 desimaler)
 - data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json#lisbon_instituto_ricardo_jorge: lineært sted uten anchors
 - data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json#lisbon_champalimaud_foundation: lav koordinatpresisjon (<4 desimaler)
-- data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json#lisbon_santo_antonio_festival: lineært sted uten anchors
-- data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json#lisbon_feira_do_livro: lav koordinatpresisjon (<4 desimaler)
 - data/places/naeringsliv/vestland/etne/litledalen_kraftverk.json#litledalen_kraftverk: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/vestland/etne/kyrping_handelsstad.json#kyrping_handelsstad: lav koordinatpresisjon (<4 desimaler)
 - data/places/kunst/vestland/etne/skanevik_fjordhotel_pippifestivalen.json#skanevik_fjordhotel_pippifestivalen: lineært sted uten anchors
@@ -1167,7 +1172,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_hovedstaden_batch_02.json#schiollgarden_prinsens_gate_26: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_under_bakken_batch_01.json#norges_bank_bankplassen_2: coordStatus=verified uten coordPrecisionM
 - data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_stil_arkitektur_batch_01.json#kirkegata_5: coordStatus=verified uten coordPrecisionM
-- data/places/popkultur/oslo/places_populaerkultur_oslo_bla_skilt_2026_batch_01.json#bla_skilt_aud_schonemann_vetlandsveien_69d: coordStatus=verified uten coordPrecisionM
 - data/places/litteratur/oslo/places_litteratur_oslo_bla_skilt_2026_batch_01.json#bla_skilt_stein_mehren_ullevalsveien_60: coordStatus=verified uten coordPrecisionM
 - data/places/politikk/oslo/places_politikk_oslo_bla_skilt_2026_batch_01.json#bla_skilt_christopher_hornsrud_mogens_thorsens_gate_5: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json#bla_skilt_helverschous_lokke_munkedamsveien_35: lineært sted uten anchors
@@ -1233,33 +1237,33 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 763 signaler fordelt på 642 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 240 |
-| lineært sted uten anchors | 80 |
+| coordStatus=verified uten coordPrecisionM | 235 |
+| lineært sted uten anchors | 79 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 65 |
-| lav koordinatpresisjon (<4 desimaler) | 70 |
+| lav koordinatpresisjon (<4 desimaler) | 69 |
 | park/stort område uten anchors eller coordNote | 127 |
-| svært stor r (>=500 m) uten coordNote | 66 |
+| svært stor r (>=500 m) uten coordNote | 63 |
 | svært liten r (<60 m) for sted som ser utstrakt ut | 2 |
-| identisk/nesten identisk lat/lon som annet sted uten forklaring | 8 |
+| identisk/nesten identisk lat/lon som annet sted uten forklaring | 6 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (240)
+### coordStatus=verified uten coordPrecisionM (235)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | gronland_basarene | Grønland basarene | by | data/places/by/oslo/places_by.json | 59.91278287002734 | 10.76391148376898 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | vulkan_energisentral | Vulkan energisentral | by | data/places/by/oslo/places_by.json | 59.92225253860743 | 10.751749415749577 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | voienvolden | Voienvolden | by | data/places/by/oslo/places_by.json | 59.93436330000289 | 10.75464137146488 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| saga_kino | Saga kino | populaerkultur | data/places/film/oslo/places_oslo_film.json | 59.914483496767964 | 10.73252179359581 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| klingenberg_kino | Klingenberg kino | populaerkultur | data/places/film/oslo/places_oslo_film.json | 59.913419951009054 | 10.732806189784029 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| gimle_kino | Gimle kino | populaerkultur | data/places/film/oslo/places_oslo_film.json | 59.91723919101994 | 10.709250463305766 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| vika_kino | Vika kino | populaerkultur | data/places/film/oslo/places_oslo_film.json | 59.913498581158905 | 10.7284586944203 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| saga_kino | Saga kino | naeringsliv | data/places/film/oslo/places_oslo_film.json | 59.914483496767964 | 10.73252179359581 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| klingenberg_kino | Klingenberg kino | sport | data/places/film/oslo/places_oslo_film.json | 59.913419951009054 | 10.732806189784029 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| gimle_kino | Gimle kino | naeringsliv | data/places/film/oslo/places_oslo_film.json | 59.91723919101994 | 10.709250463305766 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| vika_kino | Vika kino | by | data/places/film/oslo/places_oslo_film.json | 59.913498581158905 | 10.7284586944203 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamle_aker_kirke | Gamle Aker kirke | historie | data/places/historie/oslo/places_historie.json | 59.923779239528116 | 10.74681853984208 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | villa_grande | Villa Grande | historie | data/places/historie/oslo/places_historie.json | 59.89911019330011 | 10.678158888428362 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | mollergata_19 | Møllergata 19 | historie | data/places/historie/oslo/places_historie.json | 59.91528413168428 | 10.747869191554551 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1336,10 +1340,6 @@ Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | victoria_terrasse | Victoria terrasse | politikk | data/places/politikk/oslo/places_politikk.json | 59.91477868971177 | 10.729192422176304 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | statsministerboligen | Statsministerboligen | politikk | data/places/politikk/oslo/places_politikk.json | 59.91808030407976 | 10.722602475302931 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | hoyres_hus | Høyres Hus | politikk | data/places/politikk/oslo/places_politikk.json | 59.913769172155234 | 10.73493492745129 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| cinemateket_oslo | Cinemateket i Oslo | film_tv | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.90961165359811 | 10.745752189439866 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| house_of_nerds | House of Nerds | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.92186714382747 | 10.75148579082984 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| chateau_neuf | Chateau Neuf | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.93227611011727 | 10.71254747404495 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| grand_hotel | Grand Hotel | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.913745246491665 | 10.739476691613683 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | kfum_arena | KFUM Arena | sport | data/places/sport/europa/norway/oslo_sport.json | 59.88862965039414 | 10.782076254654621 | 160 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | nordre_aasen_idrettspark | Nordre Åsen idrettspark | sport | data/places/sport/europa/norway/oslo_sport.json | 59.94276845982983 | 10.784873923983723 | 170 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | hausmania | Hausmania | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.919148209457326 | 10.751977548509613 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1434,7 +1434,6 @@ Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | schiollgarden_prinsens_gate_26 | Schiøllgården | by | data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_hovedstaden_batch_02.json | 59.91224425845788 | 10.739559115511142 | 70 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | norges_bank_bankplassen_2 | Norges Bank – Bankplassen 2 | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_under_bakken_batch_01.json | 59.90862371981983 | 10.742356165353511 | 90 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | kirkegata_5 | Kirkegata 5 | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_stil_arkitektur_batch_01.json | 59.90929426367078 | 10.742588024864189 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
-| bla_skilt_aud_schonemann_vetlandsveien_69d | Blått skilt: Aud Schønemann | populaerkultur | data/places/popkultur/oslo/places_populaerkultur_oslo_bla_skilt_2026_batch_01.json | 59.89860830471629 | 10.846650260193258 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | bla_skilt_stein_mehren_ullevalsveien_60 | Blått skilt: Stein Mehren | litteratur | data/places/litteratur/oslo/places_litteratur_oslo_bla_skilt_2026_batch_01.json | 59.9302631186139 | 10.7366731375306 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | bla_skilt_christopher_hornsrud_mogens_thorsens_gate_5 | Blått skilt: Christopher Hornsrud | politikk | data/places/politikk/oslo/places_politikk_oslo_bla_skilt_2026_batch_01.json | 59.91573336836374 | 10.711784503719619 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -1494,7 +1493,7 @@ Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | hamar_teater | Hamar Teater | scenekunst | data/places/scenekunst/innlandet/hamar_teater.json | 60.79276378226065 | 11.073747082855698 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | radhus_teatret_kongsvinger | Rådhus-Teatret | scenekunst | data/places/scenekunst/innlandet/radhus_teatret_kongsvinger.json | 60.19148958316322 | 11.999663619048425 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
-### lineært sted uten anchors (80)
+### lineært sted uten anchors (79)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1566,7 +1565,6 @@ Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | lisbon_instituto_superior_tecnico | Instituto Superior Técnico | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.7368 | -9.1395 | 400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | lisbon_instituto_higiene_medicina_tropical | Instituto de Higiene e Medicina Tropical | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.7041 | -9.201 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | lisbon_instituto_ricardo_jorge | Instituto Nacional de Saúde Doutor Ricardo Jorge | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.7693 | -9.1789 | 250 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| lisbon_santo_antonio_festival | Santo António-festivalen i Lisboa | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.7117 | -9.1297 | 700 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | skanevik_fjordhotel_pippifestivalen | Skånevik Fjordhotel / Pippifestivalen | kunst | data/places/kunst/vestland/etne/skanevik_fjordhotel_pippifestivalen.json | 59.73258264147061 | 5.931458034959808 | 240 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | etneelva | Etneelva | natur | data/places/natur/vestland/etneelva.json | 59.66611 | 5.94722 | 520 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | vikedalselva | Vikedalselva | natur | data/places/natur/rogaland/vikedalselva.json | 59.4977 | 5.903 | 650 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
@@ -1649,7 +1647,7 @@ Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | etne_bmx_og_skatepark | Etne BMX- og skatepark | sport | data/places/sport/vestland/etne/etne_bmx_og_skatepark.json | 59.66795396985244 | 5.942168981207253 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | skanevik_skatepark | Skånevik skatepark | sport | data/places/sport/vestland/etne/skanevik_skatepark.json | 59.73 | 5.92 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 
-### lav koordinatpresisjon (<4 desimaler) (70)
+### lav koordinatpresisjon (<4 desimaler) (69)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1716,7 +1714,6 @@ Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | lisbon_arquivo_rtp | Arquivo RTP | media | data/places/media/europe/portugal/lisbon/places_lisbon_media.json | 38.7607 | -9.114 | 150 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_instituto_higiene_medicina_tropical | Instituto de Higiene e Medicina Tropical | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.7041 | -9.201 | 150 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_champalimaud_foundation | Fundação Champalimaud | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.6935 | -9.219 | 250 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| lisbon_feira_do_livro | Feira do Livro de Lisboa | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.727 | -9.1542 | 350 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | litledalen_kraftverk | Litledalen kraftverk | naeringsliv | data/places/naeringsliv/vestland/etne/litledalen_kraftverk.json | 59.66306 | 6.065 | 220 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | kyrping_handelsstad | Kyrping handelsstad | by | data/places/by/vestland/etne/kyrping_handelsstad.json | 59.75 | 6.11667 | 420 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | skanevik_idrettsanlegg | Skånevik idrettsanlegg | sport | data/places/sport/vestland/etne/skanevik_idrettsanlegg.json | 59.731 | 5.924 | 420 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -1856,7 +1853,7 @@ Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | finnskogbanen | Finnskogbanen | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.4513 | 12.1864 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | etne_bmx_og_skatepark | Etne BMX- og skatepark | sport | data/places/sport/vestland/etne/etne_bmx_og_skatepark.json | 59.66795396985244 | 5.942168981207253 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 
-### svært stor r (>=500 m) uten coordNote (66)
+### svært stor r (>=500 m) uten coordNote (63)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1919,9 +1916,6 @@ Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | lisbon_aeroporto_humberto_delgado_tap_headquarters | Aeroporto Humberto Delgado / TAP Headquarters | naeringsliv | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | 38.7742 | -9.1342 | 600 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
 | lisbon_monsanto | Parque Florestal de Monsanto | natur | data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json | 38.7314 | -9.1828 | 1500 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
 | lisbon_tapada_da_ajuda | Tapada da Ajuda | natur | data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json | 38.7077 | -9.19 | 1200 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
-| lisbon_tram_28 | Tram 28 (Eléctrico 28) | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.7129 | -9.1377 | 800 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
-| lisbon_marchas_populares | Marchas Populares de Lisboa | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.7202 | -9.1455 | 800 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
-| lisbon_santo_antonio_festival | Santo António-festivalen i Lisboa | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.7117 | -9.1297 | 700 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
 | etnesjoen_tettstad | Etnesjøen / Etne sentrum | by | data/places/by/vestland/etne/etnesjoen_tettstad.json | 59.66480336942738 | 5.93304783527308 | 650 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
 | skanevik_sentrum | Skånevik sentrum | by | data/places/by/vestland/etne/skanevik_sentrum.json | 59.73304523331509 | 5.934334449411551 | 520 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
 | gurine_johan_ebnes_minde | Boksamlinga Gurine og Johan Ebnes Minde | litteratur | data/places/litteratur/vestland/etne/gurine_johan_ebnes_minde.json | 59.70492905372869 | 5.824738133852842 | 650 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
@@ -1934,12 +1928,10 @@ Totalt 775 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | norges_bank_bankplassen_4 | Norges Bank – Bankplassen 4 | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04.json | 59.90866481462448 | 10.741285328997623 | 55 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 | bla_skilt_helverschous_lokke_munkedamsveien_35 | Blått skilt: Helverschous løkke | historie | data/places/historie/oslo/places_historie_oslo_bla_skilt_2026_batch_01.json | 59.911785794838465 | 10.7259247905869 | 35 | Navn/kategori tyder på park/gate/elv/område/rute/plass; vurder større r eller anchors. |
 
-### identisk/nesten identisk lat/lon som annet sted uten forklaring (8)
+### identisk/nesten identisk lat/lon som annet sted uten forklaring (6)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| lisbon_panteao_nacional | Panteão Nacional (Igreja de Santa Engrácia) | historie | data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | 38.7155 | -9.1244 | 150 | Deler punkt med: lisbon_feira_da_ladra. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
-| lisbon_feira_da_ladra | Feira da Ladra | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.7155 | -9.1244 | 250 | Deler punkt med: lisbon_panteao_nacional. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | lisbon_cinema_sao_jorge | Cinema São Jorge | film_tv | data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json | 38.7202 | -9.1463 | 100 | Deler punkt med: lisbon_doclisboa. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | lisbon_doclisboa | Doclisboa – Festival Internacional de Cinema | film_tv | data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json | 38.7202 | -9.1463 | 250 | Deler punkt med: lisbon_cinema_sao_jorge. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | etnesjoen_torg_og_kai | Etnesjøen torg og kai | by | data/places/by/vestland/etne/etnesjoen_torg_og_kai.json | 59.66489494369154 | 5.934465720587056 | 260 | Deler punkt med: ingvar_moe_byste_etne. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |

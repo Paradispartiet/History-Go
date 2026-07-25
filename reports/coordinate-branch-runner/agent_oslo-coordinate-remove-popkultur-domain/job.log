@@ -2,7 +2,6 @@ From https://github.com/Paradispartiet/History-Go
  * branch                main       -> FETCH_HEAD
 Auto-merging data/people/manifest.json
 CONFLICT (content): Merge conflict in data/people/manifest.json
-Auto-merging data/places/places_index.json
 Auto-merging reports/coordinate-evidence-audit.md
 CONFLICT (content): Merge conflict in reports/coordinate-evidence-audit.md
 Auto-merging reports/people-of-places-status.json
@@ -14,7 +13,63 @@ CONFLICT (content): Merge conflict in reports/place-coordinate-intake-gate.md
 Auto-merging reports/place-coordinate-quality-gate.md
 CONFLICT (content): Merge conflict in reports/place-coordinate-quality-gate.md
 Automatic merge failed; fix conflicts and then commit the result.
-[agent/oslo-coordinate-remove-popkultur-domain 8aac8d68a] Merge remote-tracking branch 'origin/main' into agent/oslo-coordinate-remove-popkultur-domain
+[agent/oslo-coordinate-remove-popkultur-domain d2b005c96] Merge remote-tracking branch 'origin/main' into agent/oslo-coordinate-remove-popkultur-domain
+
+> history-go@0.0.0 build:web
+> node build/build-web.mjs
+
+
+  dist/web/knowledgeV2.js             82.6kb
+  dist/web/hgKnowledgeEngine.js       25.1kb
+  dist/web/knowledge.js               16.7kb
+  dist/web/fagHealthReport.js         11.7kb
+  dist/web/courses.js                 10.8kb
+  dist/web/hgSocialPrivacy.js         10.5kb
+  dist/web/emnerLoader.js              5.2kb
+  dist/web/hgModeration.js             3.1kb
+  dist/web/hgInsights.js               2.1kb
+  dist/web/emneDekning.js              1.9kb
+  dist/web/fagkartLoader.js            1.8kb
+  dist/web/trivia.js                   1.0kb
+  dist/web/knowledgeV2.js.map        138.8kb
+  dist/web/hgKnowledgeEngine.js.map   40.6kb
+  dist/web/knowledge.js.map           28.8kb
+  dist/web/fagHealthReport.js.map     19.3kb
+  dist/web/courses.js.map             18.1kb
+  dist/web/hgSocialPrivacy.js.map     16.5kb
+  dist/web/emnerLoader.js.map          9.9kb
+  dist/web/hgModeration.js.map         4.5kb
+  ...and 4 more output files...
+
+⚡ Done in 19ms
+
+  dist/web/map.js                         35.6kb
+  dist/web/map-controls-runtime.js        21.6kb
+  dist/web/place-card-quizcards-patch.js  19.4kb
+  dist/web/search.js                      11.1kb
+  dist/web/nearbyFilterControls.js         9.3kb
+  dist/web/nearbyPeopleList.js             6.5kb
+  dist/web/layerManager.js                 6.2kb
+  dist/web/hgSocialMeetFastApiClient.js    6.1kb
+  dist/web/nearbyPlacesList.js             5.4kb
+  dist/web/nearbyFilters.js                5.4kb
+  dist/web/nearbyPlaceSelector.js          5.3kb
+  dist/web/left-panel.js                   5.2kb
+  dist/web/categories.js                   4.3kb
+  dist/web/nearbyBadgesPanel.js            4.1kb
+  dist/web/leftPanelMode.js                3.8kb
+  dist/web/nearbyDrawer.js                 2.1kb
+
+⚡ Done in 13ms
+
+  dist/web/pos.js  17.0kb
+
+⚡ Done in 4ms
+[build:web] built 29 entry/entries -> dist/web
+
+> history-go@0.0.0 typecheck:web
+> tsc -p tsconfig.web.json
+
 
 > history-go@0.0.0 audit:categories
 > node scripts/audit-category-governance.mjs
@@ -34,7 +89,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 > tsc -p tsconfig.tools.build.json
 
 Wrote reports/people-of-places-status.json and reports/people-of-places-status.md
-People: 1338; flat files: 0; geographic files: 703; invalid refs: 0; duplicate IDs: 0
+People: 1351; flat files: 0; geographic files: 716; invalid refs: 0; duplicate IDs: 0
 People of Places audit gate passed
 
 > history-go@0.0.0 places:emner:check
@@ -122,7 +177,7 @@ coordinate-source-contract anchor trust: PASS
 > history-go@0.0.0 build:tools
 > tsc -p tsconfig.tools.build.json
 
-Quality gate ok: 701 filer, 1277 steder, 511 varsel, 767 review-kandidatsignal(er) på 642 steder (se reports/place-coordinate-quality-gate.md).
+Quality gate ok: 701 filer, 1277 steder, 510 varsel, 763 review-kandidatsignal(er) på 642 steder (se reports/place-coordinate-quality-gate.md).
 
 > history-go@0.0.0 places:coords:intake
 > npm run build:tools && node dist/tools/place-coordinate-intake-gate.mjs --strict-new
@@ -131,7 +186,7 @@ Quality gate ok: 701 filer, 1277 steder, 511 varsel, 767 review-kandidatsignal(e
 > history-go@0.0.0 build:tools
 > tsc -p tsconfig.tools.build.json
 
-Place coordinate intake gate: 0 blocking, 2847 backlog, 0 warnings. Rapport: reports/place-coordinate-intake-gate.md
+Place coordinate intake gate: 0 blocking, 2823 backlog, 0 warnings. Rapport: reports/place-coordinate-intake-gate.md
 
 > history-go@0.0.0 places:coords:evidence:audit
 > npm run build:tools && node dist/tools/audit-coordinate-evidence.mjs
@@ -3174,20 +3229,3 @@ Warnings:
 - data/places/scenekunst/innlandet/radhus_teatret_kongsvinger.json #radhus_teatret_kongsvinger: emne_id "em_scenekunst_publikum_fjerde_vegg" not found in canonical emner registry
 - data/places/scenekunst/innlandet/radhus_teatret_kongsvinger.json #radhus_teatret_kongsvinger: missing image
 - data/places/scenekunst/innlandet/radhus_teatret_kongsvinger.json #radhus_teatret_kongsvinger: missing cardImage
-[agent/oslo-coordinate-remove-popkultur-domain eb31aeb2f] Finalize popkultur domain migration
- 9 files changed, 4469 insertions(+), 539 deletions(-)
- rename data/quiz/{sport => media}/vg_huset_sets.json (97%)
- delete mode 100644 reports/remove-popkultur-domain-editorial-failure.log
- delete mode 100644 scripts/coordinate-branch-job.mjs
-To https://github.com/Paradispartiet/History-Go
-   65056e11f..eb31aeb2f  HEAD -> agent/oslo-coordinate-remove-popkultur-domain
-{
-  "vg_huset": "media",
-  "activeManifestEntry": false,
-  "manifestPath": null,
-  "branchSyncedWithMain": true,
-  "mergeBase": "7c185f242e40675dcf3598149d2225921948ca85",
-  "mergeConflicted": true,
-  "healthExit": 1,
-  "selfPublished": true
-}
