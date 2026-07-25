@@ -73,13 +73,13 @@ jobs:
           run npm run knowledge:canonical:write
           run npm run knowledge:canonical:check
           run npm run knowledge:legacy:check
-          run git diff --check
+          run git diff --check HEAD
       - name: Enforce cleanup scope
         shell: bash
         run: |
           set -euo pipefail
-          git diff --name-only | tee /tmp/history-makt-changed-files.txt
-          unexpected="$(cat /tmp/history-makt-changed-files.txt | grep -Ev '^(tools/validate-historie-makt-stat-institusjoner\.mjs|data/fag/historie/emner_historie_canonical_v4_5\.json|data/quiz/production_context/historie/(grindheim_runestein|grindheim_steinkross|grindheimsveien_nord_gravfelt|hoyland_gravhaug_etne)\.json|reports/historie-v5/makt-stat-institusjoner-curation-command-v2\.log|reports/coordinate-branch-runner/agent_oslo-coordinate-history-v5-5-power-curation-v3/|reports/coordinate-evidence-audit\.md|reports/place-coordinate-intake-gate\.md|reports/place-coordinate-quality-gate\.md|reports/place-source-layout-audit\.json)$' || true)"
+          git diff --name-only HEAD | tee /tmp/history-makt-changed-files.txt
+          unexpected="$(cat /tmp/history-makt-changed-files.txt | grep -Ev '^(tools/validate-historie-makt-stat-institusjoner\.mjs|data/fag/historie/emner_historie_canonical_v4_5\.json|data/quiz/production_context/historie/(grindheim_runestein|grindheim_steinkross|grindheimsveien_nord_gravfelt|hoyland_gravhaug_etne)\.json|reports/historie-v5/makt-stat-institusjoner-curation-command-v2\.log|reports/coordinate-branch-runner/agent_oslo-coordinate-history-v5-5-power-curation-v3/.*|reports/coordinate-evidence-audit\.md|reports/place-coordinate-intake-gate\.md|reports/place-coordinate-quality-gate\.md|reports/place-source-layout-audit\.json)$' || true)"
           test -z "$unexpected" || { echo 'Unexpected changed files:'; echo "$unexpected"; exit 1; }
       - name: Upload validation diagnostics
         if: always()
