@@ -2,64 +2,22 @@
 // Canonical source: data/categories/category_contract.json
 
 export const OFFICIAL_HISTORY_GO_CATEGORIES = [
-  "by",
-  "historie",
-  "kunst",
-  "litteratur",
-  "media",
-  "musikk",
-  "naeringsliv",
-  "natur",
-  "politikk",
-  "psykologi",
-  "religion",
-  "scenekunst",
-  "sport",
-  "subkultur",
-  "vitenskap",
-  "filosofi",
-  "film_tv"
+  "by", "historie", "kunst", "litteratur", "media", "musikk",
+  "naeringsliv", "natur", "politikk", "psykologi", "religion",
+  "scenekunst", "sport", "subkultur", "vitenskap", "teknologi",
+  "filosofi", "film_tv"
 ] as const;
 
-export const LEGACY_OR_SECONDARY_PLACE_CATEGORIES = [
-  "film"
-] as const;
-
-export const REQUIRED_PLACE_FIELDS = [
-  "id",
-  "name",
-  "category",
-  "lat",
-  "lon"
-] as const;
-
-export const RECOMMENDED_PLACE_FIELDS = [
-  "r",
-  "year",
-  "desc"
-] as const;
-
+export const LEGACY_OR_SECONDARY_PLACE_CATEGORIES = ["film"] as const;
+export const REQUIRED_PLACE_FIELDS = ["id", "name", "category", "lat", "lon"] as const;
+export const RECOMMENDED_PLACE_FIELDS = ["r", "year", "desc"] as const;
 export const OPTIONAL_PLACE_FIELDS = [
-  "popupDesc",
-  "image",
-  "frontImage",
-  "cardImage",
-  "popupImage",
-  "emne_ids",
-  "quiz_profile",
-  "secondaryBadgeIds",
-  "hidden",
-  "stub",
-  "relations",
-  "groundhopper",
-  "officialUrl",
-  "wikipedia",
-  "statsUrl",
-  "link"
+  "popupDesc", "image", "frontImage", "cardImage", "popupImage",
+  "emne_ids", "quiz_profile", "secondaryBadgeIds", "hidden", "stub",
+  "relations", "groundhopper", "officialUrl", "wikipedia", "statsUrl", "link"
 ] as const;
 
 export type PlaceCategoryPolicyStatus = "official" | "legacy_or_secondary" | "unknown";
-
 export const OFFICIAL_HISTORY_GO_CATEGORY_SET = new Set<string>(OFFICIAL_HISTORY_GO_CATEGORIES);
 export const LEGACY_OR_SECONDARY_PLACE_CATEGORY_SET = new Set<string>(LEGACY_OR_SECONDARY_PLACE_CATEGORIES);
 export const KNOWN_PLACE_CATEGORY_SET = new Set<string>([
