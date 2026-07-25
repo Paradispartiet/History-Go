@@ -3,7 +3,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const root = process.cwd();
-const previous = spawnSync('git', ['show', 'HEAD^:scripts/coordinate-branch-job.mjs'], {
+const previous = spawnSync('git', ['show', '28e117bd348c17bebdac1660c22b603146ed099e:scripts/coordinate-branch-job.mjs'], {
   cwd: root,
   encoding: 'utf8',
   maxBuffer: 64 * 1024 * 1024,
