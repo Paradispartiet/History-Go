@@ -1,18 +1,16 @@
-name: Oslo People batch 2 candidate audit
+name: Oslo People zero-gap batch 2 materialize
 
 on:
-  push:
-    branches:
-      - agent/oslo-people-zero-gap-batch2
   pull_request:
     branches:
       - main
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  audit:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Check out branch
@@ -31,14 +29,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Audit candidates
-        run: npx tsx tools/audit-oslo-people-batch2-candidates.mts
+      - name: Materialize batch
+        run: npx tsx tools/materialize-oslo-people-zero-gap-batch2.mts
 
-      - name: Upload audit report
-        uses: actions/upload-artifact@v4
-        with:
-          name: oslo-people-batch2-candidate-audit
-          path: |
-            reports/oslo-people-batch2-candidate-audit.json
-            reports/oslo-people-batch2-candidate-audit.md
-          if-no-files-found: error
+      - name: Publish clean data commit
+        run: |
+          rm -f tools/audit-oslo-people-batch2-candidates.mts
+          rm -f tools/materialize-oslo-people-zero-gap-batch2.mts
+          rm -f .github/workflows/oslo-people-batch2-audit.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git add -f reports/people-oslo-zero-gap-batch2-validation.md
+          git diff --cached --check
+          git commit -m "Add Oslo People zero-gap batch 2"
+          git push origin HEAD:agent/oslo-people-zero-gap-batch2
