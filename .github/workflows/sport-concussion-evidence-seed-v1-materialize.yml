@@ -34,7 +34,16 @@ jobs:
 
       - name: Validate concussion package boundaries
         working-directory: repo
-        run: node tools/validate-sport-concussion-evidence-seed-v1.mjs --write
+        run: |
+          set +e
+          node tools/validate-sport-concussion-evidence-seed-v1.mjs --write >/tmp/concussion-validator-output.json
+          status=$?
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const report = JSON.parse(fs.readFileSync('reports/sport-concussion-evidence-seed-v1-validation.json', 'utf8'));
+          console.log(JSON.stringify({ status: report.status, failures: report.failures }, null, 2));
+          NODE
+          exit $status
 
       - name: Validate scientific pipeline and Sport layers
         working-directory: repo
