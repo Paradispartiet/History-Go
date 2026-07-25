@@ -28,10 +28,10 @@ replaceOnce(
 );
 replaceOnce(
   /^run\('npm', \['run', 'quiz:context'\]\);\n/m,
-  "for (const targetId of ['grindheim_runestein', 'grindheim_steinkross', 'grindheimsveien_nord_gravfelt', 'hoyland_gravhaug_etne']) {\n  run('npm', ['run', 'quiz:context', '--', '--category', 'historie', '--target', targetId]);\n}\n",
+  "for (const targetId of ['grindheim_runestein', 'grindheim_steinkross', 'grindheimsveien_nord_gravfelt', 'hoyland_gravhaug_etne']) {\n  run('npm', ['run', 'quiz:context', '--', '--category', 'historie', '--target', targetId, '--output', `data/quiz/production_context/historie/${targetId}.json`]);\n}\n",
   'quiz context command'
 );
-replaceOnce(/^const finalEmner = readJson\(emnerPath\)\.filter\(\(item\) =>\n  belongsToDomain\(item\) \|\| String\(item\?\.emne_id \|\| ''\)\.startsWith\('em_his_makt_'\)\);\n/m, '', 'final emner selection');
+replaceOnce(/^const finalEmner = readJson\(emnerPath\)\.filter\(\(item\) =>\n  belongsToDomain\(item\) \|\| String\(item\?\.emne_id \|\| ''\)\.startsWith\('em_his_makt_'\)\);\n/m, '', 'final emners selection');
 replaceOnce(/^  emner_corrected: finalEmner\.length,\n/m, "  emner_reviewed: 10,\n  emne_concept_corrections: emneConceptCorrections,\n", 'result emner field');
 replaceOnce(/^  `Emner korrigert: \$\{finalEmner\.length\}`,\n/m, "  'Emner faglig gjennomgått: 10',\n  `Emnebegreper korrigert: ${emneConceptCorrections}`,\n", 'validation emner line');
 
