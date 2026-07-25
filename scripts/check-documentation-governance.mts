@@ -1,8 +1,7 @@
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { dirname, extname, isAbsolute, normalize, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
 
-const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const repoRoot = resolve(process.env.GITHUB_WORKSPACE ?? process.cwd());
 const registryPath = resolve(repoRoot, "docs/documentation_registry.json");
 
 const allowedStatuses = new Set([
@@ -50,7 +49,7 @@ function repoPathExists(relativePath: string): boolean {
 
 function parseRegistry(): DocumentationRegistry {
   if (!existsSync(registryPath)) {
-    throw new Error("Mangler docs/documentation_registry.json");
+    throw new Error(`Mangler docs/documentation_registry.json under repo-roten ${repoRoot}`);
   }
 
   const parsed = JSON.parse(readFileSync(registryPath, "utf8")) as DocumentationRegistry;
