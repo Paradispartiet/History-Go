@@ -1,6 +1,6 @@
 # Oslo People of Places coverage
 
-Generert: 2026-07-25T06:02:39.335Z
+Generert: 2026-07-25T06:29:24.056Z
 
 ## Policy
 
@@ -12,9 +12,9 @@ Generert: 2026-07-25T06:02:39.335Z
 
 - Oslo-steder totalt: **389**
 - Kravpliktige steder utenom natur: **340**
-- Dekket: **176**
-- Uten People: **164**
-- Dekningsgrad: **51.76%**
+- Dekket: **182**
+- Uten People: **158**
+- Dekningsgrad: **53.53%**
 - Natursteder: **49** (45 uten People)
 - Geografikonflikter holdt utenfor Oslo-tellingen: **0**
 - Ugyldige People→place-referanser globalt: **50**
@@ -25,12 +25,12 @@ Generert: 2026-07-25T06:02:39.335Z
 |---|---:|---:|---:|---:|
 | by | 78 | 47 | 31 | 166 |
 | film_tv | 2 | 2 | 0 | 12 |
-| historie | 66 | 27 | 39 | 144 |
+| historie | 66 | 30 | 36 | 151 |
 | kunst | 10 | 7 | 3 | 17 |
 | litteratur | 19 | 19 | 0 | 52 |
 | media | 5 | 5 | 0 | 19 |
 | musikk | 9 | 9 | 0 | 16 |
-| naeringsliv | 46 | 9 | 37 | 26 |
+| naeringsliv | 46 | 12 | 34 | 32 |
 | natur | 49 | 4 | 45 | 11 |
 | politikk | 18 | 18 | 0 | 163 |
 | populaerkultur | 11 | 2 | 9 | 2 |
@@ -81,9 +81,7 @@ Generert: 2026-07-25T06:02:39.335Z
 | historie | `forsvarsmuseet` | Forsvarsmuseet | data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json |
 | historie | `galgeberg` | Galgeberg | data/places/historie/oslo/places_historie_added_batch_01.json |
 | historie | `gamlebyen_gravlund` | Gamlebyen gravlund | data/places/historie/oslo/places_historie.json |
-| historie | `garmanngarden` | Garmanngården | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02.json |
 | historie | `geitmyra_gard` | Geitmyra gård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_04.json |
-| historie | `gol_stavkirke_bygdoy` | Gol stavkirke – Bygdøy | data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json |
 | historie | `gronland_politistasjon` | Grønland politistasjon | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_04.json |
 | historie | `hovedoya_kloster` | Hovedøya kloster | data/places/historie/oslo/places_historie.json |
 | historie | `kirkeristen_basarene_brannvakten` | Kirkeristen, Basarene og Brannvakten | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_01.json |
@@ -101,7 +99,6 @@ Generert: 2026-07-25T06:02:39.335Z
 | historie | `nordre_skoyen_hovedgard` | Nordre Skøyen hovedgård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
 | historie | `norges_hjemmefrontmuseum` | Norges Hjemmefrontmuseum | data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json |
 | historie | `oslo_hospital` | Oslo hospital | data/places/historie/oslo/places_historie_added_batch_01.json |
-| historie | `oslo_ladegard` | Oslo ladegård | data/places/historie/oslo/places_historie_added_batch_01.json |
 | historie | `palehaven_paleet` | Paléhaven og Paleet | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_04.json |
 | historie | `peststotten_krist_kirkegard` | Peststøtten – Krist kirkegård | data/places/historie/oslo/places_historie_added_batch_01.json |
 | historie | `radmannsgarden_og_anatomibygget` | Rådmannsgården og Anatomibygget | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_02.json |
@@ -121,7 +118,6 @@ Generert: 2026-07-25T06:02:39.335Z
 | naeringsliv | `amerikalinjen` | Amerikalinjen | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_03.json |
 | naeringsliv | `akershus_slott_bakeriet` | Bakeriet ved Akershus | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `bryn_industriomrade` | Bryn industriområde | data/places/naeringsliv/oslo/places_naeringsliv.json |
-| naeringsliv | `centralbanken_kirkegata` | Centralbanken | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01.json |
 | naeringsliv | `christiania_seildugsfabrik` | Christiania Seildugsfabrik | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `ulven_handelspark` | Construction City | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `dfds_bygget` | DFDS-bygget | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_03.json |
@@ -133,7 +129,6 @@ Generert: 2026-07-25T06:02:39.335Z
 | naeringsliv | `grensen_kjopesenter` | Grensen – handelsgate | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `gronlikaia` | Grønlikaia | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `hotel_du_nord` | Hotel du Nord | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_02.json |
-| naeringsliv | `kafe_grei` | Kafé Grei | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01.json |
 | naeringsliv | `kirkegata_5` | Kirkegata 5 | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_stil_arkitektur_batch_01.json |
 | naeringsliv | `oslo_kornmagasin` | Kornmagasinet på Akershus festning | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `jernbaneverkstedet_lodalen` | Lodalen jernbaneverksted | data/places/naeringsliv/oslo/places_naeringsliv.json |
@@ -150,7 +145,6 @@ Generert: 2026-07-25T06:02:39.335Z
 | naeringsliv | `tollboden_oslo` | Tollboden | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04.json |
 | naeringsliv | `tollbukaia` | Tollbukaia | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `tollpakkhuset` | Tollpakkhuset | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04.json |
-| naeringsliv | `treschowgarden` | Treschowgården | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_01.json |
 | naeringsliv | `toyen_trafo` | Tøyen trafo | data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04.json |
 | naeringsliv | `vinmonopolet_lager` | Vinmonopolets hovedlager | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `ovre_foss` | Øvre Foss – Hjula Veveri | data/places/naeringsliv/oslo/places_naeringsliv.json |
