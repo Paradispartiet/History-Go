@@ -1,0 +1,286 @@
+{
+  "version": "2.0",
+  "subject_id": "sport",
+  "package_id": "evidence_package_sport_concussion_acute_safety_v1",
+  "type": "locked_database_search_strategy_registry",
+  "status": "six_strategies_locked_peer_review_and_execution_pending",
+  "updated_at": "2026-07-25",
+  "parent_protocol_anchor": {
+    "repository": "Paradispartiet/History-Go",
+    "commit_sha": "bd774539101304f3e0f62333e9950678983152d3",
+    "path": "data/fag/sport/protocols/concussion_acute_safety_protocol_v1.json",
+    "immutable_snapshot": true
+  },
+  "amendment_anchor": {
+    "repository": "Paradispartiet/History-Go",
+    "commit_sha": "3605f292cb1bb290c09acf99af394007e7690efa",
+    "path": "data/fag/sport/protocols/concussion_search_strategy_amendment_001.json",
+    "immutable_snapshot": true
+  },
+  "scope": {
+    "date_from": "2001-01-01",
+    "date_to": "2026-07-25",
+    "language_restriction": "none_at_search_stage",
+    "human_filter": "not_applied_in_query",
+    "publication_type_filter": "not_applied_in_query",
+    "design_filter": "not_applied_in_query",
+    "principle": "Søket prioriterer sensitivitet. Design, språk, mennesker og relevans avgjøres i protokollstyrt dobbelt screening, ikke gjennom skjulte databasefiltre."
+  },
+  "concept_blocks": {
+    "condition": [
+      "brain concussion",
+      "concussion",
+      "sport-related concussion",
+      "mild traumatic brain injury",
+      "mTBI"
+    ],
+    "sport_setting": [
+      "sport",
+      "sports",
+      "athlete",
+      "athletic",
+      "exercise",
+      "recreation",
+      "athletic injury"
+    ],
+    "response_recovery": [
+      "recognition",
+      "remove from play",
+      "removal from play",
+      "return to learn",
+      "return to school",
+      "return to sport",
+      "return to play",
+      "relative rest",
+      "physical activity",
+      "exercise",
+      "aerobic exercise",
+      "rehabilitation"
+    ]
+  },
+  "database_strategies": [
+    {
+      "database_id": "medline_ovid",
+      "database_name": "MEDLINE",
+      "platform": "Ovid",
+      "strategy_version": "1.0",
+      "status": "locked_not_run",
+      "syntax_family": "Ovid line-by-line",
+      "lines": [
+        "1. exp Brain Concussion/",
+        "2. (concuss* or sport-related concuss* or mild traumatic brain injur* or mTBI).ti,ab,kf.",
+        "3. 1 or 2",
+        "4. exp Sports/ or exp Athletic Injuries/",
+        "5. (sport* or athlet* or exercis* or recreation*).ti,ab,kf.",
+        "6. 4 or 5",
+        "7. (recogn* or remove from play or removal from play or return to learn or return to school or return to sport or return to play or relative rest or physical activit* or exercis* or aerobic exercis* or rehabilitat*).ti,ab,kf.",
+        "8. 3 and 6 and 7",
+        "9. limit 8 to yr=\"2001 -Current\""
+      ],
+      "final_set": "9",
+      "interface_filters": {
+        "end_date": "2026-07-25",
+        "language": "none",
+        "humans": "none",
+        "publication_type": "none"
+      },
+      "execution_status": "not_run",
+      "peer_review_status": "pending_PRESS",
+      "result_count": null,
+      "export_file": null,
+      "export_sha256": null,
+      "query_sha256": "0dcd419094722b30cb8368d9cca20bc999ae294393958df4c807dd8e10d9fef2",
+      "registered_amendment_id": "protocol_amendment_sport_concussion_search_lock_001",
+      "registered_amendment_anchor": {
+        "repository": "Paradispartiet/History-Go",
+        "commit_sha": "3605f292cb1bb290c09acf99af394007e7690efa",
+        "path": "data/fag/sport/protocols/concussion_search_strategy_amendment_001.json",
+        "immutable_snapshot": true
+      },
+      "execution_allowed": false,
+      "execution_block_reason": "PRESS-style peer review and named executor assignment are pending"
+    },
+    {
+      "database_id": "embase_com",
+      "database_name": "Embase",
+      "platform": "Embase.com",
+      "strategy_version": "1.0",
+      "status": "locked_not_run",
+      "syntax_family": "Embase.com Emtree and ti,ab,kw",
+      "query": "('brain concussion'/exp OR concuss*:ti,ab,kw OR 'sport-related concussion':ti,ab,kw OR 'mild traumatic brain injury':ti,ab,kw OR mtbi:ti,ab,kw) AND ('sport'/exp OR 'athletic injury'/exp OR sport*:ti,ab,kw OR athlet*:ti,ab,kw OR exercis*:ti,ab,kw OR recreation*:ti,ab,kw) AND (recogn*:ti,ab,kw OR 'remove from play':ti,ab,kw OR 'removal from play':ti,ab,kw OR 'return to learn':ti,ab,kw OR 'return to school':ti,ab,kw OR 'return to sport':ti,ab,kw OR 'return to play':ti,ab,kw OR 'relative rest':ti,ab,kw OR 'physical activity':ti,ab,kw OR exercis*:ti,ab,kw OR 'aerobic exercise':ti,ab,kw OR rehabilitat*:ti,ab,kw) AND [2001-2026]/py",
+      "interface_filters": {
+        "date_end_requires_execution_check": "2026-07-25",
+        "language": "none",
+        "humans": "none",
+        "publication_type": "none"
+      },
+      "execution_status": "not_run",
+      "peer_review_status": "pending_PRESS",
+      "result_count": null,
+      "export_file": null,
+      "export_sha256": null,
+      "query_sha256": "46bba369163379a3b001e99748ca42f651474670729cdf3331beeb7c72e9d518",
+      "registered_amendment_id": "protocol_amendment_sport_concussion_search_lock_001",
+      "registered_amendment_anchor": {
+        "repository": "Paradispartiet/History-Go",
+        "commit_sha": "3605f292cb1bb290c09acf99af394007e7690efa",
+        "path": "data/fag/sport/protocols/concussion_search_strategy_amendment_001.json",
+        "immutable_snapshot": true
+      },
+      "execution_allowed": false,
+      "execution_block_reason": "PRESS-style peer review and named executor assignment are pending"
+    },
+    {
+      "database_id": "sportdiscus_ebscohost",
+      "database_name": "SPORTDiscus",
+      "platform": "EBSCOhost",
+      "strategy_version": "1.0",
+      "status": "locked_not_run",
+      "syntax_family": "EBSCOhost subject headings plus title and abstract",
+      "query": "((MH \"Brain Concussion+\") OR TI (concuss* OR \"sport-related concussion\" OR \"mild traumatic brain injur*\" OR mTBI) OR AB (concuss* OR \"sport-related concussion\" OR \"mild traumatic brain injur*\" OR mTBI)) AND ((MH \"Sports+\") OR (MH \"Athletic Injuries+\") OR TI (sport* OR athlet* OR exercis* OR recreation*) OR AB (sport* OR athlet* OR exercis* OR recreation*)) AND (TI (recogn* OR \"remove from play\" OR \"removal from play\" OR \"return to learn\" OR \"return to school\" OR \"return to sport\" OR \"return to play\" OR \"relative rest\" OR \"physical activit*\" OR exercis* OR \"aerobic exercis*\" OR rehabilitat*) OR AB (recogn* OR \"remove from play\" OR \"removal from play\" OR \"return to learn\" OR \"return to school\" OR \"return to sport\" OR \"return to play\" OR \"relative rest\" OR \"physical activit*\" OR exercis* OR \"aerobic exercis*\" OR rehabilitat*))",
+      "interface_filters": {
+        "published_date_from": "2001-01-01",
+        "published_date_to": "2026-07-25",
+        "language": "none",
+        "peer_reviewed_only": false
+      },
+      "execution_status": "not_run",
+      "peer_review_status": "pending_PRESS",
+      "result_count": null,
+      "export_file": null,
+      "export_sha256": null,
+      "query_sha256": "e9ddac68ad160d7ab51505edf2c65162e9b457f9d731dadd3d5a3676d1ae2d28",
+      "registered_amendment_id": "protocol_amendment_sport_concussion_search_lock_001",
+      "registered_amendment_anchor": {
+        "repository": "Paradispartiet/History-Go",
+        "commit_sha": "3605f292cb1bb290c09acf99af394007e7690efa",
+        "path": "data/fag/sport/protocols/concussion_search_strategy_amendment_001.json",
+        "immutable_snapshot": true
+      },
+      "execution_allowed": false,
+      "execution_block_reason": "PRESS-style peer review and named executor assignment are pending"
+    },
+    {
+      "database_id": "scopus",
+      "database_name": "Scopus",
+      "platform": "Scopus Advanced Search",
+      "strategy_version": "1.0",
+      "status": "locked_not_run",
+      "syntax_family": "Scopus TITLE-ABS-KEY",
+      "query": "TITLE-ABS-KEY((concuss* OR \"sport-related concussion*\" OR \"mild traumatic brain injur*\" OR mtbi) AND (sport* OR athlet* OR exercis* OR recreation*) AND (recogn* OR \"remove from play\" OR \"removal from play\" OR \"return to learn\" OR \"return to school\" OR \"return to sport\" OR \"return to play\" OR \"relative rest\" OR \"physical activit*\" OR exercis* OR \"aerobic exercis*\" OR rehabilitat*)) AND PUBYEAR > 2000 AND PUBYEAR < 2027",
+      "interface_filters": {
+        "date_end_requires_execution_check": "2026-07-25",
+        "language": "none",
+        "document_type": "none"
+      },
+      "execution_status": "not_run",
+      "peer_review_status": "pending_PRESS",
+      "result_count": null,
+      "export_file": null,
+      "export_sha256": null,
+      "query_sha256": "9c80fa888745207a04547545da71146018149cba8a687ada8d90b99ad0a10433",
+      "registered_amendment_id": "protocol_amendment_sport_concussion_search_lock_001",
+      "registered_amendment_anchor": {
+        "repository": "Paradispartiet/History-Go",
+        "commit_sha": "3605f292cb1bb290c09acf99af394007e7690efa",
+        "path": "data/fag/sport/protocols/concussion_search_strategy_amendment_001.json",
+        "immutable_snapshot": true
+      },
+      "execution_allowed": false,
+      "execution_block_reason": "PRESS-style peer review and named executor assignment are pending"
+    },
+    {
+      "database_id": "web_of_science_core_collection",
+      "database_name": "Web of Science",
+      "platform": "Web of Science Core Collection Advanced Search",
+      "strategy_version": "1.0",
+      "status": "locked_not_run",
+      "syntax_family": "Web of Science TS topic field",
+      "query": "TS=((concuss* OR \"sport-related concussion*\" OR \"mild traumatic brain injur*\" OR mTBI) AND (sport* OR athlet* OR exercis* OR recreation*) AND (recogn* OR \"remove from play\" OR \"removal from play\" OR \"return to learn\" OR \"return to school\" OR \"return to sport\" OR \"return to play\" OR \"relative rest\" OR \"physical activit*\" OR exercis* OR \"aerobic exercis*\" OR rehabilitat*))",
+      "interface_filters": {
+        "timespan_from": 2001,
+        "timespan_to": 2026,
+        "indexes": "all subscribed Core Collection indexes",
+        "language": "none",
+        "document_type": "none"
+      },
+      "execution_status": "not_run",
+      "peer_review_status": "pending_PRESS",
+      "result_count": null,
+      "export_file": null,
+      "export_sha256": null,
+      "query_sha256": "627993ca3bf97c986f7ad563427003c0ec239e9fccc82e063eedef62d2878fc3",
+      "registered_amendment_id": "protocol_amendment_sport_concussion_search_lock_001",
+      "registered_amendment_anchor": {
+        "repository": "Paradispartiet/History-Go",
+        "commit_sha": "3605f292cb1bb290c09acf99af394007e7690efa",
+        "path": "data/fag/sport/protocols/concussion_search_strategy_amendment_001.json",
+        "immutable_snapshot": true
+      },
+      "execution_allowed": false,
+      "execution_block_reason": "PRESS-style peer review and named executor assignment are pending"
+    },
+    {
+      "database_id": "cochrane_central",
+      "database_name": "Cochrane CENTRAL",
+      "platform": "Cochrane Library Search Manager",
+      "strategy_version": "1.0",
+      "status": "locked_not_run",
+      "syntax_family": "Cochrane Search Manager set syntax",
+      "lines": [
+        "#1 MeSH descriptor: [Brain Concussion] explode all trees",
+        "#2 (concuss* or \"sport-related concussion*\" or \"mild traumatic brain injur*\" or mTBI):ti,ab,kw",
+        "#3 #1 OR #2",
+        "#4 MeSH descriptor: [Sports] explode all trees",
+        "#5 MeSH descriptor: [Athletic Injuries] explode all trees",
+        "#6 (sport* or athlet* or exercis* or recreation*):ti,ab,kw",
+        "#7 #4 OR #5 OR #6",
+        "#8 (recogn* or \"remove from play\" or \"removal from play\" or \"return to learn\" or \"return to school\" or \"return to sport\" or \"return to play\" or \"relative rest\" or \"physical activit*\" or exercis* or \"aerobic exercis*\" or rehabilitat*):ti,ab,kw",
+        "#9 #3 AND #7 AND #8"
+      ],
+      "final_set": "#9",
+      "interface_filters": {
+        "publication_year_from": 2001,
+        "publication_year_to": 2026,
+        "database": "Trials (CENTRAL)",
+        "language": "none"
+      },
+      "scope_role": "supplementary trial search; systematic reviews and guidance are identified through the other databases and authoritative-source search",
+      "execution_status": "not_run",
+      "peer_review_status": "pending_PRESS",
+      "result_count": null,
+      "export_file": null,
+      "export_sha256": null,
+      "query_sha256": "1b54f0774f49d0808c72ad87c7da76939eccc87c3e1c330acf1a058882d5f302",
+      "registered_amendment_id": "protocol_amendment_sport_concussion_search_lock_001",
+      "registered_amendment_anchor": {
+        "repository": "Paradispartiet/History-Go",
+        "commit_sha": "3605f292cb1bb290c09acf99af394007e7690efa",
+        "path": "data/fag/sport/protocols/concussion_search_strategy_amendment_001.json",
+        "immutable_snapshot": true
+      },
+      "execution_allowed": false,
+      "execution_block_reason": "PRESS-style peer review and named executor assignment are pending"
+    }
+  ],
+  "search_peer_review": {
+    "method": "PRESS-style structured peer review",
+    "status": "pending",
+    "reviewer_role_id": "reviewer_role_sport_information_specialist_2",
+    "required_before_execution": true,
+    "review_fields": [
+      "translation of the research questions",
+      "Boolean and proximity operators",
+      "subject headings and free-text terms",
+      "spelling, syntax and line references",
+      "limits and filters",
+      "database-specific translation",
+      "balance of sensitivity and precision"
+    ],
+    "decision": null,
+    "reviewed_at": null,
+    "amendments_after_review": []
+  },
+  "execution_rule": "Ingen databasestreng kan markeres som kjørt før PRESS-gjennomgang er dokumentert eller et eksplisitt, begrunnet avvik er godkjent før kjøring.",
+  "publication_rule": "Søkestrenger, treffantall og eksportfiler er bare proveniens. Poster må fortsatt dedupliseres, dobbelt screenes og metodevurderes før de kan støtte syntese eller claim."
+}

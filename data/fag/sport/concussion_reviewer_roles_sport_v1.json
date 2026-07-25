@@ -1,0 +1,89 @@
+{
+  "version": "1.0",
+  "subject_id": "sport",
+  "package_id": "evidence_package_sport_concussion_acute_safety_v1",
+  "type": "reviewer_role_and_independence_registry",
+  "status": "roles_defined_human_assignments_pending",
+  "updated_at": "2026-07-25",
+  "roles": [
+    {
+      "role_id": "reviewer_role_sport_information_specialist_1",
+      "role": "search author and database executor",
+      "assigned_person_id": null,
+      "human_required": true,
+      "ai_may_assist": true,
+      "responsibilities": [
+        "database translation",
+        "search execution",
+        "export and checksum",
+        "search deviation log"
+      ]
+    },
+    {
+      "role_id": "reviewer_role_sport_information_specialist_2",
+      "role": "independent PRESS-style search peer reviewer",
+      "assigned_person_id": null,
+      "human_required": true,
+      "ai_may_assist": true,
+      "responsibilities": [
+        "independent search review",
+        "syntax and subject-heading check",
+        "approve or request amendment"
+      ]
+    },
+    {
+      "role_id": "reviewer_role_sport_screening_1",
+      "role": "independent screening reviewer 1",
+      "assigned_person_id": null,
+      "human_required": true,
+      "ai_may_assist": true,
+      "responsibilities": [
+        "title and abstract screening",
+        "full-text screening",
+        "critical data extraction"
+      ]
+    },
+    {
+      "role_id": "reviewer_role_sport_screening_2",
+      "role": "independent screening reviewer 2",
+      "assigned_person_id": null,
+      "human_required": true,
+      "ai_may_assist": true,
+      "responsibilities": [
+        "title and abstract screening",
+        "full-text screening",
+        "critical data extraction"
+      ]
+    },
+    {
+      "role_id": "reviewer_role_sport_adjudicator",
+      "role": "conflict adjudicator",
+      "assigned_person_id": null,
+      "human_required": true,
+      "ai_may_assist": true,
+      "responsibilities": [
+        "resolve documented conflicts",
+        "record reason and final decision"
+      ]
+    }
+  ],
+  "independence_rules": [
+    "PRESS reviewer and search author must be different people.",
+    "Screening reviewer 1 and screening reviewer 2 must be different people.",
+    "Review decisions are hidden from the other screener until both initial decisions are submitted.",
+    "AI cannot occupy a reviewer or adjudicator role and cannot be the sole basis for a decision.",
+    "Conflicts require a documented consensus or adjudicator decision."
+  ],
+  "assignment_gate": {
+    "status": "blocked",
+    "required_before_search_execution": [
+      "reviewer_role_sport_information_specialist_1",
+      "reviewer_role_sport_information_specialist_2"
+    ],
+    "required_before_screening": [
+      "reviewer_role_sport_screening_1",
+      "reviewer_role_sport_screening_2",
+      "reviewer_role_sport_adjudicator"
+    ]
+  }
+}

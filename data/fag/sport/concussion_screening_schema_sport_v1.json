@@ -1,0 +1,133 @@
+{
+  "version": "1.0",
+  "subject_id": "sport",
+  "package_id": "evidence_package_sport_concussion_acute_safety_v1",
+  "type": "dual_screening_and_full_text_decision_schema",
+  "status": "schema_locked_assignments_and_screening_pending",
+  "updated_at": "2026-07-25",
+  "reviewer_role_registry": "data/fag/sport/concussion_reviewer_roles_sport_v1.json",
+  "stages": {
+    "title_abstract": {
+      "decisions": [
+        "include",
+        "exclude",
+        "uncertain"
+      ],
+      "independent_reviewers_required": 2,
+      "blinded_until_both_submitted": true,
+      "exclusion_reason_required_when_exclude": true,
+      "note_required_when_uncertain": true
+    },
+    "full_text": {
+      "decisions": [
+        "include",
+        "exclude"
+      ],
+      "independent_reviewers_required": 2,
+      "blinded_until_both_submitted": true,
+      "exclusion_reason_required_when_exclude": true,
+      "one_primary_exclusion_reason": true,
+      "secondary_reasons_allowed": true,
+      "page_or_section_locator_required": true
+    }
+  },
+  "exclusion_reasons": [
+    {
+      "code": "wrong_population",
+      "label": "Feil populasjon"
+    },
+    {
+      "code": "wrong_condition",
+      "label": "Ikke sportsrelatert hjernerystelse eller tilstanden kan ikke skilles ut"
+    },
+    {
+      "code": "wrong_setting",
+      "label": "Feil idretts- eller aktivitetskontekst"
+    },
+    {
+      "code": "wrong_intervention_or_exposure",
+      "label": "Feil tiltak, eksponering eller respons"
+    },
+    {
+      "code": "wrong_comparator",
+      "label": "Feil sammenligningsgrunnlag når komparator kreves"
+    },
+    {
+      "code": "wrong_outcome",
+      "label": "Ingen protokollrelevante utfall"
+    },
+    {
+      "code": "wrong_design",
+      "label": "Studiedesign utenfor protokollen"
+    },
+    {
+      "code": "not_systematic_or_original_evidence",
+      "label": "Kommentar, ekspertmening eller ikke-systematisk tekst uten tillatt rolle"
+    },
+    {
+      "code": "animal_or_in_vitro",
+      "label": "Dyre- eller laboratoriestudie uten mennesker"
+    },
+    {
+      "code": "duplicate",
+      "label": "Duplikat av annen inkludert kandidatpost"
+    },
+    {
+      "code": "outside_date_range",
+      "label": "Publisert utenfor forhåndsdefinert tidsrom"
+    },
+    {
+      "code": "retracted",
+      "label": "Tilbaketrukket publikasjon"
+    },
+    {
+      "code": "full_text_unavailable",
+      "label": "Fulltekst utilgjengelig etter dokumenterte forsøk"
+    },
+    {
+      "code": "language_translation_unresolved",
+      "label": "Fulltekst kunne ikke vurderes etter dokumentert oversettelsesforsøk"
+    }
+  ],
+  "decision_record_schema": {
+    "required_fields": [
+      "candidate_id",
+      "stage",
+      "reviewer_role_id",
+      "reviewer_person_id",
+      "decision",
+      "decided_at",
+      "protocol_version",
+      "conflict_of_interest_declaration"
+    ],
+    "conditional_fields": {
+      "exclude": [
+        "exclusion_reason_code",
+        "supporting_note"
+      ],
+      "uncertain": [
+        "supporting_note"
+      ],
+      "full_text": [
+        "full_text_file_sha256",
+        "page_or_section_locator"
+      ]
+    }
+  },
+  "conflict_resolution": {
+    "conflict_created_when_decisions_differ": true,
+    "consensus_attempt_required": true,
+    "adjudicator_required_if_unresolved": true,
+    "final_reason_required": true,
+    "initial_decisions_preserved": true
+  },
+  "execution": {
+    "status": "not_started",
+    "assigned_human_reviewers": 0,
+    "title_abstract_decisions": 0,
+    "full_text_decisions": 0,
+    "conflicts": 0,
+    "adjudications": 0
+  },
+  "safety_boundary": "Screening avgjør dokumenters inklusjon i en forskningsoversikt. Det er ikke klinisk vurdering av en person og kan ikke brukes til diagnose eller returavgjørelse."
+}
