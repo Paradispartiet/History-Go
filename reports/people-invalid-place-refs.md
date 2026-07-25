@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-25T06:57:39.849Z
+Generated: 2026-07-25T07:47:40.453Z
 
 ## Sammendrag
-- People-filer lest: **695**
-- People lest: **1330**
+- People-filer lest: **723**
+- People lest: **1358**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1330**
+- Duplikate interne place-referanser: **1358**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -43,30 +43,6 @@ Generated: 2026-07-25T06:57:39.849Z
 - data/people/by/oslo/people_by_oslo.json :: kristin_jarmund (Kristin Jarmund) -> vulkan_industriomrade x2
 - data/people/by/oslo/people_by_oslo.json :: hagbarth_schytte_berg (Hagbarth Schytte-Berg) -> stensparken x2
 - data/people/by/oslo/people_by_oslo.json :: halvor_c_reiersen (Halvor C. Reiersen) -> stensparken x2
-- data/people/popkultur/oslo/edderkoppen_scene/leif_juster.json :: leif_juster (Leif Juster) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/einar_schanke.json :: einar_schanke (Einar Schanke) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/lalla_carlsen.json :: lalla_carlsen (Lalla Carlsen) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/kari_diesen.json :: kari_diesen (Kari Diesen) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/ernst_diesen.json :: ernst_diesen (Ernst Diesen) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/per_kvist.json :: per_kvist (Per Kvist) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/arvid_nilssen.json :: arvid_nilssen (Arvid Nilssen) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/willie_hoel.json :: willie_hoel (Willie Hoel) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/dan_fosse.json :: dan_fosse (Dan Fosse) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/tom_sterri.json :: tom_sterri (Tom Sterri) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/ketil_aamodt.json :: ketil_aamodt (Ketil Aamodt) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/anders_moland.json :: anders_moland (Anders Moland) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/oivind_blunck.json :: oivind_blunck (Øivind Blunck) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/jon_eikemo.json :: jon_eikemo (Jon Eikemo) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/kirsti_sparboe.json :: kirsti_sparboe (Kirsti Sparboe) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/inger_lise_rypdal.json :: inger_lise_rypdal (Inger Lise Rypdal) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/ole_paus.json :: ole_paus (Ole Paus) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/rolv_wesenlund.json :: rolv_wesenlund (Rolv Wesenlund) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/edderkoppen_scene/harald_heide_steen_jr.json :: harald_heide_steen_jr (Harald Heide-Steen jr.) -> edderkoppen_scene x2
-- data/people/popkultur/oslo/chat_noir/bokken_lasson.json :: bokken_lasson (Bokken Lasson) -> chat_noir x2
-- data/people/popkultur/oslo/chat_noir/vilhelm_dybwad.json :: vilhelm_dybwad (Vilhelm Dybwad) -> chat_noir x2
-- data/people/popkultur/oslo/chat_noir/victor_bernau.json :: victor_bernau (Victor Bernau) -> chat_noir x2
-- data/people/popkultur/oslo/chat_noir/jens_book_jenssen.json :: jens_book_jenssen (Jens Book-Jenssen) -> chat_noir x2
-- data/people/popkultur/oslo/chat_noir/dag_froland.json :: dag_froland (Dag Frøland) -> chat_noir x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard x2
@@ -1260,9 +1236,6 @@ Generated: 2026-07-25T06:57:39.849Z
 - data/people/naeringsliv/buskerud/blaafarvevaerket_modum/karl_friedrich_bobert.json :: karl_friedrich_bobert (Karl Friedrich Böbert) -> blaafarvevaerket_modum x2
 - data/people/kunst/oslo/ibsen_quotes/ingrid_falk.json :: ingrid_falk (Ingrid Falk) -> ibsen_quotes x2
 - data/people/kunst/oslo/ibsen_quotes/gustavo_aguerre.json :: gustavo_aguerre (Gustavo Aguerre) -> ibsen_quotes x2
-- data/people/popkultur/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d/aud_schonemann.json :: aud_schonemann (Aud Schønemann) -> bla_skilt_aud_schonemann_vetlandsveien_69d x2
-- data/people/popkultur/oslo/house_of_nerds/andreas_sollund.json :: andreas_sollund (Andreas Sollund) -> house_of_nerds x2
-- data/people/popkultur/oslo/latter/elina_krantz.json :: elina_krantz (Elina Krantz) -> latter x2
 - data/people/by/oslo/people_by_oslo_politics_places_batch_02.json :: knut_aasen (Knut Aasen) -> politihuset_gronland x2
 - data/people/by/oslo/people_by_oslo_politics_places_batch_02.json :: anne_bjorndal (Anne Bjørndal) -> 22_juli_senteret x2
 - data/people/by/oslo/people_by_oslo_politics_places_batch_03.json :: emil_victor_langlet (Emil Victor Langlet) -> stortinget x2
@@ -1348,5 +1321,60 @@ Generated: 2026-07-25T06:57:39.849Z
 - data/people/historie/oslo/magistratgarden/helge_berntsen.json :: helge_berntsen (Helge Berntsen) -> magistratgarden x2
 - data/people/historie/oslo/magistratgarden/morten_leuch_eliesen.json :: morten_leuch_eliesen (Morten Leuch Eliesen) -> magistratgarden x2
 - data/people/historie/oslo/magistratgarden/dorthea_monsen.json :: dorthea_monsen (Dorthea Monsen) -> magistratgarden x2
+- data/people/by/oslo/folketeateret/arne_eide.json :: arne_eide (Arne Eide) -> folketeateret x2
+- data/people/by/oslo/folketeateret/christian_morgenstierne.json :: christian_morgenstierne (Christian Morgenstierne) -> folketeateret x2
+- data/people/film_tv/oslo/colosseum_kino/colosseum_premierepublikummet.json :: colosseum_premierepublikummet (Colosseum-premierepublikummet) -> colosseum_kino x2
+- data/people/litteratur/oslo/chat_noir/vilhelm_dybwad.json :: vilhelm_dybwad (Vilhelm Dybwad) -> chat_noir x2
+- data/people/litteratur/oslo/edderkoppen_scene/per_kvist.json :: per_kvist (Per Kvist) -> edderkoppen_scene x2
+- data/people/musikk/oslo/chat_noir/jens_book_jenssen.json :: jens_book_jenssen (Jens Book-Jenssen) -> chat_noir x2
+- data/people/musikk/oslo/edderkoppen_scene/inger_lise_rypdal.json :: inger_lise_rypdal (Inger Lise Rypdal) -> edderkoppen_scene x2
+- data/people/musikk/oslo/edderkoppen_scene/kirsti_sparboe.json :: kirsti_sparboe (Kirsti Sparboe) -> edderkoppen_scene x2
+- data/people/musikk/oslo/edderkoppen_scene/ole_paus.json :: ole_paus (Ole Paus) -> edderkoppen_scene x2
+- data/people/musikk/oslo/sorenga/astrid_s.json :: astrid_s (Astrid S) -> sorenga x2
+- data/people/scenekunst/oslo/chat_noir/bokken_lasson.json :: bokken_lasson (Bokken Lasson) -> chat_noir x2
+- data/people/scenekunst/oslo/chateau_neuf/bard_tufte_johansen.json :: bard_tufte_johansen (Bård Tufte Johansen) -> chateau_neuf x2
+- data/people/scenekunst/oslo/chateau_neuf/harald_eia.json :: harald_eia (Harald Eia) -> chateau_neuf x2
+- data/people/scenekunst/oslo/edderkoppen_scene/anders_moland.json :: anders_moland (Anders Moland) -> edderkoppen_scene x2
+- data/people/scenekunst/oslo/edderkoppen_scene/ketil_aamodt.json :: ketil_aamodt (Ketil Aamodt) -> edderkoppen_scene x2
+- data/people/scenekunst/oslo/edderkoppen_scene/tom_sterri.json :: tom_sterri (Tom Sterri) -> edderkoppen_scene x2
+- data/people/scenekunst/oslo/latter/elina_krantz.json :: elina_krantz (Elina Krantz) -> latter x2
+- data/people/scenekunst/oslo/nrk_huset_marienlyst/morten_ramm.json :: morten_ramm (Morten Ramm) -> nrk_huset_marienlyst x2
+- data/people/subkultur/oslo/house_of_nerds/andreas_sollund.json :: andreas_sollund (Andreas Sollund) -> house_of_nerds x2
+- data/people/musikk/europe/portugal/lisbon/amalia_rodrigues.json :: amalia_rodrigues (Amália Rodrigues) -> lisbon_casa_museu_amalia_rodrigues x2
+- data/people/scenekunst/europe/portugal/lisbon/herman_jose.json :: herman_jose (Herman José) -> lisbon_rtp x2
+- data/people/scenekunst/europe/portugal/lisbon/ricardo_araujo_pereira.json :: ricardo_araujo_pereira (Ricardo Araújo Pereira) -> lisbon_rtp x2
+- data/people/scenekunst/europe/portugal/lisbon/bruno_nogueira.json :: bruno_nogueira (Bruno Nogueira) -> lisbon_rtp x2
+- data/people/media/europe/portugal/lisbon/filomena_cautela.json :: filomena_cautela (Filomena Cautela) -> lisbon_rtp x2
+- data/people/media/europe/portugal/lisbon/nuno_markl.json :: nuno_markl (Nuno Markl) -> lisbon_rtp x2
+- data/people/scenekunst/oslo/bla_skilt_aud_schonemann_vetlandsveien_69d/aud_schonemann.json :: aud_schonemann (Aud Schønemann) -> bla_skilt_aud_schonemann_vetlandsveien_69d x2
+- data/people/scenekunst/oslo/chat_noir/dag_froland.json :: dag_froland (Dag Frøland) -> chat_noir x2
+- data/people/scenekunst/oslo/chat_noir/victor_bernau.json :: victor_bernau (Victor Bernau) -> chat_noir x2
+- data/people/scenekunst/oslo/edderkoppen_scene/arvid_nilssen.json :: arvid_nilssen (Arvid Nilssen) -> edderkoppen_scene x2
+- data/people/scenekunst/oslo/edderkoppen_scene/dan_fosse.json :: dan_fosse (Dan Fosse) -> edderkoppen_scene x2
+- data/people/scenekunst/oslo/edderkoppen_scene/einar_schanke.json :: einar_schanke (Einar Schanke) -> edderkoppen_scene x2
+- data/people/scenekunst/oslo/edderkoppen_scene/ernst_diesen.json :: ernst_diesen (Ernst Diesen) -> edderkoppen_scene x2
+- data/people/scenekunst/oslo/edderkoppen_scene/harald_heide_steen_jr.json :: harald_heide_steen_jr (Harald Heide-Steen jr.) -> nrk_huset_marienlyst x2
+- data/people/scenekunst/oslo/edderkoppen_scene/jon_eikemo.json :: jon_eikemo (Jon Eikemo) -> edderkoppen_scene x2
+- data/people/scenekunst/oslo/edderkoppen_scene/kari_diesen.json :: kari_diesen (Kari Diesen) -> edderkoppen_scene x2
+- data/people/scenekunst/oslo/edderkoppen_scene/lalla_carlsen.json :: lalla_carlsen (Lalla Carlsen) -> edderkoppen_scene x2
+- data/people/scenekunst/oslo/edderkoppen_scene/leif_juster.json :: leif_juster (Leif Juster) -> edderkoppen_scene x2
+- data/people/scenekunst/oslo/edderkoppen_scene/oivind_blunck.json :: oivind_blunck (Øivind Blunck) -> edderkoppen_scene x2
+- data/people/scenekunst/oslo/edderkoppen_scene/rolv_wesenlund.json :: rolv_wesenlund (Rolv Wesenlund) -> nrk_huset_marienlyst x2
+- data/people/scenekunst/oslo/edderkoppen_scene/willie_hoel.json :: willie_hoel (Willie Hoel) -> edderkoppen_scene x2
+- data/people/scenekunst/oslo/latter/kristoffer_olsen.json :: kristoffer_olsen (Kristoffer Olsen) -> latter x2
+- data/people/scenekunst/oslo/latter/else_kass_furuseth.json :: else_kass_furuseth (Else Kåss Furuseth) -> latter x2
+- data/people/scenekunst/oslo/folketeateret/oystein_wiik.json :: oystein_wiik (Øystein Wiik) -> folketeateret x2
+- data/people/musikk/oslo/folketeateret/rein_alexander.json :: rein_alexander (Rein Alexander) -> folketeateret x2
+- data/people/scenekunst/oslo/folketeateret/wenche_foss.json :: wenche_foss (Wenche Foss) -> folketeateret x2
+- data/people/scenekunst/oslo/folketeateret/folketeateret_musikalmiljoet.json :: folketeateret_musikalmiljoet (Folketeateret-musikalmiljøet) -> folketeateret x2
+- data/people/scenekunst/oslo/nrk_huset_marienlyst/herman_flesvig.json :: herman_flesvig (Herman Flesvig) -> nrk_huset_marienlyst x2
+- data/people/scenekunst/oslo/nrk_huset_marienlyst/nils_vogt.json :: nils_vogt (Nils Vogt) -> nrk_huset_marienlyst x2
+- data/people/scenekunst/oslo/det_andre_teatret/nils_petter_morland.json :: nils_petter_morland (Nils Petter Mørland) -> det_andre_teatret x2
+- data/people/scenekunst/oslo/grusomhetens_teater/lars_oyno.json :: lars_oyno (Lars Øyno) -> grusomhetens_teater x2
+- data/people/scenekunst/oslo/nordic_black_theatre_cafeteatret/cliff_a_moustache.json :: cliff_a_moustache (Cliff A. Moustache) -> nordic_black_theatre_cafeteatret x2
+- data/people/scenekunst/oslo/nordic_black_theatre_cafeteatret/jarl_solberg.json :: jarl_solberg (Jarl Solberg) -> nordic_black_theatre_cafeteatret x2
+- data/people/scenekunst/oslo/teater_manu/mira_zuckermann.json :: mira_zuckermann (Mira Zuckermann) -> teater_manu x2
+- data/people/scenekunst/oslo/centralteatret/harald_otto.json :: harald_otto (Harald Otto) -> centralteatret x2
+- data/people/scenekunst/oslo/dramatikkens_hus/anne_may_nilsen.json :: anne_may_nilsen (Anne-May Nilsen) -> dramatikkens_hus x2
 
 ## Anbefalt neste ryddebatch
