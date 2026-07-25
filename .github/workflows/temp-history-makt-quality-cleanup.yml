@@ -1,0 +1,75 @@
+name: TEMP validate and clean history power freeze
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  validate-cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/history-makt-quality-validator-cleanup
+          fetch-depth: 0
+      - name: Remove transient runner artifacts and restore timestamp-only reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf reports/coordinate-branch-runner/agent_oslo-coordinate-history-v5-5-power-curation-v3
+          git checkout 746c21c18c3cab9ee2e3d5547732c74e3141754c -- \
+            reports/coordinate-evidence-audit.md \
+            reports/place-coordinate-intake-gate.md \
+            reports/place-coordinate-quality-gate.md \
+            reports/place-source-layout-audit.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Run permanent history freeze validators
+        shell: bash
+        run: |
+          set -euo pipefail
+          LOG=/tmp/history-makt-quality-cleanup.log
+          : > "$LOG"
+          run() {
+            printf '\n$ %s\n\n' "$*" | tee -a "$LOG"
+            "$@" 2>&1 | tee -a "$LOG"
+          }
+          run node tools/validate-historie-makt-stat-institusjoner.mjs
+          run node tools/validate-historie-quality-tid-periodisering.mjs
+          run node tools/validate-historie-quality-kilder-arkiv-spor.mjs
+          run node tools/validate-historie-v5.mjs
+          run npm run audit:quiz-production-context
+          run npm run audit:quiz-theory-binding
+          run npm run test:quiz-production
+          run npm run knowledge:canonical:write
+          run npm run knowledge:canonical:check
+          run npm run knowledge:legacy:check
+          run git diff --check
+      - name: Enforce cleanup scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          unexpected="$(git diff --name-only | grep -Ev '^(tools/validate-historie-makt-stat-institusjoner\.mjs|reports/historie-v5/makt-stat-institusjoner-curation-command-v2\.log|reports/coordinate-branch-runner/agent_oslo-coordinate-history-v5-5-power-curation-v3/|reports/coordinate-evidence-audit\.md|reports/place-coordinate-intake-gate\.md|reports/place-coordinate-quality-gate\.md|reports/place-source-layout-audit\.json)$' || true)"
+          test -z "$unexpected" || { echo 'Unexpected changed files:'; echo "$unexpected"; exit 1; }
+      - name: Upload validation log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-makt-quality-cleanup-log
+          path: /tmp/history-makt-quality-cleanup.log
+          if-no-files-found: warn
+      - name: Publish clean final branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/temp-history-makt-quality-cleanup.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git diff --cached --quiet && { echo 'No cleanup changes'; exit 1; }
+          git commit -m 'Historie: lås og rydd makt-, stat- og institusjonsfrysen'
+          git push origin HEAD:refs/heads/agent/history-makt-quality-validator-cleanup
