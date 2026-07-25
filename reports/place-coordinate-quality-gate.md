@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-25T05:40:56.782Z
+Generert: 2026-07-25T05:51:54.251Z
 
 ## Oppsummering
 - Aktive filer validert: **690**
 - Antall steder validert: **1291**
 - Harde feil: **0**
-- Varsler: **517**
-- Coordinate review candidates: **778** signaler fordelt på **653** steder
+- Varsler: **518**
+- Coordinate review candidates: **779** signaler fordelt på **653** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -1043,6 +1043,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/subkultur/oslo/places_subkultur.json#motestedet_tollbugata: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#universitetets_gamle_hovedbygning: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#universitetets_gamle_kjemi: coordStatus=verified uten coordPrecisionM
+- data/places/vitenskap/oslo/places_vitenskap.json#tvergastein: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#gamlebyen_skole: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#universitetet_i_oslo_blindern: coordStatus=verified uten coordPrecisionM
 - data/places/vitenskap/oslo/places_vitenskap.json#naturhistorisk_museum: coordStatus=verified uten coordPrecisionM
@@ -1233,13 +1234,13 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 778 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 779 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| coordStatus=verified uten coordPrecisionM | 239 |
+| coordStatus=verified uten coordPrecisionM | 240 |
 | lineært sted uten anchors | 80 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 68 |
 | lav koordinatpresisjon (<4 desimaler) | 70 |
@@ -1249,7 +1250,7 @@ Totalt 778 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 8 |
 | ligger svært langt fra de andre stedene i samme fil | 117 |
 
-### coordStatus=verified uten coordPrecisionM (239)
+### coordStatus=verified uten coordPrecisionM (240)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1367,6 +1368,7 @@ Totalt 778 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | motestedet_tollbugata | Møtestedet – Tollbugata | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.90976205545865 | 10.747280208188046 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | universitetets_gamle_hovedbygning | Universitetets gamle hovedbygning | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.91535567609494 | 10.735178716853644 | 160 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | universitetets_gamle_kjemi | Universitetets gamle kjemibygning | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.917023156193885 | 10.73472914137377 | 60 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
+| tvergastein | Tvergastein | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 60.54919 | 7.9797 | 80 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | gamlebyen_skole | Gamlebyen skole | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.90681241 | 10.77044366 | 150 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | universitetet_i_oslo_blindern | Universitetet i Oslo, Blindern | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.94013280617488 | 10.720291655207404 | 920 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | naturhistorisk_museum | Naturhistorisk museum | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.92013360357791 | 10.770992295176185 | 170 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
@@ -2070,7 +2072,7 @@ Totalt 778 signaler fordelt på 653 steder. Et sted kan ha flere signaler. Kandi
 | naf_gokartsenter_andebu | NAF Gokartsenter Andebu (Håsken) | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 59.3407 | 10.1873 | 180 | Punktet ligger ~68 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
 | kongsberg_motorsenter | Kongsberg Motorsenter | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 59.7117 | 9.6101 | 280 | Punktet ligger ~86 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
 | finnskogbanen | Finnskogbanen | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.4513 | 12.1864 | 260 | Punktet ligger ~101 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
-| tvergastein | Tvergastein | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 60.5322 | 8.1824 | 400 | Punktet ligger ~156 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
+| tvergastein | Tvergastein | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 60.54919 | 7.9797 | 80 | Punktet ligger ~167 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
 
 ## Anbefalt kommando
 - `node tools/place-coordinate-quality-gate.mjs`
