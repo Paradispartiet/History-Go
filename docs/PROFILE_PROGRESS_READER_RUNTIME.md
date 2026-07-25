@@ -1,36 +1,44 @@
 # History GO — Profile Progress Reader runtime
 
-`js/progress/profileProgressReader.js` er en liten read-only runtime-helper.
+Status: **operational read-only runtime-guide**  
+Kodeeier: `js/progress/profileProgressReader.js`  
+Sist kontrollert: **2026-07-25**
 
-Den finnes for å gjøre den progresjonslesingen som allerede brukes i `profile.js` tilgjengelig for index-flater som PlaceCard, Nearby og ruter.
+`HGProfileProgressReader` gjør eksisterende progresjonslesing tilgjengelig for index-flater som PlaceCard, Nearby og ruter.
 
-Den er ikke en ny progresjonsmodell og ikke en ny lagringssannhet.
+Den er:
 
----
+- en faktisk runtime-helper;
+- read-only;
+- en avgrenset implementert del av mål-/adaptermodellen i [`PROGRESSION_MODEL.md`](./PROGRESSION_MODEL.md).
 
-## Prinsipper
+Den er ikke:
 
-- Leser bare eksisterende localStorage/globaler.
-- Skriver ingenting.
-- Migrerer ingenting.
-- Rendrer ingen DOM.
-- Endrer ikke gameplay.
-- Erstatter ikke `profile.js`.
-- Skal brukes av nye UI-pass for å unngå dobbel progresjonslogikk.
+- en ny progresjonsmodell;
+- en ny lagringssannhet;
+- en migrering;
+- en erstatning for `profile.js`, Knowledge, learning log, badges eller route-state.
 
----
+## Runtime boundary
 
-## Global
+Koden:
 
-Runtime eksponerer:
+- leser eksisterende localStorage/globaler;
+- skriver ingenting;
+- migrerer ingenting;
+- rendrer ingen DOM;
+- endrer ikke gameplay;
+- skal brukes av nye UI-pass for å unngå duplisert progresjonslesing.
+
+Global:
 
 ```js
 window.HGProfileProgressReader
 ```
 
----
+## Sources
 
-## Leser fra
+Helperen leser:
 
 - `visited_places`
 - `people_collected`
@@ -44,15 +52,16 @@ window.HGProfileProgressReader
 - `window.HGFavoritePlaces` der tilgjengelig
 - `window.HGAhaMusic` der tilgjengelig
 
----
+Hvis en kilde mangler eller har ugyldig lokal JSON, returnerer helperen defensiv fallback. Den reparerer eller skriver ikke kilden.
 
-## Viktige metoder
+## Public methods
 
 ```js
 HGProfileProgressReader.getVisitedPlaceIds()
 HGProfileProgressReader.getVisitedPlaceIdList()
 HGProfileProgressReader.getCollectedPeopleIds()
 HGProfileProgressReader.getCollectedPeopleIdList()
+HGProfileProgressReader.getQuizHistory()
 HGProfileProgressReader.getCompletedQuizUnitIds()
 HGProfileProgressReader.getCompletedQuizUnitIdList()
 HGProfileProgressReader.getCompletedQuizUnitCount()
@@ -60,6 +69,7 @@ HGProfileProgressReader.getMeritsByCategory()
 HGProfileProgressReader.getFavoritePlaceIds()
 HGProfileProgressReader.getFavoritePlaceIdList()
 HGProfileProgressReader.isFavoritePlace(placeId)
+HGProfileProgressReader.getMusicUnlockRows()
 HGProfileProgressReader.getMusicUnlockSummary()
 HGProfileProgressReader.getUnlockState()
 HGProfileProgressReader.getGroundhopperStats()
@@ -67,13 +77,7 @@ HGProfileProgressReader.getPlaceProgressSummary(placeId, { category })
 HGProfileProgressReader.getProfileProgressSummary()
 ```
 
----
-
-## Første bruk
-
-Første naturlige brukssted er PlaceCard-status.
-
-PlaceCard bør kunne lese:
+## Place summary
 
 ```js
 const status = window.HGProfileProgressReader.getPlaceProgressSummary(place.id, {
@@ -81,31 +85,41 @@ const status = window.HGProfileProgressReader.getPlaceProgressSummary(place.id, 
 });
 ```
 
-og bruke dette til å vise:
+Den implementerte summaryen kan lese:
 
-- besøkt
-- quiz fullført
-- favoritt
-- completed
-- neste handling
+- besøkt;
+- quiz fullført;
+- favoritt;
+- category merit-info;
+- beregnet status `unknown`, `visited`, `quiz_completed` eller `completed`;
+- neste handling `open`, `quiz` eller `completed`.
 
----
+Den bredere status- og datamodellen i `PROGRESSION_MODEL.md` er fortsatt en mål-/adaptermodell. Felter som ikke finnes i helperens kode skal ikke fremstilles som implementert.
 
-## Ikke bruk til
+## Profile summary
 
-- ny lagring
-- migrering
-- backend-sync
-- route-state som egen sannhet
-- å skrive badges/merits
-- å erstatte `HGLearningLog`
-- å erstatte `profile.js`
+`getProfileProgressSummary()` samler nå:
 
----
+- besøkte place-id-er og antall;
+- collected people-id-er og antall;
+- fullførte quiz-unit-id-er og antall;
+- favorittsteder og antall;
+- merits per kategori;
+- music unlock summary;
+- unlock-state;
+- groundhopper-stats.
 
-## Neste steg
+## Do not use for
 
-1. PlaceCard status surface.
-2. Nearby/NextUp kan lese `getPlaceProgressSummary`.
-3. Ruter kan bruke visited/quiz-status uten å kopiere profile-logikk.
-4. `profile.js` kan senere frivillig bruke helperen, men det er ikke nødvendig i første pass.
+- ny storage-key;
+- migrering;
+- backend-sync;
+- route-state som egen sannhet;
+- badge-/merit-writes;
+- å erstatte `HGLearningLog`;
+- å erstatte `profile.js`;
+- å hevde at hele `PROGRESSION_MODEL.md` er implementert.
+
+## Change rule
+
+Når den offentlige API-flaten, source keys eller summary-semantikken i `profileProgressReader.js` endres, skal denne guiden oppdateres i samme PR.
