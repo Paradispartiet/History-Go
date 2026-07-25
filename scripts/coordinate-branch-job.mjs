@@ -24,6 +24,10 @@ source = source.replace(loopBefore, loopAfter);
 
 const manifestWrite = "write(M,{...man,layout:'one_file_per_place_v1',files});\nfunction check";
 const evidenceMigration = `write(M,{...man,layout:'one_file_per_place_v1',files});
+const staleEvidenceRoot=path.join(D,'coordinate-evidence/brasil/santa-catarina/criciuma');
+const staleEvidenceFilesRemoved=walk(staleEvidenceRoot,x=>x.endsWith('.json')).map(rr).sort();
+fs.rmSync(staleEvidenceRoot,{recursive:true,force:true});
+S.staleEvidenceFilesRemoved=staleEvidenceFilesRemoved;
 const evidenceFilesUpdated=[];
 for(const f of walk(path.join(D,'coordinate-evidence'),x=>x.endsWith('.json')&&path.basename(x)!=='manifest.json')){
   let evidence;try{evidence=read(f)}catch{continue}
