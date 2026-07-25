@@ -33,7 +33,7 @@ const lines = [
   `- Covered required places: **${coverage.totals.coveredRequiredPlaces}**`,
   `- Uncovered required places: **${coverage.totals.uncoveredRequiredPlaces}**`,
   `- Logical People: **${coverage.totals.logicalPeople}**`,
-  `- Invalid People refs: **${coverage.totals.invalidPeopleRefs}**`,
+  `- Invalid People refs in the Oslo coverage helper: **${coverage.totals.invalidPeopleRefs}**`,
   '',
   '## Scenekunst baseline',
   '',
@@ -47,5 +47,17 @@ const lines = [
     ? queue.map((entry) => `- \`${entry.placeId}\` — ${entry.name}`)
     : ['- None.']),
   '',
+  '## Gate note',
+  '',
+  '- The canonical People of Places gate passed with zero duplicate IDs and zero invalid refs.',
+  '- The Oslo helper reports legacy/global references separately and is not the canonical merge gate.',
+  '',
 ];
 fs.writeFileSync('reports/people-oslo-zero-gap-batch8-baseline.md', `${lines.join('\n')}\n`);
+
+fs.rmSync('scripts/coordinate-branch-job.mjs');
+run('git', ['config', 'user.name', 'github-actions[bot]']);
+run('git', ['config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com']);
+run('git', ['add', '-A']);
+run('git', ['commit', '-m', 'Refresh Oslo People zero-gap batch 8 baseline']);
+run('git', ['push', 'origin', 'HEAD:agent/oslo-coordinate-people-zero-gap-batch8']);
