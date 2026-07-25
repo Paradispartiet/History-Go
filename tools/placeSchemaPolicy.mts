@@ -11,7 +11,6 @@ export const OFFICIAL_HISTORY_GO_CATEGORIES = [
   "naeringsliv",
   "natur",
   "politikk",
-  "populaerkultur",
   "psykologi",
   "religion",
   "scenekunst",
