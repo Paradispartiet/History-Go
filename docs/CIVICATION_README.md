@@ -15,10 +15,20 @@ Civication er et eget produkt/subsystem i samme repo. Denne filen er inngangen t
 
 ## Roller og jobbinnhold
 
-- [`CIVICATION_ROLE_PACK_STANDARD.md`](./CIVICATION_ROLE_PACK_STANDARD.md) — role-pack-kontrakt
+- [`CIVICATION_ROLE_PACK.md`](./CIVICATION_ROLE_PACK.md) — inngang og dedup-kontrakt for rollepakken
+- [`CIVICATION_ROLE_PACK_STANDARD.md`](./CIVICATION_ROLE_PACK_STANDARD.md) — detaljert role-pack-kontrakt
 - [`CIVICATION_ROLE_PACK_INDEX.md`](./CIVICATION_ROLE_PACK_INDEX.md) — role-pack-oversikt
 - [`CIVICATION_WORK_GRAMMAR_STANDARD.md`](./CIVICATION_WORK_GRAMMAR_STANDARD.md) — arbeidsgrammatikk
 - [`CIVICATION_FWG_GOVERNANCE.md`](./CIVICATION_FWG_GOVERNANCE.md) — styring av FWG-innhold
+
+De tidligere filene `README/CIVICATION_JOB_MODEL.md` og `README/CIVICATION_job_model.md` var samme tidlige jobbmodell med formateringsforskjeller. De er fjernet. Aktiv modell for mestring, konsekvens, progresjon og komplett jobbinnhold ligger i role-pack-, work-grammar-, roleModel-, mailPlan- og mailFamily-kontraktene over.
+
+## Debatt og konfrontasjon
+
+- [`CIVICATION_DEBATE_SYSTEM.md`](./CIVICATION_DEBATE_SYSTEM.md) — Civications interne rolle-, kapital-, identitets- og psykebaserte konfrontasjonsmotor
+- [`CIVICATION_HISTORY_GO_DEBATE_SURFACE.md`](./CIVICATION_HISTORY_GO_DEBATE_SURFACE.md) — History GO-flaten som produserer `HGDebates`-signaler gjennom stedlige debatter og standpunkt
+
+Disse er to ulike systemflater og skal ikke slås sammen uten en eksplisitt runtimebeslutning.
 
 ## Mail og dagflyt
 
@@ -49,11 +59,11 @@ Ved konflikt gjelder denne rekkefølgen:
 3. [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — aktive Civication- og subsystemkontrakter
 4. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — dagens runtime-flyt
 5. [`../js/Civication/README.md`](../js/Civication/README.md) — Civication-motorene og dagflyten
-6. spesifikke data-/mail-/rolle-/FWG-kontrakter
+6. spesifikke data-/mail-/rolle-/FWG-/debattkontrakter
 7. audits og historiske snapshots
 
 ## Regel for nye Civication-dokumenter
 
-Ikke opprett en ny generell `CivicationREADME`, `CIVICATION_STATUS` eller systemoversikt ved siden av denne filen. Oppdater dokumentet som eier det konkrete ansvarsområdet. Tidsbundne undersøkelser skal normalt ligge i `reports/`.
+Ikke opprett en ny generell `CivicationREADME`, `CivicationGameREADME`, `CIVICATION_JOB_MODEL`, `CIVICATION_STATUS` eller systemoversikt ved siden av denne filen. Oppdater dokumentet som eier det konkrete ansvarsområdet. Tidsbundne undersøkelser skal normalt ligge i `reports/`.
 
-De tidligere filene `README/CIVICATION_README.md.` og `README/CivicationREADME` var uregistrerte chatutkast med overlappende og motstridende produktdefinisjoner. De er fjernet fra aktivt tre; historikken finnes fortsatt i Git.
+De tidligere generelle Civication-chatutkastene og `README/CivicationGameREADME.md` er fjernet fra aktivt tre. Historikken finnes fortsatt i Git.
