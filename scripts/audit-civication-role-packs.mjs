@@ -25,7 +25,6 @@ const aliases = new Map([
   ['sport/trener', 'sport_trener']
 ]);
 
-
 const mailPlanAliases = new Map([
   // Legacy/group mail plan scope names that resolve to the same role identity.
   ['naeringsliv/kapital_og_eierskap', 'mellomleder']
@@ -160,8 +159,7 @@ for (const r of sorted) {
 lines.push('');
 
 const markdown = `${lines.join('\n')}\n`;
-fs.mkdirSync(path.join(repoRoot, 'reports'), { recursive: true });
-fs.writeFileSync(path.join(repoRoot, 'reports/civication-role-pack-index.md'), markdown);
+fs.mkdirSync(path.join(repoRoot, 'docs'), { recursive: true });
 fs.writeFileSync(path.join(repoRoot, 'docs/CIVICATION_ROLE_PACK_INDEX.md'), markdown);
 
 // Runtime-indeks: leses av js/Civication/systems/civicationRolePackDepth.js slik at
@@ -179,4 +177,4 @@ const runtimeIndex = {
   }))
 };
 fs.writeFileSync(path.join(repoRoot, 'data/Civication/rolePackIndex.json'), `${JSON.stringify(runtimeIndex, null, 2)}\n`);
-console.log(`Wrote ${sorted.length} role rows to docs/CIVICATION_ROLE_PACK_INDEX.md, reports/civication-role-pack-index.md and data/Civication/rolePackIndex.json`);
+console.log(`Wrote ${sorted.length} role rows to docs/CIVICATION_ROLE_PACK_INDEX.md and data/Civication/rolePackIndex.json`);
