@@ -192,8 +192,7 @@ Ingen “normalisering” eller gjetting er tillatt: **domener = filnavn**.
 Hvis id ikke matcher → **FAIL FAST**.
 
 Domener (canonical ids):
-by, historie, kunst, litteratur, musikk, naeringsliv, natur, politikk,
-popkultur, psykologi, sport, subkultur, vitenskap  [oai_citation:0‡DomainRegistry.js](sediment://file_000000008360720ab3a478d5d1c0d42c)
+by, historie, kunst, litteratur, musikk, naeringsliv, natur, politikk, psykologi, sport, subkultur, vitenskap  [oai_citation:0‡DomainRegistry.js](sediment://file_000000008360720ab3a478d5d1c0d42c)
 
 ---
 

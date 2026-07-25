@@ -31,7 +31,7 @@ window.Emner = (function () {
 
   // Kart over alle emne-filer per fagfelt / merke-id
   // historie og vitenskap ligger direkte i data/fag/, resten i underfolder.
-  // populaerkultur er alias for popkultur (fysisk fil).
+
   const EMNER_INDEX = {
     historie:       "data/fag/emner_historie.json",
     vitenskap:      "data/fag/emner_vitenskap.json",
@@ -40,8 +40,8 @@ window.Emner = (function () {
     musikk:         "data/fag/musikk/emner_musikk.json",
     natur:          "data/fag/natur/emner_natur.json",
     litteratur:     "data/fag/litteratur/emner_litteratur.json",
-    popkultur:      "data/fag/popkultur/emner_popkultur.json",
-    populaerkultur: "data/fag/popkultur/emner_popkultur.json",
+    media:          "data/fag/media/emner_media_populaerkultur_canonical_v4_5.json",
+
     naeringsliv:    "data/fag/naeringsliv/emner_naeringsliv.json",
     sport:          "data/fag/sport/emner_sport.json",
     politikk:       "data/fag/politikk/emner_politikk.json",

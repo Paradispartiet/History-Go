@@ -13,7 +13,7 @@
     "naeringsliv",
     "natur",
     "politikk",
-    "popkultur",
+
     "psykologi",
     "religion",
     "scenekunst",
@@ -34,7 +34,7 @@
     "naeringsliv",
     "natur",
     "politikk",
-    "populaerkultur",
+
     "psykologi",
     "religion",
     "scenekunst",
@@ -47,12 +47,11 @@
 
   const ALIASES = {
     "populaerkultur": "popkultur",
-    "populærkultur": "popkultur",
-    "popular_kultur": "popkultur",
-    "popularculture": "popkultur",
-    "popular_culture": "popkultur",
-    "popular-culture": "popkultur",
-    "popular culture": "popkultur",
+
+
+
+
+
 
     "philosophy": "filosofi",
     "sci": "vitenskap",
@@ -72,12 +71,11 @@
 
   const RUNTIME_ALIASES = {
     "popkultur": "populaerkultur",
-    "populærkultur": "populaerkultur",
-    "popular_kultur": "populaerkultur",
-    "popularculture": "populaerkultur",
-    "popular_culture": "populaerkultur",
-    "popular-culture": "populaerkultur",
-    "popular culture": "populaerkultur",
+
+
+
+
+
 
     "philosophy": "filosofi",
 

@@ -112,7 +112,7 @@ The client may keep local/offline state, but security-critical and multi-user pr
 5. `safeRun()` is the only allowed init wrapper; a failing UI module must not stop boot.
 6. **No normalization / no guessing.** Domain id = filename suffix. If an id doesn't match → **FAIL FAST** (log + stop), never fall back to another category. Conflicts (e.g. `popkultur` vs `populaerkultur`) are resolved only by an explicit alias in `js/DomainRegistry.js`.
 
-Canonical domains: `by, historie, kunst, litteratur, musikk, naeringsliv, natur, politikk, popkultur, psykologi, sport, subkultur, vitenskap`.
+Canonical domains: `by, historie, kunst, litteratur, musikk, naeringsliv, natur, politikk, psykologi, sport, subkultur, vitenskap`.
 
 Allowed legacy globals (do not introduce others without a decision): `window.PLACES, PEOPLE, BADGES, RELATIONS, MAP, HGMap, HGPos, OPEN_MODE, API`.
 

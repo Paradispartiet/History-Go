@@ -18,17 +18,7 @@
     { id: "naeringsliv", name: "N\xE6ringsliv", icon: "\u{1F3ED}", color: "#0E3290", secondaryColor: "#AFB0B0", scope: "runtime_domain" },
     { id: "psykologi", name: "Psykologi", icon: "\u{1F9E0}", color: "#06d6a0", scope: "runtime_domain" },
     { id: "film_tv", name: "Film & TV", icon: "\u{1F39E}\uFE0F", color: "#6c757d", scope: "runtime_domain" },
-    { id: "media", name: "Medier", icon: "\u{1F5DE}\uFE0F", color: "#22B8B5", secondaryColor: "#123B4A", scope: "runtime_domain" },
-    {
-      id: "populaerkultur",
-      name: "Popul\xE6rkultur",
-      icon: "\u{1F4FA}",
-      color: "#41206E",
-      secondaryColor: "#1C3463",
-      scope: "runtime_domain_alias",
-      canonicalFagId: "popkultur",
-      aliases: ["popkultur"]
-    }
+    { id: "media", name: "Medier", icon: "\u{1F5DE}\uFE0F", color: "#22B8B5", secondaryColor: "#123B4A", scope: "runtime_domain" }
   ];
   var CAT_BY_ID = /* @__PURE__ */ Object.create(null);
   var CAT_BY_NAME = /* @__PURE__ */ Object.create(null);

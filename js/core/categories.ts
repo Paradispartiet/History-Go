@@ -52,16 +52,6 @@ const CATEGORY_LIST: CategoryDefinition[] = [
   { id: "psykologi", name: "Psykologi", icon: "🧠", color: "#06d6a0", scope: "runtime_domain" },
   { id: "film_tv", name: "Film & TV", icon: "🎞️", color: "#6c757d", scope: "runtime_domain" },
   { id: "media", name: "Medier", icon: "🗞️", color: "#22B8B5", secondaryColor: "#123B4A", scope: "runtime_domain" },
-  {
-    id: "populaerkultur",
-    name: "Populærkultur",
-    icon: "📺",
-    color: "#41206E",
-    secondaryColor: "#1C3463",
-    scope: "runtime_domain_alias",
-    canonicalFagId: "popkultur",
-    aliases: ["popkultur"]
-  }
 ];
 
 const CAT_BY_ID: Record<string, CategoryDefinition> = Object.create(null);
