@@ -203,7 +203,8 @@
     "Prefikset em_sport_ beviser ikke teoridekning; emnet må finnes i V6-matrisen.",
     "Bruk evidenspåstand først etter at teorienheten og dens alternative forklaring er etablert.",
     "Kandidatposter fra søk kan ikke brukes i knowledge eller quiz før full evidenskjede er godkjent.",
-    "Et låst søk eller en eksport er proveniens, ikke evidens; screening, biasvurdering, syntese og sikkerhetsvurdering kreves fortsatt."
+    "Et låst søk eller en eksport er proveniens, ikke evidens; screening, biasvurdering, syntese og sikkerhetsvurdering kreves fortsatt.",
+    "Avansert systematisk evidenssyntese er utsatt etter FAGPRODUKSJON_CANONICAL.md; dette stopper ikke vanlig kildebelagt fag- og quizproduksjon."
   ],
   "example_questions": [
     {
@@ -289,5 +290,11 @@
     "required_for_new_or_modified_scientific_content": true,
     "publication_ready_requires_complete_chain": true,
     "legacy_claims_are_provisional": true
+  },
+  "production_phase_policy": {
+    "document": "data/fag/FAGPRODUKSJON_CANONICAL.md",
+    "ordinary_quiz_production": "active",
+    "advanced_evidence_execution": "deferred",
+    "full_scientific_coverage_claim": "forbidden_until_pipeline_completed"
   }
 }

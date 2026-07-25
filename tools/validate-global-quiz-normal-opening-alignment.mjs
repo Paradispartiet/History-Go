@@ -25,7 +25,7 @@ function run(command, args) {
   ok(result.status === 0, `${command} ${args.join(' ')} består`);
 }
 
-ok(standard.includes('**Versjon:** 3.1'), 'Produksjonsstandarden er versjon 3.1');
+ok(standard.includes('**Versjon:** 3.2'), 'Produksjonsstandarden er versjon 3.2');
 ok(standard.includes(POLICY_PATH), 'Produksjonsstandarden registrerer global åpningspolicy');
 ok(standard.includes('sett 1 og sett 2'), 'Produksjonsstandarden navngir begge absolutte åpningssett');
 ok(standard.includes('sju normale'), 'Produksjonsstandarden krever sju normale spørsmål per sett');
