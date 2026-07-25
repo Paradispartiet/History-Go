@@ -345,8 +345,8 @@
   {
     "concept_id": "con_his_ankomst",
     "label": "ankomst",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «ankomst» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Ankomst er det daterbare tidspunktet og stedet der en person eller gruppe registreres, oppholder seg eller møter institusjoner etter en flytteetappe, uten at dette i seg selv dokumenterer varig bosetting.",
+    "concept_type": "migration_arrival_event_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -365,18 +365,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ankomst» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bosetting",
+      "con_his_ankomst_vs_varig_bosetting",
+      "con_his_mobilitet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_opprinnelse"
+    ],
+    "common_misuse": [
+      "Å bruke første registrerte adresse eller innreisedato som bevis på varig bosted, migrasjonsmotiv eller sosial tilhørighet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert innreise eller oppmøte",
+      "identifisert ankomststed og registreringsinstitusjon",
+      "sporbar videre flytting eller opphold"
+    ],
+    "source_requirements": [
+      "passasjer-, grense-, folkeregister- eller mottakskilde",
+      "senere adresse-, arbeid- eller husholdskilde som kontrollerer oppholdets varighet"
+    ]
   },
   {
     "concept_id": "con_his_ankomst_vs_varig_bosetting",
-    "label": "ankomst vs varig bosetting",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «ankomst vs varig bosetting» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "ankomst versus varig bosetting",
+    "definition": "Skillet mellom ankomst og varig bosetting krever at første oppholdssted holdes adskilt fra senere stabil bolig, hushold, arbeid og lokal institusjonstilknytning.",
+    "concept_type": "arrival_settlement_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -389,18 +404,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ankomst vs varig bosetting» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_ankomst",
+      "con_his_bosetting",
+      "con_his_ankomstadresse_vs_varig_bosted"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tilhorighet_vs_bosted"
+    ],
+    "common_misuse": [
+      "Å slå sammen hele migrasjonsforløpet til ett ankomststed og dermed skjule midlertidige opphold, intern flytting og flere bosettingsforsøk."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "minst to daterte oppholdspunkter",
+      "dokumentert varighet og husholdstilknytning",
+      "skille mellom mottak, midlertidighet og stabilisering"
+    ],
+    "source_requirements": [
+      "sammenhengende adresse- eller registerserie",
+      "arbeids-, skole- eller husholdskilde som dokumenterer faktisk etablering"
+    ]
   },
   {
     "concept_id": "con_his_ankomstadresse_vs_varig_bosted",
-    "label": "ankomstadresse vs varig bosted",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «ankomstadresse vs varig bosted» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "ankomstadresse versus varig bosted",
+    "definition": "Ankomstadresse er den første dokumenterte adressen etter flytting, mens varig bosted krever senere kontinuitet i boligbruk, hushold, rettigheter og lokal hverdagspraksis.",
+    "concept_type": "address_residence_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -411,12 +441,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ankomstadresse vs varig bosted» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_ankomst",
+      "con_his_bosetting",
+      "con_his_hushold_vs_samboende_adresse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tilhorighet_vs_bosted"
+    ],
+    "common_misuse": [
+      "Å geokode en ankomstadresse som personens representative hjemsted uten å undersøke losji, institusjonsplassering, videreflytting og registreringsforsinkelse."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "første registrerte adresse",
+      "senere sammenhengende bostedsserie",
+      "dokumentert bolig- og husholdsbruk"
+    ],
+    "source_requirements": [
+      "adressebok, folkeregister eller mottaksjournal",
+      "leie-, skole-, arbeids- eller husholdskilder som bekrefter varighet"
+    ]
   },
   {
     "concept_id": "con_his_ansvar",
@@ -861,8 +906,8 @@
   {
     "concept_id": "con_his_arbeidsmigrasjon",
     "label": "arbeidsmigrasjon",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «arbeidsmigrasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Arbeidsmigrasjon er flytting der forventet eller avtalt arbeid inngår som en dokumenterbar drivkraft, formidlet gjennom arbeidsgiver, marked, stat, familie eller rekrutteringsnettverk.",
+    "concept_type": "labour_migration_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -875,18 +920,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeidsmigrasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_migrasjonsdrivere",
+      "con_his_arbeidsmigrasjon_vs_arbeid_etter_ankomst",
+      "con_his_selvstendig_naering_vs_etnisk_nisje"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_intern_flytting_vs_grensekryssende_migrasjon"
+    ],
+    "common_misuse": [
+      "Å klassifisere alle migranter som senere arbeidet som arbeidsmigranter uten å dokumentere at arbeid inngikk i beslutningen eller rekrutteringskjeden før flyttingen."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "jobbtilbud, kontrakt eller rekruttering før flytting",
+      "arbeidsrelatert rute eller tillatelse",
+      "sammenheng mellom flytting og arbeidsmarked"
+    ],
+    "source_requirements": [
+      "kontrakter, arbeidstillatelser og arbeidsgiverarkiv",
+      "brev, intervjuer eller myndighetskilder som dokumenterer beslutningsforløpet"
+    ]
   },
   {
     "concept_id": "con_his_arbeidsmigrasjon_vs_arbeid_etter_ankomst",
-    "label": "arbeidsmigrasjon vs arbeid etter ankomst",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «arbeidsmigrasjon vs arbeid etter ankomst» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "arbeidsmigrasjon versus arbeid etter ankomst",
+    "definition": "Skillet mellom arbeidsmigrasjon og arbeid etter ankomst avgjør om arbeid var en utløsningsfaktor for flyttingen eller en senere tilpasning etter en migrasjon drevet av andre forhold.",
+    "concept_type": "migration_motive_employment_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -896,12 +956,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «arbeidsmigrasjon vs arbeid etter ankomst» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeidsmigrasjon",
+      "con_his_migrasjonsmotiv_vs_dokumentert_arsakskjede",
+      "con_his_ankomst"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_migrasjonsdrivere"
+    ],
+    "common_misuse": [
+      "Å lese senere yrke eller arbeidssted bakover som opprinnelig migrasjonsmotiv uten samtidige kilder til beslutningen."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "kronologi mellom flyttebeslutning og arbeid",
+      "dokumentert tilbud eller jobbsøk",
+      "alternative samtidige motiver"
+    ],
+    "source_requirements": [
+      "før-avreise-korrespondanse, kontrakt eller søknad",
+      "etter-ankomst arbeids- og intervjukilder som kontrollerer tidsrekkefølgen"
+    ]
   },
   {
     "concept_id": "con_his_arbeidsmiljo",
@@ -1589,9 +1664,9 @@
   },
   {
     "concept_id": "con_his_avreisested_vs_opprinnelsesidentitet",
-    "label": "avreisested vs opprinnelsesidentitet",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «avreisested vs opprinnelsesidentitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "avreisested versus opprinnelsesidentitet",
+    "definition": "Avreisested er siste dokumenterte opphold før en flytteetappe, mens opprinnelsesidentitet kan knyttes til flere steder, språk, slektskap og selvdefinisjoner over tid.",
+    "concept_type": "departure_origin_identity_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -1604,12 +1679,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «avreisested vs opprinnelsesidentitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_opprinnelse",
+      "con_his_identitet_vs_juridisk_status",
+      "con_his_transnasjonalisme"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ankomst"
+    ],
+    "common_misuse": [
+      "Å gjøre siste avreisested til en fast etnisk eller nasjonal identitet og overse tidligere mobilitet, regionale tilhørigheter og aktørens egen betegnelse."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "dokumentert avreisested og tidspunkt",
+      "selvoppgitt eller relasjonell opprinnelse",
+      "flere mulige stedlige tilknytninger"
+    ],
+    "source_requirements": [
+      "reise-, pass- eller registerkilde",
+      "selvrepresentasjon, familiehistorie og tidligere bostedsserie"
+    ]
   },
   {
     "concept_id": "con_his_bakgrunnsarsak_vs_streikeutlosende_hendelse",
@@ -1710,9 +1800,9 @@
   },
   {
     "concept_id": "con_his_bedriftshistorie_vs_arbeider_og_migrasjonshistorie",
-    "label": "bedriftshistorie vs arbeider- og migrasjonshistorie",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «bedriftshistorie vs arbeider- og migrasjonshistorie» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "bedriftshistorie versus arbeider- og migrasjonshistorie",
+    "definition": "Skillet undersøker forskjellen mellom virksomhetens institusjonelle fortelling og arbeidernes rekruttering, mobilitet, arbeidsvilkår, hushold og egne erfaringer.",
+    "concept_type": "company_worker_migration_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -1722,12 +1812,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «bedriftshistorie vs arbeider- og migrasjonshistorie» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeidsmigrasjon",
+      "con_his_selvstendig_naering_vs_etnisk_nisje",
+      "con_his_fravaer_i_arkivet_vs_fravaer_av_erfaring"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_institusjon_vs_hele_gruppen"
+    ],
+    "common_misuse": [
+      "Å bruke jubileumsbok eller bedriftsarkiv som fullstendig migrasjonshistorie uten å undersøke uregistrert arbeid, familier, konflikter og arbeidernes egne kilder."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "forskjell mellom ledelses- og arbeidstakerkilder",
+      "rekrutterings- og flyttemønster",
+      "arbeids- og husholdserfaringer utenfor bedriftens framstilling"
+    ],
+    "source_requirements": [
+      "bedriftsarkiv, lønnslister og personalregistre",
+      "fagforenings-, familie-, presse- og muntlige kontrollkilder"
+    ]
   },
   {
     "concept_id": "con_his_befolkning",
@@ -2257,9 +2362,9 @@
   },
   {
     "concept_id": "con_his_boligmangel_vs_dokumentert_diskriminering",
-    "label": "boligmangel vs dokumentert diskriminering",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «boligmangel vs dokumentert diskriminering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "boligmangel versus dokumentert diskriminering",
+    "definition": "Skillet mellom boligmangel og diskriminering krever at generell knapphet holdes adskilt fra ulik behandling knyttet til navn, hudfarge, språk, religion, opprinnelse eller status.",
+    "concept_type": "housing_shortage_discrimination_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -2270,12 +2375,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «boligmangel vs dokumentert diskriminering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_diskriminering",
+      "con_his_bosetting",
+      "con_his_formell_rettighet_vs_reell_tilgang"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_fordom_vs_dokumentert_diskriminering"
+    ],
+    "common_misuse": [
+      "Å forklare alle avslag med diskriminering eller omvendt bruke generell boligmangel til å avvise dokumentert systematisk ulik behandling."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "sammenlignbare søkere eller henvendelser",
+      "uttalt eller statistisk mønster i avslag",
+      "kontroll for pris, tidspunkt og boligtype"
+    ],
+    "source_requirements": [
+      "annonser, søknader, korrespondanse og klagesaker",
+      "sammenlignbare markedsdata, tester eller intervjuer"
+    ]
   },
   {
     "concept_id": "con_his_boligpolitikk",
@@ -2574,8 +2694,8 @@
   {
     "concept_id": "con_his_bosetting",
     "label": "bosetting",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «bosetting» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Bosetting er prosessen der personer etablerer relativt stabil bolig, hushold, arbeid, skole- og tjenestetilknytning på et sted, frivillig eller gjennom offentlig plassering.",
+    "concept_type": "settlement_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -2594,12 +2714,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «bosetting» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_ankomst",
+      "con_his_familienettverk_vs_offentlig_bosetting",
+      "con_his_tilhorighet_vs_bosted"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ankomst_vs_varig_bosetting"
+    ],
+    "common_misuse": [
+      "Å tolke registrert adresse som ferdig bosetting uten å undersøke midlertidighet, videreflytting, boligkvalitet og faktisk bruk."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "varig eller gjentatt boligbruk",
+      "hushold, skole, arbeid eller tjenestetilknytning",
+      "dokumentert stabilitet og eventuell videreflytting"
+    ],
+    "source_requirements": [
+      "adresse- og folkeregisterserie, bolig- eller bosettingsvedtak",
+      "husholds-, skole-, arbeids- og muntlige kilder"
+    ]
   },
   {
     "concept_id": "con_his_branner",
@@ -3608,9 +3743,9 @@
   },
   {
     "concept_id": "con_his_diaspora_vs_permanent_utenforskap",
-    "label": "diaspora vs permanent utenforskap",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «diaspora vs permanent utenforskap» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "diaspora versus permanent utenforskap",
+    "definition": "Diaspora betegner relasjoner, minner og institusjoner som forbinder spredte grupper og steder; det innebærer ikke automatisk permanent fremmedhet eller manglende lokal deltakelse.",
+    "concept_type": "diaspora_exclusion_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -3622,12 +3757,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «diaspora vs permanent utenforskap» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_transnasjonalisme",
+      "con_his_tilhorighet",
+      "con_his_transnasjonalt_band_vs_manglende_lokal_tilhorighet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_minorisering"
+    ],
+    "common_misuse": [
+      "Å bruke diaspora som synonym for isolasjon eller anta at transnasjonale bånd hindrer lokal tilhørighet og politisk deltakelse."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "organiserte forbindelser mellom flere steder",
+      "minne, praksis eller institusjoner på tvers av grenser",
+      "samtidig lokal deltakelse og stedstilknytning"
+    ],
+    "source_requirements": [
+      "forenings-, familie-, medie- og pengeoverføringskilder",
+      "lokale deltakelses- og selvrepresentasjonskilder"
+    ]
   },
   {
     "concept_id": "con_his_digital",
@@ -3926,8 +4076,8 @@
   {
     "concept_id": "con_his_diskriminering",
     "label": "diskriminering",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «diskriminering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Diskriminering er dokumenterbar ulik behandling eller virkning knyttet til kategorisert tilhørighet, gjennom beslutninger, regler eller praksis i arbeid, bolig, utdanning, tjenester eller offentlighet.",
+    "concept_type": "discrimination_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -3941,12 +4091,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «diskriminering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_rasisme",
+      "con_his_fordom_vs_dokumentert_diskriminering",
+      "con_his_formell_rettighet_vs_reell_tilgang"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_boligmangel_vs_dokumentert_diskriminering"
+    ],
+    "common_misuse": [
+      "Å bruke diskriminering som forklaring uten å identifisere beslutning, sammenligningsgrunnlag, institusjon og konsekvens, eller kreve eksplisitt rasistisk språk som eneste bevis."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "ulik behandling eller systematisk skjev virkning",
+      "identifisert kategori, arena og beslutning",
+      "sammenlignbar situasjon eller dokumentert mekanisme"
+    ],
+    "source_requirements": [
+      "vedtak, klager, korrespondanse og statistiske serier",
+      "sammenlignings-, intervjue- eller testkilder"
+    ]
   },
   {
     "concept_id": "con_his_dissenter",
@@ -4880,9 +5045,9 @@
   },
   {
     "concept_id": "con_his_enkeltstaende_konflikt_vs_institusjonelt_monster",
-    "label": "enkeltstående konflikt vs institusjonelt mønster",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «enkeltstående konflikt vs institusjonelt mønster» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "enkeltstående konflikt versus institusjonelt mønster",
+    "definition": "Skillet krever at én konflikt holdes adskilt fra et gjentatt og organisatorisk forankret mønster i regler, rutiner, aktører eller utfall.",
+    "concept_type": "incident_institutional_pattern_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -4893,12 +5058,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «enkeltstående konflikt vs institusjonelt mønster» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_diskriminering",
+      "con_his_rasisme",
+      "con_his_institusjon_vs_hele_gruppen"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_motstand_vs_enhver_uenighet"
+    ],
+    "common_misuse": [
+      "Å generalisere fra én synlig sak til en hel institusjon eller avvise et mønster fordi hver sak har ulike detaljer."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "flere sammenlignbare hendelser",
+      "gjentatt regel, rutine eller aktørkjede",
+      "stabil skjevhet i utfall over tid"
+    ],
+    "source_requirements": [
+      "saksserier, instrukser og statistikk",
+      "enkeltmapper, intervjuer og kontrollgrupper som prøver mønsteret"
+    ]
   },
   {
     "concept_id": "con_his_epidemi",
@@ -5056,9 +5236,9 @@
   },
   {
     "concept_id": "con_his_etnisk_konsentrasjon_vs_segregasjon",
-    "label": "etnisk konsentrasjon vs segregasjon",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «etnisk konsentrasjon vs segregasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "etnisk konsentrasjon versus segregasjon",
+    "definition": "Etnisk konsentrasjon beskriver romlig samlokalisering, mens segregasjon krever dokumenterte barrierer, ulik tilgang eller institusjonelle mekanismer som opprettholder atskillelsen.",
+    "concept_type": "concentration_segregation_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -5069,12 +5249,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «etnisk konsentrasjon vs segregasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bosetting",
+      "con_his_diskriminering",
+      "con_his_familienettverk_vs_offentlig_bosetting"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_gruppe_vs_administrativ_kategori"
+    ],
+    "common_misuse": [
+      "Å kalle ethvert nabolag med høy andel av en gruppe segregert uten å undersøke valg, boligmarked, nettverk, offentlig plassering og barrierer."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "romlig konsentrasjon målt med sammenlignbar geografi",
+      "dokumenterte adgangs- eller flyttebarrierer",
+      "varighet og ulikhet i ressurser eller tjenester"
+    ],
+    "source_requirements": [
+      "adresse-, bolig- og demografiske data",
+      "marked-, politikk- og intervjukilder som forklarer mekanismen"
+    ]
   },
   {
     "concept_id": "con_his_etter",
@@ -5484,9 +5679,9 @@
   },
   {
     "concept_id": "con_his_familiegjenforening_vs_opprinnelig_migrasjonsmotiv",
-    "label": "familiegjenforening vs opprinnelig migrasjonsmotiv",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «familiegjenforening vs opprinnelig migrasjonsmotiv» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "familiegjenforening versus opprinnelig migrasjonsmotiv",
+    "definition": "Familiegjenforening er en senere flytting basert på familierelasjon og regelverk, og må skilles fra motivet og statusen til den første migranten i familien.",
+    "concept_type": "family_reunification_motive_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -5496,18 +5691,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «familiegjenforening vs opprinnelig migrasjonsmotiv» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_migrasjonsdrivere",
+      "con_his_familienettverk_vs_offentlig_bosetting",
+      "con_his_transnasjonalisme"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_arbeidsmigrasjon_vs_arbeid_etter_ankomst"
+    ],
+    "common_misuse": [
+      "Å gi alle familiemedlemmer samme migrasjonsmotiv eller beskrive familiegjenforening som rent privat uten å undersøke lov, tid, avhengighet og omsorg."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifisert referanseperson og relasjon",
+      "egen søknad, status og flyttedato",
+      "kronologisk skille mellom familiemedlemmers migrasjon"
+    ],
+    "source_requirements": [
+      "familiegjenforeningssøknader og vedtak",
+      "familie-, korrespondanse- og intervjukilder"
+    ]
   },
   {
     "concept_id": "con_his_familienettverk_vs_offentlig_bosetting",
-    "label": "familienettverk vs offentlig bosetting",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «familienettverk vs offentlig bosetting» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "familienettverk versus offentlig bosetting",
+    "definition": "Skillet analyserer om bolig og sted ble funnet gjennom familie og bekjente eller bestemt og støttet av statlig eller kommunal bosettingspolitikk, ofte i kombinasjon.",
+    "concept_type": "family_network_public_settlement_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -5518,12 +5728,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «familienettverk vs offentlig bosetting» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bosetting",
+      "con_his_familiegjenforening_vs_opprinnelig_migrasjonsmotiv",
+      "con_his_nettverk_vs_automatisk_solidaritet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ankomstadresse_vs_varig_bosted"
+    ],
+    "common_misuse": [
+      "Å tilskrive bosettingsmønsteret enten familievalg eller offentlig styring uten å rekonstruere tildeling, boligtilbud, avslag og videreflytting."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "dokumentert boligformidler eller vedtaksinstans",
+      "familie- og nettverkskontakt ved etablering",
+      "sporbar kombinasjon og senere boligkarriere"
+    ],
+    "source_requirements": [
+      "bosettingsvedtak, kommunale mapper og boligregistre",
+      "familiekorrespondanse og muntlige kilder"
+    ]
   },
   {
     "concept_id": "con_his_fangeleirer",
@@ -6328,9 +6553,9 @@
   },
   {
     "concept_id": "con_his_fordom_vs_dokumentert_diskriminering",
-    "label": "fordom vs dokumentert diskriminering",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «fordom vs dokumentert diskriminering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "fordom versus dokumentert diskriminering",
+    "definition": "Fordom er en holdning eller stereotyp forestilling, mens diskriminering krever at holdningen eller en institusjonell regel får dokumenterbar betydning for behandling, adgang eller utfall.",
+    "concept_type": "prejudice_discrimination_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -6341,12 +6566,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fordom vs dokumentert diskriminering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_diskriminering",
+      "con_his_rasisme",
+      "con_his_boligmangel_vs_dokumentert_diskriminering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_rasialisering_vs_fast_identitet"
+    ],
+    "common_misuse": [
+      "Å bruke rasistisk språk som automatisk bevis for et bestemt diskriminerende utfall, eller avvise diskriminering når eksplisitt fordom ikke er nedskrevet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "uttalt holdning eller stereotypi",
+      "konkret beslutning, praksis eller utfall",
+      "dokumentert forbindelse eller fravær av forbindelse"
+    ],
+    "source_requirements": [
+      "presse, taler, brev og intervjuer",
+      "saks-, sammenlignings- og statistikkilder som viser faktisk behandling"
+    ]
   },
   {
     "concept_id": "con_his_fordypning",
@@ -6711,9 +6951,9 @@
   },
   {
     "concept_id": "con_his_formell_rettighet_vs_reell_tilgang",
-    "label": "formell rettighet vs reell tilgang",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «formell rettighet vs reell tilgang» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "formell rettighet versus reell tilgang",
+    "definition": "Skillet undersøker om en lovfestet rettighet faktisk kunne brukes, gitt dokumentkrav, økonomi, språk, informasjon, skjønn, geografi og institusjonell praksis.",
+    "concept_type": "formal_right_effective_access_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -6723,12 +6963,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «formell rettighet vs reell tilgang» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_status",
+      "con_his_oppholdsstatus_vs_sosial_tilhorighet",
+      "con_his_diskriminering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_statsborgerskap_vs_faktisk_medlemskap"
+    ],
+    "common_misuse": [
+      "Å anta at lik lovtekst ga lik tilgang eller bruke enkelttilgang som bevis på at strukturelle barrierer ikke eksisterte."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formell regel og målgruppe",
+      "søknads-, saks- eller brukstall",
+      "dokumenterte barrierer, avslag og gjennomføring"
+    ],
+    "source_requirements": [
+      "lover, forskrifter og veiledninger",
+      "saksmapper, klager, brukerdata og intervjuer"
+    ]
   },
   {
     "concept_id": "con_his_formidling",
@@ -7236,9 +7491,9 @@
   },
   {
     "concept_id": "con_his_fravaer_i_arkivet_vs_fravaer_av_erfaring",
-    "label": "fravær i arkivet vs fravær av erfaring",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «fravær i arkivet vs fravær av erfaring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "fravær i arkivet versus fravær av erfaring",
+    "definition": "Arkivfravær betyr at en erfaring ikke er bevart, registrert eller søkbar i bestemte arkiver; det dokumenterer ikke at erfaringen eller aktøren manglet historisk betydning.",
+    "concept_type": "archival_silence_experience_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -7249,12 +7504,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fravær i arkivet vs fravær av erfaring» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_minne_vs_samtidig_dokumentasjon",
+      "con_his_selvrepresentasjon_vs_ekstern_omtale",
+      "con_his_minoritetshistorie"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_institusjon_vs_hele_gruppen"
+    ],
+    "common_misuse": [
+      "Å tolke manglende treff i myndighets- eller organisasjonsarkiv som bevis på passivitet, fravær eller enighet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifisert arkivskaper og registreringsformål",
+      "kjent kassasjon, seleksjon eller katalogiseringsskjevhet",
+      "alternative materielle, muntlige eller private spor"
+    ],
+    "source_requirements": [
+      "arkivnøkler, journaler og bevaringshistorikk",
+      "muntlige, private, materielle og eksterne kontrollkilder"
+    ]
   },
   {
     "concept_id": "con_his_funksjoner",
@@ -7343,9 +7613,9 @@
   },
   {
     "concept_id": "con_his_generasjon_vs_ensartet_erfaring",
-    "label": "generasjon vs ensartet erfaring",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «generasjon vs ensartet erfaring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "generasjon versus ensartet erfaring",
+    "definition": "Generasjon er en analytisk kohort knyttet til fødsel, migrasjonsfase eller familiesekvens, men personer i samme generasjon kan ha ulike statuser, kjønn, klasse, steder og erfaringer.",
+    "concept_type": "generation_heterogeneity_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -7355,12 +7625,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «generasjon vs ensartet erfaring» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_tilhorighet",
+      "con_his_identitet_vs_juridisk_status",
+      "con_his_sprakbevaring_vs_uforandret_identitet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_gruppe_vs_administrativ_kategori"
+    ],
+    "common_misuse": [
+      "Å tilskrive første, andre eller tredje generasjon én identitet eller integrasjonsbane uten å definere kohorten og undersøke intern variasjon."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "eksplisitt generasjonsdefinisjon",
+      "sammenlignbare livsløp og migrasjonstidspunkt",
+      "dokumentert variasjon innen kohorten"
+    ],
+    "source_requirements": [
+      "familie-, register- og livsløpsdata",
+      "intervjuer og institusjonskilder som viser ulike erfaringer"
+    ]
   },
   {
     "concept_id": "con_his_gentrifisering",
@@ -7925,9 +8210,9 @@
   },
   {
     "concept_id": "con_his_gruppe_vs_administrativ_kategori",
-    "label": "gruppe vs administrativ kategori",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «gruppe vs administrativ kategori» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "sosial gruppe versus administrativ kategori",
+    "definition": "En sosial gruppe kan bygge på relasjoner og selvforståelse, mens en administrativ kategori er laget for registrering, rettigheter eller styring og kan samle personer som ikke oppfatter seg som én gruppe.",
+    "concept_type": "social_group_administrative_category_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -7939,12 +8224,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «gruppe vs administrativ kategori» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_juridisk_kategori_vs_selvvalgt_identitet",
+      "con_his_registrering_vs_noytral_beskrivelse",
+      "con_his_minoritetspolitikk"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_organisasjon_vs_hele_gruppen"
+    ],
+    "common_misuse": [
+      "Å bruke myndighetenes kategori som direkte navn på et homogent fellesskap eller lese endret statistikk som demografisk endring uten å kontrollere kategorirevisjon."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "dokumentert kategoridefinisjon og formål",
+      "selvorganisering eller relasjoner mellom kategoriserte personer",
+      "endring i klassifikasjon over tid"
+    ],
+    "source_requirements": [
+      "skjema, instrukser, statistikk og saksarkiv",
+      "selvrepresentasjon, organisasjons- og muntlige kilder"
+    ]
   },
   {
     "concept_id": "con_his_handel",
@@ -8378,9 +8678,9 @@
   },
   {
     "concept_id": "con_his_hushold_vs_samboende_adresse",
-    "label": "hushold vs samboende adresse",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «hushold vs samboende adresse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "hushold versus samboende adresse",
+    "definition": "Et hushold deler helt eller delvis økonomi, omsorg og hverdagsorganisering; personer registrert på samme adresse utgjør ikke nødvendigvis ett hushold.",
+    "concept_type": "household_co_residence_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -8390,12 +8690,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «hushold vs samboende adresse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bosetting",
+      "con_his_familienettverk_vs_offentlig_bosetting",
+      "con_his_ankomstadresse_vs_varig_bosted"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_status"
+    ],
+    "common_misuse": [
+      "Å rekonstruere familie og økonomisk fellesskap direkte fra adressebøker eller folkeregister uten å undersøke losji, framleie, institusjonsbolig og midlertidighet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "samboende personer og tidsrom",
+      "delt økonomi, måltid, omsorg eller beslutning",
+      "intern relasjon og husholdsgrense"
+    ],
+    "source_requirements": [
+      "folketelling, bolig- og registerdata",
+      "leie-, familie-, budsjett- eller intervjukilder"
+    ]
   },
   {
     "concept_id": "con_his_husholdsinntekt_vs_individuell_lonn",
@@ -8676,9 +8991,9 @@
   },
   {
     "concept_id": "con_his_identitet_vs_juridisk_status",
-    "label": "identitet vs juridisk status",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «identitet vs juridisk status» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "identitet versus juridisk status",
+    "definition": "Identitet er situert selvforståelse og sosial tilskrivning, mens juridisk status er en formell kategori med bestemte rettigheter og plikter; de kan påvirke hverandre uten å være identiske.",
+    "concept_type": "identity_legal_status_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -8690,12 +9005,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «identitet vs juridisk status» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_status",
+      "con_his_juridisk_kategori_vs_selvvalgt_identitet",
+      "con_his_tilhorighet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_oppholdsstatus_vs_sosial_tilhorighet"
+    ],
+    "common_misuse": [
+      "Å bruke pass, statsborgerskap eller oppholdsstatus som fasit for etnisk, religiøs eller nasjonal identitet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "selvbetegnelse og situert identifikasjon",
+      "formell status og regelverk",
+      "dokumentert samsvar, konflikt eller endring mellom dem"
+    ],
+    "source_requirements": [
+      "statusdokumenter og forvaltningssaker",
+      "selvrepresentasjon, intervjuer og organisasjonskilder"
+    ]
   },
   {
     "concept_id": "con_his_igjen",
@@ -9306,9 +9636,9 @@
   },
   {
     "concept_id": "con_his_institusjon_vs_hele_gruppen",
-    "label": "institusjon vs hele gruppen",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «institusjon vs hele gruppen» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "institusjon versus hele gruppen",
+    "definition": "En minoritetsinstitusjon representerer bestemte medlemmer, ledere og formål; den kan ikke uten videre brukes som talerør eller mål på erfaringene til alle som kategoriseres i gruppen.",
+    "concept_type": "institution_group_representation_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -9318,12 +9648,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «institusjon vs hele gruppen» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_organisasjon_vs_hele_gruppen",
+      "con_his_gruppe_vs_administrativ_kategori",
+      "con_his_offentlig_synlighet_vs_politisk_innflytelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_fravaer_i_arkivet_vs_fravaer_av_erfaring"
+    ],
+    "common_misuse": [
+      "Å generalisere fra en menighet, forening, skole eller butikk til en hel minoritetsbefolkning uten medlems-, rekkevidde- og konfliktdata."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "institusjonens mandat og medlemsgrunnlag",
+      "dokumentert aktivitet og geografisk rekkevidde",
+      "alternative institusjoner og ikke-medlemmer"
+    ],
+    "source_requirements": [
+      "vedtekter, medlemslister og møtebøker",
+      "befolknings-, intervjue- og konkurrerende organisasjonskilder"
+    ]
   },
   {
     "concept_id": "con_his_institusjonalisering",
@@ -9553,9 +9898,9 @@
   },
   {
     "concept_id": "con_his_intern_flytting_vs_grensekryssende_migrasjon",
-    "label": "intern flytting vs grensekryssende migrasjon",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «intern flytting vs grensekryssende migrasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "intern flytting versus grensekryssende migrasjon",
+    "definition": "Intern flytting skjer innen samme statlige grense, mens grensekryssende migrasjon innebærer skifte av jurisdiksjon og ofte statusregime; begge kan inngå i samme mobilitetsforløp.",
+    "concept_type": "internal_international_migration_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -9568,12 +9913,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «intern flytting vs grensekryssende migrasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_mobilitet",
+      "con_his_arbeidsmigrasjon",
+      "con_his_transnasjonalisme"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ankomst"
+    ],
+    "common_misuse": [
+      "Å behandle siste grensepassering som hele migrasjonshistorien og overse tidligere intern flytting, mellomstasjoner og senere mobilitet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "komplett rute med daterte etapper",
+      "identifiserte jurisdiksjonsgrenser",
+      "status- og institusjonsendringer ved grensepassering"
+    ],
+    "source_requirements": [
+      "adresse-, reise- og grensedata",
+      "arbeids-, familie- og intervjukilder som rekonstruerer hele forløpet"
+    ]
   },
   {
     "concept_id": "con_his_internasjonal_organisasjon",
@@ -9978,9 +10338,9 @@
   },
   {
     "concept_id": "con_his_juridisk_kategori_vs_selvvalgt_identitet",
-    "label": "juridisk kategori vs selvvalgt identitet",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «juridisk kategori vs selvvalgt identitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "juridisk kategori versus selvvalgt identitet",
+    "definition": "Juridisk kategori fastsettes gjennom lov og forvaltning, mens selvvalgt identitet uttrykkes av personen eller fellesskapet og kan være flertydig, situert og skiftende.",
+    "concept_type": "legal_category_self_identification_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -9990,12 +10350,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «juridisk kategori vs selvvalgt identitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_identitet_vs_juridisk_status",
+      "con_his_gruppe_vs_administrativ_kategori",
+      "con_his_registrering_vs_noytral_beskrivelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_status"
+    ],
+    "common_misuse": [
+      "Å gjengi en historisk juridisk betegnelse som aktørens egen identitet eller erstatte samtidens selvbetegnelse med dagens kategori uten forklaring."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formell kategoridefinisjon",
+      "aktørens egen betegnelse i identifiserbar kontekst",
+      "dokumentert endring eller konflikt mellom kategoriene"
+    ],
+    "source_requirements": [
+      "lov, register og saksdokument",
+      "brev, forenings-, medie- og muntlige selvrepresentasjoner"
+    ]
   },
   {
     "concept_id": "con_his_jurisdiksjon",
@@ -15277,8 +15652,8 @@
   {
     "concept_id": "con_his_migrasjonsdrivere",
     "label": "migrasjonsdrivere",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «migrasjonsdrivere» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Migrasjonsdrivere er økonomiske, politiske, miljømessige, familiære og institusjonelle forhold som endrer muligheter og press, men må kobles til konkrete beslutnings- og flyttekjeder.",
+    "concept_type": "migration_driver_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -15291,18 +15666,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «migrasjonsdrivere» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeidsmigrasjon",
+      "con_his_migrasjonsmotiv_vs_dokumentert_arsakskjede",
+      "con_his_mobilitet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_opprinnelse"
+    ],
+    "common_misuse": [
+      "Å liste fattigdom, krig eller arbeid som årsak uten å vise hvordan forholdet påvirket bestemte aktører, tidspunkt, ruter og alternativer."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "daterbar endring i press eller mulighet",
+      "mekanisme som når den flyttende aktøren",
+      "sammenheng med beslutning, rute og tidspunkt"
+    ],
+    "source_requirements": [
+      "økonomiske, politiske og miljømessige samtidige kilder",
+      "brev, søknader, intervjuer og sammenlignbare ikke-flyttere"
+    ]
   },
   {
     "concept_id": "con_his_migrasjonsmotiv_vs_dokumentert_arsakskjede",
-    "label": "migrasjonsmotiv vs dokumentert årsakskjede",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «migrasjonsmotiv vs dokumentert årsakskjede» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "migrasjonsmotiv versus dokumentert årsakskjede",
+    "definition": "Et oppgitt migrasjonsmotiv er aktørens formulering i en bestemt situasjon; en dokumentert årsakskjede krever kronologi, mekanismer, alternativer og flere kilder.",
+    "concept_type": "migration_motive_causal_chain_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -15315,12 +15705,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «migrasjonsmotiv vs dokumentert årsakskjede» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_migrasjonsdrivere",
+      "con_his_arbeidsmigrasjon_vs_arbeid_etter_ankomst",
+      "con_his_familiegjenforening_vs_opprinnelig_migrasjonsmotiv"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_minne_vs_samtidig_dokumentasjon"
+    ],
+    "common_misuse": [
+      "Å gjøre ett retrospektivt svar til uttømmende årsak eller erstatte aktørens motiv med en strukturell forklaring uten forbindelsesledd."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "oppgitt motiv med kildekontekst",
+      "daterte hendelser og beslutningspunkter",
+      "alternative forklaringer og kontrollkilder"
+    ],
+    "source_requirements": [
+      "samtidige søknader, brev og administrative kilder",
+      "senere intervju og kontekstdata brukt kildekritisk"
+    ]
   },
   {
     "concept_id": "con_his_militaere",
@@ -15571,9 +15976,9 @@
   },
   {
     "concept_id": "con_his_minne_vs_samtidig_dokumentasjon",
-    "label": "minne vs samtidig dokumentasjon",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «minne vs samtidig dokumentasjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "minne versus samtidig dokumentasjon",
+    "definition": "Minner er senere situerte rekonstruksjoner av erfaring, mens samtidige dokumenter er produsert under andre interesser og begrensninger; ingen av dem er automatisk overordnet.",
+    "concept_type": "memory_contemporary_documentation_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -15585,12 +15990,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «minne vs samtidig dokumentasjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fravaer_i_arkivet_vs_fravaer_av_erfaring",
+      "con_his_selvrepresentasjon_vs_ekstern_omtale",
+      "con_his_migrasjonsmotiv_vs_dokumentert_arsakskjede"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_samtidig_betegnelse_vs_senere_sprakbruk"
+    ],
+    "common_misuse": [
+      "Å bruke avvik mellom minne og arkiv som bevis på at én kilde er falsk uten å undersøke produksjonstid, formål, taushet og senere erfaring."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "klart kilde- og erindringstidspunkt",
+      "sammenlignbare hendelser eller påstander",
+      "forklaring av samsvar, avvik og taushet"
+    ],
+    "source_requirements": [
+      "samtidige administrative og private dokumenter",
+      "muntlige historier med intervjukontekst og krysskontroll"
+    ]
   },
   {
     "concept_id": "con_his_minneaktivisme",
@@ -15663,8 +16083,8 @@
   {
     "concept_id": "con_his_minorisering",
     "label": "minorisering",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «minorisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Minorisering er en prosess der personer eller praksiser gjøres til avvikende og underordnet minoritet gjennom kategorisering, makt, institusjoner og offentlig representasjon.",
+    "concept_type": "minorization_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -15677,12 +16097,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «minorisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_minoritetspolitikk",
+      "con_his_rasialisering",
+      "con_his_gruppe_vs_administrativ_kategori"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_minoritetshistorie"
+    ],
+    "common_misuse": [
+      "Å behandle minoritetsstatus som en fast egenskap ved gruppen uten å identifisere hvem som produserte skillet, gjennom hvilke arenaer og med hvilke konsekvenser."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "kategorisering mot en normativ majoritet",
+      "institusjonell eller offentlig forskjellssetting",
+      "ulik ressurs-, rettighets- eller representasjonsvirkning"
+    ],
+    "source_requirements": [
+      "lover, registre, skole-, medie- og forvaltningskilder",
+      "selvrepresentasjon og praksiskilder som viser respons og forhandling"
+    ]
   },
   {
     "concept_id": "con_his_minoriteter",
@@ -15716,8 +16151,8 @@
   {
     "concept_id": "con_his_minoritetshistorie",
     "label": "minoritetshistorie",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «minoritetshistorie» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Minoritetshistorie undersøker erfaringer, institusjoner, maktforhold og selvrepresentasjon hos grupper som er blitt minorisert, uten å redusere dem til statlige kategorier eller offerhistorie.",
+    "concept_type": "minority_history_field_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -15727,18 +16162,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «minoritetshistorie» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_minorisering",
+      "con_his_fravaer_i_arkivet_vs_fravaer_av_erfaring",
+      "con_his_selvrepresentasjon_vs_ekstern_omtale"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_minoritetspolitikk"
+    ],
+    "common_misuse": [
+      "Å skrive minoritetshistorie bare fra myndighetsarkiv eller bare som diskrimineringshistorie og dermed overse hverdagsliv, interne forskjeller, organisering og aktørskap."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "flere kildeposisjoner og aktørnivåer",
+      "selvrepresentasjon og hverdagspraksis",
+      "makt, variasjon og endring innen gruppen"
+    ],
+    "source_requirements": [
+      "myndighets-, organisasjons-, familie- og materielle kilder",
+      "muntlige og minoritetsproduserte kilder med proveniens"
+    ]
   },
   {
     "concept_id": "con_his_minoritetspolitikk",
     "label": "minoritetspolitikk",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «minoritetspolitikk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Minoritetspolitikk er lover, programmer, registrering og institusjonell praksis som regulerer anerkjennelse, språk, religion, bosetting, vern, kontroll og deltakelse for kategoriserte grupper.",
+    "concept_type": "minority_policy_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -15748,18 +16198,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «minoritetspolitikk» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_minorisering",
+      "con_his_minoritetsvern_vs_kontroll",
+      "con_his_registrering_vs_noytral_beskrivelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_minoritetshistorie"
+    ],
+    "common_misuse": [
+      "Å lese politiske mål som faktisk virkning eller omtale all politikk som enten vern eller undertrykking uten å undersøke blandede mekanismer og mottak."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formell målgruppe og virkemiddel",
+      "ansvarlig institusjon og budsjett",
+      "dokumentert praktisering og konsekvens"
+    ],
+    "source_requirements": [
+      "lover, programmer, budsjetter og saksarkiv",
+      "lokale gjennomførings-, klage- og bruker-/gruppeskilder"
+    ]
   },
   {
     "concept_id": "con_his_minoritetsvern_vs_kontroll",
-    "label": "minoritetsvern vs kontroll",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «minoritetsvern vs kontroll» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "minoritetsvern versus kontroll",
+    "definition": "Tiltak kan samtidig beskytte språk, rettigheter eller sikkerhet og gjøre grupper mer registrerbare, overvåkede eller avhengige; virkninger må analyseres separat.",
+    "concept_type": "minority_protection_control_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -15771,12 +16236,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «minoritetsvern vs kontroll» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_minoritetspolitikk",
+      "con_his_registrering_vs_noytral_beskrivelse",
+      "con_his_formell_rettighet_vs_reell_tilgang"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_status"
+    ],
+    "common_misuse": [
+      "Å klassifisere en ordning utelukkende etter uttalt verneformål eller kontrollkritikk uten å undersøke adgang, tvang, dataflyt og faktiske resultater."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "uttalt vern- og kontrollformål",
+      "registrering, vilkår eller tilsyn",
+      "dokumenterte gevinster, begrensninger og gruppers respons"
+    ],
+    "source_requirements": [
+      "lov, program, register- og tilsynsdokumenter",
+      "klager, brukerdata og minoritetsorganisasjoners kilder"
+    ]
   },
   {
     "concept_id": "con_his_misjon",
@@ -15908,8 +16388,8 @@
   {
     "concept_id": "con_his_mobilitet",
     "label": "mobilitet",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «mobilitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Mobilitet er fysisk og sosial bevegelse mellom steder, arbeid, hushold og statuser, inkludert pendling, sesongflytting, tvang, retur og videre migrasjon.",
+    "concept_type": "mobility_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -15919,12 +16399,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «mobilitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_intern_flytting_vs_grensekryssende_migrasjon",
+      "con_his_ankomst",
+      "con_his_transnasjonalisme"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bosetting"
+    ],
+    "common_misuse": [
+      "Å redusere mobilitet til permanent grensekryssing og dermed overse sirkulasjon, midlertidighet, pendling og tvungne bevegelser."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "daterte bevegelser mellom identifiserte steder",
+      "varighet, rytme og transport-/institusjonsramme",
+      "endring eller kontinuitet i arbeid, hushold og status"
+    ],
+    "source_requirements": [
+      "reise-, adresse-, arbeids- og grensedata",
+      "brev, intervjuer og materielle spor som viser faktisk bevegelse"
+    ]
   },
   {
     "concept_id": "con_his_mobilitet_vs_tilhorighet",
@@ -16289,9 +16784,9 @@
   },
   {
     "concept_id": "con_his_motstand_vs_enhver_uenighet",
-    "label": "motstand vs enhver uenighet",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «motstand vs enhver uenighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "motstand versus enhver uenighet",
+    "definition": "Motstand krever organisert eller gjentatt handling som utfordrer makt, regel eller representasjon; uenighet kan være privat, kortvarig og uten kollektiv strategi.",
+    "concept_type": "resistance_disagreement_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -16302,12 +16797,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «motstand vs enhver uenighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_organisasjon_vs_hele_gruppen",
+      "con_his_offentlig_synlighet_vs_politisk_innflytelse",
+      "con_his_diskriminering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_enkeltstaende_konflikt_vs_institusjonelt_monster"
+    ],
+    "common_misuse": [
+      "Å kalle enhver kritisk ytring motstand eller avvise lavsynlige former fordi de ikke tok form av offentlig protest."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifisert maktforhold og krav",
+      "gjentatt, kollektiv eller strategisk handling",
+      "reaksjon, risiko eller endring i praksis"
+    ],
+    "source_requirements": [
+      "forenings-, protest-, medie- og myndighetskilder",
+      "muntlige og private kilder som dokumenterer skjulte strategier"
+    ]
   },
   {
     "concept_id": "con_his_mottaker",
@@ -16840,9 +17350,9 @@
   },
   {
     "concept_id": "con_his_nettverk_vs_automatisk_solidaritet",
-    "label": "nettverk vs automatisk solidaritet",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «nettverk vs automatisk solidaritet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "nettverk versus automatisk solidaritet",
+    "definition": "Et nettverk er dokumenterte relasjoner som kan formidle informasjon, arbeid, bolig og omsorg; det garanterer ikke lik tilgang, tillit eller solidarisk handling.",
+    "concept_type": "network_solidarity_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -16852,12 +17362,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «nettverk vs automatisk solidaritet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_familienettverk_vs_offentlig_bosetting",
+      "con_his_transnasjonalisme",
+      "con_his_selvstendig_naering_vs_etnisk_nisje"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_organisasjon_vs_hele_gruppen"
+    ],
+    "common_misuse": [
+      "Å anta at felles opprinnelse skaper ett hjelpenettverk eller at alle nettverksmedlemmer har like ressurser og forpliktelser."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifiserte relasjoner og utvekslinger",
+      "ulik posisjon, ressurs og tilgang",
+      "dokumentert hjelp, konflikt eller fravær av støtte"
+    ],
+    "source_requirements": [
+      "korrespondanse, medlems-, arbeid- og husholdsdata",
+      "intervjuer og konkrete formidlingsforløp"
+    ]
   },
   {
     "concept_id": "con_his_noen",
@@ -17216,9 +17741,9 @@
   },
   {
     "concept_id": "con_his_offentlig_synlighet_vs_politisk_innflytelse",
-    "label": "offentlig synlighet vs politisk innflytelse",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «offentlig synlighet vs politisk innflytelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "offentlig synlighet versus politisk innflytelse",
+    "definition": "Offentlig synlighet er tilstedeværelse i medier, arrangementer og byrom, mens politisk innflytelse krever dokumentert adgang til beslutninger, agendaer eller ressursfordeling.",
+    "concept_type": "visibility_influence_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -17229,12 +17754,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «offentlig synlighet vs politisk innflytelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_organisasjon_vs_hele_gruppen",
+      "con_his_selvrepresentasjon_vs_ekstern_omtale",
+      "con_his_motstand_vs_enhver_uenighet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_synlig_bygg_vs_faktisk_aktivitet"
+    ],
+    "common_misuse": [
+      "Å bruke medieomtale, demonstrasjonsstørrelse eller synlig institusjon som bevis på politisk gjennomslag uten beslutningsspor."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "målbar offentlig eksponering",
+      "kontakt med beslutningsarena eller høring",
+      "sporbar endring i vedtak, agenda eller ressurs"
+    ],
+    "source_requirements": [
+      "presse-, arrangements- og organisasjonskilder",
+      "møte-, hørings-, lobby- og beslutningsdokumenter"
+    ]
   },
   {
     "concept_id": "con_his_offentlige",
@@ -17786,9 +18326,9 @@
   },
   {
     "concept_id": "con_his_oppholdsstatus_vs_sosial_tilhorighet",
-    "label": "oppholdsstatus vs sosial tilhørighet",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «oppholdsstatus vs sosial tilhørighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "oppholdsstatus versus sosial tilhørighet",
+    "definition": "Oppholdsstatus er en juridisk adgang til å være i staten på bestemte vilkår; sosial tilhørighet skapes gjennom relasjoner, praksis, anerkjennelse og sted over tid.",
+    "concept_type": "residence_status_social_belonging_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -17798,18 +18338,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «oppholdsstatus vs sosial tilhørighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_status",
+      "con_his_tilhorighet",
+      "con_his_identitet_vs_juridisk_status"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_statsborgerskap_vs_faktisk_medlemskap"
+    ],
+    "common_misuse": [
+      "Å bruke midlertidig status som bevis på svak tilhørighet eller permanent status som bevis på sosial inkludering."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formell status, varighet og vilkår",
+      "lokale relasjoner og institusjonsdeltakelse",
+      "selvopplevd og ekstern anerkjennelse"
+    ],
+    "source_requirements": [
+      "oppholdsvedtak og registerdata",
+      "arbeids-, skole-, organisasjons- og intervjukilder"
+    ]
   },
   {
     "concept_id": "con_his_opprinnelse",
     "label": "opprinnelse",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «opprinnelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Opprinnelse er en kontekstavhengig henvisning til fødested, familie, tidligere bosted, språk eller selvforståelse og må alltid spesifiseres framfor å behandles som én fast identitet.",
+    "concept_type": "origin_reference_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -17828,12 +18383,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «opprinnelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_avreisested_vs_opprinnelsesidentitet",
+      "con_his_identitet_vs_juridisk_status",
+      "con_his_samtidig_betegnelse_vs_senere_sprakbruk"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ankomst"
+    ],
+    "common_misuse": [
+      "Å bruke landkode eller fødested som total forklaring på kultur, motiv, nettverk og senere tilhørighet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "eksplisitt hvilken opprinnelsesdimensjon som brukes",
+      "kildens produsent og formål",
+      "dokumentert variasjon og endring over livsløpet"
+    ],
+    "source_requirements": [
+      "fødsels-, familie-, reise- og registerkilder",
+      "selvrepresentasjon og flere tidsfestede bosteds-/identitetskilder"
+    ]
   },
   {
     "concept_id": "con_his_orden",
@@ -17910,9 +18480,9 @@
   },
   {
     "concept_id": "con_his_organisasjon_vs_hele_gruppen",
-    "label": "organisasjon vs hele gruppen",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «organisasjon vs hele gruppen» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "organisasjon versus hele gruppen",
+    "definition": "En organisasjon har medlemmer, ledelse og mandat og representerer ikke automatisk alle personer som deler juridisk, etnisk, religiøs eller migrasjonsrelatert kategori.",
+    "concept_type": "organization_group_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -17923,12 +18493,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «organisasjon vs hele gruppen» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_institusjon_vs_hele_gruppen",
+      "con_his_gruppe_vs_administrativ_kategori",
+      "con_his_offentlig_synlighet_vs_politisk_innflytelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_nettverk_vs_automatisk_solidaritet"
+    ],
+    "common_misuse": [
+      "Å gjengi en forenings uttalelse som gruppens samlede mening uten medlemsgrunnlag, intern debatt og alternative stemmer."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "vedtekter, medlemskap og mandat",
+      "ledelses- og beslutningsprosedyrer",
+      "alternative organisasjoner og ikke-organiserte aktører"
+    ],
+    "source_requirements": [
+      "foreningsarkiv, medlemslister og møtebøker",
+      "intervjuer, presse og konkurrerende organisasjonskilder"
+    ]
   },
   {
     "concept_id": "con_his_organisasjoner",
@@ -19742,8 +20327,8 @@
   {
     "concept_id": "con_his_rasialisering",
     "label": "rasialisering",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «rasialisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Rasialisering er prosessen der kropp, navn, språk, religion eller opprinnelse gis naturaliserte gruppeegenskaper og brukes til å forklare eller regulere forskjell og hierarki.",
+    "concept_type": "racialization_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -19756,18 +20341,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rasialisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_rasisme",
+      "con_his_minorisering",
+      "con_his_rasialisering_vs_fast_identitet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_religion_vs_etnisitet"
+    ],
+    "common_misuse": [
+      "Å behandle rasialisert kategori som faktisk biologisk eller uforanderlig identitet i stedet for å undersøke produsent, arena, tid og virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "naturaliserende kategorisering av mennesker",
+      "kobling mellom tegn og antatte egenskaper",
+      "institusjonell eller sosial konsekvens"
+    ],
+    "source_requirements": [
+      "presse, vitenskap, skole-, politi- og forvaltningskilder",
+      "selvrepresentasjon og praksiskilder som viser respons og forhandling"
+    ]
   },
   {
     "concept_id": "con_his_rasialisering_vs_fast_identitet",
-    "label": "rasialisering vs fast identitet",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «rasialisering vs fast identitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "rasialisering versus fast identitet",
+    "definition": "Rasialisering er en historisk tilskrivningsprosess, mens fast identitet antar stabile egenskaper; skillet gjør det mulig å undersøke skiftende kategorier og situasjoner.",
+    "concept_type": "racialization_fixed_identity_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -19778,18 +20378,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rasialisering vs fast identitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_rasialisering",
+      "con_his_identitet_vs_juridisk_status",
+      "con_his_samtidig_betegnelse_vs_senere_sprakbruk"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_juridisk_kategori_vs_selvvalgt_identitet"
+    ],
+    "common_misuse": [
+      "Å omtale rasialiserte grupper som tidløse enheter eller gjøre diskriminerende kategorier til nøytrale identitetsnavn."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "skiftende kategoribetegnelse og kriterier",
+      "identifisert arena og kategoriserende aktør",
+      "varierende selvbetegnelse og konsekvens"
+    ],
+    "source_requirements": [
+      "serielle medie-, register- og institusjonskilder",
+      "selvrepresentasjon og sammenligning mellom perioder og arenaer"
+    ]
   },
   {
     "concept_id": "con_his_rasisme",
     "label": "rasisme",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «rasisme» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Rasisme er ideer og praksiser som naturaliserer hierarkisk forskjell og legitimerer eller produserer ulik behandling, adgang, vold eller fordeling etter rasialiserte tegn.",
+    "concept_type": "racism_power_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -19799,12 +20414,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rasisme» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_rasialisering",
+      "con_his_diskriminering",
+      "con_his_fordom_vs_dokumentert_diskriminering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_minorisering"
+    ],
+    "common_misuse": [
+      "Å redusere rasisme til individuell fiendtlighet eller bruke begrepet uten å dokumentere hierarki, institusjonell mekanisme og konsekvens."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "naturaliserende hierarki eller stereotypi",
+      "makt til å forme behandling eller ressurser",
+      "dokumentert ulikhet, eksklusjon eller vold"
+    ],
+    "source_requirements": [
+      "ideologiske, mediale og institusjonelle kilder",
+      "saks-, statistikk-, vitne- og gruppeskilder som viser virkning"
+    ]
   },
   {
     "concept_id": "con_his_ravarekjede",
@@ -20046,9 +20676,9 @@
   },
   {
     "concept_id": "con_his_registrering_vs_noytral_beskrivelse",
-    "label": "registrering vs nøytral beskrivelse",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «registrering vs nøytral beskrivelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "registrering versus nøytral beskrivelse",
+    "definition": "Registrering er en institusjonell handling som velger kategorier, formål og datakrav og dermed former hvem som blir synlig og styrbar; den er ikke bare passiv beskrivelse.",
+    "concept_type": "registration_neutrality_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -20060,12 +20690,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «registrering vs nøytral beskrivelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_gruppe_vs_administrativ_kategori",
+      "con_his_minoritetspolitikk",
+      "con_his_juridisk_kategori_vs_selvvalgt_identitet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_status"
+    ],
+    "common_misuse": [
+      "Å behandle registerkategorier som objektive samfunnsgrupper eller sammenligne tall over tid uten å kontrollere endrede skjema og registreringsformål."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifisert registereier og formål",
+      "kategori-, skjema- og instruksjonsendringer",
+      "konsekvens for rettigheter, statistikk eller kontroll"
+    ],
+    "source_requirements": [
+      "skjema, kodeverk, instrukser og registermetadata",
+      "saks- og selvrepresentasjonskilder som viser praktisk virkning"
+    ]
   },
   {
     "concept_id": "con_his_registrert_ansatt_vs_samlet_arbeidsstyrke",
@@ -20350,9 +20995,9 @@
   },
   {
     "concept_id": "con_his_religion_vs_etnisitet",
-    "label": "religion vs etnisitet",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «religion vs etnisitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "religion versus etnisitet",
+    "definition": "Religion viser til tros-, praksis- og institusjonstilknytning, mens etnisitet viser til relasjonell forestilling om avstamning, kultur og gruppe; de kan overlappe uten å være identiske.",
+    "concept_type": "religion_ethnicity_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -20362,12 +21007,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «religion vs etnisitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_identitet_vs_juridisk_status",
+      "con_his_rasialisering",
+      "con_his_gruppe_vs_administrativ_kategori"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_opprinnelse"
+    ],
+    "common_misuse": [
+      "Å bruke religiøs institusjon, navn eller opprinnelsesland som sikker indikator på etnisk identitet eller personlig tro."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "selvoppgitt eller praktisert religiøs tilknytning",
+      "selv- eller eksternt definert etnisitet",
+      "dokumentert overlapp, forskjell og endring"
+    ],
+    "source_requirements": [
+      "menighets-, forenings- og praksiskilder",
+      "selvrepresentasjon, intervjuer og kategori-/registerkilder"
+    ]
   },
   {
     "concept_id": "con_his_religioner",
@@ -21508,9 +22168,9 @@
   },
   {
     "concept_id": "con_his_samtidig_betegnelse_vs_senere_sprakbruk",
-    "label": "samtidig betegnelse vs senere språkbruk",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «samtidig betegnelse vs senere språkbruk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "samtidig betegnelse versus senere språkbruk",
+    "definition": "Skillet holder historiske aktørers og institusjoners ord adskilt fra senere analytiske, juridiske og identitetspolitiske betegnelser, samtidig som begge forklares kildekritisk.",
+    "concept_type": "historical_later_terminology_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -21522,12 +22182,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «samtidig betegnelse vs senere språkbruk» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_juridisk_kategori_vs_selvvalgt_identitet",
+      "con_his_rasialisering_vs_fast_identitet",
+      "con_his_opprinnelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_minne_vs_samtidig_dokumentasjon"
+    ],
+    "common_misuse": [
+      "Å modernisere historiske kategorier uten markering eller gjenta krenkende samtidsspråk som om det var nøytralt og selvvalgt."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "ordets produsent, dato og arena",
+      "samtidig betydning og maktfunksjon",
+      "senere omtolkning, avvisning eller gjenbruk"
+    ],
+    "source_requirements": [
+      "samtidige tekster, ordbøker, registre og debatter",
+      "senere selvrepresentasjon og begrepshistoriske studier"
+    ]
   },
   {
     "concept_id": "con_his_samtidighet",
@@ -21850,9 +22525,9 @@
   },
   {
     "concept_id": "con_his_selvrepresentasjon_vs_ekstern_omtale",
-    "label": "selvrepresentasjon vs ekstern omtale",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «selvrepresentasjon vs ekstern omtale» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "selvrepresentasjon versus ekstern omtale",
+    "definition": "Selvrepresentasjon er hvordan personer og organisasjoner framstiller egne erfaringer og krav, mens ekstern omtale produseres av myndigheter, medier eller andre aktører med egne formål.",
+    "concept_type": "self_external_representation_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -21863,18 +22538,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «selvrepresentasjon vs ekstern omtale» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_minoritetshistorie",
+      "con_his_organisasjon_vs_hele_gruppen",
+      "con_his_fravaer_i_arkivet_vs_fravaer_av_erfaring"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_offentlig_synlighet_vs_politisk_innflytelse"
+    ],
+    "common_misuse": [
+      "Å gi selvrepresentasjon monopol på intern variasjon eller bruke ekstern omtale som direkte beskrivelse av gruppens identitet og praksis."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifisert avsender og publikum",
+      "framstillingsformål og sjanger",
+      "samsvar, konflikt og taushet mellom posisjonene"
+    ],
+    "source_requirements": [
+      "minoritetspresse, brev, forenings- og muntlige kilder",
+      "myndighets-, presse- og institusjonskilder brukt komparativt"
+    ]
   },
   {
     "concept_id": "con_his_selvstendig_naering_vs_etnisk_nisje",
-    "label": "selvstendig næring vs etnisk nisje",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «selvstendig næring vs etnisk nisje» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "selvstendig næring versus etnisk nisje",
+    "definition": "Selvstendig næring er en eier- og arbeidsform; en etnisk nisje krever dokumentert konsentrasjon, nettverksrekruttering, marked og kategorisering knyttet til en gruppe.",
+    "concept_type": "self_employment_ethnic_niche_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -21884,12 +22574,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «selvstendig næring vs etnisk nisje» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_arbeidsmigrasjon",
+      "con_his_nettverk_vs_automatisk_solidaritet",
+      "con_his_bedriftshistorie_vs_arbeider_og_migrasjonshistorie"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_etnisk_konsentrasjon_vs_segregasjon"
+    ],
+    "common_misuse": [
+      "Å kalle enhver migrantdrevet virksomhet en etnisk nisje eller anta at nettverket er solidarisk og lukket uten eier-, arbeids- og kundedata."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "eierskap og arbeidsform",
+      "gruppekonsentrasjon i rekruttering eller marked",
+      "dokumenterte nettverks- og barrieremekanismer"
+    ],
+    "source_requirements": [
+      "bedrifts-, skatt-, arbeids- og bransjeregister",
+      "intervjuer, kundedata og sammenlignbare virksomheter"
+    ]
   },
   {
     "concept_id": "con_his_selvstendighet",
@@ -23181,9 +23886,9 @@
   },
   {
     "concept_id": "con_his_sprakbevaring_vs_uforandret_identitet",
-    "label": "språkbevaring vs uforandret identitet",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «språkbevaring vs uforandret identitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "språkbevaring versus uforandret identitet",
+    "definition": "Språkbevaring er fortsatt eller gjenopptatt bruk, undervisning og overføring av språk; det innebærer ikke at identitet, praksis og betydning forblir uendret.",
+    "concept_type": "language_retention_identity_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -23193,12 +23898,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «språkbevaring vs uforandret identitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_generasjon_vs_ensartet_erfaring",
+      "con_his_tilhorighet",
+      "con_his_religion_vs_etnisitet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_opprinnelse"
+    ],
+    "common_misuse": [
+      "Å bruke språkbruk som direkte mål på autentisk eller uforandret gruppeidentitet og overse flerspråklighet, skifte og strategisk bruk."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "språkbruk i spesifisert arena og generasjon",
+      "overførings- og undervisningspraksis",
+      "endret funksjon, kompetanse og identitetsbetydning"
+    ],
+    "source_requirements": [
+      "skole-, menighets-, medie- og familiekilder",
+      "intervjuer og språkbruksdata fra flere arenaer og tidspunkter"
+    ]
   },
   {
     "concept_id": "con_his_sprakpolitikk",
@@ -23517,9 +24237,9 @@
   },
   {
     "concept_id": "con_his_statsborgerskap_vs_faktisk_medlemskap",
-    "label": "statsborgerskap vs faktisk medlemskap",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «statsborgerskap vs faktisk medlemskap» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "statsborgerskap versus faktisk medlemskap",
+    "definition": "Statsborgerskap gir formell statsrettslig status, mens faktisk medlemskap også avhenger av rettighetsbruk, anerkjennelse, deltakelse og adgang til institusjoner.",
+    "concept_type": "citizenship_membership_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -23529,12 +24249,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «statsborgerskap vs faktisk medlemskap» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_status",
+      "con_his_formell_rettighet_vs_reell_tilgang",
+      "con_his_oppholdsstatus_vs_sosial_tilhorighet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tilhorighet"
+    ],
+    "common_misuse": [
+      "Å anta at statsborgerskap avslutter eksklusjon eller at manglende statsborgerskap betyr fravær av lokalt og politisk medlemskap."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formell statsborgerstatus og dato",
+      "praktisk rettighets- og institusjonsadgang",
+      "deltakelse, anerkjennelse og eksklusjon"
+    ],
+    "source_requirements": [
+      "statsborgerregistre, lover og enkeltsaker",
+      "valg-, arbeids-, organisasjons- og intervjukilder"
+    ]
   },
   {
     "concept_id": "con_his_statsdannelse",
@@ -23724,9 +24459,9 @@
   },
   {
     "concept_id": "con_his_status",
-    "label": "status",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «status» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "juridisk migrasjonsstatus",
+    "definition": "Juridisk migrasjonsstatus er en tidsavgrenset forvaltningskategori som regulerer opphold, arbeid, familie, vern og adgang til tjenester og kan endres gjennom vedtak, klage og livshendelser.",
+    "concept_type": "migration_legal_status_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -23745,12 +24480,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «status» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_oppholdsstatus_vs_sosial_tilhorighet",
+      "con_his_formell_rettighet_vs_reell_tilgang",
+      "con_his_statsborgerskap_vs_faktisk_medlemskap"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_identitet_vs_juridisk_status"
+    ],
+    "common_misuse": [
+      "Å behandle status som permanent identitet eller gjengi én registerkode uten gyldighetsperiode, vilkår og pågående sak."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "presis statuskategori og hjemmel",
+      "gyldighetsperiode, vilkår og rettigheter",
+      "endring, klage eller overgang mellom statuser"
+    ],
+    "source_requirements": [
+      "vedtak, lovverk og saksjournal",
+      "arbeids-, tjeneste- og personkilder som viser praktiske følger"
+    ]
   },
   {
     "concept_id": "con_his_sted",
@@ -24275,9 +25025,9 @@
   },
   {
     "concept_id": "con_his_synlig_bygg_vs_faktisk_aktivitet",
-    "label": "synlig bygg vs faktisk aktivitet",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «synlig bygg vs faktisk aktivitet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "synlig bygg versus faktisk aktivitet",
+    "definition": "Et synlig menighets-, forenings- eller næringsbygg dokumenterer et fysisk anker, men aktivitet, medlemskap og betydning må påvises gjennom bruk, tid og organisasjon.",
+    "concept_type": "visible_building_activity_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -24287,12 +25037,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «synlig bygg vs faktisk aktivitet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_institusjon_vs_hele_gruppen",
+      "con_his_offentlig_synlighet_vs_politisk_innflytelse",
+      "con_his_selvrepresentasjon_vs_ekstern_omtale"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bosetting"
+    ],
+    "common_misuse": [
+      "Å bruke dagens skilt eller bygg som bevis på kontinuerlig historisk aktivitet eller representativitet for hele gruppen."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert eierskap, leie eller bruk",
+      "arrangement, medlemskap eller åpningstid",
+      "funksjonsendring og faktisk rekkevidde"
+    ],
+    "source_requirements": [
+      "eiendoms-, byggesaks-, forenings- og programkilder",
+      "observasjon, presse, intervjuer og regnskap som viser bruk"
+    ]
   },
   {
     "concept_id": "con_his_systemulykke",
@@ -24847,8 +25612,8 @@
   {
     "concept_id": "con_his_tilhorighet",
     "label": "tilhørighet",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «tilhørighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Tilhørighet er en historisk relasjon mellom personer, steder, mennesker og institusjoner, uttrykt gjennom praksis, rettigheter, minner, anerkjennelse og selvforståelse.",
+    "concept_type": "belonging_relational_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet",
@@ -24864,18 +25629,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tilhørighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_tilhorighet_vs_bosted",
+      "con_his_oppholdsstatus_vs_sosial_tilhorighet",
+      "con_his_transnasjonalisme"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_status"
+    ],
+    "common_misuse": [
+      "Å behandle tilhørighet som en målbar indre følelse alene eller anta at den er eksklusiv til ett sted og lik for hele gruppen."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "selvuttrykt sted- eller fellesskapsrelasjon",
+      "gjentatt deltakelse og sosial anerkjennelse",
+      "rettighets-, minne- eller praksisforankring"
+    ],
+    "source_requirements": [
+      "intervjuer, brev, organisasjons- og hverdagskilder",
+      "register- og institusjonskilder brukt som kontekst, ikke fasit"
+    ]
   },
   {
     "concept_id": "con_his_tilhorighet_vs_bosted",
-    "label": "tilhørighet vs bosted",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «tilhørighet vs bosted» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "tilhørighet versus bosted",
+    "definition": "Bosted er en fysisk og administrativ lokalisering, mens tilhørighet krever relasjoner, praksis, minner og anerkjennelse og kan knytte en person til flere steder.",
+    "concept_type": "belonging_residence_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -24887,12 +25667,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «tilhørighet vs bosted» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_tilhorighet",
+      "con_his_bosetting",
+      "con_his_ankomstadresse_vs_varig_bosted"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_oppholdsstatus_vs_sosial_tilhorighet"
+    ],
+    "common_misuse": [
+      "Å bruke registrert bosted som direkte mål på sosial tilhørighet eller tolke videreflytting som fravær av lokal betydning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "dokumentert bosted og varighet",
+      "selvrepresenterte og praktiserte stedstilknytninger",
+      "flere samtidige eller historiske tilhørigheter"
+    ],
+    "source_requirements": [
+      "adresse- og boligdata",
+      "intervjuer, organisasjons-, familie- og minnekilder"
+    ]
   },
   {
     "concept_id": "con_his_tilpasning",
@@ -25321,8 +26116,8 @@
   {
     "concept_id": "con_his_transnasjonalisme",
     "label": "transnasjonalisme",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «transnasjonalisme» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Transnasjonalisme er vedvarende praksiser og relasjoner som forbinder personer, hushold, organisasjoner og institusjoner på tvers av statsgrenser gjennom omsorg, penger, politikk, religion, medier og mobilitet.",
+    "concept_type": "transnationalism_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -25335,18 +26130,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «transnasjonalisme» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_mobilitet",
+      "con_his_tilhorighet",
+      "con_his_diaspora_vs_permanent_utenforskap"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_intern_flytting_vs_grensekryssende_migrasjon"
+    ],
+    "common_misuse": [
+      "Å bruke enhver utenlandsk kontakt som transnasjonalisme eller anta at grenseoverskridende bånd svekker lokal integrasjon og tilhørighet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "gjentatt relasjon mellom minst to land/steder",
+      "konkret utveksling eller institusjonell praksis",
+      "varighet, aktører og betydning på begge sider"
+    ],
+    "source_requirements": [
+      "reise-, penge-, kommunikasjons- og organisasjonskilder",
+      "husholds-, intervjue- og institusjonskilder fra flere steder"
+    ]
   },
   {
     "concept_id": "con_his_transnasjonalt_band_vs_manglende_lokal_tilhorighet",
-    "label": "transnasjonalt bånd vs manglende lokal tilhørighet",
-    "definition": "I Migrasjon, minoritet og tilhørighet betegner «transnasjonalt bånd vs manglende lokal tilhørighet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "transnasjonalt bånd versus manglende lokal tilhørighet",
+    "definition": "Transnasjonale bånd og lokal tilhørighet kan eksistere samtidig; skillet krever at praksis på tvers av grenser ikke tolkes som fravær av relasjoner og medlemskap der personen bor.",
+    "concept_type": "transnational_local_belonging_distinction",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_migrasjon_minoritet_tilhorighet"
@@ -25356,12 +26166,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «transnasjonalt bånd vs manglende lokal tilhørighet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_transnasjonalisme",
+      "con_his_tilhorighet",
+      "con_his_diaspora_vs_permanent_utenforskap"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_tilhorighet_vs_bosted"
+    ],
+    "common_misuse": [
+      "Å bruke pengeoverføringer, reiser eller utenlandske medier som bevis på manglende lojalitet, integrasjon eller lokal deltakelse."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "dokumentert grenseoverskridende praksis",
+      "dokumentert lokal relasjon og deltakelse",
+      "aktørens egen forståelse av flere tilhørigheter"
+    ],
+    "source_requirements": [
+      "reise-, penge-, medie- og familie-/organisasjonskilder",
+      "lokale arbeid-, skole-, nabo- og intervjukilder"
+    ]
   },
   {
     "concept_id": "con_his_transport",
