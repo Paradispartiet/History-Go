@@ -3,7 +3,7 @@
   "subject_id": "historie",
   "status": "QUALITY_REVIEW_REQUIRED",
   "v6_allowed": false,
-  "generated_at": "2026-07-25T18:12:43.313Z",
+  "generated_at": "2026-07-25T18:57:24.343Z",
   "coverage_counts": {
     "domains": 20,
     "emner": 200,
@@ -13,10 +13,10 @@
     "theories": 200
   },
   "quality_issue_totals": {
-    "concepts": 540,
-    "theories": 120,
+    "concepts": 474,
+    "theories": 110,
     "emner": 0,
-    "domains_not_freeze_ready": 12
+    "domains_not_freeze_ready": 11
   },
   "global_gates": {
     "structural_integrity": true,
@@ -30,14 +30,14 @@
   },
   "quality": {
     "concept_issue_counts": {
-      "synthetic_template_definition": 540,
-      "missing_semantic_relations": 540,
-      "generic_or_missing_misuse_guard": 540,
+      "synthetic_template_definition": 474,
+      "missing_semantic_relations": 474,
+      "generic_or_missing_misuse_guard": 474,
       "numeric_reference_mistyped_as_concept": 3
     },
     "theory_issue_counts": {
-      "only_generic_limitations": 120,
-      "mass_repeated_limitation_profile": 120
+      "only_generic_limitations": 110,
+      "mass_repeated_limitation_profile": 110
     },
     "emne_issue_counts": {}
   },
@@ -70,16 +70,13 @@
       "domain_id": "his_makt_stat_institusjoner",
       "label": "Makt, stat og institusjoner",
       "coverage_complete": true,
-      "freeze_ready": false,
+      "freeze_ready": true,
       "issue_counts": {
         "emner": 0,
-        "concepts": 66,
-        "theories": 10
+        "concepts": 0,
+        "theories": 0
       },
-      "issues": [
-        "concept_quality_incomplete",
-        "theory_quality_incomplete"
-      ]
+      "issues": []
     },
     {
       "domain_id": "his_middelalder_kirke_kongemakt",
@@ -88,7 +85,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 42,
+        "concepts": 37,
         "theories": 10
       },
       "issues": [
@@ -103,7 +100,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 45,
+        "concepts": 40,
         "theories": 10
       },
       "issues": [
@@ -118,7 +115,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 74,
+        "concepts": 73,
         "theories": 10
       },
       "issues": [
@@ -133,7 +130,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 41,
+        "concepts": 37,
         "theories": 10
       },
       "issues": [
@@ -148,7 +145,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 65,
+        "concepts": 60,
         "theories": 10
       },
       "issues": [
@@ -163,7 +160,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 58,
+        "concepts": 57,
         "theories": 10
       },
       "issues": [
@@ -193,7 +190,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 44,
+        "concepts": 41,
         "theories": 10
       },
       "issues": [
@@ -208,7 +205,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 37,
+        "concepts": 34,
         "theories": 10
       },
       "issues": [
@@ -235,7 +232,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 29,
+        "concepts": 28,
         "theories": 10
       },
       "issues": [
@@ -310,7 +307,7 @@
       "freeze_ready": false,
       "issue_counts": {
         "emner": 0,
-        "concepts": 36,
+        "concepts": 35,
         "theories": 10
       },
       "issues": [
@@ -365,18 +362,6 @@
         "label": "3D-modell",
         "domain_ids": [
           "his_minne_kulturarv_historiebruk"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_adgang",
-        "label": "adgang",
-        "domain_ids": [
-          "his_makt_stat_institusjoner"
         ],
         "issues": [
           "synthetic_template_definition",
@@ -625,119 +610,21 @@
           "missing_semantic_relations",
           "generic_or_missing_misuse_guard"
         ]
+      },
+      {
+        "concept_id": "con_his_arbeidsrelasjon",
+        "label": "arbeidsrelasjon",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "synthetic_template_definition",
+          "missing_semantic_relations",
+          "generic_or_missing_misuse_guard"
+        ]
       }
     ],
     "theories": [
-      {
-        "theory_id": "theory_his_institusjonsbygging_funksjon",
-        "label": "Institusjonsbygging, mandat og funksjon",
-        "domain_ids": [
-          "his_makt_stat_institusjoner"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_embetsverk_byrakrati",
-        "label": "Embetsverk, kontor og byråkrati",
-        "domain_ids": [
-          "his_makt_stat_institusjoner"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_beslutningskjede_kompetanse",
-        "label": "Beslutningskjede, kompetanse og ansvar",
-        "domain_ids": [
-          "his_makt_stat_institusjoner"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_statlig_kapasitet_ressurser",
-        "label": "Statlig kapasitet, ressurser og gjennomføring",
-        "domain_ids": [
-          "his_makt_stat_institusjoner"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_rettigheter_borgerskap_forvaltning",
-        "label": "Rettigheter, medborgerskap og forvaltning",
-        "domain_ids": [
-          "his_makt_stat_institusjoner"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_lov_domstol_rettsstat",
-        "label": "Lov, domstol og rettsstat",
-        "domain_ids": [
-          "his_makt_stat_institusjoner"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_politi_fengsel_straff",
-        "label": "Politi, fengsel og strafferegime",
-        "domain_ids": [
-          "his_makt_stat_institusjoner"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_register_overvakning_disiplin",
-        "label": "Register, overvåkning og disiplin",
-        "domain_ids": [
-          "his_makt_stat_institusjoner"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_krise_unntak_kontinuitet",
-        "label": "Krise, unntak og institusjonell kontinuitet",
-        "domain_ids": [
-          "his_makt_stat_institusjoner"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
-      {
-        "theory_id": "theory_his_rettsoppgjor_legitimitet_minne",
-        "label": "Rettsoppgjør, legitimitet og minne",
-        "domain_ids": [
-          "his_makt_stat_institusjoner"
-        ],
-        "issues": [
-          "only_generic_limitations",
-          "mass_repeated_limitation_profile"
-        ]
-      },
       {
         "theory_id": "theory_his_middelalder_by_kirke",
         "label": "Middelalderbyen og kirkemakten",
@@ -897,6 +784,116 @@
         "label": "Stemmerett, partier og parlamentarisme: forklarings- og kildebane",
         "domain_ids": [
           "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
+        "label": "Nasjon, språk, skole og institusjoner: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_union_selvstendighet_og_1905",
+        "label": "Union, selvstendighet og 1905: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_eksklusjon_fornorskning_og_statsborgerskap",
+        "label": "Eksklusjon, fornorskning og statsborgerskap: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_kommunalt_selvstyre_lokal_forvaltning_og_politisk_deltakelse",
+        "label": "Kommunalt selvstyre, lokal forvaltning og politisk deltakelse: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_1814_statsdannelse_1905_unionsopplosning_og_ny_utenrikspolitisk_orientering",
+        "label": "1905, unionsoppløsning og ny utenrikspolitisk orientering: forklarings- og kildebane",
+        "domain_ids": [
+          "his_1814_statsdannelse"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_industriby_arbeiderliv",
+        "label": "Industriby, produksjon og arbeiderliv",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_fabrikk_arbeidsorganisering",
+        "label": "Fabrikk, arbeidsprosess og organisering",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_arbeidstid_lonn_ferdighet",
+        "label": "Arbeidstid, lønn og ferdighet",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_arbeidsmiljo_risiko_helse",
+        "label": "Arbeidsmiljø, risiko og helse",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
+        ],
+        "issues": [
+          "only_generic_limitations",
+          "mass_repeated_limitation_profile"
+        ]
+      },
+      {
+        "theory_id": "theory_his_arbeiderbolig_hushold_livsvilkar",
+        "label": "Arbeiderbolig, hushold og livsvilkår",
+        "domain_ids": [
+          "his_industri_arbeid_sosialhistorie"
         ],
         "issues": [
           "only_generic_limitations",
