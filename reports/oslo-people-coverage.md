@@ -1,6 +1,6 @@
 # Oslo People of Places coverage
 
-Generert: 2026-07-25T04:31:34.022Z
+Generert: 2026-07-25T05:00:47.124Z
 
 ## Policy
 
@@ -12,9 +12,9 @@ Generert: 2026-07-25T04:31:34.022Z
 
 - Oslo-steder totalt: **389**
 - Kravpliktige steder utenom natur: **340**
-- Dekket: **164**
-- Uten People: **176**
-- Dekningsgrad: **48.24%**
+- Dekket: **170**
+- Uten People: **170**
+- Dekningsgrad: **50%**
 - Natursteder: **49** (45 uten People)
 - Geografikonflikter holdt utenfor Oslo-tellingen: **0**
 - Ugyldige People→place-referanser globalt: **50**
@@ -23,11 +23,11 @@ Generert: 2026-07-25T04:31:34.022Z
 
 | Kategori | Totalt | Dekket | Uten People | People-lenker |
 |---|---:|---:|---:|---:|
-| by | 78 | 46 | 32 | 165 |
+| by | 78 | 47 | 31 | 166 |
 | film_tv | 2 | 2 | 0 | 12 |
-| historie | 66 | 23 | 43 | 134 |
-| kunst | 10 | 5 | 5 | 14 |
-| litteratur | 19 | 17 | 2 | 50 |
+| historie | 66 | 24 | 42 | 138 |
+| kunst | 10 | 7 | 3 | 17 |
+| litteratur | 19 | 19 | 0 | 52 |
 | media | 5 | 5 | 0 | 19 |
 | musikk | 9 | 9 | 0 | 16 |
 | naeringsliv | 46 | 6 | 40 | 18 |
@@ -71,7 +71,6 @@ Generert: 2026-07-25T04:31:34.022Z
 | by | `stortorget` | Stortorget | data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03.json |
 | by | `torshov` | Torshov | data/places/by/oslo/places_by.json |
 | by | `trikk_17_18` | Trikkelinje 17/18 | data/places/by/oslo/places_by.json |
-| by | `tullin` | Tullin | data/places/by/oslo/places_by.json |
 | by | `ullern` | Ullern | data/places/by/oslo/places_by.json |
 | by | `vinderen` | Vinderen | data/places/by/oslo/places_by.json |
 | by | `vaalerenga` | Vålerenga | data/places/by/oslo/places_by.json |
@@ -80,7 +79,6 @@ Generert: 2026-07-25T04:31:34.022Z
 | historie | `bankall_gard` | Bånkall gård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_13.json |
 | historie | `den_gamle_krigsskolen` | Den gamle Krigsskolen | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_01.json |
 | historie | `forsvarsmuseet` | Forsvarsmuseet | data/places/historie/oslo/places_historie_atlas_obscura_museum_batch_06.json |
-| historie | `frammuseet` | Frammuseet | data/places/historie/oslo/places_historie_atlas_obscura_bygdoy_batch_05.json |
 | historie | `galgeberg` | Galgeberg | data/places/historie/oslo/places_historie_added_batch_01.json |
 | historie | `gamlebyen_gravlund` | Gamlebyen gravlund | data/places/historie/oslo/places_historie.json |
 | historie | `garmanngarden` | Garmanngården | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02.json |
@@ -119,13 +117,9 @@ Generert: 2026-07-25T04:31:34.022Z
 | historie | `tveten_gard` | Tveten gård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
 | historie | `waisenhuset_kongens_gate` | Waisenhuset | data/places/historie/oslo/places_historie_oslo_oppdag_kvadraturen_batch_02.json |
 | historie | `ovre_fossum_gard` | Øvre Fossum gård | data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10.json |
-| kunst | `framtidsbiblioteket_nordmarka` | Framtidsbiblioteket – Nordmarka | data/places/kunst/oslo/places_kunst.json |
-| kunst | `roseslottet` | Roseslottet | data/places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_06.json |
 | kunst | `skulptursonen_ovre_slottsgate` | Skulptursonen i Øvre Slottsgate | data/places/kunst/oslo/places_kunst_oslo_oppdag_kvadraturen_art_sites_batch_01.json |
 | kunst | `villa_furulund` | Villa Furulund | data/places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_05.json |
 | kunst | `villa_romsli` | Villa Romsli | data/places/kunst/oslo/places_kunst_oslo_kultureiendommer_batch_06.json |
-| litteratur | `alexander_kiellands_plass` | Alexander Kiellands plass | data/places/litteratur/oslo/places_litteratur.json |
-| litteratur | `honse_lovisas_hus` | Hønse-Lovisas hus | data/places/litteratur/oslo/places_litteratur_oslo_kultureiendommer_batch_05.json |
 | naeringsliv | `oslo_mek` | Akers mekaniske Verksted | data/places/naeringsliv/oslo/places_naeringsliv.json |
 | naeringsliv | `amerikalinjen` | Amerikalinjen | data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_03.json |
 | naeringsliv | `akershus_slott_bakeriet` | Bakeriet ved Akershus | data/places/naeringsliv/oslo/places_naeringsliv.json |

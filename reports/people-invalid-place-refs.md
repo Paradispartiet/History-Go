@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-25T04:31:38.046Z
+Generated: 2026-07-25T05:00:51.291Z
 
 ## Sammendrag
-- People-filer lest: **663**
-- People lest: **1298**
+- People-filer lest: **670**
+- People lest: **1305**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1298**
+- Duplikate interne place-referanser: **1305**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -1316,5 +1316,12 @@ Generated: 2026-07-25T04:31:38.046Z
 - data/people/by/oslo/egertorget/herman_eger.json :: herman_eger (Herman Eger) -> egertorget x2
 - data/people/by/oslo/egertorget/thorvald_eger.json :: thorvald_eger (Thorvald Eger) -> egertorget x2
 - data/people/by/oslo/ostbanestasjonen/georg_bull.json :: georg_bull (Georg Andreas Bull) -> ostbanestasjonen x2
+- data/people/by/oslo/tullin/claus_tullin.json :: claus_tullin (Claus Tullin) -> tullin x2
+- data/people/litteratur/oslo/alexander_kiellands_plass/alexander_lange_kielland.json :: alexander_lange_kielland (Alexander Lange Kielland) -> alexander_kiellands_plass x2
+- data/people/kunst/oslo/framtidsbiblioteket_nordmarka/katie_paterson.json :: katie_paterson (Katie Paterson) -> framtidsbiblioteket_nordmarka x2
+- data/people/kunst/oslo/roseslottet/vebjorn_sand.json :: vebjorn_sand (Vebjørn Sand) -> roseslottet x2
+- data/people/kunst/oslo/roseslottet/eimund_sand.json :: eimund_sand (Eimund Sand) -> roseslottet x2
+- data/people/historie/oslo/frammuseet/otto_sverdrup.json :: otto_sverdrup (Otto Sverdrup) -> frammuseet x2
+- data/people/historie/oslo/frammuseet/colin_archer.json :: colin_archer (Colin Archer) -> frammuseet x2
 
 ## Anbefalt neste ryddebatch
