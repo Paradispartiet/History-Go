@@ -1,0 +1,67 @@
+name: Remove popkultur domain migration
+
+on:
+  push:
+    branches:
+      - agent/remove-popkultur-domain
+
+permissions:
+  contents: write
+
+concurrency:
+  group: remove-popkultur-domain-migration
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out migration branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/remove-popkultur-domain
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run migration
+        run: node scripts/remove-popkultur-domain.mjs
+
+      - name: Regenerate places index
+        run: npm run places:index:build
+
+      - name: Rebuild browser bundles
+        run: npm run build:web
+
+      - name: Validate places index
+        run: npm run places:index:check
+
+      - name: Validate browser bundles
+        run: npm run build:web:check
+
+      - name: Type-check migrated browser code
+        run: npm run typecheck:web
+
+      - name: Validate active place data
+        run: npm run health:places
+
+      - name: Remove one-off migration machinery
+        run: |
+          rm scripts/remove-popkultur-domain.mjs
+          rm .github/workflows/remove-popkultur-domain-migration.yml
+
+      - name: Commit migration result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Remove popkultur as a top-level domain"
+          git push origin HEAD:agent/remove-popkultur-domain
