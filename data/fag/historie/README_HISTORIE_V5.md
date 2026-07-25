@@ -1,12 +1,21 @@
 # Historie V5.5
 
-Historie er fryseklar for V6 når produksjonsfilene inneholder 20 individuelt kuraterte domener, 200 emner, 200 teorihooks og 200 tospors mappinger. Syntetiske parallelle V5-registre er deaktivert.
+Historie har nå et komplett dekningsskjelett med 20 domener, 200 emner, 200 hooks og 200 mappinger. Dekning er ikke det samme som faglig fryseklarhet.
 
-Kjør:
+V5.5 kan først fryses når emner, begreper og teoriobjekter er individuelt kuratert, semantisk differensiert og uten generatorspråk. Tellinger eller genererte standarddefinisjoner kan ikke åpne V6.
+
+Kjør kvalitetsrevisjonen med:
 
 ```bash
 mkdir -p reports/historie-v5
-node tools/validate-historie-v5.mjs --write | tee reports/historie-v5/validation-console.txt
+node tools/validate-historie-v5.mjs --write \
+  | tee reports/historie-v5/validation-console.txt
 ```
 
-V6 skal legge evidens, proveniens, kildevekting og motstridende forskning på de frosne ID-ene.
+Den endelige fryseporten er:
+
+```bash
+node tools/validate-historie-v5.mjs --write --require-freeze
+```
+
+V6 skal legge evidens, proveniens, kildevekting og motstridende forskning på ID-er som har passert denne kvalitetsporten.
