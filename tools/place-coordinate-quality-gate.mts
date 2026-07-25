@@ -27,6 +27,7 @@ function toPlaces(payload) {
   if (Array.isArray(payload)) return payload;
   if (Array.isArray(payload?.places)) return payload.places;
   if (Array.isArray(payload?.items)) return payload.items;
+  if (payload && typeof payload === 'object' && typeof payload.id === 'string') return [payload];
   return [];
 }
 
@@ -73,12 +74,13 @@ function hasExplicitRegressionJustification(place) {
   });
 }
 
-function readHeadPlacesById(file) {
+function readHeadPlacesById() {
   try {
-    const raw = execFileSync('git', ['show', `HEAD:${file}`], {
+    const raw = execFileSync('git', ['show', 'HEAD:data/places/places_index.json'], {
       cwd: root,
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'ignore'],
+      maxBuffer: 128 * 1024 * 1024,
     });
     const places = toPlaces(JSON.parse(raw));
     return new Map(places.filter((p) => p?.id).map((p) => [p.id, p]));
@@ -108,6 +110,7 @@ function addCandidate(place, reason, action) {
   });
 }
 
+const headPlacesById = readHeadPlacesById();
 const manifest = readJson(manifestPath);
 const files = Array.isArray(manifest.files) ? manifest.files : [];
 const activeManifestFiles = files
@@ -130,7 +133,6 @@ for (const absFile of activeManifestFiles) {
   }
 
   activeFiles.push(file);
-  const headPlacesById = readHeadPlacesById(file);
   for (const p of toPlaces(payload)) {
     placesValidated += 1;
     const id = p?.id;

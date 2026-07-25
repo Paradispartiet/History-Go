@@ -251,9 +251,8 @@ function resolveManifestEntry(entry: unknown): string {
 }
 
 function asPlacesArray(data: unknown, filePath: string): unknown[] {
-  if (Array.isArray(data)) return data;
-  if (isJsonObject(data) && Array.isArray(data.places)) return data.places;
-  errors.push(`${rel(filePath)}: expected JSON array or object with places[]`);
+  if (isJsonObject(data) && typeof data.id === "string" && data.id.trim()) return [data];
+  errors.push(`${rel(filePath)}: expected exactly one place object`);
   return [];
 }
 

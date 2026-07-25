@@ -23,7 +23,12 @@ const allowedCoordinateDecisions = new Set([
   'needs_poi_source',
   'needs_geometry',
   'needs_historical_source',
-  'needs_identity_split'
+  'needs_identity_split',
+  'needs_geometry_source',
+  'needs_raw_geometry_capture',
+  'needs_ruin_geometry_source',
+  'needs_fortification_geometry_source',
+  'candidate_ready_for_production'
 ]);
 
 const rel = (p: string) => path.relative(root, p).replace(/\\/g, '/');

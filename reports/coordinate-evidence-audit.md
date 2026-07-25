@@ -1,8 +1,8 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-25T07:47:03.101Z
+Generert: 2026-07-25T18:22:16.440Z
 
-Aktive steder: 1484
+Aktive steder: 1444
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -14,46 +14,6 @@ Aktive steder: 1484
 | fornebu_teknologipark | data/coordinate-evidence/akershus/naeringsliv/fornebu_teknologipark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | langoyene | data/coordinate-evidence/akershus/natur/langoyene.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alf_proysen_statue_nittedal | data/coordinate-evidence/akershus/nittedal/alf_proysen_statue_nittedal.json | needs_research | needs_geometry | OK |
-| criciuma_avenida_centenario | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_avenida_centenario.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_biblioteca_donatila_borba | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_biblioteca_donatila_borba.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_caixa_de_embarque | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_caixa_de_embarque.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_capela_sao_bras | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_capela_sao_bras.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_capela_sao_roque | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_capela_sao_roque.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_capela_sao_sebastiao | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_capela_sao_sebastiao.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_casa_da_cultura | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_casa_da_cultura.json | candidate_sources_collected | needs_geometry | OK |
-| criciuma_casa_do_vo_justi | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_casa_do_vo_justi.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_casa_londres | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_casa_londres.json | candidate_sources_collected | needs_address_source | OK |
-| criciuma_casarao_atafona | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_casarao_atafona.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_castelo_britanico | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_castelo_britanico.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_catedral_sao_jose | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_catedral_sao_jose.json | candidate_sources_collected | needs_geometry | OK |
-| criciuma_centro_cultural_jorge_zanatta | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_centro_cultural_jorge_zanatta.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_cruz_sao_paulo_apostolo | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_cruz_sao_paulo_apostolo.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_ct_antenor_angeloni | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_ct_antenor_angeloni.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_estacao_ferroviaria_replica | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_estacao_ferroviaria_replica.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_estadio_heriberto_hulse | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_estadio_heriberto_hulse.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_ginasio_walmir_orsi | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_ginasio_walmir_orsi.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_gruta_lourdes | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_gruta_lourdes.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_igreja_nossa_senhora_salete | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_igreja_nossa_senhora_salete.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_mina_octavio_fontana | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_mina_octavio_fontana.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_mirante_realdo_guglielmi | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_mirante_realdo_guglielmi.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_monumento_ao_mineiro | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_monumento_ao_mineiro.json | candidate_sources_collected | needs_geometry | OK |
-| criciuma_monumento_as_etnias | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_monumento_as_etnias.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_morro_cechinel | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_morro_cechinel.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_museu_augusto_casagrande | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_museu_augusto_casagrande.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_museu_zoologia | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_museu_zoologia.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_paco_municipal | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_paco_municipal.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_parque_astronomico | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_parque_astronomico.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_parque_da_prefeitura | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_parque_da_prefeitura.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_parque_das_nacoes | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_parque_das_nacoes.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_parque_dos_imigrantes | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_parque_dos_imigrantes.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_pavilhao_jose_ijair_conti | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_pavilhao_jose_ijair_conti.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_praca_da_chamine | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_praca_da_chamine.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_praca_do_congresso | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_praca_do_congresso.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_praca_nereu_ramos | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_praca_nereu_ramos.json | candidate_sources_collected | needs_geometry | OK |
-| criciuma_satc | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_satc.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_teatro_elias_angeloni | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_teatro_elias_angeloni.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_terminal_central | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_terminal_central.json | needs_research | do_not_change_coordinates_yet | OK |
-| criciuma_unesc | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_unesc.json | needs_research | do_not_change_coordinates_yet | OK |
 | proysenhuset_rudshogda | data/coordinate-evidence/innlandet/ringsaker/proysenhuset_rudshogda.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | aker_brygge | data/coordinate-evidence/oslo/by/aker_brygge.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akerselva | data/coordinate-evidence/oslo/by/akerselva.json | applied_to_place | do_not_change_coordinates_yet | OK |

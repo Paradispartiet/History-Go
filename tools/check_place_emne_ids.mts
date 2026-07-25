@@ -53,6 +53,7 @@ function toArray(data: unknown): JsonObject[] {
   if (Array.isArray(data)) return data.filter(isJsonObject);
   if (isJsonObject(data) && Array.isArray(data.places)) return data.places.filter(isJsonObject);
   if (isJsonObject(data) && Array.isArray(data.items)) return data.items.filter(isJsonObject);
+  if (isJsonObject(data) && typeof data.id === "string" && data.id.trim()) return [data];
   return [];
 }
 
