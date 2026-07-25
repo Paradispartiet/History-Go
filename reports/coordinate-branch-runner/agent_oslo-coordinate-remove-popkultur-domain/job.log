@@ -4065,3 +4065,162 @@ places_index.json is in sync with source place files after disabled-place filter
 Place coordinate index parity OK: runtime index coordinate fields match source files.
 From https://github.com/Paradispartiet/History-Go
  * branch                main       -> FETCH_HEAD
+[agent/oslo-coordinate-remove-popkultur-domain e72ac3a15] Final synchronized popkultur migration 6
+ 4 files changed, 215 insertions(+), 165 deletions(-)
+ delete mode 100644 scripts/coordinate-branch-job.mjs
+To https://github.com/Paradispartiet/History-Go
+   9ce26a9fd..e72ac3a15  HEAD -> agent/oslo-coordinate-remove-popkultur-domain
+To https://github.com/Paradispartiet/History-Go
+   5310b1835..e72ac3a15  HEAD -> main
+[agent/oslo-coordinate-remove-popkultur-domain 23548d8fa] Retry final popkultur fast-forward 6
+ 1 file changed, 161 insertions(+)
+ create mode 100644 scripts/coordinate-branch-job.mjs
+To https://github.com/Paradispartiet/History-Go
+   e72ac3a15..23548d8fa  HEAD -> agent/oslo-coordinate-remove-popkultur-domain
+From https://github.com/Paradispartiet/History-Go
+ * branch                main       -> FETCH_HEAD
+Already up to date.
+
+> history-go@0.0.0 build:web
+> node build/build-web.mjs
+
+
+  dist/web/knowledgeV2.js             82.6kb
+  dist/web/hgKnowledgeEngine.js       25.1kb
+  dist/web/knowledge.js               16.7kb
+  dist/web/fagHealthReport.js         11.7kb
+  dist/web/courses.js                 10.8kb
+  dist/web/hgSocialPrivacy.js         10.5kb
+  dist/web/emnerLoader.js              5.2kb
+  dist/web/hgModeration.js             3.1kb
+  dist/web/hgInsights.js               2.1kb
+  dist/web/emneDekning.js              1.9kb
+  dist/web/fagkartLoader.js            1.8kb
+  dist/web/trivia.js                   1.0kb
+  dist/web/knowledgeV2.js.map        138.8kb
+  dist/web/hgKnowledgeEngine.js.map   40.6kb
+  dist/web/knowledge.js.map           28.8kb
+  dist/web/fagHealthReport.js.map     19.3kb
+  dist/web/courses.js.map             18.1kb
+  dist/web/hgSocialPrivacy.js.map     16.5kb
+  dist/web/emnerLoader.js.map          9.9kb
+  dist/web/hgModeration.js.map         4.5kb
+  ...and 4 more output files...
+
+⚡ Done in 20ms
+
+  dist/web/map.js                         35.6kb
+  dist/web/map-controls-runtime.js        21.6kb
+  dist/web/place-card-quizcards-patch.js  19.4kb
+  dist/web/search.js                      11.1kb
+  dist/web/nearbyFilterControls.js         9.3kb
+  dist/web/nearbyPeopleList.js             6.5kb
+  dist/web/layerManager.js                 6.2kb
+  dist/web/hgSocialMeetFastApiClient.js    6.1kb
+  dist/web/nearbyPlacesList.js             5.4kb
+  dist/web/nearbyFilters.js                5.4kb
+  dist/web/nearbyPlaceSelector.js          5.3kb
+  dist/web/left-panel.js                   5.2kb
+  dist/web/categories.js                   4.3kb
+  dist/web/nearbyBadgesPanel.js            4.1kb
+  dist/web/leftPanelMode.js                3.8kb
+  dist/web/nearbyDrawer.js                 2.1kb
+
+⚡ Done in 11ms
+
+  dist/web/pos.js  17.0kb
+
+⚡ Done in 4ms
+[build:web] built 29 entry/entries -> dist/web
+
+> history-go@0.0.0 typecheck:web
+> tsc -p tsconfig.web.json
+
+
+> history-go@0.0.0 audit:categories
+> node scripts/audit-category-governance.mjs
+
+{
+  "status": "passed",
+  "runtimeCategories": 17,
+  "fagSubjects": 17,
+  "failures": []
+}
+
+> history-go@0.0.0 audit:people-of-places
+> npm run build:tools && node dist/tools/audit-people-of-places-status.mjs && node dist/tools/check-people-of-places-gate.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote reports/people-of-places-status.json and reports/people-of-places-status.md
+People: 1351; flat files: 0; geographic files: 716; invalid refs: 0; duplicate IDs: 0
+People of Places audit gate passed
+
+> history-go@0.0.0 places:emner:check
+> npm run build:tools && node dist/tools/check_place_emne_ids.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+=== Place emne_id validation ===
+Active place files: 701
+Canonical emne files scanned: 18
+Canonical emne ids loaded: 1197
+
+Missing emne_ids: 0
+
+Duplicate emne_ids within same place: 0
+
+Duplicate place ids across active files: 0
+
+Duplicate place ids within same active file: 0
+
+Duplicate canonical emne_ids across canonical files: 0
+
+> history-go@0.0.0 places:index:build
+> npm run build:tools && node dist/tools/build_places_index.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+Wrote 1431 places -> data/places/places_index.json; skipped 13 disabled place(s); applied 213 category override(s)
+
+> history-go@0.0.0 audit:places-split-manifest-sync
+> npm run build:tools && node dist/tools/audit-places-split-manifest-sync.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "status": "passed",
+  "counts": {
+    "duplicateActivePlaceIds": 0,
+    "staleSplitManifestRows": 0,
+    "splitRowsMissingFromAggregate": 0,
+    "aggregateRowsMissingFromSplitManifest": 0,
+    "movedPlacesStillActiveInOldCategory": 0
+  },
+  "auditReport": "reports/place-split-manifest-category-move-audit.json"
+}
+
+> history-go@0.0.0 places:index:check
+> npm run build:tools && node dist/tools/check_no_lng_coordinates.mjs && node dist/tools/check_places_index_sync.mjs && npm run places:coords:check
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+OK: Ingen active place-data bruker lng. History Go bruker lat/lon.
+places_index.json is in sync with source place files after disabled-place filtering and place overrides.
+
+> history-go@0.0.0 places:coords:check
+> node tests/place-coordinate-index-parity.test.js
+
+Place coordinate index parity OK: runtime index coordinate fields match source files.
+From https://github.com/Paradispartiet/History-Go
+ * branch                main       -> FETCH_HEAD
