@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-25T06:57:35.819Z",
+  "generatedAt": "2026-07-25T07:40:00.698Z",
   "policy": {
     "jurisdiction": "Oslo",
     "requirement": "Alle canonical Oslo-steder utenfor natur skal ha minst én gyldig People-kobling.",
@@ -7,32 +7,25 @@
     "counting": "Logical placeId and personId are deduplicated across manifest-listed aggregate and split files."
   },
   "totals": {
-    "osloPlaces": 389,
-    "requiredNonNaturePlaces": 340,
-    "coveredRequiredPlaces": 188,
-    "uncoveredRequiredPlaces": 152,
-    "requiredCoveragePercent": 55.29,
+    "osloPlaces": 381,
+    "requiredNonNaturePlaces": 332,
+    "coveredRequiredPlaces": 189,
+    "uncoveredRequiredPlaces": 143,
+    "requiredCoveragePercent": 56.93,
     "naturePlaces": 49,
     "coveredNaturePlaces": 4,
     "uncoveredNaturePlaces": 45,
-    "logicalPeople": 1251,
-    "invalidPeopleRefs": 50,
+    "logicalPeople": 1231,
+    "invalidPeopleRefs": 62,
     "geographyConflicts": 0
   },
   "categories": [
     {
       "category": "by",
-      "total": 78,
+      "total": 79,
       "covered": 47,
-      "uncovered": 31,
+      "uncovered": 32,
       "peopleLinks": 166
-    },
-    {
-      "category": "film_tv",
-      "total": 2,
-      "covered": 2,
-      "uncovered": 0,
-      "peopleLinks": 12
     },
     {
       "category": "historie",
@@ -71,9 +64,9 @@
     },
     {
       "category": "naeringsliv",
-      "total": 46,
+      "total": 48,
       "covered": 12,
-      "uncovered": 34,
+      "uncovered": 36,
       "peopleLinks": 32
     },
     {
@@ -91,13 +84,6 @@
       "peopleLinks": 163
     },
     {
-      "category": "populaerkultur",
-      "total": 11,
-      "covered": 2,
-      "uncovered": 9,
-      "peopleLinks": 2
-    },
-    {
       "category": "psykologi",
       "total": 1,
       "covered": 0,
@@ -107,22 +93,22 @@
     {
       "category": "scenekunst",
       "total": 22,
-      "covered": 7,
-      "uncovered": 15,
-      "peopleLinks": 241
+      "covered": 12,
+      "uncovered": 10,
+      "peopleLinks": 218
     },
     {
       "category": "sport",
-      "total": 1,
+      "total": 2,
       "covered": 0,
-      "uncovered": 1,
+      "uncovered": 2,
       "peopleLinks": 0
     },
     {
       "category": "subkultur",
-      "total": 33,
+      "total": 34,
       "covered": 17,
-      "uncovered": 16,
+      "uncovered": 17,
       "peopleLinks": 31
     },
     {
@@ -467,6 +453,18 @@
       "people": [],
       "sourceFiles": [
         "data/places/by/oslo/places_by.json"
+      ],
+      "duplicatePlaceDefinitions": 1
+    },
+    {
+      "placeId": "vika_kino",
+      "name": "Vika kino",
+      "category": "by",
+      "hasPeople": false,
+      "peopleCount": 0,
+      "people": [],
+      "sourceFiles": [
+        "data/places/film/oslo/places_oslo_film.json"
       ],
       "duplicatePlaceDefinitions": 1
     },
@@ -1047,6 +1045,18 @@
       "duplicatePlaceDefinitions": 1
     },
     {
+      "placeId": "gimle_kino",
+      "name": "Gimle kino",
+      "category": "naeringsliv",
+      "hasPeople": false,
+      "peopleCount": 0,
+      "people": [],
+      "sourceFiles": [
+        "data/places/film/oslo/places_oslo_film.json"
+      ],
+      "duplicatePlaceDefinitions": 1
+    },
+    {
       "placeId": "grensen_kjopesenter",
       "name": "Grensen – handelsgate",
       "category": "naeringsliv",
@@ -1203,6 +1213,18 @@
       "duplicatePlaceDefinitions": 1
     },
     {
+      "placeId": "saga_kino",
+      "name": "Saga kino",
+      "category": "naeringsliv",
+      "hasPeople": false,
+      "peopleCount": 0,
+      "people": [],
+      "sourceFiles": [
+        "data/places/film/oslo/places_oslo_film.json"
+      ],
+      "duplicatePlaceDefinitions": 1
+    },
+    {
       "placeId": "sjofartsbygningen",
       "name": "Sjøfartsbygningen",
       "category": "naeringsliv",
@@ -1311,114 +1333,6 @@
       "duplicatePlaceDefinitions": 1
     },
     {
-      "placeId": "chateau_neuf",
-      "name": "Chateau Neuf",
-      "category": "populaerkultur",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/popkultur/oslo/places_oslo_populaerkultur.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
-      "placeId": "frognerstranda",
-      "name": "Frognerstranda",
-      "category": "populaerkultur",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/popkultur/oslo/places_oslo_populaerkultur.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
-      "placeId": "gimle_kino",
-      "name": "Gimle kino",
-      "category": "populaerkultur",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/film/oslo/places_oslo_film.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
-      "placeId": "grand_hotel",
-      "name": "Grand Hotel",
-      "category": "populaerkultur",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/popkultur/oslo/places_oslo_populaerkultur.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
-      "placeId": "hartvig_nissens_skole_skam",
-      "name": "Hartvig Nissens skole (SKAM)",
-      "category": "populaerkultur",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/film/oslo/places_oslo_film.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
-      "placeId": "klingenberg_kino",
-      "name": "Klingenberg kino",
-      "category": "populaerkultur",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/film/oslo/places_oslo_film.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
-      "placeId": "saga_kino",
-      "name": "Saga kino",
-      "category": "populaerkultur",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/film/oslo/places_oslo_film.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
-      "placeId": "slottsplassen",
-      "name": "Slottsplassen",
-      "category": "populaerkultur",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/popkultur/oslo/places_oslo_populaerkultur.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
-      "placeId": "vika_kino",
-      "name": "Vika kino",
-      "category": "populaerkultur",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/film/oslo/places_oslo_film.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
       "placeId": "psykologisk_institutt_uio",
       "name": "Psykologisk institutt, UiO",
       "category": "psykologi",
@@ -1443,32 +1357,8 @@
       "duplicatePlaceDefinitions": 1
     },
     {
-      "placeId": "centralteatret",
-      "name": "Centralteatret",
-      "category": "scenekunst",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/scenekunst/oslo/places_scenekunst.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
       "placeId": "dansens_hus_oslo",
       "name": "Dansens Hus",
-      "category": "scenekunst",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/scenekunst/oslo/places_scenekunst.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
-      "placeId": "det_andre_teatret",
-      "name": "Det Andre Teatret",
       "category": "scenekunst",
       "hasPeople": false,
       "peopleCount": 0,
@@ -1491,30 +1381,6 @@
       "duplicatePlaceDefinitions": 1
     },
     {
-      "placeId": "dramatikkens_hus",
-      "name": "Dramatikkens hus",
-      "category": "scenekunst",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/scenekunst/oslo/dramatikkens_hus.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
-      "placeId": "grusomhetens_teater",
-      "name": "Grusomhetens Teater",
-      "category": "scenekunst",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/scenekunst/oslo/places_scenekunst.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
       "placeId": "kloden_teater_pilotscenen",
       "name": "Kloden teater – Pilotscenen",
       "category": "scenekunst",
@@ -1527,8 +1393,8 @@
       "duplicatePlaceDefinitions": 1
     },
     {
-      "placeId": "nordic_black_theatre_cafeteatret",
-      "name": "Nordic Black Theatre / Cafeteatret",
+      "placeId": "latter",
+      "name": "Latter",
       "category": "scenekunst",
       "hasPeople": false,
       "peopleCount": 0,
@@ -1587,18 +1453,6 @@
       "duplicatePlaceDefinitions": 1
     },
     {
-      "placeId": "teater_manu",
-      "name": "Teater Manu",
-      "category": "scenekunst",
-      "hasPeople": false,
-      "peopleCount": 0,
-      "people": [],
-      "sourceFiles": [
-        "data/places/scenekunst/oslo/teater_manu.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
       "placeId": "vega_scene",
       "name": "Vega Scene",
       "category": "scenekunst",
@@ -1607,6 +1461,18 @@
       "people": [],
       "sourceFiles": [
         "data/places/scenekunst/oslo/vega_scene.json"
+      ],
+      "duplicatePlaceDefinitions": 1
+    },
+    {
+      "placeId": "klingenberg_kino",
+      "name": "Klingenberg kino",
+      "category": "sport",
+      "hasPeople": false,
+      "peopleCount": 0,
+      "people": [],
+      "sourceFiles": [
+        "data/places/film/oslo/places_oslo_film.json"
       ],
       "duplicatePlaceDefinitions": 1
     },
@@ -1679,6 +1545,18 @@
       "people": [],
       "sourceFiles": [
         "data/places/subkultur/oslo/places_subkultur.json"
+      ],
+      "duplicatePlaceDefinitions": 1
+    },
+    {
+      "placeId": "hartvig_nissens_skole_skam",
+      "name": "Hartvig Nissens skole (SKAM)",
+      "category": "subkultur",
+      "hasPeople": false,
+      "peopleCount": 0,
+      "people": [],
+      "sourceFiles": [
+        "data/places/film/oslo/places_oslo_film.json"
       ],
       "duplicatePlaceDefinitions": 1
     },
@@ -3232,80 +3110,6 @@
       ],
       "sourceFiles": [
         "data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_04.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
-      "placeId": "cinemateket_oslo",
-      "name": "Cinemateket i Oslo",
-      "category": "film_tv",
-      "hasPeople": true,
-      "peopleCount": 10,
-      "people": [
-        {
-          "id": "anja_breien",
-          "name": "Anja Breien"
-        },
-        {
-          "id": "arne_skouen",
-          "name": "Arne Skouen"
-        },
-        {
-          "id": "bredo_greve",
-          "name": "Bredo Greve"
-        },
-        {
-          "id": "edith_carlmar",
-          "name": "Edith Carlmar"
-        },
-        {
-          "id": "jan_erik_holst",
-          "name": "Jan Erik Holst"
-        },
-        {
-          "id": "kjersti_holmen",
-          "name": "Kjersti Holmen"
-        },
-        {
-          "id": "liv_ullmann",
-          "name": "Liv Ullmann"
-        },
-        {
-          "id": "nils_r_muller",
-          "name": "Nils R. Müller"
-        },
-        {
-          "id": "pal_bang_hansen",
-          "name": "Pål Bang-Hansen"
-        },
-        {
-          "id": "tancred_ibsen",
-          "name": "Tancred Ibsen"
-        }
-      ],
-      "sourceFiles": [
-        "data/places/popkultur/oslo/places_oslo_populaerkultur.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
-      "placeId": "colosseum_kino",
-      "name": "Colosseum kino",
-      "category": "film_tv",
-      "hasPeople": true,
-      "peopleCount": 2,
-      "people": [
-        {
-          "id": "nils_r_muller",
-          "name": "Nils R. Müller"
-        },
-        {
-          "id": "pal_bang_hansen",
-          "name": "Pål Bang-Hansen"
-        }
-      ],
-      "sourceFiles": [
-        "data/places/popkultur/oslo/places_oslo_populaerkultur.json"
       ],
       "duplicatePlaceDefinitions": 1
     },
@@ -6552,36 +6356,19 @@
       "duplicatePlaceDefinitions": 1
     },
     {
-      "placeId": "bla_skilt_aud_schonemann_vetlandsveien_69d",
-      "name": "Blått skilt: Aud Schønemann",
-      "category": "populaerkultur",
+      "placeId": "centralteatret",
+      "name": "Centralteatret",
+      "category": "scenekunst",
       "hasPeople": true,
       "peopleCount": 1,
       "people": [
         {
-          "id": "aud_schonemann",
-          "name": "Aud Schønemann"
+          "id": "harald_otto",
+          "name": "Harald Otto"
         }
       ],
       "sourceFiles": [
-        "data/places/popkultur/oslo/places_populaerkultur_oslo_bla_skilt_2026_batch_01.json"
-      ],
-      "duplicatePlaceDefinitions": 1
-    },
-    {
-      "placeId": "house_of_nerds",
-      "name": "House of Nerds",
-      "category": "populaerkultur",
-      "hasPeople": true,
-      "peopleCount": 1,
-      "people": [
-        {
-          "id": "andreas_sollund",
-          "name": "Andreas Sollund"
-        }
-      ],
-      "sourceFiles": [
-        "data/places/popkultur/oslo/places_oslo_populaerkultur.json"
+        "data/places/scenekunst/oslo/places_scenekunst.json"
       ],
       "duplicatePlaceDefinitions": 1
     },
@@ -6590,51 +6377,32 @@
       "name": "Chat Noir",
       "category": "scenekunst",
       "hasPeople": true,
-      "peopleCount": 11,
+      "peopleCount": 2,
       "people": [
-        {
-          "id": "bokken_lasson",
-          "name": "Bokken Lasson"
-        },
-        {
-          "id": "dag_froland",
-          "name": "Dag Frøland"
-        },
         {
           "id": "egil_monn_iversen",
           "name": "Egil Monn-Iversen"
         },
         {
-          "id": "einar_schanke",
-          "name": "Einar Schanke"
-        },
-        {
-          "id": "ernst_diesen",
-          "name": "Ernst Diesen"
-        },
-        {
-          "id": "jens_book_jenssen",
-          "name": "Jens Book-Jenssen"
-        },
-        {
           "id": "johan_henrik_wiers_jenssen",
           "name": "Johan Henrik Wiers-Jenssen"
-        },
+        }
+      ],
+      "sourceFiles": [
+        "data/places/scenekunst/oslo/places_scenekunst.json"
+      ],
+      "duplicatePlaceDefinitions": 1
+    },
+    {
+      "placeId": "det_andre_teatret",
+      "name": "Det Andre Teatret",
+      "category": "scenekunst",
+      "hasPeople": true,
+      "peopleCount": 1,
+      "people": [
         {
-          "id": "lalla_carlsen",
-          "name": "Lalla Carlsen"
-        },
-        {
-          "id": "tom_sterri",
-          "name": "Tom Sterri"
-        },
-        {
-          "id": "victor_bernau",
-          "name": "Victor Bernau"
-        },
-        {
-          "id": "vilhelm_dybwad",
-          "name": "Vilhelm Dybwad"
+          "id": "nils_petter_morland",
+          "name": "Nils Petter Mørland"
         }
       ],
       "sourceFiles": [
@@ -6647,7 +6415,7 @@
       "name": "Det Norske Teatret",
       "category": "scenekunst",
       "hasPeople": true,
-      "peopleCount": 80,
+      "peopleCount": 79,
       "people": [
         {
           "id": "agnes_mowinckel_det_norske_teatret",
@@ -6784,10 +6552,6 @@
         {
           "id": "jannike_kruse",
           "name": "Jannike Kruse"
-        },
-        {
-          "id": "jon_eikemo",
-          "name": "Jon Eikemo"
         },
         {
           "id": "jorunn_kjellsby",
@@ -6976,95 +6740,36 @@
       "duplicatePlaceDefinitions": 1
     },
     {
+      "placeId": "dramatikkens_hus",
+      "name": "Dramatikkens hus",
+      "category": "scenekunst",
+      "hasPeople": true,
+      "peopleCount": 1,
+      "people": [
+        {
+          "id": "anne_may_nilsen",
+          "name": "Anne-May Nilsen"
+        }
+      ],
+      "sourceFiles": [
+        "data/places/scenekunst/oslo/dramatikkens_hus.json"
+      ],
+      "duplicatePlaceDefinitions": 1
+    },
+    {
       "placeId": "edderkoppen_scene",
       "name": "Edderkoppen Scene",
       "category": "scenekunst",
       "hasPeople": true,
-      "peopleCount": 21,
+      "peopleCount": 2,
       "people": [
-        {
-          "id": "anders_moland",
-          "name": "Anders Moland"
-        },
-        {
-          "id": "arvid_nilssen",
-          "name": "Arvid Nilssen"
-        },
-        {
-          "id": "dan_fosse",
-          "name": "Dan Fosse"
-        },
-        {
-          "id": "einar_schanke",
-          "name": "Einar Schanke"
-        },
-        {
-          "id": "ernst_diesen",
-          "name": "Ernst Diesen"
-        },
-        {
-          "id": "harald_heide_steen_jr",
-          "name": "Harald Heide-Steen jr."
-        },
-        {
-          "id": "inger_lise_rypdal",
-          "name": "Inger Lise Rypdal"
-        },
-        {
-          "id": "jon_eikemo",
-          "name": "Jon Eikemo"
-        },
-        {
-          "id": "kari_diesen",
-          "name": "Kari Diesen"
-        },
-        {
-          "id": "ketil_aamodt",
-          "name": "Ketil Aamodt"
-        },
-        {
-          "id": "kirsti_sparboe",
-          "name": "Kirsti Sparboe"
-        },
         {
           "id": "kjersti_holmen",
           "name": "Kjersti Holmen"
         },
         {
-          "id": "lalla_carlsen",
-          "name": "Lalla Carlsen"
-        },
-        {
-          "id": "leif_juster",
-          "name": "Leif Juster"
-        },
-        {
-          "id": "oivind_blunck",
-          "name": "Øivind Blunck"
-        },
-        {
-          "id": "ole_paus",
-          "name": "Ole Paus"
-        },
-        {
           "id": "oliver_neerland",
           "name": "Oliver Neerland"
-        },
-        {
-          "id": "per_kvist",
-          "name": "Per Kvist"
-        },
-        {
-          "id": "rolv_wesenlund",
-          "name": "Rolv Wesenlund"
-        },
-        {
-          "id": "tom_sterri",
-          "name": "Tom Sterri"
-        },
-        {
-          "id": "willie_hoel",
-          "name": "Willie Hoel"
         }
       ],
       "sourceFiles": [
@@ -7098,15 +6803,15 @@
       "duplicatePlaceDefinitions": 1
     },
     {
-      "placeId": "latter",
-      "name": "Latter",
+      "placeId": "grusomhetens_teater",
+      "name": "Grusomhetens Teater",
       "category": "scenekunst",
       "hasPeople": true,
       "peopleCount": 1,
       "people": [
         {
-          "id": "elina_krantz",
-          "name": "Elina Krantz"
+          "id": "lars_oyno",
+          "name": "Lars Øyno"
         }
       ],
       "sourceFiles": [
@@ -7616,6 +7321,27 @@
       "duplicatePlaceDefinitions": 1
     },
     {
+      "placeId": "nordic_black_theatre_cafeteatret",
+      "name": "Nordic Black Theatre / Cafeteatret",
+      "category": "scenekunst",
+      "hasPeople": true,
+      "peopleCount": 2,
+      "people": [
+        {
+          "id": "cliff_a_moustache",
+          "name": "Cliff A. Moustache"
+        },
+        {
+          "id": "jarl_solberg",
+          "name": "Jarl Solberg"
+        }
+      ],
+      "sourceFiles": [
+        "data/places/scenekunst/oslo/places_scenekunst.json"
+      ],
+      "duplicatePlaceDefinitions": 1
+    },
+    {
       "placeId": "operahuset",
       "name": "Operahuset",
       "category": "scenekunst",
@@ -7637,6 +7363,23 @@
       ],
       "sourceFiles": [
         "data/places/scenekunst/oslo/places_scenekunst.json"
+      ],
+      "duplicatePlaceDefinitions": 1
+    },
+    {
+      "placeId": "teater_manu",
+      "name": "Teater Manu",
+      "category": "scenekunst",
+      "hasPeople": true,
+      "peopleCount": 1,
+      "people": [
+        {
+          "id": "mira_zuckermann",
+          "name": "Mira Zuckermann"
+        }
+      ],
+      "sourceFiles": [
+        "data/places/scenekunst/oslo/teater_manu.json"
       ],
       "duplicatePlaceDefinitions": 1
     },
@@ -8949,6 +8692,66 @@
       "personId": "alf_proysen",
       "name": "Alf Prøysen",
       "placeId": "alf_proysen_statue_nittedal"
+    },
+    {
+      "personId": "tancred_ibsen",
+      "name": "Tancred Ibsen",
+      "placeId": "cinemateket_oslo"
+    },
+    {
+      "personId": "edith_carlmar",
+      "name": "Edith Carlmar",
+      "placeId": "cinemateket_oslo"
+    },
+    {
+      "personId": "arne_skouen",
+      "name": "Arne Skouen",
+      "placeId": "cinemateket_oslo"
+    },
+    {
+      "personId": "liv_ullmann",
+      "name": "Liv Ullmann",
+      "placeId": "cinemateket_oslo"
+    },
+    {
+      "personId": "anja_breien",
+      "name": "Anja Breien",
+      "placeId": "cinemateket_oslo"
+    },
+    {
+      "personId": "jan_erik_holst",
+      "name": "Jan Erik Holst",
+      "placeId": "cinemateket_oslo"
+    },
+    {
+      "personId": "pal_bang_hansen",
+      "name": "Pål Bang-Hansen",
+      "placeId": "cinemateket_oslo"
+    },
+    {
+      "personId": "pal_bang_hansen",
+      "name": "Pål Bang-Hansen",
+      "placeId": "colosseum_kino"
+    },
+    {
+      "personId": "nils_r_muller",
+      "name": "Nils R. Müller",
+      "placeId": "colosseum_kino"
+    },
+    {
+      "personId": "nils_r_muller",
+      "name": "Nils R. Müller",
+      "placeId": "cinemateket_oslo"
+    },
+    {
+      "personId": "bredo_greve",
+      "name": "Bredo Greve",
+      "placeId": "cinemateket_oslo"
+    },
+    {
+      "personId": "kjersti_holmen",
+      "name": "Kjersti Holmen",
+      "placeId": "cinemateket_oslo"
     },
     {
       "personId": "helgaberget_ristningsskaparane",

@@ -1,52 +1,51 @@
 # People-place coverage audit
 
-Generert: 2026-07-25T06:57:40.131Z
+Generert: 2026-07-25T07:40:05.544Z
 
 ## Sammendrag
 
-- People totalt: **1332**
-- Places totalt: **1291**
-- Places med people: **367**
-- Places uten people: **924**
-- People-place-lenker: **1582**
-- People koblet til flere gyldige steder: **267**
-- People uten gyldig sted: **122**
-- Ugyldige place-referanser: **50**
-- Duplikate place-referanser inne på people: **1251**
-- People uten image: **991**
-- People uten cardImage: **992**
-- People uten popupDesc: **105**
+- People totalt: **1368**
+- Places totalt: **1277**
+- Places med people: **368**
+- Places uten people: **909**
+- People-place-lenker: **1545**
+- People koblet til flere gyldige steder: **259**
+- People uten gyldig sted: **186**
+- Ugyldige place-referanser: **62**
+- Duplikate place-referanser inne på people: **1231**
+- People uten image: **1027**
+- People uten cardImage: **1028**
+- People uten popupDesc: **161**
 
 ## Dekning per place-kategori
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 213 | 63 | 150 | 186 | 154 |
-| film_tv | 8 | 8 | 0 | 45 | 23 |
+| by | 214 | 63 | 151 | 186 | 154 |
+| film_tv | 6 | 6 | 0 | 33 | 13 |
 | historie | 449 | 75 | 374 | 255 | 177 |
 | kunst | 34 | 22 | 12 | 53 | 49 |
 | litteratur | 40 | 34 | 6 | 70 | 59 |
 | media | 11 | 8 | 3 | 28 | 27 |
 | musikk | 15 | 13 | 2 | 30 | 22 |
-| naeringsliv | 144 | 41 | 103 | 89 | 83 |
+| naeringsliv | 146 | 41 | 105 | 89 | 83 |
 | natur | 98 | 8 | 90 | 18 | 18 |
 | politikk | 35 | 23 | 12 | 213 | 175 |
-| populaerkultur | 17 | 2 | 15 | 2 | 2 |
 | psykologi | 3 | 2 | 1 | 2 | 1 |
 | religion | 3 | 0 | 3 | 0 | 0 |
-| scenekunst | 59 | 7 | 52 | 241 | 223 |
-| sport | 71 | 30 | 41 | 260 | 245 |
-| subkultur | 54 | 19 | 35 | 35 | 32 |
+| scenekunst | 59 | 12 | 47 | 218 | 205 |
+| sport | 72 | 30 | 42 | 260 | 245 |
+| subkultur | 55 | 19 | 36 | 35 | 32 |
 | vitenskap | 37 | 12 | 25 | 55 | 45 |
 
 ## People tags
 
 - historie: 258
 - sport: 245
-- teater: 202
-- scenekunst: 193
+- scenekunst: 200
+- teater: 197
 - litteratur: 181
-- skuespiller: 147
+- skuespiller: 139
 - politikk: 137
 - musikk: 121
 - holmenkollen: 105
@@ -56,10 +55,10 @@ Generert: 2026-07-25T06:57:40.131Z
 - arkitektur: 66
 - subkultur: 64
 - by: 60
-- regissor: 56
+- regissor: 55
 - langrenn: 49
 - fotball: 47
-- teatersjef: 47
+- teatersjef: 46
 - ensemble: 45
 - ibsen: 45
 - bislett: 44
@@ -71,7 +70,6 @@ Generert: 2026-07-25T06:57:40.131Z
 - riksforsamlingen: 38
 - vitenskap: 36
 - etne: 34
-- revy: 30
 - holmenkollmedaljen: 29
 - friidrett: 28
 - media: 28
@@ -80,8 +78,6 @@ Generert: 2026-07-25T06:57:40.131Z
 - akershus_festning: 25
 - modernisme: 25
 - natur: 25
-- popkultur: 25
-- sanger: 24
 - skanevik: 24
 - skihopp: 24
 - film_tv: 23
@@ -89,22 +85,24 @@ Generert: 2026-07-25T06:57:40.131Z
 - etterkrigstid: 21
 - offentlig_kunst: 21
 - torshovteatret: 20
+- sanger: 19
 - verdenscup: 19
 - industri: 18
+- middelalder: 18
+- filantrop: 17
 
 ## Steder med flest people
 
 - nationaltheatret (Nationaltheatret) – 122
 - holmenkollen_nasjonalanlegg (Holmenkollen nasjonalanlegg) – 109
 - bislett_stadion (Bislett Stadion) – 82
-- det_norske_teatret (Det Norske Teatret) – 80
+- det_norske_teatret (Det Norske Teatret) – 79
 - akershus_festning (Akershus festning) – 45
 - eidsvollsbygningen (Eidsvollsbygningen) – 42
 - stortinget (Stortinget) – 32
 - middelalder_oslo (Middelalderparken) – 24
 - universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning) – 23
 - youngstorget (Youngstorget) – 22
-- edderkoppen_scene (Edderkoppen Scene) – 21
 - universitetsplassen (Universitetsplassen) – 19
 - oslo_radhus (Oslo rådhus) – 17
 - karl_johan (Karl Johans gate) – 16
@@ -119,6 +117,7 @@ Generert: 2026-07-25T06:57:40.131Z
 - slottet (Det kongelige slott) – 12
 - torggata (Torggata) – 12
 - ullevaal_stadion (Ullevaal Stadion) – 12
+- jordal_amfi (Jordal Amfi) – 11
 
 ## Ugyldige place-referanser
 
@@ -131,6 +130,18 @@ Generert: 2026-07-25T06:57:40.131Z
 - jan_erik_vold (Jan Erik Vold) -> sofienbergparken
 - cecilie_loveid (Cecilie Løveid) -> sofienbergparken
 - alf_proysen (Alf Prøysen) -> alf_proysen_statue_nittedal
+- tancred_ibsen (Tancred Ibsen) -> cinemateket_oslo
+- edith_carlmar (Edith Carlmar) -> cinemateket_oslo
+- arne_skouen (Arne Skouen) -> cinemateket_oslo
+- liv_ullmann (Liv Ullmann) -> cinemateket_oslo
+- anja_breien (Anja Breien) -> cinemateket_oslo
+- jan_erik_holst (Jan Erik Holst) -> cinemateket_oslo
+- pal_bang_hansen (Pål Bang-Hansen) -> cinemateket_oslo
+- pal_bang_hansen (Pål Bang-Hansen) -> colosseum_kino
+- nils_r_muller (Nils R. Müller) -> colosseum_kino
+- nils_r_muller (Nils R. Müller) -> cinemateket_oslo
+- bredo_greve (Bredo Greve) -> cinemateket_oslo
+- kjersti_holmen (Kjersti Holmen) -> cinemateket_oslo
 - helgaberget_ristningsskaparane (Ristningsskaparane på Helgaberget) -> helgaberget_etne
 - borgasen_borgbyggjarane (Borgbyggjarane på Borgåsen) -> borgasen_etne
 - saebotunet_gardsfolket (Gardsfolket på Sæbø) -> saebotunet_etne
@@ -200,30 +211,6 @@ Generert: 2026-07-25T06:57:40.131Z
 - kristin_jarmund (Kristin Jarmund) -> vulkan_industriomrade
 - hagbarth_schytte_berg (Hagbarth Schytte-Berg) -> stensparken
 - halvor_c_reiersen (Halvor C. Reiersen) -> stensparken
-- leif_juster (Leif Juster) -> edderkoppen_scene
-- einar_schanke (Einar Schanke) -> edderkoppen_scene
-- lalla_carlsen (Lalla Carlsen) -> edderkoppen_scene
-- kari_diesen (Kari Diesen) -> edderkoppen_scene
-- ernst_diesen (Ernst Diesen) -> edderkoppen_scene
-- per_kvist (Per Kvist) -> edderkoppen_scene
-- arvid_nilssen (Arvid Nilssen) -> edderkoppen_scene
-- willie_hoel (Willie Hoel) -> edderkoppen_scene
-- dan_fosse (Dan Fosse) -> edderkoppen_scene
-- tom_sterri (Tom Sterri) -> edderkoppen_scene
-- ketil_aamodt (Ketil Aamodt) -> edderkoppen_scene
-- anders_moland (Anders Moland) -> edderkoppen_scene
-- oivind_blunck (Øivind Blunck) -> edderkoppen_scene
-- jon_eikemo (Jon Eikemo) -> edderkoppen_scene
-- kirsti_sparboe (Kirsti Sparboe) -> edderkoppen_scene
-- inger_lise_rypdal (Inger Lise Rypdal) -> edderkoppen_scene
-- ole_paus (Ole Paus) -> edderkoppen_scene
-- rolv_wesenlund (Rolv Wesenlund) -> edderkoppen_scene
-- harald_heide_steen_jr (Harald Heide-Steen jr.) -> edderkoppen_scene
-- bokken_lasson (Bokken Lasson) -> chat_noir
-- vilhelm_dybwad (Vilhelm Dybwad) -> chat_noir
-- victor_bernau (Victor Bernau) -> chat_noir
-- jens_book_jenssen (Jens Book-Jenssen) -> chat_noir
-- dag_froland (Dag Frøland) -> chat_noir
 - halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen
 - haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard
 - sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard
@@ -275,7 +262,31 @@ Generert: 2026-07-25T06:57:40.131Z
 - haakon_v_magnusson (Håkon V Magnusson) -> akershus_festning
 - st_hallvard (St. Hallvard) -> middelalder_oslo
 - harald_hardrade (Harald Hardråde) -> middelalder_oslo
-- ... 1151 flere
+- christian_iv (Christian IV) -> christiania_torv
+- christopher_hansteen (Christopher Hansteen) -> observatoriet
+- kong_karl_johan (Karl Johan) -> slottet
+- oscar_i (Oscar I) -> slottet
+- vidkun_quisling (Vidkun Quisling) -> akershus_festning
+- gunnar_sonsteby (Gunnar Sønsteby) -> akershus_festning
+- gregers_gram (Gregers Gram) -> akershus_festning
+- henrik_ibsen (Henrik Ibsen) -> karl_johan
+- edvard_munch (Edvard Munch) -> karl_johan
+- oda_krohg (Oda Krohg) -> karl_johan
+- christian_krohg (Christian Krohg) -> karl_johan
+- thorvald_meyer (Thorvald Meyer) -> birkelunden
+- olaf_rye (Olaf Rye) -> olaf_ryes_plass
+- bernt_anker (Bernt Anker) -> bankplassen
+- georg_sverdrup (Georg Sverdrup) -> universitetsplassen
+- aasta_hansteen (Aasta Hansteen) -> karl_johan
+- christian_magnus_falsen (Christian Magnus Falsen) -> eidsvollsbygningen
+- wilhelm_f_k_christie (Wilhelm Frimann Koren Christie) -> eidsvollsbygningen
+- carsten_anker (Carsten Anker) -> eidsvollsbygningen
+- peder_anker (Peder Anker) -> bogstad_gard
+- birger_eriksen (Birger Eriksen) -> oscarsborg_festning
+- marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
+- martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
+- cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
+- ... 1131 flere
 
 ## Anbefalt første people-batch
 
@@ -308,6 +319,7 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - romsaås | Romsås | by | high
 - storgata | Storgata | by | high
 - ullern | Ullern | by | high
+- vika_kino | Vika kino | by | high
 - vinderen | Vinderen | by | high
 - galgeberg | Galgeberg | historie | high
 - hovedoya_kloster | Hovedøya kloster | historie | high
@@ -330,5 +342,4 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - nonneseter_kloster | Nonneseter kloster | historie | high
 - oslo_hospital | Oslo hospital | historie | high
 - lisbon_centro_cultural_de_belem | Centro Cultural de Belém | kunst | high
-- lisbon_culturgest | Culturgest | kunst | high
 
