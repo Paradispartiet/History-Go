@@ -1,6 +1,6 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-25T20:44:29.857Z
+Generert: 2026-07-25T20:54:07.399Z
 
 Aktive steder: 1444
 

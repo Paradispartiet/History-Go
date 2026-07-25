@@ -1687,8 +1687,8 @@
   {
     "concept_id": "con_his_beredskap",
     "label": "beredskap",
-    "definition": "I Krig, okkupasjon og motstand betegner «beredskap» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Beredskap er forhåndsorganiserte ressurser, fullmakter, øvelser og varslingsordninger som skal redusere skade og opprettholde kritiske funksjoner når en definert fare blir virkelig.",
+    "concept_type": "preparedness_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_krig_okkupasjon_motstand",
@@ -1708,12 +1708,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «beredskap» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kriseledelse",
+      "con_his_sikkerhet",
+      "con_his_institusjonell_laering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_resiliens"
+    ],
+    "common_misuse": [
+      "Å slutte fra en vedtatt plan til faktisk beredskap uten å dokumentere bemanning, materiell, øvelser, responstid og gjennomføring under hendelsen."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert beredskapsplan og ansvarsdeling",
+      "tilgjengelige ressurser og øvelser",
+      "varsling og faktisk respons"
+    ],
+    "source_requirements": [
+      "planverk, øvingsrapport, vaktjournal og hendelseslogg",
+      "kontrollkilde som viser forskjellen mellom formell plan og operativ kapasitet"
+    ]
   },
   {
     "concept_id": "con_his_beretning",
@@ -2408,9 +2423,9 @@
   },
   {
     "concept_id": "con_his_branner",
-    "label": "branner",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «branner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "brannkatastrofer",
+    "definition": "Brannkatastrofer er historiske brannforløp der antennelse, bygningsmateriale, tetthet, vær, slokkeberedskap og sosial eksponering sammen gir omfattende tap eller varig stedsendring.",
+    "concept_type": "fire_disaster_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -2421,12 +2436,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «branner» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fare",
+      "con_his_sarbarhet",
+      "con_his_gjenoppbygging"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ulykker"
+    ],
+    "common_misuse": [
+      "Å forklare en storbrann bare med antennelsesårsaken og overse byform, materialer, vind, varsling, slokking og ulik evne til å evakuere og gjenoppbygge."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "brannens utbredelse og varighet",
+      "tap av liv, bygg og funksjoner",
+      "endret regulering eller bebyggelse etterpå"
+    ],
+    "source_requirements": [
+      "brannprotokoll, kart, foto, forsikrings- og avisdata",
+      "kontrollkilde for skadeomfang, berørte grupper og etterfølgende tiltak"
+    ]
   },
   {
     "concept_id": "con_his_bredere",
@@ -2616,9 +2646,9 @@
   },
   {
     "concept_id": "con_his_bygges",
-    "label": "bygges",
-    "definition": "I 1814, grunnlov og statsdannelse betegner «bygges» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "gjenoppbyggingspolitikk",
+    "definition": "Gjenoppbyggingspolitikk er prioriteringer om hva, hvor og for hvem som skal bygges etter ødeleggelse, og omfatter finansiering, regulering, standarder, eiendom og symbolsk nasjons- eller stedsbygging.",
+    "concept_type": "reconstruction_policy_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_1814_statsdannelse",
@@ -2630,12 +2660,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «bygges» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_gjenoppbygging",
+      "con_his_fellesskap",
+      "con_his_minne"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_igjen"
+    ],
+    "common_misuse": [
+      "Å omtale gjenoppbygging som teknisk nødvendighet uten å undersøke hvilke alternativer, grupper, steder og fortellinger som ble prioritert eller utelatt."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "plan- og budsjettvedtak",
+      "fordeling av bolig, infrastruktur og erstatning",
+      "symbolske og identitetsbyggende valg"
+    ],
+    "source_requirements": [
+      "gjenoppbyggingsplan, budsjett, byggesak og politisk debatt",
+      "kilde fra berørte eiere, beboere eller virksomheter"
+    ]
   },
   {
     "concept_id": "con_his_bygninger",
@@ -3186,9 +3231,9 @@
   },
   {
     "concept_id": "con_his_demokratisk",
-    "label": "demokratisk",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «demokratisk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "demokratisk motstandskraft",
+    "definition": "Demokratisk motstandskraft er institusjoners og borgeres evne til å opprettholde rettigheter, åpenhet, representasjon og fredelig konfliktbehandling under og etter terror, krise eller unntakstilstand.",
+    "concept_type": "democratic_resilience_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -3198,12 +3243,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «demokratisk» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_terror",
+      "con_his_sikkerhet",
+      "con_his_fellesskap"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_beredskap"
+    ],
+    "common_misuse": [
+      "Å bruke samlende retorikk eller høy valgdeltakelse som tilstrekkelig bevis på demokratisk motstandskraft uten å undersøke rettigheter, beslutningsprosesser og varige kontrolltiltak."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "videreførte demokratiske prosedyrer",
+      "offentlig debatt og rettighetsvern",
+      "begrensning eller reversering av unntakstiltak"
+    ],
+    "source_requirements": [
+      "lov- og vedtaksdata, parlamentsdebatt og domstolskontroll",
+      "kilde om sivilsamfunnets og berørte gruppers deltakelse"
+    ]
   },
   {
     "concept_id": "con_his_diaspora",
@@ -3978,8 +4038,8 @@
   {
     "concept_id": "con_his_eksponering",
     "label": "eksponering",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «eksponering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Eksponering er graden og varigheten mennesker, bygg, økosystemer eller funksjoner befinner seg i kontakt med en konkret fare før, under eller etter en hendelse.",
+    "concept_type": "hazard_exposure_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -3996,12 +4056,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «eksponering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fare",
+      "con_his_sarbarhet",
+      "con_his_ulik"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sarbarhet"
+    ],
+    "common_misuse": [
+      "Å bruke eksponering som synonym for sårbarhet; to grupper kan være like utsatt for en fare, men ha svært ulik evne til å tåle og håndtere den."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "geografisk eller tidsmessig nærhet til fare",
+      "antall personer, bygg eller funksjoner i faresonen",
+      "varighet og intensitet"
+    ],
+    "source_requirements": [
+      "hendelseskart, befolknings- og bygningsdata, målinger eller rutejournaler",
+      "kontrollkilde for faktisk tilstedeværelse på hendelsestidspunktet"
+    ]
   },
   {
     "concept_id": "con_his_ekspropriasjon",
@@ -4155,9 +4230,9 @@
   },
   {
     "concept_id": "con_his_endrer",
-    "label": "endrer",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «endrer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "endringsvirkning",
+    "definition": "Endringsvirkning er den dokumenterbare forskjellen en katastrofe eller krise skaper i institusjoner, praksiser, bebyggelse, rettigheter eller forventninger sammenlignet med situasjonen før hendelsen.",
+    "concept_type": "historical_effect_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -4167,12 +4242,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «endrer» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_brudd",
+      "con_his_etter",
+      "con_his_institusjonell_laering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_katastrofe"
+    ],
+    "common_misuse": [
+      "Å anta at en dramatisk hendelse automatisk skapte varig endring uten før- og etterkilder som viser hva som faktisk ble videreført, reversert eller omformet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "målbar forskjell før og etter",
+      "identifiserbar mekanisme fra hendelse til endring",
+      "varighet utover akuttfasen"
+    ],
+    "source_requirements": [
+      "sammenlignbare regler, budsjetter, kart eller praksiskilder",
+      "kontrollkilde som tester konkurrerende forklaringer"
+    ]
   },
   {
     "concept_id": "con_his_endring",
@@ -4583,9 +4673,9 @@
   },
   {
     "concept_id": "con_his_etter",
-    "label": "etter",
-    "definition": "I Krig, okkupasjon og motstand betegner «etter» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "etterkriseperiode",
+    "definition": "Etterkriseperiode er et analytisk avgrenset tidsrom etter akuttfasen der skade, ansvar, gjenoppbygging, minne og institusjonelle endringer fortsatt forhandles og får varig form.",
+    "concept_type": "post_crisis_period_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_krig_okkupasjon_motstand",
@@ -4597,12 +4687,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «etter» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_gjenoppbygging",
+      "con_his_gransking",
+      "con_his_minne"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ettertid"
+    ],
+    "common_misuse": [
+      "Å sette etterkrisens start og slutt etter kalenderen alene uten å vise når akutt innsats opphørte og ordinære eller nye institusjoner faktisk tok over."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "overgang fra akutt respons til langsiktig tiltak",
+      "gransking, erstatning og gjenoppbygging",
+      "nye regler eller minnepraksiser"
+    ],
+    "source_requirements": [
+      "hendelseslogg, vedtak, budsjett og tidslinje",
+      "kilde som dokumenterer ulike gruppers overgang ut av krisen"
+    ]
   },
   {
     "concept_id": "con_his_etterforskning",
@@ -5072,8 +5177,8 @@
   {
     "concept_id": "con_his_fare",
     "label": "fare",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «fare» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Fare er en prosess, tilstand eller hendelsestype med potensial til å påføre skade, analysert uavhengig av hvor mange som er eksponert og hvor sårbare de er.",
+    "concept_type": "hazard_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -5090,12 +5195,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fare» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_eksponering",
+      "con_his_sarbarhet",
+      "con_his_sikkerhet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_katastrofe"
+    ],
+    "common_misuse": [
+      "Å kalle en naturprosess eller teknisk tilstand en katastrofe før skade, eksponering og samfunnsmessige konsekvenser er dokumentert."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifisert skadeprosess",
+      "sannsynlig intensitet og geografisk rekkevidde",
+      "historiske varsler eller kjente mekanismer"
+    ],
+    "source_requirements": [
+      "måling, teknisk rapport, naturhistorisk kilde eller hendelsesregister",
+      "kilde som skiller potensial fra faktisk skade"
+    ]
   },
   {
     "concept_id": "con_his_farekilde_vs_dokumentert_helseeffekt",
@@ -5166,9 +5286,9 @@
   },
   {
     "concept_id": "con_his_fellesskap",
-    "label": "fellesskap",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «fellesskap» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "krisefellesskap",
+    "definition": "Krisefellesskap er midlertidige eller varige former for samarbeid, omsorg, mobilisering og identitet som oppstår eller omformes når mennesker møter felles fare, tap og gjenoppbygging.",
+    "concept_type": "crisis_community_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -5178,12 +5298,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fellesskap» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_gjenoppbygging",
+      "con_his_minne",
+      "con_his_demokratisk"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_institusjoner"
+    ],
+    "common_misuse": [
+      "Å romantisere solidaritet etter katastrofer og overse konflikt, ulik tilgang til hjelp, ekskludering og at fellesskapet kan oppløses når akuttfasen er over."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "frivillig mobilisering og gjensidig hjelp",
+      "felles ritualer eller organisasjoner",
+      "konflikt om representasjon og ressurser"
+    ],
+    "source_requirements": [
+      "organisasjonsarkiv, dagbok, intervju, avis og møteprotokoll",
+      "kilde fra grupper som stod innenfor og utenfor det dominerende fellesskapet"
+    ]
   },
   {
     "concept_id": "con_his_femininitet",
@@ -5721,7 +5856,7 @@
   {
     "concept_id": "con_his_fordypning",
     "label": "statsborgerskap",
-    "definition": "Formelt medlemskap i en stat med historisk skiftende rettigheter, plikter, adgang til politisk deltakelse og grenser for inkludering.",
+    "definition": "Statsborgerskap er en historisk regulert juridisk medlemsstatus som fordeler rettigheter, plikter, beskyttelse og politisk adgang, og som kan få særskilt betydning under krise, evakuering og gjenoppbygging.",
     "concept_type": "legal_membership_concept",
     "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
@@ -5732,22 +5867,29 @@
       "em_his_katastrofer_brudd_gjenoppbygging_resiliens_og_minne",
       "em_his_kjonn_familie_kjonn_familie_seksualitet_og_livslop_10"
     ],
-    "broader_concepts": [
-      "con_his_likestilling"
-    ],
+    "broader_concepts": [],
     "narrower_concepts": [],
     "related_concepts": [
-      "con_his_kvinnebevegelse",
-      "con_his_statsborgerskap",
-      "con_his_eiendom"
+      "con_his_demokratisk",
+      "con_his_regler",
+      "con_his_fellesskap"
     ],
     "distinguish_from": [
-      "con_his_identitet"
+      "con_his_minne"
     ],
     "common_misuse": [
-      "Å likestille formell «statsborgerskap» med faktisk likhet uten å undersøke adgang, ressurser, håndheving, organisering og sosiale normer."
+      "Å bruke statsborgerskap som synonym for kulturell tilhørighet eller anta at formell status ga lik faktisk tilgang til sikkerhet, hjelp og erstatning."
     ],
-    "status": "canonical_v5_5"
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "lovfestet medlemsstatus",
+      "rettigheter og plikter i den undersøkte perioden",
+      "dokumentert betydning for adgang til hjelp eller deltakelse"
+    ],
+    "source_requirements": [
+      "statsborgerlov, register, vedtak og rettspraksis",
+      "kilde om faktisk behandling av personer med ulik status"
+    ]
   },
   {
     "concept_id": "con_his_forening",
@@ -6778,8 +6920,8 @@
   {
     "concept_id": "con_his_gjenoppbygging",
     "label": "gjenoppbygging",
-    "definition": "I Krig, okkupasjon og motstand betegner «gjenoppbygging» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Gjenoppbygging er den materielle, institusjonelle, økonomiske og sosiale reorganiseringen etter ødeleggelse, og omfatter både tilbakeføring, nybygging og bevisst brudd med førtilstanden.",
+    "concept_type": "reconstruction_process_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_krig_okkupasjon_motstand",
@@ -6792,12 +6934,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «gjenoppbygging» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_bygges",
+      "con_his_igjen",
+      "con_his_minne"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_resiliens"
+    ],
+    "common_misuse": [
+      "Å måle gjenoppbygging bare i ferdige bygg eller produksjonstall uten å undersøke bosetting, rettigheter, gjeld, sosialt tap og hvem som ikke kunne vende tilbake."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "fysisk reparasjon eller nybygging",
+      "reorganiserte tjenester og institusjoner",
+      "tilbakeflytting, erstatning og nye fordelingsmønstre"
+    ],
+    "source_requirements": [
+      "plan, byggeregnskap, eiendoms- og befolkningsdata",
+      "kilde om berørte hushold og virksomheters faktiske situasjon"
+    ]
   },
   {
     "concept_id": "con_his_gjor",
@@ -6976,8 +7133,8 @@
   {
     "concept_id": "con_his_gransking",
     "label": "gransking",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «gransking» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Gransking er en formalisert undersøkelse som rekonstruerer hendelsesforløp, årsaker, ansvar og forbedringsbehov gjennom mandat, bevisinnsamling og offentlig eller intern rapportering.",
+    "concept_type": "inquiry_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -6993,12 +7150,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «gransking» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_skyld",
+      "con_his_ansvar",
+      "con_his_institusjonell_laering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_laering"
+    ],
+    "common_misuse": [
+      "Å behandle en granskningsrapport som nøytral fasit uten å analysere mandat, bevisutvalg, taushetsregler, partsinteresser og hva rapporten ikke kunne undersøke."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "formelt mandat og sammensetning",
+      "dokumentert bevisgrunnlag",
+      "funn, anbefalinger og oppfølging"
+    ],
+    "source_requirements": [
+      "mandat, høringer, vedlegg og sluttrapport",
+      "kontrollkilde fra berørte parter eller senere evaluering av oppfølgingen"
+    ]
   },
   {
     "concept_id": "con_his_grasoner",
@@ -7882,9 +8054,9 @@
   },
   {
     "concept_id": "con_his_igjen",
-    "label": "igjen",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «igjen» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "gjenetablering",
+    "definition": "Gjenetablering er prosessen der hushold, virksomheter, tjenester eller institusjoner kommer tilbake eller finner en ny varig plass etter evakuering, ødeleggelse eller langvarig avbrudd.",
+    "concept_type": "reestablishment_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -7894,12 +8066,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «igjen» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_gjenoppbygging",
+      "con_his_resiliens",
+      "con_his_fellesskap"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bygges"
+    ],
+    "common_misuse": [
+      "Å likestille fysisk nybygg med gjenetablering uten å dokumentere om mennesker, arbeid, nettverk og tjenester faktisk kom tilbake på bærekraftige vilkår."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "retur eller varig relokalisering",
+      "gjenopptatt tjeneste eller virksomhet",
+      "stabile bolig- og inntektsvilkår"
+    ],
+    "source_requirements": [
+      "adresse-, virksomhets- og tjenestedata over tid",
+      "intervju eller sakskilde om hvorfor retur lyktes eller mislyktes"
+    ]
   },
   {
     "concept_id": "con_his_ikke",
@@ -8506,9 +8693,9 @@
   },
   {
     "concept_id": "con_his_institusjonell",
-    "label": "institusjonell",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «institusjonell» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "institusjonell kapasitet",
+    "definition": "Institusjonell kapasitet er en organisasjons faktiske evne til å oppdage fare, fatte beslutninger, koordinere ressurser og følge opp læring under gitte juridiske, økonomiske og kompetansemessige vilkår.",
+    "concept_type": "institutional_capacity_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -8518,18 +8705,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «institusjonell» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_beredskap",
+      "con_his_kriseledelse",
+      "con_his_institusjonell_laering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_institusjoner"
+    ],
+    "common_misuse": [
+      "Å slutte fra formelt ansvar eller organisasjonskart til faktisk kapasitet uten å dokumentere personell, kompetanse, informasjon, materiell og samarbeid."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "bemanning og kompetanse",
+      "tilgang til informasjon og ressurser",
+      "koordinering og beslutningshastighet"
+    ],
+    "source_requirements": [
+      "organisasjonsplan, budsjett, vaktjournal og hendelseslogg",
+      "evaluering som sammenligner mandat med faktisk ytelse"
+    ]
   },
   {
     "concept_id": "con_his_institusjonell_laering",
     "label": "institusjonell læring",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «institusjonell læring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Institusjonell læring er varig endring i regler, organisering, kompetanse eller praksis som kan spores til erfaringer, granskinger eller øvelser etter en hendelse.",
+    "concept_type": "institutional_learning_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -8545,12 +8747,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «institusjonell læring» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_gransking",
+      "con_his_laering",
+      "con_his_beredskap"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_resiliens"
+    ],
+    "common_misuse": [
+      "Å telle anbefalinger eller nye dokumenter som læring uten å vise implementering, øvelse, ressursendring og om den nye praksisen faktisk holdt over tid."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "endret regel eller organisasjon",
+      "implementert opplæring og ressursbruk",
+      "testet praksis i senere øvelse eller hendelse"
+    ],
+    "source_requirements": [
+      "oppfølgingsplan, budsjett, instruks og øvingsrapport",
+      "senere evaluering som dokumenterer faktisk atferdsendring"
+    ]
   },
   {
     "concept_id": "con_his_institusjoner",
@@ -9364,8 +9581,8 @@
   {
     "concept_id": "con_his_katastrofe",
     "label": "katastrofe",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «katastrofe» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Katastrofe er et historisk forløp der fare møter eksponering og sårbarhet slik at tap og funksjonsbrudd overstiger berørte samfunns eller institusjoners ordinære håndteringsevne.",
+    "concept_type": "disaster_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -9382,18 +9599,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «katastrofe» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fare",
+      "con_his_eksponering",
+      "con_his_sarbarhet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ulykker"
+    ],
+    "common_misuse": [
+      "Å definere katastrofen utelukkende fra natur- eller teknologihendelsen og dermed skjule hvordan bosetting, ulikhet, politikk og institusjoner produserte skadeomfanget."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "omfattende tap eller funksjonsbrudd",
+      "behov for ekstraordinær respons",
+      "dokumentert samspill mellom fare, eksponering og sårbarhet"
+    ],
+    "source_requirements": [
+      "hendelses- og skaderegister, befolkningsdata og institusjonsarkiv",
+      "kilde fra berørte grupper som viser levd konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_katastrofer",
-    "label": "katastrofer",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «katastrofer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "katastrofemønstre",
+    "definition": "Katastrofemønstre er sammenlignbare historiske regulariteter i hvordan ulike farer, samfunnsstrukturer og institusjoner produserer tap, respons og ettervirkninger på tvers av hendelser.",
+    "concept_type": "comparative_disaster_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -9406,12 +9638,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «katastrofer» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_katastrofe",
+      "con_his_ulik",
+      "con_his_institusjonell_laering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_branner"
+    ],
+    "common_misuse": [
+      "Å samle svært forskjellige katastrofer i én kategori uten felles mål for fare, skala, eksponering, tidsforløp og kildedekning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "gjentatte mekanismer i flere hendelser",
+      "sammenlignbare tap- og responsmål",
+      "dokumenterte forskjeller mellom steder og grupper"
+    ],
+    "source_requirements": [
+      "standardisert hendelsesoversikt og casekilder",
+      "metodebeskrivelse som begrunner sammenlignbarhet og avvik"
+    ]
   },
   {
     "concept_id": "con_his_kategori",
@@ -11433,8 +11680,8 @@
   {
     "concept_id": "con_his_kriseledelse",
     "label": "kriseledelse",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «kriseledelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Kriseledelse er tidskritisk organisering av informasjon, prioriteringer, fullmakter, kommunikasjon og ressurser under en hendelse som truer liv eller kritiske funksjoner.",
+    "concept_type": "crisis_management_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -11451,12 +11698,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kriseledelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_beredskap",
+      "con_his_institusjonell",
+      "con_his_sikkerhet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_gjenoppbygging"
+    ],
+    "common_misuse": [
+      "Å vurdere kriseledelse bare ut fra utfallet uten å rekonstruere informasjonen, usikkerheten, ressursene og valgalternativene aktørene faktisk hadde på beslutningstidspunktet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "situasjonsforståelse og beslutningslogg",
+      "ressursprioritering og samvirke",
+      "kommunikasjon til berørte og offentlighet"
+    ],
+    "source_requirements": [
+      "operativ logg, møtereferat, sambandsdata og pressebrief",
+      "uavhengig tidslinje som kontrollerer ettertidens forklaringer"
+    ]
   },
   {
     "concept_id": "con_his_kriser",
@@ -12036,9 +12298,9 @@
   },
   {
     "concept_id": "con_his_laering",
-    "label": "læring",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «læring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "kriselæring",
+    "definition": "Kriselæring er utvikling av kunnskap og handlingsmåter gjennom erfaring, øvelse, gransking og offentlig debatt etter fare, feil eller katastrofe.",
+    "concept_type": "crisis_learning_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -12048,12 +12310,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «læring» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_gransking",
+      "con_his_institusjonell_laering",
+      "con_his_regler"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_minne"
+    ],
+    "common_misuse": [
+      "Å kalle økt oppmerksomhet eller publisert rapport læring uten å vise hvem som lærte, hva som ble endret og hvordan ny kunnskap ble testet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifisert erfaring eller feil",
+      "ny kunnskap eller praksis",
+      "dokumentert anvendelse eller test"
+    ],
+    "source_requirements": [
+      "rapport, undervisnings- og øvingsmateriale, instruks og evaluering",
+      "kilde som følger læringen over tid"
+    ]
   },
   {
     "concept_id": "con_his_lag",
@@ -12235,8 +12512,8 @@
   {
     "concept_id": "con_his_langsom_vold",
     "label": "langsom vold",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «langsom vold» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Langsom vold er kumulativ skade som utvikler seg gradvis og ofte uten ett tydelig hendelsespunkt, men som over tid rammer helse, livsgrunnlag og miljø sosialt skjevt.",
+    "concept_type": "slow_violence_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -12252,18 +12529,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «langsom vold» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_langsomme",
+      "con_his_miljoskade",
+      "con_his_ulik"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_katastrofe"
+    ],
+    "common_misuse": [
+      "Å bruke langsom vold som moralsk merkelapp uten å dokumentere skadebane, tidsforsinkelse, ansvarlige prosesser og hvilke grupper som bar kostnadene."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "kumulativ eller forsinket skade",
+      "spredt ansvar og lav synlighet",
+      "ulik sosial eller geografisk belastning"
+    ],
+    "source_requirements": [
+      "langtidsmålinger, helse- og miljødata, arbeids- eller forvaltningsarkiv",
+      "lokale vitnesbyrd og kontrollkilde for årsakskjeden"
+    ]
   },
   {
     "concept_id": "con_his_langsomme",
-    "label": "langsomme",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «langsomme» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "gradvise katastrofeforløp",
+    "definition": "Gradvise katastrofeforløp er skadeprosesser som bygges opp gjennom gjentatt eller langvarig eksponering, institusjonell forsømmelse og terskler som først senere gjør tapene tydelige.",
+    "concept_type": "gradual_disaster_process_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -12274,12 +12566,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «langsomme» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_langsom_vold",
+      "con_his_miljoskade",
+      "con_his_eksponering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ulykker"
+    ],
+    "common_misuse": [
+      "Å lete etter ett starttidspunkt og én utløsende årsak når skadeutviklingen består av mange små beslutninger, utslipp eller forsømmelser over lang tid."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "lang tidsserie med økende belastning",
+      "forsinket erkjennelse eller respons",
+      "flere bidragende aktører og mekanismer"
+    ],
+    "source_requirements": [
+      "måleserie, tilsyn, helse- eller produksjonsdata over tid",
+      "kilde som dokumenterer varsler og beslutninger underveis"
+    ]
   },
   {
     "concept_id": "con_his_lederuttalelse_vs_grasroterfaring",
@@ -14018,8 +14325,8 @@
   {
     "concept_id": "con_his_miljoskade",
     "label": "miljøskade",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «miljøskade» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Miljøskade er dokumentert forringelse av økosystemer, jord, vann, luft eller ressursgrunnlag med målbare økologiske og menneskelige konsekvenser over et angitt tidsrom.",
+    "concept_type": "environmental_damage_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -14030,12 +14337,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «miljøskade» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_langsom_vold",
+      "con_his_langsomme",
+      "con_his_sarbarhet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_fare"
+    ],
+    "common_misuse": [
+      "Å slutte fra forurensning eller naturinngrep til skade uten førtilstand, eksponeringsvei, målbar effekt og vurdering av alternative årsaker."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "endret miljøtilstand",
+      "identifisert påvirkningskilde og eksponeringsvei",
+      "økologisk, helsemessig eller økonomisk konsekvens"
+    ],
+    "source_requirements": [
+      "miljømåling, arts- eller helsedata og utslippsarkiv",
+      "uavhengig kontrollkilde og eksplisitt usikkerhetsvurdering"
+    ]
   },
   {
     "concept_id": "con_his_miljoulikhet",
@@ -14067,9 +14389,9 @@
   },
   {
     "concept_id": "con_his_minne",
-    "label": "minne",
-    "definition": "I Krig, okkupasjon og motstand betegner «minne» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "historisk minne",
+    "definition": "Historisk minne er sosial og institusjonell bearbeiding av fortid gjennom fortellinger, ritualer, monumenter, arkiv, undervisning og taushet, med skiftende aktører og formål.",
+    "concept_type": "memory_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_krig_okkupasjon_motstand",
@@ -14085,12 +14407,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «minne» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_gjenoppbygging",
+      "con_his_fellesskap",
+      "con_his_ettertid"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_gransking"
+    ],
+    "common_misuse": [
+      "Å bruke minne som synonym for hva som faktisk hendte eller anta at én offisiell markering representerer alle berørtes erfaringer."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "ritual, monument, arkiv eller offentlig fortelling",
+      "endring i representasjon over tid",
+      "konflikt om synlighet, ansvar eller offerstatus"
+    ],
+    "source_requirements": [
+      "minnesmerke-, medie-, undervisnings- og organisasjonskilder",
+      "samtidskilder som kan kontrollere minnefortellingens historiske påstander"
+    ]
   },
   {
     "concept_id": "con_his_minne_vs_samtidig_dokumentasjon",
@@ -15325,8 +15662,8 @@
   {
     "concept_id": "con_his_normalulykker",
     "label": "normalulykker",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «normalulykker» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Normalulykker er alvorlige hendelser som kan oppstå i tett koblede og komplekse tekniske systemer fordi flere uventede feil samvirker raskere enn operatører kan forstå og isolere dem.",
+    "concept_type": "normal_accident_theory_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -15336,12 +15673,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «normalulykker» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_systemulykke",
+      "con_his_teknologi",
+      "con_his_sikkerhet"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ulykker"
+    ],
+    "common_misuse": [
+      "Å bruke normalulykke som påstand om at ulykker er akseptable eller uunngåelige uten å dokumentere systemets kompleksitet, kobling og konkrete feilinteraksjoner."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "interaktive og uforutsette feil",
+      "tett kobling mellom delsystemer",
+      "begrenset tid og oversikt for inngrep"
+    ],
+    "source_requirements": [
+      "teknisk systembeskrivelse, hendelseslogg og gransking",
+      "kontrollanalyse av alternative organisatoriske og tekniske forklaringer"
+    ]
   },
   {
     "concept_id": "con_his_norsk",
@@ -18130,9 +18482,9 @@
   },
   {
     "concept_id": "con_his_regler",
-    "label": "regler",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «regler» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "sikkerhetsregler",
+    "definition": "Sikkerhetsregler er formaliserte krav til konstruksjon, drift, kontroll og handling som skal begrense fare, eksponering eller konsekvens, og som må analyseres sammen med håndheving og praksis.",
+    "concept_type": "safety_rule_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -18142,12 +18494,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «regler» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_sikkerhet",
+      "con_his_beredskap",
+      "con_his_gransking"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_institusjonell_laering"
+    ],
+    "common_misuse": [
+      "Å bruke regelens eksistens som bevis på sikker praksis uten å undersøke virkeområde, unntak, tilsyn, etterlevelse og sanksjoner."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "datert norm eller forskrift",
+      "definert ansvar og kontroll",
+      "dokumentert etterlevelse eller brudd"
+    ],
+    "source_requirements": [
+      "regelverk, standard, tilsynsrapport og avvikslogg",
+      "hendelses- eller praksiskilde som viser faktisk virkning"
+    ]
   },
   {
     "concept_id": "con_his_regulering",
@@ -18574,8 +18941,8 @@
   {
     "concept_id": "con_his_resiliens",
     "label": "resiliens",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «resiliens» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Resiliens er evnen et samfunn, system eller fellesskap har til å opprettholde kritiske funksjoner, tilpasse seg og reorganisere etter belastning uten at tap og kostnader skjules.",
+    "concept_type": "resilience_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -18591,12 +18958,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «resiliens» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_beredskap",
+      "con_his_gjenoppbygging",
+      "con_his_fellesskap"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_institusjonell_laering"
+    ],
+    "common_misuse": [
+      "Å kalle rask normalisering resiliens uten å undersøke hvem som utførte ekstraarbeidet, hvilke tap som ble varige og om systemet bare gjenopprettet tidligere sårbarhet."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "opprettholdt eller raskt gjenopprettet funksjon",
+      "tilpasning og reorganisering",
+      "fordeling av kostnader og langsiktige følger"
+    ],
+    "source_requirements": [
+      "drifts- og tjenestedata før, under og etter krisen",
+      "kilde fra grupper som bar gjenopprettingsarbeid og resttap"
+    ]
   },
   {
     "concept_id": "con_his_ressursbruk",
@@ -19581,8 +19963,8 @@
   {
     "concept_id": "con_his_sarbarhet",
     "label": "sårbarhet",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «sårbarhet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Sårbarhet er sosialt, materielt og institusjonelt betinget tilbøyelighet til å bli skadet ved en gitt eksponering, samt begrenset evne til å beskytte seg og komme seg etterpå.",
+    "concept_type": "vulnerability_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -19601,12 +19983,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «sårbarhet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fare",
+      "con_his_eksponering",
+      "con_his_ulik"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_eksponering"
+    ],
+    "common_misuse": [
+      "Å forklare sårbarhet som personlig svakhet eller naturgitt egenskap og dermed overse bolig, inntekt, rettigheter, helse, infrastruktur og institusjonell behandling."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materielle og helsemessige forutsetninger",
+      "tilgang til varsling, evakuering og hjelp",
+      "evne til økonomisk og sosial gjenoppretting"
+    ],
+    "source_requirements": [
+      "befolknings-, bolig-, helse- og inntektsdata",
+      "kilde om faktisk tilgang til beskyttelse og støtte"
+    ]
   },
   {
     "concept_id": "con_his_segregasjon",
@@ -20097,8 +20494,8 @@
   {
     "concept_id": "con_his_sikkerhet",
     "label": "sikkerhet",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «sikkerhet» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Sikkerhet er en historisk produsert tilstand og styringsambisjon der risiko for tap begrenses gjennom teknologi, regler, kompetanse og organisering, uten at full risikofrihet kan forutsettes.",
+    "concept_type": "safety_governance_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -20108,12 +20505,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «sikkerhet» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_regler",
+      "con_his_beredskap",
+      "con_his_teknologi"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_fare"
+    ],
+    "common_misuse": [
+      "Å bruke sikkerhet som absolutt egenskap eller resultat av ett tiltak uten å angi hvilken fare, hvilken gruppe, hvilket tidsrom og hvilke rest- eller overførte risikoer som gjelder."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "mål og akseptkriterier",
+      "tekniske og organisatoriske barrierer",
+      "målt hendelses- og avviksutvikling"
+    ],
+    "source_requirements": [
+      "regelverk, risikoanalyse, drifts- og ulykkesdata",
+      "kilde som dokumenterer restfare og fordelingsvirkning"
+    ]
   },
   {
     "concept_id": "con_his_sikkerhetsstat",
@@ -20459,8 +20871,8 @@
   {
     "concept_id": "con_his_skyld",
     "label": "skyld",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «skyld» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Skyld er en normativ eller rettslig tilskrivning av klanderverdig handling eller unnlatelse til en aktør, og må skilles fra kausal medvirkning, institusjonelt ansvar og moralsk fordømmelse.",
+    "concept_type": "culpability_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -20470,12 +20882,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «skyld» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_ansvar",
+      "con_his_gransking",
+      "con_his_ulik"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_systemulykke"
+    ],
+    "common_misuse": [
+      "Å velge en synlig enkeltaktør som syndebukk før systembetingelser, kunnskapsnivå, fullmakter og andre bidragende årsaker er undersøkt."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "identifisert plikt eller norm",
+      "dokumentert handling eller unnlatelse",
+      "vurdering av kunnskap, kontroll og konsekvens"
+    ],
+    "source_requirements": [
+      "rettsavgjørelse, gransking, instruks og hendelseslogg",
+      "kilde som skiller strafferettslig, administrativt og politisk ansvar"
+    ]
   },
   {
     "concept_id": "con_his_slaveri",
@@ -21956,8 +22383,8 @@
   {
     "concept_id": "con_his_systemulykke",
     "label": "systemulykke",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «systemulykke» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Systemulykke er en hendelse der skade oppstår gjennom samvirke mellom tekniske komponenter, organisering, informasjon og beslutninger, slik at én enkelt feil ikke forklarer forløpet.",
+    "concept_type": "system_accident_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -21974,18 +22401,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «systemulykke» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_normalulykker",
+      "con_his_teknologi",
+      "con_his_institusjonell"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_skyld"
+    ],
+    "common_misuse": [
+      "Å bruke systemulykke for å oppløse alt individuelt ansvar eller som generell merkelapp uten rekonstruert årsaksnettverk og avhengigheter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "flere bidragende feil og barrieresvikt",
+      "koblinger mellom teknologi og organisasjon",
+      "ikke-lineært eller eskalerende hendelsesforløp"
+    ],
+    "source_requirements": [
+      "teknisk logg, organisasjonsdata og ulykkesgransking",
+      "kontrollkilde som tester både system- og aktørforklaringer"
+    ]
   },
   {
     "concept_id": "con_his_systemulykker",
-    "label": "systemulykker",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «systemulykker» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "systemulykkesmønstre",
+    "definition": "Systemulykkesmønstre er gjentakende kombinasjoner av tekniske avhengigheter, organisatoriske svakheter og informasjonsbrudd som kan sammenlignes på tvers av flere ulykker.",
+    "concept_type": "comparative_system_accident_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -21995,12 +22437,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «systemulykker» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_systemulykke",
+      "con_his_normalulykker",
+      "con_his_institusjonell_laering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_katastrofer"
+    ],
+    "common_misuse": [
+      "Å generalisere fra én spektakulær ulykke eller samle hendelser med ulike systemgrenser, datakvalitet og årsaksnivå i samme mønster."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "samme barrieresvikt i flere case",
+      "sammenlignbare systemgrenser og tidslinjer",
+      "gjentatte organisatoriske eller tekniske koblinger"
+    ],
+    "source_requirements": [
+      "flere granskningsrapporter og standardisert hendelsesdata",
+      "metode som redegjør for caseutvalg og avvik"
+    ]
   },
   {
     "concept_id": "con_his_tapte",
@@ -22102,7 +22559,7 @@
   {
     "concept_id": "con_his_teknologi",
     "label": "teknologi",
-    "definition": "Materielle redskaper, kunnskaper, organisasjoner og praksiser som sammen gjør bestemte handlinger og produksjonsformer mulige.",
+    "definition": "Teknologi er sammenvevde redskaper, infrastrukturer, standarder, kunnskaper og organisasjoner som muliggjør handling og samtidig fordeler kapasitet, avhengighet og risiko.",
     "concept_type": "sociotechnical_concept",
     "historical_scope": "cross_period_context_dependent",
     "domain_ids": [
@@ -22116,22 +22573,28 @@
       "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn"
     ],
     "broader_concepts": [],
-    "narrower_concepts": [
-      "con_his_teknologisk_system",
-      "con_his_digitalisering"
-    ],
+    "narrower_concepts": [],
     "related_concepts": [
-      "con_his_teknologisk_system",
-      "con_his_infrastruktur",
-      "con_his_digitalisering"
+      "con_his_systemulykke",
+      "con_his_sikkerhet",
+      "con_his_institusjonell"
     ],
     "distinguish_from": [
-      "con_his_vitenskap"
+      "con_his_regler"
     ],
     "common_misuse": [
-      "Å forklare historisk endring direkte med «teknologi» uten å analysere organisasjoner, brukere, vedlikehold, infrastruktur og alternative systemer."
+      "Å forklare teknologi som et isolert redskap eller autonom drivkraft uten å undersøke brukere, vedlikehold, standarder, finansiering og institusjonell organisering."
     ],
-    "status": "canonical_v5_5"
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materielle komponenter og infrastruktur",
+      "kompetanse, drift og standarder",
+      "sosiale virkninger og avhengigheter"
+    ],
+    "source_requirements": [
+      "teknisk dokumentasjon, driftsarkiv, standard og brukerdata",
+      "kilde om faktisk praksis og svikt, ikke bare designintensjon"
+    ]
   },
   {
     "concept_id": "con_his_teknologisk_system",
@@ -22193,8 +22656,8 @@
   {
     "concept_id": "con_his_terror",
     "label": "terror",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «terror» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Terror er planlagt vold eller trussel om vold rettet mot sivile eller offentligheten for å skape frykt og påvirke politiske eller sosiale beslutninger utover de direkte ofrene.",
+    "concept_type": "terrorism_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -22204,12 +22667,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «terror» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_demokratisk",
+      "con_his_sikkerhet",
+      "con_his_minne"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_katastrofe"
+    ],
+    "common_misuse": [
+      "Å bruke terror som rent moralsk skjellsord eller la gjerningsaktørens propaganda alene definere motiv, målgruppe og politisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "planlagt vold og kommunikativ hensikt",
+      "mål om bredere frykt eller politisk påvirkning",
+      "virkning på institusjoner og offentlighet"
+    ],
+    "source_requirements": [
+      "retts- og etterforskningskilder, samtidige kommunikasjoner og mediedata",
+      "kilde fra ofre og berørte miljøer samt kontroll av aktørpåstander"
+    ]
   },
   {
     "concept_id": "con_his_tid",
@@ -23027,9 +23505,9 @@
   },
   {
     "concept_id": "con_his_ulik",
-    "label": "ulik",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «ulik» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "ulik eksponering",
+    "definition": "Ulik eksponering er systematiske forskjeller mellom grupper eller steder i hvor mye og hvor lenge de utsettes for fare, som følge av bosted, arbeid, rettigheter, mobilitet og politiske prioriteringer.",
+    "concept_type": "unequal_exposure_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -23039,12 +23517,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ulik» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_eksponering",
+      "con_his_sarbarhet",
+      "con_his_langsom_vold"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_skyld"
+    ],
+    "common_misuse": [
+      "Å slutte fra ulikt skadeutfall til ulik eksponering uten å skille eksponering fra sårbarhet, respons og tilfeldige variasjoner."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "gruppe- eller stedsfordelt farekontakt",
+      "varighet og intensitet",
+      "sosial eller institusjonell mekanisme bak forskjellen"
+    ],
+    "source_requirements": [
+      "geokodet befolknings-, arbeids- og miljødata",
+      "kilde som dokumenterer mobilitet, adgang og beslutninger"
+    ]
   },
   {
     "concept_id": "con_his_ulike",
@@ -23147,9 +23640,9 @@
   },
   {
     "concept_id": "con_his_ulykker",
-    "label": "ulykker",
-    "definition": "I Katastrofer, branner, ulykker og historiske brudd betegner «ulykker» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "ulykkeshistorie",
+    "definition": "Ulykkeshistorie er komparativ analyse av utilsiktede skadehendelser, deres tekniske og organisatoriske forløp, samfunnsmessige konsekvenser og etterfølgende regulering.",
+    "concept_type": "accident_history_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_katastrofer_brudd_ulykker"
@@ -23160,12 +23653,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ulykker» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_systemulykke",
+      "con_his_gransking",
+      "con_his_regler"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_katastrofer"
+    ],
+    "common_misuse": [
+      "Å behandle ulykker som tilfeldige enkelthendelser uten å undersøke gjentatte barrieresvikt, arbeidsforhold, regulering og læring over tid."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "rekonstruert hendelsesforløp",
+      "skade- og årsaksmønster",
+      "endring eller fravær av endring etterpå"
+    ],
+    "source_requirements": [
+      "ulykkesregister, gransking, arbeids- og driftsarkiv",
+      "sammenlignbare case og kilde om oppfølging"
+    ]
   },
   {
     "concept_id": "con_his_under",
