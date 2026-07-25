@@ -4,53 +4,47 @@ import path from 'node:path';
 const root = process.cwd();
 const outDir = path.join(root, 'reports/oslo-coordinate-ous-hospitals-research-post-195');
 await fs.mkdir(outDir, { recursive: true });
-const ua = 'History-Go coordinate research/2026-07-25';
+const userAgent = 'History-Go coordinate research/2026-07-25';
 
 const specs = [
   {
     id: 'radiumhospitalet',
     placePath: 'data/places/vitenskap/oslo/places_vitenskap/radiumhospitalet.json',
-    addressName: 'Ullernchausseen',
-    addressStem: 'ullernchauss',
+    street: 'Ullernchausséen',
     number: 70,
     officialUrl: 'https://www.oslo-universitetssykehus.no/steder/radiumhospitalet/',
-    namePattern: /Radiumhospital/i,
     officialAddressPattern: /Ullernchauss.{0,2}en\s*70/i,
+    namePattern: /Radiumhospital/i,
   },
   {
     id: 'rikshospitalet',
     placePath: 'data/places/vitenskap/oslo/places_vitenskap/rikshospitalet.json',
-    addressName: 'Sognsvannsveien',
-    addressStem: 'sognsvannsveien',
+    street: 'Sognsvannsveien',
     number: 20,
     officialUrl: 'https://www.oslo-universitetssykehus.no/steder/rikshospitalet',
-    namePattern: /Rikshospital/i,
     officialAddressPattern: /Sognsvannsveien\s*20/i,
+    namePattern: /Rikshospital/i,
   },
 ];
 
 const readJson = async (relativePath) => JSON.parse(await fs.readFile(path.join(root, relativePath), 'utf8'));
 const writeJson = async (name, value) => fs.writeFile(path.join(outDir, name), `${JSON.stringify(value, null, 2)}\n`, 'utf8');
-const fetchOk = async (url, options = {}) => {
+const fetchChecked = async (url, options = {}) => {
   const response = await fetch(url, {
     redirect: 'follow',
     ...options,
-    headers: { 'user-agent': ua, accept: '*/*', ...(options.headers || {}) },
+    headers: { 'user-agent': userAgent, accept: '*/*', ...(options.headers || {}) },
   });
   if (!response.ok) throw new Error(`HTTP ${response.status}: ${url}`);
   return response;
 };
-const normalize = (value) => String(value || '')
-  .normalize('NFD')
-  .replace(/[\u0300-\u036f]/g, '')
-  .replace(/[^a-z0-9]/gi, '')
-  .toLowerCase();
-const rad = (value) => (value * Math.PI) / 180;
-const distance = (aLat, aLon, bLat, bLon) => {
+const toRadians = (value) => (value * Math.PI) / 180;
+const distanceMeters = (aLat, aLon, bLat, bLon) => {
   const radius = 6371008.8;
-  const dLat = rad(bLat - aLat);
-  const dLon = rad(bLon - aLon);
-  const h = Math.sin(dLat / 2) ** 2 + Math.cos(rad(aLat)) * Math.cos(rad(bLat)) * Math.sin(dLon / 2) ** 2;
+  const dLat = toRadians(bLat - aLat);
+  const dLon = toRadians(bLon - aLon);
+  const h = Math.sin(dLat / 2) ** 2
+    + Math.cos(toRadians(aLat)) * Math.cos(toRadians(bLat)) * Math.sin(dLon / 2) ** 2;
   return 2 * radius * Math.asin(Math.min(1, Math.sqrt(h)));
 };
 const pointInPolygon = (lat, lon, geometry) => {
@@ -64,126 +58,102 @@ const pointInPolygon = (lat, lon, geometry) => {
   }
   return inside;
 };
-const centerOf = (element) => {
+const elementCenter = (element) => {
   if (element.center) return element.center;
   if (Number.isFinite(element.lat) && Number.isFinite(element.lon)) return { lat: element.lat, lon: element.lon };
-  if (Array.isArray(element.geometry) && element.geometry.length) {
-    return {
-      lat: element.geometry.reduce((sum, point) => sum + point.lat, 0) / element.geometry.length,
-      lon: element.geometry.reduce((sum, point) => sum + point.lon, 0) / element.geometry.length,
-    };
-  }
-  return null;
+  if (!Array.isArray(element.geometry) || !element.geometry.length) return null;
+  return {
+    lat: element.geometry.reduce((sum, point) => sum + point.lat, 0) / element.geometry.length,
+    lon: element.geometry.reduce((sum, point) => sum + point.lon, 0) / element.geometry.length,
+  };
 };
 
 const results = [];
 for (const spec of specs) {
   const place = await readJson(spec.placePath);
-  const searchAttempts = [
-    `https://ws.geonorge.no/adresser/v1/sok?adressenavn=${encodeURIComponent(spec.addressName)}&nummer=${spec.number}&kommunenummer=0301&treffPerSide=20`,
-    `https://ws.geonorge.no/adresser/v1/sok?sok=${encodeURIComponent(`${spec.number}${spec.addressStem}*`)}&kommunenummer=0301&treffPerSide=100`,
-    `https://ws.geonorge.no/adresser/v1/punktsok?radius=1200&lat=${place.lat}&lon=${place.lon}&treffPerSide=1000&side=0`,
-  ];
-
-  let geonorge = null;
-  let geonorgeUrl = null;
-  let numberMatches = [];
-  const attemptSummaries = [];
-  for (const candidateUrl of searchAttempts) {
-    const payload = await (await fetchOk(candidateUrl, { headers: { accept: 'application/json' } })).json();
-    const addresses = payload.adresser || [];
-    const matches = addresses.filter((entry) => (
-      Number(entry.nummer) === spec.number
-      && String(entry.kommunenummer) === '0301'
-      && normalize(entry.adressetekst).includes(normalize(spec.addressStem))
-    ));
-    attemptSummaries.push({ url: candidateUrl, returnedAddressCount: addresses.length, matchingAddressCount: matches.length });
-    if (matches.length > 0) {
-      geonorge = payload;
-      geonorgeUrl = candidateUrl;
-      numberMatches = matches;
-      break;
-    }
+  const geonorgeUrl = `https://ws.geonorge.no/adresser/v1/sok?adressenavn=${encodeURIComponent(spec.street)}&nummer=${spec.number}&kommunenummer=0301&treffPerSide=20`;
+  const geonorge = await (await fetchChecked(geonorgeUrl, { headers: { accept: 'application/json' } })).json();
+  await writeJson(`geonorge-${spec.id}.json`, geonorge);
+  const addresses = (geonorge.adresser || []).filter((entry) => (
+    Number(entry.nummer) === spec.number && String(entry.kommunenummer) === '0301'
+  ));
+  if (addresses.length !== 1) {
+    throw new Error(`${spec.id}: expected one exact Kartverket address, found ${addresses.length}; candidates=${JSON.stringify((geonorge.adresser || []).map((entry) => entry.adressetekst))}`);
   }
-  if (!geonorge || numberMatches.length !== 1) {
-    throw new Error(`${spec.id}: expected one official municipality/house/street match, found ${numberMatches.length}; attempts=${JSON.stringify(attemptSummaries)}; matches=${JSON.stringify(numberMatches.map((entry) => entry.adressetekst))}`);
-  }
-  await writeJson(`geonorge-${spec.id}.json`, { selectedSearchUrl: geonorgeUrl, attempts: attemptSummaries, response: geonorge });
-  const address = numberMatches[0];
+  const address = addresses[0];
   const lat = Number(address.representasjonspunkt.lat);
   const lon = Number(address.representasjonspunkt.lon);
 
-  const officialResponse = await fetchOk(spec.officialUrl, { headers: { accept: 'text/html' } });
+  const officialResponse = await fetchChecked(spec.officialUrl, { headers: { accept: 'text/html' } });
   const officialHtml = await officialResponse.text();
   await fs.writeFile(path.join(outDir, `official-${spec.id}.html`), officialHtml, 'utf8');
-  const officialContainsAddress = spec.officialAddressPattern.test(officialHtml);
-  if (!officialContainsAddress) throw new Error(`${spec.id}: official page does not expose expected address`);
+  if (!spec.officialAddressPattern.test(officialHtml)) {
+    throw new Error(`${spec.id}: OUS page does not expose the expected address`);
+  }
 
-  const query = `[out:json][timeout:90];(nwr(around:600,${lat},${lon})[amenity=hospital];nwr(around:600,${lat},${lon})[healthcare=hospital];way(around:500,${lat},${lon})[building];);out center tags geom;`;
-  let overpass;
-  let endpointUsed;
-  let lastError;
+  const overpassQuery = `[out:json][timeout:90];(nwr(around:700,${lat},${lon})[amenity=hospital];nwr(around:700,${lat},${lon})[healthcare=hospital];way(around:550,${lat},${lon})[building];);out center tags geom;`;
+  let overpass = null;
+  let overpassEndpoint = null;
+  let overpassError = null;
   for (const endpoint of ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter']) {
     try {
-      const response = await fetchOk(endpoint, {
+      const response = await fetchChecked(endpoint, {
         method: 'POST',
         headers: { 'content-type': 'application/x-www-form-urlencoded', accept: 'application/json' },
-        body: new URLSearchParams({ data: query }).toString(),
+        body: new URLSearchParams({ data: overpassQuery }).toString(),
       });
       overpass = await response.json();
-      endpointUsed = endpoint;
+      overpassEndpoint = endpoint;
       break;
     } catch (error) {
-      lastError = String(error);
+      overpassError = String(error);
     }
   }
-  if (!overpass) throw new Error(`${spec.id}: Overpass failed: ${lastError}`);
+  if (!overpass) throw new Error(`${spec.id}: Overpass failed: ${overpassError}`);
   await writeJson(`overpass-${spec.id}.json`, overpass);
 
   const elements = overpass.elements || [];
-  const namedFeatures = elements.filter((entry) => (
-    spec.namePattern.test(String(entry.tags?.name || ''))
-    && (entry.tags?.amenity === 'hospital' || entry.tags?.healthcare === 'hospital' || entry.tags?.building)
+  const buildings = elements.filter((element) => (
+    element.type === 'way' && element.tags?.building && Array.isArray(element.geometry) && element.geometry.length >= 4
   ));
-  const ranked = namedFeatures.map((entry) => {
-    const center = centerOf(entry);
-    return { entry, center, distanceMeters: center ? distance(lat, lon, center.lat, center.lon) : Number.POSITIVE_INFINITY };
-  }).sort((a, b) => a.distanceMeters - b.distanceMeters);
-  const selectedNamed = ranked[0] || null;
-  const buildingWays = elements.filter((entry) => (
-    entry.type === 'way'
-    && Array.isArray(entry.geometry)
-    && entry.geometry.length >= 4
-    && entry.tags?.building
+  const containingBuildings = buildings.filter((building) => pointInPolygon(lat, lon, building.geometry));
+  const namedFeatures = elements.filter((element) => (
+    spec.namePattern.test(String(element.tags?.name || ''))
+    && (element.tags?.amenity === 'hospital' || element.tags?.healthcare === 'hospital' || element.tags?.building)
   ));
-  const containingBuildings = buildingWays.filter((entry) => pointInPolygon(lat, lon, entry.geometry));
-  const namedAreaPolygons = namedFeatures.filter((entry) => (
-    entry.type === 'way'
-    && Array.isArray(entry.geometry)
-    && entry.geometry.length >= 4
-    && (entry.tags?.amenity === 'hospital' || entry.tags?.healthcare === 'hospital')
+  const namedAreas = namedFeatures.filter((element) => (
+    element.type === 'way'
+    && Array.isArray(element.geometry)
+    && element.geometry.length >= 4
+    && (element.tags?.amenity === 'hospital' || element.tags?.healthcare === 'hospital')
   ));
-  const selectedArea = namedAreaPolygons.find((entry) => pointInPolygon(lat, lon, entry.geometry)) || namedAreaPolygons[0] || null;
-  let campusBuildings = selectedArea
-    ? buildingWays.filter((building) => {
-        const center = centerOf(building);
+  const selectedArea = namedAreas.find((area) => pointInPolygon(lat, lon, area.geometry)) || namedAreas[0] || null;
+  let supportedBuildings = selectedArea
+    ? buildings.filter((building) => {
+        const center = elementCenter(building);
         return center && pointInPolygon(center.lat, center.lon, selectedArea.geometry);
       })
     : [];
-  if (!campusBuildings.length) {
-    campusBuildings = buildingWays.filter((building) => {
-      const center = centerOf(building);
-      return center && distance(lat, lon, center.lat, center.lon) <= 300;
+  if (!supportedBuildings.length) {
+    supportedBuildings = buildings.filter((building) => {
+      const center = elementCenter(building);
+      return center && distanceMeters(lat, lon, center.lat, center.lon) <= 350;
     });
   }
-  const vertices = campusBuildings.flatMap((building) => building.geometry);
-  const maxCampusDistance = vertices.length
-    ? Math.max(...vertices.map((point) => distance(lat, lon, point.lat, point.lon)))
+  const supportVertices = supportedBuildings.flatMap((building) => building.geometry);
+  const maximumSupportDistance = supportVertices.length
+    ? Math.max(...supportVertices.map((point) => distanceMeters(lat, lon, point.lat, point.lon)))
     : null;
   const bufferMeters = 40;
-  const recommendedRadius = maxCampusDistance === null
+  const recommendedRadius = maximumSupportDistance === null
     ? null
-    : Math.ceil((maxCampusDistance + bufferMeters) / 10) * 10;
+    : Math.ceil((maximumSupportDistance + bufferMeters) / 10) * 10;
+  const closestNamedFeature = namedFeatures
+    .map((element) => {
+      const center = elementCenter(element);
+      return { element, distance: center ? distanceMeters(lat, lon, center.lat, center.lon) : Number.POSITIVE_INFINITY };
+    })
+    .sort((a, b) => a.distance - b.distance)[0] || null;
   const sourceObjectId = `geonorge-adresser-v1:0301:${address.adressekode || 'unknown'}:${spec.number}:${lat.toFixed(8)},${lon.toFixed(8)}`;
 
   results.push({
@@ -199,35 +169,34 @@ for (const spec of specs) {
       lon,
       sourceUrl: geonorgeUrl,
       sourceObjectId,
-      uniqueExactMatchCount: numberMatches.length,
-      searchAttempts: attemptSummaries,
+      uniqueExactMatchCount: addresses.length,
     },
-    officialPage: { url: spec.officialUrl, finalUrl: officialResponse.url, containsAddress: officialContainsAddress },
+    officialPage: { url: spec.officialUrl, finalUrl: officialResponse.url, containsAddress: true },
     geometry: {
-      overpassEndpoint: endpointUsed,
-      namedHospitalFeatureCount: namedFeatures.length,
-      selectedNamedFeature: selectedNamed ? {
-        type: selectedNamed.entry.type,
-        id: selectedNamed.entry.id,
-        tags: selectedNamed.entry.tags || {},
-        distanceMeters: Math.round(selectedNamed.distanceMeters * 10) / 10,
-      } : null,
+      overpassEndpoint,
       containingBuildingCount: containingBuildings.length,
-      containingBuildings: containingBuildings.map((entry) => ({ type: entry.type, id: entry.id, tags: entry.tags || {} })),
-      selectedHospitalArea: selectedArea ? { type: selectedArea.type, id: selectedArea.id, tags: selectedArea.tags || {} } : null,
-      campusBuildingCount: campusBuildings.length,
-      maximumCampusSupportDistanceMeters: maxCampusDistance === null ? null : Math.round(maxCampusDistance * 10) / 10,
+      containingBuildings: containingBuildings.map((building) => ({ id: building.id, tags: building.tags || {} })),
+      namedHospitalFeatureCount: namedFeatures.length,
+      closestNamedFeature: closestNamedFeature ? {
+        type: closestNamedFeature.element.type,
+        id: closestNamedFeature.element.id,
+        tags: closestNamedFeature.element.tags || {},
+        distanceMeters: Math.round(closestNamedFeature.distance * 10) / 10,
+      } : null,
+      selectedHospitalArea: selectedArea ? { id: selectedArea.id, tags: selectedArea.tags || {} } : null,
+      supportedBuildingCount: supportedBuildings.length,
+      maximumCampusSupportDistanceMeters: maximumSupportDistance === null ? null : Math.round(maximumSupportDistance * 10) / 10,
     },
     radiusRecommendation: {
       method: selectedArea
-        ? 'buildings with centroids inside named hospital area plus 40 metre buffer'
-        : 'building footprints within 300 metres of official address point plus 40 metre buffer',
+        ? 'building centroids inside named hospital area plus 40 metre buffer'
+        : 'building centroids within 350 metres of official address point plus 40 metre buffer',
       bufferMeters,
       recommendedRadius,
     },
-    displacementMeters: Math.round(distance(place.lat, place.lon, lat, lon) * 10) / 10,
+    displacementMeters: Math.round(distanceMeters(place.lat, place.lon, lat, lon) * 10) / 10,
     decision: {
-      canBecomeVerified: Boolean(selectedNamed && containingBuildings.length && recommendedRadius),
+      canBecomeVerified: Boolean(closestNamedFeature && containingBuildings.length && recommendedRadius),
       coordinateDecision: 'use_official_address_point_for_main_entrance',
       recommendedLat: lat,
       recommendedLon: lon,
@@ -236,7 +205,7 @@ for (const spec of specs) {
       coordType: 'address_point',
       locatorType: 'building',
       sourceProvider: 'official_address',
-      nextAction: 'Review hospital-complex support set and create a separate production PR if the measured radius represents the intended canonical scope.',
+      nextAction: 'Review the measured hospital-complex support and create a separate production PR when the radius matches the canonical scope.',
     },
   });
 }
@@ -251,7 +220,7 @@ const summary = {
 await writeJson('summary.json', summary);
 await fs.writeFile(
   path.join(outDir, 'README.md'),
-  '# OUS hospital coordinate research post-195\n\nResearch-only audit for Radiumhospitalet and Rikshospitalet. Exact Kartverket address points, official OUS address confirmation, OSM hospital/building geometry and measured campus-radius candidates are stored in summary.json. Canonical data was not changed.\n',
+  '# OUS hospital coordinate research post-195\n\nResearch-only audit for Radiumhospitalet and Rikshospitalet. Kartverket address points, official OUS address confirmation, hospital/building geometry and measured radius candidates are stored in summary.json. Canonical data was not changed.\n',
   'utf8',
 );
 console.log(JSON.stringify(summary, null, 2));
