@@ -8,6 +8,25 @@ Frysemanifestet `data/fag/historie/historie_v5_5_freeze_manifest.json` inneholde
 
 V5.5 er den kuraterte faglige basen. V6 skal legge til kilde-, claim- og stedsevidens i egne kontrakter og skal ikke stille endre V5.5-objektene.
 
+## Hva frysen ikke beviser
+
+`FROZEN`, `FREEZE_READY` og 20/20 interne domener betyr at den valgte V5.5-strukturen er utfylt, individuelt kuratert og beskyttet mot stille regresjon.
+
+Dette er ikke bevis på at hele historiefaget er universelt dekket. De gamle portene sammenligner dataene med et forhåndsvalgt inventar på 20 domener og 200 emner; de tester ikke uavhengig om nødvendige tidsperioder, historiske felt, geografier eller aktørperspektiver mangler.
+
+Universell fagdekning eies derfor av:
+
+```text
+data/fag/historie/historie_universal_coverage_contract_v1.json
+tools/audit-historie-universal-coverage.mjs
+reports/historie-universal-coverage/historie-universal-coverage.json
+reports/historie-universal-coverage/historie-universal-coverage.md
+```
+
+Så lenge denne auditen har status `INCOMPLETE`, skal V5.5 omtales som en gjennomarbeidet og frosset kjerne — ikke som et bevist komplett historiefag.
+
+Dersom heldekningsauditen avdekker et reelt faglig hull, skal det lukkes gjennom en begrunnet og versjonert fagendring. Frysen kan ikke brukes til å blokkere nødvendig faglig utvidelse, men den skal fortsatt hindre ubegrunnede eller skjulte omskrivinger.
+
 ## Materialisert kvalitetsløft
 
 Den globale dybdeauditen avdekket restgjeld som den tidligere V5.5-validatoren ikke målte. Før frysen ble følgende reparert i canonical-dataene:
@@ -18,7 +37,7 @@ Den globale dybdeauditen avdekket restgjeld som den tidligere V5.5-validatoren i
 
 Etter reparasjonen har alle 826 begreper minst to indikatorer og to kildekrav, alle 200 teorier minst tre begrensninger, og relasjonsintegriteten er uten ukjente mål. Dybdeauditen har status `PASSED`, og frysemanifestet har status `FROZEN`.
 
-Leksikalske ankervarsler er informative, ikke blokkerende: de brukes som manuell kontrolliste for definisjoner der bøyning, sammensatte ord eller en bevisst faglig parafrase gjør at label-tokenet ikke gjentas ordrett. De skal ikke masseendres automatisk, fordi ordrett repetisjon i seg selv ikke dokumenterer bedre faglig kvalitet.
+Leksikalske ankervarsler er informative, ikke blokkerende: de brukes som manuell kontrollliste for definisjoner der bøyning, sammensatte ord eller en bevisst faglig parafrase gjør at label-tokenet ikke gjentas ordrett. De skal ikke masseendres automatisk, fordi ordrett repetisjon i seg selv ikke dokumenterer bedre faglig kvalitet.
 
 ## Permanent kvalitetsport
 
