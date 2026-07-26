@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "eidsvollsbygningen",
+  "capturedAt": "2026-07-26",
+  "legacyCoordinate": {
+    "lat": 60.33056,
+    "lon": 11.26139,
+    "r": 260
+  },
+  "appliedCandidate": {
+    "sourceProvider": "osm",
+    "sourceObjectId": "osm-way:125813296",
+    "sourceUrl": "https://www.openstreetmap.org/way/125813296",
+    "publishedRepresentativePoint": {
+      "lat": 60.30079,
+      "lon": 11.17098
+    },
+    "tags": {
+      "name": "Eidsvollsbygningen",
+      "building": "civic",
+      "historic": "building",
+      "wikidata": "Q4584720"
+    },
+    "finding": "The named building polygon represents Eidsvollsbygningen itself. Its published representative point is 60.30079, 11.17098.",
+    "rawGeometryCaptured": false,
+    "coordinateUse": "named_building_polygon_representative_point"
+  },
+  "officialIdentity": {
+    "sourceProvider": "museum",
+    "sourceName": "Eidsvoll 1814",
+    "sourceUrl": "https://eidsvoll1814.no/eidsvollbygningen",
+    "finding": "The official institution identifies Eidsvollsbygningen as the building where the Constitution was written and adopted in 1814 and describes it as a large, room-rich historic house."
+  },
+  "officialVisitorContext": {
+    "sourceProvider": "museum",
+    "sourceName": "Eidsvoll 1814 – Besøk oss",
+    "sourceUrl": "https://eidsvoll1814.no/besok",
+    "visitorAddress": "Carsten Ankers veg 17, Eidsvoll Verk",
+    "finding": "The official visitor page confirms the present visitor destination for Eidsvollsbygningen and the surrounding museum complex. The address is used as identity and access context, not as the coordinate source."
+  },
+  "heritageScope": {
+    "sourceProvider": "riksantikvaren",
+    "sourceName": "Riksantikvaren – Fredet Eidsvollsbygningen",
+    "sourceUrl": "https://riksantikvaren.no/fredninger/fredet-eidsvollsbygningen/",
+    "sourceObjectId": "riksantikvaren-kulturminne:146171",
+    "finding": "Riksantikvaren identifies the protected object as Eidsvollsbygningen and states that the park and pavilions around the building are also protected. The building is classified as a residential building and forms the central object in the national memorial complex."
+  },
+  "independentCoordinateCrossCheck": {
+    "sourceProvider": "wikidata",
+    "sourceName": "Wikidata Q4584720 – Eidsvollsbygningen",
+    "sourceUrl": "https://www.wikidata.org/wiki/Q4584720",
+    "sourceObjectId": "wikidata:Q4584720",
+    "lat": 60.30083333333333,
+    "lon": 11.17083333333333,
+    "distanceFromAppliedPointM": 9.4,
+    "finding": "The independent named-entity coordinate is within approximately 9.4 metres of the applied OSM building representative point."
+  },
+  "falseCandidate": {
+    "sourceProvider": "osm_discovery",
+    "sourceObjectId": "osm-node:4909601826",
+    "lat": 60.29632,
+    "lon": 11.18918,
+    "objectClass": "tourism=information",
+    "distanceFromAppliedPointM": 1119.2,
+    "finding": "A second object named Eidsvollsbygningen is an information sign approximately 1.12 kilometres east-southeast of the historic building and is rejected as the canonical object."
+  },
+  "distanceAnalysis": {
+    "legacyToAppliedM": 5978.6,
+    "finding": "The legacy coordinate is approximately 5.98 kilometres northeast of the actual named building and must be replaced."
+  },
+  "decision": {
+    "canBecomeVerified": true,
+    "coordinateChangeRequired": true,
+    "appliedCoordinate": {
+      "lat": 60.30079,
+      "lon": 11.17098,
+      "r": 260
+    },
+    "coordStatus": "verified_geometry",
+    "coordRole": "building_anchor",
+    "representationLimit": "The coordinate represents Eidsvollsbygningen itself. The retained 260-metre gameplay radius covers the immediate park, pavilions and visitor complex but is not the legal protection boundary or the industrial landscape of Eidsvoll Verk."
+  }
+}
