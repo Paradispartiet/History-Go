@@ -1,30 +1,29 @@
 # History GO — people-popup-system
 
-Status: **canonical**  
-Eier: `people_popup_presentation_contract`  
+Status: **operational**  
 Runtime: `js/ui/person-popup-v2.js`  
 Design: `css/person-popup-v2.css`  
+Test: `tests/person-popup-v2.test.js`  
 Sist kontrollert: **2026-07-26**
 
-Dette dokumentet definerer hvordan den rike people-popupen skal bygges. Popupen skal være en informativ personprofil, ikke en stor quizflate og ikke en samling tomme bokser.
+Dette dokumentet beskriver den rike people-popupen. Popupen skal være en informativ personprofil, ikke en stor quizflate og ikke en samling tomme bokser.
 
 ## 1. Rolle
 
-People-popupen er fordypningsflaten for en person som er oppdaget gjennom et sted, en relasjon, en fortelling, et verk eller et søk.
+People-popupen er fordypningsflaten for en person som åpnes fra et sted, en relasjon, en fortelling, et verk eller et søk.
 
 Den skal:
 
-- forklare hvem personen er og hvorfor vedkommende er relevant;
+- forklare hvem personen er og hvorfor personen er relevant;
 - vise `popupDesc` som hovedtekst og `desc` som kort ingress;
-- samle rolle, livsdata, virke, utdanning, materialer eller arbeidsfelt;
-- vise faktiske verk og bidrag;
-- vise steder, relasjoner, fortellinger, kunnskap og kilder når de finnes;
-- bruke ett kontrollert portrett med en god initialfallback;
+- samle rolle, livsdata, virke, verk, fagprofil og steder når slike data finnes;
+- gjenbruke canonical places, relations, stories, knowledge og observations;
+- bruke ett kontrollert portrett med initialfallback;
 - skjule tomme seksjoner fullstendig;
 - holde quiz som en liten sekundær handling;
 - ha tydelig margin mot skjermkanten på mobil, iPad og desktop.
 
-Canonical persondata ligger fortsatt i de manifest-lastede filene under `data/people/**`. Popupen er en presentasjon av disse dataene og oppretter ingen parallell personidentitet.
+Canonical persondata ligger i de manifest-lastede filene under `data/people/**`. Popupen presenterer disse dataene og skal ikke dikte opp manglende verk, biografi eller bilder.
 
 ## 2. Informasjonsrekkefølge
 
@@ -33,14 +32,14 @@ Canonical persondata ligger fortsatt i de manifest-lastede filene under `data/pe
 3. **Kompakte handlinger** — quiz bare når personen faktisk har quiz, samtale og notat.
 4. **Om personen** — hele `popupDesc`, avsnittsbevart.
 5. **Verk og bidrag** — bare når konkrete verk finnes.
-6. **Fagprofil** — utdanning, materialer og relevante temaer.
+6. **Fagprofil** — utdanning, materialer og temaer når feltene finnes.
 7. **Steder** — canonical steder personen er koblet til.
 8. **Tilknytninger** — kuraterte relations.
 9. **Fortellinger og kunnskap** — eksisterende History GO-systemer.
-10. **Kilder og videre lesning** — verifiserte lenker.
+10. **Kilder og videre lesning** — kildefelter fra persondata.
 11. **Observasjoner** — bare når brukeren faktisk har registrert observasjoner.
 
-## 3. Presentasjonsregler
+## 3. Faste designregler
 
 1. Popupen skal ikke ligge helt ut til skjermkanten.
 2. Det skal være én intern vertikal scrollflate.
@@ -48,28 +47,30 @@ Canonical persondata ligger fortsatt i de manifest-lastede filene under `data/pe
 4. Quizknappen skal aldri være en fullbredde gul blokk i people-popupen.
 5. Manglende quiz skal fjerne quizknappen, ikke gi en blind handling.
 6. Manglende bilde skal gi initialer og navn, aldri et ødelagt bildeikon.
-7. `image`, `portrait`, `portraitImage`, `imageCard`, `cardImage`, `photo` og `frontImage` kan prøves som bildekandidater i denne rekkefølgen.
-8. `popupDesc` skal prioriteres foran eldre `wiki` og `description`.
+7. `image`, `portrait`, `portraitImage`, `imageCard`, `cardImage`, `photo` og `frontImage` prøves som bildekandidater.
+8. `popupDesc` prioriteres foran eldre `wiki` og `description`.
 9. Tomme verk-, sted-, relasjons-, kilde- eller observasjonsseksjoner skal ikke vises.
 10. Interne ID-er, auditstatus og researchgjeld skal ikke vises som brukerinnhold.
 
-## 4. Anbefalte personfelt
+## 4. Felter popupen støtter
 
 ```json
 {
-  "id": "kjersti_wexelsen_goksoyr",
-  "name": "Kjersti Wexelsen Goksøyr",
-  "initials": "KWG",
+  "id": "person_id",
+  "name": "Personnavn",
+  "initials": "PN",
   "category": "kunst",
   "kindLabel": "Billedhugger / offentlig kunst",
   "desc": "Kort ingress.",
   "popupDesc": "Lengre, avsnittsdelt personartikkel.",
   "birth_date": "1945-12-15",
+  "death_date": null,
   "birth_place": "Oslo",
   "active_place": "Nittedal",
   "occupation": "Billedhugger",
   "education": [],
   "materials": [],
+  "themes": [],
   "works": [],
   "places": [],
   "tags": [],
@@ -78,71 +79,67 @@ Canonical persondata ligger fortsatt i de manifest-lastede filene under `data/pe
 }
 ```
 
-Feltlisten er en anbefalt presentasjonskontrakt, ikke et krav om at alle eksisterende personer må migreres samtidig.
+Feltlisten er en presentasjonskontrakt, ikke et krav om at alle eksisterende personer må migreres samtidig. Når et felt mangler, forsvinner den tilhørende seksjonen.
 
 ## 5. Feltsemantikk
 
 ### `desc`
 
-Kort ingress på én til tre setninger. Den skal raskt svare på hvem personen er og hvilken kobling som gjør vedkommende relevant i History GO.
+Kort ingress på én til tre setninger. Den skal raskt svare på hvem personen er og hvorfor personen hører hjemme i History GO.
 
 ### `popupDesc`
 
-Hovedartikkel med biografi, virke, betydning og stedskobling. Den skal ikke være en gjentakelse av `desc`.
+Hovedartikkel med biografi, virke, betydning og stedskobling. Den skal ikke bare gjenta `desc`.
 
 ### Livsdata
 
-Foretrukne felt er `birth_date`, `death_date`, `birth_place` og eventuelt `active_place`. ISO-dato brukes når full dato er kjent. År alene er tillatt når kilden bare støtter år.
+Foretrukne felt er `birth_date`, `death_date`, `birth_place` og `active_place`. ISO-dato brukes når full dato er kjent. År alene er tillatt når kilden bare støtter år.
 
 ### `works`
 
-Kan være en liste med strenger eller objekter. Objekter kan bruke `title`, `year`, `material`, `place`, `summary` og `id`. Bare reelle verk, verv, oppfinnelser, publikasjoner eller dokumenterte bidrag skal føres her.
+Kan være en liste med strenger eller objekter. Objekter kan bruke `title`, `year`, `material`, `place`, `summary` og `id`. Bare reelle verk, verv, publikasjoner, oppfinnelser eller dokumenterte bidrag skal føres her.
 
-### `education`
+### `education`, `materials` og `themes`
 
-Kort liste over dokumentert utdanning, læresteder eller faglig skolering. Ikke bruk generiske kompetanseord som er utledet fra yrkestittelen.
-
-### `materials`
-
-For kunstnere og håndverkere: faktiske materialer eller medier. For andre persontyper kan tilsvarende arbeidsfelt ligge i `themes` eller `tags`.
+Disse feltene gir en kompakt fagprofil. De skal være dokumenterte og personspesifikke, ikke generiske ord fylt inn for å gjøre popupen større.
 
 ### `externalLinks` og `source_urls`
 
-Kilde- og videre-lesningslenker. `externalLinks` bør ha tydelig `label`, `url`, `type` og ved behov `verifiedAt`.
+Brukes til kilde- og videre-lesningslenker. `externalLinks` bør ha tydelig `label`, `url`, `type` og ved behov `verifiedAt`.
 
 ## 6. Ulike persontyper
 
 ### Kunstner, arkitekt og designer
 
-Prioriter kunstnerrolle, materialer, utdanning, verk, offentlige oppdrag, stil, teknikk, institusjoner og steder der verk kan observeres.
+Prioriter rolle, materialer, utdanning, verk, offentlige oppdrag, stil, teknikk, institusjoner og steder der arbeidet kan observeres.
 
 ### Forfatter, dramatiker og journalist
 
-Prioriter sjanger, verk, publikasjoner, redaksjoner, teatre, bosteder, arbeidssteder, litterære miljøer og historiske hendelser knyttet til tekstene.
+Prioriter sjanger, verk, publikasjoner, redaksjoner, teatre, bosteder, arbeidssteder og litterære miljøer.
 
 ### Politiker og samfunnsaktør
 
-Prioriter verv, perioder, partier eller organisasjoner, beslutninger, institusjoner, konflikter, reformer, taler og steder der handlingene fant sted.
+Prioriter verv, perioder, partier eller organisasjoner, beslutninger, reformer, konflikter, taler og steder der handlingene fant sted.
 
 ### Forsker, oppfinner og fagperson
 
-Prioriter fagfelt, utdanning, institusjoner, teorier, oppdagelser, publikasjoner, metoder, instrumenter og steder for forskning eller formidling.
+Prioriter fagfelt, utdanning, institusjoner, teorier, oppdagelser, publikasjoner, metoder og instrumenter.
 
-### Musiker, komponist og scenekunstner
+### Musiker og scenekunstner
 
-Prioriter instrument eller rolle, ensembler, verk, produksjoner, scener, innspillinger, perioder og kunstneriske samarbeid.
+Prioriter instrument eller rolle, ensembler, verk, produksjoner, scener, innspillinger og samarbeid.
 
 ### Idrettsutøver og trener
 
-Prioriter gren, lag, konkurranser, medaljer, rekorder, perioder, trenere, anlegg og avgjørende hendelser.
+Prioriter gren, lag, konkurranser, medaljer, rekorder, perioder, trenere og anlegg.
 
 ### Næringslivsperson og institusjonsbygger
 
-Prioriter virksomheter, roller, innovasjoner, produkter, arbeidsliv, bygg, fabrikker, markeder og organisatoriske milepæler.
+Prioriter virksomheter, roller, innovasjoner, produkter, arbeidsliv, bygg, fabrikker og organisatoriske milepæler.
 
 ### Ikon, institusjonsbærer og kontekstperson
 
-`kind` beskriver personens spillrolle, ikke vedkommendes yrke. Popupen skal fortsatt vise den konkrete rollen og hvorfor personen er med. En kontekstperson skal ikke få kunstige verk eller en overdrevet helteprofil.
+`kind` beskriver personens spillrolle, ikke yrket. En kontekstperson skal ikke få kunstige verk eller en overdrevet helteprofil.
 
 ## 7. Handlinger
 
@@ -150,42 +147,43 @@ Quiz, samtale og notat ligger i en kompakt handlingsrad i hero-området.
 
 - Quiz vises bare når `QuizEngine` finner innhold for personen.
 - Quizstatus kan endre teksten til «Fortsett quiz» eller «Ta quiz igjen».
-- Samtale og notat beholder de eksisterende `data-chat-person`- og `data-note-person`-kontraktene.
-- Handlingene skal ikke skyve biografi og verk nedover siden.
+- Samtale og notat beholder `data-chat-person`- og `data-note-person`-kontraktene.
+- Handlingene skal ikke skyve biografi og steder langt ned i popupen.
 
-## 8. Kjersti Wexelsen Goksøyr som pilot
+## 8. Kjersti Wexelsen Goksøyr som regresjonseksempel
 
-Kjersti Wexelsen Goksøyr demonstrerer en kunstnerprofil uten registrert portrett:
+Den eksisterende Kjersti-posten brukes til å kontrollere at popupen:
 
-- initialfallback i stedet for ødelagt bilde;
-- fødselsdato og fødested;
-- billedhuggerrolle og virkested;
-- utdanning ved Statens håndverks- og kunstindustriskole og Statens kunstakademi;
-- materialer som stein, tre, metall og bronse;
-- Sigrid Undset-monumentet og andre offentlige verk;
-- Stensparken som klikkbart canonical sted;
-- kilder fra Store norske leksikon, Norsk kunstnerleksikon, kunstnerens nettsted og Oslo byleksikon.
+- viser initialene `KWG` når portrett mangler;
+- viser rollen «Offentlig kunst / skulptur»;
+- viser nøkkelåret 1991;
+- bruker den eksisterende `popupDesc`-teksten;
+- viser Stensparken som klikkbart canonical sted;
+- viser relevante tags som temaer;
+- ikke viser en tom «Verk»-boks;
+- ikke viser et ødelagt bildeikon.
 
-Piloten skal ikke bli en personspesial i runtime-koden. Alle feltene er generiske og kan brukes av andre personer.
+Mer biografisk innhold og konkrete verk skal legges i canonical persondata gjennom ordinær, kildebasert people-produksjon. Popup-runtime skal ikke kompensere ved å gjette.
 
 ## 9. QA
 
 Ved endringer i people-popupen:
 
 1. kjør `node --check js/ui/person-popup-v2.js`;
-2. kjør regresjonstestene for people-popupen;
+2. kjør `node --test tests/person-popup-v2.test.js`;
 3. kontroller en person med bilde og en person uten bilde;
 4. kontroller en person med verk og en person uten verk;
 5. kontroller at person uten quiz ikke får quizknapp;
-6. kontroller at popupen har margin på mobil og iPad;
+6. kontroller margin på mobil og iPad;
 7. kontroller at steder åpner canonical stedspopup;
-8. kjør people-data-, dokumentasjons- og web-build-kontrollene når relevante filer endres.
+8. kjør relevante people-data- og web-build-kontroller.
 
 ## 10. Eierskap
 
-- `docs/PEOPLE_POPUP_SYSTEM.md` eier presentasjonskontrakten.
+- `docs/PEOPLE_POPUP_SYSTEM.md` beskriver presentasjonskontrakten.
 - people JSON eier personens faktiske innhold.
 - `js/ui/person-popup-v2.js` eier runtime-renderingen.
 - `css/person-popup-v2.css` eier utformingen.
+- `js/config.js` laster V2-runtime og stil tidlig.
 - `js/ui/popup-utils.js` eier den generelle popupmotoren og legacy-fallbacken.
 - people-image-kontrakten eier kilde-, lisens- og attribusjonsreglene for portretter.
