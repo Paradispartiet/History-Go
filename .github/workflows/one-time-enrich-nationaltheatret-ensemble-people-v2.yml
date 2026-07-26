@@ -41,8 +41,29 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Build tools
-        run: npm run tools:build
+      - name: Capture tools build
+        shell: bash
+        run: |
+          set +e
+          npm run tools:build > tools-build.log 2>&1
+          code=$?
+          echo "$code" > tools-build.exit
+          tail -n 200 tools-build.log
+          exit 0
+
+      - name: Upload tools build diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: nationaltheatret-tools-build-${{ github.run_id }}
+          path: |
+            tools-build.log
+            tools-build.exit
+          if-no-files-found: error
+
+      - name: Enforce tools build result
+        shell: bash
+        run: |
+          test "$(cat tools-build.exit)" = "0"
 
       - name: Build scripts
         run: npm run scripts:build
@@ -77,6 +98,7 @@ jobs:
           set -euo pipefail
           git checkout origin/main -- js/core/categories.js 2>/dev/null || true
           git rm scripts/one-time-enrich-nationaltheatret-ensemble-people-v2.py
+          git rm -f tools-build.log tools-build.exit 2>/dev/null || true
           find reports -mindepth 1 -maxdepth 1 \
             ! -name 'people-popup-readiness.json' \
             ! -name 'people-popup-readiness.md' \
