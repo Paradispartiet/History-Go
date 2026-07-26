@@ -1,0 +1,45 @@
+name: One-time sync documentation phase 21
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/one-time-sync-documentation-phase-21.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync-and-remove:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out documentation branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/documentation-governance-phase-21-quiz-physical-visits
+          fetch-depth: 0
+
+      - name: Merge current main into documentation branch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+          git push origin HEAD:agent/documentation-governance-phase-21-quiz-physical-visits
+
+      - name: Remove one-time sync workflow from main
+        shell: bash
+        run: |
+          git fetch origin main
+          git switch -C main origin/main
+          git rm .github/workflows/one-time-sync-documentation-phase-21.yml
+          git commit -m "Fjern engangssynk for dokumentasjonsfase 21"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git pull --rebase origin main
+          done
+          exit 1
