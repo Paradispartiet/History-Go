@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **100**
-- Additional active Oslo IDs outside the protocol: **412**
+- IDs in the current revision protocol: **110**
+- Additional active Oslo IDs outside the protocol: **402**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **412**
+- Additional IDs needing revision: **402**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -23,8 +23,8 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | scenekunst | 24 |
 | litteratur | 21 |
 | vitenskap | 21 |
-| by | 18 |
 | politikk | 18 |
+| by | 8 |
 | media | 7 |
 | musikk | 5 |
 | film_tv | 2 |
@@ -34,16 +34,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 | Domain | Place | ID | desc | popupDesc | Paragraphs | File | Status |
 |---|---|---|---:|---:|---:|---|---|
-| by | Akrobaten gangbro | `akrobaten_gangbro` | 45 | 166 | 3 | `data/places/by/oslo/places/akrobaten_gangbro.json` | needs revision |
-| by | Fagerborg kirke | `fagerborg_kirke` | 31 | 121 | 2 | `data/places/by/oslo/places/fagerborg_kirke.json` | needs revision |
-| by | Frogner kirke | `frogner_kirke` | 38 | 130 | 2 | `data/places/by/oslo/places/frogner_kirke.json` | needs revision |
-| by | Holmenkollen kapell | `holmenkollen_kapell` | 18 | 93 | 2 | `data/places/by/oslo/places/holmenkollen_kapell.json` | needs revision |
-| by | Kampen Økologiske Barnebondegård | `kampen_okologiske_barnebondegard` | 28 | 182 | 3 | `data/places/by/oslo/places/kampen_okologiske_barnebondegard.json` | needs revision |
-| by | Lindøya | `lindoya` | 16 | 46 | 1 | `data/places/by/oslo/places/lindoya.json` | needs revision |
-| by | Losæter | `losaeter` | 18 | 107 | 3 | `data/places/by/oslo/places/losaeter.json` | needs revision |
-| by | Nakholmen | `nakholmen` | 16 | 53 | 1 | `data/places/by/oslo/places/nakholmen.json` | needs revision |
-| by | Ormøya | `ormoya` | 16 | 60 | 1 | `data/places/by/oslo/places/ormoya.json` | needs revision |
-| by | Sukkerbiten badstulandsby | `sukkerbiten_badstulandsby` | 16 | 116 | 3 | `data/places/by/oslo/places/sukkerbiten_badstulandsby.json` | needs revision |
 | by | Torshovparken | `torshovparken` | 16 | 103 | 3 | `data/places/by/oslo/places/torshovparken.json` | needs revision |
 | by | Ulvøya | `ulvoya` | 14 | 63 | 1 | `data/places/by/oslo/places/ulvoya.json` | needs revision |
 | by | Uranienborg kirke | `uranienborg_kirke` | 30 | 104 | 2 | `data/places/by/oslo/places/uranienborg_kirke.json` | needs revision |
