@@ -1,4 +1,4 @@
-name: One-time inspect okonomi emne revision
+name: One-time materialize okonomi emne revision
 
 on:
   pull_request:
@@ -11,12 +11,13 @@ on:
     paths:
       - '.github/workflows/one-time-inspect-okonomi-emne-revision.yml'
       - '.tmp/okonomi-revision/**'
+      - 'tools/validate-okonomi-naeringsliv-emnerevisjon.mjs'
 
 permissions:
   contents: write
 
 jobs:
-  inspect:
+  materialize:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -25,60 +26,55 @@ jobs:
           ref: agent/okonomi-naeringsliv-emne-revision-stage
           fetch-depth: 0
 
-      - name: Recover revision script
+      - name: Materialize and validate revision
         shell: bash
         run: |
           set +e
           set -uo pipefail
-          mkdir -p /tmp/okonomi-revision .tmp/okonomi-revision
-          cat .tmp/okonomi-revision/part-[0-9][0-9] > /tmp/okonomi-revision.b64
-          base64 --decode /tmp/okonomi-revision.b64 > /tmp/okonomi-revision.tgz 2> .tmp/okonomi-revision/base64-error.txt
-          base64_status=$?
-          tar -xzf /tmp/okonomi-revision.tgz -C /tmp/okonomi-revision 2> .tmp/okonomi-revision/tar-extract-error.txt
-          extract_status=$?
-          recover_status=1
-          compile_status=99
-          if [ -f /tmp/okonomi-revision/revise_okonomi.py ]; then
-            cp /tmp/okonomi-revision/revise_okonomi.py .tmp/okonomi-revision/revise_okonomi.py
-            recover_status=0
-            python -m py_compile .tmp/okonomi-revision/revise_okonomi.py 2> .tmp/okonomi-revision/python-compile-error.txt
-            compile_status=$?
+          mkdir -p .tmp/okonomi-revision
+          sed -i '/quality\["canonical_files"\]\["datasets"\]/d' .tmp/okonomi-revision/repair_and_run.py
+          python .tmp/okonomi-revision/repair_and_run.py > .tmp/okonomi-revision/revision.log 2>&1
+          revision_status=$?
+          framework_status=99
+          individual_status=99
+          if [ "$revision_status" -eq 0 ]; then
+            node tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs > .tmp/okonomi-revision/framework-validation.log 2>&1
+            framework_status=$?
+            node tools/validate-okonomi-naeringsliv-emnerevisjon.mjs > .tmp/okonomi-revision/individual-validation.log 2>&1
+            individual_status=$?
           else
-            : > .tmp/okonomi-revision/python-compile-error.txt
-          fi
-          sha256sum /tmp/okonomi-revision.b64 /tmp/okonomi-revision.tgz > .tmp/okonomi-revision/checksums.txt
-          if [ -f .tmp/okonomi-revision/revise_okonomi.py ]; then
-            sha256sum .tmp/okonomi-revision/revise_okonomi.py >> .tmp/okonomi-revision/checksums.txt
-            wc -c .tmp/okonomi-revision/revise_okonomi.py > .tmp/okonomi-revision/recovered-size.txt
-            tail -n 30 .tmp/okonomi-revision/revise_okonomi.py > .tmp/okonomi-revision/recovered-tail.txt
-          else
-            : > .tmp/okonomi-revision/recovered-size.txt
-            : > .tmp/okonomi-revision/recovered-tail.txt
+            echo 'Framework validator not run because materialization failed.' > .tmp/okonomi-revision/framework-validation.log
+            echo 'Individual validator not run because materialization failed.' > .tmp/okonomi-revision/individual-validation.log
           fi
           {
-            echo "base64_status=$base64_status"
-            echo "extract_status=$extract_status"
-            echo "recover_status=$recover_status"
-            echo "compile_status=$compile_status"
-          } > .tmp/okonomi-revision/diagnostics.txt
-          cat .tmp/okonomi-revision/diagnostics.txt
-          cat .tmp/okonomi-revision/python-compile-error.txt
+            echo "revision_status=$revision_status"
+            echo "framework_status=$framework_status"
+            echo "individual_status=$individual_status"
+          } > .tmp/okonomi-revision/materialization-status.txt
+          cat .tmp/okonomi-revision/materialization-status.txt
+          cat .tmp/okonomi-revision/revision.log
+          cat .tmp/okonomi-revision/framework-validation.log
+          cat .tmp/okonomi-revision/individual-validation.log
           exit 0
 
-      - name: Commit recovered script
+      - name: Commit production outputs and diagnostics
         shell: bash
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add .tmp/okonomi-revision/diagnostics.txt \
-            .tmp/okonomi-revision/checksums.txt \
-            .tmp/okonomi-revision/tar-extract-error.txt \
-            .tmp/okonomi-revision/python-compile-error.txt \
-            .tmp/okonomi-revision/recovered-size.txt \
-            .tmp/okonomi-revision/recovered-tail.txt
-          if [ -f .tmp/okonomi-revision/revise_okonomi.py ]; then
-            git add .tmp/okonomi-revision/revise_okonomi.py
-          fi
-          git commit -m 'TEMP: gjenopprett økonomiemnerevisjonsskript'
+          git add \
+            data/fag/naeringsliv/teorikort_okonomi_og_naeringsliv_v1.json \
+            data/fag/naeringsliv/metodeprotokoller_okonomi_og_naeringsliv_v1.json \
+            data/fag/naeringsliv/modellregister_okonomi_og_naeringsliv_v1.json \
+            data/fag/naeringsliv/maleregister_okonomi_og_naeringsliv_v1.json \
+            data/fag/naeringsliv/emneutvidelser_okonomi_og_naeringsliv_v1.json \
+            data/fag/naeringsliv/datasettregister_okonomi_og_naeringsliv_v1.json \
+            data/fag/naeringsliv/universitetskvalitet_okonomi_og_naeringsliv_v2.json \
+            tools/validate-okonomi-naeringsliv-emnerevisjon.mjs \
+            .tmp/okonomi-revision/revision.log \
+            .tmp/okonomi-revision/framework-validation.log \
+            .tmp/okonomi-revision/individual-validation.log \
+            .tmp/okonomi-revision/materialization-status.txt
+          git commit -m 'TEMP: materialiser individuell økonomiemnerevisjon'
           git push origin HEAD:agent/okonomi-naeringsliv-emne-revision-stage
