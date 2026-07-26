@@ -1,238 +1,126 @@
-# README — FAGSTRUKTUR I HISTORY GO
+# History GO — operativ guide til fagstruktur
 
-Denne README-en beskriver **hvordan fag, kunnskap og læring er strukturert i History GO**, og hvorfor systemet er bygget slik.  
-Den er **epistemisk og normativ**: den forklarer hva som er riktig bruk av strukturene, ikke bare hva som finnes.
+Status: **operational**
+Sist kontrollert: **2026-07-26**
 
-Bindende geografisk regel: `docs/SUBJECT_FILE_CONTRACT.md` eier skillet mellom universelle fagfiler og lokale produksjonslag. Fagstruktur skal ikke kopieres per land.
+Dette dokumentet forklarer hvordan aktive fagpakker henger sammen. Det er ikke en selvstendig fagkontrakt og oppretter ikke nye datalag.
 
----
+## Autoritetsrekkefølge
 
-## Grunntanke
+1. [`../docs/SUBJECT_FILE_CONTRACT.md`](../docs/SUBJECT_FILE_CONTRACT.md) eier den bindende arkitekturen: én universell fagmodell per fag og separate geografiske produksjonslag.
+2. [`README.pensum.md`](./README.pensum.md) eier den canonical kunnskaps- og pensumarkitekturen.
+3. [`../data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) eier hvilke filer som er aktive for hvert `subjectId`.
+4. De manifest-resolverte JSON-filene eier det faktiske faginnholdet.
+5. Quizproduksjon styres av [`../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`](../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md) og de maskinlesbare quizkontraktene.
 
-History GO modellerer kunnskap i **lag**, ikke i flate lister.
+Ved konflikt skal denne guiden korrigeres. Den kan ikke overstyre kontrakt, manifest, schema, runtime eller validator.
 
-Mennesker lærer i praksis i denne rekkefølgen:
+## Aktiv fagpakke
 
-1. **Orientering** – hva skal jeg se etter?
-2. **Forståelse** – hvordan henger dette sammen?
-3. **Fordypning** – konkrete emner og begreper
-4. **Handling** – quiz, observasjon, steder
+`data/fag/fag_manifest.json` peker per fag til en pakke som normalt består av:
 
-Systemet speiler denne læringsprosessen direkte i datastrukturen.
+```text
+pensum
+emner
+fagkart
+methods
+supersetQuizMal
+quizStandard
+quizQuestionSchema
+```
 
----
+Noen fag har i tillegg versjons-, coverage-, quality- eller quizproduksjonskontrakter. Manifestet er resolveren; filnavn skal ikke gjettes eller kopieres fra eldre README-er.
 
-## Oversikt over fag-lagene (øverst → nederst)
+## Lagene
 
-GLOBALT FAGKART
-↓
-FAGKART (dypt, forklarende)
-↓
-FAGPLAN (kort, observerbar)
-↓
-EMNEKART
-↓
-EMNER
-↓
-QUIZ / STEDER / OBSERVASJON
+### 1. Fagkart
 
-Hvert lag har **én tydelig rolle** og skal ikke overta funksjonen til et annet lag.
+Fagkartet beskriver fagets struktur, kategorier, begreper, teorier, konflikter, spørsmål og faglige koblinger.
 
----
+Fagkartet skal:
 
-## 1. Globalt fagkart (universets kart)
+- bruke stabile canonical ID-er;
+- være gjenbrukbart på tvers av geografier;
+- gi emner, quiz og geografiske produksjonslag en felles referanseramme;
+- ikke inneholde brukerens progresjon eller læringshistorikk.
 
-**Fil:** `emner/fagkart.json`
+Eldre fagfiler kan fortsatt inneholde geografisk profilblanding, for eksempel lokalt `scope` eller anbefalte cases. Det er compatibility-gjeld, ikke presedens for komplette land-, region- eller bykopier.
 
-Dette er det **øverste, tverrfaglige kartet** i systemet.
+### 2. Emner
 
-Det definerer:
-- fagfamilier
-- vitenskapelige grener (subfields)
-- hvordan fagområder forholder seg til hverandre
+Emner er konkrete faglige kunnskapsenheter. De kan bære blant annet:
 
-Eksempel (konseptuelt):
+- `emne_id`;
+- `subject_id`;
+- beskrivelser;
+- concepts og nøkkelbegreper;
+- dimensjoner og relasjoner;
+- koblinger til teorier og metoder.
 
-Naturvitenskap
-├─ Biologi
-│   ├─ Botanikk
-│   ├─ Zoologi
-│   ├─ Økologi
-│   ├─ Evolusjonsbiologi
-│   └─ Mikrobiologi
-├─ Geologi
-└─ Miljø og bærekraft
+Emner er fagdata. De er ikke quizresultater, besøkslogg eller personlig Knowledge.
 
-Kjennetegn:
-- endres sjelden
-- er ikke UI-rettet
-- er faglig autoritativt
-- brukes som referanse for presis fagkobling
+### 3. Pensum
 
----
+Pensum grupperer emner i moduler, rekkefølge og progresjonskrav. Pensum skal referere til emner fremfor å kopiere dem og skal ikke endres når en bruker lærer noe.
 
-## 2. FAGKART (dypt, strukturerende)
+### 4. Metoder
 
-Fagkartet er den **universelle, dype fagmodellen** for ett fag. Det skal ikke kopieres for hvert land, hver by eller hver region.
+Metodefila beskriver hvordan faget undersøker, vurderer eller produserer kunnskap. Metoder skal ha faglig mening og kunne refereres fra emner, quiz og andre produksjonslag.
 
-Fagkartet:
-- forklarer *hvordan faget henger sammen*;
-- definerer fagområder, begreper, konflikter og sentrale spørsmål;
-- kobler teorier, metoder og emner;
-- gir universelle ID-er som geografiske innholdslag kan bruke.
+### 5. Superset-quizmal
 
-Kjennetegn:
-- `principles`;
-- `categories`;
-- `topic_hooks`;
-- `canon`;
-- konflikter, aktører og spørsmål.
+Superset-malen er en faglig spørsmåls- og variasjonsflate. Den erstatter ikke quizproduksjonskontrakten, schemas eller target-bundne quizsett.
 
-Eksisterende filer med bynavn eller felt som `scope: oslo_og_omegn` og `recommended_oslo_cases` er compatibility-/profilblanding. Den geografiske informasjonen skal gradvis skilles ut i profiler, mappings, cases, claims, kilder, steder, personer og quizlag. Slike filer er ikke presedens for nye landkopier.
+### 6. Quiz og vurdering
 
-Dette laget er:
-- epistemisk;
-- strukturerende;
-- normativt;
-- geografisk gjenbrukbart.
+Quiz bruker fagpakken, men skal ikke eie faglogikken. En quiz kan koble spørsmål til fag, emner, concepts og et konkret target og kan produsere Knowledge og progresjonsevidens etter de aktive kontraktene.
 
-👉 **Dette er selve universelle fagkartet.**
+### 7. Geografiske produksjonslag
 
----
+Land, regioner, byer og steder skal realisere faget gjennom:
 
-## 3. FAGPLAN (kort, observerbar)
+- profiler og mappings;
+- lokale cases og dokumenterte claims;
+- kilder;
+- steder og personer;
+- target-bundet quizinnhold.
 
-**Eksempler:**  
-`fagkart_by.json`  
-`fagkart_natur.json` (kommende)
+De skal referere til canonical fag-ID-er, ikke opprette komplette parallelle fagpakker.
 
-Fagplanen er **operativ og lavterskel**.
+## To separate dekningsmål
 
-Den svarer på:
-- Hva er dette faget i praksis?
-- Hva skal jeg se etter?
-- Hva er kjernen?
+### Universell fagdekning
 
-Kjennetegn:
-- `what`
-- `core`
-- `observable_signs`
-- korte beskrivelser
-- ingen kanon
-- ingen utviklingsregler
+Måler om faget dekker nødvendige områder, emner, begreper, teorier og metoder.
 
-Dette laget brukes:
-- i UI
-- i onboarding
-- i felt (by / natur)
-- som praktisk læreplan
+### Geografisk produksjonsdekning
 
-👉 **Fagplan = det brukeren møter først.**
+Måler om en geografi har tilstrekkelige cases, kilder, claims, steder, personer og quizer til å realisere fagmodellen.
 
----
+Mange lokale cases beviser ikke at fagmodellen er heldekkende. Manglende lokalt innhold skal heller ikke løses ved å kopiere hele fagpakken.
 
-## 4. FAGKART_MAP (koblingslaget)
+## By-faget som eksempel
 
-**Fil:** `emner/fagkart_map.json`
+Aktive filer skal leses fra `data/fag/fag_manifest.json`. På kontrolltidspunktet peker `by` blant annet til:
 
-Dette er et **rent koblingslag** mellom lokale fagstrukturer og det globale fagkartet.
+```text
+data/fag/by/pensum_by.json
+data/fag/by/emner_by.json
+data/fag/by/fagkart_by.json
+data/fag/by/methods_by.json
+data/fag/by/supersetQUIZMAL_by.json
+```
 
-Det:
-- mapper lokale nøkler (BY, NATUR)
-- til globale `family_id` og `subfield_id`
+Den eldre kombinerte teksten i `README/byFagplan.md` er erstattet av en compatibility-pointer. Pre-consolidation-teksten er arkivert og eier ingen aktiv fagregel.
 
-Eksempel:
+## Praktisk endringsregel
 
-```json
-"natur": {
-  "bio_okologi": { "family_id": "biologi", "subfield_id": "okologi" }
-}
+Når fagdata endres:
 
+1. finn aktive paths i `data/fag/fag_manifest.json`;
+2. endre riktig fagfil, ikke denne guiden som erstatning for data;
+3. oppdater mappings, quizproduksjon og rapporter som faktisk avhenger av endringen;
+4. kjør relevante schemas, audits og tester;
+5. oppdater dokumentasjonen bare når ansvar, struktur eller arbeidsmåte er endret.
 
-
-Dette sikrer at:
-	•	emner havner riktig faglig
-	•	samme faglogikk kan brukes på tvers av UI, quiz og dekning
-	•	faglig presisjon opprettholdes uten duplisering
-
-⸻
-
-5. EMNEKART (oversikt / kanon)
-
-Eksempler:
-emnekart_by.json
-emnekart_natur_okologi.json
-
-Emnekartet er:
-	•	en kanonisk oversikt
-	•	en plan / backlog
-	•	et progresjonskart
-
-Det:
-	•	grupperer emner
-	•	angir status (planlagt / aktiv / ferdig)
-	•	gir oversikt over dekning
-
-Emnekartet er ikke kunnskap, men kartet over kunnskapen.
-
-⸻
-
-6. EMNER (mikro-kunnskap)
-
-Eksempel: emner/emner_natur.json
-
-Emner er:
-	•	konkrete faglige enheter
-	•	knyttet til fag via gren_key → fagkart_map
-	•	bærer:
-	•	core_concepts
-	•	key_terms
-	•	dimensions
-	•	related_emner
-
-Emner er:
-	•	det quiz tester
-	•	det dekning måler
-	•	det brukeren faktisk lærer
-
-⸻
-
-7. QUIZ / STEDER / OBSERVASJON
-
-Dette er handling og erfaring.
-	•	Quiz tester emner
-	•	Quiz gir unlocks (HGUnlocks / HGNatureUnlocks)
-	•	Steder konkretiserer fagkartet
-	•	Observasjon gjør kunnskapen kroppslig og situert
-
-Dette laget:
-	•	skal aldri eie faglogikk
-	•	skal kun bruke strukturene over
-
-⸻
-
-Låste prinsipper
-	•	Én universell fagmodell per fag; ingen komplette landkopier
-	•	Geografiske profiler og produksjonslag refererer til canonical fag-ID-er
-	•	Universell fagdekning og geografisk produksjonsdekning måles separat
-	•	Fagkart er dype og forklarende
-	•	Fagplan er kort og observerbar
-	•	Emner er mikro-kunnskap
-	•	Quiz er operativ læring
-	•	Globalt fagkart er faglig sannhet, ikke UI
-
-Hvis noe føles uklart, betyr det at to lag blander roller –
-ikke at systemet mangler et nytt lag.
-
-⸻
-
-Status
-	•	Begreper er ryddet
-	•	Lagene er identifisert
-	•	BY-systemet er referanseimplementasjon
-	•	NATUR kan bygges konsekvent fra start
-
-Dette dokumentet er referansen for videre faglig utvikling i History GO.
-
-
-
+> Ett ansvar per lag. Fagdata i fagpakken, geografisk realisering i produksjonslagene og brukerstatus i runtime-eide stores.

@@ -1,110 +1,87 @@
-# History GO – CSS oversikt
+# History GO — lokal CSS-guide
 
-## Lasting (viktig)
-Typisk rekkefølge (fra HTML):
-1) css/theme.css
-2) css/base.css
-3) css/layout.css
-4) css/components.css
-5) css/sheets.css (feature)
-6) css/placeCard.css (feature)
-7) css/nearby.css (feature)
+Status: **local**
+Omfang: `index.html` og `css/`
+Sist kontrollert: **2026-07-26**
 
-Regel:
-- Mer spesifikke selektorer vinner (f.eks. `body.hg-app header` vinner over `header`)
-- Senere filer kan overstyre tidligere ved lik spesifisitet.
+Dette dokumentet er en praktisk orientering for hovedappen. Det er ikke en canonical UI-kontrakt. Den faktiske lastrekkefølgen eies av `<link rel="stylesheet">`-elementene i [`../index.html`](../index.html), og faktisk selector-eierskap avgjøres av kildekoden.
 
----
+## Aktiv lastrekkefølge i `index.html`
 
-## Fil for fil – hva den eier
+På kontrolltidspunktet lastes appens CSS i denne rekkefølgen:
 
-### theme.css (APP-UI, scopes med `body.hg-app`)
-Eier:
-- CSS-variabler (`:root`): farger, radius, shadow, etc.
-- App-header/topplinje (`body.hg-app header`, `.brand`, `.actions`)
-- Search UI (`#globalSearch`, `#searchResults`)
-- Toast, modals, quiz, badges m.m.
+```text
+css/theme.css
+css/base.css
+css/layout.css
+css/components.css
+css/search.css
+css/nearby.css
+css/miniProfile.css
+css/profile.css
+css/merits.css
+css/civi.css
+css/quiz.css
+css/overlay.css
+css/effects.css
+css/map.css
+css/placeCard.css
+css/wonderkammer.css
+css/footer.css
+css/sheets.css
+css/historical-routes.css
+css/caravan.css
+css/nature.css
+css/people.css
+css/onboarding.css
+css/popups.css
+css/popup-polish.css
+js/console/console.css
+```
 
-Viktig:
-- Alt som gjelder app-sider skal helst ligge her og være scoped:
-  `body.hg-app ...`
-- Hvis noe “ikke reagerer”, sjekk at `<body class="hg-app">` finnes på den siden.
+Ikke kopier denne listen inn i andre dokumenter. Kontroller alltid `index.html` før lastrekkefølge endres.
 
----
+## Cascade-regler som gjelder
 
-### base.css (reset + typografi)
-Eier:
-- Enkle resets (`box-sizing`, margin)
-- Standard font/line-height for generelle sider (ikke nødvendigvis app-scope)
+- Høyere spesifisitet vinner.
+- Ved lik spesifisitet vinner regelen som lastes sist.
+- Inline styles og JavaScript-styrte class-/style-endringer kan overstyre filbaserte regler.
+- `body.hg-app` brukes som sentral scope for hovedappen, men ikke alle sider eller filer følger samme scope.
 
-Hold denne ren og kort.
+## Praktisk ansvarskart
 
----
+Dette er en arbeidsregel, ikke en absolutt maskinkontrakt:
 
-### layout.css (struktur: header/main/panel)
-Eier:
-- Generelle layout-regler for sider uten `hg-app` (global `header`, `main`, `.panel`)
-- Enkle flex-/posisjon-regler
+- `theme.css`: tokens, hovedappens visuelle grunnlag og brede `body.hg-app`-regler.
+- `base.css`: reset og grunnleggende typografi.
+- `layout.css`: overordnet struktur, plassering og layouttilstander.
+- `components.css`: generelle, gjenbrukbare UI-komponenter.
+- `search.css`: søkeflaten.
+- `nearby.css`: Utforsk-/Nearby-presentasjon.
+- `placeCard.css`: PlaceCard-presentasjon.
+- `sheets.css`: generelle sheet-/bottom-sheet-mønstre.
+- øvrige featurefiler: presentasjon for den navngitte modulen eller flaten.
 
-Viktig:
-- Unngå å duplisere app-header her hvis appen bruker `theme.css`.
-- Bruk layout.css primært til “ikke-app” sider.
+Når faktisk kode avviker fra dette kartet, skal enten koden konsolideres eller guiden korrigeres. Ikke anta at filnavnet alene beviser fullstendig eierskap.
 
----
+## Endringsregler
 
-### components.css (UI-komponenter)
-Eier:
-- Panel/kort/grid
-- Buttons, chips/badges (generelle)
-- Gallery/personkort (generelle)
+1. Finn først eksisterende selector og alle forekomster av den.
+2. Endre den mest avgrensede eierfila som allerede styrer komponenten.
+3. Unngå å legge samme selector i flere brede filer for å «vinne» cascade-kampen.
+4. Bruk feature-scope eller komponentklasse fremfor nye globale elementselektorer.
+5. Kontroller desktop, mobil, safe-area, åpne/lukkede paneltilstander og relevante overlays.
+6. Dersom lastrekkefølgen endres, oppdater denne guiden i samme PR.
 
-Regel:
-- Komponenter som brukes flere steder = her.
-- Side/feature-spesifikt = IKKE her.
+## Feilsøking
 
----
+Ved «mystiske» stilfeil, kontroller i denne rekkefølgen:
 
-### sheets.css (bunnark)
-Eier:
-- `.sheet`, `.sheet-head`, `.sheet-body`, `.sheet-close`
-Brukes av “Se flere i nærheten”/bottom sheets.
+1. hvilken CSS-fil og linje DevTools faktisk bruker;
+2. selector-spesifisitet;
+3. lastrekkefølge i `index.html`;
+4. aktiv `body`-/komponentklasse;
+5. inline style eller JavaScript som endrer class/style;
+6. media queries, containerbredde og safe-area-regler.
 
----
-
-### placeCard.css (PlaceCard bottom sheet)
-Eier:
-- Hele `#placeCard`-komponenten
-- `.pc-main`, `#pcPeople`, `.pc-actions`, miniProfile-inne-i-placecard
-Mål:
-- Ingen duplikater, én “source of truth” for placeCard.
-
----
-
-### nearby.css (left panel: nearby/routes/badges)
-Eier:
-- `#nearbyListContainer` og alt inni (utseendet på Utforsk-draweren)
-- `#nearbyExploreToggle` (Utforsk-knappen som åpner/lukker draweren)
-- Header-offset variabler (`--hg-header-h`) for å ligge under topplinja
-- Horisontal “strip”-mode for nearbys
-- NB: posisjonering + åpen/lukket-tilstand (`is-drawer-open`/`is-drawer-closed`)
-  ligger i layout.css; nearby.css eier kun utseendet.
-
----
-
-## Praktiske regler (for å holde det ryddig)
-1) App = `body.hg-app ...` i theme.css når mulig.
-2) Feature-filer (placeCard/nearby/sheets) skal eie sine egne komponenter fullt ut.
-3) Unngå at samme selector finnes i 2–3 filer (klassisk kilde til “mystiske” bugs).
-4) Når noe overlapper med header:
-   - endre header i theme.css
-   - oppdater `--hg-header-h` i nearby.css hvis paneler bruker den
-
----
-
-## “Hvor legger jeg nye ting?”
-- Topplinje/search/toast: theme.css
-- Kun layout/rammeverk: layout.css
-- Gjenbrukbare knapper/kort: components.css
-- Bottom sheet: sheets.css
-- Place card: placeCard.css
-- Nearby-panel: nearby.css
+> Rett eierskapet i kilden. Ikke bruk stadig mer spesifikke overstyringer som permanent arkitektur.
