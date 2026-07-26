@@ -1,24 +1,34 @@
 name: One-time People of Places governance registration
 
 on:
-  push:
+  pull_request:
     branches:
       - main
     paths:
-      - .github/workflows/one-time-register-people-of-places-governance.yml
+      - .github/people-of-places-governance-trigger.txt
 
 permissions:
   contents: write
 
 jobs:
   register:
+    if: github.event.pull_request.head.ref == 'agent/documentation-governance-phase-22-people-of-places'
     runs-on: ubuntu-latest
     steps:
-      - name: Check out current main
+      - name: Check out target branch
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: agent/documentation-governance-phase-22-people-of-places
           fetch-depth: 0
+
+      - name: Synchronize latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -90,6 +100,12 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           readme_path.write_text(readme, encoding="utf-8")
           PY
 
+      - name: Remove one-time files from target branch
+        shell: bash
+        run: |
+          rm -f .github/people-of-places-governance-trigger.txt
+          rm -f .github/workflows/one-time-register-people-of-places-governance.yml
+
       - name: Validate documentation governance
         shell: bash
         run: |
@@ -103,7 +119,7 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           git restore --source=HEAD --worktree --staged -- dist 2>/dev/null || true
           git clean -fd -- dist
 
-      - name: Verify registration and scope
+      - name: Verify registration and target scope
         shell: bash
         run: |
           python - <<'PY'
@@ -120,8 +136,12 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           inventory = json.loads(Path("reports/documentation-governance/inventory.json").read_text(encoding="utf-8"))
           assert "docs/people-of-places-method.md" not in inventory["unregistered_governance_candidates"]
 
-          changed = set(subprocess.check_output(["git", "diff", "--name-only", "HEAD"]).decode().splitlines())
+          tracked = set(subprocess.check_output(["git", "diff", "--name-only", "HEAD"]).decode().splitlines())
+          untracked = set(subprocess.check_output(["git", "ls-files", "--others", "--exclude-standard"]).decode().splitlines())
+          changed = tracked | untracked
           expected = {
+              ".github/people-of-places-governance-trigger.txt",
+              ".github/workflows/one-time-register-people-of-places-governance.yml",
               "docs/README.md",
               "docs/documentation_registry.json",
               "reports/documentation-governance/inventory.json",
@@ -129,20 +149,9 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           assert changed == expected, (changed, expected)
           PY
 
-      - name: Commit documentation and remove this workflow
+      - name: Commit final target branch
         shell: bash
         run: |
-          git rm .github/workflows/one-time-register-people-of-places-governance.yml
-          git add docs/README.md docs/documentation_registry.json reports/documentation-governance/inventory.json
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
           git commit -m "Registrer canonical People of Places-governance"
-          for attempt in 1 2 3; do
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            git pull --rebase origin main
-          done
-          exit 1
-
-# Retry canonical People of Places registration with push conflict handling.
+          git push origin HEAD:agent/documentation-governance-phase-22-people-of-places
