@@ -47,19 +47,11 @@ type ValidatePlaceReferenceArgs = {
   placeIds: Set<unknown>;
 };
 
-const VALID_STORY_CATEGORIES = new Set<unknown>([
-  'historie',
-  'vitenskap',
-  'kunst',
-  'litteratur',
-  'media',
-  'musikk',
-  'natur',
-  'sport',
-  'by',
-  'politikk',
+const CATEGORY_CONTRACT_PATH = 'data/categories/category_contract.json';
+const LEGACY_STORY_CATEGORIES = new Set<unknown>([
+  // Existing story data still uses this retired top-level category.
+  // Keep it explicit until those records are migrated to canonical domains.
   'populaerkultur',
-  'subkultur',
 ]);
 
 const errors: string[] = [];
@@ -102,6 +94,29 @@ async function readJson(relativePath: string, label: string, { reportError = tru
     }
     return undefined;
   }
+}
+
+async function loadValidStoryCategories(): Promise<Set<unknown>> {
+  const contract = await readJson(CATEGORY_CONTRACT_PATH, 'Kategori-kontrakt');
+  const categories = new Set<unknown>();
+
+  if (!isJsonObject(contract) || !Array.isArray(contract.runtimeCategories)) {
+    errors.push(`Kategori-kontrakten må ha runtimeCategories-array: ${CATEGORY_CONTRACT_PATH}`);
+  } else {
+    for (const category of contract.runtimeCategories) {
+      if (typeof category !== 'string' || !category.trim()) {
+        errors.push(`Kategori-kontrakten inneholder ugyldig runtimekategori: ${JSON.stringify(category)}`);
+        continue;
+      }
+      categories.add(category);
+    }
+  }
+
+  for (const category of LEGACY_STORY_CATEGORIES) {
+    categories.add(category);
+  }
+
+  return categories;
 }
 
 function getEntityArrayFromSource(json: unknown, file: string, entityName: string, arrayKeys: string[], { reportErrors = true } = {}): unknown[] | undefined {
@@ -324,8 +339,10 @@ async function main(): Promise<void> {
   const manifest = await readJson(STORIES_MANIFEST_PATH, 'Stories-manifest');
   const { placeIds, placeFileCount } = await loadPlaceIds();
   const peopleIds = await loadPeopleIdsIfAvailable();
+  const validStoryCategories = await loadValidStoryCategories();
 
   const seenStoryIds = new Map<unknown, string>();
+  const loadedStoryPaths = new Set<string>();
   const stats: IntegrityStats = {
     storyFiles: 0,
     stories: 0,
@@ -349,11 +366,18 @@ async function main(): Promise<void> {
           continue;
         }
 
-        const manifestEntry: ManifestEntry = { path: entry.path, category: entry.category };
+        const manifestEntry: ManifestEntry = { path: entry.path.trim(), category: entry.category };
 
-        if (!VALID_STORY_CATEGORIES.has(manifestEntry.category)) {
+        if (!validStoryCategories.has(manifestEntry.category)) {
           errors.push(`Ugyldig manifest category: category=${manifestEntry.category} path=${manifestEntry.path}`);
         }
+
+        // Manifestet kan ha flere entity-entryer som peker til samme fler-story-fil.
+        // Valider metadata på hver entry, men les og valider den fysiske filen bare én gang.
+        if (loadedStoryPaths.has(manifestEntry.path)) {
+          continue;
+        }
+        loadedStoryPaths.add(manifestEntry.path);
 
         const stories = await readJson(manifestEntry.path, 'Story-fil');
         if (stories === undefined) continue;
