@@ -44,16 +44,16 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 | 20 | Aker Brygge | `aker_brygge` | 51 | 382 | 6 | #4036 |
 | 21 | Vulkan energisentral | `vulkan_energisentral` | 48 | 351 | 6 | #4036 |
 | 22 | Oslo bussterminal | `oslo_bussterminal` | 50 | 366 | 7 | #4036 |
-| 23 | Helsfyr | `helsfyr` | 47 | 338 | 5 | Denne PR-en |
-| 24 | Bogstadveien | `bogstadveien` | 49 | 329 | 5 | Denne PR-en |
-| 25 | Markveien | `markveien` | 48 | 303 | 5 | Denne PR-en |
-| 26 | Grønlandsleiret | `gronlandsleiret` | 43 | 329 | 6 | Denne PR-en |
-| 27 | Majorstukrysset | `majorstuen_krysset` | 41 | 337 | 6 | Denne PR-en |
-| 28 | Rodeløkka | `rodelokka` | 48 | 345 | 6 | Denne PR-en |
-| 29 | Vålerenga | `vaalerenga` | 49 | 318 | 6 | Denne PR-en |
-| 30 | Vinderen | `vinderen` | 49 | 332 | 6 | Denne PR-en |
-| 31 | Ullern | `ullern` | 41 | 310 | 6 | Denne PR-en |
-| 32 | Grønland kirke | `gronland_kirke` | 46 | 309 | 6 | Denne PR-en |
+| 23 | Helsfyr | `helsfyr` | 47 | 338 | 5 | #4043 |
+| 24 | Bogstadveien | `bogstadveien` | 49 | 329 | 5 | #4043 |
+| 25 | Markveien | `markveien` | 48 | 303 | 5 | #4043 |
+| 26 | Grønlandsleiret | `gronlandsleiret` | 43 | 329 | 6 | #4043 |
+| 27 | Majorstukrysset | `majorstuen_krysset` | 41 | 337 | 6 | #4043 |
+| 28 | Rodeløkka | `rodelokka` | 48 | 345 | 6 | #4043 |
+| 29 | Vålerenga | `vaalerenga` | 49 | 318 | 6 | #4043 |
+| 30 | Vinderen | `vinderen` | 49 | 332 | 6 | #4043 |
+| 31 | Ullern | `ullern` | 41 | 310 | 6 | #4043 |
+| 32 | Grønland kirke | `gronland_kirke` | 46 | 309 | 6 | #4043 |
 
 ## Gjenstående Oslo-kø
 
@@ -92,6 +92,6 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 | Pilot | 1 | Bispelokket merget i #3958 |
 | Oslo V4 batch 1 | 10 | Merget i #4014 |
 | Oslo V4 batch 2 | 10 | Merget i #4036 |
-| Oslo V4 batch 3 | 10 | Denne PR-en |
+| Oslo V4 batch 3 | 10 | #4043 |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
