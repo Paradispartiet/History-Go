@@ -13,15 +13,21 @@
     "enforcement": "Audit exits non-zero for malformed or stale reports. Use --require-complete only when all required cells and production checks are genuinely satisfied."
   },
   "source_fingerprints": {
-    "data/fag/historie/historie_universal_coverage_contract_v1.json": "599dc01edaec4f50ab001e24f074516694a2807a0de26541b3007d7c4c2066b5",
-    "data/fag/historie/historie_v5_contract.json": "13db441d8e8a6d6407fa92ec5c7dbb2285baea3bb992754d2b98cf7308241ceb",
-    "data/fag/historie/emner_historie_canonical_v4_5.json": "c3932eb743bfb94ab45516adf4895d42682241fc8e30716cd38bb81d3a812239",
+    "data/fag/historie/historie_universal_coverage_contract_v1.json": "77d22bf13dd76f34a6cc7c20a87f165ade2fa86d526f83edaf3b2d9cc8b67068",
+    "data/fag/historie/historie_v5_contract.json": "6ff2f38b127e8f823aff02eb40ed1d5c25351722bd3e6d4ae840b841d16e5a17",
+    "data/fag/historie/emner_historie_canonical_v4_5.json": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
     "data/fag/historie/historiepensum_canonical_v4_5.json": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
     "data/fag/historie/methods_historie_canonical_v4_5.json": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
     "data/fag/historie/concepts_historie_canonical_v5_5.json": "446285172c50f7e5bfedfb07982570a322523ff8320f04f6a216fae2df96d011",
     "data/fag/historie/theory_objects_historie_canonical_v5_5.json": "564c1b315400c2d0b1767d20fcff39f945cc518dd9f07a66c0ee5f90d46648db",
     "data/fag/historie/fagkart_historie_canonical_v4_5.json": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
-    "reports/historie-v5/historie-v5-8-readiness.json": "2fe183d81fd9b7cef03473f092ca41bcfaa41aab14a38f6b909d04b1d9b191c5"
+    "reports/historie-v5/historie-v5-8-readiness.json": "2fe183d81fd9b7cef03473f092ca41bcfaa41aab14a38f6b909d04b1d9b191c5",
+    "data/fag/historie/claims_historie_canonical_v1.json": "46d44c0f77eb43fbd7d81009de67e3b232627d94a12b965511d42d60a1fc6625",
+    "data/fag/historie/sources_historie_canonical_v1.json": "7f692c35d1dd65a3641831be12f46a68e6d94bac5b3a68dd46cfa08be67c1ea3",
+    "data/fag/historie/place_evidence_historie_v1.json": "95113ceb51ea6efd395dd96d36b83c7dd6015a5d4dbe3217b2dcb2196b2932f7",
+    "data/fag/historie/case_requirements_historie_canonical_v1.json": "0416171785008c9a461cf8d05bc8c608b60bfc22dbe179ae890ab4703e221173",
+    "data/fag/profiles/manifest.json": "06cd8cf8a9171e567af5f18955ebacde62c7c45fdb21c71064954d93218e0edd",
+    "data/fag/profiles/historie/oslo_akershus/profile.json": "cdc627d33163554a69d8a2408d9a19a3f5351316678f541399e34f35473530ef"
   },
   "inventory": {
     "domains": 23,
@@ -39,12 +45,12 @@
     "interpretation": "The legacy readiness report verifies the selected V5.5 inventory. It does not independently establish universal subject coverage."
   },
   "summary": {
-    "total_cells": 59,
+    "total_cells": 58,
     "covered_cells": 58,
-    "partial_cells": 1,
+    "partial_cells": 0,
     "missing_cells": 0,
-    "production_passes": 5,
-    "production_gaps": 6
+    "production_passes": 10,
+    "production_gaps": 1
   },
   "axes": {
     "time": {
@@ -281,12 +287,10 @@
           },
           "counts": {
             "dedicated_emner": 10,
-            "supporting_emner": 19,
-            "distinct_areas": 4
+            "supporting_emner": 12,
+            "distinct_areas": 2
           },
           "distinct_area_ids": [
-            "his_tid_periodisering",
-            "his_kilder_arkiv_spor",
             "his_middelalder_kirke_kongemakt",
             "his_forhistorie_arkeologi"
           ],
@@ -1214,7 +1218,7 @@
           },
           "counts": {
             "dedicated_emner": 4,
-            "supporting_emner": 33,
+            "supporting_emner": 16,
             "distinct_areas": 5
           },
           "distinct_area_ids": [
@@ -1262,39 +1266,39 @@
               ]
             },
             {
-              "emne_id": "em_his_hendelse_prosess_tidsforlop",
-              "title": "Hendelse, prosess og tidsforløp",
-              "area_id": "his_tid_periodisering",
-              "area_label": "Historisk tid og periodisering",
-              "anchors": [
-                "22. juli"
-              ]
-            },
-            {
-              "emne_id": "em_his_samtid_ettertid_fortelling",
-              "title": "Samtid, ettertid og historisk fortelling",
-              "area_id": "his_tid_periodisering",
-              "area_label": "Historisk tid og periodisering",
-              "anchors": [
-                "22. juli"
-              ]
-            },
-            {
-              "emne_id": "em_his_kulturminner_bevaring",
-              "title": "Kulturminner, utvelgelse og bevaring",
+              "emne_id": "em_his_digital_kulturarv_formidling",
+              "title": "Digital kulturarv, arkiv og formidling",
               "area_id": "his_minne_kulturarv_historiebruk",
               "area_label": "Minne, kulturarv og historiebruk",
               "anchors": [
-                "22. juli"
+                "digitalisering"
               ]
             },
             {
-              "emne_id": "em_his_restaurering_autentisitet",
-              "title": "Restaurering, rekonstruksjon og autentisitet",
-              "area_id": "his_minne_kulturarv_historiebruk",
-              "area_label": "Minne, kulturarv og historiebruk",
+              "emne_id": "em_his_vitenskap_teknologi_maling_statistikk_kart_og_klassifikasjon",
+              "title": "Måling, statistikk, kart og klassifikasjon",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
               "anchors": [
-                "22. juli"
+                "digitalisering"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
+              "title": "Teknologi, infrastruktur og samfunn",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "digitalisering"
+              ]
+            },
+            {
+              "emne_id": "em_his_vitenskap_teknologi_medisin_helsevitenskap_og_befolkning",
+              "title": "Medisin, helsevitenskap og befolkning",
+              "area_id": "his_vitenskap_teknologi_kunnskap",
+              "area_label": "Vitenskap-, teknologi- og kunnskapshistorie",
+              "anchors": [
+                "digitalisering"
               ]
             }
           ],
@@ -1562,11 +1566,10 @@
           },
           "counts": {
             "dedicated_emner": 23,
-            "supporting_emner": 97,
-            "distinct_areas": 16
+            "supporting_emner": 90,
+            "distinct_areas": 15
           },
           "distinct_area_ids": [
-            "his_kilder_arkiv_spor",
             "his_makt_stat_institusjoner",
             "his_industri_arbeid_sosialhistorie",
             "his_krig_okkupasjon_motstand",
@@ -1679,12 +1682,11 @@
           },
           "counts": {
             "dedicated_emner": 4,
-            "supporting_emner": 13,
-            "distinct_areas": 6
+            "supporting_emner": 7,
+            "distinct_areas": 5
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
-            "his_1814_statsdannelse",
             "his_okonomi_handel_materielle_systemer",
             "his_forhistorie_arkeologi",
             "his_forste_verdenskrig_mellomkrig",
@@ -1728,38 +1730,32 @@
               ]
             },
             {
-              "emne_id": "em_his_middelalder_kirke_kristning_og_religios_omforming",
-              "title": "Lov, ting og jurisdiksjon",
-              "area_id": "his_middelalder_kirke_kongemakt",
-              "area_label": "Middelalder, kirke og kongemakt",
+              "emne_id": "em_his_arkeologisk_landskap_miljo",
+              "title": "Arkeologiske landskap, miljø og ressursbruk",
+              "area_id": "his_forhistorie_arkeologi",
+              "area_label": "Forhistorie og arkeologi",
+              "anchors": [
+                "jordbruk"
+              ]
+            },
+            {
+              "emne_id": "em_his_kultur_modernisme_kunst_visuell_politikk",
+              "title": "Kulturhistorie, kunsthistorie og visuell kultur i mellomkrigstiden",
+              "area_id": "his_forste_verdenskrig_mellomkrig",
+              "area_label": "Første verdenskrig og mellomkrigstiden",
               "anchors": [
                 "gård"
               ]
             },
             {
-              "emne_id": "em_his_middelalder_kirke_kongedomme_rikssamling_og_statsdannelse",
-              "title": "Jord, eiendom og patronasje",
-              "area_id": "his_middelalder_kirke_kongemakt",
-              "area_label": "Middelalder, kirke og kongemakt",
+              "emne_id": "em_his_bonder_fiskere_bygdesamfunn_modernisering",
+              "title": "Bønder, fiskere og bygdesamfunn i den kalde krigens modernisering",
+              "area_id": "his_kald_krig_etterkrig",
+              "area_label": "Den kalde krigen og etterkrigssamfunnet 1945–1991",
               "anchors": [
-                "gård"
-              ]
-            },
-            {
-              "emne_id": "em_his_middelalder_kirke_kirke_kloster_og_institusjonsmakt",
-              "title": "Handel, håndverk og bydannelse",
-              "area_id": "his_middelalder_kirke_kongemakt",
-              "area_label": "Middelalder, kirke og kongemakt",
-              "anchors": [
-                "gård"
-              ]
-            },
-            {
-              "emne_id": "em_his_1814_grunnlov_statsdannelse",
-              "title": "1814, Grunnloven og statsdannelse",
-              "area_id": "his_1814_statsdannelse",
-              "area_label": "1814, grunnlov og statsdannelse",
-              "anchors": [
+                "jordbruk",
+                "landbruk",
+                "bonde",
                 "gård"
               ]
             }
@@ -1777,12 +1773,11 @@
           },
           "counts": {
             "dedicated_emner": 2,
-            "supporting_emner": 29,
-            "distinct_areas": 6
+            "supporting_emner": 24,
+            "distinct_areas": 5
           },
           "distinct_area_ids": [
             "his_okonomi_handel_materielle_systemer",
-            "his_miljo_klima_landskap",
             "his_global_kolonial_transnasjonal",
             "his_forhistorie_arkeologi",
             "his_forste_verdenskrig_mellomkrig",
@@ -1813,8 +1808,7 @@
               "area_id": "his_okonomi_handel_materielle_systemer",
               "area_label": "Økonomi, handel og materielle systemer",
               "anchors": [
-                "sjøfart",
-                "havn"
+                "sjøfart"
               ]
             },
             {
@@ -1850,8 +1844,7 @@
               "area_id": "his_okonomi_handel_materielle_systemer",
               "area_label": "Økonomi, handel og materielle systemer",
               "anchors": [
-                "sjøfart",
-                "havn"
+                "sjøfart"
               ]
             },
             {
@@ -1860,8 +1853,7 @@
               "area_id": "his_okonomi_handel_materielle_systemer",
               "area_label": "Økonomi, handel og materielle systemer",
               "anchors": [
-                "sjøfart",
-                "havn"
+                "sjøfart"
               ]
             }
           ],
@@ -2084,11 +2076,10 @@
           },
           "counts": {
             "dedicated_emner": 6,
-            "supporting_emner": 37,
-            "distinct_areas": 9
+            "supporting_emner": 22,
+            "distinct_areas": 8
           },
           "distinct_area_ids": [
-            "his_tid_periodisering",
             "his_1814_statsdannelse",
             "his_industri_arbeid_sosialhistorie",
             "his_velferd_rett_hverdagsliv",
@@ -2156,21 +2147,22 @@
               ]
             },
             {
-              "emne_id": "em_his_modernisering_1800",
-              "title": "1800-tallets modernisering og ulike endringstempo",
-              "area_id": "his_tid_periodisering",
-              "area_label": "Historisk tid og periodisering",
+              "emne_id": "em_his_arbeiderbevegelse_folkedannelse",
+              "title": "Arbeiderbevegelse og folkedannelse",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
               "anchors": [
-                "skole"
+                "utdanning"
               ]
             },
             {
-              "emne_id": "em_his_anakronisme_historiske_begreper",
-              "title": "Anakronisme og historiske begreper",
-              "area_id": "his_tid_periodisering",
-              "area_label": "Historisk tid og periodisering",
+              "emne_id": "em_his_kjonn_familie_familie_hushold_og_slektskap",
+              "title": "Familie, hushold og slektskap",
+              "area_id": "his_kjonn_familie_livslop",
+              "area_label": "Kjønn, familie, seksualitet og livsløp",
               "anchors": [
-                "skole"
+                "barndom",
+                "barn"
               ]
             }
           ],
@@ -2187,11 +2179,10 @@
           },
           "counts": {
             "dedicated_emner": 15,
-            "supporting_emner": 88,
-            "distinct_areas": 17
+            "supporting_emner": 85,
+            "distinct_areas": 16
           },
           "distinct_area_ids": [
-            "his_kilder_arkiv_spor",
             "his_makt_stat_institusjoner",
             "his_1814_statsdannelse",
             "his_industri_arbeid_sosialhistorie",
@@ -2632,12 +2623,10 @@
           },
           "counts": {
             "dedicated_emner": 23,
-            "supporting_emner": 56,
-            "distinct_areas": 12
+            "supporting_emner": 48,
+            "distinct_areas": 10
           },
           "distinct_area_ids": [
-            "his_tid_periodisering",
-            "his_kilder_arkiv_spor",
             "his_middelalder_kirke_kongemakt",
             "his_1814_statsdannelse",
             "his_migrasjon_minoritet_tilhorighet",
@@ -3347,8 +3336,8 @@
           },
           "counts": {
             "dedicated_emner": 14,
-            "supporting_emner": 60,
-            "distinct_areas": 10
+            "supporting_emner": 29,
+            "distinct_areas": 8
           },
           "distinct_area_ids": [
             "his_kilder_arkiv_spor",
@@ -3358,8 +3347,6 @@
             "his_minne_kulturarv_historiebruk",
             "his_katastrofer_brudd_ulykker",
             "his_samisk_urfolkshistorie",
-            "his_miljo_klima_landskap",
-            "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal"
           ],
           "sample_matches": [
@@ -3670,129 +3657,13 @@
       "id": "geography",
       "label": "Geografi",
       "requirement": "Lokal, nasjonal, nordisk, europeisk og global historie må kunne realiseres uten at fagmodellen reduseres til Oslo-caser.",
-      "status": "INCOMPLETE",
+      "status": "COMPLETE",
       "counts": {
         "covered": 8,
-        "partial": 1,
+        "partial": 0,
         "missing": 0
       },
       "cells": [
-        {
-          "id": "oslo_akershus",
-          "label": "Oslo og Akershus",
-          "status": "PARTIAL",
-          "thresholds": {
-            "minimum_dedicated_emner": 2,
-            "minimum_supporting_emner": 6,
-            "minimum_distinct_areas": 2
-          },
-          "counts": {
-            "dedicated_emner": 1,
-            "supporting_emner": 136,
-            "distinct_areas": 18
-          },
-          "distinct_area_ids": [
-            "his_tid_periodisering",
-            "his_kilder_arkiv_spor",
-            "his_makt_stat_institusjoner",
-            "his_middelalder_kirke_kongemakt",
-            "his_1814_statsdannelse",
-            "his_krig_okkupasjon_motstand",
-            "his_velferd_rett_hverdagsliv",
-            "his_migrasjon_minoritet_tilhorighet",
-            "his_minne_kulturarv_historiebruk",
-            "his_katastrofer_brudd_ulykker",
-            "his_kjonn_familie_livslop",
-            "his_okonomi_handel_materielle_systemer",
-            "his_religion_reformasjon_livssyn",
-            "his_samisk_urfolkshistorie",
-            "his_miljo_klima_landskap",
-            "his_vitenskap_teknologi_kunnskap",
-            "his_global_kolonial_transnasjonal",
-            "his_offentlighet_mobilisering_bevegelser"
-          ],
-          "sample_matches": [
-            {
-              "emne_id": "em_his_middelalder_oslo",
-              "title": "Middelalderens Oslo",
-              "area_id": "his_middelalder_kirke_kongemakt",
-              "area_label": "Middelalder, kirke og kongemakt",
-              "anchors": [
-                "oslo"
-              ]
-            },
-            {
-              "emne_id": "em_his_tid_periodisering_epoker",
-              "title": "Tid, periodisering og epoker",
-              "area_id": "his_tid_periodisering",
-              "area_label": "Historisk tid og periodisering",
-              "anchors": [
-                "oslo",
-                "eidsvoll"
-              ]
-            },
-            {
-              "emne_id": "em_his_brudd_kontinuitet",
-              "title": "Brudd og kontinuitet",
-              "area_id": "his_tid_periodisering",
-              "area_label": "Historisk tid og periodisering",
-              "anchors": [
-                "akershus",
-                "eidsvoll"
-              ]
-            },
-            {
-              "emne_id": "em_his_historiske_lag_i_byrom",
-              "title": "Historiske lag i byrom",
-              "area_id": "his_tid_periodisering",
-              "area_label": "Historisk tid og periodisering",
-              "anchors": [
-                "oslo",
-                "akershus"
-              ]
-            },
-            {
-              "emne_id": "em_his_lang_varighet_strukturer",
-              "title": "Lang varighet og historiske strukturer",
-              "area_id": "his_tid_periodisering",
-              "area_label": "Historisk tid og periodisering",
-              "anchors": [
-                "oslo",
-                "akershus"
-              ]
-            },
-            {
-              "emne_id": "em_his_hendelse_prosess_tidsforlop",
-              "title": "Hendelse, prosess og tidsforløp",
-              "area_id": "his_tid_periodisering",
-              "area_label": "Historisk tid og periodisering",
-              "anchors": [
-                "akershus",
-                "eidsvoll"
-              ]
-            },
-            {
-              "emne_id": "em_his_modernisering_1800",
-              "title": "1800-tallets modernisering og ulike endringstempo",
-              "area_id": "his_tid_periodisering",
-              "area_label": "Historisk tid og periodisering",
-              "anchors": [
-                "oslo"
-              ]
-            },
-            {
-              "emne_id": "em_his_samtidshistorie_brudd",
-              "title": "Samtidshistorie, erfaring og åpne framtider",
-              "area_id": "his_tid_periodisering",
-              "area_label": "Historisk tid og periodisering",
-              "anchors": [
-                "oslo",
-                "eidsvoll"
-              ]
-            }
-          ],
-          "gap_action": "Behold sterk lokal dekning, men skill den ut som geografisk profil fremfor universell fagdefinisjon."
-        },
         {
           "id": "norge",
           "label": "Norge",
@@ -3804,17 +3675,14 @@
           },
           "counts": {
             "dedicated_emner": 14,
-            "supporting_emner": 46,
-            "distinct_areas": 11
+            "supporting_emner": 26,
+            "distinct_areas": 8
           },
           "distinct_area_ids": [
             "his_middelalder_kirke_kongemakt",
             "his_1814_statsdannelse",
             "his_krig_okkupasjon_motstand",
-            "his_okonomi_handel_materielle_systemer",
             "his_samisk_urfolkshistorie",
-            "his_miljo_klima_landskap",
-            "his_vitenskap_teknologi_kunnskap",
             "his_global_kolonial_transnasjonal",
             "his_offentlighet_mobilisering_bevegelser",
             "his_forste_verdenskrig_mellomkrig",
@@ -4596,15 +4464,12 @@
           },
           "counts": {
             "dedicated_emner": 2,
-            "supporting_emner": 38,
-            "distinct_areas": 7
+            "supporting_emner": 21,
+            "distinct_areas": 4
           },
           "distinct_area_ids": [
-            "his_kilder_arkiv_spor",
             "his_industri_arbeid_sosialhistorie",
-            "his_velferd_rett_hverdagsliv",
             "his_migrasjon_minoritet_tilhorighet",
-            "his_kjonn_familie_livslop",
             "his_offentlighet_mobilisering_bevegelser",
             "his_forste_verdenskrig_mellomkrig"
           ],
@@ -4628,42 +4493,6 @@
               ]
             },
             {
-              "emne_id": "em_his_kilder_taushet_blindsoner",
-              "title": "Kilder, taushet og blindsoner",
-              "area_id": "his_kilder_arkiv_spor",
-              "area_label": "Kilder, arkiv og spor",
-              "anchors": [
-                "arbeider"
-              ]
-            },
-            {
-              "emne_id": "em_his_taushet_og_manglende_kilder",
-              "title": "Taushet og manglende kilder",
-              "area_id": "his_kilder_arkiv_spor",
-              "area_label": "Kilder, arkiv og spor",
-              "anchors": [
-                "arbeider"
-              ]
-            },
-            {
-              "emne_id": "em_his_dokument_autentisitet",
-              "title": "Dokumentform og autentisitet",
-              "area_id": "his_kilder_arkiv_spor",
-              "area_label": "Kilder, arkiv og spor",
-              "anchors": [
-                "arbeider"
-              ]
-            },
-            {
-              "emne_id": "em_his_skrift_hand_lesning",
-              "title": "Historisk skrift og håndlesning",
-              "area_id": "his_kilder_arkiv_spor",
-              "area_label": "Kilder, arkiv og spor",
-              "anchors": [
-                "arbeider"
-              ]
-            },
-            {
               "emne_id": "em_his_industriby_1900",
               "title": "Industriby og arbeid rundt 1900",
               "area_id": "his_industri_arbeid_sosialhistorie",
@@ -4675,6 +4504,42 @@
             {
               "emne_id": "em_his_sosialhistorie_hverdagsliv",
               "title": "Sosialhistorie og hverdagsliv",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeider"
+              ]
+            },
+            {
+              "emne_id": "em_his_industri_produksjon_energi",
+              "title": "Industriell produksjon, energi og infrastruktur",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeider"
+              ]
+            },
+            {
+              "emne_id": "em_his_fabrikk_arbeidsorganisering",
+              "title": "Fabrikk og arbeidsorganisering",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeider"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeidstid_lonn_ferdighet",
+              "title": "Arbeidstid, lønn og ferdighet",
+              "area_id": "his_industri_arbeid_sosialhistorie",
+              "area_label": "Industri, arbeid og sosialhistorie",
+              "anchors": [
+                "arbeider"
+              ]
+            },
+            {
+              "emne_id": "em_his_arbeidsmiljo_risiko_helse",
+              "title": "Arbeidsmiljø, risiko og helse",
               "area_id": "his_industri_arbeid_sosialhistorie",
               "area_label": "Industri, arbeid og sosialhistorie",
               "anchors": [
@@ -5352,7 +5217,7 @@
           },
           "counts": {
             "dedicated_emner": 1,
-            "supporting_emner": 18,
+            "supporting_emner": 16,
             "distinct_areas": 3
           },
           "distinct_area_ids": [
@@ -5706,8 +5571,8 @@
   "production": {
     "status": "INCOMPLETE",
     "counts": {
-      "passed": 5,
-      "gaps": 6
+      "passed": 10,
+      "gaps": 1
     },
     "checks": [
       {
@@ -5794,11 +5659,11 @@
         "id": "geographic_profile_separation",
         "label": "Geografiske profiler er skilt fra universelle emner",
         "type": "forbidden_emne_field_ratio",
-        "status": "GAP",
+        "status": "PASS",
         "measured": {
-          "violating": 200,
+          "violating": 0,
           "total": 230,
-          "ratio": 0.87
+          "ratio": 0
         },
         "threshold": {
           "maximum_ratio": 0
@@ -5809,11 +5674,11 @@
         "id": "generic_case_linkage",
         "label": "Geografinøytrale casekoblinger",
         "type": "emne_any_array_ratio",
-        "status": "GAP",
+        "status": "PASS",
         "measured": {
-          "qualifying": 30,
+          "qualifying": 230,
           "total": 230,
-          "ratio": 0.13
+          "ratio": 1
         },
         "threshold": {
           "minimum_items": 4,
@@ -5825,9 +5690,11 @@
         "id": "claim_registry",
         "label": "Canonical claim-register",
         "type": "candidate_file_exists",
-        "status": "GAP",
+        "status": "PASS",
         "measured": {
-          "existing_paths": [],
+          "existing_paths": [
+            "data/fag/historie/claims_historie_canonical_v1.json"
+          ],
           "checked_paths": [
             "data/fag/historie/claims_historie_canonical_v1.json",
             "data/fag/historie/claims/manifest.json",
@@ -5841,9 +5708,11 @@
         "id": "source_registry",
         "label": "Canonical kilderegister",
         "type": "candidate_file_exists",
-        "status": "GAP",
+        "status": "PASS",
         "measured": {
-          "existing_paths": [],
+          "existing_paths": [
+            "data/fag/historie/sources_historie_canonical_v1.json"
+          ],
           "checked_paths": [
             "data/fag/historie/sources_historie_canonical_v1.json",
             "data/fag/historie/sources/manifest.json",
@@ -5857,9 +5726,11 @@
         "id": "place_evidence_registry",
         "label": "Sted–emne–claim-evidens",
         "type": "candidate_file_exists",
-        "status": "GAP",
+        "status": "PASS",
         "measured": {
-          "existing_paths": [],
+          "existing_paths": [
+            "data/fag/historie/place_evidence_historie_v1.json"
+          ],
           "checked_paths": [
             "data/fag/historie/place_evidence_historie_v1.json",
             "data/fag/historie/place-evidence/manifest.json",
