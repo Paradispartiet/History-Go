@@ -63,7 +63,7 @@ const markdown = [
   '## Struktur',
   '',
   `- Universelle emner: **${report.structural_foundation.total_subject_emner}**`,
-  `- Emner med migrerte profilkoblinger: **${report.structural_foundation.mapped_emners}**`,
+  `- Emner med migrerte profilkoblinger: **${report.structural_foundation.mapped_emner}**`,
   `- Bevarte lokale casekandidater: **${report.structural_foundation.preserved_case_candidates}**`,
   '',
   '## Evidensgrunnlag',
