@@ -13,10 +13,10 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 ## Oslo-status etter denne PR-en
 
 - Totalt i Oslo-køen: **58 steder**
-- Ferdig før denne batchen: **42 steder**
-- Denne batchen: **10 steder**
-- Ferdig etter merge av denne batchen: **52 steder**
-- Gjenstår etter merge: **6 steder**
+- Ferdig før denne batchen: **52 steder**
+- Denne batchen: **6 steder**
+- Ferdig etter merge av denne batchen: **58 steder**
+- Gjenstår etter merge: **0 steder**
 
 ## Ferdige steder etter denne PR-en
 
@@ -74,15 +74,16 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 | 50 | Deichman Bjørvika | `deichman_bjorvika` | 52 | 328 | 6 | #4101 |
 | 51 | Vigelandsparken | `vigelandsparken` | 48 | 351 | 7 | #4101 |
 | 52 | Voienvolden | `voienvolden` | 50 | 307 | 7 | #4101 |
+| 53 | Carl Berners plass | `carl_berner_plass` | 49 | 309 | 6 | #4124 |
+| 54 | Tullin | `tullin` | 48 | 318 | 6 | #4124 |
+| 55 | Økern | `okern` | 49 | 308 | 6 | #4124 |
+| 56 | Skøyen | `skoyen` | 48 | 303 | 6 | #4124 |
+| 57 | Trikkelinje 17/18 | `trikk_17_18` | 49 | 301 | 6 | #4124 |
+| 58 | St. Hanshaugen park | `st_hanshaugen_park` | 53 | 311 | 7 | #4124 |
 
 ## Gjenstående Oslo-kø
 
-1. Carl Berners plass
-2. Tullin
-3. Økern
-4. Skøyen
-5. Trikkelinje 17/18
-6. St. Hanshaugen park
+Ingen. Oslo-køen på 58 steder er fullført etter den nye standarden.
 
 ## Batchlogg
 
@@ -95,5 +96,6 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 | Oslo V4 batch 3 | 10 | Merget i #4043 |
 | Oslo V4 batch 4 | 10 | #4069 |
 | Oslo V4 batch 5 | 10 | #4101 |
+| Oslo V4 batch 6 | 6 | #4124 – avslutter Oslo-køen |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
