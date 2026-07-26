@@ -1,0 +1,1984 @@
+{
+  "version": "1.0.0",
+  "status": "canonical_business_school_model_registry",
+  "type": "business_school_model_registry",
+  "subject_id": "naeringsliv",
+  "model_count": 50,
+  "models": [
+    {
+      "model_id": "modell_bokforing_regnskapskretslop_beslutning",
+      "title": "Bokføring og regnskapskretsløp: beslutningsmodell",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "purpose": "Kobler bilag, debet og kredit, hovedbok, prøvebalanse og periodisering til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "før minst tolv bilag med dobbel bokføring, avstem bank og kunde-/leverandørsaldo og bygg prøvebalanse",
+      "variables": [
+        "mal_bokforing_regnskapskretslop_avstemmingsdifferanse",
+        "mal_bokforing_regnskapskretslop_arbeidskapitalendring",
+        "mal_bokforing_regnskapskretslop_periodiseringsandel",
+        "mal_bokforing_regnskapskretslop_bilagssporbarhet",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Bokføring og regnskapskretsløp uten å skjule mekanisk korrekt bokføring mot økonomisk korrekt periodisering og klassifisering.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_hovedbok_og_bilag",
+        "data_bank_kunde_og_leverandorreskontro",
+        "data_arsregnskap_og_noter"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_bokforing_regnskapskretslop"
+      ]
+    },
+    {
+      "model_id": "modell_bokforing_regnskapskretslop_scenario",
+      "title": "Bokføring og regnskapskretsløp: scenario- og kontrollmodell",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for før minst tolv bilag med dobbel bokføring, avstem bank og kunde-/leverandørsaldo og bygg prøvebalanse og registrer beslutningsskifte.",
+      "variables": [
+        "mal_bokforing_regnskapskretslop_avstemmingsdifferanse",
+        "mal_bokforing_regnskapskretslop_arbeidskapitalendring",
+        "mal_bokforing_regnskapskretslop_periodiseringsandel",
+        "mal_bokforing_regnskapskretslop_bilagssporbarhet",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når mekanisk korrekt bokføring mot økonomisk korrekt periodisering og klassifisering får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_hovedbok_og_bilag",
+        "data_bank_kunde_og_leverandorreskontro",
+        "data_arsregnskap_og_noter"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_bokforing_regnskapskretslop"
+      ]
+    },
+    {
+      "model_id": "modell_finansregnskap_rapportering_beslutning",
+      "title": "Finansregnskap og ekstern rapportering: beslutningsmodell",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "purpose": "Kobler innregning, måling, klassifisering, resultat, balanse, kontantstrøm og noter til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "rekonstruer resultat, balanse og indirekte kontantstrøm og beregn effekten av to alternative periodiseringsvalg",
+      "variables": [
+        "mal_finansregnskap_rapportering_driftsmargin",
+        "mal_finansregnskap_rapportering_egenkapitalandel",
+        "mal_finansregnskap_rapportering_kontantstrom_fra_drift",
+        "mal_finansregnskap_rapportering_periodiseringskvalitet",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Finansregnskap og ekstern rapportering uten å skjule sammenlignbar standardisering mot virksomhetsspesifikt skjønn og informasjonsbehov.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_arsregnskap_og_noter",
+        "data_hovedbok_og_bilag",
+        "data_foretaks_rolle_og_eierskapsdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_finansregnskap_rapportering"
+      ]
+    },
+    {
+      "model_id": "modell_finansregnskap_rapportering_scenario",
+      "title": "Finansregnskap og ekstern rapportering: scenario- og kontrollmodell",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for rekonstruer resultat, balanse og indirekte kontantstrøm og beregn effekten av to alternative periodiseringsvalg og registrer beslutningsskifte.",
+      "variables": [
+        "mal_finansregnskap_rapportering_driftsmargin",
+        "mal_finansregnskap_rapportering_egenkapitalandel",
+        "mal_finansregnskap_rapportering_kontantstrom_fra_drift",
+        "mal_finansregnskap_rapportering_periodiseringskvalitet",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når sammenlignbar standardisering mot virksomhetsspesifikt skjønn og informasjonsbehov får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_arsregnskap_og_noter",
+        "data_hovedbok_og_bilag",
+        "data_foretaks_rolle_og_eierskapsdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_finansregnskap_rapportering"
+      ]
+    },
+    {
+      "model_id": "modell_regnskapsanalyse_verdsettelse_beslutning",
+      "title": "Regnskapsanalyse og verdsettelse: beslutningsmodell",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "purpose": "Kobler normalisering, nøkkeltall, DuPont, ROIC, fri kontantstrøm, kapitalkostnad og terminalverdi til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "normaliser resultat, dekomponer avkastning med DuPont og gjennomfør DCF med sensitivitetsmatrise",
+      "variables": [
+        "mal_regnskapsanalyse_verdsettelse_roic",
+        "mal_regnskapsanalyse_verdsettelse_fri_kontantstrom",
+        "mal_regnskapsanalyse_verdsettelse_netto_rentebaerende_gjeld",
+        "mal_regnskapsanalyse_verdsettelse_verdsettelsesintervall",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Regnskapsanalyse og verdsettelse uten å skjule markedspris og rapportert resultat mot fundamental verdi og usikre framtidsforutsetninger.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_arsregnskap_og_noter",
+        "data_markeds_rente_og_kapitaldata",
+        "data_foretaks_rolle_og_eierskapsdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_regnskapsanalyse_verdsettelse"
+      ]
+    },
+    {
+      "model_id": "modell_regnskapsanalyse_verdsettelse_scenario",
+      "title": "Regnskapsanalyse og verdsettelse: scenario- og kontrollmodell",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for normaliser resultat, dekomponer avkastning med DuPont og gjennomfør DCF med sensitivitetsmatrise og registrer beslutningsskifte.",
+      "variables": [
+        "mal_regnskapsanalyse_verdsettelse_roic",
+        "mal_regnskapsanalyse_verdsettelse_fri_kontantstrom",
+        "mal_regnskapsanalyse_verdsettelse_netto_rentebaerende_gjeld",
+        "mal_regnskapsanalyse_verdsettelse_verdsettelsesintervall",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når markedspris og rapportert resultat mot fundamental verdi og usikre framtidsforutsetninger får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_arsregnskap_og_noter",
+        "data_markeds_rente_og_kapitaldata",
+        "data_foretaks_rolle_og_eierskapsdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_regnskapsanalyse_verdsettelse"
+      ]
+    },
+    {
+      "model_id": "modell_kostnad_kalkulasjon_budsjett_beslutning",
+      "title": "Kostnadsanalyse, kalkulasjon og budsjettering: beslutningsmodell",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "purpose": "Kobler kostnadsatferd, relevante kostnader, kostnadsdrivere, ABC, fleksibelt budsjett og avvik til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "bygg bidrags- og selvkostkalkyle, aktivitetsbasert kalkyle og fleksibelt budsjett med pris-, volum- og effektivitetsavvik",
+      "variables": [
+        "mal_kostnad_kalkulasjon_budsjett_dekningsgrad",
+        "mal_kostnad_kalkulasjon_budsjett_kapasitetskostnad",
+        "mal_kostnad_kalkulasjon_budsjett_kostnadsdriverrate",
+        "mal_kostnad_kalkulasjon_budsjett_budsjettavvik",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Kostnadsanalyse, kalkulasjon og budsjettering uten å skjule enkel og styrbar kalkyle mot mer presis, men datakrevende kostnadsfordeling.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_budsjett_koststeds_og_avviksdata",
+        "data_produksjons_og_aktivitetsdata",
+        "data_arsregnskap_og_noter"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_kostnad_kalkulasjon_budsjett"
+      ]
+    },
+    {
+      "model_id": "modell_kostnad_kalkulasjon_budsjett_scenario",
+      "title": "Kostnadsanalyse, kalkulasjon og budsjettering: scenario- og kontrollmodell",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for bygg bidrags- og selvkostkalkyle, aktivitetsbasert kalkyle og fleksibelt budsjett med pris-, volum- og effektivitetsavvik og registrer beslutningsskifte.",
+      "variables": [
+        "mal_kostnad_kalkulasjon_budsjett_dekningsgrad",
+        "mal_kostnad_kalkulasjon_budsjett_kapasitetskostnad",
+        "mal_kostnad_kalkulasjon_budsjett_kostnadsdriverrate",
+        "mal_kostnad_kalkulasjon_budsjett_budsjettavvik",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når enkel og styrbar kalkyle mot mer presis, men datakrevende kostnadsfordeling får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_budsjett_koststeds_og_avviksdata",
+        "data_produksjons_og_aktivitetsdata",
+        "data_arsregnskap_og_noter"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_kostnad_kalkulasjon_budsjett"
+      ]
+    },
+    {
+      "model_id": "modell_internkontroll_revisjon_prestasjon_beslutning",
+      "title": "Internkontroll, revisjon og prestasjonsstyring: beslutningsmodell",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "purpose": "Kobler kontrollmiljø, revisjonsrisiko, revisjonsbevis, KPI-er, målforskyvning og balansert styring til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "bygg risiko-kontrollmatrise, beregn revisjonsrisiko og utform balansert målekort med ledende og etterslepende indikatorer",
+      "variables": [
+        "mal_internkontroll_revisjon_prestasjon_kontrolldekning",
+        "mal_internkontroll_revisjon_prestasjon_avviksfrekvens",
+        "mal_internkontroll_revisjon_prestasjon_revisjonsrisiko",
+        "mal_internkontroll_revisjon_prestasjon_malbalanseindeks",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Internkontroll, revisjon og prestasjonsstyring uten å skjule kontroll og etterprøvbarhet mot fleksibilitet, læring og risiko for gaming.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_internkontroll_og_revisjonsdata",
+        "data_budsjett_koststeds_og_avviksdata",
+        "data_produksjons_og_aktivitetsdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_internkontroll_revisjon_prestasjon"
+      ]
+    },
+    {
+      "model_id": "modell_internkontroll_revisjon_prestasjon_scenario",
+      "title": "Internkontroll, revisjon og prestasjonsstyring: scenario- og kontrollmodell",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for bygg risiko-kontrollmatrise, beregn revisjonsrisiko og utform balansert målekort med ledende og etterslepende indikatorer og registrer beslutningsskifte.",
+      "variables": [
+        "mal_internkontroll_revisjon_prestasjon_kontrolldekning",
+        "mal_internkontroll_revisjon_prestasjon_avviksfrekvens",
+        "mal_internkontroll_revisjon_prestasjon_revisjonsrisiko",
+        "mal_internkontroll_revisjon_prestasjon_malbalanseindeks",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når kontroll og etterprøvbarhet mot fleksibilitet, læring og risiko for gaming får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_internkontroll_og_revisjonsdata",
+        "data_budsjett_koststeds_og_avviksdata",
+        "data_produksjons_og_aktivitetsdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_internkontroll_revisjon_prestasjon"
+      ]
+    },
+    {
+      "model_id": "modell_markedsinnsikt_segmentering_beslutning",
+      "title": "Markedsinnsikt og segmentering: beslutningsmodell",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "purpose": "Kobler markedsavgrensning, behov, segmenter, målgrupper, posisjonering og personvern til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "gjennomfør deskriptiv analyse, segmentering og målgruppevurdering med størrelse, vekst, respons og kostnad",
+      "variables": [
+        "mal_markedsinnsikt_segmentering_segmentstorrelse",
+        "mal_markedsinnsikt_segmentering_segmentvekst",
+        "mal_markedsinnsikt_segmentering_responsrate",
+        "mal_markedsinnsikt_segmentering_segmentlonnsomhet",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Markedsinnsikt og segmentering uten å skjule statistisk tydelige segmenter mot etisk, strategisk og operativt anvendelige målgrupper.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_crm_og_transaksjonsdata",
+        "data_survey_og_paneldata",
+        "data_markeds_og_konkurrentdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_markedsinnsikt_segmentering"
+      ]
+    },
+    {
+      "model_id": "modell_markedsinnsikt_segmentering_scenario",
+      "title": "Markedsinnsikt og segmentering: scenario- og kontrollmodell",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for gjennomfør deskriptiv analyse, segmentering og målgruppevurdering med størrelse, vekst, respons og kostnad og registrer beslutningsskifte.",
+      "variables": [
+        "mal_markedsinnsikt_segmentering_segmentstorrelse",
+        "mal_markedsinnsikt_segmentering_segmentvekst",
+        "mal_markedsinnsikt_segmentering_responsrate",
+        "mal_markedsinnsikt_segmentering_segmentlonnsomhet",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når statistisk tydelige segmenter mot etisk, strategisk og operativt anvendelige målgrupper får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_crm_og_transaksjonsdata",
+        "data_survey_og_paneldata",
+        "data_markeds_og_konkurrentdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_markedsinnsikt_segmentering"
+      ]
+    },
+    {
+      "model_id": "modell_markedsmiks_kanaler_beslutning",
+      "title": "Produkt, pris, distribusjon og kommunikasjon: beslutningsmodell",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "purpose": "Kobler produktverdi, prisstrategi, kanaløkonomi, kommunikasjon, konvertering og attribusjon til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "beregn priselastisitet, kanalbidrag, anskaffelseskostnad og inkrementell kampanjeeffekt under to scenarier",
+      "variables": [
+        "mal_markedsmiks_kanaler_kundanskaffelseskostnad",
+        "mal_markedsmiks_kanaler_konverteringsrate",
+        "mal_markedsmiks_kanaler_kanalbidrag",
+        "mal_markedsmiks_kanaler_inkrementell_kampanjeeffekt",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Produkt, pris, distribusjon og kommunikasjon uten å skjule kortvarig respons og salg mot langsiktig verdi, tillit og merkevare.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_kampanje_og_kanaldata",
+        "data_crm_og_transaksjonsdata",
+        "data_markeds_og_konkurrentdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_markedsmiks_kanaler"
+      ]
+    },
+    {
+      "model_id": "modell_markedsmiks_kanaler_scenario",
+      "title": "Produkt, pris, distribusjon og kommunikasjon: scenario- og kontrollmodell",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for beregn priselastisitet, kanalbidrag, anskaffelseskostnad og inkrementell kampanjeeffekt under to scenarier og registrer beslutningsskifte.",
+      "variables": [
+        "mal_markedsmiks_kanaler_kundanskaffelseskostnad",
+        "mal_markedsmiks_kanaler_konverteringsrate",
+        "mal_markedsmiks_kanaler_kanalbidrag",
+        "mal_markedsmiks_kanaler_inkrementell_kampanjeeffekt",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når kortvarig respons og salg mot langsiktig verdi, tillit og merkevare får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_kampanje_og_kanaldata",
+        "data_crm_og_transaksjonsdata",
+        "data_markeds_og_konkurrentdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_markedsmiks_kanaler"
+      ]
+    },
+    {
+      "model_id": "modell_merkevare_kunderelasjon_beslutning",
+      "title": "Merkevare og kunderelasjoner: beslutningsmodell",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "purpose": "Kobler kjennskap, assosiasjoner, tillit, prispremie, kundereise, retensjon, churn og CLV til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "bygg merketrakt, beregn prispremie, kohortretensjon og diskontert kundelivstidsverdi",
+      "variables": [
+        "mal_merkevare_kunderelasjon_merkevarekjennskap",
+        "mal_merkevare_kunderelasjon_prispremie",
+        "mal_merkevare_kunderelasjon_retensjonsrate",
+        "mal_merkevare_kunderelasjon_kundelivstidsverdi",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Merkevare og kunderelasjoner uten å skjule symbolsk og relasjonell verdi mot måleusikkerhet, statusforskjeller og manipulerende påvirkning.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_crm_og_transaksjonsdata",
+        "data_survey_og_paneldata",
+        "data_kampanje_og_kanaldata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_merkevare_kunderelasjon"
+      ]
+    },
+    {
+      "model_id": "modell_merkevare_kunderelasjon_scenario",
+      "title": "Merkevare og kunderelasjoner: scenario- og kontrollmodell",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for bygg merketrakt, beregn prispremie, kohortretensjon og diskontert kundelivstidsverdi og registrer beslutningsskifte.",
+      "variables": [
+        "mal_merkevare_kunderelasjon_merkevarekjennskap",
+        "mal_merkevare_kunderelasjon_prispremie",
+        "mal_merkevare_kunderelasjon_retensjonsrate",
+        "mal_merkevare_kunderelasjon_kundelivstidsverdi",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når symbolsk og relasjonell verdi mot måleusikkerhet, statusforskjeller og manipulerende påvirkning får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_crm_og_transaksjonsdata",
+        "data_survey_og_paneldata",
+        "data_kampanje_og_kanaldata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_merkevare_kunderelasjon"
+      ]
+    },
+    {
+      "model_id": "modell_konkurransestrategi_ressurser_beslutning",
+      "title": "Konkurransestrategi og ressursanalyse: beslutningsmodell",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "purpose": "Kobler bransjestruktur, fem krefter, aktivitetssystem, VRIO, kapabiliteter og trade-offs til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "bygg femkraftsanalyse, aktivitetssystem og VRIO-vurdering og knytt funn til margin, vekst og kapitalbinding",
+      "variables": [
+        "mal_konkurransestrategi_ressurser_relativ_markedsandel",
+        "mal_konkurransestrategi_ressurser_marginforskjell",
+        "mal_konkurransestrategi_ressurser_strategisk_kapitalbinding",
+        "mal_konkurransestrategi_ressurser_imitasjonsbarriereindeks",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Konkurransestrategi og ressursanalyse uten å skjule ekstern posisjonering mot interne ressurser, og varig fortrinn mot rask imitasjon og endring.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_markeds_og_konkurrentdata",
+        "data_arsregnskap_og_noter",
+        "data_crm_og_transaksjonsdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_konkurransestrategi_ressurser"
+      ]
+    },
+    {
+      "model_id": "modell_konkurransestrategi_ressurser_scenario",
+      "title": "Konkurransestrategi og ressursanalyse: scenario- og kontrollmodell",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for bygg femkraftsanalyse, aktivitetssystem og VRIO-vurdering og knytt funn til margin, vekst og kapitalbinding og registrer beslutningsskifte.",
+      "variables": [
+        "mal_konkurransestrategi_ressurser_relativ_markedsandel",
+        "mal_konkurransestrategi_ressurser_marginforskjell",
+        "mal_konkurransestrategi_ressurser_strategisk_kapitalbinding",
+        "mal_konkurransestrategi_ressurser_imitasjonsbarriereindeks",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når ekstern posisjonering mot interne ressurser, og varig fortrinn mot rask imitasjon og endring får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_markeds_og_konkurrentdata",
+        "data_arsregnskap_og_noter",
+        "data_crm_og_transaksjonsdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_konkurransestrategi_ressurser"
+      ]
+    },
+    {
+      "model_id": "modell_konsernstrategi_implementering_beslutning",
+      "title": "Konsernstrategi, implementering og strategisk endring: beslutningsmodell",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "purpose": "Kobler diversifisering, vertikal integrasjon, synergi, portefølje, strategikart og endringskapasitet til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "beregn porteføljebidrag og synergiscenario, bygg strategikart og spor milepæler, ressursbruk og atferdsendring",
+      "variables": [
+        "mal_konsernstrategi_implementering_synergirealisering",
+        "mal_konsernstrategi_implementering_strategisk_milepaelgrad",
+        "mal_konsernstrategi_implementering_ressursreallokering",
+        "mal_konsernstrategi_implementering_endringsadopsjon",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Konsernstrategi, implementering og strategisk endring uten å skjule finansiell synergi og kontroll mot kompleksitet, kulturell friksjon og tap av lokal kunnskap.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_strategi_og_portefoljedata",
+        "data_arsregnskap_og_noter",
+        "data_organisasjons_og_prosjektdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_konsernstrategi_implementering"
+      ]
+    },
+    {
+      "model_id": "modell_konsernstrategi_implementering_scenario",
+      "title": "Konsernstrategi, implementering og strategisk endring: scenario- og kontrollmodell",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for beregn porteføljebidrag og synergiscenario, bygg strategikart og spor milepæler, ressursbruk og atferdsendring og registrer beslutningsskifte.",
+      "variables": [
+        "mal_konsernstrategi_implementering_synergirealisering",
+        "mal_konsernstrategi_implementering_strategisk_milepaelgrad",
+        "mal_konsernstrategi_implementering_ressursreallokering",
+        "mal_konsernstrategi_implementering_endringsadopsjon",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når finansiell synergi og kontroll mot kompleksitet, kulturell friksjon og tap av lokal kunnskap får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_strategi_og_portefoljedata",
+        "data_arsregnskap_og_noter",
+        "data_organisasjons_og_prosjektdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_konsernstrategi_implementering"
+      ]
+    },
+    {
+      "model_id": "modell_matematikk_for_okonomi_beslutning",
+      "title": "Matematikk for økonomi: beslutningsmodell",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "purpose": "Kobler funksjoner, vekst, derivasjon, elastisitet, optimering, matriser og nåverdi til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "analyser funksjon, elastisitet og marginaleffekt, løs optimering med begrensning og et lineært ligningssystem",
+      "variables": [
+        "mal_matematikk_for_okonomi_marginaleffekt",
+        "mal_matematikk_for_okonomi_elastisitet",
+        "mal_matematikk_for_okonomi_optimalitetsgap",
+        "mal_matematikk_for_okonomi_kondisjonstall",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Matematikk for økonomi uten å skjule matematisk presisjon og generalitet mot økonomisk realisme og tolkbarhet.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_analytisk_datamart",
+        "data_modellparametre_og_scenarioantakelser",
+        "data_tidsserie_og_paneldata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_matematikk_for_okonomi"
+      ]
+    },
+    {
+      "model_id": "modell_matematikk_for_okonomi_scenario",
+      "title": "Matematikk for økonomi: scenario- og kontrollmodell",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for analyser funksjon, elastisitet og marginaleffekt, løs optimering med begrensning og et lineært ligningssystem og registrer beslutningsskifte.",
+      "variables": [
+        "mal_matematikk_for_okonomi_marginaleffekt",
+        "mal_matematikk_for_okonomi_elastisitet",
+        "mal_matematikk_for_okonomi_optimalitetsgap",
+        "mal_matematikk_for_okonomi_kondisjonstall",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når matematisk presisjon og generalitet mot økonomisk realisme og tolkbarhet får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_analytisk_datamart",
+        "data_modellparametre_og_scenarioantakelser",
+        "data_tidsserie_og_paneldata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_matematikk_for_okonomi"
+      ]
+    },
+    {
+      "model_id": "modell_sannsynlighet_inferens_beslutning",
+      "title": "Sannsynlighet og statistisk inferens: beslutningsmodell",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "purpose": "Kobler tilfeldige variable, fordelinger, forventning, estimering, konfidensintervall, testing og styrke til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "beregn forventning og varians, estimer parameter og konfidensintervall og gjennomfør en forhåndsdefinert test med styrkevurdering",
+      "variables": [
+        "mal_sannsynlighet_inferens_standardfeil",
+        "mal_sannsynlighet_inferens_konfidensbredde",
+        "mal_sannsynlighet_inferens_teststyrke",
+        "mal_sannsynlighet_inferens_falsk_positiv_risiko",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Sannsynlighet og statistisk inferens uten å skjule beslutningsbehov for klare svar mot statistisk usikkerhet og risiko for falske funn.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_survey_og_paneldata",
+        "data_eksperiment_og_kvasieksperimentdata",
+        "data_analytisk_datamart"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_sannsynlighet_inferens"
+      ]
+    },
+    {
+      "model_id": "modell_sannsynlighet_inferens_scenario",
+      "title": "Sannsynlighet og statistisk inferens: scenario- og kontrollmodell",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for beregn forventning og varians, estimer parameter og konfidensintervall og gjennomfør en forhåndsdefinert test med styrkevurdering og registrer beslutningsskifte.",
+      "variables": [
+        "mal_sannsynlighet_inferens_standardfeil",
+        "mal_sannsynlighet_inferens_konfidensbredde",
+        "mal_sannsynlighet_inferens_teststyrke",
+        "mal_sannsynlighet_inferens_falsk_positiv_risiko",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når beslutningsbehov for klare svar mot statistisk usikkerhet og risiko for falske funn får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_survey_og_paneldata",
+        "data_eksperiment_og_kvasieksperimentdata",
+        "data_analytisk_datamart"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_sannsynlighet_inferens"
+      ]
+    },
+    {
+      "model_id": "modell_regresjon_kausalitet_beslutning",
+      "title": "Regresjon og kausal identifikasjon: beslutningsmodell",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "purpose": "Kobler regresjon, konfoundere, paneldata, faste effekter, naturlige eksperimenter og parallelle trender til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "estimer grunnmodell og robust standardfeil, test spesifikasjon og gjennomfør differanse-i-differanser eller tilsvarende design",
+      "variables": [
+        "mal_regresjon_kausalitet_justert_forklaringsgrad",
+        "mal_regresjon_kausalitet_standardisert_effekt",
+        "mal_regresjon_kausalitet_robusthetsbredde",
+        "mal_regresjon_kausalitet_pretrendavvik",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Regresjon og kausal identifikasjon uten å skjule høy prediksjonskraft mot troverdig kausal identifikasjon og ekstern gyldighet.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_eksperiment_og_kvasieksperimentdata",
+        "data_tidsserie_og_paneldata",
+        "data_analytisk_datamart"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_regresjon_kausalitet"
+      ]
+    },
+    {
+      "model_id": "modell_regresjon_kausalitet_scenario",
+      "title": "Regresjon og kausal identifikasjon: scenario- og kontrollmodell",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for estimer grunnmodell og robust standardfeil, test spesifikasjon og gjennomfør differanse-i-differanser eller tilsvarende design og registrer beslutningsskifte.",
+      "variables": [
+        "mal_regresjon_kausalitet_justert_forklaringsgrad",
+        "mal_regresjon_kausalitet_standardisert_effekt",
+        "mal_regresjon_kausalitet_robusthetsbredde",
+        "mal_regresjon_kausalitet_pretrendavvik",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når høy prediksjonskraft mot troverdig kausal identifikasjon og ekstern gyldighet får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_eksperiment_og_kvasieksperimentdata",
+        "data_tidsserie_og_paneldata",
+        "data_analytisk_datamart"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_regresjon_kausalitet"
+      ]
+    },
+    {
+      "model_id": "modell_programmering_databehandling_beslutning",
+      "title": "Programmering, databehandling og visualisering: beslutningsmodell",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "purpose": "Kobler datakontrakt, typer, manglende verdier, joins, pipeline, versjonering, visualisering og reproduserbarhet til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "implementer import, validering, sammenkobling, variabelbygging og visualisering med automatiske tester og reproduksjonsinstruks",
+      "variables": [
+        "mal_programmering_databehandling_manglendehetsgrad",
+        "mal_programmering_databehandling_duplikatgrad",
+        "mal_programmering_databehandling_pipeline_reproduserbarhet",
+        "mal_programmering_databehandling_visualiseringsfeilrate",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Programmering, databehandling og visualisering uten å skjule hurtig analyse og fleksibilitet mot datakvalitet, sporbarhet, sikkerhet og vedlikehold.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_analytisk_datamart",
+        "data_datakvalitet_og_lineage",
+        "data_tidsserie_og_paneldata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_programmering_databehandling"
+      ]
+    },
+    {
+      "model_id": "modell_programmering_databehandling_scenario",
+      "title": "Programmering, databehandling og visualisering: scenario- og kontrollmodell",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for implementer import, validering, sammenkobling, variabelbygging og visualisering med automatiske tester og reproduksjonsinstruks og registrer beslutningsskifte.",
+      "variables": [
+        "mal_programmering_databehandling_manglendehetsgrad",
+        "mal_programmering_databehandling_duplikatgrad",
+        "mal_programmering_databehandling_pipeline_reproduserbarhet",
+        "mal_programmering_databehandling_visualiseringsfeilrate",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når hurtig analyse og fleksibilitet mot datakvalitet, sporbarhet, sikkerhet og vedlikehold får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_analytisk_datamart",
+        "data_datakvalitet_og_lineage",
+        "data_tidsserie_og_paneldata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_programmering_databehandling"
+      ]
+    },
+    {
+      "model_id": "modell_prognose_optimering_beslutning_beslutning",
+      "title": "Prognoser, optimering og beslutningsanalyse: beslutningsmodell",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "purpose": "Kobler tidsserieprognoser, benchmark, tapfunksjon, lineærprogrammering, scenario og Monte Carlo til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "bygg benchmark og tidsserieprognose, løs optimeringsproblem og gjennomfør Monte Carlo- eller scenarioanalyse",
+      "variables": [
+        "mal_prognose_optimering_beslutning_prognosefeil_mape",
+        "mal_prognose_optimering_beslutning_prognosebias",
+        "mal_prognose_optimering_beslutning_optimalitetsgap",
+        "mal_prognose_optimering_beslutning_scenariotap",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Prognoser, optimering og beslutningsanalyse uten å skjule forventet optimal løsning mot robusthet, fleksibilitet, rettferdighet og modellrisiko.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_tidsserie_og_paneldata",
+        "data_modellparametre_og_scenarioantakelser",
+        "data_produksjons_og_aktivitetsdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_prognose_optimering_beslutning"
+      ]
+    },
+    {
+      "model_id": "modell_prognose_optimering_beslutning_scenario",
+      "title": "Prognoser, optimering og beslutningsanalyse: scenario- og kontrollmodell",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for bygg benchmark og tidsserieprognose, løs optimeringsproblem og gjennomfør Monte Carlo- eller scenarioanalyse og registrer beslutningsskifte.",
+      "variables": [
+        "mal_prognose_optimering_beslutning_prognosefeil_mape",
+        "mal_prognose_optimering_beslutning_prognosebias",
+        "mal_prognose_optimering_beslutning_optimalitetsgap",
+        "mal_prognose_optimering_beslutning_scenariotap",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når forventet optimal løsning mot robusthet, fleksibilitet, rettferdighet og modellrisiko får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_tidsserie_og_paneldata",
+        "data_modellparametre_og_scenarioantakelser",
+        "data_produksjons_og_aktivitetsdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_prognose_optimering_beslutning"
+      ]
+    },
+    {
+      "model_id": "modell_avtalerett_kjopsrett_beslutning",
+      "title": "Avtalerett og kjøpsrett: beslutningsmodell",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "purpose": "Kobler avtaleinngåelse, fullmakt, tolkning, ugyldighet, mangel, misligholdsbeføyelser og erstatning til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "bygg plikt- og risikomatrise og beregn mulig prisavslag, forsinkelseskostnad eller erstatning under alternative utfall",
+      "variables": [
+        "mal_avtalerett_kjopsrett_kontraktsdekning",
+        "mal_avtalerett_kjopsrett_misligholdseksponering",
+        "mal_avtalerett_kjopsrett_erstatningsintervall",
+        "mal_avtalerett_kjopsrett_tvisterisiko",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Avtalerett og kjøpsrett uten å skjule forutberegnelighet og avtalefrihet mot rimelighet, informasjonsasymmetri og vern av svakere part.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_kontrakter_og_transaksjonsdokumenter",
+        "data_lov_forarbeider_og_rettspraksis",
+        "data_compliance_og_hendelsesdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_avtalerett_kjopsrett"
+      ]
+    },
+    {
+      "model_id": "modell_avtalerett_kjopsrett_scenario",
+      "title": "Avtalerett og kjøpsrett: scenario- og kontrollmodell",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for bygg plikt- og risikomatrise og beregn mulig prisavslag, forsinkelseskostnad eller erstatning under alternative utfall og registrer beslutningsskifte.",
+      "variables": [
+        "mal_avtalerett_kjopsrett_kontraktsdekning",
+        "mal_avtalerett_kjopsrett_misligholdseksponering",
+        "mal_avtalerett_kjopsrett_erstatningsintervall",
+        "mal_avtalerett_kjopsrett_tvisterisiko",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når forutberegnelighet og avtalefrihet mot rimelighet, informasjonsasymmetri og vern av svakere part får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_kontrakter_og_transaksjonsdokumenter",
+        "data_lov_forarbeider_og_rettspraksis",
+        "data_compliance_og_hendelsesdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_avtalerett_kjopsrett"
+      ]
+    },
+    {
+      "model_id": "modell_selskapsrett_eieransvar_beslutning",
+      "title": "Selskapsrett og eieransvar: beslutningsmodell",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "purpose": "Kobler selskapsformer, kapital, organer, kompetanse, minoritetsvern, styreansvar og faktisk kontroll til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "kartlegg stemmerett og kontroll, test saksbehandlingskrav og beregn kapital- eller ansvarseksponering",
+      "variables": [
+        "mal_selskapsrett_eieransvar_stemmemaktkonsentrasjon",
+        "mal_selskapsrett_eieransvar_kapitalvernsmargin",
+        "mal_selskapsrett_eieransvar_styringsavvik",
+        "mal_selskapsrett_eieransvar_ansvarseksponering",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Selskapsrett og eieransvar uten å skjule begrenset ansvar og effektiv kapitalmobilisering mot kreditorvern, minoritetsvern og ansvar for faktisk kontroll.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_foretaks_rolle_og_eierskapsdata",
+        "data_vedtekter_protokoller_og_styredokumenter",
+        "data_lov_forarbeider_og_rettspraksis"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_selskapsrett_eieransvar"
+      ]
+    },
+    {
+      "model_id": "modell_selskapsrett_eieransvar_scenario",
+      "title": "Selskapsrett og eieransvar: scenario- og kontrollmodell",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for kartlegg stemmerett og kontroll, test saksbehandlingskrav og beregn kapital- eller ansvarseksponering og registrer beslutningsskifte.",
+      "variables": [
+        "mal_selskapsrett_eieransvar_stemmemaktkonsentrasjon",
+        "mal_selskapsrett_eieransvar_kapitalvernsmargin",
+        "mal_selskapsrett_eieransvar_styringsavvik",
+        "mal_selskapsrett_eieransvar_ansvarseksponering",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når begrenset ansvar og effektiv kapitalmobilisering mot kreditorvern, minoritetsvern og ansvar for faktisk kontroll får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_foretaks_rolle_og_eierskapsdata",
+        "data_vedtekter_protokoller_og_styredokumenter",
+        "data_lov_forarbeider_og_rettspraksis"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_selskapsrett_eieransvar"
+      ]
+    },
+    {
+      "model_id": "modell_arbeidsrett_personvern_beslutning",
+      "title": "Arbeidsrett og personvern: beslutningsmodell",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "purpose": "Kobler ansettelse, arbeidstid, styringsrett, diskriminering, oppsigelse, medbestemmelse og personopplysninger til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "bygg rettslig beslutningstre, vurder nødvendighet og proporsjonalitet og beregn eksponering ved brudd eller feil prosess",
+      "variables": [
+        "mal_arbeidsrett_personvern_prosessetterlevelse",
+        "mal_arbeidsrett_personvern_arbeidstidsavvik",
+        "mal_arbeidsrett_personvern_personvernrisiko",
+        "mal_arbeidsrett_personvern_diskrimineringsgap",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Arbeidsrett og personvern uten å skjule effektiv ledelse og sikkerhet mot autonomi, lik behandling, privatliv og kollektiv medbestemmelse.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_arbeidsavtaler_og_hr_data",
+        "data_behandlingsprotokoll_og_personvernunderlag",
+        "data_lov_forarbeider_og_rettspraksis"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_arbeidsrett_personvern"
+      ]
+    },
+    {
+      "model_id": "modell_arbeidsrett_personvern_scenario",
+      "title": "Arbeidsrett og personvern: scenario- og kontrollmodell",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for bygg rettslig beslutningstre, vurder nødvendighet og proporsjonalitet og beregn eksponering ved brudd eller feil prosess og registrer beslutningsskifte.",
+      "variables": [
+        "mal_arbeidsrett_personvern_prosessetterlevelse",
+        "mal_arbeidsrett_personvern_arbeidstidsavvik",
+        "mal_arbeidsrett_personvern_personvernrisiko",
+        "mal_arbeidsrett_personvern_diskrimineringsgap",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når effektiv ledelse og sikkerhet mot autonomi, lik behandling, privatliv og kollektiv medbestemmelse får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_arbeidsavtaler_og_hr_data",
+        "data_behandlingsprotokoll_og_personvernunderlag",
+        "data_lov_forarbeider_og_rettspraksis"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_arbeidsrett_personvern"
+      ]
+    },
+    {
+      "model_id": "modell_skatt_avgift_beslutning",
+      "title": "Skatterett og avgiftsforståelse: beslutningsmodell",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "purpose": "Kobler skattegrunnlag, fradrag, periodisering, betalbar og utsatt skatt, merverdiavgift og omgåelse til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "avstem regnskapsmessig og skattemessig resultat, beregn betalbar og utsatt skatt og gjennomfør merverdiavgiftsoppgjør",
+      "variables": [
+        "mal_skatt_avgift_effektiv_skattesats",
+        "mal_skatt_avgift_betalbar_skatt",
+        "mal_skatt_avgift_endring_i_utsatt_skatt",
+        "mal_skatt_avgift_mva_avstemmingsdifferanse",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Skatterett og avgiftsforståelse uten å skjule nøytralitet og finansiering av fellesskap mot kompleksitet, tilpasning og fordelingsvirkninger.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_skatte_og_avgiftsoppgaver",
+        "data_arsregnskap_og_noter",
+        "data_lov_forarbeider_og_rettspraksis"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_skatt_avgift"
+      ]
+    },
+    {
+      "model_id": "modell_skatt_avgift_scenario",
+      "title": "Skatterett og avgiftsforståelse: scenario- og kontrollmodell",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for avstem regnskapsmessig og skattemessig resultat, beregn betalbar og utsatt skatt og gjennomfør merverdiavgiftsoppgjør og registrer beslutningsskifte.",
+      "variables": [
+        "mal_skatt_avgift_effektiv_skattesats",
+        "mal_skatt_avgift_betalbar_skatt",
+        "mal_skatt_avgift_endring_i_utsatt_skatt",
+        "mal_skatt_avgift_mva_avstemmingsdifferanse",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når nøytralitet og finansiering av fellesskap mot kompleksitet, tilpasning og fordelingsvirkninger får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_skatte_og_avgiftsoppgaver",
+        "data_arsregnskap_og_noter",
+        "data_lov_forarbeider_og_rettspraksis"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_skatt_avgift"
+      ]
+    },
+    {
+      "model_id": "modell_konkurranserett_compliance_baerekraft_beslutning",
+      "title": "Konkurranserett, compliance og bærekraftsrapportering: beslutningsmodell",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "purpose": "Kobler markedsatferd, samarbeid, dominans, korrupsjonsrisiko, varsling, aktsomhet og dobbel vesentlighet til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "avgrens marked og konsentrasjon, bygg compliance-risikokart og spor bærekraftspåstand fra kilde til rapport",
+      "variables": [
+        "mal_konkurranserett_compliance_baerekraft_compliance_kontrolldekning",
+        "mal_konkurranserett_compliance_baerekraft_hendelseslukkingstid",
+        "mal_konkurranserett_compliance_baerekraft_rapporteringssporbarhet",
+        "mal_konkurranserett_compliance_baerekraft_konkurranserisiko",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Konkurranserett, compliance og bærekraftsrapportering uten å skjule standardisert etterlevelse og omdømmevern mot reell risikoreduksjon, konkurranse og åpenhet.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_compliance_og_hendelsesdata",
+        "data_markeds_og_konkurrentdata",
+        "data_baerekraftsrapportering_og_underlagsdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_konkurranserett_compliance_baerekraft"
+      ]
+    },
+    {
+      "model_id": "modell_konkurranserett_compliance_baerekraft_scenario",
+      "title": "Konkurranserett, compliance og bærekraftsrapportering: scenario- og kontrollmodell",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for avgrens marked og konsentrasjon, bygg compliance-risikokart og spor bærekraftspåstand fra kilde til rapport og registrer beslutningsskifte.",
+      "variables": [
+        "mal_konkurranserett_compliance_baerekraft_compliance_kontrolldekning",
+        "mal_konkurranserett_compliance_baerekraft_hendelseslukkingstid",
+        "mal_konkurranserett_compliance_baerekraft_rapporteringssporbarhet",
+        "mal_konkurranserett_compliance_baerekraft_konkurranserisiko",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når standardisert etterlevelse og omdømmevern mot reell risikoreduksjon, konkurranse og åpenhet får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_compliance_og_hendelsesdata",
+        "data_markeds_og_konkurrentdata",
+        "data_baerekraftsrapportering_og_underlagsdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_konkurranserett_compliance_baerekraft"
+      ]
+    },
+    {
+      "model_id": "modell_internasjonal_handel_valuta_beslutning",
+      "title": "Internasjonal handel og valuta: beslutningsmodell",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "purpose": "Kobler komparative fortrinn, handelshindringer, valutakurs, prising, sikring og finansiell eksponering til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "beregn handelsmargin, toll- og transporteffekt og transaksjons-, omregnings- og økonomisk valutaeksponering",
+      "variables": [
+        "mal_internasjonal_handel_valuta_handelsmargin",
+        "mal_internasjonal_handel_valuta_tollbelastning",
+        "mal_internasjonal_handel_valuta_valutaeksponering",
+        "mal_internasjonal_handel_valuta_sikringsgrad",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Internasjonal handel og valuta uten å skjule gevinster fra spesialisering og markedstilgang mot sårbarhet, fordelingsvirkninger og strategisk avhengighet.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_toll_og_handelsdata",
+        "data_valuta_og_makrodata",
+        "data_leverandor_og_innkjopsdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_internasjonal_handel_valuta"
+      ]
+    },
+    {
+      "model_id": "modell_internasjonal_handel_valuta_scenario",
+      "title": "Internasjonal handel og valuta: scenario- og kontrollmodell",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for beregn handelsmargin, toll- og transporteffekt og transaksjons-, omregnings- og økonomisk valutaeksponering og registrer beslutningsskifte.",
+      "variables": [
+        "mal_internasjonal_handel_valuta_handelsmargin",
+        "mal_internasjonal_handel_valuta_tollbelastning",
+        "mal_internasjonal_handel_valuta_valutaeksponering",
+        "mal_internasjonal_handel_valuta_sikringsgrad",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når gevinster fra spesialisering og markedstilgang mot sårbarhet, fordelingsvirkninger og strategisk avhengighet får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_toll_og_handelsdata",
+        "data_valuta_og_makrodata",
+        "data_leverandor_og_innkjopsdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_internasjonal_handel_valuta"
+      ]
+    },
+    {
+      "model_id": "modell_multinasjonale_globale_verdikjeder_beslutning",
+      "title": "Multinasjonale selskaper og globale verdikjeder: beslutningsmodell",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "purpose": "Kobler markedsinngang, FDI, lisens, joint venture, CAGE, internprising, styring og global verdifordeling til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "kartlegg aktivitet, verdi og risiko per ledd, sammenlign inngangsmodi og beregn land- og styringseksponering",
+      "variables": [
+        "mal_multinasjonale_globale_verdikjeder_landrisikojustert_avkastning",
+        "mal_multinasjonale_globale_verdikjeder_verdikjedeandel",
+        "mal_multinasjonale_globale_verdikjeder_styringskompleksitet",
+        "mal_multinasjonale_globale_verdikjeder_lokal_verdiskapingsandel",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Multinasjonale selskaper og globale verdikjeder uten å skjule global skala og spesialisering mot kontrolltap, institusjonell avstand, skatte- og arbeidslivsforskjeller.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_toll_og_handelsdata",
+        "data_land_institusjons_og_markedsdata",
+        "data_foretaks_rolle_og_eierskapsdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_multinasjonale_globale_verdikjeder"
+      ]
+    },
+    {
+      "model_id": "modell_multinasjonale_globale_verdikjeder_scenario",
+      "title": "Multinasjonale selskaper og globale verdikjeder: scenario- og kontrollmodell",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for kartlegg aktivitet, verdi og risiko per ledd, sammenlign inngangsmodi og beregn land- og styringseksponering og registrer beslutningsskifte.",
+      "variables": [
+        "mal_multinasjonale_globale_verdikjeder_landrisikojustert_avkastning",
+        "mal_multinasjonale_globale_verdikjeder_verdikjedeandel",
+        "mal_multinasjonale_globale_verdikjeder_styringskompleksitet",
+        "mal_multinasjonale_globale_verdikjeder_lokal_verdiskapingsandel",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når global skala og spesialisering mot kontrolltap, institusjonell avstand, skatte- og arbeidslivsforskjeller får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_toll_og_handelsdata",
+        "data_land_institusjons_og_markedsdata",
+        "data_foretaks_rolle_og_eierskapsdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_multinasjonale_globale_verdikjeder"
+      ]
+    },
+    {
+      "model_id": "modell_operations_kapasitet_beslutning",
+      "title": "Operations og kapasitetsstyring: beslutningsmodell",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "purpose": "Kobler prosessflyt, variasjon, kapasitet, kø, flaskehals, Little’s law, takt og tjenestenivå til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "bygg prosesskart, beregn utnyttelse, Little’s law, flaskehalskapasitet og scenario for etterspørselsvariasjon",
+      "variables": [
+        "mal_operations_kapasitet_kapasitetsutnyttelse",
+        "mal_operations_kapasitet_gjennomlopstid",
+        "mal_operations_kapasitet_kolengde",
+        "mal_operations_kapasitet_forstegangsutbytte",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Operations og kapasitetsstyring uten å skjule høy kapasitetsutnyttelse og lav kostnad mot kort ledetid, fleksibilitet, kvalitet og robusthet.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_operations_og_prosesslogg",
+        "data_kvalitets_og_avviksdata",
+        "data_ettersporsels_og_lagerdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_operations_kapasitet"
+      ]
+    },
+    {
+      "model_id": "modell_operations_kapasitet_scenario",
+      "title": "Operations og kapasitetsstyring: scenario- og kontrollmodell",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for bygg prosesskart, beregn utnyttelse, Little’s law, flaskehalskapasitet og scenario for etterspørselsvariasjon og registrer beslutningsskifte.",
+      "variables": [
+        "mal_operations_kapasitet_kapasitetsutnyttelse",
+        "mal_operations_kapasitet_gjennomlopstid",
+        "mal_operations_kapasitet_kolengde",
+        "mal_operations_kapasitet_forstegangsutbytte",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når høy kapasitetsutnyttelse og lav kostnad mot kort ledetid, fleksibilitet, kvalitet og robusthet får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_operations_og_prosesslogg",
+        "data_kvalitets_og_avviksdata",
+        "data_ettersporsels_og_lagerdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_operations_kapasitet"
+      ]
+    },
+    {
+      "model_id": "modell_innkjop_kvalitet_forsyningsrisiko_beslutning",
+      "title": "Innkjøp, kvalitet og forsyningsrisiko: beslutningsmodell",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "purpose": "Kobler behov, spesifikasjon, leverandørvalg, total cost of ownership, sikkerhetslager, kvalitet og resiliens til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "beregn total cost of ownership, leverandørscore, sikkerhetslager og forventet avbruddstap",
+      "variables": [
+        "mal_innkjop_kvalitet_forsyningsrisiko_total_eierkostnad",
+        "mal_innkjop_kvalitet_forsyningsrisiko_leveringspresisjon",
+        "mal_innkjop_kvalitet_forsyningsrisiko_leverandorfeilrate",
+        "mal_innkjop_kvalitet_forsyningsrisiko_forsyningsrisikoindeks",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Innkjøp, kvalitet og forsyningsrisiko uten å skjule lav innkjøpspris og konsolidering mot kvalitet, leveringssikkerhet, makt og redundans.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_leverandor_og_innkjopsdata",
+        "data_kvalitets_og_avviksdata",
+        "data_ettersporsels_og_lagerdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_innkjop_kvalitet_forsyningsrisiko"
+      ]
+    },
+    {
+      "model_id": "modell_innkjop_kvalitet_forsyningsrisiko_scenario",
+      "title": "Innkjøp, kvalitet og forsyningsrisiko: scenario- og kontrollmodell",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for beregn total cost of ownership, leverandørscore, sikkerhetslager og forventet avbruddstap og registrer beslutningsskifte.",
+      "variables": [
+        "mal_innkjop_kvalitet_forsyningsrisiko_total_eierkostnad",
+        "mal_innkjop_kvalitet_forsyningsrisiko_leveringspresisjon",
+        "mal_innkjop_kvalitet_forsyningsrisiko_leverandorfeilrate",
+        "mal_innkjop_kvalitet_forsyningsrisiko_forsyningsrisikoindeks",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når lav innkjøpspris og konsolidering mot kvalitet, leveringssikkerhet, makt og redundans får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_leverandor_og_innkjopsdata",
+        "data_kvalitets_og_avviksdata",
+        "data_ettersporsels_og_lagerdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_innkjop_kvalitet_forsyningsrisiko"
+      ]
+    },
+    {
+      "model_id": "modell_prosjektledelse_prosjektokonomi_beslutning",
+      "title": "Prosjektledelse og prosjektøkonomi: beslutningsmodell",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "purpose": "Kobler omfang, WBS, kritisk linje, milepæler, opptjent verdi, risikoreserve, endringskontroll og gevinst til et dokumentert beslutningsproblem.",
+      "formula_or_logic": "bygg WBS og nettverksplan, finn kritisk linje og beregn opptjent verdi, sluttprognose og risikoreserve",
+      "variables": [
+        "mal_prosjektledelse_prosjektokonomi_schedule_performance_index",
+        "mal_prosjektledelse_prosjektokonomi_cost_performance_index",
+        "mal_prosjektledelse_prosjektokonomi_estimate_at_completion",
+        "mal_prosjektledelse_prosjektokonomi_gevinstrealiseringsgrad",
+        "beslutningsalternativ"
+      ],
+      "unit": "oppgis eksplisitt per variabel, periode og analyseenhet",
+      "assumptions": [
+        "variablene er konsistent definert",
+        "alternativene er reelt gjennomførbare"
+      ],
+      "interpretation": "Brukes til å vurdere handlingsalternativer i Prosjektledelse og prosjektøkonomi uten å skjule planmessig kontroll og kontrakt mot læring, endring, interessentbehov og usikker gevinst.",
+      "misuse_guards": [
+        "ikke tolk modellresultat som automatisk kausal effekt",
+        "ikke skjul vekter, klassifikasjon eller sensitivitet"
+      ],
+      "minimum_evidence": [
+        "data_organisasjons_og_prosjektdata",
+        "data_prosjektokonomi_og_risikoregister",
+        "data_leverandor_og_innkjopsdata"
+      ],
+      "progression": [
+        "intro: identifiser variabler og enheter",
+        "mellom: gjennomfør beregning og sammenligning",
+        "avansert: test scenario, robusthet og profesjonsansvar"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_prosjektledelse_prosjektokonomi"
+      ]
+    },
+    {
+      "model_id": "modell_prosjektledelse_prosjektokonomi_scenario",
+      "title": "Prosjektledelse og prosjektøkonomi: scenario- og kontrollmodell",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "purpose": "Synliggjør usikkerhet, kontrollpunkter og hvordan alternative antakelser endrer anbefalingen.",
+      "formula_or_logic": "Kjør basis-, oppside- og stresscenario for bygg WBS og nettverksplan, finn kritisk linje og beregn opptjent verdi, sluttprognose og risikoreserve og registrer beslutningsskifte.",
+      "variables": [
+        "mal_prosjektledelse_prosjektokonomi_schedule_performance_index",
+        "mal_prosjektledelse_prosjektokonomi_cost_performance_index",
+        "mal_prosjektledelse_prosjektokonomi_estimate_at_completion",
+        "mal_prosjektledelse_prosjektokonomi_gevinstrealiseringsgrad",
+        "scenario",
+        "kontrollpunkt"
+      ],
+      "unit": "scenario, prosent, valuta, tid, forholdstall eller indeks",
+      "assumptions": [
+        "scenarioene er plausible og dokumenterte",
+        "kontrollpunktene kan observeres eller etterprøves"
+      ],
+      "interpretation": "Viser om beslutningen er robust når planmessig kontroll og kontrakt mot læring, endring, interessentbehov og usikker gevinst får ulike vekter eller utfall.",
+      "misuse_guards": [
+        "ikke gjøre ønsket utfall til basisscenario",
+        "ikke aggregere bort fordelings-, regel- eller kvalitetsvirkninger"
+      ],
+      "minimum_evidence": [
+        "data_organisasjons_og_prosjektdata",
+        "data_prosjektokonomi_og_risikoregister",
+        "data_leverandor_og_innkjopsdata"
+      ],
+      "progression": [
+        "intro: bygg tre scenarioer",
+        "mellom: beregn beslutningsskifte",
+        "avansert: kombiner scenario med kontroll- og etikkvurdering"
+      ],
+      "mapped_module_ids": [
+        "mod_naering_prosjektledelse_prosjektokonomi"
+      ]
+    }
+  ]
+}
