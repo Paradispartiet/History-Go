@@ -1,17 +1,17 @@
-name: One-time clean sync Stensparken batch 2
+name: One-time final clean Stensparken batch 2
 
 on:
   pull_request:
     branches:
       - main
     paths:
-      - .github/stensparken-batch2-clean-sync-trigger.txt
+      - .github/stensparken-batch2-final-clean-trigger.txt
 
 permissions:
   contents: write
 
 jobs:
-  sync-clean-validate:
+  validate-clean-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -35,14 +35,6 @@ jobs:
           git checkout -B agent/stensparken-people-profiles-batch2 origin/agent/stensparken-people-profiles-batch2
           git merge --no-edit origin/main
 
-      - name: Exclude unrelated generated files
-        shell: bash
-        run: |
-          set -euo pipefail
-          git checkout origin/main -- \
-            js/core/categories.js \
-            data/places/places_index.json
-
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
@@ -62,16 +54,25 @@ jobs:
       - name: Verify browser build remains synchronized
         run: npm run build:web:check
 
-      - name: Commit and publish synchronized branch
+      - name: Remove generated side effects after validation
         shell: bash
         run: |
           set -euo pipefail
+          git checkout origin/main -- \
+            js/core/categories.js \
+            data/places/places_index.json
           git restore --staged --worktree reports 2>/dev/null || true
           git clean -fd reports 2>/dev/null || true
+
+      - name: Commit and publish final clean branch
+        shell: bash
+        run: |
+          set -euo pipefail
           git add -A
+          git status --short
           if git diff --cached --quiet; then
             echo "No cleanup changes beyond merge"
           else
-            git commit -m "Clean and sync Stensparken people batch 2"
+            git commit -m "Finalize clean Stensparken people batch 2"
           fi
           git push origin HEAD:agent/stensparken-people-profiles-batch2
