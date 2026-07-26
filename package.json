@@ -116,7 +116,9 @@
     "test:knowledge-browser": "node tests/knowledge-browser-e2e.test.mjs",
     "knowledge:canonical:write": "npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --write",
     "knowledge:canonical:check": "npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --check",
-    "knowledge:legacy:check": "npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --legacy-only"
+    "knowledge:legacy:check": "npm run build:scripts && node dist/scripts/knowledge-canonical-data.mjs --legacy-only",
+    "build:teknologi-canonical": "node tools/build-teknologi-canonical-v2_4.mjs --write",
+    "check:teknologi-canonical": "node tools/build-teknologi-canonical-v2_4.mjs --check && node tools/validate-teknologi-canonical-v2_4.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.19",
