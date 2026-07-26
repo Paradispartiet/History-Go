@@ -137,7 +137,7 @@ Minimum spillflyt:
 PlaceCard er stedets kontrollrom, men må følge eksisterende appstruktur.
 
 `index.html` eier PlaceCard/bottom sheet og quiz modal flow. `MapView` skal koordinere eksisterende DOM/runtime, ikke erstatte place card, kartmotor eller quizmotor.
-Den rike stedspopupen følger den bindende type- og presentasjonskontrakten i `docs/PLACE_POPUP_SYSTEM.md`. PlaceCard skal forbli kompakt; popupen kan vise `popupDesc`, strukturerte mål, delsteder, historiske lag, naturprofil og kildeoversikt når place-dataene faktisk finnes.
+Den rike stedspopupen følger den bindende type- og presentasjonskontrakten i `docs/PLACE_POPUP_SYSTEM.md`. PlaceCard skal forbli kompakt; popupen kan vise `popupDesc`, strukturerte mål, delsteder, historiske lag, naturprofil og kildeoversikt når place-dataene faktisk finnes. Heroen skal ikke gjenta nøkkeltall som allerede eies av en type-spesifikk detaljseksjon.
 
 
 PlaceCard bør vise:

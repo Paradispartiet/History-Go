@@ -30,17 +30,26 @@ Canonical stedssannhet ligger fortsatt i det manifest-lastede place-objektet. Po
 Alle stedstyper følger samme overordnede rytme:
 
 1. **Header** — kategori, navn, år og stedstype.
-2. **Hero** — hovedbilde med kontrollert fallback.
-3. **Kort fortalt** — `desc` når den ikke er identisk med hovedartikkelen.
-4. **Nøkkelfakta** — bare felter med faktiske verdier.
-5. **Om stedet** — hele `popupDesc`, avsnittsbevart.
-6. **Type-spesifikke seksjoner** — mål, delsteder, historiske lag, natur, arkitektur eller annen relevant struktur.
-7. **Se etter på stedet** — observerbare særtrekk fra `quiz_profile`.
-8. **Koblinger** — people, relations, Wonderkammer, knowledge, events og stories.
-9. **Kilder** — kildeoversikt når `source_summary.safe_sources` finnes.
-10. **Observasjoner** — bare når brukeren faktisk har observasjoner.
+2. **Hero** — hovedbilde, kort ingress og primær handling; ikke et ekstra nøkkeltallpanel.
+3. **Om stedet** — hele `popupDesc`, avsnittsbevart.
+4. **Type-spesifikke seksjoner** — mål, delsteder, historiske lag, natur, arkitektur eller annen relevant struktur.
+5. **Se etter på stedet** — observerbare særtrekk fra `quiz_profile`.
+6. **Koblinger** — people, relations, Wonderkammer, knowledge, events og stories.
+7. **Kilder** — kildeoversikt når `source_summary.safe_sources` finnes.
+8. **Observasjoner** — bare når brukeren faktisk har observasjoner.
 
 Tom informasjon skal ikke erstattes av bokser med «ingen … ennå». Fravær av data skal gi en renere popup, ikke mer støy.
+
+### Én visuell eier per opplysning
+
+Samme nøkkeltall skal ikke vises både i heroen og i en detaljseksjon. Headeren eier orientering (`kategori`, primært `år`, `stedstype`). Stedstypens detaljseksjon eier de konkrete målene:
+
+- park/grøntområde: areal, høyeste punkt, høyde, terreng og fysisk utstrekning;
+- gate/rute: fra, til, lengde og segmenter;
+- bygning: høyde, etasjer, kapasitet, materiale og konstruksjon;
+- badgeflaten: fagområde, epoke, underbadges og emner.
+
+People- og story-antall skal normalt ikke gjentas som nøkkeltall når de samme elementene vises som egne seksjoner. Repetisjon er bare tillatt når en kort orienteringsverdi og en detaljert forklaring har klart ulike roller.
 
 ## 3. Felles feltkontrakt
 
