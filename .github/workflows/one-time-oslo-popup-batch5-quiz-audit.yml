@@ -1,0 +1,47 @@
+name: One-time Oslo popup batch 5 quiz audit
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/oslo-popup-batch5-quiz-audit-trigger.txt
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Capture quiz production audits
+        shell: bash
+        run: |
+          set +e
+          mkdir -p reports/oslo-popup-batch5-quiz-audit
+          npm run audit:quiz-production-context > reports/oslo-popup-batch5-quiz-audit/context.log 2>&1
+          echo "$?" > reports/oslo-popup-batch5-quiz-audit/context.exit
+          npm run audit:quiz-progression > reports/oslo-popup-batch5-quiz-audit/progression.log 2>&1
+          echo "$?" > reports/oslo-popup-batch5-quiz-audit/progression.exit
+          npm run audit:quiz-theory-binding > reports/oslo-popup-batch5-quiz-audit/theory.log 2>&1
+          echo "$?" > reports/oslo-popup-batch5-quiz-audit/theory.exit
+          cat reports/oslo-popup-batch5-quiz-audit/*.exit
+          exit 0
+
+      - name: Upload audit reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-popup-batch5-quiz-audit-${{ github.run_id }}
+          path: reports/oslo-popup-batch5-quiz-audit/
+          if-no-files-found: error
