@@ -1,0 +1,219 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "fredriksten_festning",
+  "placeFile": "data/places/historie/ostfold/places_historie_ostfold_batch1/fredriksten_festning.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_main_fortress_area_representative_point",
+  "currentCoordinate": {
+    "lat": 59.11991,
+    "lon": 11.39651,
+    "r": 420,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 228874452 – Fredriksten; Forsvarsbygg; Kulturminne-ID 122685; Wikidata Q1408884",
+    "coordType": "named_main_fortress_area_representative_point",
+    "coordRole": "fortress_area_anchor",
+    "sourceObjectId": "osm-way:228874452",
+    "coordNote": "The canonical marker follows the named main fortress area. Detached forts and the wider siege and border landscape remain contextual extents."
+  },
+  "previousCoordinate": {
+    "lat": 59.11944,
+    "lon": 11.40167,
+    "r": 420,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 299.1,
+    "reasonReplaced": "The legacy point lay approximately 299.1 metres east of the named main fortress area anchor."
+  },
+  "identity": {
+    "currentName": "Fredriksten festning",
+    "resolvedIdentity": "The named main fortress complex above Halden, including its central buildings, courtyards, walls and defensive structures, distinct from one information sign or the complete wider siege and border landscape.",
+    "identityStatus": "resolved",
+    "identityProblem": "Fredriksten is a multi-part fortress with main works, detached forts, approach works and a broad battlefield landscape. One information sign shares the name but cannot represent the complex.",
+    "locatorTypeCandidate": "fortress",
+    "requiresSplit": false,
+    "splitReason": "The main fortress is a coherent canonical destination. Detached forts and wider military landscapes can remain context or future separate records."
+  },
+  "requiredEvidence": [
+    "stable named fortress-area object",
+    "official fortress identity and visitor address",
+    "official historical scope",
+    "independent heritage identity and coordinate cross-check",
+    "explicit rejection of same-name information sign",
+    "radius limitation"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 228874452 – Fredriksten",
+      "sourceUrl": "https://www.openstreetmap.org/way/228874452",
+      "sourceObjectId": "osm-way:228874452",
+      "sourceQuality": "named_main_fortress_area",
+      "finding": "The named historic-site and castle area has a representative point at 59.11991, 11.39651 and represents the main fortress complex.",
+      "canVerifyCoordinate": true,
+      "reason": "Directly represents the named fortress area rather than one gate, building or sign."
+    },
+    {
+      "sourceProvider": "forsvarsbygg",
+      "sourceName": "Forsvarsbygg – Fredriksten festning",
+      "sourceUrl": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/fredriksten-festning",
+      "sourceObjectId": "forsvarsbygg:fredriksten-festning",
+      "sourceQuality": "official_identity_visitor_address_and_current_use",
+      "finding": "Forsvarsbygg identifies Fredriksten as a national fortified cultural monument and public fortress area and lists Generalveien 6, 1776 Halden as the visitor address.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms identity, scope and access while the named area object supplies the coordinate."
+    },
+    {
+      "sourceProvider": "forsvarsbygg",
+      "sourceName": "Forsvarsbygg – Festningens historie",
+      "sourceUrl": "https://www.forsvarsbygg.no/no/verneplaner/fredriksten-festning/historikk/festningens-historie/",
+      "sourceObjectId": "forsvarsbygg:fredriksten-history",
+      "sourceQuality": "official_historical_and_defensive_scope",
+      "finding": "The official history documents the strategic border setting and the development of a multi-part fortress after the border changes of 1658.",
+      "canVerifyCoordinate": false,
+      "reason": "Defines historical and spatial scope."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q1408884 – Fredriksten",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q1408884",
+      "sourceObjectId": "wikidata:Q1408884",
+      "sourceQuality": "independent_fortress_entity_and_heritage_cross_check",
+      "finding": "The entity publishes 59.11980555555556, 11.397222222222222, approximately 42.3 metres from the applied point, and links Kulturminne ID 122685.",
+      "canVerifyCoordinate": false,
+      "reason": "Independent identity and location cross-check."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceName": "OpenStreetMap node 13042891993 – Fredriksten Festning",
+      "sourceUrl": "https://www.openstreetmap.org/node/13042891993",
+      "sourceObjectId": "osm-node:13042891993",
+      "sourceQuality": "same_name_wrong_object_class",
+      "finding": "The object is tagged tourism=information and is an information sign rather than the fortress complex.",
+      "canVerifyCoordinate": false,
+      "reason": "Explicitly rejected as canonical."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Fredriksten point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:fredriksten_festning",
+      "sourceQuality": "remote_uncontracted_point",
+      "finding": "The legacy coordinate lies approximately 299.1 metres east of the main fortress area anchor.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced to follow the named fortress area."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "forsvarsbygg",
+      "address": {
+        "street": "Generalveien",
+        "number": "6",
+        "postcode": "1776",
+        "city": "Halden",
+        "country": "NO"
+      },
+      "sourceUrl": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/fredriksten-festning",
+      "sourceObjectId": "forsvarsbygg:fredriksten-generalveien-6",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:228874452",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q1408884",
+      "canApplyToPlace": false,
+      "rejectionReason": "Independent entity cross-check; the named OSM area is the applied geometry source."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:13042891993",
+      "canApplyToPlace": false,
+      "rejectionReason": "Same-name tourism information sign."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:228874452",
+      "geometryType": "Polygon",
+      "geometryRole": "named_main_fortress_area",
+      "canApplyToPlace": true,
+      "applied": true,
+      "rawGeometryCaptured": false
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "riksantikvaren-kulturminne:122685",
+      "geometryType": "protected_fortress_complex_not_captured",
+      "geometryRole": "legal_heritage_scope_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "fredriksten_main_fortress_area",
+      "name": "Fredriksten – main fortress",
+      "lat": 59.11991,
+      "lon": 11.39651,
+      "r": 180,
+      "type": "fortress_area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:228874452",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:fredriksten_festning",
+      "lat": 59.11944,
+      "lon": 11.40167,
+      "coordRole": "remote_uncontracted_point",
+      "distanceFromAppliedM": 299.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:228874452",
+      "lat": 59.11991,
+      "lon": 11.39651,
+      "coordRole": "fortress_area_anchor",
+      "distanceFromPreviousM": 299.1,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q1408884",
+      "lat": 59.11980555555556,
+      "lon": 11.397222222222222,
+      "coordRole": "independent_fortress_entity_cross_check",
+      "distanceFromAppliedM": 42.3,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/ostfold-coordinate-fredriksten-festning-source-probe/source-summary.json",
+      "description": "Persisted official identity, fortress area, heritage cross-check, false-candidate and radius findings."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named main fortress area anchor and retained the 420-metre radius. Continue with Fredrikstad festning / Gamlebyen."
+  },
+  "notes": [
+    "The coordinate moves approximately 299.1 metres to the main fortress area.",
+    "The same-name information sign is explicitly rejected.",
+    "The radius is not the legal protection polygon or complete defensive landscape."
+  ]
+}
