@@ -4,35 +4,35 @@ Status: **generert produksjonsrapport**
 
 Rapporten rangerer manifest-lastede canonical personer etter hvor mye av `docs/PEOPLE_POPUP_SYSTEM.md` de kan fylle. Den måler datakompletthet, ikke personens historiske betydning eller person–sted-relevans.
 
-Source fingerprint: `e1d316d7693034997cba38588d661f40261d1a97a04f1cedb9f5e17f262d655b`
+Source fingerprint: `ad24b4485d6708871a721e69dfca83655d21d7b6146f83696005cde12e55139a`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
-| Personer | 1369 |
-| Complete | 22 |
+| Personer | 1368 |
+| Complete | 26 |
 | Strong | 0 |
-| Partial | 1018 |
+| Partial | 1013 |
 | Sparse | 329 |
 | Ødelagte bildereferanser | 306 |
-| Eksplisitt initialfallback | 997 |
+| Eksplisitt initialfallback | 996 |
 | Implisitt initialfallback | 23 |
-| Gjennomsnittspoeng | 41.6 |
+| Gjennomsnittspoeng | 41.8 |
 
 ## Feltdekning
 
 | Kontraktdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 37 | 2.7 % |
-| popupDesc | 31 | 2.3 % |
-| lifeData | 22 | 1.6 % |
-| contributions | 22 | 1.6 % |
-| education | 22 | 1.6 % |
-| practiceProfile | 1199 | 87.6 % |
-| placeGrounding | 1369 | 100 % |
-| sources | 274 | 20 % |
-| imageContract | 1063 | 77.6 % |
+| identity | 41 | 3 % |
+| popupDesc | 35 | 2.6 % |
+| lifeData | 26 | 1.9 % |
+| contributions | 26 | 1.9 % |
+| education | 26 | 1.9 % |
+| practiceProfile | 1198 | 87.6 % |
+| placeGrounding | 1368 | 100 % |
+| sources | 278 | 20.3 % |
+| imageContract | 1062 | 77.6 % |
 
 ## Kategorier
 
@@ -40,8 +40,8 @@ Source fingerprint: `e1d316d7693034997cba38588d661f40261d1a97a04f1cedb9f5e17f262
 |---|---:|---:|---:|---:|---:|---:|
 | sport | 323 | 0 | 0 | 297 | 26 | 41.3 |
 | historie | 216 | 1 | 0 | 118 | 97 | 39.9 |
-| litteratur | 172 | 4 | 0 | 139 | 29 | 42.4 |
-| musikk | 123 | 0 | 0 | 100 | 23 | 41.1 |
+| litteratur | 172 | 8 | 0 | 135 | 29 | 43.7 |
+| musikk | 122 | 0 | 0 | 99 | 23 | 41.1 |
 | politikk | 106 | 3 | 0 | 83 | 20 | 43.8 |
 | naeringsliv | 81 | 0 | 0 | 62 | 19 | 40 |
 | kunst | 73 | 7 | 0 | 59 | 7 | 52.2 |
@@ -58,10 +58,10 @@ Source fingerprint: `e1d316d7693034997cba38588d661f40261d1a97a04f1cedb9f5e17f262
 
 | Primærsted | Ufullstendige | Sparse | Partial | Strong | Snitt | Første profiler |
 |---|---:|---:|---:|---:|---:|---|
-| nationaltheatret | 113 | 0 | 113 | 0 | 42.2 | Agnes Mowinckel (42), Alfred Maurstad (42), Anders Mordal (42), Andrine Sæther (42), Anne Krigsvoll (42) |
 | holmenkollen_nasjonalanlegg | 109 | 4 | 105 | 0 | 40.4 | Kjetil André Aamodt (27), Lasse Kjus (27), Marit Bjørgen (27), Therese Johaug (27), Andreas Felder (40) |
+| nationaltheatret | 109 | 0 | 109 | 0 | 42.2 | Alfred Maurstad (42), Anders Mordal (42), Andrine Sæther (42), Anne Krigsvoll (42), Anne Marie Ottersen (42) |
 | bislett_stadion | 76 | 7 | 69 | 0 | 41.1 | Andreas Thorkildsen (27), Ingrid Kristiansen (27), Jakob Ingebrigtsen (27), Karsten Warholm (27), Trine Hattestad (27) |
-| det_norske_teatret | 72 | 0 | 72 | 0 | 42 | Agnes Mowinckel (42), Alfred Maurstad (42), Amund Rydland (42), Ane Dahl Torp (42), Anton Heiberg (42) |
+| det_norske_teatret | 71 | 0 | 71 | 0 | 42 | Alfred Maurstad (42), Amund Rydland (42), Ane Dahl Torp (42), Anton Heiberg (42), Arne Garborg (42) |
 | ullevaal_stadion | 55 | 8 | 47 | 0 | 39.4 | Nils Arne Eggen (21), Nora Mørk (21), Ole Gunnar Solskjær (21), Sander Sagosen (21), Lyn Fotball (24) |
 | eidsvollsbygningen | 41 | 3 | 38 | 0 | 42.4 | Christian Magnus Falsen (27), Wilhelm Frimann Koren Christie (27), Carsten Anker (30), Anders Lysgaard (42), Andreas Rogert (42) |
 | akershus_festning | 38 | 13 | 25 | 0 | 38.4 | Alv Erlingsson (27), Gregers Gram (27), Gunnar Sønsteby (27), Gunnhild kongsmor (27), Håkon V Magnusson (27) |
