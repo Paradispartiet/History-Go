@@ -38,6 +38,21 @@ jobs:
       - name: Apply verified profiles and relation correction
         run: python scripts/one-time-enrich-oslo-radhus-political-people.py
 
+      - name: Align established Kirsten Sand terminology
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          for relative in [
+              "data/people/by/oslo/people_by_oslo.json",
+              "tests/oslo-radhus-political-people-profiles.test.js",
+          ]:
+              path = Path(relative)
+              source = path.read_text(encoding="utf-8")
+              source = source.replace("Gjenreisningen av Nord-Troms", "Gjenreisingen av Nord-Troms")
+              path.write_text(source, encoding="utf-8")
+          PY
+
       - name: Capture focused profile and popup validation
         id: focused-tests
         shell: bash
