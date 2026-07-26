@@ -15,10 +15,10 @@ Oslo-omfanget skal telles fra alle aktive Oslo-stedsfiler i `data/places/manifes
 ## Oslo-status etter denne PR-en
 
 - Totalt i den aktive Oslo-køen: **90 steder**
-- Ferdig før denne batchen: **68 steder**
+- Ferdig før denne batchen: **78 steder**
 - Denne batchen: **10 steder**
-- Ferdig etter merge av denne batchen: **78 steder**
-- Gjenstår etter merge: **12 steder**
+- Ferdig etter merge av denne batchen: **88 steder**
+- Gjenstår etter merge: **2 steder**
 
 ## Ferdige steder etter denne PR-en
 
@@ -104,20 +104,21 @@ Oslo-omfanget skal telles fra alle aktive Oslo-stedsfiler i `data/places/manifes
 | 77 | Det kongelige slott | `slottet` | 51 | 301 | 6 | #4147 |
 | 78 | Sofienberg kirke | `sofienberg_kirke` | 52 | 302 | 6 | #4147 |
 
+| 79 | Trefoldighetskirken | `trefoldighetskirken` | 50 | 302 | 6 | #4149 |
+| 80 | Nonneseter kloster | `nonneseter_kloster` | 53 | 321 | 6 | #4149 |
+| 81 | Oslo ladegård | `oslo_ladegard` | 50 | 305 | 6 | #4149 |
+| 82 | Galgeberg | `galgeberg` | 49 | 314 | 6 | #4149 |
+| 83 | Oslo Hospital | `oslo_hospital` | 52 | 300 | 6 | #4149 |
+| 84 | Botsfengselet | `botsfengselet` | 51 | 306 | 6 | #4149 |
+| 85 | Prinds Christian Augusts Minde | `prinds_christian_augusts_minde` | 51 | 308 | 6 | #4149 |
+| 86 | Peststøtten – Krist kirkegård | `peststotten_krist_kirkegard` | 51 | 302 | 6 | #4149 |
+| 87 | Kjærlighetskarusellen | `kjaerlighetskarusellen` | 53 | 300 | 6 | #4149 |
+| 88 | Villa Stenersen | `villa_stenersen` | 55 | 317 | 6 | #4149 |
+
 ## Gjenstående Oslo-kø
 
-1. Trefoldighetskirken (`trefoldighetskirken`)
-2. Nonneseter kloster (`nonneseter_kloster`)
-3. Oslo ladegård (`oslo_ladegard`)
-4. Galgeberg (`galgeberg`)
-5. Oslo Hospital (`oslo_hospital`)
-6. Botsfengselet (`botsfengselet`)
-7. Prinds Christian Augusts Minde (`prinds_christian_augusts_minde`)
-8. Peststøtten / Krist kirkegård (`peststotten_krist_kirkegard`)
-9. Kjærlighetskarusellen (`kjaerlighetskarusellen`)
-10. Villa Stenersen (`villa_stenersen`)
-11. St. Hallvard kirke og kloster (`st_hallvard_kirke_kloster`)
-12. Gamle rådhus (`gamle_radhus`)
+1. St. Hallvard kirke og kloster (`st_hallvard_kirke_kloster`)
+2. Gamle rådhus (`gamle_radhus`)
 
 ## Oppdagede metadataavvik utenfor denne PR-ens tekstomfang
 
@@ -141,5 +142,6 @@ Disse avvikene skal repareres i et eget, eksplisitt metadataarbeid og ikke bland
 | Oslo V4 batch 6 | 6 | #4124 – fullførte den opprinnelige 58-steders delkøen |
 | Oslo V4 batch 7 | 10 | #4137 – første batch etter utvidelse til alle 90 aktive Oslo-steder |
 | Oslo V4 batch 8 | 10 | #4147 |
+| Oslo V4 batch 9 | 10 | #4149 |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
