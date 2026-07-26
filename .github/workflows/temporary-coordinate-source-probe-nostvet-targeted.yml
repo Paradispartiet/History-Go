@@ -1,0 +1,196 @@
+name: Temporary targeted Nøstvet Askeladden query
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/akershus-nostvet-boplass-production
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Query Nøstvet records directly
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT='reports/akershus-coordinate-nostvet-source-probe'
+          mkdir -p "$OUT"
+          UA='History-Go coordinate research (Paradispartiet/History-Go)'
+          API='https://api.ra.no/LokaliteterEnkeltminnerOgSikringssoner'
+
+          for COLLECTION in lokaliteter enkeltminner; do
+            curl --fail --silent --show-error --location --user-agent "$UA" \
+              --get "$API/collections/$COLLECTION/items" \
+              --data-urlencode 'kommune=3218' \
+              --data 'limit=10000' --data 'f=json' \
+              | tee "$OUT/riksantikvaren-ogc-${COLLECTION}-kommune-3218.json" >/dev/null
+
+            curl --fail --silent --show-error --location --user-agent "$UA" \
+              --get "$API/collections/$COLLECTION/items" \
+              --data-urlencode 'navn=Nøstvedt' \
+              --data 'limit=1000' --data 'f=json' \
+              | tee "$OUT/riksantikvaren-ogc-${COLLECTION}-navn-nostvedt.json" >/dev/null
+
+            curl --fail --silent --show-error --location --user-agent "$UA" \
+              --get "$API/collections/$COLLECTION/items" \
+              --data-urlencode 'navn=Nøstvet' \
+              --data 'limit=1000' --data 'f=json' \
+              | tee "$OUT/riksantikvaren-ogc-${COLLECTION}-navn-nostvet.json" >/dev/null
+          done
+
+          python - <<'PY' | tee "$OUT/targeted-summary.txt" >/dev/null
+          import json
+          import math
+          import unicodedata
+          from pathlib import Path
+
+          out = Path('reports/akershus-coordinate-nostvet-source-probe')
+          legacy = (59.75109, 10.7996)
+
+          def distance_m(a, b):
+              lat1, lon1 = map(math.radians, a)
+              lat2, lon2 = map(math.radians, b)
+              dlat = lat2 - lat1
+              dlon = lon2 - lon1
+              h = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+              return 6371000 * 2 * math.asin(math.sqrt(h))
+
+          def norm(value):
+              return unicodedata.normalize('NFKD', str(value)).encode('ascii', 'ignore').decode().lower()
+
+          def flatten_pairs(coords):
+              if not isinstance(coords, list):
+                  return []
+              if len(coords) >= 2 and all(isinstance(v, (int, float)) for v in coords[:2]):
+                  return [(float(coords[0]), float(coords[1]))]
+              pairs = []
+              for item in coords:
+                  pairs.extend(flatten_pairs(item))
+              return pairs
+
+          def ring_centroid(ring):
+              if len(ring) < 4:
+                  return None
+              pts = list(ring)
+              if pts[0] != pts[-1]:
+                  pts.append(pts[0])
+              twice_area = cx = cy = 0.0
+              for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+                  cross = x1 * y2 - x2 * y1
+                  twice_area += cross
+                  cx += (x1 + x2) * cross
+                  cy += (y1 + y2) * cross
+              if abs(twice_area) < 1e-15:
+                  return None
+              return cx / (3 * twice_area), cy / (3 * twice_area)
+
+          def geometry_point(geometry, properties):
+              if properties:
+                  center = properties.get('senterpunkt')
+                  if isinstance(center, dict) and center.get('type') == 'Point':
+                      coords = center.get('coordinates') or []
+                      if len(coords) >= 2:
+                          return float(coords[0]), float(coords[1]), 'official_senterpunkt'
+              if not geometry:
+                  return None
+              kind = geometry.get('type')
+              coords = geometry.get('coordinates')
+              if kind == 'Point' and coords:
+                  return float(coords[0]), float(coords[1]), 'geometry_point'
+              if kind == 'Polygon' and coords and coords[0]:
+                  point = ring_centroid([(float(p[0]), float(p[1])) for p in coords[0]])
+                  if point:
+                      return point[0], point[1], 'polygon_centroid'
+              if kind == 'MultiPolygon' and coords and coords[0] and coords[0][0]:
+                  point = ring_centroid([(float(p[0]), float(p[1])) for p in coords[0][0]])
+                  if point:
+                      return point[0], point[1], 'multipolygon_first_centroid'
+              pairs = flatten_pairs(coords)
+              if not pairs:
+                  return None
+              return sum(x for x, _ in pairs) / len(pairs), sum(y for _, y in pairs) / len(pairs), 'vertex_mean'
+
+          keywords = ('nost', 'sjoskog', 'tussebo', 'boplass', 'steinalder', 'funn', 'vinterbro', 'oxefundt', 'oksefunn')
+          all_rows = {}
+
+          for path in sorted(out.glob('riksantikvaren-ogc-*-kommune-3218.json')):
+              data = json.loads(path.read_text())
+              print(f'FILE {path.name} numberMatched={data.get("numberMatched")} numberReturned={data.get("numberReturned")}')
+              for feature in data.get('features', []):
+                  props = feature.get('properties') or {}
+                  joined = ' '.join(str(v) for v in props.values() if v is not None)
+                  if not any(keyword in norm(joined) for keyword in keywords):
+                      continue
+                  point = geometry_point(feature.get('geometry'), props)
+                  row = {
+                      'feature_id': feature.get('id'),
+                      'collection_file': path.name,
+                      'geometry_type': (feature.get('geometry') or {}).get('type'),
+                      'properties': props,
+                  }
+                  if point:
+                      lon, lat, point_method = point
+                      row.update({
+                          'lat': lat,
+                          'lon': lon,
+                          'point_method': point_method,
+                          'distance_from_legacy_m': round(distance_m(legacy, (lat, lon)), 1),
+                      })
+                  all_rows[(path.name, str(feature.get('id')))] = row
+
+          for path in sorted(out.glob('riksantikvaren-ogc-*-navn-*.json')):
+              data = json.loads(path.read_text())
+              print(f'FILE {path.name} numberMatched={data.get("numberMatched")} numberReturned={data.get("numberReturned")}')
+              for feature in data.get('features', []):
+                  props = feature.get('properties') or {}
+                  point = geometry_point(feature.get('geometry'), props)
+                  row = {
+                      'feature_id': feature.get('id'),
+                      'collection_file': path.name,
+                      'geometry_type': (feature.get('geometry') or {}).get('type'),
+                      'properties': props,
+                  }
+                  if point:
+                      lon, lat, point_method = point
+                      row.update({
+                          'lat': lat,
+                          'lon': lon,
+                          'point_method': point_method,
+                          'distance_from_legacy_m': round(distance_m(legacy, (lat, lon)), 1),
+                      })
+                  all_rows[(path.name, str(feature.get('id')))] = row
+
+          rows = list(all_rows.values())
+          rows.sort(key=lambda row: (row.get('distance_from_legacy_m', 10**12), row.get('feature_id') or ''))
+          for row in rows:
+              print('MATCH ' + json.dumps(row, ensure_ascii=False, sort_keys=True))
+          print(f'match_count={len(rows)}')
+          PY
+
+          rm -f .github/workflows/temporary-coordinate-source-probe-nostvet-targeted.yml
+          rm -f "$OUT/riksantikvaren-ogc-lokaliteter.json"
+          rm -f "$OUT/riksantikvaren-ogc-enkeltminner.json"
+          rm -f "$OUT/riksantikvaren-ogc-sikringssoner.json"
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$OUT" .github/workflows/temporary-coordinate-source-probe-nostvet-targeted.yml
+          if git diff --cached --quiet; then
+            echo 'No targeted-query changes.'
+          else
+            git commit -m 'Materialize targeted Nøstvet Askeladden records'
+            git push origin HEAD:agent/akershus-nostvet-boplass-production
+          fi
