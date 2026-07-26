@@ -13,10 +13,10 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 ## Oslo-status etter denne PR-en
 
 - Totalt i Oslo-køen: **58 steder**
-- Ferdig før denne batchen: **32 steder**
+- Ferdig før denne batchen: **42 steder**
 - Denne batchen: **10 steder**
-- Ferdig etter merge av denne batchen: **42 steder**
-- Gjenstår etter merge: **16 steder**
+- Ferdig etter merge av denne batchen: **52 steder**
+- Gjenstår etter merge: **6 steder**
 
 ## Ferdige steder etter denne PR-en
 
@@ -64,25 +64,25 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 | 40 | Botsparken | `botsparken` | 44 | 314 | 6 | #4069 |
 | 41 | Slottsparken | `slottsparken` | 47 | 335 | 7 | #4069 |
 | 42 | Tjuvholmen | `tjuvholmen` | 43 | 351 | 7 | #4069 |
+| 43 | Sørenga | `sorenga` | 49 | 326 | 6 | Denne PR-en |
+| 44 | Majorstuen T-banestasjon | `majorstuen_tbanestasjon` | 48 | 305 | 6 | Denne PR-en |
+| 45 | Nationaltheatret stasjon | `nationaltheatret_stasjon` | 48 | 316 | 6 | Denne PR-en |
+| 46 | Bislett | `bislett` | 50 | 340 | 6 | Denne PR-en |
+| 47 | Olaf Ryes plass | `olaf_ryes_plass` | 46 | 303 | 6 | Denne PR-en |
+| 48 | Birkelunden | `birkelunden` | 54 | 309 | 6 | Denne PR-en |
+| 49 | Universitetsplassen | `universitetsplassen` | 54 | 309 | 6 | Denne PR-en |
+| 50 | Deichman Bjørvika | `deichman_bjorvika` | 52 | 328 | 6 | Denne PR-en |
+| 51 | Vigelandsparken | `vigelandsparken` | 48 | 351 | 7 | Denne PR-en |
+| 52 | Voienvolden | `voienvolden` | 50 | 307 | 7 | Denne PR-en |
 
 ## Gjenstående Oslo-kø
 
-1. Sørenga
-2. Majorstuen T-banestasjon
-3. Nationaltheatret stasjon
-4. Bislett
-5. Olaf Ryes plass
-6. Birkelunden
-7. Universitetsplassen
-8. Deichman Bjørvika
-9. Vigelandsparken
-10. Voienvolden
-11. Carl Berners plass
-12. Tullin
-13. Økern
-14. Skøyen
-15. Trikkelinje 17/18
-16. St. Hanshaugen park
+1. Carl Berners plass
+2. Tullin
+3. Økern
+4. Skøyen
+5. Trikkelinje 17/18
+6. St. Hanshaugen park
 
 ## Batchlogg
 
@@ -94,5 +94,6 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 | Oslo V4 batch 2 | 10 | Merget i #4036 |
 | Oslo V4 batch 3 | 10 | Merget i #4043 |
 | Oslo V4 batch 4 | 10 | #4069 |
+| Oslo V4 batch 5 | 10 | Denne PR-en |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
