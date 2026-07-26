@@ -1,0 +1,78 @@
+name: One-time final clean Stensparken batch 2
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/stensparken-batch2-final-clean-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  validate-clean-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Synchronize production branch with main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main agent/stensparken-people-profiles-batch2
+          git checkout -B agent/stensparken-people-profiles-batch2 origin/agent/stensparken-people-profiles-batch2
+          git merge --no-edit origin/main
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Validate focused profiles and popup rendering
+        run: |
+          node --check js/ui/person-popup-v2.js
+          node --test \
+            tests/person-popup-v2.test.js \
+            tests/stensparken-people-profiles.test.js \
+            tests/stensparken-people-profiles-batch2.test.js
+
+      - name: Validate people and places data
+        run: |
+          bash scripts/check-people.sh
+          bash scripts/check-places.sh
+
+      - name: Verify browser build remains synchronized
+        run: npm run build:web:check
+
+      - name: Remove generated side effects after validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git checkout origin/main -- \
+            js/core/categories.js \
+            data/places/places_index.json
+          git restore --staged --worktree reports 2>/dev/null || true
+          git clean -fd reports 2>/dev/null || true
+
+      - name: Commit and publish final clean branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git status --short
+          if git diff --cached --quiet; then
+            echo "No cleanup changes beyond merge"
+          else
+            git commit -m "Finalize clean Stensparken people batch 2"
+          fi
+          git push origin HEAD:agent/stensparken-people-profiles-batch2
