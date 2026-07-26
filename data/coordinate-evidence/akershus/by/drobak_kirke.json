@@ -1,0 +1,168 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "drobak_kirke",
+  "placeFile": "data/places/by/akershus/drobak_kirke/drobak_kirke.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_1776_timber_church_building_anchor",
+  "currentCoordinate": {
+    "lat": 59.66526355521415,
+    "lon": 10.627102938185208,
+    "r": 220,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 745690085 – Drøbak kirke; Kartverket adressepunkt Kirkegata 18; Drøbak og Frogn menighet – Historikk",
+    "coordType": "named_1776_timber_church_building_anchor",
+    "coordRole": "display_marker",
+    "sourceObjectId": "osm-way:745690085;building-ref:149217290",
+    "coordNote": "OpenStreetMap way 745690085 er navngitt Drøbak kirke, med alternativnavnet Vår Frelsers kirke, tagget building=church og start_date=1776, med bygningsnummer 149217290 og Wikidata Q7589679. Den deterministisk beregnede polygoncentroiden er 59.66526355521415, 10.627102938185208. Nominatim kryssjekker samme way med representasjonspunkt 59.6652484, 10.6271037. Kartverket normaliserer både Kirkegata 18 og Kirkegaten 18 til Kirkegata 18 og returnerer representasjonspunkt 59.665264145000016, 10.627205118703042, matrikkel 3214-86/210 og adressekode 1560, omtrent 5,7 meter fra centroiden."
+  },
+  "previousCoordinate": {
+    "lat": 59.66389,
+    "lon": 10.62949,
+    "r": 220,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 203.2,
+    "reasonReplaced": "Legacy-punktet lå sørøst for kirkebygget og kunne ikke knyttes til bygningsgeometrien eller Kirkegata 18."
+  },
+  "identity": {
+    "currentName": "Drøbak kirke",
+    "resolvedIdentity": "Vår Frelsers kirke, den tømrede korskirken fra 1776 ved Kirkegata 18, som uttrykk for Drøbaks ladesteds-, handels- og sjøfartshistorie",
+    "identityStatus": "resolved",
+    "identityProblem": "Kirken ligger tett på kirkegård, driftsbygg, Badeparken, busstopp og krigsminner. Canonical må representere selve kirkebygget.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "Kirkebygg, kirkegård og nabolag inngår i ett formidlingsmiljø, men hovedidentiteten er den navngitte kirken."
+  },
+  "requiredEvidence": [
+    "navngitt kirkebygningsgeometri",
+    "offisiell adresse og adressevariant",
+    "dokumentert innvielse i 1776",
+    "dokumentert privat finansiering",
+    "dokumentert ladesteds- og sjøfartskontekst",
+    "skille mellom kirke, kirkegård og park"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 745690085 – Drøbak kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/745690085",
+      "sourceObjectId": "osm-way:745690085;building-ref:149217290",
+      "sourceQuality": "named_historic_church_building_geometry",
+      "finding": "Way 745690085 er navngitt Drøbak kirke, har alternativnavnet Vår Frelsers kirke, er tagget building=church og start_date=1776, og har bygningsnummer 149217290. Polygonen har 21 noder inklusive sluttpunkt og centroid 59.66526355521415, 10.627102938185208.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir den reproduserbare fysiske geometrien for kirkebygget."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Kirkegata 18",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3214:1560:18",
+      "sourceQuality": "official_church_address_representation_point",
+      "finding": "Kartverket returnerer Kirkegata 18 for både søkevariantene Kirkegata og Kirkegaten: kommunenummer 3214, gårds- og bruksnummer 86/210, adressekode 1560, postnummer 1440 og representasjonspunkt 59.665264145000016, 10.627205118703042.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastslår registerets skrivemåte og ligger 5,7 meter fra centroiden."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Drøbak og Frogn menighet – Historikk",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/drobak-frogn/kirkene-vare/dr%C3%B8bak%20kirke/historikk/",
+      "sourceObjectId": "drobak-frogn-menighet:drobak-kirke-historikk",
+      "sourceQuality": "official_church_history",
+      "finding": "Menigheten dokumenterer innvielsen 29. oktober 1776, tømret korsform, terrengtilpasset orientering, påvirkningen fra Oslo domkirke og finansieringen ved Niels Carlsen og Martha Zachariasdatter.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastslår den historiske identiteten som bygningen representerer."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Drøbak og Frogn menighet – Tilgjengelighet",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/drobak-frogn/kirkene-vare/dr%C3%B8bak%20kirke/tilgjengelighet/",
+      "sourceObjectId": "drobak-frogn-menighet:drobak-kirke-access",
+      "sourceQuality": "official_current_site_access_context",
+      "finding": "Menigheten beskriver busstoppet rett utenfor, Bankløkka over veien, HC-plasser ved hovedinngangen og driftsbygget bak kirken.",
+      "canVerifyCoordinate": false,
+      "reason": "Skiller kirkebygget fra adkomst- og serviceobjektene rundt."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Drøbak kirke",
+      "sourceUrl": "https://snl.no/Dr%C3%B8bak_kirke",
+      "sourceObjectId": "snl:drobak-kirke",
+      "sourceQuality": "authoritative_architecture_and_protection_context",
+      "finding": "SNL identifiserer Drøbak kirke som tømret korskirke fra 1776, gave fra Niels Carlsen og Martha Zachariasdatter, med rokokkointeriør og automatisk listeført status.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker byggeår, type, givere og kulturminnestatus."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Nominatim lookup – Drøbak kirke",
+      "sourceUrl": "https://nominatim.openstreetmap.org/search?q=Dr%C3%B8bak+kirke%2C+Frogn%2C+Norway&format=jsonv2",
+      "sourceObjectId": "nominatim:osm-way-745690085",
+      "sourceQuality": "named_object_polygon_cross_check",
+      "finding": "Nominatim returnerer way 745690085 med full polygon og representasjonspunkt 59.6652484, 10.6271037.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker navn, alternativnavn og geometri."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Materialized Drøbak church-area map extract",
+      "sourceUrl": "https://www.openstreetmap.org/way/745690085",
+      "sourceObjectId": "osm-bbox:drobak-kirke-2026-07-26",
+      "sourceQuality": "church_and_nearby_context_geometry",
+      "finding": "Kartutsnittet skiller kirkebygget fra Kirkegata 18, et separat religiøst driftsbygg, kirkegården, Badeparken, busstopp, eldresenter og Blücher-ankeret.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter at canonical er selve kirken."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Drøbak church point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:drobak_kirke",
+      "sourceQuality": "incorrect_southeastern_point",
+      "finding": "Forrige koordinat 59.66389, 10.62949 ligger omtrent 203,2 meter sørøst for kirkebygningscentroiden.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes av navngitt bygningsgeometri."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {"street": "Kirkegata", "number": "18", "postcode": "1440", "city": "Drøbak", "country": "NO"},
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3214:1560:18",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {"sourceProvider": "osm", "sourceObjectId": "osm-way:745690085;building-ref:149217290", "canApplyToPlace": true},
+    {"sourceProvider": "official_address", "sourceObjectId": "geonorge-adresser-v1:3214:1560:18", "canApplyToPlace": true},
+    {"sourceProvider": "legacy_dataset", "sourceObjectId": "legacy:drobak_kirke", "canApplyToPlace": false}
+  ],
+  "geometryCandidates": [
+    {"sourceProvider": "osm", "sourceObjectId": "osm-way:745690085", "geometryType": "Polygon", "geometryRole": "named_1776_timber_church", "canApplyToPlace": true, "applied": true}
+  ],
+  "anchors": [
+    {"id": "drobak_kirke_building", "name": "Drøbak kirke – Vår Frelsers kirke", "lat": 59.66526355521415, "lon": 10.627102938185208, "r": 90, "type": "unlock_anchor", "sourceProvider": "osm", "sourceObjectId": "osm-way:745690085;building-ref:149217290", "canApplyToPlace": true}
+  ],
+  "coordinateCandidates": [
+    {"sourceProvider": "legacy_dataset", "sourceObjectId": "legacy:drobak_kirke", "lat": 59.66389, "lon": 10.62949, "coordRole": "incorrect_southeastern_point", "distanceFromAppliedM": 203.2, "canApplyToPlace": false},
+    {"sourceProvider": "osm", "sourceObjectId": "osm-way:745690085;building-ref:149217290", "lat": 59.66526355521415, "lon": 10.627102938185208, "coordRole": "display_marker", "distanceFromPreviousM": 203.2, "canApplyToPlace": true, "applied": true},
+    {"sourceProvider": "official_address", "sourceObjectId": "geonorge-adresser-v1:3214:1560:18", "lat": 59.665264145000016, "lon": 10.627205118703042, "coordRole": "official_address_cross_check", "distanceFromAppliedM": 5.7, "canApplyToPlace": false},
+    {"sourceProvider": "osm", "sourceObjectId": "nominatim:osm-way-745690085", "lat": 59.6652484, "lon": 10.6271037, "coordRole": "named_object_point_cross_check", "distanceFromAppliedM": 1.7, "canApplyToPlace": false}
+  ],
+  "rawEvidence": [
+    {"path": "reports/akershus-coordinate-drobak-kirke-source-probe/osm-way-745690085-full.xml", "description": "Raw OpenStreetMap church geometry."},
+    {"path": "reports/akershus-coordinate-drobak-kirke-source-probe/nominatim-drobak-kirke.json", "description": "Raw Nominatim lookup and polygon."},
+    {"path": "reports/akershus-coordinate-drobak-kirke-source-probe/geonorge-kirkegata-18-drobak.json", "description": "Raw Kartverket result for Kirkegata 18."},
+    {"path": "reports/akershus-coordinate-drobak-kirke-source-probe/geonorge-kirkegaten-18-drobak.json", "description": "Raw Kartverket normalization check for Kirkegaten 18."},
+    {"path": "reports/akershus-coordinate-drobak-kirke-source-probe/osm-drobak-kirke-bbox.xml", "description": "Raw local OSM map extract."},
+    {"path": "reports/akershus-coordinate-drobak-kirke-source-probe/source-summary.txt", "description": "Deterministic geometry, address-variant and distance summary."}
+  ],
+  "decision": {"canBecomeVerified": true, "blockedReason": "", "nextAction": "Applied the named church-building centroid. The original Akershus batch-5 source sequence is complete after merge."},
+  "notes": [
+    "Kartverket's official spelling is Kirkegata 18; the Kirkegaten query resolves to the same object.",
+    "The marker represents the church building, not the graveyard, park, service building or nearby memorials.",
+    "The 220-metre radius is not a property, churchyard, park, protection or cultural-environment polygon.",
+    "The coordinate correction is approximately 203.2 metres."
+  ]
+}
