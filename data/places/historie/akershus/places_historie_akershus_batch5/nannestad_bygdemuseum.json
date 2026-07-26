@@ -1,55 +1,111 @@
 {
   "id": "nannestad_bygdemuseum",
   "name": "Nannestad bygdemuseum",
-  "lat": 60.217,
-  "lon": 11.012,
+  "lat": 60.21899976453861,
+  "lon": 11.014497955277188,
   "r": 260,
+  "locatorType": "building",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:591392894;building-ref:19214206",
+  "address": {
+    "street": "Teiealleen",
+    "number": "11",
+    "postcode": "2030",
+    "city": "Nannestad",
+    "country": "NO"
+  },
+  "geocodeAccuracy": "building",
+  "coordRole": "display_marker",
+  "coordType": "named_museum_building_anchor",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 591392894 – Nannestad bygdemuseum; Kartverket adressepunkt Teiealleen 11; Nannestad kommune – Museer",
+  "coordSourceId": "osm-way:591392894;building-ref:19214206",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/591392894",
+  "coordVerifiedAt": "2026-07-26",
+  "coordChangeReason": "Markøren flyttes om lag 261,7 meter fra et upresist punkt sørvest for museet til den deterministiske centroiden i det navngitte museumsbygget ved Teiealleen 11.",
+  "coordNote": "OpenStreetMap way 591392894 er navngitt Nannestad bygdemuseum, tagget building=civic og tourism=museum, med bygningsnummer 19214206. Den deterministisk beregnede polygoncentroiden er 60.21899976453861, 11.014497955277188. Nominatim kryssjekker samme way med representasjonspunkt 60.2189826, 11.0144747, omtrent 2,3 meter fra centroiden. Kartverkets adresse-API returnerer ett eksakt, stedfestingsverifisert objekt for Teiealleen 11 med representasjonspunkt 60.21893661547271, 11.014694263764905, matrikkel 3238-27/72 og adressekode 2320, omtrent 12,9 meter fra centroiden. Nannestad kommune dokumenterer museets etablering i 2007, Tore G. Solheims gave og de faste samlingene. Markøren representerer museumsbygget og samlingene; steinsamlingen og Ekerjordet utenfor er nærmiljø og ikke separate canonical deler av bygningen. Radius 260 meter støtter gameplay rundt museet og det nærmeste kulturmiljøet, men er ikke en eiendoms-, museums-, park- eller arrangementsgrense.",
   "category": "historie",
   "fylke": "akershus",
   "kommune": "Nannestad",
   "year": 2007,
-  "period": "Bygdemuseum og samlingshistorie",
+  "period": "Bygdemuseum, samlingshistorie og lokalt minnearbeid",
   "tags": [
     "historie",
     "bygdemuseum",
     "nannestad",
     "lokalhistorie",
-    "samlinger"
+    "samlinger",
+    "museum",
+    "minnearbeid"
   ],
-  "desc": "Bygdemuseum etablert i 2007 på bakgrunn av Tore G. Solheims pengegave og samlinger. Museet formidler Nannestads gårds-, hverdags- og institusjonshistorie gjennom interiører, gjenstander og faste samlinger.",
-  "popupDesc": "Nannestad bygdemuseum ble etablert i 2007 på bakgrunn av en pengegave fra Tore G. Solheim, som ønsket at yngre skulle få kjennskap til bygdas historie. Solheim bidro også med gjenstander, møbler og innredninger fra hjemgården Grindaker i Bjerke sogn. Museet har faste samlinger, blant annet et rekonstruert legekontor etter Dr. Habberstad, som virket som lege for Nannestads innbyggere gjennom flere tiår. Stedet bør brukes til å vise hvordan lokalhistorie også handler om hvem som samler, bevarer og bestemmer hva bygda skal huske.",
+  "desc": "Bygdemuseum åpnet i 2007 på bakgrunn av Tore G. Solheims pengegave, gjenstander og gårdsinteriører. Museet formidler Nannestads hverdags-, handels-, håndverks-, landbruks- og institusjonshistorie.",
+  "popupDesc": "Nannestad bygdemuseum åpnet utstillingene 8. mai 2007 etter mange års planlegging. Museet ble mulig gjennom en pengegave fra Tore G. Solheim, som ønsket at yngre skulle få kjennskap til bygdas historie. Han ga også gjenstander, møbler og innredninger fra hjemgården Grindaker i Bjerke sogn. Tre rom viser hvordan gårdsmiljøet kunne se ut. De faste samlingene omfatter blant annet Dr. Habberstads rekonstruerte legekontor, en landhandel med inventar fra B. Størdal i Maura, håndverkssamling, eldre landbruksredskaper og en steinsamling utenfor. Museet brukes også av historielaget, skoleelever og lokale foreninger. I History Go skal stedet vise at lokalhistorie ikke bare består av gamle ting, men av valg om hvem som samler, finansierer, organiserer og bestemmer hva bygda skal huske.",
   "quiz_profile": {
     "place_type": "bygdemuseum",
-    "subtype": "lokalhistorisk_samlingsmuseum",
+    "subtype": "lokalhistorisk_samlingsmuseum_i_navngitt_museumsbygg",
     "signature_features": [
-      "etablert i 2007",
-      "bygget på Tore G. Solheims gave og samlinger",
-      "interiører fra Grindaker og legekontor etter Dr. Habberstad"
+      "utstillingene åpnet 8. mai 2007",
+      "bygget på Tore G. Solheims pengegave, gjenstander og Grindaker-interiører",
+      "faste samlinger med legekontor, landhandel, håndverk og landbruksredskaper"
     ],
     "primary_angles": [
       "historie",
       "lokalhistorie",
       "samling",
-      "minne"
+      "minne",
+      "institusjon",
+      "kulturvern"
     ],
     "question_families": [
       "museumshistorie",
       "samlinger",
       "hverdagsliv",
-      "institusjon"
+      "institusjon",
+      "minnearbeid"
     ],
     "avoid_angles": [
       "generisk_museum",
-      "bare_gjenstander"
+      "bare_gjenstander",
+      "forveksling_med_utemiljoet"
     ],
     "must_include": [
-      "etableringen i 2007",
-      "Tore G. Solheims gave og museets faste samlinger"
+      "åpningen i 2007 og Tore G. Solheims gave",
+      "Grindaker-interiørene og museets faste samlinger"
     ],
     "contrast_targets": [
       "aurskog_holand_bygdetun",
       "gamle_hvam_museum"
     ],
-    "notes": "Skal spørres som bevarings- og samlingshistorie, ikke bare som lokalt museum."
-  }
+    "notes": "Skal spørres som bevarings-, finansierings- og samlingshistorie. Canonical representerer det navngitte museumsbygget ved Teiealleen 11."
+  },
+  "externalLinks": [
+    {
+      "type": "official",
+      "label": "Nannestad kommune – Museer",
+      "url": "https://www.nannestad.kommune.no/tjenester/kultur-og-aktivitet/kultur-fritid-og-idrett/museer/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "reference",
+      "label": "Nannestad historielag – Bygdemuseets historie",
+      "url": "https://nannestadhistorielag.lag247.no/omoss/historie/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Nannestad bygdemuseum",
+      "url": "https://www.openstreetmap.org/way/591392894",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "Kartverket – Adresse-API, Teiealleen 11",
+      "url": "https://ws.geonorge.no/adresser/v1/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    }
+  ]
 }
