@@ -45,6 +45,8 @@ En story-fil som ligger i repoet, men ikke er manifestregistrert, er ikke aktiv 
 npm run check:stories
 ```
 
+En non-zero exit er en reell integritetsfeil i det aktuelle datagrunnlaget, ikke en dokumentasjonsadvarsel. Manifestet skal da ikke omtales som integrity-clean før feilene er rettet eller eksplisitt avgrenset i en separat data-PR.
+
 8. Sammenlign slutt-diffen mot fersk `main`; en story-batch skal ikke inneholde tilfeldige place-, people-, UI- eller dokumentendringer.
 
 ## Researchnotater
