@@ -1,0 +1,159 @@
+name: Temporary Næringsliv pilot quality runner
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/temporary-naeringsliv-pilot-quality-runner.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temporary-naeringsliv-pilot-quality-runner
+  cancel-in-progress: false
+
+jobs:
+  quality-lift:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out quality branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/naeringsliv-pilot-context-quality
+          fetch-depth: 0
+
+      - name: Synchronize current main safely
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+
+          git checkout origin/main -- .github/workflows/data-checks.yml
+          git add .github/workflows/data-checks.yml
+          if ! git diff --cached --quiet; then
+            git commit -m 'Gjenopprett canonical Data checks før kvalitetsløftet'
+          fi
+
+          git merge --no-edit origin/main
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Rewrite pilot questions and briefs
+        run: node scripts/temp-run-naeringsliv-pilot-context-quality.mjs
+
+      - name: Regenerate deterministic production contexts
+        shell: bash
+        run: |
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target telegrafbygningen --output data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target oslo_posthus --output data/quiz/production_context/naeringsliv/oslo_posthus.json
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target havnelageret --output data/quiz/production_context/naeringsliv/havnelageret.json
+
+      - name: Validate balance, opening lock and answer quality
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+
+          const targets = ['telegrafbygningen', 'oslo_posthus', 'havnelageret'];
+          for (const target of targets) {
+            const quiz = JSON.parse(fs.readFileSync(`data/quiz/naeringsliv/${target}_sets_merged.json`, 'utf8'));
+            const brief = JSON.parse(fs.readFileSync(`data/quiz/production_briefs/naeringsliv/${target}.json`, 'utf8'));
+            const questions = quiz.sets.flatMap((set) => set.questions);
+            const counts = brief.claims.reduce((acc, claim) => {
+              acc[claim.family] = (acc[claim.family] ?? 0) + 1;
+              return acc;
+            }, {});
+
+            if (questions.length !== 35 || brief.claims.length !== 35) {
+              throw new Error(`${target}: forventet 35 spørsmål og claims`);
+            }
+            if (questions.slice(0, 14).some((question) => question.question_type !== 'fact')) {
+              throw new Error(`${target}: de første 14 spørsmålene er ikke låste fakta`);
+            }
+            if (questions.slice(14, 28).filter((question) => question.question_type === 'context').length !== 8) {
+              throw new Error(`${target}: bro- og midtfasen har ikke nøyaktig 8 sammenhengsspørsmål`);
+            }
+            if (counts.fact !== 20 || counts.context !== 8 || counts.concept_theory !== 7) {
+              throw new Error(`${target}: feil familiebalanse ${JSON.stringify(counts)}`);
+            }
+            if (brief.claims.slice(28).some((claim) => claim.family !== 'concept_theory')) {
+              throw new Error(`${target}: sluttlaget på 7 fagspørsmål er endret`);
+            }
+
+            for (const question of questions) {
+              if (!Array.isArray(question.options) || question.options.length !== 3) {
+                throw new Error(`${target}/${question.id}: forventet tre svaralternativer`);
+              }
+              if (new Set(question.options).size !== 3) {
+                throw new Error(`${target}/${question.id}: dupliserte svaralternativer`);
+              }
+              if (question.options[question.answerIndex] !== question.answer) {
+                throw new Error(`${target}/${question.id}: answerIndex og answer er ute av synk`);
+              }
+            }
+
+            console.log(`${target}: 20 fakta / 8 sammenheng / 7 faglag, første 14 bevart`);
+          }
+          NODE
+
+      - name: Run quiz governance and production audits
+        shell: bash
+        run: |
+          npm run audit:quiz-templates
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-content-audit
+          npm run test:quiz-production
+
+      - name: Commit clean self-removing production diff
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git checkout origin/main -- .github/workflows/data-checks.yml
+          rm -f .github/workflows/temp-naeringsliv-pilot-context-quality.yml
+          rm -f scripts/temp-lift-naeringsliv-pilot-context.mjs
+          rm -f scripts/temp-run-naeringsliv-pilot-context-quality.mjs
+          rm -f data/fag/naeringsliv/temp_quality_lift_trigger.txt
+          rm -f .github/workflows/temporary-naeringsliv-pilot-quality-runner.yml
+
+          git add -A
+          git commit -m 'Løft sammenhengsspørsmålene i næringslivspilotene'
+
+          expected="$(cat <<'FILES' | sort
+          .github/workflows/temporary-naeringsliv-pilot-quality-runner.yml
+          data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json
+          data/quiz/naeringsliv/havnelageret_sets_merged.json
+          data/quiz/naeringsliv/oslo_posthus_sets_merged.json
+          data/quiz/naeringsliv/telegrafbygningen_sets_merged.json
+          data/quiz/production_briefs/naeringsliv/havnelageret.json
+          data/quiz/production_briefs/naeringsliv/oslo_posthus.json
+          data/quiz/production_briefs/naeringsliv/telegrafbygningen.json
+          data/quiz/production_context/naeringsliv/havnelageret.json
+          data/quiz/production_context/naeringsliv/oslo_posthus.json
+          data/quiz/production_context/naeringsliv/telegrafbygningen.json
+          FILES
+          )"
+          actual="$(git diff --name-only origin/main...HEAD | sort)"
+
+          if [ "$actual" != "$expected" ]; then
+            echo 'Uventet sluttdiff:'
+            printf '%s\n' "$actual"
+            echo 'Forventet:'
+            printf '%s\n' "$expected"
+            exit 1
+          fi
+
+          git push origin HEAD:agent/naeringsliv-pilot-context-quality
