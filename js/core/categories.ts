@@ -48,7 +48,7 @@ const CATEGORY_LIST: CategoryDefinition[] = [
   { id: "politikk", name: "Politikk & samfunn", icon: "🏛️", color: "#103E71", secondaryColor: "#114A84", scope: "runtime_domain" },
   { id: "subkultur", name: "Subkultur", icon: "🧷", color: "#292625", secondaryColor: "#E78847", scope: "runtime_domain" },
   { id: "litteratur", name: "Litteratur", icon: "📚", color: "#E1BE70", secondaryColor: "#C0964A", scope: "runtime_domain" },
-  { id: "naeringsliv", name: "Næringsliv", icon: "🏭", color: "#0E3290", secondaryColor: "#AFB0B0", scope: "runtime_domain" },
+  { id: "naeringsliv", name: "Økonomi og næringsliv", icon: "🏭", color: "#0E3290", secondaryColor: "#AFB0B0", scope: "runtime_domain", aliases: ["Næringsliv", "Næringsliv & industri", "Økonomi", "Økonomi & næringsliv"] },
   { id: "psykologi", name: "Psykologi", icon: "🧠", color: "#06d6a0", scope: "runtime_domain" },
   { id: "film_tv", name: "Film & TV", icon: "🎞️", color: "#6c757d", scope: "runtime_domain" },
   { id: "media", name: "Medier", icon: "🗞️", color: "#22B8B5", secondaryColor: "#123B4A", scope: "runtime_domain" },
@@ -60,6 +60,9 @@ const CAT_BY_NAME: Record<string, CategoryDefinition> = Object.create(null);
 for (const category of CATEGORY_LIST) {
   CAT_BY_ID[category.id] = category;
   CAT_BY_NAME[category.name.trim().toLowerCase()] = category;
+  for (const alias of category.aliases || []) {
+    CAT_BY_NAME[alias.trim().toLowerCase()] = category;
+  }
 }
 
 function norm(value: unknown): string {

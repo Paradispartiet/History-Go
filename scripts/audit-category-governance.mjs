@@ -70,6 +70,15 @@ if (!contract.runtimeCategories.includes("scenekunst")) failures.push({ name: "s
 if (!contract.fagSubjects.includes("scenekunst")) failures.push({ name: "scenekunst", reason: "missing fag subject" });
 if (contract.runtimeCategories.includes("sosial_laering")) failures.push({ name: "sosial_laering", reason: "must remain non-place badge" });
 
+try {
+  await import("../tools/validate-okonomi-naeringsliv-universitetsramme.mjs");
+} catch (error) {
+  failures.push({
+    name: "Økonomi og næringsliv university framework",
+    reason: error instanceof Error ? error.message : String(error)
+  });
+}
+
 const report = {
   status: failures.length ? "failed" : "passed",
   runtimeCategories: contract.runtimeCategories.length,
