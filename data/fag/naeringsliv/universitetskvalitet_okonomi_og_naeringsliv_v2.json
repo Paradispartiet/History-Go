@@ -1,1 +1,80 @@
-{"version":"2.0.0","status":"canonical_university_quality","type":"university_quality_manifest","subject_id":"naeringsliv","display_name":"Økonomi og næringsliv","updated_at":"2026-07-26","foundation":"universitetsramme_okonomi_og_naeringsliv_v1.json","purpose":"Materialisere universitetsnivå som kontrollerbare teorier, metoder, modeller, mål, emneutvidelser og vurderingskrav i stedet for bare å navngi faglige lag.","coverage":{"discipline_tracks":6,"core_emners":36,"theory_cards":24,"method_protocols":18,"models":24,"measures":36,"assessment_profiles":18,"levels":3},"quality_gates":{"every_emne_has_multiple_theories":true,"every_emne_has_multiple_methods":true,"every_emne_has_multiple_models":true,"every_emne_has_at_least_three_measures":true,"every_registry_item_is_used":true,"every_track_has_theory_method_model_measure_depth":true,"theory_requires_mechanism_assumptions_competitors_criticism":true,"method_requires_operationalisation_analysis_steps_uncertainty_and_limit":true,"model_requires_variables_assumptions_misuse_guards_and_progression":true,"measure_requires_calculation_interpretation_limits_and_sources":true,"assessment_requires_weighted_rubric_and_automatic_failure_guards":true,"normal_quiz_opening_preserved":14},"anti_tokenism":{"theory_name_without_mechanism":false,"thinker_name_without_central_work":false,"method_label_without_protocol":false,"model_without_variables_or_assumptions":false,"measure_without_calculation_or_limit":false,"emne_without_cross_registry_coverage":false,"assessment_without_weighted_rubric":false,"advanced_claim_without_uncertainty_or_conclusion_limit":false},"canonical_files":{"theory_cards":"teorikort_okonomi_og_naeringsliv_v1.json","method_protocols":"metodeprotokoller_okonomi_og_naeringsliv_v1.json","models":"modellregister_okonomi_og_naeringsliv_v1.json","measures":"maleregister_okonomi_og_naeringsliv_v1.json","emne_extensions":"emneutvidelser_okonomi_og_naeringsliv_v1.json","assessment_matrix":"vurderingsmatrise_okonomi_og_naeringsliv_v1.json"},"enforcement":{"validator":"tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs","category_audit":"scripts/audit-category-governance.mjs","failure_policy":"Enhver manglende kobling, tynt felt, foreldet dekningstall eller ubrukt registerpost skal stoppe kategori-auditen."}}
+{
+  "version": "3.0.0",
+  "status": "canonical_university_quality",
+  "type": "university_quality_manifest",
+  "subject_id": "naeringsliv",
+  "display_name": "Økonomi og næringsliv",
+  "updated_at": "2026-07-26",
+  "foundation": "universitetsramme_okonomi_og_naeringsliv_v1.json",
+  "purpose": "Individuelt fagredigert universitetslag med emnespesifikke teorivalg, metoder, modeller, mål, datasett, beregninger, fagkonflikter, læringsaktiviteter og vurderingsprodukter for alle 36 kjerneemner.",
+  "coverage": {
+    "discipline_tracks": 6,
+    "core_emners": 36,
+    "theory_cards": 29,
+    "method_protocols": 23,
+    "models": 29,
+    "measures": 45,
+    "assessment_profiles": 18,
+    "levels": 3,
+    "datasets": 20
+  },
+  "quality_gates": {
+    "every_emne_has_multiple_theories": true,
+    "every_emne_has_multiple_methods": true,
+    "every_emne_has_multiple_models": true,
+    "every_emne_has_at_least_three_measures": true,
+    "every_registry_item_is_used": true,
+    "every_track_has_theory_method_model_measure_depth": true,
+    "theory_requires_mechanism_assumptions_competitors_criticism": true,
+    "method_requires_operationalisation_analysis_steps_uncertainty_and_limit": true,
+    "model_requires_variables_assumptions_misuse_guards_and_progression": true,
+    "measure_requires_calculation_interpretation_limits_and_sources": true,
+    "assessment_requires_weighted_rubric_and_automatic_failure_guards": true,
+    "normal_quiz_opening_preserved": 14,
+    "every_emne_has_unique_learning_activities": true,
+    "every_emne_has_unique_assessment_products": true,
+    "every_emne_has_empirical_unit_calculation_conflict_and_datasets": true,
+    "every_emne_mapping_is_individually_reviewed": true
+  },
+  "anti_tokenism": {
+    "theory_name_without_mechanism": false,
+    "thinker_name_without_central_work": false,
+    "method_label_without_protocol": false,
+    "model_without_variables_or_assumptions": false,
+    "measure_without_calculation_or_limit": false,
+    "emne_without_cross_registry_coverage": false,
+    "assessment_without_weighted_rubric": false,
+    "advanced_claim_without_uncertainty_or_conclusion_limit": false
+  },
+  "canonical_files": {
+    "theory_cards": "teorikort_okonomi_og_naeringsliv_v1.json",
+    "method_protocols": "metodeprotokoller_okonomi_og_naeringsliv_v1.json",
+    "models": "modellregister_okonomi_og_naeringsliv_v1.json",
+    "measures": "maleregister_okonomi_og_naeringsliv_v1.json",
+    "emne_extensions": "emneutvidelser_okonomi_og_naeringsliv_v1.json",
+    "assessment_matrix": "vurderingsmatrise_okonomi_og_naeringsliv_v1.json"
+  },
+  "enforcement": {
+    "validator": "tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs",
+    "category_audit": "scripts/audit-category-governance.mjs",
+    "failure_policy": "Enhver manglende kobling, tynt felt, foreldet dekningstall eller ubrukt registerpost skal stoppe kategori-auditen."
+  },
+  "individual_revision": {
+    "status": "complete",
+    "emne_count": 36,
+    "principle": "Ingen emner får generiske lærings- eller vurderingstekster; hver kobling skal være faglig begrunnet i emnets fenomen, enhet, beregning og konflikt.",
+    "reviewed_dimensions": [
+      "teori",
+      "metode",
+      "modell",
+      "mål",
+      "datasett",
+      "beregning",
+      "fagkonflikt",
+      "læringsaktivitet",
+      "vurderingsprodukt",
+      "misoppfatningsvern",
+      "quizmål"
+    ]
+  }
+}

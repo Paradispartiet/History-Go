@@ -78,6 +78,10 @@ for (const validator of [
   {
     name: "Økonomi og næringsliv university quality",
     module: "../tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs"
+  },
+  {
+    name: "Økonomi og næringsliv individual emne revision",
+    module: "../tools/validate-okonomi-naeringsliv-emnerevisjon.mjs"
   }
 ]) {
   try {
