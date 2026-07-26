@@ -58,6 +58,24 @@ Historisk snapshot som ikke skal brukes som nåstatus:
 
 - `docs/IMPLEMENTATION_STATUS.md` — avgrenset snapshot for Social, Civication Home og Spotmeeting
 
+### Områdeoversikt
+
+1. [`README_area_overview.md`](./README_area_overview.md) — operativ runtimeguide for radiusbasert områdevisning
+2. [`../js/ui/area-overview.js`](../js/ui/area-overview.js) — basisstate, avstandsindeks, filter og navigasjon
+3. [`../js/ui/area-overview-v2.js`](../js/ui/area-overview-v2.js) — read-only geografisk oversikt, progresjon og høydepunkter
+4. [`../tests/area-overview-runtime.test.js`](../tests/area-overview-runtime.test.js) og [`../tests/area-overview-v2-runtime.test.js`](../tests/area-overview-v2-runtime.test.js) — regresjonskontroll
+
+Område sentreres på et canonical place-record og bruker `window.PLACES`; flaten oppretter ingen kommune-/regionrecords eller egen progresjonsstate. Basisruntime eier radius og resultatmodell, mens V2 bare dekorerer samme modell.
+
+### Uavhengige læringsspill
+
+1. [`../data/historygo/shared/game_registry.json`](../data/historygo/shared/game_registry.json) — canonical maskinregister for spill, status og deklarerte grensesnitt
+2. [`learning-games/standalone-learning-games-architecture.md`](./learning-games/standalone-learning-games-architecture.md) — operativ uavhengighets-, profil- og adapterguide
+3. [`../js/historyGoGameRegistry.js`](../js/historyGoGameRegistry.js) — profilens registerloader og renderer
+4. [`../tests/history-go-game-registry.test.js`](../tests/history-go-game-registry.test.js) — register- og profilregresjon
+
+History GO eier registeret og delte samlinger. Civication kan lenke til spillene, men skal ikke være motor eller progresjonseier. Registerets `writesBackToProfile` er en deklarert kontrakt; faktisk write-back må bevises av spillspesifikke adaptere og tester.
+
 ### Quiz og fysisk besøksstatus
 
 1. [`COMPLETION_DEFINITIONS.md`](./COMPLETION_DEFINITIONS.md) — canonical produktbetydning av besøkt, quizfullført, utforsket, fullført og mestret
@@ -78,6 +96,15 @@ Quiz er digitalt tilgjengelig uten å skrive fysisk besøksstatus. Fysisk `visit
 5. [`../tools/audit-historical-routes.mts`](../tools/audit-historical-routes.mts) — manifest-, ID- og place-referanseaudit
 
 Online-reisen, lokal progresjon, events og NextUp-handoff er implementert. Fysisk GPS-samling, faktisk badge-/pointstildeling og interaktive quiz-/valgporter er foreløpig ikke implementert selv om dataene er forberedt for fysisk modus.
+
+### Visual Design Codes
+
+1. [`../data/visualDesignCodes.json`](../data/visualDesignCodes.json) — canonical register for gyldige designCodes og renderer-hint
+2. [`visual-design-codes.md`](./visual-design-codes.md) — operativ bruk-, resolver- og batchguide
+3. [`../js/visualDesignCodes.js`](../js/visualDesignCodes.js) — aktiv resolver og fallbacklogikk
+4. [`../tools/audit-visual-design-codes.mts`](../tools/audit-visual-design-codes.mts) — audit og kandidatbygging
+
+DesignCodes er metadata, ikke geometri eller bilder. Registeret eier gyldige koder, resolveren eier oppslagsrekkefølgen, og hver renderer eier konkret presentasjon. Den tidligere kombinerte arkitektur- og batchjournalen er bevart som historisk snapshot under `reports/archive/2026-07/visual-design-codes/`.
 
 ### Domener, data og innholdsproduksjon
 
@@ -323,6 +350,8 @@ Workflowen bygger også et inventar som viser totalt antall dokumentlignende fil
 - Historiske ruter-planen skilt fra implementert runtimeguide og byte-identisk pre-consolidation-arkiv
 - Historie V5.8 er dokumentert som aktiv autoritet; universell heldekning er canonical policy, og V5.5–V5.7 er historiske baselines
 - By-fagplan, fagstruktur, lokal CSS-guide og naturmapping er klassifisert; blandet By-arbeidstekst er flyttet til historisk snapshot
+
+- Områdeoversikt, uavhengige læringsspill og Visual Design Codes er klassifisert; Visual Design Codes-batchjournalen er skilt fra den aktive bruksguiden
 
 ### Neste
 

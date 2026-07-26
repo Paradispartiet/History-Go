@@ -1,211 +1,114 @@
-# History Go – uavhengige læringsspill
+# History GO — uavhengige læringsspill
 
-Dato: 2026-06-26
+Status: **operational architecture guide**
+Sist kontrollert: **2026-07-26**
 
-## Hovedvedtak
+Dette dokumentet beskriver grensen mellom History GO, profil/AHA, Civication og de uavhengige læringsspillene. Det maskinlesbare registeret eier hvilke spill som finnes og deres oppgitte status.
 
-History Go skal være samlings-, steds- og kunnskapsmotoren. Civication skal ikke eie spillene.
+## Autoritetsrekkefølge
 
-De selvstendige læringsspillene er:
+1. `data/historygo/shared/game_registry.json` eier spill-ID-er, navn, status, entry-paths og deklarerte read/write-flater.
+2. `js/historyGoGameRegistry.js` eier lasting og rendering av spillkort i profilen.
+3. `profile.html` eier profilens Spill-fane og runtime-innlasting.
+4. `tests/history-go-game-registry.test.js` validerer register, profiltilkobling og renderer.
+5. Hvert spillrepo eller lokal spillmodul eier sin egen motor, state og faktiske progresjonsadapter.
 
-1. **HG Football Manager**
-2. **HG Film Producer**
-3. **Kunstskolen**
-4. **Skrivekunstakademiet**
+Ved konflikt gjelder registeret, runtime og den spillspesifikke implementasjonen.
 
-Civication kan vise dem som livsområder, jobber, fritid, status eller snarveier, men hvert spill må kunne kjøre uten Civication.
-
-```text
-History Go
-→ felles steder, personer, verk, institusjoner, ruter, merker og samlinger
-
-AHA / Profil
-→ viser hvem brukeren er, progresjon, gallerier, spillstatus og læringsidentitet
-
-Civication
-→ livssimulator / samfunn / hverdag / økonomi / jobb og rollevalg
-
-Selvstendige spill
-→ FootballManager, Film Producer, Kunstskolen, Skrivekunstakademiet
-```
-
-## Arkitekturregel
+## Låst uavhengighetsregel
 
 ```text
-Civication kan lenke til spillene.
-Civication kan bruke resultatene fra spillene.
-Civication skal ikke være motoren til spillene.
+History GO eier felles samlinger og registeret.
+Profil/AHA viser læringsidentitet og samlet status.
+Civication kan lenke til og lese avgrensede resultater.
+Civication skal ikke være spillmotor, datakildeeier eller progresjonseier.
+Hvert spill skal kunne kjøre uten Civication.
 ```
 
-All progresjon som påvirker brukerprofilen må trigge:
+## Registrerte spill
 
-```js
-window.dispatchEvent(new Event("updateProfile"));
-```
+På kontrolltidspunktet inneholder registeret fem spill:
 
-Dette gjelder når et spill låser opp personer, steder, verk, merker, poeng, ferdigheter eller samlingsobjekter.
+| gameId | Spill | Registrert status |
+| --- | --- | --- |
+| `hgFootballManager` | HG Football Manager | `external_scaffold` |
+| `hgFilmProducer` | HG Film Producer | `data_scaffold` |
+| `hgArtSchool` | Kunstskolen | `data_scaffold` |
+| `hgChildrenLiteratureGame` | Barnebokakademiet | `data_scaffold_v1` |
+| `hgWritingAcademy` | Skrivekunstakademiet | `external_scaffold` |
 
-## Felles History Go-lag
+Statusverdiene er registerstatus, ikke en garanti for full spillbarhet, komplett adapter eller produksjonsklar synkronisering.
 
-Felleslaget skal inneholde de tingene alle spillene kan hente fra:
+## Felles History GO-lag
+
+Registeret deklarerer delte samlinger som spill kan lese:
 
 ```text
 places
 people
 works
 institutions
-events
 routes
 badges
 objects
-eras
-movements
-skills
+relations
 ```
 
-Relasjonene er like viktige som objektene:
+Nye felles samlinger skal bare legges til når de faktisk finnes som en avgrenset History GO-kilde. Spill skal ikke kopiere hele place-, people- eller knowledge-modellen inn i egne parallelle sannheter.
 
-```text
-person → place
-work → place
-work → person
-institution → person
-route → place
-movement → work
-skill → task
+## Profil- og write-grense
+
+`writesBackToProfile` i registeret beskriver hvilke profilområder et spill er ment å kunne påvirke. Feltlisten implementerer ikke lagring i seg selv.
+
+Faktisk write-back krever:
+
+1. spillspesifikk state og validering;
+2. en eksplisitt adapter til History GO/profil;
+3. idempotent eller dokumentert merge-atferd;
+4. test av at ett spill ikke overskriver et annet spills state;
+5. profiloppdatering etter vellykket write.
+
+Etter en vellykket progresjonsendring skal spillet sende refresh-signalet:
+
+```js
+window.dispatchEvent(new Event("updateProfile"));
 ```
 
-## Spillmodell
+Eventet er et oppdateringssignal. Det er ikke selve dataskrivingen og skal ikke brukes som bevis på at en adapter finnes.
 
-### HG Football Manager
+## Profilflaten
 
-Fotballspill med klubber, spillere, stadioner, trenere, formasjoner, taktikk, kampdag og historisk fotballkunnskap.
+`historyGoGameRegistry.js`:
 
-Skal kunne lese fra History Go:
+- laster registeret med `cache: "no-store"`;
+- normaliserer den eldre `civication`-nøkkelen til `spill` for Spill-fanen;
+- renderer ett kort per registrert spill;
+- åpner eksterne spill med `noopener noreferrer`;
+- viser registerstatus og antall deklarerte read/write-felter.
 
-```text
-players
-clubs
-stadiums
-football places
-formations
-staff
-badges
-```
-
-Skal skrive tilbake:
-
-```text
-team progress
-formation mastery
-match badges
-collected staff
-manager level
-```
-
-### HG Film Producer
-
-Filmspill der brukeren lærer film ved å caste, produsere, analysere locations, bygge filmspråk og forstå regissører, sjangre, studioer og filmhistoriske miljøer.
-
-Skal kunne lese fra History Go:
-
-```text
-directors
-actors
-studios
-film locations
-cinemas
-movements
-works
-```
-
-Skal skrive tilbake:
-
-```text
-film craft progress
-producer badges
-scene tasks
-location unlocks
-```
-
-### Kunstskolen
-
-Kunstspill der brukeren lærer kunst ved å lage verk inspirert av kjente kunstverk, epoker, teknikker, museer, kunstnere og steder.
-
-Skal kunne lese fra History Go:
-
-```text
-artists
-artworks
-museums
-movements
-techniques
-studios
-public art places
-```
-
-Skal skrive tilbake:
-
-```text
-art skill progress
-completed studies
-movement mastery
-artwork unlocks
-museum route progress
-```
-
-### Skrivekunstakademiet
-
-Litteraturspill der brukeren lærer av forfattere, tekster, steder, scener, stemmer, dialog, rytme og komposisjon.
-
-Dette bruker Goodreads 4+-uttrekket som kuratert inspirasjonskanon. Rating og private Goodreads-felt skal ikke importeres. Rating brukes kun som filter.
-
-Skal kunne lese fra History Go:
-
-```text
-authors
-books
-literary places
-bookstores
-libraries
-universities
-publishers
-magazines
-routes
-```
-
-Skal skrive tilbake:
-
-```text
-writing craft progress
-completed assignments
-author unlocks
-place story unlocks
-writing badges
-```
+Profilflaten skal ikke hardkode en separat spilliste. Nye eller fjernede spill skal komme fra registeret.
 
 ## Rettighetsregel
 
-Spillene kan bruke:
+Spill kan bruke navn, titler, historiske fakta, steder, institusjoner, tema, formgrep, epoketrekk, public-domain-materiale og brukerens egne verk.
 
-```text
-forfatternavn
-kunstnernavn
-titler
-historiske fakta
-steder
-institusjoner
-tema
-formgrep
-epoketrekk
-public domain-materiale
-brukerens egne tekster
+Spill skal ikke importere eller gjengi opphavsrettsbeskyttet boktekst, filmmanus, bilder eller kunstverk som treningsdata eller oppgaveinnhold uten dokumentert rettighetsgrunnlag. Private Goodreads-felt skal ikke eksponeres gjennom registeret eller profilflaten.
+
+## Endringsflyt
+
+Når et spill legges til eller endres:
+
+1. oppdater `data/historygo/shared/game_registry.json`;
+2. verifiser `gameId`, status og `entryPath`;
+3. dokumenter reelle read- og write-avhengigheter;
+4. oppdater spillspesifikk adapter og tester;
+5. oppdater `tests/history-go-game-registry.test.js` dersom den forventede registerlisten endres;
+6. kontroller profilen manuelt.
+
+## Validering
+
+```bash
+node tests/history-go-game-registry.test.js
 ```
 
-Spillene skal ikke importere eller gjengi opphavsrettsbeskyttet boktekst, filmmanus, kunstverk eller annet beskyttet uttrykk som treningsdata eller oppgaveinnhold.
-
-## Importregel
-
-Denne PR-en etablerer scaffold og data-seed. Den skal ikke gjøre stor UI-endring.
-
-Neste steg er å koble `data/historygo/shared/game_registry.json` til profil/AHA dersom repoet allerede har en Spill-tab eller en etablert spillseksjon. Hvis ikke skal registeret ligge som data først.
+Registeret er den delte katalogen. Spillbarhet, progresjon og lagring må fortsatt bevises i hvert spill.

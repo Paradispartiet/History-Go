@@ -1,50 +1,36 @@
-# History Go Area Overview
+# History GO — Områdeoversikt
 
-Status: **V1 implementation started**
+Status: **operational runtime guide**
+Sist kontrollert: **2026-07-26**
 
-This document defines the product and runtime contract for the universal **Område** feature in History Go.
+Dette dokumentet beskriver den implementerte Område-flaten. Koden eier faktisk atferd; dokumentet skal korrigeres når runtime, lastrekkefølge eller offentlig API endres.
 
-## Product contract
+## Autoritetsrekkefølge
 
-Every canonical History Go place can be used as the center of an area overview.
+1. `js/ui/area-overview.js` eier basisstate, radiusvalg, avstandsindeks, kategorifilter, resultatlister og `window.HGAreaOverview`.
+2. `js/ui/area-overview-scroll.js` bevarer leseposisjon ved rerender og laster V2-utvidelsen.
+3. `js/ui/area-overview-v2.js` legger til geografisk oversikt, høydepunkter og read-only progresjon gjennom `window.HGAreaOverviewV2`.
+4. `js/ui/place-card-status-surface.js` eier den aktive lastkjeden fra PlaceCard-utvidelsen.
+5. `css/area-overview.css` og `css/area-overview-v2.css` eier presentasjonen.
+6. `tests/area-overview-runtime.test.js` og `tests/area-overview-v2-runtime.test.js` eier de automatiserte regresjonseksemplene.
 
-The overview is not tied to municipalities, cities, prebuilt region pages, or the user's GPS position. The active place is the center point.
+Ved konflikt gjelder runtime og testene.
 
-Example flow:
+## Produktmodell
 
-1. Open any PlaceCard.
-2. Press **Område** in the PlaceCard footer.
-3. History Go opens an area overview centered on that place.
-4. Choose a radius: **2 km, 5 km, 20 km, 50 km, or 100 km**.
-5. The complete overview updates from the same canonical place dataset used by the map.
-6. Press another place in the overview to return to the map. The existing map navigation flow moves to the target first and opens its PlaceCard only after the map movement is complete.
+Områdeoversikten sentreres alltid på et valgt canonical History GO-sted. Den oppretter ikke kommunesider, regionrecords eller en ny place-database.
 
-The core state is therefore:
+Basisstate:
 
 ```text
 centerPlaceId
-centerLat
-centerLon
 radiusKm
+categoryFilter
 ```
 
-`centerLat` and `centerLon` are derived from the canonical place record. They are not a second source of truth.
+Koordinatene leses fra det valgte place-recordet. De lagres ikke som en parallell sannhetskilde.
 
-## Non-goals
-
-The area feature must not:
-
-- create handcrafted Etne, Oslo, municipality, or region pages;
-- require municipality boundaries;
-- silently use a private home address;
-- use GPS as the center when an active place has been selected;
-- introduce a second place database;
-- duplicate PlaceCard opening or map-navigation timing logic;
-- require full place records to be loaded for every result just to build the overview.
-
-## Radius model
-
-The fixed radius choices are:
+Faste radiusvalg:
 
 ```text
 2 km
@@ -54,77 +40,38 @@ The fixed radius choices are:
 100 km
 ```
 
-The first opening may choose a sensible radius from History Go place density. The user can always override it.
+Første åpning velger den minste radiusen som inneholder minst 24 andre brukbare steder. Hvis ingen radius når dette nivået, velges den minste radiusen som rommer de tilgjengelige resultatene, med 100 km som øvre grense.
 
-Current V1 rule:
+## Datagrunnlag
 
-- calculate distances from the selected center place once, up to 100 km;
-- choose the smallest radius containing at least 24 other usable places;
-- if no radius reaches that density, use the largest radius containing available results;
-- changing radius filters the cached distance index instead of reloading place data.
+Basisruntime leser `window.PLACES`, den samme aktive place-flaten som kartet bruker.
 
-This is a data-density heuristic, not a definition of what counts as a city or rural area.
+Et resultat må:
 
-## Data source
+- ha canonical `id`;
+- ha endelige `lat`- og `lon`/`lng`-verdier;
+- ikke være `hidden`;
+- ikke være `stub`;
+- ikke være sentrumstedet;
+- ligge høyst 100 km unna.
 
-V1 reads from `window.PLACES`, which is populated from the same canonical place loading path as the map.
+Avstand beregnes med `window.distMeters` når den finnes. Runtime har en Haversine-fallback for robusthet. Base place-data brukes til listevisning; full place-loading skjer først når et sted åpnes.
 
-Eligible results:
+## Basisflate
 
-- have a canonical `id`;
-- have finite `lat` and `lon` coordinates;
-- are not `hidden`;
-- are not `stub`;
-- are not the center place itself.
+`area-overview.js` implementerer:
 
-Distance uses the existing `window.distMeters` helper when available. The area runtime contains a Haversine fallback only so the overview can fail safely if that helper is unavailable.
+- PlaceCard-handlingen **Område**;
+- åpning og lukking av fullskjermsflaten;
+- radiusfilter;
+- dynamisk kategorifilter;
+- avstandsbånd;
+- paginert/utvidbar visning av store bånd;
+- navigasjon tilbake til kart og valgt sted.
 
-The overview does not call `DataHub.loadFullPlace()` for every result. Base place data is enough for distance, category, title, short description, and preview image. Full place content remains on-demand when a place is actually opened.
+Avstandsbåndene er:
 
-## V1 information architecture
-
-The area overview is a full-screen in-app surface, not a wider Nearby drawer.
-
-### Header
-
-- back to map / active PlaceCard
-- History Go
-- Område
-
-### Hero
-
-- center-place image when available
-- `Området rundt`
-- center-place name
-- number of places within the selected radius
-
-### Radius selector
-
-A persistent selector for:
-
-`2 · 5 · 20 · 50 · 100 km`
-
-Changing radius updates the complete overview.
-
-### Overview statistics
-
-V1 can show:
-
-- number of places;
-- number of represented categories;
-- number of unique related people when the relation index is available.
-
-### Category overview
-
-Categories are generated from actual results and sorted by count. Empty categories are not shown.
-
-Selecting a category filters the distance sections while preserving the same center and radius.
-
-### Distance sections
-
-The universal geographic structure is:
-
-| Band | Label |
+| Avstand | Etikett |
 | --- | --- |
 | 0–2 km | Rett rundt stedet |
 | 2–5 km | I nærheten |
@@ -132,49 +79,36 @@ The universal geographic structure is:
 | 20–50 km | Utforsk regionen |
 | 50–100 km | Større område |
 
-Only bands with results inside the active radius are rendered.
+Bare bånd med resultater innen aktiv radius vises.
 
-Large bands initially render a preview and expose **Vis alle** so a 100 km overview does not create an unnecessarily large initial DOM.
+## V2-utvidelse
 
-## Navigation contract
+`area-overview-v2.js` dekorerer den eksisterende flaten. Den erstatter ikke basisstate eller avstandsindeksen.
 
-The area overview must not open a new PlaceCard directly while the map is still elsewhere.
+V2 legger til:
 
-On area-result selection:
+- et SVG-basert geografisk oversiktsplot;
+- en knapp som åpner området på hovedkartet;
+- kuraterte høydepunkter rangert etter bilde, beskrivelse, relasjoner, struktur og avstand;
+- read-only progresjon for besøkte steder, quizstatus og favoritter gjennom `HGProfileProgressReader`.
 
-1. close the area surface;
-2. call `HGMapView.openPlace(placeId)` when available;
-3. let `MapView` move the map;
-4. let the existing `moveend` completion contract open the PlaceCard.
+V2 skriver ingen besøks-, quiz-, favoritt- eller area-state. `updateProfile` eller andre write-kontrakter eies ikke av Område-flaten.
 
-This keeps Area, Nearby, search, and route navigation aligned around the same PlaceCard timing rule.
+## Navigasjonskontrakt
 
-## Footer entry
+Når et resultat velges:
 
-`Område` is a PlaceCard action.
+1. Område-flaten lukkes.
+2. `HGMapView.openPlace(placeId)` brukes når den er tilgjengelig.
+3. Eksisterende kartflyt flytter kartet.
+4. PlaceCard åpnes gjennom kartets eksisterende ferdigstillelsesløp.
 
-Its center is always the PlaceCard's current `data-current-place-id`.
+Direkte `openPlaceCard()` brukes bare som siste fallback når kartadapterne ikke finnes. Nye area-spesifikke kart- eller PlaceCard-timere skal ikke opprettes.
 
-V1 injects the action beside the existing PlaceCard actions and exposes it as an icon button with accessible `aria-label` and `title` text.
-
-The area runtime is loaded from the existing PlaceCard extension bootstrap so it does not create a second app boot path.
-
-## Runtime API
-
-V1 exposes:
+## Offentlig API
 
 ```js
-window.HGAreaOverview.open({
-  centerPlaceId: "stensparken",
-  radiusKm: 5
-});
-```
-
-The radius argument is optional.
-
-Other public helpers:
-
-```js
+HGAreaOverview.open({ centerPlaceId: "stensparken", radiusKm: 5 });
 HGAreaOverview.close();
 HGAreaOverview.setRadius(20);
 HGAreaOverview.getState();
@@ -182,77 +116,28 @@ HGAreaOverview.distanceKm(placeA, placeB);
 HGAreaOverview.buildDistanceIndex(centerPlace);
 ```
 
-## Files
+V2 eksponerer read-only hjelpefunksjoner gjennom `HGAreaOverviewV2`, blant annet modellbygging, progresjonslesing, highlight-ranking, projeksjon og åpning på hovedkartet.
 
-V1 starts with:
+## Lastkjede
 
 ```text
-js/ui/area-overview.js
-css/area-overview.css
-docs/README_area_overview.md
+place-card-status-surface.js
+→ area-overview.js
+→ area-overview-scroll.js
+→ area-overview-v2.js
 ```
 
-The existing PlaceCard extension bootstrap loads the new runtime.
+V2-stilarket lastes av V2-runtime. Det skal ikke legges inn en parallell boot-path i `index.html` uten at denne kjeden samtidig konsolideres.
 
-## V1 acceptance criteria
+## Validering
 
-The first functional pass is complete when all of the following work:
+```bash
+node tests/area-overview-runtime.test.js
+node tests/area-overview-v2-runtime.test.js
+```
 
-- opening any normal PlaceCard makes the **Område** action available;
-- pressing **Område** uses that exact place as the center;
-- 2/5/20/50/100 km all update the result set correctly;
-- hidden and stub records are excluded;
-- categories are calculated dynamically;
-- distance bands are calculated dynamically;
-- a category can be selected and cleared;
-- large result bands can be expanded;
-- selecting an area result returns to the map and uses `HGMapView.openPlace()`;
-- Escape and the back button close the area surface;
-- the feature works without a new data manifest or new area records.
+Manuell QA bør minst dekke et tett Oslo-sted, et Etne-sted, et spredt land-/fjellsted, alle radiusvalg, kategorifilter, scrollbevaring og kartretur.
 
-## Test matrix
+## Avgrensninger
 
-At minimum, manually test places representing very different densities:
-
-### Dense city
-
-- Stensparken
-- expected: 2 km should already contain substantial content;
-- verify that larger radii do not freeze the UI.
-
-### Small town / regional center
-
-- a canonical Etne place such as Etne stadion;
-- expected: the automatic radius should normally be wider than in central Oslo;
-- verify that 20 km and 50 km produce useful regional overviews.
-
-### Sparse area
-
-- a canonical rural or mountain place;
-- expected: 50 km or 100 km may be required;
-- zero-result smaller bands must fail gracefully.
-
-### Navigation
-
-From each test place:
-
-1. open Area;
-2. select a result;
-3. confirm the area surface closes;
-4. confirm the map moves to the selected marker;
-5. confirm PlaceCard opens only after map movement completes.
-
-## Next passes
-
-The first pass intentionally establishes the universal geographic contract before adding richer modules.
-
-Likely follow-up layers:
-
-1. compact area map with the center and radius visible;
-2. curated or computed highlights;
-3. player progress in the area;
-4. people, routes, badges, nature, and other area-level collections;
-5. URL/history state so an area overview can be deep-linked and restored;
-6. richer ranking so the overview surfaces important places without hiding the complete result set.
-
-These layers should consume the same area model rather than creating separate geographic queries.
+Områdeoversikten har ingen egen URL-/history-state, ingen kommunegeometri og ingen separat area-manifest. Nye people-, routes-, badges- eller naturmoduler skal lese den samme area-modellen fremfor å opprette parallelle geografiske spørringer.
