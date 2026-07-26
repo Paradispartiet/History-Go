@@ -1,0 +1,64 @@
+name: One-time export okonomi emners
+
+on:
+  push:
+    branches:
+      - agent/okonomi-naeringsliv-emne-revision-research
+    paths:
+      - '.github/workflows/one-time-export-okonomi-emner.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/okonomi-naeringsliv-emne-revision-research
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Export editorial source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .tmp
+          node <<'NODE'
+          const fs = require('fs');
+          const base = 'data/fag/naeringsliv';
+          const read = (name) => JSON.parse(fs.readFileSync(`${base}/${name}`, 'utf8'));
+          const emners = read('emner_naeringsliv_canonical_v4_5.json');
+          const mapping = read('universitetsmapping_okonomi_og_naeringsliv_v1.json').mapping;
+          const extensions = read('emneutvidelser_okonomi_og_naeringsliv_v1.json').extensions;
+          const byMap = new Map(mapping.map(x => [x.emne_id, x]));
+          const byExt = new Map(extensions.map(x => [x.emne_id, x]));
+          const rows = emners
+            .filter(x => x?.emne_role !== 'field_module' && x?.module_type !== 'cross_domain_field_module')
+            .map(x => ({
+              emne_id: x.emne_id,
+              title: x.title || x.name || x.label || x.emne_title || null,
+              definition: x.definition || x.description || x.desc || x.focus || null,
+              domain: x.domain || x.gren || x.family || x.category || null,
+              primary_track_id: byMap.get(x.emne_id)?.primary_track_id || byExt.get(x.emne_id)?.primary_track_id || null,
+              secondary_track_ids: byMap.get(x.emne_id)?.secondary_track_ids || byExt.get(x.emne_id)?.secondary_track_ids || [],
+              current_university_problem: byExt.get(x.emne_id)?.university_problem || null,
+              theory_ids: byExt.get(x.emne_id)?.theory_ids || [],
+              method_protocol_ids: byExt.get(x.emne_id)?.method_protocol_ids || [],
+              model_ids: byExt.get(x.emne_id)?.model_ids || [],
+              measure_ids: byExt.get(x.emne_id)?.measure_ids || []
+            }));
+          if (rows.length !== 36) throw new Error(`Expected 36 emners, got ${rows.length}`);
+          fs.writeFileSync('.tmp/okonomi-emner.json', JSON.stringify(rows, null, 2) + '\n');
+          NODE
+      - name: Commit export
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .tmp/okonomi-emner.json
+          git commit -m 'TEMP: eksporter økonomiemner for redaksjonell revisjon'
+          git push origin HEAD:agent/okonomi-naeringsliv-emne-revision-research
