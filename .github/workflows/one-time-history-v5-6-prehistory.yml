@@ -46,10 +46,15 @@ jobs:
           from pathlib import Path
           p = Path('/tmp/apply-history-v5-6-prehistory.mjs')
           text = p.read_text()
-          expected = text.count('con_his_${')
-          if expected != 5:
-              raise SystemExit(f'Expected five generated concept-id expressions, found {expected}')
-          p.write_text(text.replace('con_his_${', 'con_his_pre_${'))
+          generated_ids = text.count('con_his_${')
+          if generated_ids != 5:
+              raise SystemExit(f'Expected five generated concept-id expressions, found {generated_ids}')
+          text = text.replace('con_his_${', 'con_his_pre_${')
+          needle = 'coverageContract.completion_definition.freeze_is_not_completeness=true;'
+          if text.count(needle) != 1:
+              raise SystemExit('Expected one completion-definition assignment')
+          text = text.replace(needle, 'coverageContract.completion_definition ||= {};\n' + needle)
+          p.write_text(text)
           PY
           node --check /tmp/apply-history-v5-6-prehistory.mjs
 
