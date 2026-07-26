@@ -1,8 +1,8 @@
 # Coordinate evidence audit
 
-Generert: 2026-07-26T03:02:25.163Z
+Generert: 2026-07-25T19:43:09.434Z
 
-Aktive steder: 1489
+Aktive steder: 1444
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
@@ -14,11 +14,6 @@ Aktive steder: 1489
 | fornebu_teknologipark | data/coordinate-evidence/akershus/naeringsliv/fornebu_teknologipark.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | langoyene | data/coordinate-evidence/akershus/natur/langoyene.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | alf_proysen_statue_nittedal | data/coordinate-evidence/akershus/nittedal/alf_proysen_statue_nittedal.json | needs_research | needs_geometry | OK |
-| criciuma_arquivo_historico_pedro_milanez | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_arquivo_historico_pedro_milanez.json | candidate_sources_collected | needs_geometry | OK |
-| criciuma_cedoc_unesc | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_cedoc_unesc.json | candidate_sources_collected | needs_geometry_source | OK |
-| criciuma_galeria_octavia_gaidzinski | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_galeria_octavia_gaidzinski.json | candidate_sources_collected | needs_geometry_source | OK |
-| criciuma_locomovel_praca_da_chamine | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_locomovel_praca_da_chamine.json | candidate_sources_collected | needs_poi_source | OK |
-| criciuma_memorial_agente_ferroviario_mario_ghisi | data/coordinate-evidence/brasil/santa-catarina/criciuma/criciuma_memorial_agente_ferroviario_mario_ghisi.json | candidate_sources_collected | needs_geometry | OK |
 | proysenhuset_rudshogda | data/coordinate-evidence/innlandet/ringsaker/proysenhuset_rudshogda.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | aker_brygge | data/coordinate-evidence/oslo/by/aker_brygge.json | applied_to_place | do_not_change_coordinates_yet | OK |
 | akerselva | data/coordinate-evidence/oslo/by/akerselva.json | applied_to_place | do_not_change_coordinates_yet | OK |
