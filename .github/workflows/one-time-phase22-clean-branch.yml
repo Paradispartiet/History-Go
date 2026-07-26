@@ -1,0 +1,155 @@
+name: One-time People of Places governance materialization
+
+on:
+  push:
+    branches:
+      - agent/documentation-governance-phase-22-people-of-places-clean
+    paths:
+      - .github/phase22-branch-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out clean target branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/documentation-governance-phase-22-people-of-places-clean
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Register People of Places governance
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          registry_path = Path("docs/documentation_registry.json")
+          registry = json.loads(registry_path.read_text(encoding="utf-8"))
+          method_path = "docs/people-of-places-method.md"
+          registry["documents"] = [entry for entry in registry["documents"] if entry.get("path") != method_path]
+          method_entry = {
+              "path": method_path,
+              "status": "canonical",
+              "role": "Bindende redaksjonell metode for relevante, kildebelagte og ikke-dupliserte person–sted-koblinger",
+              "owns": ["people_of_places_method"],
+              "last_verified": "2026-07-26",
+          }
+          insert_at = next(
+              index + 1
+              for index, entry in enumerate(registry["documents"])
+              if entry.get("path") == "docs/DATA_PRODUCTION_CONTRACT.md"
+          )
+          registry["documents"].insert(insert_at, method_entry)
+          registry["last_verified"] = "2026-07-26"
+          registry_path.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+          readme_path = Path("docs/README.md")
+          readme = readme_path.read_text(encoding="utf-8")
+          section = '''### People-produksjon, stedskobling og bilder
+
+1. [`people-of-places-method.md`](./people-of-places-method.md) — canonical relevans-, kilde-, gjenbruks- og batchmetode for person–sted-koblinger
+2. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
+3. [`../tools/audit-people-of-places-status.mts`](../tools/audit-people-of-places-status.mts) — status-, schema-, referanse- og struktur-audit
+4. [`../tools/check-people-of-places-gate.mts`](../tools/check-people-of-places-gate.mts) — blokkerer duplikater, ugyldige refs, manglende primæranker og tomme `places`
+5. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt for people-bilder
+6. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
+7. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
+
+People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI blokkerer dupliserte people-ID-er, ugyldige place-referanser, manglende gyldige primærankere og tomme `places`, men beregner ikke full place-for-place-dekning og avgjør ikke historisk relevans. Dekningsmål og relevans må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
+'''
+          starts = [
+              readme.find("### People-bilder og rettigheter\n"),
+              readme.find("### People-produksjon, stedskobling og bilder\n"),
+          ]
+          starts = [value for value in starts if value >= 0]
+          if not starts:
+              raise SystemExit("Fant ikke People-seksjonen")
+          start = min(starts)
+          end_marker = "\n### Koordinater og geografisk evidens\n"
+          end = readme.find(end_marker, start)
+          if end < 0:
+              raise SystemExit("Fant ikke slutten på People-seksjonen")
+          readme = readme[:start] + section.rstrip("\n") + readme[end:]
+
+          completed = "- `people-of-places-method.md` synkronisert med manifest/audit/gate og registrert som canonical redaksjonell metode"
+          if completed not in readme:
+              anchor = "- `PEOPLE_IMAGES.md` synkronisert med pipeline og registrert som canonical bilde- og rettighetskontrakt"
+              if anchor not in readme:
+                  raise SystemExit("Fant ikke People Images-ankeret")
+              readme = readme.replace(anchor, anchor + "\n" + completed, 1)
+          readme_path.write_text(readme, encoding="utf-8")
+          PY
+
+      - name: Remove temporary phase 22 files
+        run: |
+          rm -f .github/phase22-main-trigger.txt
+          rm -f .github/phase22-clean-trigger.txt
+          rm -f .github/phase22-branch-trigger.txt
+          rm -f .github/rebuild-phase22-trigger.txt
+          rm -f .github/people-of-places-governance-trigger.txt
+          rm -f .github/workflows/one-time-register-people-of-places-governance.yml
+          rm -f .github/workflows/one-time-rebuild-phase22.yml
+          rm -f .github/workflows/one-time-clean-rebuild-phase22.yml
+          rm -f .github/workflows/one-time-phase22-clean-branch.yml
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Validate and regenerate inventory
+        run: |
+          npm run build:scripts
+          node dist/scripts/check-documentation-governance.mjs
+
+      - name: Reset generated build output
+        run: |
+          git restore --source=HEAD --worktree --staged -- dist 2>/dev/null || true
+          git clean -fd -- dist
+
+      - name: Verify result
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          registry = json.loads(Path("docs/documentation_registry.json").read_text(encoding="utf-8"))
+          entry = next(item for item in registry["documents"] if item["path"] == "docs/people-of-places-method.md")
+          assert entry["status"] == "canonical"
+          assert entry["owns"] == ["people_of_places_method"]
+          assert entry["last_verified"] == "2026-07-26"
+
+          readme = Path("docs/README.md").read_text(encoding="utf-8")
+          for token in (
+              "People-produksjon, stedskobling og bilder",
+              "dupliserte people-ID-er",
+              "ugyldige place-referanser",
+              "manglende gyldige primærankere",
+              "tomme `places`",
+              "avgjør ikke historisk relevans",
+          ):
+              assert token in readme
+
+          inventory = json.loads(Path("reports/documentation-governance/inventory.json").read_text(encoding="utf-8"))
+          assert "docs/people-of-places-method.md" not in inventory["unregistered_governance_candidates"]
+          PY
+
+      - name: Commit final branch
+        run: |
+          git add -A
+          git commit -m "Registrer canonical People of Places-governance"
+          git push --force origin HEAD:agent/documentation-governance-phase-22-people-of-places-clean
