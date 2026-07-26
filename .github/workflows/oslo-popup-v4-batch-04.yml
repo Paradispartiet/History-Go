@@ -1,16 +1,20 @@
 name: Apply Oslo popupDesc V4 batch 04
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/oslo-popup-v4-batch-04-ten-protocol
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 permissions:
   contents: write
 
 jobs:
   apply:
-    if: github.actor != 'github-actions[bot]'
+    if: github.head_ref == 'agent/oslo-popup-v4-batch-04-ten-protocol' && github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
