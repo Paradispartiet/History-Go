@@ -1,0 +1,39 @@
+name: One-time Oslo place scope materializer
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/oslo-place-scope-materialize-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out audit branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-desc-scope-audit-v2
+          fetch-depth: 0
+
+      - name: Write permanent Oslo scope report and correct protocol
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          node tools/audit-oslo-place-description-scope.mjs --write
+          git diff --check
+          git add \
+            reports/oslo-place-description-scope-audit-2026-07-26.json \
+            reports/oslo-place-description-scope-audit-2026-07-26.md \
+            reports/place-description-revision-protocol.md
+          test "$(git diff --cached --name-only | wc -l)" -eq 3
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Correct Oslo description scope to 512 active places"
+          git push origin HEAD:agent/oslo-desc-scope-audit-v2
