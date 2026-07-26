@@ -93,6 +93,13 @@ jobs:
           elif "### People-produksjon, stedskobling og bilder" not in readme:
               raise SystemExit("Fant ikke forventet People-seksjon i docs/README.md")
 
+          incomplete = "Dagens CI håndhever people-dataintegritet, men beregner ikke full place-for-place-dekning; dekningsmål må derfor dokumenteres i batchen."
+          complete = "Dagens CI håndhever people-dataintegritet, men beregner ikke full place-for-place-dekning eller historisk relevans; dekningsmål må derfor dokumenteres i batchen."
+          if incomplete in readme:
+              readme = readme.replace(incomplete, complete, 1)
+          if complete not in readme:
+              raise SystemExit("People of Places-avgrensningen mangler historisk relevans")
+
           completed = "- `people-of-places-method.md` synkronisert med manifest/audit/gate og registrert som canonical redaksjonell metode"
           if completed not in readme:
               anchor = "- `PEOPLE_IMAGES.md` synkronisert med pipeline og registrert som canonical bilde- og rettighetskontrakt"
@@ -135,25 +142,33 @@ jobs:
           assert method["status"] == "canonical"
           assert method["owns"] == ["people_of_places_method"]
 
+          readme = Path("docs/README.md").read_text(encoding="utf-8")
+          assert "full place-for-place-dekning eller historisk relevans" in readme
+
           inventory = json.loads(Path("reports/documentation-governance/inventory.json").read_text(encoding="utf-8"))
           assert "docs/people-of-places-method.md" not in inventory["unregistered_governance_candidates"]
 
           tracked = set(subprocess.check_output(["git", "diff", "--name-only", "HEAD"]).decode().splitlines())
           untracked = set(subprocess.check_output(["git", "ls-files", "--others", "--exclude-standard"]).decode().splitlines())
           changed = tracked | untracked
-          expected = {
+          allowed = {
               ".github/people-of-places-governance-trigger.txt",
               ".github/workflows/one-time-register-people-of-places-governance.yml",
               "docs/README.md",
               "docs/documentation_registry.json",
               "reports/documentation-governance/inventory.json",
           }
-          assert changed == expected, (changed, expected)
+          required = {
+              ".github/workflows/one-time-register-people-of-places-governance.yml",
+              "docs/README.md",
+              "reports/documentation-governance/inventory.json",
+          }
+          assert required <= changed <= allowed, (changed, required, allowed)
           PY
 
       - name: Commit final target branch
         shell: bash
         run: |
           git add -A
-          git commit -m "Registrer canonical People of Places-governance"
+          git commit -m "Fullfør canonical People of Places-governance"
           git push origin HEAD:agent/documentation-governance-phase-22-people-of-places
