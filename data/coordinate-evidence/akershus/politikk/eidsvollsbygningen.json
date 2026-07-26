@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "eidsvollsbygningen",
+  "placeFile": "data/places/politikk/akershus/eidsvollsbygningen/eidsvollsbygningen.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_building_polygon_representative_point",
+  "currentCoordinate": {
+    "lat": 60.30079,
+    "lon": 11.17098,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 125813296 – Eidsvollsbygningen; Eidsvoll 1814; Riksantikvaren kulturminne 146171; Wikidata Q4584720",
+    "coordType": "named_historic_civic_building_polygon_representative_point",
+    "coordRole": "building_anchor",
+    "sourceObjectId": "osm-way:125813296",
+    "coordNote": "The canonical marker follows the named Eidsvollsbygningen building polygon. The retained radius covers the immediate national-memorial and visitor complex without representing its legal boundary."
+  },
+  "previousCoordinate": {
+    "lat": 60.33056,
+    "lon": 11.26139,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 5978.6,
+    "reasonReplaced": "The rounded legacy point was approximately 5.98 kilometres northeast of the named building and did not represent the constitutional site or museum complex."
+  },
+  "identity": {
+    "currentName": "Eidsvollsbygningen",
+    "resolvedIdentity": "The historic main building at Eidsvoll Verk where the Constituent Assembly met and adopted the Constitution in 1814, distinct from the surrounding park, visitor centre and wider industrial landscape.",
+    "identityStatus": "resolved",
+    "identityProblem": "A distant information sign shares the same name, and the protected national memorial includes park and pavilions beyond the main house. The canonical record itself names the building and must therefore anchor to the building rather than to a sign, access point or broad Eidsvoll Verk area.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "The building is one coherent canonical object. The park and pavilions remain immediate context within the gameplay radius, while Eidsvoll Verk / Andelva is already a separate canonical landscape record."
+  },
+  "requiredEvidence": [
+    "stable named building object for Eidsvollsbygningen",
+    "official institutional confirmation of the building identity",
+    "official heritage-object confirmation",
+    "independent named-entity coordinate cross-check",
+    "explicit rejection of same-name sign and broad industrial landscape",
+    "radius statement separating gameplay coverage from legal protection geometry"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "museum",
+      "sourceName": "Eidsvoll 1814 – Eidsvollsbygningen",
+      "sourceUrl": "https://eidsvoll1814.no/eidsvollbygningen",
+      "sourceObjectId": "eidsvoll1814:eidsvollsbygningen",
+      "sourceQuality": "official_building_identity_and_history",
+      "finding": "The official institution identifies Eidsvollsbygningen as the house where the Constitution was written and adopted in 1814 and describes the physical building as the core historic object.",
+      "canVerifyCoordinate": false,
+      "reason": "Authoritatively resolves identity and scope but does not publish a reusable coordinate object on the page."
+    },
+    {
+      "sourceProvider": "museum",
+      "sourceName": "Eidsvoll 1814 – Besøk oss",
+      "sourceUrl": "https://eidsvoll1814.no/besok",
+      "sourceObjectId": "eidsvoll1814:carsten-ankers-veg-17",
+      "sourceQuality": "official_visitor_address_and_destination_context",
+      "finding": "The official visitor page lists Carsten Ankers veg 17, 2074 Eidsvoll Verk for the Eidsvollsbygningen destination.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as identity and access context, not as a substitute for the named building geometry."
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceName": "Riksantikvaren – Fredet Eidsvollsbygningen",
+      "sourceUrl": "https://riksantikvaren.no/fredninger/fredet-eidsvollsbygningen/",
+      "sourceObjectId": "riksantikvaren-kulturminne:146171",
+      "sourceQuality": "official_heritage_identity_and_complex_scope",
+      "finding": "Riksantikvaren identifies Eidsvollsbygningen as cultural-heritage object 146171 and states that the surrounding park and pavilions are also protected. The main building remains the named central object.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms the exact heritage identity and broader protected context without supplying a reusable map coordinate in the captured page."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 125813296 – Eidsvollsbygningen",
+      "sourceUrl": "https://www.openstreetmap.org/way/125813296",
+      "sourceObjectId": "osm-way:125813296",
+      "sourceQuality": "exact_named_building_polygon_with_published_representative_point",
+      "finding": "The named polygon is tagged building=civic and historic=building, linked to Wikidata Q4584720, and has a published representative point at 60.30079, 11.17098.",
+      "canVerifyCoordinate": true,
+      "reason": "The object directly represents the named building rather than a sign, museum entrance or wider locality."
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceName": "Wikidata Q4584720 – Eidsvollsbygningen",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q4584720",
+      "sourceObjectId": "wikidata:Q4584720",
+      "sourceQuality": "independent_named_entity_coordinate_and_heritage_id_cross_check",
+      "finding": "Wikidata identifies the object as Eidsvollsbygningen, links Kulturminne ID 146171 and publishes 60.30083333333333, 11.17083333333333, approximately 9.4 metres from the applied point.",
+      "canVerifyCoordinate": false,
+      "reason": "Used as an independent identity and location cross-check; the OSM building object remains the applied geometry source."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceName": "OpenStreetMap node 4909601826 – same-name information sign",
+      "sourceUrl": "https://www.openstreetmap.org/node/4909601826",
+      "sourceObjectId": "osm-node:4909601826",
+      "sourceQuality": "same_name_wrong_object_class",
+      "finding": "The object is tagged tourism=information and lies at 60.29632, 11.18918, approximately 1,119.2 metres east-southeast of the applied building point.",
+      "canVerifyCoordinate": false,
+      "reason": "Explicitly rejected because an information sign cannot represent the historic building."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Eidsvollsbygningen point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:eidsvollsbygningen",
+      "sourceQuality": "incorrect_rounded_remote_point",
+      "finding": "The legacy coordinate 60.33056, 11.26139 lies approximately 5,978.6 metres northeast of the named building.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent the building, museum complex or immediate Eidsvoll Verk heritage site."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "museum",
+      "address": {
+        "street": "Carsten Ankers veg",
+        "number": "17",
+        "postcode": "2074",
+        "city": "Eidsvoll Verk",
+        "country": "NO"
+      },
+      "sourceUrl": "https://eidsvoll1814.no/besok",
+      "sourceObjectId": "eidsvoll1814:carsten-ankers-veg-17",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:125813296",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q4584720",
+      "canApplyToPlace": false,
+      "rejectionReason": "Independent entity and coordinate cross-check; the linked OSM building polygon is the applied map object."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:4909601826",
+      "canApplyToPlace": false,
+      "rejectionReason": "Same-name tourism information sign approximately 1.12 kilometres away."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:eidsvollsbygningen",
+      "canApplyToPlace": false,
+      "rejectionReason": "Remote rounded point approximately 5.98 kilometres from the building."
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:125813296",
+      "geometryType": "Polygon",
+      "geometryRole": "named_main_building",
+      "canApplyToPlace": true,
+      "applied": true,
+      "rawGeometryCaptured": false
+    },
+    {
+      "sourceProvider": "riksantikvaren",
+      "sourceObjectId": "riksantikvaren-kulturminne:146171",
+      "geometryType": "protected_building_park_and_pavilions_not_captured",
+      "geometryRole": "legal_scope_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "eidsvollsbygningen_hovedbygning",
+      "name": "Eidsvollsbygningen – hovedbygningen",
+      "lat": 60.30079,
+      "lon": 11.17098,
+      "r": 90,
+      "type": "building_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:125813296",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:eidsvollsbygningen",
+      "lat": 60.33056,
+      "lon": 11.26139,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 5978.6,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:125813296",
+      "lat": 60.30079,
+      "lon": 11.17098,
+      "coordRole": "building_anchor",
+      "distanceFromPreviousM": 5978.6,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "wikidata",
+      "sourceObjectId": "wikidata:Q4584720",
+      "lat": 60.30083333333333,
+      "lon": 11.17083333333333,
+      "coordRole": "independent_named_entity_cross_check",
+      "distanceFromAppliedM": 9.4,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:4909601826",
+      "lat": 60.29632,
+      "lon": 11.18918,
+      "coordRole": "same_name_information_sign_false_candidate",
+      "distanceFromAppliedM": 1119.2,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-eidsvollsbygningen-source-probe/source-summary.json",
+      "description": "Persisted source identities, published OSM representative point, distance calculations, false-candidate rejection and representation decision. Raw OSM node geometry was not captured."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Eidsvollsbygningen building point, retained the 260-metre radius for the immediate memorial complex and continue with Eidsvoll Verk / Andelva."
+  },
+  "notes": [
+    "The coordinate moves approximately 5.98 kilometres from a clearly incorrect remote point to the named historic building.",
+    "The OSM representative point and Wikidata coordinate differ by approximately 9.4 metres.",
+    "The same-name information sign is explicitly rejected.",
+    "The 260-metre radius covers immediate visitor and memorial context but is not a legal protection, property or industrial-landscape polygon.",
+    "Eidsvoll Verk / Andelva remains a separate canonical landscape record."
+  ]
+}
