@@ -1,0 +1,107 @@
+name: One-time People of Places governance registration
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/one-time-register-people-of-places-governance.yml
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Patch documentation governance
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          registry_path = Path("docs/documentation_registry.json")
+          registry = json.loads(registry_path.read_text(encoding="utf-8"))
+          method_path = "docs/people-of-places-method.md"
+          if not any(entry.get("path") == method_path for entry in registry["documents"]):
+              entry = {
+                  "path": method_path,
+                  "status": "canonical",
+                  "role": "Bindende redaksjonell metode for relevante, kildebelagte og ikke-dupliserte person–sted-koblinger",
+                  "owns": ["people_of_places_method"],
+                  "last_verified": "2026-07-26",
+              }
+              insert_at = next(
+                  index + 1
+                  for index, existing in enumerate(registry["documents"])
+                  if existing.get("path") == "docs/DATA_PRODUCTION_CONTRACT.md"
+              )
+              registry["documents"].insert(insert_at, entry)
+          registry["last_verified"] = "2026-07-26"
+          registry_path.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+          readme_path = Path("docs/README.md")
+          readme = readme_path.read_text(encoding="utf-8")
+          old = '''### People-bilder og rettigheter
+
+1. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt
+2. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
+3. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
+4. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
+
+People-bilder skal komme fra Wikidata/Wikimedia Commons gjennom lisensporten. Runtime leser lokale bildepaths og `imageMeta` fra canonical manifest-loadede people-filer; kandidat- og attribusjonsfilene er arbeids- og sporbarhetsdata, ikke en parallell people-sannhet.
+'''
+          new = '''### People-produksjon, stedskobling og bilder
+
+1. [`people-of-places-method.md`](./people-of-places-method.md) — canonical relevans-, kilde-, gjenbruks- og batchmetode for person–sted-koblinger
+2. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
+3. [`../tools/audit-people-of-places-status.mts`](../tools/audit-people-of-places-status.mts) — status-, schema-, referanse- og struktur-audit
+4. [`../tools/check-people-of-places-gate.mts`](../tools/check-people-of-places-gate.mts) — blokkerer duplikater, ugyldige refs, manglende primæranker og tomme `places`
+5. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt for people-bilder
+6. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
+7. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
+
+People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI håndhever people-dataintegritet, men beregner ikke full place-for-place-dekning; dekningsmål må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
+'''
+          if old in readme:
+              readme = readme.replace(old, new, 1)
+          elif "### People-produksjon, stedskobling og bilder" not in readme:
+              raise SystemExit("Fant ikke forventet People-seksjon i docs/README.md")
+
+          completed = "- `people-of-places-method.md` synkronisert med manifest/audit/gate og registrert som canonical redaksjonell metode"
+          if completed not in readme:
+              anchor = "- `PEOPLE_IMAGES.md` synkronisert med pipeline og registrert som canonical bilde- og rettighetskontrakt"
+              if anchor not in readme:
+                  raise SystemExit("Fant ikke People Images-ankeret under Gjennomført")
+              readme = readme.replace(anchor, anchor + "\n" + completed, 1)
+          readme_path.write_text(readme, encoding="utf-8")
+          PY
+
+      - name: Validate documentation governance
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build:scripts
+          node dist/scripts/check-documentation-governance.mjs
+
+      - name: Commit documentation and remove this workflow
+        run: |
+          git restore --staged --worktree reports 2>/dev/null || true
+          git clean -fd reports/documentation-governance 2>/dev/null || true
+          git rm .github/workflows/one-time-register-people-of-places-governance.yml
+
+          actual="$(git diff --name-only HEAD | sort | tr '\n' ' ')"
+          expected=".github/workflows/one-time-register-people-of-places-governance.yml docs/README.md docs/documentation_registry.json "
+          printf 'Final changed files: %s\n' "$actual"
+          test "$actual" = "$expected"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/README.md docs/documentation_registry.json
+          git commit -m "Register canonical People of Places governance"
+          git push origin HEAD:main
