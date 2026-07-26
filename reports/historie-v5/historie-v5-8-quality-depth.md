@@ -1,11 +1,13 @@
-# Historie V5.7 quality depth audit
+# Historie V5.8 quality depth audit
 
 - Status: **PASSED**
 - Mode: `verify`
-- Domains: 23/20
-- Emner: 230/200
-- Concepts: 976/826
-- Theories: 230/200
+- Domains: 23/23
+- Emner: 230/230
+- Concepts: 976/976
+- Theories: 230/230
+- Mappings: 230/230
+- Methods: 105/105
 - Concepts with ≥2 indicators: 976/976
 - Concepts with ≥2 source requirements: 976/976
 - Semantic concept relations: 3889

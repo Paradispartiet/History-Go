@@ -43,7 +43,7 @@ const fail = (code, id, detail) => errors.push({ code, id, detail });
 const warn = (code, id, detail) => warnings.push({ code, id, detail });
 
 if (readiness.status !== 'FREEZE_READY') fail('readiness_status', 'global', `Expected FREEZE_READY, got ${readiness.status}`);
-if (readiness.v6_allowed !== true) fail('v6_gate_closed', 'global', 'v6_allowed must be true after the V5.6 freeze.');
+if (readiness.v6_allowed !== true) fail('v6_gate_closed', 'global', 'v6_allowed must be true for the active V5.8 model.');
 for (const [key, expected] of Object.entries(contract.coverage_counts || {})) {
   const actual = key === 'domains' ? A(pensum.domains).length
     : key === 'emner' ? emner.length
@@ -181,7 +181,7 @@ if (writeFreeze && errors.length === 0) {
     readiness: { status:readiness.status, v6_allowed:readiness.v6_allowed, quality_issue_totals:readiness.quality_issue_totals },
     counts: metrics.counts,
     files: fileHashes,
-    update_policy: 'Any mutation of an authoritative V5.6 file requires a reviewed PR, a green depth audit, and an intentionally refreshed manifest with an explicit reason.'
+    update_policy: 'Any mutation of an active authoritative Historie file requires a reviewed PR, a green depth audit, and an intentionally refreshed manifest with an explicit reason.'
   };
   writeJson(manifestPath, manifest);
 }
@@ -200,13 +200,15 @@ const report = {
 };
 writeJson(jsonReportPath, report);
 const lines = [
-  '# Historie V5.7 quality depth audit','',
+  '# Historie V5.8 quality depth audit','',
   `- Status: **${report.status}**`,
   `- Mode: \`${report.freeze_mode}\``,
-  `- Domains: ${metrics.counts.domains}/20`,
-  `- Emner: ${metrics.counts.emner}/200`,
-  `- Concepts: ${metrics.counts.concepts}/826`,
-  `- Theories: ${metrics.counts.theories}/200`,
+  `- Domains: ${metrics.counts.domains}/${contract.coverage_counts.domains}`,
+  `- Emner: ${metrics.counts.emner}/${contract.coverage_counts.emner}`,
+  `- Concepts: ${metrics.counts.concepts}/${contract.coverage_counts.concepts}`,
+  `- Theories: ${metrics.counts.theories}/${contract.coverage_counts.theories}`,
+  `- Mappings: ${metrics.counts.mappings}/${contract.coverage_counts.mappings}`,
+  `- Methods: ${metrics.counts.methods}/${contract.coverage_counts.methods}`,
   `- Concepts with ≥2 indicators: ${metrics.concepts.indicator_ready}/${metrics.counts.concepts}`,
   `- Concepts with ≥2 source requirements: ${metrics.concepts.source_requirement_ready}/${metrics.counts.concepts}`,
   `- Semantic concept relations: ${metrics.concepts.semantic_relations_total}`,
@@ -225,6 +227,6 @@ const lines = [
   'Authoritative V5.8 files may only change through an explicit manifest refresh after a green depth audit.'
 ];
 fs.writeFileSync(markdownReportPath, `${lines.join('\n')}\n`);
-console.log(`Historie V5.7 quality depth audit: ${report.status}`);
+console.log(`Historie V5.8 quality depth audit: ${report.status}`);
 console.log(`Concepts ${metrics.counts.concepts}, theories ${metrics.counts.theories}, errors ${errors.length}, warnings ${warnings.length}`);
 if (errors.length) process.exit(1);
