@@ -1,0 +1,66 @@
+name: Phase 23 inventory trigger
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/phase23-inventory-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out phase 23 branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/documentation-governance-phase-23-civication-pr-review-archive
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Regenerate documentation inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run build:scripts
+          node dist/scripts/check-documentation-governance.mjs
+          git restore --source=HEAD --worktree --staged -- dist 2>/dev/null || true
+          git clean -fd -- dist
+
+      - name: Verify archived review left active governance candidates
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          inventory = json.loads(Path("reports/documentation-governance/inventory.json").read_text(encoding="utf-8"))
+          assert "README/CIVICATION_SYSTEM_MAP_PR_REVIEW.md" not in inventory["unregistered_governance_candidates"]
+          assert Path("reports/archive/2026-05/civication/CIVICATION_SYSTEM_MAP_PR_REVIEW_2026-05-09.md").exists()
+          assert not Path("README/CIVICATION_SYSTEM_MAP_PR_REVIEW.md").exists()
+          PY
+
+      - name: Commit refreshed inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/documentation-governance/inventory.json
+          if git diff --cached --quiet; then
+            echo "Inventory already current"
+            exit 0
+          fi
+          git commit -m "Regenerer dokumentinventar etter Civication-arkivering"
+          git push origin HEAD:agent/documentation-governance-phase-23-civication-pr-review-archive
