@@ -310,3 +310,9 @@ Minimal, source-first data work is preferred over broad refactors.
 ### Rundingsregel for minneskilt og plaketter
 
 Blå skilt, minneskilt og minneplaketter skal ikke automatisk arve Nature fra kategori-profilen. Nye slike records skal bruke `rounds_exclude: ["nature"]` og skal ikke ha `nature_profile`. Naturinnhold må tilhøre et faktisk natursted eller et sted der naturen er en selvstendig dokumentert del av gameplay-objektet, ikke selve minneplaketten.
+
+## Historie: profil- og evidenslag
+
+Historie bruker nå et separat profil- og evidenslag for konkrete geografiske cases. Universelle emner eier `case_requirement_ids`; profiler eier casekandidater og mappings; claim-, source- og place-evidence-registrene eier dokumenterte påstander og kildegrunnlag.
+
+Kontrakten håndheves av de canonical registrene og de permanente History-validatorene.

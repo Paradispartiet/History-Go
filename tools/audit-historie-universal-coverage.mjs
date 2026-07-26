@@ -362,7 +362,18 @@ const fingerprintFiles = [
   fagkartPath,
 ];
 if (fs.existsSync(readinessPath)) fingerprintFiles.push(readinessPath);
-const sourceFingerprints = Object.fromEntries(fingerprintFiles.map((file) => [relative(file), sha256(file)]));
+for (const check of coverageContract.production_checks.filter((item) => item.type === 'candidate_file_exists')) {
+  for (const candidate of A(check.paths)) {
+    const file = path.join(root, candidate);
+    if (fs.existsSync(file)) fingerprintFiles.push(file);
+  }
+}
+for (const key of ['case_requirements', 'profiles_manifest', 'oslo_akershus_profile']) {
+  if (!authoritative[key]) continue;
+  const file = path.join(historyDir, authoritative[key]);
+  if (fs.existsSync(file)) fingerprintFiles.push(file);
+}
+const sourceFingerprints = Object.fromEntries(unique(fingerprintFiles).map((file) => [relative(file), sha256(file)]));
 
 const report = {
   schema_version: '1.0',

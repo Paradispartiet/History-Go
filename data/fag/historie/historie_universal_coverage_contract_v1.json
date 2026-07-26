@@ -39,8 +39,7 @@
       "conflicts",
       "analysis_axes",
       "historiographical_conflicts",
-      "canonical_thinkers",
-      "recommended_oslo_cases"
+      "canonical_thinkers"
     ],
     "status_rules": {
       "COVERED": "Minimum dedicated emner, supporting emner and distinct areas are all met.",
@@ -667,20 +666,6 @@
       "requirement": "Lokal, nasjonal, nordisk, europeisk og global historie må kunne realiseres uten at fagmodellen reduseres til Oslo-caser.",
       "cells": [
         {
-          "id": "oslo_akershus",
-          "label": "Oslo og Akershus",
-          "anchors": [
-            "oslo",
-            "akershus",
-            "eidsvoll",
-            "østlandet"
-          ],
-          "minimum_dedicated_emner": 2,
-          "minimum_supporting_emner": 6,
-          "minimum_distinct_areas": 2,
-          "gap_action": "Behold sterk lokal dekning, men skill den ut som geografisk profil fremfor universell fagdefinisjon."
-        },
-        {
           "id": "norge",
           "label": "Norge",
           "anchors": [
@@ -1097,7 +1082,7 @@
       "fields": [
         "recommended_cases",
         "case_ids",
-        "recommended_oslo_cases"
+        "case_requirement_ids"
       ],
       "minimum_items": 4,
       "minimum_ratio": 0.95,
@@ -1119,7 +1104,8 @@
       "type": "emne_any_array_ratio",
       "fields": [
         "recommended_cases",
-        "case_ids"
+        "case_ids",
+        "case_requirement_ids"
       ],
       "minimum_items": 4,
       "minimum_ratio": 0.95,
@@ -1169,6 +1155,8 @@
     }
   ],
   "completion_definition": {
-    "freeze_is_not_completeness": true
+    "freeze_is_not_completeness": true,
+    "geography_profiles_are_measured_separately": true,
+    "universal_geography_axis_excludes_city_profile_completeness": true
   }
 }

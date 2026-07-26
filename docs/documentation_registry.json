@@ -21,6 +21,7 @@
     "docs/SUBJECT_FILE_CONTRACT.md",
     "docs/HISTORY_UNIVERSAL_COVERAGE.md",
     "docs/PLACE_POPUP_SYSTEM.md",
+    "docs/PEOPLE_POPUP_SYSTEM.md",
     "docs/coordinates/README.md",
     "docs/coordinates/coordinate-source-contract-v1.md",
     "docs/coordinates/coordinate-evidence-files-v1.md",
@@ -531,6 +532,18 @@
       "last_verified": "2026-07-26"
     },
     {
+      "path": "docs/PEOPLE_POPUP_SYSTEM.md",
+      "status": "canonical",
+      "role": "Presentasjons-, felt-, handling-, fallback- og persontypekontrakt for people-popup V2",
+      "owns": [
+        "person_popup_presentation_contract",
+        "person_popup_field_contract",
+        "person_popup_type_profiles",
+        "person_popup_readiness_model"
+      ],
+      "last_verified": "2026-07-26"
+    },
+    {
       "path": "docs/PROGRESSION_MODEL.md",
       "status": "operational",
       "role": "Mål- og adaptermodell for samlet progresjonslesing uten å erstatte eksisterende runtime-lagring",
@@ -927,6 +940,47 @@
         "tools/audit-visual-design-codes.mts"
       ],
       "historical_reason": "Filen blandet aktiv arkitektur, pilotstatus, batchhistorikk og tidsbundne audittall i én lang tekst."
+    },
+    {
+      "path": "data/stories/stories_manifest.json",
+      "status": "canonical",
+      "role": "Maskinlesbart runtime-manifest for aktive story-filer, primærentitet og kategori",
+      "owns": [
+        "stories_runtime_manifest"
+      ],
+      "last_verified": "2026-07-26"
+    },
+    {
+      "path": "docs/STORIES_DATA_GOVERNANCE.md",
+      "status": "operational",
+      "role": "Operativ Stories-produksjons-, rapport-, arkiv- og integritetsguide",
+      "owns": [
+        "stories_data_governance"
+      ],
+      "last_verified": "2026-07-26"
+    },
+    {
+      "path": "reports/archive/2026-07/stories/STORIES_BATCH_4_RESEARCH_NOTES_2026-07-26.md",
+      "status": "historical",
+      "role": "Researchsnapshot for Stories batch 4 før den anbefalte ti-stedersbatchen ble implementert",
+      "owns": [],
+      "superseded_by": [
+        "data/stories/stories_manifest.json",
+        "docs/STORIES_DATA_GOVERNANCE.md"
+      ],
+      "historical_reason": "Kandidat- og researchnotat fra før batchimplementasjon; eier ikke aktiv produksjonskø eller status."
+    },
+    {
+      "path": "reports/archive/2026-07/stories/STORIES_COVERAGE_REPORT_PRE_CONSOLIDATION_2026-07-26.md",
+      "status": "historical",
+      "role": "Post-PR-#892 Stories-coverage-snapshot med tidsbundne place- og storytotaler",
+      "owns": [],
+      "superseded_by": [
+        "data/stories/stories_manifest.json",
+        "docs/STORIES_DATA_GOVERNANCE.md",
+        "tools/check_stories_integrity.mts"
+      ],
+      "historical_reason": "Rapportens 459-place-baseline og 25,1 prosent coverage er ikke dagens datagrunnlag."
     }
   ]
 }

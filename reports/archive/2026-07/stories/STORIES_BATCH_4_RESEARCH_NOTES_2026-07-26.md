@@ -1,3 +1,5 @@
+> **Historisk snapshot.** Dette dokumentet ble skrevet som researchgrunnlag før Stories batch 4. Den anbefalte ti-stedersbatchen er senere registrert i `data/stories/stories_manifest.json`. Notatet eier ingen aktiv produksjonsstatus, dekningsstatus eller story-kontrakt. Aktiv arbeidsflyt er dokumentert i `docs/STORIES_DATA_GOVERNANCE.md`.
+
 # Stories batch 4 – research-notater
 
 ## Sammendrag

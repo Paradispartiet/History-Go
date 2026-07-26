@@ -48,6 +48,7 @@ Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av s
 5. [`PROFILE_PROGRESS_READER_RUNTIME.md`](./PROFILE_PROGRESS_READER_RUNTIME.md) — implementert read-only helper for eksisterende progresjonskilder
 6. [`PLACE_STANDARD.md`](./PLACE_STANDARD.md) — canonical produktstandard for et History GO-sted
 7. [`PLACE_POPUP_SYSTEM.md`](./PLACE_POPUP_SYSTEM.md) — canonical presentasjons- og stedstypekontrakt for den rike stedspopupen
+8. [`PEOPLE_POPUP_SYSTEM.md`](./PEOPLE_POPUP_SYSTEM.md) — canonical presentasjons-, felt- og persontypekontrakt for den rike people-popupen
 
 Compatibility-filer som bare videresender eldre lenker:
 
@@ -128,15 +129,27 @@ Ved konflikt gjelder maskinkontrakten og valideringen. Dokumentasjonen skal korr
 
 Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk-places. Ved konflikt mellom dokumentasjon og et aktivt manifest er manifestet/runtime-koden sannhetskilden, og dokumentasjonen skal korrigeres.
 
+### Stories-data og produksjon
+
+1. [`STORIES_DATA_GOVERNANCE.md`](./STORIES_DATA_GOVERNANCE.md) — operativ produksjons-, rapport- og integritetsguide
+2. [`../data/stories/stories_manifest.json`](../data/stories/stories_manifest.json) — canonical runtime-manifest for aktive story-filer
+3. manifest-loadede filer under `data/stories/` — aktive story-objekter
+4. [`../tools/check_stories_integrity.mts`](../tools/check_stories_integrity.mts) — required fields, unike story-ID-er og place-/people-referanser
+
+En story er aktiv først når filen er manifestregistrert og `npm run check:stories` passerer. Researchnotater og coverage-rapporter er tidsbundne snapshots; de skal ligge under `reports/` eller `reports/archive/`, ikke opptre som nåstatus i `docs/`. De tidligere batch-4-notatene og post-PR-#892-coverage-rapporten er arkivert under `reports/archive/2026-07/stories/`.
+
 ### People-produksjon, stedskobling og bilder
 
 1. [`people-of-places-method.md`](./people-of-places-method.md) — canonical relevans-, kilde-, gjenbruks- og batchmetode for person–sted-koblinger
-2. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
-3. [`../tools/audit-people-of-places-status.mts`](../tools/audit-people-of-places-status.mts) — status-, schema-, referanse- og struktur-audit
-4. [`../tools/check-people-of-places-gate.mts`](../tools/check-people-of-places-gate.mts) — blokkerer duplikater, ugyldige refs, manglende primæranker og tomme `places`
-5. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt for people-bilder
-6. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
-7. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
+2. [`PEOPLE_POPUP_SYSTEM.md`](./PEOPLE_POPUP_SYSTEM.md) — canonical presentasjons-, felt-, fallback- og persontypekontrakt
+3. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
+4. [`../tools/audit-people-popup-readiness.mts`](../tools/audit-people-popup-readiness.mts) — rangerer alle manifest-lastede profiler etter popup-readiness og skriver regenererbare rapporter
+5. [`../reports/people-popup-readiness.md`](../reports/people-popup-readiness.md) — prioritert arbeidsliste etter kategori og stedsklynge
+6. [`../tools/audit-people-of-places-status.mts`](../tools/audit-people-of-places-status.mts) — status-, schema-, referanse- og struktur-audit
+7. [`../tools/check-people-of-places-gate.mts`](../tools/check-people-of-places-gate.mts) — blokkerer duplikater, ugyldige refs, manglende primæranker og tomme `places`
+8. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt for people-bilder
+9. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
+10. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
 
 People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI blokkerer dupliserte people-ID-er, ugyldige place-referanser, manglende gyldige primærankere og tomme `places`, men beregner ikke full place-for-place-dekning og avgjør ikke historisk relevans. Dekningsmål og relevans må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
 
