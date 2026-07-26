@@ -1,0 +1,244 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "ullensaker_kirke_kirkested",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch5/ullensaker_kirke_kirkested.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_romeriksdomen_building_anchor_without_invented_old_site_point",
+  "currentCoordinate": {
+    "lat": 60.083857437355,
+    "lon": 11.164727670111,
+    "r": 280,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 259926133 – Ullensaker kirke; Kartverket adressepunkt Kjerkevegen 25",
+    "coordType": "named_romeriksdomen_building_and_continuous_church_site_anchor",
+    "coordRole": "display_marker",
+    "sourceObjectId": "osm-way:259926133;building-ref:151220150",
+    "coordNote": "OpenStreetMap way 259926133 er den navngitte bygningsgeometrien for Ullensaker kirke, merket building=church og start_date=1958, med bygningsnummer 151220150 og Wikidata Q8732384. Den deterministisk beregnede polygoncentroiden er 60.083857437355, 11.164727670111. Kartverkets adresse-API returnerer ett eksakt objekt for Kjerkevegen 25 med representasjonspunkt 60.08387343447055, 11.164631691491484, matrikkel 3209-29/1115 og adressekode 6608, omtrent 5,6 meter fra kirkebygningscentroiden. Den første middelalderkirken sto ved prestegården Ullinshov omtrent 200 meter fra dagens kirke, men kartutsnittet inneholder ikke et eget navngitt objekt eller verifiserbar geometri for dette eldste stedet. Det lagres derfor ingen konstruert sekundærkoordinat."
+  },
+  "previousCoordinate": {
+    "lat": 60.0798,
+    "lon": 11.1406,
+    "r": 240,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 1412.1,
+    "reasonReplaced": "Legacy-punktet lå vest for det fysiske kirkestedet og kunne ikke knyttes til Romeriksdomen, Kjerkevegen 25 eller et verifisert eldre Ullinhof-kirkested."
+  },
+  "identity": {
+    "currentName": "Ullensaker kirke / Ullinhof kirkested",
+    "resolvedIdentity": "Romeriksdomen fra 1958 som fysisk anker for kirkestedet brukt siden 1500-tallet og den eldre Ullinshov/Ullinhof-kirkestedskontinuiteten",
+    "identityStatus": "resolved",
+    "identityProblem": "Dagens kirke har navngitt geometri og offisiell adresse, mens det eldste middelalderkirkestedet bare er tekstlig dokumentert omtrent 200 meter unna og mangler stabil kartgeometri.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "Posten skal formidle én lang kirkestedskontinuitet, med dagens bygg som fysisk hovedanker og det eldste stedet som historisk kontekst."
+  },
+  "requiredEvidence": [
+    "navngitt Romeriksdomen-geometri",
+    "offisielt Kjerkevegen 25-adressepunkt",
+    "dokumentert 1952-brann og 1958-kirke",
+    "dokumentert middelalderkirke ved Ullinshov",
+    "dokumentert navnehistorie Ullinshof/Ullinhof",
+    "eksplisitt fravær av verifiserbar eldre kirkestedsgeometri"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 259926133 – Ullensaker kirke",
+      "sourceUrl": "https://www.openstreetmap.org/way/259926133",
+      "sourceObjectId": "osm-way:259926133;building-ref:151220150",
+      "sourceQuality": "named_current_church_building_geometry",
+      "finding": "Way 259926133 er navngitt Ullensaker kirke, tagget building=church og start_date=1958, med bygningsnummer 151220150 og Wikidata Q8732384. Geometrien har 23 noder inklusive sluttpunkt og beregnet centroid 60.083857437355, 11.164727670111.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir det navngitte og reproduserbare fysiske hovedankeret."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Kjerkevegen 25",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3209:6608:25",
+      "sourceQuality": "official_church_address_representation_point",
+      "finding": "Kartverket returnerer ett eksakt objekt for Kjerkevegen 25: kommunenummer 3209, gårds- og bruksnummer 29/1115, adressekode 6608, postnummer 2040 og representasjonspunkt 60.08387343447055, 11.164631691491484.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter kirkens offisielle adresse og den navngitte bygningsgeometrien."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Ullensaker kirke",
+      "sourceUrl": "https://snl.no/Ullensaker_kirke",
+      "sourceObjectId": "snl:ullensaker-kirke",
+      "sourceQuality": "authoritative_building_fire_and_church_site_history",
+      "finding": "SNL dokumenterer dagens kirke fra 1958, arkitektene Arnstein Arneberg og Per Solemslie, freskene av Alf Rolfsen, brannen i 1952 og de reddede inventarstykkene. Kilden beskriver også middelalderkirken ved Ullinshov og senere kirker på dagens sted.",
+      "canVerifyCoordinate": true,
+      "reason": "Knytter dagens bygning til den lange kirkestedskontinuiteten som canonical skal representere."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Ullensaker menighet – Ullensaker kirke",
+      "sourceUrl": "https://www.kirken.no/nb-NO/fellesrad/Ullensaker_fellesraad/menigheter/ullensaker-menighet/",
+      "sourceObjectId": "ullensaker-menighet:romeriksdomen",
+      "sourceQuality": "official_parish_identity_and_current_use",
+      "finding": "Menigheten identifiserer Romeriksdomen som Ullensaker kirke og dagens aktive hovedkirke.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter den nåværende institusjonsidentiteten."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Ullensaker",
+      "sourceUrl": "https://snl.no/Ullensaker",
+      "sourceObjectId": "snl:ullensaker-ullinshof",
+      "sourceQuality": "authoritative_place_name_and_pre_christian_context",
+      "finding": "SNL forklarer kommunenavnet fra norrønt Ullinshof, sammensatt av gudenavnet Ull og hov, og knytter navnet til Ullinshov-gården.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger navne- og religionshistorien uten å etablere et eksakt førkristent punkt."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Materialized Ullensaker church-site map extract",
+      "sourceUrl": "https://www.openstreetmap.org/way/259926133",
+      "sourceObjectId": "osm-bbox:ullensaker-church-site-2026-07-26",
+      "sourceQuality": "negative_geometry_evidence_for_old_site",
+      "finding": "Det lokale kartutsnittet inneholder Romeriksdomen og kirkegårdsgeometri, men ikke et eget navngitt objekt eller verifiserbar ruin-/arkeologigeometri for den eldste Ullinhof-steinkirken.",
+      "canVerifyCoordinate": false,
+      "reason": "Begrunner at det ikke lagres en oppdiktet sekundærkoordinat for middelalderkirkestedet."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Ullensaker church-site point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:ullensaker_kirke_kirkested",
+      "sourceQuality": "incorrect_western_point",
+      "finding": "Forrige koordinat 60.0798, 11.1406 ligger omtrent 1 412,1 meter vest for kirkebygningscentroiden og manglet kildekontrakt.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes fordi den ikke representerer dagens eller det dokumenterte eldre kirkestedet fysisk."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Kjerkevegen",
+        "number": "25",
+        "postcode": "2040",
+        "city": "Kløfta",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3209:6608:25",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:259926133;building-ref:151220150",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3209:6608:25",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:ullensaker_kirke_kirkested",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:259926133",
+      "geometryType": "Polygon",
+      "geometryRole": "named_current_church_building",
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "anchors": [
+    {
+      "id": "ullensaker_kirke_romeriksdomen",
+      "name": "Ullensaker kirke – Romeriksdomen",
+      "lat": 60.083857437355,
+      "lon": 11.164727670111,
+      "r": 90,
+      "type": "unlock_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:259926133;building-ref:151220150",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:ullensaker_kirke_kirkested",
+      "lat": 60.0798,
+      "lon": 11.1406,
+      "coordRole": "incorrect_western_point",
+      "distanceFromAppliedM": 1412.1,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:259926133;building-ref:151220150",
+      "lat": 60.083857437355,
+      "lon": 11.164727670111,
+      "coordRole": "display_marker",
+      "distanceFromPreviousM": 1412.1,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3209:6608:25",
+      "lat": 60.08387343447055,
+      "lon": 11.164631691491484,
+      "coordRole": "official_address_cross_check",
+      "distanceFromAppliedM": 5.6,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "nominatim:osm-way-259926133",
+      "lat": 60.0838422,
+      "lon": 11.1647448,
+      "coordRole": "named_object_point_cross_check",
+      "distanceFromAppliedM": 1.9,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-ullensaker-kirke-source-probe/osm-way-259926133-full.xml",
+      "description": "Raw OpenStreetMap full geometry for Ullensaker kirke."
+    },
+    {
+      "path": "reports/akershus-coordinate-ullensaker-kirke-source-probe/nominatim-ullensaker-kirke.json",
+      "description": "Raw Nominatim lookup and polygon result for Romeriksdomen."
+    },
+    {
+      "path": "reports/akershus-coordinate-ullensaker-kirke-source-probe/geonorge-kjerkevegen-25.json",
+      "description": "Raw Kartverket Address API result for Kjerkevegen 25."
+    },
+    {
+      "path": "reports/akershus-coordinate-ullensaker-kirke-source-probe/osm-ullensaker-church-site-bbox.xml",
+      "description": "Raw local OSM map extract covering the current church, cemetery and documented nearby older-site landscape."
+    },
+    {
+      "path": "reports/akershus-coordinate-ullensaker-kirke-source-probe/source-summary.txt",
+      "description": "Deterministic building-centroid, address, site-object and legacy-distance summary."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named Romeriksdomen building centroid as the physical anchor for the continuous Ullensaker/Ullinhof church-site history without inventing an old-site coordinate. Continue with Aurskog-Høland bygdetun."
+  },
+  "notes": [
+    "The current church is the physical canonical marker for a longer church-site history.",
+    "No verifiable geometry for the earliest Ullinhof stone church was found in the materialized map extract, so no secondary coordinate is created.",
+    "The 280-metre radius covers the current cemetery and nearby documented Ullinshov/Ullinhof context at gameplay scale but is not a cemetery, property, automatic-protection or archaeological polygon.",
+    "The coordinate correction is approximately 1,412.1 metres."
+  ]
+}

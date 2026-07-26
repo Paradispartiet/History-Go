@@ -1,0 +1,243 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "nannestad_bygdemuseum",
+  "placeFile": "data/places/historie/akershus/places_historie_akershus_batch5/nannestad_bygdemuseum.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_museum_building_anchor",
+  "currentCoordinate": {
+    "lat": 60.21899976453861,
+    "lon": 11.014497955277188,
+    "r": 260,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 591392894 – Nannestad bygdemuseum; Kartverket adressepunkt Teiealleen 11; Nannestad kommune – Museer",
+    "coordType": "named_museum_building_anchor",
+    "coordRole": "display_marker",
+    "sourceObjectId": "osm-way:591392894;building-ref:19214206",
+    "coordNote": "OpenStreetMap way 591392894 er navngitt Nannestad bygdemuseum, tagget building=civic og tourism=museum, med bygningsnummer 19214206. Den deterministisk beregnede polygoncentroiden er 60.21899976453861, 11.014497955277188. Nominatim kryssjekker samme way med representasjonspunkt 60.2189826, 11.0144747, omtrent 2,3 meter fra centroiden. Kartverkets adresse-API returnerer ett eksakt, stedfestingsverifisert objekt for Teiealleen 11 med representasjonspunkt 60.21893661547271, 11.014694263764905, matrikkel 3238-27/72 og adressekode 2320, omtrent 12,9 meter fra centroiden."
+  },
+  "previousCoordinate": {
+    "lat": 60.217,
+    "lon": 11.012,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 261.7,
+    "reasonReplaced": "Legacy-punktet lå sørvest for det navngitte museumsbygget og manglet kildekontrakt."
+  },
+  "identity": {
+    "currentName": "Nannestad bygdemuseum",
+    "resolvedIdentity": "Det navngitte museumsbygget ved Teiealleen 11 med samlingene etablert gjennom Tore G. Solheims gave og åpnet i 2007",
+    "identityStatus": "resolved",
+    "identityProblem": "Museumsbygget, den nærliggende steinsamlingen og Ekerjordet må skilles. Canonical representerer selve museumsbygget og de innendørs samlingene.",
+    "locatorTypeCandidate": "building",
+    "requiresSplit": false,
+    "splitReason": "De utendørs elementene inngår i besøksmiljøet, men museets institusjonelle og samlingsmessige hovedidentitet ligger i det navngitte bygget."
+  },
+  "requiredEvidence": [
+    "navngitt museumsbygning",
+    "offisiell besøksadresse",
+    "dokumentert etablering og åpning i 2007",
+    "dokumentert Tore G. Solheim-gave",
+    "dokumenterte faste samlinger",
+    "skille mellom museumsbygg og utendørs nærmiljø"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 591392894 – Nannestad bygdemuseum",
+      "sourceUrl": "https://www.openstreetmap.org/way/591392894",
+      "sourceObjectId": "osm-way:591392894;building-ref:19214206",
+      "sourceQuality": "named_museum_building_geometry",
+      "finding": "Way 591392894 er navngitt Nannestad bygdemuseum, tagget building=civic og tourism=museum, med bygningsnummer 19214206. Polygonen har 33 noder inklusive sluttpunkt og beregnet centroid 60.21899976453861, 11.014497955277188.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir den navngitte, reproduserbare bygningsgeometrien for museet."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Teiealleen 11",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3238:2320:11",
+      "sourceQuality": "verified_official_museum_address",
+      "finding": "Kartverket returnerer ett eksakt og stedfestingsverifisert objekt for Teiealleen 11: kommunenummer 3238, gårds- og bruksnummer 27/72, adressekode 2320, postnummer 2030 og representasjonspunkt 60.21893661547271, 11.014694263764905.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter byggets offisielle adresse 12,9 meter fra centroiden."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Nannestad kommune – Museer",
+      "sourceUrl": "https://www.nannestad.kommune.no/tjenester/kultur-og-aktivitet/kultur-fritid-og-idrett/museer/",
+      "sourceObjectId": "nannestad-kommune:bygdemuseum",
+      "sourceQuality": "official_museum_identity_address_and_collection_history",
+      "finding": "Kommunen dokumenterer etableringen i 2007, Tore G. Solheims pengegave og gjenstander, Grindaker-interiørene, Dr. Habberstads legekontor, landhandel, håndverk, landbruksredskaper, steinsamling og adressen Teiealleen 11.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastslår dagens institusjon, adresse og innholdet som bygningen representerer."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Nannestad historielag – Historie",
+      "sourceUrl": "https://nannestadhistorielag.lag247.no/omoss/historie/",
+      "sourceObjectId": "nannestad-historielag:bygdemuseum-2007",
+      "sourceQuality": "local_primary_opening_and_planning_history",
+      "finding": "Historielaget dokumenterer tolv års planlegging og at museets utstillinger åpnet 8. mai 2007, med Tore G. Solheims gave som avgjørende grunnlag.",
+      "canVerifyCoordinate": false,
+      "reason": "Presiserer institusjons- og åpningshistorien."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Nominatim lookup – Nannestad bygdemuseum",
+      "sourceUrl": "https://nominatim.openstreetmap.org/search?q=Nannestad+bygdemuseum%2C+Nannestad%2C+Norway&format=jsonv2",
+      "sourceObjectId": "nominatim:osm-way-591392894",
+      "sourceQuality": "named_object_polygon_cross_check",
+      "finding": "Nominatim returnerer way 591392894 som Nannestad bygdemuseum med polygongeometri og representasjonspunkt 60.2189826, 11.0144747, omtrent 2,3 meter fra beregnet centroid.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker navn, objekttype og geometri."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Materialized Nannestad museum-area map extract",
+      "sourceUrl": "https://www.openstreetmap.org/way/591392894",
+      "sourceObjectId": "osm-bbox:nannestad-bygdemuseum-2026-07-26",
+      "sourceQuality": "building_and_nearby_context_geometry",
+      "finding": "Kartutsnittet skiller det navngitte museumsbygget fra adressepunktet, et separat civic-bygg, Ekerjordet, kunstverket Steiner i Nannestad, handelsbygg og øvrige sentrumsfunksjoner.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter at bygningen er et avgrenset, navngitt museum og ikke et generelt sentrums- eller parkområde."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Nannestad bygdemuseum point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:nannestad_bygdemuseum",
+      "sourceQuality": "imprecise_southwestern_point",
+      "finding": "Forrige koordinat 60.217, 11.012 ligger omtrent 261,7 meter sørvest for museumsbyggets centroid.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes av den navngitte bygningsgeometrien."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Teiealleen",
+        "number": "11",
+        "postcode": "2030",
+        "city": "Nannestad",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3238:2320:11",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:591392894;building-ref:19214206",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3238:2320:11",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:nannestad_bygdemuseum",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:591392894",
+      "geometryType": "Polygon",
+      "geometryRole": "named_museum_building",
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "anchors": [
+    {
+      "id": "nannestad_bygdemuseum_building",
+      "name": "Nannestad bygdemuseum",
+      "lat": 60.21899976453861,
+      "lon": 11.014497955277188,
+      "r": 90,
+      "type": "unlock_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:591392894;building-ref:19214206",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:nannestad_bygdemuseum",
+      "lat": 60.217,
+      "lon": 11.012,
+      "coordRole": "imprecise_southwestern_point",
+      "distanceFromAppliedM": 261.7,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:591392894;building-ref:19214206",
+      "lat": 60.21899976453861,
+      "lon": 11.014497955277188,
+      "coordRole": "display_marker",
+      "distanceFromPreviousM": 261.7,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3238:2320:11",
+      "lat": 60.21893661547271,
+      "lon": 11.014694263764905,
+      "coordRole": "official_address_cross_check",
+      "distanceFromAppliedM": 12.9,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "nominatim:osm-way-591392894",
+      "lat": 60.2189826,
+      "lon": 11.0144747,
+      "coordRole": "named_object_point_cross_check",
+      "distanceFromAppliedM": 2.3,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-nannestad-bygdemuseum-source-probe/osm-way-591392894-full.xml",
+      "description": "Raw OpenStreetMap full geometry for the museum building."
+    },
+    {
+      "path": "reports/akershus-coordinate-nannestad-bygdemuseum-source-probe/nominatim-nannestad-bygdemuseum.json",
+      "description": "Raw Nominatim museum lookup and polygon result."
+    },
+    {
+      "path": "reports/akershus-coordinate-nannestad-bygdemuseum-source-probe/geonorge-teiealleen-11-nannestad.json",
+      "description": "Raw Kartverket address result for Teiealleen 11."
+    },
+    {
+      "path": "reports/akershus-coordinate-nannestad-bygdemuseum-source-probe/osm-nannestad-bygdemuseum-bbox.xml",
+      "description": "Raw local OSM map extract covering the museum and nearby context."
+    },
+    {
+      "path": "reports/akershus-coordinate-nannestad-bygdemuseum-source-probe/source-summary.txt",
+      "description": "Deterministic building-centroid, address and legacy-distance summary."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named museum-building centroid. Akershus batch 5 is complete after merge."
+  },
+  "notes": [
+    "The canonical point represents the named museum building, not the adjacent park, outdoor stone collection or wider town centre.",
+    "The 260-metre radius is not a property, museum, park or event polygon.",
+    "The coordinate correction is approximately 261.7 metres."
+  ]
+}

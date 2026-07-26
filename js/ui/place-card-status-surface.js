@@ -15,6 +15,25 @@
     return String(value == null ? "" : value).trim();
   }
 
+  function loadPlacePopupV2() {
+    if (!document.querySelector('link[href="css/place-popup-v2.css"]')) {
+      const stylesheet = document.createElement("link");
+      stylesheet.rel = "stylesheet";
+      stylesheet.href = "css/place-popup-v2.css";
+      document.head.appendChild(stylesheet);
+    }
+
+    if (global.__HG_PLACE_POPUP_V2_SCRIPT_REQUESTED__) return;
+    if (global.__HG_PLACE_POPUP_V2_INSTALLED__) return;
+    if (document.querySelector('script[src="js/ui/place-popup-v2.js"]')) return;
+
+    global.__HG_PLACE_POPUP_V2_SCRIPT_REQUESTED__ = true;
+    const script = document.createElement("script");
+    script.src = "js/ui/place-popup-v2.js";
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+
   function statusLabel(summary) {
     if (summary?.status === "completed") return "Fullført";
     if (summary?.quizCompleted) return "Quiz fullført";
@@ -120,6 +139,8 @@
     loadAreaOverviewSurface();
     return true;
   }
+
+  loadPlacePopupV2();
 
   if (!install()) {
     let attempts = 0;
