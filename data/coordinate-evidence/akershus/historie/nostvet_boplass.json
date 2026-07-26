@@ -2,62 +2,262 @@
   "schemaVersion": "1.0",
   "placeId": "nostvet_boplass",
   "placeFile": "data/places/historie/akershus/places_historie_akershus_batch1/nostvet_boplass.json",
-  "evidenceStatus": "candidate_sources_collected",
-  "coordinateDecision": "needs_geometry_source",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_riksantikvaren_locality_41534_center",
   "currentCoordinate": {
+    "lat": 59.74233187729497,
+    "lon": 10.762980481326093,
+    "r": 120,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Riksantikvaren/Kulturminnesøk – Nøstvet boplassen, lokalitet 41534",
+    "coordType": "official_archaeological_locality_center",
+    "coordRole": "site_center",
+    "sourceObjectId": "kulturminnesok:41534",
+    "coordNote": "Riksantikvarens offentlige lokalitetsdata publiserer offisielt senterpunkt for den automatisk fredete lokaliteten 41534. MultiPolygon-geometrien har 62 koordinatpunkter og maksimal avstand omtrent 87,2 meter fra senteret."
+  },
+  "previousCoordinate": {
     "lat": 59.75109,
     "lon": 10.7996,
     "r": 220,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 2270.9,
+    "reasonReplaced": "Legacy-punktet sammenfalt med OSM-navnepunktet for Nøstvet gård. Ås kommune og Riksantikvaren plasserer den navngivende boplassen ved Sjøskogen, omtrent 2,27 kilometer vest for gårdspunktet."
   },
   "identity": {
     "currentName": "Nøstvet-boplassen",
-    "resolvedIdentity": "Nøstvedt-funnplassen at Sjøskogen/Vinterbro, the find landscape that gave the Nøstvet culture its name",
+    "resolvedIdentity": "Riksantikvaren-lokalitet 41534, Nøstvet boplassen, på høyden mellom Eikelia og Elgjartunveien ved Sjøskogen",
     "identityStatus": "resolved",
-    "identityProblem": "The official municipal visitor page identifies the find place and landscape, but does not publish an inspectable heritage geometry or exact representation point.",
+    "identityProblem": "Nøstvet-navnet viser både til gården, et større funnlandskap, kulturfasen og den navngivende boplassen. Den eksakte canonical-identiteten må følge den registrerte lokaliteten ved Sjøskogen, ikke gårdens navnepunkt eller en annen nærliggende steinalderlokalitet.",
     "locatorTypeCandidate": "archaeological_site",
     "requiresSplit": false,
-    "splitReason": "The record already represents the named archaeological find place rather than the wider distribution of Nøstvet-culture finds."
+    "splitReason": "Posten representerer den navngivende lokaliteten 41534. Tussebohuken, Nøstvet gård og andre boplasser i området er separate fysiske steder og skal ikke inngå som alternative canonical markører."
   },
   "requiredEvidence": [
     "exact Askeladden/Kulturminnesøk object for the named find place",
-    "inspectable archaeological-site geometry or official representation point",
-    "visual QA distinguishing the find place from Tussebo and the wider Nøstvedtmarka"
+    "inspectable archaeological-site geometry and official representation point",
+    "individual monuments belonging to the locality",
+    "official municipal identity distinguishing Sjøskogen from Nøstvet farm",
+    "physical cross-check against the information board and residential-road landscape",
+    "explicit radius limits that do not imply a legal protection polygon"
   ],
   "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Riksantikvaren OGC API – lokalitet 41534",
+      "sourceUrl": "https://api.ra.no/LokaliteterEnkeltminnerOgSikringssoner",
+      "sourceObjectId": "riksantikvaren-lokalitet:41534",
+      "sourceQuality": "official_named_archaeological_locality_geometry_and_center",
+      "finding": "Riksantikvaren identifiserer lokalitet 41534 som «Nøstvet boplassen». Offisielt senterpunkt er 59.74233187729497, 10.762980481326093. Lokaliteten har MultiPolygon-geometri, to enkeltminner, automatisk fredning og beskrivelse av funn fra omkring 1880, nye funn i 2015 og informasjonsskilt satt opp samme år.",
+      "canVerifyCoordinate": true,
+      "reason": "Dette er det navngitte, autoritative og geometrisk reproduserbare kulturminneobjektet canonical skal representere."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Riksantikvaren OGC API – enkeltminne 41534-1",
+      "sourceUrl": "https://kulturminnesok.no/ra/lokalitet/41534",
+      "sourceObjectId": "riksantikvaren-enkeltminne:41534-1",
+      "sourceQuality": "official_primary_settlement_geometry",
+      "finding": "Enkeltminne 41534-1 er registrert som boplass, automatisk fredet etter kulturminneloven § 4. Geometrien ligger omtrent 8,4 meter fra lokalitetens offisielle senterpunkt.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter at lokalitetssenteret ligger i det primære registrerte boplassområdet."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Riksantikvaren OGC API – enkeltminne 41534-2",
+      "sourceUrl": "https://kulturminnesok.no/ra/lokalitet/41534",
+      "sourceObjectId": "riksantikvaren-enkeltminne:41534-2",
+      "sourceQuality": "official_secondary_surface_find_geometry",
+      "finding": "Enkeltminne 41534-2 dokumenterer to flintfragmenter funnet på overflaten ved en stor steinblokk i 2015. Geometrien ligger omtrent 29,5 meter fra lokalitetssenteret og er automatisk fredet.",
+      "canVerifyCoordinate": true,
+      "reason": "Bekrefter nyere funn innen den samme avgrensede lokaliteten."
+    },
     {
       "sourceProvider": "municipality",
       "sourceName": "Ås kommune – Nøstvedtfunnet og Tussebohuken",
       "sourceUrl": "https://www.as.kommune.no/tjenester/friluftsliv-natur-og-klima/friluftslivsomrader-og-turmal/nostvedtfunnet-og-tussebohuken",
       "sourceObjectId": "as-kommune:nostvedtfunnet-og-tussebohuken",
-      "sourceQuality": "official_identity_and_landscape_location",
-      "finding": "Ås kommune identifies the Nøstvedt find place at Sjøskogen and explains that the find was named after the former Nøstvedt property.",
+      "sourceQuality": "official_identity_visitor_presentation_and_name_history",
+      "finding": "Kommunen plasserer funnplassen på Sjøskogen, forklarer at Sjøskogen hadde samme eier som Nøstvet og at funnet derfor fikk et noe upresist navn, og dokumenterer kulturhistorisk informasjonstavle på stedet.",
+      "canVerifyCoordinate": true,
+      "reason": "Knytter Riksantikvarens lokalitet til den offentlige besøks- og formidlingsidentiteten."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Lokalhistoriewiki – Boplassveien",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Boplassveien",
+      "sourceObjectId": "lokalhistoriewiki:boplassveien",
+      "sourceQuality": "historical_road_name_and_find_area_cross_check",
+      "finding": "Boplassveien er oppkalt etter Nøstvetkulturen, og kilden oppgir at funnene etter steinalderboplassen ble gjort på en høyde mellom Eikelia og Elgjartunveien.",
+      "canVerifyCoordinate": true,
+      "reason": "Den beskrevne høyden samsvarer med lokalitet 41534 og dagens informasjonsskilt."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6450596840 – NØSTVET information board",
+      "sourceUrl": "https://www.openstreetmap.org/node/6450596840",
+      "sourceObjectId": "osm-node:6450596840",
+      "sourceQuality": "named_on_site_information_board_cross_check",
+      "finding": "Det navngitte informasjonsskiltet NØSTVET ligger på 59.7426995, 10.7626924, omtrent 43,9 meter fra Riksantikvarens lokalitetssenter og innenfor lokalitetsmiljøet.",
       "canVerifyCoordinate": false,
-      "reason": "The page resolves identity and approximate landscape, not an exact source object or geometry."
+      "reason": "Bekrefter fysisk besøksformidling på stedet, men det autoritative arkeologiske senteret brukes som canonical."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Nøstvet-boplass point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:nostvet_boplass",
+      "sourceQuality": "incorrect_farm_name_point",
+      "finding": "Legacy-koordinaten 59.75109, 10.7996 sammenfaller med OSM-navnepunktet for gården Nøstvet og ligger omtrent 2 270,9 meter fra lokalitet 41534.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvises fordi den representerer gårdsnavnet, ikke den registrerte boplassen på Sjøskogen."
     }
   ],
   "addressCandidates": [],
-  "sourceObjectCandidates": [],
-  "geometryCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-lokalitet:41534",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-enkeltminne:41534-1",
+      "canApplyToPlace": false,
+      "rejectionReason": "One physical component inside the larger named locality; locality center provides the canonical place identity."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-enkeltminne:41534-2",
+      "canApplyToPlace": false,
+      "rejectionReason": "A 2015 surface-find component, not the complete named locality."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6450596840",
+      "canApplyToPlace": false,
+      "rejectionReason": "Visitor information board inside the locality, used only as a physical cross-check."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:nostvet_boplass",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-lokalitet:41534",
+      "geometryType": "MultiPolygon",
+      "geometryRole": "named_archaeological_locality",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-enkeltminne:41534-1",
+      "geometryType": "MultiPolygon",
+      "geometryRole": "primary_settlement_component",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-enkeltminne:41534-2",
+      "geometryType": "MultiPolygon",
+      "geometryRole": "secondary_surface_find_component",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "nostvet_boplassen_lokalitet_41534",
+      "name": "Nøstvet boplassen – Askeladden 41534",
+      "lat": 59.74233187729497,
+      "lon": 10.762980481326093,
+      "r": 100,
+      "type": "unlock_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-lokalitet:41534",
+      "canApplyToPlace": true
+    }
+  ],
   "coordinateCandidates": [
     {
       "sourceProvider": "legacy_dataset",
       "sourceObjectId": "legacy:nostvet_boplass",
       "lat": 59.75109,
       "lon": 10.7996,
-      "coordRole": "unverified_area_anchor",
+      "coordRole": "incorrect_farm_name_point",
+      "distanceFromAppliedM": 2270.9,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-lokalitet:41534",
+      "lat": 59.74233187729497,
+      "lon": 10.762980481326093,
+      "coordRole": "site_center",
+      "distanceFromPreviousM": 2270.9,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-enkeltminne:41534-1",
+      "lat": 59.742344450882825,
+      "lon": 10.763127895957094,
+      "coordRole": "primary_component_cross_check",
+      "distanceFromAppliedM": 8.4,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-enkeltminne:41534-2",
+      "lat": 59.74254682261126,
+      "lon": 10.762671835846966,
+      "coordRole": "secondary_component_cross_check",
+      "distanceFromAppliedM": 29.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6450596840",
+      "lat": 59.7426995,
+      "lon": 10.7626924,
+      "coordRole": "visitor_information_board_cross_check",
+      "distanceFromAppliedM": 43.9,
       "canApplyToPlace": false
     }
   ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-nostvet-source-probe/riksantikvaren-lokalitet-41534.json",
+      "description": "Exact Riksantikvaren locality 41534 feature extracted from the public OGC dataset."
+    },
+    {
+      "path": "reports/akershus-coordinate-nostvet-source-probe/riksantikvaren-enkeltminne-41534_1.json",
+      "description": "Exact Riksantikvaren individual monument 41534-1 geometry and metadata."
+    },
+    {
+      "path": "reports/akershus-coordinate-nostvet-source-probe/riksantikvaren-enkeltminne-41534_2.json",
+      "description": "Exact Riksantikvaren individual monument 41534-2 geometry and metadata."
+    },
+    {
+      "path": "reports/akershus-coordinate-nostvet-source-probe/exact-41534-summary.txt",
+      "description": "Deterministic locality-center, geometry-radius, component-distance and legacy-displacement summary."
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "No exact archaeological source object or inspectable geometry has been captured.",
-    "nextAction": "Resolve the named find place against Askeladden/Kulturminnesøk and capture its geometry before moving or verifying the marker."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied Riksantikvaren locality 41534's official center and reduced the radius to match the documented archaeological locality. Continue with the next Akershus place lacking production-grade Coordinate Evidence."
   },
   "notes": [
-    "Do not use the nearby shelter, school or a generic Nøstvedtmarka point as a proxy for the archaeological find place."
+    "The canonical point represents the named archaeological locality at Sjøskogen, not Nøstvet farm.",
+    "The municipal visitor page, historic route description and OSM information board independently place public interpretation in the same locality.",
+    "Nearby Askeladden settlements and Nøstvedt-named clearance cairns are separate heritage objects and were not substituted for locality 41534.",
+    "The 120-metre radius covers the registered geometry and visitor board but is not a legal protection, property or security-zone polygon.",
+    "The coordinate correction is approximately 2,270.9 metres."
   ]
 }

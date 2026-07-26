@@ -57,6 +57,17 @@ Historisk snapshot som ikke skal brukes som nåstatus:
 
 - `docs/IMPLEMENTATION_STATUS.md` — avgrenset snapshot for Social, Civication Home og Spotmeeting
 
+### Quiz og fysisk besøksstatus
+
+1. [`COMPLETION_DEFINITIONS.md`](./COMPLETION_DEFINITIONS.md) — canonical produktbetydning av besøkt, quizfullført, utforsket, fullført og mestret
+2. [`QUIZ_AND_PHYSICAL_VISIT_MODEL.md`](./QUIZ_AND_PHYSICAL_VISIT_MODEL.md) — operational runtimeguide for digital quiztilgang, fysisk besøksgate og smal place-progress read-model
+3. [`../js/quiz/quizAccess.ts`](../js/quiz/quizAccess.ts) — quiztilgang uten fysisk besøkswrite
+4. [`../js/visits/physicalVisits.ts`](../js/visits/physicalVisits.ts) — fysisk besøksservice og gate
+5. [`../js/ui/placeVisitButton.ts`](../js/ui/placeVisitButton.ts) — PlaceCard-knappens besøksatferd
+6. [`../tests/quiz-physical-visit-separation.test.js`](../tests/quiz-physical-visit-separation.test.js) — regresjonstest for separasjonen
+
+Quiz er digitalt tilgjengelig uten å skrive fysisk besøksstatus. Fysisk `visited` krever den fysiske besøksveien; badges, poeng, Groundhopper, ruter og andre downstream-belønninger eies ikke av denne adapteren uten egne implementasjoner.
+
 ### Historiske ruter
 
 1. [`README_HistoryGo_Historiske_Ruter.md`](./README_HistoryGo_Historiske_Ruter.md) — operational runtimeguide og ærlig implementasjonsgrense

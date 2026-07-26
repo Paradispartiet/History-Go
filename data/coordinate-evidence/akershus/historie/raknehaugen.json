@@ -2,88 +2,253 @@
   "schemaVersion": "1.0",
   "placeId": "raknehaugen",
   "placeFile": "data/places/historie/akershus/places_historie_akershus_batch1/raknehaugen.json",
-  "evidenceStatus": "candidate_sources_collected",
-  "coordinateDecision": "needs_raw_geometry_capture",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_riksantikvaren_locality_32659_1_center",
   "currentCoordinate": {
+    "lat": 60.14694610454176,
+    "lon": 11.137238047964038,
+    "r": 120,
+    "coordStatus": "verified_geometry",
+    "coordSource": "Riksantikvaren/Kulturminnesøk – Raknehaugen, lokalitet 32659-1",
+    "coordType": "official_archaeological_locality_center",
+    "coordRole": "site_center",
+    "sourceObjectId": "kulturminnesok:32659-1",
+    "coordNote": "Riksantikvarens offisielle lokalitetssenter ligger 3,9 meter fra den deterministiske centroiden i den navngitte OSM-haugpolygonen. Lokalitetens MultiPolygon strekker seg maksimalt 85,1 meter fra senteret."
+  },
+  "previousCoordinate": {
     "lat": 60.1469,
     "lon": 11.1366,
     "r": 260,
-    "coordStatus": "",
-    "coordSource": "",
-    "coordType": "",
-    "coordNote": ""
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 35.7,
+    "reasonReplaced": "Legacy-punktet lå nær monumentet, men manglet kildekontrakt og lå vest for Riksantikvarens offisielle lokalitetssenter. Radiusen var mer enn dobbelt så stor som nødvendig for den dokumenterte geometrien."
   },
   "identity": {
     "currentName": "Raknehaugen",
-    "resolvedIdentity": "Raknehaugen at Sand in Ullensaker, the monumental mound dated to 552",
+    "resolvedIdentity": "Riksantikvaren-lokalitet 32659-1, den monumentale rundhaugen ved Ljøgot i Ullensaker",
     "identityStatus": "resolved",
-    "identityProblem": "The exact named OSM way is identified, but the raw node geometry and deterministic representation-point calculation are not yet stored in the repository.",
+    "identityProblem": "Raknehaugen har både selve haugpolygonen, et utsiktspunkt, informasjonsskilt, guidepost og adkomstpunkter. Canonical skal følge det registrerte arkeologiske monumentet, ikke et besøks- eller parkeringspunkt.",
     "locatorTypeCandidate": "archaeological_site",
     "requiresSplit": false,
-    "splitReason": "The named mound is one coherent physical archaeological site."
+    "splitReason": "Den navngitte haugen er én sammenhengende, automatisk fredet arkeologisk lokalitet med ett registrert enkeltminne."
   },
   "requiredEvidence": [
-    "raw OpenStreetMap way 258836263 geometry capture",
-    "deterministic polygon representation-point calculation",
-    "visual QA against the mound boundary and access path"
+    "official Riksantikvaren locality object and centre",
+    "raw named mound polygon geometry",
+    "deterministic OSM polygon-centroid calculation",
+    "geometry extent and radius justification",
+    "physical cross-check against information and viewpoint objects",
+    "explicit rejection of access and parking proxies"
   ],
   "evidence": [
     {
-      "sourceProvider": "municipality",
-      "sourceName": "Ullensaker kommune – Raknehaugen",
-      "sourceUrl": "https://www.ullensaker.kommune.no/raknehaugen",
-      "sourceObjectId": "ullensaker-kommune:raknehaugen",
-      "sourceQuality": "official_identity_location_and_history",
-      "finding": "Ullensaker kommune identifies Raknehaugen at Sand, describes the mound and gives access from Hovin school.",
-      "canVerifyCoordinate": false,
-      "reason": "The municipality page verifies identity and locality but does not expose coordinate geometry."
+      "sourceProvider": "manual_research",
+      "sourceName": "Riksantikvaren OGC API – Raknehaugen 32659-1",
+      "sourceUrl": "https://api.ra.no/LokaliteterEnkeltminnerOgSikringssoner",
+      "sourceObjectId": "riksantikvaren-lokalitet:32659-1",
+      "sourceQuality": "official_named_archaeological_locality_geometry_and_center",
+      "finding": "Riksantikvaren identifiserer lokalitet 32659-1 som Raknehaugen og publiserer offisielt senterpunkt 60.14694610454176, 11.137238047964038. MultiPolygon-geometrien har 43 koordinatpunkter og maksimal utstrekning omtrent 85,1 meter fra senteret. Lokaliteten er automatisk fredet og inneholder ett enkeltminne.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir det autoritative arkeologiske objektet, geometrien og senterpunktet canonical skal følge."
     },
     {
       "sourceProvider": "osm",
       "sourceName": "OpenStreetMap way 258836263 – Raknehaugen",
       "sourceUrl": "https://www.openstreetmap.org/way/258836263",
       "sourceObjectId": "osm-way:258836263",
-      "sourceQuality": "exact_named_semantic_object_candidate",
-      "finding": "A named archaeological-site way for Raknehaugen is identified at approximately 60.14698, 11.13719.",
+      "sourceQuality": "named_physical_mound_polygon",
+      "finding": "Way 258836263 er navngitt Raknehaugen og tagget historic=archaeological_site og archaeological_site=tumulus. Den lukkede polygonen har 10 noder, centroid 60.14697672151585, 11.137202577094722 og maksimal vertexavstand omtrent 46,7 meter.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir en reproduserbar fysisk hauggeometri som uavhengig kontroll av Riksantikvarens lokalitetssenter."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Ullensaker kommune – Raknehaugen",
+      "sourceUrl": "https://www.ullensaker.kommune.no/raknehaugen",
+      "sourceObjectId": "ullensaker-kommune:raknehaugen",
+      "sourceQuality": "official_identity_location_history_and_access",
+      "finding": "Ullensaker kommune identifiserer Raknehaugen ved Sand/Ljøgot, beskriver monumentet og formidler adkomst fra Hovin skole.",
       "canVerifyCoordinate": false,
-      "reason": "The object identity is strong, but the repository still needs the raw geometry capture and deterministic point derivation used by the coordinate protocol."
+      "reason": "Bekrefter identitet og besøkskontekst, men adkomstpunktet skal ikke erstatte monumentgeometrien."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Nominatim – Raknehaugen way result",
+      "sourceUrl": "https://www.openstreetmap.org/way/258836263",
+      "sourceObjectId": "nominatim:osm-way-258836263",
+      "sourceQuality": "named_object_point_cross_check",
+      "finding": "Nominatim løser den samme haugwayen til 60.1470469, 11.1371888, omtrent 7,8 meter fra beregnet OSM-centroid og omtrent 11,3 meter fra Riksantikvarens senter.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter objektidentiteten, men brukes ikke foran rå geometri eller offisielt lokalitetssenter."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 4904939956 – viewpoint on Raknehaugen",
+      "sourceUrl": "https://www.openstreetmap.org/node/4904939956",
+      "sourceObjectId": "osm-node:4904939956",
+      "sourceQuality": "on_mound_viewpoint_cross_check",
+      "finding": "Utsiktspunktet ligger omtrent 1,4 meter fra OSM-centroid og omtrent 3,9 meter fra Riksantikvarens senter.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter at det anvendte senteret ligger fysisk på haugen, men viewpoint-taggen er ikke selve kulturminneobjektet."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 4904939922 – Raknehaugen information board",
+      "sourceUrl": "https://www.openstreetmap.org/node/4904939922",
+      "sourceObjectId": "osm-node:4904939922",
+      "sourceQuality": "nearby_information_board_cross_check",
+      "finding": "Informasjonsskiltet «Raknehaugen størst i norden» ligger omtrent 48,3 meter fra OSM-centroid og innenfor den valgte gameplay-radiusen.",
+      "canVerifyCoordinate": false,
+      "reason": "Bekrefter besøksformidling ved haugen, men skiltet er ikke canonical markør."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Raknehaugen point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:raknehaugen",
+      "sourceQuality": "nearby_uncontracted_point_with_oversized_radius",
+      "finding": "Legacy-koordinaten 60.1469, 11.1366 ligger omtrent 35,7 meter vest for Riksantikvarens senter og hadde radius 260 meter uten kildekontrakt.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes av det offisielle senteret og en radius tilpasset registrert geometri."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-lokalitet:32659-1",
+      "canApplyToPlace": true
+    },
+    {
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:258836263",
+      "canApplyToPlace": false,
+      "rejectionReason": "Strong physical geometry cross-check, but Riksantikvaren supplies the authoritative locality centre and legal archaeological identity."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:9610804141",
+      "canApplyToPlace": false,
+      "rejectionReason": "Guidepost approximately 173 metres from the mound centre."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:raknehaugen",
       "canApplyToPlace": false
     }
   ],
   "geometryCandidates": [
     {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-lokalitet:32659-1",
+      "geometryType": "MultiPolygon",
+      "geometryRole": "named_archaeological_locality",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:258836263",
-      "lat": 60.14698,
-      "lon": 11.13719,
-      "coordRole": "area_anchor_candidate",
+      "geometryType": "Polygon",
+      "geometryRole": "named_physical_mound_cross_check",
       "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "raknehaugen_lokalitet_32659_1",
+      "name": "Raknehaugen – Askeladden 32659-1",
+      "lat": 60.14694610454176,
+      "lon": 11.137238047964038,
+      "r": 100,
+      "type": "unlock_anchor",
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-lokalitet:32659-1",
+      "canApplyToPlace": true
     }
   ],
   "coordinateCandidates": [
     {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:raknehaugen",
+      "lat": 60.1469,
+      "lon": 11.1366,
+      "coordRole": "nearby_uncontracted_point",
+      "distanceFromAppliedM": 35.7,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "riksantikvaren-lokalitet:32659-1",
+      "lat": 60.14694610454176,
+      "lon": 11.137238047964038,
+      "coordRole": "site_center",
+      "distanceFromPreviousM": 35.7,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
       "sourceProvider": "osm",
       "sourceObjectId": "osm-way:258836263",
-      "lat": 60.14698,
-      "lon": 11.13719,
-      "coordRole": "area_anchor_candidate",
-      "distanceFromCurrentM": 33.8,
+      "lat": 60.14697672151585,
+      "lon": 11.137202577094722,
+      "coordRole": "physical_mound_centroid_cross_check",
+      "distanceFromAppliedM": 3.9,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "nominatim:osm-way-258836263",
+      "lat": 60.1470469,
+      "lon": 11.1371888,
+      "coordRole": "named_object_point_cross_check",
+      "distanceFromAppliedM": 11.3,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:4904939956",
+      "lat": 60.1469729,
+      "lon": 11.1372258,
+      "coordRole": "on_mound_viewpoint_cross_check",
+      "distanceFromAppliedM": 3.1,
       "canApplyToPlace": false
     }
   ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-raknehaugen-source-probe/riksantikvaren-raknehaugen-exact.json",
+      "description": "Exact Riksantikvaren Raknehaugen locality feature from the public OGC dataset."
+    },
+    {
+      "path": "reports/akershus-coordinate-raknehaugen-source-probe/osm-way-258836263-full.xml",
+      "description": "Raw OpenStreetMap full node geometry for the named Raknehaugen mound polygon."
+    },
+    {
+      "path": "reports/akershus-coordinate-raknehaugen-source-probe/nominatim-raknehaugen.json",
+      "description": "Raw Nominatim named-object and information-point results."
+    },
+    {
+      "path": "reports/akershus-coordinate-raknehaugen-source-probe/osm-raknehaugen-bbox.xml",
+      "description": "Raw local OSM extract covering the mound, viewpoint, information boards and access objects."
+    },
+    {
+      "path": "reports/akershus-coordinate-raknehaugen-source-probe/source-summary.txt",
+      "description": "Deterministic RA/OSM centre, geometry-extent, nearby-object and legacy-distance summary."
+    }
+  ],
   "decision": {
-    "canBecomeVerified": false,
-    "blockedReason": "Raw polygon geometry and a reproducible representation-point calculation are not yet captured.",
-    "nextAction": "Fetch way 258836263 with all nodes, derive the repository-standard interior anchor and then apply it to aggregate, split and indexes."
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied Riksantikvaren locality 32659-1's official centre and reduced the radius to 120 metres. Continue with Nes kirkeruiner."
   },
   "notes": [
-    "Do not replace the mound with the Hovin school parking point or an information-sign proxy."
+    "The authoritative locality centre and the raw physical mound centroid differ by only 3.9 metres.",
+    "The 120-metre radius covers the complete registered locality geometry and immediate interpretation objects, with approximately 34.9 metres of buffer beyond the farthest locality vertex.",
+    "The radius is not a legal protection, security-zone, property or landscape-visibility polygon.",
+    "Hovin school parking and the distant guidepost remain access aids rather than canonical coordinates.",
+    "The coordinate correction is approximately 35.7 metres and the radius decreases from 260 to 120 metres."
   ]
 }
