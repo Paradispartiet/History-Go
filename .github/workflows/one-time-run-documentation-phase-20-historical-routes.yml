@@ -9,8 +9,6 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - .github/workflows/temporary-documentation-phase-20-historical-routes.yml
 
 permissions:
   contents: write
@@ -55,11 +53,12 @@ jobs:
           PY
           python /tmp/consolidate_historical_routes_docs.py
 
-      - name: Remove temporary workflows from target branch
+      - name: Remove temporary files from target branch
         shell: bash
         run: |
           rm .github/workflows/temporary-documentation-phase-20-historical-routes.yml
           rm .github/workflows/one-time-run-documentation-phase-20-historical-routes.yml
+          rm -f .github/documentation-phase20-trigger
 
       - name: Install dependencies
         run: npm ci --ignore-scripts --no-audit --no-fund
@@ -103,6 +102,7 @@ jobs:
 
           changed = set(subprocess.check_output(['git', 'diff', '--name-only', 'HEAD']).decode().splitlines())
           expected = {
+              '.github/documentation-phase20-trigger',
               '.github/workflows/one-time-run-documentation-phase-20-historical-routes.yml',
               '.github/workflows/temporary-documentation-phase-20-historical-routes.yml',
               'docs/README.md',
