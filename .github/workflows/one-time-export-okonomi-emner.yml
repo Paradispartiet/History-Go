@@ -1,4 +1,4 @@
-name: One-time export okonomi emners
+name: One-time export okonomi emners and registries
 
 on:
   push:
@@ -51,7 +51,14 @@ jobs:
               measure_ids: byExt.get(x.emne_id)?.measure_ids || []
             }));
           if (rows.length !== 36) throw new Error(`Expected 36 emners, got ${rows.length}`);
+          const registries = {
+            theories: read('teorikort_okonomi_og_naeringsliv_v1.json').cards.map(x => ({id:x.theory_id,title:x.title,tracks:x.track_ids,mapped_emne_ids:x.mapped_emne_ids})),
+            methods: read('metodeprotokoller_okonomi_og_naeringsliv_v1.json').protocols.map(x => ({id:x.method_id,title:x.title,tracks:x.track_ids,mapped_emne_ids:x.mapped_emne_ids})),
+            models: read('modellregister_okonomi_og_naeringsliv_v1.json').models.map(x => ({id:x.model_id,title:x.title,tracks:x.track_ids,mapped_emne_ids:x.mapped_emne_ids})),
+            measures: read('maleregister_okonomi_og_naeringsliv_v1.json').measures.map(x => ({id:x.measure_id,title:x.title,tracks:x.track_ids,mapped_emne_ids:x.mapped_emne_ids}))
+          };
           fs.writeFileSync('.tmp/okonomi-emner.json', JSON.stringify(rows, null, 2) + '\n');
+          fs.writeFileSync('.tmp/okonomi-registries.json', JSON.stringify(registries, null, 2) + '\n');
           NODE
       - name: Commit export
         shell: bash
@@ -59,6 +66,7 @@ jobs:
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add .tmp/okonomi-emner.json
-          git commit -m 'TEMP: eksporter økonomiemner for redaksjonell revisjon'
+          git add .tmp/okonomi-emners.json .tmp/okonomi-emner.json .tmp/okonomi-registries.json 2>/dev/null || true
+          git add .tmp/okonomi-emner.json .tmp/okonomi-registries.json
+          git commit -m 'TEMP: eksporter økonomiemner og registre for redaksjonell revisjon'
           git push origin HEAD:agent/okonomi-naeringsliv-emne-revision-research
