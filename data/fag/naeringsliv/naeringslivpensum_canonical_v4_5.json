@@ -27,7 +27,10 @@
     "core_mapping_count": 36,
     "field_module_mapping_count": 0,
     "all_core_emner_have_mapping": true,
-    "field_modules_require_mapping": false
+    "field_modules_require_mapping": false,
+    "individually_curated_core_emne_count": 36,
+    "remaining_core_emne_count": 0,
+    "all_core_emners_individually_curated": true
   },
   "domain_order": [
     "arbeid_produksjon_verdiskaping",
@@ -158,7 +161,12 @@
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "work_capital_firm_or_infrastructure_anchor_required": true
+      "work_capital_firm_or_infrastructure_anchor_required": true,
+      "curation_status": "individually_curated",
+      "curation_batch": "naeringsliv_arbeid_produksjon_v1",
+      "curation_date": "2026-07-25",
+      "curated_emne_count": 9,
+      "generic_template_fields_remaining": false
     },
     {
       "domain_id": "kapital_eierskap_finans",
@@ -272,7 +280,12 @@
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "work_capital_firm_or_infrastructure_anchor_required": true
+      "work_capital_firm_or_infrastructure_anchor_required": true,
+      "curation_status": "individually_curated",
+      "curation_batch": "naeringsliv_kapital_finans_v1",
+      "curation_date": "2026-07-25",
+      "curated_emne_count": 9,
+      "generic_template_fields_remaining": false
     },
     {
       "domain_id": "handel_forbruk_marked",
@@ -377,7 +390,12 @@
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "work_capital_firm_or_infrastructure_anchor_required": true
+      "work_capital_firm_or_infrastructure_anchor_required": true,
+      "curation_status": "individually_curated",
+      "curation_batch": "naeringsliv_handel_forbruk_v1",
+      "curation_date": "2026-07-25",
+      "curated_emne_count": 5,
+      "generic_template_fields_remaining": false
     },
     {
       "domain_id": "teknologi_innovasjon_plattform",
@@ -478,7 +496,12 @@
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "work_capital_firm_or_infrastructure_anchor_required": true
+      "work_capital_firm_or_infrastructure_anchor_required": true,
+      "curation_status": "individually_curated",
+      "curation_batch": "naeringsliv_teknologi_innovasjon_v1",
+      "curation_date": "2026-07-25",
+      "curated_emne_count": 7,
+      "generic_template_fields_remaining": false
     },
     {
       "domain_id": "logistikk_infrastruktur_rom",
@@ -567,7 +590,12 @@
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "work_capital_firm_or_infrastructure_anchor_required": true
+      "work_capital_firm_or_infrastructure_anchor_required": true,
+      "curation_status": "individually_curated",
+      "curation_batch": "naeringsliv_logistikk_rom_v1",
+      "curation_date": "2026-07-25",
+      "curated_emne_count": 3,
+      "generic_template_fields_remaining": false
     },
     {
       "domain_id": "makt_regulering_baerekraft",
@@ -672,7 +700,12 @@
       "method_anchor_required": true,
       "source_anchor_required": true,
       "external_claim_basis_required": true,
-      "work_capital_firm_or_infrastructure_anchor_required": true
+      "work_capital_firm_or_infrastructure_anchor_required": true,
+      "curation_status": "individually_curated",
+      "curation_batch": "naeringsliv_makt_baerekraft_v1",
+      "curation_date": "2026-07-25",
+      "curated_emne_count": 3,
+      "generic_template_fields_remaining": false
     }
   ],
   "source_priority": [
@@ -793,5 +826,23 @@
       ],
       "purpose": "Tverrgående feltmodul for å undersøke hvor arbeidsplasser, lager, havner, transport, eierskap og teknisk infrastruktur ligger og hvordan de former byens økonomiske rom."
     }
-  ]
+  ],
+  "content_curation": {
+    "status": "complete",
+    "current_version": "naeringsliv_individual_curation_v1_complete",
+    "curated_domain_ids": [
+      "arbeid_produksjon_verdiskaping",
+      "kapital_eierskap_finans",
+      "handel_forbruk_marked",
+      "teknologi_innovasjon_plattform",
+      "logistikk_infrastruktur_rom",
+      "makt_regulering_baerekraft"
+    ],
+    "curated_core_emne_count": 36,
+    "remaining_core_emne_count": 0,
+    "rule": "Et emne regnes som individuelt kuratert først når definisjon, betydning, nøkkelspørsmål, konflikter, ideologiske dimensjoner, analyseakser, blindsoner, generatorveiledning og anti-patterns er skrevet for emnets egen faglige logikk.",
+    "completed_at": "2026-07-25",
+    "all_core_emners_individually_curated": true,
+    "field_modules_preserved": 2
+  }
 }
