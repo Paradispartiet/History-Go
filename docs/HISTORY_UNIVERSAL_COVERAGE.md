@@ -1,16 +1,30 @@
 # Historie — universell heldekning
 
 Status: **canonical dekningspolicy og operativ auditinngang**  
-Eier: History GO fagdata  
+Eier: `history_universal_coverage`
 Sist kontrollert: **2026-07-26**
 
 ## Beslutning
 
-Historie V5.5 skal ikke omtales som et komplett historiefag bare fordi den eksisterende strukturen har 20/20 domener, 200/200 emner eller status `FREEZE_READY`.
+Historie V5.5 skal ikke omtales som et komplett historiefag bare fordi den eksisterende strukturen hadde 20/20 domener, 200/200 emner eller status `FREEZE_READY`.
 
-Disse tallene viser at en forhåndsvalgt modell er fylt ut og kvalitetskontrollert. De beviser ikke at modellen inneholder alle nødvendige tidsperioder, temafelt, geografiske nivåer, aktørperspektiver eller produksjonsgrunnlag.
+Disse tallene viste at en forhåndsvalgt modell var fylt ut og kvalitetskontrollert. De beviste ikke at modellen inneholdt alle nødvendige tidsperioder, temafelt, geografiske nivåer, aktørperspektiver eller produksjonsgrunnlag.
 
 Frysing beskytter en versjon. Frysing er ikke en dekningsmåling.
+
+## Autoritetsgrense
+
+Denne filen er den canonical menneskelesbare eieren av **universell Historie-dekning**.
+
+De aktive maskinautoritetene er:
+
+- `data/fag/historie/historie_v5_contract.json` — aktiv Historie-modell og forventede V5.7-kvalitetstall;
+- `data/fag/historie/historie_universal_coverage_contract_v1.json` — uavhengig heldekningskontrakt;
+- `data/fag/historie/historie_v5_7_freeze_manifest.json` — aktivt kvalitets- og frysemanifest;
+- `reports/historie-v5/historie-v5-7-quality-depth.json` — materialisert V5.7-kvalitetsaudit;
+- `reports/historie-universal-coverage/historie-universal-coverage.json` — materialisert heldekningsaudit.
+
+`docs/HISTORY_V5_5_FREEZE.md` er en historisk baseline. Den eier ikke aktiv modell, aktiv heldekning eller aktiv kvalitetsfrys. V5.6 er også en historisk, reproduserbar mellomversjon; V5.7 er aktiv modell.
 
 ## Bindende målestokk
 
@@ -32,7 +46,7 @@ Den maskinlesbare referansen ligger i:
 data/fag/historie/historie_universal_coverage_contract_v1.json
 ```
 
-Kontrakten er uavhengig av de eksisterende 20 domenene. Nye dekningsceller skal begrunnes ut fra historiefagets innhold, ikke ut fra hva dagens filer tilfeldigvis allerede inneholder.
+Kontrakten er uavhengig av den til enhver tid aktive domenetellingen. Nye dekningsceller skal begrunnes ut fra historiefagets innhold, ikke ut fra hva dagens filer tilfeldigvis allerede inneholder.
 
 ## Permanent audit
 
@@ -102,16 +116,16 @@ Når auditen viser et gap:
 3. Utvid geografiske profiler og evidenslag når fagobjektet finnes, men lokale cases eller kilder mangler.
 4. Ikke reduser terskelen eller legg til svake ankere bare for å få grønn status.
 5. Oppdater kontrakt, rapport og relevant dokumentasjon i samme PR.
-6. Dersom autoritative V5.5-filer må endres, bruk den bevisste endringsprosedyren og opprett en ny fagversjon eller oppdater frysemanifestet med eksplisitt begrunnelse.
+6. Dersom autoritative V5.7-filer må endres, bruk den bevisste endringsprosedyren og oppdater frysemanifestet med eksplisitt begrunnelse.
 
 ## Mål
 
-V5.5 er en gjennomarbeidet og beskyttet kjerne. Den universelle heldekningsauditen avgjør hva som må legges til før Historie kan regnes som komplett.
+V5.5 og V5.6 er historiske, reproduserbare kvalitetsbaselines. V5.7 er den aktive universelle Historie-modellen. Heldekningsauditen avgjør hva som fortsatt må legges til før Historie kan regnes som komplett.
 
 <!-- V5_6_PREHISTORY:START -->
 ## Første faglige reparasjon: V5.6
 
-Den første utvidelsen etter heldekningsauditen oppretter **Forhistorie og arkeologi** som universelt domene. Domenet dekker:
+Den første utvidelsen etter heldekningsauditen opprettet **Forhistorie og arkeologi** som universelt domene. Domenet dekker:
 
 - arkeologisk kontekst og formasjonsprosesser;
 - datering, stratigrafi, typologi og seriasjon;
@@ -130,7 +144,7 @@ De nye emnene bruker geografinøytrale `recommended_cases` med representative ek
 <!-- V5_7_WAR_INTERWAR:START -->
 ## Andre faglige reparasjon: V5.7
 
-V5.7 oppretter **Første verdenskrig og mellomkrigstiden** som universelt domene med ti emner. Utvidelsen dekker krigsutbruddet i 1914, total og global krig, sivilsamfunn og krigsøkonomi, norsk og nordisk nøytralitet, revolusjoner og fredsoppgjør, demokrati og massepolitikk, autoritære ideologier, den store depresjonen og kultur-, idé- og kunsthistorie i perioden 1914–1939.
+V5.7 opprettet **Første verdenskrig og mellomkrigstiden** som universelt domene med ti emner. Utvidelsen dekker krigsutbruddet i 1914, total og global krig, sivilsamfunn og krigsøkonomi, norsk og nordisk nøytralitet, revolusjoner og fredsoppgjør, demokrati og massepolitikk, autoritære ideologier, den store depresjonen og kultur-, idé- og kunsthistorie i perioden 1914–1939.
 
 Domenet bruker sammenlignbare nordiske, europeiske og globale cases. Eksisterende globalhistorie og offentlighetshistorie er samtidig koblet eksplisitt til nordiske og europeiske mellomkrigsforløp, slik at geografi ikke blir isolert i ett periodedomene.
 <!-- V5_7_WAR_INTERWAR:END -->
