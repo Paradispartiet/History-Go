@@ -106,6 +106,22 @@ jobs:
           for (const key of Object.keys(expected)) if (actual[key] !== expected[key]) process.exitCode = 1;
           NODE
 
+      - name: Remove one-time inputs and publish
+        shell: bash
+        run: |
+          set -o pipefail
+          {
+            rm -f .github/history-v5-6-prehistory-runner.mjs.gz.b64
+            rm -f .github/history-v5-6-prehistory-runner.part-*
+            rm .github/workflows/one-time-history-v5-6-prehistory.yml
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git status --short
+            git add -A
+            git commit -m 'Utvid Historie V5.6 med forhistorie og arkeologi'
+            git push origin HEAD:agent/history-v5-6-prehistory-archaeology
+          } 2>&1 | tee reports/historie-v5/historie-v5-6-prehistory-publish.log
+
       - name: Upload V5.6 diagnostics
         if: always()
         uses: actions/upload-artifact@v4
@@ -115,16 +131,3 @@ jobs:
             reports/historie-v5/**
             reports/historie-universal-coverage/**
           if-no-files-found: warn
-
-      - name: Remove one-time inputs and publish
-        shell: bash
-        run: |
-          rm -f .github/history-v5-6-prehistory-runner.mjs.gz.b64
-          rm -f .github/history-v5-6-prehistory-runner.part-*
-          rm .github/workflows/one-time-history-v5-6-prehistory.yml
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git status --short | tee reports/historie-v5/historie-v5-6-prehistory-git-status.log
-          git add -A
-          git commit -m 'Utvid Historie V5.6 med forhistorie og arkeologi'
-          git push origin HEAD:agent/history-v5-6-prehistory-archaeology
