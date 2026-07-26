@@ -1,0 +1,233 @@
+name: Temporary exact Nøstvet site-area probe
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/akershus-nostvet-boplass-production
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Materialize exact site-area context
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT='reports/akershus-coordinate-nostvet-source-probe'
+          mkdir -p "$OUT"
+          UA='History-Go coordinate research (Paradispartiet/History-Go)'
+
+          for QUERY in \
+            'Boplassveien Vinterbro' \
+            'Eikelia Vinterbro' \
+            'Elgjartunveien Vinterbro' \
+            'Steinalderveien Vinterbro'; do
+            SAFE=$(printf '%s' "$QUERY" | tr '[:upper:] ' '[:lower:]-' | tr -cd 'a-z0-9-')
+            curl --fail --silent --show-error --location --user-agent "$UA" \
+              --get 'https://ws.geonorge.no/adresser/v1/sok' \
+              --data-urlencode "sok=$QUERY" \
+              --data 'kommunenummer=3218' --data 'treffPerSide=100' \
+              | tee "$OUT/geonorge-${SAFE}.json" >/dev/null
+          done
+
+          curl --fail --silent --show-error --location --user-agent "$UA" \
+            'https://api.openstreetmap.org/api/0.6/map?bbox=10.757,59.7385,10.7705,59.7465' \
+            | tee "$OUT/osm-nostvet-site-bbox.xml" >/dev/null
+
+          cat > "$OUT/overpass-site-query.txt" <<'QUERY'
+          [out:json][timeout:60];
+          (
+            nwr["name"~"Boplass|Eikelia|Elgjartun|Steinalder|Hareåsen|Hareasen|Nøst|Nost|Tusse",i](59.7385,10.757,59.7465,10.7705);
+            nwr["tourism"="information"](59.7385,10.757,59.7465,10.7705);
+            nwr["information"](59.7385,10.757,59.7465,10.7705);
+            nwr["amenity"="shelter"](59.7385,10.757,59.7465,10.7705);
+            nwr["shelter_type"](59.7385,10.757,59.7465,10.7705);
+            nwr["leisure"="firepit"](59.7385,10.757,59.7465,10.7705);
+            nwr["leisure"="park"](59.7385,10.757,59.7465,10.7705);
+            nwr["landuse"="recreation_ground"](59.7385,10.757,59.7465,10.7705);
+            nwr["historic"="archaeological_site"](59.7385,10.757,59.7465,10.7705);
+          );
+          out center tags;
+          QUERY
+
+          curl --fail --silent --show-error --location --user-agent "$UA" \
+            --data-urlencode "data@${OUT}/overpass-site-query.txt" \
+            'https://overpass-api.de/api/interpreter' \
+            | tee "$OUT/overpass-nostvet-site-objects.json" >/dev/null
+
+          python - <<'PY' | tee "$OUT/site-area-summary.txt" >/dev/null
+          import json
+          import math
+          import unicodedata
+          from pathlib import Path
+
+          out = Path('reports/akershus-coordinate-nostvet-source-probe')
+          legacy = (59.75109, 10.7996)
+          site_hint = (59.7416569, 10.7623259)
+
+          def distance_m(a, b):
+              lat1, lon1 = map(math.radians, a)
+              lat2, lon2 = map(math.radians, b)
+              dlat = lat2 - lat1
+              dlon = lon2 - lon1
+              h = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+              return 6371000 * 2 * math.asin(math.sqrt(h))
+
+          def norm(value):
+              return unicodedata.normalize('NFKD', str(value)).encode('ascii', 'ignore').decode().lower()
+
+          def flatten_pairs(coords):
+              if not isinstance(coords, list):
+                  return []
+              if len(coords) >= 2 and all(isinstance(v, (int, float)) for v in coords[:2]):
+                  return [(float(coords[0]), float(coords[1]))]
+              pairs = []
+              for item in coords:
+                  pairs.extend(flatten_pairs(item))
+              return pairs
+
+          def ring_centroid(ring):
+              if len(ring) < 4:
+                  return None
+              pts = list(ring)
+              if pts[0] != pts[-1]:
+                  pts.append(pts[0])
+              twice_area = cx = cy = 0.0
+              for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+                  cross = x1 * y2 - x2 * y1
+                  twice_area += cross
+                  cx += (x1 + x2) * cross
+                  cy += (y1 + y2) * cross
+              if abs(twice_area) < 1e-15:
+                  return None
+              return cx / (3 * twice_area), cy / (3 * twice_area)
+
+          def geometry_point(feature):
+              props = feature.get('properties') or {}
+              center = props.get('senterpunkt')
+              if isinstance(center, dict) and center.get('type') == 'Point':
+                  coords = center.get('coordinates') or []
+                  if len(coords) >= 2:
+                      return float(coords[0]), float(coords[1]), 'official_senterpunkt'
+              geometry = feature.get('geometry') or {}
+              kind = geometry.get('type')
+              coords = geometry.get('coordinates')
+              if kind == 'Point' and coords:
+                  return float(coords[0]), float(coords[1]), 'geometry_point'
+              if kind == 'Polygon' and coords and coords[0]:
+                  point = ring_centroid([(float(p[0]), float(p[1])) for p in coords[0]])
+                  if point:
+                      return point[0], point[1], 'polygon_centroid'
+              if kind == 'MultiPolygon' and coords and coords[0] and coords[0][0]:
+                  point = ring_centroid([(float(p[0]), float(p[1])) for p in coords[0][0]])
+                  if point:
+                      return point[0], point[1], 'multipolygon_first_centroid'
+              pairs = flatten_pairs(coords)
+              if not pairs:
+                  return None
+              return sum(x for x, _ in pairs) / len(pairs), sum(y for _, y in pairs) / len(pairs), 'vertex_mean'
+
+          print(f'legacy_to_site_hint_m={distance_m(legacy, site_hint):.1f}')
+          for path in sorted(out.glob('geonorge-*.json')):
+              if path.name == 'geonorge-sjoskogenveien-25.json':
+                  continue
+              data = json.loads(path.read_text())
+              print(f'ADDRESS_FILE {path.name} total={data.get("metadata", {}).get("totaltAntallTreff")}')
+              rows = []
+              for row in data.get('adresser', []):
+                  rp = row.get('representasjonspunkt') or {}
+                  if 'lat' not in rp or 'lon' not in rp:
+                      continue
+                  point = (float(rp['lat']), float(rp['lon']))
+                  rows.append({
+                      'address': row.get('adressetekst'), 'lat': point[0], 'lon': point[1],
+                      'distance_to_site_hint_m': round(distance_m(site_hint, point), 1),
+                      'distance_from_legacy_m': round(distance_m(legacy, point), 1),
+                      'data': row,
+                  })
+              rows.sort(key=lambda row: row['distance_to_site_hint_m'])
+              print('ADDRESS_ROWS=' + json.dumps(rows, ensure_ascii=False, sort_keys=True))
+
+          overpass = json.loads((out / 'overpass-nostvet-site-objects.json').read_text())
+          objects = []
+          for element in overpass.get('elements', []):
+              lat = element.get('lat')
+              lon = element.get('lon')
+              if lat is None or lon is None:
+                  center = element.get('center') or {}
+                  lat = center.get('lat')
+                  lon = center.get('lon')
+              if lat is None or lon is None:
+                  continue
+              point = (float(lat), float(lon))
+              objects.append({
+                  'type': element.get('type'), 'id': element.get('id'),
+                  'lat': point[0], 'lon': point[1],
+                  'distance_to_site_hint_m': round(distance_m(site_hint, point), 1),
+                  'distance_from_legacy_m': round(distance_m(legacy, point), 1),
+                  'tags': element.get('tags', {}),
+              })
+          objects.sort(key=lambda row: row['distance_to_site_hint_m'])
+          print('OVERPASS_SITE_OBJECTS=' + json.dumps(objects, ensure_ascii=False, sort_keys=True))
+
+          candidates = []
+          keywords = ('sjoskog', 'nostvet', 'nostvedt', 'okse', 'boplass', 'steinalder', 'funn')
+          for collection in ('lokaliteter', 'enkeltminner'):
+              path = out / f'riksantikvaren-ogc-{collection}-kommune-3218.json'
+              data = json.loads(path.read_text())
+              for feature in data.get('features', []):
+                  point = geometry_point(feature)
+                  if not point:
+                      continue
+                  lon, lat, method = point
+                  distance = distance_m(site_hint, (lat, lon))
+                  if distance > 1200:
+                      continue
+                  props = feature.get('properties') or {}
+                  joined = norm(' '.join(str(v) for v in props.values() if v is not None))
+                  candidates.append({
+                      'collection': collection, 'feature_id': feature.get('id'),
+                      'lat': lat, 'lon': lon, 'point_method': method,
+                      'distance_to_site_hint_m': round(distance, 1),
+                      'distance_from_legacy_m': round(distance_m(legacy, (lat, lon)), 1),
+                      'geometry_type': (feature.get('geometry') or {}).get('type'),
+                      'navn': props.get('navn'), 'informasjon': props.get('informasjon'),
+                      'kulturminneId': props.get('kulturminneId'), 'lokalitetId': props.get('lokalitetId'),
+                      'lokalitetsart': props.get('lokalitetsart'), 'enkeltminneart': props.get('enkeltminneart'),
+                      'datering': props.get('datering'), 'vernetype': props.get('vernetype'),
+                      'opprinneligFunksjon': props.get('opprinneligFunksjon'),
+                      'text_keyword_match': any(keyword in joined for keyword in keywords),
+                      'linkKulturminnesøk': props.get('linkKulturminnesøk'),
+                  })
+          candidates.sort(key=lambda row: (row['distance_to_site_hint_m'], row['collection']))
+          (out / 'riksantikvaren-site-area-candidates.json').write_text(json.dumps(candidates, ensure_ascii=False, indent=2) + '\n')
+          print(f'RA_SITE_CANDIDATE_COUNT={len(candidates)}')
+          for row in candidates:
+              info = ' '.join((row.get('informasjon') or '').split())
+              print('RA_SITE ' + json.dumps({**row, 'informasjon': info[:1600]}, ensure_ascii=False, sort_keys=True))
+          PY
+
+          rm -f .github/workflows/temporary-coordinate-source-probe-nostvet-site.yml
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$OUT" .github/workflows/temporary-coordinate-source-probe-nostvet-site.yml
+          if git diff --cached --quiet; then
+            echo 'No site-area changes.'
+          else
+            git commit -m 'Materialize exact Nøstvet site-area evidence'
+            git push origin HEAD:agent/akershus-nostvet-boplass-production
+          fi
