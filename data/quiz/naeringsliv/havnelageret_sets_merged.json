@@ -66,7 +66,8 @@
     "works": [],
     "source_review_status": "reviewed",
     "method_start_phase": "final",
-    "theory_start_phase": "final"
+    "theory_start_phase": "final",
+    "quality_lift": "naeringsliv_pilot_context_v1"
   },
   "sets": [
     {
@@ -477,25 +478,26 @@
           "placeId": "havnelageret",
           "targetId": "havnelageret",
           "question_scope": "place",
-          "question": "Hvilken større bydel/havnevik ligger Havnelageret ved?",
+          "question": "Hvorfor var beliggenheten ved Bjørvika viktig for et stort havnelager?",
           "options": [
-            "Maridalen",
-            "Ulven",
-            "Bjørvika"
+            "Varer kunne flyttes kort mellom kai, lager og byen",
+            "Varene måtte fraktes langt mellom skip, lager og kunder",
+            "Lageret kunne bare betjene innlandsmarkedet uten omlasting ved kai"
           ],
-          "answer": "Bjørvika",
-          "answerIndex": 2,
-          "knowledge": "SNL beskriver Bjørvika som den nordøstlige delen av Oslos havneområde, og Langkaia/Havnelageret ligger i dette havneområdet.",
-          "difficulty": 1,
-          "question_type": "fact",
-          "emne_id": "em_naering_teknologi_infrastruktur",
+          "answer": "Varer kunne flyttes kort mellom kai, lager og byen",
+          "answerIndex": 0,
+          "knowledge": "Nærhet til kaia reduserte omlasting og transport mellom skip, lager og kunder. Beliggenheten var en del av selve logistikkmodellen.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_logistikk_verdikjeder",
           "source": [
-            "snl_bjorvika",
-            "entra",
-            "let"
+            "place_record",
+            "oslo_byleksikon",
+            "lokalhistoriewiki",
+            "snl_bjorvika"
           ],
-          "source_origin": "external",
-          "claim_basis": "SNL beskriver Bjørvika som den nordøstlige delen av Oslos havneområde, og Langkaia/Havnelageret ligger i dette havneområdet.",
+          "source_origin": "mixed",
+          "claim_basis": "Beliggenheten ved Bjørvika gjorde at varer kunne flyttes kort mellom kai, lager og byen.",
           "claim_id": "claim_havnelageret_15"
         },
         {
@@ -505,23 +507,24 @@
           "placeId": "havnelageret",
           "targetId": "havnelageret",
           "question_scope": "place",
-          "question": "Hva ble bygningen brukt til av den tyske marinen under andre verdenskrig?",
+          "question": "Hvorfor var Havnelageret nyttig som tysk materiellager under krigen?",
           "options": [
-            "Materiellager kalt Gerätelager I",
-            "Feltlasarett for sivilbefolkningen",
-            "Skole for telegrafister"
+            "Det hadde stor lagringskapasitet og lå direkte ved havna",
+            "Bygningen hadde kontorer og publikumsservice, men liten lagerkapasitet",
+            "Den lå nær administrasjonen, men uten direkte forbindelse til havna"
           ],
-          "answer": "Materiellager kalt Gerätelager I",
+          "answer": "Det hadde stor lagringskapasitet og lå direkte ved havna",
           "answerIndex": 0,
-          "knowledge": "Oslo byleksikon skriver at bygningen ble rekvirert av tyskerne og brukt av den tyske marinen som materiellager, kalt Gerätelager I.",
+          "knowledge": "Den samme kapasiteten og havnetilknytningen som tjente sivil vareflyt kunne også brukes til militær logistikk.",
           "difficulty": 2,
-          "question_type": "fact",
+          "question_type": "context",
           "emne_id": "em_naering_logistikk_verdikjeder",
           "source": [
-            "oslo_byleksikon"
+            "oslo_byleksikon",
+            "lokalhistoriewiki"
           ],
           "source_origin": "external",
-          "claim_basis": "Oslo byleksikon skriver at bygningen ble rekvirert av tyskerne og brukt av den tyske marinen som materiellager, kalt Gerätelager I.",
+          "claim_basis": "Havnelagerets store lagringskapasitet og direkte havnetilknytning gjorde bygningen nyttig som tysk materiellager under krigen.",
           "claim_id": "claim_havnelageret_16"
         },
         {
@@ -557,23 +560,24 @@
           "placeId": "havnelageret",
           "targetId": "havnelageret",
           "question_scope": "place",
-          "question": "Hvem var arkitekt for kontorombyggingen 1982–85?",
+          "question": "Hva var den grunnleggende utfordringen ved å gjøre Havnelageret om til kontorer?",
           "options": [
-            "Bredo Berntsen",
-            "Sverre Fehn",
-            "Espen Eskeland"
+            "Å tilpasse store lageretasjer til arbeidsplasser og moderne teknikk",
+            "Å bevare ren lagerdrift samtidig som kontorarealet ble redusert",
+            "Å tilpasse bygningen til moderne containerhåndtering ved kaia"
           ],
-          "answer": "Espen Eskeland",
-          "answerIndex": 2,
-          "knowledge": "Oslo byleksikon oppgir arkitekt Espen Eskeland for modernisering og ombygging til kontorer 1982–85.",
-          "difficulty": 1,
-          "question_type": "fact",
-          "emne_id": "em_naering_teknologi_infrastruktur",
+          "answer": "Å tilpasse store lageretasjer til arbeidsplasser og moderne teknikk",
+          "answerIndex": 0,
+          "knowledge": "Kontorombyggingen krevde nye planløsninger, tekniske installasjoner og arbeidsmiljø i en konstruksjon som opprinnelig var laget for varer.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_omstilling_kriser_skift",
           "source": [
-            "oslo_byleksikon"
+            "oslo_byleksikon",
+            "entra"
           ],
           "source_origin": "external",
-          "claim_basis": "Oslo byleksikon oppgir arkitekt Espen Eskeland for modernisering og ombygging til kontorer 1982–85.",
+          "claim_basis": "Kontorombyggingen måtte tilpasse store lageretasjer til arbeidsplasser og moderne tekniske krav.",
           "claim_id": "claim_havnelageret_18"
         },
         {
@@ -583,24 +587,25 @@
           "placeId": "havnelageret",
           "targetId": "havnelageret",
           "question_scope": "place",
-          "question": "Når ble Havnelageret betydelig oppgradert ifølge Oslo byleksikon?",
+          "question": "Hvorfor har Havnelageret blitt oppgradert flere ganger etter kontorombyggingen?",
           "options": [
-            "2003",
-            "1978",
-            "1920"
+            "For å holde en historisk bygning konkurransedyktig i kontormarkedet",
+            "For å tilbakeføre bygningen til opprinnelig varelagring",
+            "For å redusere tjenestetilbudet og standarden for leietakerne"
           ],
-          "answer": "2003",
+          "answer": "For å holde en historisk bygning konkurransedyktig i kontormarkedet",
           "answerIndex": 0,
-          "knowledge": "Oslo byleksikon oppgir at Havnelageret ble betydelig oppgradert i 2003.",
-          "difficulty": 1,
-          "question_type": "fact",
+          "knowledge": "Kontoreiendom må møte skiftende krav til teknikk, arbeidsmiljø og tjenester. Oppgraderingene er derfor del av den løpende eiendomsdriften.",
+          "difficulty": 2,
+          "question_type": "context",
           "emne_id": "em_naering_omstilling_kriser_skift",
           "source": [
             "oslo_byleksikon",
-            "entra"
+            "entra",
+            "estate"
           ],
           "source_origin": "external",
-          "claim_basis": "Oslo byleksikon oppgir at Havnelageret ble betydelig oppgradert i 2003.",
+          "claim_basis": "Gjentatte oppgraderinger etter kontorombyggingen har holdt den historiske bygningen konkurransedyktig i kontormarkedet.",
           "claim_id": "claim_havnelageret_19"
         },
         {
@@ -674,24 +679,24 @@
           "placeId": "havnelageret",
           "targetId": "havnelageret",
           "question_scope": "place",
-          "question": "Hvilke deler ble rehabilitert av Betonmast i et senere prosjekt?",
+          "question": "Hva viser rehabiliteringen av enkelte etasjer og tårnet?",
           "options": [
-            "Niende og tiende etasje samt tårnet i ellevte etasje",
-            "Bare kjelleren og kaifronten",
-            "Alle pælene under bygget"
+            "At ombruk kan gjennomføres trinnvis i deler av et stort bygg",
+            "At alle etasjer måtte tømmes og bygges om samtidig",
+            "At bare fasaden kunne oppgraderes når bruken endret seg"
           ],
-          "answer": "Niende og tiende etasje samt tårnet i ellevte etasje",
+          "answer": "At ombruk kan gjennomføres trinnvis i deler av et stort bygg",
           "answerIndex": 0,
-          "knowledge": "Betonmast beskriver ombygging og rehabilitering av niende og tiende etasje samt tårnet i ellevte etasje.",
-          "difficulty": 1,
-          "question_type": "fact",
+          "knowledge": "Etappevis rehabilitering gjør det mulig å oppgradere arealer for nye leietakere uten at hele eiendommen må bygges om på nytt samtidig.",
+          "difficulty": 2,
+          "question_type": "context",
           "emne_id": "em_naering_omstilling_kriser_skift",
           "source": [
             "betonmast",
             "bygg"
           ],
           "source_origin": "external",
-          "claim_basis": "Betonmast beskriver ombygging og rehabilitering av niende og tiende etasje samt tårnet i ellevte etasje.",
+          "claim_basis": "Rehabiliteringen av niende og tiende etasje og tårnet viser at ombruk kan gjennomføres trinnvis i deler av et stort bygg.",
           "claim_id": "claim_havnelageret_22"
         },
         {
@@ -756,23 +761,23 @@
           "placeId": "havnelageret",
           "targetId": "havnelageret",
           "question_scope": "place",
-          "question": "Hvilken leietakerdynamikk omtales i 2025-kilde om Havnelageret?",
+          "question": "Hva viser nye og fornyede leieavtaler i Havnelageret?",
           "options": [
-            "Ny femårig leieavtale på 1 700 m² og flere solide leietakere",
-            "Full utflytting og riving",
-            "Ombygging til kun boliger"
+            "At bygningen fortsatt konkurrerer aktivt om kontorleietakere",
+            "At eieren primært avvikler kontorbruk til fordel for lager",
+            "At bygningen bare brukes av én offentlig virksomhet uten markedsleie"
           ],
-          "answer": "Ny femårig leieavtale på 1 700 m² og flere solide leietakere",
+          "answer": "At bygningen fortsatt konkurrerer aktivt om kontorleietakere",
           "answerIndex": 0,
-          "knowledge": "Estate Nyheter skrev i juli 2025 at Entra hadde inngått ny femårig leieavtale på 1 700 m², og at blant annet Dun & Bradstreet Norway og Hurtigruten hadde fornyet avtaler.",
-          "difficulty": 1,
-          "question_type": "fact",
-          "emne_id": "em_naering_kapital_finans",
+          "knowledge": "Leieavtalene viser at Havnelageret ikke bare er et historisk bygg, men et løpende markedsprodukt der beliggenhet, standard og tjenester må holde på leietakere.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_naering_forbruk_marked",
           "source": [
             "estate"
           ],
           "source_origin": "external",
-          "claim_basis": "Estate Nyheter skrev i juli 2025 at Entra hadde inngått ny femårig leieavtale på 1 700 m², og at blant annet Dun & Bradstreet Norway og Hurtigruten hadde fornyet avtaler.",
+          "claim_basis": "Nye og fornyede leieavtaler viser at Havnelageret fortsatt konkurrerer aktivt om kontorleietakere.",
           "claim_id": "claim_havnelageret_25"
         },
         {
