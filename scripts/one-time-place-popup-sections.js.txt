@@ -1,0 +1,216 @@
+  function numberValue(value) {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+
+  function objectValue(value) {
+    return value && typeof value === "object" && !Array.isArray(value) ? value : {};
+  }
+
+  function spatialProfile(place) {
+    return objectValue(place?.spatial_profile || place?.spatialProfile);
+  }
+
+  function temporalProfile(place) {
+    return objectValue(place?.temporal_profile || place?.temporalProfile);
+  }
+
+  function formatArea(squareMeters) {
+    const value = numberValue(squareMeters);
+    if (value <= 0) return "";
+    const formatter = new Intl.NumberFormat("nb-NO", { maximumFractionDigits: 1 });
+    if (value >= 1000000) return `${formatter.format(value / 1000000)} km²`;
+    if (value >= 1000) return `${formatter.format(value / 1000)} daa`;
+    return `${formatter.format(value)} m²`;
+  }
+
+  function formatElevation(meters) {
+    const value = numberValue(meters);
+    if (value <= 0) return "";
+    return `${new Intl.NumberFormat("nb-NO", { maximumFractionDigits: 1 }).format(value)} moh`;
+  }
+
+  function formatHeight(meters) {
+    const value = numberValue(meters);
+    if (value <= 0) return "";
+    return `${new Intl.NumberFormat("nb-NO", { maximumFractionDigits: 1 }).format(value)} m`;
+  }
+
+  function renderMetric(label, value, note = "") {
+    const safeValue = text(value);
+    if (!safeValue) return "";
+    return `
+      <div class="hg-place-metric">
+        <span>${escapeHtml(label)}</span>
+        <strong>${escapeHtml(safeValue)}</strong>
+        ${note ? `<small>${escapeHtml(note)}</small>` : ""}
+      </div>
+    `;
+  }
+
+  function renderSpatialSection(place, routeLength) {
+    const profile = spatialProfile(place);
+    if (!Object.keys(profile).length) return "";
+
+    const highestPoint = objectValue(profile.highest_point || profile.highestPoint);
+    const linearExtent = numberValue(profile.linear_extent_m || profile.linearExtentM || routeLength);
+    const boundary = firstText(profile.boundary_description, profile.boundaryDescription);
+    const terrain = firstText(profile.terrain_type, profile.terrainType, profile.landform);
+    const metrics = [
+      renderMetric("Areal", formatArea(profile.area_m2 || profile.areaM2)),
+      renderMetric("Utstrekning", formatDistance(linearExtent)),
+      renderMetric("Høyeste punkt", firstText(highestPoint.name, highestPoint.title)),
+      renderMetric("Høyde", formatElevation(highestPoint.elevation_masl || highestPoint.elevationMasl || profile.elevation_masl || profile.elevationMasl)),
+      renderMetric("Byggehøyde", formatHeight(profile.height_m || profile.heightM)),
+      renderMetric("Terreng", humanize(terrain))
+    ].filter(Boolean).join("");
+
+    if (!metrics && !boundary) return "";
+    return `
+      <section class="hg-section hg-place-section hg-place-spatial-section">
+        <h3>Nøkkeltall og landskap</h3>
+        ${metrics ? `<div class="hg-place-metric-grid">${metrics}</div>` : ""}
+        ${boundary ? `<p class="hg-place-boundary">${escapeHtml(boundary)}</p>` : ""}
+      </section>
+    `;
+  }
+
+  function findCanonicalSubplace(subplace) {
+    const ids = uniqueStrings([
+      subplace?.place_id,
+      subplace?.placeId,
+      subplace?.target_id,
+      subplace?.targetId,
+      subplace?.id
+    ]);
+    const places = list(global.PLACES);
+    return ids.map(id => places.find(place => text(place?.id) === id)).find(Boolean) || null;
+  }
+
+  function renderSubplacesSection(place) {
+    const subplaces = list(place?.subplaces).filter(item => item && typeof item === "object");
+    if (!subplaces.length) return "";
+
+    return `
+      <section class="hg-section hg-place-section hg-place-subplaces-section">
+        <h3>Dette finnes her</h3>
+        <div class="hg-place-subplace-grid">
+          ${subplaces.map(subplace => {
+            const canonical = findCanonicalSubplace(subplace);
+            const tag = canonical ? "button" : "article";
+            const linkAttrs = canonical
+              ? ` type="button" data-place="${escapeAttr(canonical.id)}"`
+              : "";
+            const typeLabel = humanize(firstText(subplace?.type, canonical?.locatorType, canonical?.type));
+            const name = firstText(subplace?.name, subplace?.title, canonical?.name, subplace?.id);
+            const summary = compactText(firstText(subplace?.summary, subplace?.desc, canonical?.desc), 230);
+            return `
+              <${tag} class="hg-place-subplace-card${canonical ? " is-linked" : ""}"${linkAttrs}>
+                ${typeLabel ? `<span class="hg-place-subplace-type">${escapeHtml(typeLabel)}</span>` : ""}
+                <strong>${escapeHtml(name)}</strong>
+                ${summary ? `<p>${escapeHtml(summary)}</p>` : ""}
+                ${canonical ? `<span class="hg-place-subplace-open">Åpne sted →</span>` : ""}
+              </${tag}>
+            `;
+          }).join("")}
+        </div>
+      </section>
+    `;
+  }
+
+  function timelineOrder(item, index) {
+    const explicit = Number(item?.sort_order ?? item?.sortOrder);
+    return Number.isFinite(explicit) ? explicit : index + 1;
+  }
+
+  function renderHistoryTimeline(place) {
+    const layers = list(place?.history_layers)
+      .map((item, index) => ({ item, index }))
+      .filter(({ item }) => item && typeof item === "object")
+      .sort((a, b) => timelineOrder(a.item, a.index) - timelineOrder(b.item, b.index));
+    if (!layers.length) return "";
+
+    return `
+      <section class="hg-section hg-place-section hg-place-history-section">
+        <h3>Historiske lag</h3>
+        <div class="hg-place-timeline">
+          ${layers.map(({ item }) => {
+            const period = firstText(item?.period, item?.year, item?.date);
+            const title = firstText(item?.title, item?.name, item?.id);
+            const summary = firstText(item?.summary, item?.desc, item?.description);
+            return `
+              <article class="hg-place-timeline-item">
+                <span class="hg-place-timeline-marker" aria-hidden="true"></span>
+                <div class="hg-place-timeline-copy">
+                  ${period ? `<span class="hg-place-timeline-period">${escapeHtml(period)}</span>` : ""}
+                  <strong>${escapeHtml(title)}</strong>
+                  ${summary ? `<p>${escapeHtml(summary)}</p>` : ""}
+                </div>
+              </article>
+            `;
+          }).join("")}
+        </div>
+      </section>
+    `;
+  }
+
+  function renderChips(values, maxItems = 18) {
+    const items = uniqueStrings(list(values)).slice(0, maxItems);
+    if (!items.length) return "";
+    return `<div class="hg-place-chip-list">${items.map(item => `<span class="hg-place-chip">${escapeHtml(humanize(item))}</span>`).join("")}</div>`;
+  }
+
+  function renderNatureLandscape(place) {
+    const profile = objectValue(place?.nature_profile || place?.natureProfile);
+    if (!Object.keys(profile).length) return "";
+
+    const birding = objectValue(profile.birding);
+    const terrain = list(profile.terrain);
+    const habitats = list(profile.habitats || profile.habitat_types || profile.nature_types);
+    const species = list(birding.notable_species || profile.notable_species || profile.species);
+    const seasons = list(birding.seasonal_focus || profile.seasonal_focus);
+    const summary = firstText(profile.summary, profile.description);
+
+    if (!terrain.length && !habitats.length && !species.length && !seasons.length && !summary) return "";
+    return `
+      <section class="hg-section hg-place-section hg-place-nature-section">
+        <h3>Natur og landskap</h3>
+        ${summary ? `<p class="hg-place-nature-summary">${escapeHtml(summary)}</p>` : ""}
+        <div class="hg-place-nature-grid">
+          ${terrain.length || habitats.length ? `
+            <div class="hg-place-nature-block">
+              <h4>Terreng og naturtyper</h4>
+              ${renderChips([...terrain, ...habitats])}
+            </div>
+          ` : ""}
+          ${species.length ? `
+            <div class="hg-place-nature-block">
+              <h4>Artsliv <span>${species.length}</span></h4>
+              ${renderChips(species)}
+            </div>
+          ` : ""}
+          ${seasons.length ? `
+            <div class="hg-place-nature-block">
+              <h4>Beste observasjonstid</h4>
+              ${renderChips(seasons, 8)}
+            </div>
+          ` : ""}
+        </div>
+      </section>
+    `;
+  }
+
+  function renderSourceSummary(place) {
+    const sourceSummary = objectValue(place?.source_summary || place?.sourceSummary);
+    const sources = uniqueStrings(list(sourceSummary.safe_sources || sourceSummary.sources));
+    if (!sources.length) return "";
+
+    return `
+      <section class="hg-section hg-place-section hg-place-sources-section">
+        <h3>Kilder i stedprofilen</h3>
+        <ul class="hg-place-source-list">
+          ${sources.map(source => `<li>${escapeHtml(source)}</li>`).join("")}
+        </ul>
+      </section>
+    `;
+  }
