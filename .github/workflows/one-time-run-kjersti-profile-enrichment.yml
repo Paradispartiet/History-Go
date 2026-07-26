@@ -37,8 +37,29 @@ jobs:
       - name: Validate people popup syntax
         run: node --check js/ui/person-popup-v2.js
 
-      - name: Validate people popup rendering
-        run: node --test tests/person-popup-v2.test.js
+      - name: Capture people popup rendering test
+        id: popup-test
+        shell: bash
+        run: |
+          mkdir -p reports/kjersti-profile-runner
+          set +e
+          node --test tests/person-popup-v2.test.js > reports/kjersti-profile-runner/person-popup-v2.test.log 2>&1
+          status=$?
+          set -e
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          cat reports/kjersti-profile-runner/person-popup-v2.test.log
+
+      - name: Upload popup test diagnostic
+        if: steps.popup-test.outputs.status != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: kjersti-person-popup-test-${{ github.run_id }}
+          path: reports/kjersti-profile-runner/person-popup-v2.test.log
+          if-no-files-found: error
+
+      - name: Enforce people popup rendering test
+        if: steps.popup-test.outputs.status != '0'
+        run: exit 1
 
       - name: Validate canonical Kjersti fields
         run: node -e "const fs=require('fs'); const people=JSON.parse(fs.readFileSync('data/people/kunst/oslo/people_kunst_oslo.json','utf8')); const p=people.find(x=>x.id==='kjersti_wexelsen_goksoyr'); if(!p||p.works?.length!==6||p.birth_date!=='1945-12-15'||p.active_place!=='Nittedal') process.exit(1);"
