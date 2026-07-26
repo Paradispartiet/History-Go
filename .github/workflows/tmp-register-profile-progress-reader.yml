@@ -1,0 +1,75 @@
+name: Temporary profile progress reader registration
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Register operational progress reader guide
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          def replace_exact(path: str, old: str, new: str) -> None:
+              file = Path(path)
+              text = file.read_text(encoding="utf-8")
+              if old not in text:
+                  raise SystemExit(f"Expected block not found in {path}: {old[:100]!r}")
+              file.write_text(text.replace(old, new, 1), encoding="utf-8")
+
+          registry_path = Path("docs/documentation_registry.json")
+          registry = json.loads(registry_path.read_text(encoding="utf-8"))
+          path = "docs/PROFILE_PROGRESS_READER_RUNTIME.md"
+          if any(entry.get("path") == path for entry in registry["documents"]):
+              raise SystemExit(f"Registry entry already exists: {path}")
+          entry = {
+              "path": path,
+              "status": "operational",
+              "role": "Implemented read-only runtime guide for shared profile and place progress summaries",
+              "owns": ["profile_progress_reader_runtime"],
+              "last_verified": "2026-07-26",
+          }
+          insert_at = None
+          for index, existing in enumerate(registry["documents"]):
+              if existing.get("path") == "docs/PROGRESSION_MODEL.md":
+                  insert_at = index + 1
+                  break
+          if insert_at is None:
+              raise SystemExit("PROGRESSION_MODEL registry anchor missing")
+          registry["documents"].insert(insert_at, entry)
+          registry["last_verified"] = "2026-07-26"
+          registry_path.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+          replace_exact(
+              "docs/README.md",
+              "3. [`COMPLETION_DEFINITIONS.md`](./COMPLETION_DEFINITIONS.md) — canonical ferdigmodell; aktiv nivåregel er Bronse → Sølv → Gull\n4. [`PROGRESSION_MODEL.md`](./PROGRESSION_MODEL.md) — operativ mål-/adaptermodell for samlet progresjonslesing; erstatter ikke runtime-lagring\n5. [`PLACE_STANDARD.md`](./PLACE_STANDARD.md) — canonical produktstandard for et History GO-sted",
+              "3. [`COMPLETION_DEFINITIONS.md`](./COMPLETION_DEFINITIONS.md) — canonical ferdigmodell; aktiv nivåregel er Bronse → Sølv → Gull\n4. [`PROGRESSION_MODEL.md`](./PROGRESSION_MODEL.md) — operativ mål-/adaptermodell for samlet progresjonslesing; erstatter ikke runtime-lagring\n5. [`PROFILE_PROGRESS_READER_RUNTIME.md`](./PROFILE_PROGRESS_READER_RUNTIME.md) — implementert read-only helper for eksisterende progresjonskilder\n6. [`PLACE_STANDARD.md`](./PLACE_STANDARD.md) — canonical produktstandard for et History GO-sted",
+          )
+          replace_exact(
+              "docs/README.md",
+              "- `HG_TEST_MODE.md` synkronisert med runtime og registrert som canonical skjult utviklermoduskontrakt",
+              "- `HG_TEST_MODE.md` synkronisert med runtime og registrert som canonical skjult utviklermoduskontrakt\n- `PROFILE_PROGRESS_READER_RUNTIME.md` synkronisert og registrert som operational read-only runtime-guide",
+          )
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/README.md docs/documentation_registry.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Register profile progress reader runtime guide"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
