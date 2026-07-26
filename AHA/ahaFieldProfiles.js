@@ -249,25 +249,27 @@ window.HG_FIELD_PROFILES = {
 
   naeringsliv: {
     id: "naeringsliv",
-    label: "Næringsliv",
+    label: "Økonomi og næringsliv",
     ingress:
-      "Næringsliv handler om kapital, arbeid, infrastruktur og nettverk – hvordan verdier skapes, fordeles og konsentreres.",
+      "Økonomi og næringsliv undersøker hvordan arbeid, virksomheter, kapital, markeder, teknologi og infrastruktur skaper, fordeler og omformer økonomiske verdier.",
     coreConcepts: [
+      "Verdiskaping",
       "Kapital",
       "Arbeid",
       "Marked",
       "Logistikk",
-      "Eierskap"
+      "Eierskap",
+      "Institusjon"
     ],
     dimensions: [
-      "normativ: vekst, lønnsomhet, effektivitet",
+      "normativ: vekst, lønnsomhet, effektivitet og fordeling",
       "doxa: «markedet vet best»",
-      "metodisk: regnskap, prognoser, KPI-er",
-      "materiell: kontorer, havner, logistikk-knutepunkt",
-      "sosial: klasser, profesjoner, styrerom",
-      "geografisk: business-distrikter, industriområder",
-      "temporal: boomer, kriser, restrukturering",
-      "blindsoner: ubetalt arbeid, miljøkostnader"
+      "metodisk: regnskap, statistikk, prognoser, modeller og KPI-er",
+      "materiell: arbeidsplasser, kontorer, havner og logistikk-knutepunkt",
+      "sosial: klasser, profesjoner, organisasjoner og styrerom",
+      "geografisk: finansdistrikter, industriområder og verdikjeder",
+      "temporal: boomer, kriser, teknologiske skift og restrukturering",
+      "blindsoner: ubetalt arbeid, miljøkostnader og skjult risiko"
     ]
   },
 
