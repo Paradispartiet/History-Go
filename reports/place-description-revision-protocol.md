@@ -34,16 +34,16 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 | 10 | Sagene | `sagene` | 52 | 416 | 7 | #4014 |
 | 11 | Barcode | `barcode` | 58 | 411 | 7 | #4014 |
 | 12 | Bjørvika | `bjorvika` | 49 | 426 | 8 | #4014 |
-| 13 | Grønland Basarene | `gronland_basarene` | 46 | 300 | 4 | Denne PR-en |
-| 14 | Karl Johans gate | `karl_johan` | 46 | 386 | 5 | Denne PR-en |
-| 15 | Rådhusplassen | `radhusplassen` | 48 | 311 | 5 | Denne PR-en |
-| 16 | Tigerstatuen | `tigeren` | 46 | 316 | 5 | Denne PR-en |
-| 17 | Tøyen torg | `toyen_torg` | 43 | 336 | 6 | Denne PR-en |
-| 18 | Oslo S | `oslo_s` | 45 | 370 | 6 | Denne PR-en |
-| 19 | Jernbanetorget | `jernbanetorget` | 48 | 353 | 6 | Denne PR-en |
-| 20 | Aker Brygge | `aker_brygge` | 51 | 382 | 6 | Denne PR-en |
-| 21 | Vulkan energisentral | `vulkan_energisentral` | 48 | 351 | 6 | Denne PR-en |
-| 22 | Oslo bussterminal | `oslo_bussterminal` | 50 | 366 | 7 | Denne PR-en |
+| 13 | Grønland Basarene | `gronland_basarene` | 46 | 300 | 4 | #4036 |
+| 14 | Karl Johans gate | `karl_johan` | 46 | 386 | 5 | #4036 |
+| 15 | Rådhusplassen | `radhusplassen` | 48 | 311 | 5 | #4036 |
+| 16 | Tigerstatuen | `tigeren` | 46 | 316 | 5 | #4036 |
+| 17 | Tøyen torg | `toyen_torg` | 43 | 336 | 6 | #4036 |
+| 18 | Oslo S | `oslo_s` | 45 | 370 | 6 | #4036 |
+| 19 | Jernbanetorget | `jernbanetorget` | 48 | 353 | 6 | #4036 |
+| 20 | Aker Brygge | `aker_brygge` | 51 | 382 | 6 | #4036 |
+| 21 | Vulkan energisentral | `vulkan_energisentral` | 48 | 351 | 6 | #4036 |
+| 22 | Oslo bussterminal | `oslo_bussterminal` | 50 | 366 | 7 | #4036 |
 
 ## Gjenstående Oslo-kø
 
@@ -91,6 +91,6 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 | Pilot | 1 | Torggata merget i #3954 |
 | Pilot | 1 | Bispelokket merget i #3958 |
 | Oslo V4 batch 1 | 10 | Merget i #4014 |
-| Oslo V4 batch 2 | 10 | Denne PR-en |
+| Oslo V4 batch 2 | 10 | PR #4036 |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
