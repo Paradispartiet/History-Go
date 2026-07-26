@@ -1,11 +1,11 @@
 {
-  "version": "v5.5-canonical",
+  "version": "v5.6-canonical",
   "subject_id": "historie",
   "subject_title": "Historie",
-  "scope": "oslo_og_omegn",
+  "scope": "universal",
   "type": "methods",
   "purpose": "Metodekatalog for historiefaget i History Go, brukt av fagkart, emner, mapping og quizgenerator. Metodene skal sikre at historiske spørsmål starter i kilder, spor, steder, hendelser og dokumenterbar lokalhistorie før teori brukes som tolkningsramme.",
-  "updated_at": "2026-07-25",
+  "updated_at": "2026-07-26",
   "principles": {
     "source_first": true,
     "external_claim_basis_required": true,
@@ -308,57 +308,83 @@
     },
     {
       "method_id": "met_arkeologisk_kontekstanalyse",
-      "title": "Arkeologisk Kontekstanalyse",
-      "short_label": "Arkeologisk Kontekstanalyse",
-      "description": "Arkeologisk Kontekstanalyse undersøker kristning, kongedømme, kirkelig organisasjon, jurisdiksjon, eiendom, handel og demografisk endring gjennom eksplisitt kildegrunnlag, avgrenset tid og sted, sammenlignbare observasjoner og dokumenterte begrensninger.",
+      "title": "Arkeologisk kontekstanalyse",
+      "short_label": "Arkeologisk kontekst",
+      "description": "Undersøker gjenstander, strukturer, avsetninger og biologiske rester gjennom proveniens, romlig relasjon, lagfølge, formasjonsprosesser og dokumenterte begrensninger.",
       "best_for_emne_kinds": [
         "historisk",
-        "analytisk",
+        "arkeologisk",
+        "materiell",
         "stedlig"
       ],
       "data_forms": [
-        "arkivkilde",
-        "kart",
-        "statistikk",
-        "materielt spor",
-        "muntlig kilde",
-        "institusjonsdokument"
+        "funnkontekst",
+        "stratigrafi",
+        "gjenstand",
+        "struktur",
+        "prøve",
+        "utgravningsdokumentasjon"
       ],
       "course_level_fit": [
         "mellomnivå",
         "avansert"
       ],
       "coverage_domains": [
-        "middelalder_kirke_og_kongemakt"
+        "middelalder_kirke_og_kongemakt",
+        "his_forhistorie_arkeologi"
       ],
       "progression_stage": "full_ladder",
       "good_for_place_types": [
-        "historical_site",
-        "institusjonsbygg",
+        "arkeologisk_lokalitet",
+        "boplass",
+        "gravfelt",
+        "kulturmiljo",
         "museum",
-        "arkiv",
-        "kulturmiljo"
+        "landskap"
       ],
       "question_moves": [
-        "identify the source base",
-        "define the historical unit",
-        "trace change or relation",
-        "state limitation and critical distinction"
+        "identify context and provenience",
+        "separate deposition from later disturbance",
+        "connect material relation to a bounded claim",
+        "state formation and preservation limits"
       ],
-      "hook_affinities": [],
-      "recommended_oslo_cases": [
-        "Middelalderbyen Oslo",
-        "Gamle Aker kirke",
-        "Hovedøya kloster",
-        "Akershus festning"
+      "hook_affinities": [
+        "his_arkeologisk_kontekst_formation",
+        "his_arkeologisk_datering_kronologi",
+        "his_menneskelig_utvikling_mobilitet",
+        "his_steinalder_teknologi_bosetning",
+        "his_neolitisering_jordbruk_sedentisme",
+        "his_bronsealder_utveksling_ritual",
+        "his_jernalder_gard_handverk_makt",
+        "his_vikingtid_mobilitet_handel_makt",
+        "his_arkeologisk_landskap_miljo",
+        "his_bioarkeologi_helse_demografi"
       ],
       "canonical_status": "canonical",
-      "registry_version": "historiepensum_v5_5",
+      "registry_version": "historiepensum_v5_6",
       "canonical_file_role": "active",
-      "min_recommended_oslo_cases": 2,
       "case_gate_required": true,
-      "method_use_note": "Brukes når middelalder, kirke og kongemakt krever en dokumentert analyse av kristning, kongedømme, kirkelig organisasjon, jurisdiksjon, eiendom, handel og demografisk endring.",
-      "rotation_note": "Roteres med kildekritikk og minst én supplerende metode."
+      "method_use_note": "Brukes når fortidig aktivitet må skilles fra avsetning, bevaring, forstyrrelse, utgravning og moderne dokumentasjon.",
+      "rotation_note": "Roteres med stratigrafi, datering, typologi, bioarkeologi og kildekritikk etter problemstilling.",
+      "recommended_cases": [
+        "Çatalhöyük",
+        "Joya de Cerén",
+        "Sutton Hoo",
+        "Pompeii",
+        "Stonehenge",
+        "Osebergskipet",
+        "Monte Verde",
+        "L'Anse aux Meadows",
+        "Olduvai Gorge",
+        "Dmanisi",
+        "Blombos Cave",
+        "Star Carr"
+      ],
+      "min_recommended_cases": 4,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true
     },
     {
       "method_id": "met_arkivlesning",
@@ -5698,6 +5724,326 @@
       "case_gate_required": true,
       "method_use_note": "Brukes når krig, okkupasjon og motstand krever en dokumentert analyse av mobilisering, logistikk, okkupasjonsstyre, sivilsamfunn, vold, motstand, propaganda og rettsoppgjør.",
       "rotation_note": "Roteres med kildekritikk og minst én supplerende metode."
+    },
+    {
+      "method_id": "met_stratigrafisk_analyse",
+      "title": "Stratigrafisk analyse",
+      "short_label": "Stratigrafi",
+      "description": "Dokumenterer lag, kutt, fyll og konstruksjoner som relasjonelle enheter og bygger en kontrollert sekvens før datering og historisk tolkning.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "arkeologisk",
+        "analytisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "profiltegning",
+        "plan",
+        "kontekstskjema",
+        "fotogrammetri",
+        "prøveliste",
+        "Harris-matrise"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forhistorie_arkeologi"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "arkeologisk_lokalitet",
+        "boplass",
+        "gravfelt",
+        "kulturmiljo",
+        "museum",
+        "landskap"
+      ],
+      "question_moves": [
+        "define units and interfaces",
+        "establish earlier-later relations",
+        "identify disturbance and residual material",
+        "state uncertainty in the sequence"
+      ],
+      "hook_affinities": [
+        "his_arkeologisk_kontekst_formation",
+        "his_arkeologisk_datering_kronologi",
+        "his_menneskelig_utvikling_mobilitet",
+        "his_steinalder_teknologi_bosetning",
+        "his_neolitisering_jordbruk_sedentisme",
+        "his_bronsealder_utveksling_ritual",
+        "his_jernalder_gard_handverk_makt",
+        "his_vikingtid_mobilitet_handel_makt",
+        "his_arkeologisk_landskap_miljo",
+        "his_bioarkeologi_helse_demografi"
+      ],
+      "recommended_cases": [
+        "Çatalhöyük",
+        "Joya de Cerén",
+        "Sutton Hoo",
+        "Pompeii",
+        "Stonehenge",
+        "Osebergskipet",
+        "Monte Verde",
+        "L'Anse aux Meadows",
+        "Olduvai Gorge",
+        "Dmanisi",
+        "Blombos Cave",
+        "Star Carr"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_6",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes når lagfølge og inngrepsrelasjoner kan dokumenteres; et lag skal ikke automatisk likestilles med én hendelse eller periode.",
+      "rotation_note": "Kombineres med minst én uavhengig metode og eksplisitt kilde- eller prøvetakingsbegrensning."
+    },
+    {
+      "method_id": "met_typologisk_seriasjon",
+      "title": "Typologi og seriasjon",
+      "short_label": "Typologi/seriasjon",
+      "description": "Klassifiserer gjenstander og assemblager etter dokumenterte egenskaper og tester sannsynlige sekvenser mot kontekst, statistikk og uavhengig datering.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "arkeologisk",
+        "analytisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "gjenstandskatalog",
+        "måleserie",
+        "ornamentikk",
+        "produksjonsspor",
+        "funnkombinasjon",
+        "statistisk frekvens"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forhistorie_arkeologi"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "arkeologisk_lokalitet",
+        "boplass",
+        "gravfelt",
+        "kulturmiljo",
+        "museum",
+        "landskap"
+      ],
+      "question_moves": [
+        "define classification criteria",
+        "separate type from identity",
+        "build and test a sequence",
+        "compare regional variation"
+      ],
+      "hook_affinities": [
+        "his_arkeologisk_kontekst_formation",
+        "his_arkeologisk_datering_kronologi",
+        "his_menneskelig_utvikling_mobilitet",
+        "his_steinalder_teknologi_bosetning",
+        "his_neolitisering_jordbruk_sedentisme",
+        "his_bronsealder_utveksling_ritual",
+        "his_jernalder_gard_handverk_makt",
+        "his_vikingtid_mobilitet_handel_makt",
+        "his_arkeologisk_landskap_miljo",
+        "his_bioarkeologi_helse_demografi"
+      ],
+      "recommended_cases": [
+        "Çatalhöyük",
+        "Joya de Cerén",
+        "Sutton Hoo",
+        "Pompeii",
+        "Stonehenge",
+        "Osebergskipet",
+        "Monte Verde",
+        "L'Anse aux Meadows",
+        "Olduvai Gorge",
+        "Dmanisi",
+        "Blombos Cave",
+        "Star Carr"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_6",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes når klassifikasjonskriterier og utvalg er eksplisitte; type skal ikke gjøres til folk, kultur eller kalenderdato uten kontroll.",
+      "rotation_note": "Kombineres med minst én uavhengig metode og eksplisitt kilde- eller prøvetakingsbegrensning."
+    },
+    {
+      "method_id": "met_absolutt_datering",
+      "title": "Absolutt datering og kalibrering",
+      "short_label": "Absolutt datering",
+      "description": "Vurderer naturvitenskapelige dateringer gjennom prøvemateriale, kontekst, laboratoriemetode, kalibrering, sannsynlighetsintervall og mulige systematiske feilkilder.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "arkeologisk",
+        "analytisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "radiokarbonprøve",
+        "dendrokronologi",
+        "termoluminescens",
+        "arkeomagnetisme",
+        "kalibreringskurve",
+        "laboratorierapport"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forhistorie_arkeologi"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "arkeologisk_lokalitet",
+        "boplass",
+        "gravfelt",
+        "kulturmiljo",
+        "museum",
+        "landskap"
+      ],
+      "question_moves": [
+        "link sample to event",
+        "state measured and calibrated result",
+        "identify contamination or reservoir effects",
+        "compare independent dates"
+      ],
+      "hook_affinities": [
+        "his_arkeologisk_kontekst_formation",
+        "his_arkeologisk_datering_kronologi",
+        "his_menneskelig_utvikling_mobilitet",
+        "his_steinalder_teknologi_bosetning",
+        "his_neolitisering_jordbruk_sedentisme",
+        "his_bronsealder_utveksling_ritual",
+        "his_jernalder_gard_handverk_makt",
+        "his_vikingtid_mobilitet_handel_makt",
+        "his_arkeologisk_landskap_miljo",
+        "his_bioarkeologi_helse_demografi"
+      ],
+      "recommended_cases": [
+        "Çatalhöyük",
+        "Joya de Cerén",
+        "Sutton Hoo",
+        "Pompeii",
+        "Stonehenge",
+        "Osebergskipet",
+        "Monte Verde",
+        "L'Anse aux Meadows",
+        "Olduvai Gorge",
+        "Dmanisi",
+        "Blombos Cave",
+        "Star Carr"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_6",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes bare når prøvens forhold til hendelsen er dokumentert og usikkerhetsintervallet beholdes gjennom hele argumentet.",
+      "rotation_note": "Kombineres med minst én uavhengig metode og eksplisitt kilde- eller prøvetakingsbegrensning."
+    },
+    {
+      "method_id": "met_bioarkeologisk_analyse",
+      "title": "Bioarkeologisk analyse",
+      "short_label": "Bioarkeologi",
+      "description": "Kombinerer osteologi, paleopatologi, isotoper, gammelt DNA og gravkontekst for å undersøke helse, kosthold, mobilitet, slektskap og demografi med etisk kontroll.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "arkeologisk",
+        "analytisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "skjelett",
+        "tann",
+        "isotopdata",
+        "DNA-sekvens",
+        "gravkontekst",
+        "prøvetakingsprotokoll"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "his_forhistorie_arkeologi"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "arkeologisk_lokalitet",
+        "boplass",
+        "gravfelt",
+        "kulturmiljo",
+        "museum",
+        "landskap"
+      ],
+      "question_moves": [
+        "define biological indicator",
+        "separate indicator from social identity",
+        "evaluate sample representativity",
+        "state ethical and legal constraints"
+      ],
+      "hook_affinities": [
+        "his_arkeologisk_kontekst_formation",
+        "his_arkeologisk_datering_kronologi",
+        "his_menneskelig_utvikling_mobilitet",
+        "his_steinalder_teknologi_bosetning",
+        "his_neolitisering_jordbruk_sedentisme",
+        "his_bronsealder_utveksling_ritual",
+        "his_jernalder_gard_handverk_makt",
+        "his_vikingtid_mobilitet_handel_makt",
+        "his_arkeologisk_landskap_miljo",
+        "his_bioarkeologi_helse_demografi"
+      ],
+      "recommended_cases": [
+        "Çatalhöyük",
+        "Joya de Cerén",
+        "Sutton Hoo",
+        "Pompeii",
+        "Stonehenge",
+        "Osebergskipet",
+        "Monte Verde",
+        "L'Anse aux Meadows",
+        "Olduvai Gorge",
+        "Dmanisi",
+        "Blombos Cave",
+        "Star Carr"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_6",
+      "canonical_file_role": "active",
+      "min_recommended_cases": 4,
+      "case_gate_required": true,
+      "source_object_required": true,
+      "claim_basis_required": true,
+      "source_limitation_required": true,
+      "critical_distinction_required": true,
+      "method_use_note": "Brukes med eksplisitt usikkerhet, prøveskjevhet og etisk vurdering; biologiske klynger skal ikke oversettes direkte til folk eller kultur.",
+      "rotation_note": "Kombineres med minst én uavhengig metode og eksplisitt kilde- eller prøvetakingsbegrensning."
     }
   ]
 }

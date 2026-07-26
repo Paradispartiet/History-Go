@@ -1,12 +1,12 @@
 {
   "subject_id": "historie",
   "subject_title": "Historie",
-  "scope": "oslo_og_omegn",
+  "scope": "universal",
   "type": "fagkart",
-  "version": "v5.5-canonical",
-  "updated_at": "2026-07-25",
+  "version": "v5.6-canonical",
+  "updated_at": "2026-07-26",
   "principles": {
-    "locked_categories": true,
+    "locked_categories": false,
     "dev_happens_through": [
       "emner",
       "metoder",
@@ -16,7 +16,7 @@
       "observasjoner",
       "eksterne_kilder"
     ],
-    "no_new_main_categories": true,
+    "no_new_main_categories": false,
     "style": [
       "stedlig historie først",
       "kildekritisk presisjon",
@@ -25,7 +25,9 @@
       "makt, minne og blindsoner synliggjøres",
       "eksterne kilder dominerer faktainnholdet"
     ],
-    "core_rule": "Historie-spørsmål skal starte i dokumenterbare spor, hendelser, kilder eller steder, og bruke teori/metode til å skjerpe tolkningen."
+    "core_rule": "Historie-spørsmål skal starte i dokumenterbare spor, hendelser, kilder, steder eller materielle kontekster. Geografiske cases skal kobles til den universelle fagmodellen, ikke definere egne landfag.",
+    "universal_subject_model": true,
+    "geographic_profiles_are_separate": true
   },
   "categories": [
     {
@@ -26438,6 +26440,1297 @@
       "canonical_status": "canonical",
       "registry_version": "historiepensum_v5_5",
       "canonical_file_role": "active"
+    },
+    {
+      "id": "his_forhistorie_arkeologi",
+      "title": "Forhistorie og arkeologi",
+      "tagline": "Menneskelig historie før og uten skrift gjennom materielle, biologiske og miljømessige spor",
+      "definition": "Forhistorie og arkeologi undersøker menneskelig liv før og uten tilstrekkelige skriftlige kilder gjennom materiell kultur, biologiske levninger, landskap, naturvitenskapelig datering og eksplisitt kildekritikk. Domenet krever kontekst, kronologi, alternative tolkninger og etisk kontroll.",
+      "focus": [
+        "arkeologisk kontekst",
+        "forhistorisk kronologi",
+        "steinalder",
+        "neolitisering",
+        "bronsealder",
+        "jernalder",
+        "vikingtid",
+        "landskap",
+        "bioarkeologi"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_arkeologisk_kontekst_formation",
+          "title": "Arkeologiske kilder, kontekst og formasjonsprosesser",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arkeologisk_kontekst_formation"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Çatalhöyük",
+            "Joya de Cerén",
+            "Sutton Hoo",
+            "Pompeii"
+          ],
+          "recommended_method_ids": [
+            "met_arkeologisk_kontekstanalyse",
+            "met_stratigrafisk_analyse",
+            "met_sporlesning",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan gjenstander, strukturer, avsetninger og biologiske rester blir til historiske kilder gjennom funnkontekst, lagfølge, bevaringsforhold og senere forstyrrelser. Emnet skiller systematisk mellom fortidig handling, avsetning, nedbrytning, utgravning og moderne dokumentasjon.",
+          "critical_distinctions": [
+            "primær kontekst vs sekundær avsetning",
+            "fortidig handling vs senere forstyrrelse",
+            "funnmengde vs bevaringsskjevhet",
+            "utgravningsdata vs tolkning"
+          ]
+        },
+        {
+          "id": "his_arkeologisk_datering_kronologi",
+          "title": "Arkeologisk datering, stratigrafi og kronologi",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arkeologisk_datering_kronologi"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Stonehenge",
+            "Osebergskipet",
+            "Monte Verde",
+            "L'Anse aux Meadows"
+          ],
+          "recommended_method_ids": [
+            "met_stratigrafisk_analyse",
+            "met_typologisk_seriasjon",
+            "met_absolutt_datering",
+            "met_kronologisk_rekonstruksjon"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Bygger tidsrekkefølger ved å kombinere stratigrafi, typologi, seriasjon, naturvitenskapelige dateringer og kalibrerte usikkerhetsintervaller. Emnet undersøker hvordan relative og absolutte metoder støtter eller motsier hverandre, og hvordan kronologier revideres når nye prøver eller kontekster tilkommer.",
+          "critical_distinctions": [
+            "relativ datering vs absolutt datering",
+            "prøvedato vs hendelsesdato",
+            "presisjon vs usikkerhet",
+            "lokal sekvens vs regional kronologi"
+          ]
+        },
+        {
+          "id": "his_menneskelig_utvikling_mobilitet",
+          "title": "Menneskelig utvikling, mobilitet og jeger-sanker-samfunn",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_menneskelig_utvikling_mobilitet"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Olduvai Gorge",
+            "Dmanisi",
+            "Blombos Cave",
+            "Monte Verde"
+          ],
+          "recommended_method_ids": [
+            "met_komparativ_historie",
+            "met_absolutt_datering",
+            "met_bioarkeologisk_analyse",
+            "met_sporlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker menneskelig evolusjon, migrasjoner, tilpasning og sosial organisering gjennom fossiler, redskaper, bosettingsspor, genetikk og paleomiljø. Emnet behandler jeger-sanker-samfunn som historisk varierte og teknologisk kunnskapsrike, ikke som et uforanderlig forstadium.",
+          "critical_distinctions": [
+            "biologisk evolusjon vs kulturell endring",
+            "mobilitet vs fast bosetning",
+            "lokal tilpasning vs langdistansespredning",
+            "materielle spor vs demografisk modell"
+          ]
+        },
+        {
+          "id": "his_steinalder_teknologi_bosetning",
+          "title": "Steinalderens teknologi, bosetning og livsgrunnlag",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_steinalder_teknologi_bosetning"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Star Carr",
+            "Sannai-Maruyama",
+            "Lepenski Vir",
+            "Stunnerboplassen"
+          ],
+          "recommended_method_ids": [
+            "met_typologisk_seriasjon",
+            "met_arkeologisk_kontekstanalyse",
+            "met_sporlesning",
+            "met_langvarighetsanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker paleolittiske, mesolittiske og neolittiske samfunn gjennom redskapsteknologi, råstoffnettverk, boliger, ildsteder, matrester, gravskikk og landskapsbruk. Emnet sammenligner regionale kronologier og unngår å gjøre steinalderen til én ensartet global fase.",
+          "critical_distinctions": [
+            "paleolittikum vs mesolittikum vs neolitikum",
+            "mobil leir vs varig bosetning",
+            "lokalt råstoff vs utvekslingsnettverk",
+            "subsistens vs sosial og rituell praksis"
+          ]
+        },
+        {
+          "id": "his_neolitisering_jordbruk_sedentisme",
+          "title": "Neolitisering, jordbruk og bofasthet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_neolitisering_jordbruk_sedentisme"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Jeriko",
+            "Çatalhöyük",
+            "Banpo",
+            "Kuk Swamp"
+          ],
+          "recommended_method_ids": [
+            "met_bioarkeologisk_analyse",
+            "met_komparativ_historie",
+            "met_langvarighetsanalyse",
+            "met_arkeologisk_kontekstanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Analyserer overganger til plantedyrking, husdyrhold, bofasthet og nye eiendoms- og slektskapsordninger som langvarige, reversible og regionalt forskjellige prosesser. Emnet kobler domestisering til arbeid, kosthold, sykdom, demografi, landskapsendring og sosial ulikhet.",
+          "critical_distinctions": [
+            "sanking og jakt vs matproduksjon",
+            "mobilitet vs sedentisme",
+            "domestisering vs kontroll av ville ressurser",
+            "overskudd vs arbeids- og sykdomsbelastning"
+          ]
+        },
+        {
+          "id": "his_bronsealder_utveksling_ritual",
+          "title": "Bronsealderens metall, utveksling og ritualer",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_bronsealder_utveksling_ritual"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Uluburun-vraket",
+            "Nebra-himmelskiven",
+            "Tanums helleristninger",
+            "Anyang"
+          ],
+          "recommended_method_ids": [
+            "met_typologisk_seriasjon",
+            "met_absolutt_datering",
+            "met_komparativ_historie",
+            "met_sporlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker bronsealderens metallurgi, langdistansenettverk, bergkunst, gravskikk, ritualdeponering og framvekst av sosial differensiering. Emnet sammenligner regioner med og uten omfattende bronsebruk og skiller tilgang til prestisjegjenstander fra direkte politisk kontroll.",
+          "critical_distinctions": [
+            "råstofftilgang vs lokal produksjon",
+            "utveksling vs politisk kontroll",
+            "ritualdeponering vs økonomisk lagring",
+            "prestisje vs varig institusjonell makt"
+          ]
+        },
+        {
+          "id": "his_jernalder_gard_handverk_makt",
+          "title": "Jernalderens gårder, håndverk og maktlandskap",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_jernalder_gard_handverk_makt"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Hallstatt",
+            "Biskupin",
+            "Jenne-jeno",
+            "Gamla Uppsala"
+          ],
+          "recommended_method_ids": [
+            "met_arkeologisk_kontekstanalyse",
+            "met_typologisk_seriasjon",
+            "met_sporlesning",
+            "met_komparativ_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Analyserer jernproduksjon, gårdsbosetning, gravskikk, håndverk, handel og regionale maktdannelser gjennom lange og ulike jernalderforløp. Emnet undersøker hvordan hushold, spesialister, krigere og ledere organiserte produksjon og territorier uten å gjøre arkeologiske kulturer til entydige etniske grupper.",
+          "critical_distinctions": [
+            "husholdsproduksjon vs spesialisering",
+            "gårdsbosetning vs sentralplass",
+            "gravrepresentasjon vs levd status",
+            "regional stil vs politisk identitet"
+          ]
+        },
+        {
+          "id": "his_vikingtid_mobilitet_handel_makt",
+          "title": "Vikingtidens mobilitet, handel, vold og statsdannelse",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_vikingtid_mobilitet_handel_makt"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Hedeby",
+            "Birka",
+            "Dublin",
+            "L'Anse aux Meadows"
+          ],
+          "recommended_method_ids": [
+            "met_komparativ_historie",
+            "met_absolutt_datering",
+            "met_bioarkeologisk_analyse",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker vikingtiden som sammenvevde prosesser av sjøfart, handel, plyndring, kolonisering, migrasjon, slaveri, kristning og politisk konsolidering. Emnet bruker arkeologiske, skriftlige, numismatiske og naturvitenskapelige kilder og skiller aktivitet, identitet og senere nasjonal mytologi.",
+          "critical_distinctions": [
+            "handel vs plyndring",
+            "mobilitet vs diaspora og bosetning",
+            "aktivitet som viking vs etnisk identitet",
+            "lokal høvdingmakt vs statsdannelse"
+          ]
+        },
+        {
+          "id": "his_arkeologisk_landskap_miljo",
+          "title": "Arkeologiske landskap, miljø og ressursbruk",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_arkeologisk_landskap_miljo"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Stonehenge–Avebury-landskapet",
+            "Angkor-regionen",
+            "Maya-lavlandet",
+            "Hardangervidda"
+          ],
+          "recommended_method_ids": [
+            "met_stratigrafisk_analyse",
+            "met_bioarkeologisk_analyse",
+            "met_langvarighetsanalyse",
+            "met_sporlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker hvordan bosetning, ferdsel, jakt, jordbruk, ritualer og ressursuttak organiseres i landskap over lange tidsrom. Emnet kombinerer romlige analyser, pollen, sedimenter, dyrebein, kartlegging og synlige kulturspor uten å gjøre miljø til en automatisk årsak.",
+          "critical_distinctions": [
+            "sted vs landskapssystem",
+            "miljøendring vs menneskelig valg",
+            "synlige monumenter vs lavintensive aktiviteter",
+            "lokal ressursbruk vs regionale nettverk"
+          ]
+        },
+        {
+          "id": "his_bioarkeologi_helse_demografi",
+          "title": "Bioarkeologi, helse, kosthold og demografi",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "v_gordon_childe",
+                "name": "V. Gordon Childe",
+                "why": "Sammenlignende forhistorie, neolitisering, teknologi og samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "Man Makes Himself"
+                ]
+              },
+              {
+                "id": "lewis_binford",
+                "name": "Lewis Binford",
+                "why": "Mellomnivåteori, formasjonsprosesser og systematisk kobling mellom materiell kultur og handling",
+                "tier": "core",
+                "works": [
+                  "Archaeology as Anthropology"
+                ]
+              },
+              {
+                "id": "ian_hodder",
+                "name": "Ian Hodder",
+                "why": "Kontekstuell arkeologi, fortolkning, materialitet og refleksiv feltmetode",
+                "tier": "core",
+                "works": [
+                  "Reading the Past"
+                ]
+              },
+              {
+                "id": "bjornar_olsen",
+                "name": "Bjørnar Olsen",
+                "why": "Norsk arkeologisk teori, materialitet, ting og kritikk av menneskesentrerte forklaringer",
+                "tier": "core",
+                "works": [
+                  "In Defense of Things"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_bioarkeologi_helse_demografi"
+          ],
+          "best_place_types": [
+            "arkeologisk_lokalitet",
+            "boplass",
+            "gravfelt",
+            "kulturmiljo",
+            "museum",
+            "landskap"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_kontekst_datering_eller_materielt_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Periodenavn uten regional kronologi",
+            "Gjenstandstype gjort til identitet",
+            "Teori uten dokumentert kontekst, datering og begrensning"
+          ],
+          "preferred_question_moves": [
+            "identify context, material and date",
+            "separate observation from interpretation",
+            "test preservation and sampling bias",
+            "compare an alternative explanation"
+          ],
+          "comparison_pairs": [
+            [
+              "v_gordon_childe",
+              "lewis_binford"
+            ],
+            [
+              "ian_hodder",
+              "bjornar_olsen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "bjornar_olsen"
+          ],
+          "recommended_cases": [
+            "Ötzi",
+            "Egtvedpiken",
+            "Denisovahulen",
+            "Çatalhöyük-gravene"
+          ],
+          "recommended_method_ids": [
+            "met_bioarkeologisk_analyse",
+            "met_absolutt_datering",
+            "met_kildekritikk",
+            "met_komparativ_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v5_6",
+          "min_recommended_cases": 4,
+          "min_recommended_methods": 2,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 4,
+            "min_method_count": 2,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "require_chronology_or_temporal_claim": true,
+            "require_temporal_scope": true,
+            "require_critical_distinction": true,
+            "require_context_and_formation_process": true,
+            "rotate_theorists": true
+          },
+          "definition": "Undersøker menneskelige og animalske levninger, isotoper, paleopatologi, tannhelse, gammelt DNA og gravkontekst for å analysere kosthold, mobilitet, slektskap, sykdom, arbeid og befolkningsforløp. Emnet kombinerer biologiske data med sosial og etisk kildekritikk.",
+          "critical_distinctions": [
+            "biologisk indikator vs sosial erfaring",
+            "individdata vs befolkningsmodell",
+            "lokal oppvekst vs senere mobilitet",
+            "forskningsverdi vs etiske og rettslige krav"
+          ]
+        }
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v5_6"
     }
   ]
 }

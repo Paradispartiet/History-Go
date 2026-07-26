@@ -1,0 +1,348 @@
+# Historie V5.6 quality depth audit
+
+- Status: **PASSED**
+- Mode: `verify`
+- Domains: 21/20
+- Emner: 210/200
+- Concepts: 876/826
+- Theories: 210/200
+- Concepts with ≥2 indicators: 876/876
+- Concepts with ≥2 source requirements: 876/876
+- Semantic concept relations: 3589
+- Theories with ≥3 limitations: 210/210
+- Errors: 0
+- Warnings: 317
+
+## Definition depth
+
+Concept definitions: min 99, p10 131, median 161, average 171 characters.
+Theory definitions: min 143, p10 165, median 191, average 209 characters.
+
+## Errors
+
+None.
+
+## Warnings
+
+- `concept_lexical_anchor` — `con_his_1800_tallets`: Definition does not repeat a significant label token: lange, 1800, tallet
+- `concept_lexical_anchor` — `con_his_akkumulering`: Definition does not repeat a significant label token: akkumulering
+- `concept_lexical_anchor` — `con_his_alderdom`: Definition does not repeat a significant label token: alderdom
+- `concept_lexical_anchor` — `con_his_anakronisme`: Definition does not repeat a significant label token: anakronisme
+- `concept_lexical_anchor` — `con_his_antropocen`: Definition does not repeat a significant label token: antropocen
+- `concept_lexical_anchor` — `con_his_apne`: Definition does not repeat a significant label token: handlingsrom
+- `concept_lexical_anchor` — `con_his_arbeid`: Definition does not repeat a significant label token: arbeid
+- `concept_lexical_anchor` — `con_his_arbeidsdeling`: Definition does not repeat a significant label token: arbeidsdeling
+- `concept_lexical_anchor` — `con_his_arkiv`: Definition does not repeat a significant label token: arkiv
+- `concept_lexical_anchor` — `con_his_arkivenes`: Definition does not repeat a significant label token: arkivansvar
+- `concept_lexical_anchor` — `con_his_arkiver`: Definition does not repeat a significant label token: arkivbestand
+- `concept_lexical_anchor` — `con_his_arkivorden`: Definition does not repeat a significant label token: arkivorden
+- `concept_lexical_anchor` — `con_his_arkivtaushet`: Definition does not repeat a significant label token: arkivtaushet
+- `concept_lexical_anchor` — `con_his_autentisitet`: Definition does not repeat a significant label token: autentisitet
+- `concept_lexical_anchor` — `con_his_autoritet`: Definition does not repeat a significant label token: autoritet
+- `concept_lexical_anchor` — `con_his_avhengighet`: Definition does not repeat a significant label token: avhengighet
+- `concept_lexical_anchor` — `con_his_avkolonisering`: Definition does not repeat a significant label token: avkolonisering
+- `concept_lexical_anchor` — `con_his_bank`: Definition does not repeat a significant label token: bank
+- `concept_lexical_anchor` — `con_his_barndom`: Definition does not repeat a significant label token: barndom
+- `concept_lexical_anchor` — `con_his_befolkning`: Definition does not repeat a significant label token: befolkning
+- `concept_lexical_anchor` — `con_his_begrensning`: Definition does not repeat a significant label token: kildebegrensning
+- `concept_lexical_anchor` — `con_his_begreper`: Definition does not repeat a significant label token: historiske, begreper
+- `concept_lexical_anchor` — `con_his_beretning`: Definition does not repeat a significant label token: beretning
+- `concept_lexical_anchor` — `con_his_bevegelser`: Definition does not repeat a significant label token: sosiale, bevegelser
+- `concept_lexical_anchor` — `con_his_bistand`: Definition does not repeat a significant label token: bistand
+- `concept_lexical_anchor` — `con_his_blindsoner`: Definition does not repeat a significant label token: blindsoner
+- `concept_lexical_anchor` — `con_his_brudd`: Definition does not repeat a significant label token: brudd
+- `concept_lexical_anchor` — `con_his_bygninger`: Definition does not repeat a significant label token: bygningsspor
+- `concept_lexical_anchor` — `con_his_bygningsrester`: Definition does not repeat a significant label token: bygningsrester
+- `concept_lexical_anchor` — `con_his_byrom`: Definition does not repeat a significant label token: byrom
+- `concept_lexical_anchor` — `con_his_claim_basis`: Definition does not repeat a significant label token: pastandsgrunnlag
+- `concept_lexical_anchor` — `con_his_datamakt`: Definition does not repeat a significant label token: datamakt
+- `concept_lexical_anchor` — `con_his_datering`: Definition does not repeat a significant label token: datering
+- `concept_lexical_anchor` — `con_his_dateringsgrunnlag`: Definition does not repeat a significant label token: dateringsgrunnlag
+- `concept_lexical_anchor` — `con_his_dateringsusikkerhet`: Definition does not repeat a significant label token: dateringsusikkerhet
+- `concept_lexical_anchor` — `con_his_diaspora`: Definition does not repeat a significant label token: diaspora
+- `concept_lexical_anchor` — `con_his_digitalisering`: Definition does not repeat a significant label token: digitalisering
+- `concept_lexical_anchor` — `con_his_dissenter`: Definition does not repeat a significant label token: dissenter
+- `concept_lexical_anchor` — `con_his_dissentere`: Definition does not repeat a significant label token: dissentersamfunn
+- `concept_lexical_anchor` — `con_his_dokumentasjon`: Definition does not repeat a significant label token: dokumentasjon
+- `concept_lexical_anchor` — `con_his_dokumentasjonsformer`: Definition does not repeat a significant label token: dokumentasjonsformer
+- `concept_lexical_anchor` — `con_his_dokumentform`: Definition does not repeat a significant label token: dokumentform
+- `concept_lexical_anchor` — `con_his_ekskludering`: Definition does not repeat a significant label token: ekskludering
+- `concept_lexical_anchor` — `con_his_ekspertise`: Definition does not repeat a significant label token: ekspertise
+- `concept_lexical_anchor` — `con_his_ekteskap`: Definition does not repeat a significant label token: ekteskap
+- `concept_lexical_anchor` — `con_his_endring`: Definition does not repeat a significant label token: miljøendring
+- `concept_lexical_anchor` — `con_his_endringstempo`: Definition does not repeat a significant label token: endringstempo
+- `concept_lexical_anchor` — `con_his_energiregime`: Definition does not repeat a significant label token: energiregime
+- `concept_lexical_anchor` — `con_his_energiregimer`: Definition does not repeat a significant label token: energiomstilling
+- `concept_lexical_anchor` — `con_his_epoker`: Definition does not repeat a significant label token: epoke
+- `concept_lexical_anchor` — `con_his_erfaringsrom`: Definition does not repeat a significant label token: erfaringsrom
+- `concept_lexical_anchor` — `con_his_ettertid`: Definition does not repeat a significant label token: ettertid
+- `concept_lexical_anchor` — `con_his_familie`: Definition does not repeat a significant label token: familie
+- `concept_lexical_anchor` — `con_his_femininitet`: Definition does not repeat a significant label token: femininitet
+- `concept_lexical_anchor` — `con_his_femininiteter`: Definition does not repeat a significant label token: femininitetsformer
+- `concept_lexical_anchor` — `con_his_finans`: Definition does not repeat a significant label token: finans
+- `concept_lexical_anchor` — `con_his_finnes`: Definition does not repeat a significant label token: kildebelegg
+- `concept_lexical_anchor` — `con_his_fiske`: Definition does not repeat a significant label token: fiske
+- `concept_lexical_anchor` — `con_his_forbindelser`: Definition does not repeat a significant label token: militær, industrielle, forbindelser
+- `concept_lexical_anchor` — `con_his_forbruk`: Definition does not repeat a significant label token: forbruk
+- `concept_lexical_anchor` — `con_his_forkristne`: Definition does not repeat a significant label token: førkristen, religion
+- `concept_lexical_anchor` — `con_his_formal`: Definition does not repeat a significant label token: formal
+- `concept_lexical_anchor` — `con_his_fornorskning`: Definition does not repeat a significant label token: fornorskning
+- `concept_lexical_anchor` — `con_his_forsoning`: Definition does not repeat a significant label token: forsoning
+- `concept_lexical_anchor` — `con_his_fortelling`: Definition does not repeat a significant label token: fortelling
+- `concept_lexical_anchor` — `con_his_fortsatt`: Definition does not repeat a significant label token: brukskontinuitet
+- `concept_lexical_anchor` — `con_his_forurensning`: Definition does not repeat a significant label token: forurensning
+- `concept_lexical_anchor` — `con_his_forventningshorisont`: Definition does not repeat a significant label token: forventningshorisont
+- `concept_lexical_anchor` — `con_his_framtider`: Definition does not repeat a significant label token: apne, framtider
+- `concept_lexical_anchor` — `con_his_framtidsansvar`: Definition does not repeat a significant label token: framtidsansvar
+- `concept_lexical_anchor` — `con_his_fravaer`: Definition does not repeat a significant label token: fravær
+- `concept_lexical_anchor` — `con_his_funksjoner`: Definition does not repeat a significant label token: funksjon
+- `concept_lexical_anchor` — `con_his_gate`: Definition does not repeat a significant label token: minnepolitisk, gatenavn
+- `concept_lexical_anchor` — `con_his_gjor`: Definition does not repeat a significant label token: registreringsvirkning
+- `concept_lexical_anchor` — `con_his_global_arbeidsdeling`: Definition does not repeat a significant label token: global, arbeidsdeling
+- `concept_lexical_anchor` — `con_his_globale`: Definition does not repeat a significant label token: global, skala
+- `concept_lexical_anchor` — `con_his_globalisering`: Definition does not repeat a significant label token: globalisering
+- `concept_lexical_anchor` — `con_his_gravminner`: Definition does not repeat a significant label token: gravminner
+- `concept_lexical_anchor` — `con_his_handel`: Definition does not repeat a significant label token: handel
+- `concept_lexical_anchor` — `con_his_helse`: Definition does not repeat a significant label token: helse
+- `concept_lexical_anchor` — `con_his_helsevitenskap`: Definition does not repeat a significant label token: helsevitenskap
+- `concept_lexical_anchor` — `con_his_hendelse`: Definition does not repeat a significant label token: hendelse
+- `concept_lexical_anchor` — `con_his_historie`: Definition does not repeat a significant label token: globalhistorie
+- `concept_lexical_anchor` — `con_his_historiefagets`: Definition does not repeat a significant label token: dokumentasjon
+- `concept_lexical_anchor` — `con_his_historisk_endring`: Definition does not repeat a significant label token: endring
+- `concept_lexical_anchor` — `con_his_hushold`: Definition does not repeat a significant label token: hushold
+- `concept_lexical_anchor` — `con_his_hvem`: Definition does not repeat a significant label token: kildeprodusent
+- `concept_lexical_anchor` — `con_his_hverdagsliv`: Definition does not repeat a significant label token: hverdagsliv
+- `concept_lexical_anchor` — `con_his_identitet`: Definition does not repeat a significant label token: identitet
+- `concept_lexical_anchor` — `con_his_ikke`: Definition does not repeat a significant label token: negativ, evidens
+- `concept_lexical_anchor` — `con_his_imperiale`: Definition does not repeat a significant label token: imperiale, relasjoner
+- `concept_lexical_anchor` — `con_his_imperier`: Definition does not repeat a significant label token: imperiale, systemer
+- `concept_lexical_anchor` — `con_his_imperium`: Definition does not repeat a significant label token: imperium
+- `concept_lexical_anchor` — `con_his_industri`: Definition does not repeat a significant label token: industri
+- `concept_lexical_anchor` — `con_his_informasjonsregimer`: Definition does not repeat a significant label token: informasjonsregime
+- `concept_lexical_anchor` — `con_his_internasjonale`: Definition does not repeat a significant label token: multilateralt, samarbeid
+- `concept_lexical_anchor` — `con_his_interseksjonalitet`: Definition does not repeat a significant label token: interseksjonalitet
+- `concept_lexical_anchor` — `con_his_jord`: Definition does not repeat a significant label token: land, vann
+- `concept_lexical_anchor` — `con_his_jordbruk`: Definition does not repeat a significant label token: jordbruk
+- `concept_lexical_anchor` — `con_his_journal`: Definition does not repeat a significant label token: velferds, pasientjournal
+- `concept_lexical_anchor` — `con_his_kapital`: Definition does not repeat a significant label token: kapital
+- `concept_lexical_anchor` — `con_his_kart`: Definition does not repeat a significant label token: kart
+- `concept_lexical_anchor` — `con_his_kartlegging`: Definition does not repeat a significant label token: kartlegging
+- `concept_lexical_anchor` — `con_his_kataloger`: Definition does not repeat a significant label token: kataloger
+- `concept_lexical_anchor` — `con_his_kategori`: Definition does not repeat a significant label token: kategori
+- `concept_lexical_anchor` — `con_his_kildegrunnlag`: Definition does not repeat a significant label token: kildegrunnlag
+- `concept_lexical_anchor` — `con_his_kildekritikk`: Definition does not repeat a significant label token: kildekritikk
+- `concept_lexical_anchor` — `con_his_kildene`: Definition does not repeat a significant label token: kildeutvalg
+- `concept_lexical_anchor` — `con_his_kildeobjekt`: Definition does not repeat a significant label token: kildeobjekt
+- `concept_lexical_anchor` — `con_his_kjonn`: Definition does not repeat a significant label token: kjønn
+- `concept_lexical_anchor` — `con_his_kjonnskategori`: Definition does not repeat a significant label token: kjønnskategori
+- `concept_lexical_anchor` — `con_his_klassifikasjon`: Definition does not repeat a significant label token: klassifikasjon
+- `concept_lexical_anchor` — `con_his_klima`: Definition does not repeat a significant label token: klima
+- `concept_lexical_anchor` — `con_his_klimavariasjon`: Definition does not repeat a significant label token: klimavariasjon
+- `concept_lexical_anchor` — `con_his_koloniale`: Definition does not repeat a significant label token: koloniale, forbindelser
+- `concept_lexical_anchor` — `con_his_kolonialisme`: Definition does not repeat a significant label token: kolonialisme
+- `concept_lexical_anchor` — `con_his_kolonisering`: Definition does not repeat a significant label token: kolonisering
+- `concept_lexical_anchor` — `con_his_kommersielle`: Definition does not repeat a significant label token: kommersielle, nettverk
+- `concept_lexical_anchor` — `con_his_kommunikasjon`: Definition does not repeat a significant label token: kommunikasjon
+- `concept_lexical_anchor` — `con_his_konfesjonalisering`: Definition does not repeat a significant label token: konfesjonalisering
+- `concept_lexical_anchor` — `con_his_konjunktur`: Definition does not repeat a significant label token: konjunktur
+- `concept_lexical_anchor` — `con_his_konjunkturer`: Definition does not repeat a significant label token: konjunktursvingninger
+- `concept_lexical_anchor` — `con_his_kontaktsoner`: Definition does not repeat a significant label token: kontaktsoner
+- `concept_lexical_anchor` — `con_his_kontekst`: Definition does not repeat a significant label token: kontekst
+- `concept_lexical_anchor` — `con_his_kontinuitet`: Definition does not repeat a significant label token: kontinuitet
+- `concept_lexical_anchor` — `con_his_kontrollkilde`: Definition does not repeat a significant label token: kontrollkilde
+- `concept_lexical_anchor` — `con_his_korroborering`: Definition does not repeat a significant label token: korroborering
+- `concept_lexical_anchor` — `con_his_kreditt`: Definition does not repeat a significant label token: kreditt
+- `concept_lexical_anchor` — `con_his_kriger`: Definition does not repeat a significant label token: globale, kriger
+- `concept_lexical_anchor` — `con_his_kriser`: Definition does not repeat a significant label token: økonomiske, kriser
+- `concept_lexical_anchor` — `con_his_kristning`: Definition does not repeat a significant label token: kristning
+- `concept_lexical_anchor` — `con_his_kronologi`: Definition does not repeat a significant label token: kronologi
+- `concept_lexical_anchor` — `con_his_kulturarv`: Definition does not repeat a significant label token: kulturarv
+- `concept_lexical_anchor` — `con_his_kulturelle`: Definition does not repeat a significant label token: kulturell, utveksling
+- `concept_lexical_anchor` — `con_his_kulturmote`: Definition does not repeat a significant label token: kulturmøte
+- `concept_lexical_anchor` — `con_his_kunnskap`: Definition does not repeat a significant label token: kunnskap
+- `concept_lexical_anchor` — `con_his_kunnskapsinstitusjoner`: Definition does not repeat a significant label token: kunnskapsinstitusjoner
+- `concept_lexical_anchor` — `con_his_kunnskapsmakt`: Definition does not repeat a significant label token: kunnskapsmakt
+- `concept_lexical_anchor` — `con_his_kunst`: Definition does not repeat a significant label token: kunst
+- `concept_lexical_anchor` — `con_his_kvinnebevegelse`: Definition does not repeat a significant label token: kvinnebevegelse
+- `concept_lexical_anchor` — `con_his_lag`: Definition does not repeat a significant label token: historiske
+- `concept_lexical_anchor` — `con_his_landskap`: Definition does not repeat a significant label token: landskap
+- `concept_lexical_anchor` — `con_his_lang`: Definition does not repeat a significant label token: strukturell, treghet
+- `concept_lexical_anchor` — `con_his_lekmannsbevegelse`: Definition does not repeat a significant label token: lekmannsbevegelse
+- `concept_lexical_anchor` — `con_his_levestandard`: Definition does not repeat a significant label token: levestandard
+- `concept_lexical_anchor` — `con_his_levning`: Definition does not repeat a significant label token: levning
+- `concept_lexical_anchor` — `con_his_likestilling`: Definition does not repeat a significant label token: likestilling
+- `concept_lexical_anchor` — `con_his_livslop`: Definition does not repeat a significant label token: livsløp
+- `concept_lexical_anchor` — `con_his_livssyn`: Definition does not repeat a significant label token: livssyn
+- `concept_lexical_anchor` — `con_his_livssynspluralisme`: Definition does not repeat a significant label token: livssynspluralisme
+- `concept_lexical_anchor` — `con_his_makt`: Definition does not repeat a significant label token: makt
+- `concept_lexical_anchor` — `con_his_maling`: Definition does not repeat a significant label token: maling
+- `concept_lexical_anchor` — `con_his_manglende`: Definition does not repeat a significant label token: kildehull
+- `concept_lexical_anchor` — `con_his_markeder`: Definition does not repeat a significant label token: markeder
+- `concept_lexical_anchor` — `con_his_markedsintegrasjon`: Definition does not repeat a significant label token: markedsintegrasjon
+- `concept_lexical_anchor` — `con_his_maskulinitet`: Definition does not repeat a significant label token: maskulinitet
+- `concept_lexical_anchor` — `con_his_maskuliniteter`: Definition does not repeat a significant label token: maskulinitetsformer
+- `concept_lexical_anchor` — `con_his_materialer`: Definition does not repeat a significant label token: materialspor
+- `concept_lexical_anchor` — `con_his_materielle`: Definition does not repeat a significant label token: materielle, standarder
+- `concept_lexical_anchor` — `con_his_medier`: Definition does not repeat a significant label token: medier
+- `concept_lexical_anchor` — `con_his_medikalisering`: Definition does not repeat a significant label token: medikalisering
+- `concept_lexical_anchor` — `con_his_medisin`: Definition does not repeat a significant label token: medisin
+- `concept_lexical_anchor` — `con_his_migrasjon`: Definition does not repeat a significant label token: migrasjon
+- `concept_lexical_anchor` — `con_his_miljobevegelse`: Definition does not repeat a significant label token: miljøbevegelse
+- `concept_lexical_anchor` — `con_his_miljohistorie`: Definition does not repeat a significant label token: miljøhistorie
+- `concept_lexical_anchor` — `con_his_miljorettferdighet`: Definition does not repeat a significant label token: miljørettferdighet
+- `concept_lexical_anchor` — `con_his_miljoulikhet`: Definition does not repeat a significant label token: miljøulikhet
+- `concept_lexical_anchor` — `con_his_minoriteter`: Definition does not repeat a significant label token: minoriteter
+- `concept_lexical_anchor` — `con_his_minoritetsvern_vs_kontroll`: Definition does not repeat a significant label token: minoritetsvern, versus, kontroll
+- `concept_lexical_anchor` — `con_his_misjon`: Definition does not repeat a significant label token: misjon
+- `concept_lexical_anchor` — `con_his_modernisering`: Definition does not repeat a significant label token: modernisering
+- `concept_lexical_anchor` — `con_his_monumenter`: Definition does not repeat a significant label token: monumenter
+- `concept_lexical_anchor` — `con_his_naeringsformer`: Definition does not repeat a significant label token: næringsformer
+- `concept_lexical_anchor` — `con_his_natur`: Definition does not repeat a significant label token: natur
+- `concept_lexical_anchor` — `con_his_naturforvaltning`: Definition does not repeat a significant label token: naturforvaltning
+- `concept_lexical_anchor` — `con_his_naturressurser`: Definition does not repeat a significant label token: naturressurser
+- `concept_lexical_anchor` — `con_his_nettverk`: Definition does not repeat a significant label token: nettverk
+- `concept_lexical_anchor` — `con_his_noen`: Definition does not repeat a significant label token: seleksjon
+- `concept_lexical_anchor` — `con_his_odelagt`: Definition does not repeat a significant label token: dokumenttap
+- `concept_lexical_anchor` — `con_his_offentlig`: Definition does not repeat a significant label token: offentlig, økonomi
+- `concept_lexical_anchor` — `con_his_offentlighet`: Definition does not repeat a significant label token: offentlighet
+- `concept_lexical_anchor` — `con_his_okonomi`: Definition does not repeat a significant label token: økonomi
+- `concept_lexical_anchor` — `con_his_omsorg`: Definition does not repeat a significant label token: omsorg
+- `concept_lexical_anchor` — `con_his_opphav`: Definition does not repeat a significant label token: opphav
+- `concept_lexical_anchor` — `con_his_organisering`: Definition does not repeat a significant label token: organisering
+- `concept_lexical_anchor` — `con_his_pasient`: Definition does not repeat a significant label token: pasientkategori
+- `concept_lexical_anchor` — `con_his_penger`: Definition does not repeat a significant label token: penger
+- `concept_lexical_anchor` — `con_his_periodisering`: Definition does not repeat a significant label token: periodisering
+- `concept_lexical_anchor` — `con_his_pietisme`: Definition does not repeat a significant label token: pietisme
+- `concept_lexical_anchor` — `con_his_politikk`: Definition does not repeat a significant label token: politikk
+- `concept_lexical_anchor` — `con_his_praksis`: Definition does not repeat a significant label token: praksis
+- `concept_lexical_anchor` — `con_his_pris`: Definition does not repeat a significant label token: pris
+- `concept_lexical_anchor` — `con_his_priser`: Definition does not repeat a significant label token: prisniva
+- `concept_lexical_anchor` — `con_his_produksjonskontekst`: Definition does not repeat a significant label token: produksjonskontekst
+- `concept_lexical_anchor` — `con_his_produktivitet`: Definition does not repeat a significant label token: produktivitet
+- `concept_lexical_anchor` — `con_his_profesjon`: Definition does not repeat a significant label token: profesjon
+- `concept_lexical_anchor` — `con_his_prosess`: Definition does not repeat a significant label token: prosess
+- `concept_lexical_anchor` — `con_his_proveniens`: Definition does not repeat a significant label token: proveniens
+- `concept_lexical_anchor` — `con_his_raseforskning`: Definition does not repeat a significant label token: raseforskning
+- `concept_lexical_anchor` — `con_his_ravarekjede`: Definition does not repeat a significant label token: ravarekjede
+- `concept_lexical_anchor` — `con_his_ravarer`: Definition does not repeat a significant label token: ravareutvinning
+- `concept_lexical_anchor` — `con_his_reformasjon`: Definition does not repeat a significant label token: reformasjon
+- `concept_lexical_anchor` — `con_his_registre`: Definition does not repeat a significant label token: registre
+- `concept_lexical_anchor` — `con_his_regulering`: Definition does not repeat a significant label token: sosial, regulering
+- `concept_lexical_anchor` — `con_his_religion`: Definition does not repeat a significant label token: religion
+- `concept_lexical_anchor` — `con_his_religioner`: Definition does not repeat a significant label token: religionsmangfold
+- `concept_lexical_anchor` — `con_his_representativitet`: Definition does not repeat a significant label token: representativitet
+- `concept_lexical_anchor` — `con_his_reproduksjon`: Definition does not repeat a significant label token: reproduksjon
+- `concept_lexical_anchor` — `con_his_ressursbruk`: Definition does not repeat a significant label token: ressursbruk
+- `concept_lexical_anchor` — `con_his_ressursokonomi`: Definition does not repeat a significant label token: ressursøkonomi
+- `concept_lexical_anchor` — `con_his_ressursrett`: Definition does not repeat a significant label token: ressursrett
+- `concept_lexical_anchor` — `con_his_rester`: Definition does not repeat a significant label token: materielle, rester
+- `concept_lexical_anchor` — `con_his_rettighetskamp`: Definition does not repeat a significant label token: rettighetskamp
+- `concept_lexical_anchor` — `con_his_revitalisering`: Definition does not repeat a significant label token: revitalisering
+- `concept_lexical_anchor` — `con_his_ruiner`: Definition does not repeat a significant label token: ruiner
+- `concept_lexical_anchor` — `con_his_samfunn`: Definition does not repeat a significant label token: samfunn
+- `concept_lexical_anchor` — `con_his_samler`: Definition does not repeat a significant label token: innsamling
+- `concept_lexical_anchor` — `con_his_sammenvevd`: Definition does not repeat a significant label token: sammenveving
+- `concept_lexical_anchor` — `con_his_sammenvevd_historie`: Definition does not repeat a significant label token: sammenvevd
+- `concept_lexical_anchor` — `con_his_samtid`: Definition does not repeat a significant label token: samtid
+- `concept_lexical_anchor` — `con_his_samtidighet`: Definition does not repeat a significant label token: samtidighet
+- `concept_lexical_anchor` — `con_his_samtidshistorie`: Definition does not repeat a significant label token: samtidshistorie
+- `concept_lexical_anchor` — `con_his_sannhet`: Definition does not repeat a significant label token: sannhetsarbeid
+- `concept_lexical_anchor` — `con_his_seksualitet`: Definition does not repeat a significant label token: seksualitet
+- `concept_lexical_anchor` — `con_his_sekularisering`: Definition does not repeat a significant label token: sekularisering
+- `concept_lexical_anchor` — `con_his_sekularitet`: Definition does not repeat a significant label token: sekularitet
+- `concept_lexical_anchor` — `con_his_serielle`: Definition does not repeat a significant label token: kvantifisering
+- `concept_lexical_anchor` — `con_his_serielle_kilder`: Definition does not repeat a significant label token: serielle, kilder
+- `concept_lexical_anchor` — `con_his_siida`: Definition does not repeat a significant label token: siida
+- `concept_lexical_anchor` — `con_his_sjofart`: Definition does not repeat a significant label token: sjøfart
+- `concept_lexical_anchor` — `con_his_skeiv`: Definition does not repeat a significant label token: skeiv
+- `concept_lexical_anchor` — `con_his_skog`: Definition does not repeat a significant label token: skog
+- `concept_lexical_anchor` — `con_his_skole`: Definition does not repeat a significant label token: skole
+- `concept_lexical_anchor` — `con_his_slaveri`: Definition does not repeat a significant label token: slaveri
+- `concept_lexical_anchor` — `con_his_slektskap`: Definition does not repeat a significant label token: slektskap
+- `concept_lexical_anchor` — `con_his_solidaritetsnettverk`: Definition does not repeat a significant label token: solidaritetsnettverk
+- `concept_lexical_anchor` — `con_his_sosial`: Definition does not repeat a significant label token: sosial, reproduksjon
+- `concept_lexical_anchor` — `con_his_spor`: Definition does not repeat a significant label token: spor
+- `concept_lexical_anchor` — `con_his_sprak`: Definition does not repeat a significant label token: sprak
+- `concept_lexical_anchor` — `con_his_sprakpolitikk`: Definition does not repeat a significant label token: sprakpolitikk
+- `concept_lexical_anchor` — `con_his_standarder`: Definition does not repeat a significant label token: standarder
+- `concept_lexical_anchor` — `con_his_standardisering`: Definition does not repeat a significant label token: standardisering
+- `concept_lexical_anchor` — `con_his_statistikk`: Definition does not repeat a significant label token: statistikk
+- `concept_lexical_anchor` — `con_his_statsgrense`: Definition does not repeat a significant label token: statsgrense
+- `concept_lexical_anchor` — `con_his_statsgrenser`: Definition does not repeat a significant label token: grensekryssende, mobilitet
+- `concept_lexical_anchor` — `con_his_statskirke`: Definition does not repeat a significant label token: statskirke
+- `concept_lexical_anchor` — `con_his_stedlig_spor`: Definition does not repeat a significant label token: stedlig, spor
+- `concept_lexical_anchor` — `con_his_strukturer`: Definition does not repeat a significant label token: historiske, strukturer
+- `concept_lexical_anchor` — `con_his_tapte`: Definition does not repeat a significant label token: kildetap
+- `concept_lexical_anchor` — `con_his_taushet`: Definition does not repeat a significant label token: taushet
+- `concept_lexical_anchor` — `con_his_tidligere`: Definition does not repeat a significant label token: funksjonsskifte
+- `concept_lexical_anchor` — `con_his_tidsforlop`: Definition does not repeat a significant label token: tidsforløp
+- `concept_lexical_anchor` — `con_his_tidsmessig`: Definition does not repeat a significant label token: relativ, datering
+- `concept_lexical_anchor` — `con_his_tolkning`: Definition does not repeat a significant label token: tolkning
+- `concept_lexical_anchor` — `con_his_transnasjonale`: Definition does not repeat a significant label token: transnasjonale, religionsnettverk
+- `concept_lexical_anchor` — `con_his_trosfrihet`: Definition does not repeat a significant label token: trosfrihet
+- `concept_lexical_anchor` — `con_his_ulike`: Definition does not repeat a significant label token: asynkron, endring
+- `concept_lexical_anchor` — `con_his_ungdom`: Definition does not repeat a significant label token: ungdom
+- `concept_lexical_anchor` — `con_his_urban_natur`: Definition does not repeat a significant label token: urban, natur
+- `concept_lexical_anchor` — `con_his_urfolk`: Definition does not repeat a significant label token: urfolk
+- `concept_lexical_anchor` — `con_his_usikkerhet`: Definition does not repeat a significant label token: usikkerhet
+- `concept_lexical_anchor` — `con_his_utelatt`: Definition does not repeat a significant label token: utelatelse
+- `concept_lexical_anchor` — `con_his_utviklingspolitikk`: Definition does not repeat a significant label token: utviklingspolitikk
+- `concept_lexical_anchor` — `con_his_vaere`: Definition does not repeat a significant label token: indirekte, belegg
+- `concept_lexical_anchor` — `con_his_varighet`: Definition does not repeat a significant label token: varighet
+- `concept_lexical_anchor` — `con_his_vekkelse`: Definition does not repeat a significant label token: vekkelse
+- `concept_lexical_anchor` — `con_his_verdikjeder`: Definition does not repeat a significant label token: globale, verdikjeder
+- `concept_lexical_anchor` — `con_his_viktig`: Definition does not repeat a significant label token: bevaringsskjevhet
+- `concept_lexical_anchor` — `con_his_visuelle`: Definition does not repeat a significant label token: visuell, representasjon
+- `concept_lexical_anchor` — `con_his_vitenskap`: Definition does not repeat a significant label token: vitenskap
+- `concept_lexical_anchor` — `con_his_pre_arkeologisk_kontekst`: Definition does not repeat a significant label token: arkeologisk, kontekst
+- `concept_lexical_anchor` — `con_his_pre_proveniens`: Definition does not repeat a significant label token: proveniens
+- `concept_lexical_anchor` — `con_his_pre_formasjonsprosess`: Definition does not repeat a significant label token: formasjonsprosess
+- `concept_lexical_anchor` — `con_his_pre_taphonomi`: Definition does not repeat a significant label token: taphonomi
+- `concept_lexical_anchor` — `con_his_pre_relativ_datering`: Definition does not repeat a significant label token: relativ, datering
+- `concept_lexical_anchor` — `con_his_pre_absolutt_datering`: Definition does not repeat a significant label token: absolutt, datering
+- `concept_lexical_anchor` — `con_his_pre_radiokarbondatering`: Definition does not repeat a significant label token: radiokarbondatering
+- `concept_lexical_anchor` — `con_his_pre_typologi`: Definition does not repeat a significant label token: typologi
+- `concept_lexical_anchor` — `con_his_pre_seriasjon`: Definition does not repeat a significant label token: seriasjon
+- `concept_lexical_anchor` — `con_his_pre_hominin`: Definition does not repeat a significant label token: hominin
+- `concept_lexical_anchor` — `con_his_pre_littisk_teknologi`: Definition does not repeat a significant label token: littisk, teknologi
+- `concept_lexical_anchor` — `con_his_pre_paleomiljo`: Definition does not repeat a significant label token: paleomiljø
+- `concept_lexical_anchor` — `con_his_pre_paleolittikum`: Definition does not repeat a significant label token: paleolittikum
+- `concept_lexical_anchor` — `con_his_pre_mesolittikum`: Definition does not repeat a significant label token: mesolittikum
+- `concept_lexical_anchor` — `con_his_pre_neolittikum`: Definition does not repeat a significant label token: neolittikum
+- `concept_lexical_anchor` — `con_his_pre_bosettingsmonster`: Definition does not repeat a significant label token: bosettingsmønster
+- `concept_lexical_anchor` — `con_his_pre_chaine_operatoire`: Definition does not repeat a significant label token: chaine, operatoire
+- `concept_lexical_anchor` — `con_his_pre_neolitisering`: Definition does not repeat a significant label token: neolitisering
+- `concept_lexical_anchor` — `con_his_pre_domestisering`: Definition does not repeat a significant label token: domestisering
+- `concept_lexical_anchor` — `con_his_pre_sedentisme`: Definition does not repeat a significant label token: sedentisme
+- `concept_lexical_anchor` — `con_his_pre_overskudd`: Definition does not repeat a significant label token: overskudd
+- `concept_lexical_anchor` — `con_his_pre_neolittisk_demografisk_overgang`: Definition does not repeat a significant label token: neolittisk, demografisk, overgang
+- `concept_lexical_anchor` — `con_his_pre_bronsemetallurgi`: Definition does not repeat a significant label token: bronsemetallurgi
+- `concept_lexical_anchor` — `con_his_pre_utvekslingsnettverk`: Definition does not repeat a significant label token: utvekslingsnettverk
+- `concept_lexical_anchor` — `con_his_pre_ritualdeponering`: Definition does not repeat a significant label token: ritualdeponering
+- `concept_lexical_anchor` — `con_his_pre_høvdinghierarki`: Definition does not repeat a significant label token: høvdinghierarki
+- `concept_lexical_anchor` — `con_his_pre_bergkunst`: Definition does not repeat a significant label token: bergkunst
+- `concept_lexical_anchor` — `con_his_pre_jernproduksjon`: Definition does not repeat a significant label token: jernproduksjon
+- `concept_lexical_anchor` — `con_his_pre_gårdsbosetning`: Definition does not repeat a significant label token: gardsbosetning
+- `concept_lexical_anchor` — `con_his_pre_gravskikk`: Definition does not repeat a significant label token: gravskikk
+- `concept_lexical_anchor` — `con_his_pre_håndverksspesialisering`: Definition does not repeat a significant label token: handverksspesialisering
+- `concept_lexical_anchor` — `con_his_pre_regional_maktdannelse`: Definition does not repeat a significant label token: regional, maktdannelse
+- `concept_lexical_anchor` — `con_his_pre_langdistansehandel`: Definition does not repeat a significant label token: langdistansehandel
+- `concept_lexical_anchor` — `con_his_pre_vikingtokt`: Definition does not repeat a significant label token: vikingtokt
+- `concept_lexical_anchor` — `con_his_pre_diaspora`: Definition does not repeat a significant label token: diaspora
+- `concept_lexical_anchor` — `con_his_pre_skipsteknologi`: Definition does not repeat a significant label token: skipsteknologi
+- `concept_lexical_anchor` — `con_his_pre_tidlig_statsdannelse`: Definition does not repeat a significant label token: tidlig, statsdannelse
+- `concept_lexical_anchor` — `con_his_pre_kulturlandskap`: Definition does not repeat a significant label token: kulturlandskap
+- `concept_lexical_anchor` — `con_his_pre_arealbruk`: Definition does not repeat a significant label token: arealbruk
+- `concept_lexical_anchor` — `con_his_pre_ressursomland`: Definition does not repeat a significant label token: ressursomland
+- `concept_lexical_anchor` — `con_his_pre_bosettingsarkeologi`: Definition does not repeat a significant label token: bosettingsarkeologi
+- `concept_lexical_anchor` — `con_his_pre_miljoarkeologi`: Definition does not repeat a significant label token: miljøarkeologi
+- `concept_lexical_anchor` — `con_his_pre_osteoarkeologi`: Definition does not repeat a significant label token: osteoarkeologi
+- `concept_lexical_anchor` — `con_his_pre_paleopatologi`: Definition does not repeat a significant label token: paleopatologi
+- `concept_lexical_anchor` — `con_his_pre_isotopanalyse`: Definition does not repeat a significant label token: isotopanalyse
+- `concept_lexical_anchor` — `con_his_pre_gammelt_dna`: Definition does not repeat a significant label token: gammelt
+- `concept_lexical_anchor` — `con_his_pre_paleodemografi`: Definition does not repeat a significant label token: paleodemografi
+
+## Freeze policy
+
+Manifest: `data/fag/historie/historie_v5_6_freeze_manifest.json`, frozen 2026-07-26T09:10:36.313Z.
+Authoritative V5.6 files may only change through an explicit manifest refresh after a green depth audit.

@@ -6,6 +6,19 @@ import { auditQuizProgression } from "../scripts/audit-quiz-progression.mjs";
 import { auditQuizTheoryBinding } from "../scripts/audit-quiz-theory-binding.mjs";
 import { buildQuizProductionContext } from "../scripts/quiz-production-lib.mjs";
 
+const historyContract = JSON.parse(await readFile(
+  "data/fag/historie/historie_v5_contract.json",
+  "utf8"
+));
+const historyCoverageCounts = historyContract.coverage_counts;
+
+function assertHistoryCurriculumCounts(context) {
+  assert.equal(context.considered_curriculum.counts.pensum_modules, historyCoverageCounts.domains);
+  assert.equal(context.considered_curriculum.counts.emner, historyCoverageCounts.emner);
+  assert.equal(context.considered_curriculum.counts.topic_hooks, historyCoverageCounts.theory_hooks);
+  assert.equal(context.considered_curriculum.counts.methods, historyCoverageCounts.methods);
+}
+
 test("builds the full by production context through the manifest", async () => {
   const context = await buildQuizProductionContext({
     categoryId: "by",
@@ -57,10 +70,7 @@ test("builds the full history production context through domain-based curriculum
   assert.equal(context.manifest.category_id, "historie");
   assert.equal(context.manifest.target_id, "grindheim_runestein");
   assert.equal(context.manifest.matches, 1);
-  assert.equal(context.considered_curriculum.counts.pensum_modules, 20);
-  assert.equal(context.considered_curriculum.counts.emner, 200);
-  assert.equal(context.considered_curriculum.counts.topic_hooks, 200);
-  assert.equal(context.considered_curriculum.counts.methods, 87);
+  assertHistoryCurriculumCounts(context);
   assert.equal(context.claim_bank.length, 21);
   assert.equal(context.source_files.brief.path, "data/quiz/production_briefs/historie/grindheim_runestein.json");
   assert.equal(context.source_files.quiz, undefined);
@@ -97,10 +107,7 @@ test("isolates each history target in the manifest proof", async () => {
   assert.equal(context.manifest.category_id, "historie");
   assert.equal(context.manifest.target_id, "grindheim_steinkross");
   assert.equal(context.manifest.matches, 1);
-  assert.equal(context.considered_curriculum.counts.pensum_modules, 20);
-  assert.equal(context.considered_curriculum.counts.emner, 200);
-  assert.equal(context.considered_curriculum.counts.topic_hooks, 200);
-  assert.equal(context.considered_curriculum.counts.methods, 87);
+  assertHistoryCurriculumCounts(context);
   assert.equal(context.claim_bank.length, 21);
   assert.equal(context.source_files.brief.path, "data/quiz/production_briefs/historie/grindheim_steinkross.json");
   assert.equal(context.source_files.quiz, undefined);
@@ -137,10 +144,7 @@ test("builds the Grindheimsvegen grave-field context before quiz writing", async
   assert.equal(context.manifest.category_id, "historie");
   assert.equal(context.manifest.target_id, "grindheimsveien_nord_gravfelt");
   assert.equal(context.manifest.matches, 1);
-  assert.equal(context.considered_curriculum.counts.pensum_modules, 20);
-  assert.equal(context.considered_curriculum.counts.emner, 200);
-  assert.equal(context.considered_curriculum.counts.topic_hooks, 200);
-  assert.equal(context.considered_curriculum.counts.methods, 87);
+  assertHistoryCurriculumCounts(context);
   assert.equal(context.claim_bank.length, 21);
   assert.equal(
     context.source_files.brief.path,
@@ -183,10 +187,7 @@ test("builds the Høyland grave-mound context before quiz writing", async () => 
   assert.equal(context.manifest.category_id, "historie");
   assert.equal(context.manifest.target_id, "hoyland_gravhaug_etne");
   assert.equal(context.manifest.matches, 1);
-  assert.equal(context.considered_curriculum.counts.pensum_modules, 20);
-  assert.equal(context.considered_curriculum.counts.emner, 200);
-  assert.equal(context.considered_curriculum.counts.topic_hooks, 200);
-  assert.equal(context.considered_curriculum.counts.methods, 87);
+  assertHistoryCurriculumCounts(context);
   assert.equal(context.claim_bank.length, 21);
   assert.equal(
     context.source_files.brief.path,
