@@ -1,0 +1,71 @@
+name: One-time History V5.6 quiz context rebuild
+
+on:
+  push:
+    branches:
+      - agent/history-v5-6-prehistory-archaeology
+    paths:
+      - '.github/workflows/one-time-history-v5-6-quiz-context-rebuild.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/history-v5-6-prehistory-archaeology
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Rebuild quiz production contexts
+        shell: bash
+        run: |
+          mkdir -p reports/historie-v5
+          npm run quiz:context 2>&1 \
+            | tee reports/historie-v5/historie-v5-6-quiz-context-rebuild.log
+
+      - name: Audit rebuilt quiz production packages
+        shell: bash
+        run: |
+          npm run audit:quiz-production-context 2>&1 \
+            | tee reports/historie-v5/historie-v5-6-quiz-production-context-audit.log
+          npm run audit:quiz-progression 2>&1 \
+            | tee reports/historie-v5/historie-v5-6-quiz-progression-audit.log
+          npm run audit:quiz-theory-binding 2>&1 \
+            | tee reports/historie-v5/historie-v5-6-quiz-theory-binding-audit.log
+
+      - name: Publish rebuilt contexts
+        shell: bash
+        run: |
+          set -o pipefail
+          {
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git status --short
+            git add data/quiz/production_context reports/historie-v5/historie-v5-6-quiz-*.log
+            if git diff --cached --quiet; then
+              echo 'Ingen quiz-kontekster måtte endres.'
+              exit 0
+            fi
+            git commit -m 'Gjenbygg quiz-kontekster for Historie V5.6'
+            git push origin HEAD:agent/history-v5-6-prehistory-archaeology
+          } 2>&1 | tee reports/historie-v5/historie-v5-6-quiz-context-publish.log
+
+      - name: Upload quiz diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-v5-6-quiz-context-diagnostics
+          path: reports/historie-v5/historie-v5-6-quiz-*.log
+          if-no-files-found: warn
