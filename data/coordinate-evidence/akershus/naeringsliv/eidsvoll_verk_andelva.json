@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "eidsvoll_verk_andelva",
+  "placeFile": "data/places/naeringsliv/akershus/eidsvoll_verk_andelva/eidsvoll_verk_andelva.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_central_industrial_interpretation_anchor_with_andelva_secondary_anchor",
+  "currentCoordinate": {
+    "lat": 60.30153,
+    "lon": 11.1709,
+    "r": 360,
+    "coordStatus": "verified",
+    "coordSource": "OpenStreetMap node 4909468088 – Vannkraft – ren energi; OpenStreetMap node 4909468099 – Langs Andelva; Eidsvoll 1814; Mathiesen Eidsvold Værk",
+    "coordType": "named_water_power_interpretation_point_with_secondary_river_anchor",
+    "coordRole": "industrial_landscape_anchor",
+    "sourceObjectId": "osm-node:4909468088",
+    "coordNote": "The main point identifies the central interpreted ironworks and water-power core; a second anchor extends the record along Andelva without reusing Eidsvollsbygningen or the broad village point."
+  },
+  "previousCoordinate": {
+    "lat": 60.3297,
+    "lon": 11.2575,
+    "r": 300,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 5705.5,
+    "reasonReplaced": "The legacy point lay approximately 5.71 kilometres northeast of the documented works, Krutthuset and central Andelva interpretation environment."
+  },
+  "identity": {
+    "currentName": "Eidsvoll Verk / Andelva",
+    "resolvedIdentity": "The central historic ironworks and water-power landscape at Andelva, including the surviving Krutthuset, vanished production buildings and the interpreted river corridor, distinct from Eidsvollsbygningen and the modern village.",
+    "identityStatus": "resolved",
+    "identityProblem": "The name combines a vanished industrial complex with a river corridor. A village point is too broad, Eidsvollsbygningen is a separate building record and no single surviving structure represents the entire landscape.",
+    "locatorTypeCandidate": "linear_area",
+    "requiresSplit": false,
+    "splitReason": "A central industrial interpretation anchor plus a secondary Andelva anchor can represent the coherent core without duplicating the building record or claiming the whole river."
+  },
+  "requiredEvidence": [
+    "official documentation of the ironworks and Andelva energy relationship",
+    "surviving industrial-element confirmation",
+    "stable central interpretation point",
+    "secondary river-corridor anchor",
+    "explicit separation from Eidsvollsbygningen and the village point",
+    "radius justification covering both anchors without claiming the full river or legal geometry"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "museum",
+      "sourceName": "Eidsvoll 1814 – Jernverkshistorien",
+      "sourceUrl": "https://eidsvoll1814.no/jerverkshistorien",
+      "sourceObjectId": "eidsvoll1814:jernverkshistorien",
+      "sourceQuality": "official_industrial_history_and_landscape_identity",
+      "finding": "Eidsvoll Jernverk was established at Andelva in 1624. Water power supported refining and later sawmill, rolling-mill and mill functions, while Eidsvollsbygningen was the owner's residence inside the wider industrial complex.",
+      "canVerifyCoordinate": false,
+      "reason": "Resolves the historical and functional landscape but does not expose a reusable map point."
+    },
+    {
+      "sourceProvider": "museum",
+      "sourceName": "Mathiesen Eidsvold Værk – Krutthuset",
+      "sourceUrl": "https://www.mev.no/kultur/krutthuset",
+      "sourceObjectId": "mev:krutthuset-eidsvoll-verk",
+      "sourceQuality": "official_surviving_ironworks_building_identity",
+      "finding": "Krutthuset is the only surviving building from the old Eidsvold Jernværk and is probably a seventeenth-century timber powder house.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms a surviving industrial element near the selected core but does not alone represent the entire landscape."
+    },
+    {
+      "sourceProvider": "museum",
+      "sourceName": "Eidsvoll 1814 – industrial-complex interpretation",
+      "sourceUrl": "https://eidsvoll1814.no/eidsvoll-verk-var-1800tallets-silicone-valley-i-miniatyr",
+      "sourceObjectId": "eidsvoll1814:industrial-complex",
+      "sourceQuality": "official_historical_complex_scope",
+      "finding": "The works once included more than thirty utility and residential buildings, with smithies, hammer buildings, charcoal stores, sheds and a blast furnace. Surviving traces include Krutthuset, slag heaps, Eidsvollsbygningen and a pavilion.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms that one surviving building or the political house cannot by itself represent the industrial landscape."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 4909468088 – Vannkraft – ren energi",
+      "sourceUrl": "https://www.openstreetmap.org/node/4909468088",
+      "sourceObjectId": "osm-node:4909468088",
+      "sourceQuality": "named_industrial_and_hydropower_interpretation_point",
+      "finding": "The named interpretation point lies at 60.30153, 11.1709 in the immediate former works and water-power core, approximately 82.4 metres from Eidsvollsbygningen and close to Krutthuset.",
+      "canVerifyCoordinate": true,
+      "reason": "Provides a stable, place-specific semantic anchor for the industrial and hydrological subject rather than the adjacent political building."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 4909468099 – Langs Andelva",
+      "sourceUrl": "https://www.openstreetmap.org/node/4909468099",
+      "sourceObjectId": "osm-node:4909468099",
+      "sourceQuality": "named_andelva_interpretation_point",
+      "finding": "The point lies at 60.30129, 11.17689, approximately 331.1 metres east of the main anchor, and represents the interpreted Andelva corridor.",
+      "canVerifyCoordinate": false,
+      "reason": "Applied as a secondary route and river-industry anchor rather than the canonical display marker."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 6236538566 – Eidsvoll Verk",
+      "sourceUrl": "https://www.openstreetmap.org/node/6236538566",
+      "sourceObjectId": "osm-node:6236538566",
+      "sourceQuality": "broad_village_locality_cross_check",
+      "finding": "The village point lies at 60.30204, 11.16768, approximately 186.2 metres from the applied anchor.",
+      "canVerifyCoordinate": false,
+      "reason": "Confirms locality identity but is too broad to represent the historical works and river-industry landscape."
+    },
+    {
+      "sourceProvider": "canonical_dataset",
+      "sourceName": "Eidsvollsbygningen canonical building anchor",
+      "sourceUrl": "https://www.openstreetmap.org/way/125813296",
+      "sourceObjectId": "osm-way:125813296",
+      "sourceQuality": "adjacent_distinct_canonical_object",
+      "finding": "The building anchor at 60.30079, 11.17098 lies approximately 82.4 metres from the industrial anchor and has its own political canonical record.",
+      "canVerifyCoordinate": false,
+      "reason": "Explicitly excluded to prevent duplication of the Eidsvollsbygningen place."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Eidsvoll Verk / Andelva point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:eidsvoll_verk_andelva",
+      "sourceQuality": "incorrect_remote_point",
+      "finding": "The legacy coordinate 60.3297, 11.2575 lies approximately 5,705.5 metres northeast of the applied industrial interpretation point.",
+      "canVerifyCoordinate": false,
+      "reason": "Replaced because it does not represent the former works, Krutthuset or central Andelva corridor."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:4909468088",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:4909468099",
+      "canApplyToPlace": true,
+      "appliedAsSecondaryAnchor": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6236538566",
+      "canApplyToPlace": false,
+      "rejectionReason": "Broad village point rather than the industrial landscape."
+    },
+    {
+      "sourceProvider": "canonical_dataset",
+      "sourceObjectId": "osm-way:125813296",
+      "canApplyToPlace": false,
+      "rejectionReason": "Separate Eidsvollsbygningen canonical building object."
+    }
+  ],
+  "geometryCandidates": [],
+  "anchors": [
+    {
+      "id": "eidsvoll_verk_vannkraft",
+      "name": "Vannkraft – ren energi",
+      "lat": 60.30153,
+      "lon": 11.1709,
+      "r": 140,
+      "type": "industrial_landscape_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:4909468088",
+      "canApplyToPlace": true
+    },
+    {
+      "id": "eidsvoll_verk_langs_andelva",
+      "name": "Langs Andelva",
+      "lat": 60.30129,
+      "lon": 11.17689,
+      "r": 120,
+      "type": "river_industry_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:4909468099",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:eidsvoll_verk_andelva",
+      "lat": 60.3297,
+      "lon": 11.2575,
+      "coordRole": "incorrect_remote_point",
+      "distanceFromAppliedM": 5705.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:4909468088",
+      "lat": 60.30153,
+      "lon": 11.1709,
+      "coordRole": "industrial_landscape_anchor",
+      "distanceFromPreviousM": 5705.5,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:4909468099",
+      "lat": 60.30129,
+      "lon": 11.17689,
+      "coordRole": "river_industry_secondary_anchor",
+      "distanceFromAppliedM": 331.1,
+      "canApplyToPlace": true,
+      "appliedAsSecondaryAnchor": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6236538566",
+      "lat": 60.30204,
+      "lon": 11.16768,
+      "coordRole": "village_locality_cross_check",
+      "distanceFromAppliedM": 186.2,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "canonical_dataset",
+      "sourceObjectId": "osm-way:125813296",
+      "lat": 60.30079,
+      "lon": 11.17098,
+      "coordRole": "adjacent_separate_building_record",
+      "distanceFromAppliedM": 82.4,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-eidsvoll-verk-andelva-source-probe/source-summary.json",
+      "description": "Persisted official industrial identity, surviving-element context, anchor candidates, calculated distances and radius decision."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the central water-power interpretation point, added the Andelva secondary anchor, expanded the radius to 360 metres and continue with Tertitten / Urskog-Hølandsbanen."
+  },
+  "notes": [
+    "The coordinate moves approximately 5.71 kilometres from a remote incorrect point.",
+    "The industrial anchor is distinct from the Eidsvollsbygningen building only 82.4 metres away.",
+    "The secondary Andelva anchor lies 331.1 metres east and is included by the 360-metre gameplay radius.",
+    "The radius is not a legal heritage, property, historical works or full river-corridor polygon.",
+    "The village point is retained only as a locality cross-check."
+  ]
+}
