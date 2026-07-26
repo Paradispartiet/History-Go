@@ -1,1 +1,1124 @@
-{"version":"1.0.0","status":"canonical","type":"university_model_registry","subject_id":"naeringsliv","model_count":24,"models":[{"model_id":"tilbud_ettersporsel_likevekt","title":"Tilbud, etterspørsel og markedslikevekt","track_ids":["samfunnsokonomi"],"purpose":"Analysere hvordan skift i tilbud eller etterspørsel påvirker pris og mengde.","formula_or_logic":"Finn skjæringen Qd(P)=Qs(P); analyser skift separat fra bevegelse langs kurven.","variables":["pris","etterspurt mengde","tilbudt mengde","skiftfaktorer"],"unit":"pris og mengde","assumptions":["avgrenset marked","andre forhold holdes eksplisitt konstante"],"interpretation":"Viser retning og betingede virkninger, ikke automatisk faktisk kausalitet.","misuse_guards":["ikke kall enhver prisendring et etterspørselsskift","ikke ignorer regulering eller rasjonering"],"minimum_evidence":["markedsavgrensning","minst én dokumentert skiftfaktor"],"progression":["intro: tegn og forklar","mellom: estimer skift","avansert: koble til institusjon og usikkerhet"],"mapped_emne_ids":["em_naering_effektivitet_optimalisering","em_naering_risiko_regulering","em_naering_marked_konkurranse_pris"]},{"model_id":"elastisitetsmodell","title":"Pris-, inntekts- og krysspriselastisitet","track_ids":["samfunnsokonomi"],"purpose":"Måle relativ følsomhet og substitusjon.","formula_or_logic":"E_xy=(ΔX/X)/(ΔY/Y), med bueformel ved store endringer.","variables":["responsvariabel","driver","basisnivå"],"unit":"dimensjonsløs","assumptions":["sammenlignbare perioder","ingen uadressert kvalitetsendring"],"interpretation":"Absoluttverdi over én betyr relativt elastisk respons i valgt intervall.","misuse_guards":["ikke tolke korrelasjon som kausal effekt","ikke sammenligne ulike aggregeringsnivå ukritisk"],"minimum_evidence":["pris/mengde eller inntekt/mengde i minst to punkter"],"progression":["intro: beregn","mellom: sammenlign grupper","avansert: identifikasjon og konfidensintervall"],"mapped_emne_ids":["em_naering_produksjon_produktivitet","em_naering_kapital_finans","em_naering_marked_konkurranse_pris","em_naering_baerekraft_eksternaliteter"]},{"model_id":"hhi_markedsmakt","title":"HHI og konsentrasjon","track_ids":["samfunnsokonomi"],"purpose":"Oppsummere markedsandelens konsentrasjon.","formula_or_logic":"HHI=Σ s_i², med s_i i prosent eller andel og tydelig skala.","variables":["markedsandel per aktør","markedsgrense","aktøridentitet"],"unit":"0–10 000 eller 0–1","assumptions":["markedet er korrekt avgrenset","andeler dekker markedet"],"interpretation":"Høyere verdi betyr mer konsentrasjon, men ikke alene markedsmakt.","misuse_guards":["ikke bruke uten markedstest","ikke blande konsern og juridiske enheter"],"minimum_evidence":["markedsandeler og dokumentert markedsgrense"],"progression":["intro: beregn","mellom: før/etter","avansert: følsomhet for markedsgrense"],"mapped_emne_ids":["em_naering_produksjon_produktivitet","em_naering_kapital_finans","em_naering_kriser_boomer_omstilling","em_naering_forbruk_marked"]},{"model_id":"indeks_realverdi","title":"Indeks, deflatering og realverdi","track_ids":["samfunnsokonomi"],"purpose":"Sammenligne økonomiske størrelser over tid uten prisnivåets nominelle effekt.","formula_or_logic":"Realverdi_t=Nominell_t/(Prisindeks_t/100); indeks=verdi/basisverdi×100.","variables":["nominell verdi","prisindeks","basisår"],"unit":"reell valuta eller indeks","assumptions":["relevant deflator","konsistent basis og definisjon"],"interpretation":"Skiller prisendring fra volum- eller realendring.","misuse_guards":["ikke velge generell KPI når bransjedeflator kreves","ikke skjule definisjonsbrudd"],"minimum_evidence":["nominell serie, indeks og metadata"],"progression":["intro: deflater","mellom: vekstbidrag","avansert: alternative deflatorer"],"mapped_emne_ids":["em_naering_effektivitet_optimalisering","em_naering_produksjon_produktivitet","em_naering_kriser_boomer_omstilling","em_naering_forbruk_marked"]},{"model_id":"dekningsbidrag_nullpunkt","title":"Dekningsbidrag og nullpunkt","track_ids":["bedriftsokonomi_og_finans"],"purpose":"Koble pris, volum og kostnadsstruktur til resultat.","formula_or_logic":"DB per enhet=P−VK; nullpunkt=FK/DB per enhet.","variables":["pris","variabel kostnad","fast kostnad","volum"],"unit":"valuta og enheter","assumptions":["lineær kostnad i relevant intervall","positivt dekningsbidrag"],"interpretation":"Viser volum som kreves for å dekke faste kostnader.","misuse_guards":["ikke klassifisere kostnader mekanisk","ikke ekstrapolere uten kapasitetsgrense"],"minimum_evidence":["kostnadsdata, pris og kapasitet"],"progression":["intro: beregn","mellom: produktmiks","avansert: usikkerhet og kapasitetssteg"],"mapped_emne_ids":["em_naering_bank_bors_forsikring","em_naering_eierskap_styring","em_naering_risiko_regulering","em_naering_ledelse_kontrollsystemer","em_naering_startup_grunder_innovasjon","em_naering_logistikk_verdikjeder"]},{"model_id":"kontantstrom_likviditet","title":"Kontantstrøm og likviditetsbro","track_ids":["bedriftsokonomi_og_finans"],"purpose":"Forklare hvorfor resultat og kontantbeholdning utvikler seg ulikt.","formula_or_logic":"Kontantendring=drift+investering+finansiering; koble arbeidskapitalpostene.","variables":["driftsresultat","arbeidskapital","investering","finansiering"],"unit":"valuta per periode","assumptions":["konsistent periode","kontantstrømklassifisering dokumentert"],"interpretation":"Identifiserer hvilke aktiviteter som binder eller frigjør kontanter.","misuse_guards":["ikke likestille positivt resultat med likviditet","ikke ignorere engangsposter"],"minimum_evidence":["resultat, balanse og kontantstrøm"],"progression":["intro: avstem","mellom: kontantkonvertering","avansert: stress og covenant"],"mapped_emne_ids":["em_naering_bank_bors_forsikring","em_naering_eierskap_styring","em_naering_kapital_finans","em_naering_organisasjoner_ledelse","em_naering_risiko_regulering","em_naering_verdsetting_pris_regnskap","em_naering_merkevare_og_status","em_naering_startup_grunder_innovasjon"]},{"model_id":"npv_irr","title":"Nåverdi og internrente","track_ids":["bedriftsokonomi_og_finans"],"purpose":"Vurdere tidsfordelte prosjektkontantstrømmer.","formula_or_logic":"NPV=Σ CF_t/(1+r)^t−I0; IRR løser NPV=0.","variables":["kontantstrøm","diskonteringsrente","tid","investering"],"unit":"valuta og prosent","assumptions":["kontantstrøm er inkrementell","rente og kontantstrøm er begge nominelle eller reelle"],"interpretation":"Positiv NPV betyr verdi relativt til valgt avkastningskrav under antakelsene.","misuse_guards":["ikke rangere gjensidig utelukkende prosjekt kun med IRR","ikke skjule terminalverdi"],"minimum_evidence":["tidsfestet kontantstrøm og rentegrunnlag"],"progression":["intro: NPV","mellom: IRR/sensitivitet","avansert: realopsjon og scenario"],"mapped_emne_ids":["em_naering_bank_bors_forsikring","em_naering_kapital_finans","em_naering_verdsetting_pris_regnskap","em_naering_merkevare_og_status"]},{"model_id":"risiko_scenario_forventning","title":"Forventet verdi, scenario og risiko","track_ids":["bedriftsokonomi_og_finans"],"purpose":"Synliggjøre usikre utfall og asymmetri.","formula_or_logic":"E(X)=Σp_i x_i; rapporter også spenn, downside og antakelser.","variables":["utfall","sannsynlighet","tap/gevinst"],"unit":"valuta, prosent eller fysisk enhet","assumptions":["scenarioer er gjensidig forståelige","sannsynligheter er begrunnet eller markert subjektive"],"interpretation":"Forventning er et gjennomsnitt, ikke et typisk eller sikkert utfall.","misuse_guards":["ikke skjule haleutfall","ikke gjøre subjektive sannsynligheter til fakta"],"minimum_evidence":["minst tre scenarioer og begrunnede drivere"],"progression":["intro: forventning","mellom: sensitivitetsmatrise","avansert: robusthet og korrelasjon"],"mapped_emne_ids":["em_naering_eierskap_styring","em_naering_organisasjoner_ledelse","em_naering_ledelse_kontrollsystemer"]},{"model_id":"arbeidsproduktivitet","title":"Arbeidsproduktivitet og kapasitetsutnyttelse","track_ids":["arbeidsliv_og_organisasjon"],"purpose":"Måle produksjon per arbeidstime og bruk av kapasitet.","formula_or_logic":"Produktivitet=output/arbeidstimer; kapasitetsutnyttelse=faktisk/potensiell output.","variables":["output","arbeidstimer","kapasitet"],"unit":"output per time og prosent","assumptions":["outputkvalitet er sammenlignbar","arbeidstid inkluderer relevante støtteoppgaver"],"interpretation":"Økning kan komme av teknologi, sammensetning, tempo eller måleendring.","misuse_guards":["ikke tolke som arbeidsinnsats alene","ikke utelate kvalitetsfall eller ubetalt arbeid"],"minimum_evidence":["output, timer, kvalitet og prosessendring"],"progression":["intro: beregn","mellom: dekomponer","avansert: kvalitet og eksternalitet"],"mapped_emne_ids":["em_naering_arbeid_verdiskaping","em_naering_profesjoner_kompetanse","em_naering_usynlig_arbeid","em_naering_organisasjoner_ledelse"]},{"model_id":"lonnandel_spredning","title":"Lønnandel og lønnsspredning","track_ids":["arbeidsliv_og_organisasjon"],"purpose":"Analysere fordeling av verdiskaping og lønn mellom grupper.","formula_or_logic":"Lønnandel=lønnsutgifter/verditilvekst; spredning med median og kvantilratio.","variables":["lønn","verditilvekst","kvantiler"],"unit":"prosent og ratio","assumptions":["sammenlignbar regnskapsperimeter","heltid/deltid harmonisert"],"interpretation":"Kombinerer funksjonell og individuell fordeling.","misuse_guards":["ikke likestille lønnsandel med rettferdighet","ikke bruke gjennomsnitt alene"],"minimum_evidence":["lønn, timer, verditilvekst og gruppeinndeling"],"progression":["intro: median","mellom: real/spredning","avansert: dekomponering"],"mapped_emne_ids":["em_naering_arbeid_verdiskaping","em_naering_arbeidsliv_organisering","em_naering_usynlig_arbeid"]},{"model_id":"turnover_kapasitet","title":"Turnover, fravær og bemanningskapasitet","track_ids":["arbeidsliv_og_organisasjon"],"purpose":"Vurdere stabilitet, belastning og faktisk tilgjengelig arbeidskraft.","formula_or_logic":"Turnover=avganger/gjennomsnittlig bemanning; kapasitet=planlagte timer−fravær−vakans.","variables":["avganger","bemanning","fravær","vakans","timer"],"unit":"prosent og timer","assumptions":["definisjon stabil","frivillig/ufrivillig skilt når mulig"],"interpretation":"Høye verdier kan signalisere belastning, omstilling eller sesong.","misuse_guards":["ikke anta årsak fra turnover alene","ikke blande hode og årsverk"],"minimum_evidence":["personalbeholdning og bevegelsesdata"],"progression":["intro: beregn","mellom: segmenter","avansert: overlevelse og årsaksdesign"],"mapped_emne_ids":["em_naering_arbeidsliv_organisering","em_naering_automatisering_og_arbeid","em_naering_tjenesteyting_og_service","em_naering_fagforeninger_og_interesser","em_naering_makt_ulikhet_arbeidsliv"]},{"model_id":"oppgave_kontrollmatrise","title":"Oppgave–kontroll-matrise","track_ids":["arbeidsliv_og_organisasjon"],"purpose":"Kartlegge hvor kunnskap, skjønn og kontroll ligger i arbeidsprosessen.","formula_or_logic":"Kod hvert prosessteg etter kompleksitet, autonomi, kontrollintensitet og teknisk avhengighet.","variables":["oppgave","autonomi","kontroll","kompetanse","teknologi"],"unit":"ordinal skala med dokumentert kodebok","assumptions":["observasjon dekker faktisk praksis","kategorier er gjensidig tydelige"],"interpretation":"Viser om endring flytter oppgaver og beslutningsrett, ikke bare antall jobber.","misuse_guards":["ikke gjøre ordinal skala til presis kardinal måling","ikke kode fra stillingstittel alene"],"minimum_evidence":["prosessobservasjon, prosedyrer og validering med aktører"],"progression":["intro: prosesskart","mellom: kode og sammenlign","avansert: reliabilitet og maktanalyse"],"mapped_emne_ids":["em_naering_automatisering_og_arbeid","em_naering_profesjoner_kompetanse","em_naering_organisasjoner_ledelse","em_naering_tjenesteyting_og_service","em_naering_fagforeninger_og_interesser"]},{"model_id":"akkumulasjon_fordelingsbro","title":"Akkumulasjons- og fordelingsbro","track_ids":["politisk_okonomi_og_okonomisk_historie"],"purpose":"Følge hvordan driftsoverskudd fordeles mellom investering, finans, eieruttak og reserver.","formula_or_logic":"Overskudd=investering+finansnetto+eierutdeling+reserveendring, avstemt mot regnskap.","variables":["overskudd","investering","rente","utdeling","reserve"],"unit":"valuta og andeler","assumptions":["perimeter og periode konsistent","regnskapsposter omklassifiseres transparent"],"interpretation":"Synliggjør prioriteringene bak akkumulering og utdeling.","misuse_guards":["ikke anta motiv fra fordeling alene","ikke blande brutto og netto investering"],"minimum_evidence":["regnskap, noter og eierbeslutninger"],"progression":["intro: fordel","mellom: tidsserie","avansert: institusjonell forklaring"],"mapped_emne_ids":["em_naering_industri_og_mekanisering","em_naering_makt_ulikhet_arbeidsliv"]},{"model_id":"institusjonell_endringsmatrise","title":"Institusjonell endringsmatrise","track_ids":["politisk_okonomi_og_okonomisk_historie"],"purpose":"Skille brå erstatning fra gradvis lagdeling, omtolkning og forskyvning.","formula_or_logic":"Kod regel, håndheving, aktørkoalisjon og praksis før/etter hvert vendepunkt.","variables":["regel","håndheving","aktør","praksis","utfall"],"unit":"kategorisk/ordinal med tidslinje","assumptions":["kriterier definert før koding","formell og faktisk endring skilt"],"interpretation":"Gir et etterprøvbart grunnlag for periodisering.","misuse_guards":["ikke kalle enhver dato et vendepunkt","ikke kode resultat som årsak"],"minimum_evidence":["regeltekster, implementeringsspor og praksisdata"],"progression":["intro: tidslinje","mellom: mekanismekode","avansert: alternativ periodisering"],"mapped_emne_ids":["em_naering_industri_og_mekanisering","em_naering_omstilling_kriser_skift","em_naering_doxa_vekst_effektivitet"]},{"model_id":"kriseindikator_dashboard","title":"Krise- og boomindikatorer","track_ids":["politisk_okonomi_og_okonomisk_historie"],"purpose":"Kombinere pris, kreditt, investering, sysselsetting og kapasitetsdata uten én-indikatorfelle.","formula_or_logic":"Standardiser flere indikatorer, vis retning og tidsrekkefølge; unngå mekanisk kompositt uten begrunnelse.","variables":["pris","kreditt","investering","sysselsetting","kapasitet"],"unit":"indeks og vekstrater","assumptions":["serier harmonisert","indikatorvalg teori- og casebegrunnet"],"interpretation":"Viser oppbygging, brudd og spredning av økonomisk uro.","misuse_guards":["ikke datere krise fra én serie","ikke skjule revisjoner og baseeffekter"],"minimum_evidence":["minst fire indikatorer over tilstrekkelig tid"],"progression":["intro: plott","mellom: sekvens","avansert: regime og robusthet"],"mapped_emne_ids":["em_naering_omstilling_kriser_skift","em_naering_eiendom_kapital_byutvikling","em_naering_finansdistrikt_kontorby","em_naering_doxa_vekst_effektivitet","em_naering_fagforeninger_og_interesser"]},{"model_id":"finansialiseringsindikator","title":"Finansialiseringsindikatorer","track_ids":["politisk_okonomi_og_okonomisk_historie"],"purpose":"Måle endret vekt på finansielle inntekter, gjeld, utdeling og eierskap.","formula_or_logic":"Rapporter flere separate ratioer: finansinntekt/total, gjeld/eiendel, utdeling/overskudd, finansaktiva/eiendel.","variables":["finansinntekt","gjeld","utdeling","finansaktiva","totale eiendeler"],"unit":"prosent","assumptions":["regnskapsklassifikasjon konsistent","ratioer tolkes sammen"],"interpretation":"Indikerer finansielle prioriteringer, men må kobles til styring og investering.","misuse_guards":["ikke lage én universell indeks uten vektbegrunnelse","ikke ignorere bransjeforskjell"],"minimum_evidence":["regnskap, eierdata og investeringsdata"],"progression":["intro: ratio","mellom: panel/tid","avansert: mekanisme og kontrafaktisk"],"mapped_emne_ids":["em_naering_eiendom_kapital_byutvikling","em_naering_finansdistrikt_kontorby","em_naering_kriser_boomer_omstilling","em_naering_makt_ulikhet_arbeidsliv"]},{"model_id":"lokaliseringskvotient","title":"Lokaliseringskvotient","track_ids":["okonomisk_geografi_og_teknologi"],"purpose":"Måle relativ geografisk spesialisering.","formula_or_logic":"LQ=(lokal sektorandel)/(referanseområdets sektorandel).","variables":["lokal sysselsetting","lokal total","referanse sektor","referanse total"],"unit":"ratio","assumptions":["samme sektorkoder og tidspunkt","områdegrense begrunnet"],"interpretation":"LQ>1 viser relativ konsentrasjon, ikke nødvendigvis produktiv klynge.","misuse_guards":["ikke likestille konsentrasjon med samhandling","test alternative geografi"],"minimum_evidence":["geokodet sektor- og totaldata"],"progression":["intro: beregn","mellom: kartlegg","avansert: følsomhet og nettverk"],"mapped_emne_ids":["em_naering_finansdistrikt_kontorby","em_naering_handel_butikk_byrom","em_naering_data_algoritmer_verdiskaping","em_naering_digitalisering_plattformokonomi","em_naering_havn_transport","em_naering_logistikk_verdikjeder"]},{"model_id":"gravitasjon_tilgjengelighet","title":"Gravitasjons- og tilgjengelighetsmodell","track_ids":["okonomisk_geografi_og_teknologi"],"purpose":"Vekte økonomiske muligheter etter reisetid eller avstand.","formula_or_logic":"A_i=Σ_j O_j f(c_ij), der avstandsfunksjonen dokumenteres.","variables":["muligheter","reise-/transportkostnad","avstandsfunksjon"],"unit":"indeks","assumptions":["nettverk og reisemåte er relevante","muligheter målt konsistent"],"interpretation":"Høyere verdi betyr større vektet tilgang under valgt friksjonsfunksjon.","misuse_guards":["ikke presentere funksjonsvalg som naturgitt","ikke ignorere kapasitet og kvalitet"],"minimum_evidence":["nettverk, lokasjoner og mulighetsmål"],"progression":["intro: enkel sum","mellom: avstandsvekt","avansert: kalibrering og scenarier"],"mapped_emne_ids":["em_naering_finansdistrikt_kontorby","em_naering_handel_butikk_byrom","em_naering_digitalisering_plattformokonomi","em_naering_teknologi_infrastruktur","em_naering_logistikk_verdikjeder"]},{"model_id":"lager_ledetid_flaskehals","title":"Lager, ledetid og flaskehals","track_ids":["okonomisk_geografi_og_teknologi"],"purpose":"Koble gjennomløp, lager og kapasitet i en verdikjede.","formula_or_logic":"Little: WIP=gjennomstrømning×ledetid; lageromløp=varekost/lager.","variables":["WIP","gjennomstrømning","ledetid","kapasitet","lager"],"unit":"tid, enheter og omløp","assumptions":["relativt stabilt system for Little","samme vareflyt"],"interpretation":"Viser hvor tid og kapital bindes og hvor kapasitet begrenser flyten.","misuse_guards":["ikke bruke stabilitetsformel i kaotisk overgang uten merknad","ikke skjule køprioritering"],"minimum_evidence":["tidsstempel, volum, lager og kapasitet"],"progression":["intro: beregn","mellom: prosessledd","avansert: variasjon og kø"],"mapped_emne_ids":["em_naering_data_algoritmer_verdiskaping","em_naering_innovasjon_teknologisk_skift","em_naering_teknologi_infrastruktur","em_naering_byens_okonomiske_rom"]},{"model_id":"nettverkseffekt_adopsjon","title":"Nettverkseffekt og plattformadopsjon","track_ids":["okonomisk_geografi_og_teknologi"],"purpose":"Analysere vekst på tvers av brukergrupper og mulig selvforsterkning.","formula_or_logic":"Estimer om aktivitet på side A predikerer verdi/adopsjon på side B etter kontroll for kvalitet, pris og markedsføring.","variables":["brukere A/B","transaksjon","churn","pris","komplement"],"unit":"brukere, rate og elastisitet","assumptions":["sider definert","alternative vekstforklaringer måles"],"interpretation":"Positiv kryss-side effekt støtter nettverksmekanisme dersom tidsrekkefølge og alternativer håndteres.","misuse_guards":["ikke bruke S-kurve som bevis alene","ikke ignorere multihoming og subsidiering"],"minimum_evidence":["tidsserie/panel for begge sider og kontrollvariabler"],"progression":["intro: kartlegg sider","mellom: kryss-side ratio","avansert: identifikasjon og tipping"],"mapped_emne_ids":["em_naering_handel_butikk_byrom","em_naering_data_algoritmer_verdiskaping","em_naering_digitalisering_plattformokonomi","em_naering_innovasjon_teknologisk_skift","em_naering_byens_okonomiske_rom","em_naering_havn_transport"]},{"model_id":"karbonintensitet","title":"Karbonintensitet og utslippsbane","track_ids":["baerekraftsokonomi"],"purpose":"Måle utslipp relativt til funksjonell aktivitet og absolutt utvikling.","formula_or_logic":"Intensitet=kg CO2e/aktivitet; rapporter også absolutte scope-avgrensede utslipp.","variables":["utslipp","aktivitet","scope","basisår"],"unit":"kg CO2e per enhet og tonn","assumptions":["scope og aktivitet stabil","utslippsfaktorer dokumentert"],"interpretation":"Lavere intensitet kan sameksistere med høyere absolutte utslipp.","misuse_guards":["ikke rapportere bare intensitet","ikke blande scope eller markeds-/lokasjonsbasert strøm"],"minimum_evidence":["aktivitetsdata, faktorer og avgrensning"],"progression":["intro: beregn","mellom: dekomponer","avansert: bane, rebound og usikkerhet"],"mapped_emne_ids":["em_naering_automatisering_og_arbeid"]},{"model_id":"materialintensitet_sirkularitet","title":"Materialintensitet og sirkularitet","track_ids":["baerekraftsokonomi"],"purpose":"Måle materialbruk, levetid, ombruk og faktisk lukking av strømmer.","formula_or_logic":"Materialintensitet=materiale/funksjon; sirkularitetsindikator kombinerer sekundærinput, levetid og end-of-life uten å skjule massen.","variables":["jomfruelig materiale","sekundærmateriale","levetid","tap","funksjon"],"unit":"kg per funksjon og prosent","assumptions":["massebalanse","kvalitet og downcycling dokumentert"],"interpretation":"Skiller redusert materialbehov fra bare høyere resirkulert andel.","misuse_guards":["ikke likestille resirkulering med lukket kretsløp","ikke ignorere levetid og kvalitet"],"minimum_evidence":["materialliste, opprinnelse, levetid og avfallsdata"],"progression":["intro: massebalanse","mellom: intensitet","avansert: dynamisk lager og substitusjon"],"mapped_emne_ids":["em_naering_industri_og_mekanisering","em_naering_risiko_regulering","em_naering_logistikk_verdikjeder","em_naering_baerekraft_eksternaliteter"]},{"model_id":"samfunnskostnad_eksternalitet","title":"Samfunnskostnad for eksternalitet","track_ids":["baerekraftsokonomi"],"purpose":"Koble fysisk belastning til berørte grupper og monetært/ikke-monetært konsekvensspenn.","formula_or_logic":"Samfunnskostnad=Σ mengde_k × skadefaktor_k, med lav/basis/høy og fordelingsmatrise.","variables":["mengde","skadefaktor","eksponering","gruppe"],"unit":"valuta per periode og fysisk indikator","assumptions":["ingen dobbeltelling","verdsetting matcher kontekst"],"interpretation":"Gjør skjulte kostnader sammenlignbare, men ikke fullstendige.","misuse_guards":["ikke gjøre naturverdi til én sikker pris","ikke skjule fordelings- og etikkvalg"],"minimum_evidence":["fysisk måling, berørte, verdsettingskilde og usikkerhet"],"progression":["intro: fysisk effekt","mellom: verdsetting","avansert: fordelingsvekt og robusthet"],"mapped_emne_ids":["em_naering_risiko_regulering","em_naering_doxa_vekst_effektivitet","em_naering_teknologi_infrastruktur","em_naering_baerekraft_eksternaliteter"]},{"model_id":"omstilling_risiko_sensitivitet","title":"Omstillingsrisiko og robust sensitivitetsmodell","track_ids":["baerekraftsokonomi"],"purpose":"Teste hvordan klima-, teknologi- og politikkdrivere påvirker økonomi, utslipp og arbeid.","formula_or_logic":"Bygg scenarioer og ranger beslutninger etter resultatspenn, reversibilitet og terskler.","variables":["karbonpris","energipris","etterspørsel","investering","utslipp","jobber"],"unit":"flere enheter per scenario","assumptions":["scenarioer konsistente","samme basis og systemgrense"],"interpretation":"Et robust valg fungerer akseptabelt i flere plausible framtider.","misuse_guards":["ikke velge bare forventet scenario","ikke presentere scenario som sannsynlig prognose"],"minimum_evidence":["tre scenarioer, kritiske drivere og fordelingsdata"],"progression":["intro: scenario","mellom: sensitivitet","avansert: robust beslutning og realopsjon"],"mapped_emne_ids":["em_naering_automatisering_og_arbeid","em_naering_industri_og_mekanisering","em_naering_data_algoritmer_verdiskaping"]}]}
+{
+  "version": "1.0.0",
+  "status": "canonical",
+  "type": "university_model_registry",
+  "subject_id": "naeringsliv",
+  "model_count": 24,
+  "models": [
+    {
+      "model_id": "tilbud_ettersporsel_likevekt",
+      "title": "Tilbud, etterspørsel og markedslikevekt",
+      "track_ids": [
+        "samfunnsokonomi"
+      ],
+      "purpose": "Analysere hvordan skift i tilbud eller etterspørsel påvirker pris og mengde.",
+      "formula_or_logic": "Finn skjæringen Qd(P)=Qs(P); analyser skift separat fra bevegelse langs kurven.",
+      "variables": [
+        "pris",
+        "etterspurt mengde",
+        "tilbudt mengde",
+        "skiftfaktorer"
+      ],
+      "unit": "pris og mengde",
+      "assumptions": [
+        "avgrenset marked",
+        "andre forhold holdes eksplisitt konstante"
+      ],
+      "interpretation": "Viser retning og betingede virkninger, ikke automatisk faktisk kausalitet.",
+      "misuse_guards": [
+        "ikke kall enhver prisendring et etterspørselsskift",
+        "ikke ignorer regulering eller rasjonering"
+      ],
+      "minimum_evidence": [
+        "markedsavgrensning",
+        "minst én dokumentert skiftfaktor"
+      ],
+      "progression": [
+        "intro: tegn og forklar",
+        "mellom: estimer skift",
+        "avansert: koble til institusjon og usikkerhet"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_forbruk_marked",
+        "em_naering_marked_konkurranse_pris"
+      ]
+    },
+    {
+      "model_id": "elastisitetsmodell",
+      "title": "Pris-, inntekts- og krysspriselastisitet",
+      "track_ids": [
+        "samfunnsokonomi"
+      ],
+      "purpose": "Måle relativ følsomhet og substitusjon.",
+      "formula_or_logic": "E_xy=(ΔX/X)/(ΔY/Y), med bueformel ved store endringer.",
+      "variables": [
+        "responsvariabel",
+        "driver",
+        "basisnivå"
+      ],
+      "unit": "dimensjonsløs",
+      "assumptions": [
+        "sammenlignbare perioder",
+        "ingen uadressert kvalitetsendring"
+      ],
+      "interpretation": "Absoluttverdi over én betyr relativt elastisk respons i valgt intervall.",
+      "misuse_guards": [
+        "ikke tolke korrelasjon som kausal effekt",
+        "ikke sammenligne ulike aggregeringsnivå ukritisk"
+      ],
+      "minimum_evidence": [
+        "pris/mengde eller inntekt/mengde i minst to punkter"
+      ],
+      "progression": [
+        "intro: beregn",
+        "mellom: sammenlign grupper",
+        "avansert: identifikasjon og konfidensintervall"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_forbruk_marked",
+        "em_naering_marked_konkurranse_pris",
+        "em_naering_merkevare_og_status"
+      ]
+    },
+    {
+      "model_id": "hhi_markedsmakt",
+      "title": "HHI og konsentrasjon",
+      "track_ids": [
+        "samfunnsokonomi"
+      ],
+      "purpose": "Oppsummere markedsandelens konsentrasjon.",
+      "formula_or_logic": "HHI=Σ s_i², med s_i i prosent eller andel og tydelig skala.",
+      "variables": [
+        "markedsandel per aktør",
+        "markedsgrense",
+        "aktøridentitet"
+      ],
+      "unit": "0–10 000 eller 0–1",
+      "assumptions": [
+        "markedet er korrekt avgrenset",
+        "andeler dekker markedet"
+      ],
+      "interpretation": "Høyere verdi betyr mer konsentrasjon, men ikke alene markedsmakt.",
+      "misuse_guards": [
+        "ikke bruke uten markedstest",
+        "ikke blande konsern og juridiske enheter"
+      ],
+      "minimum_evidence": [
+        "markedsandeler og dokumentert markedsgrense"
+      ],
+      "progression": [
+        "intro: beregn",
+        "mellom: før/etter",
+        "avansert: følsomhet for markedsgrense"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_digitalisering_plattformokonomi",
+        "em_naering_marked_konkurranse_pris"
+      ]
+    },
+    {
+      "model_id": "indeks_realverdi",
+      "title": "Indeks, deflatering og realverdi",
+      "track_ids": [
+        "samfunnsokonomi"
+      ],
+      "purpose": "Sammenligne økonomiske størrelser over tid uten prisnivåets nominelle effekt.",
+      "formula_or_logic": "Realverdi_t=Nominell_t/(Prisindeks_t/100); indeks=verdi/basisverdi×100.",
+      "variables": [
+        "nominell verdi",
+        "prisindeks",
+        "basisår"
+      ],
+      "unit": "reell valuta eller indeks",
+      "assumptions": [
+        "relevant deflator",
+        "konsistent basis og definisjon"
+      ],
+      "interpretation": "Skiller prisendring fra volum- eller realendring.",
+      "misuse_guards": [
+        "ikke velge generell KPI når bransjedeflator kreves",
+        "ikke skjule definisjonsbrudd"
+      ],
+      "minimum_evidence": [
+        "nominell serie, indeks og metadata"
+      ],
+      "progression": [
+        "intro: deflater",
+        "mellom: vekstbidrag",
+        "avansert: alternative deflatorer"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_doxa_vekst_effektivitet",
+        "em_naering_kriser_boomer_omstilling",
+        "em_naering_produksjon_produktivitet"
+      ]
+    },
+    {
+      "model_id": "dekningsbidrag_nullpunkt",
+      "title": "Dekningsbidrag og nullpunkt",
+      "track_ids": [
+        "bedriftsokonomi_og_finans"
+      ],
+      "purpose": "Koble pris, volum og kostnadsstruktur til resultat.",
+      "formula_or_logic": "DB per enhet=P−VK; nullpunkt=FK/DB per enhet.",
+      "variables": [
+        "pris",
+        "variabel kostnad",
+        "fast kostnad",
+        "volum"
+      ],
+      "unit": "valuta og enheter",
+      "assumptions": [
+        "lineær kostnad i relevant intervall",
+        "positivt dekningsbidrag"
+      ],
+      "interpretation": "Viser volum som kreves for å dekke faste kostnader.",
+      "misuse_guards": [
+        "ikke klassifisere kostnader mekanisk",
+        "ikke ekstrapolere uten kapasitetsgrense"
+      ],
+      "minimum_evidence": [
+        "kostnadsdata, pris og kapasitet"
+      ],
+      "progression": [
+        "intro: beregn",
+        "mellom: produktmiks",
+        "avansert: usikkerhet og kapasitetssteg"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_effektivitet_optimalisering"
+      ]
+    },
+    {
+      "model_id": "kontantstrom_likviditet",
+      "title": "Kontantstrøm og likviditetsbro",
+      "track_ids": [
+        "bedriftsokonomi_og_finans"
+      ],
+      "purpose": "Forklare hvorfor resultat og kontantbeholdning utvikler seg ulikt.",
+      "formula_or_logic": "Kontantendring=drift+investering+finansiering; koble arbeidskapitalpostene.",
+      "variables": [
+        "driftsresultat",
+        "arbeidskapital",
+        "investering",
+        "finansiering"
+      ],
+      "unit": "valuta per periode",
+      "assumptions": [
+        "konsistent periode",
+        "kontantstrømklassifisering dokumentert"
+      ],
+      "interpretation": "Identifiserer hvilke aktiviteter som binder eller frigjør kontanter.",
+      "misuse_guards": [
+        "ikke likestille positivt resultat med likviditet",
+        "ikke ignorere engangsposter"
+      ],
+      "minimum_evidence": [
+        "resultat, balanse og kontantstrøm"
+      ],
+      "progression": [
+        "intro: avstem",
+        "mellom: kontantkonvertering",
+        "avansert: stress og covenant"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_bank_bors_forsikring",
+        "em_naering_eierskap_styring",
+        "em_naering_kapital_finans",
+        "em_naering_startup_grunder_innovasjon",
+        "em_naering_verdsetting_pris_regnskap"
+      ]
+    },
+    {
+      "model_id": "npv_irr",
+      "title": "Nåverdi og internrente",
+      "track_ids": [
+        "bedriftsokonomi_og_finans"
+      ],
+      "purpose": "Vurdere tidsfordelte prosjektkontantstrømmer.",
+      "formula_or_logic": "NPV=Σ CF_t/(1+r)^t−I0; IRR løser NPV=0.",
+      "variables": [
+        "kontantstrøm",
+        "diskonteringsrente",
+        "tid",
+        "investering"
+      ],
+      "unit": "valuta og prosent",
+      "assumptions": [
+        "kontantstrøm er inkrementell",
+        "rente og kontantstrøm er begge nominelle eller reelle"
+      ],
+      "interpretation": "Positiv NPV betyr verdi relativt til valgt avkastningskrav under antakelsene.",
+      "misuse_guards": [
+        "ikke rangere gjensidig utelukkende prosjekt kun med IRR",
+        "ikke skjule terminalverdi"
+      ],
+      "minimum_evidence": [
+        "tidsfestet kontantstrøm og rentegrunnlag"
+      ],
+      "progression": [
+        "intro: NPV",
+        "mellom: IRR/sensitivitet",
+        "avansert: realopsjon og scenario"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_eiendom_kapital_byutvikling",
+        "em_naering_kapital_finans",
+        "em_naering_startup_grunder_innovasjon",
+        "em_naering_verdsetting_pris_regnskap"
+      ]
+    },
+    {
+      "model_id": "risiko_scenario_forventning",
+      "title": "Forventet verdi, scenario og risiko",
+      "track_ids": [
+        "bedriftsokonomi_og_finans"
+      ],
+      "purpose": "Synliggjøre usikre utfall og asymmetri.",
+      "formula_or_logic": "E(X)=Σp_i x_i; rapporter også spenn, downside og antakelser.",
+      "variables": [
+        "utfall",
+        "sannsynlighet",
+        "tap/gevinst"
+      ],
+      "unit": "valuta, prosent eller fysisk enhet",
+      "assumptions": [
+        "scenarioer er gjensidig forståelige",
+        "sannsynligheter er begrunnet eller markert subjektive"
+      ],
+      "interpretation": "Forventning er et gjennomsnitt, ikke et typisk eller sikkert utfall.",
+      "misuse_guards": [
+        "ikke skjule haleutfall",
+        "ikke gjøre subjektive sannsynligheter til fakta"
+      ],
+      "minimum_evidence": [
+        "minst tre scenarioer og begrunnede drivere"
+      ],
+      "progression": [
+        "intro: forventning",
+        "mellom: sensitivitetsmatrise",
+        "avansert: robusthet og korrelasjon"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_bank_bors_forsikring",
+        "em_naering_eierskap_styring",
+        "em_naering_ledelse_kontrollsystemer",
+        "em_naering_organisasjoner_ledelse",
+        "em_naering_risiko_regulering",
+        "em_naering_verdsetting_pris_regnskap"
+      ]
+    },
+    {
+      "model_id": "arbeidsproduktivitet",
+      "title": "Arbeidsproduktivitet og kapasitetsutnyttelse",
+      "track_ids": [
+        "arbeidsliv_og_organisasjon"
+      ],
+      "purpose": "Måle produksjon per arbeidstime og bruk av kapasitet.",
+      "formula_or_logic": "Produktivitet=output/arbeidstimer; kapasitetsutnyttelse=faktisk/potensiell output.",
+      "variables": [
+        "output",
+        "arbeidstimer",
+        "kapasitet"
+      ],
+      "unit": "output per time og prosent",
+      "assumptions": [
+        "outputkvalitet er sammenlignbar",
+        "arbeidstid inkluderer relevante støtteoppgaver"
+      ],
+      "interpretation": "Økning kan komme av teknologi, sammensetning, tempo eller måleendring.",
+      "misuse_guards": [
+        "ikke tolke som arbeidsinnsats alene",
+        "ikke utelate kvalitetsfall eller ubetalt arbeid"
+      ],
+      "minimum_evidence": [
+        "output, timer, kvalitet og prosessendring"
+      ],
+      "progression": [
+        "intro: beregn",
+        "mellom: dekomponer",
+        "avansert: kvalitet og eksternalitet"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_arbeid_verdiskaping",
+        "em_naering_effektivitet_optimalisering",
+        "em_naering_industri_og_mekanisering",
+        "em_naering_produksjon_produktivitet",
+        "em_naering_usynlig_arbeid"
+      ]
+    },
+    {
+      "model_id": "lonnandel_spredning",
+      "title": "Lønnandel og lønnsspredning",
+      "track_ids": [
+        "arbeidsliv_og_organisasjon"
+      ],
+      "purpose": "Analysere fordeling av verdiskaping og lønn mellom grupper.",
+      "formula_or_logic": "Lønnandel=lønnsutgifter/verditilvekst; spredning med median og kvantilratio.",
+      "variables": [
+        "lønn",
+        "verditilvekst",
+        "kvantiler"
+      ],
+      "unit": "prosent og ratio",
+      "assumptions": [
+        "sammenlignbar regnskapsperimeter",
+        "heltid/deltid harmonisert"
+      ],
+      "interpretation": "Kombinerer funksjonell og individuell fordeling.",
+      "misuse_guards": [
+        "ikke likestille lønnsandel med rettferdighet",
+        "ikke bruke gjennomsnitt alene"
+      ],
+      "minimum_evidence": [
+        "lønn, timer, verditilvekst og gruppeinndeling"
+      ],
+      "progression": [
+        "intro: median",
+        "mellom: real/spredning",
+        "avansert: dekomponering"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_arbeid_verdiskaping",
+        "em_naering_fagforeninger_og_interesser",
+        "em_naering_makt_ulikhet_arbeidsliv",
+        "em_naering_profesjoner_kompetanse",
+        "em_naering_usynlig_arbeid"
+      ]
+    },
+    {
+      "model_id": "turnover_kapasitet",
+      "title": "Turnover, fravær og bemanningskapasitet",
+      "track_ids": [
+        "arbeidsliv_og_organisasjon"
+      ],
+      "purpose": "Vurdere stabilitet, belastning og faktisk tilgjengelig arbeidskraft.",
+      "formula_or_logic": "Turnover=avganger/gjennomsnittlig bemanning; kapasitet=planlagte timer−fravær−vakans.",
+      "variables": [
+        "avganger",
+        "bemanning",
+        "fravær",
+        "vakans",
+        "timer"
+      ],
+      "unit": "prosent og timer",
+      "assumptions": [
+        "definisjon stabil",
+        "frivillig/ufrivillig skilt når mulig"
+      ],
+      "interpretation": "Høye verdier kan signalisere belastning, omstilling eller sesong.",
+      "misuse_guards": [
+        "ikke anta årsak fra turnover alene",
+        "ikke blande hode og årsverk"
+      ],
+      "minimum_evidence": [
+        "personalbeholdning og bevegelsesdata"
+      ],
+      "progression": [
+        "intro: beregn",
+        "mellom: segmenter",
+        "avansert: overlevelse og årsaksdesign"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_arbeidsliv_organisering",
+        "em_naering_tjenesteyting_og_service"
+      ]
+    },
+    {
+      "model_id": "oppgave_kontrollmatrise",
+      "title": "Oppgave–kontroll-matrise",
+      "track_ids": [
+        "arbeidsliv_og_organisasjon"
+      ],
+      "purpose": "Kartlegge hvor kunnskap, skjønn og kontroll ligger i arbeidsprosessen.",
+      "formula_or_logic": "Kod hvert prosessteg etter kompleksitet, autonomi, kontrollintensitet og teknisk avhengighet.",
+      "variables": [
+        "oppgave",
+        "autonomi",
+        "kontroll",
+        "kompetanse",
+        "teknologi"
+      ],
+      "unit": "ordinal skala med dokumentert kodebok",
+      "assumptions": [
+        "observasjon dekker faktisk praksis",
+        "kategorier er gjensidig tydelige"
+      ],
+      "interpretation": "Viser om endring flytter oppgaver og beslutningsrett, ikke bare antall jobber.",
+      "misuse_guards": [
+        "ikke gjøre ordinal skala til presis kardinal måling",
+        "ikke kode fra stillingstittel alene"
+      ],
+      "minimum_evidence": [
+        "prosessobservasjon, prosedyrer og validering med aktører"
+      ],
+      "progression": [
+        "intro: prosesskart",
+        "mellom: kode og sammenlign",
+        "avansert: reliabilitet og maktanalyse"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_arbeidsliv_organisering",
+        "em_naering_automatisering_og_arbeid",
+        "em_naering_ledelse_kontrollsystemer",
+        "em_naering_organisasjoner_ledelse",
+        "em_naering_profesjoner_kompetanse",
+        "em_naering_tjenesteyting_og_service"
+      ]
+    },
+    {
+      "model_id": "akkumulasjon_fordelingsbro",
+      "title": "Akkumulasjons- og fordelingsbro",
+      "track_ids": [
+        "politisk_okonomi_og_okonomisk_historie"
+      ],
+      "purpose": "Følge hvordan driftsoverskudd fordeles mellom investering, finans, eieruttak og reserver.",
+      "formula_or_logic": "Overskudd=investering+finansnetto+eierutdeling+reserveendring, avstemt mot regnskap.",
+      "variables": [
+        "overskudd",
+        "investering",
+        "rente",
+        "utdeling",
+        "reserve"
+      ],
+      "unit": "valuta og andeler",
+      "assumptions": [
+        "perimeter og periode konsistent",
+        "regnskapsposter omklassifiseres transparent"
+      ],
+      "interpretation": "Synliggjør prioriteringene bak akkumulering og utdeling.",
+      "misuse_guards": [
+        "ikke anta motiv fra fordeling alene",
+        "ikke blande brutto og netto investering"
+      ],
+      "minimum_evidence": [
+        "regnskap, noter og eierbeslutninger"
+      ],
+      "progression": [
+        "intro: fordel",
+        "mellom: tidsserie",
+        "avansert: institusjonell forklaring"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_doxa_vekst_effektivitet",
+        "em_naering_industri_og_mekanisering",
+        "em_naering_makt_ulikhet_arbeidsliv"
+      ]
+    },
+    {
+      "model_id": "institusjonell_endringsmatrise",
+      "title": "Institusjonell endringsmatrise",
+      "track_ids": [
+        "politisk_okonomi_og_okonomisk_historie"
+      ],
+      "purpose": "Skille brå erstatning fra gradvis lagdeling, omtolkning og forskyvning.",
+      "formula_or_logic": "Kod regel, håndheving, aktørkoalisjon og praksis før/etter hvert vendepunkt.",
+      "variables": [
+        "regel",
+        "håndheving",
+        "aktør",
+        "praksis",
+        "utfall"
+      ],
+      "unit": "kategorisk/ordinal med tidslinje",
+      "assumptions": [
+        "kriterier definert før koding",
+        "formell og faktisk endring skilt"
+      ],
+      "interpretation": "Gir et etterprøvbart grunnlag for periodisering.",
+      "misuse_guards": [
+        "ikke kalle enhver dato et vendepunkt",
+        "ikke kode resultat som årsak"
+      ],
+      "minimum_evidence": [
+        "regeltekster, implementeringsspor og praksisdata"
+      ],
+      "progression": [
+        "intro: tidslinje",
+        "mellom: mekanismekode",
+        "avansert: alternativ periodisering"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_fagforeninger_og_interesser",
+        "em_naering_omstilling_kriser_skift"
+      ]
+    },
+    {
+      "model_id": "kriseindikator_dashboard",
+      "title": "Krise- og boomindikatorer",
+      "track_ids": [
+        "politisk_okonomi_og_okonomisk_historie"
+      ],
+      "purpose": "Kombinere pris, kreditt, investering, sysselsetting og kapasitetsdata uten én-indikatorfelle.",
+      "formula_or_logic": "Standardiser flere indikatorer, vis retning og tidsrekkefølge; unngå mekanisk kompositt uten begrunnelse.",
+      "variables": [
+        "pris",
+        "kreditt",
+        "investering",
+        "sysselsetting",
+        "kapasitet"
+      ],
+      "unit": "indeks og vekstrater",
+      "assumptions": [
+        "serier harmonisert",
+        "indikatorvalg teori- og casebegrunnet"
+      ],
+      "interpretation": "Viser oppbygging, brudd og spredning av økonomisk uro.",
+      "misuse_guards": [
+        "ikke datere krise fra én serie",
+        "ikke skjule revisjoner og baseeffekter"
+      ],
+      "minimum_evidence": [
+        "minst fire indikatorer over tilstrekkelig tid"
+      ],
+      "progression": [
+        "intro: plott",
+        "mellom: sekvens",
+        "avansert: regime og robusthet"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_kriser_boomer_omstilling"
+      ]
+    },
+    {
+      "model_id": "finansialiseringsindikator",
+      "title": "Finansialiseringsindikatorer",
+      "track_ids": [
+        "politisk_okonomi_og_okonomisk_historie"
+      ],
+      "purpose": "Måle endret vekt på finansielle inntekter, gjeld, utdeling og eierskap.",
+      "formula_or_logic": "Rapporter flere separate ratioer: finansinntekt/total, gjeld/eiendel, utdeling/overskudd, finansaktiva/eiendel.",
+      "variables": [
+        "finansinntekt",
+        "gjeld",
+        "utdeling",
+        "finansaktiva",
+        "totale eiendeler"
+      ],
+      "unit": "prosent",
+      "assumptions": [
+        "regnskapsklassifikasjon konsistent",
+        "ratioer tolkes sammen"
+      ],
+      "interpretation": "Indikerer finansielle prioriteringer, men må kobles til styring og investering.",
+      "misuse_guards": [
+        "ikke lage én universell indeks uten vektbegrunnelse",
+        "ikke ignorere bransjeforskjell"
+      ],
+      "minimum_evidence": [
+        "regnskap, eierdata og investeringsdata"
+      ],
+      "progression": [
+        "intro: ratio",
+        "mellom: panel/tid",
+        "avansert: mekanisme og kontrafaktisk"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_eiendom_kapital_byutvikling"
+      ]
+    },
+    {
+      "model_id": "lokaliseringskvotient",
+      "title": "Lokaliseringskvotient",
+      "track_ids": [
+        "okonomisk_geografi_og_teknologi"
+      ],
+      "purpose": "Måle relativ geografisk spesialisering.",
+      "formula_or_logic": "LQ=(lokal sektorandel)/(referanseområdets sektorandel).",
+      "variables": [
+        "lokal sysselsetting",
+        "lokal total",
+        "referanse sektor",
+        "referanse total"
+      ],
+      "unit": "ratio",
+      "assumptions": [
+        "samme sektorkoder og tidspunkt",
+        "områdegrense begrunnet"
+      ],
+      "interpretation": "LQ>1 viser relativ konsentrasjon, ikke nødvendigvis produktiv klynge.",
+      "misuse_guards": [
+        "ikke likestille konsentrasjon med samhandling",
+        "test alternative geografi"
+      ],
+      "minimum_evidence": [
+        "geokodet sektor- og totaldata"
+      ],
+      "progression": [
+        "intro: beregn",
+        "mellom: kartlegg",
+        "avansert: følsomhet og nettverk"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_byens_okonomiske_rom",
+        "em_naering_finansdistrikt_kontorby"
+      ]
+    },
+    {
+      "model_id": "gravitasjon_tilgjengelighet",
+      "title": "Gravitasjons- og tilgjengelighetsmodell",
+      "track_ids": [
+        "okonomisk_geografi_og_teknologi"
+      ],
+      "purpose": "Vekte økonomiske muligheter etter reisetid eller avstand.",
+      "formula_or_logic": "A_i=Σ_j O_j f(c_ij), der avstandsfunksjonen dokumenteres.",
+      "variables": [
+        "muligheter",
+        "reise-/transportkostnad",
+        "avstandsfunksjon"
+      ],
+      "unit": "indeks",
+      "assumptions": [
+        "nettverk og reisemåte er relevante",
+        "muligheter målt konsistent"
+      ],
+      "interpretation": "Høyere verdi betyr større vektet tilgang under valgt friksjonsfunksjon.",
+      "misuse_guards": [
+        "ikke presentere funksjonsvalg som naturgitt",
+        "ikke ignorere kapasitet og kvalitet"
+      ],
+      "minimum_evidence": [
+        "nettverk, lokasjoner og mulighetsmål"
+      ],
+      "progression": [
+        "intro: enkel sum",
+        "mellom: avstandsvekt",
+        "avansert: kalibrering og scenarier"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_byens_okonomiske_rom",
+        "em_naering_finansdistrikt_kontorby",
+        "em_naering_handel_butikk_byrom",
+        "em_naering_havn_transport",
+        "em_naering_teknologi_infrastruktur"
+      ]
+    },
+    {
+      "model_id": "lager_ledetid_flaskehals",
+      "title": "Lager, ledetid og flaskehals",
+      "track_ids": [
+        "okonomisk_geografi_og_teknologi"
+      ],
+      "purpose": "Koble gjennomløp, lager og kapasitet i en verdikjede.",
+      "formula_or_logic": "Little: WIP=gjennomstrømning×ledetid; lageromløp=varekost/lager.",
+      "variables": [
+        "WIP",
+        "gjennomstrømning",
+        "ledetid",
+        "kapasitet",
+        "lager"
+      ],
+      "unit": "tid, enheter og omløp",
+      "assumptions": [
+        "relativt stabilt system for Little",
+        "samme vareflyt"
+      ],
+      "interpretation": "Viser hvor tid og kapital bindes og hvor kapasitet begrenser flyten.",
+      "misuse_guards": [
+        "ikke bruke stabilitetsformel i kaotisk overgang uten merknad",
+        "ikke skjule køprioritering"
+      ],
+      "minimum_evidence": [
+        "tidsstempel, volum, lager og kapasitet"
+      ],
+      "progression": [
+        "intro: beregn",
+        "mellom: prosessledd",
+        "avansert: variasjon og kø"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_effektivitet_optimalisering",
+        "em_naering_handel_butikk_byrom",
+        "em_naering_havn_transport",
+        "em_naering_logistikk_verdikjeder",
+        "em_naering_produksjon_produktivitet",
+        "em_naering_tjenesteyting_og_service"
+      ]
+    },
+    {
+      "model_id": "nettverkseffekt_adopsjon",
+      "title": "Nettverkseffekt og plattformadopsjon",
+      "track_ids": [
+        "okonomisk_geografi_og_teknologi"
+      ],
+      "purpose": "Analysere vekst på tvers av brukergrupper og mulig selvforsterkning.",
+      "formula_or_logic": "Estimer om aktivitet på side A predikerer verdi/adopsjon på side B etter kontroll for kvalitet, pris og markedsføring.",
+      "variables": [
+        "brukere A/B",
+        "transaksjon",
+        "churn",
+        "pris",
+        "komplement"
+      ],
+      "unit": "brukere, rate og elastisitet",
+      "assumptions": [
+        "sider definert",
+        "alternative vekstforklaringer måles"
+      ],
+      "interpretation": "Positiv kryss-side effekt støtter nettverksmekanisme dersom tidsrekkefølge og alternativer håndteres.",
+      "misuse_guards": [
+        "ikke bruke S-kurve som bevis alene",
+        "ikke ignorere multihoming og subsidiering"
+      ],
+      "minimum_evidence": [
+        "tidsserie/panel for begge sider og kontrollvariabler"
+      ],
+      "progression": [
+        "intro: kartlegg sider",
+        "mellom: kryss-side ratio",
+        "avansert: identifikasjon og tipping"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_data_algoritmer_verdiskaping",
+        "em_naering_digitalisering_plattformokonomi",
+        "em_naering_innovasjon_teknologisk_skift",
+        "em_naering_teknologi_infrastruktur"
+      ]
+    },
+    {
+      "model_id": "karbonintensitet",
+      "title": "Karbonintensitet og utslippsbane",
+      "track_ids": [
+        "baerekraftsokonomi"
+      ],
+      "purpose": "Måle utslipp relativt til funksjonell aktivitet og absolutt utvikling.",
+      "formula_or_logic": "Intensitet=kg CO2e/aktivitet; rapporter også absolutte scope-avgrensede utslipp.",
+      "variables": [
+        "utslipp",
+        "aktivitet",
+        "scope",
+        "basisår"
+      ],
+      "unit": "kg CO2e per enhet og tonn",
+      "assumptions": [
+        "scope og aktivitet stabil",
+        "utslippsfaktorer dokumentert"
+      ],
+      "interpretation": "Lavere intensitet kan sameksistere med høyere absolutte utslipp.",
+      "misuse_guards": [
+        "ikke rapportere bare intensitet",
+        "ikke blande scope eller markeds-/lokasjonsbasert strøm"
+      ],
+      "minimum_evidence": [
+        "aktivitetsdata, faktorer og avgrensning"
+      ],
+      "progression": [
+        "intro: beregn",
+        "mellom: dekomponer",
+        "avansert: bane, rebound og usikkerhet"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_baerekraft_eksternaliteter",
+        "em_naering_teknologi_infrastruktur"
+      ]
+    },
+    {
+      "model_id": "materialintensitet_sirkularitet",
+      "title": "Materialintensitet og sirkularitet",
+      "track_ids": [
+        "baerekraftsokonomi"
+      ],
+      "purpose": "Måle materialbruk, levetid, ombruk og faktisk lukking av strømmer.",
+      "formula_or_logic": "Materialintensitet=materiale/funksjon; sirkularitetsindikator kombinerer sekundærinput, levetid og end-of-life uten å skjule massen.",
+      "variables": [
+        "jomfruelig materiale",
+        "sekundærmateriale",
+        "levetid",
+        "tap",
+        "funksjon"
+      ],
+      "unit": "kg per funksjon og prosent",
+      "assumptions": [
+        "massebalanse",
+        "kvalitet og downcycling dokumentert"
+      ],
+      "interpretation": "Skiller redusert materialbehov fra bare høyere resirkulert andel.",
+      "misuse_guards": [
+        "ikke likestille resirkulering med lukket kretsløp",
+        "ikke ignorere levetid og kvalitet"
+      ],
+      "minimum_evidence": [
+        "materialliste, opprinnelse, levetid og avfallsdata"
+      ],
+      "progression": [
+        "intro: massebalanse",
+        "mellom: intensitet",
+        "avansert: dynamisk lager og substitusjon"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_baerekraft_eksternaliteter",
+        "em_naering_industri_og_mekanisering",
+        "em_naering_logistikk_verdikjeder"
+      ]
+    },
+    {
+      "model_id": "samfunnskostnad_eksternalitet",
+      "title": "Samfunnskostnad for eksternalitet",
+      "track_ids": [
+        "baerekraftsokonomi"
+      ],
+      "purpose": "Koble fysisk belastning til berørte grupper og monetært/ikke-monetært konsekvensspenn.",
+      "formula_or_logic": "Samfunnskostnad=Σ mengde_k × skadefaktor_k, med lav/basis/høy og fordelingsmatrise.",
+      "variables": [
+        "mengde",
+        "skadefaktor",
+        "eksponering",
+        "gruppe"
+      ],
+      "unit": "valuta per periode og fysisk indikator",
+      "assumptions": [
+        "ingen dobbeltelling",
+        "verdsetting matcher kontekst"
+      ],
+      "interpretation": "Gjør skjulte kostnader sammenlignbare, men ikke fullstendige.",
+      "misuse_guards": [
+        "ikke gjøre naturverdi til én sikker pris",
+        "ikke skjule fordelings- og etikkvalg"
+      ],
+      "minimum_evidence": [
+        "fysisk måling, berørte, verdsettingskilde og usikkerhet"
+      ],
+      "progression": [
+        "intro: fysisk effekt",
+        "mellom: verdsetting",
+        "avansert: fordelingsvekt og robusthet"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_baerekraft_eksternaliteter",
+        "em_naering_doxa_vekst_effektivitet",
+        "em_naering_risiko_regulering"
+      ]
+    },
+    {
+      "model_id": "omstilling_risiko_sensitivitet",
+      "title": "Omstillingsrisiko og robust sensitivitetsmodell",
+      "track_ids": [
+        "baerekraftsokonomi"
+      ],
+      "purpose": "Teste hvordan klima-, teknologi- og politikkdrivere påvirker økonomi, utslipp og arbeid.",
+      "formula_or_logic": "Bygg scenarioer og ranger beslutninger etter resultatspenn, reversibilitet og terskler.",
+      "variables": [
+        "karbonpris",
+        "energipris",
+        "etterspørsel",
+        "investering",
+        "utslipp",
+        "jobber"
+      ],
+      "unit": "flere enheter per scenario",
+      "assumptions": [
+        "scenarioer konsistente",
+        "samme basis og systemgrense"
+      ],
+      "interpretation": "Et robust valg fungerer akseptabelt i flere plausible framtider.",
+      "misuse_guards": [
+        "ikke velge bare forventet scenario",
+        "ikke presentere scenario som sannsynlig prognose"
+      ],
+      "minimum_evidence": [
+        "tre scenarioer, kritiske drivere og fordelingsdata"
+      ],
+      "progression": [
+        "intro: scenario",
+        "mellom: sensitivitet",
+        "avansert: robust beslutning og realopsjon"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_automatisering_og_arbeid",
+        "em_naering_omstilling_kriser_skift"
+      ]
+    },
+    {
+      "model_id": "merkevarepremie_og_kundelivstidsverdi",
+      "title": "Merkevarepremie og kundelivstidsverdi",
+      "track_ids": [
+        "bedriftsokonomi_og_finans"
+      ],
+      "purpose": "Koble prispremie, margin, retensjon og anskaffelseskostnad.",
+      "formula_or_logic": "CLV=Σ margin_t×retensjon_t/(1+r)^t−CAC; prispremie mot kvalitetsjustert alternativ.",
+      "variables": [
+        "pris",
+        "margin",
+        "retensjon",
+        "CAC",
+        "diskonteringsrente"
+      ],
+      "unit": "valuta per kunde",
+      "assumptions": [
+        "kohorter er sammenlignbare",
+        "kostnad er korrekt allokert"
+      ],
+      "interpretation": "Viser om merkevare eller relasjon gir varig økonomisk bidrag utover anskaffelseskostnad.",
+      "misuse_guards": [
+        "ikke tilskriv kvalitet eller distribusjon til merkevare",
+        "ikke ekstrapoler stabil retensjon ukritisk"
+      ],
+      "minimum_evidence": [
+        "transaksjoner, margin, churn og sammenlignbart produkt"
+      ],
+      "progression": [
+        "intro: prispremie",
+        "mellom: kohort-CLV",
+        "avansert: kausal merkeeffekt og sensitivitet"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_merkevare_og_status"
+      ]
+    },
+    {
+      "model_id": "finansielt_saarbarhetskart",
+      "title": "Finansielt sårbarhetskart",
+      "track_ids": [
+        "samfunnsokonomi",
+        "bedriftsokonomi_og_finans"
+      ],
+      "purpose": "Kombinere gearing, renter, likviditet og refinansiering i et stresstestbilde.",
+      "formula_or_logic": "Klassifiser robust, spekulativ eller svært sårbar etter kontantdekning, gjeldsforfall, sikkerhet og prisfallsscenario.",
+      "variables": [
+        "gjeld",
+        "rente",
+        "kontantstrøm",
+        "forfall",
+        "sikkerhetsverdi"
+      ],
+      "unit": "ratio og valuta",
+      "assumptions": [
+        "balanse og forfall er dokumentert",
+        "scenario er eksplisitt"
+      ],
+      "interpretation": "Synliggjør hvilken mekanisme som utløser betalings- eller refinansieringsproblem.",
+      "misuse_guards": [
+        "ikke aggregere bort forfallsprofil",
+        "ikke bruke historisk volatilitet som eneste stress"
+      ],
+      "minimum_evidence": [
+        "balanse, kontantstrøm, forfall og minst tre scenarioer"
+      ],
+      "progression": [
+        "intro: nøkkeltall",
+        "mellom: forfallsprofil",
+        "avansert: smitte og endogen pris"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_bank_bors_forsikring",
+        "em_naering_kapital_finans",
+        "em_naering_kriser_boomer_omstilling",
+        "em_naering_risiko_regulering"
+      ]
+    },
+    {
+      "model_id": "budrente_og_grunnverdi",
+      "title": "Budrente og grunnverdi",
+      "track_ids": [
+        "okonomisk_geografi_og_teknologi",
+        "politisk_okonomi_og_okonomisk_historie"
+      ],
+      "purpose": "Skille tilgjengelighetsverdi, bruksverdi og forventet utviklingsverdi.",
+      "formula_or_logic": "Estimer pris eller leie som funksjon av tilgjengelighet, areal, bruk og regulering; sammenlign gradienter.",
+      "variables": [
+        "pris eller leie",
+        "tilgjengelighet",
+        "areal",
+        "regulering"
+      ],
+      "unit": "valuta per areal",
+      "assumptions": [
+        "sammenlignbare objekter",
+        "romlig avgrensning er plausibel"
+      ],
+      "interpretation": "Brattere gradient indikerer sterkere kapitalisering av tilgjengelighet under valgte kontroller.",
+      "misuse_guards": [
+        "ikke likestill korrelasjon med ren grunnrente",
+        "ikke ignorer rente og forventning"
+      ],
+      "minimum_evidence": [
+        "transaksjon eller leie, objektdata og tilgjengelighetsmål"
+      ],
+      "progression": [
+        "intro: pris per areal",
+        "mellom: matchet gradient",
+        "avansert: hedonisk og planhendelse"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_byens_okonomiske_rom",
+        "em_naering_eiendom_kapital_byutvikling",
+        "em_naering_finansdistrikt_kontorby",
+        "em_naering_handel_butikk_byrom"
+      ]
+    },
+    {
+      "model_id": "bass_adopsjon",
+      "title": "Adopsjons- og diffusjonskurve",
+      "track_ids": [
+        "okonomisk_geografi_og_teknologi"
+      ],
+      "purpose": "Beskrive adopsjon gjennom tidlig ekstern påvirkning og senere sosial eller organisatorisk spredning.",
+      "formula_or_logic": "Mål nye og kumulative adoptører mot en definert risikopopulasjon og test alternative S-kurveforløp.",
+      "variables": [
+        "potensielt marked",
+        "nye adoptører",
+        "kumulative adoptører",
+        "tid"
+      ],
+      "unit": "adoptører og prosent",
+      "assumptions": [
+        "risikopopulasjon er definert",
+        "adopsjonstid er konsistent"
+      ],
+      "interpretation": "Viser spredningshastighet, men identifiserer ikke alene sosial smitte.",
+      "misuse_guards": [
+        "ikke estimer uten ikke-adoptører",
+        "ikke tolk kurveform kausalt"
+      ],
+      "minimum_evidence": [
+        "tidsserie for adopsjon og definert marked"
+      ],
+      "progression": [
+        "intro: kumulativ kurve",
+        "mellom: kohorter",
+        "avansert: alternative diffusjonsmekanismer"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_automatisering_og_arbeid",
+        "em_naering_data_algoritmer_verdiskaping",
+        "em_naering_innovasjon_teknologisk_skift"
+      ]
+    },
+    {
+      "model_id": "realopsjon_og_runway",
+      "title": "Realopsjon og runway",
+      "track_ids": [
+        "bedriftsokonomi_og_finans"
+      ],
+      "purpose": "Vurdere trinnvis investering under fundamental usikkerhet.",
+      "formula_or_logic": "Runway=likvider/netto månedlig burn; vurder læringsverdi, neste milepæl og irreversibel kostnad.",
+      "variables": [
+        "likvider",
+        "burn",
+        "milepælkostnad",
+        "oppside og nedside"
+      ],
+      "unit": "måneder og valuta",
+      "assumptions": [
+        "beslutningen kan deles",
+        "milepæler produserer informasjon"
+      ],
+      "interpretation": "Lengre runway og reversible trinn øker handlingsrom, men skaper ikke verdi uten informative milepæler.",
+      "misuse_guards": [
+        "ikke gjøre enhver utsettelse til opsjonsverdi",
+        "ikke skjule finansieringsrisiko"
+      ],
+      "minimum_evidence": [
+        "likviditet, burn, milepæl og alternative beslutninger"
+      ],
+      "progression": [
+        "intro: runway",
+        "mellom: milepælsscenario",
+        "avansert: opsjonsverdi og finansieringsbetingelse"
+      ],
+      "mapped_emne_ids": [
+        "em_naering_startup_grunder_innovasjon"
+      ]
+    }
+  ]
+}
