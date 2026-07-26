@@ -82,8 +82,50 @@ function createHarness({ hasQuiz = true } = {}) {
   return { window, captured, quizButton, mediaClasses, image };
 }
 
-test("renders Kjersti as an informative artist profile", async () => {
+test("renders all structured profile sections when the person has rich data", async () => {
   const { window, captured, quizButton } = createHarness({ hasQuiz: true });
+
+  window.showPersonPopup({
+    id: "rich_person",
+    name: "Rik Person",
+    initials: "RP",
+    category: "kunst",
+    kindLabel: "Billedhugger / offentlig kunst",
+    desc: "Kort ingress om personen.",
+    popupDesc: "Første biografiske avsnitt.\n\nAndre biografiske avsnitt.",
+    birth_date: "1945-12-15",
+    birth_place: "Oslo",
+    active_place: "Nittedal",
+    year: 1991,
+    education: ["Statens håndverks- og kunstindustriskole"],
+    materials: ["stein", "bronse"],
+    themes: ["offentlig kunst", "minnekultur"],
+    works: [
+      { title: "Et offentlig verk", year: 1991, material: "granitt", summary: "Et konkret bidrag i byrommet." }
+    ],
+    externalLinks: [
+      { label: "Store norske leksikon", url: "https://snl.no/eksempel" }
+    ]
+  });
+  await new Promise(resolve => setImmediate(resolve));
+
+  assert.match(captured.html, /Rik Person/);
+  assert.match(captured.html, /Om personen/);
+  assert.match(captured.html, /Verk og bidrag/);
+  assert.match(captured.html, /Statens håndverks- og kunstindustriskole/);
+  assert.match(captured.html, /Stein/);
+  assert.match(captured.html, /Stensparken/);
+  assert.match(captured.html, /Kilder og videre lesning/);
+  assert.match(captured.html, /Portrett ikke registrert/);
+  assert.match(captured.html, /hg-person-quiz-btn/);
+  assert.doesNotMatch(captured.html, /Ingen registrerte verk/);
+  assert.equal(captured.extraClass, "person-popup person-popup-v2");
+  assert.equal(captured.quizTarget, "rich_person");
+  assert.equal(quizButton.hidden, false);
+});
+
+test("renders Kjersti from canonical data without inventing missing works or images", async () => {
+  const { window, captured } = createHarness({ hasQuiz: true });
   const people = JSON.parse(fs.readFileSync(
     path.join(__dirname, "..", "data", "people", "kunst", "oslo", "people_kunst_oslo.json"),
     "utf8"
@@ -95,18 +137,14 @@ test("renders Kjersti as an informative artist profile", async () => {
   await new Promise(resolve => setImmediate(resolve));
 
   assert.match(captured.html, /Kjersti Wexelsen Goksøyr/);
+  assert.match(captured.html, /Offentlig kunst \/ skulptur/);
+  assert.match(captured.html, /1991/);
   assert.match(captured.html, /Om personen/);
-  assert.match(captured.html, /Verk og bidrag/);
-  assert.match(captured.html, /Statens håndverks- og kunstindustriskole/);
-  assert.match(captured.html, /Stein/);
   assert.match(captured.html, /Stensparken/);
-  assert.match(captured.html, /Kilder og videre lesning/);
+  assert.match(captured.html, /Temaer/);
   assert.match(captured.html, /Portrett ikke registrert/);
-  assert.match(captured.html, /hg-person-quiz-btn/);
+  assert.doesNotMatch(captured.html, /Verk og bidrag/);
   assert.doesNotMatch(captured.html, /Ingen registrerte verk/);
-  assert.equal(captured.extraClass, "person-popup person-popup-v2");
-  assert.equal(captured.quizTarget, "kjersti_wexelsen_goksoyr");
-  assert.equal(quizButton.hidden, false);
 });
 
 test("removes quiz action and empty sections when data is absent", async () => {
