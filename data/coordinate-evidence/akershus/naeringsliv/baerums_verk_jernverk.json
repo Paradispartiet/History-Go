@@ -1,0 +1,318 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "baerums_verk_jernverk",
+  "placeFile": "data/places/naeringsliv/akershus/baerums_verk_jernverk/baerums_verk_jernverk.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_verksgata_15_historic_ironworks_area_anchor",
+  "currentCoordinate": {
+    "lat": 59.94050204982565,
+    "lon": 10.501268319641312,
+    "r": 360,
+    "coordStatus": "verified_historical_source",
+    "coordSource": "Bærum kommune – Bærums Verk kulturmiljø; Kartverket adressepunkt Verksgata 15",
+    "coordType": "documented_historic_ironworks_verksgata_area_anchor",
+    "coordRole": "area_anchor",
+    "sourceObjectId": "baerum-kommune:barums-verk-kulturmiljo",
+    "coordNote": "Bærum kommune dokumenterer Bærums Verk som et samlet kulturhistorisk miljø med Verksgata, arbeiderboliger, hovedbygning, Klokkeboden, vertshus, uthus, foss og bevarte masovnrester. Kartverkets stedfestingsverifiserte adressepunkt for Verksgata 15 er 59.94050204982565, 10.501268319641312. Punktet ligger 4,5 meter fra det kartlagte handelsområdet og brukes som area_anchor for det samlede verksmiljøet, ikke som masovn-, støperi- eller verneområdesentroid."
+  },
+  "previousCoordinate": {
+    "lat": 59.93839,
+    "lon": 10.50178,
+    "r": 260,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 236.6,
+    "reasonReplaced": "Legacy-punktet lå i den sørlige delen av Verksgata-miljøet, men manglet kildekontrakt og kunne ikke knyttes til en offisiell adresse eller et dokumentert områdeanker."
+  },
+  "identity": {
+    "currentName": "Bærums Verk",
+    "resolvedIdentity": "Det samlede historiske jernverks- og verkssamfunnet langs Lomma, fysisk forankret ved besøksområdet i Verksgata 15",
+    "identityStatus": "resolved",
+    "identityProblem": "Navnet brukes både om tettstedet, dagens handelssted, selskapet og det historiske jernverket. Canonical skal representere jernverksmiljøet, ikke tettstedsnode, selskapshovedkontor eller ett tilfeldig bygg.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "Verksgata, produksjonsrestene, fossen, arbeiderboligene, hovedbygningen, Klokkeboden og Vertshuset utgjør ett sammenhengende historisk miljø. Enkeltobjekter kan formidles som innhold uten separate canonical steder i denne posten."
+  },
+  "requiredEvidence": [
+    "offisiell identifikasjon av det historiske jernverksmiljøet",
+    "stedfestingsverifisert besøksadresse",
+    "dokumentert utstrekning fra Verksgata til Vertshuset",
+    "dokumenterte produksjonsrester og masovn",
+    "kartlagt nåværende handelsområde som fysisk kryssjekk",
+    "eksplisitt avvisning av tettstedsnode og tilfeldig enkeltbygg",
+    "radiusbegrunnelse uten å fremstille sirkelen som vernepolygon"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Bærum kommune – Bærums Verk",
+      "sourceUrl": "https://www.baerum.kommune.no/om-barum-kommune/historisk-arkiv-barumskilden/kulturminner-i-barum/barums-verk/",
+      "sourceObjectId": "baerum-kommune:barums-verk-kulturmiljo",
+      "sourceQuality": "official_cultural_environment_identity_and_physical_components",
+      "finding": "Kommunen beskriver kulturmiljøet som Verksgata med gamle arbeiderboliger, stabbur, hovedbygning, Klokkeboden, vertshus og uthus ved fossen, og dokumenterer at nedre del av masovnen og masovnkransen er bevart.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastslår hvilken samlet fysisk identitet adresseankeret skal representere."
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceName": "Kartverket Address API – Verksgata 15",
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1306:15",
+      "sourceQuality": "official_location_verified_visitor_address_point",
+      "finding": "Kartverket returnerer ett eksakt og stedfestingsverifisert objekt for Verksgata 15: kommunenummer 3201, gårds- og bruksnummer 118/67, adressekode 1306, postnummer 1353 og representasjonspunkt 59.94050204982565, 10.501268319641312.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir det reproduserbare fysiske områdeankeret i den sentrale Verksgata."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Bærums Verk – praktisk informasjon og kontakt",
+      "sourceUrl": "https://baerumsverk.no/",
+      "sourceObjectId": "baerums-verk:verksgata-15",
+      "sourceQuality": "current_operator_visitor_identity",
+      "finding": "Det aktive handels- og kulturstedet oppgir Bærums Verk som besøksmål og Verksgata som en av hoveddelene av området; kontaktoppføringen knytter driften til Verksgata 15.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker den nåværende besøksidentiteten og Kartverkets adresseobjekt."
+    },
+    {
+      "sourceProvider": "municipality",
+      "sourceName": "Bærum kommune – Vern av kulturminner",
+      "sourceUrl": "https://www.baerum.kommune.no/tjenester/kultur-idrett-og-fritid/kulturvern/vern-av-kulturminner/",
+      "sourceObjectId": "baerum-kommune:bevaringsomrade-sentrale-baerums-verk",
+      "sourceQuality": "official_central_environment_extent_description",
+      "finding": "Kommunen oppgir de sentrale delene av Bærums Verk med Verksgata opp til Vertshuset som område regulert til bevaring.",
+      "canVerifyCoordinate": false,
+      "reason": "Begrunner at canonical må dekke et langstrakt miljø og at radiusen må omfatte både søndre Verksgata og Vertshuset."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Bærums verk",
+      "sourceUrl": "https://snl.no/B%C3%A6rums_verk_-_industribedrift",
+      "sourceObjectId": "snl:baerums-verk-industribedrift",
+      "sourceQuality": "authoritative_industrial_history_and_surviving_remains",
+      "finding": "SNL dokumenterer det bevarte bygningsmiljøet, hovedbygningen, vertshuset, arbeiderboligene og den nederste delen av masovnen i støperibygningen, samt jernverksdriftens avslutning i 1874 og senere ombruk.",
+      "canVerifyCoordinate": false,
+      "reason": "Fastslår den historiske industriidentiteten og hvilke rester området skal formidle."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 255050219 – Bærums Verk handelsområde",
+      "sourceUrl": "https://www.openstreetmap.org/way/255050219",
+      "sourceObjectId": "osm-way:255050219",
+      "sourceQuality": "current_retail_area_geometry_cross_check",
+      "finding": "Den kartlagte retail-wayen for Bærums Verk har representasjonspunkt omtrent 59.9405263, 10.5012035, bare 4,5 meter fra Kartverkets Verksgata 15-punkt.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker at adresseankeret ligger i det aktive verksområdet, men retail-geometrien brukes ikke som historisk kulturmiljøpolygon."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap node 8306775207 – Slagghaugen",
+      "sourceUrl": "https://www.openstreetmap.org/node/8306775207",
+      "sourceObjectId": "osm-node:8306775207",
+      "sourceQuality": "named_industrial_residue_context_point",
+      "finding": "Slagghaugen er et navngitt fysisk industrispor på 59.9376914, 10.5010012, omtrent 312,9 meter sør for det anvendte områdeankeret.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger den sørlige utstrekningen og radiusen, men representerer bare ett element i det større jernverksmiljøet."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Wikidata Q11962817 – Bærums Verk ironwork",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q11962817",
+      "sourceObjectId": "wikidata:Q11962817;kulturminne:86120",
+      "sourceQuality": "heritage_identity_and_coordinate_cross_check",
+      "finding": "Oppføringen identifiserer Bærums Verk som kulturminne 86120 og publiserer punktet 59.94139305555555, 10.501191944444445, omtrent 99,2 meter fra adresseankeret.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker kulturminneidentiteten og at adresseankeret ligger sentralt i det samme miljøet; koordinaten mangler egen kildehenvisning og brukes derfor ikke som canonical."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Materialized Bærums Verk map extract",
+      "sourceUrl": "https://www.openstreetmap.org/way/255050219",
+      "sourceObjectId": "osm-bbox:baerums-verk-2026-07-26",
+      "sourceQuality": "site_object_inventory_and_negative_single_anchor_evidence",
+      "finding": "Kartutsnittet viser en lang rekke historiske og senere objekter langs Verksgata, blant annet Slagghaugen, arbeiderboligen Stortinget, Ishuset, kunst- og håndverkslokaler, bekker og nåværende handelsareal. Søkene ga ikke et entydig navngitt masovn-, Klokkeboden- eller Ovnsmuseum-objekt som kunne representere hele stedet.",
+      "canVerifyCoordinate": true,
+      "reason": "Begrunner at ett enkelt bygg eller industrispor ikke skal opphøyes til canonical for det samlede miljøet."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Bærums Verk point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:baerums_verk_jernverk",
+      "sourceQuality": "uncontracted_southern_verksgata_point",
+      "finding": "Forrige koordinat 59.93839, 10.50178 ligger omtrent 236,6 meter sør for Verksgata 15 og manglet kildekontrakt.",
+      "canVerifyCoordinate": false,
+      "reason": "Erstattes av det offisielle og stedfestingsverifiserte besøksankeret."
+    }
+  ],
+  "addressCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "address": {
+        "street": "Verksgata",
+        "number": "15",
+        "postcode": "1353",
+        "city": "Bærums Verk",
+        "country": "NO"
+      },
+      "sourceUrl": "https://ws.geonorge.no/adresser/v1/",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1306:15",
+      "canApplyToPlace": true
+    }
+  ],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "baerum-kommune:barums-verk-kulturmiljo",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1306:15",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:255050219",
+      "canApplyToPlace": false,
+      "rejectionReason": "Current retail landuse geometry, not an authoritative historic-ironworks boundary."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:8306775207",
+      "canApplyToPlace": false,
+      "rejectionReason": "Named slag heap representing only one southern industrial feature."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:baerums_verk_jernverk",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1306:15",
+      "geometryType": "Point",
+      "geometryRole": "documented_historic_ironworks_area_anchor",
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:255050219",
+      "geometryType": "Polygon",
+      "geometryRole": "current_retail_area_cross_check",
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:8306775207",
+      "geometryType": "Point",
+      "geometryRole": "named_slag_heap_context",
+      "canApplyToPlace": false
+    }
+  ],
+  "anchors": [
+    {
+      "id": "baerums_verk_verksgata_15",
+      "name": "Bærums Verk – Verksgata 15",
+      "lat": 59.94050204982565,
+      "lon": 10.501268319641312,
+      "r": 110,
+      "type": "unlock_anchor",
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1306:15",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:baerums_verk_jernverk",
+      "lat": 59.93839,
+      "lon": 10.50178,
+      "coordRole": "uncontracted_southern_verksgata_point",
+      "distanceFromAppliedM": 236.6,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "official_address",
+      "sourceObjectId": "geonorge-adresser-v1:3201:1306:15",
+      "lat": 59.94050204982565,
+      "lon": 10.501268319641312,
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 236.6,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:255050219",
+      "lat": 59.9405263,
+      "lon": 10.5012035,
+      "coordRole": "current_retail_area_cross_check",
+      "distanceFromAppliedM": 4.5,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "wikidata:Q11962817;kulturminne:86120",
+      "lat": 59.94139305555555,
+      "lon": 10.501191944444445,
+      "coordRole": "heritage_identity_cross_check",
+      "distanceFromAppliedM": 99.2,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:8306775207",
+      "lat": 59.9376914,
+      "lon": 10.5010012,
+      "coordRole": "slag_heap_context",
+      "distanceFromAppliedM": 312.9,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-baerums-verk-source-probe/geonorge-verksgata-15.json",
+      "description": "Raw Kartverket Address API result for Verksgata 15."
+    },
+    {
+      "path": "reports/akershus-coordinate-baerums-verk-source-probe/nominatim-baerums-verk.json",
+      "description": "Raw Nominatim lookup distinguishing the settlement, current retail area and information objects."
+    },
+    {
+      "path": "reports/akershus-coordinate-baerums-verk-source-probe/nominatim-baerums-verk-jernverk.json",
+      "description": "Raw negative Nominatim lookup for a separately named Bærums Verk ironworks object."
+    },
+    {
+      "path": "reports/akershus-coordinate-baerums-verk-source-probe/nominatim-klokkeboden.json",
+      "description": "Raw negative Nominatim lookup for Klokkeboden."
+    },
+    {
+      "path": "reports/akershus-coordinate-baerums-verk-source-probe/nominatim-ovnsmuseet.json",
+      "description": "Raw negative Nominatim lookup for Ovnsmuseet."
+    },
+    {
+      "path": "reports/akershus-coordinate-baerums-verk-source-probe/osm-baerums-verk-bbox.xml",
+      "description": "Raw local OSM extract covering the central historical and current Bærums Verk environment."
+    },
+    {
+      "path": "reports/akershus-coordinate-baerums-verk-source-probe/source-summary.txt",
+      "description": "Deterministic address, named-object and legacy-distance summary."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the location-verified Verksgata 15 address point as the historical ironworks area anchor. Continue with the next Akershus place without Coordinate Evidence."
+  },
+  "notes": [
+    "The canonical place represents the integrated ironworks and workers' settlement, not the modern village or company alone.",
+    "No single named OSM building or furnace object was sufficiently complete to represent the whole environment.",
+    "The 360-metre radius covers the central gameplay area from Slagghaugen through Verksgata toward Vertshuset but is not a legal or heritage boundary.",
+    "The coordinate correction is approximately 236.6 metres and the radius increases from 260 to 360 metres."
+  ]
+}
