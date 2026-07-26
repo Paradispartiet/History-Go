@@ -1,0 +1,2959 @@
+{
+  "version": "1.0.0",
+  "status": "canonical_business_school_method_registry",
+  "type": "business_school_method_registry",
+  "subject_id": "naeringsliv",
+  "method_count": 50,
+  "protocols": [
+    {
+      "method_id": "met_bokforing_regnskapskretslop_analyse",
+      "title": "Bokføring og regnskapskretsløp: analyseprotokoll",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "problemstilling": "Hvordan kan problemet i Bokføring og regnskapskretsløp undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "ett avgrenset regnskapsår eller en måned med komplett bilagsserie",
+      "begrepsdefinisjoner": [
+        "bilag",
+        "debet",
+        "kredit",
+        "hovedbok",
+        "prøvebalanse"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_bokforing_regnskapskretslop_avstemmingsdifferanse",
+          "mal_bokforing_regnskapskretslop_arbeidskapitalendring",
+          "mal_bokforing_regnskapskretslop_periodiseringsandel"
+        ],
+        "indikatorer": [
+          "mal_bokforing_regnskapskretslop_avstemmingsdifferanse",
+          "mal_bokforing_regnskapskretslop_arbeidskapitalendring",
+          "mal_bokforing_regnskapskretslop_periodiseringsandel",
+          "mal_bokforing_regnskapskretslop_bilagssporbarhet"
+        ]
+      },
+      "datakilder": [
+        "data_hovedbok_og_bilag",
+        "data_bank_kunde_og_leverandorreskontro",
+        "data_arsregnskap_og_noter"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: før minst tolv bilag med dobbel bokføring, avstem bank og kunde-/leverandørsaldo og bygg prøvebalanse",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "før minst tolv bilag med dobbel bokføring, avstem bank og kunde-/leverandørsaldo og bygg prøvebalanse",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "mekanisk korrekt bokføring mot økonomisk korrekt periodisering og klassifisering"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder bilag, debet og kredit, hovedbok, prøvebalanse og periodisering.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom mekanisk korrekt bokføring mot økonomisk korrekt periodisering og klassifisering.",
+      "mapped_module_ids": [
+        "mod_naering_bokforing_regnskapskretslop"
+      ]
+    },
+    {
+      "method_id": "met_bokforing_regnskapskretslop_robusthet",
+      "title": "Bokføring og regnskapskretsløp: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Bokføring og regnskapskretsløp når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "ett avgrenset regnskapsår eller en måned med komplett bilagsserie",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_bokforing_regnskapskretslop_arbeidskapitalendring",
+          "mal_bokforing_regnskapskretslop_periodiseringsandel",
+          "mal_bokforing_regnskapskretslop_bilagssporbarhet"
+        ],
+        "indikatorer": [
+          "mal_bokforing_regnskapskretslop_avstemmingsdifferanse",
+          "mal_bokforing_regnskapskretslop_arbeidskapitalendring",
+          "mal_bokforing_regnskapskretslop_periodiseringsandel",
+          "mal_bokforing_regnskapskretslop_bilagssporbarhet"
+        ]
+      },
+      "datakilder": [
+        "data_hovedbok_og_bilag",
+        "data_bank_kunde_og_leverandorreskontro",
+        "data_arsregnskap_og_noter"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta før minst tolv bilag med dobbel bokføring, avstem bank og kunde-/leverandørsaldo og bygg prøvebalanse under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_bokforing_regnskapskretslop"
+      ]
+    },
+    {
+      "method_id": "met_finansregnskap_rapportering_analyse",
+      "title": "Finansregnskap og ekstern rapportering: analyseprotokoll",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "problemstilling": "Hvordan kan problemet i Finansregnskap og ekstern rapportering undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "ett årsregnskap med sammenligningstall og sentrale noter",
+      "begrepsdefinisjoner": [
+        "innregning",
+        "måling",
+        "klassifisering",
+        "resultat",
+        "balanse"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_finansregnskap_rapportering_driftsmargin",
+          "mal_finansregnskap_rapportering_egenkapitalandel",
+          "mal_finansregnskap_rapportering_kontantstrom_fra_drift"
+        ],
+        "indikatorer": [
+          "mal_finansregnskap_rapportering_driftsmargin",
+          "mal_finansregnskap_rapportering_egenkapitalandel",
+          "mal_finansregnskap_rapportering_kontantstrom_fra_drift",
+          "mal_finansregnskap_rapportering_periodiseringskvalitet"
+        ]
+      },
+      "datakilder": [
+        "data_arsregnskap_og_noter",
+        "data_hovedbok_og_bilag",
+        "data_foretaks_rolle_og_eierskapsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: rekonstruer resultat, balanse og indirekte kontantstrøm og beregn effekten av to alternative periodiseringsvalg",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "rekonstruer resultat, balanse og indirekte kontantstrøm og beregn effekten av to alternative periodiseringsvalg",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "sammenlignbar standardisering mot virksomhetsspesifikt skjønn og informasjonsbehov"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder innregning, måling, klassifisering, resultat, balanse, kontantstrøm og noter.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom sammenlignbar standardisering mot virksomhetsspesifikt skjønn og informasjonsbehov.",
+      "mapped_module_ids": [
+        "mod_naering_finansregnskap_rapportering"
+      ]
+    },
+    {
+      "method_id": "met_finansregnskap_rapportering_robusthet",
+      "title": "Finansregnskap og ekstern rapportering: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Finansregnskap og ekstern rapportering når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "ett årsregnskap med sammenligningstall og sentrale noter",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_finansregnskap_rapportering_egenkapitalandel",
+          "mal_finansregnskap_rapportering_kontantstrom_fra_drift",
+          "mal_finansregnskap_rapportering_periodiseringskvalitet"
+        ],
+        "indikatorer": [
+          "mal_finansregnskap_rapportering_driftsmargin",
+          "mal_finansregnskap_rapportering_egenkapitalandel",
+          "mal_finansregnskap_rapportering_kontantstrom_fra_drift",
+          "mal_finansregnskap_rapportering_periodiseringskvalitet"
+        ]
+      },
+      "datakilder": [
+        "data_arsregnskap_og_noter",
+        "data_hovedbok_og_bilag",
+        "data_foretaks_rolle_og_eierskapsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta rekonstruer resultat, balanse og indirekte kontantstrøm og beregn effekten av to alternative periodiseringsvalg under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_finansregnskap_rapportering"
+      ]
+    },
+    {
+      "method_id": "met_regnskapsanalyse_verdsettelse_analyse",
+      "title": "Regnskapsanalyse og verdsettelse: analyseprotokoll",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "problemstilling": "Hvordan kan problemet i Regnskapsanalyse og verdsettelse undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "én virksomhet analysert over minst tre år og mot en relevant sammenligningsgruppe",
+      "begrepsdefinisjoner": [
+        "normalisering",
+        "nøkkeltall",
+        "DuPont",
+        "ROIC",
+        "fri kontantstrøm"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_regnskapsanalyse_verdsettelse_roic",
+          "mal_regnskapsanalyse_verdsettelse_fri_kontantstrom",
+          "mal_regnskapsanalyse_verdsettelse_netto_rentebaerende_gjeld"
+        ],
+        "indikatorer": [
+          "mal_regnskapsanalyse_verdsettelse_roic",
+          "mal_regnskapsanalyse_verdsettelse_fri_kontantstrom",
+          "mal_regnskapsanalyse_verdsettelse_netto_rentebaerende_gjeld",
+          "mal_regnskapsanalyse_verdsettelse_verdsettelsesintervall"
+        ]
+      },
+      "datakilder": [
+        "data_arsregnskap_og_noter",
+        "data_markeds_rente_og_kapitaldata",
+        "data_foretaks_rolle_og_eierskapsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: normaliser resultat, dekomponer avkastning med DuPont og gjennomfør DCF med sensitivitetsmatrise",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "normaliser resultat, dekomponer avkastning med DuPont og gjennomfør DCF med sensitivitetsmatrise",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "markedspris og rapportert resultat mot fundamental verdi og usikre framtidsforutsetninger"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder normalisering, nøkkeltall, DuPont, ROIC, fri kontantstrøm, kapitalkostnad og terminalverdi.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom markedspris og rapportert resultat mot fundamental verdi og usikre framtidsforutsetninger.",
+      "mapped_module_ids": [
+        "mod_naering_regnskapsanalyse_verdsettelse"
+      ]
+    },
+    {
+      "method_id": "met_regnskapsanalyse_verdsettelse_robusthet",
+      "title": "Regnskapsanalyse og verdsettelse: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Regnskapsanalyse og verdsettelse når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "én virksomhet analysert over minst tre år og mot en relevant sammenligningsgruppe",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_regnskapsanalyse_verdsettelse_fri_kontantstrom",
+          "mal_regnskapsanalyse_verdsettelse_netto_rentebaerende_gjeld",
+          "mal_regnskapsanalyse_verdsettelse_verdsettelsesintervall"
+        ],
+        "indikatorer": [
+          "mal_regnskapsanalyse_verdsettelse_roic",
+          "mal_regnskapsanalyse_verdsettelse_fri_kontantstrom",
+          "mal_regnskapsanalyse_verdsettelse_netto_rentebaerende_gjeld",
+          "mal_regnskapsanalyse_verdsettelse_verdsettelsesintervall"
+        ]
+      },
+      "datakilder": [
+        "data_arsregnskap_og_noter",
+        "data_markeds_rente_og_kapitaldata",
+        "data_foretaks_rolle_og_eierskapsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta normaliser resultat, dekomponer avkastning med DuPont og gjennomfør DCF med sensitivitetsmatrise under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_regnskapsanalyse_verdsettelse"
+      ]
+    },
+    {
+      "method_id": "met_kostnad_kalkulasjon_budsjett_analyse",
+      "title": "Kostnadsanalyse, kalkulasjon og budsjettering: analyseprotokoll",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "problemstilling": "Hvordan kan problemet i Kostnadsanalyse, kalkulasjon og budsjettering undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "ett kostnadssted eller produkt- og tjenestespekter med volum, kapasitet og indirekte kostnader",
+      "begrepsdefinisjoner": [
+        "kostnadsatferd",
+        "relevante kostnader",
+        "kostnadsdrivere",
+        "ABC",
+        "fleksibelt budsjett"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_kostnad_kalkulasjon_budsjett_dekningsgrad",
+          "mal_kostnad_kalkulasjon_budsjett_kapasitetskostnad",
+          "mal_kostnad_kalkulasjon_budsjett_kostnadsdriverrate"
+        ],
+        "indikatorer": [
+          "mal_kostnad_kalkulasjon_budsjett_dekningsgrad",
+          "mal_kostnad_kalkulasjon_budsjett_kapasitetskostnad",
+          "mal_kostnad_kalkulasjon_budsjett_kostnadsdriverrate",
+          "mal_kostnad_kalkulasjon_budsjett_budsjettavvik"
+        ]
+      },
+      "datakilder": [
+        "data_budsjett_koststeds_og_avviksdata",
+        "data_produksjons_og_aktivitetsdata",
+        "data_arsregnskap_og_noter"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: bygg bidrags- og selvkostkalkyle, aktivitetsbasert kalkyle og fleksibelt budsjett med pris-, volum- og effektivitetsavvik",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "bygg bidrags- og selvkostkalkyle, aktivitetsbasert kalkyle og fleksibelt budsjett med pris-, volum- og effektivitetsavvik",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "enkel og styrbar kalkyle mot mer presis, men datakrevende kostnadsfordeling"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder kostnadsatferd, relevante kostnader, kostnadsdrivere, ABC, fleksibelt budsjett og avvik.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom enkel og styrbar kalkyle mot mer presis, men datakrevende kostnadsfordeling.",
+      "mapped_module_ids": [
+        "mod_naering_kostnad_kalkulasjon_budsjett"
+      ]
+    },
+    {
+      "method_id": "met_kostnad_kalkulasjon_budsjett_robusthet",
+      "title": "Kostnadsanalyse, kalkulasjon og budsjettering: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Kostnadsanalyse, kalkulasjon og budsjettering når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "ett kostnadssted eller produkt- og tjenestespekter med volum, kapasitet og indirekte kostnader",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_kostnad_kalkulasjon_budsjett_kapasitetskostnad",
+          "mal_kostnad_kalkulasjon_budsjett_kostnadsdriverrate",
+          "mal_kostnad_kalkulasjon_budsjett_budsjettavvik"
+        ],
+        "indikatorer": [
+          "mal_kostnad_kalkulasjon_budsjett_dekningsgrad",
+          "mal_kostnad_kalkulasjon_budsjett_kapasitetskostnad",
+          "mal_kostnad_kalkulasjon_budsjett_kostnadsdriverrate",
+          "mal_kostnad_kalkulasjon_budsjett_budsjettavvik"
+        ]
+      },
+      "datakilder": [
+        "data_budsjett_koststeds_og_avviksdata",
+        "data_produksjons_og_aktivitetsdata",
+        "data_arsregnskap_og_noter"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta bygg bidrags- og selvkostkalkyle, aktivitetsbasert kalkyle og fleksibelt budsjett med pris-, volum- og effektivitetsavvik under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_kostnad_kalkulasjon_budsjett"
+      ]
+    },
+    {
+      "method_id": "met_internkontroll_revisjon_prestasjon_analyse",
+      "title": "Internkontroll, revisjon og prestasjonsstyring: analyseprotokoll",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "problemstilling": "Hvordan kan problemet i Internkontroll, revisjon og prestasjonsstyring undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "én kritisk prosess med påstander, risikoer, kontroller, eiere og resultatmål",
+      "begrepsdefinisjoner": [
+        "kontrollmiljø",
+        "revisjonsrisiko",
+        "revisjonsbevis",
+        "KPI-er",
+        "målforskyvning"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_internkontroll_revisjon_prestasjon_kontrolldekning",
+          "mal_internkontroll_revisjon_prestasjon_avviksfrekvens",
+          "mal_internkontroll_revisjon_prestasjon_revisjonsrisiko"
+        ],
+        "indikatorer": [
+          "mal_internkontroll_revisjon_prestasjon_kontrolldekning",
+          "mal_internkontroll_revisjon_prestasjon_avviksfrekvens",
+          "mal_internkontroll_revisjon_prestasjon_revisjonsrisiko",
+          "mal_internkontroll_revisjon_prestasjon_malbalanseindeks"
+        ]
+      },
+      "datakilder": [
+        "data_internkontroll_og_revisjonsdata",
+        "data_budsjett_koststeds_og_avviksdata",
+        "data_produksjons_og_aktivitetsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: bygg risiko-kontrollmatrise, beregn revisjonsrisiko og utform balansert målekort med ledende og etterslepende indikatorer",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "bygg risiko-kontrollmatrise, beregn revisjonsrisiko og utform balansert målekort med ledende og etterslepende indikatorer",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "kontroll og etterprøvbarhet mot fleksibilitet, læring og risiko for gaming"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder kontrollmiljø, revisjonsrisiko, revisjonsbevis, KPI-er, målforskyvning og balansert styring.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom kontroll og etterprøvbarhet mot fleksibilitet, læring og risiko for gaming.",
+      "mapped_module_ids": [
+        "mod_naering_internkontroll_revisjon_prestasjon"
+      ]
+    },
+    {
+      "method_id": "met_internkontroll_revisjon_prestasjon_robusthet",
+      "title": "Internkontroll, revisjon og prestasjonsstyring: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "regnskap_revisjon_okonomistyring"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Internkontroll, revisjon og prestasjonsstyring når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "én kritisk prosess med påstander, risikoer, kontroller, eiere og resultatmål",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_internkontroll_revisjon_prestasjon_avviksfrekvens",
+          "mal_internkontroll_revisjon_prestasjon_revisjonsrisiko",
+          "mal_internkontroll_revisjon_prestasjon_malbalanseindeks"
+        ],
+        "indikatorer": [
+          "mal_internkontroll_revisjon_prestasjon_kontrolldekning",
+          "mal_internkontroll_revisjon_prestasjon_avviksfrekvens",
+          "mal_internkontroll_revisjon_prestasjon_revisjonsrisiko",
+          "mal_internkontroll_revisjon_prestasjon_malbalanseindeks"
+        ]
+      },
+      "datakilder": [
+        "data_internkontroll_og_revisjonsdata",
+        "data_budsjett_koststeds_og_avviksdata",
+        "data_produksjons_og_aktivitetsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta bygg risiko-kontrollmatrise, beregn revisjonsrisiko og utform balansert målekort med ledende og etterslepende indikatorer under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_internkontroll_revisjon_prestasjon"
+      ]
+    },
+    {
+      "method_id": "met_markedsinnsikt_segmentering_analyse",
+      "title": "Markedsinnsikt og segmentering: analyseprotokoll",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "problemstilling": "Hvordan kan problemet i Markedsinnsikt og segmentering undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "ett definert produktmarked med kunde- eller respondentdata og to plausible segmenteringsgrunnlag",
+      "begrepsdefinisjoner": [
+        "markedsavgrensning",
+        "behov",
+        "segmenter",
+        "målgrupper",
+        "posisjonering"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_markedsinnsikt_segmentering_segmentstorrelse",
+          "mal_markedsinnsikt_segmentering_segmentvekst",
+          "mal_markedsinnsikt_segmentering_responsrate"
+        ],
+        "indikatorer": [
+          "mal_markedsinnsikt_segmentering_segmentstorrelse",
+          "mal_markedsinnsikt_segmentering_segmentvekst",
+          "mal_markedsinnsikt_segmentering_responsrate",
+          "mal_markedsinnsikt_segmentering_segmentlonnsomhet"
+        ]
+      },
+      "datakilder": [
+        "data_crm_og_transaksjonsdata",
+        "data_survey_og_paneldata",
+        "data_markeds_og_konkurrentdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: gjennomfør deskriptiv analyse, segmentering og målgruppevurdering med størrelse, vekst, respons og kostnad",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "gjennomfør deskriptiv analyse, segmentering og målgruppevurdering med størrelse, vekst, respons og kostnad",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "statistisk tydelige segmenter mot etisk, strategisk og operativt anvendelige målgrupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder markedsavgrensning, behov, segmenter, målgrupper, posisjonering og personvern.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom statistisk tydelige segmenter mot etisk, strategisk og operativt anvendelige målgrupper.",
+      "mapped_module_ids": [
+        "mod_naering_markedsinnsikt_segmentering"
+      ]
+    },
+    {
+      "method_id": "met_markedsinnsikt_segmentering_robusthet",
+      "title": "Markedsinnsikt og segmentering: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Markedsinnsikt og segmentering når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "ett definert produktmarked med kunde- eller respondentdata og to plausible segmenteringsgrunnlag",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_markedsinnsikt_segmentering_segmentvekst",
+          "mal_markedsinnsikt_segmentering_responsrate",
+          "mal_markedsinnsikt_segmentering_segmentlonnsomhet"
+        ],
+        "indikatorer": [
+          "mal_markedsinnsikt_segmentering_segmentstorrelse",
+          "mal_markedsinnsikt_segmentering_segmentvekst",
+          "mal_markedsinnsikt_segmentering_responsrate",
+          "mal_markedsinnsikt_segmentering_segmentlonnsomhet"
+        ]
+      },
+      "datakilder": [
+        "data_crm_og_transaksjonsdata",
+        "data_survey_og_paneldata",
+        "data_markeds_og_konkurrentdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta gjennomfør deskriptiv analyse, segmentering og målgruppevurdering med størrelse, vekst, respons og kostnad under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_markedsinnsikt_segmentering"
+      ]
+    },
+    {
+      "method_id": "met_markedsmiks_kanaler_analyse",
+      "title": "Produkt, pris, distribusjon og kommunikasjon: analyseprotokoll",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "problemstilling": "Hvordan kan problemet i Produkt, pris, distribusjon og kommunikasjon undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "ett tilbud i én målgruppe med dokumenterte priser, kanaler, kostnader og kampanjer",
+      "begrepsdefinisjoner": [
+        "produktverdi",
+        "prisstrategi",
+        "kanaløkonomi",
+        "kommunikasjon",
+        "konvertering"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_markedsmiks_kanaler_kundanskaffelseskostnad",
+          "mal_markedsmiks_kanaler_konverteringsrate",
+          "mal_markedsmiks_kanaler_kanalbidrag"
+        ],
+        "indikatorer": [
+          "mal_markedsmiks_kanaler_kundanskaffelseskostnad",
+          "mal_markedsmiks_kanaler_konverteringsrate",
+          "mal_markedsmiks_kanaler_kanalbidrag",
+          "mal_markedsmiks_kanaler_inkrementell_kampanjeeffekt"
+        ]
+      },
+      "datakilder": [
+        "data_kampanje_og_kanaldata",
+        "data_crm_og_transaksjonsdata",
+        "data_markeds_og_konkurrentdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: beregn priselastisitet, kanalbidrag, anskaffelseskostnad og inkrementell kampanjeeffekt under to scenarier",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "beregn priselastisitet, kanalbidrag, anskaffelseskostnad og inkrementell kampanjeeffekt under to scenarier",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "kortvarig respons og salg mot langsiktig verdi, tillit og merkevare"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder produktverdi, prisstrategi, kanaløkonomi, kommunikasjon, konvertering og attribusjon.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom kortvarig respons og salg mot langsiktig verdi, tillit og merkevare.",
+      "mapped_module_ids": [
+        "mod_naering_markedsmiks_kanaler"
+      ]
+    },
+    {
+      "method_id": "met_markedsmiks_kanaler_robusthet",
+      "title": "Produkt, pris, distribusjon og kommunikasjon: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Produkt, pris, distribusjon og kommunikasjon når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "ett tilbud i én målgruppe med dokumenterte priser, kanaler, kostnader og kampanjer",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_markedsmiks_kanaler_konverteringsrate",
+          "mal_markedsmiks_kanaler_kanalbidrag",
+          "mal_markedsmiks_kanaler_inkrementell_kampanjeeffekt"
+        ],
+        "indikatorer": [
+          "mal_markedsmiks_kanaler_kundanskaffelseskostnad",
+          "mal_markedsmiks_kanaler_konverteringsrate",
+          "mal_markedsmiks_kanaler_kanalbidrag",
+          "mal_markedsmiks_kanaler_inkrementell_kampanjeeffekt"
+        ]
+      },
+      "datakilder": [
+        "data_kampanje_og_kanaldata",
+        "data_crm_og_transaksjonsdata",
+        "data_markeds_og_konkurrentdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta beregn priselastisitet, kanalbidrag, anskaffelseskostnad og inkrementell kampanjeeffekt under to scenarier under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_markedsmiks_kanaler"
+      ]
+    },
+    {
+      "method_id": "met_merkevare_kunderelasjon_analyse",
+      "title": "Merkevare og kunderelasjoner: analyseprotokoll",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "problemstilling": "Hvordan kan problemet i Merkevare og kunderelasjoner undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "ett merke med kundekohorter og et kvalitetsjustert sammenligningsalternativ",
+      "begrepsdefinisjoner": [
+        "kjennskap",
+        "assosiasjoner",
+        "tillit",
+        "prispremie",
+        "kundereise"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_merkevare_kunderelasjon_merkevarekjennskap",
+          "mal_merkevare_kunderelasjon_prispremie",
+          "mal_merkevare_kunderelasjon_retensjonsrate"
+        ],
+        "indikatorer": [
+          "mal_merkevare_kunderelasjon_merkevarekjennskap",
+          "mal_merkevare_kunderelasjon_prispremie",
+          "mal_merkevare_kunderelasjon_retensjonsrate",
+          "mal_merkevare_kunderelasjon_kundelivstidsverdi"
+        ]
+      },
+      "datakilder": [
+        "data_crm_og_transaksjonsdata",
+        "data_survey_og_paneldata",
+        "data_kampanje_og_kanaldata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: bygg merketrakt, beregn prispremie, kohortretensjon og diskontert kundelivstidsverdi",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "bygg merketrakt, beregn prispremie, kohortretensjon og diskontert kundelivstidsverdi",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "symbolsk og relasjonell verdi mot måleusikkerhet, statusforskjeller og manipulerende påvirkning"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder kjennskap, assosiasjoner, tillit, prispremie, kundereise, retensjon, churn og CLV.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom symbolsk og relasjonell verdi mot måleusikkerhet, statusforskjeller og manipulerende påvirkning.",
+      "mapped_module_ids": [
+        "mod_naering_merkevare_kunderelasjon"
+      ]
+    },
+    {
+      "method_id": "met_merkevare_kunderelasjon_robusthet",
+      "title": "Merkevare og kunderelasjoner: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Merkevare og kunderelasjoner når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "ett merke med kundekohorter og et kvalitetsjustert sammenligningsalternativ",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_merkevare_kunderelasjon_prispremie",
+          "mal_merkevare_kunderelasjon_retensjonsrate",
+          "mal_merkevare_kunderelasjon_kundelivstidsverdi"
+        ],
+        "indikatorer": [
+          "mal_merkevare_kunderelasjon_merkevarekjennskap",
+          "mal_merkevare_kunderelasjon_prispremie",
+          "mal_merkevare_kunderelasjon_retensjonsrate",
+          "mal_merkevare_kunderelasjon_kundelivstidsverdi"
+        ]
+      },
+      "datakilder": [
+        "data_crm_og_transaksjonsdata",
+        "data_survey_og_paneldata",
+        "data_kampanje_og_kanaldata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta bygg merketrakt, beregn prispremie, kohortretensjon og diskontert kundelivstidsverdi under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_merkevare_kunderelasjon"
+      ]
+    },
+    {
+      "method_id": "met_konkurransestrategi_ressurser_analyse",
+      "title": "Konkurransestrategi og ressursanalyse: analyseprotokoll",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "problemstilling": "Hvordan kan problemet i Konkurransestrategi og ressursanalyse undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "én virksomhet og minst to konkurrenter i et eksplisitt avgrenset marked",
+      "begrepsdefinisjoner": [
+        "bransjestruktur",
+        "fem krefter",
+        "aktivitetssystem",
+        "VRIO",
+        "kapabiliteter"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_konkurransestrategi_ressurser_relativ_markedsandel",
+          "mal_konkurransestrategi_ressurser_marginforskjell",
+          "mal_konkurransestrategi_ressurser_strategisk_kapitalbinding"
+        ],
+        "indikatorer": [
+          "mal_konkurransestrategi_ressurser_relativ_markedsandel",
+          "mal_konkurransestrategi_ressurser_marginforskjell",
+          "mal_konkurransestrategi_ressurser_strategisk_kapitalbinding",
+          "mal_konkurransestrategi_ressurser_imitasjonsbarriereindeks"
+        ]
+      },
+      "datakilder": [
+        "data_markeds_og_konkurrentdata",
+        "data_arsregnskap_og_noter",
+        "data_crm_og_transaksjonsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: bygg femkraftsanalyse, aktivitetssystem og VRIO-vurdering og knytt funn til margin, vekst og kapitalbinding",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "bygg femkraftsanalyse, aktivitetssystem og VRIO-vurdering og knytt funn til margin, vekst og kapitalbinding",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "ekstern posisjonering mot interne ressurser, og varig fortrinn mot rask imitasjon og endring"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder bransjestruktur, fem krefter, aktivitetssystem, VRIO, kapabiliteter og trade-offs.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom ekstern posisjonering mot interne ressurser, og varig fortrinn mot rask imitasjon og endring.",
+      "mapped_module_ids": [
+        "mod_naering_konkurransestrategi_ressurser"
+      ]
+    },
+    {
+      "method_id": "met_konkurransestrategi_ressurser_robusthet",
+      "title": "Konkurransestrategi og ressursanalyse: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Konkurransestrategi og ressursanalyse når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "én virksomhet og minst to konkurrenter i et eksplisitt avgrenset marked",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_konkurransestrategi_ressurser_marginforskjell",
+          "mal_konkurransestrategi_ressurser_strategisk_kapitalbinding",
+          "mal_konkurransestrategi_ressurser_imitasjonsbarriereindeks"
+        ],
+        "indikatorer": [
+          "mal_konkurransestrategi_ressurser_relativ_markedsandel",
+          "mal_konkurransestrategi_ressurser_marginforskjell",
+          "mal_konkurransestrategi_ressurser_strategisk_kapitalbinding",
+          "mal_konkurransestrategi_ressurser_imitasjonsbarriereindeks"
+        ]
+      },
+      "datakilder": [
+        "data_markeds_og_konkurrentdata",
+        "data_arsregnskap_og_noter",
+        "data_crm_og_transaksjonsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta bygg femkraftsanalyse, aktivitetssystem og VRIO-vurdering og knytt funn til margin, vekst og kapitalbinding under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_konkurransestrategi_ressurser"
+      ]
+    },
+    {
+      "method_id": "met_konsernstrategi_implementering_analyse",
+      "title": "Konsernstrategi, implementering og strategisk endring: analyseprotokoll",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "problemstilling": "Hvordan kan problemet i Konsernstrategi, implementering og strategisk endring undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "ett strategisk initiativ eller en virksomhetsportefølje med mål, ressurser, avhengigheter og tidslinje",
+      "begrepsdefinisjoner": [
+        "diversifisering",
+        "vertikal integrasjon",
+        "synergi",
+        "portefølje",
+        "strategikart"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_konsernstrategi_implementering_synergirealisering",
+          "mal_konsernstrategi_implementering_strategisk_milepaelgrad",
+          "mal_konsernstrategi_implementering_ressursreallokering"
+        ],
+        "indikatorer": [
+          "mal_konsernstrategi_implementering_synergirealisering",
+          "mal_konsernstrategi_implementering_strategisk_milepaelgrad",
+          "mal_konsernstrategi_implementering_ressursreallokering",
+          "mal_konsernstrategi_implementering_endringsadopsjon"
+        ]
+      },
+      "datakilder": [
+        "data_strategi_og_portefoljedata",
+        "data_arsregnskap_og_noter",
+        "data_organisasjons_og_prosjektdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: beregn porteføljebidrag og synergiscenario, bygg strategikart og spor milepæler, ressursbruk og atferdsendring",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "beregn porteføljebidrag og synergiscenario, bygg strategikart og spor milepæler, ressursbruk og atferdsendring",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "finansiell synergi og kontroll mot kompleksitet, kulturell friksjon og tap av lokal kunnskap"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder diversifisering, vertikal integrasjon, synergi, portefølje, strategikart og endringskapasitet.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom finansiell synergi og kontroll mot kompleksitet, kulturell friksjon og tap av lokal kunnskap.",
+      "mapped_module_ids": [
+        "mod_naering_konsernstrategi_implementering"
+      ]
+    },
+    {
+      "method_id": "met_konsernstrategi_implementering_robusthet",
+      "title": "Konsernstrategi, implementering og strategisk endring: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "markedsforing_og_strategi"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Konsernstrategi, implementering og strategisk endring når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "ett strategisk initiativ eller en virksomhetsportefølje med mål, ressurser, avhengigheter og tidslinje",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_konsernstrategi_implementering_strategisk_milepaelgrad",
+          "mal_konsernstrategi_implementering_ressursreallokering",
+          "mal_konsernstrategi_implementering_endringsadopsjon"
+        ],
+        "indikatorer": [
+          "mal_konsernstrategi_implementering_synergirealisering",
+          "mal_konsernstrategi_implementering_strategisk_milepaelgrad",
+          "mal_konsernstrategi_implementering_ressursreallokering",
+          "mal_konsernstrategi_implementering_endringsadopsjon"
+        ]
+      },
+      "datakilder": [
+        "data_strategi_og_portefoljedata",
+        "data_arsregnskap_og_noter",
+        "data_organisasjons_og_prosjektdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta beregn porteføljebidrag og synergiscenario, bygg strategikart og spor milepæler, ressursbruk og atferdsendring under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_konsernstrategi_implementering"
+      ]
+    },
+    {
+      "method_id": "met_matematikk_for_okonomi_analyse",
+      "title": "Matematikk for økonomi: analyseprotokoll",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "problemstilling": "Hvordan kan problemet i Matematikk for økonomi undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "én eksplisitt økonomisk funksjon eller et lite ligningssystem med dokumenterte enheter",
+      "begrepsdefinisjoner": [
+        "funksjoner",
+        "vekst",
+        "derivasjon",
+        "elastisitet",
+        "optimering"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_matematikk_for_okonomi_marginaleffekt",
+          "mal_matematikk_for_okonomi_elastisitet",
+          "mal_matematikk_for_okonomi_optimalitetsgap"
+        ],
+        "indikatorer": [
+          "mal_matematikk_for_okonomi_marginaleffekt",
+          "mal_matematikk_for_okonomi_elastisitet",
+          "mal_matematikk_for_okonomi_optimalitetsgap",
+          "mal_matematikk_for_okonomi_kondisjonstall"
+        ]
+      },
+      "datakilder": [
+        "data_analytisk_datamart",
+        "data_modellparametre_og_scenarioantakelser",
+        "data_tidsserie_og_paneldata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: analyser funksjon, elastisitet og marginaleffekt, løs optimering med begrensning og et lineært ligningssystem",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "analyser funksjon, elastisitet og marginaleffekt, løs optimering med begrensning og et lineært ligningssystem",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "matematisk presisjon og generalitet mot økonomisk realisme og tolkbarhet"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder funksjoner, vekst, derivasjon, elastisitet, optimering, matriser og nåverdi.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom matematisk presisjon og generalitet mot økonomisk realisme og tolkbarhet.",
+      "mapped_module_ids": [
+        "mod_naering_matematikk_for_okonomi"
+      ]
+    },
+    {
+      "method_id": "met_matematikk_for_okonomi_robusthet",
+      "title": "Matematikk for økonomi: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Matematikk for økonomi når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "én eksplisitt økonomisk funksjon eller et lite ligningssystem med dokumenterte enheter",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_matematikk_for_okonomi_elastisitet",
+          "mal_matematikk_for_okonomi_optimalitetsgap",
+          "mal_matematikk_for_okonomi_kondisjonstall"
+        ],
+        "indikatorer": [
+          "mal_matematikk_for_okonomi_marginaleffekt",
+          "mal_matematikk_for_okonomi_elastisitet",
+          "mal_matematikk_for_okonomi_optimalitetsgap",
+          "mal_matematikk_for_okonomi_kondisjonstall"
+        ]
+      },
+      "datakilder": [
+        "data_analytisk_datamart",
+        "data_modellparametre_og_scenarioantakelser",
+        "data_tidsserie_og_paneldata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta analyser funksjon, elastisitet og marginaleffekt, løs optimering med begrensning og et lineært ligningssystem under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_matematikk_for_okonomi"
+      ]
+    },
+    {
+      "method_id": "met_sannsynlighet_inferens_analyse",
+      "title": "Sannsynlighet og statistisk inferens: analyseprotokoll",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "problemstilling": "Hvordan kan problemet i Sannsynlighet og statistisk inferens undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "ett definert utvalg med eksplisitt populasjon, måleprosess og primærparameter",
+      "begrepsdefinisjoner": [
+        "tilfeldige variable",
+        "fordelinger",
+        "forventning",
+        "estimering",
+        "konfidensintervall"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_sannsynlighet_inferens_standardfeil",
+          "mal_sannsynlighet_inferens_konfidensbredde",
+          "mal_sannsynlighet_inferens_teststyrke"
+        ],
+        "indikatorer": [
+          "mal_sannsynlighet_inferens_standardfeil",
+          "mal_sannsynlighet_inferens_konfidensbredde",
+          "mal_sannsynlighet_inferens_teststyrke",
+          "mal_sannsynlighet_inferens_falsk_positiv_risiko"
+        ]
+      },
+      "datakilder": [
+        "data_survey_og_paneldata",
+        "data_eksperiment_og_kvasieksperimentdata",
+        "data_analytisk_datamart"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: beregn forventning og varians, estimer parameter og konfidensintervall og gjennomfør en forhåndsdefinert test med styrkevurdering",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "beregn forventning og varians, estimer parameter og konfidensintervall og gjennomfør en forhåndsdefinert test med styrkevurdering",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "beslutningsbehov for klare svar mot statistisk usikkerhet og risiko for falske funn"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder tilfeldige variable, fordelinger, forventning, estimering, konfidensintervall, testing og styrke.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom beslutningsbehov for klare svar mot statistisk usikkerhet og risiko for falske funn.",
+      "mapped_module_ids": [
+        "mod_naering_sannsynlighet_inferens"
+      ]
+    },
+    {
+      "method_id": "met_sannsynlighet_inferens_robusthet",
+      "title": "Sannsynlighet og statistisk inferens: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Sannsynlighet og statistisk inferens når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "ett definert utvalg med eksplisitt populasjon, måleprosess og primærparameter",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_sannsynlighet_inferens_konfidensbredde",
+          "mal_sannsynlighet_inferens_teststyrke",
+          "mal_sannsynlighet_inferens_falsk_positiv_risiko"
+        ],
+        "indikatorer": [
+          "mal_sannsynlighet_inferens_standardfeil",
+          "mal_sannsynlighet_inferens_konfidensbredde",
+          "mal_sannsynlighet_inferens_teststyrke",
+          "mal_sannsynlighet_inferens_falsk_positiv_risiko"
+        ]
+      },
+      "datakilder": [
+        "data_survey_og_paneldata",
+        "data_eksperiment_og_kvasieksperimentdata",
+        "data_analytisk_datamart"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta beregn forventning og varians, estimer parameter og konfidensintervall og gjennomfør en forhåndsdefinert test med styrkevurdering under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_sannsynlighet_inferens"
+      ]
+    },
+    {
+      "method_id": "met_regresjon_kausalitet_analyse",
+      "title": "Regresjon og kausal identifikasjon: analyseprotokoll",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "problemstilling": "Hvordan kan problemet i Regresjon og kausal identifikasjon undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "ett utfall, en behandling eller eksponering og en eksplisitt sammenligningsgruppe over tid eller rom",
+      "begrepsdefinisjoner": [
+        "regresjon",
+        "konfoundere",
+        "paneldata",
+        "faste effekter",
+        "naturlige eksperimenter"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_regresjon_kausalitet_justert_forklaringsgrad",
+          "mal_regresjon_kausalitet_standardisert_effekt",
+          "mal_regresjon_kausalitet_robusthetsbredde"
+        ],
+        "indikatorer": [
+          "mal_regresjon_kausalitet_justert_forklaringsgrad",
+          "mal_regresjon_kausalitet_standardisert_effekt",
+          "mal_regresjon_kausalitet_robusthetsbredde",
+          "mal_regresjon_kausalitet_pretrendavvik"
+        ]
+      },
+      "datakilder": [
+        "data_eksperiment_og_kvasieksperimentdata",
+        "data_tidsserie_og_paneldata",
+        "data_analytisk_datamart"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: estimer grunnmodell og robust standardfeil, test spesifikasjon og gjennomfør differanse-i-differanser eller tilsvarende design",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "estimer grunnmodell og robust standardfeil, test spesifikasjon og gjennomfør differanse-i-differanser eller tilsvarende design",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "høy prediksjonskraft mot troverdig kausal identifikasjon og ekstern gyldighet"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder regresjon, konfoundere, paneldata, faste effekter, naturlige eksperimenter og parallelle trender.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom høy prediksjonskraft mot troverdig kausal identifikasjon og ekstern gyldighet.",
+      "mapped_module_ids": [
+        "mod_naering_regresjon_kausalitet"
+      ]
+    },
+    {
+      "method_id": "met_regresjon_kausalitet_robusthet",
+      "title": "Regresjon og kausal identifikasjon: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Regresjon og kausal identifikasjon når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "ett utfall, en behandling eller eksponering og en eksplisitt sammenligningsgruppe over tid eller rom",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_regresjon_kausalitet_standardisert_effekt",
+          "mal_regresjon_kausalitet_robusthetsbredde",
+          "mal_regresjon_kausalitet_pretrendavvik"
+        ],
+        "indikatorer": [
+          "mal_regresjon_kausalitet_justert_forklaringsgrad",
+          "mal_regresjon_kausalitet_standardisert_effekt",
+          "mal_regresjon_kausalitet_robusthetsbredde",
+          "mal_regresjon_kausalitet_pretrendavvik"
+        ]
+      },
+      "datakilder": [
+        "data_eksperiment_og_kvasieksperimentdata",
+        "data_tidsserie_og_paneldata",
+        "data_analytisk_datamart"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta estimer grunnmodell og robust standardfeil, test spesifikasjon og gjennomfør differanse-i-differanser eller tilsvarende design under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_regresjon_kausalitet"
+      ]
+    },
+    {
+      "method_id": "met_programmering_databehandling_analyse",
+      "title": "Programmering, databehandling og visualisering: analyseprotokoll",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "problemstilling": "Hvordan kan problemet i Programmering, databehandling og visualisering undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "ett versjonert datasett med datakontrakt, transformasjonslogg og analyseprodukt",
+      "begrepsdefinisjoner": [
+        "datakontrakt",
+        "typer",
+        "manglende verdier",
+        "joins",
+        "pipeline"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_programmering_databehandling_manglendehetsgrad",
+          "mal_programmering_databehandling_duplikatgrad",
+          "mal_programmering_databehandling_pipeline_reproduserbarhet"
+        ],
+        "indikatorer": [
+          "mal_programmering_databehandling_manglendehetsgrad",
+          "mal_programmering_databehandling_duplikatgrad",
+          "mal_programmering_databehandling_pipeline_reproduserbarhet",
+          "mal_programmering_databehandling_visualiseringsfeilrate"
+        ]
+      },
+      "datakilder": [
+        "data_analytisk_datamart",
+        "data_datakvalitet_og_lineage",
+        "data_tidsserie_og_paneldata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: implementer import, validering, sammenkobling, variabelbygging og visualisering med automatiske tester og reproduksjonsinstruks",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "implementer import, validering, sammenkobling, variabelbygging og visualisering med automatiske tester og reproduksjonsinstruks",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "hurtig analyse og fleksibilitet mot datakvalitet, sporbarhet, sikkerhet og vedlikehold"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder datakontrakt, typer, manglende verdier, joins, pipeline, versjonering, visualisering og reproduserbarhet.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom hurtig analyse og fleksibilitet mot datakvalitet, sporbarhet, sikkerhet og vedlikehold.",
+      "mapped_module_ids": [
+        "mod_naering_programmering_databehandling"
+      ]
+    },
+    {
+      "method_id": "met_programmering_databehandling_robusthet",
+      "title": "Programmering, databehandling og visualisering: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Programmering, databehandling og visualisering når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "ett versjonert datasett med datakontrakt, transformasjonslogg og analyseprodukt",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_programmering_databehandling_duplikatgrad",
+          "mal_programmering_databehandling_pipeline_reproduserbarhet",
+          "mal_programmering_databehandling_visualiseringsfeilrate"
+        ],
+        "indikatorer": [
+          "mal_programmering_databehandling_manglendehetsgrad",
+          "mal_programmering_databehandling_duplikatgrad",
+          "mal_programmering_databehandling_pipeline_reproduserbarhet",
+          "mal_programmering_databehandling_visualiseringsfeilrate"
+        ]
+      },
+      "datakilder": [
+        "data_analytisk_datamart",
+        "data_datakvalitet_og_lineage",
+        "data_tidsserie_og_paneldata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta implementer import, validering, sammenkobling, variabelbygging og visualisering med automatiske tester og reproduksjonsinstruks under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_programmering_databehandling"
+      ]
+    },
+    {
+      "method_id": "met_prognose_optimering_beslutning_analyse",
+      "title": "Prognoser, optimering og beslutningsanalyse: analyseprotokoll",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "problemstilling": "Hvordan kan problemet i Prognoser, optimering og beslutningsanalyse undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "én operativ eller strategisk beslutning med målvariabel, begrensninger og sannsynlige scenarioer",
+      "begrepsdefinisjoner": [
+        "tidsserieprognoser",
+        "benchmark",
+        "tapfunksjon",
+        "lineærprogrammering",
+        "scenario"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_prognose_optimering_beslutning_prognosefeil_mape",
+          "mal_prognose_optimering_beslutning_prognosebias",
+          "mal_prognose_optimering_beslutning_optimalitetsgap"
+        ],
+        "indikatorer": [
+          "mal_prognose_optimering_beslutning_prognosefeil_mape",
+          "mal_prognose_optimering_beslutning_prognosebias",
+          "mal_prognose_optimering_beslutning_optimalitetsgap",
+          "mal_prognose_optimering_beslutning_scenariotap"
+        ]
+      },
+      "datakilder": [
+        "data_tidsserie_og_paneldata",
+        "data_modellparametre_og_scenarioantakelser",
+        "data_produksjons_og_aktivitetsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: bygg benchmark og tidsserieprognose, løs optimeringsproblem og gjennomfør Monte Carlo- eller scenarioanalyse",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "bygg benchmark og tidsserieprognose, løs optimeringsproblem og gjennomfør Monte Carlo- eller scenarioanalyse",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "forventet optimal løsning mot robusthet, fleksibilitet, rettferdighet og modellrisiko"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder tidsserieprognoser, benchmark, tapfunksjon, lineærprogrammering, scenario og Monte Carlo.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom forventet optimal løsning mot robusthet, fleksibilitet, rettferdighet og modellrisiko.",
+      "mapped_module_ids": [
+        "mod_naering_prognose_optimering_beslutning"
+      ]
+    },
+    {
+      "method_id": "met_prognose_optimering_beslutning_robusthet",
+      "title": "Prognoser, optimering og beslutningsanalyse: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "kvantitative_metoder_business_analytics"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Prognoser, optimering og beslutningsanalyse når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "én operativ eller strategisk beslutning med målvariabel, begrensninger og sannsynlige scenarioer",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_prognose_optimering_beslutning_prognosebias",
+          "mal_prognose_optimering_beslutning_optimalitetsgap",
+          "mal_prognose_optimering_beslutning_scenariotap"
+        ],
+        "indikatorer": [
+          "mal_prognose_optimering_beslutning_prognosefeil_mape",
+          "mal_prognose_optimering_beslutning_prognosebias",
+          "mal_prognose_optimering_beslutning_optimalitetsgap",
+          "mal_prognose_optimering_beslutning_scenariotap"
+        ]
+      },
+      "datakilder": [
+        "data_tidsserie_og_paneldata",
+        "data_modellparametre_og_scenarioantakelser",
+        "data_produksjons_og_aktivitetsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta bygg benchmark og tidsserieprognose, løs optimeringsproblem og gjennomfør Monte Carlo- eller scenarioanalyse under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_prognose_optimering_beslutning"
+      ]
+    },
+    {
+      "method_id": "met_avtalerett_kjopsrett_analyse",
+      "title": "Avtalerett og kjøpsrett: analyseprotokoll",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "problemstilling": "Hvordan kan problemet i Avtalerett og kjøpsrett undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "én avtale eller kjøpstransaksjon med tilbud, aksept, fullmakt, ytelse og dokumentert avvik",
+      "begrepsdefinisjoner": [
+        "avtaleinngåelse",
+        "fullmakt",
+        "tolkning",
+        "ugyldighet",
+        "mangel"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_avtalerett_kjopsrett_kontraktsdekning",
+          "mal_avtalerett_kjopsrett_misligholdseksponering",
+          "mal_avtalerett_kjopsrett_erstatningsintervall"
+        ],
+        "indikatorer": [
+          "mal_avtalerett_kjopsrett_kontraktsdekning",
+          "mal_avtalerett_kjopsrett_misligholdseksponering",
+          "mal_avtalerett_kjopsrett_erstatningsintervall",
+          "mal_avtalerett_kjopsrett_tvisterisiko"
+        ]
+      },
+      "datakilder": [
+        "data_kontrakter_og_transaksjonsdokumenter",
+        "data_lov_forarbeider_og_rettspraksis",
+        "data_compliance_og_hendelsesdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: bygg plikt- og risikomatrise og beregn mulig prisavslag, forsinkelseskostnad eller erstatning under alternative utfall",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "bygg plikt- og risikomatrise og beregn mulig prisavslag, forsinkelseskostnad eller erstatning under alternative utfall",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "forutberegnelighet og avtalefrihet mot rimelighet, informasjonsasymmetri og vern av svakere part"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder avtaleinngåelse, fullmakt, tolkning, ugyldighet, mangel, misligholdsbeføyelser og erstatning.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom forutberegnelighet og avtalefrihet mot rimelighet, informasjonsasymmetri og vern av svakere part.",
+      "mapped_module_ids": [
+        "mod_naering_avtalerett_kjopsrett"
+      ]
+    },
+    {
+      "method_id": "met_avtalerett_kjopsrett_robusthet",
+      "title": "Avtalerett og kjøpsrett: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Avtalerett og kjøpsrett når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "én avtale eller kjøpstransaksjon med tilbud, aksept, fullmakt, ytelse og dokumentert avvik",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_avtalerett_kjopsrett_misligholdseksponering",
+          "mal_avtalerett_kjopsrett_erstatningsintervall",
+          "mal_avtalerett_kjopsrett_tvisterisiko"
+        ],
+        "indikatorer": [
+          "mal_avtalerett_kjopsrett_kontraktsdekning",
+          "mal_avtalerett_kjopsrett_misligholdseksponering",
+          "mal_avtalerett_kjopsrett_erstatningsintervall",
+          "mal_avtalerett_kjopsrett_tvisterisiko"
+        ]
+      },
+      "datakilder": [
+        "data_kontrakter_og_transaksjonsdokumenter",
+        "data_lov_forarbeider_og_rettspraksis",
+        "data_compliance_og_hendelsesdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta bygg plikt- og risikomatrise og beregn mulig prisavslag, forsinkelseskostnad eller erstatning under alternative utfall under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_avtalerett_kjopsrett"
+      ]
+    },
+    {
+      "method_id": "met_selskapsrett_eieransvar_analyse",
+      "title": "Selskapsrett og eieransvar: analyseprotokoll",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "problemstilling": "Hvordan kan problemet i Selskapsrett og eieransvar undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "én selskapsstruktur med eiere, vedtekter, organer, kapital og en dokumentert beslutning",
+      "begrepsdefinisjoner": [
+        "selskapsformer",
+        "kapital",
+        "organer",
+        "kompetanse",
+        "minoritetsvern"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_selskapsrett_eieransvar_stemmemaktkonsentrasjon",
+          "mal_selskapsrett_eieransvar_kapitalvernsmargin",
+          "mal_selskapsrett_eieransvar_styringsavvik"
+        ],
+        "indikatorer": [
+          "mal_selskapsrett_eieransvar_stemmemaktkonsentrasjon",
+          "mal_selskapsrett_eieransvar_kapitalvernsmargin",
+          "mal_selskapsrett_eieransvar_styringsavvik",
+          "mal_selskapsrett_eieransvar_ansvarseksponering"
+        ]
+      },
+      "datakilder": [
+        "data_foretaks_rolle_og_eierskapsdata",
+        "data_vedtekter_protokoller_og_styredokumenter",
+        "data_lov_forarbeider_og_rettspraksis"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: kartlegg stemmerett og kontroll, test saksbehandlingskrav og beregn kapital- eller ansvarseksponering",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "kartlegg stemmerett og kontroll, test saksbehandlingskrav og beregn kapital- eller ansvarseksponering",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "begrenset ansvar og effektiv kapitalmobilisering mot kreditorvern, minoritetsvern og ansvar for faktisk kontroll"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder selskapsformer, kapital, organer, kompetanse, minoritetsvern, styreansvar og faktisk kontroll.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom begrenset ansvar og effektiv kapitalmobilisering mot kreditorvern, minoritetsvern og ansvar for faktisk kontroll.",
+      "mapped_module_ids": [
+        "mod_naering_selskapsrett_eieransvar"
+      ]
+    },
+    {
+      "method_id": "met_selskapsrett_eieransvar_robusthet",
+      "title": "Selskapsrett og eieransvar: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Selskapsrett og eieransvar når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "én selskapsstruktur med eiere, vedtekter, organer, kapital og en dokumentert beslutning",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_selskapsrett_eieransvar_kapitalvernsmargin",
+          "mal_selskapsrett_eieransvar_styringsavvik",
+          "mal_selskapsrett_eieransvar_ansvarseksponering"
+        ],
+        "indikatorer": [
+          "mal_selskapsrett_eieransvar_stemmemaktkonsentrasjon",
+          "mal_selskapsrett_eieransvar_kapitalvernsmargin",
+          "mal_selskapsrett_eieransvar_styringsavvik",
+          "mal_selskapsrett_eieransvar_ansvarseksponering"
+        ]
+      },
+      "datakilder": [
+        "data_foretaks_rolle_og_eierskapsdata",
+        "data_vedtekter_protokoller_og_styredokumenter",
+        "data_lov_forarbeider_og_rettspraksis"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta kartlegg stemmerett og kontroll, test saksbehandlingskrav og beregn kapital- eller ansvarseksponering under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_selskapsrett_eieransvar"
+      ]
+    },
+    {
+      "method_id": "met_arbeidsrett_personvern_analyse",
+      "title": "Arbeidsrett og personvern: analyseprotokoll",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "problemstilling": "Hvordan kan problemet i Arbeidsrett og personvern undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "ett arbeidsforhold eller kontrolltiltak med formål, rettsgrunnlag, berørte data og dokumentert beslutningsprosess",
+      "begrepsdefinisjoner": [
+        "ansettelse",
+        "arbeidstid",
+        "styringsrett",
+        "diskriminering",
+        "oppsigelse"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_arbeidsrett_personvern_prosessetterlevelse",
+          "mal_arbeidsrett_personvern_arbeidstidsavvik",
+          "mal_arbeidsrett_personvern_personvernrisiko"
+        ],
+        "indikatorer": [
+          "mal_arbeidsrett_personvern_prosessetterlevelse",
+          "mal_arbeidsrett_personvern_arbeidstidsavvik",
+          "mal_arbeidsrett_personvern_personvernrisiko",
+          "mal_arbeidsrett_personvern_diskrimineringsgap"
+        ]
+      },
+      "datakilder": [
+        "data_arbeidsavtaler_og_hr_data",
+        "data_behandlingsprotokoll_og_personvernunderlag",
+        "data_lov_forarbeider_og_rettspraksis"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: bygg rettslig beslutningstre, vurder nødvendighet og proporsjonalitet og beregn eksponering ved brudd eller feil prosess",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "bygg rettslig beslutningstre, vurder nødvendighet og proporsjonalitet og beregn eksponering ved brudd eller feil prosess",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "effektiv ledelse og sikkerhet mot autonomi, lik behandling, privatliv og kollektiv medbestemmelse"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder ansettelse, arbeidstid, styringsrett, diskriminering, oppsigelse, medbestemmelse og personopplysninger.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom effektiv ledelse og sikkerhet mot autonomi, lik behandling, privatliv og kollektiv medbestemmelse.",
+      "mapped_module_ids": [
+        "mod_naering_arbeidsrett_personvern"
+      ]
+    },
+    {
+      "method_id": "met_arbeidsrett_personvern_robusthet",
+      "title": "Arbeidsrett og personvern: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Arbeidsrett og personvern når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "ett arbeidsforhold eller kontrolltiltak med formål, rettsgrunnlag, berørte data og dokumentert beslutningsprosess",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_arbeidsrett_personvern_arbeidstidsavvik",
+          "mal_arbeidsrett_personvern_personvernrisiko",
+          "mal_arbeidsrett_personvern_diskrimineringsgap"
+        ],
+        "indikatorer": [
+          "mal_arbeidsrett_personvern_prosessetterlevelse",
+          "mal_arbeidsrett_personvern_arbeidstidsavvik",
+          "mal_arbeidsrett_personvern_personvernrisiko",
+          "mal_arbeidsrett_personvern_diskrimineringsgap"
+        ]
+      },
+      "datakilder": [
+        "data_arbeidsavtaler_og_hr_data",
+        "data_behandlingsprotokoll_og_personvernunderlag",
+        "data_lov_forarbeider_og_rettspraksis"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta bygg rettslig beslutningstre, vurder nødvendighet og proporsjonalitet og beregn eksponering ved brudd eller feil prosess under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_arbeidsrett_personvern"
+      ]
+    },
+    {
+      "method_id": "met_skatt_avgift_analyse",
+      "title": "Skatterett og avgiftsforståelse: analyseprotokoll",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "problemstilling": "Hvordan kan problemet i Skatterett og avgiftsforståelse undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "én virksomhetsperiode eller transaksjon med regnskapsmessig og skattemessig behandling",
+      "begrepsdefinisjoner": [
+        "skattegrunnlag",
+        "fradrag",
+        "periodisering",
+        "betalbar",
+        "utsatt skatt"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_skatt_avgift_effektiv_skattesats",
+          "mal_skatt_avgift_betalbar_skatt",
+          "mal_skatt_avgift_endring_i_utsatt_skatt"
+        ],
+        "indikatorer": [
+          "mal_skatt_avgift_effektiv_skattesats",
+          "mal_skatt_avgift_betalbar_skatt",
+          "mal_skatt_avgift_endring_i_utsatt_skatt",
+          "mal_skatt_avgift_mva_avstemmingsdifferanse"
+        ]
+      },
+      "datakilder": [
+        "data_skatte_og_avgiftsoppgaver",
+        "data_arsregnskap_og_noter",
+        "data_lov_forarbeider_og_rettspraksis"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: avstem regnskapsmessig og skattemessig resultat, beregn betalbar og utsatt skatt og gjennomfør merverdiavgiftsoppgjør",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "avstem regnskapsmessig og skattemessig resultat, beregn betalbar og utsatt skatt og gjennomfør merverdiavgiftsoppgjør",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "nøytralitet og finansiering av fellesskap mot kompleksitet, tilpasning og fordelingsvirkninger"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder skattegrunnlag, fradrag, periodisering, betalbar og utsatt skatt, merverdiavgift og omgåelse.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom nøytralitet og finansiering av fellesskap mot kompleksitet, tilpasning og fordelingsvirkninger.",
+      "mapped_module_ids": [
+        "mod_naering_skatt_avgift"
+      ]
+    },
+    {
+      "method_id": "met_skatt_avgift_robusthet",
+      "title": "Skatterett og avgiftsforståelse: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Skatterett og avgiftsforståelse når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "én virksomhetsperiode eller transaksjon med regnskapsmessig og skattemessig behandling",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_skatt_avgift_betalbar_skatt",
+          "mal_skatt_avgift_endring_i_utsatt_skatt",
+          "mal_skatt_avgift_mva_avstemmingsdifferanse"
+        ],
+        "indikatorer": [
+          "mal_skatt_avgift_effektiv_skattesats",
+          "mal_skatt_avgift_betalbar_skatt",
+          "mal_skatt_avgift_endring_i_utsatt_skatt",
+          "mal_skatt_avgift_mva_avstemmingsdifferanse"
+        ]
+      },
+      "datakilder": [
+        "data_skatte_og_avgiftsoppgaver",
+        "data_arsregnskap_og_noter",
+        "data_lov_forarbeider_og_rettspraksis"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta avstem regnskapsmessig og skattemessig resultat, beregn betalbar og utsatt skatt og gjennomfør merverdiavgiftsoppgjør under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_skatt_avgift"
+      ]
+    },
+    {
+      "method_id": "met_konkurranserett_compliance_baerekraft_analyse",
+      "title": "Konkurranserett, compliance og bærekraftsrapportering: analyseprotokoll",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "problemstilling": "Hvordan kan problemet i Konkurranserett, compliance og bærekraftsrapportering undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "ett produktmarked, en høyrisikoprosess eller en rapporteringspåstand med identifiserte plikter og bevis",
+      "begrepsdefinisjoner": [
+        "markedsatferd",
+        "samarbeid",
+        "dominans",
+        "korrupsjonsrisiko",
+        "varsling"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_konkurranserett_compliance_baerekraft_compliance_kontrolldekning",
+          "mal_konkurranserett_compliance_baerekraft_hendelseslukkingstid",
+          "mal_konkurranserett_compliance_baerekraft_rapporteringssporbarhet"
+        ],
+        "indikatorer": [
+          "mal_konkurranserett_compliance_baerekraft_compliance_kontrolldekning",
+          "mal_konkurranserett_compliance_baerekraft_hendelseslukkingstid",
+          "mal_konkurranserett_compliance_baerekraft_rapporteringssporbarhet",
+          "mal_konkurranserett_compliance_baerekraft_konkurranserisiko"
+        ]
+      },
+      "datakilder": [
+        "data_compliance_og_hendelsesdata",
+        "data_markeds_og_konkurrentdata",
+        "data_baerekraftsrapportering_og_underlagsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: avgrens marked og konsentrasjon, bygg compliance-risikokart og spor bærekraftspåstand fra kilde til rapport",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "avgrens marked og konsentrasjon, bygg compliance-risikokart og spor bærekraftspåstand fra kilde til rapport",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "standardisert etterlevelse og omdømmevern mot reell risikoreduksjon, konkurranse og åpenhet"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder markedsatferd, samarbeid, dominans, korrupsjonsrisiko, varsling, aktsomhet og dobbel vesentlighet.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom standardisert etterlevelse og omdømmevern mot reell risikoreduksjon, konkurranse og åpenhet.",
+      "mapped_module_ids": [
+        "mod_naering_konkurranserett_compliance_baerekraft"
+      ]
+    },
+    {
+      "method_id": "met_konkurranserett_compliance_baerekraft_robusthet",
+      "title": "Konkurranserett, compliance og bærekraftsrapportering: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "forretningsjus_skatt_regulering"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Konkurranserett, compliance og bærekraftsrapportering når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "ett produktmarked, en høyrisikoprosess eller en rapporteringspåstand med identifiserte plikter og bevis",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_konkurranserett_compliance_baerekraft_hendelseslukkingstid",
+          "mal_konkurranserett_compliance_baerekraft_rapporteringssporbarhet",
+          "mal_konkurranserett_compliance_baerekraft_konkurranserisiko"
+        ],
+        "indikatorer": [
+          "mal_konkurranserett_compliance_baerekraft_compliance_kontrolldekning",
+          "mal_konkurranserett_compliance_baerekraft_hendelseslukkingstid",
+          "mal_konkurranserett_compliance_baerekraft_rapporteringssporbarhet",
+          "mal_konkurranserett_compliance_baerekraft_konkurranserisiko"
+        ]
+      },
+      "datakilder": [
+        "data_compliance_og_hendelsesdata",
+        "data_markeds_og_konkurrentdata",
+        "data_baerekraftsrapportering_og_underlagsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta avgrens marked og konsentrasjon, bygg compliance-risikokart og spor bærekraftspåstand fra kilde til rapport under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_konkurranserett_compliance_baerekraft"
+      ]
+    },
+    {
+      "method_id": "met_internasjonal_handel_valuta_analyse",
+      "title": "Internasjonal handel og valuta: analyseprotokoll",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "problemstilling": "Hvordan kan problemet i Internasjonal handel og valuta undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "én vare- eller tjenestestrøm mellom to land med pris, volum, kostnad og valuta",
+      "begrepsdefinisjoner": [
+        "komparative fortrinn",
+        "handelshindringer",
+        "valutakurs",
+        "prising",
+        "sikring"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_internasjonal_handel_valuta_handelsmargin",
+          "mal_internasjonal_handel_valuta_tollbelastning",
+          "mal_internasjonal_handel_valuta_valutaeksponering"
+        ],
+        "indikatorer": [
+          "mal_internasjonal_handel_valuta_handelsmargin",
+          "mal_internasjonal_handel_valuta_tollbelastning",
+          "mal_internasjonal_handel_valuta_valutaeksponering",
+          "mal_internasjonal_handel_valuta_sikringsgrad"
+        ]
+      },
+      "datakilder": [
+        "data_toll_og_handelsdata",
+        "data_valuta_og_makrodata",
+        "data_leverandor_og_innkjopsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: beregn handelsmargin, toll- og transporteffekt og transaksjons-, omregnings- og økonomisk valutaeksponering",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "beregn handelsmargin, toll- og transporteffekt og transaksjons-, omregnings- og økonomisk valutaeksponering",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "gevinster fra spesialisering og markedstilgang mot sårbarhet, fordelingsvirkninger og strategisk avhengighet"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder komparative fortrinn, handelshindringer, valutakurs, prising, sikring og finansiell eksponering.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom gevinster fra spesialisering og markedstilgang mot sårbarhet, fordelingsvirkninger og strategisk avhengighet.",
+      "mapped_module_ids": [
+        "mod_naering_internasjonal_handel_valuta"
+      ]
+    },
+    {
+      "method_id": "met_internasjonal_handel_valuta_robusthet",
+      "title": "Internasjonal handel og valuta: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Internasjonal handel og valuta når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "én vare- eller tjenestestrøm mellom to land med pris, volum, kostnad og valuta",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_internasjonal_handel_valuta_tollbelastning",
+          "mal_internasjonal_handel_valuta_valutaeksponering",
+          "mal_internasjonal_handel_valuta_sikringsgrad"
+        ],
+        "indikatorer": [
+          "mal_internasjonal_handel_valuta_handelsmargin",
+          "mal_internasjonal_handel_valuta_tollbelastning",
+          "mal_internasjonal_handel_valuta_valutaeksponering",
+          "mal_internasjonal_handel_valuta_sikringsgrad"
+        ]
+      },
+      "datakilder": [
+        "data_toll_og_handelsdata",
+        "data_valuta_og_makrodata",
+        "data_leverandor_og_innkjopsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta beregn handelsmargin, toll- og transporteffekt og transaksjons-, omregnings- og økonomisk valutaeksponering under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_internasjonal_handel_valuta"
+      ]
+    },
+    {
+      "method_id": "met_multinasjonale_globale_verdikjeder_analyse",
+      "title": "Multinasjonale selskaper og globale verdikjeder: analyseprotokoll",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "problemstilling": "Hvordan kan problemet i Multinasjonale selskaper og globale verdikjeder undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "én global verdikjede eller markedsinngang med minst tre land- eller organisasjonsledd",
+      "begrepsdefinisjoner": [
+        "markedsinngang",
+        "FDI",
+        "lisens",
+        "joint venture",
+        "CAGE"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_multinasjonale_globale_verdikjeder_landrisikojustert_avkastning",
+          "mal_multinasjonale_globale_verdikjeder_verdikjedeandel",
+          "mal_multinasjonale_globale_verdikjeder_styringskompleksitet"
+        ],
+        "indikatorer": [
+          "mal_multinasjonale_globale_verdikjeder_landrisikojustert_avkastning",
+          "mal_multinasjonale_globale_verdikjeder_verdikjedeandel",
+          "mal_multinasjonale_globale_verdikjeder_styringskompleksitet",
+          "mal_multinasjonale_globale_verdikjeder_lokal_verdiskapingsandel"
+        ]
+      },
+      "datakilder": [
+        "data_toll_og_handelsdata",
+        "data_land_institusjons_og_markedsdata",
+        "data_foretaks_rolle_og_eierskapsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: kartlegg aktivitet, verdi og risiko per ledd, sammenlign inngangsmodi og beregn land- og styringseksponering",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "kartlegg aktivitet, verdi og risiko per ledd, sammenlign inngangsmodi og beregn land- og styringseksponering",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "global skala og spesialisering mot kontrolltap, institusjonell avstand, skatte- og arbeidslivsforskjeller"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder markedsinngang, FDI, lisens, joint venture, CAGE, internprising, styring og global verdifordeling.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom global skala og spesialisering mot kontrolltap, institusjonell avstand, skatte- og arbeidslivsforskjeller.",
+      "mapped_module_ids": [
+        "mod_naering_multinasjonale_globale_verdikjeder"
+      ]
+    },
+    {
+      "method_id": "met_multinasjonale_globale_verdikjeder_robusthet",
+      "title": "Multinasjonale selskaper og globale verdikjeder: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Multinasjonale selskaper og globale verdikjeder når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "én global verdikjede eller markedsinngang med minst tre land- eller organisasjonsledd",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_multinasjonale_globale_verdikjeder_verdikjedeandel",
+          "mal_multinasjonale_globale_verdikjeder_styringskompleksitet",
+          "mal_multinasjonale_globale_verdikjeder_lokal_verdiskapingsandel"
+        ],
+        "indikatorer": [
+          "mal_multinasjonale_globale_verdikjeder_landrisikojustert_avkastning",
+          "mal_multinasjonale_globale_verdikjeder_verdikjedeandel",
+          "mal_multinasjonale_globale_verdikjeder_styringskompleksitet",
+          "mal_multinasjonale_globale_verdikjeder_lokal_verdiskapingsandel"
+        ]
+      },
+      "datakilder": [
+        "data_toll_og_handelsdata",
+        "data_land_institusjons_og_markedsdata",
+        "data_foretaks_rolle_og_eierskapsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta kartlegg aktivitet, verdi og risiko per ledd, sammenlign inngangsmodi og beregn land- og styringseksponering under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_multinasjonale_globale_verdikjeder"
+      ]
+    },
+    {
+      "method_id": "met_operations_kapasitet_analyse",
+      "title": "Operations og kapasitetsstyring: analyseprotokoll",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "problemstilling": "Hvordan kan problemet i Operations og kapasitetsstyring undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "én ende-til-ende-prosess med ankomst, behandlingstid, kapasitet, kø og kvalitetsutfall",
+      "begrepsdefinisjoner": [
+        "prosessflyt",
+        "variasjon",
+        "kapasitet",
+        "kø",
+        "flaskehals"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_operations_kapasitet_kapasitetsutnyttelse",
+          "mal_operations_kapasitet_gjennomlopstid",
+          "mal_operations_kapasitet_kolengde"
+        ],
+        "indikatorer": [
+          "mal_operations_kapasitet_kapasitetsutnyttelse",
+          "mal_operations_kapasitet_gjennomlopstid",
+          "mal_operations_kapasitet_kolengde",
+          "mal_operations_kapasitet_forstegangsutbytte"
+        ]
+      },
+      "datakilder": [
+        "data_operations_og_prosesslogg",
+        "data_kvalitets_og_avviksdata",
+        "data_ettersporsels_og_lagerdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: bygg prosesskart, beregn utnyttelse, Little’s law, flaskehalskapasitet og scenario for etterspørselsvariasjon",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "bygg prosesskart, beregn utnyttelse, Little’s law, flaskehalskapasitet og scenario for etterspørselsvariasjon",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "høy kapasitetsutnyttelse og lav kostnad mot kort ledetid, fleksibilitet, kvalitet og robusthet"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder prosessflyt, variasjon, kapasitet, kø, flaskehals, Little’s law, takt og tjenestenivå.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom høy kapasitetsutnyttelse og lav kostnad mot kort ledetid, fleksibilitet, kvalitet og robusthet.",
+      "mapped_module_ids": [
+        "mod_naering_operations_kapasitet"
+      ]
+    },
+    {
+      "method_id": "met_operations_kapasitet_robusthet",
+      "title": "Operations og kapasitetsstyring: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Operations og kapasitetsstyring når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "én ende-til-ende-prosess med ankomst, behandlingstid, kapasitet, kø og kvalitetsutfall",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_operations_kapasitet_gjennomlopstid",
+          "mal_operations_kapasitet_kolengde",
+          "mal_operations_kapasitet_forstegangsutbytte"
+        ],
+        "indikatorer": [
+          "mal_operations_kapasitet_kapasitetsutnyttelse",
+          "mal_operations_kapasitet_gjennomlopstid",
+          "mal_operations_kapasitet_kolengde",
+          "mal_operations_kapasitet_forstegangsutbytte"
+        ]
+      },
+      "datakilder": [
+        "data_operations_og_prosesslogg",
+        "data_kvalitets_og_avviksdata",
+        "data_ettersporsels_og_lagerdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta bygg prosesskart, beregn utnyttelse, Little’s law, flaskehalskapasitet og scenario for etterspørselsvariasjon under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_operations_kapasitet"
+      ]
+    },
+    {
+      "method_id": "met_innkjop_kvalitet_forsyningsrisiko_analyse",
+      "title": "Innkjøp, kvalitet og forsyningsrisiko: analyseprotokoll",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "problemstilling": "Hvordan kan problemet i Innkjøp, kvalitet og forsyningsrisiko undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "én vare- eller tjenestekategori med minst tre leverandører, kvalitetsdata og forsyningsscenarioer",
+      "begrepsdefinisjoner": [
+        "behov",
+        "spesifikasjon",
+        "leverandørvalg",
+        "total cost of ownership",
+        "sikkerhetslager"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_innkjop_kvalitet_forsyningsrisiko_total_eierkostnad",
+          "mal_innkjop_kvalitet_forsyningsrisiko_leveringspresisjon",
+          "mal_innkjop_kvalitet_forsyningsrisiko_leverandorfeilrate"
+        ],
+        "indikatorer": [
+          "mal_innkjop_kvalitet_forsyningsrisiko_total_eierkostnad",
+          "mal_innkjop_kvalitet_forsyningsrisiko_leveringspresisjon",
+          "mal_innkjop_kvalitet_forsyningsrisiko_leverandorfeilrate",
+          "mal_innkjop_kvalitet_forsyningsrisiko_forsyningsrisikoindeks"
+        ]
+      },
+      "datakilder": [
+        "data_leverandor_og_innkjopsdata",
+        "data_kvalitets_og_avviksdata",
+        "data_ettersporsels_og_lagerdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: beregn total cost of ownership, leverandørscore, sikkerhetslager og forventet avbruddstap",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "beregn total cost of ownership, leverandørscore, sikkerhetslager og forventet avbruddstap",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "lav innkjøpspris og konsolidering mot kvalitet, leveringssikkerhet, makt og redundans"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder behov, spesifikasjon, leverandørvalg, total cost of ownership, sikkerhetslager, kvalitet og resiliens.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom lav innkjøpspris og konsolidering mot kvalitet, leveringssikkerhet, makt og redundans.",
+      "mapped_module_ids": [
+        "mod_naering_innkjop_kvalitet_forsyningsrisiko"
+      ]
+    },
+    {
+      "method_id": "met_innkjop_kvalitet_forsyningsrisiko_robusthet",
+      "title": "Innkjøp, kvalitet og forsyningsrisiko: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Innkjøp, kvalitet og forsyningsrisiko når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "én vare- eller tjenestekategori med minst tre leverandører, kvalitetsdata og forsyningsscenarioer",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_innkjop_kvalitet_forsyningsrisiko_leveringspresisjon",
+          "mal_innkjop_kvalitet_forsyningsrisiko_leverandorfeilrate",
+          "mal_innkjop_kvalitet_forsyningsrisiko_forsyningsrisikoindeks"
+        ],
+        "indikatorer": [
+          "mal_innkjop_kvalitet_forsyningsrisiko_total_eierkostnad",
+          "mal_innkjop_kvalitet_forsyningsrisiko_leveringspresisjon",
+          "mal_innkjop_kvalitet_forsyningsrisiko_leverandorfeilrate",
+          "mal_innkjop_kvalitet_forsyningsrisiko_forsyningsrisikoindeks"
+        ]
+      },
+      "datakilder": [
+        "data_leverandor_og_innkjopsdata",
+        "data_kvalitets_og_avviksdata",
+        "data_ettersporsels_og_lagerdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta beregn total cost of ownership, leverandørscore, sikkerhetslager og forventet avbruddstap under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_innkjop_kvalitet_forsyningsrisiko"
+      ]
+    },
+    {
+      "method_id": "met_prosjektledelse_prosjektokonomi_analyse",
+      "title": "Prosjektledelse og prosjektøkonomi: analyseprotokoll",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "problemstilling": "Hvordan kan problemet i Prosjektledelse og prosjektøkonomi undersøkes med dokumenterte data, fagbegreper og beregninger?",
+      "enhet_og_avgrensning": "ett prosjekt med leveransestruktur, aktiviteter, ressurser, budsjett, risiko og gevinstmål",
+      "begrepsdefinisjoner": [
+        "omfang",
+        "WBS",
+        "kritisk linje",
+        "milepæler",
+        "opptjent verdi"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_prosjektledelse_prosjektokonomi_schedule_performance_index",
+          "mal_prosjektledelse_prosjektokonomi_cost_performance_index",
+          "mal_prosjektledelse_prosjektokonomi_estimate_at_completion"
+        ],
+        "indikatorer": [
+          "mal_prosjektledelse_prosjektokonomi_schedule_performance_index",
+          "mal_prosjektledelse_prosjektokonomi_cost_performance_index",
+          "mal_prosjektledelse_prosjektokonomi_estimate_at_completion",
+          "mal_prosjektledelse_prosjektokonomi_gevinstrealiseringsgrad"
+        ]
+      },
+      "datakilder": [
+        "data_organisasjons_og_prosjektdata",
+        "data_prosjektokonomi_og_risikoregister",
+        "data_leverandor_og_innkjopsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Velg enheter, perioder eller parter før resultatet undersøkes, og dokumenter hvorfor sammenligningen er relevant.",
+      "analysetrinn": [
+        "formuler problem og konklusjonsgrense",
+        "avgrens enhet, periode og aktører",
+        "definer begreper og variabler",
+        "kontroller datakilder og metadata",
+        "gjennomfør beregningen: bygg WBS og nettverksplan, finn kritisk linje og beregn opptjent verdi, sluttprognose og risikoreserve",
+        "tolk resultatet mot minst én alternativ forklaring"
+      ],
+      "beregninger_eller_koding": "bygg WBS og nettverksplan, finn kritisk linje og beregn opptjent verdi, sluttprognose og risikoreserve",
+      "alternative_forklaringer": [
+        "endret sammensetning eller seleksjon",
+        "målefeil eller ufullstendig dokumentasjon",
+        "planmessig kontroll og kontrakt mot læring, endring, interessentbehov og usikker gevinst"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "uklar enhet eller periode",
+        "inkonsistente definisjoner",
+        "modell-, rettskilde- eller skjønnsavhengige valg"
+      ],
+      "gyldighetsomraade": "Dokumenterte virksomhetscase som faktisk inneholder omfang, WBS, kritisk linje, milepæler, opptjent verdi, risikoreserve, endringskontroll og gevinst.",
+      "konklusjonsgrense": "Konkluder bare om den avgrensede enheten og det undersøkte alternativet; analysen kan ikke alene avgjøre konflikten mellom planmessig kontroll og kontrakt mot læring, endring, interessentbehov og usikker gevinst.",
+      "mapped_module_ids": [
+        "mod_naering_prosjektledelse_prosjektokonomi"
+      ]
+    },
+    {
+      "method_id": "met_prosjektledelse_prosjektokonomi_robusthet",
+      "title": "Prosjektledelse og prosjektøkonomi: robusthets- og profesjonskontroll",
+      "track_ids": [
+        "internasjonal_virksomhet_operations_prosjekt"
+      ],
+      "problemstilling": "Hvor robust er anbefalingen i Prosjektledelse og prosjektøkonomi når antakelser, data, regelverk, scenario og berørte interesser endres?",
+      "enhet_og_avgrensning": "ett prosjekt med leveransestruktur, aktiviteter, ressurser, budsjett, risiko og gevinstmål",
+      "begrepsdefinisjoner": [
+        "scenario",
+        "sensitivitet",
+        "alternativ forklaring",
+        "profesjonsansvar",
+        "beslutningskriterium"
+      ],
+      "operasjonalisering": {
+        "variabler": [
+          "mal_prosjektledelse_prosjektokonomi_cost_performance_index",
+          "mal_prosjektledelse_prosjektokonomi_estimate_at_completion",
+          "mal_prosjektledelse_prosjektokonomi_gevinstrealiseringsgrad"
+        ],
+        "indikatorer": [
+          "mal_prosjektledelse_prosjektokonomi_schedule_performance_index",
+          "mal_prosjektledelse_prosjektokonomi_cost_performance_index",
+          "mal_prosjektledelse_prosjektokonomi_estimate_at_completion",
+          "mal_prosjektledelse_prosjektokonomi_gevinstrealiseringsgrad"
+        ]
+      },
+      "datakilder": [
+        "data_organisasjons_og_prosjektdata",
+        "data_prosjektokonomi_og_risikoregister",
+        "data_leverandor_og_innkjopsdata"
+      ],
+      "utvalg_eller_sammenligningsgrunnlag": "Test minst to plausible scenarioer eller spesifikasjoner mot samme beslutningsproblem.",
+      "analysetrinn": [
+        "identifiser kritiske antakelser",
+        "bygg basis- og stresscenario",
+        "varier sentrale parametre",
+        "kontroller rettslige, etiske og organisatoriske begrensninger",
+        "sammenlign beslutningsalternativer",
+        "rapporter robusthet og restusikkerhet"
+      ],
+      "beregninger_eller_koding": "Gjenta bygg WBS og nettverksplan, finn kritisk linje og beregn opptjent verdi, sluttprognose og risikoreserve under minst to alternative forutsetninger og vis hvilke valg som driver konklusjonen.",
+      "alternative_forklaringer": [
+        "samtidige endringer",
+        "strategisk rapportering eller gaming",
+        "manglende data om berørte grupper"
+      ],
+      "feilkilder_og_usikkerhet": [
+        "for smalt scenarioområde",
+        "skjult vekting av kriterier",
+        "manglende etterprøving av rettslig eller faglig grunnlag"
+      ],
+      "gyldighetsomraade": "Beslutninger med dokumenterbare alternativer, risikoer og kriterier.",
+      "konklusjonsgrense": "Robusthetskontrollen kan vise hvor anbefalingen er sårbar, men kan ikke erstatte ansvarlig skjønn eller bindende rettslig vurdering.",
+      "mapped_module_ids": [
+        "mod_naering_prosjektledelse_prosjektokonomi"
+      ]
+    }
+  ]
+}

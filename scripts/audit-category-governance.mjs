@@ -82,6 +82,10 @@ for (const validator of [
   {
     name: "Økonomi og næringsliv individual emne revision",
     module: "../tools/validate-okonomi-naeringsliv-emnerevisjon.mjs"
+  },
+  {
+    name: "Økonomi og næringsliv business-school coverage",
+    module: "../tools/validate-okonomi-naeringsliv-handelshogskole.mjs"
   }
 ]) {
   try {
