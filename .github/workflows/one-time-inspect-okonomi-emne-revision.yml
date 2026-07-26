@@ -57,13 +57,13 @@ jobs:
           cat .tmp/okonomi-revision/individual-validation.log
           exit 0
 
-      - name: Commit production outputs and diagnostics
+      - name: Commit available outputs and diagnostics
         shell: bash
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add \
+          for file in \
             data/fag/naeringsliv/teorikort_okonomi_og_naeringsliv_v1.json \
             data/fag/naeringsliv/metodeprotokoller_okonomi_og_naeringsliv_v1.json \
             data/fag/naeringsliv/modellregister_okonomi_og_naeringsliv_v1.json \
@@ -75,6 +75,9 @@ jobs:
             .tmp/okonomi-revision/revision.log \
             .tmp/okonomi-revision/framework-validation.log \
             .tmp/okonomi-revision/individual-validation.log \
-            .tmp/okonomi-revision/materialization-status.txt
+            .tmp/okonomi-revision/materialization-status.txt; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
+          git diff --cached --quiet && exit 0
           git commit -m 'TEMP: materialiser individuell økonomiemnerevisjon'
           git push origin HEAD:agent/okonomi-naeringsliv-emne-revision-stage
