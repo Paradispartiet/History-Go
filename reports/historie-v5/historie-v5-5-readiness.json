@@ -1,9 +1,9 @@
 {
   "version": "v5.5-quality-freeze-contract",
   "subject_id": "historie",
-  "status": "QUALITY_REVIEW_REQUIRED",
-  "v6_allowed": false,
-  "generated_at": "2026-07-26T02:44:33.164Z",
+  "status": "FREEZE_READY",
+  "v6_allowed": true,
+  "generated_at": "2026-07-26T03:01:49.100Z",
   "coverage_counts": {
     "domains": 20,
     "emner": 200,
@@ -13,31 +13,24 @@
     "theories": 200
   },
   "quality_issue_totals": {
-    "concepts": 68,
-    "theories": 10,
+    "concepts": 0,
+    "theories": 0,
     "emner": 0,
-    "domains_not_freeze_ready": 1
+    "domains_not_freeze_ready": 0
   },
   "global_gates": {
     "structural_integrity": true,
     "coverage_counts_match": true,
     "generator_counts_match_production": true,
     "all_domains_coverage_complete": true,
-    "concept_registry_curated": false,
-    "theory_registry_curated": false,
+    "concept_registry_curated": true,
+    "theory_registry_curated": true,
     "emner_individually_curated": true,
-    "all_domains_freeze_ready": false
+    "all_domains_freeze_ready": true
   },
   "quality": {
-    "concept_issue_counts": {
-      "synthetic_template_definition": 68,
-      "missing_semantic_relations": 68,
-      "generic_or_missing_misuse_guard": 68,
-      "numeric_reference_mistyped_as_concept": 1
-    },
-    "theory_issue_counts": {
-      "only_generic_limitations": 10
-    },
+    "concept_issue_counts": {},
+    "theory_issue_counts": {},
     "emne_issue_counts": {}
   },
   "domains": [
@@ -105,16 +98,13 @@
       "domain_id": "his_industri_arbeid_sosialhistorie",
       "label": "Industri, arbeid og sosialhistorie",
       "coverage_complete": true,
-      "freeze_ready": false,
+      "freeze_ready": true,
       "issue_counts": {
         "emner": 0,
-        "concepts": 68,
-        "theories": 10
+        "concepts": 0,
+        "theories": 0
       },
-      "issues": [
-        "concept_quality_incomplete",
-        "theory_quality_incomplete"
-      ]
+      "issues": []
     },
     {
       "domain_id": "his_krig_okkupasjon_motstand",
@@ -286,411 +276,8 @@
     }
   ],
   "samples": {
-    "concepts": [
-      {
-        "concept_id": "con_his_1900",
-        "label": "1900",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "numeric_reference_mistyped_as_concept",
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_arbeiderbolig",
-        "label": "arbeiderbolig",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_arbeiderbydel_vs_ensartet_klassemiljo",
-        "label": "arbeiderbydel vs ensartet klassemiljø",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_arbeiderliv",
-        "label": "arbeiderliv",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_arbeidsdag_vs_betalte_timer",
-        "label": "arbeidsdag vs betalte timer",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_arbeidsdisiplin",
-        "label": "arbeidsdisiplin",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_arbeidskraft",
-        "label": "arbeidskraft",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_arbeidsmiljo",
-        "label": "arbeidsmiljø",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_arbeidsorganisering",
-        "label": "arbeidsorganisering",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_arbeidsprosess",
-        "label": "arbeidsprosess",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_arbeidsrelasjon",
-        "label": "arbeidsrelasjon",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_arbeidstid",
-        "label": "arbeidstid",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_arbeidsvandring",
-        "label": "arbeidsvandring",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_avindustrialisering",
-        "label": "avindustrialisering",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_bakgrunnsarsak_vs_streikeutlosende_hendelse",
-        "label": "bakgrunnsårsak vs streikeutløsende hendelse",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_berort_gruppe",
-        "label": "berørt gruppe",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_bevaring_vs_arbeidsminne",
-        "label": "bevaring vs arbeidsminne",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_boligreform_vs_levd_boligforhold",
-        "label": "boligreform vs levd boligforhold",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_boligtype_vs_faktisk_trangboddhet",
-        "label": "boligtype vs faktisk trangboddhet",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_bygningsombruk_vs_kontinuitet_i_arbeid",
-        "label": "bygningsombruk vs kontinuitet i arbeid",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_energikilde_vs_full_arsaksforklaring",
-        "label": "energikilde vs full årsaksforklaring",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_estetisk_industriarv_vs_sosialt_tap",
-        "label": "estetisk industriarv vs sosialt tap",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_fabrikk",
-        "label": "fabrikk",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_fabrikkbygning_vs_virksomhet",
-        "label": "fabrikkbygning vs virksomhet",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      },
-      {
-        "concept_id": "con_his_fabrikknedleggelse_vs_bred_avindustrialisering",
-        "label": "fabrikknedleggelse vs bred avindustrialisering",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "synthetic_template_definition",
-          "missing_semantic_relations",
-          "generic_or_missing_misuse_guard"
-        ]
-      }
-    ],
-    "theories": [
-      {
-        "theory_id": "theory_his_industriby_arbeiderliv",
-        "label": "Industriby, produksjon og arbeiderliv",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "only_generic_limitations"
-        ]
-      },
-      {
-        "theory_id": "theory_his_fabrikk_arbeidsorganisering",
-        "label": "Fabrikk, arbeidsprosess og organisering",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "only_generic_limitations"
-        ]
-      },
-      {
-        "theory_id": "theory_his_arbeidstid_lonn_ferdighet",
-        "label": "Arbeidstid, lønn og ferdighet",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "only_generic_limitations"
-        ]
-      },
-      {
-        "theory_id": "theory_his_arbeidsmiljo_risiko_helse",
-        "label": "Arbeidsmiljø, risiko og helse",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "only_generic_limitations"
-        ]
-      },
-      {
-        "theory_id": "theory_his_arbeiderbolig_hushold_livsvilkar",
-        "label": "Arbeiderbolig, hushold og livsvilkår",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "only_generic_limitations"
-        ]
-      },
-      {
-        "theory_id": "theory_his_kjonn_arbeidsdeling_lonn",
-        "label": "Kjønn, arbeidsdeling og lønn",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "only_generic_limitations"
-        ]
-      },
-      {
-        "theory_id": "theory_his_arbeidsvandring_rekruttering",
-        "label": "Arbeidsvandring, rekruttering og arbeidskraft",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "only_generic_limitations"
-        ]
-      },
-      {
-        "theory_id": "theory_his_organisering_streik_forhandling",
-        "label": "Organisering, streik og forhandling",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "only_generic_limitations"
-        ]
-      },
-      {
-        "theory_id": "theory_his_folkedannelse_arbeideroffentlighet",
-        "label": "Folkedannelse og arbeideroffentlighet",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "only_generic_limitations"
-        ]
-      },
-      {
-        "theory_id": "theory_his_avindustrialisering_ombruk_industriarv",
-        "label": "Avindustrialisering, ombruk og industriarv",
-        "domain_ids": [
-          "his_industri_arbeid_sosialhistorie"
-        ],
-        "issues": [
-          "only_generic_limitations"
-        ]
-      }
-    ],
+    "concepts": [],
+    "theories": [],
     "emner": []
   }
 }
