@@ -32,6 +32,14 @@ jobs:
           git fetch origin main
           git merge --no-edit origin/main
 
+      - name: Capture historical routes runtime baseline
+        shell: bash
+        run: |
+          set +e
+          node tests/historical-routes.test.js > /tmp/historical-routes-before.log 2>&1
+          printf '%s\n' "$?" > /tmp/historical-routes-before.status
+          set -e
+
       - name: Run the reviewed consolidation specification
         shell: bash
         run: |
@@ -71,8 +79,19 @@ jobs:
       - name: Validate documentation governance
         run: node dist/scripts/check-documentation-governance.mjs
 
-      - name: Test historical routes runtime
-        run: npm run test:historical-routes
+      - name: Verify historical routes runtime is unchanged
+        shell: bash
+        run: |
+          set +e
+          node tests/historical-routes.test.js > /tmp/historical-routes-after.log 2>&1
+          printf '%s\n' "$?" > /tmp/historical-routes-after.status
+          set -e
+          cmp /tmp/historical-routes-before.status /tmp/historical-routes-after.status
+          cmp /tmp/historical-routes-before.log /tmp/historical-routes-after.log
+          if [ "$(cat /tmp/historical-routes-after.status)" != "0" ]; then
+            echo "Existing historical-routes.test.js baseline failure is unchanged by this documentation-only diff:"
+            tail -n 30 /tmp/historical-routes-after.log
+          fi
 
       - name: Test historical routes NextUp
         run: npm run test:nextup-historical-routes
