@@ -1,0 +1,49 @@
+name: One-time export okonomi registries
+
+on:
+  push:
+    branches:
+      - agent/okonomi-naeringsliv-emne-revision-research
+    paths:
+      - '.github/workflows/one-time-export-okonomi-registries.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/okonomi-naeringsliv-emne-revision-research
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Export registry summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .tmp
+          node <<'NODE'
+          const fs = require('fs');
+          const base = 'data/fag/naeringsliv';
+          const read = (name) => JSON.parse(fs.readFileSync(`${base}/${name}`, 'utf8'));
+          const out = {
+            theories: read('teorikort_okonomi_og_naeringsliv_v1.json').cards.map(x => ({id:x.theory_id,title:x.title,tracks:x.track_ids,mapped_emne_ids:x.mapped_emne_ids})),
+            methods: read('metodeprotokoller_okonomi_og_naeringsliv_v1.json').protocols.map(x => ({id:x.method_id,title:x.title,tracks:x.track_ids,mapped_emne_ids:x.mapped_emne_ids})),
+            models: read('modellregister_okonomi_og_naeringsliv_v1.json').models.map(x => ({id:x.model_id,title:x.title,tracks:x.track_ids,mapped_emne_ids:x.mapped_emne_ids})),
+            measures: read('maleregister_okonomi_og_naeringsliv_v1.json').measures.map(x => ({id:x.measure_id,title:x.title,tracks:x.track_ids,mapped_emne_ids:x.mapped_emne_ids}))
+          };
+          fs.writeFileSync('.tmp/okonomi-registries.json', JSON.stringify(out, null, 2) + '\n');
+          NODE
+      - name: Commit export
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .tmp/okonomi-registries.json
+          git commit -m 'TEMP: eksporter økonomiregistre for redaksjonell revisjon'
+          git push origin HEAD:agent/okonomi-naeringsliv-emne-revision-research
