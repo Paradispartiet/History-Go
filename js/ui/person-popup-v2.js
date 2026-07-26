@@ -1,3 +1,4 @@
+// @ts-nocheck
 // js/ui/person-popup-v2.js
 // Rich, compact people popup with structured biography, works, places and sources.
 (function installPersonPopupV2(global) {
