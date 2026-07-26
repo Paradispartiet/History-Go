@@ -1,79 +1,72 @@
-# Historie V5.5 — permanent kvalitetsfrys
+# Historie V5.5 — historisk kvalitetsbaseline
 
-Status: **FROZEN** etter individuell kuratering av 20 domener, 200 emner, 826 begreper og 200 teoriobjekter.
+Status: **HISTORICAL BASELINE** — ikke aktiv Historie-modell, heldekningspolicy eller kvalitetskontrakt.
 
-## Hva som er frosset
+Dette dokumentet bevarer beslutningene og kontrollene som etablerte V5.5 som en reproduserbar kvalitetsbaseline. V5.6 er en senere historisk mellomversjon. Den aktive universelle Historie-modellen er V5.7.
 
-Frysemanifestet `data/fag/historie/historie_v5_5_freeze_manifest.json` inneholder SHA-256-fingeravtrykk for kontrakten og alle filene som `historie_v5_contract.json` peker ut som autoritative.
+## Aktiv autoritet
 
-V5.5 er den kuraterte faglige basen. V6 skal legge til kilde-, claim- og stedsevidens i egne kontrakter og skal ikke stille endre V5.5-objektene.
-
-## Hva frysen ikke beviser
-
-`FROZEN`, `FREEZE_READY` og 20/20 interne domener betyr at den valgte V5.5-strukturen er utfylt, individuelt kuratert og beskyttet mot stille regresjon.
-
-Dette er ikke bevis på at hele historiefaget er universelt dekket. De gamle portene sammenligner dataene med et forhåndsvalgt inventar på 20 domener og 200 emner; de tester ikke uavhengig om nødvendige tidsperioder, historiske felt, geografier eller aktørperspektiver mangler.
-
-Universell fagdekning eies derfor av:
+Bruk disse kildene for gjeldende status:
 
 ```text
+data/fag/historie/historie_v5_contract.json
+docs/HISTORY_UNIVERSAL_COVERAGE.md
 data/fag/historie/historie_universal_coverage_contract_v1.json
-tools/audit-historie-universal-coverage.mjs
+data/fag/historie/historie_v5_7_freeze_manifest.json
+reports/historie-v5/historie-v5-7-quality-depth.json
 reports/historie-universal-coverage/historie-universal-coverage.json
-reports/historie-universal-coverage/historie-universal-coverage.md
 ```
 
-Så lenge denne auditen har status `INCOMPLETE`, skal V5.5 omtales som en gjennomarbeidet og frosset kjerne — ikke som et bevist komplett historiefag.
+`docs/HISTORY_UNIVERSAL_COVERAGE.md` eier den menneskelesbare universelle dekningspolicyen. V5.7-kontrakten, V5.7-manifestet og de materialiserte rapportene eier aktiv modell-, kvalitets- og auditstatus.
 
-Dersom heldekningsauditen avdekker et reelt faglig hull, skal det lukkes gjennom en begrunnet og versjonert fagendring. Frysen kan ikke brukes til å blokkere nødvendig faglig utvidelse, men den skal fortsatt hindre ubegrunnede eller skjulte omskrivinger.
+## Historisk V5.5-frys
 
-## Materialisert kvalitetsløft
+V5.5 ble frosset etter individuell kuratering av 20 domener, 200 emner, 826 begreper og 200 teoriobjekter.
 
-Den globale dybdeauditen avdekket restgjeld som den tidligere V5.5-validatoren ikke målte. Før frysen ble følgende reparert i canonical-dataene:
+Det daværende frysemanifestet inneholdt SHA-256-fingeravtrykk for kontrakten og alle filene som `historie_v5_contract.json` pekte ut som autoritative. Formålet var å hindre stille regresjon og ubegrunnede omskrivinger av den kuraterte basen.
+
+V5.5-frysen dokumenterte at den valgte strukturen var utfylt, individuelt kuratert og beskyttet. Den dokumenterte ikke universell heldekning av hele historiefaget.
+
+`FROZEN`, `FREEZE_READY` og 20/20 interne domener var derfor kvalitets- og integritetsmål for et forhåndsvalgt inventar, ikke en uavhengig test av nødvendige tidsperioder, temafelt, geografier, aktørperspektiver eller produksjonsgrunnlag.
+
+## Historisk kvalitetsløft
+
+Den globale dybdeauditen avdekket restgjeld som den tidligere V5.5-validatoren ikke målte. Før V5.5-frysen ble følgende reparert i canonical-dataene:
 
 - 544 manglende begrepsfelt for indikatorer og kildekrav;
 - 70 teoriobjekter som manglet en tredje, eksplisitt avgrensning;
 - én semantisk relasjon til et ikke-eksisterende begrep.
 
-Etter reparasjonen har alle 826 begreper minst to indikatorer og to kildekrav, alle 200 teorier minst tre begrensninger, og relasjonsintegriteten er uten ukjente mål. Dybdeauditen har status `PASSED`, og frysemanifestet har status `FROZEN`.
+Etter reparasjonen hadde alle 826 begreper minst to indikatorer og to kildekrav, alle 200 teorier minst tre begrensninger, og relasjonsintegriteten var uten ukjente mål. Dybdeauditen hadde status `PASSED`, og V5.5-manifestet hadde status `FROZEN`.
 
-Leksikalske ankervarsler er informative, ikke blokkerende: de brukes som manuell kontrollliste for definisjoner der bøyning, sammensatte ord eller en bevisst faglig parafrase gjør at label-tokenet ikke gjentas ordrett. De skal ikke masseendres automatisk, fordi ordrett repetisjon i seg selv ikke dokumenterer bedre faglig kvalitet.
+Leksikalske ankervarsler var informative, ikke blokkerende. De fungerte som manuell kontrollliste der bøyning, sammensatte ord eller en bevisst faglig parafrase gjorde at label-tokenet ikke ble gjentatt ordrett.
 
-## Permanent kvalitetsport
+## Overgangen via V5.6 til V5.7
 
-`tools/audit-historie-v5-5-quality-depth.mjs` kontrollerer blant annet:
+Den uavhengige heldekningsauditen dokumenterte at V5.5 var en gjennomarbeidet kjerne, men ikke et komplett historiefag.
 
-- `FREEZE_READY`, 20/20 domener og null registrerte kvalitetsfeil;
-- eksakte dekningsmål for domener, emner, mappings, begreper og teorier;
-- unike og tilstrekkelig spesifikke begrepsdefinisjoner;
-- gyldige semantiske relasjoner uten selvlenker eller ukjente mål;
-- særskilt misbruksvern, indikatorer, kildekrav og proveniens for alle begreper;
-- individuelle teoridefinisjoner, minst tre fagspesifikke begrensninger, metodekobling, tenkersti og source hook;
-- at alle V5.5-teorier fortsatt har `evidence_ready: false`;
-- at autoritative filer fortsatt matcher frysemanifestets SHA-256-fingeravtrykk.
+V5.6 opprettet domenet **Forhistorie og arkeologi** og ble den første versjonerte heldekningsreparasjonen. V5.7 opprettet deretter **Første verdenskrig og mellomkrigstiden** og er nå aktiv universell Historie-modell.
 
-GitHub Actions-workflowen `history-v5-5-quality-freeze.yml` kjører porten ved alle relevante pull requests og ved endringer på `main`.
+V5.7 har eget aktivt frysemanifest og egen materialisert kvalitetsrapport. Når heldekningsauditen dokumenterer nye reelle hull, skal de lukkes gjennom begrunnede og versjonerte fagendringer med oppdatert kontrakt, grønn kvalitetskontroll og bevisst manifestoppdatering.
 
-## Bevisst endringsprosedyre
+## Compatibility-navn
 
-En autoritativ V5.5-fil kan bare endres når:
+Følgende paths beholder foreløpig V5.5 i filnavnet av kompatibilitetshensyn:
 
-1. endringen er eksplisitt avgrenset og faglig begrunnet i en egen PR;
-2. permanent V5.5-validator og dybdeaudit er grønne;
-3. Knowledge- og quizkontraktene fortsatt passerer;
-4. frysemanifestet oppdateres bevisst med `--write-freeze` og en konkret `--reason=...`;
-5. PR-en viser hvilke fingeravtrykk og kvalitetsmål som endres.
+```text
+tools/audit-historie-v5-5-quality-depth.mjs
+.github/workflows/history-v5-5-quality-freeze.yml
+```
 
-En manifestoppdatering er ikke en måte å omgå porten på. Verktøyet skriver bare nytt manifest når samtlige innholdskrav er bestått.
+De er ikke bevis på at V5.5 fortsatt er aktiv modell. Auditverktøyet leser den aktive kontrakten, validerer `historie_v5_7_freeze_manifest.json` og skriver V5.7-rapporter. Workflowens visningsnavn og jobbnavn identifiserer også den aktive porten som V5.7.
 
-## Forholdet til V6
+## Bevisst endringsregel
 
-V6 kan bruke V5.5 som godkjent faglig input, men dokumenterte claims, kilder, kildekvalitet, alternative fortolkninger og place evidence skal ligge i nye V6-filer. `evidence_ready` skal først endres gjennom V6-kontrakten, ikke ved å omskrive den frosne V5.5-basen.
+Dette historiske dokumentet skal ikke brukes som prosedyre for å endre aktive fagfiler. Gjeldende endringskrav leses fra:
 
-<!-- V5_7_ACTIVE_MODEL:START -->
-## Aktiv modell etter andre heldekningsreparasjon
+- `data/fag/historie/historie_v5_contract.json`;
+- `docs/HISTORY_UNIVERSAL_COVERAGE.md`;
+- `data/fag/historie/historie_v5_7_freeze_manifest.json`;
+- den permanente V5.7-kvalitetsworkflowen.
 
-V5.5 og V5.6 beholdes som historiske, reproduserbare baselines. Den aktive universelle Historie-modellen er **V5.7**, som legger til domenet **Første verdenskrig og mellomkrigstiden** med ti emner, femti begreper, ti teoriobjekter og sju nye metoder.
-
-Compatibility-stien `tools/audit-historie-v5-5-quality-depth.mjs` beholdes foreløpig, men validerer aktiv V5.7-kontrakt og V5.7-manifest. Eksakte tellinger beskytter inventaret; universell heldekning avgjøres fortsatt separat av den uavhengige dekningsauditen.
-<!-- V5_7_ACTIVE_MODEL:END -->
+V5.5- og V5.6-baselinene kan brukes til historisk sammenligning og sporbarhet, men kan ikke overstyre V5.7-kontrakten, den universelle heldekningspolicyen eller aktiv auditstatus.
