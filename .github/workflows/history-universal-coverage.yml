@@ -1,0 +1,60 @@
+name: History universal coverage
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/historie/**'
+      - 'tools/audit-historie-universal-coverage.mjs'
+      - 'reports/historie-universal-coverage/**'
+      - 'docs/HISTORY_UNIVERSAL_COVERAGE.md'
+      - 'docs/HISTORY_V5_5_FREEZE.md'
+      - '.github/workflows/history-universal-coverage.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/fag/historie/**'
+      - 'tools/audit-historie-universal-coverage.mjs'
+      - 'reports/historie-universal-coverage/**'
+      - 'docs/HISTORY_UNIVERSAL_COVERAGE.md'
+      - 'docs/HISTORY_V5_5_FREEZE.md'
+      - '.github/workflows/history-universal-coverage.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  universal-coverage:
+    name: History subject coverage matrix
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Materialize universal coverage audit
+        run: node tools/audit-historie-universal-coverage.mjs
+
+      - name: Verify committed reports are current
+        shell: bash
+        run: |
+          git diff --exit-code -- \
+            reports/historie-universal-coverage/historie-universal-coverage.json \
+            reports/historie-universal-coverage/historie-universal-coverage.md
+          test -z "$(git status --porcelain --untracked-files=all -- reports/historie-universal-coverage)"
+          node tools/audit-historie-universal-coverage.mjs --check
+
+      - name: Upload universal coverage audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: historie-universal-coverage
+          path: |
+            reports/historie-universal-coverage/historie-universal-coverage.json
+            reports/historie-universal-coverage/historie-universal-coverage.md
+          if-no-files-found: error
