@@ -112,6 +112,67 @@ jobs:
             if [ -f "$file" ]; then git add "$file"; fi
           done
 
-          git diff --cached --quiet && exit 0
-          git commit -m 'TEMP: materialiser handelshøyskolelaget'
-          git push origin HEAD:agent/okonomi-naeringsliv-handelshogskole-stage
+          if ! git diff --cached --quiet; then
+            git commit -m 'TEMP: materialiser handelshøyskolelaget'
+            git push origin HEAD:agent/okonomi-naeringsliv-handelshogskole-stage
+          fi
+
+      - name: Build clean production branch from latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          while IFS='=' read -r key value; do
+            if [ "$value" != "0" ]; then
+              echo "Cannot build production branch: $key=$value"
+              exit 1
+            fi
+          done < .tmp/handelshogskole/status.txt
+
+          output_root=/tmp/handelshogskole-production
+          rm -rf "$output_root"
+          mkdir -p "$output_root"
+
+          production_files=(
+            data/fag/naeringsliv/handelshogskoleramme_okonomi_og_naeringsliv_v1.json
+            data/fag/naeringsliv/handelshogskolespor_okonomi_og_naeringsliv_v1.json
+            data/fag/naeringsliv/handelshogskolemoduler_okonomi_og_naeringsliv_v1.json
+            data/fag/naeringsliv/handelshogskoleteori_okonomi_og_naeringsliv_v1.json
+            data/fag/naeringsliv/handelshogskolemetoder_okonomi_og_naeringsliv_v1.json
+            data/fag/naeringsliv/handelshogskolemodeller_okonomi_og_naeringsliv_v1.json
+            data/fag/naeringsliv/handelshogskolemal_okonomi_og_naeringsliv_v1.json
+            data/fag/naeringsliv/handelshogskolekilder_okonomi_og_naeringsliv_v1.json
+            data/fag/naeringsliv/handelshogskolevurdering_okonomi_og_naeringsliv_v1.json
+            data/fag/naeringsliv/universitetsramme_okonomi_og_naeringsliv_v1.json
+            data/fag/naeringsliv/universitetskvalitet_okonomi_og_naeringsliv_v2.json
+            data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json
+            data/fag/fag_manifest.json
+            scripts/audit-category-governance.mjs
+            tools/validate-okonomi-naeringsliv-handelshogskole.mjs
+          )
+
+          for file in "${production_files[@]}"; do
+            mkdir -p "$output_root/$(dirname "$file")"
+            cp "$file" "$output_root/$file"
+          done
+
+          git fetch origin main
+          git reset --hard
+          git clean -fdx
+          git checkout -B agent/okonomi-naeringsliv-handelshogskole origin/main
+
+          for file in "${production_files[@]}"; do
+            mkdir -p "$(dirname "$file")"
+            cp "$output_root/$file" "$file"
+          done
+
+          git add "${production_files[@]}"
+          changed_count=$(git diff --cached --name-only | wc -l)
+          if [ "$changed_count" -ne 15 ]; then
+            echo "Expected exactly 15 production files, found $changed_count"
+            git diff --cached --name-only
+            exit 1
+          fi
+
+          git commit -m 'Etabler komplett handelshøyskolelag for Økonomi og næringsliv'
+          git push --force origin HEAD:agent/okonomi-naeringsliv-handelshogskole
