@@ -1,9 +1,35 @@
 {
   "id": "hakadal_verk",
   "name": "Hakadal Verk",
-  "lat": 60.12083,
-  "lon": 10.82278,
+  "lat": 60.122400847631,
+  "lon": 10.824335391711,
   "r": 360,
+  "locatorType": "historic_site",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-way:249239760",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "area_anchor",
+  "coordType": "named_surviving_ironworks_building_area_anchor",
+  "coordStatus": "verified_geometry",
+  "coordSource": "OpenStreetMap way 249239760 – Hakadal verk; Store norske leksikon – Hakadal Verk",
+  "coordSourceId": "osm-way:249239760",
+  "coordSourceUrl": "https://www.openstreetmap.org/way/249239760",
+  "coordVerifiedAt": "2026-07-26",
+  "coordChangeReason": "Markøren flyttes om lag 194,8 meter fra et generisk punkt sørvest i grenda til centroiden i den navngitte industribygningen på det historiske verksområdet.",
+  "coordNote": "OpenStreetMap way 249239760 er en navngitt bygningsgeometri for Hakadal verk, merket historic=works og building=industrial, med bygningsnummer 151094600. Den deterministisk beregnede polygoncentroiden er 60.122400847631, 10.824335391711. Store norske leksikon dokumenterer jernverket fra omkring 1550 til nedleggelsen i 1869 og beskriver bevarte dammer, fosser, industribygninger, hovedbygning, arbeiderboliger, skole og husmannsplasser. Nittedal Historielag opplyser at nesten alle direkte spor etter selve jernproduksjonen er borte, bortsett fra hovedbygningen og den gamle jernbua. Det navngitte industribygget brukes derfor som et stabilt area_anchor for det sammenhengende jernverks-, vannkraft-, arbeider- og godsmiljøet; punktet hevdes ikke å være den eksakte masovns-, hammer- eller rennverkstomten fra 1500-tallet. Radius 360 meter beholdes for de nærmeste bygningene, vannsystemene og verkslandskapet, men er ikke en eiendoms- eller kulturminnepolygon.",
+  "anchors": [
+    {
+      "id": "hakadal_verk_named_industrial_building",
+      "name": "Hakadal verk – navngitt industribygning",
+      "lat": 60.122400847631,
+      "lon": 10.824335391711,
+      "r": 90,
+      "type": "area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:249239760;building-ref:151094600",
+      "note": "Navngitt historisk industribygg som fysisk anker for det bredere verksmiljøet; ikke en rekonstruksjon av den opprinnelige jernhytta eller masovnen."
+    }
+  ],
   "category": "naeringsliv",
   "fylke": "akershus",
   "kommune": "Nittedal",
@@ -16,15 +42,15 @@
     "nittedal",
     "bergverk"
   ],
-  "desc": "Tidligere jernverk i Hakadal, trolig blant landets eldste. Hakadal Verk viser hvordan malm, trekull, skog, privilegier og verksarbeid formet tidlig norsk industrihistorie.",
-  "popupDesc": "Hakadal Verk, også kjent som Hakedals Verk, var sannsynligvis et av Norges eldste jernverk. Driften startet omkring 1550 som et offentlig foretak på kongens befaling, med malm fra Grua på Hadeland og trekull fra store skogområder. På 1600- og 1700-tallet ble verket knyttet til privilegier, eiendommer og familier som drev stedet som et eget verksmiljø. I History Go bør stedet brukes til å vise forbindelsen mellom bergverk, jernproduksjon, skogbruk, statsmakt og lokalsamfunn.",
+  "desc": "Tidligere jernverk i Hakadal, trolig blant landets eldste. Hakadal Verk viser hvordan malm, trekull, skog, vannkraft, privilegier og verksarbeid formet tidlig norsk industrihistorie.",
+  "popupDesc": "Hakadal Verk, også kjent som Hakedals Verk, var et av de tidligste jernverksmiljøene i Norge. Driften tok til omkring 1550 med malm fra Grua og trekull fra store skogområder, og verket ble senere knyttet til kongelige privilegier, godseiendommer og familier som organiserte et helt lokalsamfunn rundt produksjonen. Jernverket ble nedlagt i 1869. Nesten alle direkte produksjonsspor er borte, men hovedbygningen, den gamle jernbua, dammer, fosser, arbeiderboliger, skole og husmannsplasser gjør landskapet fortsatt lesbart. Stedet bør derfor forstås som et sammenhengende verksmiljø der bergverk, vannkraft, skogbruk, statsmakt og hverdagsliv møttes – ikke bare som ett gammelt bygg eller et generisk stedsnavn.",
   "quiz_profile": {
     "place_type": "industrianlegg",
     "subtype": "tidlig_jernverk_og_verksmiljo",
     "signature_features": [
-      "jernverksdrift fra omkring 1550",
+      "jernverksdrift fra omkring 1550 til 1869",
       "malm fra Grua og trekull fra skogområdene",
-      "viser tidlig statlig og privat industribygging"
+      "bevarte bygninger, dammer og arbeiderlandskap etter at produksjonsanleggene forsvant"
     ],
     "primary_angles": [
       "historie",
@@ -43,13 +69,36 @@
       "bare_nittedal_lokalhistorie"
     ],
     "must_include": [
-      "oppstart omkring 1550",
-      "sammenhengen mellom jernverk, malm, skog og kongelige privilegier"
+      "oppstart omkring 1550 og nedleggelse i 1869",
+      "sammenhengen mellom jernverk, malm, skog, vannkraft og kongelige privilegier"
     ],
     "contrast_targets": [
       "baerums_verk_jernverk",
       "hadeland_glassverk"
     ],
-    "notes": "Skal spørres som tidlig jernverk, ikke bare som gammelt stedsnavn."
-  }
+    "notes": "Skal spørres som tidlig jernverk og sammenhengende verkslandskap. Den navngitte industribygningen er fysisk anker, ikke en påstand om eksakt masovnstomt."
+  },
+  "externalLinks": [
+    {
+      "type": "reference",
+      "label": "Store norske leksikon – Hakadal Verk",
+      "url": "https://snl.no/Hakadal_Verk",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "history",
+      "label": "Nittedal Historielag – Hakadal verk",
+      "url": "https://www.nittedal-historielag.no/hakadalverk/",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Hakadal verk",
+      "url": "https://www.openstreetmap.org/way/249239760",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    }
+  ]
 }

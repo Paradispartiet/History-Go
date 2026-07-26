@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "hakadal_verk",
+  "placeFile": "data/places/naeringsliv/akershus/hakadal_verk/hakadal_verk.json",
+  "evidenceStatus": "production_applied",
+  "coordinateDecision": "verified_named_industrial_building_anchor_for_historic_ironworks_environment",
+  "currentCoordinate": {
+    "lat": 60.122400847631,
+    "lon": 10.824335391711,
+    "r": 360,
+    "coordStatus": "verified_geometry",
+    "coordSource": "OpenStreetMap way 249239760 – Hakadal verk; Store norske leksikon – Hakadal Verk",
+    "coordType": "named_surviving_ironworks_building_area_anchor",
+    "coordRole": "area_anchor",
+    "sourceObjectId": "osm-way:249239760",
+    "coordNote": "OpenStreetMap way 249239760 er en navngitt bygningsgeometri for Hakadal verk, merket historic=works og building=industrial, med bygningsnummer 151094600. Den deterministisk beregnede polygoncentroiden er 60.122400847631, 10.824335391711. Store norske leksikon dokumenterer jernverket fra omkring 1550 til nedleggelsen i 1869 og beskriver bevarte dammer, fosser, industribygninger, hovedbygning, arbeiderboliger, skole og husmannsplasser. Nittedal Historielag opplyser at nesten alle direkte spor etter selve jernproduksjonen er borte, bortsett fra hovedbygningen og den gamle jernbua. Det navngitte industribygget brukes derfor som et stabilt area_anchor for det sammenhengende jernverks-, vannkraft-, arbeider- og godsmiljøet; punktet hevdes ikke å være den eksakte masovns-, hammer- eller rennverkstomten fra 1500-tallet. Radius 360 meter beholdes for de nærmeste bygningene, vannsystemene og verkslandskapet, men er ikke en eiendoms- eller kulturminnepolygon."
+  },
+  "previousCoordinate": {
+    "lat": 60.12083,
+    "lon": 10.82278,
+    "r": 360,
+    "coordStatus": null,
+    "coordSource": null,
+    "coordType": null,
+    "distanceToAppliedCoordinateM": 194.8,
+    "reasonReplaced": "Legacy-punktet lå sørvest for den navngitte verksgeometrien og manglet en kildekontrakt som knyttet det til et konkret historisk objekt eller den bevarte bygningskjernen."
+  },
+  "identity": {
+    "currentName": "Hakadal Verk",
+    "resolvedIdentity": "Det tidligere jernverket og det sammenhengende verks-, vannkraft-, arbeider-, skole- og godsmiljøet i Hakadal, fysisk forankret i den navngitte bevarte industribygningen",
+    "identityStatus": "resolved",
+    "identityProblem": "De opprinnelige produksjonsanleggene er i hovedsak forsvunnet. Det bevarte navngitte industribygget må derfor brukes som et fysisk områdeanker, ikke fremstilles som den eksakte masovnen, hammeren eller jernhytta fra 1500-tallet.",
+    "locatorTypeCandidate": "historic_site",
+    "requiresSplit": false,
+    "splitReason": "Jernverket, vannsystemene, hovedbygningen, jernbua, arbeiderboligene, skolen og husmannsplassene utgjør ett sammenhengende historisk verkslandskap."
+  },
+  "requiredEvidence": [
+    "autoritativ historisk identitet for Hakadal Verk",
+    "dokumentert driftstid og ressursgrunnlag",
+    "dokumentasjon av hva som er bevart etter produksjonsanleggene",
+    "navngitt fysisk geometri på verksområdet",
+    "reproduserbar beregning av geometriens centroid",
+    "eksplisitt skille mellom områdeankeret og en eksakt produksjonstomt"
+  ],
+  "evidence": [
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – Hakadal Verk",
+      "sourceUrl": "https://snl.no/Hakadal_Verk",
+      "sourceObjectId": "snl:hakadal-verk",
+      "sourceQuality": "authoritative_ironworks_and_surviving_environment_identity",
+      "finding": "SNL identifiserer Hakadal Verk som et tidligere jernverk etablert omkring 1550 og nedlagt i 1869. Kilden beskriver bevarte dammer, fosser og industribygninger, inkludert hovedbygning, arbeiderboliger, skole og husmannsplasser.",
+      "canVerifyCoordinate": true,
+      "reason": "Fastslår den historiske stedsidentiteten og at den bevarte bygnings- og vannkraftkjernen representerer det tidligere verket fysisk."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Nittedal Historielag – Hakadal verk",
+      "sourceUrl": "https://www.nittedal-historielag.no/hakadalverk/",
+      "sourceObjectId": "nittedal-historielag:hakadal-verk",
+      "sourceQuality": "detailed_local_ironworks_and_survival_history",
+      "finding": "Historielaget dokumenterer oppstart omkring 1550, malm fra Grua, kongelige privilegier, eierskap og nedleggelse i 1869. Det opplyses at nesten alle spor etter selve jernverket er borte, bortsett fra hovedbygningen og den gamle jernbua, og beskriver også skole, teglhytte, sagbruk og fløting.",
+      "canVerifyCoordinate": true,
+      "reason": "Begrunner hvorfor et bevart navngitt bygg kan brukes som områdeanker, samtidig som eksakt masovns- eller smeltehyttelokalisering ikke påstås."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "OpenStreetMap way 249239760 – Hakadal verk",
+      "sourceUrl": "https://www.openstreetmap.org/way/249239760",
+      "sourceObjectId": "osm-way:249239760;building-ref:151094600",
+      "sourceQuality": "named_historic_industrial_building_geometry",
+      "finding": "Way 249239760 er navngitt Hakadal verk og tagget historic=works og building=industrial, med ref:bygningsnr=151094600. Den består av ni geometri-noder og har beregnet polygoncentroid 60.122400847631, 10.824335391711.",
+      "canVerifyCoordinate": true,
+      "reason": "Gir et stabilt navngitt fysisk objekt og en reproduserbar geometri for områdeankeret."
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceName": "Nominatim lookup – OpenStreetMap way 249239760",
+      "sourceUrl": "https://nominatim.openstreetmap.org/lookup?osm_ids=W249239760&format=jsonv2",
+      "sourceObjectId": "nominatim:osm-way-249239760",
+      "sourceQuality": "independent_osm_object_identity_cross_check",
+      "finding": "Nominatim returnerer way 249239760 som Hakadal verk, type works og kategori historic, med adressekontekst Sagstuveien, Hakadals verk, Løvstad, Nittedal, Akershus 1488 og representasjonspunkt 60.1224095, 10.8243370.",
+      "canVerifyCoordinate": false,
+      "reason": "Kryssjekker objektnavn, type og lokal kontekst; canonical bruker den reproduserbare polygoncentroiden fra rågeometrien."
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceName": "Store norske leksikon – rennverk",
+      "sourceUrl": "https://snl.no/rennverk",
+      "sourceObjectId": "snl:rennverk-hakadal",
+      "sourceQuality": "authoritative_early_ironmaking_context",
+      "finding": "SNL beskriver et tidlig rennverk i Hakadal i 1541–1545 og senere forsøk, før jernverk ble grunnlagt på samme sted. Dette viser at den lange produksjonshistorien har flere faser og at ett moderne punkt ikke bør framstilles som alle historiske anlegg samtidig.",
+      "canVerifyCoordinate": false,
+      "reason": "Underbygger representasjonsbegrensningen og den forsiktige områdeankermodellen."
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceName": "Legacy Hakadal Verk point",
+      "sourceUrl": "",
+      "sourceObjectId": "legacy:hakadal_verk",
+      "sourceQuality": "unresolved_southwestern_settlement_point",
+      "finding": "Forrige koordinat 60.12083, 10.82278 ligger omtrent 194,8 meter sørvest for centroiden i den navngitte verksbygningen og hadde ingen kildekontrakt.",
+      "canVerifyCoordinate": false,
+      "reason": "Avvist fordi punktet ikke kan knyttes til et konkret bevart verksobjekt eller en dokumentert historisk ankerrolle."
+    }
+  ],
+  "addressCandidates": [],
+  "sourceObjectCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:249239760;building-ref:151094600",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "manual_research",
+      "sourceObjectId": "snl:hakadal-verk",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hakadal_verk",
+      "canApplyToPlace": false
+    }
+  ],
+  "geometryCandidates": [
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:249239760",
+      "geometryType": "Polygon",
+      "geometryRole": "named_surviving_industrial_building_area_anchor",
+      "canApplyToPlace": true,
+      "applied": true
+    }
+  ],
+  "anchors": [
+    {
+      "id": "hakadal_verk_named_industrial_building",
+      "name": "Hakadal verk – named industrial building",
+      "lat": 60.122400847631,
+      "lon": 10.824335391711,
+      "r": 90,
+      "type": "area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:249239760;building-ref:151094600",
+      "canApplyToPlace": true
+    }
+  ],
+  "coordinateCandidates": [
+    {
+      "sourceProvider": "legacy_dataset",
+      "sourceObjectId": "legacy:hakadal_verk",
+      "lat": 60.12083,
+      "lon": 10.82278,
+      "coordRole": "unresolved_southwestern_settlement_point",
+      "distanceFromAppliedM": 194.8,
+      "canApplyToPlace": false
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:249239760;building-ref:151094600",
+      "lat": 60.122400847631,
+      "lon": 10.824335391711,
+      "coordRole": "area_anchor",
+      "distanceFromPreviousM": 194.8,
+      "canApplyToPlace": true,
+      "applied": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "nominatim:osm-way-249239760",
+      "lat": 60.1224095,
+      "lon": 10.824337,
+      "coordRole": "named_object_point_cross_check",
+      "distanceFromAppliedM": 1.0,
+      "canApplyToPlace": false
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "reports/akershus-coordinate-hakadal-verk-source-probe/osm-way-249239760-full.xml",
+      "description": "Raw OpenStreetMap full geometry for way 249239760."
+    },
+    {
+      "path": "reports/akershus-coordinate-hakadal-verk-source-probe/nominatim-way-249239760.json",
+      "description": "Raw Nominatim lookup result for way 249239760."
+    },
+    {
+      "path": "reports/akershus-coordinate-hakadal-verk-source-probe/source-summary.txt",
+      "description": "Deterministic geometry, centroid, distance, tags and object-identity summary."
+    }
+  ],
+  "decision": {
+    "canBecomeVerified": true,
+    "blockedReason": "",
+    "nextAction": "Applied the named surviving industrial-building geometry as the physical anchor for the historically documented Hakadal ironworks environment. Continue with Nesodden Church, the next Akershus batch-4 record."
+  },
+  "notes": [
+    "The named industrial building is a physical same-site anchor and is not misrepresented as the exact sixteenth-century rennverk, furnace or hammer location.",
+    "The canonical record represents the wider ironworks, waterpower, worker, school and estate environment rather than one isolated building.",
+    "The 360-metre radius covers the nearest buildings, dams, falls and historic works landscape at gameplay scale.",
+    "The radius is not an exact property, industrial-production or cultural-heritage polygon.",
+    "The coordinate correction is approximately 194.8 metres."
+  ]
+}
