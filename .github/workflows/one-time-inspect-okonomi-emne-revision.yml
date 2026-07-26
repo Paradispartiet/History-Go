@@ -33,6 +33,16 @@ jobs:
           set -uo pipefail
           mkdir -p .tmp/okonomi-revision
           sed -i '/quality\["canonical_files"\]\["datasets"\]/d' .tmp/okonomi-revision/repair_and_run.py
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('.tmp/okonomi-revision/repair_and_run.py')
+          text = path.read_text(encoding='utf-8')
+          old = 'theories=["historisk_institusjonalisme_og_stiavhengighet","rettferdig_omstilling","entreprenorskap_og_kreativ_destruksjon"]'
+          new = 'theories=["historisk_institusjonalisme_og_stiavhengighet","institusjonelle_regler_og_insentiver","rettferdig_omstilling","entreprenorskap_og_kreativ_destruksjon"]'
+          if old not in text:
+              raise SystemExit('Explicit institutional-theory patch anchor missing')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
           python .tmp/okonomi-revision/repair_and_run.py > .tmp/okonomi-revision/revision.log 2>&1
           revision_status=$?
           framework_status=99
