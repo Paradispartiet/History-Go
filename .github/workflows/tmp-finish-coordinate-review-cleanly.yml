@@ -16,8 +16,17 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: Add evidence audit to tools check
+      - name: Validate targeted coordinate gates
         run: |
+          npm ci --ignore-scripts
+          npm run test:coordinate-source-contract
+          npm run places:coords:evidence:audit
+
+      - name: Apply final deterministic patch
+        run: |
+          # Discard reports or generated files touched by the validation commands.
+          git reset --hard HEAD
+
           python - <<'PY'
           from pathlib import Path
           import json
@@ -35,17 +44,14 @@ jobs:
           path.write_text(text.replace(old, new, 1), encoding="utf-8")
           PY
 
-      - name: Validate targeted coordinate gates
-        run: |
-          npm ci --ignore-scripts
-          npm run test:coordinate-source-contract
-          npm run places:coords:evidence:audit
-
-      - name: Remove temporary runners and commit
-        run: |
           git rm .github/workflows/temporary-coordinate-documentation-repair-runner.yml
           git rm .github/workflows/tmp-finish-coordinate-review-cleanly.yml
-          test "$(git diff --name-only HEAD | sort | tr '\n' ' ')" = ".github/workflows/temporary-coordinate-documentation-repair-runner.yml .github/workflows/tmp-finish-coordinate-review-cleanly.yml package.json "
+
+          actual="$(git diff --name-only HEAD | sort | tr '\n' ' ')"
+          expected=".github/workflows/temporary-coordinate-documentation-repair-runner.yml .github/workflows/tmp-finish-coordinate-review-cleanly.yml package.json "
+          printf 'Final changed files: %s\n' "$actual"
+          test "$actual" = "$expected"
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add package.json
