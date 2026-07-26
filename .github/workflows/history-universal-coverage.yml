@@ -80,13 +80,13 @@ jobs:
 
   merge-current-main:
     name: Constrained main merge for History profile foundation
-    if: github.event_name == 'pull_request' && github.head_ref == 'agent/history-profile-evidence-foundation-v1-merged' && github.actor != 'github-actions[bot]'
+    if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'agent/history-profile-evidence-foundation-v1-merge') && github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Check out feature branch
         uses: actions/checkout@v4
         with:
-          ref: agent/history-profile-evidence-foundation-v1-merged
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
 
       - name: Set up Node
@@ -186,7 +186,7 @@ jobs:
 
           git add -A
           git commit -m 'Flett fersk main inn i Historie profilgrunnlag'
-          git push origin HEAD:agent/history-profile-evidence-foundation-v1-merged 2>&1 \
+          git push origin "HEAD:${{ github.head_ref }}" 2>&1 \
             | tee /tmp/history-profile-evidence-main-merge-publish.log
 
       - name: Upload merge diagnostics
