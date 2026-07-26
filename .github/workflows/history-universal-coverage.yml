@@ -4,9 +4,14 @@ on:
   pull_request:
     paths:
       - 'data/fag/historie/**'
+      - 'data/fag/profiles/**'
       - 'tools/audit-historie-universal-coverage.mjs'
+      - 'tools/audit-historie-geographic-profile.mjs'
+      - 'tools/validate-historie-profile-evidence.mjs'
       - 'reports/historie-universal-coverage/**'
+      - 'reports/historie-geographic-profiles/**'
       - 'docs/HISTORY_UNIVERSAL_COVERAGE.md'
+      - 'docs/HISTORY_PROFILE_EVIDENCE_ARCHITECTURE.md'
       - 'docs/HISTORY_V5_5_FREEZE.md'
       - '.github/workflows/history-universal-coverage.yml'
   push:
@@ -14,9 +19,14 @@ on:
       - main
     paths:
       - 'data/fag/historie/**'
+      - 'data/fag/profiles/**'
       - 'tools/audit-historie-universal-coverage.mjs'
+      - 'tools/audit-historie-geographic-profile.mjs'
+      - 'tools/validate-historie-profile-evidence.mjs'
       - 'reports/historie-universal-coverage/**'
+      - 'reports/historie-geographic-profiles/**'
       - 'docs/HISTORY_UNIVERSAL_COVERAGE.md'
+      - 'docs/HISTORY_PROFILE_EVIDENCE_ARCHITECTURE.md'
       - 'docs/HISTORY_V5_5_FREEZE.md'
       - '.github/workflows/history-universal-coverage.yml'
   workflow_dispatch:
@@ -35,7 +45,14 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
+
+      - name: Validate separate profile and evidence layer
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/validate-historie-profile-evidence.mjs
+          node tools/audit-historie-geographic-profile.mjs --check
 
       - name: Materialize universal coverage audit
         run: node tools/audit-historie-universal-coverage.mjs
@@ -57,4 +74,6 @@ jobs:
           path: |
             reports/historie-universal-coverage/historie-universal-coverage.json
             reports/historie-universal-coverage/historie-universal-coverage.md
+            reports/historie-geographic-profiles/oslo-akershus-profile.json
+            reports/historie-geographic-profiles/oslo-akershus-profile.md
           if-no-files-found: error
