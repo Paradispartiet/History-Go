@@ -1,0 +1,130 @@
+name: One-time Oslo popup batch 12 writer
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/oslo-popup-batch-12-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Batch 12 branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-popup-v4-batch-12-by-ten
+          fetch-depth: 0
+
+      - name: Apply isolated desc and popupDesc patches
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs');
+          const paths = {
+            akrobaten_gangbro: 'data/places/by/oslo/places/akrobaten_gangbro.json',
+            fagerborg_kirke: 'data/places/by/oslo/places/fagerborg_kirke.json',
+            frogner_kirke: 'data/places/by/oslo/places/frogner_kirke.json',
+            holmenkollen_kapell: 'data/places/by/oslo/places/holmenkollen_kapell.json',
+            kampen_okologiske_barnebondegard: 'data/places/by/oslo/places/kampen_okologiske_barnebondegard.json',
+            lindoya: 'data/places/by/oslo/places/lindoya.json',
+            losaeter: 'data/places/by/oslo/places/losaeter.json',
+            nakholmen: 'data/places/by/oslo/places/nakholmen.json',
+            ormoya: 'data/places/by/oslo/places/ormoya.json',
+            sukkerbiten_badstulandsby: 'data/places/by/oslo/places/sukkerbiten_badstulandsby.json'
+          };
+          const names = {
+            akrobaten_gangbro: 'Akrobaten gangbro',
+            fagerborg_kirke: 'Fagerborg kirke',
+            frogner_kirke: 'Frogner kirke',
+            holmenkollen_kapell: 'Holmenkollen kapell',
+            kampen_okologiske_barnebondegard: 'Kampen Økologiske Barnebondegård',
+            lindoya: 'Lindøya',
+            losaeter: 'Losæter',
+            nakholmen: 'Nakholmen',
+            ormoya: 'Ormøya',
+            sukkerbiten_badstulandsby: 'Sukkerbiten badstulandsby'
+          };
+          const patches = [
+            ...JSON.parse(fs.readFileSync('reports/oslo-popup-batch-12-part1.json', 'utf8')).places,
+            ...JSON.parse(fs.readFileSync('reports/oslo-popup-batch-12-part2.json', 'utf8')).places
+          ];
+          if (patches.length !== 10) throw new Error(`Expected 10 patches, got ${patches.length}`);
+          const wordCount = (value) => String(value).trim().split(/\s+/u).filter(Boolean).length;
+          const paragraphCount = (value) => String(value).split(/\n\n+/u).filter((part) => part.trim()).length;
+          const rows = [];
+          for (const [index, patch] of patches.entries()) {
+            const file = paths[patch.id];
+            if (!file) throw new Error(`Unknown place id ${patch.id}`);
+            const before = JSON.parse(fs.readFileSync(file, 'utf8'));
+            if (before.id !== patch.id) throw new Error(`ID mismatch in ${file}`);
+            const beforeComparable = structuredClone(before);
+            delete beforeComparable.desc;
+            delete beforeComparable.popupDesc;
+            const after = structuredClone(before);
+            after.desc = patch.desc;
+            after.popupDesc = patch.popupDesc;
+            const afterComparable = structuredClone(after);
+            delete afterComparable.desc;
+            delete afterComparable.popupDesc;
+            if (JSON.stringify(beforeComparable) !== JSON.stringify(afterComparable)) throw new Error(`Non-text fields changed for ${patch.id}`);
+            const descWords = wordCount(after.desc);
+            const popupWords = wordCount(after.popupDesc);
+            const paragraphs = paragraphCount(after.popupDesc);
+            if (descWords < 40 || descWords > 80) throw new Error(`${patch.id} desc words ${descWords}`);
+            if (popupWords < 300 || popupWords > 600) throw new Error(`${patch.id} popup words ${popupWords}`);
+            if (paragraphs !== 6) throw new Error(`${patch.id} paragraphs ${paragraphs}`);
+            fs.writeFileSync(file, `${JSON.stringify(after, null, 2)}\n`);
+            rows.push(`| ${101 + index} | ${names[patch.id]} | \`${patch.id}\` | ${descWords} | ${popupWords} | ${paragraphs} | #${process.env.PR_NUMBER} |`);
+          }
+
+          const protocolPath = 'reports/place-description-revision-protocol.md';
+          let protocol = fs.readFileSync(protocolPath, 'utf8');
+          if (!protocol.includes('| 101 | Akrobaten gangbro |')) {
+            protocol = protocol.replace('\n## Gjenstående Oslo-kø', `\n${rows.join('\n')}\n\n## Gjenstående Oslo-kø`);
+          }
+          const batchRow = `| Oslo V4 batch 12 | 10 | #${process.env.PR_NUMBER} – andre produksjonsbatch fra full 512-steders scope |`;
+          if (!protocol.includes('| Oslo V4 batch 12 |')) {
+            protocol = protocol.replace(/(\| Oslo V4 batch 11 \|[^\n]+\|)/u, `$1\n${batchRow}`);
+          }
+          fs.writeFileSync(protocolPath, protocol);
+          NODE
+
+          node tools/audit-oslo-place-description-scope.mjs --write
+
+          node <<'NODE'
+          const fs = require('fs');
+          const audit = JSON.parse(fs.readFileSync('reports/oslo-place-description-scope-audit-2026-07-26.json', 'utf8'));
+          if (audit.activeOslo.uniqueIds !== 512) throw new Error(`Active Oslo total ${audit.activeOslo.uniqueIds}`);
+          if (audit.protocol.ids !== 110) throw new Error(`Protocol IDs ${audit.protocol.ids}`);
+          if (audit.comparison.additionalActiveOsloIds !== 402) throw new Error(`Remaining ${audit.comparison.additionalActiveOsloIds}`);
+          if (audit.groupCounts.by !== 8) throw new Error(`By remaining ${audit.groupCounts.by}`);
+          NODE
+
+          git diff --check
+          git add \
+            data/places/by/oslo/places/akrobaten_gangbro.json \
+            data/places/by/oslo/places/fagerborg_kirke.json \
+            data/places/by/oslo/places/frogner_kirke.json \
+            data/places/by/oslo/places/holmenkollen_kapell.json \
+            data/places/by/oslo/places/kampen_okologiske_barnebondegard.json \
+            data/places/by/oslo/places/lindoya.json \
+            data/places/by/oslo/places/losaeter.json \
+            data/places/by/oslo/places/nakholmen.json \
+            data/places/by/oslo/places/ormoya.json \
+            data/places/by/oslo/places/sukkerbiten_badstulandsby.json \
+            reports/oslo-place-description-scope-audit-2026-07-26.json \
+            reports/oslo-place-description-scope-audit-2026-07-26.md \
+            reports/place-description-revision-protocol.md
+          test "$(git diff --cached --name-only | wc -l)" -eq 13
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Revise ten additional Oslo place descriptions"
+          git push origin HEAD:agent/oslo-popup-v4-batch-12-by-ten
