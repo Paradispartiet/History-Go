@@ -25,7 +25,7 @@ jobs:
           ref: agent/okonomi-naeringsliv-emne-revision-stage
           fetch-depth: 0
 
-      - name: Decode and inspect package
+      - name: Recover revision script
         shell: bash
         run: |
           set +e
@@ -34,38 +34,51 @@ jobs:
           cat .tmp/okonomi-revision/part-[0-9][0-9] > /tmp/okonomi-revision.b64
           base64 --decode /tmp/okonomi-revision.b64 > /tmp/okonomi-revision.tgz 2> .tmp/okonomi-revision/base64-error.txt
           base64_status=$?
-          sha256sum /tmp/okonomi-revision.b64 /tmp/okonomi-revision.tgz > .tmp/okonomi-revision/checksums.txt
-          wc -c .tmp/okonomi-revision/part-[0-9][0-9] /tmp/okonomi-revision.b64 /tmp/okonomi-revision.tgz > .tmp/okonomi-revision/sizes.txt
-          tar -tzf /tmp/okonomi-revision.tgz > .tmp/okonomi-revision/archive-manifest.txt 2> .tmp/okonomi-revision/tar-list-error.txt
-          tar_list_status=$?
           tar -xzf /tmp/okonomi-revision.tgz -C /tmp/okonomi-revision 2> .tmp/okonomi-revision/tar-extract-error.txt
           extract_status=$?
-          find /tmp/okonomi-revision -type f -printf '%P\n' | sort > .tmp/okonomi-revision/extracted-files.txt
+          recover_status=1
+          compile_status=99
+          if [ -f /tmp/okonomi-revision/revise_okonomi.py ]; then
+            cp /tmp/okonomi-revision/revise_okonomi.py .tmp/okonomi-revision/revise_okonomi.py
+            recover_status=0
+            python -m py_compile .tmp/okonomi-revision/revise_okonomi.py 2> .tmp/okonomi-revision/python-compile-error.txt
+            compile_status=$?
+          else
+            : > .tmp/okonomi-revision/python-compile-error.txt
+          fi
+          sha256sum /tmp/okonomi-revision.b64 /tmp/okonomi-revision.tgz > .tmp/okonomi-revision/checksums.txt
+          if [ -f .tmp/okonomi-revision/revise_okonomi.py ]; then
+            sha256sum .tmp/okonomi-revision/revise_okonomi.py >> .tmp/okonomi-revision/checksums.txt
+            wc -c .tmp/okonomi-revision/revise_okonomi.py > .tmp/okonomi-revision/recovered-size.txt
+            tail -n 30 .tmp/okonomi-revision/revise_okonomi.py > .tmp/okonomi-revision/recovered-tail.txt
+          else
+            : > .tmp/okonomi-revision/recovered-size.txt
+            : > .tmp/okonomi-revision/recovered-tail.txt
+          fi
           {
             echo "base64_status=$base64_status"
-            echo "tar_list_status=$tar_list_status"
             echo "extract_status=$extract_status"
-            echo "part_count=$(find .tmp/okonomi-revision -maxdepth 1 -type f -name 'part-[0-9][0-9]' | wc -l)"
+            echo "recover_status=$recover_status"
+            echo "compile_status=$compile_status"
           } > .tmp/okonomi-revision/diagnostics.txt
           cat .tmp/okonomi-revision/diagnostics.txt
-          cat .tmp/okonomi-revision/base64-error.txt
-          cat .tmp/okonomi-revision/tar-list-error.txt
-          cat .tmp/okonomi-revision/tar-extract-error.txt
+          cat .tmp/okonomi-revision/python-compile-error.txt
           exit 0
 
-      - name: Commit inspection result
+      - name: Commit recovered script
         shell: bash
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add .tmp/okonomi-revision/checksums.txt \
-            .tmp/okonomi-revision/sizes.txt \
-            .tmp/okonomi-revision/diagnostics.txt \
-            .tmp/okonomi-revision/base64-error.txt \
-            .tmp/okonomi-revision/tar-list-error.txt \
+          git add .tmp/okonomi-revision/diagnostics.txt \
+            .tmp/okonomi-revision/checksums.txt \
             .tmp/okonomi-revision/tar-extract-error.txt \
-            .tmp/okonomi-revision/archive-manifest.txt \
-            .tmp/okonomi-revision/extracted-files.txt
-          git commit -m 'TEMP: diagnostiser økonomiemnerevisjonspakke'
+            .tmp/okonomi-revision/python-compile-error.txt \
+            .tmp/okonomi-revision/recovered-size.txt \
+            .tmp/okonomi-revision/recovered-tail.txt
+          if [ -f .tmp/okonomi-revision/revise_okonomi.py ]; then
+            git add .tmp/okonomi-revision/revise_okonomi.py
+          fi
+          git commit -m 'TEMP: gjenopprett økonomiemnerevisjonsskript'
           git push origin HEAD:agent/okonomi-naeringsliv-emne-revision-stage
