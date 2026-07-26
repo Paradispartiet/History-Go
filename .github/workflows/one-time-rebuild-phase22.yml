@@ -1,15 +1,18 @@
 name: One-time rebuild documentation phase 22
 
 on:
-  issue_comment:
-    types: [created]
+  pull_request_target:
+    branches:
+      - main
+    paths:
+      - .github/rebuild-phase22-trigger.txt
 
 permissions:
   contents: write
 
 jobs:
   rebuild:
-    if: github.event.issue.pull_request && github.event.issue.number == 4065 && github.event.comment.body == '/rebuild-phase22'
+    if: github.event.pull_request.head.ref == 'agent/documentation-governance-phase-22-people-of-places' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - name: Check out latest main
@@ -68,15 +71,6 @@ jobs:
 
           readme_path = Path("docs/README.md")
           readme = readme_path.read_text(encoding="utf-8")
-          old = '''### People-bilder og rettigheter
-
-1. [`PEOPLE_IMAGES.md`](./PEOPLE_IMAGES.md) — canonical kilde-, lisens-, godkjennings- og attribusjonskontrakt
-2. [`../tools/people-image-pipeline.mts`](../tools/people-image-pipeline.mts) — implementert kandidat-, review-, apply- og audit-pipeline
-3. [`../tests/people-images.test.mjs`](../tests/people-images.test.mjs) — lisens-, identitets-, quality-, apply- og attribusjonsregresjoner
-4. [`../data/people/manifest.json`](../data/people/manifest.json) — aktive canonical people-source-filer
-
-People-bilder skal komme fra Wikidata/Wikimedia Commons gjennom lisensporten. Runtime leser lokale bildepaths og `imageMeta` fra canonical manifest-loadede people-filer; kandidat- og attribusjonsfilene er arbeids- og sporbarhetsdata, ikke en parallell people-sannhet.
-'''
           replacement = '''### People-produksjon, stedskobling og bilder
 
 1. [`people-of-places-method.md`](./people-of-places-method.md) — canonical relevans-, kilde-, gjenbruks- og batchmetode for person–sted-koblinger
@@ -89,17 +83,16 @@ People-bilder skal komme fra Wikidata/Wikimedia Commons gjennom lisensporten. Ru
 
 People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens CI blokkerer dupliserte people-ID-er, ugyldige place-referanser, manglende gyldige primærankere og tomme `places`, men beregner ikke full place-for-place-dekning og avgjør ikke historisk relevans. Dekningsmål og relevans må derfor dokumenteres i batchen. Runtime leser bare manifest-loadede canonical people-filer. Kandidat-, attribusjons- og statusrapporter er arbeids- og sporbarhetsdata, ikke parallelle people-sannheter.
 '''
-          existing_start = readme.find("### People-produksjon, stedskobling og bilder\n")
-          next_heading = "\n### Koordinater og geografisk evidens\n"
-          if old in readme:
-              readme = readme.replace(old, replacement, 1)
-          elif existing_start >= 0:
-              existing_end = readme.find(next_heading, existing_start)
-              if existing_end < 0:
-                  raise SystemExit("Fant ikke slutten på People-seksjonen")
-              readme = readme[:existing_start] + replacement.rstrip("\n") + readme[existing_end:]
-          else:
+          old_start = readme.find("### People-bilder og rettigheter\n")
+          current_start = readme.find("### People-produksjon, stedskobling og bilder\n")
+          start = old_start if old_start >= 0 else current_start
+          if start < 0:
               raise SystemExit("Fant ikke People-seksjonen")
+          end_marker = "\n### Koordinater og geografisk evidens\n"
+          end = readme.find(end_marker, start)
+          if end < 0:
+              raise SystemExit("Fant ikke slutten på People-seksjonen")
+          readme = readme[:start] + replacement.rstrip("\n") + readme[end:]
 
           completed = "- `people-of-places-method.md` synkronisert med manifest/audit/gate og registrert som canonical redaksjonell metode"
           if completed not in readme:
@@ -110,10 +103,9 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           readme_path.write_text(readme, encoding="utf-8")
           PY
 
-      - name: Remove temporary target files
+      - name: Remove temporary workflow files
         shell: bash
         run: |
-          rm -f .github/people-of-places-governance-trigger.txt
           rm -f .github/workflows/one-time-register-people-of-places-governance.yml
           rm -f .github/workflows/one-time-rebuild-phase22.yml
 
@@ -146,6 +138,10 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           assert method["status"] == "canonical"
           assert method["owns"] == ["people_of_places_method"]
 
+          readme = Path("docs/README.md").read_text(encoding="utf-8")
+          assert "full place-for-place-dekning" in readme
+          assert "avgjør ikke historisk relevans" in readme
+
           inventory = json.loads(Path("reports/documentation-governance/inventory.json").read_text(encoding="utf-8"))
           assert "docs/people-of-places-method.md" not in inventory["unregistered_governance_candidates"]
 
@@ -165,22 +161,4 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
         run: |
           git add -A
           git commit -m "Registrer canonical People of Places-governance"
-          git push --force-with-lease origin HEAD:agent/documentation-governance-phase-22-people-of-places
-
-      - name: Remove rebuild runner from main
-        if: always()
-        shell: bash
-        run: |
-          git fetch origin main
-          git switch -C main origin/main
-          if [ -f .github/workflows/one-time-rebuild-phase22.yml ]; then
-            git rm .github/workflows/one-time-rebuild-phase22.yml
-            git commit -m "Fjern rebuild-runner for dokumentasjonsfase 22"
-            for attempt in 1 2 3 4 5; do
-              if git push origin HEAD:main; then
-                exit 0
-              fi
-              git pull --rebase origin main
-            done
-            exit 1
-          fi
+          git push --force origin HEAD:agent/documentation-governance-phase-22-people-of-places
