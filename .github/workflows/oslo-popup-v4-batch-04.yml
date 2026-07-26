@@ -1,0 +1,53 @@
+name: Apply Oslo popupDesc V4 batch 04
+
+on:
+  push:
+    branches:
+      - agent/oslo-popup-v4-batch-04-ten-protocol
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/oslo-popup-v4-batch-04-ten-protocol
+          fetch-depth: 0
+
+      - name: Apply ten description revisions and protocol
+        shell: bash
+        run: |
+          cat .tmp/oslo-popup-v4-batch-04/payload-*.txt | base64 -d | gunzip > /tmp/apply-oslo.js
+          node /tmp/apply-oslo.js
+
+      - name: Verify scope and remove temporary files
+        shell: bash
+        run: |
+          rm -rf .tmp/oslo-popup-v4-batch-04
+          rm .github/workflows/oslo-popup-v4-batch-04.yml
+          node -e "for (const f of process.argv.slice(1)) JSON.parse(require('fs').readFileSync(f, 'utf8'))" \
+            data/places/by/oslo/places/kampen_kirke.json \
+            data/places/by/oslo/places/ullevål_hageby.json \
+            data/places/by/oslo/places/romsaås.json \
+            data/places/by/oslo/places/grunerlokka_helgesens_tm.json \
+            data/places/by/oslo/places/spikersuppa.json \
+            data/places/by/oslo/places/bankplassen.json \
+            data/places/by/oslo/places/christiania_torv.json \
+            data/places/by/oslo/places/botsparken.json \
+            data/places/by/oslo/places/slottsparken.json \
+            data/places/by/oslo/places/tjuvholmen.json
+          git diff --check
+          git status --short
+
+      - name: Commit production files
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Revider fjerde gruppe på ti Oslo-steder"
+          git push origin HEAD:agent/oslo-popup-v4-batch-04-ten-protocol
