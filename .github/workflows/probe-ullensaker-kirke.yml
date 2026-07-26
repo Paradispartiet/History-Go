@@ -1,0 +1,125 @@
+name: Probe Ullensaker Church source objects
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    if: github.head_ref == 'agent/akershus-ullensaker-kirke-production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Fetch church geometry, address and historic site objects
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='reports/akershus-coordinate-ullensaker-kirke-source-probe'
+          mkdir -p "$out"
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            -A 'History-Go coordinate verification/1.0' \
+            'https://api.openstreetmap.org/api/0.6/way/259926133/full' \
+            | tee "$out/osm-way-259926133-full.xml" >/dev/null
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            -A 'History-Go coordinate verification/1.0' \
+            'https://nominatim.openstreetmap.org/lookup?osm_ids=W259926133&format=jsonv2&addressdetails=1&extratags=1&namedetails=1&polygon_geojson=1' \
+            | tee "$out/nominatim-ullensaker-kirke.json" >/dev/null
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --get 'https://ws.geonorge.no/adresser/v1/sok' \
+            --data-urlencode 'sok=Kjerkevegen 25 Ullensaker' \
+            --data-urlencode 'kommunenummer=3209' \
+            --data-urlencode 'treffPerSide=30' \
+            | tee "$out/geonorge-kjerkevegen-25.json" >/dev/null
+
+          curl --fail --location --retry 4 --retry-delay 3 \
+            -A 'History-Go coordinate verification/1.0' \
+            'https://api.openstreetmap.org/api/0.6/map?bbox=11.1600,60.0810,11.1695,60.0875' \
+            | tee "$out/osm-ullensaker-church-site-bbox.xml" >/dev/null
+
+          python - <<'PY' | tee "$out/source-summary.txt"
+          import json
+          import math
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          out=Path('reports/akershus-coordinate-ullensaker-kirke-source-probe')
+          legacy=(60.0798,11.1406)
+
+          def hav(a,b):
+              R=6371000.0; p1,p2=map(math.radians,(a[0],b[0])); dp=math.radians(b[0]-a[0]); dl=math.radians(b[1]-a[1]); h=math.sin(dp/2)**2+math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2; return 2*R*math.asin(math.sqrt(h))
+
+          root=ET.parse(out/'osm-way-259926133-full.xml').getroot()
+          nodes={n.attrib['id']:(float(n.attrib['lat']),float(n.attrib['lon'])) for n in root.findall('node')}
+          way=next(w for w in root.findall('way') if w.attrib['id']=='259926133')
+          pts=[nodes[nd.attrib['ref']] for nd in way.findall('nd') if nd.attrib['ref'] in nodes]
+          tags={t.attrib['k']:t.attrib['v'] for t in way.findall('tag')}
+          ring=[(lon,lat) for lat,lon in pts]
+          if ring[0]!=ring[-1]: ring.append(ring[0])
+          area2=cx=cy=0.0
+          for (x1,y1),(x2,y2) in zip(ring,ring[1:]):
+              cross=x1*y2-x2*y1; area2+=cross; cx+=(x1+x2)*cross; cy+=(y1+y2)*cross
+          if abs(area2)<1e-15:
+              lat=sum(p[0] for p in pts)/len(pts); lon=sum(p[1] for p in pts)/len(pts)
+          else:
+              lon=cx/(3*area2); lat=cy/(3*area2)
+          church=(lat,lon)
+          print(f'church_centroid_lat={lat:.12f}')
+          print(f'church_centroid_lon={lon:.12f}')
+          print(f'node_count={len(pts)}')
+          print(f'distance_from_legacy_m={hav(legacy,church):.1f}')
+          print('tags='+json.dumps(tags,ensure_ascii=False,sort_keys=True))
+
+          nom=json.loads((out/'nominatim-ullensaker-kirke.json').read_text())
+          print('nominatim='+json.dumps(nom,ensure_ascii=False,sort_keys=True))
+
+          geo=json.loads((out/'geonorge-kjerkevegen-25.json').read_text())
+          addresses=geo.get('adresser',[]) if isinstance(geo,dict) else []
+          exact=[a for a in addresses if str(a.get('adressetekst','')).lower()=='kjerkevegen 25']
+          print(f'address_total={len(addresses)} exact={len(exact)}')
+          for a in exact:
+              p=a.get('representasjonspunkt') or {}; point=(float(p['lat']),float(p['lon']))
+              print('ADDRESS '+json.dumps(a,ensure_ascii=False,sort_keys=True))
+              print(f'address_distance_to_church_m={hav(point,church):.1f} address_distance_from_legacy_m={hav(legacy,point):.1f}')
+
+          site=ET.parse(out/'osm-ullensaker-church-site-bbox.xml').getroot()
+          site_nodes={n.attrib['id']:(float(n.attrib['lat']),float(n.attrib['lon'])) for n in site.findall('node')}
+          rows=[]
+          for elem in list(site):
+              etags={t.attrib['k']:t.attrib['v'] for t in elem.findall('tag')}
+              hay=' '.join(str(v) for v in etags.values()).lower()
+              relevant=any(k in hay for k in ('ullensaker','ullin','kirke','church','kirkested','jordfall','tangen','cemetery','grave','memorial')) or etags.get('historic') or etags.get('landuse')=='cemetery'
+              if not relevant: continue
+              row={'type':elem.tag,'id':elem.attrib.get('id'),'tags':etags}
+              if elem.tag=='node': row['lat']=float(elem.attrib['lat']); row['lon']=float(elem.attrib['lon'])
+              elif elem.tag=='way':
+                  wpts=[site_nodes[nd.attrib['ref']] for nd in elem.findall('nd') if nd.attrib['ref'] in site_nodes]
+                  if wpts: row['lat']=sum(p[0] for p in wpts)/len(wpts); row['lon']=sum(p[1] for p in wpts)/len(wpts)
+              if 'lat' in row:
+                  row['distance_to_church_m']=round(hav((row['lat'],row['lon']),church),1)
+                  row['distance_from_legacy_m']=round(hav((row['lat'],row['lon']),legacy),1)
+              rows.append(row)
+          rows.sort(key=lambda r:r.get('distance_to_church_m',999999))
+          print('bbox_relevant='+json.dumps(rows,ensure_ascii=False,sort_keys=True))
+          PY
+
+      - name: Remove probe workflow and commit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/probe-ullensaker-kirke.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/akershus-coordinate-ullensaker-kirke-source-probe .github/workflows/probe-ullensaker-kirke.yml
+          git commit -m 'Persist Ullensaker Church coordinate source evidence'
+          git push origin HEAD:${{ github.head_ref }}
