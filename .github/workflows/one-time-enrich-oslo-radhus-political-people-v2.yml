@@ -1,0 +1,79 @@
+name: One-time enrich Oslo rådhus political people V2
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/oslo-radhus-political-people-enrichment-v2-trigger.txt
+
+permissions:
+  contents: write
+
+jobs:
+  enrich-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check out and synchronize production branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main agent/oslo-radhus-political-people-v2
+          git checkout -B agent/oslo-radhus-political-people-v2 origin/agent/oslo-radhus-political-people-v2
+          git merge --no-edit origin/main
+
+      - name: Apply verified profiles and relation correction
+        run: python scripts/one-time-enrich-oslo-radhus-political-people.py
+
+      - name: Validate focused profiles and popup rendering
+        run: |
+          node --check js/ui/person-popup-v2.js
+          node --test \
+            tests/person-popup-v2.test.js \
+            tests/oslo-radhus-political-people-profiles.test.js
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Rebuild people-derived Civication index
+        run: npm run civication:history-people:build
+
+      - name: Validate Civication people index
+        run: npm run civication:history-people:check
+
+      - name: Run complete people validation
+        run: bash scripts/check-people.sh
+
+      - name: Verify browser build remains synchronized
+        run: npm run build:web:check
+
+      - name: Remove script and generated side effects after validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git checkout origin/main -- js/core/categories.js
+          git rm scripts/one-time-enrich-oslo-radhus-political-people.py
+          git restore --staged --worktree reports 2>/dev/null || true
+          git clean -fd reports 2>/dev/null || true
+
+      - name: Commit clean production diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git status --short
+          git commit -m "Enrich Oslo rådhus political people profiles"
+          git push origin HEAD:agent/oslo-radhus-political-people-v2
