@@ -18,6 +18,7 @@ Filene bevares for sporbarhet, men er **ikke** nåstatus og kan ikke overstyre r
 - [`knowledge/`](./knowledge/) — seks tidligere Knowledge-, ontology-, knagge- og quiz-memory-modeller, bevart byte-identisk
 - [`legacy-readmes/`](./legacy-readmes/) — fire gamle globale relations-, oppgave-, BY-fag- og badge-modeller, bevart byte-identisk
 - [`historical-routes/`](./historical-routes/) — tidligere konsept-, mekanikk- og faseplan for Historiske ruter, bevart byte-identisk
+- [`quiz-physical-visits/`](./quiz-physical-visits/) — tidligere brede quiz-/besøksmodell, bevart byte-identisk før runtimekonsolidering
 
 ## Aktive kilder
 

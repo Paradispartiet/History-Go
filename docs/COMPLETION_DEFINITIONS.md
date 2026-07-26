@@ -133,6 +133,12 @@ Anbefalt statusmodell for read-model/profil/PlaceCard:
 | `completed` | stedet er fullført etter History GO-reglene |
 | `mastered` | høyeste nivå på stedet er oppnådd |
 
+### Avgrensning mot quiz- og besøksruntime
+
+I den smale `HGPlaceProgress`-modellen betyr `visited` at et fysisk besøk er registrert gjennom `HGPhysicalVisits.record()` etter godkjent fysisk gate, eller at samme kompatible fysiske persistens allerede finnes i `window.visited`. Å åpne PlaceCard eller fullføre quiz setter ikke denne besøksstatusen gjennom quizadapteren.
+
+`HGPlaceProgress` beregner bare `unopened`, `opened`, `visited`, `quiz_completed`, `explored` og `mastered`. Disse runtime-statusene er en smal read-model og erstatter ikke den bredere canonical tabellen over `discovered`, `checked_in`, `quiz_attempted`, `observed`, `completed` og andre produktstatuser.
+
 `completed` er spillbar ferdigtilstand. `mastered` er ekstra dybde.
 
 ---
