@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0",
+  "placeId": "fredrikstad_festning_gamlebyen",
+  "capturedAt": "2026-07-26",
+  "legacyCoordinate": {"lat": 59.20444, "lon": 10.95583, "r": 420},
+  "appliedAnchor": {
+    "sourceProvider": "wikidata",
+    "sourceObjectId": "wikidata:Q5499573",
+    "heritageObjectId": "riksantikvaren-kulturminne:116956",
+    "sourceUrl": "https://www.wikidata.org/wiki/Q5499573",
+    "lat": 59.2034,
+    "lon": 10.9542,
+    "coordinateUse": "fortified_city_area_anchor",
+    "distanceFromLegacyM": 148.3,
+    "finding": "The fortress entity coordinate represents Fredrikstad festning and links Kulturminne ID 116956."
+  },
+  "oldTownCrossCheck": {
+    "sourceProvider": "wikidata",
+    "sourceObjectId": "wikidata:Q11971499",
+    "sourceUrl": "https://www.wikidata.org/wiki/Q11971499",
+    "lat": 59.20345,
+    "lon": 10.9542,
+    "distanceFromAppliedM": 5.6,
+    "finding": "The independent Gamlebyen settlement coordinate is only 5.6 metres from the fortress coordinate, confirming the shared fortified-city identity."
+  },
+  "officialIdentity": {
+    "sourceProvider": "forsvarsbygg",
+    "sourceName": "Forsvarsbygg – Fredrikstad festning",
+    "sourceUrl": "https://www.forsvarsbygg.no/eiendomsforvaltning/festningene/fredrikstad-festning",
+    "finding": "Forsvarsbygg identifies the fortress as Norway's only preserved fortified town, with military and civilian life integrated inside a complete bastion system."
+  },
+  "scopeDefinition": {
+    "sourceProvider": "snl",
+    "sourceName": "Store norske leksikon – Fredrikstad festning",
+    "sourceUrl": "https://snl.no/Fredrikstad_festning",
+    "finding": "The fortress is the complete defensive works and town fabric, while Gamlebyen is the civilian settlement inside the ramparts; together they form the coherent canonical place."
+  },
+  "falseCandidates": [
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:829118267",
+      "sourceUrl": "https://www.openstreetmap.org/node/829118267",
+      "objectClass": "tourism=information",
+      "finding": "A same-name Fredrikstad Festning sign is rejected as canonical."
+    },
+    {
+      "sourceProvider": "osm_discovery",
+      "sourceObjectId": "osm-node:829117408",
+      "sourceUrl": "https://www.openstreetmap.org/node/829117408",
+      "objectClass": "information",
+      "finding": "Festningsbyen Fredrikstad is represented by an information point and is not used as the fortified-city coordinate source."
+    }
+  ],
+  "excludedSeparateSites": {
+    "finding": "Kongsten fort, Isegran, Huth fort and Akerøya are separate elements in the wider defence system and are not collapsed into the Gamlebyen anchor."
+  },
+  "radiusDecision": {
+    "appliedRadiusM": 420,
+    "finding": "The retained radius covers the walled town, central bastions and much of the moat system at gameplay scale, but is not the legal protection boundary or the full defence system at Glomma's mouth."
+  },
+  "decision": {
+    "canBecomeVerified": true,
+    "coordinateChangeRequired": true,
+    "appliedCoordinate": {"lat": 59.2034, "lon": 10.9542, "r": 420},
+    "coordStatus": "verified_historical_source",
+    "coordRole": "fortified_city_area_anchor"
+  }
+}
