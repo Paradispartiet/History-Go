@@ -8,10 +8,10 @@
     "lat": 59.676,
     "lon": 10.606,
     "r": 360,
-    "coordStatus": null,
-    "coordSource": null,
-    "coordType": null,
-    "coordNote": "Legacy point retained during source audit; no coordinate source contract is present."
+    "coordStatus": "needs_manual_map_check",
+    "coordSource": "source_audit_pending_raw_core_geometry",
+    "coordType": "historic_fortress_core_area",
+    "coordNote": "Legacy point retained as a plausible Kaholmene core-area marker until raw central geometry and a multi-anchor policy are available."
   },
   "identity": {
     "currentName": "Oscarsborg festning",
@@ -39,7 +39,7 @@
       "sourceQuality": "official_destination_identity_and_history",
       "finding": "The official page identifies Oscarsborg as the public fortress destination in Drøbaksundet and documents its national historical significance.",
       "canVerifyCoordinate": false,
-      "reason": "Identity and history are resolved, but no reusable representation point or core geometry is exposed in the captured material."
+      "reason": "No reusable representation point or visitor-core geometry is exposed in the captured material."
     },
     {
       "sourceProvider": "forsvarsbygg",
@@ -49,7 +49,7 @@
       "sourceQuality": "official_component_and_spatial_scope",
       "finding": "The official establishment spans several islands and mainland positions, while the central visitor and historic elements are concentrated on the Kaholmene.",
       "canVerifyCoordinate": false,
-      "reason": "Establishes the need for a core marker plus secondary anchors and rejects a single-building interpretation."
+      "reason": "Establishes the need for a core marker plus secondary anchors."
     },
     {
       "sourceProvider": "riksantikvaren",
@@ -59,27 +59,17 @@
       "sourceQuality": "official_legal_protection_scope",
       "finding": "The protected historic landscape contains more than one hundred objects across islands and mainland areas.",
       "canVerifyCoordinate": false,
-      "reason": "The legal scope is authoritative context but too broad to use as one gameplay marker or radius."
+      "reason": "The legal scope is too broad to use as one gameplay marker or radius."
     },
     {
       "sourceProvider": "osm_discovery",
-      "sourceName": "Named Oscarsborg point candidates",
+      "sourceName": "Named Oscarsborg point and component candidates",
       "sourceUrl": "https://www.openstreetmap.org/",
-      "sourceObjectId": "osm-nodes:6463615980,582909475",
-      "sourceQuality": "generic_named_point_candidates_without_raw_capture",
-      "finding": "Two named point candidates were discovered south of the legacy marker, but their exact physical roles are unresolved.",
+      "sourceObjectId": "osm-nodes:6463615980,582909475;osm-ways:528047559,540187471,156619353,513833331,520242521",
+      "sourceQuality": "discovery_candidates_without_raw_capture",
+      "finding": "Two generic named points and several named component objects were discovered. They support a multi-anchor model but do not define the central destination marker.",
       "canVerifyCoordinate": false,
-      "reason": "Raw source data and a documented relationship to the visitor core are missing."
-    },
-    {
-      "sourceProvider": "osm_discovery",
-      "sourceName": "Named historic component candidates",
-      "sourceUrl": "https://www.openstreetmap.org/",
-      "sourceObjectId": "osm-ways:528047559,540187471,156619353,513833331,520242521",
-      "sourceQuality": "secondary_component_geometry_candidates_without_raw_capture",
-      "finding": "Several named component objects were discovered. They support a multi-anchor model but do not define the central destination marker.",
-      "canVerifyCoordinate": false,
-      "reason": "Raw geometry and role-specific derivations are still required."
+      "reason": "Raw source data, deterministic geometry and role-specific derivations are missing."
     },
     {
       "sourceProvider": "legacy_dataset",
@@ -173,7 +163,7 @@
     "nextAction": "Capture raw central-area geometry and the relevant secondary-component objects. Then retain or replace the legacy core point using a documented derivation and add secondary anchors without forcing distant components into the island radius."
   },
   "notes": [
-    "No canonical coordinate or radius is changed by this audit.",
+    "Canonical coordinates and radius are unchanged, but canonical now exposes needs_manual_map_check metadata.",
     "No generic named point is promoted merely because it contains the fortress name.",
     "The protected legal landscape is too broad to use as a single marker or gameplay circle.",
     "Photo geotags and map-preview points must not be used as production geometry."
