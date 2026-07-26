@@ -870,6 +870,63 @@
       "role": "Full endringshistorikk",
       "owns": [],
       "historical_reason": "Journal, ikke kontrakt."
+    },
+    {
+      "path": "docs/README_area_overview.md",
+      "status": "operational",
+      "role": "Operativ runtimeguide for place-sentrert Områdeoversikt, radiusmodell, V2-dekorasjon og kartnavigasjon",
+      "owns": [
+        "area_overview_runtime_guide"
+      ],
+      "last_verified": "2026-07-26"
+    },
+    {
+      "path": "data/historygo/shared/game_registry.json",
+      "status": "canonical",
+      "role": "Maskinlesbart register for uavhengige History GO-spill, status, entry-paths og deklarerte read/write-flater",
+      "owns": [
+        "standalone_learning_games_registry"
+      ],
+      "last_verified": "2026-07-26"
+    },
+    {
+      "path": "docs/learning-games/standalone-learning-games-architecture.md",
+      "status": "operational",
+      "role": "Operativ arkitekturguide for spillenes uavhengighet, profilflate, adaptergrense og rettighetsregel",
+      "owns": [
+        "standalone_learning_games_architecture"
+      ],
+      "last_verified": "2026-07-26"
+    },
+    {
+      "path": "data/visualDesignCodes.json",
+      "status": "canonical",
+      "role": "Maskinlesbart register for gyldige Visual Design Codes, entitetstyper, renderHints og visuelle metadata",
+      "owns": [
+        "visual_design_code_registry"
+      ],
+      "last_verified": "2026-07-26"
+    },
+    {
+      "path": "docs/visual-design-codes.md",
+      "status": "operational",
+      "role": "Operativ bruk-, resolver-, audit- og batchguide for Visual Design Codes",
+      "owns": [
+        "visual_design_code_usage_guide"
+      ],
+      "last_verified": "2026-07-26"
+    },
+    {
+      "path": "reports/archive/2026-07/visual-design-codes/VISUAL_DESIGN_CODES_PRE_CONSOLIDATION_2026-07-26.md",
+      "status": "historical",
+      "role": "Pre-consolidation snapshot av kombinert Visual Design Codes-arkitektur og batchjournal",
+      "owns": [],
+      "superseded_by": [
+        "data/visualDesignCodes.json",
+        "docs/visual-design-codes.md",
+        "tools/audit-visual-design-codes.mts"
+      ],
+      "historical_reason": "Filen blandet aktiv arkitektur, pilotstatus, batchhistorikk og tidsbundne audittall i én lang tekst."
     }
   ]
 }
