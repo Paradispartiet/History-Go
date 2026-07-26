@@ -20,7 +20,14 @@ jobs:
           ref: main
           fetch-depth: 0
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
       - name: Patch documentation governance
+        shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -84,24 +91,53 @@ People of Places-metoden eier den redaksjonelle relevans- og kildegaten. Dagens 
           PY
 
       - name: Validate documentation governance
+        shell: bash
         run: |
           npm ci --no-audit --no-fund
           npm run build:scripts
           node dist/scripts/check-documentation-governance.mjs
 
-      - name: Commit documentation and remove this workflow
+      - name: Reset generated build output
+        shell: bash
         run: |
-          git restore --staged --worktree reports 2>/dev/null || true
-          git clean -fd reports/documentation-governance 2>/dev/null || true
+          git restore --source=HEAD --worktree --staged -- dist 2>/dev/null || true
+          git clean -fd -- dist
+
+      - name: Verify registration and scope
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import subprocess
+
+          registry = json.loads(Path("docs/documentation_registry.json").read_text(encoding="utf-8"))
+          entries = {entry["path"]: entry for entry in registry["documents"]}
+          method = entries["docs/people-of-places-method.md"]
+          assert method["status"] == "canonical"
+          assert method["owns"] == ["people_of_places_method"]
+
+          inventory = json.loads(Path("reports/documentation-governance/inventory.json").read_text(encoding="utf-8"))
+          assert "docs/people-of-places-method.md" not in inventory["unregistered_governance_candidates"]
+
+          changed = set(subprocess.check_output(["git", "diff", "--name-only", "HEAD"]).decode().splitlines())
+          expected = {
+              ".github/workflows/one-time-register-people-of-places-governance.yml",
+              "docs/README.md",
+              "docs/documentation_registry.json",
+              "reports/documentation-governance/inventory.json",
+          }
+          assert changed == expected, (changed, expected)
+          PY
+
+      - name: Commit documentation and remove this workflow
+        shell: bash
+        run: |
           git rm .github/workflows/one-time-register-people-of-places-governance.yml
-
-          actual="$(git diff --name-only HEAD | sort | tr '\n' ' ')"
-          expected=".github/workflows/one-time-register-people-of-places-governance.yml docs/README.md docs/documentation_registry.json "
-          printf 'Final changed files: %s\n' "$actual"
-          test "$actual" = "$expected"
-
+          git add docs/README.md docs/documentation_registry.json reports/documentation-governance/inventory.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/README.md docs/documentation_registry.json
-          git commit -m "Register canonical People of Places governance"
+          git commit -m "Registrer canonical People of Places-governance"
           git push origin HEAD:main
+
+# Trigger canonical People of Places registration.
