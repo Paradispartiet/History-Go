@@ -38,12 +38,36 @@ jobs:
       - name: Apply verified profiles and relation correction
         run: python scripts/one-time-enrich-oslo-radhus-political-people.py
 
-      - name: Validate focused profiles and popup rendering
+      - name: Capture focused profile and popup validation
+        id: focused-tests
+        shell: bash
         run: |
-          node --check js/ui/person-popup-v2.js
-          node --test \
-            tests/person-popup-v2.test.js \
-            tests/oslo-radhus-political-people-profiles.test.js
+          mkdir -p reports/oslo-radhus-political-people-v2
+          set +e
+          {
+            node --check js/ui/person-popup-v2.js
+            syntax_status=$?
+            node --test tests/person-popup-v2.test.js tests/oslo-radhus-political-people-profiles.test.js
+            test_status=$?
+            echo "syntax_status=$syntax_status"
+            echo "test_status=$test_status"
+          } > reports/oslo-radhus-political-people-v2/focused-tests.log 2>&1
+          status=$(( syntax_status || test_status ))
+          set -e
+          cat reports/oslo-radhus-political-people-v2/focused-tests.log
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+
+      - name: Upload focused test diagnostic
+        if: steps.focused-tests.outputs.status != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-radhus-political-people-focused-tests-${{ github.run_id }}
+          path: reports/oslo-radhus-political-people-v2/focused-tests.log
+          if-no-files-found: error
+
+      - name: Enforce focused validation
+        if: steps.focused-tests.outputs.status != '0'
+        run: exit 1
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
