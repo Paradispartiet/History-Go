@@ -1,0 +1,152 @@
+name: One-time History profile and evidence foundation
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/history-profile-evidence-runner.part-*'
+      - '.github/workflows/one-time-history-profile-evidence-foundation.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/history-profile-evidence-foundation-v1
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Materialize profile and evidence foundation
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/historie-profile-evidence reports/historie-geographic-profiles reports/historie-universal-coverage reports/historie-v5
+
+          cat .github/history-profile-evidence-runner.part-* > /tmp/history-profile-evidence-runner.b64
+          printf '%s  %s\n' \
+            '2e2d4f68c25c58006cdc27bfb46740a882898455c837c74a2d9ce3aceb1d4b51' \
+            '/tmp/history-profile-evidence-runner.b64' | sha256sum --check
+          base64 -d /tmp/history-profile-evidence-runner.b64 \
+            | gunzip > /tmp/apply-history-profile-evidence.mjs
+          node --check /tmp/apply-history-profile-evidence.mjs
+
+          node /tmp/apply-history-profile-evidence.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/apply.log
+          node --check tools/validate-historie-profile-evidence.mjs
+          node --check tools/audit-historie-geographic-profile.mjs
+          node tools/validate-historie-profile-evidence.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/validation.log
+
+          node scripts/build-quiz-production-context.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/quiz-context-rebuild.log
+          npm run audit:quiz-production-context 2>&1 \
+            | tee reports/historie-profile-evidence/quiz-production-context-audit.log
+          npm run audit:quiz-progression 2>&1 \
+            | tee reports/historie-profile-evidence/quiz-progression-audit.log
+          npm run audit:quiz-theory-binding 2>&1 \
+            | tee reports/historie-profile-evidence/quiz-theory-binding-audit.log
+          npm run test:quiz-content-audit 2>&1 \
+            | tee reports/historie-profile-evidence/quiz-content-test.log
+          npm run test:quiz-production 2>&1 \
+            | tee reports/historie-profile-evidence/quiz-production-test.log
+
+          node tools/audit-historie-v5-5-quality-depth.mjs --write-freeze \
+            --reason='V5.8 subject model gains geographic profile, universal case requirements and canonical claim-source-evidence foundation V1.' 2>&1 \
+            | tee reports/historie-profile-evidence/quality-freeze-write.log
+          node tools/audit-historie-v5-5-quality-depth.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/quality-freeze-verify.log
+
+          node tools/audit-historie-universal-coverage.mjs 2>&1 \
+            | tee reports/historie-universal-coverage/audit-command.log
+          node tools/audit-historie-universal-coverage.mjs --check 2>&1 \
+            | tee -a reports/historie-universal-coverage/audit-command.log
+          node tools/audit-historie-geographic-profile.mjs 2>&1 \
+            | tee reports/historie-geographic-profiles/audit-command.log
+          node tools/audit-historie-geographic-profile.mjs --check 2>&1 \
+            | tee -a reports/historie-geographic-profiles/audit-command.log
+
+          node - <<'NODE' 2>&1 | tee reports/historie-profile-evidence/coverage-target-check.log
+          const fs = require('fs');
+          const report = JSON.parse(fs.readFileSync('reports/historie-universal-coverage/historie-universal-coverage.json'));
+          const expected = {
+            covered_cells: 58,
+            partial_cells: 0,
+            missing_cells: 0,
+            production_passes: 10,
+            production_gaps: 1,
+          };
+          for (const [key, value] of Object.entries(expected)) {
+            if (report.summary?.[key] !== value) {
+              console.error(`${key}: expected ${value}, got ${report.summary?.[key]}`);
+              process.exitCode = 1;
+            }
+          }
+          const theoryCheck = report.production?.checks?.find((item) => item.id === 'theory_evidence_readiness');
+          if (theoryCheck?.status !== 'GAP') {
+            console.error('theory_evidence_readiness must remain the only GAP');
+            process.exitCode = 1;
+          }
+          const otherGaps = report.production?.checks?.filter((item) => item.status === 'GAP' && item.id !== 'theory_evidence_readiness') || [];
+          if (otherGaps.length) {
+            console.error(JSON.stringify(otherGaps, null, 2));
+            process.exitCode = 1;
+          }
+          console.log(JSON.stringify({status: report.status, summary: report.summary, remaining_gap: theoryCheck?.id}, null, 2));
+          NODE
+
+          npm run build:scripts 2>&1 \
+            | tee reports/historie-profile-evidence/build-scripts.log
+          node dist/scripts/check-documentation-governance.mjs 2>&1 \
+            | tee reports/historie-profile-evidence/documentation-governance.log
+          git diff --check 2>&1 \
+            | tee reports/historie-profile-evidence/git-diff-check.log
+          git status --short 2>&1 \
+            | tee reports/historie-profile-evidence/git-status.log
+
+      - name: Publish validated foundation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/fag \
+            data/quiz/production_context/historie \
+            docs \
+            reports/documentation-governance/inventory.json \
+            reports/historie-geographic-profiles \
+            reports/historie-profile-evidence \
+            reports/historie-universal-coverage \
+            reports/historie-v5 \
+            tools
+          git commit -m 'Etabler Historie-profiler og evidensgrunnlag V1'
+          git push origin HEAD:agent/history-profile-evidence-foundation-v1 2>&1 \
+            | tee /tmp/history-profile-evidence-publish.log
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-profile-evidence-foundation-diagnostics
+          path: |
+            reports/historie-profile-evidence/**
+            reports/historie-geographic-profiles/**
+            reports/historie-universal-coverage/**
+            reports/historie-v5/**
+            /tmp/history-profile-evidence-publish.log
+          if-no-files-found: warn
