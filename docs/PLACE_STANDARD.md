@@ -7,6 +7,7 @@ Det bygger på eksisterende kontrakter:
 - `docs/DATA_PRODUCTION_CONTRACT.md`
 - `data/places/README_place_rounds.md`
 - `docs/APP_STRUCTURE_INDEX.md`
+- `docs/PLACE_POPUP_SYSTEM.md`
 - `README/quizREADME.md`
 - `data/wonderkammer/README.md`
 - `docs/COMPLETION_DEFINITIONS.md`
@@ -79,6 +80,12 @@ Et rikt/spillbart sted bør ha:
   frontImage,
   emne_ids,
   quiz_profile,
+  spatial_profile,
+  temporal_profile,
+  subplaces,
+  history_layers,
+  nature_profile,
+  source_summary,
   people_ids,
   related_place_ids,
   route_ids,
@@ -130,6 +137,8 @@ Minimum spillflyt:
 PlaceCard er stedets kontrollrom, men må følge eksisterende appstruktur.
 
 `index.html` eier PlaceCard/bottom sheet og quiz modal flow. `MapView` skal koordinere eksisterende DOM/runtime, ikke erstatte place card, kartmotor eller quizmotor.
+Den rike stedspopupen følger den bindende type- og presentasjonskontrakten i `docs/PLACE_POPUP_SYSTEM.md`. PlaceCard skal forbli kompakt; popupen kan vise `popupDesc`, strukturerte mål, delsteder, historiske lag, naturprofil og kildeoversikt når place-dataene faktisk finnes.
+
 
 PlaceCard bør vise:
 
