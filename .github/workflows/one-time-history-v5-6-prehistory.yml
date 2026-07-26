@@ -114,6 +114,7 @@ jobs:
             rm -f .github/history-v5-6-prehistory-runner.mjs.gz.b64
             rm -f .github/history-v5-6-prehistory-runner.part-*
             rm .github/workflows/one-time-history-v5-6-prehistory.yml
+            git checkout -- .github/workflows/history-v5-5-quality-freeze.yml
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git status --short
