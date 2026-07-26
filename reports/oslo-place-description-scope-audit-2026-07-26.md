@@ -4,10 +4,10 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 - Manifest entries: **1444**
 - Unique active Oslo place IDs: **512**
-- IDs in the current revision protocol: **110**
-- Additional active Oslo IDs outside the protocol: **402**
+- IDs in the current revision protocol: **118**
+- Additional active Oslo IDs outside the protocol: **394**
 - Additional IDs already passing canonical text limits: **0**
-- Additional IDs needing revision: **402**
+- Additional IDs needing revision: **394**
 - Oslo-path JSON files outside the active manifest: **27**
 
 ## Remaining queue by domain
@@ -24,7 +24,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 | litteratur | 21 |
 | vitenskap | 21 |
 | politikk | 18 |
-| by | 8 |
 | media | 7 |
 | musikk | 5 |
 | film_tv | 2 |
@@ -34,14 +33,6 @@ This report counts actual manifest-loaded place records, not one folder or one m
 
 | Domain | Place | ID | desc | popupDesc | Paragraphs | File | Status |
 |---|---|---|---:|---:|---:|---|---|
-| by | Torshovparken | `torshovparken` | 16 | 103 | 3 | `data/places/by/oslo/places/torshovparken.json` | needs revision |
-| by | Ulvøya | `ulvoya` | 14 | 63 | 1 | `data/places/by/oslo/places/ulvoya.json` | needs revision |
-| by | Uranienborg kirke | `uranienborg_kirke` | 30 | 104 | 2 | `data/places/by/oslo/places/uranienborg_kirke.json` | needs revision |
-| by | Vikaterrassen | `vikaterrassen` | 33 | 161 | 2 | `data/places/by/oslo/places/vikaterrassen.json` | needs revision |
-| by | Rudolf Nilsens plass | `rudolf_nilsens_plass` | 16 | 57 | 2 | `data/places/by/oslo/rudolf_nilsens_plass.json` | needs revision |
-| by | Snippen lekepark | `snippen_lekepark` | 15 | 79 | 2 | `data/places/by/oslo/snippen_lekepark.json` | needs revision |
-| by | Sofienbergparken | `sofienbergparken` | 19 | 61 | 2 | `data/places/by/oslo/sofienbergparken.json` | needs revision |
-| by | Torshovdalen | `torshovdalen` | 14 | 58 | 2 | `data/places/by/oslo/torshovdalen.json` | needs revision |
 | film_tv | Cinemateket i Oslo | `cinemateket_oslo` | 7 | 66 | 1 | `data/places/film_tv/oslo/cinemateket_oslo.json` | needs revision |
 | film_tv | Colosseum kino | `colosseum_kino` | 5 | 64 | 1 | `data/places/film_tv/oslo/colosseum_kino.json` | needs revision |
 | historie | Hallvardskirken i middelalder-Oslo | `hallvardskirken_oslo` | 13 | 22 | 1 | `data/places/historie/norge/places_historie_norge_for_1500_batch2/hallvardskirken_oslo.json` | needs revision |
