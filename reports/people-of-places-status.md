@@ -1,15 +1,15 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-26T18:16:33.666Z
+Generert: 2026-07-25T10:42:13.736Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-26T18:16:33.666Z |
+| generatedAt | 2026-07-25T10:42:13.736Z |
 | peopleFilesRead | 730 |
-| totalPeople | 1370 |
-| uniquePeopleIds | 1370 |
+| totalPeople | 1365 |
+| uniquePeopleIds | 1365 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
@@ -137,7 +137,7 @@ Generert: 2026-07-26T18:16:33.666Z
 | data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json | kunst | ja | 7 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_03.json | kunst | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_04.json | kunst | ja | 2 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/kunst/oslo/people_kunst_oslo.json | kunst | ja | 21 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/kunst/oslo/people_kunst_oslo.json | kunst | ja | 17 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/roseslottet/eimund_sand.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/roseslottet/vebjorn_sand.json | kunst | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/vestland/etne/fugl_fonix/people_fugl_fonix_batch1.json | kunst | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -441,7 +441,7 @@ Generert: 2026-07-26T18:16:33.666Z
 | data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json | politikk | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/bla_skilt_2026/christopher_hornsrud.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json | politikk | ja | 7 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json | politikk | ja | 11 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json | politikk | ja | 10 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json | politikk | ja | 7 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 28 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/vestland/etne/inge_seim.json | politikk | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -761,13 +761,13 @@ Generert: 2026-07-26T18:16:33.666Z
 | filantroper | 17 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 24 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | historie | 216 | 0 | 68 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| kunst | 68 | 0 | 25 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| kunst | 64 | 0 | 25 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 172 | 0 | 129 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 29 | 0 | 5 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | musikk | 123 | 0 | 89 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | naeringsliv | 81 | 0 | 26 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 22 | 0 | 4 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| politikk | 102 | 0 | 49 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| politikk | 101 | 0 | 49 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | psykologi | 1 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | scenekunst | 47 | 0 | 47 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | sport | 323 | 0 | 245 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -916,7 +916,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_02.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=7/7; source_place_id=0/7; placesArray=7/7; categories=kunst
 - data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_03.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=kunst
 - data/people/kunst/oslo/people_kunst_oslo_politics_places_batch_04.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=kunst
-- data/people/kunst/oslo/people_kunst_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=21/21; source_place_id=0/21; placesArray=21/21; categories=kunst
+- data/people/kunst/oslo/people_kunst_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=17/17; source_place_id=0/17; placesArray=17/17; categories=kunst
 - data/people/kunst/oslo/roseslottet/eimund_sand.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/oslo/roseslottet/vebjorn_sand.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=kunst
 - data/people/kunst/vestland/etne/fugl_fonix/people_fugl_fonix_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=kunst
@@ -1220,7 +1220,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=politikk
 - data/people/politikk/oslo/bla_skilt_2026/christopher_hornsrud.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
 - data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_02.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=7/7; source_place_id=0/7; placesArray=7/7; categories=politikk
-- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=11/11; source_place_id=0/11; placesArray=11/11; categories=politikk
+- data/people/politikk/oslo/people_politikk_oslo_place_expansion_batch_03.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=10/10; source_place_id=0/10; placesArray=10/10; categories=politikk
 - data/people/politikk/oslo/people_politikk_oslo_uncovered_places_batch_01.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=7/7; source_place_id=0/7; placesArray=7/7; categories=politikk
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=28/28; source_place_id=0/28; placesArray=28/28; categories=politikk
 - data/people/politikk/vestland/etne/inge_seim.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=politikk
