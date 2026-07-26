@@ -1,55 +1,132 @@
 {
   "id": "gardermoen_militaerleir_tunet",
   "name": "Gardermoen militærleir / Tunet",
-  "lat": 60.1986,
-  "lon": 11.0782,
+  "lat": 60.1911316,
+  "lon": 11.0698695,
   "r": 420,
+  "locatorType": "historic_site",
+  "sourceProvider": "osm",
+  "sourceObjectId": "osm-node:6593405620",
+  "geocodeAccuracy": "semantic_anchor",
+  "coordRole": "area_anchor",
+  "coordType": "named_ullensaker_museum_tunet_and_lilleplassen_area_anchor",
+  "coordStatus": "verified_historical_source",
+  "coordSource": "MiA Ullensaker museum – Tunet på Sør-Gardermoen; OpenStreetMap node 6593405620",
+  "coordSourceId": "osm-node:6593405620",
+  "coordSourceUrl": "https://www.openstreetmap.org/node/6593405620",
+  "coordVerifiedAt": "2026-07-26",
+  "coordChangeReason": "Markøren flyttes om lag 949,5 meter fra et feilplassert punkt nordøst for museumsområdet til det navngitte Ullensaker museum-punktet midt på Tunet ved Lilleplassen.",
+  "coordNote": "OpenStreetMap node 6593405620 er det navngitte museumspunktet Ullensaker museum på 60.1911316, 11.0698695 og ligger midt i Tunet på Sør-Gardermoen. En navngitt museumsbygning, OSM-way 652142158 med bygningsnummer 15353090 og Wikidata Q19393789, ligger om lag 29,9 meter vest for punktet. MiA dokumenterer at Tunet ligger ved Lilleplassen, anlagt i 1740 som en av Norges eldste ekserserplasser, og at åtte verneverdige bygninger fra den tidligere Sør-Gardermoen militærleiren er flyttet hit. Fordi place-identiteten omfatter hele tunet, Lilleplassen og den flyttede bygningssamlingen, brukes museumspunktet som area_anchor fremfor centroiden i én enkelt bygning. MiA oppgir Tunvegen, 2060 Gardermoen, men publiserer ikke ett entydig husnummer for hele tunet; Kartverket har flere separate Tunvegen-adresser knyttet til bygningene. Canonical får derfor ikke et konstruert husnummer. Forsvarets flysamling, hotellene og Oslo lufthavn er separate anlegg og brukes ikke som hovedkoordinater. Legacy-punktet 60.1986, 11.0782 lå omtrent 949,5 meter nordøst for Tunet. Radius 420 meter dekker museumsbygningene, Lilleplassen og de nærmeste militære og sivile historielagene, men er ikke en ekserserplass-, militærleir-, flyplass- eller eiendomspolygon.",
+  "anchors": [
+    {
+      "id": "ullensaker_museum_tunet",
+      "name": "Ullensaker museum – Tunet på Sør-Gardermoen",
+      "lat": 60.1911316,
+      "lon": 11.0698695,
+      "r": 120,
+      "type": "area_anchor",
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-node:6593405620",
+      "note": "Navngitt museumspunkt midt i den flyttede bygningssamlingen ved Lilleplassen; områdeanker for hele Tunet, ikke én bestemt museumsbygning."
+    }
+  ],
   "category": "historie",
   "fylke": "akershus",
   "kommune": "Ullensaker",
   "year": 1740,
-  "period": "Militærhistorie og ekserserplass",
+  "period": "Militærhistorie, ekserserplass og flyplassforhistorie",
   "tags": [
     "historie",
     "militærleir",
     "gardermoen",
     "forsvar",
+    "ekserserplass",
+    "romanihistorie",
     "ullensaker"
   ],
-  "desc": "Historisk militært område ved Gardermoen, med Lilleplassen som en av Norges eldste ekserserplasser. Tunet ved Ullensaker museum samler bygninger fra Sør-Gardermoen militærleir.",
-  "popupDesc": "Gardermoen var militært område lenge før det ble hovedflyplass. Lilleplassen ble anlagt i 1740 som ekserserplass for kavaleriet, og på 1850-tallet var Gardermoen hovedleir for hele Østlandet og landets største militærleir. Bygningene på Tunet ved Ullensaker museum er flyttet fra Sør-Gardermoen militærleir og viser både militær og sivil historie: Telthuset, Kornmagasinet, Depot 148, Ballonghuset, Posthuset og andre bygg. Utbyggingen av Oslo lufthavn markerte slutten på rundt 250 år med militær aktivitet på Gardermoen.",
+  "desc": "Historisk museumstun ved Lilleplassen, anlagt som kavaleriets ekserserplass i 1740. Tunet samler flyttede bygninger fra Sør-Gardermoen militærleir og viser 250 år med militært, sivilt og sosialt liv før hovedflyplassen.",
+  "popupDesc": "Gardermoen var militært landskap lenge før stedet ble Norges hovedflyplass. Lilleplassen ble anlagt i 1740 som ekserserplass for kavaleriet, og på 1850-tallet var Gardermoen hovedleir for hele Østlandet og landets største militærleir. Da hovedflyplassen ble bygget på 1990-tallet, ble store deler av den gamle leiren fjernet, men åtte verneverdige bygninger ble flyttet til Tunet ved Lilleplassen. Her står blant annet Telthuset, Kornmagasinet, Depot 148, Ballonghuset, Rawindhuset, Posthuset og Furua. Bygningene forteller ikke bare om soldater og øvelser, men også om lagerdrift, værobservasjon, post, sivilt næringsliv og romanifolkets vinterliv på Gardermoen. I History Go skal stedet leses som et sammenhengende ekserserplass-, militærleir-, flyplassforhistorie- og samfunnslandskap – ikke som Oslo lufthavn, Forsvarets flysamling eller én tilfeldig museumsbygning.",
   "quiz_profile": {
     "place_type": "militaerhistorisk_museumstun",
-    "subtype": "ekserserplass_og_flyplassforhistorie",
+    "subtype": "ekserserplass_flyttet_leirsamling_og_flyplassforhistorie",
     "signature_features": [
-      "Lilleplassen anlagt i 1740",
-      "Gardermoen som hovedleir for Østlandet på 1850-tallet",
-      "historiske militærbygninger flyttet til Tunet"
+      "Lilleplassen anlagt i 1740 som kavaleriets ekserserplass",
+      "Gardermoen som landets største militære øvingsområde før andre verdenskrig",
+      "åtte flyttede militære og sivile bygninger på Tunet"
     ],
     "primary_angles": [
       "historie",
       "forsvar",
       "samferdsel",
+      "arbeid",
+      "minoritetsliv",
       "institusjon"
     ],
     "question_families": [
       "militærhistorie",
       "ekserserplass",
       "flyplassforhistorie",
-      "byggespor"
+      "byggespor",
+      "sivilt_leirliv"
     ],
     "avoid_angles": [
       "bare_moderne_flyplass",
-      "generisk_museum"
+      "generisk_museum",
+      "forveksling_med_flysamlingen"
     ],
     "must_include": [
-      "Lilleplassen 1740",
-      "250 år med militær aktivitet før hovedflyplassen"
+      "Lilleplassen fra 1740",
+      "bygningene flyttet fra Sør-Gardermoen da hovedflyplassen ble bygget",
+      "250 år med militært og sivilt liv før flyplassen"
     ],
     "contrast_targets": [
       "kjeller_flyplass",
       "trandumskogen"
     ],
-    "notes": "Skal spørres som militærleir og ekserserplass, ikke som Oslo lufthavn."
-  }
+    "notes": "Skal spørres som ekserserplass og flyttet leirsamling. Museumspunktet er områdeanker for hele Tunet; flysamlingen og flyplassen er separate steder."
+  },
+  "externalLinks": [
+    {
+      "type": "official",
+      "label": "MiA Ullensaker museum – Bygningene på Tunet",
+      "url": "https://mia.no/ullensaker/bygningene",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "official",
+      "label": "MiA Ullensaker museum – Museets samlinger",
+      "url": "https://mia.no/ullensaker/samlingene",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "history",
+      "label": "MiA Ullensaker museum – En særdeles skiøn excerserplads",
+      "url": "https://mia.no/ullensaker/militar",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "history",
+      "label": "MiA Ullensaker museum – Furua, et romanihjem",
+      "url": "https://mia.no/ullensaker/furua",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "reference",
+      "label": "Store norske leksikon – Gardermoens militære historie",
+      "url": "https://snl.no/Gardermoen_-_milit%C3%A6r_historie",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    },
+    {
+      "type": "coordinate_source",
+      "label": "OpenStreetMap – Ullensaker museum",
+      "url": "https://www.openstreetmap.org/node/6593405620",
+      "lang": "nb",
+      "verifiedAt": "2026-07-26"
+    }
+  ]
 }
