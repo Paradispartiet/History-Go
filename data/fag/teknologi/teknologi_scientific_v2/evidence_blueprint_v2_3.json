@@ -1,0 +1,1655 @@
+{
+  "schema": "teknologi_evidence_blueprint_v2_3",
+  "version": "2.3",
+  "status": "canonical_blueprint",
+  "subject_id": "teknologi",
+  "areas": [
+    {
+      "id": "teknologivitenskap_design",
+      "label": "Teknologivitenskap og design",
+      "sources": [
+        {
+          "id": "src_tek_nasa_se_handbook_2016",
+          "type": "official_handbook",
+          "title": "NASA Systems Engineering Handbook",
+          "publisher_or_author": "NASA",
+          "date_or_version": "NASA/SP-2016-6105 Rev2",
+          "locator": "NASA/SP-2016-6105 Rev2, særlig kap. 4–6",
+          "url": "https://www.nasa.gov/reference/systems-engineering-handbook/",
+          "claim_classes": [
+            "descriptive",
+            "mechanistic",
+            "normative"
+          ]
+        },
+        {
+          "id": "src_tek_ulrich_eppinger_2020",
+          "type": "scholarly_textbook",
+          "title": "Product Design and Development",
+          "publisher_or_author": "Karl T. Ulrich, Steven D. Eppinger og Maria C. Yang",
+          "date_or_version": "7. utgave, 2020",
+          "locator": "ISBN 9781260043655, kap. 4–7",
+          "url": null,
+          "claim_classes": [
+            "descriptive",
+            "mechanistic",
+            "normative"
+          ]
+        }
+      ],
+      "anchors": [
+        {
+          "slug": "batteridrill_kravmatrise",
+          "label": "Batteridrill med kravmatrise og prototype",
+          "anchor_type": "artifact_and_design_record",
+          "system_boundary": "drill, batteri, chuck, brukergrensesnitt og definerte brukssituasjoner",
+          "context": "utvikling av håndverktøy med krav til moment, masse, driftstid og sikkerhet",
+          "observables": [
+            "kravsporbarhet",
+            "prototypeforsøk",
+            "endringsspredning mellom funksjonskrav og designparametere"
+          ],
+          "failure_modes": [
+            "kravkonflikt",
+            "prototype som ikke representerer faktisk bruk"
+          ]
+        },
+        {
+          "slug": "vannrenser_feltprototype",
+          "label": "Feltprototype for bærbar vannrenser",
+          "anchor_type": "prototype_and_test_protocol",
+          "system_boundary": "inntak, filtertrinn, pumpe, strømforsyning, bruker og vannkvalitetsmåling",
+          "context": "feltbruk med varierende råvann, vedlikehold og begrenset energi",
+          "observables": [
+            "renset vann per time",
+            "trykktap",
+            "filterlevetid",
+            "brukerfeil"
+          ],
+          "failure_modes": [
+            "uklar valideringskontekst",
+            "skjult vedlikeholdsbehov"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "title": "Spor krav til test",
+          "prompt": "Lag en sporbar kjede fra fire interessentbehov til funksjonskrav, designparametere og verifikasjons- eller valideringstest for ankeret.",
+          "deliverables": [
+            "kravmatrise",
+            "to identifiserte koblinger mellom krav",
+            "testplan med akseptkriterier"
+          ]
+        },
+        {
+          "title": "Avgrens designrommet",
+          "prompt": "Sammenlign to løsningskonsepter under samme brukskontekst og vis hvordan minst én begrensning og én interessentkonflikt endrer valget.",
+          "deliverables": [
+            "felles sammenligningsgrunnlag",
+            "begrunnet konseptvalg",
+            "usikkerhetsnotat"
+          ]
+        }
+      ],
+      "questions": [
+        [
+          "Hva er den mest presise systemgrensen for designanalysen?",
+          "Produktet, energikilden, brukergrensesnittet og de brukssituasjonene kravene gjelder",
+          "Bare produktets ytre skall",
+          "Hele markedet for alle håndverktøy"
+        ],
+        [
+          "Hva viser best at et funksjonskrav er sporbar?",
+          "At det kan følges fra behov via designvalg til et målbart testkriterium",
+          "At det står med fet skrift i presentasjonen",
+          "At utvikleren husker hvorfor det ble valgt"
+        ],
+        [
+          "Når er en prototype primært et valideringsverktøy?",
+          "Når den prøves i representativ bruk for å undersøke om løsningen dekker reelle behov",
+          "Når kildekoden kompilerer",
+          "Når alle tegninger har samme filnavn"
+        ],
+        [
+          "Hva er en typisk misbruk av aksiomatisk design?",
+          "Å anta at alle krav kan gjøres uavhengige uten å synliggjøre reelle interessekonflikter",
+          "Å dokumentere koblinger mellom krav og designparametere",
+          "Å sammenligne endringsspredning mellom konsepter"
+        ],
+        [
+          "Hvilken evidens styrker et konseptvalg mest?",
+          "Sammenlignbare prototypetester med samme akseptkriterier og dokumentert usikkerhet",
+          "En leverandørbrosjyre som kaller løsningen best",
+          "En avstemning uten definert brukskontekst"
+        ]
+      ]
+    },
+    {
+      "id": "systemer_arkitektur_palitelighet",
+      "label": "Systemer, arkitektur og pålitelighet",
+      "sources": [
+        {
+          "id": "src_tek_iso_iec_ieee_15288_2015",
+          "type": "technical_standard",
+          "title": "Systems and software engineering — System life cycle processes",
+          "publisher_or_author": "ISO/IEC/IEEE",
+          "date_or_version": "ISO/IEC/IEEE 15288:2015",
+          "locator": "ISO/IEC/IEEE 15288:2015, prosesser for arkitektur, verifikasjon og validering",
+          "url": null,
+          "claim_classes": [
+            "descriptive",
+            "normative"
+          ]
+        },
+        {
+          "id": "src_tek_leveson_2011",
+          "type": "scholarly_monograph",
+          "title": "Engineering a Safer World",
+          "publisher_or_author": "Nancy G. Leveson",
+          "date_or_version": "2011",
+          "locator": "ISBN 9780262016629, kap. 2–4 og 8",
+          "url": "https://mitpress.mit.edu/9780262533690/engineering-a-safer-world/",
+          "claim_classes": [
+            "mechanistic",
+            "causal",
+            "normative"
+          ]
+        },
+        {
+          "id": "src_tek_nrc_three_mile_island_1979",
+          "type": "official_investigation",
+          "title": "Report of the President's Commission on the Accident at Three Mile Island",
+          "publisher_or_author": "U.S. President's Commission",
+          "date_or_version": "1979",
+          "locator": "Kemeny Commission Report, tekniske og organisatoriske funn",
+          "url": "https://www.nrc.gov/reading-rm/doc-collections/fact-sheets/3mile-isle",
+          "claim_classes": [
+            "historical",
+            "causal",
+            "safety"
+          ]
+        }
+      ],
+      "anchors": [
+        {
+          "slug": "jernbane_sikringsanlegg",
+          "label": "Elektronisk sikringsanlegg for jernbane",
+          "anchor_type": "safety_critical_system",
+          "system_boundary": "signal-logikk, sporavsnitt, togdeteksjon, operatørgrensesnitt og kommunikasjonslenker",
+          "context": "sikker togframføring med feiltilstander og vedlikeholdsarbeid",
+          "observables": [
+            "sikker tilstand ved feil",
+            "grensesnittkontrakter",
+            "hendelseslogg",
+            "tilgjengelighet"
+          ],
+          "failure_modes": [
+            "fellesårsaksfeil",
+            "uklar systemgrense",
+            "skjult grensesnittantakelse"
+          ]
+        },
+        {
+          "slug": "datasenter_stromkjede",
+          "label": "Redundant strømforsyning i datasenter",
+          "anchor_type": "infrastructure_architecture",
+          "system_boundary": "nettilførsel, UPS, generator, koblingsutstyr, kjøling og kritisk IT-last",
+          "context": "kontinuerlig drift under komponentfeil og planlagt vedlikehold",
+          "observables": [
+            "serie- og parallellstruktur",
+            "gjenopprettingstid",
+            "lastoverføring",
+            "felles feilmodi"
+          ],
+          "failure_modes": [
+            "redundans uten uavhengighet",
+            "vedlikeholdsindusert bortfall"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "title": "Bygg pålitelighetsmodell",
+          "prompt": "Tegn et pålitelighetsblokkskjema, oppgi avhengighetsantakelser og vis hvilken komponent eller fellesårsaksfeil som dominerer systemrisikoen.",
+          "deliverables": [
+            "blokkskjema",
+            "antakelsesregister",
+            "sensitivitetsanalyse"
+          ]
+        },
+        {
+          "title": "Analyser sikkerhetskontroll",
+          "prompt": "Definer en uønsket systemtilstand og identifiser kontrollhandlinger, utilstrekkelig feedback og organisatoriske forhold som kan føre dit.",
+          "deliverables": [
+            "kontrollstruktur",
+            "minst tre usikre kontrollhandlinger",
+            "forslag til barriere og målepunkt"
+          ]
+        }
+      ],
+      "questions": [
+        [
+          "Hvorfor er to parallelle komponenter ikke nødvendigvis reell redundans?",
+          "De kan dele strøm, programvare, miljø eller vedlikeholdsfeil og dermed ha fellesårsaksfeil",
+          "Parallelle komponenter kan aldri svikte",
+          "Redundans gjelder bare mekaniske systemer"
+        ],
+        [
+          "Hva skiller et pålitelighetsblokkskjema fra fysisk arkitektur?",
+          "Det viser funksjonslogikk for systemets suksess, ikke nødvendigvis fysisk plassering eller alle grensesnitt",
+          "Det er alltid en nøyaktig plantegning",
+          "Det viser bare kostnader"
+        ],
+        [
+          "Hva er et STAMP-lignende analysesyn?",
+          "Ulykker kan oppstå når kontroll og feedback er utilstrekkelig på tvers av tekniske og organisatoriske nivåer",
+          "Alle ulykker skyldes én defekt komponent",
+          "Sikkerhet kan bestemmes uten systemgrense"
+        ],
+        [
+          "Hva må oppgis før en tilgjengelighetsprosent kan vurderes?",
+          "Måleperiode, planlagt vedlikehold, feildefinisjon og systemgrense",
+          "Bare prosenttallet",
+          "Produktnavnet"
+        ],
+        [
+          "Hvilken test utfordrer arkitekturen best?",
+          "Kontrollert bortfall av en antatt uavhengig forsyningsvei mens lastoverføring og felles avhengigheter observeres",
+          "En visuell inspeksjon av logoen",
+          "En test uten registrert starttilstand"
+        ]
+      ]
+    },
+    {
+      "id": "mekanikk_energi_maskiner",
+      "label": "Mekanikk, energi og maskiner",
+      "sources": [
+        {
+          "id": "src_tek_moran_shapiro_2018",
+          "type": "scholarly_textbook",
+          "title": "Fundamentals of Engineering Thermodynamics",
+          "publisher_or_author": "Michael J. Moran mfl.",
+          "date_or_version": "9. utgave, 2018",
+          "locator": "ISBN 9781119391388, kontrollvolum, energibalanse og kretsprosesser",
+          "url": null,
+          "claim_classes": [
+            "descriptive",
+            "mechanistic",
+            "performance"
+          ]
+        },
+        {
+          "id": "src_tek_asme_ptc_19_1_2018",
+          "type": "technical_standard",
+          "title": "Test Uncertainty",
+          "publisher_or_author": "ASME",
+          "date_or_version": "ASME PTC 19.1-2018",
+          "locator": "ASME PTC 19.1-2018, måleusikkerhet og resultatrapportering",
+          "url": null,
+          "claim_classes": [
+            "performance",
+            "predictive"
+          ]
+        },
+        {
+          "id": "src_tek_iso_5151_2017",
+          "type": "technical_standard",
+          "title": "Non-ducted air conditioners and heat pumps — Testing and rating for performance",
+          "publisher_or_author": "ISO",
+          "date_or_version": "ISO 5151:2017",
+          "locator": "ISO 5151:2017, prøvingsbetingelser og ytelsesrating",
+          "url": null,
+          "claim_classes": [
+            "descriptive",
+            "mechanistic",
+            "performance"
+          ]
+        }
+      ],
+      "anchors": [
+        {
+          "slug": "luft_luft_varmepumpe",
+          "label": "Luft-til-luft-varmepumpe",
+          "anchor_type": "energy_conversion_system",
+          "system_boundary": "fordamper, kompressor, kondensator, ekspansjonsledd, vifter og målt inne-/utemiljø",
+          "context": "romoppvarming under varierende utetemperatur og dellast",
+          "observables": [
+            "varmeeffekt",
+            "elektrisk effekt",
+            "COP",
+            "temperaturer og massestrøm"
+          ],
+          "failure_modes": [
+            "avrimingstap",
+            "feil systemgrense",
+            "sammenligning ved ulike driftsbetingelser"
+          ]
+        },
+        {
+          "slug": "sykkel_drivverk",
+          "label": "Sykkeldrivverk med kjede og gir",
+          "anchor_type": "mechanical_transmission",
+          "system_boundary": "krank, kjede, tannhjul, nav, hjul og syklistens inngående moment",
+          "context": "kraftoverføring ved ulike gir, belastninger og vedlikeholdstilstander",
+          "observables": [
+            "moment",
+            "vinkelhastighet",
+            "mekanisk effekt",
+            "tap og slitasje"
+          ],
+          "failure_modes": [
+            "friksjon og feiljustering",
+            "utmattelse",
+            "måling uten kontrollert last"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "title": "Lukk energibalansen",
+          "prompt": "Definer kontrollvolumet, mål eller estimer alle relevante energistrømmer og rapporter restleddet med usikkerhet.",
+          "deliverables": [
+            "energibalanse",
+            "målekjede",
+            "usikkerhetsbudsjett"
+          ]
+        },
+        {
+          "title": "Sammenlign ytelse rettferdig",
+          "prompt": "Sammenlign to driftsmåter ved samme funksjon, last og miljøbetingelser, og forklar hvorfor maksimal virkningsgrad ikke alene avgjør bruksverdi.",
+          "deliverables": [
+            "felles testbetingelser",
+            "ytelseskurve",
+            "begrunnet avveining"
+          ]
+        }
+      ],
+      "questions": [
+        [
+          "Hva må være felles når to varmepumper sammenlignes?",
+          "Levert funksjon, ute- og innetemperatur, lastpunkt, systemgrense og målemetode",
+          "Bare produktfargen",
+          "Kun nominell kompressorstørrelse"
+        ],
+        [
+          "Hvorfor kan COP være større enn 1?",
+          "Systemet flytter varme fra omgivelsene i tillegg til å bruke elektrisk arbeid",
+          "Energi blir skapt",
+          "Måleinstrumentet teller alltid dobbelt"
+        ],
+        [
+          "Hva avslører en dimensjonskontroll?",
+          "Om ledd i en ligning har kompatible fysiske dimensjoner",
+          "Om modellen er sosialt akseptert",
+          "Om alle målinger er uten usikkerhet"
+        ],
+        [
+          "Hva er mekanisk effekt i et roterende drivverk?",
+          "Moment multiplisert med vinkelhastighet",
+          "Kraft delt på tid uten bevegelse",
+          "Masse multiplisert med temperatur"
+        ],
+        [
+          "Hva er sterkest evidens for virkningsgrad?",
+          "Samtidige inn- og utmålinger med kalibrerte instrumenter og rapportert usikkerhet",
+          "Et estimat fra produktnavnet",
+          "En enkelt temperatur uten massestrøm eller effekt"
+        ]
+      ]
+    },
+    {
+      "id": "materialer_produksjon",
+      "label": "Materialer og produksjon",
+      "sources": [
+        {
+          "id": "src_tek_ashby_2017",
+          "type": "scholarly_monograph",
+          "title": "Materials Selection in Mechanical Design",
+          "publisher_or_author": "Michael F. Ashby",
+          "date_or_version": "5. utgave, 2017",
+          "locator": "ISBN 9780081005996, materialindekser og livsløpsavveininger",
+          "url": null,
+          "claim_classes": [
+            "descriptive",
+            "mechanistic",
+            "normative"
+          ]
+        },
+        {
+          "id": "src_tek_astm_e647_2015",
+          "type": "technical_standard",
+          "title": "Standard Test Method for Measurement of Fatigue Crack Growth Rates",
+          "publisher_or_author": "ASTM International",
+          "date_or_version": "ASTM E647-15e1",
+          "locator": "ASTM E647-15e1, sprekkvekstmåling og gyldighetskrav",
+          "url": null,
+          "claim_classes": [
+            "performance",
+            "predictive",
+            "safety"
+          ]
+        },
+        {
+          "id": "src_tek_iso_22514_2_2017",
+          "type": "technical_standard",
+          "title": "Statistical methods in process management — Capability and performance",
+          "publisher_or_author": "ISO",
+          "date_or_version": "ISO 22514-2:2017",
+          "locator": "ISO 22514-2:2017, prosesskapabilitet og fordelingsantakelser",
+          "url": null,
+          "claim_classes": [
+            "descriptive",
+            "mechanistic",
+            "performance"
+          ]
+        }
+      ],
+      "anchors": [
+        {
+          "slug": "aluminium_panel_med_sprekk",
+          "label": "Aluminiumspanel med voksende utmattingssprekk",
+          "anchor_type": "material_failure_case",
+          "system_boundary": "panelgeometri, sprekk, lastsyklus, miljø og inspeksjonsintervall",
+          "context": "lett konstruksjon utsatt for gjentatt last og sikkerhetskrav",
+          "observables": [
+            "sprekkstørrelse",
+            "spenningsintensitet",
+            "lastspektrum",
+            "bruddseighet"
+          ],
+          "failure_modes": [
+            "sprekkvekst",
+            "korrosjonsassistert utmatting",
+            "modell uten gyldighetskontroll"
+          ]
+        },
+        {
+          "slug": "sprøytestøpt_deksel",
+          "label": "Sprøytestøpt teknisk deksel",
+          "anchor_type": "manufacturing_process",
+          "system_boundary": "materialbatch, verktøy, temperatur, trykk, kjøling og målkrav",
+          "context": "serieproduksjon med toleranser, overflatekrav og resirkulert innhold",
+          "observables": [
+            "dimensjonsfordeling",
+            "prosesskapabilitet",
+            "vridning",
+            "materialtilstand"
+          ],
+          "failure_modes": [
+            "prosessdrift",
+            "feil materialtilstand",
+            "kapabilitet beregnet på ustabil prosess"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "title": "Fastsett inspeksjonsgrense",
+          "prompt": "Bruk en eksplisitt bruddmekanisk modell til å begrunne kritisk sprekkstørrelse og et inspeksjonsintervall, inkludert modell- og måleusikkerhet.",
+          "deliverables": [
+            "gyldighetskontroll",
+            "kritisk størrelse",
+            "sikkerhetsmargin og inspeksjonsplan"
+          ]
+        },
+        {
+          "title": "Skil stabilitet fra kapabilitet",
+          "prompt": "Analyser produksjonsdata i riktig rekkefølge: først prosessstabilitet, deretter kapabilitet mot toleranser og til slutt mulige mekanismer for avvik.",
+          "deliverables": [
+            "kontrolldiagram",
+            "kapabilitetsmål med antakelser",
+            "årsaksplan"
+          ]
+        }
+      ],
+      "questions": [
+        [
+          "Hvorfor må prosessstabilitet vurderes før kapabilitet?",
+          "Kapabilitetsmål er misvisende dersom prosessen endrer nivå eller variasjon over tid",
+          "En ustabil prosess har alltid perfekt kapabilitet",
+          "Toleranser gjør tidsrekkefølge irrelevant"
+        ],
+        [
+          "Hva sammenlignes i lineær-elastisk bruddmekanikk?",
+          "Spenningens intensitet ved sprekkspissen mot materialets bruddseighet innen modellens gyldighetsområde",
+          "Bare materialets masse mot pris",
+          "Overflatefarge mot temperatur"
+        ],
+        [
+          "Hva er et moteksempel til god materialseleksjon?",
+          "Å velge høyest fasthet uten å inkludere masse, produksjon, miljø og bruddmodus",
+          "Å bruke eksplisitte materialindekser",
+          "Å dokumentere begrensninger"
+        ],
+        [
+          "Hva kan resirkulert innhold endre i et polymerprodukt?",
+          "Materialtilstand, variasjon og prosessvindu, som derfor må måles og kvalifiseres",
+          "Bare etikettens farge",
+          "Ingenting under noen betingelser"
+        ],
+        [
+          "Hvilken evidens støtter en påstand om lengre levetid?",
+          "Representative lastdata, sprekk- eller degraderingsmodell, inspeksjonsdata og usikkerhetsanalyse",
+          "En generell garanti uten testbetingelser",
+          "Ett feilfritt prøveemne"
+        ]
+      ]
+    },
+    {
+      "id": "elektronikk_signaler_regulering",
+      "label": "Elektronikk, signaler og regulering",
+      "sources": [
+        {
+          "id": "src_tek_shannon_1948",
+          "type": "primary_research",
+          "title": "A Mathematical Theory of Communication",
+          "publisher_or_author": "Claude E. Shannon",
+          "date_or_version": "1948",
+          "locator": "Bell System Technical Journal 27, s. 379–423 og 623–656; DOI 10.1002/j.1538-7305.1948.tb01338.x",
+          "url": "https://doi.org/10.1002/j.1538-7305.1948.tb01338.x",
+          "claim_classes": [
+            "mechanistic",
+            "predictive"
+          ]
+        },
+        {
+          "id": "src_tek_ogata_2010",
+          "type": "scholarly_textbook",
+          "title": "Modern Control Engineering",
+          "publisher_or_author": "Katsuhiko Ogata",
+          "date_or_version": "5. utgave, 2010",
+          "locator": "ISBN 9780136156734, feedback, stabilitet og frekvensrespons",
+          "url": null,
+          "claim_classes": [
+            "mechanistic",
+            "predictive",
+            "performance"
+          ]
+        },
+        {
+          "id": "src_tek_ieee_1057_2017",
+          "type": "technical_standard",
+          "title": "IEEE Standard for Digitizing Waveform Recorders",
+          "publisher_or_author": "IEEE",
+          "date_or_version": "IEEE 1057-2017",
+          "locator": "IEEE 1057-2017, test av sampling, støy og linearitet",
+          "url": null,
+          "claim_classes": [
+            "descriptive",
+            "mechanistic",
+            "performance"
+          ]
+        }
+      ],
+      "anchors": [
+        {
+          "slug": "lydopptak_adc_kjede",
+          "label": "Mikrofon–forsterker–ADC-kjede",
+          "anchor_type": "signal_chain",
+          "system_boundary": "mikrofon, analog front-end, antialiasfilter, ADC, klokke og digital representasjon",
+          "context": "opptak av tale med begrenset båndbredde og støy",
+          "observables": [
+            "samplingsfrekvens",
+            "signal/støy-forhold",
+            "aliasing",
+            "kvantisering"
+          ],
+          "failure_modes": [
+            "aliasing",
+            "metning",
+            "jordsløyfe og støy"
+          ]
+        },
+        {
+          "slug": "romtermostat_feedback",
+          "label": "Romtermostat med lukket reguleringssløyfe",
+          "anchor_type": "feedback_control_system",
+          "system_boundary": "temperatursensor, regulator, varmeaktuator, romdynamikk og forstyrrelser",
+          "context": "komfortregulering med tidsforsinkelse og varierende uteklima",
+          "observables": [
+            "settpunktfeil",
+            "oversving",
+            "innsvingstid",
+            "stabilitet"
+          ],
+          "failure_modes": [
+            "sensorbias",
+            "for aggressiv regulator",
+            "forsinkelse og oscillasjon"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "title": "Dokumenter signalkjeden",
+          "prompt": "Tegn signalkjeden, oppgi båndbredde og samplingsvalg, og identifiser hvor støy, aliasing og metning kan oppstå.",
+          "deliverables": [
+            "blokkskjema",
+            "måleplan",
+            "antialiasbegrunnelse"
+          ]
+        },
+        {
+          "title": "Tolk en reguleringsrespons",
+          "prompt": "Bruk en målt sprangrespons til å vurdere stabilitet, oversving og innsvingstid, og foreslå én endring med forventet bivirkning.",
+          "deliverables": [
+            "responsplot",
+            "målverdier",
+            "begrunnet regulatorendring"
+          ]
+        }
+      ],
+      "questions": [
+        [
+          "Hvorfor trengs et antialiasfilter før ADC?",
+          "For å begrense signalinnhold over det båndet samplingsfrekvensen kan representere",
+          "For å øke alle frekvenser ubegrenset",
+          "For å erstatte klokken"
+        ],
+        [
+          "Hva betyr lukket sløyfe i det dokumenterte teknologiske systemet?",
+          "Målt utgang føres tilbake og påvirker kontrollhandlingen",
+          "Aktuatoren er fysisk lukket i et skap",
+          "Systemet mangler sensor"
+        ],
+        [
+          "Hva er et tegn på utilstrekkelig stabilitetsmargin?",
+          "Vedvarende eller økende oscillasjon etter en liten forstyrrelse",
+          "Rask og dempet innsvingning",
+          "Lav måleoppløsning alene"
+        ],
+        [
+          "Hva må oppgis sammen med signal/støy-forhold?",
+          "Målebåndbredde, referansenivå, metode og driftsbetingelser",
+          "Bare enheten volt",
+          "Produktets lanseringsår"
+        ],
+        [
+          "Hvilken påstand følger samplingsteoremet?",
+          "Ideell rekonstruksjon krever båndbegrensning og sampling over to ganger høyeste frekvenskomponent",
+          "Alle signaler kan rekonstrueres ved hvilken som helst frekvens",
+          "Dobbel sampling fjerner all støy"
+        ]
+      ]
+    },
+    {
+      "id": "robotikk_automatisering",
+      "label": "Robotikk og automatisering",
+      "sources": [
+        {
+          "id": "src_tek_thrun_2005",
+          "type": "scholarly_monograph",
+          "title": "Probabilistic Robotics",
+          "publisher_or_author": "Sebastian Thrun, Wolfram Burgard og Dieter Fox",
+          "date_or_version": "2005",
+          "locator": "ISBN 9780262201629, kap. 2–8",
+          "url": null,
+          "claim_classes": [
+            "mechanistic",
+            "predictive",
+            "performance"
+          ]
+        },
+        {
+          "id": "src_tek_iso_10218_1_2011",
+          "type": "technical_standard",
+          "title": "Robots and robotic devices — Safety requirements for industrial robots — Part 1: Robots",
+          "publisher_or_author": "ISO",
+          "date_or_version": "ISO 10218-1:2011",
+          "locator": "ISO 10218-1:2011; brukes som eksplisitt versjon, ikke som påstand om gjeldende lokal samsvarsvurdering",
+          "url": null,
+          "claim_classes": [
+            "normative",
+            "safety"
+          ]
+        },
+        {
+          "id": "src_tek_sheridan_verplank_1978",
+          "type": "official_research_report",
+          "title": "Human and Computer Control of Undersea Teleoperators",
+          "publisher_or_author": "Thomas B. Sheridan og William L. Verplank",
+          "date_or_version": "1978",
+          "locator": "MIT Man-Machine Systems Laboratory report, levels of automation",
+          "url": null,
+          "claim_classes": [
+            "descriptive",
+            "normative"
+          ]
+        }
+      ],
+      "anchors": [
+        {
+          "slug": "lagerrobot_lokalisering",
+          "label": "Mobil lagerrobot med lidar og hjulodometri",
+          "anchor_type": "autonomous_robot",
+          "system_boundary": "sensorer, tilstandsestimator, kart, planlegger, drivverk og operasjonelt designområde",
+          "context": "innendørs varetransport blant mennesker og skiftende hindringer",
+          "observables": [
+            "posisjonskovarians",
+            "innovasjon",
+            "stoppavstand",
+            "lokaliseringsfeil"
+          ],
+          "failure_modes": [
+            "sensorblindsone",
+            "kartendring",
+            "overkonfidens i estimat"
+          ]
+        },
+        {
+          "slug": "samarbeidsrobot_montasje",
+          "label": "Samarbeidsrobot i montasjecelle",
+          "anchor_type": "human_robot_system",
+          "system_boundary": "robotarm, verktøy, sikkerhetsfunksjoner, arbeidsstasjon, operatør og produksjonsflyt",
+          "context": "delt arbeidsrom med variasjon i deler og menneskelig inngrep",
+          "observables": [
+            "kraft og hastighet",
+            "beskyttelsesstopp",
+            "modusstatus",
+            "oppgavefordeling"
+          ],
+          "failure_modes": [
+            "modusforvirring",
+            "feil sikkerhetsparameter",
+            "uventet gjenstart"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "title": "Vurder lokaliseringens usikkerhet",
+          "prompt": "Analyser hvordan odometri og lidar kombineres, vis hva innovasjon og kovarians sier, og definer en sikker reaksjon ved voksende usikkerhet.",
+          "deliverables": [
+            "estimatorlogikk",
+            "usikkerhetsvisualisering",
+            "degradert driftsmodus"
+          ]
+        },
+        {
+          "title": "Fordel kontroll mellom menneske og robot",
+          "prompt": "Definer automatiseringsnivå per deloppgave og vis hvordan operatøren opprettholder situasjonsforståelse, overstyring og sikker gjenoppretting.",
+          "deliverables": [
+            "oppgavefordeling",
+            "modus- og feedbackdesign",
+            "risikokontroll"
+          ]
+        }
+      ],
+      "questions": [
+        [
+          "Hva uttrykker en usikkerhetsellipse i lokalisering?",
+          "Retning og størrelse på estimatets posisjonsusikkerhet under modellantakelsene",
+          "Robotens fysiske fotavtrykk alene",
+          "Et garantert område uten feil"
+        ],
+        [
+          "Hva er sensorfusjon i det dokumenterte teknologiske systemet?",
+          "Å kombinere flere målekilder og en modell med eksplisitt usikkerhet",
+          "Å velge den mest optimistiske sensoren",
+          "Å summere råverdier uten kalibrering"
+        ],
+        [
+          "Hvorfor må operasjonelt designområde være eksplisitt?",
+          "Fordi autonom funksjon og sikkerhet bare er validert for bestemte miljø-, hastighets- og samhandlingsbetingelser",
+          "Fordi roboten ellers ikke trenger programvare",
+          "Fordi det erstatter risikovurdering"
+        ],
+        [
+          "Hva kjennetegner en feilsikker reaksjon?",
+          "En definert overgang til en tilstand med kontrollert risiko når en relevant feil oppdages",
+          "At systemet alltid fortsetter med full hastighet",
+          "At feilen skjules for operatøren"
+        ],
+        [
+          "Hva reduserer automasjonsskjevhet best?",
+          "Tydelig feedback, forståelige begrensninger og oppgaver som krever aktiv kontroll av kritiske data",
+          "Å skjule usikkerhet",
+          "Å kalle systemet intelligent"
+        ]
+      ]
+    },
+    {
+      "id": "datamaskiner_operativsystemer",
+      "label": "Datamaskiner og operativsystemer",
+      "sources": [
+        {
+          "id": "src_tek_hennessy_patterson_2019",
+          "type": "scholarly_textbook",
+          "title": "Computer Architecture: A Quantitative Approach",
+          "publisher_or_author": "John L. Hennessy og David A. Patterson",
+          "date_or_version": "6. utgave, 2019",
+          "locator": "ISBN 9780128119051, ytelsesmåling, minnehierarki og parallellitet",
+          "url": null,
+          "claim_classes": [
+            "mechanistic",
+            "performance",
+            "predictive"
+          ]
+        },
+        {
+          "id": "src_tek_riscv_unpriv_20191213",
+          "type": "official_specification",
+          "title": "The RISC-V Instruction Set Manual, Volume I: Unprivileged ISA",
+          "publisher_or_author": "RISC-V International",
+          "date_or_version": "20191213",
+          "locator": "RISC-V Unprivileged ISA Specification 20191213",
+          "url": "https://riscv.org/technical/specifications/",
+          "claim_classes": [
+            "descriptive",
+            "mechanistic"
+          ]
+        },
+        {
+          "id": "src_tek_amdahl_1967",
+          "type": "primary_research",
+          "title": "Validity of the Single Processor Approach to Achieving Large Scale Computing Capabilities",
+          "publisher_or_author": "Gene M. Amdahl",
+          "date_or_version": "1967",
+          "locator": "AFIPS Conference Proceedings 30, s. 483–485; DOI 10.1145/1465482.1465560",
+          "url": "https://doi.org/10.1145/1465482.1465560",
+          "claim_classes": [
+            "predictive",
+            "performance"
+          ]
+        }
+      ],
+      "anchors": [
+        {
+          "slug": "cache_benchmark",
+          "label": "Prosessorbenchmark med cache-arbeidssett",
+          "anchor_type": "computer_performance_experiment",
+          "system_boundary": "program, kompilatorvalg, prosessor, cachehierarki, minne og måletidsmetode",
+          "context": "måling av kjøretid når datasett går fra cache til hovedminne",
+          "observables": [
+            "cache miss-rate",
+            "instruksjoner",
+            "sykluser",
+            "kjøretid"
+          ],
+          "failure_modes": [
+            "ukontrollert kompilator",
+            "termisk throttling",
+            "feil arbeidssett"
+          ]
+        },
+        {
+          "slug": "virtuell_hukommelse_trace",
+          "label": "Sidefeilspor i virtuelt minnesystem",
+          "anchor_type": "operating_system_trace",
+          "system_boundary": "prosessens adresser, sidetabell, TLB, fysisk minne, lagring og scheduler",
+          "context": "minnepress med flere samtidige prosesser",
+          "observables": [
+            "sidefeil",
+            "TLB miss",
+            "I/O-venting",
+            "resident set"
+          ],
+          "failure_modes": [
+            "thrashing",
+            "prioritetsinversjon",
+            "måling uten prosesskontekst"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "title": "Forklar ytelsesknekket",
+          "prompt": "Koble arbeidssettstørrelse til cache miss-rate, minnetrafikk og kjøretid, og skill mekanismeforklaring fra ren korrelasjon.",
+          "deliverables": [
+            "måleserie",
+            "arkitekturforklaring",
+            "alternative forklaringer"
+          ]
+        },
+        {
+          "title": "Diagnostiser minnepress",
+          "prompt": "Bruk spor av sidefeil, I/O og scheduleraktivitet til å avgjøre om systemet thrash-er, og foreslå tiltak med avveininger.",
+          "deliverables": [
+            "tidslinje",
+            "diagnosekriterier",
+            "tiltak og bivirkning"
+          ]
+        }
+      ],
+      "questions": [
+        [
+          "Hva gjør minnehierarkiet?",
+          "Utnytter lokalitet ved å plassere små, raske lag nær prosessoren og større, langsommere lag lenger unna",
+          "Gjør all lagring like rask",
+          "Erstatter instruksjonssettet"
+        ],
+        [
+          "Hva er en cache miss i det dokumenterte teknologiske systemet?",
+          "En forespørsel der data ikke finnes i det aktuelle cachelaget og må hentes fra et annet lag",
+          "En feil i strømnettet",
+          "En ugyldig brukerkommando"
+        ],
+        [
+          "Hva sier Amdahls lov i det dokumenterte teknologiske systemet?",
+          "Den serielle andelen begrenser maksimal hastighetsgevinst når resten parallelliseres",
+          "Flere kjerner gir alltid lineær gevinst",
+          "Minne har ingen betydning for parallellitet"
+        ],
+        [
+          "Hva er hovedrollen til virtuelt minne?",
+          "Å gi prosesser et abstrahert adresserom og kontrollert mapping til fysisk minne og lagring",
+          "Å gjøre programmer uten instruksjoner",
+          "Å fjerne behovet for tilgangskontroll"
+        ],
+        [
+          "Hvilken benchmarkrapport er mest etterprøvbar?",
+          "Den oppgir maskinvare, programversjon, kompilator, arbeidssett, repetisjoner og usikkerhet",
+          "Den oppgir bare raskest tid",
+          "Den sammenligner ulike oppgaver som om de var samme funksjon"
+        ]
+      ]
+    },
+    {
+      "id": "programvareteknikk",
+      "label": "Programvareteknikk",
+      "sources": [
+        {
+          "id": "src_tek_parnas_1972",
+          "type": "primary_research",
+          "title": "On the Criteria To Be Used in Decomposing Systems into Modules",
+          "publisher_or_author": "David L. Parnas",
+          "date_or_version": "1972",
+          "locator": "Communications of the ACM 15(12), s. 1053–1058; DOI 10.1145/361598.361623",
+          "url": "https://doi.org/10.1145/361598.361623",
+          "claim_classes": [
+            "mechanistic",
+            "normative"
+          ]
+        },
+        {
+          "id": "src_tek_meyer_1997",
+          "type": "scholarly_monograph",
+          "title": "Object-Oriented Software Construction",
+          "publisher_or_author": "Bertrand Meyer",
+          "date_or_version": "2. utgave, 1997",
+          "locator": "ISBN 9780136291558, Design by Contract og invariants",
+          "url": null,
+          "claim_classes": [
+            "descriptive",
+            "normative"
+          ]
+        },
+        {
+          "id": "src_tek_beyer_sre_2016",
+          "type": "professional_reference",
+          "title": "Site Reliability Engineering",
+          "publisher_or_author": "Betsy Beyer mfl. (red.)",
+          "date_or_version": "2016",
+          "locator": "ISBN 9781491929124, overvåking, hendelser og pålitelighetsmål",
+          "url": "https://sre.google/sre-book/table-of-contents/",
+          "claim_classes": [
+            "mechanistic",
+            "performance",
+            "normative"
+          ]
+        }
+      ],
+      "anchors": [
+        {
+          "slug": "betalingsapi_idempotens",
+          "label": "Betalings-API med idempotensnøkkel",
+          "anchor_type": "software_interface",
+          "system_boundary": "klient, API-gateway, betalingstjeneste, database, kø og ekstern betalingsformidler",
+          "context": "nettverksfeil og retries uten dobbel belastning av kunden",
+          "observables": [
+            "idempotensnøkkel",
+            "kontrakt",
+            "hendelseslogg",
+            "duplikatutfall"
+          ],
+          "failure_modes": [
+            "dobbel behandling",
+            "uklar retry-semantikk",
+            "skjult kobling"
+          ]
+        },
+        {
+          "slug": "mikrotjeneste_hendelse",
+          "label": "Produksjonshendelse i mikrotjenestesystem",
+          "anchor_type": "software_incident",
+          "system_boundary": "tjenester, API-er, køer, datalagre, deployversjoner og observabilitetssignaler",
+          "context": "latensøkning etter endring med delvise feil og automatiske retries",
+          "observables": [
+            "logger",
+            "metrikker",
+            "spor",
+            "feilbudsjett",
+            "versjonskobling"
+          ],
+          "failure_modes": [
+            "retry-storm",
+            "manglende korrelasjon",
+            "dashboard uten årsaksmodell"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "title": "Spesifiser API-kontrakten",
+          "prompt": "Definer pre-betingelser, post-betingelser, invariant og idempotenssemantikk for betalingsoperasjonen, inkludert feil og retry.",
+          "deliverables": [
+            "kontrakt",
+            "tilstandsdiagram",
+            "kontrakttester"
+          ]
+        },
+        {
+          "title": "Rekonstruer hendelsen",
+          "prompt": "Koble deploy, spor, logger og metrikker til en tidslinje og skill observerte fakta fra hypotese om årsak.",
+          "deliverables": [
+            "hendelsestidslinje",
+            "hypoteser med evidens",
+            "permanent korrigering og regressjonstest"
+          ]
+        }
+      ],
+      "questions": [
+        [
+          "Hva betyr informasjonsskjuling?",
+          "At en modul skjuler designbeslutninger som sannsynligvis endres, bak et stabilt grensesnitt",
+          "At dokumentasjon slettes",
+          "At all kode legges i én klasse"
+        ],
+        [
+          "Hva gjør en invariant i det dokumenterte teknologiske systemet?",
+          "Angir en tilstand som skal være sann ved definerte punkter i komponentens livsløp",
+          "Er en tilfeldig kommentar",
+          "Er det samme som en brukerhistorie"
+        ],
+        [
+          "Hvorfor brukes idempotens ved retries?",
+          "Samme logiske operasjon kan gjentas uten å skape flere tilsvarende sideeffekter",
+          "Alle feil forsvinner automatisk",
+          "Nettverket blir synkront"
+        ],
+        [
+          "Hva skiller observabilitet fra et dashboard?",
+          "Observabilitet er evnen til å forklare intern tilstand fra relevante signaler; et dashboard er bare én presentasjon",
+          "Et dashboard beviser årsak",
+          "Observabilitet krever ingen spørsmål"
+        ],
+        [
+          "Hva er sterkest evidens for at en endring forårsaket hendelsen?",
+          "Tidsmessig kobling, mekanisme, versjonsspor, reproduksjon eller kontrollert reversering og alternative forklaringer",
+          "At endringen hadde et langt navn",
+          "At feilen oppstod samme måned"
+        ]
+      ]
+    },
+    {
+      "id": "algoritmer_data_ai",
+      "label": "Algoritmer, data og kunstig intelligens",
+      "sources": [
+        {
+          "id": "src_tek_hastie_2009",
+          "type": "scholarly_monograph",
+          "title": "The Elements of Statistical Learning",
+          "publisher_or_author": "Trevor Hastie, Robert Tibshirani og Jerome Friedman",
+          "date_or_version": "2. utgave, 2009",
+          "locator": "ISBN 9780387848570; modellvalg, generalisering og regularisering",
+          "url": "https://hastie.su.domains/ElemStatLearn/",
+          "claim_classes": [
+            "mechanistic",
+            "predictive",
+            "performance"
+          ]
+        },
+        {
+          "id": "src_tek_pearl_2009",
+          "type": "scholarly_monograph",
+          "title": "Causality",
+          "publisher_or_author": "Judea Pearl",
+          "date_or_version": "2. utgave, 2009",
+          "locator": "ISBN 9780521895606; strukturelle kausalmodeller og identifikasjon",
+          "url": null,
+          "claim_classes": [
+            "causal",
+            "mechanistic"
+          ]
+        },
+        {
+          "id": "src_tek_nist_ai_rmf_2023",
+          "type": "official_framework",
+          "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+          "publisher_or_author": "NIST",
+          "date_or_version": "NIST AI 100-1, 2023",
+          "locator": "NIST AI 100-1, særlig Map, Measure, Manage og Govern",
+          "url": "https://doi.org/10.6028/NIST.AI.100-1",
+          "claim_classes": [
+            "normative",
+            "risk",
+            "performance"
+          ]
+        }
+      ],
+      "anchors": [
+        {
+          "slug": "bildemodell_distribusjonsskift",
+          "label": "Bildemodell under sesong- og kameraskift",
+          "anchor_type": "machine_learning_evaluation",
+          "system_boundary": "treningsdata, valideringsdata, modell, beslutningsterskel, kamera og bruksmiljø",
+          "context": "klassifikasjon utviklet på ett datasett og brukt med andre lysforhold og sensorer",
+          "observables": [
+            "feil per undergruppe",
+            "kalibrering",
+            "driftmål",
+            "konfidensfordeling"
+          ],
+          "failure_modes": [
+            "distribusjonsskift",
+            "modellskjevhet",
+            "ukalibrert sikkerhet"
+          ]
+        },
+        {
+          "slug": "risikomodell_beslutningsterskel",
+          "label": "Risikomodell med beslutningsterskel",
+          "anchor_type": "decision_support_model",
+          "system_boundary": "inputdata, modell, sannsynlighet, terskel, menneskelig beslutning og konsekvenser",
+          "context": "prioritering av begrensede kontrollressurser med asymmetriske feilkonsekvenser",
+          "observables": [
+            "kalibreringskurve",
+            "sensitivitet",
+            "spesifisitet",
+            "forventet tap"
+          ],
+          "failure_modes": [
+            "skjult tapsfunksjon",
+            "konfundering",
+            "automatisert beslutning uten ansvar"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "title": "Test robusthet under skift",
+          "prompt": "Definer utviklings- og bruksfordeling, mål ytelse og kalibrering per relevant gruppe, og foreslå en reaksjon når driftsgrensen overskrides.",
+          "deliverables": [
+            "skiftstaksonomi",
+            "stratifisert evaluering",
+            "operasjonell overvåkingsregel"
+          ]
+        },
+        {
+          "title": "Gjør terskelen etterprøvbar",
+          "prompt": "Vis hvordan tapsfunksjon, kalibrering og ressursbegrensning bestemmer en beslutningsterskel, og dokumenter hvem som eier det normative valget.",
+          "deliverables": [
+            "beslutningskurve",
+            "åpen tapsmatrise",
+            "ansvars- og overstyringsregel"
+          ]
+        }
+      ],
+      "questions": [
+        [
+          "Hva er generalisering i det dokumenterte teknologiske systemet?",
+          "At en modell opprettholder relevant ytelse på nye data fra den definerte målpopulasjonen",
+          "At treningsfeilen er null",
+          "At modellen bruker mange parametere"
+        ],
+        [
+          "Hvorfor er kalibrering viktig for en risikoscore?",
+          "En oppgitt sannsynlighet bør samsvare med observerte frekvenser innen relevante grupper og betingelser",
+          "Den gjør alle beslutninger verdinøytrale",
+          "Den erstatter valideringsdata"
+        ],
+        [
+          "Hva er distribusjonsskift?",
+          "En relevant endring mellom datafordelingen ved utvikling og ved bruk",
+          "At filene flyttes til en ny mappe",
+          "At modellen får et nytt navn"
+        ],
+        [
+          "Hva kreves for en kausal påstand fra observasjonsdata?",
+          "Eksplisitt kausal struktur, identifikasjonsantakelser og analyse av konfundering eller seleksjon",
+          "Høy korrelasjon alene",
+          "Et stort nevralt nettverk"
+        ],
+        [
+          "Hva skjuler en tapsfunksjon ofte?",
+          "Normative prioriteringer mellom ulike feil og konsekvenser",
+          "Bare prosessorhastighet",
+          "At data alltid er representative"
+        ]
+      ]
+    },
+    {
+      "id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Nettverk, cybersikkerhet og infrastruktur",
+      "sources": [
+        {
+          "id": "src_tek_rfc_8200",
+          "type": "official_specification",
+          "title": "Internet Protocol, Version 6 (IPv6) Specification",
+          "publisher_or_author": "IETF / RFC Editor",
+          "date_or_version": "RFC 8200, 2017",
+          "locator": "RFC 8200, pakkeformat og nodebehandling",
+          "url": "https://www.rfc-editor.org/rfc/rfc8200",
+          "claim_classes": [
+            "descriptive",
+            "mechanistic"
+          ]
+        },
+        {
+          "id": "src_tek_rfc_8446",
+          "type": "official_specification",
+          "title": "The Transport Layer Security (TLS) Protocol Version 1.3",
+          "publisher_or_author": "IETF / RFC Editor",
+          "date_or_version": "RFC 8446, 2018",
+          "locator": "RFC 8446, handshake, nøkler og sikkerhetshensyn",
+          "url": "https://www.rfc-editor.org/rfc/rfc8446",
+          "claim_classes": [
+            "descriptive",
+            "mechanistic",
+            "security"
+          ]
+        },
+        {
+          "id": "src_tek_gilbert_lynch_2002",
+          "type": "primary_research",
+          "title": "Brewer's conjecture and the feasibility of consistent, available, partition-tolerant web services",
+          "publisher_or_author": "Seth Gilbert og Nancy Lynch",
+          "date_or_version": "2002",
+          "locator": "SIGACT News 33(2), s. 51–59; DOI 10.1145/564585.564601",
+          "url": "https://doi.org/10.1145/564585.564601",
+          "claim_classes": [
+            "predictive",
+            "mechanistic"
+          ]
+        },
+        {
+          "id": "src_tek_nist_sp_800_207",
+          "type": "official_standard_guidance",
+          "title": "Zero Trust Architecture",
+          "publisher_or_author": "NIST",
+          "date_or_version": "NIST SP 800-207, 2020",
+          "locator": "NIST SP 800-207, policy engine, trust algorithm og resource access",
+          "url": "https://doi.org/10.6028/NIST.SP.800-207",
+          "claim_classes": [
+            "normative",
+            "security"
+          ]
+        }
+      ],
+      "anchors": [
+        {
+          "slug": "replikert_kv_partisjon",
+          "label": "Replikert nøkkel–verdi-lager under nettverkspartisjon",
+          "anchor_type": "distributed_system_experiment",
+          "system_boundary": "klienter, tre replikaer, konsensusprotokoll, nettverkslenker og persistent logg",
+          "context": "samtidige skriveroperasjoner mens én nettverksdel isoleres",
+          "observables": [
+            "quorum",
+            "commit-indeks",
+            "latens",
+            "divergerende svar"
+          ],
+          "failure_modes": [
+            "split brain",
+            "stanset fremdrift",
+            "uklar konsistensmodell"
+          ]
+        },
+        {
+          "slug": "tls_websesjon",
+          "label": "TLS 1.3-websesjon gjennom omvendt proxy",
+          "anchor_type": "security_protocol_trace",
+          "system_boundary": "klient, DNS-antakelser, proxy, sertifikatkjede, applikasjonstjener og identitetsgrense",
+          "context": "autentisert og kryptert kommunikasjon med moderne webtjeneste",
+          "observables": [
+            "handshake-meldinger",
+            "sertifikatvalidering",
+            "nøkkelavledning",
+            "autorisasjonsbeslutning"
+          ],
+          "failure_modes": [
+            "feil tillitsgrense",
+            "gyldig kryptering til feil endepunkt",
+            "manglende autorisasjon"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "title": "Test partisjonsatferd",
+          "prompt": "Induser en dokumentert nettverkspartisjon og vis hvilke operasjoner som blokkeres, avvises eller godtas under systemets konsistens- og tilgjengelighetsløfte.",
+          "deliverables": [
+            "feilmodell",
+            "hendelseslogg",
+            "presis CAP-tolkning"
+          ]
+        },
+        {
+          "title": "Bygg trusselmodell for sesjonen",
+          "prompt": "Kartlegg aktiva, tillitsgrenser, angriperforutsetninger og sikkerhetskontroller fra navneoppslag til applikasjonsautorisasjon.",
+          "deliverables": [
+            "dataflytdiagram",
+            "trusler og kontroller",
+            "rest-risiko"
+          ]
+        }
+      ],
+      "questions": [
+        [
+          "Hva sier CAP-teoremet presist?",
+          "Under en faktisk nettverkspartisjon kan ikke alle forespørsler garanteres både lineæriserbart konsistente og tilgjengelige",
+          "Et system kan bare velge to egenskaper for alltid",
+          "Kryptering reduserer tilgjengelighet til null"
+        ],
+        [
+          "Hva er et quorum i det dokumenterte teknologiske systemet?",
+          "Et definert antall eller vekt av deltakere som kreves for en beslutning",
+          "En tilfeldig reservekopi",
+          "En nettverkskabel"
+        ],
+        [
+          "Hva gir TLS 1.3 primært i det dokumenterte teknologiske systemet?",
+          "Konfidensialitet og integritet i transporten samt autentisering etter valgt sertifikat- og identitetsmodell",
+          "Automatisk autorisasjon til alle ressurser",
+          "Beskyttelse mot all skadevare på endepunktet"
+        ],
+        [
+          "Hva betyr zero trust i NIST-arkitekturen?",
+          "Tilgang avgjøres eksplisitt per ressurs og forespørsel uten å stole automatisk på nettverksplassering",
+          "Ingen komponent kan noen gang stole på kryptografi",
+          "Alle tjenester må være offentlige"
+        ],
+        [
+          "Hva må en sikkerhetspåstand inneholde?",
+          "Trusselmodell, tillitsgrenser, kontroller, angrepsforutsetninger og rest-risiko",
+          "Bare ordet sikker",
+          "Kun antall brannmurer"
+        ]
+      ]
+    },
+    {
+      "id": "menneske_teknologi_hci",
+      "label": "Menneske–teknologi og HCI",
+      "sources": [
+        {
+          "id": "src_tek_iso_9241_210_2019",
+          "type": "technical_standard",
+          "title": "Ergonomics of human-system interaction — Part 210: Human-centred design for interactive systems",
+          "publisher_or_author": "ISO",
+          "date_or_version": "ISO 9241-210:2019",
+          "locator": "ISO 9241-210:2019, prinsipper og aktiviteter for menneskesentrert design",
+          "url": null,
+          "claim_classes": [
+            "descriptive",
+            "normative"
+          ]
+        },
+        {
+          "id": "src_tek_endsley_1995",
+          "type": "primary_research",
+          "title": "Toward a Theory of Situation Awareness in Dynamic Systems",
+          "publisher_or_author": "Mica R. Endsley",
+          "date_or_version": "1995",
+          "locator": "Human Factors 37(1), s. 32–64; DOI 10.1518/001872095779049543",
+          "url": "https://doi.org/10.1518/001872095779049543",
+          "claim_classes": [
+            "theory",
+            "mechanistic"
+          ]
+        },
+        {
+          "id": "src_tek_wcag_2_2_2023",
+          "type": "official_web_standard",
+          "title": "Web Content Accessibility Guidelines (WCAG) 2.2",
+          "publisher_or_author": "W3C",
+          "date_or_version": "W3C Recommendation, 5 October 2023",
+          "locator": "WCAG 2.2, prinsipper og suksesskriterier",
+          "url": "https://www.w3.org/TR/WCAG22/",
+          "claim_classes": [
+            "normative",
+            "descriptive"
+          ]
+        }
+      ],
+      "anchors": [
+        {
+          "slug": "infusjonspumpe_grensesnitt",
+          "label": "Infusjonspumpe med modus- og dosegrensesnitt",
+          "anchor_type": "safety_critical_interface",
+          "system_boundary": "skjerm, inputkontroller, alarmer, dosemodell, kliniker, prosedyre og pasientkontekst",
+          "context": "programmering og overvåking av medikamentinfusjon under avbrudd",
+          "observables": [
+            "modusindikasjon",
+            "doseenheter",
+            "alarmrespons",
+            "oppgavefeil"
+          ],
+          "failure_modes": [
+            "modusforvirring",
+            "enhetsfeil",
+            "alarmtretthet"
+          ]
+        },
+        {
+          "slug": "billettautomat_tilgjengelighet",
+          "label": "Billettautomat med universell utforming",
+          "anchor_type": "public_interactive_system",
+          "system_boundary": "skjerm, fysisk betjening, betalingsenhet, lyd, plassering, kø og tjenestealternativ",
+          "context": "offentlig selvbetjening for brukere med ulike sanse-, motoriske og kognitive forutsetninger",
+          "observables": [
+            "oppgavefullføring",
+            "feilrate",
+            "tidsbruk",
+            "tilgjengelighetsbarrierer"
+          ],
+          "failure_modes": [
+            "utilgjengelig kontroll",
+            "uklar feedback",
+            "tidssperre uten alternativ"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "title": "Test kritisk oppgave i kontekst",
+          "prompt": "Gjennomfør en strukturert brukstest av en kritisk oppgave, registrer feilmekanismer og skill mellom individuell feil og systemskapt feilmulighet.",
+          "deliverables": [
+            "oppgaveanalyse",
+            "observasjonsprotokoll",
+            "designendring koblet til funn"
+          ]
+        },
+        {
+          "title": "Revider tilgjengelighet multimodalt",
+          "prompt": "Vurder syn, hørsel, motorikk, kognisjon og situasjonskontekst, og dokumenter både standardkrav og faktisk oppgaveytelse.",
+          "deliverables": [
+            "barrierekart",
+            "standardkobling",
+            "prioritert redesign"
+          ]
+        }
+      ],
+      "questions": [
+        [
+          "Hva er modusforvirring i det dokumenterte teknologiske systemet?",
+          "At brukerens mentale modell av aktiv systemmodus avviker fra systemets faktiske modus",
+          "At en knapp har feil farge alene",
+          "At systemet har flere språk"
+        ],
+        [
+          "Hva betyr menneskesentrert design?",
+          "En iterativ prosess basert på eksplisitt brukskontekst, brukerbehov, evaluering og tverrfaglig design",
+          "At brukeren alltid får viljen sin",
+          "At estetikk erstatter sikkerhet"
+        ],
+        [
+          "Hva er situasjonsforståelse i en dynamisk oppgave?",
+          "Å oppfatte relevante elementer, forstå betydningen og kunne projisere nær framtidig utvikling",
+          "Å huske alle manualord",
+          "Å se flest mulig indikatorer"
+        ],
+        [
+          "Hvorfor er standardoppfyllelse ikke alene nok?",
+          "Faktisk brukskontekst, kombinerte barrierer og oppgaveutfall må også undersøkes",
+          "Standarder har ingen verdi",
+          "Brukertest kan erstatte alle krav"
+        ],
+        [
+          "Hva er best evidens for et forbedret grensesnitt?",
+          "Sammenlignbar oppgavetest med definerte brukere, oppgaver, feil og kontekst samt kvalitativ forklaring",
+          "En designers preferanse",
+          "Et skjermbilde uten bruk"
+        ]
+      ]
+    },
+    {
+      "id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Teknologihistorie, STS, risiko og bærekraft",
+      "sources": [
+        {
+          "id": "src_tek_hughes_1983",
+          "type": "scholarly_monograph",
+          "title": "Networks of Power",
+          "publisher_or_author": "Thomas P. Hughes",
+          "date_or_version": "1983",
+          "locator": "ISBN 9780801828737, store tekniske systemer og momentum",
+          "url": null,
+          "claim_classes": [
+            "historical",
+            "causal"
+          ]
+        },
+        {
+          "id": "src_tek_bijker_hughes_pinch_1987",
+          "type": "scholarly_collection",
+          "title": "The Social Construction of Technological Systems",
+          "publisher_or_author": "Wiebe E. Bijker, Thomas P. Hughes og Trevor Pinch (red.)",
+          "date_or_version": "1987",
+          "locator": "ISBN 9780262521376, særlig innledning og SCOT-kapitler",
+          "url": null,
+          "claim_classes": [
+            "historical",
+            "causal"
+          ]
+        },
+        {
+          "id": "src_tek_geels_2002",
+          "type": "primary_research",
+          "title": "Technological transitions as evolutionary reconfiguration processes",
+          "publisher_or_author": "Frank W. Geels",
+          "date_or_version": "2002",
+          "locator": "Research Policy 31(8–9), s. 1257–1274; DOI 10.1016/S0048-7333(02)00062-8",
+          "url": "https://doi.org/10.1016/S0048-7333(02)00062-8",
+          "claim_classes": [
+            "historical",
+            "causal"
+          ]
+        },
+        {
+          "id": "src_tek_iso_14040_2006",
+          "type": "technical_standard",
+          "title": "Environmental management — Life cycle assessment — Principles and framework",
+          "publisher_or_author": "ISO",
+          "date_or_version": "ISO 14040:2006",
+          "locator": "ISO 14040:2006, mål og omfang, inventar, virkningsvurdering og tolkning",
+          "url": null,
+          "claim_classes": [
+            "descriptive",
+            "normative",
+            "environmental"
+          ]
+        }
+      ],
+      "anchors": [
+        {
+          "slug": "urbant_kraftsystem_utvikling",
+          "label": "Historisk utvikling av urbant kraftsystem",
+          "anchor_type": "large_technical_system_case",
+          "system_boundary": "produksjon, nett, måling, regulering, selskaper, standarder og bruksmønstre i en definert by og periode",
+          "context": "utbygging, sammenkobling og institusjonell stabilisering over tid",
+          "observables": [
+            "nettstruktur",
+            "standardvalg",
+            "aktørroller",
+            "investeringssti"
+          ],
+          "failure_modes": [
+            "teknologisk determinisme",
+            "etterpåklok lineær framstilling"
+          ]
+        },
+        {
+          "slug": "smarttelefon_livslop",
+          "label": "Smarttelefonens livsløp og brukseffekter",
+          "anchor_type": "lifecycle_and_transition_case",
+          "system_boundary": "råvarer, komponentproduksjon, transport, bruk, programvarestøtte, reparasjon og sluttbehandling",
+          "context": "sammenligning av levetidsforlengelse, utskifting og tjenesteeffekter",
+          "observables": [
+            "livsløpsinventar",
+            "reparerbarhet",
+            "brukstid",
+            "reboundeffekt"
+          ],
+          "failure_modes": [
+            "flytting av belastning mellom faser",
+            "utelatt programvarestøtte",
+            "bærekraft uten funksjonell enhet"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "title": "Forklar stiavhengighet uten determinisme",
+          "prompt": "Bygg en dokumentert tidslinje som viser tekniske, økonomiske og institusjonelle valg, alternative spor og mekanismene som gjorde senere endring kostbar.",
+          "deliverables": [
+            "kildesatt tidslinje",
+            "mekanismekart",
+            "reelt kontrafaktisk alternativ"
+          ]
+        },
+        {
+          "title": "Gjennomfør avgrenset livsløpssammenligning",
+          "prompt": "Definer funksjonell enhet og systemgrense, sammenlign levetidsforlengelse med utskifting, og vis sensitivitets- og reboundforutsetninger.",
+          "deliverables": [
+            "mål og omfang",
+            "inventartabell",
+            "sensitivitetsanalyse og fordelingsnotat"
+          ]
+        }
+      ],
+      "questions": [
+        [
+          "Hva er stiavhengighet i det dokumenterte teknologiske systemet?",
+          "At tidligere valg endrer kostnader, kompetanse, standarder og alternativer slik at noen senere spor blir lettere enn andre",
+          "At teknologi aldri kan endres",
+          "At historien alltid følger én plan"
+        ],
+        [
+          "Hva er teknologisk momentum?",
+          "Gjensidig stabilisering mellom teknisk infrastruktur, organisasjoner, investeringer og bruksmønstre",
+          "Maskiners fysiske moment alene",
+          "At en oppfinner bestemmer all framtid"
+        ],
+        [
+          "Hvorfor trengs en funksjonell enhet i livsløpsanalyse?",
+          "For å sammenligne systemer som leverer samme definerte funksjon",
+          "For å telle bare produktmasse",
+          "For å unngå systemgrenser"
+        ],
+        [
+          "Hva er reboundeffekt i det dokumenterte teknologiske systemet?",
+          "At effektivisering kan endre pris eller bruk slik at noe av den forventede ressursbesparelsen spises opp",
+          "At alle effektiviseringer øker forbruket likt",
+          "At materialer spretter tilbake fysisk"
+        ],
+        [
+          "Hva gjør en historisk kausal påstand sterkere?",
+          "Flere kildetyper, dokumentert mekanisme, tidsrekkefølge og behandling av alternative forklaringer",
+          "Én berømt persons sitat",
+          "En lineær framgangsfortelling uten moteksempler"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1544 @@
+{
+  "schema": "teknologi_anchor_registry_v2_3",
+  "version": "2.3",
+  "status": "canonical",
+  "subject_id": "teknologi",
+  "governance": {
+    "concrete_system_boundary_required": true,
+    "operational_context_required": true,
+    "observables_and_failure_modes_required": true,
+    "source_binding_required": true,
+    "minimum_anchors_per_area": 2
+  },
+  "anchors": [
+    {
+      "id": "anchor_tek_batteridrill_kravmatrise",
+      "area_id": "teknologivitenskap_design",
+      "label": "Batteridrill med kravmatrise og prototype",
+      "anchor_type": "artifact_and_design_record",
+      "system_boundary": "drill, batteri, chuck, brukergrensesnitt og definerte brukssituasjoner",
+      "operational_context": "utvikling av håndverktøy med krav til moment, masse, driftstid og sikkerhet",
+      "observables": [
+        "kravsporbarhet",
+        "prototypeforsøk",
+        "endringsspredning mellom funksjonskrav og designparametere"
+      ],
+      "failure_modes": [
+        "kravkonflikt",
+        "prototype som ikke representerer faktisk bruk"
+      ],
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_designvitenskap",
+        "teori_tek_funksjon_atferd_struktur",
+        "kobj_tek_axiomatisk_design"
+      ],
+      "concept_ids": [
+        "artefakt",
+        "funksjon",
+        "krav",
+        "begrensning",
+        "prototype",
+        "validering"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_vannrenser_feltprototype",
+      "area_id": "teknologivitenskap_design",
+      "label": "Feltprototype for bærbar vannrenser",
+      "anchor_type": "prototype_and_test_protocol",
+      "system_boundary": "inntak, filtertrinn, pumpe, strømforsyning, bruker og vannkvalitetsmåling",
+      "operational_context": "feltbruk med varierende råvann, vedlikehold og begrenset energi",
+      "observables": [
+        "renset vann per time",
+        "trykktap",
+        "filterlevetid",
+        "brukerfeil"
+      ],
+      "failure_modes": [
+        "uklar valideringskontekst",
+        "skjult vedlikeholdsbehov"
+      ],
+      "source_ids": [
+        "src_tek_nasa_se_handbook_2016",
+        "src_tek_ulrich_eppinger_2020"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_funksjon_atferd_struktur",
+        "kobj_tek_axiomatisk_design"
+      ],
+      "concept_ids": [
+        "prototype",
+        "validering",
+        "verifikasjon",
+        "sporbarhet",
+        "designrom",
+        "interessentkonflikt"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_jernbane_sikringsanlegg",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Elektronisk sikringsanlegg for jernbane",
+      "anchor_type": "safety_critical_system",
+      "system_boundary": "signal-logikk, sporavsnitt, togdeteksjon, operatørgrensesnitt og kommunikasjonslenker",
+      "operational_context": "sikker togframføring med feiltilstander og vedlikeholdsarbeid",
+      "observables": [
+        "sikker tilstand ved feil",
+        "grensesnittkontrakter",
+        "hendelseslogg",
+        "tilgjengelighet"
+      ],
+      "failure_modes": [
+        "fellesårsaksfeil",
+        "uklar systemgrense",
+        "skjult grensesnittantakelse"
+      ],
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011",
+        "src_tek_nrc_three_mile_island_1979"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_systemteknisk_v_modell",
+        "teori_tek_stamp_sikkerhetsmodell",
+        "kobj_tek_palitelighetsblokkdiagram"
+      ],
+      "concept_ids": [
+        "systemgrense",
+        "grensesnitt",
+        "arkitektur",
+        "palitelighet",
+        "redundans",
+        "sikkerhetsbarriere"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_datasenter_stromkjede",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Redundant strømforsyning i datasenter",
+      "anchor_type": "infrastructure_architecture",
+      "system_boundary": "nettilførsel, UPS, generator, koblingsutstyr, kjøling og kritisk IT-last",
+      "operational_context": "kontinuerlig drift under komponentfeil og planlagt vedlikehold",
+      "observables": [
+        "serie- og parallellstruktur",
+        "gjenopprettingstid",
+        "lastoverføring",
+        "felles feilmodi"
+      ],
+      "failure_modes": [
+        "redundans uten uavhengighet",
+        "vedlikeholdsindusert bortfall"
+      ],
+      "source_ids": [
+        "src_tek_iso_iec_ieee_15288_2015",
+        "src_tek_leveson_2011",
+        "src_tek_nrc_three_mile_island_1979"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_stamp_sikkerhetsmodell",
+        "kobj_tek_palitelighetsblokkdiagram",
+        "kobj_tek_normal_ulykkesteori"
+      ],
+      "concept_ids": [
+        "redundans",
+        "sikkerhetsbarriere",
+        "tilgjengelighet_system",
+        "feiltoleranse",
+        "fellesarsaksfeil",
+        "reparerbarhet"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_luft_luft_varmepumpe",
+      "area_id": "mekanikk_energi_maskiner",
+      "label": "Luft-til-luft-varmepumpe",
+      "anchor_type": "energy_conversion_system",
+      "system_boundary": "fordamper, kompressor, kondensator, ekspansjonsledd, vifter og målt inne-/utemiljø",
+      "operational_context": "romoppvarming under varierende utetemperatur og dellast",
+      "observables": [
+        "varmeeffekt",
+        "elektrisk effekt",
+        "COP",
+        "temperaturer og massestrøm"
+      ],
+      "failure_modes": [
+        "avrimingstap",
+        "feil systemgrense",
+        "sammenligning ved ulike driftsbetingelser"
+      ],
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018",
+        "src_tek_iso_5151_2017"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_termodynamisk_kretsprosess",
+        "teori_tek_energiomformingskjede",
+        "kobj_tek_bevaringslover_dimensjonsanalyse"
+      ],
+      "concept_ids": [
+        "kraft",
+        "moment",
+        "arbeid",
+        "effekt",
+        "virkningsgrad",
+        "eksergi"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_sykkel_drivverk",
+      "area_id": "mekanikk_energi_maskiner",
+      "label": "Sykkeldrivverk med kjede og gir",
+      "anchor_type": "mechanical_transmission",
+      "system_boundary": "krank, kjede, tannhjul, nav, hjul og syklistens inngående moment",
+      "operational_context": "kraftoverføring ved ulike gir, belastninger og vedlikeholdstilstander",
+      "observables": [
+        "moment",
+        "vinkelhastighet",
+        "mekanisk effekt",
+        "tap og slitasje"
+      ],
+      "failure_modes": [
+        "friksjon og feiljustering",
+        "utmattelse",
+        "måling uten kontrollert last"
+      ],
+      "source_ids": [
+        "src_tek_moran_shapiro_2018",
+        "src_tek_asme_ptc_19_1_2018",
+        "src_tek_iso_5151_2017"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_energiomformingskjede",
+        "kobj_tek_bevaringslover_dimensjonsanalyse"
+      ],
+      "concept_ids": [
+        "virkningsgrad",
+        "eksergi",
+        "energi",
+        "entropi",
+        "friksjon",
+        "lasttilfelle"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_aluminium_panel_med_sprekk",
+      "area_id": "materialer_produksjon",
+      "label": "Aluminiumspanel med voksende utmattingssprekk",
+      "anchor_type": "material_failure_case",
+      "system_boundary": "panelgeometri, sprekk, lastsyklus, miljø og inspeksjonsintervall",
+      "operational_context": "lett konstruksjon utsatt for gjentatt last og sikkerhetskrav",
+      "observables": [
+        "sprekkstørrelse",
+        "spenningsintensitet",
+        "lastspektrum",
+        "bruddseighet"
+      ],
+      "failure_modes": [
+        "sprekkvekst",
+        "korrosjonsassistert utmatting",
+        "modell uten gyldighetskontroll"
+      ],
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015",
+        "src_tek_iso_22514_2_2017"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_ashby_materialvalg",
+        "teori_tek_statistisk_prosesskontroll",
+        "kobj_tek_lineaer_elastisk_bruddmekanikk"
+      ],
+      "concept_ids": [
+        "mikrostruktur",
+        "fasthet",
+        "utmattelse",
+        "korrosjon",
+        "toleranse",
+        "prosesskapabilitet"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_sprøytestøpt_deksel",
+      "area_id": "materialer_produksjon",
+      "label": "Sprøytestøpt teknisk deksel",
+      "anchor_type": "manufacturing_process",
+      "system_boundary": "materialbatch, verktøy, temperatur, trykk, kjøling og målkrav",
+      "operational_context": "serieproduksjon med toleranser, overflatekrav og resirkulert innhold",
+      "observables": [
+        "dimensjonsfordeling",
+        "prosesskapabilitet",
+        "vridning",
+        "materialtilstand"
+      ],
+      "failure_modes": [
+        "prosessdrift",
+        "feil materialtilstand",
+        "kapabilitet beregnet på ustabil prosess"
+      ],
+      "source_ids": [
+        "src_tek_ashby_2017",
+        "src_tek_astm_e647_2015",
+        "src_tek_iso_22514_2_2017"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_statistisk_prosesskontroll",
+        "kobj_tek_lineaer_elastisk_bruddmekanikk"
+      ],
+      "concept_ids": [
+        "toleranse",
+        "prosesskapabilitet",
+        "seighet",
+        "bruddmekanikk",
+        "materialtilstand",
+        "livslopsinventar"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_lydopptak_adc_kjede",
+      "area_id": "elektronikk_signaler_regulering",
+      "label": "Mikrofon–forsterker–ADC-kjede",
+      "anchor_type": "signal_chain",
+      "system_boundary": "mikrofon, analog front-end, antialiasfilter, ADC, klokke og digital representasjon",
+      "operational_context": "opptak av tale med begrenset båndbredde og støy",
+      "observables": [
+        "samplingsfrekvens",
+        "signal/støy-forhold",
+        "aliasing",
+        "kvantisering"
+      ],
+      "failure_modes": [
+        "aliasing",
+        "metning",
+        "jordsløyfe og støy"
+      ],
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010",
+        "src_tek_ieee_1057_2017"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_lukket_reguleringssloyfe",
+        "teori_tek_signal_og_informasjonskjede",
+        "kobj_tek_nyquist_shannon_sampling"
+      ],
+      "concept_ids": [
+        "spenning",
+        "strom",
+        "impedans",
+        "signal",
+        "tilbakemelding",
+        "stabilitet"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_romtermostat_feedback",
+      "area_id": "elektronikk_signaler_regulering",
+      "label": "Romtermostat med lukket reguleringssløyfe",
+      "anchor_type": "feedback_control_system",
+      "system_boundary": "temperatursensor, regulator, varmeaktuator, romdynamikk og forstyrrelser",
+      "operational_context": "komfortregulering med tidsforsinkelse og varierende uteklima",
+      "observables": [
+        "settpunktfeil",
+        "oversving",
+        "innsvingstid",
+        "stabilitet"
+      ],
+      "failure_modes": [
+        "sensorbias",
+        "for aggressiv regulator",
+        "forsinkelse og oscillasjon"
+      ],
+      "source_ids": [
+        "src_tek_shannon_1948",
+        "src_tek_ogata_2010",
+        "src_tek_ieee_1057_2017"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_signal_og_informasjonskjede",
+        "kobj_tek_nyquist_shannon_sampling"
+      ],
+      "concept_ids": [
+        "tilbakemelding",
+        "stabilitet",
+        "bandbredde",
+        "signal_stoy_forhold",
+        "sampling",
+        "kalibrering"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_lagerrobot_lokalisering",
+      "area_id": "robotikk_automatisering",
+      "label": "Mobil lagerrobot med lidar og hjulodometri",
+      "anchor_type": "autonomous_robot",
+      "system_boundary": "sensorer, tilstandsestimator, kart, planlegger, drivverk og operasjonelt designområde",
+      "operational_context": "innendørs varetransport blant mennesker og skiftende hindringer",
+      "observables": [
+        "posisjonskovarians",
+        "innovasjon",
+        "stoppavstand",
+        "lokaliseringsfeil"
+      ],
+      "failure_modes": [
+        "sensorblindsone",
+        "kartendring",
+        "overkonfidens i estimat"
+      ],
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011",
+        "src_tek_sheridan_verplank_1978"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_sense_plan_act_og_subsumpsjon",
+        "teori_tek_grader_av_automatisering",
+        "kobj_tek_bayesiansk_tilstandsestimering"
+      ],
+      "concept_ids": [
+        "aktuator",
+        "frihetsgrad",
+        "lokalisering",
+        "sensorfusjon",
+        "autonominiva",
+        "feilsikker"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_samarbeidsrobot_montasje",
+      "area_id": "robotikk_automatisering",
+      "label": "Samarbeidsrobot i montasjecelle",
+      "anchor_type": "human_robot_system",
+      "system_boundary": "robotarm, verktøy, sikkerhetsfunksjoner, arbeidsstasjon, operatør og produksjonsflyt",
+      "operational_context": "delt arbeidsrom med variasjon i deler og menneskelig inngrep",
+      "observables": [
+        "kraft og hastighet",
+        "beskyttelsesstopp",
+        "modusstatus",
+        "oppgavefordeling"
+      ],
+      "failure_modes": [
+        "modusforvirring",
+        "feil sikkerhetsparameter",
+        "uventet gjenstart"
+      ],
+      "source_ids": [
+        "src_tek_thrun_2005",
+        "src_tek_iso_10218_1_2011",
+        "src_tek_sheridan_verplank_1978"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_grader_av_automatisering",
+        "kobj_tek_bayesiansk_tilstandsestimering",
+        "kobj_tek_optimal_robust_kontroll"
+      ],
+      "concept_ids": [
+        "autonominiva",
+        "feilsikker",
+        "tilstandsestimat",
+        "usikkerhetsellipse",
+        "kontrollpolicy",
+        "operasjonelt_designomrade"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_cache_benchmark",
+      "area_id": "datamaskiner_operativsystemer",
+      "label": "Prosessorbenchmark med cache-arbeidssett",
+      "anchor_type": "computer_performance_experiment",
+      "system_boundary": "program, kompilatorvalg, prosessor, cachehierarki, minne og måletidsmetode",
+      "operational_context": "måling av kjøretid når datasett går fra cache til hovedminne",
+      "observables": [
+        "cache miss-rate",
+        "instruksjoner",
+        "sykluser",
+        "kjøretid"
+      ],
+      "failure_modes": [
+        "ukontrollert kompilator",
+        "termisk throttling",
+        "feil arbeidssett"
+      ],
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213",
+        "src_tek_amdahl_1967"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_lagret_program_arkitektur",
+        "teori_tek_abstraksjonsstakk_datamaskin",
+        "kobj_tek_amdahls_lov"
+      ],
+      "concept_ids": [
+        "bit",
+        "instruksjon",
+        "prosessor",
+        "minnehierarki",
+        "prosess",
+        "samtidighet"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_virtuell_hukommelse_trace",
+      "area_id": "datamaskiner_operativsystemer",
+      "label": "Sidefeilspor i virtuelt minnesystem",
+      "anchor_type": "operating_system_trace",
+      "system_boundary": "prosessens adresser, sidetabell, TLB, fysisk minne, lagring og scheduler",
+      "operational_context": "minnepress med flere samtidige prosesser",
+      "observables": [
+        "sidefeil",
+        "TLB miss",
+        "I/O-venting",
+        "resident set"
+      ],
+      "failure_modes": [
+        "thrashing",
+        "prioritetsinversjon",
+        "måling uten prosesskontekst"
+      ],
+      "source_ids": [
+        "src_tek_hennessy_patterson_2019",
+        "src_tek_riscv_unpriv_20191213",
+        "src_tek_amdahl_1967"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_abstraksjonsstakk_datamaskin",
+        "kobj_tek_amdahls_lov"
+      ],
+      "concept_ids": [
+        "prosess",
+        "samtidighet",
+        "lokalitet",
+        "cache_miss",
+        "avbrudd",
+        "virtuell_hukommelse"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_betalingsapi_idempotens",
+      "area_id": "programvareteknikk",
+      "label": "Betalings-API med idempotensnøkkel",
+      "anchor_type": "software_interface",
+      "system_boundary": "klient, API-gateway, betalingstjeneste, database, kø og ekstern betalingsformidler",
+      "operational_context": "nettverksfeil og retries uten dobbel belastning av kunden",
+      "observables": [
+        "idempotensnøkkel",
+        "kontrakt",
+        "hendelseslogg",
+        "duplikatutfall"
+      ],
+      "failure_modes": [
+        "dobbel behandling",
+        "uklar retry-semantikk",
+        "skjult kobling"
+      ],
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997",
+        "src_tek_beyer_sre_2016"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_informasjonsskjuling",
+        "teori_tek_kontinuerlig_programvarelivslop",
+        "kobj_tek_design_by_contract"
+      ],
+      "concept_ids": [
+        "abstraksjon",
+        "modul",
+        "api",
+        "invariant",
+        "testorakel",
+        "teknisk_gjeld"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_mikrotjeneste_hendelse",
+      "area_id": "programvareteknikk",
+      "label": "Produksjonshendelse i mikrotjenestesystem",
+      "anchor_type": "software_incident",
+      "system_boundary": "tjenester, API-er, køer, datalagre, deployversjoner og observabilitetssignaler",
+      "operational_context": "latensøkning etter endring med delvise feil og automatiske retries",
+      "observables": [
+        "logger",
+        "metrikker",
+        "spor",
+        "feilbudsjett",
+        "versjonskobling"
+      ],
+      "failure_modes": [
+        "retry-storm",
+        "manglende korrelasjon",
+        "dashboard uten årsaksmodell"
+      ],
+      "source_ids": [
+        "src_tek_parnas_1972",
+        "src_tek_meyer_1997",
+        "src_tek_beyer_sre_2016"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_kontinuerlig_programvarelivslop",
+        "kobj_tek_design_by_contract",
+        "kobj_tek_lav_kobling_hoy_kohesjon"
+      ],
+      "concept_ids": [
+        "testorakel",
+        "teknisk_gjeld",
+        "kontrakt_programvare",
+        "kobling",
+        "kohesjon",
+        "observabilitet"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_bildemodell_distribusjonsskift",
+      "area_id": "algoritmer_data_ai",
+      "label": "Bildemodell under sesong- og kameraskift",
+      "anchor_type": "machine_learning_evaluation",
+      "system_boundary": "treningsdata, valideringsdata, modell, beslutningsterskel, kamera og bruksmiljø",
+      "operational_context": "klassifikasjon utviklet på ett datasett og brukt med andre lysforhold og sensorer",
+      "observables": [
+        "feil per undergruppe",
+        "kalibrering",
+        "driftmål",
+        "konfidensfordeling"
+      ],
+      "failure_modes": [
+        "distribusjonsskift",
+        "modellskjevhet",
+        "ukalibrert sikkerhet"
+      ],
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009",
+        "src_tek_nist_ai_rmf_2023"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_beregningskompleksitet",
+        "teori_tek_statistisk_laering",
+        "kobj_tek_bias_varians"
+      ],
+      "concept_ids": [
+        "algoritme",
+        "kompleksitet",
+        "datastruktur",
+        "treningsdata",
+        "generalisering",
+        "modellskjevhet"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_risikomodell_beslutningsterskel",
+      "area_id": "algoritmer_data_ai",
+      "label": "Risikomodell med beslutningsterskel",
+      "anchor_type": "decision_support_model",
+      "system_boundary": "inputdata, modell, sannsynlighet, terskel, menneskelig beslutning og konsekvenser",
+      "operational_context": "prioritering av begrensede kontrollressurser med asymmetriske feilkonsekvenser",
+      "observables": [
+        "kalibreringskurve",
+        "sensitivitet",
+        "spesifisitet",
+        "forventet tap"
+      ],
+      "failure_modes": [
+        "skjult tapsfunksjon",
+        "konfundering",
+        "automatisert beslutning uten ansvar"
+      ],
+      "source_ids": [
+        "src_tek_hastie_2009",
+        "src_tek_pearl_2009",
+        "src_tek_nist_ai_rmf_2023"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_statistisk_laering",
+        "kobj_tek_bias_varians",
+        "kobj_tek_bayesiansk_beslutningsteori"
+      ],
+      "concept_ids": [
+        "generalisering",
+        "modellskjevhet",
+        "valideringsdata",
+        "kalibrering_ai",
+        "distribusjonsskift",
+        "kausal_graf"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_replikert_kv_partisjon",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Replikert nøkkel–verdi-lager under nettverkspartisjon",
+      "anchor_type": "distributed_system_experiment",
+      "system_boundary": "klienter, tre replikaer, konsensusprotokoll, nettverkslenker og persistent logg",
+      "operational_context": "samtidige skriveroperasjoner mens én nettverksdel isoleres",
+      "observables": [
+        "quorum",
+        "commit-indeks",
+        "latens",
+        "divergerende svar"
+      ],
+      "failure_modes": [
+        "split brain",
+        "stanset fremdrift",
+        "uklar konsistensmodell"
+      ],
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446",
+        "src_tek_gilbert_lynch_2002",
+        "src_tek_nist_sp_800_207"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_ende_til_ende_prinsippet",
+        "teori_tek_forsvar_i_dybden",
+        "kobj_tek_distribuert_konsensus"
+      ],
+      "concept_ids": [
+        "protokoll",
+        "ruting",
+        "latens",
+        "kryptering",
+        "angrepsflate",
+        "tilgjengelighet"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_tls_websesjon",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "TLS 1.3-websesjon gjennom omvendt proxy",
+      "anchor_type": "security_protocol_trace",
+      "system_boundary": "klient, DNS-antakelser, proxy, sertifikatkjede, applikasjonstjener og identitetsgrense",
+      "operational_context": "autentisert og kryptert kommunikasjon med moderne webtjeneste",
+      "observables": [
+        "handshake-meldinger",
+        "sertifikatvalidering",
+        "nøkkelavledning",
+        "autorisasjonsbeslutning"
+      ],
+      "failure_modes": [
+        "feil tillitsgrense",
+        "gyldig kryptering til feil endepunkt",
+        "manglende autorisasjon"
+      ],
+      "source_ids": [
+        "src_tek_rfc_8200",
+        "src_tek_rfc_8446",
+        "src_tek_gilbert_lynch_2002",
+        "src_tek_nist_sp_800_207"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_forsvar_i_dybden",
+        "kobj_tek_distribuert_konsensus",
+        "kobj_tek_cap_teoremet"
+      ],
+      "concept_ids": [
+        "angrepsflate",
+        "tilgjengelighet",
+        "konsensus",
+        "konsistensmodell",
+        "tillitsgrense",
+        "feildomene"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_infusjonspumpe_grensesnitt",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Infusjonspumpe med modus- og dosegrensesnitt",
+      "anchor_type": "safety_critical_interface",
+      "system_boundary": "skjerm, inputkontroller, alarmer, dosemodell, kliniker, prosedyre og pasientkontekst",
+      "operational_context": "programmering og overvåking av medikamentinfusjon under avbrudd",
+      "observables": [
+        "modusindikasjon",
+        "doseenheter",
+        "alarmrespons",
+        "oppgavefeil"
+      ],
+      "failure_modes": [
+        "modusforvirring",
+        "enhetsfeil",
+        "alarmtretthet"
+      ],
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995",
+        "src_tek_wcag_2_2_2023"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_menneskesentrert_design",
+        "teori_tek_distribuert_kognisjon",
+        "kobj_tek_situert_handling"
+      ],
+      "concept_ids": [
+        "brukbarhet",
+        "affordans",
+        "kognitiv_belastning",
+        "tilgjengelighet_hci",
+        "menneskelig_feil",
+        "automasjonsskjevhet"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_billettautomat_tilgjengelighet",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Billettautomat med universell utforming",
+      "anchor_type": "public_interactive_system",
+      "system_boundary": "skjerm, fysisk betjening, betalingsenhet, lyd, plassering, kø og tjenestealternativ",
+      "operational_context": "offentlig selvbetjening for brukere med ulike sanse-, motoriske og kognitive forutsetninger",
+      "observables": [
+        "oppgavefullføring",
+        "feilrate",
+        "tidsbruk",
+        "tilgjengelighetsbarrierer"
+      ],
+      "failure_modes": [
+        "utilgjengelig kontroll",
+        "uklar feedback",
+        "tidssperre uten alternativ"
+      ],
+      "source_ids": [
+        "src_tek_iso_9241_210_2019",
+        "src_tek_endsley_1995",
+        "src_tek_wcag_2_2_2023"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_distribuert_kognisjon",
+        "kobj_tek_situert_handling",
+        "kobj_tek_felles_kognitive_systemer"
+      ],
+      "concept_ids": [
+        "menneskelig_feil",
+        "automasjonsskjevhet",
+        "situasjonsforstaelse",
+        "modusforvirring",
+        "direkte_manipulasjon",
+        "inkluderende_design"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_urbant_kraftsystem_utvikling",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Historisk utvikling av urbant kraftsystem",
+      "anchor_type": "large_technical_system_case",
+      "system_boundary": "produksjon, nett, måling, regulering, selskaper, standarder og bruksmønstre i en definert by og periode",
+      "operational_context": "utbygging, sammenkobling og institusjonell stabilisering over tid",
+      "observables": [
+        "nettstruktur",
+        "standardvalg",
+        "aktørroller",
+        "investeringssti"
+      ],
+      "failure_modes": [
+        "teknologisk determinisme",
+        "etterpåklok lineær framstilling"
+      ],
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987",
+        "src_tek_geels_2002",
+        "src_tek_iso_14040_2006"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_store_tekniske_systemer",
+        "teori_tek_sosiotekniske_forestillinger",
+        "kobj_tek_sosial_konstruksjon_teknologi"
+      ],
+      "concept_ids": [
+        "standard",
+        "interoperabilitet",
+        "stiavhengighet",
+        "risiko",
+        "ansvar",
+        "baerekraft"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    },
+    {
+      "id": "anchor_tek_smarttelefon_livslop",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Smarttelefonens livsløp og brukseffekter",
+      "anchor_type": "lifecycle_and_transition_case",
+      "system_boundary": "råvarer, komponentproduksjon, transport, bruk, programvarestøtte, reparasjon og sluttbehandling",
+      "operational_context": "sammenligning av levetidsforlengelse, utskifting og tjenesteeffekter",
+      "observables": [
+        "livsløpsinventar",
+        "reparerbarhet",
+        "brukstid",
+        "reboundeffekt"
+      ],
+      "failure_modes": [
+        "flytting av belastning mellom faser",
+        "utelatt programvarestøtte",
+        "bærekraft uten funksjonell enhet"
+      ],
+      "source_ids": [
+        "src_tek_hughes_1983",
+        "src_tek_bijker_hughes_pinch_1987",
+        "src_tek_geels_2002",
+        "src_tek_iso_14040_2006"
+      ],
+      "knowledge_object_ids": [
+        "teori_tek_sosiotekniske_forestillinger",
+        "kobj_tek_sosial_konstruksjon_teknologi",
+        "kobj_tek_flerniva_omstilling"
+      ],
+      "concept_ids": [
+        "ansvar",
+        "baerekraft",
+        "eksternalitet",
+        "reboundeffekt",
+        "teknologisk_momentum",
+        "rettferdig_omstilling"
+      ],
+      "allowed_claim_classes": [
+        "descriptive",
+        "mechanistic",
+        "performance",
+        "causal",
+        "predictive",
+        "normative"
+      ],
+      "prohibited_shortcuts": [
+        "påstand uten eksplisitt systemgrense",
+        "ytelsessammenligning uten felles driftsbetingelser",
+        "sikkerhets- eller bærekraftspåstand basert på én partskilde"
+      ],
+      "observation_protocol": {
+        "before": [
+          "definer funksjon og systemgrense",
+          "registrer driftsbetingelser og versjon"
+        ],
+        "during": [
+          "observer målbare signaler og avvik",
+          "skill direkte observasjon fra tolkning"
+        ],
+        "after": [
+          "koble observasjon til kilde og kunnskapsobjekt",
+          "registrer usikkerhet og alternative forklaringer"
+        ]
+      }
+    }
+  ]
+}

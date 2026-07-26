@@ -1,0 +1,131 @@
+{
+  "schema": "teknologi_scientific_subject_index_v2",
+  "version": "2.1",
+  "status": "canonical_scientific_subject",
+  "subject_id": "teknologi",
+  "title": "Teknologi som vitenskapelig fag",
+  "definition": "Teknologi er et design-, system- og ingeniørvitenskapelig fag som studerer hvordan konstruerte artefakter, programvare, prosesser og infrastrukturer kan forstås, utvikles, prøves og forvaltes under eksplisitte krav, begrensninger og usikkerhet.",
+  "object_of_study": [
+    "artefakter",
+    "tekniske prosesser",
+    "programvare",
+    "infrastrukturer",
+    "sosiotekniske systemer"
+  ],
+  "knowledge_forms": [
+    "mekanismeforklaring",
+    "designbegrunnelse",
+    "modell",
+    "måling",
+    "prototypeeksperiment",
+    "verifikasjon",
+    "validering",
+    "feil- og risikoanalyse",
+    "teknologihistorisk og institusjonell analyse"
+  ],
+  "governance": {
+    "separate_from_science_category": true,
+    "external_claim_basis_required": true,
+    "concrete_technology_anchor_required": true,
+    "uncertainty_must_be_explicit": true,
+    "comparison_requires_common_basis": true,
+    "avoid_name_guessing": true,
+    "avoid_inevitable_progress_story": true,
+    "personal_opinion_is_not_scored_knowledge": true,
+    "marketing_is_not_independent_evidence": true,
+    "claim_class_must_be_explicit": true
+  },
+  "counts": {
+    "areas": 12,
+    "topics": 48,
+    "methods": 35,
+    "hooks": 36,
+    "concepts": 72,
+    "thinkers": 60,
+    "theory_objects": 24,
+    "modules": 12,
+    "knowledge_objects_total": 48,
+    "concepts_total": 136,
+    "typed_relations": 172,
+    "sources": 37,
+    "technology_anchors": 24,
+    "assessment_tasks": 24,
+    "quiz_pathways": 12,
+    "quiz_questions": 60
+  },
+  "quality_layer": {
+    "standard": "data/fag/teknologi/teknologi_scientific_v2/quality_standard_v2_1.json",
+    "area_profiles": "data/fag/teknologi/teknologi_scientific_v2/area_quality_profiles_v2_1.json",
+    "curated_hooks": "data/fag/teknologi/teknologi_scientific_v2/curated_hooks_index_v2_1.json",
+    "theory_registry": "data/fag/teknologi/teknologi_scientific_v2/theory_quality_registry_v2_1.json",
+    "topic_alignment_overrides": "data/fag/teknologi/teknologi_scientific_v2/topic_alignment_overrides_v2_1.json",
+    "curriculum_quality": "data/fag/teknologi/teknologi_scientific_v2/curriculum_quality_v2_1.json",
+    "precedence": [
+      "quality_standard",
+      "area_quality_profile",
+      "curated_hook",
+      "theory_quality_registry",
+      "topic_alignment_override",
+      "curriculum_quality",
+      "area_file"
+    ],
+    "rule": "Ved konflikt styrer kvalitetsstandarden og de kuraterte profilene produksjon og validering; områdefilene leverer faglige objekter og referanser."
+  },
+  "area_files": [
+    "data/fag/teknologi/teknologi_scientific_v2/01_teknologivitenskap_design.json",
+    "data/fag/teknologi/teknologi_scientific_v2/02_systemer_arkitektur_palitelighet.json",
+    "data/fag/teknologi/teknologi_scientific_v2/03_mekanikk_energi_maskiner.json",
+    "data/fag/teknologi/teknologi_scientific_v2/04_materialer_produksjon.json",
+    "data/fag/teknologi/teknologi_scientific_v2/05_elektronikk_signaler_regulering.json",
+    "data/fag/teknologi/teknologi_scientific_v2/06_robotikk_automatisering.json",
+    "data/fag/teknologi/teknologi_scientific_v2/07_datamaskiner_operativsystemer.json",
+    "data/fag/teknologi/teknologi_scientific_v2/08_programvareteknikk.json",
+    "data/fag/teknologi/teknologi_scientific_v2/09_algoritmer_data_ai.json",
+    "data/fag/teknologi/teknologi_scientific_v2/10_nettverk_cybersikkerhet_infrastruktur.json",
+    "data/fag/teknologi/teknologi_scientific_v2/11_menneske_teknologi_hci.json",
+    "data/fag/teknologi/teknologi_scientific_v2/12_teknologihistorie_sts_risiko_baerekraft.json"
+  ],
+  "production_sequence": [
+    "begynn i et dokumentert artefakt, system, anlegg, kodeobjekt, datasett, standard eller teknologisk forløp",
+    "klassifiser påstanden som beskrivende, mekanistisk, ytelsesmessig, kausal, historisk, prediktiv eller normativ",
+    "forklar funksjon, mekanisme, arkitektur eller produksjonsprosess",
+    "vurder evidens, måling, usikkerhet, antakelser og gyldighetsområde",
+    "undersøk feilmodi, vedlikehold, sikkerhet og alternative løsninger",
+    "analyser avveininger, institusjoner, brukere og samfunnsvirkninger",
+    "klassifiser brukt kunnskapsobjekt som teori, modell, prinsipp, rammeverk, lov, teorem eller arkitekturmønster",
+    "forklar minst én typet relasjon mellom sentrale begreper",
+    "bind hver vurdert påstand til konkrete source_ids og lokatorer",
+    "bruk et kanonisk teknologisk anker med systemgrense, driftskontekst, observabler og feilmodi",
+    "la quizforløpet gå fra observasjon via mekanisme og evidens til feil og begrunnet designvalg"
+  ],
+  "validation": {
+    "tool": "tools/validate-teknologi-quality-v2_1.mjs",
+    "report": "reports/teknologi-scientific-quality-validation.json",
+    "depth_tool": "tools/validate-teknologi-ontology-v2_2.mjs",
+    "depth_report": "reports/teknologi-ontology-depth-validation.json",
+    "evidence_tool": "tools/validate-teknologi-evidence-v2_3.mjs",
+    "evidence_report": "reports/teknologi-evidence-production-validation.json"
+  },
+  "depth_layer": {
+    "version": "2.2",
+    "status": "canonical",
+    "knowledge_object_ontology": "data/fag/teknologi/teknologi_scientific_v2/knowledge_object_ontology_v2_2.json",
+    "concept_ontology": "data/fag/teknologi/teknologi_scientific_v2/concept_ontology_v2_2.json",
+    "validator": "tools/validate-teknologi-ontology-v2_2.mjs",
+    "report": "reports/teknologi-ontology-depth-validation.json",
+    "legacy_ids_stable": true,
+    "uneven_depth_by_domain": true,
+    "rule": "Kunnskapsobjekter skal klassifiseres som teori, modell, prinsipp, rammeverk, lov, teorem eller arkitekturmønster. Begrepsrelasjoner skal være typet, og faglig sammensatte områder skal ha større dybde."
+  },
+  "evidence_layer": {
+    "version": "2.3",
+    "status": "canonical",
+    "source_registry": "data/fag/teknologi/teknologi_scientific_v2/source_registry_v2_3.json",
+    "anchor_registry": "data/fag/teknologi/teknologi_scientific_v2/technology_anchor_registry_v2_3.json",
+    "assessment_tasks": "data/fag/teknologi/teknologi_scientific_v2/assessment_tasks_v2_3.json",
+    "quiz_pathways": "data/fag/teknologi/teknologi_scientific_v2/quiz_pathways_v2_3.json",
+    "validator": "tools/validate-teknologi-evidence-v2_3.mjs",
+    "report": "reports/teknologi-evidence-production-validation.json",
+    "rule": "Alle produksjonsklare svar skal kunne spores fra fasit til konkret anker, kunnskapsobjekt, begrepsrelasjon og kilde med lokator."
+  }
+}

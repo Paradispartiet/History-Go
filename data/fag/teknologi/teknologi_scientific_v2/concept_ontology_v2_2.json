@@ -1,0 +1,2250 @@
+{
+  "schema": "teknologi_concept_ontology_v2_2",
+  "version": "2.2",
+  "status": "canonical",
+  "subject_id": "teknologi",
+  "purpose": "Utvider grunnbegrepene og erstatter uspesifiserte related_ids som eneste relasjonsform med en maskinlesbar, semantisk begrepsgraf.",
+  "governance": {
+    "definition_and_distinction_required": true,
+    "example_and_counterexample_required_for_new_concepts": true,
+    "typed_relations_required": true,
+    "all_concepts_must_participate_in_graph": true,
+    "cross_area_relations_allowed_when_semantically_explicit": true
+  },
+  "relation_types": [
+    {
+      "id": "applies_at"
+    },
+    {
+      "id": "applies_to"
+    },
+    {
+      "id": "can_be_caused_by"
+    },
+    {
+      "id": "can_follow"
+    },
+    {
+      "id": "causes"
+    },
+    {
+      "id": "connects"
+    },
+    {
+      "id": "constrained_by"
+    },
+    {
+      "id": "constrains"
+    },
+    {
+      "id": "contains_alternative"
+    },
+    {
+      "id": "contrasts_with"
+    },
+    {
+      "id": "contributes_to"
+    },
+    {
+      "id": "crosses"
+    },
+    {
+      "id": "defines_scope_for"
+    },
+    {
+      "id": "degraded_by"
+    },
+    {
+      "id": "degrades"
+    },
+    {
+      "id": "depends_on"
+    },
+    {
+      "id": "drives"
+    },
+    {
+      "id": "enables"
+    },
+    {
+      "id": "encodes"
+    },
+    {
+      "id": "evaluates"
+    },
+    {
+      "id": "executes"
+    },
+    {
+      "id": "exploits"
+    },
+    {
+      "id": "exposes"
+    },
+    {
+      "id": "governed_by"
+    },
+    {
+      "id": "governs"
+    },
+    {
+      "id": "handles"
+    },
+    {
+      "id": "has_function"
+    },
+    {
+      "id": "implemented_by"
+    },
+    {
+      "id": "implemented_over"
+    },
+    {
+      "id": "implements"
+    },
+    {
+      "id": "implements_partial"
+    },
+    {
+      "id": "improves"
+    },
+    {
+      "id": "includes"
+    },
+    {
+      "id": "increases"
+    },
+    {
+      "id": "influences"
+    },
+    {
+      "id": "interrupts"
+    },
+    {
+      "id": "is_a"
+    },
+    {
+      "id": "measured_against"
+    },
+    {
+      "id": "measured_by"
+    },
+    {
+      "id": "measures"
+    },
+    {
+      "id": "measures_quality_of"
+    },
+    {
+      "id": "measures_relation"
+    },
+    {
+      "id": "mitigates"
+    },
+    {
+      "id": "part_of"
+    },
+    {
+      "id": "per_time_is"
+    },
+    {
+      "id": "produces"
+    },
+    {
+      "id": "reduces"
+    },
+    {
+      "id": "reduces_uncertainty_in"
+    },
+    {
+      "id": "represents"
+    },
+    {
+      "id": "requires"
+    },
+    {
+      "id": "selects"
+    },
+    {
+      "id": "threatens"
+    },
+    {
+      "id": "trains"
+    },
+    {
+      "id": "transferred_as"
+    },
+    {
+      "id": "uses"
+    },
+    {
+      "id": "validates"
+    }
+  ],
+  "existing_concept_typing": [
+    {
+      "id": "artefakt",
+      "area_id": "teknologivitenskap_design",
+      "concept_type": "entity"
+    },
+    {
+      "id": "funksjon",
+      "area_id": "teknologivitenskap_design",
+      "concept_type": "function"
+    },
+    {
+      "id": "krav",
+      "area_id": "teknologivitenskap_design",
+      "concept_type": "requirement"
+    },
+    {
+      "id": "begrensning",
+      "area_id": "teknologivitenskap_design",
+      "concept_type": "constraint"
+    },
+    {
+      "id": "prototype",
+      "area_id": "teknologivitenskap_design",
+      "concept_type": "artifact_state"
+    },
+    {
+      "id": "validering",
+      "area_id": "teknologivitenskap_design",
+      "concept_type": "evaluation"
+    },
+    {
+      "id": "systemgrense",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "concept_type": "scope"
+    },
+    {
+      "id": "grensesnitt",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "concept_type": "interface"
+    },
+    {
+      "id": "arkitektur",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "concept_type": "structure"
+    },
+    {
+      "id": "palitelighet",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "concept_type": "quality"
+    },
+    {
+      "id": "redundans",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "concept_type": "mechanism"
+    },
+    {
+      "id": "sikkerhetsbarriere",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "concept_type": "control"
+    },
+    {
+      "id": "kraft",
+      "area_id": "mekanikk_energi_maskiner",
+      "concept_type": "quantity"
+    },
+    {
+      "id": "moment",
+      "area_id": "mekanikk_energi_maskiner",
+      "concept_type": "quantity"
+    },
+    {
+      "id": "arbeid",
+      "area_id": "mekanikk_energi_maskiner",
+      "concept_type": "quantity"
+    },
+    {
+      "id": "effekt",
+      "area_id": "mekanikk_energi_maskiner",
+      "concept_type": "quantity"
+    },
+    {
+      "id": "virkningsgrad",
+      "area_id": "mekanikk_energi_maskiner",
+      "concept_type": "quality"
+    },
+    {
+      "id": "eksergi",
+      "area_id": "mekanikk_energi_maskiner",
+      "concept_type": "quantity"
+    },
+    {
+      "id": "mikrostruktur",
+      "area_id": "materialer_produksjon",
+      "concept_type": "state"
+    },
+    {
+      "id": "fasthet",
+      "area_id": "materialer_produksjon",
+      "concept_type": "quality"
+    },
+    {
+      "id": "utmattelse",
+      "area_id": "materialer_produksjon",
+      "concept_type": "failure_mechanism"
+    },
+    {
+      "id": "korrosjon",
+      "area_id": "materialer_produksjon",
+      "concept_type": "failure_mechanism"
+    },
+    {
+      "id": "toleranse",
+      "area_id": "materialer_produksjon",
+      "concept_type": "constraint"
+    },
+    {
+      "id": "prosesskapabilitet",
+      "area_id": "materialer_produksjon",
+      "concept_type": "quality"
+    },
+    {
+      "id": "spenning",
+      "area_id": "elektronikk_signaler_regulering",
+      "concept_type": "quantity"
+    },
+    {
+      "id": "strom",
+      "area_id": "elektronikk_signaler_regulering",
+      "concept_type": "quantity"
+    },
+    {
+      "id": "impedans",
+      "area_id": "elektronikk_signaler_regulering",
+      "concept_type": "quantity"
+    },
+    {
+      "id": "signal",
+      "area_id": "elektronikk_signaler_regulering",
+      "concept_type": "representation"
+    },
+    {
+      "id": "tilbakemelding",
+      "area_id": "elektronikk_signaler_regulering",
+      "concept_type": "mechanism"
+    },
+    {
+      "id": "stabilitet",
+      "area_id": "elektronikk_signaler_regulering",
+      "concept_type": "quality"
+    },
+    {
+      "id": "aktuator",
+      "area_id": "robotikk_automatisering",
+      "concept_type": "component"
+    },
+    {
+      "id": "frihetsgrad",
+      "area_id": "robotikk_automatisering",
+      "concept_type": "quantity"
+    },
+    {
+      "id": "lokalisering",
+      "area_id": "robotikk_automatisering",
+      "concept_type": "process"
+    },
+    {
+      "id": "sensorfusjon",
+      "area_id": "robotikk_automatisering",
+      "concept_type": "method"
+    },
+    {
+      "id": "autonominiva",
+      "area_id": "robotikk_automatisering",
+      "concept_type": "classification"
+    },
+    {
+      "id": "feilsikker",
+      "area_id": "robotikk_automatisering",
+      "concept_type": "quality"
+    },
+    {
+      "id": "bit",
+      "area_id": "datamaskiner_operativsystemer",
+      "concept_type": "representation"
+    },
+    {
+      "id": "instruksjon",
+      "area_id": "datamaskiner_operativsystemer",
+      "concept_type": "operation"
+    },
+    {
+      "id": "prosessor",
+      "area_id": "datamaskiner_operativsystemer",
+      "concept_type": "component"
+    },
+    {
+      "id": "minnehierarki",
+      "area_id": "datamaskiner_operativsystemer",
+      "concept_type": "architecture"
+    },
+    {
+      "id": "prosess",
+      "area_id": "datamaskiner_operativsystemer",
+      "concept_type": "runtime_entity"
+    },
+    {
+      "id": "samtidighet",
+      "area_id": "datamaskiner_operativsystemer",
+      "concept_type": "system_property"
+    },
+    {
+      "id": "abstraksjon",
+      "area_id": "programvareteknikk",
+      "concept_type": "representation"
+    },
+    {
+      "id": "modul",
+      "area_id": "programvareteknikk",
+      "concept_type": "structure"
+    },
+    {
+      "id": "api",
+      "area_id": "programvareteknikk",
+      "concept_type": "interface"
+    },
+    {
+      "id": "invariant",
+      "area_id": "programvareteknikk",
+      "concept_type": "constraint"
+    },
+    {
+      "id": "testorakel",
+      "area_id": "programvareteknikk",
+      "concept_type": "evaluation"
+    },
+    {
+      "id": "teknisk_gjeld",
+      "area_id": "programvareteknikk",
+      "concept_type": "quality_debt"
+    },
+    {
+      "id": "algoritme",
+      "area_id": "algoritmer_data_ai",
+      "concept_type": "procedure"
+    },
+    {
+      "id": "kompleksitet",
+      "area_id": "algoritmer_data_ai",
+      "concept_type": "quantity"
+    },
+    {
+      "id": "datastruktur",
+      "area_id": "algoritmer_data_ai",
+      "concept_type": "structure"
+    },
+    {
+      "id": "treningsdata",
+      "area_id": "algoritmer_data_ai",
+      "concept_type": "evidence"
+    },
+    {
+      "id": "generalisering",
+      "area_id": "algoritmer_data_ai",
+      "concept_type": "quality"
+    },
+    {
+      "id": "modellskjevhet",
+      "area_id": "algoritmer_data_ai",
+      "concept_type": "failure_mode"
+    },
+    {
+      "id": "protokoll",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "concept_type": "contract"
+    },
+    {
+      "id": "ruting",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "concept_type": "process"
+    },
+    {
+      "id": "latens",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "concept_type": "quantity"
+    },
+    {
+      "id": "kryptering",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "concept_type": "mechanism"
+    },
+    {
+      "id": "angrepsflate",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "concept_type": "security_property"
+    },
+    {
+      "id": "tilgjengelighet",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "concept_type": "quality"
+    },
+    {
+      "id": "brukbarhet",
+      "area_id": "menneske_teknologi_hci",
+      "concept_type": "quality"
+    },
+    {
+      "id": "affordans",
+      "area_id": "menneske_teknologi_hci",
+      "concept_type": "relation"
+    },
+    {
+      "id": "kognitiv_belastning",
+      "area_id": "menneske_teknologi_hci",
+      "concept_type": "cognitive_quantity"
+    },
+    {
+      "id": "tilgjengelighet_hci",
+      "area_id": "menneske_teknologi_hci",
+      "concept_type": "quality"
+    },
+    {
+      "id": "menneskelig_feil",
+      "area_id": "menneske_teknologi_hci",
+      "concept_type": "event"
+    },
+    {
+      "id": "automasjonsskjevhet",
+      "area_id": "menneske_teknologi_hci",
+      "concept_type": "cognitive_bias"
+    },
+    {
+      "id": "standard",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "concept_type": "governance"
+    },
+    {
+      "id": "interoperabilitet",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "concept_type": "quality"
+    },
+    {
+      "id": "stiavhengighet",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "concept_type": "historical_mechanism"
+    },
+    {
+      "id": "risiko",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "concept_type": "uncertainty"
+    },
+    {
+      "id": "ansvar",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "concept_type": "governance"
+    },
+    {
+      "id": "baerekraft",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "concept_type": "normative_quality"
+    }
+  ],
+  "new_concepts": [
+    {
+      "id": "verifikasjon",
+      "area_id": "teknologivitenskap_design",
+      "label": "Verifikasjon",
+      "concept_type": "quality",
+      "definition": "Undersøkelse av om en løsning er implementert i samsvar med spesifiserte krav.",
+      "distinction": "Skilles fra validering, som vurderer om løsningen dekker det reelle behovet.",
+      "example": "En testmatrise viser at hver spesifikasjon er prøvd mot et akseptansekriterium.",
+      "counterexample": "At brukeren liker prototypen dokumenterer ikke at alle spesifiserte krav er oppfylt."
+    },
+    {
+      "id": "sporbarhet",
+      "area_id": "teknologivitenskap_design",
+      "label": "Sporbarhet",
+      "concept_type": "governance",
+      "definition": "En dokumentert forbindelse mellom behov, krav, designbeslutning, implementasjon, test og resultat.",
+      "distinction": "Skilles fra kronologisk prosjektlogg uten eksplisitte relasjoner mellom artefaktene.",
+      "example": "Et sikkerhetskrav kan følges til arkitekturkomponent, test og avviksbehandling.",
+      "counterexample": "En mappe med dokumenter er ikke sporbarhet dersom koblingene mellom dem er uklare."
+    },
+    {
+      "id": "designrom",
+      "area_id": "teknologivitenskap_design",
+      "label": "Designrom",
+      "concept_type": "structure",
+      "definition": "Mengden av teknisk mulige løsningskombinasjoner innen valgte krav og begrensninger.",
+      "distinction": "Skilles fra én foretrukket løsning eller en løs idédugnad.",
+      "example": "Materiale, drivlinje og styring kombineres til alternative konsepter før rangering.",
+      "counterexample": "Tre kosmetiske varianter av samme arkitektur utgjør ikke et bredt designrom."
+    },
+    {
+      "id": "interessentkonflikt",
+      "area_id": "teknologivitenskap_design",
+      "label": "Interessentkonflikt",
+      "concept_type": "governance",
+      "definition": "En situasjon der legitime aktører har uforenlige krav, risikooppfatninger eller fordelingsinteresser.",
+      "distinction": "Skilles fra mangelfull kommunikasjon som kan løses uten reell avveining.",
+      "example": "Lav kostnad for eier kan stå mot høyere sikkerhetsmargin for operatør.",
+      "counterexample": "Uenighet om filnavn er ikke nødvendigvis en interessentkonflikt."
+    },
+    {
+      "id": "tilgjengelighet_system",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Systemtilgjengelighet",
+      "concept_type": "quality",
+      "definition": "Andelen tid et system kan levere avtalt funksjon under angitte driftsbetingelser.",
+      "distinction": "Skilles fra pålitelighet, fordi rask reparasjon kan gi høy tilgjengelighet selv med flere feil.",
+      "example": "En tjeneste med redundans og kort reparasjonstid måles til 99,95 prosent oppetid.",
+      "counterexample": "At en komponent sjelden feiler sier ikke alene hvor raskt hele tjenesten gjenopprettes."
+    },
+    {
+      "id": "feiltoleranse",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Feiltoleranse",
+      "concept_type": "quality",
+      "definition": "Evnen et system har til å opprettholde definert funksjon når én eller flere feil oppstår.",
+      "distinction": "Skilles fra feilforebygging, som reduserer sannsynligheten for at feilen oppstår.",
+      "example": "En styringsenhet går kontrollert over til reservekanal ved sensorfeil.",
+      "counterexample": "Å ignorere en feilmelding er ikke feiltoleranse."
+    },
+    {
+      "id": "fellesarsaksfeil",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Fellesårsaksfeil",
+      "concept_type": "failure_mode",
+      "definition": "En enkelt underliggende årsak som kan slå ut flere komponenter eller barrierer samtidig.",
+      "distinction": "Skilles fra uavhengige samtidige feil som bare tilfeldigvis opptrer sammen.",
+      "example": "To redundante pumper mister strøm fra samme tavle.",
+      "counterexample": "To komponenter som feiler av helt ulike årsaker er ikke en fellesårsaksfeil."
+    },
+    {
+      "id": "reparerbarhet",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Reparerbarhet",
+      "concept_type": "quality",
+      "definition": "Hvor enkelt og raskt en teknisk enhet kan diagnostiseres, åpnes, repareres og settes sikkert tilbake i drift.",
+      "distinction": "Skilles fra vedlikeholdbarhet i bred forstand, som også omfatter inspeksjon og forebyggende arbeid.",
+      "example": "En modul kan byttes med standardverktøy uten å demontere resten av anlegget.",
+      "counterexample": "En limt enhet som bare kan kasseres har lav reparerbarhet."
+    },
+    {
+      "id": "sikkerhetsintegritet",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Sikkerhetsintegritet",
+      "concept_type": "quality",
+      "definition": "Graden av tillit til at en sikkerhetsfunksjon utføres korrekt ved behov under angitte betingelser.",
+      "distinction": "Skilles fra generell kvalitet eller oppetid for hele systemet.",
+      "example": "En nødavstenging har dokumentert sannsynlighet for svikt ved krav.",
+      "counterexample": "At en komponent er ny betyr ikke at sikkerhetsintegriteten er kjent."
+    },
+    {
+      "id": "vedlikeholdsstrategi",
+      "area_id": "systemer_arkitektur_palitelighet",
+      "label": "Vedlikeholdsstrategi",
+      "concept_type": "governance",
+      "definition": "Et begrunnet opplegg for inspeksjon, forebygging, tilstandsbasert arbeid, reparasjon og reservedeler over levetiden.",
+      "distinction": "Skilles fra en kalender med serviceintervaller uten risikobegrunnelse.",
+      "example": "Kritiske komponenter får tilstandsbasert overvåking og definerte utskiftingskriterier.",
+      "counterexample": "Å skifte alle deler årlig er ikke nødvendigvis en god strategi."
+    },
+    {
+      "id": "energi",
+      "area_id": "mekanikk_energi_maskiner",
+      "label": "Energi",
+      "concept_type": "quantity",
+      "definition": "En bevart størrelse som beskriver kapasitet til å utføre arbeid eller overføre varme mellom systemer.",
+      "distinction": "Skilles fra effekt, som angir hvor raskt energi overføres.",
+      "example": "Et batteri lagrer energi, mens motorens effekt beskriver leveringsraten.",
+      "counterexample": "En maskin med høy effekt trenger ikke ha stort energilager."
+    },
+    {
+      "id": "entropi",
+      "area_id": "mekanikk_energi_maskiner",
+      "label": "Entropi",
+      "concept_type": "quantity",
+      "definition": "En tilstandsfunksjon som brukes til å beskrive energispredning og irreversibilitet i termodynamiske prosesser.",
+      "distinction": "Skilles fra energi; energi bevares, mens entropi kan produseres i irreversible prosesser.",
+      "example": "Trykkfall og varmeoverføring over stor temperaturforskjell produserer entropi.",
+      "counterexample": "Å omtale entropi som generell uorden uten system og prosess er ikke en teknisk analyse."
+    },
+    {
+      "id": "friksjon",
+      "area_id": "mekanikk_energi_maskiner",
+      "label": "Friksjon",
+      "concept_type": "mechanism",
+      "definition": "Motstand mot relativ bevegelse eller forestående bevegelse mellom flater, væsker eller materiallag.",
+      "distinction": "Skilles fra all energitap; elektriske og termiske tap kan ha andre mekanismer.",
+      "example": "Lagerfriksjon gir varme og reduserer akselens nyttige effekt.",
+      "counterexample": "Et spenningsfall i en leder er ikke mekanisk friksjon."
+    },
+    {
+      "id": "lasttilfelle",
+      "area_id": "mekanikk_energi_maskiner",
+      "label": "Lasttilfelle",
+      "concept_type": "model_input",
+      "definition": "En spesifisert kombinasjon av krefter, moment, temperatur, tid og randbetingelser brukt i dimensjonering eller analyse.",
+      "distinction": "Skilles fra én nominell driftsverdi uten kombinasjon eller sikkerhetsmargin.",
+      "example": "Vind, egenvekt og dynamisk belastning kombineres i et dimensjonerende tilfelle.",
+      "counterexample": "Maksimal kraft alene beskriver ikke nødvendigvis det kritiske lasttilfellet."
+    },
+    {
+      "id": "seighet",
+      "area_id": "materialer_produksjon",
+      "label": "Seighet",
+      "concept_type": "quality",
+      "definition": "Et materiales evne til å absorbere energi og deformeres før brudd.",
+      "distinction": "Skilles fra fasthet, som beskriver spenningsnivået materialet tåler.",
+      "example": "Et materiale kan ha moderat fasthet, men høy bruddseighet.",
+      "counterexample": "Et svært hardt materiale er ikke automatisk seigt."
+    },
+    {
+      "id": "bruddmekanikk",
+      "area_id": "materialer_produksjon",
+      "label": "Bruddmekanikk",
+      "concept_type": "mechanism",
+      "definition": "Analyse av hvordan sprekker initieres, vokser og fører til brudd under belastning.",
+      "distinction": "Skilles fra enkel spenningsanalyse som antar et feilfritt kontinuum.",
+      "example": "Sprekkstørrelse og spenningsintensitet brukes til å vurdere kritisk brudd.",
+      "counterexample": "En synlig ripe er ikke uten videre en kritisk sprekk."
+    },
+    {
+      "id": "materialtilstand",
+      "area_id": "materialer_produksjon",
+      "label": "Materialtilstand",
+      "concept_type": "state",
+      "definition": "Den kombinerte tilstanden bestemt av sammensetning, mikrostruktur, varmebehandling, bearbeiding og skadehistorikk.",
+      "distinction": "Skilles fra materialnavnet alene, som ikke angir egenskapene i aktuell tilstand.",
+      "example": "Samme legering får ulike egenskaper etter gløding og herding.",
+      "counterexample": "Å skrive bare aluminium beskriver ikke materialtilstanden."
+    },
+    {
+      "id": "livslopsinventar",
+      "area_id": "materialer_produksjon",
+      "label": "Livsløpsinventar",
+      "concept_type": "evidence",
+      "definition": "En systematisk oversikt over material-, energi- og utslippsstrømmer gjennom definerte livsløpsfaser.",
+      "distinction": "Skilles fra en samlet miljøscore uten synlig datagrunnlag.",
+      "example": "Masse, energi og transport registreres fra råvare til avhending.",
+      "counterexample": "En grønn etikett uten mengdedata er ikke et livsløpsinventar."
+    },
+    {
+      "id": "bandbredde",
+      "area_id": "elektronikk_signaler_regulering",
+      "label": "Båndbredde",
+      "concept_type": "quantity",
+      "definition": "Frekvensområdet eller dataraten et system kan overføre med spesifisert kvalitet.",
+      "distinction": "Skilles fra latens, som beskriver forsinkelse.",
+      "example": "En sensor har definert frekvensrespons før amplitudefeilen blir for stor.",
+      "counterexample": "Rask responstid alene dokumenterer ikke stor båndbredde."
+    },
+    {
+      "id": "signal_stoy_forhold",
+      "area_id": "elektronikk_signaler_regulering",
+      "label": "Signal–støy-forhold",
+      "concept_type": "quantity",
+      "definition": "Forholdet mellom ønsket signals styrke og uønsket støy innen en definert målebåndbredde.",
+      "distinction": "Skilles fra absolutt signalnivå; et sterkt signal kan fortsatt ha dårlig forhold.",
+      "example": "En målekjede sammenlignes ved samme båndbredde og referansenivå.",
+      "counterexample": "Et høyt spenningsnivå betyr ikke automatisk godt signal–støy-forhold."
+    },
+    {
+      "id": "sampling",
+      "area_id": "elektronikk_signaler_regulering",
+      "label": "Sampling",
+      "concept_type": "mechanism",
+      "definition": "Måling av et kontinuerlig eller tidsvarierende signal ved diskrete tidspunkter eller posisjoner.",
+      "distinction": "Skilles fra kvantisering, som gjør amplituden diskret.",
+      "example": "En lydmåling tas med kjent samplingsfrekvens og antialiasfilter.",
+      "counterexample": "Å runde av en allerede målt verdi er ikke sampling."
+    },
+    {
+      "id": "kalibrering",
+      "area_id": "elektronikk_signaler_regulering",
+      "label": "Kalibrering",
+      "concept_type": "method_output",
+      "definition": "Fastsettelse av sammenhengen mellom et måleinstruments respons og kjente referanseverdier med tilhørende usikkerhet.",
+      "distinction": "Skilles fra justering; kalibrering kan dokumentere avvik uten å endre instrumentet.",
+      "example": "En sensor sammenlignes mot sporbar referanse ved flere punkter.",
+      "counterexample": "Å nullstille displayet er ikke en full kalibrering."
+    },
+    {
+      "id": "tilstandsestimat",
+      "area_id": "robotikk_automatisering",
+      "label": "Tilstandsestimat",
+      "concept_type": "model_output",
+      "definition": "En beregnet representasjon av systemets ikke fullt observerbare tilstand basert på modell og målinger.",
+      "distinction": "Skilles fra rå sensordata som ikke er kombinert med en dynamisk modell.",
+      "example": "Posisjon og hastighet estimeres fra kamera, IMU og bevegelsesmodell.",
+      "counterexample": "Én GPS-avlesning er ikke et fullstendig tilstandsestimat."
+    },
+    {
+      "id": "usikkerhetsellipse",
+      "area_id": "robotikk_automatisering",
+      "label": "Usikkerhetsellipse",
+      "concept_type": "uncertainty",
+      "definition": "En geometrisk representasjon av kovarians og retning i et todimensjonalt tilstandsestimat.",
+      "distinction": "Skilles fra en fysisk sikkerhetssone rundt roboten.",
+      "example": "Ellipsen vokser når sensordata mangler og krymper ved en informativ observasjon.",
+      "counterexample": "En fast sirkel uten statistisk grunnlag er ikke en usikkerhetsellipse."
+    },
+    {
+      "id": "kontrollpolicy",
+      "area_id": "robotikk_automatisering",
+      "label": "Kontrollpolicy",
+      "concept_type": "decision_rule",
+      "definition": "En regel eller funksjon som velger handling ut fra observert eller estimert tilstand.",
+      "distinction": "Skilles fra en enkelt forhåndsprogrammert kommando.",
+      "example": "Robotens hastighet velges kontinuerlig fra avstand, mål og sikkerhetsbegrensninger.",
+      "counterexample": "En konstant motorverdi er ikke nødvendigvis en tilstandsavhengig policy."
+    },
+    {
+      "id": "operasjonelt_designomrade",
+      "area_id": "robotikk_automatisering",
+      "label": "Operasjonelt designområde",
+      "concept_type": "scope",
+      "definition": "De miljø-, bruker-, hastighets- og systembetingelsene en automatisert funksjon er utviklet og validert for.",
+      "distinction": "Skilles fra alle tenkelige situasjoner der systemet fysisk kan aktiveres.",
+      "example": "En kjørefunksjon er validert for oppmerkede veier, dagslys og begrenset nedbør.",
+      "counterexample": "At systemet starter utenfor området betyr ikke at funksjonen er validert der."
+    },
+    {
+      "id": "lokalitet",
+      "area_id": "datamaskiner_operativsystemer",
+      "label": "Lokalitet",
+      "concept_type": "principle_concept",
+      "definition": "Tendensen til at programmer gjenbruker nylig brukte data eller nærliggende adresser over korte tidsrom.",
+      "distinction": "Skilles fra geografisk plassering av maskinen.",
+      "example": "En løkke aksesserer samme arrayblokker gjentatte ganger.",
+      "counterexample": "Tilfeldig tilgang over hele minnet har svak lokalitet."
+    },
+    {
+      "id": "cache_miss",
+      "area_id": "datamaskiner_operativsystemer",
+      "label": "Cache-miss",
+      "concept_type": "event",
+      "definition": "En minneaksess der etterspurt data ikke finnes i aktuelt hurtigminnenivå.",
+      "distinction": "Skilles fra programfeil; resultatet kan fortsatt bli korrekt, men tregere.",
+      "example": "Prosessoren må hente en blokk fra neste nivå i minnehierarkiet.",
+      "counterexample": "En feil verdi i programmet er ikke nødvendigvis en cache-miss."
+    },
+    {
+      "id": "avbrudd",
+      "area_id": "datamaskiner_operativsystemer",
+      "label": "Avbrudd",
+      "concept_type": "mechanism",
+      "definition": "En mekanisme som midlertidig stopper normal instruksjonsflyt for å håndtere en hendelse.",
+      "distinction": "Skilles fra en prosess som frivillig kaller en funksjon.",
+      "example": "En enhet signaliserer ferdig I/O og operativsystemet kjører en avbruddsrutine.",
+      "counterexample": "En vanlig metodekallsekvens er ikke et maskinvareavbrudd."
+    },
+    {
+      "id": "virtuell_hukommelse",
+      "area_id": "datamaskiner_operativsystemer",
+      "label": "Virtuell hukommelse",
+      "concept_type": "architecture",
+      "definition": "En abstraksjon som gir prosesser egne adresserom og oversetter virtuelle adresser til fysisk lagring.",
+      "distinction": "Skilles fra mengden fysisk RAM og fra vanlig permanent lagring; adressoversettelsen er selve mekanismen.",
+      "example": "Sidetabeller isolerer prosesser og gjør det mulig å flytte sider mellom minne og disk.",
+      "counterexample": "En stor harddisk er ikke i seg selv virtuell hukommelse."
+    },
+    {
+      "id": "kontrakt_programvare",
+      "area_id": "programvareteknikk",
+      "label": "Programvarekontrakt",
+      "concept_type": "governance",
+      "definition": "En eksplisitt beskrivelse av forutsetninger, garantier og invariants for en komponent eller operasjon.",
+      "distinction": "Skilles fra generell dokumentasjon uten maskinelle eller testbare forpliktelser.",
+      "example": "Et API krever gyldig token og garanterer idempotent resultat.",
+      "counterexample": "En kommentar om ønsket oppførsel er ikke nødvendigvis en kontrakt."
+    },
+    {
+      "id": "kobling",
+      "area_id": "programvareteknikk",
+      "label": "Kobling",
+      "concept_type": "structure",
+      "definition": "Graden av avhengighet mellom programvaremoduler, datarepresentasjoner og endringsbeslutninger.",
+      "distinction": "Skilles fra at moduler kommuniserer gjennom et definert grensesnitt.",
+      "example": "En endring i databaseformat tvinger mange urelaterte moduler til endring.",
+      "counterexample": "To moduler med stabilt API kan samarbeide uten sterk kobling."
+    },
+    {
+      "id": "kohesjon",
+      "area_id": "programvareteknikk",
+      "label": "Kohesjon",
+      "concept_type": "structure",
+      "definition": "I hvilken grad ansvaret og elementene i en modul hører sammen rundt et tydelig formål.",
+      "distinction": "Skilles fra liten filstørrelse eller få kodelinjer.",
+      "example": "En modul samler validering og regler for ett domeneobjekt.",
+      "counterexample": "En tilfeldig samling hjelpefunksjoner har ofte lav kohesjon."
+    },
+    {
+      "id": "observabilitet",
+      "area_id": "programvareteknikk",
+      "label": "Observabilitet",
+      "concept_type": "quality",
+      "definition": "Evnen til å forstå et systems interne tilstand og hendelsesforløp fra logger, metrikker, spor og andre signaler.",
+      "distinction": "Skilles fra enkel overvåking av oppetid og fra tilfeldig logging uten sammenhengende sporbarhet.",
+      "example": "Et distribuert kall kan følges med korrelasjons-ID gjennom tjenester.",
+      "counterexample": "En grønn statuslampe alene gir svak observabilitet."
+    },
+    {
+      "id": "idempotens",
+      "area_id": "programvareteknikk",
+      "label": "Idempotens",
+      "concept_type": "contract",
+      "definition": "En egenskap der gjentatt utførelse av samme operasjon gir samme tilsiktede tilstand som én utførelse.",
+      "distinction": "Skilles fra at operasjonen aldri gjør noe eller alltid returnerer identisk metadata.",
+      "example": "En betalingsforespørsel med samme nøkkel belaster bare én gang.",
+      "counterexample": "Å sende samme e-post flere ganger er ikke idempotent."
+    },
+    {
+      "id": "bakoverkompatibilitet",
+      "area_id": "programvareteknikk",
+      "label": "Bakoverkompatibilitet",
+      "concept_type": "quality",
+      "definition": "Evnen en ny versjon har til å fungere med tidligere klienter, dataformater eller kontrakter innen et definert omfang.",
+      "distinction": "Skilles fra full kompatibilitet med alle historiske feil og uoffisielle avhengigheter.",
+      "example": "Et API beholder gammelt felt mens nytt felt innføres gradvis.",
+      "counterexample": "At ny kode kompilerer betyr ikke at gamle klienter virker."
+    },
+    {
+      "id": "valideringsdata",
+      "area_id": "algoritmer_data_ai",
+      "label": "Valideringsdata",
+      "concept_type": "evidence",
+      "definition": "Data som brukes til modellvalg, terskelvalg og hyperparameterjustering uten å være del av den endelige uavhengige testen.",
+      "distinction": "Skilles fra treningsdata og fra testdata som reserveres til sluttutvärdering.",
+      "example": "Flere modeller sammenlignes på et separat valideringssett før testsettet åpnes.",
+      "counterexample": "Å bruke testsettet gjentatte ganger til tuning gjør det til valideringsdata i praksis."
+    },
+    {
+      "id": "kalibrering_ai",
+      "area_id": "algoritmer_data_ai",
+      "label": "Prediksjonskalibrering",
+      "concept_type": "quality",
+      "definition": "Samsvar mellom oppgitt prediksjonssannsynlighet og observert frekvens i relevante grupper og intervaller.",
+      "distinction": "Skilles fra klassifikasjonsnøyaktighet og rangeringsevne; en modell kan score høyt uten riktige sannsynligheter.",
+      "example": "Blant tilfeller med 0,8 predikert risiko skjer hendelsen omtrent 80 prosent av gangene.",
+      "counterexample": "En modell kan være nøyaktig, men systematisk overkonfident."
+    },
+    {
+      "id": "distribusjonsskift",
+      "area_id": "algoritmer_data_ai",
+      "label": "Distribusjonsskift",
+      "concept_type": "failure_mode",
+      "definition": "En endring mellom datafordelingen brukt i utvikling og fordelingen systemet møter i bruk.",
+      "distinction": "Skilles fra tilfeldig variasjon innen samme stabile fordeling.",
+      "example": "Et bildesystem trenes på dagslys, men brukes om natten.",
+      "counterexample": "Én vanskelig observasjon dokumenterer ikke alene et distribusjonsskift."
+    },
+    {
+      "id": "kausal_graf",
+      "area_id": "algoritmer_data_ai",
+      "label": "Kausal graf",
+      "concept_type": "model",
+      "definition": "En rettet graf som uttrykker antatte årsaksrelasjoner og muliggjør analyse av intervensjoner under eksplisitte antakelser.",
+      "distinction": "Skilles fra en korrelasjonsgraf uten kausal fortolkning.",
+      "example": "En modell skiller påvirkning av behandling fra felles årsaker til behandling og utfall.",
+      "counterexample": "At to variabler er koblet i et nettverk gjør ikke kanten kausal."
+    },
+    {
+      "id": "tapsfunksjon",
+      "area_id": "algoritmer_data_ai",
+      "label": "Tapsfunksjon",
+      "concept_type": "objective",
+      "definition": "En matematisk funksjon som uttrykker kostnaden ved modellens prediksjon eller beslutning under valgte prioriteringer.",
+      "distinction": "Skilles fra en nøytral sannhet; valg av tap uttrykker hvilke feil som vektlegges.",
+      "example": "Falske negative gis høyere kostnad enn falske positive i en sikkerhetskritisk oppgave.",
+      "counterexample": "Nøyaktighet alene er ikke nødvendigvis den tapsfunksjonen systemet optimaliserer."
+    },
+    {
+      "id": "beslutningsterskel",
+      "area_id": "algoritmer_data_ai",
+      "label": "Beslutningsterskel",
+      "concept_type": "decision_rule",
+      "definition": "En grense som omformer en kontinuerlig score eller sannsynlighet til handling, kategori eller varsling.",
+      "distinction": "Skilles fra modellens interne treningsparametere.",
+      "example": "Et varsel utløses over en terskel valgt fra konsekvens og kapasitet.",
+      "counterexample": "Standardgrensen 0,5 er ikke automatisk faglig riktig."
+    },
+    {
+      "id": "konfundering",
+      "area_id": "algoritmer_data_ai",
+      "label": "Konfundering",
+      "concept_type": "causal_threat",
+      "definition": "Sammenblanding av årsakseffekt når en variabel påvirker både eksponering og utfall.",
+      "distinction": "Skilles fra vanlig målefeil eller tilfeldig støy.",
+      "example": "Sykdomsalvorlighet påvirker både behandling og utfall og må håndteres i effektanalysen.",
+      "counterexample": "At to grupper har ulik størrelse er ikke i seg selv konfundering."
+    },
+    {
+      "id": "robusthet_ai",
+      "area_id": "algoritmer_data_ai",
+      "label": "Modellrobusthet",
+      "concept_type": "quality",
+      "definition": "Evnen en modell har til å opprettholde relevant ytelse under avgrensede forstyrrelser, variasjoner og angrep.",
+      "distinction": "Skilles fra gjennomsnittlig testytelse på uendrede data.",
+      "example": "Ytelse måles ved sensorstøy, kompresjon og relevante adversarielle endringer.",
+      "counterexample": "Én vellykket demo viser ikke robusthet."
+    },
+    {
+      "id": "konsensus",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Distribuert konsensus",
+      "concept_type": "coordination",
+      "definition": "En protokollfamilie der flere noder blir enige om en rekkefølge eller verdi til tross for forsinkelse og enkelte feil.",
+      "distinction": "Skilles fra enkel synkronisering mot én autoritativ server.",
+      "example": "Et replikert system velger leder og committer loggposter med quorum.",
+      "counterexample": "At alle klienter mottar samme nettside er ikke nødvendigvis konsensus."
+    },
+    {
+      "id": "konsistensmodell",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Konsistensmodell",
+      "concept_type": "contract",
+      "definition": "En kontrakt for hvilke observasjoner av delte data som er tillatt på tvers av noder og tidspunkt.",
+      "distinction": "Skilles fra datavalidering eller intern logisk konsistens.",
+      "example": "Lineæriserbarhet krever at operasjoner fremstår i én global rekkefølge som respekterer sanntid.",
+      "counterexample": "At dataformatet er gyldig sier ikke hvilken distribuerte konsistensmodell som gjelder."
+    },
+    {
+      "id": "tillitsgrense",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Tillitsgrense",
+      "concept_type": "security_boundary",
+      "definition": "Et grensesnitt der identitet, integritet eller autorisasjon ikke kan antas og derfor må kontrolleres eksplisitt.",
+      "distinction": "Skilles fra en nettverkskabel eller organisatorisk avdeling alene.",
+      "example": "Data fra internett valideres før de når en privilegert tjeneste.",
+      "counterexample": "Et VLAN er ikke automatisk en tilstrekkelig tillitsgrense."
+    },
+    {
+      "id": "feildomene",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Feildomene",
+      "concept_type": "failure_scope",
+      "definition": "En gruppe komponenter som kan rammes samtidig av samme infrastruktur-, programvare- eller driftsfeil.",
+      "distinction": "Skilles fra én logisk tjeneste som kan være fordelt over flere domener.",
+      "example": "Replikaer plasseres i ulike strøm- og nettverkssoner.",
+      "counterexample": "To prosesser på samme vert er ikke uavhengige feildomener."
+    },
+    {
+      "id": "quorum",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Quorum",
+      "concept_type": "coordination",
+      "definition": "Et minimumssett av noder eller stemmer som må delta for at en distribuert beslutning skal bli gyldig.",
+      "distinction": "Skilles fra simpelt flertall uten kobling til feilmodell og replikasjon.",
+      "example": "Tre av fem replikaer må bekrefte en loggpost.",
+      "counterexample": "At mange brukere er pålogget er ikke et quorum."
+    },
+    {
+      "id": "linearisering",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Linearisering",
+      "concept_type": "consistency_property",
+      "definition": "Egenskapen at hver operasjon kan forstås som om den skjedde atomisk på ett tidspunkt mellom kall og svar.",
+      "distinction": "Skilles fra serielliserbarhet, som ikke nødvendigvis respekterer sanntidsrekkefølge.",
+      "example": "En lesing etter fullført skriving ser den nye verdien globalt.",
+      "counterexample": "Lik sluttilstand etter lang tid dokumenterer ikke linearisering."
+    },
+    {
+      "id": "autorisering",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Autorisering",
+      "concept_type": "security_control",
+      "definition": "Beslutning om hvilke handlinger en identifisert aktør eller tjeneste får utføre på en ressurs.",
+      "distinction": "Skilles fra autentisering, som fastslår eller hevder identitet.",
+      "example": "En policy tillater lesing, men ikke sletting av et datasett.",
+      "counterexample": "Et gyldig passord gir ikke automatisk rett til alle handlinger."
+    },
+    {
+      "id": "gjenopprettingstid",
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "label": "Gjenopprettingstid",
+      "concept_type": "quantity",
+      "definition": "Tiden fra funksjonsbrudd til tjenesten igjen oppfyller definerte krav, ofte uttrykt som faktisk tid eller mål.",
+      "distinction": "Skilles fra datatapstoleranse og fra feilens varighet før den oppdages.",
+      "example": "En tjeneste skal gjenopprettes innen 30 minutter etter regionfeil.",
+      "counterexample": "Høy oppetid sier ikke alene hvor lang gjenopprettingstiden er."
+    },
+    {
+      "id": "situasjonsforstaelse",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Situasjonsforståelse",
+      "concept_type": "cognitive_state",
+      "definition": "Oppfatning av relevante elementer, forståelse av deres betydning og forventning om nær framtidig utvikling.",
+      "distinction": "Skilles fra tilgang til mye informasjon uten forståelig prioritering.",
+      "example": "En operatør ser avvik, forstår årsakskjeden og forventer neste kritiske tilstand.",
+      "counterexample": "Et dashboard med mange tall garanterer ikke situasjonsforståelse."
+    },
+    {
+      "id": "modusforvirring",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Modusforvirring",
+      "concept_type": "failure_mode",
+      "definition": "En feil der brukerens oppfatning av systemets aktive modus avviker fra den faktiske modusen.",
+      "distinction": "Skilles fra manglende kunnskap om en funksjon.",
+      "example": "Piloten forventer manuell høydekontroll mens automatikken holder en annen referanse.",
+      "counterexample": "Feil tastetrykk uten modusskifte er ikke modusforvirring."
+    },
+    {
+      "id": "direkte_manipulasjon",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Direkte manipulasjon",
+      "concept_type": "interaction_pattern",
+      "definition": "Interaksjon der synlige objekter påvirkes gjennom kontinuerlige, reversible handlinger med rask tilbakemelding.",
+      "distinction": "Skilles fra kommandospråk uten direkte representasjon av objektet.",
+      "example": "Et kartobjekt flyttes med drahandling og posisjonen oppdateres umiddelbart.",
+      "counterexample": "Å skrive koordinater i et skjema er ikke direkte manipulasjon."
+    },
+    {
+      "id": "inkluderende_design",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Inkluderende design",
+      "concept_type": "framework_concept",
+      "definition": "En designpraksis som bruker menneskelig variasjon og ekskluderingssituasjoner som grunnlag for å utvikle mer tilgjengelige løsninger.",
+      "distinction": "Skilles fra én universell standardløsning som antas å passe alle.",
+      "example": "Personer med ulike motoriske og kognitive forutsetninger deltar i iterativ testing.",
+      "counterexample": "Å legge til en tekststørrelseknapp til slutt er ikke alene inkluderende design."
+    },
+    {
+      "id": "tilbakemeldingssloyfe_hci",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Interaksjonstilbakemelding",
+      "concept_type": "interaction_mechanism",
+      "definition": "Synlig, hørbar eller taktil informasjon som viser at en handling er registrert og hvilken systemtilstand som følger.",
+      "distinction": "Skilles fra reguleringsteknisk tilbakemelding som automatisk påvirker en fysisk prosess.",
+      "example": "Knappen viser pågående lagring og bekrefter ferdig resultat.",
+      "counterexample": "En animasjon uten kobling til faktisk tilstand er svak tilbakemelding."
+    },
+    {
+      "id": "brukskontekst",
+      "area_id": "menneske_teknologi_hci",
+      "label": "Brukskontekst",
+      "concept_type": "scope",
+      "definition": "Kombinasjonen av brukere, mål, oppgaver, utstyr og fysiske, sosiale og organisatoriske omgivelser for bruk.",
+      "distinction": "Skilles fra en abstrakt målgruppe uten konkrete oppgaver og forhold.",
+      "example": "Et grensesnitt testes med feltarbeidere i kulde, hansker og tidspress.",
+      "counterexample": "Testing på utviklerens skrivebord dekker ikke automatisk brukskonteksten."
+    },
+    {
+      "id": "eksternalitet",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Eksternalitet",
+      "concept_type": "economic_effect",
+      "definition": "En kostnad eller nytte som påvirker andre enn aktørene som direkte gjennomfører transaksjonen eller designvalget.",
+      "distinction": "Skilles fra en intern kostnad som allerede bæres av produsent eller bruker.",
+      "example": "Lokal luftforurensning påfører helsebelastning uten å inngå fullt i produktprisen.",
+      "counterexample": "Høy innkjøpspris er ikke en eksternalitet for kjøperen."
+    },
+    {
+      "id": "reboundeffekt",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Reboundeffekt",
+      "concept_type": "system_effect",
+      "definition": "At effektivitetsforbedring reduserer kostnad eller innsats og dermed utløser økt bruk som motvirker deler av besparelsen.",
+      "distinction": "Skilles fra at selve teknologien har lavere virkningsgrad enn lovet.",
+      "example": "Billigere energibruk fører til flere driftstimer.",
+      "counterexample": "Målefeil i energimåleren er ikke reboundeffekt."
+    },
+    {
+      "id": "teknologisk_momentum",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Teknologisk momentum",
+      "concept_type": "historical_mechanism",
+      "definition": "At et modent teknisk system får stabilitet og endringsmotstand gjennom investeringer, kompetanse, institusjoner og avhengigheter.",
+      "distinction": "Skilles fra teknologisk determinisme; aktører kan fortsatt endre banen, men til økende kostnad.",
+      "example": "Et etablert strømnett former hvilke produksjons- og lagringsløsninger som er realistiske.",
+      "counterexample": "At en ny app blir populær én måned er ikke nødvendigvis teknologisk momentum."
+    },
+    {
+      "id": "rettferdig_omstilling",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Rettferdig omstilling",
+      "concept_type": "governance",
+      "definition": "Prinsipper og tiltak for å fordele kostnader, risiko, kompetansebehov og gevinster ved teknologisk og økologisk omstilling.",
+      "distinction": "Skilles fra omstilling målt bare i samlet utslippsreduksjon.",
+      "example": "Arbeidere og lokalsamfunn får reell medvirkning, inntektssikring og nye kvalifiseringsløp.",
+      "counterexample": "En grønn investering er ikke automatisk en rettferdig omstilling."
+    },
+    {
+      "id": "livslopsanalyse",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Livsløpsanalyse",
+      "concept_type": "method_framework",
+      "definition": "En standardisert analyse av miljøpåvirkning fra råvarer, produksjon, bruk og sluttbehandling innen definert funksjonell enhet og systemgrense.",
+      "distinction": "Skilles fra livsløpsinventaret, som er datagrunnlaget før virkningsvurdering og tolkning.",
+      "example": "To transportløsninger sammenlignes per personkilometer over hele levetiden.",
+      "counterexample": "Å sammenligne bare energibruk i drift er ikke en full livsløpsanalyse."
+    },
+    {
+      "id": "fore_var_prinsippet",
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "label": "Føre-var-prinsippet",
+      "concept_type": "principle_concept",
+      "definition": "Et styringsprinsipp der alvorlig eller irreversibel mulig skade kan begrunne forebyggende tiltak selv ved vitenskapelig usikkerhet.",
+      "distinction": "Skilles fra krav om null risiko eller forbud mot all ny teknologi.",
+      "example": "En mulig irreversibel økosystemskade utløser trinnvis innføring og overvåking.",
+      "counterexample": "Manglende bevis for nytte er ikke alene anvendelse av føre-var-prinsippet."
+    }
+  ],
+  "typed_relations": [
+    {
+      "area_id": "teknologivitenskap_design",
+      "source_id": "artefakt",
+      "relation_type": "has_function",
+      "target_id": "funksjon"
+    },
+    {
+      "area_id": "teknologivitenskap_design",
+      "source_id": "krav",
+      "relation_type": "constrains",
+      "target_id": "designrom"
+    },
+    {
+      "area_id": "teknologivitenskap_design",
+      "source_id": "begrensning",
+      "relation_type": "constrains",
+      "target_id": "designrom"
+    },
+    {
+      "area_id": "teknologivitenskap_design",
+      "source_id": "prototype",
+      "relation_type": "implements_partial",
+      "target_id": "artefakt"
+    },
+    {
+      "area_id": "teknologivitenskap_design",
+      "source_id": "verifikasjon",
+      "relation_type": "evaluates",
+      "target_id": "krav"
+    },
+    {
+      "area_id": "teknologivitenskap_design",
+      "source_id": "validering",
+      "relation_type": "evaluates",
+      "target_id": "funksjon"
+    },
+    {
+      "area_id": "teknologivitenskap_design",
+      "source_id": "sporbarhet",
+      "relation_type": "connects",
+      "target_id": "krav"
+    },
+    {
+      "area_id": "teknologivitenskap_design",
+      "source_id": "sporbarhet",
+      "relation_type": "connects",
+      "target_id": "verifikasjon"
+    },
+    {
+      "area_id": "teknologivitenskap_design",
+      "source_id": "interessentkonflikt",
+      "relation_type": "produces",
+      "target_id": "krav"
+    },
+    {
+      "area_id": "teknologivitenskap_design",
+      "source_id": "interessentkonflikt",
+      "relation_type": "constrains",
+      "target_id": "designrom"
+    },
+    {
+      "area_id": "teknologivitenskap_design",
+      "source_id": "designrom",
+      "relation_type": "contains_alternative",
+      "target_id": "prototype"
+    },
+    {
+      "area_id": "teknologivitenskap_design",
+      "source_id": "verifikasjon",
+      "relation_type": "contrasts_with",
+      "target_id": "validering"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "systemgrense",
+      "relation_type": "defines_scope_for",
+      "target_id": "arkitektur"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "grensesnitt",
+      "relation_type": "part_of",
+      "target_id": "arkitektur"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "redundans",
+      "relation_type": "mitigates",
+      "target_id": "palitelighet"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "sikkerhetsbarriere",
+      "relation_type": "mitigates",
+      "target_id": "risiko"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "fellesarsaksfeil",
+      "relation_type": "degrades",
+      "target_id": "redundans"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "feiltoleranse",
+      "relation_type": "enables",
+      "target_id": "tilgjengelighet_system"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "reparerbarhet",
+      "relation_type": "increases",
+      "target_id": "tilgjengelighet_system"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "palitelighet",
+      "relation_type": "contributes_to",
+      "target_id": "tilgjengelighet_system"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "arkitektur",
+      "relation_type": "constrains",
+      "target_id": "feiltoleranse"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "grensesnitt",
+      "relation_type": "exposes",
+      "target_id": "fellesarsaksfeil"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "redundans",
+      "relation_type": "implemented_by",
+      "target_id": "arkitektur"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "reparerbarhet",
+      "relation_type": "applies_to",
+      "target_id": "arkitektur"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "sikkerhetsintegritet",
+      "relation_type": "measures",
+      "target_id": "sikkerhetsbarriere"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "vedlikeholdsstrategi",
+      "relation_type": "improves",
+      "target_id": "reparerbarhet"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "vedlikeholdsstrategi",
+      "relation_type": "influences",
+      "target_id": "palitelighet"
+    },
+    {
+      "area_id": "systemer_arkitektur_palitelighet",
+      "source_id": "fellesarsaksfeil",
+      "relation_type": "degrades",
+      "target_id": "sikkerhetsintegritet"
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "source_id": "kraft",
+      "relation_type": "produces",
+      "target_id": "moment"
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "source_id": "kraft",
+      "relation_type": "produces",
+      "target_id": "arbeid"
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "source_id": "arbeid",
+      "relation_type": "per_time_is",
+      "target_id": "effekt"
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "source_id": "energi",
+      "relation_type": "transferred_as",
+      "target_id": "arbeid"
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "source_id": "virkningsgrad",
+      "relation_type": "measures_relation",
+      "target_id": "energi"
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "source_id": "eksergi",
+      "relation_type": "measures_quality_of",
+      "target_id": "energi"
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "source_id": "friksjon",
+      "relation_type": "degrades",
+      "target_id": "virkningsgrad"
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "source_id": "friksjon",
+      "relation_type": "produces",
+      "target_id": "entropi"
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "source_id": "lasttilfelle",
+      "relation_type": "applies_to",
+      "target_id": "kraft"
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "source_id": "lasttilfelle",
+      "relation_type": "applies_to",
+      "target_id": "moment"
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "source_id": "entropi",
+      "relation_type": "constrains",
+      "target_id": "eksergi"
+    },
+    {
+      "area_id": "mekanikk_energi_maskiner",
+      "source_id": "effekt",
+      "relation_type": "depends_on",
+      "target_id": "arbeid"
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "source_id": "mikrostruktur",
+      "relation_type": "influences",
+      "target_id": "fasthet"
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "source_id": "mikrostruktur",
+      "relation_type": "influences",
+      "target_id": "seighet"
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "source_id": "materialtilstand",
+      "relation_type": "includes",
+      "target_id": "mikrostruktur"
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "source_id": "bruddmekanikk",
+      "relation_type": "applies_to",
+      "target_id": "utmattelse"
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "source_id": "bruddmekanikk",
+      "relation_type": "measured_by",
+      "target_id": "seighet"
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "source_id": "korrosjon",
+      "relation_type": "degrades",
+      "target_id": "materialtilstand"
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "source_id": "toleranse",
+      "relation_type": "constrains",
+      "target_id": "prosesskapabilitet"
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "source_id": "prosesskapabilitet",
+      "relation_type": "measured_against",
+      "target_id": "toleranse"
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "source_id": "livslopsinventar",
+      "relation_type": "applies_to",
+      "target_id": "materialtilstand"
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "source_id": "fasthet",
+      "relation_type": "contrasts_with",
+      "target_id": "seighet"
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "source_id": "utmattelse",
+      "relation_type": "causes",
+      "target_id": "bruddmekanikk"
+    },
+    {
+      "area_id": "materialer_produksjon",
+      "source_id": "materialtilstand",
+      "relation_type": "influences",
+      "target_id": "korrosjon"
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "source_id": "spenning",
+      "relation_type": "drives",
+      "target_id": "strom"
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "source_id": "impedans",
+      "relation_type": "constrains",
+      "target_id": "strom"
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "source_id": "signal",
+      "relation_type": "measured_by",
+      "target_id": "signal_stoy_forhold"
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "source_id": "bandbredde",
+      "relation_type": "constrains",
+      "target_id": "signal"
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "source_id": "sampling",
+      "relation_type": "represents",
+      "target_id": "signal"
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "source_id": "kalibrering",
+      "relation_type": "validates",
+      "target_id": "signal"
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "source_id": "tilbakemelding",
+      "relation_type": "enables",
+      "target_id": "stabilitet"
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "source_id": "signal_stoy_forhold",
+      "relation_type": "constrains",
+      "target_id": "kalibrering"
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "source_id": "sampling",
+      "relation_type": "depends_on",
+      "target_id": "bandbredde"
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "source_id": "strom",
+      "relation_type": "produces",
+      "target_id": "spenning"
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "source_id": "impedans",
+      "relation_type": "applies_to",
+      "target_id": "signal"
+    },
+    {
+      "area_id": "elektronikk_signaler_regulering",
+      "source_id": "kalibrering",
+      "relation_type": "reduces_uncertainty_in",
+      "target_id": "signal"
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "source_id": "aktuator",
+      "relation_type": "implements",
+      "target_id": "kontrollpolicy"
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "source_id": "sensorfusjon",
+      "relation_type": "produces",
+      "target_id": "tilstandsestimat"
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "source_id": "lokalisering",
+      "relation_type": "produces",
+      "target_id": "tilstandsestimat"
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "source_id": "usikkerhetsellipse",
+      "relation_type": "represents",
+      "target_id": "tilstandsestimat"
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "source_id": "kontrollpolicy",
+      "relation_type": "depends_on",
+      "target_id": "tilstandsestimat"
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "source_id": "operasjonelt_designomrade",
+      "relation_type": "constrains",
+      "target_id": "autonominiva"
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "source_id": "operasjonelt_designomrade",
+      "relation_type": "constrains",
+      "target_id": "kontrollpolicy"
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "source_id": "feilsikker",
+      "relation_type": "mitigates",
+      "target_id": "aktuator"
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "source_id": "frihetsgrad",
+      "relation_type": "constrains",
+      "target_id": "kontrollpolicy"
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "source_id": "sensorfusjon",
+      "relation_type": "reduces_uncertainty_in",
+      "target_id": "usikkerhetsellipse"
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "source_id": "autonominiva",
+      "relation_type": "governed_by",
+      "target_id": "operasjonelt_designomrade"
+    },
+    {
+      "area_id": "robotikk_automatisering",
+      "source_id": "lokalisering",
+      "relation_type": "depends_on",
+      "target_id": "sensorfusjon"
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "source_id": "bit",
+      "relation_type": "encodes",
+      "target_id": "instruksjon"
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "source_id": "prosessor",
+      "relation_type": "executes",
+      "target_id": "instruksjon"
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "source_id": "minnehierarki",
+      "relation_type": "exploits",
+      "target_id": "lokalitet"
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "source_id": "cache_miss",
+      "relation_type": "degrades",
+      "target_id": "minnehierarki"
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "source_id": "virtuell_hukommelse",
+      "relation_type": "implemented_by",
+      "target_id": "minnehierarki"
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "source_id": "prosess",
+      "relation_type": "uses",
+      "target_id": "virtuell_hukommelse"
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "source_id": "avbrudd",
+      "relation_type": "interrupts",
+      "target_id": "prosess"
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "source_id": "samtidighet",
+      "relation_type": "applies_to",
+      "target_id": "prosess"
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "source_id": "lokalitet",
+      "relation_type": "mitigates",
+      "target_id": "cache_miss"
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "source_id": "prosessor",
+      "relation_type": "handles",
+      "target_id": "avbrudd"
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "source_id": "instruksjon",
+      "relation_type": "part_of",
+      "target_id": "prosess"
+    },
+    {
+      "area_id": "datamaskiner_operativsystemer",
+      "source_id": "samtidighet",
+      "relation_type": "constrains",
+      "target_id": "minnehierarki"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "abstraksjon",
+      "relation_type": "implemented_by",
+      "target_id": "modul"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "api",
+      "relation_type": "exposes",
+      "target_id": "modul"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "kontrakt_programvare",
+      "relation_type": "governs",
+      "target_id": "api"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "invariant",
+      "relation_type": "part_of",
+      "target_id": "kontrakt_programvare"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "testorakel",
+      "relation_type": "evaluates",
+      "target_id": "kontrakt_programvare"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "kobling",
+      "relation_type": "degrades",
+      "target_id": "modul"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "kohesjon",
+      "relation_type": "improves",
+      "target_id": "modul"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "observabilitet",
+      "relation_type": "exposes",
+      "target_id": "prosess"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "teknisk_gjeld",
+      "relation_type": "increases",
+      "target_id": "kobling"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "teknisk_gjeld",
+      "relation_type": "degrades",
+      "target_id": "observabilitet"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "api",
+      "relation_type": "constrains",
+      "target_id": "kobling"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "abstraksjon",
+      "relation_type": "enables",
+      "target_id": "kohesjon"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "idempotens",
+      "relation_type": "part_of",
+      "target_id": "kontrakt_programvare"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "bakoverkompatibilitet",
+      "relation_type": "constrains",
+      "target_id": "api"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "bakoverkompatibilitet",
+      "relation_type": "mitigates",
+      "target_id": "teknisk_gjeld"
+    },
+    {
+      "area_id": "programvareteknikk",
+      "source_id": "observabilitet",
+      "relation_type": "validates",
+      "target_id": "idempotens"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "algoritme",
+      "relation_type": "implemented_over",
+      "target_id": "datastruktur"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "kompleksitet",
+      "relation_type": "measures",
+      "target_id": "algoritme"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "treningsdata",
+      "relation_type": "trains",
+      "target_id": "algoritme"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "valideringsdata",
+      "relation_type": "selects",
+      "target_id": "algoritme"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "generalisering",
+      "relation_type": "measured_by",
+      "target_id": "valideringsdata"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "kalibrering_ai",
+      "relation_type": "measures",
+      "target_id": "generalisering"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "distribusjonsskift",
+      "relation_type": "degrades",
+      "target_id": "generalisering"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "modellskjevhet",
+      "relation_type": "can_be_caused_by",
+      "target_id": "treningsdata"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "kausal_graf",
+      "relation_type": "represents",
+      "target_id": "algoritme"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "kausal_graf",
+      "relation_type": "contrasts_with",
+      "target_id": "modellskjevhet"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "datastruktur",
+      "relation_type": "constrains",
+      "target_id": "kompleksitet"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "distribusjonsskift",
+      "relation_type": "exposes",
+      "target_id": "modellskjevhet"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "tapsfunksjon",
+      "relation_type": "governs",
+      "target_id": "beslutningsterskel"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "beslutningsterskel",
+      "relation_type": "depends_on",
+      "target_id": "kalibrering_ai"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "konfundering",
+      "relation_type": "threatens",
+      "target_id": "kausal_graf"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "robusthet_ai",
+      "relation_type": "mitigates",
+      "target_id": "distribusjonsskift"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "tapsfunksjon",
+      "relation_type": "influences",
+      "target_id": "modellskjevhet"
+    },
+    {
+      "area_id": "algoritmer_data_ai",
+      "source_id": "valideringsdata",
+      "relation_type": "measures",
+      "target_id": "robusthet_ai"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "protokoll",
+      "relation_type": "governs",
+      "target_id": "ruting"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "ruting",
+      "relation_type": "influences",
+      "target_id": "latens"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "kryptering",
+      "relation_type": "mitigates",
+      "target_id": "angrepsflate"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "tillitsgrense",
+      "relation_type": "exposes",
+      "target_id": "angrepsflate"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "konsensus",
+      "relation_type": "depends_on",
+      "target_id": "protokoll"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "konsensus",
+      "relation_type": "constrained_by",
+      "target_id": "latens"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "konsistensmodell",
+      "relation_type": "governs",
+      "target_id": "konsensus"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "feildomene",
+      "relation_type": "constrains",
+      "target_id": "tilgjengelighet"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "feildomene",
+      "relation_type": "influences",
+      "target_id": "konsensus"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "kryptering",
+      "relation_type": "applies_to",
+      "target_id": "tillitsgrense"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "ruting",
+      "relation_type": "crosses",
+      "target_id": "feildomene"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "tilgjengelighet",
+      "relation_type": "contrasts_with",
+      "target_id": "konsistensmodell"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "quorum",
+      "relation_type": "implements",
+      "target_id": "konsensus"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "linearisering",
+      "relation_type": "is_a",
+      "target_id": "konsistensmodell"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "autorisering",
+      "relation_type": "applies_at",
+      "target_id": "tillitsgrense"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "gjenopprettingstid",
+      "relation_type": "measures",
+      "target_id": "tilgjengelighet"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "feildomene",
+      "relation_type": "constrains",
+      "target_id": "quorum"
+    },
+    {
+      "area_id": "nettverk_cybersikkerhet_infrastruktur",
+      "source_id": "protokoll",
+      "relation_type": "implements",
+      "target_id": "linearisering"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "affordans",
+      "relation_type": "enables",
+      "target_id": "brukbarhet"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "kognitiv_belastning",
+      "relation_type": "degrades",
+      "target_id": "brukbarhet"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "inkluderende_design",
+      "relation_type": "improves",
+      "target_id": "tilgjengelighet_hci"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "direkte_manipulasjon",
+      "relation_type": "implements",
+      "target_id": "affordans"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "situasjonsforstaelse",
+      "relation_type": "mitigates",
+      "target_id": "menneskelig_feil"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "modusforvirring",
+      "relation_type": "causes",
+      "target_id": "menneskelig_feil"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "automasjonsskjevhet",
+      "relation_type": "degrades",
+      "target_id": "situasjonsforstaelse"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "kognitiv_belastning",
+      "relation_type": "increases",
+      "target_id": "automasjonsskjevhet"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "tilgjengelighet_hci",
+      "relation_type": "part_of",
+      "target_id": "inkluderende_design"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "direkte_manipulasjon",
+      "relation_type": "reduces",
+      "target_id": "kognitiv_belastning"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "modusforvirring",
+      "relation_type": "degrades",
+      "target_id": "brukbarhet"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "situasjonsforstaelse",
+      "relation_type": "depends_on",
+      "target_id": "affordans"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "tilbakemeldingssloyfe_hci",
+      "relation_type": "enables",
+      "target_id": "situasjonsforstaelse"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "brukskontekst",
+      "relation_type": "constrains",
+      "target_id": "brukbarhet"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "brukskontekst",
+      "relation_type": "constrains",
+      "target_id": "inkluderende_design"
+    },
+    {
+      "area_id": "menneske_teknologi_hci",
+      "source_id": "modusforvirring",
+      "relation_type": "degraded_by",
+      "target_id": "tilbakemeldingssloyfe_hci"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "standard",
+      "relation_type": "enables",
+      "target_id": "interoperabilitet"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "standard",
+      "relation_type": "contributes_to",
+      "target_id": "stiavhengighet"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "teknologisk_momentum",
+      "relation_type": "increases",
+      "target_id": "stiavhengighet"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "eksternalitet",
+      "relation_type": "increases",
+      "target_id": "risiko"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "reboundeffekt",
+      "relation_type": "degrades",
+      "target_id": "baerekraft"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "ansvar",
+      "relation_type": "governs",
+      "target_id": "risiko"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "rettferdig_omstilling",
+      "relation_type": "governs",
+      "target_id": "ansvar"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "rettferdig_omstilling",
+      "relation_type": "contributes_to",
+      "target_id": "baerekraft"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "interoperabilitet",
+      "relation_type": "increases",
+      "target_id": "teknologisk_momentum"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "stiavhengighet",
+      "relation_type": "constrains",
+      "target_id": "rettferdig_omstilling"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "eksternalitet",
+      "relation_type": "requires",
+      "target_id": "ansvar"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "reboundeffekt",
+      "relation_type": "can_follow",
+      "target_id": "virkningsgrad"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "livslopsanalyse",
+      "relation_type": "uses",
+      "target_id": "livslopsinventar"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "livslopsanalyse",
+      "relation_type": "evaluates",
+      "target_id": "baerekraft"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "fore_var_prinsippet",
+      "relation_type": "governs",
+      "target_id": "risiko"
+    },
+    {
+      "area_id": "teknologihistorie_sts_risiko_baerekraft",
+      "source_id": "fore_var_prinsippet",
+      "relation_type": "requires",
+      "target_id": "ansvar"
+    }
+  ],
+  "coverage": {
+    "existing_concepts": 72,
+    "new_concepts": 64,
+    "total_concepts": 136,
+    "typed_relations": 172,
+    "per_area": {
+      "teknologivitenskap_design": 10,
+      "systemer_arkitektur_palitelighet": 12,
+      "mekanikk_energi_maskiner": 10,
+      "materialer_produksjon": 10,
+      "elektronikk_signaler_regulering": 10,
+      "robotikk_automatisering": 10,
+      "datamaskiner_operativsystemer": 10,
+      "programvareteknikk": 12,
+      "algoritmer_data_ai": 14,
+      "nettverk_cybersikkerhet_infrastruktur": 14,
+      "menneske_teknologi_hci": 12,
+      "teknologihistorie_sts_risiko_baerekraft": 12
+    },
+    "advanced_area_minimums": {
+      "systemer_arkitektur_palitelighet": 12,
+      "programvareteknikk": 12,
+      "algoritmer_data_ai": 14,
+      "nettverk_cybersikkerhet_infrastruktur": 14,
+      "menneske_teknologi_hci": 12,
+      "teknologihistorie_sts_risiko_baerekraft": 12
+    }
+  }
+}
