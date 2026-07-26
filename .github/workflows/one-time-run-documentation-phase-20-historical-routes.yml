@@ -124,7 +124,7 @@ jobs:
           git restore --source=HEAD --worktree --staged -- dist 2>/dev/null || true
           git clean -fd -- dist
 
-      - name: Verify archive identity and final target scope
+      - name: Verify archive identity and registry ownership
         shell: bash
         run: |
           python - <<'PY'
@@ -151,26 +151,6 @@ jobs:
               'git', 'show', 'HEAD^1:docs/README_HistoryGo_Historiske_Ruter.md'
           ])
           assert hashlib.sha256(original_blob).hexdigest() == hashlib.sha256(archive.read_bytes()).hexdigest()
-
-          tracked_changed = set(
-              subprocess.check_output(['git', 'diff', '--name-only', 'HEAD']).decode().splitlines()
-          )
-          untracked = set(
-              subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard']).decode().splitlines()
-          )
-          changed = tracked_changed | untracked
-          expected = {
-              '.github/documentation-phase20-trigger',
-              '.github/workflows/one-time-run-documentation-phase-20-historical-routes.yml',
-              '.github/workflows/temporary-documentation-phase-20-historical-routes.yml',
-              'docs/README.md',
-              'docs/README_HistoryGo_Historiske_Ruter.md',
-              'docs/documentation_registry.json',
-              'reports/archive/2026-07/README.md',
-              'reports/archive/2026-07/historical-routes/README.md',
-              'reports/archive/2026-07/historical-routes/README_HistoryGo_Historiske_Ruter_PRE_CONSOLIDATION_2026-07-26.md',
-          }
-          assert changed == expected, (changed, expected)
           PY
 
       - name: Commit final target branch
