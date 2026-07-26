@@ -1,0 +1,78 @@
+name: One-time diagnose business-school quiz checks
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - '.github/workflows/one-time-diagnose-handelshogskole-quiz.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/okonomi-naeringsliv-handelshogskole
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run quiz production checks separately
+        shell: bash
+        run: |
+          set +e
+          mkdir -p /tmp/handelshogskole-quiz
+          npm install --no-audit --no-fund > /tmp/handelshogskole-quiz/install.log 2>&1
+          install_status=$?
+
+          context_status=99
+          progression_status=99
+          theory_status=99
+          if [ "$install_status" -eq 0 ]; then
+            npm run audit:quiz-production-context > /tmp/handelshogskole-quiz/context.log 2>&1
+            context_status=$?
+            npm run audit:quiz-progression > /tmp/handelshogskole-quiz/progression.log 2>&1
+            progression_status=$?
+            npm run audit:quiz-theory-binding > /tmp/handelshogskole-quiz/theory.log 2>&1
+            theory_status=$?
+          fi
+
+          {
+            echo "install_status=$install_status"
+            echo "context_status=$context_status"
+            echo "progression_status=$progression_status"
+            echo "theory_status=$theory_status"
+          } > /tmp/handelshogskole-quiz/status.txt
+
+          cat /tmp/handelshogskole-quiz/status.txt
+          cat /tmp/handelshogskole-quiz/context.log 2>/dev/null || true
+          cat /tmp/handelshogskole-quiz/progression.log 2>/dev/null || true
+          cat /tmp/handelshogskole-quiz/theory.log 2>/dev/null || true
+          exit 0
+
+      - name: Commit diagnostic logs to stage branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin agent/okonomi-naeringsliv-handelshogskole-stage
+          git checkout agent/okonomi-naeringsliv-handelshogskole-stage
+          mkdir -p .tmp/handelshogskole/quiz-diagnostic
+          cp /tmp/handelshogskole-quiz/*.log .tmp/handelshogskole/quiz-diagnostic/ || true
+          cp /tmp/handelshogskole-quiz/status.txt .tmp/handelshogskole/quiz-diagnostic/status.txt
+          git add .tmp/handelshogskole/quiz-diagnostic
+          git diff --cached --quiet && exit 0
+          git commit -m 'TEMP: diagnostiser handelshøyskolequiz'
+          git push origin HEAD:agent/okonomi-naeringsliv-handelshogskole-stage
