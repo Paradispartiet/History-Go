@@ -1,3 +1,5 @@
+> **Historisk snapshot.** Tallene nedenfor gjelder en eldre post-PR-#892-baseline og skal ikke brukes som dagens Stories-dekning. Aktiv sannhet ligger i `data/stories/stories_manifest.json`, manifest-loadede story- og place-filer og `npm run check:stories`. Ny dekning må beregnes på fersk `main` og lagres som en datert rapport, ikke som aktiv dokumentasjon.
+
 # Stories coverage-rapport
 
 Post-merge rapport etter at PR #892 er merget. Rapporten kartlegger faktisk Stories-dekning i `main` etter at 40 nye story manifest-entries fra de siste parallelle storybatchene er registrert i `data/stories/stories_manifest.json`. Rapporten er revalidert mot gjeldende main-grunnlag for PR #898-refresh; totalsummene er beregnet på nytt fra dagens data.

@@ -129,6 +129,15 @@ Ved konflikt gjelder maskinkontrakten og valideringen. Dokumentasjonen skal korr
 
 Dataproduksjonskontrakten er synkronisert med manifeststyrte, splittede politikk-places. Ved konflikt mellom dokumentasjon og et aktivt manifest er manifestet/runtime-koden sannhetskilden, og dokumentasjonen skal korrigeres.
 
+### Stories-data og produksjon
+
+1. [`STORIES_DATA_GOVERNANCE.md`](./STORIES_DATA_GOVERNANCE.md) — operativ produksjons-, rapport- og integritetsguide
+2. [`../data/stories/stories_manifest.json`](../data/stories/stories_manifest.json) — canonical runtime-manifest for aktive story-filer
+3. manifest-loadede filer under `data/stories/` — aktive story-objekter
+4. [`../tools/check_stories_integrity.mts`](../tools/check_stories_integrity.mts) — required fields, unike story-ID-er og place-/people-referanser
+
+En story er aktiv først når filen er manifestregistrert og `npm run check:stories` passerer. Researchnotater og coverage-rapporter er tidsbundne snapshots; de skal ligge under `reports/` eller `reports/archive/`, ikke opptre som nåstatus i `docs/`. De tidligere batch-4-notatene og post-PR-#892-coverage-rapporten er arkivert under `reports/archive/2026-07/stories/`.
+
 ### People-produksjon, stedskobling og bilder
 
 1. [`people-of-places-method.md`](./people-of-places-method.md) — canonical relevans-, kilde-, gjenbruks- og batchmetode for person–sted-koblinger
