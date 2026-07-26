@@ -33,33 +33,61 @@ jobs:
       - name: Materialize canonical quality files
         shell: bash
         run: |
-          set -euo pipefail
+          set -uo pipefail
+          mkdir -p .tmp/okonomi-quality /tmp/okonomi-quality
           cat .tmp/okonomi-quality/part-* > /tmp/okonomi-quality.b64
-          base64 --decode /tmp/okonomi-quality.b64 > /tmp/okonomi-quality.tgz
-          mkdir -p /tmp/okonomi-quality
-          tar -xzf /tmp/okonomi-quality.tgz -C /tmp/okonomi-quality
-          cp /tmp/okonomi-quality/teorikort_okonomi_og_naeringsliv_v1.json data/fag/naeringsliv/
-          cp /tmp/okonomi-quality/metodeprotokoller_okonomi_og_naeringsliv_v1.json data/fag/naeringsliv/
-          cp /tmp/okonomi-quality/modellregister_okonomi_og_naeringsliv_v1.json data/fag/naeringsliv/
-          cp /tmp/okonomi-quality/maleregister_okonomi_og_naeringsliv_v1.json data/fag/naeringsliv/
-          cp /tmp/okonomi-quality/emneutvidelser_okonomi_og_naeringsliv_v1.json data/fag/naeringsliv/
-          cp /tmp/okonomi-quality/vurderingsmatrise_okonomi_og_naeringsliv_v1.json data/fag/naeringsliv/
-          cp /tmp/okonomi-quality/validate-okonomi-naeringsliv-universitetskvalitet.mjs tools/
-          node tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs
+          actual_b64="$(sha256sum /tmp/okonomi-quality.b64 | awk '{print $1}')"
+          decode_status=0
+          base64 --decode /tmp/okonomi-quality.b64 > /tmp/okonomi-quality.tgz || decode_status=$?
+          actual_tgz="$(sha256sum /tmp/okonomi-quality.tgz | awk '{print $1}')"
+          extract_status=0
+          tar -xzf /tmp/okonomi-quality.tgz -C /tmp/okonomi-quality || extract_status=$?
+          copy_status=0
+          if [ "$extract_status" -eq 0 ]; then
+            cp /tmp/okonomi-quality/teorikort_okonomi_og_naeringsliv_v1.json data/fag/naeringsliv/ || copy_status=$?
+            cp /tmp/okonomi-quality/metodeprotokoller_okonomi_og_naeringsliv_v1.json data/fag/naeringsliv/ || copy_status=$?
+            cp /tmp/okonomi-quality/modellregister_okonomi_og_naeringsliv_v1.json data/fag/naeringsliv/ || copy_status=$?
+            cp /tmp/okonomi-quality/maleregister_okonomi_og_naeringsliv_v1.json data/fag/naeringsliv/ || copy_status=$?
+            cp /tmp/okonomi-quality/emneutvidelser_okonomi_og_naeringsliv_v1.json data/fag/naeringsliv/ || copy_status=$?
+            cp /tmp/okonomi-quality/vurderingsmatrise_okonomi_og_naeringsliv_v1.json data/fag/naeringsliv/ || copy_status=$?
+            cp /tmp/okonomi-quality/validate-okonomi-naeringsliv-universitetskvalitet.mjs tools/ || copy_status=$?
+          fi
+          validator_status=99
+          if [ "$copy_status" -eq 0 ] && [ -f tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs ]; then
+            node tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs > .tmp/okonomi-quality/validation.log 2>&1
+            validator_status=$?
+          else
+            echo 'Validator not run because extraction or copy failed.' > .tmp/okonomi-quality/validation.log
+          fi
+          {
+            echo "expected_b64=9133b33516377e44e3ee71950c7f8179e4c90256b1e2bd1877d9c6b134a5d4df"
+            echo "actual_b64=$actual_b64"
+            echo "expected_tgz=ca07946e60596599ee8dca3c22aff71581b016ef788498ec062aa3ce30bd8ade"
+            echo "actual_tgz=$actual_tgz"
+            echo "decode_status=$decode_status"
+            echo "extract_status=$extract_status"
+            echo "copy_status=$copy_status"
+            echo "validator_status=$validator_status"
+          } > .tmp/okonomi-quality/diagnostics.txt
+          cat .tmp/okonomi-quality/diagnostics.txt
+          cat .tmp/okonomi-quality/validation.log
 
-      - name: Commit materialized files
+      - name: Commit outputs and diagnostics
         shell: bash
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add \
+          git add .tmp/okonomi-quality/diagnostics.txt .tmp/okonomi-quality/validation.log
+          for file in \
             data/fag/naeringsliv/teorikort_okonomi_og_naeringsliv_v1.json \
             data/fag/naeringsliv/metodeprotokoller_okonomi_og_naeringsliv_v1.json \
             data/fag/naeringsliv/modellregister_okonomi_og_naeringsliv_v1.json \
             data/fag/naeringsliv/maleregister_okonomi_og_naeringsliv_v1.json \
             data/fag/naeringsliv/emneutvidelser_okonomi_og_naeringsliv_v1.json \
             data/fag/naeringsliv/vurderingsmatrise_okonomi_og_naeringsliv_v1.json \
-            tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs
-          git commit -m 'Materialiser Økonomi og næringsliv universitetskvalitet'
+            tools/validate-okonomi-naeringsliv-universitetskvalitet.mjs; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
+          git commit -m 'Diagnostiser og materialiser Økonomi og næringsliv universitetskvalitet'
           git push origin HEAD:agent/okonomi-naeringsliv-universitetskvalitet-v2
