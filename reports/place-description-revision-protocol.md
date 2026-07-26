@@ -13,10 +13,10 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 ## Oslo-status etter denne PR-en
 
 - Totalt i Oslo-køen: **58 steder**
-- Ferdig før denne batchen: **22 steder**
+- Ferdig før denne batchen: **32 steder**
 - Denne batchen: **10 steder**
-- Ferdig etter merge av denne batchen: **32 steder**
-- Gjenstår etter merge: **26 steder**
+- Ferdig etter merge av denne batchen: **42 steder**
+- Gjenstår etter merge: **16 steder**
 
 ## Ferdige steder etter denne PR-en
 
@@ -54,35 +54,35 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 | 30 | Vinderen | `vinderen` | 49 | 332 | 6 | #4043 |
 | 31 | Ullern | `ullern` | 41 | 310 | 6 | #4043 |
 | 32 | Grønland kirke | `gronland_kirke` | 46 | 309 | 6 | #4043 |
+| 33 | Kampen kirke | `kampen_kirke` | 51 | 317 | 5 | #4069 |
+| 34 | Ullevål Hageby | `ullevål_hageby` | 51 | 351 | 6 | #4069 |
+| 35 | Romsås | `romsaås` | 48 | 321 | 6 | #4069 |
+| 36 | Grünerløkka – Helgesens / Thorvald Meyers | `grunerlokka_helgesens_tm` | 44 | 321 | 6 | #4069 |
+| 37 | Spikersuppa | `spikersuppa` | 45 | 319 | 6 | #4069 |
+| 38 | Bankplassen | `bankplassen` | 46 | 372 | 7 | #4069 |
+| 39 | Christiania Torv | `christiania_torv` | 49 | 357 | 7 | #4069 |
+| 40 | Botsparken | `botsparken` | 44 | 314 | 6 | #4069 |
+| 41 | Slottsparken | `slottsparken` | 47 | 335 | 7 | #4069 |
+| 42 | Tjuvholmen | `tjuvholmen` | 43 | 351 | 7 | #4069 |
 
 ## Gjenstående Oslo-kø
 
-1. Kampen kirke
-2. Ullevål Hageby
-3. Romsås
-4. Grünerløkka – Helgesens / Thorvald Meyers
-5. Spikersuppa
-6. Bankplassen
-7. Christiania Torv
-8. Botsparken
-9. Slottsparken
-10. Tjuvholmen
-11. Sørenga
-12. Majorstuen T-banestasjon
-13. Nationaltheatret stasjon
-14. Bislett
-15. Olaf Ryes plass
-16. Birkelunden
-17. Universitetsplassen
-18. Deichman Bjørvika
-19. Vigelandsparken
-20. Voienvolden
-21. Carl Berners plass
-22. Tullin
-23. Økern
-24. Skøyen
-25. Trikkelinje 17/18
-26. St. Hanshaugen park
+1. Sørenga
+2. Majorstuen T-banestasjon
+3. Nationaltheatret stasjon
+4. Bislett
+5. Olaf Ryes plass
+6. Birkelunden
+7. Universitetsplassen
+8. Deichman Bjørvika
+9. Vigelandsparken
+10. Voienvolden
+11. Carl Berners plass
+12. Tullin
+13. Økern
+14. Skøyen
+15. Trikkelinje 17/18
+16. St. Hanshaugen park
 
 ## Batchlogg
 
@@ -92,6 +92,7 @@ Dette dokumentet er den løpende produksjonsprotokollen for steder som er oppgra
 | Pilot | 1 | Bispelokket merget i #3958 |
 | Oslo V4 batch 1 | 10 | Merget i #4014 |
 | Oslo V4 batch 2 | 10 | Merget i #4036 |
-| Oslo V4 batch 3 | 10 | #4043 |
+| Oslo V4 batch 3 | 10 | Merget i #4043 |
+| Oslo V4 batch 4 | 10 | #4069 |
 
 Protokollen skal oppdateres i samme PR som hver nye batch. Et sted flyttes først til «Ferdige steder» når teksten oppfyller ord-, avsnitts-, kilde- og valideringskravene.
