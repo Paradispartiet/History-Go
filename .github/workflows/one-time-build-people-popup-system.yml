@@ -46,8 +46,29 @@ jobs:
           npm run typecheck:tools
           npm run build:tools
 
-      - name: Generate deterministic people-popup readiness reports
-        run: node dist/tools/audit-people-popup-readiness.mjs
+      - name: Capture people-popup readiness audit
+        id: readiness-audit
+        shell: bash
+        run: |
+          mkdir -p reports/people-popup-runner
+          set +e
+          node dist/tools/audit-people-popup-readiness.mjs > reports/people-popup-runner/audit.log 2>&1
+          status=$?
+          set -e
+          cat reports/people-popup-runner/audit.log
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+
+      - name: Upload readiness audit diagnostic
+        if: steps.readiness-audit.outputs.status != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: people-popup-readiness-audit-${{ github.run_id }}
+          path: reports/people-popup-runner/audit.log
+          if-no-files-found: error
+
+      - name: Enforce readiness audit
+        if: steps.readiness-audit.outputs.status != '0'
+        run: exit 1
 
       - name: Check readiness report synchronization
         run: node dist/tools/audit-people-popup-readiness.mjs --check
@@ -71,8 +92,8 @@ jobs:
         run: |
           set -euo pipefail
           git rm scripts/one-time-register-people-popup-system.py
-          git restore --staged --worktree reports/documentation-governance 2>/dev/null || true
-          git clean -fd reports/documentation-governance 2>/dev/null || true
+          git restore --staged --worktree reports/documentation-governance reports/people-popup-runner 2>/dev/null || true
+          git clean -fd reports/documentation-governance reports/people-popup-runner 2>/dev/null || true
 
       - name: Commit clean documentation and audit system
         shell: bash
