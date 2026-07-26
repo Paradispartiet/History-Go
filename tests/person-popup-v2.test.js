@@ -176,6 +176,31 @@ test("renders the four Stensparken people as rich profiles", async () => {
   }
 });
 
+test("renders the second Stensparken batch as rich people profiles", async () => {
+  const targets = [
+    ["data/people/kunst/oslo/people_kunst_oslo.json", "jo_visdal"],
+    ["data/people/kunst/oslo/people_kunst_oslo.json", "lars_utne"],
+    ["data/people/kunst/oslo/people_kunst_oslo.json", "miksa_roth"],
+    ["data/people/historie/oslo/people_historie_oslo.json", "jens_bjelke"]
+  ];
+
+  for (const [relativePath, personId] of targets) {
+    const { window, captured } = createHarness({ hasQuiz: true });
+    const people = JSON.parse(fs.readFileSync(path.join(__dirname, "..", relativePath), "utf8"));
+    const person = people.find(item => item.id === personId);
+    assert.ok(person, personId);
+
+    window.showPersonPopup(person);
+    await new Promise(resolve => setImmediate(resolve));
+
+    assert.match(captured.html, new RegExp(person.name));
+    assert.match(captured.html, /Verk og bidrag/);
+    assert.match(captured.html, /Stensparken/);
+    assert.match(captured.html, /Kilder og videre lesning/);
+    assert.doesNotMatch(captured.html, /Ingen registrerte verk/);
+  }
+});
+
 test("removes quiz action and empty sections when data is absent", async () => {
   const { window, captured, quizButton } = createHarness({ hasQuiz: false });
 
