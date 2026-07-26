@@ -6,15 +6,17 @@ Canonical fil: `data/places/historie/akershus/places_historie_akershus_batch1/os
 
 ## Resultat
 
-Ingen canonical koordinat endres i denne proben.
+Ingen canonical koordinat eller radius endres i denne proben.
 
 Legacy-markøren beholdes midlertidig:
 
 - koordinat: `59.676, 10.606`
 - radius: `360 m`
-- status: uten Coordinate Source Contract
+- status: `needs_manual_map_check`
+- koordinattype: `historic_fortress_core_area`
+- kildekontrakt: ikke verifisert; rå kjernegeometri mangler
 
-Proben løser stedets identitet og avdekker hvorfor et enkelt navnetreff ikke kan brukes som produksjonskoordinat.
+Canonical får eksplisitt metadata som hindrer at legacy-punktet senere tolkes som en ferdig verifisert koordinat. Proben løser stedets identitet og avdekker hvorfor et enkelt navnetreff ikke kan brukes som produksjonskoordinat.
 
 ## Identitet og omfang
 
@@ -63,7 +65,7 @@ Følgende mangler før produksjon:
 
 `candidate_sources_collected`
 
-Canonical JSON forblir uendret. Dette er en kilde- og representasjonsaudit, ikke en koordinatproduksjon.
+Canonical koordinat og radius forblir uendret, mens `coordStatus`, `coordType`, `coordSource`, `coordVerifiedAt` og `coordNote` synliggjør at punktet fortsatt krever manuell geometriavklaring. Dette er en kilde- og representasjonsaudit, ikke en koordinatproduksjon.
 
 ## Lagret materiale
 
