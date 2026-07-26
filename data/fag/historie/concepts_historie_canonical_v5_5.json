@@ -124,8 +124,8 @@
   {
     "concept_id": "con_his_3d_modell",
     "label": "3D-modell",
-    "definition": "I Minne, kulturarv og historiebruk betegner «3D-modell» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "En 3D-modell er en digital, målebasert eller fortolkende romlig representasjon av et objekt eller sted; den må leses som en produsert modell med dokumenterte valg, ikke som selve kulturminnet.",
+    "concept_type": "digital_heritage_model",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -135,12 +135,26 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «3D-modell» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_metadata",
+      "con_his_digitalt_minne"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_nasjonal_fortelling"
+    ],
+    "common_misuse": [
+      "Å bruke modellens detaljer som direkte bevis for originalens utseende uten å skille måledata, rekonstruksjon og antakelse."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "dokumentert digital representasjon av «3D-modell»",
+      "metadata, versjon og produksjonsprosess",
+      "tilgang, grensesnitt og dokumentert bruk"
+    ],
+    "source_requirements": [
+      "originalobjekt, dokumentasjon av digitaliserings- eller modelleringsprosessen og tekniske metadata",
+      "versjonslogg, institusjonell publiseringskontekst og bruker-/tilgangsdata"
+    ]
   },
   {
     "concept_id": "con_his_adgang",
@@ -2154,9 +2168,9 @@
   },
   {
     "concept_id": "con_his_bestilling",
-    "label": "bestilling",
-    "definition": "I Minne, kulturarv og historiebruk betegner «bestilling» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "minnepolitisk bestilling",
+    "definition": "En minnepolitisk bestilling er et mandat, oppdrag eller finansiert initiativ som definerer hva et monument, museum, jubileum eller digitalt produkt skal markere, for hvem og innen hvilke rammer.",
+    "concept_type": "heritage_commission",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -2166,12 +2180,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «bestilling» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_fjerning",
+      "con_his_gate",
+      "con_his_inkludering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_erindring"
+    ],
+    "common_misuse": [
+      "Å behandle det ferdige uttrykket som nøytralt uten å undersøke bestiller, mandat, budsjett og godkjenningsprosess."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "aktører med ulike krav til «minnepolitisk bestilling»",
+      "beslutningsmyndighet, begrunnelser og maktressurser",
+      "endring i navn, plassering, synlighet eller fortolkning"
+    ],
+    "source_requirements": [
+      "politiske vedtak, høringer, organisasjonsarkiv og offentlig debatt",
+      "lokale erfaringer, protestmateriale, minoritetsstemmer og dokumentasjon av gjennomføring"
+    ]
   },
   {
     "concept_id": "con_his_bevaring",
@@ -4120,8 +4149,8 @@
   {
     "concept_id": "con_his_digitalt_minne",
     "label": "digitalt minne",
-    "definition": "I Minne, kulturarv og historiebruk betegner «digitalt minne» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Digitalt minne er fortidsrepresentasjoner som lagres, sirkuleres og gjenbrukes gjennom digitale plattformer, der algoritmer, formater, eierskap og teknisk forgjengelighet former hva som blir synlig.",
+    "concept_type": "digital_memory_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -4131,12 +4160,26 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «digitalt minne» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_3d_modell",
+      "con_his_metadata"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_navnepolitikk"
+    ],
+    "common_misuse": [
+      "Å anta at digital tilgjengelighet gir varig bevaring eller representativ synlighet uten å undersøke plattform, metadata og sletting."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "dokumentert digital representasjon av «digitalt minne»",
+      "metadata, versjon og produksjonsprosess",
+      "tilgang, grensesnitt og dokumentert bruk"
+    ],
+    "source_requirements": [
+      "originalobjekt, dokumentasjon av digitaliserings- eller modelleringsprosessen og tekniske metadata",
+      "versjonslogg, institusjonell publiseringskontekst og bruker-/tilgangsdata"
+    ]
   },
   {
     "concept_id": "con_his_diplom",
@@ -5360,8 +5403,8 @@
   {
     "concept_id": "con_his_erindring",
     "label": "erindring",
-    "definition": "I Minne, kulturarv og historiebruk betegner «erindring» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Erindring er en persons situerte gjenkalling og fortolkning av fortid, påvirket av senere erfaringer, språk, spørsmål og sosiale forventninger.",
+    "concept_type": "individual_memory_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -5371,12 +5414,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «erindring» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kulturelt_minne",
+      "con_his_kulturminne",
+      "con_his_motminne"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_seremoni"
+    ],
+    "common_misuse": [
+      "Å bruke en sen erindring som uendret avtrykk av hendelsen uten å analysere tidspunkt, fortellersituasjon og senere kunnskap."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "gjentatte fortellinger eller praksiser knyttet til «erindring»",
+      "bærere, arenaer og overføringsformer",
+      "endring, konflikt eller bortfall over generasjoner"
+    ],
+    "source_requirements": [
+      "muntlige, private og offentlige minnekilder fra flere tidspunkter",
+      "medier, ritualer, organisasjonsarkiv og materielle spor som viser sirkulasjon"
+    ]
   },
   {
     "concept_id": "con_his_estetisk_industriarv_vs_sosialt_tap",
@@ -6488,9 +6546,9 @@
   },
   {
     "concept_id": "con_his_fjerning",
-    "label": "fjerning",
-    "definition": "I Minne, kulturarv og historiebruk betegner «fjerning» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "fjerning av minneuttrykk",
+    "definition": "Fjerning er en materiell og politisk handling som tar et navn, monument eller annet minneuttrykk ut av sin offentlige plassering, men ikke nødvendigvis ut av historien.",
+    "concept_type": "commemorative_removal",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -6500,12 +6558,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «fjerning» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_symbol",
+      "con_his_symbolsk",
+      "con_his_bestilling"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_utstilling"
+    ],
+    "common_misuse": [
+      "Å likestille fjerning med sletting av historie uten å undersøke dokumentasjon, ny plassering, pedagogisk kontekst og maktforhold."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "aktører med ulike krav til «fjerning av minneuttrykk»",
+      "beslutningsmyndighet, begrunnelser og maktressurser",
+      "endring i navn, plassering, synlighet eller fortolkning"
+    ],
+    "source_requirements": [
+      "politiske vedtak, høringer, organisasjonsarkiv og offentlig debatt",
+      "lokale erfaringer, protestmateriale, minoritetsstemmer og dokumentasjon av gjennomføring"
+    ]
   },
   {
     "concept_id": "con_his_flytter",
@@ -7227,9 +7300,9 @@
   },
   {
     "concept_id": "con_his_formidling",
-    "label": "formidling",
-    "definition": "I Minne, kulturarv og historiebruk betegner «formidling» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "historieformidling",
+    "definition": "Historieformidling er den konkrete oversettelsen av historisk kunnskap til fortelling, utstilling, undervisning, byrom eller digitalt medium for bestemte målgrupper.",
+    "concept_type": "public_history_mediation",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -7239,12 +7312,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «formidling» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_samling",
+      "con_his_utstilling",
+      "con_his_kanon"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_verdi"
+    ],
+    "common_misuse": [
+      "Å vurdere formidling bare etter faktarikt innhold uten å undersøke utvalg, dramaturgi, tilgjengelighet og publikums bruk."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "institusjonell utvelgelse knyttet til «historieformidling»",
+      "ordning, fortelling og utelatelser i formidlingen",
+      "dokumentert publikum, bruk eller mottakelse"
+    ],
+    "source_requirements": [
+      "samlings-, utstillings-, katalog- og institusjonsarkiv",
+      "publikumsundersøkelser, anmeldelser, undervisningsmateriale og kritiske motstemmer"
+    ]
   },
   {
     "concept_id": "con_his_fornorskning",
@@ -7796,9 +7884,9 @@
   },
   {
     "concept_id": "con_his_gate",
-    "label": "gate",
-    "definition": "I Minne, kulturarv og historiebruk betegner «gate» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "minnepolitisk gatenavn",
+    "definition": "En gate er i dette domenet et navngitt offentlig rom der navn, skilting og bruk kan feste bestemte personer eller fortellinger til hverdagslandskapet.",
+    "concept_type": "commemorative_street_space",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -7808,12 +7896,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «gate» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_stedsnavn",
+      "con_his_symbol",
+      "con_his_symbolsk"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_minnested"
+    ],
+    "common_misuse": [
+      "Å behandle gatenavnet som passiv orientering uten å undersøke navnevedtak, historisk kontekst og hvem som ikke fikk plass."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "aktører med ulike krav til «minnepolitisk gatenavn»",
+      "beslutningsmyndighet, begrunnelser og maktressurser",
+      "endring i navn, plassering, synlighet eller fortolkning"
+    ],
+    "source_requirements": [
+      "politiske vedtak, høringer, organisasjonsarkiv og offentlig debatt",
+      "lokale erfaringer, protestmateriale, minoritetsstemmer og dokumentasjon av gjennomføring"
+    ]
   },
   {
     "concept_id": "con_his_gatenett",
@@ -8730,8 +8833,8 @@
   {
     "concept_id": "con_his_historiebruk",
     "label": "historiebruk",
-    "definition": "I Minne, kulturarv og historiebruk betegner «historiebruk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Historiebruk er aktørers selektive bruk av fortid for å forklare, legitimere, identifisere, mobilisere, sørge, underholde eller kritisere i en bestemt samtid.",
+    "concept_type": "history_use_framework",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -8743,12 +8846,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «historiebruk» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_plattform",
+      "con_his_rekonstruksjon",
+      "con_his_senere_inngrep"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_stedsnavn"
+    ],
+    "common_misuse": [
+      "Å kalle enhver omtale av fortid historiebruk uten å identifisere aktør, formål, utvalg, medium og virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «historiebruk»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_historiefagets",
@@ -9759,9 +9877,9 @@
   },
   {
     "concept_id": "con_his_inkludering",
-    "label": "inkludering",
-    "definition": "I Minne, kulturarv og historiebruk betegner «inkludering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "inkludering i kulturarv",
+    "definition": "Inkludering i kulturarv er endringer i utvalg, språk, tilgang og beslutningsmakt som gjør tidligere marginaliserte erfaringer synlige og virksomme i institusjoner og minnesteder.",
+    "concept_type": "heritage_inclusion_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -9780,12 +9898,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «inkludering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_stedsnavn",
+      "con_his_symbol",
+      "con_his_symbolsk"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_jubileer"
+    ],
+    "common_misuse": [
+      "Å telle nye navn eller objekter som inkludering uten å undersøke ressurser, kuratorisk makt, tilgang og varig institusjonell endring."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "aktører med ulike krav til «inkludering i kulturarv»",
+      "beslutningsmyndighet, begrunnelser og maktressurser",
+      "endring i navn, plassering, synlighet eller fortolkning"
+    ],
+    "source_requirements": [
+      "politiske vedtak, høringer, organisasjonsarkiv og offentlig debatt",
+      "lokale erfaringer, protestmateriale, minoritetsstemmer og dokumentasjon av gjennomføring"
+    ]
   },
   {
     "concept_id": "con_his_innleggelse",
@@ -9861,9 +9994,9 @@
   },
   {
     "concept_id": "con_his_innskrift",
-    "label": "innskrift",
-    "definition": "I Minne, kulturarv og historiebruk betegner «innskrift» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "minneinnskrift",
+    "definition": "En minneinnskrift er autorisert tekst festet til et monument, bygg eller sted som kondenserer en historisk fortolkning i et varig offentlig uttrykk.",
+    "concept_type": "commemorative_inscription",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -9873,12 +10006,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «innskrift» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_jubileer",
+      "con_his_jubileum",
+      "con_his_minnested"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_navnepolitikk"
+    ],
+    "common_misuse": [
+      "Å lese innskriften som full historisk redegjørelse uten å undersøke forfatter, bestilling, forkortelser og utelatelser."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materiell eller rituell iscenesettelse av «minneinnskrift»",
+      "tid, sted, arrangør og målgruppe",
+      "dokumentert deltakelse, reaksjon og senere endring"
+    ],
+    "source_requirements": [
+      "program, taler, innskrifter, design- og bestillingsdokumenter",
+      "presse, foto, deltakerberetninger, protester og senere omtolkinger"
+    ]
   },
   {
     "concept_id": "con_his_inntekter",
@@ -10612,8 +10760,8 @@
   {
     "concept_id": "con_his_jubileer",
     "label": "jubileer",
-    "definition": "I Minne, kulturarv og historiebruk betegner «jubileer» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Begrepet «jubileer» avgrenser en materiell eller rituell iscenesettelse med identifiserbare bestillere, deltakere, målgrupper og senere bruksmønstre.",
+    "concept_type": "commemorative_practice",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -10623,18 +10771,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «jubileer» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_minnesteder",
+      "con_his_monument",
+      "con_his_ritual"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_nasjonal_fortelling"
+    ],
+    "common_misuse": [
+      "Å bruke «jubileer» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materiell eller rituell iscenesettelse av «jubileer»",
+      "tid, sted, arrangør og målgruppe",
+      "dokumentert deltakelse, reaksjon og senere endring"
+    ],
+    "source_requirements": [
+      "program, taler, innskrifter, design- og bestillingsdokumenter",
+      "presse, foto, deltakerberetninger, protester og senere omtolkinger"
+    ]
   },
   {
     "concept_id": "con_his_jubileum",
     "label": "jubileum",
-    "definition": "I Minne, kulturarv og historiebruk betegner «jubileum» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«jubileum» er en offentlig minnepraksis som gjennom sted, form, tekst, tid og gjentakelse gjør en valgt fortolkning av fortiden synlig.",
+    "concept_type": "commemorative_practice",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -10644,12 +10807,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «jubileum» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_minnested",
+      "con_his_minnesteder",
+      "con_his_monument"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_stedsnavn"
+    ],
+    "common_misuse": [
+      "Å bruke «jubileum» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materiell eller rituell iscenesettelse av «jubileum»",
+      "tid, sted, arrangør og målgruppe",
+      "dokumentert deltakelse, reaksjon og senere endring"
+    ],
+    "source_requirements": [
+      "program, taler, innskrifter, design- og bestillingsdokumenter",
+      "presse, foto, deltakerberetninger, protester og senere omtolkinger"
+    ]
   },
   {
     "concept_id": "con_his_juridisk_kategori_vs_selvvalgt_identitet",
@@ -10774,9 +10952,9 @@
   },
   {
     "concept_id": "con_his_kanon",
-    "label": "kanon",
-    "definition": "I Minne, kulturarv og historiebruk betegner «kanon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "historisk kanon",
+    "definition": "En historisk kanon er et relativt stabilt utvalg av personer, hendelser, verk og steder som institusjoner gjentar som særlig betydningsfulle.",
+    "concept_type": "historical_canon",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -10786,12 +10964,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kanon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kuratering",
+      "con_his_museum",
+      "con_his_samling"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_minnesteder"
+    ],
+    "common_misuse": [
+      "Å behandle kanonen som naturlig rangering av betydning uten å undersøke hvem som valgte, gjentok og utfordret utvalget."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "institusjonell utvelgelse knyttet til «historisk kanon»",
+      "ordning, fortelling og utelatelser i formidlingen",
+      "dokumentert publikum, bruk eller mottakelse"
+    ],
+    "source_requirements": [
+      "samlings-, utstillings-, katalog- og institusjonsarkiv",
+      "publikumsundersøkelser, anmeldelser, undervisningsmateriale og kritiske motstemmer"
+    ]
   },
   {
     "concept_id": "con_his_kanonisk_rett",
@@ -12091,8 +12284,8 @@
   {
     "concept_id": "con_his_kollektivt_minne",
     "label": "kollektivt minne",
-    "definition": "I Minne, kulturarv og historiebruk betegner «kollektivt minne» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Kollektivt minne er sosialt organiserte fortidsforestillinger som grupper vedlikeholder gjennom fortellinger, ritualer, medier, institusjoner og steder.",
+    "concept_type": "collective_memory_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -12104,12 +12297,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kollektivt minne» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_postminne",
+      "con_his_erindring",
+      "con_his_kommunikativt_minne"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_fjerning"
+    ],
+    "common_misuse": [
+      "Å tilskrive en hel befolkning ett felles minne uten å dokumentere bærere, variasjon, konflikt og endring."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "gjentatte fortellinger eller praksiser knyttet til «kollektivt minne»",
+      "bærere, arenaer og overføringsformer",
+      "endring, konflikt eller bortfall over generasjoner"
+    ],
+    "source_requirements": [
+      "muntlige, private og offentlige minnekilder fra flere tidspunkter",
+      "medier, ritualer, organisasjonsarkiv og materielle spor som viser sirkulasjon"
+    ]
   },
   {
     "concept_id": "con_his_koloniale",
@@ -12438,8 +12646,8 @@
   {
     "concept_id": "con_his_kommunikativt_minne",
     "label": "kommunikativt minne",
-    "definition": "I Minne, kulturarv og historiebruk betegner «kommunikativt minne» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Kommunikativt minne er hverdagslig, ofte muntlig overføring av erfaringer innen levende generasjoner, uten nødvendigvis å være stabilisert av formelle institusjoner.",
+    "concept_type": "communicative_memory_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -12451,12 +12659,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kommunikativt minne» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kollektivt_minne",
+      "con_his_kulturelt_minne",
+      "con_his_kulturminne"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_seremonier"
+    ],
+    "common_misuse": [
+      "Å anta at familie- eller generasjonsfortellinger er ensartede eller uforandrede fordi de gjentas muntlig."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "gjentatte fortellinger eller praksiser knyttet til «kommunikativt minne»",
+      "bærere, arenaer og overføringsformer",
+      "endring, konflikt eller bortfall over generasjoner"
+    ],
+    "source_requirements": [
+      "muntlige, private og offentlige minnekilder fra flere tidspunkter",
+      "medier, ritualer, organisasjonsarkiv og materielle spor som viser sirkulasjon"
+    ]
   },
   {
     "concept_id": "con_his_kompetanse",
@@ -12953,8 +13176,8 @@
   {
     "concept_id": "con_his_kontekstualisering",
     "label": "kontekstualisering",
-    "definition": "I Minne, kulturarv og historiebruk betegner «kontekstualisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Kontekstualisering plasserer et objekt, utsagn eller minnested i dokumenterte sammenhenger av tid, makt, aktører, språk og etterliv uten å oppheve selve kildens problematiske innhold.",
+    "concept_type": "historical_contextualization_method",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -12964,12 +13187,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kontekstualisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_musealisering",
+      "con_his_nasjonal_fortelling",
+      "con_his_offentlig_konsekvens"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bestilling"
+    ],
+    "common_misuse": [
+      "Å bruke en kort forklaring som moralsk frikort uten å vise relevante maktforhold, konsekvenser og alternative perspektiver."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «kontekstualisering»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_kontinuitet",
@@ -13124,9 +13362,9 @@
   },
   {
     "concept_id": "con_his_kontrovers",
-    "label": "kontrovers",
-    "definition": "I Minne, kulturarv og historiebruk betegner «kontrovers» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "minnekontrovers",
+    "definition": "En minnekontrovers er en offentlig konflikt om hvem eller hva som skal minnes, hvordan uttrykket skal tolkes, og hvem som har myndighet til å endre det.",
+    "concept_type": "memory_controversy",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -13137,12 +13375,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kontrovers» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_omtolking",
+      "con_his_stedsnavn",
+      "con_his_symbol"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_plass"
+    ],
+    "common_misuse": [
+      "Å redusere kontroversen til meningsforskjell uten å analysere institusjonell makt, historiske krav og materielle konsekvenser."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "aktører med ulike krav til «minnekontrovers»",
+      "beslutningsmyndighet, begrunnelser og maktressurser",
+      "endring i navn, plassering, synlighet eller fortolkning"
+    ],
+    "source_requirements": [
+      "politiske vedtak, høringer, organisasjonsarkiv og offentlig debatt",
+      "lokale erfaringer, protestmateriale, minoritetsstemmer og dokumentasjon av gjennomføring"
+    ]
   },
   {
     "concept_id": "con_his_korroborering",
@@ -13623,8 +13876,8 @@
   {
     "concept_id": "con_his_kulturarvskonflikt",
     "label": "kulturarvskonflikt",
-    "definition": "I Minne, kulturarv og historiebruk betegner «kulturarvskonflikt» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "En kulturarvskonflikt oppstår når vern, bruk, eierskap, utvikling eller representasjon av fortid gir uforenlige krav mellom aktører.",
+    "concept_type": "heritage_conflict",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -13634,12 +13887,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kulturarvskonflikt» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_verdi",
+      "con_his_kulturminner",
+      "con_his_restaurering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_kulturelt_minne"
+    ],
+    "common_misuse": [
+      "Å beskrive konflikten som vern mot utvikling alene uten å undersøke ulike verneverdier, brukere, eiere og fordelingsvirkninger."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "uttalte kriterier for «kulturarvskonflikt»",
+      "vedtak, inngrep og ressursbruk",
+      "dokumenterte vinnere, tapere og alternative vurderinger"
+    ],
+    "source_requirements": [
+      "lovverk, vedtak, fagrapporter, inventarer og restaureringsdokumentasjon",
+      "eier-, bruker-, lokalsamfunns- og konfliktkilder som viser praksis og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_kulturelle",
@@ -13672,8 +13940,8 @@
   {
     "concept_id": "con_his_kulturelt_minne",
     "label": "kulturelt minne",
-    "definition": "I Minne, kulturarv og historiebruk betegner «kulturelt minne» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Kulturelt minne er fortidsforestillinger som stabiliseres og overføres gjennom institusjoner, tekster, bilder, ritualer, monumenter og arkiver utover levende generasjoner.",
+    "concept_type": "cultural_memory_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -13684,12 +13952,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kulturelt minne» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_motminne",
+      "con_his_postminne",
+      "con_his_erindring"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_minnesteder"
+    ],
+    "common_misuse": [
+      "Å behandle institusjonalisert minne som uforanderlig eller representativt for alle grupper."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "gjentatte fortellinger eller praksiser knyttet til «kulturelt minne»",
+      "bærere, arenaer og overføringsformer",
+      "endring, konflikt eller bortfall over generasjoner"
+    ],
+    "source_requirements": [
+      "muntlige, private og offentlige minnekilder fra flere tidspunkter",
+      "medier, ritualer, organisasjonsarkiv og materielle spor som viser sirkulasjon"
+    ]
   },
   {
     "concept_id": "con_his_kulturmiljo",
@@ -13730,8 +14013,8 @@
   {
     "concept_id": "con_his_kulturminne",
     "label": "kulturminne",
-    "definition": "I Minne, kulturarv og historiebruk betegner «kulturminne» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Et kulturminne er et materielt eller immaterielt spor som er identifisert og tillagt historisk, sosial, vitenskapelig eller estetisk verdi gjennom konkrete vurderinger.",
+    "concept_type": "heritage_object_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -13741,18 +14024,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kulturminne» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_erindring",
+      "con_his_kollektivt_minne",
+      "con_his_kommunikativt_minne"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_utelatelse"
+    ],
+    "common_misuse": [
+      "Å anta at alder alene gjør noe til kulturminne eller at formell status uttømmer alle verdier og konflikter."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "gjentatte fortellinger eller praksiser knyttet til «kulturminne»",
+      "bærere, arenaer og overføringsformer",
+      "endring, konflikt eller bortfall over generasjoner"
+    ],
+    "source_requirements": [
+      "muntlige, private og offentlige minnekilder fra flere tidspunkter",
+      "medier, ritualer, organisasjonsarkiv og materielle spor som viser sirkulasjon"
+    ]
   },
   {
     "concept_id": "con_his_kulturminner",
     "label": "kulturminner",
-    "definition": "I Minne, kulturarv og historiebruk betegner «kulturminner» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Kulturminner er en analytisk og forvaltningsmessig gruppe av spor fra menneskelig virksomhet; flertallsformen krever eksplisitte avgrensninger og utvalgskriterier.",
+    "concept_type": "heritage_object_collection",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -13762,12 +14060,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kulturminner» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_utvelgelse",
+      "con_his_verdi",
+      "con_his_kulturarvskonflikt"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_musealisering"
+    ],
+    "common_misuse": [
+      "Å omtale et område som rikt på kulturminner uten å spesifisere objekter, tidslag, status og dokumentasjonsgrunnlag."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "uttalte kriterier for «kulturminner»",
+      "vedtak, inngrep og ressursbruk",
+      "dokumenterte vinnere, tapere og alternative vurderinger"
+    ],
+    "source_requirements": [
+      "lovverk, vedtak, fagrapporter, inventarer og restaureringsdokumentasjon",
+      "eier-, bruker-, lokalsamfunns- og konfliktkilder som viser praksis og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_kulturmote",
@@ -13929,8 +14242,8 @@
   {
     "concept_id": "con_his_kuratering",
     "label": "kuratering",
-    "definition": "I Minne, kulturarv og historiebruk betegner «kuratering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Kuratering er den faglige og institusjonelle prosessen som velger, ordner, tolker og presenterer objekter og fortellinger for et bestemt formål og publikum.",
+    "concept_type": "curatorial_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -13940,12 +14253,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «kuratering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kanon",
+      "con_his_museum",
+      "con_his_samling"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bestilling"
+    ],
+    "common_misuse": [
+      "Å framstille en utstilling eller samling som nøytral speiling av fortiden uten å undersøke utvalg, rekkefølge og fravær."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "institusjonell utvelgelse knyttet til «kuratering»",
+      "ordning, fortelling og utelatelser i formidlingen",
+      "dokumentert publikum, bruk eller mottakelse"
+    ],
+    "source_requirements": [
+      "samlings-, utstillings-, katalog- og institusjonsarkiv",
+      "publikumsundersøkelser, anmeldelser, undervisningsmateriale og kritiske motstemmer"
+    ]
   },
   {
     "concept_id": "con_his_kvinne",
@@ -15179,8 +15507,8 @@
   {
     "concept_id": "con_his_marginalisering",
     "label": "marginalisering",
-    "definition": "I Minne, kulturarv og historiebruk betegner «marginalisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Historisk må «marginalisering» knyttes til hvem som produserte uttrykket, hvilke alternativer som ble valgt bort, og hva bruken faktisk gjorde mulig.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -15190,12 +15518,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «marginalisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_historiebruk",
+      "con_his_kontekstualisering",
+      "con_his_markering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_ritual"
+    ],
+    "common_misuse": [
+      "Å bruke «marginalisering» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «marginalisering»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_markeder",
@@ -15284,8 +15627,8 @@
   {
     "concept_id": "con_his_markering",
     "label": "markering",
-    "definition": "I Minne, kulturarv og historiebruk betegner «markering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Historisk må «markering» knyttes til hvem som produserte uttrykket, hvilke alternativer som ble valgt bort, og hva bruken faktisk gjorde mulig.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -15295,12 +15638,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «markering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_patina",
+      "con_his_plass",
+      "con_his_plattform"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_jubileer"
+    ],
+    "common_misuse": [
+      "Å bruke «markering» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «markering»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_maskin_vs_arbeidsorganisering",
@@ -15830,8 +16188,8 @@
   {
     "concept_id": "con_his_metadata",
     "label": "metadata",
-    "definition": "I Minne, kulturarv og historiebruk betegner «metadata» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«metadata» analyseres som en digitalt produsert representasjon der datagrunnlag, modellvalg, metadata, versjon og plattform bestemmer hva brukeren kan se og gjøre.",
+    "concept_type": "digital_heritage_method",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -15841,12 +16199,26 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «metadata» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_digitalt_minne",
+      "con_his_3d_modell"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_verdi"
+    ],
+    "common_misuse": [
+      "Å bruke «metadata» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "dokumentert digital representasjon av «metadata»",
+      "metadata, versjon og produksjonsprosess",
+      "tilgang, grensesnitt og dokumentert bruk"
+    ],
+    "source_requirements": [
+      "originalobjekt, dokumentasjon av digitaliserings- eller modelleringsprosessen og tekniske metadata",
+      "versjonslogg, institusjonell publiseringskontekst og bruker-/tilgangsdata"
+    ]
   },
   {
     "concept_id": "con_his_middelalder",
@@ -16390,8 +16762,8 @@
   {
     "concept_id": "con_his_minneaktivisme",
     "label": "minneaktivisme",
-    "definition": "I Minne, kulturarv og historiebruk betegner «minneaktivisme» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Historisk må «minneaktivisme» knyttes til hvem som produserte uttrykket, hvilke alternativer som ble valgt bort, og hva bruken faktisk gjorde mulig.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -16401,18 +16773,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «minneaktivisme» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_omdoping",
+      "con_his_originalmateriale",
+      "con_his_patina"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_kollektivt_minne"
+    ],
+    "common_misuse": [
+      "Å bruke «minneaktivisme» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «minneaktivisme»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_minnested",
     "label": "minnested",
-    "definition": "I Minne, kulturarv og historiebruk betegner «minnested» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Et minnested er et fysisk eller digitalt sted som gjennom utforming, ritual og gjentatt bruk knyttes til bestemte personer, tap eller hendelser.",
+    "concept_type": "memorial_site",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -16427,18 +16814,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «minnested» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_jubileum",
+      "con_his_minnesteder",
+      "con_his_monument"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_offentlig_konsekvens"
+    ],
+    "common_misuse": [
+      "Å utlede stedets betydning fra designet alene uten å dokumentere bruk, ritualer, konflikt og endring over tid."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materiell eller rituell iscenesettelse av «minnested»",
+      "tid, sted, arrangør og målgruppe",
+      "dokumentert deltakelse, reaksjon og senere endring"
+    ],
+    "source_requirements": [
+      "program, taler, innskrifter, design- og bestillingsdokumenter",
+      "presse, foto, deltakerberetninger, protester og senere omtolkinger"
+    ]
   },
   {
     "concept_id": "con_his_minnesteder",
     "label": "minnesteder",
-    "definition": "I Minne, kulturarv og historiebruk betegner «minnesteder» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Begrepet «minnesteder» avgrenser en materiell eller rituell iscenesettelse med identifiserbare bestillere, deltakere, målgrupper og senere bruksmønstre.",
+    "concept_type": "commemorative_practice",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -16448,12 +16850,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «minnesteder» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_ritual",
+      "con_his_seremoni",
+      "con_his_seremonier"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_symbol"
+    ],
+    "common_misuse": [
+      "Å bruke «minnesteder» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materiell eller rituell iscenesettelse av «minnesteder»",
+      "tid, sted, arrangør og målgruppe",
+      "dokumentert deltakelse, reaksjon og senere endring"
+    ],
+    "source_requirements": [
+      "program, taler, innskrifter, design- og bestillingsdokumenter",
+      "presse, foto, deltakerberetninger, protester og senere omtolkinger"
+    ]
   },
   {
     "concept_id": "con_his_minorisering",
@@ -16886,8 +17303,8 @@
   {
     "concept_id": "con_his_monument",
     "label": "monument",
-    "definition": "I Minne, kulturarv og historiebruk betegner «monument» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Et monument er et bestilt eller autorisert offentlig uttrykk som gjør en bestemt fortolkning av person, hendelse eller verdi synlig i rommet.",
+    "concept_type": "public_monument",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -16901,12 +17318,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «monument» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_seremoni",
+      "con_his_seremonier",
+      "con_his_sorg"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_kommunikativt_minne"
+    ],
+    "common_misuse": [
+      "Å behandle monumentet som ren kunstgjenstand uten å undersøke bestilling, plassering, symbolbruk og makt."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materiell eller rituell iscenesettelse av «monument»",
+      "tid, sted, arrangør og målgruppe",
+      "dokumentert deltakelse, reaksjon og senere endring"
+    ],
+    "source_requirements": [
+      "program, taler, innskrifter, design- og bestillingsdokumenter",
+      "presse, foto, deltakerberetninger, protester og senere omtolkinger"
+    ]
   },
   {
     "concept_id": "con_his_monumenter",
@@ -17087,8 +17519,8 @@
   {
     "concept_id": "con_his_motminne",
     "label": "motminne",
-    "definition": "I Minne, kulturarv og historiebruk betegner «motminne» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Motminne er en organisert fortidsfortelling eller praksis som utfordrer dominerende minneordninger ved å synliggjøre utelatte erfaringer, ansvar eller steder.",
+    "concept_type": "counter_memory",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -17100,12 +17532,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «motminne» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kulturelt_minne",
+      "con_his_kulturminne",
+      "con_his_postminne"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_originalmateriale"
+    ],
+    "common_misuse": [
+      "Å kalle enhver alternativ fortelling motminne uten å vise hvilken dominerende orden den utfordrer og hvordan."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "gjentatte fortellinger eller praksiser knyttet til «motminne»",
+      "bærere, arenaer og overføringsformer",
+      "endring, konflikt eller bortfall over generasjoner"
+    ],
+    "source_requirements": [
+      "muntlige, private og offentlige minnekilder fra flere tidspunkter",
+      "medier, ritualer, organisasjonsarkiv og materielle spor som viser sirkulasjon"
+    ]
   },
   {
     "concept_id": "con_his_motstand",
@@ -17300,8 +17747,8 @@
   {
     "concept_id": "con_his_musealisering",
     "label": "musealisering",
-    "definition": "I Minne, kulturarv og historiebruk betegner «musealisering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Historisk må «musealisering» knyttes til hvem som produserte uttrykket, hvilke alternativer som ble valgt bort, og hva bruken faktisk gjorde mulig.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -17314,18 +17761,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «musealisering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_omdoping",
+      "con_his_originalmateriale",
+      "con_his_patina"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_kulturarvskonflikt"
+    ],
+    "common_misuse": [
+      "Å bruke «musealisering» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «musealisering»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_museum",
     "label": "museum",
-    "definition": "I Minne, kulturarv og historiebruk betegner «museum» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Historisk må «museum» rekonstrueres gjennom institusjonens mål, objektenes proveniens, presentasjonsformen og dokumentert mottakelse.",
+    "concept_type": "heritage_mediation_practice",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -17335,12 +17797,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «museum» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_utstilling",
+      "con_his_formidling",
+      "con_his_kanon"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_bestilling"
+    ],
+    "common_misuse": [
+      "Å bruke «museum» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "institusjonell utvelgelse knyttet til «museum»",
+      "ordning, fortelling og utelatelser i formidlingen",
+      "dokumentert publikum, bruk eller mottakelse"
+    ],
+    "source_requirements": [
+      "samlings-, utstillings-, katalog- og institusjonsarkiv",
+      "publikumsundersøkelser, anmeldelser, undervisningsmateriale og kritiske motstemmer"
+    ]
   },
   {
     "concept_id": "con_his_naeringsformer",
@@ -17445,8 +17922,8 @@
   {
     "concept_id": "con_his_nasjonal_fortelling",
     "label": "nasjonal fortelling",
-    "definition": "I Minne, kulturarv og historiebruk betegner «nasjonal fortelling» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "I historiebruksanalyse undersøkes «nasjonal fortelling» gjennom utvalg, fortellergrep, kontekst og dokumentert mottakelse, ikke bare gjennom faktainnholdet.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -17456,12 +17933,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «nasjonal fortelling» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_markering",
+      "con_his_minneaktivisme",
+      "con_his_musealisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_sorg"
+    ],
+    "common_misuse": [
+      "Å bruke «nasjonal fortelling» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «nasjonal fortelling»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_nasjonale",
@@ -17674,8 +18166,8 @@
   {
     "concept_id": "con_his_navnepolitikk",
     "label": "navnepolitikk",
-    "definition": "I Minne, kulturarv og historiebruk betegner «navnepolitikk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Navnepolitikk er beslutninger og konflikter om hvilke navn som gis, beholdes, endres eller fjernes fra offentlige steder og institusjoner.",
+    "concept_type": "toponymic_memory_politics",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -17685,12 +18177,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «navnepolitikk» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_stedsnavn",
+      "con_his_symbol",
+      "con_his_symbolsk"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_kanon"
+    ],
+    "common_misuse": [
+      "Å behandle navneendring som symbolsk detalj uten å undersøke beslutningsmakt, språk, identitet og praktisk gjennomføring."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "aktører med ulike krav til «navnepolitikk»",
+      "beslutningsmyndighet, begrunnelser og maktressurser",
+      "endring i navn, plassering, synlighet eller fortolkning"
+    ],
+    "source_requirements": [
+      "politiske vedtak, høringer, organisasjonsarkiv og offentlig debatt",
+      "lokale erfaringer, protestmateriale, minoritetsstemmer og dokumentasjon av gjennomføring"
+    ]
   },
   {
     "concept_id": "con_his_nettverk",
@@ -18088,8 +18595,8 @@
   {
     "concept_id": "con_his_offentlig_konsekvens",
     "label": "offentlig konsekvens",
-    "definition": "I Minne, kulturarv og historiebruk betegner «offentlig konsekvens» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Historisk må «offentlig konsekvens» knyttes til hvem som produserte uttrykket, hvilke alternativer som ble valgt bort, og hva bruken faktisk gjorde mulig.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -18108,12 +18615,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «offentlig konsekvens» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kontekstualisering",
+      "con_his_marginalisering",
+      "con_his_markering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_inkludering"
+    ],
+    "common_misuse": [
+      "Å bruke «offentlig konsekvens» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «offentlig konsekvens»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_offentlig_rom",
@@ -18515,8 +19037,8 @@
   {
     "concept_id": "con_his_omdoping",
     "label": "omdoping",
-    "definition": "I Minne, kulturarv og historiebruk betegner «omdoping» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«omdoping» er en konkret måte fortid velges, formes og brukes på av identifiserbare aktører for et bestemt formål i en bestemt samtid.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -18526,12 +19048,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «omdoping» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_utelatelse",
+      "con_his_historiebruk",
+      "con_his_kontekstualisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_samling"
+    ],
+    "common_misuse": [
+      "Å bruke «omdoping» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «omdoping»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_omfordeler",
@@ -18725,8 +19262,8 @@
   {
     "concept_id": "con_his_omtolking",
     "label": "omtolking",
-    "definition": "I Minne, kulturarv og historiebruk betegner «omtolking» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Historisk undersøkes «omtolking» gjennom kravene som ble reist, beslutningsarenaene, motstanden og de varige endringene i offentlig rom eller institusjon.",
+    "concept_type": "memory_politics_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -18736,12 +19273,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «omtolking» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_symbol",
+      "con_his_symbolsk",
+      "con_his_bestilling"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_innskrift"
+    ],
+    "common_misuse": [
+      "Å bruke «omtolking» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "aktører med ulike krav til «omtolking»",
+      "beslutningsmyndighet, begrunnelser og maktressurser",
+      "endring i navn, plassering, synlighet eller fortolkning"
+    ],
+    "source_requirements": [
+      "politiske vedtak, høringer, organisasjonsarkiv og offentlig debatt",
+      "lokale erfaringer, protestmateriale, minoritetsstemmer og dokumentasjon av gjennomføring"
+    ]
   },
   {
     "concept_id": "con_his_opphav",
@@ -19102,8 +19654,8 @@
   {
     "concept_id": "con_his_originalmateriale",
     "label": "originalmateriale",
-    "definition": "I Minne, kulturarv og historiebruk betegner «originalmateriale» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«originalmateriale» er en konkret måte fortid velges, formes og brukes på av identifiserbare aktører for et bestemt formål i en bestemt samtid.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -19113,12 +19665,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «originalmateriale» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_patina",
+      "con_his_plass",
+      "con_his_plattform"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_kulturelt_minne"
+    ],
+    "common_misuse": [
+      "Å bruke «originalmateriale» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «originalmateriale»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_oslo",
@@ -19423,8 +19990,8 @@
   {
     "concept_id": "con_his_patina",
     "label": "patina",
-    "definition": "I Minne, kulturarv og historiebruk betegner «patina» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«patina» er en konkret måte fortid velges, formes og brukes på av identifiserbare aktører for et bestemt formål i en bestemt samtid.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -19434,12 +20001,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «patina» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_minneaktivisme",
+      "con_his_musealisering",
+      "con_his_nasjonal_fortelling"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_verdi"
+    ],
+    "common_misuse": [
+      "Å bruke «patina» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «patina»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_patronasje",
@@ -19795,8 +20377,8 @@
   {
     "concept_id": "con_his_plass",
     "label": "plass",
-    "definition": "I Minne, kulturarv og historiebruk betegner «plass» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "I historiebruksanalyse undersøkes «plass» gjennom utvalg, fortellergrep, kontekst og dokumentert mottakelse, ikke bare gjennom faktainnholdet.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -19806,12 +20388,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «plass» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_omdoping",
+      "con_his_originalmateriale",
+      "con_his_patina"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_inkludering"
+    ],
+    "common_misuse": [
+      "Å bruke «plass» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «plass»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_plassering",
@@ -19852,8 +20449,8 @@
   {
     "concept_id": "con_his_plattform",
     "label": "plattform",
-    "definition": "I Minne, kulturarv og historiebruk betegner «plattform» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«plattform» er en konkret måte fortid velges, formes og brukes på av identifiserbare aktører for et bestemt formål i en bestemt samtid.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -19863,12 +20460,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «plattform» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_rekonstruksjon",
+      "con_his_senere_inngrep",
+      "con_his_utelatelse"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_samling"
+    ],
+    "common_misuse": [
+      "Å bruke «plattform» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «plattform»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_plikter",
@@ -20097,8 +20709,8 @@
   {
     "concept_id": "con_his_postminne",
     "label": "postminne",
-    "definition": "I Minne, kulturarv og historiebruk betegner «postminne» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«postminne» beskriver en sosial prosess der fortidsforestillinger huskes, fortelles, glemmes eller omformes av bestemte bærere i bestemte situasjoner.",
+    "concept_type": "memory_studies_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -20109,12 +20721,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «postminne» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kulturelt_minne",
+      "con_his_kulturminne",
+      "con_his_motminne"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_fjerning"
+    ],
+    "common_misuse": [
+      "Å bruke «postminne» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "gjentatte fortellinger eller praksiser knyttet til «postminne»",
+      "bærere, arenaer og overføringsformer",
+      "endring, konflikt eller bortfall over generasjoner"
+    ],
+    "source_requirements": [
+      "muntlige, private og offentlige minnekilder fra flere tidspunkter",
+      "medier, ritualer, organisasjonsarkiv og materielle spor som viser sirkulasjon"
+    ]
   },
   {
     "concept_id": "con_his_praksis",
@@ -21421,8 +22048,8 @@
   {
     "concept_id": "con_his_rekonstruksjon",
     "label": "rekonstruksjon",
-    "definition": "I Minne, kulturarv og historiebruk betegner «rekonstruksjon» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Begrepet «rekonstruksjon» avgrenser forbindelsen mellom historisk materiale, avsender, medium, målgruppe og den funksjonen fortiden får i nåtiden.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -21432,12 +22059,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «rekonstruksjon» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_minneaktivisme",
+      "con_his_musealisering",
+      "con_his_nasjonal_fortelling"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_kulturminner"
+    ],
+    "common_misuse": [
+      "Å bruke «rekonstruksjon» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «rekonstruksjon»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_rekruttering",
@@ -21952,8 +22594,8 @@
   {
     "concept_id": "con_his_restaurering",
     "label": "restaurering",
-    "definition": "I Minne, kulturarv og historiebruk betegner «restaurering» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Restaurering er et dokumentert inngrep som søker å tydeliggjøre eller tilbakeføre valgte historiske trekk, samtidig som nye materialer og fortolkninger gjøres sporbare.",
+    "concept_type": "heritage_restoration_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -21965,12 +22607,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «restaurering» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kulturminner",
+      "con_his_utvelgelse",
+      "con_his_verdi"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_kuratering"
+    ],
+    "common_misuse": [
+      "Å beskrive restaurering som tilbakeføring til originalen uten å angi valgt tidspunkt, evidens og nye inngrep."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "uttalte kriterier for «restaurering»",
+      "vedtak, inngrep og ressursbruk",
+      "dokumenterte vinnere, tapere og alternative vurderinger"
+    ],
+    "source_requirements": [
+      "lovverk, vedtak, fagrapporter, inventarer og restaureringsdokumentasjon",
+      "eier-, bruker-, lokalsamfunns- og konfliktkilder som viser praksis og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_rester",
@@ -22265,8 +22922,8 @@
   {
     "concept_id": "con_his_ritual",
     "label": "ritual",
-    "definition": "I Minne, kulturarv og historiebruk betegner «ritual» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«ritual» er en offentlig minnepraksis som gjennom sted, form, tekst, tid og gjentakelse gjør en valgt fortolkning av fortiden synlig.",
+    "concept_type": "commemorative_practice",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -22276,12 +22933,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «ritual» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_innskrift",
+      "con_his_jubileer",
+      "con_his_jubileum"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_nasjonal_fortelling"
+    ],
+    "common_misuse": [
+      "Å bruke «ritual» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materiell eller rituell iscenesettelse av «ritual»",
+      "tid, sted, arrangør og målgruppe",
+      "dokumentert deltakelse, reaksjon og senere endring"
+    ],
+    "source_requirements": [
+      "program, taler, innskrifter, design- og bestillingsdokumenter",
+      "presse, foto, deltakerberetninger, protester og senere omtolkinger"
+    ]
   },
   {
     "concept_id": "con_his_ritualer",
@@ -22578,8 +23250,8 @@
   {
     "concept_id": "con_his_samling",
     "label": "samling",
-    "definition": "I Minne, kulturarv og historiebruk betegner «samling» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "I museums- og formidlingsanalyse avgrenser «samling» forbindelsen mellom samling, kuratorisk beslutning, narrativ struktur og publikums faktiske møte med materialet.",
+    "concept_type": "heritage_mediation_practice",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -22589,12 +23261,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «samling» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kanon",
+      "con_his_kuratering",
+      "con_his_museum"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_historiebruk"
+    ],
+    "common_misuse": [
+      "Å bruke «samling» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "institusjonell utvelgelse knyttet til «samling»",
+      "ordning, fortelling og utelatelser i formidlingen",
+      "dokumentert publikum, bruk eller mottakelse"
+    ],
+    "source_requirements": [
+      "samlings-, utstillings-, katalog- og institusjonsarkiv",
+      "publikumsundersøkelser, anmeldelser, undervisningsmateriale og kritiske motstemmer"
+    ]
   },
   {
     "concept_id": "con_his_sammenvevd",
@@ -23197,8 +23884,8 @@
   {
     "concept_id": "con_his_senere_inngrep",
     "label": "senere inngrep",
-    "definition": "I Minne, kulturarv og historiebruk betegner «senere inngrep» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Historisk må «senere inngrep» knyttes til hvem som produserte uttrykket, hvilke alternativer som ble valgt bort, og hva bruken faktisk gjorde mulig.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -23217,12 +23904,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «senere inngrep» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kontekstualisering",
+      "con_his_marginalisering",
+      "con_his_markering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_samling"
+    ],
+    "common_misuse": [
+      "Å bruke «senere inngrep» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «senere inngrep»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_senmiddelalderens",
@@ -23349,8 +24051,8 @@
   {
     "concept_id": "con_his_seremoni",
     "label": "seremoni",
-    "definition": "I Minne, kulturarv og historiebruk betegner «seremoni» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Begrepet «seremoni» avgrenser en materiell eller rituell iscenesettelse med identifiserbare bestillere, deltakere, målgrupper og senere bruksmønstre.",
+    "concept_type": "commemorative_practice",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -23361,18 +24063,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «seremoni» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_seremonier",
+      "con_his_sorg",
+      "con_his_innskrift"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_inkludering"
+    ],
+    "common_misuse": [
+      "Å bruke «seremoni» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materiell eller rituell iscenesettelse av «seremoni»",
+      "tid, sted, arrangør og målgruppe",
+      "dokumentert deltakelse, reaksjon og senere endring"
+    ],
+    "source_requirements": [
+      "program, taler, innskrifter, design- og bestillingsdokumenter",
+      "presse, foto, deltakerberetninger, protester og senere omtolkinger"
+    ]
   },
   {
     "concept_id": "con_his_seremonier",
     "label": "seremonier",
-    "definition": "I Minne, kulturarv og historiebruk betegner «seremonier» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "«seremonier» er en offentlig minnepraksis som gjennom sted, form, tekst, tid og gjentakelse gjør en valgt fortolkning av fortiden synlig.",
+    "concept_type": "commemorative_practice",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -23382,12 +24099,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «seremonier» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_innskrift",
+      "con_his_jubileer",
+      "con_his_jubileum"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_fjerning"
+    ],
+    "common_misuse": [
+      "Å bruke «seremonier» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materiell eller rituell iscenesettelse av «seremonier»",
+      "tid, sted, arrangør og målgruppe",
+      "dokumentert deltakelse, reaksjon og senere endring"
+    ],
+    "source_requirements": [
+      "program, taler, innskrifter, design- og bestillingsdokumenter",
+      "presse, foto, deltakerberetninger, protester og senere omtolkinger"
+    ]
   },
   {
     "concept_id": "con_his_serielle",
@@ -24178,8 +24910,8 @@
   {
     "concept_id": "con_his_sorg",
     "label": "sorg",
-    "definition": "I Minne, kulturarv og historiebruk betegner «sorg» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "I analyse av offentlig minne undersøkes «sorg» som samspill mellom design, seremoni, plassering, deltakelse og konkurrerende fortolkninger.",
+    "concept_type": "commemorative_practice",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -24189,12 +24921,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «sorg» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_seremoni",
+      "con_his_seremonier",
+      "con_his_innskrift"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_kommunikativt_minne"
+    ],
+    "common_misuse": [
+      "Å bruke «sorg» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "materiell eller rituell iscenesettelse av «sorg»",
+      "tid, sted, arrangør og målgruppe",
+      "dokumentert deltakelse, reaksjon og senere endring"
+    ],
+    "source_requirements": [
+      "program, taler, innskrifter, design- og bestillingsdokumenter",
+      "presse, foto, deltakerberetninger, protester og senere omtolkinger"
+    ]
   },
   {
     "concept_id": "con_his_sosial",
@@ -25233,8 +25980,8 @@
   {
     "concept_id": "con_his_stedsnavn",
     "label": "stedsnavn",
-    "definition": "I Minne, kulturarv og historiebruk betegner «stedsnavn» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Et stedsnavn er både orienteringsmiddel og historisk språkhandling som kan bevare, normalisere eller fortrenge bestemte personer, språk og bruksmåter.",
+    "concept_type": "historical_place_name",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -25244,12 +25991,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «stedsnavn» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_inkludering",
+      "con_his_kontrovers",
+      "con_his_navnepolitikk"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_plattform"
+    ],
+    "common_misuse": [
+      "Å bruke dagens navn som tidløs betegnelse eller direkte bevis på eldre identitet og bruk."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "aktører med ulike krav til «stedsnavn»",
+      "beslutningsmyndighet, begrunnelser og maktressurser",
+      "endring i navn, plassering, synlighet eller fortolkning"
+    ],
+    "source_requirements": [
+      "politiske vedtak, høringer, organisasjonsarkiv og offentlig debatt",
+      "lokale erfaringer, protestmateriale, minoritetsstemmer og dokumentasjon av gjennomføring"
+    ]
   },
   {
     "concept_id": "con_his_stemmerett",
@@ -25629,8 +26391,8 @@
   {
     "concept_id": "con_his_symbol",
     "label": "symbol",
-    "definition": "I Minne, kulturarv og historiebruk betegner «symbol» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Begrepet «symbol» avgrenser hvordan offentlig minne forhandles gjennom vedtak, protest, institusjonell kontroll og endring av materielle eller språklige uttrykk.",
+    "concept_type": "memory_politics_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -25640,18 +26402,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «symbol» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_stedsnavn",
+      "con_his_symbolsk",
+      "con_his_bestilling"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_kuratering"
+    ],
+    "common_misuse": [
+      "Å bruke «symbol» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "aktører med ulike krav til «symbol»",
+      "beslutningsmyndighet, begrunnelser og maktressurser",
+      "endring i navn, plassering, synlighet eller fortolkning"
+    ],
+    "source_requirements": [
+      "politiske vedtak, høringer, organisasjonsarkiv og offentlig debatt",
+      "lokale erfaringer, protestmateriale, minoritetsstemmer og dokumentasjon av gjennomføring"
+    ]
   },
   {
     "concept_id": "con_his_symbolsk",
     "label": "symbolsk",
-    "definition": "I Minne, kulturarv og historiebruk betegner «symbolsk» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Historisk undersøkes «symbolsk» gjennom kravene som ble reist, beslutningsarenaene, motstanden og de varige endringene i offentlig rom eller institusjon.",
+    "concept_type": "memory_politics_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -25661,12 +26438,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «symbolsk» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kontrovers",
+      "con_his_navnepolitikk",
+      "con_his_omtolking"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_monument"
+    ],
+    "common_misuse": [
+      "Å bruke «symbolsk» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "aktører med ulike krav til «symbolsk»",
+      "beslutningsmyndighet, begrunnelser og maktressurser",
+      "endring i navn, plassering, synlighet eller fortolkning"
+    ],
+    "source_requirements": [
+      "politiske vedtak, høringer, organisasjonsarkiv og offentlig debatt",
+      "lokale erfaringer, protestmateriale, minoritetsstemmer og dokumentasjon av gjennomføring"
+    ]
   },
   {
     "concept_id": "con_his_synlig_bygg_vs_faktisk_aktivitet",
@@ -27730,8 +28522,8 @@
   {
     "concept_id": "con_his_utelatelse",
     "label": "utelatelse",
-    "definition": "I Minne, kulturarv og historiebruk betegner «utelatelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "Historisk må «utelatelse» knyttes til hvem som produserte uttrykket, hvilke alternativer som ble valgt bort, og hva bruken faktisk gjorde mulig.",
+    "concept_type": "public_history_use_concept",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -27750,12 +28542,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «utelatelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_historiebruk",
+      "con_his_kontekstualisering",
+      "con_his_marginalisering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_seremonier"
+    ],
+    "common_misuse": [
+      "Å bruke «utelatelse» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "konkret bruk av fortid gjennom «utelatelse»",
+      "avsender, målgruppe og situasjon",
+      "utvalg, virkemidler og dokumentert virkning eller mottakelse"
+    ],
+    "source_requirements": [
+      "produksjons-, publiserings- og beslutningskilder som viser intensjon og utforming",
+      "mottakelses-, bruks- og motstemmekilder som viser faktisk funksjon"
+    ]
   },
   {
     "concept_id": "con_his_utelatt",
@@ -27864,8 +28671,8 @@
   {
     "concept_id": "con_his_utstilling",
     "label": "utstilling",
-    "definition": "I Minne, kulturarv og historiebruk betegner «utstilling» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "definition": "I museums- og formidlingsanalyse avgrenser «utstilling» forbindelsen mellom samling, kuratorisk beslutning, narrativ struktur og publikums faktiske møte med materialet.",
+    "concept_type": "heritage_mediation_practice",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -27875,18 +28682,33 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «utstilling» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_formidling",
+      "con_his_kanon",
+      "con_his_kuratering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_kontekstualisering"
+    ],
+    "common_misuse": [
+      "Å bruke «utstilling» som selvforklarende kvalitetsstempel uten å dokumentere aktører, kriterier, utvalg, motstemmer og faktisk virkning."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "institusjonell utvelgelse knyttet til «utstilling»",
+      "ordning, fortelling og utelatelser i formidlingen",
+      "dokumentert publikum, bruk eller mottakelse"
+    ],
+    "source_requirements": [
+      "samlings-, utstillings-, katalog- og institusjonsarkiv",
+      "publikumsundersøkelser, anmeldelser, undervisningsmateriale og kritiske motstemmer"
+    ]
   },
   {
     "concept_id": "con_his_utvelgelse",
-    "label": "utvelgelse",
-    "definition": "I Minne, kulturarv og historiebruk betegner «utvelgelse» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "kulturarvutvelgelse",
+    "definition": "Kulturarvutvelgelse er prosessen der enkelte spor gis vern, ressurser og offentlig oppmerksomhet mens andre nedprioriteres eller forsvinner.",
+    "concept_type": "heritage_selection_process",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -27896,12 +28718,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «utvelgelse» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_restaurering",
+      "con_his_verdi",
+      "con_his_kulturarvskonflikt"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_minnested"
+    ],
+    "common_misuse": [
+      "Å fremstille utvalget som rent faglig uten å undersøke lovverk, ressurser, representasjon og politiske prioriteringer."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "uttalte kriterier for «kulturarvutvelgelse»",
+      "vedtak, inngrep og ressursbruk",
+      "dokumenterte vinnere, tapere og alternative vurderinger"
+    ],
+    "source_requirements": [
+      "lovverk, vedtak, fagrapporter, inventarer og restaureringsdokumentasjon",
+      "eier-, bruker-, lokalsamfunns- og konfliktkilder som viser praksis og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_utviklingspolitikk",
@@ -28216,9 +29053,9 @@
   },
   {
     "concept_id": "con_his_verdi",
-    "label": "verdi",
-    "definition": "I Minne, kulturarv og historiebruk betegner «verdi» en historisk avgrenset relasjon, praksis, prosess eller institusjon som må dokumenteres gjennom kilder, tid, sted og aktører.",
-    "concept_type": "analytical_concept",
+    "label": "kulturhistorisk verdi",
+    "definition": "Kulturhistorisk verdi er en eksplisitt og etterprøvbar begrunnelse for hvorfor et spor anses viktig, for eksempel som kilde, identitetsbærer, brukssted eller representant for et miljø.",
+    "concept_type": "heritage_value_assessment",
     "historical_scope": "context_dependent",
     "domain_ids": [
       "his_minne_kulturarv_historiebruk"
@@ -28228,12 +29065,27 @@
     ],
     "broader_concepts": [],
     "narrower_concepts": [],
-    "related_concepts": [],
-    "distinguish_from": [],
-    "common_misuse": [
-      "Å bruke «verdi» som en tidløs etikett uten kilde, kronologi eller aktør."
+    "related_concepts": [
+      "con_his_kulturarvskonflikt",
+      "con_his_kulturminner",
+      "con_his_restaurering"
     ],
-    "status": "canonical_v5_5"
+    "distinguish_from": [
+      "con_his_gate"
+    ],
+    "common_misuse": [
+      "Å bruke verdi som generell ros uten kriterier, sammenligningsgrunnlag og berørte aktører."
+    ],
+    "status": "canonical_v5_5_curated",
+    "indicators": [
+      "uttalte kriterier for «kulturhistorisk verdi»",
+      "vedtak, inngrep og ressursbruk",
+      "dokumenterte vinnere, tapere og alternative vurderinger"
+    ],
+    "source_requirements": [
+      "lovverk, vedtak, fagrapporter, inventarer og restaureringsdokumentasjon",
+      "eier-, bruker-, lokalsamfunns- og konfliktkilder som viser praksis og konsekvens"
+    ]
   },
   {
     "concept_id": "con_his_verdikjeder",
