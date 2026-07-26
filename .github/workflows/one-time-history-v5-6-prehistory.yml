@@ -42,6 +42,15 @@ jobs:
             '/tmp/history-v5-6-prehistory.b64' | sha256sum --check
           base64 -d /tmp/history-v5-6-prehistory.b64 \
             | gunzip > /tmp/apply-history-v5-6-prehistory.mjs
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('/tmp/apply-history-v5-6-prehistory.mjs')
+          text = p.read_text()
+          expected = text.count('con_his_${')
+          if expected != 4:
+              raise SystemExit(f'Expected four generated concept-id expressions, found {expected}')
+          p.write_text(text.replace('con_his_${', 'con_his_pre_${'))
+          PY
           node --check /tmp/apply-history-v5-6-prehistory.mjs
 
       - name: Apply universal prehistory and archaeology domain
