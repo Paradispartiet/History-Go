@@ -20,12 +20,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: agent/oslo-popup-v4-batch-04-ten-protocol
-          fetch-depth: 0
+          fetch-depth: 1
+          show-progress: false
 
       - name: Apply ten description revisions and protocol
         shell: bash
         run: |
-          cat .tmp/oslo-popup-v4-batch-04/payload-*.txt | base64 -d | gunzip > /tmp/apply-oslo.js
+          set -euo pipefail
+          cat .tmp/oslo-popup-v4-batch-04/payload-*.txt > /tmp/payload.b64
+          base64 -d /tmp/payload.b64 > /tmp/payload.gz
+          gzip -t /tmp/payload.gz
+          gunzip -c /tmp/payload.gz > /tmp/apply-oslo.js
           node /tmp/apply-oslo.js
 
       - name: Verify scope and remove temporary files
